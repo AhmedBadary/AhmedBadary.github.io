@@ -11,6 +11,8 @@ permalink: /work_files/jquery
   {: .TOC1}
   * [DOM Events and Event Listeners](#content2)
   {: .TOC2}
+  * [Form Processing](#content3)
+  {: .TOC3}
 </div>
 
 
@@ -132,10 +134,58 @@ $("<p>").text("The crocodiles have eaten this ENTIRE PAGE!").addClass("crocodile
 
 [^1]: Returns a jQuery Collection, NOT a DOM Node.
 [^2]: Appends paragraph to the body-tag, making it the last tag in the body.
-
-
+[^3]: Open me for Examples.
 ***
 
 ## DOM Events and Event Listeners
 {: #content2}
 1. **Adding Event Listeners:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}
+```javascript
+    ("#button").on("click", function(event) {  // Select the Button
+        console.log("you clicked me!!");  // Specify the Event 
+        });
+```
+2. **Triggering events (Manually):**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}
+`$("#save-button").trigger("click");`
+3. **Types of Events:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}
+    * **mouse events**: 'click' , 'mousedown'/'mouseup', 'mousemove', 'mouseenter'/'mouseleave'
+    * **keyboard events**: 'keydown', 'keypress', 'keyup'
+    * **touch events**: 'touchdown', 'touchup', 'touchstart', ‘touchcancel’
+    * **drag events**: 'dragstart', 'dragend' (Many developers use jQueryUI for drag functionality, as it can be tricky to use the drag events directly.)
+    * **form events**: 'submit', 'change', 'focus'/'blur'
+    * **window events**: 'scroll', 'reload', 'hashchange'
+> source \\
+> [Khan Academy](https://www.khanacademy.org/computing/computer-programming/html-js-jquery/dom-events-with-jquery/a/dom-events-and-properties)[^3]
+4. **Checking DOM Readiness:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}
+```javascript
+$(document).ready(function() {
+    someFunction();
+});
+```
+
+***
+
+## Form Processing
+{: #content3}
+1. **Types of Events:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}
+```javascript
+$("form").on("submit", function() {
+    // process form     
+});
+```
+2. **Preventing Webpages' Default Actions:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}
+```javascript
+$("form").on("submit", function(event) {
+   event.preventDefault();
+   // process form
+});
+```
+3. **Retrieveing Submitted Information:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}
+```javascript
+$("form").on("submit", function() {
+    // Find the input with name='age' 
+    var age = $(this).find('[name=age]');
+    // Store the value of the input with name='age'
+    var ageValue = age.val();
+});
+```

@@ -63,6 +63,9 @@
   <ul class="TOC2">
     <li><a href="#content2">DOM Events and Event Listeners</a></li>
   </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Form Processing</a></li>
+  </ul>
 </div>
 
 <hr />
@@ -250,7 +253,68 @@ The following are equivalent
 
 <h2 id="content2">DOM Events and Event Listeners</h2>
 <ol>
-  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Adding Event Listeners:</strong></li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Adding Event Listeners:</strong>
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="p">(</span><span class="s2">"#button"</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// Select the Button</span>
+     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"you clicked me!!"</span><span class="p">);</span>  <span class="c1">// Specify the Event </span>
+     <span class="p">});</span>
+</code></pre>
+    </div>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Triggering events (Manually):</strong>
+<code class="highlighter-rouge">$("#save-button").trigger("click");</code></li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Types of Events:</strong>
+    <ul>
+      <li><strong>mouse events</strong>: ‘click’ , ‘mousedown’/’mouseup’, ‘mousemove’, ‘mouseenter’/’mouseleave’</li>
+      <li><strong>keyboard events</strong>: ‘keydown’, ‘keypress’, ‘keyup’</li>
+      <li><strong>touch events</strong>: ‘touchdown’, ‘touchup’, ‘touchstart’, ‘touchcancel’</li>
+      <li><strong>drag events</strong>: ‘dragstart’, ‘dragend’ (Many developers use jQueryUI for drag functionality, as it can be tricky to use the drag events directly.)</li>
+      <li><strong>form events</strong>: ‘submit’, ‘change’, ‘focus’/’blur’</li>
+      <li><strong>window events</strong>: ‘scroll’, ‘reload’, ‘hashchange’
+        <blockquote>
+          <p>source <br />
+<a href="https://www.khanacademy.org/computing/computer-programming/html-js-jquery/dom-events-with-jquery/a/dom-events-and-properties">Khan Academy</a><sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup></p>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Checking DOM Readiness:</strong>
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+ <span class="nx">someFunction</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre>
+    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Form Processing</h2>
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Types of Events:</strong>
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s2">"form"</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">"submit"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+ <span class="c1">// process form     </span>
+<span class="p">});</span>
+</code></pre>
+    </div>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Preventing Webpages’ Default Actions:</strong>
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s2">"form"</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">"submit"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="c1">// process form</span>
+<span class="p">});</span>
+</code></pre>
+    </div>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Retrieveing Submitted Information:</strong>
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s2">"form"</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">"submit"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+ <span class="c1">// Find the input with name='age' </span>
+ <span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">'[name=age]'</span><span class="p">);</span>
+ <span class="c1">// Store the value of the input with name='age'</span>
+ <span class="kd">var</span> <span class="nx">ageValue</span> <span class="o">=</span> <span class="nx">age</span><span class="p">.</span><span class="nx">val</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre>
+    </div>
+  </li>
 </ol>
 <div class="footnotes">
   <ol>
@@ -259,6 +323,9 @@ The following are equivalent
     </li>
     <li id="fn:2">
       <p>Appends paragraph to the body-tag, making it the last tag in the body.&nbsp;<a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p>Open me for Examples.&nbsp;<a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -273,6 +340,9 @@ The following are equivalent
   <ul class="TOC2">
     <li><a href="#content2">DOM Events and Event Listeners</a></li>
   </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Form Processing</a></li>
+  </ul>
 </div>
 
 <hr />
@@ -460,7 +530,68 @@ The following are equivalent
 
 <h2 id="content2">DOM Events and Event Listeners</h2>
 <ol>
-  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Adding Event Listeners:</strong></li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Adding Event Listeners:</strong>
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="p">(</span><span class="s2">"#button"</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// Select the Button</span>
+     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"you clicked me!!"</span><span class="p">);</span>  <span class="c1">// Specify the Event </span>
+     <span class="p">});</span>
+</code></pre>
+    </div>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Triggering events (Manually):</strong>
+<code class="highlighter-rouge">$("#save-button").trigger("click");</code></li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Types of Events:</strong>
+    <ul>
+      <li><strong>mouse events</strong>: ‘click’ , ‘mousedown’/’mouseup’, ‘mousemove’, ‘mouseenter’/’mouseleave’</li>
+      <li><strong>keyboard events</strong>: ‘keydown’, ‘keypress’, ‘keyup’</li>
+      <li><strong>touch events</strong>: ‘touchdown’, ‘touchup’, ‘touchstart’, ‘touchcancel’</li>
+      <li><strong>drag events</strong>: ‘dragstart’, ‘dragend’ (Many developers use jQueryUI for drag functionality, as it can be tricky to use the drag events directly.)</li>
+      <li><strong>form events</strong>: ‘submit’, ‘change’, ‘focus’/’blur’</li>
+      <li><strong>window events</strong>: ‘scroll’, ‘reload’, ‘hashchange’
+        <blockquote>
+          <p>source <br />
+<a href="https://www.khanacademy.org/computing/computer-programming/html-js-jquery/dom-events-with-jquery/a/dom-events-and-properties">Khan Academy</a><sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup></p>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Checking DOM Readiness:</strong>
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+ <span class="nx">someFunction</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre>
+    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Form Processing</h2>
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Types of Events:</strong>
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s2">"form"</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">"submit"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+ <span class="c1">// process form     </span>
+<span class="p">});</span>
+</code></pre>
+    </div>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Preventing Webpages’ Default Actions:</strong>
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s2">"form"</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">"submit"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="c1">// process form</span>
+<span class="p">});</span>
+</code></pre>
+    </div>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Retrieveing Submitted Information:</strong>
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s2">"form"</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">"submit"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+ <span class="c1">// Find the input with name='age' </span>
+ <span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">'[name=age]'</span><span class="p">);</span>
+ <span class="c1">// Store the value of the input with name='age'</span>
+ <span class="kd">var</span> <span class="nx">ageValue</span> <span class="o">=</span> <span class="nx">age</span><span class="p">.</span><span class="nx">val</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre>
+    </div>
+  </li>
 </ol>
 <div class="footnotes">
   <ol>
@@ -469,6 +600,9 @@ The following are equivalent
     </li>
     <li id="fn:2">
       <p>Appends paragraph to the body-tag, making it the last tag in the body.&nbsp;<a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p>Open me for Examples.&nbsp;<a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -487,6 +621,13 @@ $("<ol>").addClass("TOC2ul").appendTo(".TOC2");
 bodyContents.each(function(index, element) {
     var paragraph = $(element);
     $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
      });
 </script>
 
