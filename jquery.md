@@ -145,7 +145,7 @@ $("<p>").text("The crocodiles have eaten this ENTIRE PAGE!").addClass("crocodile
         console.log("you clicked me!!");  // Specify the Event 
         });
 ```
-2. **Triggering events (Manually):**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}
+2. **Triggering events (Manually):**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22} \\
 `$("#save-button").trigger("click");`
 3. **Types of Events:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}
     * **mouse events**: 'click' , 'mousedown'/'mouseup', 'mousemove', 'mouseenter'/'mouseleave'
