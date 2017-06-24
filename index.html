@@ -1,67 +1,13 @@
-<!DOCTYPE html>
-<html class="gr__projects_haykranen_nl">
+---
+layout: default
+title: {{ site.name }}
+---
 
-    <head>
-        <title> » Ahmad Badary</title>
-
-        <link rel="stylesheet" href="./main_files/style.css">
-        <link rel="shortcut icon" href="./main_files/favicon.ico" />
-    </head>
-
-    <body data-page="blog" data-gr-c-s-loaded="true">
-        <nav class="main-nav">
-            <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
-                <img src="./main_files/logo.png">
-            </a>
-
-            <ul id="menu-main" class="main-nav-items">
-                <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
-                <a href="http://ahmedbadary.github.io/">Home</a>
-                </li>
-                <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
-                <a href="https://ahmedbadary.github.io/">Work</a>
-                </li>
-                <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
-                <a href="https://ahmedbadary.github.io/">Blog</a>
-                </li>
-                <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
-                <a href="https://ahmedbadary.github.io/">About</a>
-                </li>
-                <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
-                <a href="https://ahmedbadary.github.io/snake/">Snake</a>
-                </li>
-            </ul>
-        </nav>
-
-    <div class="project">
-        <section id="main">
-            <article>
-                <style>
-                    textarea { width: 100%; }
-                </style>
-
-                <h2>My Webpage!</h2>
-                <p>Content goes here. </p>
-                <p>Check my <a href="https://www.facebook.com/ahmed.thabet.94/">Facebook</a> and my <a href="https://www.linkedin.com/in/ahmad-badary-656098121/">LinkedIn</a>.</p>
-            </article>
-        </section>
-    </div>  
-
-    <footer class="footer">
-        <div class="footer-left">
-            © 2017: Ahmad Badary
-        </div>
-
-        <div class="footer-right">
-            <ul id="menu-main" class="list-inline"><li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859"><a href="https://ahmedbadary.github.io/">Home</a></li>
-                <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869"><a href="https://ahmedbadary.github.io/">Work</a></li>
-                <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858"><a href="https://ahmedbadary.github.io/">Blog</a></li>
-                <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862"><a href="https://ahmedbadary.github.io/">About</a></li>
-                <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
-                <a href="https://ahmedbadary.github.io/snake/">Snake</a>
-            </ul>
-        </div>
-    </footer>
-
-</body>
-</html>
+<div id="home">
+  <h1>Blog Posts</h1>
+  <ul class="posts">
+    {% for post in site.posts %}
+      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
