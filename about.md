@@ -9,4 +9,6 @@ permalink: /about
   Hey there! Here you will know more about me.
 </p>
 Updated Soon!
-![Ahmad Badary Portrait](./main_files/AhmadBadary.jpg)
+<div> 
+<img src="./main_files/AhmadBadary.jpg" alt="Ahmad Badary" style="width: 400px;"/>
+</div>
