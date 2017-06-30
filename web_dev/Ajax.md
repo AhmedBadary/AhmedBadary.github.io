@@ -1,7 +1,7 @@
 ---
 layout: NotesPage
 title: AJAX
-permalink: /work_files/web_dev/AJAX
+permalink: /work_files/web_dev/Ajax
 ---
 
 <div markdown="1" class = "TOC">
