@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">2.7 <br /> Zeros of Polynomials and Müller’s Method</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="https://github.com/AhmedBadary/" class="btn">GitHub</a>
+  <a href="https://www.linkedin.com/in/ahmad-badary-656098121/" class="btn">LinkedIn</a>
+  <a href=https://www.facebook.com/ahmed.thabet.94 class="btn">Facebook</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <!-- <div class="page">
+  <h1 class="page-title">2.7 <br /> Zeros of Polynomials and Müller’s Method</h1>
+  <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Algebraic Polynomials</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Horner’s Method</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Complex Zeros: Müller’s Method</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">Algebraic Polynomials</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Fundamental Theorem of Algebra:</strong> <br />
+ <img src="/main_files/128a/2.6/1.png" alt="definition" /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Existance of Roots:</strong> <br />
+ <img src="/main_files/128a/2.6/2.png" alt="definition" /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Polynomial Equivalence:</strong> <br />
+ <img src="/main_files/128a/2.6/3.png" alt="definition" /></p>
+    <blockquote>
+      <p>This result implies that to show that two polynomials of degree less than or equal to <script type="math/tex">n</script> are the same, we only need to show that they agree at <script type="math/tex">n + 1</script> values.</p>
+    </blockquote>
+  </li>
+</ol>
+
+<h2 id="content2">Horner’s Method</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">What?</strong> <br />
+ Horner’s method incorporates the <a href="/work_files/school/128a/1_2">Section 1.2</a> nesting technique, and,
+ as a consequence, requires only n multiplications and n additions to evaluate an arbitrary
+ nth-degree polynomial.</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Why?</strong> <br />
+ To use Newton’s method to locate approximate zeros of a polynomial P(x), we need to
+ evaluate <script type="math/tex">P(x)</script> and <script type="math/tex">P'(x)</script> at specified values, Which could be really tedious.</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Horner’s Method:</strong> <br />
+ <img src="/main_files/128a/2.6/4.png" alt="Thm" height="130px" /> <br />
+ <img src="/main_files/128a/2.6/5.png" alt="Thm_2" height="130px" /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Algorithm:</strong> <br />
+ <img src="/main_files/128a/2.6/6.png" alt="Thm_2" width="70%" /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Deflation:</strong></p>
+    <pre><code class="language-message"> Something about deflation
+</code></pre>
+  </li>
+</ol>
+
+<h2 id="content3">Complex Zeros: Müller’s Method</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">What?</strong> <br />
+    <ul>
+      <li>A synthetic division involving quadratic polynomials can be devised to approximately
+ factor the polynomial so that one term will be a quadratic polynomial whose complex roots
+ are approximations to the roots of the original polynomial</li>
+      <li>Müller’s method uses three initial approximations,
+ <script type="math/tex">p_0, p_1, and p_2</script>, and determines the next approximation <script type="math/tex">p_3</script> by considering the intersection
+ of the x-axis with the parabola through <script type="math/tex">( p_0, f ( p_0)), ( p_1, f ( p_1))</script>, and <script type="math/tex">( p_2, f ( p_2))</script></li>
+    </ul>
+
+    <p><a href="/main_files/128a/2.6/derivation.jpg">Derivation can be found here!</a></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Why?</strong> <br />
+    <blockquote>
+      <p><strong>Newton’s Method/Secant/False Postion Weakness</strong>:
+The possibility that the polynomial having complex roots even when all the coefficients are real numbers.</p>
+      <blockquote>
+        <p>If the initial approximation is a real number, all subsequent approximations
+     will also be real numbers.</p>
+      </blockquote>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Complex Roots:</strong> <br />
+ <img src="/main_files/128a/2.6/7.png" alt="Thm_1" /></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Algorithm:</strong> <br />
+ <img src="/main_files/128a/2.6/8.png" alt="Thm_1" width="60%" />
+ <img src="/main_files/128a/2.6/9.png" alt="Thm_2" width="60%" /></li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">Calculations and Evaluations:</strong> <br />
+ <a href="/main_files/128a/2.6/Evaluations.png">HERE!</a>
+    <blockquote>
+      <p>Müller’s method can approximate the roots of polynomials
+ with a variety of starting values.</p>
+    </blockquote>
+  </li>
+</ol>
+
+</div>-->
+
+<div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Algebraic Polynomials</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Horner’s Method</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Complex Zeros: Müller’s Method</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">Algebraic Polynomials</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Fundamental Theorem of Algebra:</strong> <br />
+ <img src="/main_files/128a/2.6/1.png" alt="definition" /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Existance of Roots:</strong> <br />
+ <img src="/main_files/128a/2.6/2.png" alt="definition" /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Polynomial Equivalence:</strong> <br />
+ <img src="/main_files/128a/2.6/3.png" alt="definition" /></p>
+    <blockquote>
+      <p>This result implies that to show that two polynomials of degree less than or equal to <script type="math/tex">n</script> are the same, we only need to show that they agree at <script type="math/tex">n + 1</script> values.</p>
+    </blockquote>
+  </li>
+</ol>
+
+<h2 id="content2">Horner’s Method</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">What?</strong> <br />
+ Horner’s method incorporates the <a href="/work_files/school/128a/1_2">Section 1.2</a> nesting technique, and,
+ as a consequence, requires only n multiplications and n additions to evaluate an arbitrary
+ nth-degree polynomial.</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Why?</strong> <br />
+ To use Newton’s method to locate approximate zeros of a polynomial P(x), we need to
+ evaluate <script type="math/tex">P(x)</script> and <script type="math/tex">P'(x)</script> at specified values, Which could be really tedious.</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Horner’s Method:</strong> <br />
+ <img src="/main_files/128a/2.6/4.png" alt="Thm" height="130px" /> <br />
+ <img src="/main_files/128a/2.6/5.png" alt="Thm_2" height="130px" /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Algorithm:</strong> <br />
+ <img src="/main_files/128a/2.6/6.png" alt="Thm_2" width="70%" /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Deflation:</strong></p>
+    <pre><code class="language-message"> Something about deflation
+</code></pre>
+  </li>
+</ol>
+
+<h2 id="content3">Complex Zeros: Müller’s Method</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">What?</strong> <br />
+    <ul>
+      <li>A synthetic division involving quadratic polynomials can be devised to approximately
+ factor the polynomial so that one term will be a quadratic polynomial whose complex roots
+ are approximations to the roots of the original polynomial</li>
+      <li>Müller’s method uses three initial approximations,
+ <script type="math/tex">p_0, p_1, and p_2</script>, and determines the next approximation <script type="math/tex">p_3</script> by considering the intersection
+ of the x-axis with the parabola through <script type="math/tex">( p_0, f ( p_0)), ( p_1, f ( p_1))</script>, and <script type="math/tex">( p_2, f ( p_2))</script></li>
+    </ul>
+
+    <p><a href="/main_files/128a/2.6/derivation.jpg">Derivation can be found here!</a></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Why?</strong> <br />
+    <blockquote>
+      <p><strong>Newton’s Method/Secant/False Postion Weakness</strong>:
+The possibility that the polynomial having complex roots even when all the coefficients are real numbers.</p>
+      <blockquote>
+        <p>If the initial approximation is a real number, all subsequent approximations
+     will also be real numbers.</p>
+      </blockquote>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Complex Roots:</strong> <br />
+ <img src="/main_files/128a/2.6/7.png" alt="Thm_1" /></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Algorithm:</strong> <br />
+ <img src="/main_files/128a/2.6/8.png" alt="Thm_1" width="60%" />
+ <img src="/main_files/128a/2.6/9.png" alt="Thm_2" width="60%" /></li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">Calculations and Evaluations:</strong> <br />
+ <a href="/main_files/128a/2.6/Evaluations.png">HERE!</a>
+    <blockquote>
+      <p>Müller’s method can approximate the roots of polynomials
+ with a variety of starting values.</p>
+    </blockquote>
+  </li>
+</ol>
+
+
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+</script>
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8888">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8888">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+</html>

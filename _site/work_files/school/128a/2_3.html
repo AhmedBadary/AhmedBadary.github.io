@@ -69,10 +69,16 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">Fixed-Point Problems</a></li>
+    <li><a href="#content1">Newton’s Method</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">Fixed-Point Iteration</a></li>
+    <li><a href="#content2">Convergence using Newton’s Method</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">The Secant Method</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">The Method of False Position</a></li>
   </ul>
 </div>
 
@@ -101,7 +107,7 @@
  <img src="/main_files/128a/2.3/1.png" alt="definition" width="80%" /></p>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Stopping Criterions:</strong> <br />
- <img src="/main_files/128a/2.3/stopping.png" alt="definition" height="170px" /></li>
+ <img src="/main_files/128a/2.3/stopping.png" alt="definition" height="150px" /></li>
 </ol>
 
 <hr />
@@ -110,38 +116,77 @@
 
 <ol>
   <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Convergence Theorem:</strong> <br />
- <img src="/main_files/128a/2.3/1.png" alt="definition" width="80%" />
+ <img src="/main_files/128a/2.3/4.png" alt="definition" width="90%" />
     <blockquote>
       <p>The crucial assumption is that the
-term involving ( p − p0)2 is, by comparison with | p − p0|, so small that it can be deleted</p>
-    </blockquote>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Algorithm:</strong> <br />
-     <img src="/main_files/128a/2.2/6.png" alt="definition" width="75%" />
-     <img src="/main_files/128a/2.2/7.png" alt="definition" width="75%" /></p>
-  </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents23">Fixed-Point Theorem:</strong> <br />
-     <img src="/main_files/128a/2.2/9.png" alt="definition" width="90%" /></li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents24">Error bound in using <script type="math/tex">p_n</script> for <script type="math/tex">p</script>:</strong> <br />
- <img src="/main_files/128a/2.2/10.png" alt="definition" width="90%" />
-    <blockquote>
-      <p>Notice: <br />
-The rate of convergence depends on the factor <script type="math/tex">k^n</script>. The smaller the
-value of <script type="math/tex">k</script>, the faster the convergence, which may be very slow if <script type="math/tex">k</script> is close to 1.</p>
-    </blockquote>
-  </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents25">Using Fixed-Points:</strong> <br />
-    <blockquote>
-      <p><strong>Question</strong>. How can we find a fixed-point problem that produces a sequence that reliably
-and rapidly converges to a solution to a given root-finding problem?</p>
+term involving <script type="math/tex">( p − p_0)^2</script> is, by comparison with <script type="math/tex">| p − p_0|</script>, so small that it can be deleted</p>
     </blockquote>
 
     <blockquote>
-      <p><strong>Answer</strong>. Manipulate the root-finding problem into a fixed point problem that satisfies the
-conditions of Fixed-Point Theorem 2.4 and has a derivative that is as small as possible
-near the fixed point.</p>
+      <p>Theorem 2.6 states that, <br />
+(1) Under reasonable assumptions, Newton’s method converges
+  provided a sufficiently accurate initial approximation is chosen. <br />
+(2) It also implies that the constant k that bounds the derivative of g, and, consequently, indicates &gt;   the speed of convergence
+  of the method, decreases to 0 as the procedure continues.</p>
     </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Algorithm:</strong> <br />
+     <img src="/main_files/128a/2.3/1.png" alt="definition" width="80%" /></li>
+</ol>
+
+<h2 id="content3">The Secant Method</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">What?</strong> <br />
+ We approximate <script type="math/tex">f'( p_n−1)</script> as:
+ <img src="/main_files/128a/2.3/12.png" alt="definition" width="75%" /> <br />
+ To produce: <br />
+ <img src="/main_files/128a/2.3/11.png" alt="definition" width="75%" /></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Why?</strong> <br />
+    <blockquote>
+      <p><strong>Newton’s Method Weakness</strong>: 
+the need to know the value of the derivative of f at each approximation.</p>
+      <blockquote>
+        <p>Frequently, <script type="math/tex">f'(x)</script> is harder and needs more arithmetic operations to calculate than <script type="math/tex">f(x)</script>.</p>
+      </blockquote>
+    </blockquote>
+
+    <blockquote>
+      <p>Note: only one function evaluation is needed per step for the Secant method after <script type="math/tex">p_2</script> has been 
+ determined. In contrast, each step of Newton’s method requires an evaluation of both the function and its derivative.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Algorithm:</strong> <br />
+ <img src="/main_files/128a/2.3/6.png" alt="definition" width="75%" /></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Convergence Speed:</strong> <br />
+ Generally, <br />
+ The convergence of the <em>Secant method</em> is much faster than <em>functional iteration</em> but slightly slower than <em>Newton’s method</em>.</li>
+</ol>
+
+<p id="content4">##The Method of False Position</p>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">What?</strong> <br />
+ The method of False Position (also called Regula Falsi) generates approximations
+ in the same manner as the Secant method, but it includes a test to ensure that the root is
+ always bracketed between successive iterations.</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Why?</strong> <br />
+ Root bracketing is not guaranteed for either Newton’s method or the Secant method.</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Method:</strong> <br />
+ <img src="/main_files/128a/2.3/13.png" alt="definition" height="320px" /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Algorithm:</strong> <br />
+ <img src="/main_files/128a/2.3/8.png" alt="definition" width="70%" /></p>
   </li>
 </ol>
 
@@ -151,10 +196,16 @@ near the fixed point.</p>
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">Fixed-Point Problems</a></li>
+    <li><a href="#content1">Newton’s Method</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">Fixed-Point Iteration</a></li>
+    <li><a href="#content2">Convergence using Newton’s Method</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">The Secant Method</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">The Method of False Position</a></li>
   </ul>
 </div>
 
@@ -183,7 +234,7 @@ near the fixed point.</p>
  <img src="/main_files/128a/2.3/1.png" alt="definition" width="80%" /></p>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Stopping Criterions:</strong> <br />
- <img src="/main_files/128a/2.3/stopping.png" alt="definition" height="170px" /></li>
+ <img src="/main_files/128a/2.3/stopping.png" alt="definition" height="150px" /></li>
 </ol>
 
 <hr />
@@ -192,38 +243,77 @@ near the fixed point.</p>
 
 <ol>
   <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Convergence Theorem:</strong> <br />
- <img src="/main_files/128a/2.3/1.png" alt="definition" width="80%" />
+ <img src="/main_files/128a/2.3/4.png" alt="definition" width="90%" />
     <blockquote>
       <p>The crucial assumption is that the
-term involving ( p − p0)2 is, by comparison with | p − p0|, so small that it can be deleted</p>
-    </blockquote>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Algorithm:</strong> <br />
-     <img src="/main_files/128a/2.2/6.png" alt="definition" width="75%" />
-     <img src="/main_files/128a/2.2/7.png" alt="definition" width="75%" /></p>
-  </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents23">Fixed-Point Theorem:</strong> <br />
-     <img src="/main_files/128a/2.2/9.png" alt="definition" width="90%" /></li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents24">Error bound in using <script type="math/tex">p_n</script> for <script type="math/tex">p</script>:</strong> <br />
- <img src="/main_files/128a/2.2/10.png" alt="definition" width="90%" />
-    <blockquote>
-      <p>Notice: <br />
-The rate of convergence depends on the factor <script type="math/tex">k^n</script>. The smaller the
-value of <script type="math/tex">k</script>, the faster the convergence, which may be very slow if <script type="math/tex">k</script> is close to 1.</p>
-    </blockquote>
-  </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents25">Using Fixed-Points:</strong> <br />
-    <blockquote>
-      <p><strong>Question</strong>. How can we find a fixed-point problem that produces a sequence that reliably
-and rapidly converges to a solution to a given root-finding problem?</p>
+term involving <script type="math/tex">( p − p_0)^2</script> is, by comparison with <script type="math/tex">| p − p_0|</script>, so small that it can be deleted</p>
     </blockquote>
 
     <blockquote>
-      <p><strong>Answer</strong>. Manipulate the root-finding problem into a fixed point problem that satisfies the
-conditions of Fixed-Point Theorem 2.4 and has a derivative that is as small as possible
-near the fixed point.</p>
+      <p>Theorem 2.6 states that, <br />
+(1) Under reasonable assumptions, Newton’s method converges
+  provided a sufficiently accurate initial approximation is chosen. <br />
+(2) It also implies that the constant k that bounds the derivative of g, and, consequently, indicates &gt;   the speed of convergence
+  of the method, decreases to 0 as the procedure continues.</p>
     </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Algorithm:</strong> <br />
+     <img src="/main_files/128a/2.3/1.png" alt="definition" width="80%" /></li>
+</ol>
+
+<h2 id="content3">The Secant Method</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">What?</strong> <br />
+ We approximate <script type="math/tex">f'( p_n−1)</script> as:
+ <img src="/main_files/128a/2.3/12.png" alt="definition" width="75%" /> <br />
+ To produce: <br />
+ <img src="/main_files/128a/2.3/11.png" alt="definition" width="75%" /></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Why?</strong> <br />
+    <blockquote>
+      <p><strong>Newton’s Method Weakness</strong>: 
+the need to know the value of the derivative of f at each approximation.</p>
+      <blockquote>
+        <p>Frequently, <script type="math/tex">f'(x)</script> is harder and needs more arithmetic operations to calculate than <script type="math/tex">f(x)</script>.</p>
+      </blockquote>
+    </blockquote>
+
+    <blockquote>
+      <p>Note: only one function evaluation is needed per step for the Secant method after <script type="math/tex">p_2</script> has been 
+ determined. In contrast, each step of Newton’s method requires an evaluation of both the function and its derivative.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Algorithm:</strong> <br />
+ <img src="/main_files/128a/2.3/6.png" alt="definition" width="75%" /></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Convergence Speed:</strong> <br />
+ Generally, <br />
+ The convergence of the <em>Secant method</em> is much faster than <em>functional iteration</em> but slightly slower than <em>Newton’s method</em>.</li>
+</ol>
+
+<p id="content4">##The Method of False Position</p>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">What?</strong> <br />
+ The method of False Position (also called Regula Falsi) generates approximations
+ in the same manner as the Secant method, but it includes a test to ensure that the root is
+ always bracketed between successive iterations.</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Why?</strong> <br />
+ Root bracketing is not guaranteed for either Newton’s method or the Secant method.</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Method:</strong> <br />
+ <img src="/main_files/128a/2.3/13.png" alt="definition" height="320px" /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Algorithm:</strong> <br />
+ <img src="/main_files/128a/2.3/8.png" alt="definition" width="70%" /></p>
   </li>
 </ol>
 
@@ -248,6 +338,13 @@ $("<ol>").addClass("TOC3ul").appendTo(".TOC3");
 bodyContents.each(function(index, element) {
     var paragraph = $(element);
     $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
      });
 </script>
 
