@@ -1,14 +1,22 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="en-us">
+  {% include head.html %}
 
-<!-- <div class="page">
-  <h1 class="page-title">{{ page.title }}</h1>
-  {{ content }}
-</div>-->
+  <body>
+    {% include page-header-notes.html %}
 
-{{ content }}
 
+    <section class="main-content">
+      
+      {{ content }}
+
+      {% include page-footer.html %}
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
 <script type="text/javascript">
 var bodyContents = $(".bodyContents1");
 $("<ol>").addClass("TOC1ul").appendTo(".TOC1");
@@ -38,3 +46,4 @@ bodyContents.each(function(index, element) {
     $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
      });
 </script>
+</html>
