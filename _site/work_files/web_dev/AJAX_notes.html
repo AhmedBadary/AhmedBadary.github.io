@@ -14,6 +14,9 @@
   <link rel="shortcut icon" href="/main_files/favicon.ico" />
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
 
   <body>
@@ -23,128 +26,140 @@
     </a>
     <ul id="menu-main" class="main-nav-items">
         <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
-            <a href="http://ahmedbadary.ml">Home</a>
+            <a href="/">Home</a>
         </li>
         <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
-            <a href="http://ahmedbadary.ml/work">Work</a>
+            <a href="/work">Work</a>
         </li>
         <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
-            <a href="http://ahmedbadary.ml/projects">Projects</a>
+            <a href="/projects">Projects</a>
         </li>
         <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
-            <a href="http://ahmedbadary.ml/blog">Blog</a>
+            <a href="/blog">Blog</a>
         </li>
         <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
-            <a href="http://ahmedbadary.ml/about">About</a>
+            <a href="/about">About</a>
         </li>
     </ul>
 </nav>
 
 
 <section class="page-header">
-  <h1 class="project-name">2.4 <br /> Error Analysis For Iterative Methods</h1>
+  <h1 class="project-name">AJAX</h1>
   <h2 class="project-tagline"></h2>
   <a href="https://github.com/AhmedBadary/" class="btn">GitHub</a>
   <a href="https://www.linkedin.com/in/ahmad-badary-656098121/" class="btn">LinkedIn</a>
   <a href=https://www.facebook.com/ahmed.thabet.94 class="btn">Facebook</a>
 </section>
 
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
 
     <section class="main-content">
       
       <!-- <div class="page">
-  <h1 class="page-title">2.4 <br /> Error Analysis For Iterative Methods</h1>
-  <h2 id="content1">Order of Convergence</h2>
+  <h1 class="page-title">AJAX</h1>
+  <h1 id="notes">Notes</h1>
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Definition 2.7:</strong> <br />
-<img src="/main_files/128a/2.4/1.png" alt="definition" /></p>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Asynchronous:</strong> <br />
+ The AJAX function returns before the success callback is called/returned.</li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Ajax Function Returns:</strong> <br />
+ The <code class="highlighter-rouge">$.ajax()</code> function returns the XMLHttpRequest object that it creates.</li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Call Back Functions:</strong> <br />
+    <ul>
+      <li><strong>JSON Response:</strong>
+        <div class="language-javascript highlighter-rouge"><pre class="highlight"><code>  <span class="kd">function</span> <span class="nx">successCallback</span><span class="p">(</span><span class="nx">responseObj</span><span class="p">){</span>
+      <span class="c1">// Do something like read the response and show data</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">responseObj</span><span class="p">));</span> <span class="c1">// Only applicable to JSON response</span>
+  <span class="p">}</span>
+</code></pre>
+        </div>
+        <hr />
+      </li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Important, Two cases of order:</strong> <br />
-<img src="/main_files/128a/2.4/2.png" alt="Ahmad Badary" style="width: 70%;" /></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">An arbitrary technique that generates a convergent sequences does so only linearly:</strong> <br />
-<img src="/main_files/128a/2.4/3.png" alt="definition" />
- Theorem 2.8 implies that higher-order convergence for fixed-point methods of the form
- <script type="math/tex">g(p) = p</script> can occur only when <code class="highlighter-rouge">g(p) = 0</code>.</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">AJAX Example / Boiler-Plate:</strong> <br />
+```javascript
+// Create the “callback” functions that will be invoked when…</li>
 </ol>
 
-<p>The following is a math block:</p>
+<p>// … the AJAX request is successful
+var updatePage = function( resp ) {
+  $( ‘#target’).html( resp.people[0].name );
+};</p>
 
-<script type="math/tex; mode=display">5 + 5</script>
+<p>// … the AJAX request fails
+var printError = function( req, status, err ) {
+  console.log( ‘something went wrong’, status, err );
+};</p>
 
-<p>But next comes a paragraph with an inline math statement:</p>
+<p>// Create an object to describe the AJAX request
+var ajaxOptions = {
+  url: ‘/data/people.json’,
+  dataType: ‘json’,
+  success: updatePage,
+  error: printError
+};</p>
 
-<p><script type="math/tex">5 + 5</script></p>
-
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Asynchronous:</strong> \</p>
-  </li>
-</ol>
+<p>// Initiate the request!
+$.ajax(ajaxOptions);
+```</p>
 
 </div>-->
 
-<h2 id="content1">Order of Convergence</h2>
+<h1 id="notes">Notes</h1>
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Definition 2.7:</strong> <br />
-<img src="/main_files/128a/2.4/1.png" alt="definition" /></p>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Asynchronous:</strong> <br />
+ The AJAX function returns before the success callback is called/returned.</li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Ajax Function Returns:</strong> <br />
+ The <code class="highlighter-rouge">$.ajax()</code> function returns the XMLHttpRequest object that it creates.</li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Call Back Functions:</strong> <br />
+    <ul>
+      <li><strong>JSON Response:</strong>
+        <div class="language-javascript highlighter-rouge"><pre class="highlight"><code>  <span class="kd">function</span> <span class="nx">successCallback</span><span class="p">(</span><span class="nx">responseObj</span><span class="p">){</span>
+      <span class="c1">// Do something like read the response and show data</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">responseObj</span><span class="p">));</span> <span class="c1">// Only applicable to JSON response</span>
+  <span class="p">}</span>
+</code></pre>
+        </div>
+        <hr />
+      </li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Important, Two cases of order:</strong> <br />
-<img src="/main_files/128a/2.4/2.png" alt="Ahmad Badary" style="width: 70%;" /></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">An arbitrary technique that generates a convergent sequences does so only linearly:</strong> <br />
-<img src="/main_files/128a/2.4/3.png" alt="definition" />
- Theorem 2.8 implies that higher-order convergence for fixed-point methods of the form
- <script type="math/tex">g(p) = p</script> can occur only when <code class="highlighter-rouge">g(p) = 0</code>.</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">AJAX Example / Boiler-Plate:</strong> <br />
+```javascript
+// Create the “callback” functions that will be invoked when…</li>
 </ol>
 
-<p>The following is a math block:</p>
+<p>// … the AJAX request is successful
+var updatePage = function( resp ) {
+  $( ‘#target’).html( resp.people[0].name );
+};</p>
 
-<script type="math/tex; mode=display">5 + 5</script>
+<p>// … the AJAX request fails
+var printError = function( req, status, err ) {
+  console.log( ‘something went wrong’, status, err );
+};</p>
 
-<p>But next comes a paragraph with an inline math statement:</p>
+<p>// Create an object to describe the AJAX request
+var ajaxOptions = {
+  url: ‘/data/people.json’,
+  dataType: ‘json’,
+  success: updatePage,
+  error: printError
+};</p>
 
-<p><script type="math/tex">5 + 5</script></p>
-
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Asynchronous:</strong> \</p>
-  </li>
-</ol>
+<p>// Initiate the request!
+$.ajax(ajaxOptions);
+```</p>
 
 
 <script type="text/javascript">

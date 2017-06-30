@@ -1,7 +1,7 @@
 ---
 layout: NotesPage
-title: BootStrap
-permalink: /work_files/BootStrap
+title: AJAX
+permalink: /work_files/web_dev/AJAX
 ---
 
 <div markdown="1" class = "TOC">
@@ -20,12 +20,23 @@ permalink: /work_files/BootStrap
 
 ## Including the Library and the General Structure
 {: #content1}
-1. **Including BootStrap [CDN]:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents11}
-```html
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+1. **Sending data & working with forms:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents11}
+```javascript
+    $( 'form' ).submit(function( event ) {
+      event.preventDefault();
+
+      var form = $( this );
+
+      $.ajax({
+        type: 'POST',
+        url: '/data/save',
+        data: form.serialize(),
+        dataType: 'json',
+        success: function( resp ) {
+          console.log( resp );
+        }
+      });
+    });
 ```
 2. **General Structure:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents12} \\
     So, to create the layout you want, create a container `<div class="container">`. Next, create a row `<div class="row">`. Then, add the desired number of columns (tags with appropriate `.col-*-*` classes). Note that numbers in `.col-*-*` should always add up to 12 for each row.

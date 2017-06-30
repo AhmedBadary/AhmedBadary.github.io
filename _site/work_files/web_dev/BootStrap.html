@@ -14,6 +14,9 @@
   <link rel="shortcut icon" href="/main_files/favicon.ico" />
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
 
   <body>
@@ -23,37 +26,45 @@
     </a>
     <ul id="menu-main" class="main-nav-items">
         <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
-            <a href="http://ahmedbadary.ml">Home</a>
+            <a href="/">Home</a>
         </li>
         <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
-            <a href="http://ahmedbadary.ml/work">Work</a>
+            <a href="/work">Work</a>
         </li>
         <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
-            <a href="http://ahmedbadary.ml/projects">Projects</a>
+            <a href="/projects">Projects</a>
         </li>
         <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
-            <a href="http://ahmedbadary.ml/blog">Blog</a>
+            <a href="/blog">Blog</a>
         </li>
         <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
-            <a href="http://ahmedbadary.ml/about">About</a>
+            <a href="/about">About</a>
         </li>
     </ul>
 </nav>
 
 
 <section class="page-header">
-  <h1 class="project-name">AJAX</h1>
+  <h1 class="project-name">BootStrap</h1>
   <h2 class="project-tagline"></h2>
   <a href="https://github.com/AhmedBadary/" class="btn">GitHub</a>
   <a href="https://www.linkedin.com/in/ahmad-badary-656098121/" class="btn">LinkedIn</a>
   <a href=https://www.facebook.com/ahmed.thabet.94 class="btn">Facebook</a>
 </section>
 
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
 
     <section class="main-content">
       
       <!-- <div class="page">
-  <h1 class="page-title">AJAX</h1>
+  <h1 class="page-title">BootStrap</h1>
   <div class="TOC">
   <h1 id="table-of-contents">Table of Contents</h1>
 
@@ -73,22 +84,11 @@
 
 <h2 id="content1">Including the Library and the General Structure</h2>
 <ol>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Sending data &amp; working with forms:</strong>
-    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="nx">$</span><span class="p">(</span> <span class="s1">'form'</span> <span class="p">).</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span> <span class="nx">event</span> <span class="p">)</span> <span class="p">{</span>
-   <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-
-   <span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="k">this</span> <span class="p">);</span>
-
-   <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-     <span class="na">type</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
-     <span class="na">url</span><span class="p">:</span> <span class="s1">'/data/save'</span><span class="p">,</span>
-     <span class="na">data</span><span class="p">:</span> <span class="nx">form</span><span class="p">.</span><span class="nx">serialize</span><span class="p">(),</span>
-     <span class="na">dataType</span><span class="p">:</span> <span class="s1">'json'</span><span class="p">,</span>
-     <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">resp</span> <span class="p">)</span> <span class="p">{</span>
-       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">resp</span> <span class="p">);</span>
-     <span class="p">}</span>
-   <span class="p">});</span>
- <span class="p">});</span>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Including BootStrap [CDN]:</strong>
+    <div class="language-html highlighter-rouge"><pre class="highlight"><code> <span class="c">&lt;!-- Latest compiled and minified CSS --&gt;</span>
+ <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"</span> <span class="na">integrity=</span><span class="s">"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"</span> <span class="na">crossorigin=</span><span class="s">"anonymous"</span><span class="nt">&gt;</span>
+ <span class="c">&lt;!-- Optional theme --&gt;</span>
+ <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"</span> <span class="na">integrity=</span><span class="s">"sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"</span> <span class="na">crossorigin=</span><span class="s">"anonymous"</span><span class="nt">&gt;</span>
 </code></pre>
     </div>
   </li>
@@ -171,22 +171,11 @@
 
 <h2 id="content1">Including the Library and the General Structure</h2>
 <ol>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Sending data &amp; working with forms:</strong>
-    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="nx">$</span><span class="p">(</span> <span class="s1">'form'</span> <span class="p">).</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span> <span class="nx">event</span> <span class="p">)</span> <span class="p">{</span>
-   <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-
-   <span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="k">this</span> <span class="p">);</span>
-
-   <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-     <span class="na">type</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
-     <span class="na">url</span><span class="p">:</span> <span class="s1">'/data/save'</span><span class="p">,</span>
-     <span class="na">data</span><span class="p">:</span> <span class="nx">form</span><span class="p">.</span><span class="nx">serialize</span><span class="p">(),</span>
-     <span class="na">dataType</span><span class="p">:</span> <span class="s1">'json'</span><span class="p">,</span>
-     <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">resp</span> <span class="p">)</span> <span class="p">{</span>
-       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">resp</span> <span class="p">);</span>
-     <span class="p">}</span>
-   <span class="p">});</span>
- <span class="p">});</span>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Including BootStrap [CDN]:</strong>
+    <div class="language-html highlighter-rouge"><pre class="highlight"><code> <span class="c">&lt;!-- Latest compiled and minified CSS --&gt;</span>
+ <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"</span> <span class="na">integrity=</span><span class="s">"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"</span> <span class="na">crossorigin=</span><span class="s">"anonymous"</span><span class="nt">&gt;</span>
+ <span class="c">&lt;!-- Optional theme --&gt;</span>
+ <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"</span> <span class="na">integrity=</span><span class="s">"sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"</span> <span class="na">crossorigin=</span><span class="s">"anonymous"</span><span class="nt">&gt;</span>
 </code></pre>
     </div>
   </li>

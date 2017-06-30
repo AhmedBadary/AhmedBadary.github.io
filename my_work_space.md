@@ -8,6 +8,10 @@ permalink: /work
 <p class="message">
   Hey there! This page includes a list of the topics I have written notes about.
 </p>
-* ## [jQuery](/work_files/jquery)
+* ## [Web Development](/work_files/web_dev.html)
+
+* ## [Course Work](/work_files/school.html)
+
+
 
 Updated Soon!

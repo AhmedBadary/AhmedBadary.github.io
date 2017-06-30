@@ -1,7 +1,7 @@
 ---
 layout: NotesPage
 title: AJAX
-permalink: /work_files/AJAX_notes
+permalink: /work_files/web_dev/AJAX_notes
 ---
 
 # Notes

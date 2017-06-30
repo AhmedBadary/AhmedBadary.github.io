@@ -1,7 +1,7 @@
 ---
 layout: NotesPage
 title: JQuery
-permalink: /work_files/jquery
+permalink: /work_files/web_dev/jquery
 ---
 
 <div markdown="1" class = "TOC">
