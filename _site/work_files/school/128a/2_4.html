@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/customStyle.css">
   <title> » Ahmad Badary</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
   </script>
@@ -49,7 +49,7 @@
   <h2 class="project-tagline"></h2>
   <a href="/work_files/school.html" class="btn">Courses</a>
   <a href="/work_files/school/128a.html" class="btn">Chapters</a>
-  <a href=/work_files/school/2 class="btn">This Chapter</a>
+  <a href= /work_files/school/2 class="btn">This Chapter</a>
 </section>
 
 <!-- <div>
@@ -246,5 +246,69 @@ bodyContents.each(function(index, element) {
     var paragraph = $(element);
     $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
      });
+
 </script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text("Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text("Show Content");
+    }
+}
+</script>
+
 </html>

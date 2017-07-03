@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/customStyle.css">
   <title> » Ahmad Badary</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
   </script>
@@ -49,7 +49,7 @@
   <h2 class="project-tagline"></h2>
   <a href="/work_files/school.html" class="btn">Courses</a>
   <a href="/work_files/school/128a.html" class="btn">Chapters</a>
-  <a href= class="btn">This Chapter</a>
+  <a href= /work_files/web_dev.html class="btn">This Chapter</a>
 </section>
 
 <!-- <div>
@@ -79,36 +79,41 @@
   <span class="p">}</span>
 </code></pre>
         </div>
-        <hr />
       </li>
     </ul>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">AJAX Example / Boiler-Plate:</strong> <br />
-```javascript
-// Create the “callback” functions that will be invoked when…</li>
 </ol>
 
-<p>// … the AJAX request is successful
-var updatePage = function( resp ) {
-  $( ‘#target’).html( resp.people[0].name );
-};</p>
+<hr />
 
-<p>// … the AJAX request fails
-var printError = function( req, status, err ) {
-  console.log( ‘something went wrong’, status, err );
-};</p>
+<ol>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">AJAX Example / Boiler-Plate:</strong> <br />
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="c1">// Create the "callback" functions that will be invoked when...</span>
 
-<p>// Create an object to describe the AJAX request
-var ajaxOptions = {
-  url: ‘/data/people.json’,
-  dataType: ‘json’,
-  success: updatePage,
-  error: printError
-};</p>
+ <span class="c1">// ... the AJAX request is successful</span>
+ <span class="kd">var</span> <span class="nx">updatePage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">resp</span> <span class="p">)</span> <span class="p">{</span>
+   <span class="nx">$</span><span class="p">(</span> <span class="s1">'#target'</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">people</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">name</span> <span class="p">);</span>
+ <span class="p">};</span>
 
-<p>// Initiate the request!
-$.ajax(ajaxOptions);
-```</p>
+ <span class="c1">// ... the AJAX request fails</span>
+ <span class="kd">var</span> <span class="nx">printError</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">status</span><span class="p">,</span> <span class="nx">err</span> <span class="p">)</span> <span class="p">{</span>
+   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="s1">'something went wrong'</span><span class="p">,</span> <span class="nx">status</span><span class="p">,</span> <span class="nx">err</span> <span class="p">);</span>
+ <span class="p">};</span>
+
+ <span class="c1">// Create an object to describe the AJAX request</span>
+ <span class="kd">var</span> <span class="nx">ajaxOptions</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="na">url</span><span class="p">:</span> <span class="s1">'/data/people.json'</span><span class="p">,</span>
+   <span class="na">dataType</span><span class="p">:</span> <span class="s1">'json'</span><span class="p">,</span>
+   <span class="na">success</span><span class="p">:</span> <span class="nx">updatePage</span><span class="p">,</span>
+   <span class="na">error</span><span class="p">:</span> <span class="nx">printError</span>
+ <span class="p">};</span>
+
+ <span class="c1">// Initiate the request!</span>
+ <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="nx">ajaxOptions</span><span class="p">);</span>
+</code></pre>
+    </div>
+  </li>
+</ol>
 
 
       <footer class="site-footer">
@@ -192,5 +197,69 @@ bodyContents.each(function(index, element) {
     var paragraph = $(element);
     $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
      });
+
 </script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text("Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text("Show Content");
+    }
+}
+</script>
+
 </html>

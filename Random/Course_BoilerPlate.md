@@ -4,6 +4,21 @@ title: X.Y <br /> TITLE
 permalink: /work_files/school/CLASS/X_Y
 ---
 
+<!-- HERE IS A VIDEO BUTTON - IN A LIST -->
+    * <button>Click for Video</button>{: value="show" .video_buttons #video_buttons14 src="YOUTUBE" onclick="iframePop(event);"}
+        <div markdown="1"> </div>
+
+<!-- HERE IS A VIDEO BUTTON - NOT in LIST -->
+    <button>Click for Video</button>{: .video_buttons value="show"
+    src="YOUTUBE" onclick="iframePop(event);"}
+        <span markdown="1"></span>
+
+<!-- HERE IS A TEXT BUTTON -  -->
+    <button>Click for list of Event Properties</button>{: input="<ul><li>target</li></ul>"
+    .showText value="show" onclick="showTextPop(event);"}
+        <span markdown="1"></span>
+
+
 <div markdown="1" class = "TOC">
 # Table of Contents
 
