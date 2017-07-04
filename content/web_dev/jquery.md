@@ -215,8 +215,7 @@ prevLink: /work_files/web_dev.html
 
 4. **Event Properties:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24} \\
     `event.Property;`  
-    <button>Click for list of Event Properties</button>{: input="<ul><li>target</li></ul>"
-    .showText value="show" onclick="showTextPopHide(event);"}
+    <button>Click for list of Event Properties</button>{: .showText value="show" onclick="showTextPopHide(event);"}
     * **target:** The DOM element that initiated the event.
     * **relatedTarget:** The other DOM element involved in the event, if any.
     * **pageX:** The mouse position relative to the left edge of the document.

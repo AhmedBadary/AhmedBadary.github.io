@@ -10,9 +10,11 @@ permalink: /work_files/web_dev
 
 * ## [BootStrap](/work_files/web_dev/BootStrap)
 
-* ## [AJAX](/work_files/web_dev/Ajax)
-
 * ## [AJAX Notes](/work_files/web_dev/Ajax_notes)
+
+* ## [PaperJs](/work_files/web_dev/PaperJs)
+
+* ## [AJAX](/work_files/web_dev/Ajax)
 
 * ## [HTML](/work_files/web_dev/Ajax)
 

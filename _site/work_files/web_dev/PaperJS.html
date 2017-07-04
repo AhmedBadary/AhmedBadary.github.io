@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">1.3 <br /> TITLE</h1>
+  <h1 class="project-name">Paper.JS</h1>
   <h2 class="project-tagline"></h2>
   <a href="/work_files/school.html" class="btn">Courses</a>
   <a href="/work_files/school/128a.html" class="btn">Chapters</a>
-  <a href=  class="btn">This Chapter</a>
+  <a href= /work_files/web_dev.html class="btn">This Chapter</a>
 </section>
 
 <!-- <div>
@@ -67,30 +67,38 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">FIRST</a></li>
+    <li><a href="#content1">Basic Interaction</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">SECOND</a></li>
+    <li><a href="#content2">Paths</a></li>
   </ul>
   <ul class="TOC3">
-    <li><a href="#content3">THIRD</a></li>
+    <li><a href="#content3">Animations</a></li>
   </ul>
   <ul class="TOC4">
-    <li><a href="#content4">FOURTH</a></li>
+    <li><a href="#content4">Events</a></li>
   </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content1">FIRST</h2>
+<h2 id="content1">Basic Interaction</h2>
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Create Vectors:</strong> <br />
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="kd">var</span> <span class="nx">vector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Point</span><span class="p">(</span><span class="nx">X</span><span class="p">,</span> <span class="nx">Y</span><span class="p">);</span>
+</code></pre>
+    </div>
+    <blockquote>
+      <p>Note<br />
+This is <em>PaperScript</em></p>
+    </blockquote>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Create Paths:</strong> <br />
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Path</span><span class="p">();</span>
+</code></pre>
+    </div>
   </li>
   <li>
     <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Asynchronous:</strong> \</p>
@@ -107,30 +115,110 @@
   <li>
     <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Asynchronous:</strong> \</p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Asynchronous:</strong> \</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Asynchronous:</strong> \</li>
 </ol>
 
 <hr />
 
-<h2 id="content2">SECOND</h2>
+<h2 id="content2">Paths</h2>
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Creating Paths:</strong> <br />
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Path</span><span class="p">();</span>
+</code></pre>
+    </div>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Coloring the Path:</strong> <br />
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="nx">path</span><span class="p">.</span><span class="nx">strokeColor</span> <span class="o">=</span> <span class="err">‘</span><span class="nx">red</span><span class="err">’</span><span class="p">;</span>
+</code></pre>
+    </div>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Shaped Path Objects:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Click for list of Shapes</button>
+    <ul hidden="">
+      <li><strong>Line:</strong> <code class="highlighter-rouge">Path.Line(from, to)</code></li>
+      <li><strong>Line:</strong> <code class="highlighter-rouge">Path.Line(object)</code></li>
+      <li><strong>Circle:</strong> <code class="highlighter-rouge">Path.Circle(center, radius)</code></li>
+      <li><strong>Circle:</strong> <code class="highlighter-rouge">Path.Circle(object)</code></li>
+      <li><strong>Rectangle:</strong> <code class="highlighter-rouge">Path.Rectangle(rectangle[, radius])</code></li>
+      <li><strong>Rectangle:</strong> <code class="highlighter-rouge">Path.Rectangle(point, size)</code></li>
+      <li><strong>Rectangle:</strong> <code class="highlighter-rouge">Path.Rectangle(from, to)</code></li>
+      <li><strong>Rectangle:</strong> <code class="highlighter-rouge">Path.Rectangle(object)</code></li>
+      <li><strong>Ellipse:</strong> <code class="highlighter-rouge">Path.Ellipse(rectangle)</code></li>
+      <li><strong>Ellipse:</strong> <code class="highlighter-rouge">Path.Ellipse(object)</code></li>
+      <li><strong>Arc:</strong> <code class="highlighter-rouge">Path.Arc(from, through, to)</code></li>
+      <li><strong>Arc:</strong> <code class="highlighter-rouge">Path.Arc(object)</code></li>
+      <li><strong>RegularPolygon:</strong> <code class="highlighter-rouge">Path.RegularPolygon(center, sides, radius)</code></li>
+      <li><strong>RegularPolygon:</strong> <code class="highlighter-rouge">Path.RegularPolygon(object)</code></li>
+      <li><strong>Star:</strong> <code class="highlighter-rouge">Path.Star(center, points, radius1, radius2)</code></li>
+      <li><strong>Star:</strong> <code class="highlighter-rouge">Path.Star(object)</code></li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Methods:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Click for list of Methods</button>
+    <ul hidden="">
+      <li><a href="http://paperjs.org/reference/path/#add-segment" value="show" onclick="iframePopA(event)"><strong>Add:</strong></a>
+  <a href="http://paperjs.org/reference/path/#add-segment"><code class="highlighter-rouge">add(segment)</code></a>
+        <div></div>
+      </li>
+      <li><a href="http://paperjs.org/reference/path/#insert-index-segment" value="show" onclick="iframePopA(event)"><strong>Insert:</strong></a>
+  <a href="http://paperjs.org/reference/path/#insert-index-segment"><code class="highlighter-rouge">insert(index, segment)</code></a>
+        <div></div>
+      </li>
+      <li><a href="http://paperjs.org/reference/path/#addsegments-segments" value="show" onclick="iframePopA(event)"><strong>addSegments:</strong></a>
+  <a href="http://paperjs.org/reference/path/#addsegments-segments"><code class="highlighter-rouge">addSegments(segments)</code></a>
+        <div></div>
+      </li>
+      <li><a href="http://paperjs.org/reference/path/#insertsegments-index-segments" value="show" onclick="iframePopA(event)"><strong>insertSegments:</strong></a>
+  <a href="http://paperjs.org/reference/path/#insertsegments-segments"><code class="highlighter-rouge">insertSegments(index, segments)</code></a>
+        <div></div>
+      </li>
+      <li><a href="http://paperjs.org/reference/path/#removesegment-index" value="show" onclick="iframePopA(event)"><strong>removeSegment:</strong></a>
+  <a href="http://paperjs.org/reference/path/#removesegment-index"><code class="highlighter-rouge">removeSegment(index)</code></a>
+        <div></div>
+      </li>
+      <li><a href="http://paperjs.org/reference/path/#removesegment" value="show" onclick="iframePopA(event)"><strong>removeSegments:</strong></a>
+  <a href="http://paperjs.org/reference/path/#removesegments"><code class="highlighter-rouge">removeSegments()</code></a>
+        <div></div>
+      </li>
+      <li><a href="http://paperjs.org/reference/path/#removesegment-from" value="show" onclick="iframePopA(event)"><strong>removeSegments:</strong></a>
+  <a href="http://paperjs.org/reference/path/#removesegments-from"><code class="highlighter-rouge">removeSegments(from[, to])</code></a>
+        <div></div>
+      </li>
+      <li><a href="http://paperjs.org/reference/path/#hashandles" value="show" onclick="iframePopA(event)"><strong>hasHandles:</strong></a>
+  <a href="http://paperjs.org/reference/path/#hashandles"><code class="highlighter-rouge">hasHandles()</code></a>
+        <div></div>
+      </li>
+      <li><a href="http://paperjs.org/reference/path/#clearhandles" value="show" onclick="iframePopA(event)"><strong>clearHandles:</strong></a>
+  <a href="http://paperjs.org/reference/path/#clearhandles"><code class="highlighter-rouge">clearHandles()</code></a>
+        <div></div>
+      </li>
+      <li><a href="http://paperjs.org/reference/path/#divideat-location" value="show" onclick="iframePopA(event)"><strong>divideAt:</strong></a>
+  <a href="http://paperjs.org/reference/path/#divideat-location"><code class="highlighter-rouge">divideAt(location)</code></a>
+        <div></div>
+      </li>
+      <li><a href="http://paperjs.org/reference/path/#splitat-location" value="show" onclick="iframePopA(event)"><strong>splitAt:</strong></a>
+  <a href="http://paperjs.org/reference/path/#splitat-location"><code class="highlighter-rouge">splitAt(location)</code></a>
+        <div></div>
+      </li>
+      <li><a href="http://paperjs.org/reference/path/#join-path" value="show" onclick="iframePopA(event)"><strong>join:</strong></a>
+  <a href="http://paperjs.org/reference/path/#join-path"><code class="highlighter-rouge">join(path[, tolerance])</code></a>
+        <div></div>
+      </li>
+      <li><a href="http://paperjs.org/reference/path/#reduce-options" value="show" onclick="iframePopA(event)"><strong>reduce:</strong></a>
+  <a href="http://paperjs.org/reference/path/#reduce-options"><code class="highlighter-rouge">reduce(options)</code></a>
+        <div></div>
+      </li>
+      <li><a href="http://paperjs.org/reference/path/#toshape" value="show" onclick="iframePopA(event)"><strong>toShape:</strong></a>
+  <a href="http://paperjs.org/reference/path/#toshape"><code class="highlighter-rouge">toShape([insert])</code></a>
+        <div></div>
+      </li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Asynchronous:</strong> <br />
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
+</code></pre>
+    </div>
   </li>
   <li>
     <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Asynchronous:</strong> \</p>
@@ -138,18 +226,20 @@
   <li>
     <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Asynchronous:</strong> \</p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents28">Asynchronous:</strong> \</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents28">Asynchronous:</strong> \</li>
 </ol>
 
 <hr />
 
-<h2 id="content3">THIRD</h2>
+<h2 id="content3">Animation</h2>
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Function:</strong> <br />
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="kd">function</span> <span class="nx">onFrame</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+     <span class="c1">// 60x/s</span>
+ <span class="p">}</span>
+</code></pre>
+    </div>
   </li>
   <li>
     <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Asynchronous:</strong> \</p>
@@ -169,18 +259,19 @@
   <li>
     <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents37">Asynchronous:</strong> \</p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents38">Asynchronous:</strong> \</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents38">Asynchronous:</strong> \</li>
 </ol>
 
 <hr />
 
-<h2 id="content4">FOURTH</h2>
+<h2 id="content4">Events</h2>
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">MouseDown:</strong> <br />
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="nb">Function</span> <span class="nx">onMouseDown</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+ <span class="p">}</span>
+</code></pre>
+    </div>
   </li>
   <li>
     <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Asynchronous:</strong> \</p>
@@ -191,8 +282,11 @@
   <li>
     <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Asynchronous:</strong> \</p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents45">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents45">Event Properties:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);"></button>
+    <ul>
+      <li><strong>Event Position:</strong> <code class="highlighter-rouge">event.point;</code></li>
+    </ul>
   </li>
   <li>
     <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents46">Asynchronous:</strong> \</p>
@@ -200,9 +294,7 @@
   <li>
     <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents47">Asynchronous:</strong> \</p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents48">Asynchronous:</strong> \</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents48">Asynchronous:</strong> \</li>
 </ol>
 
 
