@@ -10,7 +10,13 @@ permalink: /work_files/school/CLASS/X_Y
    ```
 
 <!-- HERE IS A SUBLIST / SUB-LIST / SUB LIST -->
+    * **:**  
+    * **:**  
+    * **:**  
+    * **:**  
 
+<!-- HERE IS A SUBLIST LINK / LINK POP / LINK IFRAME -->
+    * [**reduce:**](http://paperjs.org/reference/path/#reduce-options){: value="show" onclick="iframePopA(event)"}
 
 
 <!-- HERE IS A VIDEO BUTTON - IN A LIST -->
@@ -25,6 +31,7 @@ permalink: /work_files/school/CLASS/X_Y
 <!-- HERE IS A TEXT BUTTON - HIDE/SHOW / HIDE / SHOW -->
     <button></button>{: .showText value="show"
      onclick="showTextPopHide(event);"}
+
 
 
 <div markdown="1" class = "TOC">
@@ -106,27 +113,6 @@ permalink: /work_files/school/CLASS/X_Y
 
 ***
 
-## THIRD
-{: #content3}
-
-1. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents31} \\
-
-2. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents32} \\
-
-3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents33} \\
-
-4. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents34} \\
-
-5. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents35} \\
-
-6. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents36} \\
-
-7. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents37} \\
-
-8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents38} \\
-
-***
-
 ## FOURTH
 {: #content4}
 
@@ -145,3 +131,24 @@ permalink: /work_files/school/CLASS/X_Y
 7. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents47} \\
 
 8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents48} \\
+
+***
+
+## FIFTH
+{: #content5}
+
+1. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents51} \\
+
+2. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents52} \\
+
+3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents53} \\
+
+4. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents54} \\
+
+5. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents55} \\
+
+6. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents56} \\
+
+7. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents57} \\
+
+8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents58} \\

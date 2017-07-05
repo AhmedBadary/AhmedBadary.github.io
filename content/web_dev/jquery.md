@@ -196,7 +196,7 @@ prevLink: /work_files/web_dev.html
 {: #content2}
 1. **Adding Event Listeners:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}
     ```javascript
-    ("#button").on("click", function(event) {  // Select the Button
+    $("#button").on("click", function(event) {  // Select the Button
         console.log("you clicked me!!");  // Specify the Event 
         });
     ```

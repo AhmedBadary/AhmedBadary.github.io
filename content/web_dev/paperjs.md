@@ -16,6 +16,9 @@ prevLink: /work_files/web_dev.html
   {: .TOC3}
   * [Events](#content4)
   {: .TOC4}
+  * [Misc.](#content5)
+  {: .TOC5}
+
 </div>
 
 ***
@@ -36,6 +39,7 @@ prevLink: /work_files/web_dev.html
     var path = new Path();
     ```
 
+{::comment}
 3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents13} \\
 
 4. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents14} \\
@@ -47,6 +51,7 @@ prevLink: /work_files/web_dev.html
 7. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents17} \\
 
 8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents18} \\
+{:/comment}
 
 ***
 
@@ -84,6 +89,8 @@ prevLink: /work_files/web_dev.html
     {: hidden=''}
 
 4. **Methods:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents24} \\
+    Note: Click on the \**Method Name*\* to display in-line info about the Method.
+          Click on the \**Method Definition*\* (code) to GO to PaperJS Website.
     <button>Click for list of Methods</button>{: .showText value="show" onclick="showTextPopHide(event);"}
     * [**Add:**](http://paperjs.org/reference/path/#add-segment){: value="show" onclick="iframePopA(event)"}
         <a href="http://paperjs.org/reference/path/#add-segment">`add(segment)`</a>
@@ -129,16 +136,23 @@ prevLink: /work_files/web_dev.html
         <div markdown="1"> </div>
     {: hidden=""}
 
-5. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents25} \\
-    ```javascript
+5. **Drawing Commands:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents25} \\
+    * `moveTo(point)`
+    * `lineTo(point)`
+    * `arcTo(through, to)`
+    * `arcTo(to[, clockwise])`
+    * `curveTo(through, to[, time])`
+    * `cubicCurveTo(handle1, handle2, to)`
+    * `quadraticCurveTo(handle, to)`
+    * `closePath()`
 
-    ```
-
+{::comment}
 6. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents26} \\
 
 7. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents27} \\
 
 8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents28} \\
+{:/comment}
 
 ***
 
@@ -151,6 +165,8 @@ prevLink: /work_files/web_dev.html
         // 60x/s
     }
     ```
+
+{::comment}
 2. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents32} \\
 
 3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents33} \\
@@ -164,6 +180,7 @@ prevLink: /work_files/web_dev.html
 7. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents37} \\
 
 8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents38} \\
+{:/comment}
 
 ***
 
@@ -182,12 +199,58 @@ prevLink: /work_files/web_dev.html
 4. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents44} \\
 
 5. **Event Properties:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents45} \\
-    <button></button>{: .showText value="show"
+    <button>Click to Show</button>{: .showText value="show"
      onclick="showTextPopHide(event);"}
     * **Event Position:** `event.point;`
+    {: hidden=""}
 
+{::comment}
 6. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents46} \\
 
 7. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents47} \\
 
 8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents48} \\
+{:/comment}
+
+***
+
+## Misc.
+{: #content5}
+
+1. **If Window is Resized / Resize:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents51} \\
+    ```javascript
+    function onResize(event) {
+        // Whenever the window is resized, recenter the path:
+        path.position = view.center;
+    }
+    ```
+2. **PaperScript Scope:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents52} \\
+    > When including more than one PaperScript in a page, each script will run in its own scope and will 
+    > not see the objects and functions declared in the others.
+
+3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents53} \\
+4. **Window Size:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents54} \\
+    * **Width:** `view.size.width`
+    * **Height:** `view.size.height`
+    * **Center:**  `var point = view.center;`
+    * **Bounds:** `view.bounds;` output= `{ x: 0, y: 0, width: 767, height: 703 }`
+5. **Making Rectangle:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents55} \\
+    ```javascript
+    var path = new Path.Rectangle({
+        rectangle: view.bounds,
+        fillColor: {
+            origin: point,
+            destination: point + anotherPoint,
+            gradient: {
+                stops: colors,
+                radial: true
+            }
+        }
+    });
+    ```
+6. **Fill Color:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents56} \\
+    `object.fillColor = 'green';`
+7. **To show Borders / Select / Selected:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents57} \\
+    `path.selected = true;`
+8. **Math Functions [Max]:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents58} \\
+    `Math.max`

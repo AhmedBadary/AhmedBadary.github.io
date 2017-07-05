@@ -336,7 +336,7 @@ The following are equivalent
 <h2 id="content2">DOM Events and Event Listeners</h2>
 <ol>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Adding Event Listeners:</strong>
-    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="p">(</span><span class="s2">"#button"</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// Select the Button</span>
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="nx">$</span><span class="p">(</span><span class="s2">"#button"</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// Select the Button</span>
      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"you clicked me!!"</span><span class="p">);</span>  <span class="c1">// Specify the Event </span>
      <span class="p">});</span>
 </code></pre>
@@ -521,6 +521,13 @@ $("<ol>").addClass("TOC4ul").appendTo(".TOC4");
 bodyContents.each(function(index, element) {
     var paragraph = $(element);
     $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
      });
 
 </script>
