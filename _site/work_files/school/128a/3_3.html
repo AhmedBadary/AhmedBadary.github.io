@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">3.3 <br /> TITLE</h1>
+  <h1 class="project-name">3.3 <br /> Divided Differences</h1>
   <h2 class="project-tagline"></h2>
   <a href="/work_files/school.html" class="btn">Courses</a>
   <a href="/work_files/school/128a.html" class="btn">Chapters</a>
-  <a href=  class="btn">This Chapter</a>
+  <a href= /work_files/school/3 class="btn">This Chapter</a>
 </section>
 
 <!-- <div>
@@ -67,142 +67,209 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">FIRST</a></li>
+    <li><a href="#content1">Divided Differences</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">SECOND</a></li>
+    <li><a href="#content2">Forward Differences</a></li>
   </ul>
   <ul class="TOC3">
-    <li><a href="#content3">THIRD</a></li>
+    <li><a href="#content3">Backward Differences</a></li>
   </ul>
   <ul class="TOC4">
-    <li><a href="#content4">FOURTH</a></li>
+    <li><a href="#content4">Centered Differences</a></li>
   </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content1">FIRST</h2>
+<h2 id="content1">Divided Differences</h2>
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?:</strong> <br />
+ A recursive method definition used to successively generate the approximating polynomials.</li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Form of the Polynomial:</strong> <br />
+    <ul>
+      <li>
+        <script type="math/tex; mode=display">P_n(x) = a_0 + a_1(x − x_0) + a_2(x − x_0)(x − x_1) +···+ a_n(x − x_0)···(x − x_{n−1}),\ \ \  (3.5)</script>
+      </li>
+      <li>
+        <p><strong>Evaluated at <script type="math/tex">x_0</script>:</strong> <script type="math/tex">\ P_n(x_0) = a0 = f(x_0).</script></p>
+      </li>
+      <li>
+        <p><strong>Evaluated at <script type="math/tex">x_1</script>:</strong> <script type="math/tex">\ P_n(x_1) = f(x_0) + a_1(x_1 − x_0) = f(x_1)</script></p>
+      </li>
+      <li>
+        <blockquote>
+          <p><script type="math/tex">\implies \ \ \ \ \ \ \ \  a_1 = \dfrac{f(x_1) − f(x_0)}{x_1 − x_0}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (3.6)</script>.</p>
+        </blockquote>
+      </li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">The divided differences:</strong> <br />
+    <ul>
+      <li><strong>The <em>zeroth</em> divided difference</strong> of the function f with respect to <script type="math/tex">x_i</script>:
+        <ul>
+          <li><strong>Denoted:</strong> <script type="math/tex">f[x_i]</script></li>
+          <li><strong>Defined:</strong> as the value of <script type="math/tex">f</script> at <script type="math/tex">x_i</script></li>
+          <li>
+            <blockquote>
+              <p><script type="math/tex">f[x_i] = f(x_i) \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (3.7)</script>.</p>
+            </blockquote>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <blockquote>
+          <p>The remaining divided differences are defined <strong>recursively</strong>.</p>
+        </blockquote>
+      </li>
+    </ul>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Recursive Divdided Differences</button></p>
+    <ul hidden="">
+      <li><strong>The <em>first</em> divided difference</strong> of <script type="math/tex">f</script> with respect to <script type="math/tex">x_i</script> and <script type="math/tex">x_{i+1}</script>:
+        <ul>
+          <li><strong>Denoted:</strong> <script type="math/tex">f[x_i,x_{i+1}]</script></li>
+          <li><strong>Defined:</strong> as</li>
+          <li>
+            <blockquote>
+              <p><script type="math/tex">f[x_i,x_{i+1}] = \dfrac{f[x_{i+1}] − f[x_i]}{x_{i+1} − x_i} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (3.8)</script>.</p>
+            </blockquote>
+          </li>
+        </ul>
+      </li>
+      <li><strong>The <em>second</em> divided difference</strong> of <script type="math/tex">f</script> with respect to <script type="math/tex">x_i</script>, <script type="math/tex">x_{i+1}</script> and <script type="math/tex">x_{i+2}</script>:
+        <ul>
+          <li><strong>Denoted:</strong> <script type="math/tex">f[x_i,x_{i+1},x_{i+2}]</script></li>
+          <li><strong>Defined:</strong> as</li>
+          <li>
+            <blockquote>
+              <p><script type="math/tex">f[x_i,x_{i+1},x_{i+2}] = \dfrac{f[x_{i+1},x_{i+2}] − f[x_i,x_{i+1}]}{x_{i+2} − x_i} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ (3.85)</script>.</p>
+            </blockquote>
+          </li>
+        </ul>
+      </li>
+      <li><strong>The <em>Kth</em> divided difference</strong> of <script type="math/tex">f</script> with respect to <script type="math/tex">x_i</script>, <script type="math/tex">x_{i+1},...,x_{i+k-1},x_{i+k}</script>:
+        <ul>
+          <li><strong>Denoted:</strong> <script type="math/tex">f[x_i,x_{i+1},...,x_{i+k-1},x_{i+k}]</script></li>
+          <li><strong>Defined:</strong> as</li>
+          <li>
+            <blockquote>
+              <script type="math/tex; mode=display">f[x_i,x_{i+1},...,x_{i+k-1},x_{i+k}] = \dfrac{f[x_{i+1},x_{i+2},...,x_{i+k}] − f[x_i,x_{i+1},...,x_{i+k-1}]}{x_{i+k} − x_i} \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ (3.9)</script>
+            </blockquote>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <blockquote>
+          <p>The process ends with the <strong>nth divided difference</strong></p>
+        </blockquote>
+      </li>
+      <li><strong>The <em>nth</em> divided difference</strong> of <script type="math/tex">f</script> with respect to <script type="math/tex">x_i</script>, <script type="math/tex">x_{i+1},...,x_{i+k-1},x_{i+k}</script>:
+        <ul>
+          <li><strong>Denoted:</strong> <script type="math/tex">f[x_0,x_1,...,x_n]</script></li>
+          <li><strong>Defined:</strong> as</li>
+          <li>
+            <blockquote>
+              <p><script type="math/tex">f[x_0,x_1,...,x_n] = \dfrac{f[x_1,x_2,...,x_n] − f[x_0,x_1,...,x_{n-1}]}{x_n − x_0} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  (3.95)</script>.</p>
+            </blockquote>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">The Interpolating Polynomial:</strong> <br />
+ <script type="math/tex">P_n(x) = f[x_0] + f[x_0, x_1](x − x_0) + a_2(x − x_0)(x − x_1)+···+ a_n(x − x_0)(x − x_1)···(x − x_{n−1})</script></li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Newton’s Divided Difference:</strong> <br />
+ <script type="math/tex">P_n(x) = f[x_0]+ \sum^n_{k=1}f[x_0, x_1, ... , x_k](x − x_0)···(x − x_{k−1}) \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  (3.10)</script>
+    <blockquote>
+      <p>The value of <script type="math/tex">f[x_0,x_1,...,x_k]</script> is independent of the order of the numbers <script type="math/tex">x_0, x_1, ... ,x_k</script></p>
+    </blockquote>
   </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Generation of Divided Differences:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Table</button>
+ <img src="/main_files/128a/3/3.3/table.png" alt="table" hidden="" /></li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Algorithm:</strong> <br />
+ <img src="/main_files/128a/3/3.3/1.png" alt="formula" width="85%" /></p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Asynchronous:</strong> \</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Asynchronous:</strong> \</li>
 </ol>
 
 <hr />
 
-<h2 id="content2">SECOND</h2>
+<h2 id="content2">Forward Differences</h2>
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Forward Difference:</strong> <br />
+    <ul>
+      <li><a href="/work_files/school/128a/2_5#bodyContents13">Check here</a> <br />
+ <img src="/main_files/128a/2/2.5/2.png" alt="definition" width="85%" /></li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents28">Asynchronous:</strong> \</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">The divided differences (with del notation):</strong> <br />
+ <img src="/main_files/128a/3/3.3/3.png" alt="formula" width="55%" /> <br />
+ and in general, <br />
+ <img src="/main_files/128a/3/3.3/4.png" alt="formula" width="35%" /></li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Newton Forward-Difference Formula:</strong> <br />
+ <img src="/main_files/128a/3/3.3/5.png" alt="formula" width="65%" /></li>
 </ol>
 
 <hr />
 
-<h2 id="content3">THIRD</h2>
+<h2 id="content3">Backward Differences</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Backward Difference:</strong> <br />
+ <img src="/main_files/128a/3/3.3/6.png" alt="definition" width="85%" /></p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">The divided differences:</strong> <br />
+    <blockquote>
+      <p><img src="/main_files/128a/3/3.3/7.png" alt="definition" width="60%" /> <br />
+and in general, <br />
+ <img src="/main_files/128a/3/3.3/8.png" alt="definition" width="40%" /></p>
+    </blockquote>
+
+    <blockquote>
+      <p>Consequently, the Interpolating Polynomial <br />
+ <img src="/main_files/128a/3/3.3/9.png" alt="definition" width="75%" /></p>
+    </blockquote>
+
+    <blockquote>
+      <p>If we extend the binomial coefficient notation to include all real values of s by letting <br />
+ <img src="/main_files/128a/3/3.3/10.png" alt="definition" width="60%" /> <br />
+then <br />
+ <img src="/main_files/128a/3/3.3/11.png" alt="definition" width="75%" /></p>
+    </blockquote>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents36">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents37">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents38">Asynchronous:</strong> \</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Newton Backward–Difference Formula:</strong> <br />
+ <img src="/main_files/128a/3/3.3/12.png" alt="definition" width="68%" /></li>
 </ol>
 
-<hr />
-
-<h2 id="content4">FOURTH</h2>
+<h2 id="content4">Centered Differences</h2>
 
 <ol>
   <li>
     <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Asynchronous:</strong> \</p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Why?:</strong> <br />
+ The Newton forward- and backward-difference formulas are not appropriate for approximating
+ <script type="math/tex">f(x)</script> when x lies near the center of the table because neither will permit the highest-order
+ difference to have <script type="math/tex">x_0</script> close to x.</li>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Stirling’s Formula:</strong> <br />
+    <ul>
+      <li><strong>If <script type="math/tex">n = 2m + 1</script> is odd:</strong> 
+ <img src="/main_files/128a/3/3.3/13.png" alt="definition" width="85%" /></li>
+      <li><strong>If <script type="math/tex">n = 2m</script> is even:</strong> [we use the same formula but delete the last line]
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Formula</button>
+ <img src="/main_files/128a/3/3.3/14.png" alt="definition" hidden="" /></li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents45">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents46">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents47">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents48">Asynchronous:</strong> \</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Table of Entries:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Table</button>
+ <img src="/main_files/128a/3/3.3/15.png" alt="definition" hidden="" /></li>
 </ol>
 
 
@@ -327,7 +394,6 @@ bodyContents.each(function(index, element) {
     event.preventDefault();
     var $a = $(event.target).parent();
     console.log($a);
-    // console.log($button.parent().next());
     if ($a.attr('value') == 'show') {
         $a.attr('value', 'hide');
         $figure = $("<div>");
@@ -388,6 +454,24 @@ bodyContents.each(function(index, element) {
     } else {
         $button.attr('value', 'show');
         $button.next().attr("hidden", "");
+        $button.text("Show Content");
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.attr("input");
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text("Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
         $button.text("Show Content");
     }
 }

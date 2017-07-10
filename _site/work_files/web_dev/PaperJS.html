@@ -472,7 +472,6 @@ bodyContents.each(function(index, element) {
     event.preventDefault();
     var $a = $(event.target).parent();
     console.log($a);
-    // console.log($button.parent().next());
     if ($a.attr('value') == 'show') {
         $a.attr('value', 'hide');
         $figure = $("<div>");
@@ -533,6 +532,24 @@ bodyContents.each(function(index, element) {
     } else {
         $button.attr('value', 'show');
         $button.next().attr("hidden", "");
+        $button.text("Show Content");
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.attr("input");
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text("Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
         $button.text("Show Content");
     }
 }

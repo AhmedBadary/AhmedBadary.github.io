@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">3.2 <br /> TITLE</h1>
+  <h1 class="project-name">3.2 <br />  Data Approximation and Neville’s Method</h1>
   <h2 class="project-tagline"></h2>
   <a href="/work_files/school.html" class="btn">Courses</a>
   <a href="/work_files/school/128a.html" class="btn">Chapters</a>
-  <a href=  class="btn">This Chapter</a>
+  <a href= /work_files/school/3 class="btn">This Chapter</a>
 </section>
 
 <!-- <div>
@@ -67,141 +67,56 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">FIRST</a></li>
-  </ul>
-  <ul class="TOC2">
-    <li><a href="#content2">SECOND</a></li>
-  </ul>
-  <ul class="TOC3">
-    <li><a href="#content3">THIRD</a></li>
-  </ul>
-  <ul class="TOC4">
-    <li><a href="#content4">FOURTH</a></li>
+    <li><a href="#content1">Neville’s Method</a></li>
   </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content1">FIRST</h2>
+<h2 id="content1">Neville’s Method</h2>
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?:</strong> <br />
+ A recursive method definition used to generate successively higher-degree polynomial approximations at a specific point.</li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Why?:</strong> <br />
+ A practical difficulty with Lagrange interpolation is that the error term is difficult to apply,
+ so the degree of the polynomial needed for the desired accuracy is generally not known
+ until computations have been performed.</li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">The lagrange Polynomial of the point <script type="math/tex">x_mi</script>:</strong> <br />
+ <img src="/main_files/128a/3/3.2/1.png" alt="definition" width="80%" /></li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Method to recursively generate Lagrange polynomial:</strong> <br />
+    <ul>
+      <li><img src="/main_files/128a/3/3.2/2.png" alt="definition" width="80%" /></li>
+      <li>Examples:
+  <script type="math/tex">P_{0,1} = \dfrac{1}{x_1 − x_0}[(x − x_0)P_1 − (x − x_1)P_0], \\
+  P_{1,2} = \dfrac{1}{x_2 − x_1}[(x − x_1)P_2 − (x − x_2)P_1], \\
+  P_{0,1,2} = \dfrac{1}{x_2 − x_0}[(x − x_0)P_{1,2} − (x − x_2)P_{0,1}]</script></li>
+      <li><strong>Generated according to the following Table:</strong>
+ <img src="/main_files/128a/3/3.2/3.png" alt="Table" width="80%" /></li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Notation and subscripts:</strong> <br />
+    <ul>
+      <li>
+        <p>Proceeding down the table corresponds to using consecutive points <script type="math/tex">x_i</script> with larger i, and proceeding to the right corresponds to increasing the degree of the interpolating polynomial.</p>
+      </li>
+      <li>
+        <p><strong>To avoid the multiple subscripts</strong>, we let <script type="math/tex">Q_{i,j}(x),</script> for <script type="math/tex">0 ≤ j ≤ i,</script> denote the interpolating polynomial of degree j on the (j + 1) numbers <script type="math/tex">x_{i−j}, x_{i−j+1}, ... , x_{i−1}, x_i</script>; that is,</p>
+      </li>
+    </ul>
+    <p> $$Q_{i,j} = P_{i−j},_{i−j+1},...,_{i−1},_i$$.</p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Asynchronous:</strong> \</p>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="content2">SECOND</h2>
-
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents28">Asynchronous:</strong> \</p>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="content3">THIRD</h2>
-
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents36">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents37">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents38">Asynchronous:</strong> \</p>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="content4">FOURTH</h2>
-
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents45">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents46">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents47">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents48">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Algorithm:</strong> <br />
+ <img src="/main_files/128a/3/3.2/5.png" alt="Nevilles Method" width="80%" /></li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Stopping Criterion:</strong> <br />
+    <ul>
+      <li>Criterion:<br />
+ <script type="math/tex">% <![CDATA[
+|Q_{i,i} − Q_{i−1,i−1}| < \epsilon %]]></script></li>
+      <li>If the inequality is true, <script type="math/tex">Q_{i,i}</script> is a reasonable approximation to <script type="math/tex">f(x)</script>.</li>
+      <li>If the inequality is false, a new interpolation point, <script type="math/tex">x_{i+1}</script>, is added.</li>
+    </ul>
   </li>
 </ol>
 
@@ -327,7 +242,6 @@ bodyContents.each(function(index, element) {
     event.preventDefault();
     var $a = $(event.target).parent();
     console.log($a);
-    // console.log($button.parent().next());
     if ($a.attr('value') == 'show') {
         $a.attr('value', 'hide');
         $figure = $("<div>");
@@ -388,6 +302,24 @@ bodyContents.each(function(index, element) {
     } else {
         $button.attr('value', 'show');
         $button.next().attr("hidden", "");
+        $button.text("Show Content");
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.attr("input");
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text("Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
         $button.text("Show Content");
     }
 }
