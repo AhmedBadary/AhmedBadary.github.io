@@ -222,6 +222,13 @@ bodyContents.each(function(index, element) {
     var paragraph = $(element);
     $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
      });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
 
 </script>
 
@@ -307,7 +314,6 @@ bodyContents.each(function(index, element) {
   function showTextPopHide(event) {
     var $button = $(event.target);
     var txt = $button.attr("input");
-    console.log(txt);
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $button.next().removeAttr("hidden");

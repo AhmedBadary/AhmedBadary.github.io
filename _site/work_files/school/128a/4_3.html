@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">4.3 <br /> TITLE</h1>
+  <h1 class="project-name">4.3 <br /> Elements of Numerical Integration</h1>
   <h2 class="project-tagline"></h2>
   <a href="/work_files/school.html" class="btn">Courses</a>
   <a href="/work_files/school/128a.html" class="btn">Chapters</a>
-  <a href=  class="btn">This Chapter</a>
+  <a href= /work_files/school/4 class="btn">This Chapter</a>
 </section>
 
 <!-- <div>
@@ -67,141 +67,214 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">FIRST</a></li>
+    <li><a href="#content1">Numerical Quadrature</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">SECOND</a></li>
+    <li><a href="#content2">The Trapezoidal Rule</a></li>
   </ul>
   <ul class="TOC3">
-    <li><a href="#content3">THIRD</a></li>
+    <li><a href="#content3">Simpson’s Rule</a></li>
   </ul>
   <ul class="TOC4">
-    <li><a href="#content4">FOURTH</a></li>
+    <li><a href="#content4">Measuring Precision</a></li>
+  </ul>
+  <ul class="TOC5">
+    <li><a href="#content5">Closed Newton-Cotes Formulas</a></li>
+  </ul>
+  <ul class="TOC6">
+    <li><a href="#content6">Open Newton-Cotes Formulas</a></li>
   </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content1">FIRST</h2>
+<h2 id="content1">Numerical Quadrature</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?</strong></dt>
+      <dd>The basic method involved in approximating <script type="math/tex">\int_{a}^{b} f(x) dx</script>.</dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">How?</strong></dt>
+      <dd>It uses a sum <script type="math/tex">\sum_{i=0}^{n} a_i f(x_i)</script> to approximate <script type="math/tex">\int_{a}^{b} f(x) dx</script>.</dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Based on?:</strong></dt>
+      <dd>The methods of quadrature in this section are based on the interpolation polynomials
+ given in Chapter 3.</dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Method:</strong>
+    <ul>
+      <li>Select a set of distinct nodes <script type="math/tex">{x_0, ... , x_n}</script> from the
+ interval <script type="math/tex">[a, b]</script>.</li>
+      <li>Then integrate the Lagrange interpolating polynomial<br />
+ <script type="math/tex">P_n(x) = \sum_{i=0}^{n} f(x_i)L_i(x)</script><br />
+ and its truncation error term over <script type="math/tex">[a, b]</script> to obtain<br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/4/4.3/1.png" alt="formula" width="80%" hidden="" /></li>
+    </ul>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">The Quadrature Formula:</strong> <br />
+ <img src="/main_files/128a/4/4.3/2.png" alt="formula" width="27%" /></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">The Error:</strong> <br />
+ <img src="/main_files/128a/4/4.3/3.png" alt="formula" width="45%" /></li>
+</ol>
+
+<hr />
+
+<h2 id="content2">The Trapezoidal Rule</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">What?</strong></dt>
+      <dd>Approximation method for integrals produced by using first (linear) Lagrange polynomials with equally-spaced nodes.</dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">The Trapezoidal Rule:</strong> <br />
+ <img src="/main_files/128a/4/4.3/5.png" alt="formula" width="45%" />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/4/4.3/4.png" alt="formula" width="80%" hidden="" /></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Error:</strong> <br />
+ The error term for the Trapezoidal rule involves <script type="math/tex">f</script> , so the rule gives the exact
+ result when applied to any function whose second derivative is identically zero, that is, any
+ polynomial of degree one or less.</li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Simpson’s Rule</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">What?</strong> <br />
+ A method to approximate an integral that results from integrating over <script type="math/tex">[a, b]</script> the second Lagrange polynomial with equally-spaced nodes <script type="math/tex">x_0 = a, x_2 = b,</script> and <script type="math/tex">x_1 = a + h</script>, where <script type="math/tex">h = \dfrac{(b − a)}{2}</script>.</li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Simpson’s Rule:</strong> <br />
+ <img src="/main_files/128a/4/4.3/6.png" alt="formula" width="50%" />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/4/4.3/derivation.jpg" alt="formula" width="80%" hidden="" /></li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Error:</strong> <br />
+ The error term in Simpson’s rule involves the fourth derivative of <script type="math/tex">f</script> , so it gives exact
+ results when applied to any polynomial of degree three or less.</li>
+</ol>
+
+<hr />
+
+<h2 id="content4">Measuring Precision</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">What?</strong> <br />
+ The standard derivation of quadrature error formulas is based on determining the class of
+ polynomials for which these formulas produce exact results.</li>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Precision [degree of accuracy]:</strong> <br />
+ <img src="/main_files/128a/4/4.3/7.png" alt="formula" width="90%" />
+    <blockquote>
+      <p>Definition 4.1 implies that the Trapezoidal and Simpson’s rules have degrees of precision
+ one and three, respectively.</p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Precision of Quadrature Formulas:</strong> <br />
+    <ul>
+      <li>The degree of precision of a quadrature formula is n if and only if the error is zero for
+ all polynomials of degree <script type="math/tex">k = 0, 1, ... , n</script>, but is not zero for some polynomial of degree <script type="math/tex">n + 1</script>.</li>
+      <li>The Trapezoidal and Simpson’s rules are examples of a class of methods known as <strong>Newton-Cotes formulas</strong>.</li>
+      <li><strong>Types of Newton-Cotes formulas:</strong> There are 2 types, <em>Open</em>, and <em>Closed</em>.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="content5">Closed Newton-Cotes Formulas</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents51">What?</strong> <br />
+    <ul>
+      <li>The <script type="math/tex">(n+1)</script>-point closed Newton-Cotes formula uses nodes <script type="math/tex">x_i = x_0 +ih</script>, for <script type="math/tex">i = 0, 1, ... , n,</script> where <script type="math/tex">x_0 = a, x_n = b</script> and <script type="math/tex">h = \dfrac{(b − a)}{n}</script> .</li>
+      <li>It is called closed because the endpoints of the closed interval [a, b] are included as nodes.</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents52">Form of the Formula:</strong> <br />
+ <img src="/main_files/128a/4/4.3/8.png" alt="formula" width="27%" />
+    <blockquote>
+      <p>where,<br />
+ <img src="/main_files/128a/4/4.3/9.png" alt="formula" width="38%" /></p>
+    </blockquote>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents53">The Error Analysis:</strong> <br />
+ <img src="/main_files/128a/4/4.3/10.png" alt="formula" width="84%" /></p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents54">Degree of Preceision:</strong> <br />
+    <ul>
+      <li><strong>Even-n:</strong> the degree of precision is <script type="math/tex">n + 1</script> (although the interpolation polynomial is of degree at most n)</li>
+      <li><strong>Odd-n:</strong> the degree of precision is only <script type="math/tex">n</script>.</li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents55">Closed Form Formulas:</strong> <br />
+    <ul>
+      <li><strong><script type="math/tex">n = 1</script>: Trapezoidal rule</strong><br />
+ <img src="/main_files/128a/4/4.3/11.png" alt="formula" width="70%" /></li>
+      <li><strong><script type="math/tex">n = 2</script>: Simpson’s rule</strong> <br />
+ <img src="/main_files/128a/4/4.3/12.png" alt="formula" width="70%" /></li>
+      <li><strong><script type="math/tex">n = 3</script>: Simpson’s Three-Eighths rule</strong> <br />
+ <img src="/main_files/128a/4/4.3/13.png" alt="formula" width="70%" /></li>
+      <li><strong>n = 4:</strong><br />
+ <img src="/main_files/128a/4/4.3/14.png" alt="formula" width="70%" /></li>
+    </ul>
   </li>
 </ol>
 
 <hr />
 
-<h2 id="content2">SECOND</h2>
+<h2 id="content6">Open Newton-Cotes Formulas</h2>
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents6" id="bodyContents61">What?</strong> <br />
+    <ul>
+      <li>They do not include the endpoints of <script type="math/tex">[a, b]</script> as nodes.</li>
+      <li>They use the nodes <script type="math/tex">x_i = x_0 + ih</script>, for each <script type="math/tex">i = 0, 1, ... , n</script>, where <script type="math/tex">h = \dfrac{b − a}{n + 2}</script> and <script type="math/tex">x_0 = a + h</script>.</li>
+      <li>This implies that <script type="math/tex">x_n = b − h</script>, so we label the endpoints by setting <script type="math/tex">x_{−1} = a</script> and <script type="math/tex">x_{n+1} = b</script>.</li>
+      <li>Open formulas contain all the nodes used for the approximation within the open interval <script type="math/tex">(a, b)</script></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents6" id="bodyContents62">Form of the Formula:</strong> <br />
+ <img src="/main_files/128a/4/4.3/15.png" alt="formula" width="45%" />
+    <blockquote>
+      <p>where,<br />
+ <img src="/main_files/128a/4/4.3/16.png" alt="formula" width="20%" /></p>
+    </blockquote>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents6" id="bodyContents63">The Error Analysis:</strong> <br />
+ <img src="/main_files/128a/4/4.3/17.png" alt="Thm" width="74%" /></p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents6" id="bodyContents64">Degree of Preceision:</strong> <br />
+    <ul>
+      <li><strong>Even-n:</strong> Higher.</li>
+      <li><strong>Odd-n:</strong> Lower.</li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents28">Asynchronous:</strong> \</p>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="content3">THIRD</h2>
-
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents36">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents37">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents38">Asynchronous:</strong> \</p>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="content4">FOURTH</h2>
-
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents45">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents46">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents47">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents48">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents6" id="bodyContents65">Open Form Formulas:</strong> <br />
+    <ul>
+      <li><strong><script type="math/tex">n = 0</script>: Midpoint rule</strong><br />
+ <img src="/main_files/128a/4/4.3/18.png" alt="formula" width="70%" /></li>
+      <li><strong><script type="math/tex">n = 1</script>:</strong> <br />
+ <img src="/main_files/128a/4/4.3/19.png" alt="formula" width="70%" /></li>
+      <li><strong><script type="math/tex">n = 2</script>:</strong> <br />
+ <img src="/main_files/128a/4/4.3/20.png" alt="formula" width="70%" /></li>
+      <li><strong>n = 3:</strong><br />
+ <img src="/main_files/128a/4/4.3/21.png" alt="formula" width="70%" /></li>
+    </ul>
   </li>
 </ol>
 
@@ -294,6 +367,13 @@ bodyContents.each(function(index, element) {
     var paragraph = $(element);
     $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
      });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
 
 </script>
 
@@ -379,7 +459,6 @@ bodyContents.each(function(index, element) {
   function showTextPopHide(event) {
     var $button = $(event.target);
     var txt = $button.attr("input");
-    console.log(txt);
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $button.next().removeAttr("hidden");

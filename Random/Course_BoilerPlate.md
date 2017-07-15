@@ -4,6 +4,10 @@ title: X.Y <br /> TITLE
 permalink: /work_files/school/CLASS/X_Y
 ---
 
+
+<!-- BIG O -->
+\mathcal{O}
+
 <!-- HERE IS A JAVASCRIPT CODE BLOCK / CODE SNIPPET -->
    ```javascript 
 
