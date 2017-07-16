@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">4.7 <br /> TITLE</h1>
+  <h1 class="project-name">4.7 <br /> Gaussian Quadrature</h1>
   <h2 class="project-tagline"></h2>
   <a href="/work_files/school.html" class="btn">Courses</a>
   <a href="/work_files/school/128a.html" class="btn">Chapters</a>
-  <a href=  class="btn">This Chapter</a>
+  <a href= /work_files/school/4 class="btn">This Chapter</a>
 </section>
 
 <!-- <div>
@@ -67,142 +67,141 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">FIRST</a></li>
+    <li><a href="#content1">Main Idea</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">SECOND</a></li>
+    <li><a href="#content2">Legendre Polynomials</a></li>
   </ul>
   <ul class="TOC3">
-    <li><a href="#content3">THIRD</a></li>
-  </ul>
-  <ul class="TOC4">
-    <li><a href="#content4">FOURTH</a></li>
+    <li><a href="#content3">Gaussian Quadrature on Arbitrary Intervals</a></li>
   </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content1">FIRST</h2>
+<h2 id="content1">Main Idea</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?</strong></dt>
+      <dd>
+        <ul>
+          <li>A technique that is used to determine the nodes and coefficients<br />
+for formulas that give exact results for higher-degree polynomials.</li>
+          <li>Gaussian quadrature chooses the points for evaluation in an optimal, rather than  <br />
+equally-spaced, way.</li>
+          <li>The nodes <script type="math/tex">x_1, x_2, ... , x_n</script> in the interval <script type="math/tex">[a, b]</script> and coefficients <script type="math/tex">c_1, c_2, ... , c_n</script>, are chosen to minimize the expected error obtained in the approximation,  <script type="math/tex">\int_{a}^{b} f(x) dx  = \sum_{i=1}^{n} c_i f(x_i).</script></li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>
+            <blockquote>
+              <p><strong>To Measure Accuracy:</strong> we assume that the best choice of these values produces the exact result for the largest class of polynomials, that is, the choice that gives the greatest degree of precision.</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>
+            <blockquote>
+              <p>The <strong>Coefficients</strong> <script type="math/tex">c_1, c_2, ... , c_n</script> in the approximation formula are arbitrary,<br />
+and, <br />
+The <strong>Nodes</strong> <script type="math/tex">x_1, x_2, ... , x_n</script> are restricted only by the fact that they must lie in <script type="math/tex">[a, b]</script>, the interval of integration.<br />
+This gives,<br />
+<strong>The number of Parameters</strong> to choose is <script type="math/tex">2n</script>.</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>
+            <blockquote>
+              <p>If the coefficients of a polynomial are considered parameters, the class of polynomials of degree at most <script type="math/tex">2n − 1</script> also contains <script type="math/tex">2n</script> parameters.<br />
+This, then, is <strong>The Largest Class of Polynomials</strong> for which it is reasonable to
+expect a <strong>formula to be exact</strong>.</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Why?</strong></dt>
+      <dd>The fact that, <em>Newton-Cotes Formulas</em>  use values at <em>equally-spaced nodes</em>, can
+significantly <em>decrease</em> the <em>accuracy</em> of the approximation.</dd>
+    </dl>
   </li>
 </ol>
 
 <hr />
 
-<h2 id="content2">SECOND</h2>
+<h2 id="content2">Legendre Polynomials</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">What?</strong></dt>
+      <dd>A series of solutions to <em>“Legendre’s differential equation”</em> that form a polynomial  <br />
+sequence of orthogonal polynomials.</dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents29">Why?</strong></dt>
+      <dd>The roots of the nth-deg Legnedre Polynomial are the nodes needed for the approximation formula that gives exact results for any polynomial of degree less than <script type="math/tex">2n</script>.</dd>
+    </dl>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Properties:</strong> <br />
+    <ol>
+      <li>For each <script type="math/tex">n</script>, <script type="math/tex">P_n(x)</script> is a monic polynomial of degree <script type="math/tex">n</script>.</li>
+      <li><script type="math/tex">\int_{-1}^{1} P(x) P_n(x) dx = 0,</script> whenever <script type="math/tex">P(x)</script> is a polynomial of degree less than <script type="math/tex">n</script>.</li>
+      <li>The roots of these polynomials are:
+        <ul>
+          <li><em>Distinct</em>,</li>
+          <li><em>lie in the interval <script type="math/tex">(−1, 1)</script></em>,</li>
+          <li><em>have a symmetry</em> with respect to the origin,</li>
+          <li><em>the correct choice</em> for <em>determining</em> the <em>parameters</em> that <em>give</em> us the <em>nodes</em> and <em>coefficients</em> for our <em>quadrature method</em>.</li>
+        </ul>
+      </li>
+    </ol>
   </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">The first Legendre Polynomials:</strong> <br />
+ <script type="math/tex">P_0(x) = 1, \ \ \ \ \ \ \ \ \ \ \ \ \ \  P_1(x) = x, \ \ \ \ \ \ \ \ \ \ \ \ \ \  P_2(x) = x^2 − \dfrac{1}{3},</script><br />
+ <script type="math/tex">P_3(x) = x^3 − \dfrac{3}{5}x,\ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \   P_4(x) = x^4 − \dfrac{6}{7}x^2 +\dfrac{3}{35}.</script></li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents28">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Determining the nodes:</strong> <br />
+ <img src="/main_files/128a/4/4.7/1.png" alt="formula" width="87%" /><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Proof</button>
+ <img src="/main_files/128a/4/4.7/proof.jpg" alt="formula" width="80%" hidden="" /></p>
+
+    <blockquote>
+      <p>The nodes <script type="math/tex">x_1, x_2, ... , x_n</script> needed to produce an integral approximation formula that
+ gives exact results for any polynomial of degree less than <script type="math/tex">2n</script> are the roots of the nth-degree Legendre polynomial.</p>
+    </blockquote>
   </li>
 </ol>
 
 <hr />
 
-<h2 id="content3">THIRD</h2>
+<h2 id="content3">Gaussian Quadrature on Arbitrary Intervals</h2>
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">What?</strong> <br />
+    <ul>
+      <li><strong>Change of Intervals:</strong>
+  An integral <script type="math/tex">\int_{a}^{b} f(x) dx</script> over an arbitrary <script type="math/tex">[a, b]</script> can be transformed into an integral over <script type="math/tex">[−1, 1]</script> by using a <em>change of variables</em>.</li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents36">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents37">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents38">Asynchronous:</strong> \</p>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="content4">FOURTH</h2>
-
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents45">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents46">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents47">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents48">Asynchronous:</strong> \</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">The Change of Variables:</strong> <br />
+ <script type="math/tex">\ \ \ t = \dfrac{2x − a − b}{b − a} \ \ \ \iff \ \ \ x = \dfrac{1}{2}[(b − a)t + a + b].</script></li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Gaussian quadrature [arbitrary interval]:</strong> <br />
+ <img src="/main_files/128a/4/4.7/2.png" alt="formula" width="83%" /></li>
 </ol>
 
 

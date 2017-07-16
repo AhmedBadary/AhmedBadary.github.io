@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">4.8 <br /> TITLE</h1>
+  <h1 class="project-name">4.8 <br /> Multiple Integrals</h1>
   <h2 class="project-tagline"></h2>
   <a href="/work_files/school.html" class="btn">Courses</a>
   <a href="/work_files/school/128a.html" class="btn">Chapters</a>
-  <a href=  class="btn">This Chapter</a>
+  <a href= /work_files/school/4 class="btn">This Chapter</a>
 </section>
 
 <!-- <div>
@@ -67,142 +67,150 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">FIRST</a></li>
+    <li><a href="#content1">Approximating Double Integral</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">SECOND</a></li>
+    <li><a href="#content2">Gaussian Quadrature for Double Integral Approximation</a></li>
   </ul>
   <ul class="TOC3">
-    <li><a href="#content3">THIRD</a></li>
+    <li><a href="#content3">Non-Rectangular Regions</a></li>
   </ul>
   <ul class="TOC4">
-    <li><a href="#content4">FOURTH</a></li>
+    <li><a href="#content4">Triple Integral Approximation</a></li>
   </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content1">FIRST</h2>
+<h2 id="content1">Approximating Double Integral</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?</strong></dt>
+      <dd>The techniques discussed in the previous sections can be modified for use in the approximation of multiple integrals.</dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Why?</strong></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Comoposite Trapezoidal Rule for Double Integral:</strong> <br />
+ <script type="math/tex">\ \  \iint_R f(x,y) \,dA \  = \  \int_{a}^{b} \ \big( \ \int_{c}^{d} \ \  f(x,y) \ \ dy \ \ \big) \  dx \ \ \</script></p>
+
+    <p><script type="math/tex">\approx \dfrac{(b − a)(d − c)}{16} \bigg[f(a,c)+f(a,d) + f(b,c) + f(b,d)+</script>
+ <script type="math/tex">\ \ \ \ \ \ \ \ 2\Big[f\big(\dfrac{a + b}{2} , c\big) + 
+  f\big(\dfrac{a + b}{2} , d\big) + f\big(a, \dfrac{c + d}{2}\big) + f\big(b, \dfrac{c + d}{2}\big)\Big] + 4f\big(\dfrac{a + b}{2}, \dfrac{c + d}{2}\big)\bigg]</script></p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/4/4.8/derivation.jpg" alt="formula" width="80%" hidden="" /></p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Comoposite Simpsons’ Rule for Double Integral:</strong> <br />
+    <ul>
+      <li><strong>Rule:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Rule</button>
+ <img src="/main_files/128a/4/4.8/1.png" alt="formula" width="80%" hidden="" /></li>
+      <li><strong>Error:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Error</button>
+ <img src="/main_files/128a/4/4.8/2.png" alt="formula" width="80%" hidden="" /></li>
+      <li><strong>Derivation:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/4/4.8/derivation2.jpg" alt="formula" width="80%" hidden="" /></li>
+    </ul>
   </li>
 </ol>
 
 <hr />
 
-<h2 id="content2">SECOND</h2>
+<h2 id="content2">Gaussian Quadrature for Double Integral Approximation</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">What?</strong></dt>
+      <dd>More efficient methods such as Gaussian
+quadrature, Romberg integration, or Adaptive quadrature can be incorporated in place of the Newton-Cotes formulas.</dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Why?</strong></dt>
+      <dd>To reduce the number of functional evaluations.</dd>
+    </dl>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents28">Asynchronous:</strong> \</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Example:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Example</button>
+ <img src="/main_files/128a/4/4.8/4.png" alt="formula" width="80%" hidden="" /></li>
 </ol>
 
 <hr />
 
-<h2 id="content3">THIRD</h2>
+<h2 id="content3">Non-Rectangular Regions</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">What?</strong></dt>
+      <dd>Regions that don’t have a rectangular shape.</dd>
+      <dd><strong>Form:</strong></dd>
+      <dd>
+        <script type="math/tex; mode=display">\ \int_{a}^{b} \bigg( \int_{c(x)}^{d(x)} f(x,y) dy \bigg) dx \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (4.42)</script>
+      </dd>
+      <dd>or,</dd>
+      <dd>
+        <script type="math/tex; mode=display">\int_{c}^{d} \bigg( \int_{a(y)}^{b(y)} f(x,y) dx \bigg) dy \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (4.43)</script>
+      </dd>
+    </dl>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">How?</strong> <br />
+    <ul>
+      <li>We use Simpson’s Rule for Approximation.</li>
+      <li>Step Size:
+        <ul>
+          <li><strong>x:</strong> <script type="math/tex">\ \  h = \dfrac{b − a}{2}</script></li>
+          <li><strong>y:</strong> <script type="math/tex">\ \ k(x) = \dfrac{d(x) − c(x)}{2}</script></li>
+        </ul>
+      </li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents36">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents37">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents38">Asynchronous:</strong> \</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Simpsons’ Rule for Non-Rect Regions:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Rule</button>
+ <img src="/main_files/128a/4/4.8/3.png" alt="formula" width="80%" hidden="" /></li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Simpsons’ Double Integral [Algorithm]:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Algorithm</button>
+ <img src="/main_files/128a/4/4.8/Algorithm1.jpg" alt="formula" width="80%" hidden="" /></li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">Gaussian Double Integral [Algorithm]:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Algorithm</button>
+ <img src="/main_files/128a/4/4.8/Algorithm2.jpg" alt="formula" width="80%" hidden="" /></li>
 </ol>
 
 <hr />
 
-<h2 id="content4">FOURTH</h2>
+<h2 id="content4">Triple Integral Approximation</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">What?</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Triple</strong> integrals.</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Form:</strong></li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">\ \int_{a}^{b} \  \int_{c(x)}^{d(x)} \   \int_{\alpha(x)}^{\beta(x)} f(x,y) dz \  dy \   dx</script>
+      </dd>
+    </dl>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents45">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents46">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents47">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents48">Asynchronous:</strong> \</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Gaussian Triple Integral [Algorithm]:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Algorithm</button>
+ <img src="/main_files/128a/4/4.8/Algorithm3.jpg" alt="formula" width="80%" hidden="" /></li>
 </ol>
 
 

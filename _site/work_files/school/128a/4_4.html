@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">4.4 <br /> TITLE</h1>
+  <h1 class="project-name">4.4 <br /> Composite Numerical Integration</h1>
   <h2 class="project-tagline"></h2>
   <a href="/work_files/school.html" class="btn">Courses</a>
   <a href="/work_files/school/128a.html" class="btn">Chapters</a>
-  <a href=  class="btn">This Chapter</a>
+  <a href= /work_files/school/4 class="btn">This Chapter</a>
 </section>
 
 <!-- <div>
@@ -67,142 +67,87 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">FIRST</a></li>
+    <li><a href="#content1">Composite Rules</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">SECOND</a></li>
+    <li><a href="#content2">Composite Simpson’s rule</a></li>
   </ul>
   <ul class="TOC3">
-    <li><a href="#content3">THIRD</a></li>
+    <li><a href="#content3">Composite Newton-Cotes Rules</a></li>
   </ul>
   <ul class="TOC4">
-    <li><a href="#content4">FOURTH</a></li>
+    <li><a href="#content4">Round-Off Error Stability</a></li>
   </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content1">FIRST</h2>
+<h2 id="content1">Composite Rules</h2>
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?</strong> <br />
+ A piecewise approach to numerical integration that uses the
+ low-order Newton-Cotes formulas.</li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Why?</strong> <br />
+    <ul>
+      <li>The Newton-Cotes formulas are generally unsuitable for use over large integration intervals.</li>
+      <li>High-degree formulas would be required, and the values of the coefficients in these
+ formulas are difficult to obtain.</li>
+      <li>Newton-Cotes formulas are based on interpolatory
+ polynomials that use equally-spaced nodes, a procedure that is inaccurate over large
+ intervals because of the oscillatory nature of high-degree polynomials.</li>
+    </ul>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Notice:</strong></dt>
+      <dd><script type="math/tex">h = \dfrac{b − a}{n}</script> and <script type="math/tex">x_j = a + jh</script></dd>
+    </dl>
   </li>
 </ol>
 
 <hr />
 
-<h2 id="content2">SECOND</h2>
+<h2 id="content2">Composite Simpson’s rule</h2>
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Composite Simpson’s rule:</strong> <br />
+ <img src="/main_files/128a/4/4.4/2.png" alt="formula" width="70%" /></li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Error in Comoposite Simpson’s Rule:</strong> <br />
+ <img src="/main_files/128a/4/4.4/3.png" alt="formula" width="20%" />
+    <blockquote>
+      <p><strong>Error</strong> <script type="math/tex">\ \ \in \ \ \  \mathcal{O}(h^4)</script></p>
+    </blockquote>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents28">Asynchronous:</strong> \</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Theorem [Rule and Error]:</strong> <br />
+ <img src="/main_files/128a/4/4.4/1.png" alt="formula" width="90%" /></li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Algorithm:</strong> <br />
+ <img src="/main_files/128a/4/4.4/4.png" alt="formula" width="60%" /></li>
 </ol>
 
 <hr />
 
-<h2 id="content3">THIRD</h2>
+<h2 id="content3">Composite Newton-Cotes Rules</h2>
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents36">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents37">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents38">Asynchronous:</strong> \</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Composite Trapezoidal rule:</strong> <br />
+ <img src="/main_files/128a/4/4.4/5.png" alt="formula" width="77%" /></li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Composite Midpoint rule:</strong> <br />
+ <img src="/main_files/128a/4/4.4/6.png" alt="formula" width="77%" /></li>
 </ol>
 
 <hr />
 
-<h2 id="content4">FOURTH</h2>
+<h2 id="content4">Round-Off Error Stability</h2>
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents45">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents46">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents47">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents48">Asynchronous:</strong> \</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Stability Property:</strong> <br />
+ An important property shared by all the composite integration techniques is a stability with respect to round-off error.<br />
+ The round-off error does not depend on the number of calculations performed.</li>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Proof:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/4/4.4/derivation.jpg" alt="formula" width="80%" hidden="" /></li>
 </ol>
 
 

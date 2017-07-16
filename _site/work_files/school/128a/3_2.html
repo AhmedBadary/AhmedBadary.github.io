@@ -77,18 +77,28 @@
 <h2 id="content1">Neville’s Method</h2>
 
 <ol>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?:</strong> <br />
- A recursive method definition used to generate successively higher-degree polynomial approximations at a specific point.</li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Why?:</strong> <br />
- A practical difficulty with Lagrange interpolation is that the error term is difficult to apply,
- so the degree of the polynomial needed for the desired accuracy is generally not known
- until computations have been performed.</li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">The lagrange Polynomial of the point <script type="math/tex">x_mi</script>:</strong> <br />
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?</strong></dt>
+      <dd>A recursive method definition used to generate successively higher-degree <br />
+polynomial approximations at a specific point.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Why?</strong></dt>
+      <dd>A practical difficulty with Lagrange interpolation is that the error term is  <br />
+difficult to apply, so the degree of the polynomial needed for the desired accuracy is generally not known
+ until computations have been performed.</dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">The lagrange Polynomial of the point <script type="math/tex">x_{m_i}</script>:</strong> <br />
  <img src="/main_files/128a/3/3.2/1.png" alt="definition" width="80%" /></li>
   <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Method to recursively generate Lagrange polynomial:</strong> <br />
     <ul>
-      <li><img src="/main_files/128a/3/3.2/2.png" alt="definition" width="80%" /></li>
-      <li>Examples:
+      <li><strong>Method:</strong><br />
+ <img src="/main_files/128a/3/3.2/2.png" alt="definition" width="80%" /></li>
+      <li><strong>Examples:</strong>
   <script type="math/tex">P_{0,1} = \dfrac{1}{x_1 − x_0}[(x − x_0)P_1 − (x − x_1)P_0], \\
   P_{1,2} = \dfrac{1}{x_2 − x_1}[(x − x_1)P_2 − (x − x_2)P_1], \\
   P_{0,1,2} = \dfrac{1}{x_2 − x_0}[(x − x_0)P_{1,2} − (x − x_2)P_{0,1}]</script></li>
@@ -102,10 +112,14 @@
         <p>Proceeding down the table corresponds to using consecutive points <script type="math/tex">x_i</script> with larger i, and proceeding to the right corresponds to increasing the degree of the interpolating polynomial.</p>
       </li>
       <li>
-        <p><strong>To avoid the multiple subscripts</strong>, we let <script type="math/tex">Q_{i,j}(x),</script> for <script type="math/tex">0 ≤ j ≤ i,</script> denote the interpolating polynomial of degree j on the (j + 1) numbers <script type="math/tex">x_{i−j}, x_{i−j+1}, ... , x_{i−1}, x_i</script>; that is,</p>
+        <dl>
+          <dt><strong>To avoid the multiple subscripts</strong>, we let <script type="math/tex">Q_{i,j}(x),</script> for <script type="math/tex">0 ≤ j ≤ i,</script> denote the interpolating polynomial of degree j on the (j + 1) numbers <script type="math/tex">x_{i−j}, x_{i−j+1}, ... , x_{i−1}, x_i</script>; that is,</dt>
+          <dd>
+            <script type="math/tex; mode=display">Q_{i,j} = P_{i−j},_{i−j+1},...,_{i−1},_i</script>
+          </dd>
+        </dl>
       </li>
     </ul>
-    <p> $$Q_{i,j} = P_{i−j},_{i−j+1},...,_{i−1},_i$$.</p>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Algorithm:</strong> <br />
  <img src="/main_files/128a/3/3.2/5.png" alt="Nevilles Method" width="80%" /></li>
