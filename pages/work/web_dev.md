@@ -12,6 +12,8 @@ permalink: /work_files/web_dev
 
 * ## [AJAX Notes](/work_files/web_dev/Ajax_notes)
 
+* ## [Ruby (On Rails)](/work_files/web_dev/RubyOnRails)
+
 * ## [PaperJs](/work_files/web_dev/PaperJs)
 
 * ## [AJAX](/work_files/web_dev/Ajax)

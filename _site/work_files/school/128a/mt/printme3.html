@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+
+    <section class="main-content">
+      
+      <p><strong style="font-size: 250%; color: red; font: italic bold 50px/70px Georgia, serif">3.2/</strong></p>
+
+<hr />
+<hr />
+
+<h2 id="content1">Neville’s Method</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?</strong>
+    <xmp>
+ </xmp>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Why?</strong>
+    <xmp>
+
+ </xmp>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">The lagrange Polynomial of the point <script type="math/tex">x_{m_i}</script>:</strong> <br />
+    <xmp>
+ </xmp>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Method to recursively generate Lagrange polynomial:</strong> <br />
+    <ul>
+      <li><strong>Method:</strong><br />
+  The Kth Lagrange Poly that interpolates f at the (k+1) points <script type="math/tex">x_0,x_1,..,x_k</script>:
+        <xmp>
+  </xmp>
+      </li>
+      <li><strong>Examples:</strong>
+        <xmp>
+  </xmp>
+        <p><script type="math/tex">P_{0,1} =  \\
+  P_{1,2} =  \\
+  P_{0,1,2} =</script>
+ <strong>__</strong><strong>__</strong><strong>__</strong><strong>__</strong><strong>__</strong><strong>__</strong><strong>__</strong><strong>__</strong><strong>__</strong>
+  <script type="math/tex">P_{j,..,i} =  \\        
+  Q_{i,j} =  \\
+  P_{i-j,..,i} =  \\</script></p>
+      </li>
+      <li><strong>Generated according to the following Table:</strong>
+        <xmp>
+
+  </xmp>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Notation and subscripts:</strong> <br />
+    <ul>
+      <li>
+        <p>Proceeding down the table corresponds to</p>
+      </li>
+      <li>
+        <p>Proceeding to the right corresponds to</p>
+      </li>
+      <li>
+        <p><strong>To avoid the multiple subscripts</strong>, we let <script type="math/tex">Q_{i,j}</script>, for <script type="math/tex">0 \leq j \leq i</script> be:</p>
+        <xmp>
+  </xmp>
+      </li>
+    </ul>
+
+    <p>:   <script type="math/tex">Q_{i,j} =</script></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Algorithm:</strong> <br />
+    <xmp>
+
+
+ </xmp>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Stopping Criterion:</strong> <br />
+    <ul>
+      <li>Criterion:
+        <xmp></xmp>
+      </li>
+      <li>If the inequality is true, <script type="math/tex">Q_{i,i}</script> is</li>
+      <li>If the inequality is false,</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+<hr />
+
+<p><strong style="font-size: 250%; color: red; font: italic bold 50px/70px Georgia, serif">3.3/</strong></p>
+
+<hr />
+<hr />
+
+<h2 id="content1">Divided Differences</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?</strong>
+    <xmp>
+ </xmp>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Form of the Polynomial:</strong> <br />
+    <ul>
+      <li><script type="math/tex">P_n(x) =</script>
+ <br />
+ <br /></li>
+      <li>
+        <p><strong>Evaluated at <script type="math/tex">x_0</script>:</strong> 
+ <br /></p>
+      </li>
+      <li>
+        <p><strong>Evaluated at <script type="math/tex">x_1</script>:</strong> 
+ <br /></p>
+      </li>
+      <li>
+        <blockquote>
+          <p><script type="math/tex">\implies   a_1 = \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \</script>.</p>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">The divided differences:</strong> <br />
+    <ul>
+      <li><strong>The <em>zeroth</em> divided difference</strong> of the function f with respect to <script type="math/tex">x_i</script>:
+        <ul>
+          <li><strong>Denoted:</strong></li>
+          <li><strong>Defined:</strong></li>
+          <li>
+            <blockquote>
+              <p><script type="math/tex">f[x_i] =  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \</script>.</p>
+            </blockquote>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <blockquote>
+          <p>The remaining divided differences are defined:</p>
+        </blockquote>
+      </li>
+      <li><strong>The <em>first</em> divided difference</strong> of <script type="math/tex">f</script> with respect to <script type="math/tex">x_i</script> and <script type="math/tex">x_{i+1}</script>:
+        <ul>
+          <li><strong>Denoted:</strong></li>
+          <li><strong>Defined:</strong>
+            <xmp>
+
+  </xmp>
+          </li>
+        </ul>
+      </li>
+      <li><strong>The <em>second</em> divided difference</strong> of <script type="math/tex">f</script> with respect to <script type="math/tex">x_i</script>, <script type="math/tex">x_{i+1}</script> and <script type="math/tex">x_{i+2}</script>:
+        <ul>
+          <li><strong>Denoted:</strong></li>
+          <li><strong>Defined:</strong>
+            <xmp>
+
+  </xmp>
+          </li>
+        </ul>
+      </li>
+      <li><strong>The <em>Kth</em> divided difference</strong> of <script type="math/tex">f</script> with respect to <script type="math/tex">x_i</script>, <script type="math/tex">x_{i+1},...,x_{i+k-1},x_{i+k}</script>:
+        <ul>
+          <li><strong>Denoted:</strong></li>
+          <li><strong>Defined:</strong>
+            <xmp>
+
+  </xmp>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <blockquote>
+          <p>The process ends with</p>
+        </blockquote>
+      </li>
+      <li><strong>The <em>nth</em> divided difference</strong> of <script type="math/tex">f</script> with respect to <script type="math/tex">x_i</script>, <script type="math/tex">x_{i+1},...,x_{i+k-1},x_{i+k}</script>:
+        <ul>
+          <li><strong>Denoted:</strong></li>
+          <li><strong>Defined:</strong>
+            <xmp>
+  </xmp>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">The Interpolating Polynomial:</strong> <br />
+ <script type="math/tex">P_n(x) =</script></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Newton’s Divided Difference:</strong> <br />
+ <script type="math/tex">P_n(x) =</script>
+ <br />
+ <br />
+    <blockquote>
+      <p>The value of <script type="math/tex">f[x_0,x_1,...,x_k]</script> is 
+     <xmp> </xmp></p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Generation of Divided Differences:</strong> <br />
+    <xmp>
+
+ </xmp>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Algorithm:</strong> <br />
+    <xmp>
+ </xmp>
+    <xmp>
+
+ </xmp>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Forward Differences</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Forward Difference:</strong> <br />
+    <xmp>
+
+ </xmp>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">The divided differences (with del notation):</strong> <br />
+    <xmp>
+ </xmp>
+    <p><script type="math/tex">f[x_0,x_{1}] = \\
+ f[x_0,x_{1},x_2] = \\</script>
+ and in general,<br />
+ <script type="math/tex">\\
+ f[x_0,x_{1},...,x_{k-1},x_{k}] \\</script></p>
+    <xmp>
+ </xmp>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Newton Forward-Difference Formula:</strong> <br />
+    <xmp>
+
+ </xmp>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Backward Differences</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Backward Difference:</strong> <br />
+    <xmp>
+
+ </xmp>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">The divided differences:</strong> <br />
+    <xmp>
+ </xmp>
+
+    <blockquote>
+      <p>and in general,</p>
+    </blockquote>
+
+    <xmp>
+ </xmp>
+
+    <blockquote>
+      <p>Consequently, the Interpolating Polynomial \</p>
+    </blockquote>
+    <xmp>
+
+ </xmp>
+
+    <blockquote>
+      <p>If we extend the binomial coefficient notation to 
+    <xmp> </xmp></p>
+    </blockquote>
+    <xmp>
+
+ </xmp>
+    <blockquote>
+      <p>then \</p>
+    </blockquote>
+    <xmp>
+
+ </xmp>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Newton Backward–Difference Formula:</strong> <br />
+    <xmp>
+
+ </xmp>
+  </li>
+</ol>
+
+<h2 id="content4">Centered Differences</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">What?</strong>
+    <xmp> </xmp>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Why?</strong>
+    <xmp>
+ </xmp>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Stirling’s Formula:</strong> <br />
+    <ul>
+      <li><strong>If <script type="math/tex">n = 2m + 1</script> is odd:</strong>
+        <xmp>
+  </xmp>
+      </li>
+      <li><strong>If <script type="math/tex">n = 2m</script> is even:</strong> [we use the same formula but delete the last line]
+        <xmp>
+  </xmp>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Table of Entries:</strong> <br />
+    <xmp>
+    
+ </xmp>
+  </li>
+</ol>
+
+
+    </section>
+
+  </body>
+
+</html>

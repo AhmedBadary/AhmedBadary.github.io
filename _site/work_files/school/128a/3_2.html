@@ -103,7 +103,7 @@ difficult to apply, so the degree of the polynomial needed for the desired accur
   P_{1,2} = \dfrac{1}{x_2 − x_1}[(x − x_1)P_2 − (x − x_2)P_1], \\
   P_{0,1,2} = \dfrac{1}{x_2 − x_0}[(x − x_0)P_{1,2} − (x − x_2)P_{0,1}]</script></li>
       <li><strong>Generated according to the following Table:</strong>
- <img src="/main_files/128a/3/3.2/3.png" alt="Table" width="80%" /></li>
+ <img src="/main_files/128a/3/3.2/4.png" alt="Table" width="80%" /></li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Notation and subscripts:</strong> <br />
@@ -132,6 +132,9 @@ difficult to apply, so the degree of the polynomial needed for the desired accur
       <li>If the inequality is false, a new interpolation point, <script type="math/tex">x_{i+1}</script>, is added.</li>
     </ul>
   </li>
+  <li><strong>OMG</strong>:<br />
+ <script type="math/tex">P_{j,..,i} = \dfrac{1}{x_i − x_j}[(x − x_j)P_{j+1,..,i} − (x − x_i)P_{j,..,i-1}], \\        
+ Q_{i,j} = \dfrac{1}{x_{i} − x_{i-j}}[(x − x_{i-j})Q_{i,j-1} − (x − x_i)Q_{i-1,j-1}], \\</script></li>
 </ol>
 
 
@@ -345,4 +348,20 @@ bodyContents.each(function(index, element) {
 }
 </script>
 
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
 </html>
+

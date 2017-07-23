@@ -91,7 +91,7 @@
 <ol>
   <li>
     <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Derivative:</strong> <br />
- <script type="math/tex">f(x_0) = \lim_{h\to\infty} \ \ \dfrac{f(x_0 + h) − f(x_0)}{h}</script></p>
+ <script type="math/tex">f'(x_0) = \lim_{h\to\infty} \ \ \dfrac{f(x_0 + h) − f(x_0)}{h}</script></p>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">The forward/backward difference formula:</strong> <br />
     <blockquote>
@@ -101,6 +101,9 @@ This formula is known as the forward-difference formula if <script type="math/te
  and the backward-difference formula if <script type="math/tex">% <![CDATA[
 h < 0 %]]></script>.</p>
     </blockquote>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/4/4.1/derivation.png" alt="formula" hidden="" /></p>
 
     <blockquote>
       <p><strong>Error Bound:</strong>
@@ -143,6 +146,9 @@ We will assume equally-spaced nodes throughout the remainder of this section.</p
     <blockquote>
       <p>The approximation in Eq. (4.4) is useful near the ends of an interval, because information about f outside the interval may not be available.</p>
     </blockquote>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/4/4.1/derivation1.png" alt="formula" width="80%" hidden="" /></p>
 
     <blockquote>
       <p><strong>Errors:</strong> the errors in both Eq. (4.4) and Eq. (4.5) are <script type="math/tex">O(h^2)</script></p>
@@ -240,7 +246,7 @@ h < 0 %]]></script>.</p>
       </li>
     </ul>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents52">The total error:</strong> <br />
+  <li><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents52">The Total Error:</strong> <br />
  <img src="/main_files/128a/4/4.1/11.png" alt="formula" width="70%" />
     <blockquote>
       <p>It is due both to round-off error, the first part, and to truncation error.</p>
@@ -254,7 +260,7 @@ h < 0 %]]></script>.</p>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents54">Reducing Truncation Error:</strong> <br />
     <ul>
-      <li><strong>How?</strong> To reduce the truncation error, <script type="math/tex">\dfrac{h*2M}{6}</script>, we need to reduce <script type="math/tex">h</script>.</li>
+      <li><strong>How?</strong> To reduce the truncation error, <script type="math/tex">\dfrac{h**2}{6}M</script>, we need to reduce <script type="math/tex">h</script>.</li>
       <li><strong>Effect of reducing <script type="math/tex">h</script>:</strong> But as <script type="math/tex">h</script> is reduced, the roundoff error <script type="math/tex">\dfrac{ε}{h}</script> grows.</li>
     </ul>
   </li>
@@ -478,4 +484,20 @@ bodyContents.each(function(index, element) {
 }
 </script>
 
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
 </html>
+
