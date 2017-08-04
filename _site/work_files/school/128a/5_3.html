@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">5.3 <br /> TITLE</h1>
+  <h1 class="project-name">5.3 <br /> Higher-Order Taylor Methods</h1>
   <h2 class="project-tagline"></h2>
   <a href="/work_files/school.html" class="btn">Courses</a>
   <a href="/work_files/school/128a.html" class="btn">Chapters</a>
-  <a href=  class="btn">This Chapter</a>
+  <a href= /work_files/school/5 class="btn">This Chapter</a>
 </section>
 
 <!-- <div>
@@ -67,141 +67,84 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">FIRST</a></li>
+    <li><a href="#content1">Local Truncation Error</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">SECOND</a></li>
-  </ul>
-  <ul class="TOC3">
-    <li><a href="#content3">THIRD</a></li>
-  </ul>
-  <ul class="TOC4">
-    <li><a href="#content4">FOURTH</a></li>
+    <li><a href="#content2">Talors Method</a></li>
   </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content1">FIRST</h2>
+<h2 id="content1">Local Truncation Error</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?</strong></dt>
+      <dd>The local truncation error at a specified step measures the amount by which the exact
+ solution to the differential equation fails to satisfy the difference equation being used for the approximation at that step.</dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Why?</strong> <br />
+    <blockquote>
+      <p>We need a means for comparing the efficiency of various approximation methods.</p>
+    </blockquote>
+
+    <blockquote>
+      <p>The <strong>local truncation</strong> will serve quite well to determine not only the local error of a method but the actual approximation error.</p>
+    </blockquote>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Definition:</strong> <br />
+ <img src="/main_files/128a/5/5.3/1.png" alt="formula" width="80%" /></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Why local?</strong> <br />
+    <blockquote>
+      <p>This error is a local error because it measures the accuracy of the method at a specific step, assuming that the method was exact at the previous step.</p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">What does it depend on?</strong> <br />
+    <blockquote>
+      <p>As such, it depends on the <strong>differential equation</strong>, the <strong>step size</strong>, and the <strong>particular step</strong> in the approximation.</p>
+    </blockquote>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Euler Method Truncation Error:</strong> <br />
+ <img src="/main_files/128a/5/5.3/2.png" alt="formula" width="60%" />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">(5.7)</button>
+ <img src="/main_files/128a/5/5.3/3.png" alt="formula" hidden="" width="40%" />
+ <img src="/main_files/128a/5/5.3/4.png" alt="formula" width="60%" /></p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Asynchronous:</strong> \</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">How to select difference equations methods?</strong> <br />
+ One way to select difference-equation methods for solving ordinary differential equations
+ is in such a manner that their local truncation errors are O(hp) for as large a value
+ of p as possible, while keeping the number and complexity of calculations of the methods
+ within a reasonable bound.</li>
 </ol>
 
 <hr />
 
-<h2 id="content2">SECOND</h2>
+<h2 id="content2">Talors Method</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Taylors Method of order n:</strong> <br />
+ <img src="/main_files/128a/5/5.3/5.png" alt="formula" width="80%" />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/5/5.3/6.png" alt="formula" hidden="" width="80%" /></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Approximation Theorem:</strong> <br />
+ <img src="/main_files/128a/5/5.3/7.png" alt="formula" width="80%" />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/5/5.3/8.png" alt="formula" hidden="" width="80%" /></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents28">Asynchronous:</strong> \</p>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="content3">THIRD</h2>
-
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents36">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents37">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents38">Asynchronous:</strong> \</p>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="content4">FOURTH</h2>
-
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents45">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents46">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents47">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents48">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Using Hermite Polynomials to evaluate a differential equations at a midpoint:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Example</button>
+ <img src="/main_files/128a/5/5.3/hermite.png" alt="formula" hidden="" width="80%" /></p>
   </li>
 </ol>
 

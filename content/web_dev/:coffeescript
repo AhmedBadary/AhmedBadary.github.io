@@ -1,0 +1,165 @@
+:coffeescript
+    $ ->
+        video = document.getElementById('video')
+        canvas = document.getElementById('canvas')
+        context = canvas.getContext('2d')
+        
+        streamWebCam = (stream) ->
+            video.src = window.URL.createObjectURL(stream)
+            video.play()
+        
+        image = new Image();
+        arr = [0]
+        arr.pop()
+
+        video.addEventListener 'loadedmetadata', ((e) ->
+            width = @videoWidth
+            height = @videoHeight
+            console.log  width
+            console.log  height
+            console.log "top"
+            
+            # drawing active image
+            #image = new Image();
+            canvas.width = width
+            canvas.height = height
+            console.log  canvas.width
+            console.log  canvas.height
+            console.log "UP"
+            image.onload = ->
+                context.drawImage(image, 0, 0, canvas.width, canvas.height); 
+                # draw the image on the canvas
+    
+            # select desired colorwheel
+            image.crossOrigin = "Anonymous";
+            #imageSrc = '/color_wheel/images/tr3.png';
+            #imageSrc = 'http://ahmedbadary.ml/main_files/colorwheel1.png';
+            imageSrc = "http://ahmedbadary.ml/main_files/misc/paris.jpg";
+            image.src = imageSrc
+            
+        ), false
+
+        throwError = (e) ->
+            alert e.name
+
+        navigator.getUserMedia = navigator.getUserMedia or navigator.webkitGetUserMedia or navigator.mozGetUserMedia or navigator.oGetUserMedia or navigator.msGetUserMedia
+        if navigator.getUserMedia
+            navigator.getUserMedia { video: true }, streamWebCam, throwError        
+
+        setInterval (->
+            context.drawImage(image, 0, 0)#, canvas.width, canvas.height)
+            ctxD_image = context.getImageData(0, 0, canvas.width,canvas.height)
+            context.drawImage(video, 0, 0)#, video.clientWidth, video.clientHeight)
+            ctxD = context.getImageData(0, 0, canvas.width,canvas.height)
+            length = ctxD.data.length / 4
+            
+            console.log "width: ", video.clientWidth
+            console.log "height: ", video.clientHeight
+            
+            i = 0
+            while i < length
+                r = ctxD.data[i * 4 + 0]
+                g = ctxD.data[i * 4 + 1]
+                b = ctxD.data[i * 4 + 2]
+                if r+g+b > 370
+                    #ctxD.data[i * 4 + 3] = 0
+                    ctxD.data[i * 4 + 0] = ctxD_image[i * 4 + 0]
+                    ctxD.data[i * 4 + 1] = ctxD_image[i * 4 + 1]
+                    ctxD.data[i * 4 + 2] = ctxD_image[i * 4 + 2]
+                i++
+            #context.drawImage(image, 0, 0, canvas.width, canvas.height)
+            context.putImageData(ctxD, 0, 0, 0, 0, canvas.width, canvas.height)
+        ), 30
+
+        
+        ######################################################################
+        
+        connection1 = new WebSocket('wss://badary-su-pc4-ahmedt2.c9users.io:8081');
+
+        connection1.onmessage = (e) ->
+            if e.data.includes('Hello')
+                if $('#socketMsg1').text().includes('Hello')
+                    $('#socketMsg1').text($('#socketMsg1').text() + '!')
+                else
+                    $('#socketMsg1').text('Hello World!')
+            console.log 'Server: ' + e.data
+
+        send1 = () ->
+            console.log 'SENDING'
+            connection1.send "Hello World!"
+            
+        $("#socketButton1").on("click", (event) ->
+            if ($("#socketMsg1").text().includes("Hello"))
+                $("#socketMsg1").text($("#socketMsg1").text() + "!")
+            else
+                $("#socketMsg1").text("Hello World!")
+            send1()
+        )
+        
+
+
+
+#instadesktop
+    #webcam-feed.col-xs-12.col-sm-6
+        %video#video
+    #snapshot.col-xs-12.col-sm-6
+        %canvas#canvas
+
+        
+    
+
+// IGNORE, BUT KEEP THIS LINE (Back button)   
+= render :partial => "application/back_to_root"
+
+:scss
+    #instadesktop{
+        height: 100%;
+        width: 100%;
+        color: white;
+        font-family: Avenir, sans-serif;
+        font-size: 4em;
+        text-align: center;
+            
+        #webcam-feed{
+            height: 100%;
+            background: desaturate(blue, 80%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            button{
+                position: absolute;
+                bottom: 0;
+            }
+        }
+        #snapshot{
+            height: 100%;
+            background: desaturate(red, 80%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+        }
+    }
+
+
+
+    #video {
+        height: 100%;
+        width: 100%;
+    }
+    #back-button{
+        position: absolute;
+        z-index: 100;
+        top: 15px;
+        left: 15px;
+    }
+    
+    #canvas {
+        // -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+        // filter: grayscale(100%);
+        // height: 100%;
+        // width: 100%;
+    }
+    

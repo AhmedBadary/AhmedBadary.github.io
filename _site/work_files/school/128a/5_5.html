@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">6.5 <br /> TITLE</h1>
+  <h1 class="project-name">5.5 <br /> Error Control and the Runge-Kutta-Fehlberg Method</h1>
   <h2 class="project-tagline"></h2>
   <a href="/work_files/school.html" class="btn">Courses</a>
   <a href="/work_files/school/128a.html" class="btn">Chapters</a>
-  <a href=  class="btn">This Chapter</a>
+  <a href= /work_files/school/5 class="btn">This Chapter</a>
 </section>
 
 <!-- <div>
@@ -67,10 +67,10 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">FIRST</a></li>
+    <li><a href="#content1">Adaptive Methods</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">SECOND</a></li>
+    <li><a href="#content2">Runge-Kutta-Fehlberg Method</a></li>
   </ul>
   <ul class="TOC3">
     <li><a href="#content3">THIRD</a></li>
@@ -83,125 +83,97 @@
 <hr />
 <hr />
 
-<h2 id="content1">FIRST</h2>
+<h2 id="content1">Adaptive Methods</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?</strong></dt>
+      <dd>
+        <blockquote>
+          <p>Techniques used to control the error of a difference equation method in an efficient manner by the appropriate choice of mesh points.</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>By using methods of differing order we can predict the local truncation error
+ and, using this prediction, choose a step size that will keep it and the global error in check.</p>
+        </blockquote>
+      </dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Why?</strong></dt>
+      <dd><strong>Adaptive Methods</strong> incorporate in the step-size procedure an estimate of
+ the truncation error that does not require the approximation of the higher derivatives of the function.</dd>
+      <dd>They <strong>adapt</strong> the number and position of the nodes used in the approximation to ensure that the truncation error is kept within a specified bound.</dd>
+    </dl>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Asynchronous:</strong> \</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Derivation:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/5/5.5/derivation.png" alt="formula" width="80%" hidden="" /></li>
 </ol>
 
 <hr />
 
-<h2 id="content2">SECOND</h2>
+<h2 id="content2">Runge-Kutta-Fehlberg Method</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">What?</strong> <br />
+ <img src="/main_files/128a/5/5.5/1.png" alt="formula" width="60%" /></p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents28">Asynchronous:</strong> \</p>
-  </li>
-</ol>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Why?</strong> <br />
+    <blockquote>
+      <p>An advantage to this method is that only six evaluations of f are required per step.</p>
+    </blockquote>
 
-<hr />
+    <blockquote>
+      <p>As opposed to requiring at least four evaluations of <script type="math/tex">f</script> for the fourth-order method and an additional six for the fifth-order method, for a total of at least ten function evaluations.</p>
+    </blockquote>
 
-<h2 id="content3">THIRD</h2>
+    <blockquote>
+      <p><script type="math/tex">\implies</script> This Method has at least a <script type="math/tex">40\%</script> decrease in the number of function evaluations over the use of a pair of arbitrary fourth- and fifth-order methods.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Error Bound Order:</strong> <br />
+ <script type="math/tex">\mathcal{O}(h^5)</script></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">The choice of “q”:</strong> <br />
+    <ul>
+      <li>The value of q determined at the ith step is used for two purposes:
+        <ol>
+          <li><strong>When <script type="math/tex">% <![CDATA[
+q < 1 %]]></script>:</strong> to reject the initial choice of <script type="math/tex">h</script> at the ith step and repeat the calculations using <script type="math/tex">qh</script>, and</li>
+          <li>**When <script type="math/tex">q \geq 1</script>: to accept the computed value at the ith step using the step size <script type="math/tex">h</script>, but change the step size to <script type="math/tex">qh</script> for the (i + 1)st step.</li>
+        </ol>
+      </li>
+    </ul>
 
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents36">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents37">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents38">Asynchronous:</strong> \</p>
-  </li>
-</ol>
+    <blockquote>
+      <p>Because of the penalty in terms of function evaluations that must be paid if the steps are repeated, q tends to be chosen conservatively.</p>
+    </blockquote>
 
-<hr />
-
-<h2 id="content4">FOURTH</h2>
-
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Asynchronous:</strong> \</p>
+    <ul>
+      <li>The choice of q for the “Runge-Kutta-Fehlberg”:
+  <img src="/main_files/128a/5/5.5/2.png" alt="formula" width="60%" /></li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents45">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents46">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents47">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents48">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Algorithm:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/5/5.5/alg.png" alt="formula" width="80%" hidden="" />
+    <ul>
+      <li>Notice:
+        <ol>
+          <li>Step 9 is added to eliminate large modifications in step size.</li>
+          <li>This is done to avoid spending too much time with small step sizes in regions with irregularities in the derivatives of y, and to avoid large step sizes, which can result in skipping sensitive regions between the steps.</li>
+          <li>The step-size increase procedure could be omitted completely from the algorithm.</li>
+          <li>The step-size decrease procedure used only when needed to bring the error under control.</li>
+        </ol>
+      </li>
+    </ul>
   </li>
 </ol>
 
