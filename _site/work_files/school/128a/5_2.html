@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">5.2 <br /> TITLE</h1>
+  <h1 class="project-name">5.2 <br /> Euler’s Method</h1>
   <h2 class="project-tagline"></h2>
   <a href="/work_files/school.html" class="btn">Courses</a>
   <a href="/work_files/school/128a.html" class="btn">Chapters</a>
-  <a href=  class="btn">This Chapter</a>
+  <a href= /work_files/school/5 class="btn">This Chapter</a>
 </section>
 
 <!-- <div>
@@ -67,141 +67,163 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">FIRST</a></li>
+    <li><a href="#content1">Eulers Method</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">SECOND</a></li>
+    <li><a href="#content2">Error Bounds for Euler’s Method</a></li>
   </ul>
   <ul class="TOC3">
-    <li><a href="#content3">THIRD</a></li>
-  </ul>
-  <ul class="TOC4">
-    <li><a href="#content4">FOURTH</a></li>
+    <li><a href="#content3">Finite Digit Approximations</a></li>
   </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content1">FIRST</h2>
+<h2 id="content1">Eulers Method</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?</strong></dt>
+      <dd>
+        <ul>
+          <li>The object of Euler’s method is to obtain approximations to the well-posed initial-value problem<br />
+ <script type="math/tex">\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \dfrac{dy}{dt} = f(t,y), \ \ \ \ \ \  a \leq b, \ \ \ \ \ \  y(a) = \alpha \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \  (5.6)</script></li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>A continuous approximation to the solution <script type="math/tex">y(t)</script> will not be obtained; instead, approximations to <script type="math/tex">y</script> will be generated at various values, called <strong>mesh points</strong>, in the interval <script type="math/tex">[a, b]</script>.</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>Once the approximate solution is obtained at the points, the approximate solution at other points in the interval can be found by interpolation.</li>
+        </ul>
+      </dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Mesh-Points:</strong></dt>
+      <dd>
+        <script type="math/tex; mode=display">t_i = a + ih, \ \ \  \text{for each } i = 0, 1, 2, ... , N</script>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>The mesh points are equally distributed throughout the interval <script type="math/tex">[a, b]</script>.</p>
+        </blockquote>
+      </dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Step-Size:</strong></dt>
+      <dd>
+        <script type="math/tex; mode=display">h = \dfrac{b − a}{N} = t_{i+1} − t</script>
+      </dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Euler’s Method:</strong> <br />
+ <img src="/main_files/128a/5/5.2/2.png" alt="formula" width="80%" /></p>
+
+    <blockquote>
+      <p>Equation <script type="math/tex">(5.8)</script> is called the <em><strong>difference equation</strong></em> associated with Euler’s method.</p>
+    </blockquote>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Derivation:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/5/5.2/1.png" alt="formula" width="80%" hidden="" /></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Algorithm:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Algorithm</button>
+ <img src="/main_files/128a/5/5.2/3.png" alt="formula" width="50%" hidden="" /></p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Geometric Interpetation:</strong> <br />
+ To interpret Euler’s method geometrically, note that when <script type="math/tex">w_i</script> is a close approximation to <script type="math/tex">y(t_i)</script>, the assumption that the problem is well-posed implies that
+ <script type="math/tex">f(t_i, w_i) \approx y(t_i) = f(t_i, y(t_i))</script>.
+    <blockquote>
+      <p>i.e. each step corresponds to correcting the path by the approximation to the derivative (slope).</p>
+    </blockquote>
   </li>
 </ol>
 
 <hr />
 
-<h2 id="content2">SECOND</h2>
+<h2 id="content2">Error Bounds for Euler’s Method</h2>
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Comparison Lemmas:</strong> <br />
+    <ol>
+      <li>
+        <p><strong>Lemma 1:</strong><br />
+ <img src="/main_files/128a/5/5.2/4.png" alt="formula" width="80%" /><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show proof</button>
+ <img src="/main_files/128a/5/5.2/5.png" alt="formula" width="80%" hidden="" /></p>
+      </li>
+      <li>
+        <p><strong>Lemma 2:</strong><br />
+ <img src="/main_files/128a/5/5.2/6.png" alt="formula" width="80%" /><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show proof</button>
+ <img src="/main_files/128a/5/5.2/7.png" alt="formula" width="80%" hidden="" /></p>
+      </li>
+    </ol>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Error Bound:</strong> <br />
+ <img src="/main_files/128a/5/5.2/8.png" alt="formula" width="80%" /><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show proof</button>
+ <img src="/main_files/128a/5/5.2/9.png" alt="formula" width="80%" hidden="" /></p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents28">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Properties of the Error Bound Theorem:</strong> <br />
+    <ol>
+      <li>The <strong>Weakness</strong> of Theorem 5.9 lies in the requirement that a bound be known for the second derivative of the solution.</li>
+      <li><strong>However</strong>, if <script type="math/tex">\dfrac{\partial f}{\partial t}</script> and <script type="math/tex">\dfrac{\partial f}{\partial y}</script> both exist, the chain rule for partial differentiation implies that<br />
+ <img src="/main_files/128a/5/5.2/10.png" alt="formula" width="80%" /><br />
+ So it is at times possible to obtain an error bound for <script type="math/tex">y''(t)</script> without explicitly knowing <script type="math/tex">y(t)</script>.</li>
+      <li>The <strong>Principal Importance</strong> of the error-bound formula given in Theorem 5.9 is that the bound depends linearly on the step size h.</li>
+      <li><em>Consequently</em>, <strong>diminishing the step size</strong> should give correspondingly <strong>greater accuracy</strong> to the approximations.</li>
+    </ol>
   </li>
 </ol>
 
 <hr />
 
-<h2 id="content3">THIRD</h2>
+<h2 id="content3">Finite Digit Approximations</h2>
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Euler Method [Finite-Digit Approximations]:</strong> <br />
+ <img src="/main_files/128a/5/5.2/11.png" alt="formula" width="80%" />
+    <blockquote>
+      <p>Where <script type="math/tex">\delta_i</script> denotes the round-off error associated with <script type="math/tex">u_i</script>.</p>
+    </blockquote>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Error Bound for fin-dig approx. to <script type="math/tex">y_i</script> given by Euler’s method:</strong> <br />
+ <img src="/main_files/128a/5/5.2/12.png" alt="formula" width="80%" /></p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents36">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents37">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents38">Asynchronous:</strong> \</p>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="content4">FOURTH</h2>
-
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents45">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents46">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents47">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents48">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Properties of the Error Bound on Finit-digit Approximations:</strong> <br />
+    <ol>
+      <li>The error bound (5.13) is no longer linear in h.</li>
+      <li>In fact, since<br />
+ <script type="math/tex">\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">\lim_{h\to 0} \ (\dfrac{hM}{2} + \dfrac{\delta}{h}) = \infty,</script><br />
+ the error would be expected to become large for sufficiently small values of h.</li>
+      <li>Calculus can be used to determine a lower bound for the step size h:<br />
+ <img src="/main_files/128a/5/5.2/13.png" alt="formula" width="80%" /></li>
+      <li>
+        <dl>
+          <dt>The <strong>Minimal value</strong> of <script type="math/tex">E(h)</script> occurs when,</dt>
+          <dd>
+            <script type="math/tex; mode=display">h = \sqrt{\dfrac{2\delta}{M}}  \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ (5.14)</script>
+          </dd>
+        </dl>
+      </li>
+      <li>Decreasing h beyond this value tends to increase the total error in the approximation; however, normally, <script type="math/tex">\delta</script> is so small that the lower bound for h doesn’t affect Euler’s Method.</li>
+    </ol>
   </li>
 </ol>
 

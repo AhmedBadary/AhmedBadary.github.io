@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">5.7 <br /> TITLE</h1>
+  <h1 class="project-name">5.7 <br /> Variable Step-Size Multistep Methods</h1>
   <h2 class="project-tagline"></h2>
   <a href="/work_files/school.html" class="btn">Courses</a>
   <a href="/work_files/school/128a.html" class="btn">Chapters</a>
-  <a href=  class="btn">This Chapter</a>
+  <a href= /work_files/school/5 class="btn">This Chapter</a>
 </section>
 
 <!-- <div>
@@ -67,142 +67,50 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">FIRST</a></li>
-  </ul>
-  <ul class="TOC2">
-    <li><a href="#content2">SECOND</a></li>
-  </ul>
-  <ul class="TOC3">
-    <li><a href="#content3">THIRD</a></li>
-  </ul>
-  <ul class="TOC4">
-    <li><a href="#content4">FOURTH</a></li>
+    <li><a href="#content1">Variable Step Multistep Methods</a></li>
   </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content1">FIRST</h2>
+<h2 id="content1">Variable Step Multistep Methods</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?</strong></dt>
+      <dd>A Predictor-Corrector Method that uses variable step sizes for error control.</dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Why?</strong></dt>
+      <dd>Predictor-corrector techniques always generate two approximations at each step, so they are natural candidates for error-control adaptation.</dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Derivation:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/5/5.7/derivation.png" alt="formula" width="80%" hidden="" /></p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Choosing ‘<script type="math/tex">q</script>’:</strong> <br />
+    <ul>
+      <li><script type="math/tex">q</script> is, generally, chosen <em>conservatively</em>:<br />
+ <img src="/main_files/128a/5/5.7/1.png" alt="formula" width="37%" /></li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Properties:</strong> <br />
+    <ol>
+      <li>A <strong>change in step size</strong> for a <em>multistep method</em> is <strong>more costly</strong> in terms of function evaluations than for a <em>one-step method</em>, because <strong>new equally-spaced</strong> starting values must be computed.</li>
+      <li>Consequently, we ignore the step-size change whenever the local truncation error is between <script type="math/tex">\dfrac{\epsilon}{10}</script> and <script type="math/tex">\epsilon</script>, that is, when
+ <img src="/main_files/128a/5/5.7/2.png" alt="formula" width="80%" /></li>
+      <li><script type="math/tex">q</script> is given an upper bound to ensure that a single unusually accurate approximation does not result in too large a step size.</li>
+    </ol>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Asynchronous:</strong> \</p>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="content2">SECOND</h2>
-
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents28">Asynchronous:</strong> \</p>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="content3">THIRD</h2>
-
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents36">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents37">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents38">Asynchronous:</strong> \</p>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="content4">FOURTH</h2>
-
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents45">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents46">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents47">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents48">Asynchronous:</strong> \</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Algorithm:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/5/5.7/algorithm.png" alt="formula" width="80%" hidden="" /></li>
 </ol>
 
 

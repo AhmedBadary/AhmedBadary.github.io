@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">5.6 <br /> TITLE</h1>
+  <h1 class="project-name">5.6 <br /> Multistep Methods</h1>
   <h2 class="project-tagline"></h2>
   <a href="/work_files/school.html" class="btn">Courses</a>
   <a href="/work_files/school/128a.html" class="btn">Chapters</a>
-  <a href=  class="btn">This Chapter</a>
+  <a href= /work_files/school/5 class="btn">This Chapter</a>
 </section>
 
 <!-- <div>
@@ -67,141 +67,183 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">FIRST</a></li>
+    <li><a href="#content1">Multi-Step Methods</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">SECOND</a></li>
+    <li><a href="#content2">Adams-Bashforth Explicit Methods</a></li>
   </ul>
   <ul class="TOC3">
-    <li><a href="#content3">THIRD</a></li>
+    <li><a href="#content3">Adams-Moulton Implicit Methods</a></li>
   </ul>
   <ul class="TOC4">
-    <li><a href="#content4">FOURTH</a></li>
+    <li><a href="#content4">Predictor-Corrector Methods</a></li>
   </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content1">FIRST</h2>
+<h2 id="content1">Multi-Step Methods</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?</strong></dt>
+      <dd>Methods that use the information produced at the steps <script type="math/tex">t_0, t_1, .. , t_{i-1}, t_i</script>, to approximate <script type="math/tex">t_{i+1}</script>.</dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Why?</strong></dt>
+      <dd>Since the error <script type="math/tex">[\mid w_j − y(t_j) \mid]</script> increases with each step, we know that the previously computed values of <script type="math/tex">t</script> are actually <strong>more accurate</strong> than those coming up next.</dd>
+      <dd>Thus, it makes sense to use these more accurate values to produce the next result.</dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">m-step Multistep Method:</strong> <br />
+ <img src="/main_files/128a/5/5.6/1.png" alt="formula" width="80%" /></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Types of Methods:</strong> <br />
+    <ol>
+      <li>
+        <p><strong>Open / Explicit Methods</strong>: If <script type="math/tex">b_m = 0</script>  because Eq. <script type="math/tex">(5.24)</script> then gives <script type="math/tex">w_{i+1}</script> explicitly in terms of previously determined values.</p>
+      </li>
+      <li>
+        <p><strong>Closed / Implicit Methods</strong>: If <script type="math/tex">b_m \neq 0</script> because <script type="math/tex">w_{i+1}</script> occurs on both sides of Eq. <script type="math/tex">(5.24)</script>, so <script type="math/tex">w_{i+1}</script> is specified, only, implicitly.</p>
+      </li>
+    </ol>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Open vs Closed / Explicit vs Implicit:</strong> <br />
+ In general, the coefficients of the terms involving <script type="math/tex">f</script> in the local truncation error are smaller for the implicit methods than for the explicit methods.</p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Starting Values:</strong></dt>
+      <dd>The starting values must be specified, generally by assuming <script type="math/tex">w_0 = \alpha</script> and generating the remaining values by either a Runge-Kutta or Taylor method.</dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Deriving Multi-Step Methods:</strong> <br />
+ <img src="/main_files/128a/5/5.6/14.png" alt="formula" width="80%" /></p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/5/5.6/derivation.png" alt="formula" width="87%" hidden="" /></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Example [Deriving three-step Adams-Bashforth]:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/5/5.6/15.png" alt="formula" width="80%" hidden="" /></li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Adams-Bashforth Explicit Methods</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Adams-Bashforth Two-Step Explicit Method:</strong> <br />
+ <img src="/main_files/128a/5/5.6/2.png" alt="formula" width="80%" /></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Adams-Bashforth Three-Step Explicit Method:</strong> <br />
+ <img src="/main_files/128a/5/5.6/3.png" alt="formula" width="80%" /></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Adams-Bashforth Four-Step Explicit Method:</strong> <br />
+ <img src="/main_files/128a/5/5.6/4.png" alt="formula" width="80%" /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Adams-Bashforth Five-Step Explicit Method:</strong> <br />
+ <img src="/main_files/128a/5/5.6/5.png" alt="formula" width="80%" /></p>
   </li>
 </ol>
 
 <hr />
 
-<h2 id="content2">SECOND</h2>
+<h2 id="content3">Adams-Moulton Implicit Methods</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">What?</strong></dt>
+      <dd>Implicit methods are derived by using <script type="math/tex">(t_{i+1}, f(t_{i+1}, y(t_{i+1})))</script> as an additional interpolation node in the approximation of the integral,</dd>
+      <dd><script type="math/tex">\ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">\ \ \ \ \ \ \ \</script>  <script type="math/tex">\int_{t_{i+1}}^{t_i} f(t, y(t)) dt</script>.</dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Adams-Moulton Two-Step Implicit Method:</strong> <br />
+ <img src="/main_files/128a/5/5.6/6.png" alt="formula" width="80%" /></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Adams-Moulton Three-Step Implicit Method:</strong> <br />
+ <img src="/main_files/128a/5/5.6/7.png" alt="formula" width="80%" /></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Adams-Moulton Four-Step Implicit Method:</strong> <br />
+ <img src="/main_files/128a/5/5.6/8.png" alt="formula" width="80%" /></p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents28">Asynchronous:</strong> \</p>
-  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">DrawBacks:</strong> <br />
+ To apply an implicit method, we must solve the implicit equation for <script type="math/tex">w_{i+1}</script>.<br />
+ This is not always possible, and even when it can be done the solution for <script type="math/tex">w_{i+1}</script>
+ may not be unique.</li>
 </ol>
 
 <hr />
 
-<h2 id="content3">THIRD</h2>
+<h2 id="content4">Predictor-Corrector Methods</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">What?</strong></dt>
+      <dd>The combination of an explicit method to predict and an implicit to improve the
+ prediction.</dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Why?</strong></dt>
+      <dd>Even though the implicit methods are better than the explicit methods, they have the inherent weakness of first having to convert the method algebraically to an explicit representation for <script type="math/tex">w_{i+1}</script>.</dd>
+      <dd>This procedure is not always possible,<br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">WHY?</button>
+ <img src="/main_files/128a/5/5.6/9.png" alt="formula" width="80%" hidden="" /></dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Derivation:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/5/5.6/10.png" alt="formula" width="80%" hidden="" /></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Algorithm:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Algorithm</button>
+ <img src="/main_files/128a/5/5.6/11.png" alt="formula" width="80%" hidden="" /></p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents45">Milne’s method:</strong> <br />
+ <img src="/main_files/128a/5/5.6/12.png" alt="formula" width="80%" />
+    <blockquote>
+      <p>Derived by integrating an interpolating polynomial over <script type="math/tex">[t_{i−3}, t_{i+1}]</script>.</p>
+    </blockquote>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents36">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents46">Implicit Simpson’s Method:</strong> <br />
+ <img src="/main_files/128a/5/5.6/13.png" alt="formula" width="80%" />
+    <blockquote>
+      <p>Derived by integrating an interpolating polynomial over <script type="math/tex">[t_{i−1}, t_{i+1}]</script>.</p>
+    </blockquote>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents37">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents38">Asynchronous:</strong> \</p>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="content4">FOURTH</h2>
-
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents45">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents46">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents47">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents48">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents47">Another Predictor-Corrector Method:</strong> <br />
+    <ul>
+      <li>
+        <p><strong>Milne’s method</strong> is occasionally used as a predictor for the <strong>implicit Simpson’s method</strong>.</p>
+      </li>
+      <li>
+        <p><strong>Properties:</strong></p>
+        <ol>
+          <li>The <strong>local truncation error</strong> involved with a predictor-corrector method of the Milne-Simpson type is generally smaller than that of the Adams-Bashforth-Moulton method.</li>
+          <li>However, the technique has <strong>limited use</strong> because of round-off error problems, which do not occur with the Adams procedure.</li>
+        </ol>
+      </li>
+    </ul>
   </li>
 </ol>
 
