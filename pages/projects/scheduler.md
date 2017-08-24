@@ -15,7 +15,7 @@ permalink: /projects/TODO
 
 
 <script type="text/javascript">
-var i = 1;
+var i = localStorage["index"] || 1;
 
 $(document).ready(function() {
 
@@ -49,6 +49,7 @@ $(document).ready(function() {
     $li.text($todo);
     $ul.append($li);
     localStorage[String(i)] = $todo;
+    localStorage["index"] = i;
     i++;
     $("#todo").val("");
  });
