@@ -113,7 +113,7 @@ input:focus {
     font-family:Impact;
     font-size:15px;
     font-weight:bold;
-    padding:6px 13px;
+    padding:6px 16px;
     text-decoration:none;
     text-shadow:0px 1px 0px #263666;
 }
@@ -131,6 +131,7 @@ input:focus {
     position:relative;
     top:1px;
 }
+
 
 input[type=text] {
     width: 100%;
