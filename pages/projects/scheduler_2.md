@@ -1,7 +1,7 @@
 ---
 layout: page
-title: TODO [ACADEMIC]
-permalink: /projects/TODO1
+title: TODO [MISC]
+permalink: /projects/TODO2
 ---
 
 <button id="clear" onclick="clearer()">clear</button>
