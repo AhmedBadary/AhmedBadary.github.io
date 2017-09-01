@@ -144,3 +144,128 @@ input[type=text] {
 }
 
 </style>
+
+
+<!-- 1 -->
+---
+layout: page
+title: TODO
+permalink: /projects/TODO
+---
+
+<!-- <button id="clear" onclick="clearer()">clear</button> -->
+
+
+<button id="clear" onclick="clearer">clear</button>
+<h3> TODO list:</h3>
+<ol id="par">
+</ol>
+
+<form id="frm" autocomplete="off">
+  <label for="todo"></label>
+  <input type="text" id="todo" name="todo">
+</form>
+
+
+<script type="text/javascript">
+var i = localStorage["index"] + 1 || 1;
+
+$(document).ready(function() {
+
+    for (var i = 1; i < 100; i++) {
+        // var element = paragraphs[i]; // 
+        var $todo = localStorage[String(i)] || 0;
+        console.log(i + ": " +  $todo);
+        if ($todo === 0 || $todo === "0") {
+            continue;
+        } else {
+        var $ul = $("#par");
+        var $li = $("<li>");
+        $li.text($todo);
+        $li.click(remover);
+        $ul.append($li);
+        }
+    }
+});
+
+
+
+function remover(event) {
+    // console.log("here",$(this).text());
+    localStorage.removeItem($(this).text());
+    localStorage["index"] -= 1;
+    $(this).remove();
+    // console.log("SUCCESS");
+ };
+
+function clearer() {
+    localStorage.clear();
+ };
+
+
+
+ $("#frm").on("submit", function(event) {
+    event.preventDefault();
+    // Find the input with name='age' 
+    var $todo = $(this).find('[name=todo]').val();
+    // Store the value of the input with name='age'
+    var $ul = $("#par");
+
+    var $li = $("<li>");
+    $li.text($todo);
+    $li.click(remover);
+    $ul.append($li);
+    localStorage[String(i)] = $todo;
+    localStorage["index"] = i;
+    i++;
+    $("#todo").val("");
+ });
+
+
+</script>
+
+<style> 
+
+ol {
+    padding: 5;
+    border: 1.5px solid #ccc;
+    border-color: darkblue;
+    border-radius: 3px;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid grey;
+    /*border-color: #8b00ff;*/
+    border-radius: 4px;
+}
+
+input:focus {
+  outline: none;
+}
+
+</style>
+
+<!-- 2 -->
+import sys
+def solution():
+    data = sys.stdin.readlines()
+    print(data)
+    print(type(data))
+   
+
+solution()
+
+/////////////////////////////////////////////////////////
+    sorted_A = sorted(A)
+    sm_dif = sys.maxsize
+    output = []
+    for i in range(1, N):
+        if abs(sorted_A[i] - sorted_A[i-1]) <= sm_dif:
+            output.append()
+
+
+            A[i]
