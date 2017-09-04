@@ -498,6 +498,8 @@ with optimal <script type="math/tex">x</script> given by<br />
   </li>
 </ol>
 
+<hr />
+
 <h2 id="content6">Half-Spaces</h2>
 
 <ol>
@@ -730,6 +732,8 @@ The approximate function l must be of the form:</li>
   </li>
 </ol>
 
+<hr />
+
 <h2 id="content8">Matrices</h2>
 
 <ol>
@@ -808,19 +812,259 @@ where the rows of <script type="math/tex">A</script> are given by the vectors <s
     </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents84">Asynchronous:</strong></p>
+    <p><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents84">Block Matrix Products:</strong>  <br />
+ <img src="/main_files/conv_opt/2/2.1/block.png" alt="img" width="100%" /></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents85">Asynchronous:</strong></p>
+    <p><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents85">Outer Products:</strong>
+ <img src="/main_files/conv_opt/2/2.1/outer_products.png" alt="img" width="100%" /></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents86">Asynchronous:</strong></p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents86">Trace:</strong></dt>
+      <dd>The trace of a square <script type="math/tex">n \times n</script> matrix <script type="math/tex">A</script>, denoted by <script type="math/tex">\mbox{\bf Tr} A</script>, is the sum of its diagonal elements:</dd>
+      <dd><script type="math/tex">\mathbf{Tr} A = \sum_{i=1}^n A_{ii}</script>.</dd>
+    </dl>
+    <ul>
+      <li><strong>Properties:</strong>
+        <ul>
+          <li><script type="math/tex">\mathbf{Tr} A = \mathbf{Tr} A^T</script>.</li>
+          <li><script type="math/tex">\mathbf{Tr} (AB) = \mathbf{Tr} (BA)</script>.</li>
+          <li>
+            <script type="math/tex; mode=display">\operatorname{trace}(XYZ) = \operatorname{trace}(ZXY).</script>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents87">Asynchronous:</strong></p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents87">Scalar Product:</strong></dt>
+      <dd>
+        <script type="math/tex; mode=display">\langle A, B \rangle := \mathbf{Tr}(A^TB) = \displaystyle\sum_{i=1}^m\sum_{j=1}^n A_{ij}B_{ij}.</script>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>The above definition is <strong>Symmetric</strong>:</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">\implies \langle A,B \rangle =  \mathbf{Tr} (A^TB) = \mathbf{Tr} (A^TB)^T =  \mathbf{Tr} (B^TA) = \langle B,A \rangle .</script>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>We can <strong>interpret</strong> the matrix scalar product as the <em>vector scalar product between two long vectors</em> of length <script type="math/tex">mn</script> each, obtained by stacking all the columns of <script type="math/tex">A, B</script> on top of each other.</p>
+        </blockquote>
+      </dd>
+    </dl>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents88">Asynchronous:</strong></li>
+  <li><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents88">Special Matrices:</strong> <br />
+    <ul>
+      <li><a href="/work_files/research/la/sym_mat"><strong>Diagonal matrices:</strong></a> are square matrices <script type="math/tex">A</script> with <script type="math/tex">A_{ij} = 0</script> when <script type="math/tex">i \ne j</script>.</li>
+      <li><strong>Symmetric matrices:</strong> are square matrices that satisfy <script type="math/tex">A_{ij} = A_{ji}</script>for every pair <script type="math/tex">(i,j)</script>.</li>
+      <li><strong>Triangular matrices:</strong> are square matrices that satisfy <script type="math/tex">A_{ij} = A_{ji}</script>for every pair <script type="math/tex">(i,j)</script>.</li>
+    </ul>
+  </li>
 </ol>
+
+<hr />
+
+<h2 id="content9">Matrix Norms</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents91">Norm:</strong></dt>
+      <dd>A matrix norm is a functional</dd>
+      <dd>
+        <script type="math/tex; mode=display">{\displaystyle \|\cdot \|:K^{m\times n}\to \mathbb {R} }</script>
+      </dd>
+      <dd>on the vector space <script type="math/tex">{\displaystyle K^{m\times n}},</script> that must satisfy the following properties:</dd>
+      <dd>For all scalars <script type="math/tex">{\displaystyle \alpha }  \in {\displaystyle K}</script> and for all matrices <script type="math/tex">{\displaystyle A}</script> and <script type="math/tex">{\displaystyle B}  \in {\displaystyle K^{m\times n}}</script>,</dd>
+      <dd>
+        <ul>
+          <li><script type="math/tex">\|\alpha A\|=|\alpha| \|A\|</script>
+            <blockquote>
+              <p>i.e. being absolutely homogeneous</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><script type="math/tex">{\displaystyle \|A+B\|\leq \|A\|+\|B\|}</script>
+            <blockquote>
+              <p>i.e. being sub-additive or satisfying the triangle inequality</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><script type="math/tex">{\displaystyle \|A\|\geq 0}</script>
+            <blockquote>
+              <p>i.e. being positive-valued</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><script type="math/tex">{\displaystyle \|A\|=0} \iff {\displaystyle A=0_{m,n}}</script>
+            <blockquote>
+              <p>i.e. being definite</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><script type="math/tex">{\displaystyle \|AB\|\leq \|A\|\|B\|}</script> for all <em>square</em> matrices <script type="math/tex">{\displaystyle A}</script> and <script type="math/tex">{\displaystyle B} \in {\displaystyle K^{n\times n}}.</script>
+            <blockquote>
+              <p><strong>Submultiplicativity</strong>.</p>
+              <blockquote>
+                <p>Not satisfied by all Norms.</p>
+              </blockquote>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents92"><script type="math/tex">l_{p,q}</script> norms:</strong></dt>
+      <dd>
+        <script type="math/tex; mode=display">{\displaystyle \Vert A\Vert _{p,q}=\left(\sum _{j=1}^{n}\left(\sum _{i=1}^{m}|a_{ij}|^{p}\right)^{q/p}\right)^{1/q}}</script>
+      </dd>
+    </dl>
+
+    <ul>
+      <li>
+        <dl>
+          <dt><script type="math/tex">l_{2,1}</script>:</dt>
+          <dd>
+            <script type="math/tex; mode=display">{\displaystyle \Vert A\Vert _{2,1}= \sum _{j=1}^{n}\left(\sum _{i=1}^{m}|a_{ij}|^{2}\right)^{1/2}}</script>
+          </dd>
+        </dl>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents93"><script type="math/tex">l_{2,2}</script> (Frobenius norm):</strong></dt>
+      <dd>
+        <script type="math/tex; mode=display">{\displaystyle \|A\|_{\rm {F}}={\sqrt {\sum _{i=1}^{m}\sum _{j=1}^{n}|a_{ij}|^{2}}}={\sqrt {\operatorname {trace} (A^{\dagger }A)}}={\sqrt {\sum _{i=1}^{\min\{m,n\}}\sigma _{i}^{2}(A)}}},</script>
+      </dd>
+      <dd>where <script type="math/tex">{\displaystyle A^{\dagger }}</script> denotes the conjugate transpose of <script type="math/tex">{\displaystyle A}</script>, and <script type="math/tex">{\displaystyle \sigma _{i}(A)}</script> are the singular values of <script type="math/tex">{\displaystyle A}</script>.</dd>
+    </dl>
+
+    <ul>
+      <li><strong>Properties:</strong>
+        <ol>
+          <li>
+            <p>Submultiplicative.</p>
+          </li>
+          <li>Invariant under rotations.
+            <blockquote>
+              <p>i.e. <script type="math/tex">{\displaystyle \|A\|_{\rm {F}}^{2}=\|AR\|_{\rm {F}}^{2}=\|RA\|_{\rm {F}}^{2}} {\displaystyle \|A\|_{\rm {F}}^{2}=\|AR\|_{\rm {F}}^{2}=\|RA\|_{\rm {F}}^{2}}</script> for any rotation matrix <script type="math/tex">R</script>.</p>
+            </blockquote>
+          </li>
+          <li>
+            <p>Invariant under a unitary transformation for complex matrices.</p>
+          </li>
+          <li>
+            <p><script type="math/tex">{\displaystyle \|A^{\rm {T}}A\|_{\rm {F}}=\|AA^{\rm {T}}\|_{\rm {F}}\leq \|A\|_{\rm {F}}^{2}}</script>.</p>
+          </li>
+          <li><script type="math/tex">{\displaystyle \|A+B\|_{\rm {F}}^{2}=\|A\|_{\rm {F}}^{2}+\|B\|_{\rm {F}}^{2}+2\langle A,B\rangle _{\mathrm {F} }}</script>.</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents94"><script type="math/tex">l_{\infty,\infty}</script> (Max Norm):</strong></dt>
+      <dd>
+        <script type="math/tex; mode=display">\|A\|_{\max} = \max_{ij} |a_{ij}|.</script>
+      </dd>
+    </dl>
+
+    <ul>
+      <li><strong>Properties:</strong>
+        <ol>
+          <li><strong>NOT</strong> Submultiplicative.</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents95">The Spectral Norm:</strong></dt>
+      <dd><script type="math/tex">{\displaystyle \|A\|_{2}={\sqrt {\lambda _{\max }(A^{^{*}}A)}}=\sigma _{\max }(A)} = {\displaystyle \max_{\|x\|_2!=0}(\|Ax\|_2)/(\|x\|_2)}.</script>
+        <blockquote>
+          <p>The spectral norm of a matrix <script type="math/tex">{\displaystyle A}</script> is the largest singular value of <script type="math/tex">{\displaystyle A}</script>. 
+i.e. the square root of the largest eigenvalue of the positive-semidefinite matrix <script type="math/tex">{\displaystyle A^{*}A}.</script></p>
+        </blockquote>
+      </dd>
+    </dl>
+
+    <ul>
+      <li>
+        <dl>
+          <dt><strong>The Spectral Radius of <script type="math/tex">A \</script>  [denoted <script type="math/tex">\rho(A)</script>]:</strong></dt>
+          <dd>
+            <script type="math/tex; mode=display">\lim_{r\rightarrow\infty}\|A^r\|^{1/r}=\rho(A).</script>
+          </dd>
+        </dl>
+      </li>
+      <li><strong>Properties:</strong>
+        <ol>
+          <li>
+            <p>Submultiplicative.</p>
+          </li>
+          <li>
+            <p>Satisfies, <script type="math/tex">{\displaystyle \|A^{r}\|^{1/r}\geq \rho (A),}</script>, where <script type="math/tex">\rho(A)</script> is <strong>the spectral radius</strong> of <script type="math/tex">A</script>.</p>
+          </li>
+          <li>
+            <p>It is an “<em>induced vector-norm</em>”.</p>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents96">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents97">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents98">Equivalence of Norms:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">CLICK TO VIEW</button>
+ <img src="/main_files/conv_opt/2/2.1/13.png" alt="img" hidden="" /></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents98">Applications:</strong> <br />
+    <ol>
+      <li>
+        <p><strong>RMS Gain:</strong> Frobenius Norm.</p>
+      </li>
+      <li>
+        <p><strong>Peak Gain:</strong> Spectral Norm.</p>
+      </li>
+      <li>
+        <p><strong>Distance between Matrices:</strong> Frobenius Norm.
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Click to View</button>
+ <img src="/main_files/conv_opt/2/2.1/14.png" alt="img" hidden="" /></p>
+      </li>
+      <li>
+        <p><strong>Direction of Maximal Variance:</strong> Spectral Norm.
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Click to View</button>
+ <img src="/main_files/conv_opt/2/2.1/15.png" alt="img" hidden="" /></p>
+      </li>
+    </ol>
+  </li>
+</ol>
+
 
 
       <footer class="site-footer">
