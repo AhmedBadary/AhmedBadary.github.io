@@ -69,8 +69,20 @@ prevLink: /work_files/research/la
 {: #content4}
 
 1. **Definition.**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents41} 
+    :   $$ \Sigma := \dfrac{1}{m} \sum_{k=1}^m (x_k - \hat{x})(x_k - \hat{x})^T. $$
 
 2. **Properties:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents42} 
+    1. The sample covariance matrix allows to find the variance along any direction in data space.
+
+    2. The diagonal elements of $$\Sigma$$ give the variances of each vector in the data.
+
+    3. The trace of $$\Sigma$$ gives the sum of all the variances.
+
+    4. The matrix $$\Sigma$$ is positive semi-definite, since the associated quadratic form $$u \rightarrow u^T \Sigma u$$ is non-negative everywhere.
+
+    5. The sample variance along direction $$u$$ can be expressed as a quadratic form in $$u$$:  
+        $$ \sigma^2(u) = \dfrac{1}{n} \sum_{k=1}^n [u^T(x_k-\hat{x})]^2 = u^T \Sigma u,$$  
+
 
 3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents43} 
 

@@ -14,4 +14,6 @@ permalink: /work_files/research
 
 * ## [Math](/work_files/research/Math.html)
 
+* ## [Statistics and Probability Theory](/work_files/research/stats_prob.html)
+
 Updated Soon!

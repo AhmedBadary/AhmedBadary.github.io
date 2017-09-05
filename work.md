@@ -12,6 +12,7 @@ permalink: /work
 
 * ## [Course Work](/work_files/school.html)
 
+* ## [Research](/work_files/research.html)
 
 
 Updated Soon!
