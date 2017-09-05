@@ -20,4 +20,10 @@ permalink: /work_files/research/conv_opt
 
 * ### [Statistics and Probability Theory](/work_files/research/stats_prob.html)
 
+* ### [Optimization Problems](/work_files/research/opt_probs)
+
+* ### [Classes of Matrices](/work_files/research/la/cls_mat)
+
+
+
 Updated Soon!

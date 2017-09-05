@@ -69,14 +69,42 @@
   <li>**<script type="math/tex">\| x \|_\infty \leq</script> | x |_2<script type="math/tex">:**</script></li>
 </ol>
 
-<p><strong>Proof.</strong><br />
-Suppose <script type="math/tex">M</script> is a <script type="math/tex">(p\times p)</script> positive-semidefinite matrix.<br />
-From the finite-dimensional case of the spectral theorem, it follows that <script type="math/tex">M</script> has a nonnegative symmetric square root, that can be denoted by <script type="math/tex">M^{\dfrac{1}{2}}</script>.<br />
-Let <script type="math/tex">{\displaystyle \mathbf {X} }</script> be any <script type="math/tex">(p\times 1)</script> column vector-valued random variable whose covariance matrix is the <script type="math/tex">(p\times p)</script> identity matrix.</p>
+<h2 id="q5">Q.5)</h2>
 
-<p>Then,</p>
+<h3 id="1-we-solve-the-optimization-problem">1. We solve the optimization problem.</h3>
 
-<script type="math/tex; mode=display">{\displaystyle \operatorname {var} (\mathbf {M} ^{1/2}\mathbf {X} )=\mathbf {M} ^{1/2}(\operatorname {var} (\mathbf {X} ))\mathbf {M} ^{1/2}=\mathbf {M} \,}</script>
+<ul>
+  <li><strong>Proof.</strong>
+    <blockquote>
+      <p>The Objective Function</p>
+    </blockquote>
+
+    <script type="math/tex; mode=display">t_i(\vec{w}) = \displaystyle {\mathrm{arg\ min}_{t} \|t\vec{w} − \vec{x}^{(i)} \|_2, \  i = 1, \ldots, m}.</script>
+
+    <blockquote>
+      <p>We minimize using calculus</p>
+    </blockquote>
+
+    <script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+  & \ = \displaystyle {\mathrm{arg\ min}_{t} \|t\vec{w} − \vec{x}^{(i)} \|_2, \  i = 1, \ldots, m} \\
+  & \ = \nabla_{t}  \displaystyle {\mathrm{arg\ min}_{t} \|t\vec{w} − \vec{x}^{(i)} \|_2, \  i = 1, \ldots, m} \\
+  & \ = \nabla_{t} \left[\left(t\vec{w} - \vec{x}^{(i)}\right)^T \left(t\vec{w} - \vec{x}^{(i)}\right)\right]^{1/2} \\
+  & \ = \nabla_{t} \left[\left(t\vec{w}^T - {\vec{x}^{(i)}}^T\right) \left(t\vec{w} - \vec{x}^{(i)}\right)\right]^{1/2} \\
+  & \ = \nabla_{t} \left(t^2\vec{w}^T\vec{w} - 2t\vec{w}^T\vec{x}^{(i)} + {\vec{x}^{(i)}}^T\vec{x}^{(i)}\right) \\
+  & \ = \dfrac{1}{2} \left[t^2\vec{w}^T\vec{w} - 2t\vec{w}^T\vec{x}^{(i)} + {\vec{x}^{(i)}}^T\vec{x}^{(i)} \right]^{-1/2} \left(2t\vec{w}^T\vec{w} - 2\vec{w}^T\vec{x}^{(i)} \right) \\
+  & \ = \dfrac{1}{2} \left[t^2\vec{w}^T\vec{w} - 2t\vec{w}^T\vec{x}^{(i)} + {\vec{x}^{(i)}}^T\vec{x}^{(i)} \right]^{-1/2} \left(2t\vec{w}^T\vec{w} - 2\vec{w}^T\vec{x}^{(i)} \right) = 0 \\
+  & \iff t\vec{w}^T\vec{w} - \vec{w}^T\vec{x}^{(i)} = 0 \\
+  & \iff t_i(\vec{w}) =  \dfrac{\vec{w}^T\vec{x}^{(i)}}{\vec{w}^T\vec{w}} \\    
+  & \iff t_i(\vec{w}) =  \dfrac{\vec{w}^T\vec{x}^{(i)}}{\|\vec{w}\|_2} \\    
+  & \iff t_i(\vec{w}) =  \dfrac{\vec{w}^T\vec{x}^{(i)}}{1} \\    
+  & \iff t_i(\vec{w}) =  \vec{w}^T\vec{x}^{(i)}
+  \end{align} %]]></script>
+
+    <script type="math/tex; mode=display">\begin{align}
+  \end{align}</script>
+  </li>
+</ul>
 
 
       <footer class="site-footer">

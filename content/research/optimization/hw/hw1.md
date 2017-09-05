@@ -12,11 +12,37 @@ prevLink: /work_files/research/conv_opt.html
     $$
     
 
-**Proof.**  
-Suppose $$M$$ is a $$(p\times p)$$ positive-semidefinite matrix.  
-From the finite-dimensional case of the spectral theorem, it follows that $$M$$ has a nonnegative symmetric square root, that can be denoted by $$M^{\dfrac{1}{2}}$$.  
-Let $${\displaystyle \mathbf {X} }$$ be any $$(p\times 1)$$ column vector-valued random variable whose covariance matrix is the $$(p\times p)$$ identity matrix.   
+## Q.5)
 
-Then,   
+### 1. We solve the optimization problem.
 
-$${\displaystyle \operatorname {var} (\mathbf {M} ^{1/2}\mathbf {X} )=\mathbf {M} ^{1/2}(\operatorname {var} (\mathbf {X} ))\mathbf {M} ^{1/2}=\mathbf {M} \,}$$
+* **Proof.**  
+    > The Objective Function  
+
+    $$t_i(\vec{w}) = \displaystyle {\mathrm{arg\ min}_{t} \|t\vec{w} − \vec{x}^{(i)} \|_2, \  i = 1, \ldots, m}.$$
+
+    > We minimize using calculus
+
+    $$
+    \begin{align}
+    & \ = \displaystyle {\mathrm{arg\ min}_{t} \|t\vec{w} − \vec{x}^{(i)} \|_2, \  i = 1, \ldots, m} \\
+    & \ = \nabla_{t}  \displaystyle {\mathrm{arg\ min}_{t} \|t\vec{w} − \vec{x}^{(i)} \|_2, \  i = 1, \ldots, m} \\
+    & \ = \nabla_{t} \left[\left(t\vec{w} - \vec{x}^{(i)}\right)^T \left(t\vec{w} - \vec{x}^{(i)}\right)\right]^{1/2} \\
+    & \ = \nabla_{t} \left[\left(t\vec{w}^T - {\vec{x}^{(i)}}^T\right) \left(t\vec{w} - \vec{x}^{(i)}\right)\right]^{1/2} \\
+    & \ = \nabla_{t} \left(t^2\vec{w}^T\vec{w} - 2t\vec{w}^T\vec{x}^{(i)} + {\vec{x}^{(i)}}^T\vec{x}^{(i)}\right) \\
+    & \ = \dfrac{1}{2} \left[t^2\vec{w}^T\vec{w} - 2t\vec{w}^T\vec{x}^{(i)} + {\vec{x}^{(i)}}^T\vec{x}^{(i)} \right]^{-1/2} \left(2t\vec{w}^T\vec{w} - 2\vec{w}^T\vec{x}^{(i)} \right) \\
+    & \ = \dfrac{1}{2} \left[t^2\vec{w}^T\vec{w} - 2t\vec{w}^T\vec{x}^{(i)} + {\vec{x}^{(i)}}^T\vec{x}^{(i)} \right]^{-1/2} \left(2t\vec{w}^T\vec{w} - 2\vec{w}^T\vec{x}^{(i)} \right) = 0 \\
+    & \iff t\vec{w}^T\vec{w} - \vec{w}^T\vec{x}^{(i)} = 0 \\
+    & \iff t_i(\vec{w}) =  \dfrac{\vec{w}^T\vec{x}^{(i)}}{\vec{w}^T\vec{w}} \\    
+    & \iff t_i(\vec{w}) =  \dfrac{\vec{w}^T\vec{x}^{(i)}}{\|\vec{w}\|_2} \\    
+    & \iff t_i(\vec{w}) =  \dfrac{\vec{w}^T\vec{x}^{(i)}}{1} \\    
+    & \iff t_i(\vec{w}) =  \vec{w}^T\vec{x}^{(i)}
+    \end{align}
+    $$
+
+
+
+    $$
+    \begin{align}
+    \end{align}
+    $$

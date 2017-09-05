@@ -38,7 +38,6 @@ prevLink: /work_files/research/la.html
     :   **Diagonal matrices** are square matrices $$A$$ with $$A_{ij} = 0 \text{, when } i \ne j.$$
 
 2. **Properties:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents12}
-    * 
 
 ***
 
@@ -118,9 +117,16 @@ prevLink: /work_files/research/la.html
     15. $$\operatorname {var} (\mathbf {b} ^{\rm {T}}\mathbf {X} )=\mathbf {b} ^{\rm {T}}\operatorname {var} (\mathbf {X} )\mathbf {b} ,\,$$.
         > This quantity is NON-Negative because it's variance.
 
+    16. An identity covariance matrix, $$\Sigma = I$$ has variance $$= 1$$ for all variables.
+
+    17. A covariance matrix of the form, $$\Sigma=\sigma^2I$$ has variance $$= \sigma^2$$ for all variables.
+
+    18. A diagonal covariance matrix has variance $$\sigma_i^2$$ for the $$i-th$$  variable.
+
+    19. When the mean $$\hat{x}$$ is not known the denominator of the "SAMPLE COVARIANCE MATRIX" should be $$(n-1)$$ and not $$n$$.
 
     > where,
-     $${\displaystyle \mathbf {X} ,\mathbf {X} _{1}}$$ and $${\displaystyle \mathbf {X} _{2}}$$ are random $$p\times 1$$ vectors, $${\displaystyle \mathbf {Y} }$$  is a random $$q\times 1$$ vector, $${\displaystyle \mathbf {a} }$$  is a $$q\times 1$$ vector, $${\displaystyle \mathbf {b} }$$ is a $$p\times 1$$ vector, and $${\displaystyle \mathbf {A} }$$ and $${\displaystyle \mathbf {B} }$$  are $$q\times p$$ matrices of constants.
+     $${\displaystyle \mathbf {X} ,\mathbf {X} _{1}},$$ and $${\displaystyle \mathbf {X} _{2}}$$ are random $$(p\times 1)$$ vectors, $${\displaystyle \mathbf {Y} }$$  is a random $$(q\times 1)$$ vector, $${\displaystyle \mathbf {a} }$$  is a $$(q\times 1)$$ vector, $${\displaystyle \mathbf {b} }$$ is a $$(p\times 1)$$ vector, and $${\displaystyle \mathbf {A} }$$ and $${\displaystyle \mathbf {B} }$$  are $$(q\times p)$$ matrices of constants.
 
 3. **$$\Sigma$$ as a Linear Operator:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents43} 
     * **Applied to one vector**, the covariance matrix _maps a linear combination_, $$c$$, of the random variables, $$X$$, onto a vector of covariances with those variables:   
@@ -136,6 +142,27 @@ prevLink: /work_files/research/la.html
     $${\displaystyle \mathbf {c} ^{\rm {T}}\Sigma \mathbf {c} }$$  
 
     * **The (pseudo-)inverse covariance matrix** provides an _inner product_,  $${\displaystyle \langle c-\mu \|\Sigma ^{+}\| c-\mu \rangle }$$  which induces the _Mahalanobis distance_, a measure of the "unlikelihood" of $$c$$.
+
+
+4. **Applications [Examples]:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents44} 
+    1. [**The Whitening Transformation:**](https://en.wikipedia.org/wiki/Whitening_transformation) allows one to completely decorrelate the data,  Equivalently,  
+    allows one to find an optimal basis for representing the data in a compact way.
+
+    2. [**Rayleigh Quotient:**](https://en.wikipedia.org/wiki/Rayleigh_quotient)
+
+    2. [**Principle Component Analysis [PCA]**](https://en.wikipedia.org/wiki/Principal_components_analysis)
+
+    2. [**The Karhunen-Loève transform (KL-transform)**](https://en.wikipedia.org/wiki/Karhunen-Lo%C3%A8ve_transform)
+
+    2. [**Mutual fund separation theorem**](https://en.wikipedia.org/wiki/Mutual_fund_separation_theorem)
+
+    5. [**Capital asset pricing model**](https://en.wikipedia.org/wiki/Capital_asset_pricing_model)
+
+    7. [**Portfolio Theory:**](https://en.wikipedia.org/wiki/Modern_portfolio_theory) The matrix of covariances among various assets' returns is used to determine, under certain assumptions, the relative amounts of different assets that investors should (in a normative analysis) or are predicted to (in a positive analysis) choose to hold in a context of diversification.
+
+
+
+
 
 ***
 
