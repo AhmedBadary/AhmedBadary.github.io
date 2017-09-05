@@ -28,5 +28,4 @@ permalink: /work_files/web_dev
 
 
 
-
 Updated Soon!

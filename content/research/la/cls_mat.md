@@ -2,7 +2,7 @@
 layout: NotesPage
 title: Classes of Matrices
 permalink: /work_files/research/la/cls_mat
-prevLink: /work_files/research/la
+prevLink: /work_files/research/la.html
 ---
 
 <div markdown="1" class = "TOC">
@@ -69,7 +69,13 @@ prevLink: /work_files/research/la
 {: #content4}
 
 1. **Definition.**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents41} 
+    :   > **Standard Form:**
+    :   $$\Sigma :=\mathrm {E} \left[\left(\mathbf {X} -\mathrm {E} [\mathbf {X} ]\right)\left(\mathbf {X} -\mathrm {E} [\mathbf {X} ]\right)^{\rm {T}}\right]$$
     :   $$ \Sigma := \dfrac{1}{m} \sum_{k=1}^m (x_k - \hat{x})(x_k - \hat{x})^T. $$
+
+
+    :   > **Matrix Form:**
+    :   $$ \Sigma := \dfrac{X^TX}{n} $$
 
 2. **Properties:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents42} 
     1. The sample covariance matrix allows to find the variance along any direction in data space.
@@ -80,11 +86,56 @@ prevLink: /work_files/research/la
 
     4. The matrix $$\Sigma$$ is positive semi-definite, since the associated quadratic form $$u \rightarrow u^T \Sigma u$$ is non-negative everywhere.
 
+    4. It is Symmetric.
+
+    4. Every symmetric positive semi-definite matrix is a covariance matrix.  
+        [**Proof.**](http://ahmedbadary.ml/work_files/research/opt_probs#bodyContents12){: value="show" onclick="iframePopA(event)"}
+        <a href="http://ahmedbadary.ml/work_files/research/opt_probs#bodyContents12">` OR, Visit the website`</a>
+        <div markdown="1"> </div>
+
     5. The sample variance along direction $$u$$ can be expressed as a quadratic form in $$u$$:  
         $$ \sigma^2(u) = \dfrac{1}{n} \sum_{k=1}^n [u^T(x_k-\hat{x})]^2 = u^T \Sigma u,$$  
+    6. The diminsion of the matrix is $$(n \times n)$$, where $$n$$ is the number of variables/features/columns.
+
+    7. The inverse of this matrix, $${\displaystyle \Sigma ^{-1},}$$ if it exists, is the inverse covariance matrix, also known as the _concentration matrix_ or _precision matrix_.
+
+    7. If a vector of $$n$$ possibly correlated random variables is jointly normally distributed, or more generally elliptically distributed, then its probability density function can be expressed in terms of the covariance matrix.
+
+    8. $$\Sigma =\mathrm {E} (\mathbf {XX^{\rm {T}}} )-{\boldsymbol {\mu }}{\boldsymbol {\mu }}^{\rm {T}}$$.
+
+    9. $${\displaystyle \operatorname {var} (\mathbf {AX} +\mathbf {a} )=\mathbf {A} \,\operatorname {var} (\mathbf {X} )\,\mathbf {A^{\rm {T}}} }$$.
+
+    10. $$\operatorname {cov} (\mathbf {X} ,\mathbf {Y} )=\operatorname {cov} (\mathbf {Y} ,\mathbf {X} )^{\rm {T}}$$.
+
+    11. $$\operatorname {cov} (\mathbf {X} _{1}+\mathbf {X} _{2},\mathbf {Y} )=\operatorname {cov} (\mathbf {X} _{1},\mathbf {Y} )+\operatorname {cov} (\mathbf {X} _{2},\mathbf {Y} )$$.
+
+    12. If $$(p = q)$$, then $$\operatorname {var} (\mathbf {X} +\mathbf {Y} )=\operatorname {var} (\mathbf {X} )+\operatorname {cov} (\mathbf {X} ,\mathbf {Y} )+\operatorname {cov} (\mathbf {Y} ,\mathbf {X} )+\operatorname {var} (\mathbf {Y} )$$.
+
+    13. $$\operatorname {cov} (\mathbf {AX} +\mathbf {a} ,\mathbf {B} ^{\rm {T}}\mathbf {Y} +\mathbf {b} )=\mathbf {A} \,\operatorname {cov} (\mathbf {X} ,\mathbf {Y} )\,\mathbf {B}$$.
+
+    14. If $${\displaystyle \mathbf {X} }$$  and $${\displaystyle \mathbf {Y} }$$  are independent (or somewhat less restrictedly, if every random variable in $${\displaystyle \mathbf {X} }$$ is uncorrelated with every random variable in $${\displaystyle \mathbf {Y} }$$), then $${\displaystyle \operatorname {cov} (\mathbf {X} ,\mathbf {Y} )=\mathbf {0} }$$.
+
+    15. $$\operatorname {var} (\mathbf {b} ^{\rm {T}}\mathbf {X} )=\mathbf {b} ^{\rm {T}}\operatorname {var} (\mathbf {X} )\mathbf {b} ,\,$$.
+        > This quantity is NON-Negative because it's variance.
 
 
-3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents43} 
+    > where,
+     $${\displaystyle \mathbf {X} ,\mathbf {X} _{1}}$$ and $${\displaystyle \mathbf {X} _{2}}$$ are random $$p\times 1$$ vectors, $${\displaystyle \mathbf {Y} }$$  is a random $$q\times 1$$ vector, $${\displaystyle \mathbf {a} }$$  is a $$q\times 1$$ vector, $${\displaystyle \mathbf {b} }$$ is a $$p\times 1$$ vector, and $${\displaystyle \mathbf {A} }$$ and $${\displaystyle \mathbf {B} }$$  are $$q\times p$$ matrices of constants.
+
+3. **$$\Sigma$$ as a Linear Operator:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents43} 
+    * **Applied to one vector**, the covariance matrix _maps a linear combination_, $$c$$, of the random variables, $$X$$, onto a vector of covariances with those variables:   
+
+    $${\displaystyle \mathbf {c} ^{\rm {T}}\Sigma =\operatorname {cov} (\mathbf {c} ^{\rm {T}}\mathbf {X} ,\mathbf {X} )}$$
+
+    * **Treated as a bilinear form**, it yields the covariance between the two linear combinations:  
+
+    $${\displaystyle \mathbf {d} ^{\rm {T}}\Sigma \mathbf {c} =\operatorname {cov} (\mathbf {d} ^{\rm {T}}\mathbf {X} ,\mathbf {c} ^{\rm {T}}\mathbf {X} )}$$
+
+    * **The variance of a linear combination** is then (its covariance with itself)
+
+    $${\displaystyle \mathbf {c} ^{\rm {T}}\Sigma \mathbf {c} }$$  
+
+    * **The (pseudo-)inverse covariance matrix** provides an _inner product_,  $${\displaystyle \langle c-\mu \|\Sigma ^{+}\| c-\mu \rangle }$$  which induces the _Mahalanobis distance_, a measure of the "unlikelihood" of $$c$$.
 
 ***
 
@@ -175,12 +226,21 @@ prevLink: /work_files/research/la
 
 ***
 
-## Nine
+## Correlation matrix
 {: #content9}
 
 1. **Definition.**{: style="color: SteelBlue  "}{: .bodyContents9 #bodyContents91}
+    :   $${\text{corr}}(\mathbf {X} )=\left({\text{diag}}(\Sigma )\right)^{-{\frac {1}{2}}}\,\Sigma \,\left({\text{diag}}(\Sigma )\right)^{-{\frac {1}{2}}}$$
 
 2. **Properties:**{: style="color: SteelBlue  "}{: .bodyContents9 #bodyContents92}
+    0. It is the matrix of "Pearson product-moment correlation coefficients" between each of the random variables in the random vector $${\displaystyle \mathbf {X} }$$.
+
+    1. The correlation matrix can be seen as the covariance matrix of the standardized random variables $${\displaystyle X_{i}/\sigma (X_{i})}$$ for $${\displaystyle i=1,\dots ,n}$$.
+
+    2. Each element on the principal diagonal of a correlation matrix is the correlation of a random variable with itself, which always equals 1.
+
+    3. Each off-diagonal element is between 1 and –1 inclusive.
+
 
 3. **Examples:**{: style="color: SteelBlue  "}{: .bodyContents9 #bodyContents93}
 

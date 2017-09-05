@@ -43,7 +43,17 @@ prevLink: /work_files/research
 
             $$d=\| \text{proj}_{w} (x_0-\vec{v})\| = \frac{\|x_0 \cdot w +b\|}{\|w\|}$$
 
-2. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents12} \\
+2. **Every symmetric positive semi-definite matrix is a covariance matrix:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents12}
+    * **Proof.**  
+        * Suppose $$M$$ is a $$(p\times p)$$ positive-semidefinite matrix.  
+
+        * From the finite-dimensional case of the spectral theorem, it follows that $$M$$ has a nonnegative symmetric square root, that can be denoted by $$M^{1/2}$$.  
+
+        * Let $${\displaystyle \mathbf {X} }$$ be any $$(p\times 1)$$ column vector-valued random variable whose covariance matrix is the $$(p\times p)$$ identity matrix.   
+
+        * Then,   
+
+            $${\displaystyle \operatorname {var} (\mathbf {M} ^{1/2}\mathbf {X} )=\mathbf {M} ^{1/2}(\operatorname {var} (\mathbf {X} ))\mathbf {M} ^{1/2}=\mathbf {M} \,}$$
 
 3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents13} \\
 
