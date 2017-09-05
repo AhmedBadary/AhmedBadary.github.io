@@ -72,6 +72,9 @@
   <ul class="TOC2">
     <li><a href="#content2">Types and Definitions</a></li>
   </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">Modifying a Table</a></li>
+  </ul>
   <ul class="TOC3">
     <li><a href="#content3">Joins</a></li>
   </ul>
@@ -378,6 +381,65 @@
 
 <hr />
 
+<h2 id="content4">Modifying The Table</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Moifying a Row:</strong></dt>
+      <dd>We can modify a row using the “UPDATE” Command.</dd>
+    </dl>
+
+    <div class="language-sql highlighter-rouge"><pre class="highlight"><code> <span class="k">UPDATE</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span> <span class="k">SET</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nv">"something"</span>
+ <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nv">"something else"</span>
+</code></pre>
+    </div>
+    <blockquote>
+      <p>We use the “WHERE” command to tell the method which ROW to update.</p>
+    </blockquote>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Deleting a Row:</strong></dt>
+      <dd>We can delete a row using the “DELETE” Command.</dd>
+    </dl>
+
+    <div class="language-sql highlighter-rouge"><pre class="highlight"><code> <span class="n">DELETED</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span>
+ <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nv">"something else"</span>
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Altering Tables:</strong></dt>
+      <dd>We can alter the table by adding columns/attributes.
+        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span> <span class="k">ADD</span> <span class="o">&lt;</span><span class="k">new</span><span class="o">-</span><span class="n">attr</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="k">new</span><span class="o">-</span><span class="k">type</span><span class="o">&gt;</span>
+</code></pre>
+        </div>
+      </dd>
+    </dl>
+
+    <blockquote>
+      <p>To change the Default Value:</p>
+      <div class="language-sql highlighter-rouge"><pre class="highlight"><code>     <span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span> <span class="k">ADD</span> <span class="o">&lt;</span><span class="k">new</span><span class="o">-</span><span class="n">attr</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="k">new</span><span class="o">-</span><span class="k">type</span><span class="o">&gt;</span> <span class="k">default</span> <span class="nv">"UnKnown"</span>
+</code></pre>
+      </div>
+    </blockquote>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Deleting a Table:</strong></dt>
+      <dd>Will completely erase the table with the data in it.
+        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span>
+</code></pre>
+        </div>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
 <h2 id="content3">Joins</h2>
 
 <ol>
@@ -512,65 +574,6 @@
     </dl>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents36">Asynchronous:</strong></li>
-</ol>
-
-<hr />
-
-<h2 id="content4">Modifying The Table</h2>
-
-<ol>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Moifying a Row:</strong></dt>
-      <dd>We can modify a row using the “UPDATE” Command.</dd>
-    </dl>
-
-    <div class="language-sql highlighter-rouge"><pre class="highlight"><code> <span class="k">UPDATE</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span> <span class="k">SET</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nv">"something"</span>
- <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nv">"something else"</span>
-</code></pre>
-    </div>
-    <blockquote>
-      <p>We use the “WHERE” command to tell the method which ROW to update.</p>
-    </blockquote>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Deleting a Row:</strong></dt>
-      <dd>We can delete a row using the “DELETE” Command.</dd>
-    </dl>
-
-    <div class="language-sql highlighter-rouge"><pre class="highlight"><code> <span class="n">DELETED</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span>
- <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nv">"something else"</span>
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Altering Tables:</strong></dt>
-      <dd>We can alter the table by adding columns/attributes.
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span> <span class="k">ADD</span> <span class="o">&lt;</span><span class="k">new</span><span class="o">-</span><span class="n">attr</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="k">new</span><span class="o">-</span><span class="k">type</span><span class="o">&gt;</span>
-</code></pre>
-        </div>
-      </dd>
-    </dl>
-
-    <blockquote>
-      <p>To change the Default Value:</p>
-      <div class="language-sql highlighter-rouge"><pre class="highlight"><code>     <span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span> <span class="k">ADD</span> <span class="o">&lt;</span><span class="k">new</span><span class="o">-</span><span class="n">attr</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="k">new</span><span class="o">-</span><span class="k">type</span><span class="o">&gt;</span> <span class="k">default</span> <span class="nv">"UnKnown"</span>
-</code></pre>
-      </div>
-    </blockquote>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Deleting a Table:</strong></dt>
-      <dd>Will completely erase the table with the data in it.
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span>
-</code></pre>
-        </div>
-      </dd>
-    </dl>
-  </li>
 </ol>
 
 <hr />

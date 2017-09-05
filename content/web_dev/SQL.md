@@ -12,6 +12,8 @@ prevLink: /work_files/web_dev.html
   {: .TOC1}
   * [Types and Definitions](#content2)
   {: .TOC2}
+  * [Modifying a Table](#content4)
+  {: .TOC4}
   * [Joins](#content3)
   {: .TOC3}
   * [NOTES](#content9)
@@ -188,6 +190,46 @@ prevLink: /work_files/web_dev.html
     
 ***
 
+
+## Modifying The Table
+{: #content4}
+
+1. **Moifying a Row:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents41}
+    :   We can modify a row using the "UPDATE" Command.
+
+    ```sql
+    UPDATE <Table-Name> SET <attri> = "something"
+    WHERE <attri> = "something else"
+    ```
+    > We use the "WHERE" command to tell the method which ROW to update.
+
+2. **Deleting a Row:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents42}
+    :   We can delete a row using the "DELETE" Command.
+
+    ```sql
+    DELETED FROM <Table-Name>
+    WHERE <attri> = "something else"
+    ```
+
+3. **Altering Tables:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents43} 
+    :   We can alter the table by adding columns/attributes.
+    ```sql
+        ALTER TABLE <Table-Name> ADD <new-attr> <new-type>
+    ```
+
+    > To change the Default Value:
+    ```sql
+        ALTER TABLE <Table-Name> ADD <new-attr> <new-type> default "UnKnown"
+    ```
+
+4. **Deleting a Table:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents44}
+    :   Will completely erase the table with the data in it.
+    ```sql
+        DROP TABLE <Table-Name>
+    ```     
+
+***
+
 ## Joins
 {: #content3}
 
@@ -283,45 +325,6 @@ prevLink: /work_files/web_dev.html
 
 6. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents36} 
 
-
-***
-
-## Modifying The Table
-{: #content4}
-
-1. **Moifying a Row:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents41}
-    :   We can modify a row using the "UPDATE" Command.
-
-    ```sql
-    UPDATE <Table-Name> SET <attri> = "something"
-    WHERE <attri> = "something else"
-    ```
-    > We use the "WHERE" command to tell the method which ROW to update.
-
-2. **Deleting a Row:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents42}
-    :   We can delete a row using the "DELETE" Command.
-
-    ```sql
-    DELETED FROM <Table-Name>
-    WHERE <attri> = "something else"
-    ```
-
-3. **Altering Tables:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents43} 
-    :   We can alter the table by adding columns/attributes.
-    ```sql
-        ALTER TABLE <Table-Name> ADD <new-attr> <new-type>
-    ```
-
-    > To change the Default Value:
-    ```sql
-        ALTER TABLE <Table-Name> ADD <new-attr> <new-type> default "UnKnown"
-    ```
-
-4. **Deleting a Table:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents44}
-    :   Will completely erase the table with the data in it.
-    ```sql
-        DROP TABLE <Table-Name>
-    ```     
 
 ***
 
