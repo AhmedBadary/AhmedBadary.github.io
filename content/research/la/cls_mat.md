@@ -118,7 +118,7 @@ prevLink: /work_files/research/la.html
         > This quantity is NON-Negative because it's variance.
 
     16. An identity covariance matrix, $$\Sigma = I$$ has variance $$= 1$$ for all variables.
-
+ 
     17. A covariance matrix of the form, $$\Sigma=\sigma^2I$$ has variance $$= \sigma^2$$ for all variables.
 
     18. A diagonal covariance matrix has variance $$\sigma_i^2$$ for the $$i-th$$  variable.
