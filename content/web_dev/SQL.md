@@ -154,6 +154,14 @@ prevLink: /work_files/web_dev.html
     :   It is a way of **SELECTING** from the table by creating your own column.
     :   ```sql
         /* LIKE */
+        SELECT <attr1>, <attr2>, ...
+        FROM <table_name>
+        WHERE <attri> LIKE <pattern>;
+        ```
+
+10. **'CASE' Statement:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents110} 
+    :   Effectively behaves in the same way the "Case" or "Switch" statements do.
+    :   ```sql
         SELECT <attr1>, <attr2>,
             CASE 
                 WHEN <attri> > 220-30 THEN "above max"
@@ -161,12 +169,6 @@ prevLink: /work_files/web_dev.html
                 WHEN <attri>  > y THEN "within target"
                 ELSE "below target"
             END as <attr-name>
-        ```
-
-10. **'CASE' Statement:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents110} 
-    :   Effectively behaves in the same way the "Case" or "Switch" statements do.
-    :   ```sql
-
         ```
 
 ***

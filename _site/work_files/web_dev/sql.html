@@ -308,13 +308,9 @@
       <dd>It is a way of <strong>SELECTING</strong> from the table by creating your own column.</dd>
       <dd>
         <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="cm">/* LIKE */</span>
-<span class="k">SELECT</span> <span class="o">&lt;</span><span class="n">attr1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">attr2</span><span class="o">&gt;</span><span class="p">,</span>
-    <span class="k">CASE</span> 
-        <span class="k">WHEN</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="mi">220</span><span class="o">-</span><span class="mi">30</span> <span class="k">THEN</span> <span class="nv">"above max"</span>
-        <span class="k">WHEN</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span>  <span class="o">&gt;</span> <span class="n">x</span> <span class="k">THEN</span> <span class="nv">"above target"</span>
-        <span class="k">WHEN</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span>  <span class="o">&gt;</span> <span class="n">y</span> <span class="k">THEN</span> <span class="nv">"within target"</span>
-        <span class="k">ELSE</span> <span class="nv">"below target"</span>
-    <span class="k">END</span> <span class="k">as</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span>
+<span class="k">SELECT</span> <span class="o">&lt;</span><span class="n">attr1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">attr2</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span>
+<span class="k">FROM</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span>
+<span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span> <span class="k">LIKE</span> <span class="o">&lt;</span><span class="n">pattern</span><span class="o">&gt;</span><span class="p">;</span>
 </code></pre>
         </div>
       </dd>
@@ -325,7 +321,13 @@
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents110">‘CASE’ Statement:</strong></dt>
       <dd>Effectively behaves in the same way the “Case” or “Switch” statements do.</dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code>
+        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">&lt;</span><span class="n">attr1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">attr2</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="k">CASE</span> 
+        <span class="k">WHEN</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="mi">220</span><span class="o">-</span><span class="mi">30</span> <span class="k">THEN</span> <span class="nv">"above max"</span>
+        <span class="k">WHEN</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span>  <span class="o">&gt;</span> <span class="n">x</span> <span class="k">THEN</span> <span class="nv">"above target"</span>
+        <span class="k">WHEN</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span>  <span class="o">&gt;</span> <span class="n">y</span> <span class="k">THEN</span> <span class="nv">"within target"</span>
+        <span class="k">ELSE</span> <span class="nv">"below target"</span>
+    <span class="k">END</span> <span class="k">as</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span>
 </code></pre>
         </div>
       </dd>
