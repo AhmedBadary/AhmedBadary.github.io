@@ -78,6 +78,9 @@
   <ul class="TOC3">
     <li><a href="#content3">Joins</a></li>
   </ul>
+  <ul class="TOC5">
+    <li><a href="#content5">PostGreSQL</a></li>
+  </ul>
   <ul class="TOC9">
     <li><a href="#content9">NOTES</a></li>
   </ul>
@@ -163,7 +166,7 @@
     <ul>
       <li><strong>GROUP BY:</strong> Partition the table into Groups with the <em>same “GROUP BY” Cols</em>.
         <ul>
-          <li>Properties:{: style=”color: red”}
+          <li><strong>Properties:</strong>
             <ol>
               <li>Can group by a list of columns.</li>
               <li>Produces an aggregate Result PER Group.</li>
@@ -176,7 +179,7 @@
       </li>
       <li><strong>HAVING:</strong> A predicate to <em>Filter Groups</em>.
         <ul>
-          <li>Properties:{: style=”color: red”}
+          <li><strong>Properties:</strong>
             <ol>
               <li>Applied after grouping and aggregating.</li>
               <li>Can contain anything tht could go in the “SELECT” list.</li>
@@ -188,16 +191,26 @@
       </li>
       <li><strong>ORDER BY:</strong> Specifies the attribute/column to sort data by.
         <ul>
-          <li>Properties:{: style=”color: red”}
+          <li><strong>Properties:</strong>
             <ol>
               <li>Can sort by multiple Attributes/Columns.</li>
+              <li>Order by Ascending or Descending Orders using <code class="highlighter-rouge">ASC|DESC;</code>
+                <blockquote>
+                  <p><strong>Example:</strong></p>
+                  <blockquote>
+                    <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">column1</span><span class="p">,</span> <span class="n">column2</span><span class="p">,</span> <span class="p">...</span> <span class="k">ASC</span><span class="o">|</span><span class="k">DESC</span><span class="p">;</span>
+</code></pre>
+                    </div>
+                  </blockquote>
+                </blockquote>
+              </li>
             </ol>
           </li>
         </ul>
       </li>
       <li><strong>LIMIT:</strong> Produces the first n-rows.
         <ul>
-          <li>Properties:{: style=”color: red”}
+          <li><strong>Properties:</strong>
             <ol>
               <li>Used with the “ORDER BY” Method.</li>
             </ol>
@@ -580,6 +593,68 @@
 
 <hr />
 
+<h2 id="content5">PostGreSQL</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents51">Operators:</strong>
+    <ul>
+      <li><strong>\l:</strong>  View List of DataBase</li>
+      <li><strong>\q:</strong>  Quit (Back to Terminal)</li>
+      <li><strong>\c {name}:</strong>  Connect to DataBase</li>
+      <li><strong>\d:</strong>  View List of Schemas and their respective info (Tables)</li>
+      <li><strong>\d {Schema-Name}:</strong>  View List of Attributes/Columns in the Schema</li>
+      <li><strong>:</strong></li>
+      <li><strong>:</strong></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents52">Commands:</strong> <br />
+    <ul>
+      <li><strong>Create DataBase:</strong>
+        <pre><code class="language-SQL"> CREATE DATABASE &lt;Name&gt;
+</code></pre>
+      </li>
+      <li><strong>Create User:</strong>
+        <pre><code class="language-SQL"> CREATE USER {Name} WITH PASSWORD {'password'}
+</code></pre>
+      </li>
+      <li><strong>Delete Database:</strong>
+        <pre><code class="language-SQL"> DROP DATABASE {name}
+</code></pre>
+      </li>
+      <li><strong>Load DB from server:</strong>
+        <pre><code class="language-SQL"> psql  -U postgres -h server
+</code></pre>
+      </li>
+      <li><strong>:</strong>
+ ```SQL</li>
+    </ul>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code> * **:**  
+ ```SQL
+
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents53">Asynchronous:</strong> \</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents54">Asynchronous:</strong> \</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents55">Asynchronous:</strong> \</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents56">Asynchronous:</strong> \</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents57">Asynchronous:</strong> \</p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents58">Asynchronous:</strong> \</li>
+</ol>
+
+<hr />
+
 <h2 id="content9">Notes</h2>
 <ol>
   <li><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents91">Filter “GROUP BY” <em>ONLY</em> using “HAVING”:</strong>
@@ -647,10 +722,31 @@
     </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents96">Asynchronous:</strong></p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents96">Avoiding the “NULL” Values:</strong></dt>
+      <dd>To change a value of an attribute from “NULL” to something you desire while <em>querying</em>, use the <code class="highlighter-rouge">COALESCE(old_attr, new_val)</code> Function.</dd>
+      <dd>
+        <blockquote>
+          <p><strong>Example:</strong></p>
+        </blockquote>
+      </dd>
+      <dd>
+        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">COUNT</span><span class="p">(</span><span class="n">COALESCE</span><span class="p">(</span><span class="err">{</span><span class="n">attr</span><span class="err">}</span><span class="p">,</span> <span class="err">{</span><span class="n">alternative</span><span class="err">}</span><span class="p">))</span>
+</code></pre>
+        </div>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>If the alternative is anything but “NULL”, this will give count to the number of people having the same attr as a “NULL” value.</p>
+        </blockquote>
+      </dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents97">Asynchronous:</strong></p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents97">Joining Tables with Different Rows:</strong></dt>
+      <dd>To have all the rows whether they match up or not, use the <code class="highlighter-rouge">OUTER JOIN</code> statement.</dd>
+    </dl>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents98">Asynchronous:</strong></li>
 </ol>

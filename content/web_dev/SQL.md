@@ -16,6 +16,8 @@ prevLink: /work_files/web_dev.html
   {: .TOC4}
   * [Joins](#content3)
   {: .TOC3}
+  * [PostGreSQL](#content5)
+  {: .TOC5}
   * [NOTES](#content9)
   {: .TOC9}
 </div>
@@ -71,7 +73,7 @@ prevLink: /work_files/web_dev.html
 
 4. **Querying Methods:**{: style="color: SteelBlue"}{: .bodyContents1  #bodyContents14}
     * **GROUP BY:** Partition the table into Groups with the _same "GROUP BY" Cols_.
-        * Properties:{: style="color: red"}
+        * **Properties:**
             1. Can group by a list of columns.
             2. Produces an aggregate Result PER Group.
             3. Can put grouping columns in "SELECT" list
@@ -79,18 +81,23 @@ prevLink: /work_files/web_dev.html
             5. Must be used in Conjunction with the Aggregate Functions.
 
     * **HAVING:** A predicate to _Filter Groups_.
-        * Properties:{: style="color: red"}
+        * **Properties:**
             1. Applied after grouping and aggregating.
             2. Can contain anything tht could go in the "SELECT" list.
             3. Can only be used in Aggregate Queries.
             4. Optional.
 
     * **ORDER BY:** Specifies the attribute/column to sort data by.
-        * Properties:{: style="color: red"}
+        * **Properties:**
             1. Can sort by multiple Attributes/Columns.
+            2. Order by Ascending or Descending Orders using ```ASC|DESC;```
+                > **Example:**
+                >   > ```sql
+                >   > ORDER BY column1, column2, ... ASC|DESC;
+                >   > ```
 
     * **LIMIT:** Produces the first n-rows.
-        * Properties:{: style="color: red"}
+        * **Properties:**
             1. Used with the "ORDER BY" Method.
 
 
@@ -327,6 +334,58 @@ prevLink: /work_files/web_dev.html
 
 6. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents36} 
 
+***
+
+## PostGreSQL
+{: #content5}
+
+1. **Operators:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents51}
+    * **\l:**  View List of DataBase
+    * **\q:**  Quit (Back to Terminal)
+    * **\c {name}:**  Connect to DataBase
+    * **\d:**  View List of Schemas and their respective info (Tables)
+    * **\d {Schema-Name}:**  View List of Attributes/Columns in the Schema
+    * **\:**  
+    * **\:**  
+
+2. **Commands:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents52} \\
+    * **Create DataBase:**  
+    ```SQL
+    CREATE DATABASE <Name>
+    ```
+    * **Create User:**  
+    ```SQL
+    CREATE USER {Name} WITH PASSWORD {'password'}
+    ```  
+    * **Delete Database:**  
+    ```SQL
+    DROP DATABASE {name}
+    ```  
+    * **Load DB from server:**  
+    ```SQL
+    psql  -U postgres -h server
+    ```  
+    * **:**  
+    ```SQL
+
+    ```  
+    * **:**  
+    ```SQL
+
+    ```  
+
+3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents53} \\
+
+4. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents54} \\
+
+5. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents55} \\
+
+6. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents56} \\
+
+7. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents57} \\
+
+8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents58} \\
+
 
 ***
 
@@ -367,8 +426,15 @@ prevLink: /work_files/web_dev.html
     :   Notice that JOINS can be nested.
     :   You can nest them by adding more "JOIN" statements.
 
-6. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents9 #bodyContents96}
+6. **Avoiding the "NULL" Values:**{: style="color: SteelBlue  "}{: .bodyContents9 #bodyContents96}
+    :   To change a value of an attribute from "NULL" to something you desire while _querying_, use the ```COALESCE(old_attr, new_val)``` Function.
+    :   > **Example:**
+    :   ```sql
+        COUNT(COALESCE({attr}, {alternative}))
+        ```
+    :   > If the alternative is anything but "NULL", this will give count to the number of people having the same attr as a "NULL" value.
 
-7. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents9 #bodyContents97}
+7. **Joining Tables with Different Rows:**{: style="color: SteelBlue  "}{: .bodyContents9 #bodyContents97}
+    :   To have all the rows whether they match up or not, use the ```OUTER JOIN``` statement.
 
 8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents9 #bodyContents98}

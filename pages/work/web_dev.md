@@ -12,6 +12,8 @@ permalink: /work_files/web_dev
 
 * ## [SQL](/work_files/web_dev/sql)
 
+* ## [Computer Security](/work_files/web_dev/security.html)
+
 * ## [AJAX Notes](/work_files/web_dev/Ajax_notes)
 
 * ## [Ruby (On Rails)](/work_files/web_dev/RubyOnRails)
