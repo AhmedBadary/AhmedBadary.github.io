@@ -10,11 +10,11 @@ prevLink: /work_files/research
 
   * [Geometry and Lin-Alg [Hyper-Planes]](#content1)
   {: .TOC1}
-  * [SECOND](#content2)
+  * [Statistics](#content2)
   {: .TOC2}
-  * [THIRD](#content3)
+  * [Inner Products Over Balls](#content3)
   {: .TOC3}
-  * [FOURTH](#content4)
+  * [Gradients and Derivatives](#content4)
   {: .TOC4}
   * [FIFTH](#content5)
   {: .TOC5}
@@ -55,58 +55,70 @@ prevLink: /work_files/research
 
             $${\displaystyle \operatorname {var} (\mathbf {M} ^{1/2}\mathbf {X} )=\mathbf {M} ^{1/2}(\operatorname {var} (\mathbf {X} ))\mathbf {M} ^{1/2}=\mathbf {M} \,}$$
 
-3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents13} \\
-
-4. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents14} \\
-
-5. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents15} \\
-
-6. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents16} \\
-
-7. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents17} \\
-
-8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents18} \\
 
 ***
 
-## SECOND
+## Statistics
 {: #content2}
 
 1. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents21} \\
 
-2. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents22} \\
+2. **Every symmetric positive semi-definite matrix is a covariance matrix:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents22}
+    * **Proof.**  
+        * Suppose $$M$$ is a $$(p\times p)$$ positive-semidefinite matrix.  
 
-3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents23} \\
+        * From the finite-dimensional case of the spectral theorem, it follows that $$M$$ has a nonnegative symmetric square root, that can be denoted by $$M^{1/2}$$.  
 
-4. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents24} \\
+        * Let $${\displaystyle \mathbf {X} }$$ be any $$(p\times 1)$$ column vector-valued random variable whose covariance matrix is the $$(p\times p)$$ identity matrix.   
 
-5. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents25} \\
+        * Then,   
 
-6. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents26} \\
-
-7. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents27} \\
-
-8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents28} \\
+            $${\displaystyle \operatorname {var} (\mathbf {M} ^{1/2}\mathbf {X} )=\mathbf {M} ^{1/2}(\operatorname {var} (\mathbf {X} ))\mathbf {M} ^{1/2}=\mathbf {M} \,}$$
 
 ***
 
-## THIRD
+## Inner Products Over Balls
 {: #content3}
 
-1. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents31} \\
+1. **Extrema of inner product over a ball:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents31}
+    :   Let $$y \in \mathbf{R}^n$$ be  a  given non-null vector, and let $$\chi = \left\{x \in \mathbf{R}^n :\  \|x\|_2 \leq r\right\}$$,  
+    where $$r$$ is some given positive number.
+    1. **Determine the optimal value $$p_1^\ast$$ and the optimal set of the problem $$\min_{x \in \chi} \; |y^Tx|$$:**    
+        The minimum value of $$\min_{x \in \chi} \; |y^Tx|$$ is $$p_1^\ast = 0$$.  
+        This value is attained either by $$x = 0$$, or by any vector $$x\in\chi_r$$ orthogonal to $$y$$.  
+        The optimal set: $$\chi_{opt} = \left\{x : \ x = Vz, \|z\|_2 \leq r\right\}$$
 
-2. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents32} \\
+    2. **Determine the optimal value $$p_2^\ast$$ and the optimal set of the problem $$\max_{x\in \chi} \; |y^Tx|:$$**
+        The optimal value of $$\max_{x\in \chi} \; |y^Tx|$$ is attained for any $$x = \alpha y$$ with $$\|x\|_2 = r$$.  
+        Thus for $$|\alpha| = \dfrac{r}{\|y\|_2}$$, for which we have $$p_2^\ast∗ = r\|y\|_2.$$  
+        The optimal set contains two points: $$\chi_{opt} = \left\{x : \  x = \alpha y, \alpha = ± \dfrac{r}{\|y\|_2} \right\}$$.
+    3. **Determine the optimal value $$p_3^\ast$$ and the optimal set of the problem $$\min_{x\in \chi} \; y^Tx$$:**  
+        We have $$p_3^\ast = −r\|y\|_2,$$ which is attained at the unique optimal point   
 
-3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents33} \\
+        $$x^\ast = −\dfrac{r}{\|y\|_2} y.$$
 
-4. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents34} \\
-
-5. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents35} \\
-
-6. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents36} \\
-
-7. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents37} \\
-
-8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents38} \\
+    4. **Determine the optimal value $$p_4^\ast$$ and the optimal set of the problem $$\max_{x\in\chi} \; y^Tx$$:**  
+        We have $$p_4^\ast = r \|y\|_2,$$ which is attained at the unique optimal point  
+         $$x^\ast = \dfrac{r}{\|y\|_2} y.$$
 
 ***
+
+## Gradients and Derivatives
+{: #content4}
+
+1. **Gradient of log-sum-exp function:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents41}
+    :   Find the gradient at $$x$$ of the function $$lse : \  \mathbf{R}^n \rightarrow \mathbf{R}$$ defined as,  
+    :   $$
+        lse(x) = \log{(\sum_{i=1}^n e^{x_i})}.
+        $$
+
+    :   **Solution.**  
+        $$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \nabla_x \  lse(x)$$
+    :   $$
+        \begin{align}
+        & \ = \nabla_x \log(\sum_{i=1}^n e^{x_i}) \\
+        & \ = \dfrac{\dfrac{d}{dx_i} (\sum_{i=1}^n e^{x_i})}{\log(\sum_{i=1}^n e^{x_i})} \\
+        & \ = \dfrac{e^{x_i}}{lse(x)} \\
+        & \ = \dfrac{[e^{x_1} \  e^{x_2} \  \ldots \  e^{x_n}]^T}{lse(x)}
+        \end{align}
+        $$

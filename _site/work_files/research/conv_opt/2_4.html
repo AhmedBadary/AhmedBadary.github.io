@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">2.4 <br /> Singular-(Values)Stuff</h1>
+  <h1 class="project-name">2.4 <br /> Singular-Stuff(Values)</h1>
   <h2 class="project-tagline"></h2>
   <a href="/work_files/school.html" class="btn">Courses</a>
   <a href="/work_files/school/128a.html" class="btn">Chapters</a>
-  <a href= /work_files/research/conv_opt class="btn">This Chapter</a>
+  <a href= /work_files/research/conv_opt.html class="btn">This Chapter</a>
 </section>
 
 <!-- <div>
@@ -63,7 +63,205 @@
 
     <section class="main-content">
       
-      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">The Singular Value Decomposition</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">SECOND</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">THIRD</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">The Singular Value Decomposition</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?</strong></dt>
+      <dd>Recall from here that any matrix <script type="math/tex">A \in \mathbf{R}^{m \times n}</script> with rank one can be written as   <script type="math/tex">A = \sigma u v^T</script>,  where <script type="math/tex">u \in \mathbf{R}^m, v \in \mathbf{R}^n,</script> and <script type="math/tex">\sigma >0.</script></dd>
+      <dd>It turns out that a similar result holds for matrices of arbitrary rank <script type="math/tex">r</script>.  :   That is, we can express any matrix <script type="math/tex">A \in \mathbf{R}^{m \times n}</script> as sum of rank-one matrices:</dd>
+      <dd>
+        <script type="math/tex; mode=display">A = \sum_{i=1}^r \sigma_i u_i v_i^T,</script>
+      </dd>
+      <dd>where <script type="math/tex">u_1, \ldots, u_r</script> are mutually orthogonal, <script type="math/tex">v_1, \ldots, v_r</script> are also mutually orthogonal, and the <script type="math/tex">\sigma_i</script>’s are positive numbers called the singular values of <script type="math/tex">A</script>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">The SVD Theorem:</strong></dt>
+      <dd>An arbitrary matrix <script type="math/tex">A \in \mathbf{R}^{m \times n}</script> admits a decomposition of the form:</dd>
+      <dd>
+        <script type="math/tex; mode=display">% <![CDATA[
+A = \sum_{i=1}^r \sigma_i u_i v_i^T = U \tilde{ {S}} V^T, \;\; \tilde{ {S}} := \left( \begin{array}{cc}  {S} & 0 \\ 0 & 0 \end{array} \right) , %]]></script>
+      </dd>
+      <dd>where <script type="math/tex">U \in \mathbf{R}^{m \times m}, V \in \mathbf{R}^{n \times n}</script> are both orthogonal matrices, and the matrix <script type="math/tex">S</script> is diagonal:</dd>
+      <dd>
+        <script type="math/tex; mode=display">S = \mathbf{diag}(\sigma_1 , \ldots, \sigma_r),</script>
+      </dd>
+      <dd>where,
+        <ul>
+          <li>The positive numbers <script type="math/tex">\sigma_1 \ge \ldots \ge \sigma_r > 0</script> are unique, and are called the <strong><em>singular values</em></strong> of A.</li>
+          <li>The number <script type="math/tex">r \le min(m,n)</script> is equal to the rank of <script type="math/tex">A</script>.</li>
+          <li>The triplet <script type="math/tex">(U, \tilde{ {S}}, V)</script> is called a <strong><em>singular value decomposition</em></strong> (SVD) of <script type="math/tex">A</script>.</li>
+          <li>The first <script type="math/tex">r</script> columns of <script type="math/tex">U: u_i, i=1, \ldots, r</script> (resp. <script type="math/tex">V: v_i,  i=1, \ldots, r)</script> are called left (resp. right) singular vectors of <script type="math/tex">A</script>, and satisfy:</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">Av_i = \sigma_i u_i, \;\;\;\; A^Tu_i = \sigma_i v_i, \;\;\;\; i=1,...,r.</script>
+      </dd>
+      <dd>
+        <p><button class="showText" value="show" onclick="showTextPopHide(event);">Proof.</button>
+<img src="/main_files/conv_opt/2/2.4/pf0.png" alt="img" hidden="" width="100%" /></p>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Computing the SVD:</strong></dt>
+      <dd>To find the SVD of a matrix <script type="math/tex">A</script>, we solve the following equation:</dd>
+      <dd>
+        <script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+& (1)\  A^TA = V\Lambda^T\Lambda V^T \\
+& (2)\  AV\  = U \Lambda
+\end{align} %]]></script>
+      </dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Complexity of the SVD:</strong> <br />
+    <ol>
+      <li><strong>Normal Matrices:</strong> the complexity grows as <script type="math/tex">\mathcal{O}(nm min(n,m))</script>.</li>
+      <li><strong>Sparse Matrices:</strong> good approximations can be calculated very efficiently.</li>
+    </ol>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Geometric Interptation:</strong></dt>
+      <dd>The theorem allows to decompose the action of A on a given input vector as a sequence of <strong>three</strong> <em>elementary transformations</em>.
+        <ol>
+          <li>First, we form <script type="math/tex">\tilde{x} := V^Tx \in \mathbf{R}^n</script>.
+            <blockquote>
+              <p><script type="math/tex">V</script> orthogonal <script type="math/tex">\implies \tilde{x}</script> is a rotated version of <script type="math/tex">x</script>, which still lies in the input space.</p>
+            </blockquote>
+          </li>
+          <li>Then we act on the rotated vector <script type="math/tex">\tilde{x}</script> by scaling its elements
+            <blockquote>
+              <p>The first <script type="math/tex">k</script> elements of <script type="math/tex">\tilde{x}</script> are scaled by the singular values <script type="math/tex">\sigma_1, \ldots, \sigma_r</script>; the remaining <script type="math/tex">n-r</script> elements are set to zero.<br />
+This step results in a new vector <script type="math/tex">\tilde{y}</script> which now belongs to the output space <script type="math/tex">\mathbf{R}^m</script>.</p>
+            </blockquote>
+          </li>
+          <li>Finally, we rotate the vector <script type="math/tex">\tilde{y}</script> by the orthogonal matrix <script type="math/tex">U</script>, which results in <script type="math/tex">y = U\tilde{y} = Ax</script>.</li>
+        </ol>
+      </dd>
+      <dd><strong>Summary:</strong>
+        <ol>
+          <li>A rotation in the input space</li>
+          <li>A scaling that goes from the input space to the output space</li>
+          <li>A rotation in the output space.
+            <blockquote>
+              <p>In contrast with symmetric matrices, input and output directions are different.</p>
+            </blockquote>
+          </li>
+        </ol>
+      </dd>
+      <dd><button class="showText" value="show" onclick="showTextPopHide(event);">Example: A <script type="math/tex">4 \times 4</script> Matrix</button>
+<img src="/main_files/conv_opt/2/2.4/pf1.png" alt="img" hidden="" width="100%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Link with the Spectral Theorem:</strong></dt>
+      <dd>If <script type="math/tex">A</script> admits an SVD, then the matrices <script type="math/tex">AA^T</script> and <script type="math/tex">A^TA</script> has the following SEDs:</dd>
+      <dd>
+        <script type="math/tex; mode=display">AA^T = U \Lambda_m U^T, \;\; A^TA = V \Lambda_n V^T,</script>
+      </dd>
+      <dd>where <script type="math/tex">\Lambda_m := \tilde{ {S}}\tilde{ {S}}^T = \mathbf{ diag}(\sigma_1^2, \ldots, \sigma_r^2, 0, \ldots, 0)</script> is <script type="math/tex">m \times m</script> (so it has <script type="math/tex">m-r</script> trailing zeros), <br />
+and <script type="math/tex">\Lambda_n := \tilde{ {S}}^T\tilde{ {S}} = \mathbf{ diag}(\sigma_1^2, \ldots, \sigma_r^2, 0, \ldots, 0)</script> is <script type="math/tex">n \times n</script> (so it has <script type="math/tex">n-r</script> trailing zeros).</dd>
+      <dd>
+        <blockquote>
+          <p>The eigenvalues of <script type="math/tex">AA^T</script> and <script type="math/tex">A^TA</script> are the same, and equal to the squared singular values of <script type="math/tex">A</script>.<br />
+The corresponding eigenvectors are the left and right singular vectors of <script type="math/tex">A</script>.</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Asynchronous:</strong> \</p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Asynchronous:</strong> \</li>
+</ol>
+
+<hr />
+
+<h2 id="content2">SECOND</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Asynchronous:</strong> \</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Asynchronous:</strong> \</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Asynchronous:</strong> \</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Asynchronous:</strong> \</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Asynchronous:</strong> \</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Asynchronous:</strong> \</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Asynchronous:</strong> \</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents28">Asynchronous:</strong> \</p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">THIRD</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Asynchronous:</strong> \</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Asynchronous:</strong> \</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Asynchronous:</strong> \</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Asynchronous:</strong> \</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">Asynchronous:</strong> \</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents36">Asynchronous:</strong> \</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents37">Asynchronous:</strong> \</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents38">Asynchronous:</strong> \</p>
+  </li>
+</ol>
+
+<hr />
 
 
       <footer class="site-footer">
