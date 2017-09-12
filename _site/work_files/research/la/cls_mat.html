@@ -91,7 +91,7 @@
     <li><a href="#content8">Dyads</a></li>
   </ul>
   <ul class="TOC9">
-    <li><a href="#content9">Normalized Dyads</a></li>
+    <li><a href="#content9">Correlation Matrices</a></li>
   </ul>
 </div>
 
@@ -107,7 +107,12 @@
       <dd><strong>Diagonal matrices</strong> are square matrices <script type="math/tex">A</script> with <script type="math/tex">A_{ij} = 0 \text{, when } i \ne j.</script></dd>
     </dl>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Properties:</strong></li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Properties:</strong>
+    <ol>
+      <li>Diagonal matrices correspond to quadratic functions that are simple sums of squares, of the form:<br />
+ <script type="math/tex">q(x) = \sum_{i=1}^n \lambda_i x_i^2 = x^T \mathbf{diag}(\lambda) x.</script></li>
+    </ol>
+  </li>
 </ol>
 
 <hr />
@@ -119,12 +124,32 @@
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Definition.</strong></dt>
       <dd><strong>Symmetric matrices</strong> are square matrices that satisfy <script type="math/tex">A_{ij} = A_{ji}</script> for every pair <script type="math/tex">(i,j).</script></dd>
+      <dd><strong>The set of symmetric</strong> <script type="math/tex">(n \times n)</script> matrices is denoted <script type="math/tex">\mathbf{S}^n</script>. This set is a subspace of <script type="math/tex">\mathbf{R}^{n \times n}</script>.</dd>
     </dl>
   </li>
   <li>
     <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Properties:</strong></p>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Asynchronous:</strong></li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Examples:</strong>
+    <ol>
+      <li><a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/3c5245ebb8a556da" value="show" onclick="iframePopA(event)"><strong>Representation of a weighted, undirected graph.</strong></a>
+ <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/73a4ae787085d554"><code class="highlighter-rouge"> Visit the Book</code></a>
+        <div></div>
+      </li>
+      <li><a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/0e696ef8a78e090c" value="show" onclick="iframePopA(event)"><strong>Laplacian matrix of a graph.</strong></a>
+ <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/73a4ae787085d554"><code class="highlighter-rouge"> Visit the Book</code></a>
+        <div></div>
+      </li>
+      <li><a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/6c0afdfbf11892c6" value="show" onclick="iframePopA(event)"><strong>Hessian of a function.</strong></a>
+ <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/73a4ae787085d554"><code class="highlighter-rouge"> Visit the Book</code></a>
+        <div></div>
+      </li>
+      <li><a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/e236418f4e2d6b3b" value="show" onclick="iframePopA(event)"><strong>Gram matrix of data points.</strong></a>
+ <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/73a4ae787085d554"><code class="highlighter-rouge"> Visit the Book</code></a>
+        <div></div>
+      </li>
+    </ol>
+  </li>
 </ol>
 
 <hr />
@@ -431,6 +456,26 @@ The dyad acts on an input vector <script type="math/tex">x \in \mathbf{R}^n</scr
       </dd>
       <dd>where <script type="math/tex">\sigma > 0</script>, and <script type="math/tex">\|\tilde{u}\|_2 = \|\tilde{v}\|_2 = 1.</script></dd>
     </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents85">Symmetric dyads:</strong></dt>
+      <dd>Another important class of symmetric matrices is that of the form <script type="math/tex">uu^T</script>, where <script type="math/tex">u \in \mathbf{R}^n</script>.
+ The matrix has elements <script type="math/tex">u_iu_j</script>, and is symmetric.
+        <blockquote>
+          <p>If <script type="math/tex">\|u\|_2 = 1</script>, then the dyad is said to be normalized.</p>
+        </blockquote>
+      </dd>
+    </dl>
+
+    <ul>
+      <li><strong>Properties:</strong>
+        <ol>
+          <li>Symmetric dyads corresponds to quadratic functions that are simply squared linear forms:<br />
+  <script type="math/tex">q(x) = (u^Tx)^2</script></li>
+        </ol>
+      </li>
+    </ul>
   </li>
 </ol>
 

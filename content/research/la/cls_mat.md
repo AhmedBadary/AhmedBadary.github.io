@@ -24,7 +24,7 @@ prevLink: /work_files/research/la.html
   {: .TOC7}
   * [Dyads](#content8)
   {: .TOC8}
-  * [Normalized Dyads](#content9)
+  * [Correlation Matrices](#content9)
   {: .TOC9}
 </div>
 
@@ -38,6 +38,9 @@ prevLink: /work_files/research/la.html
     :   **Diagonal matrices** are square matrices $$A$$ with $$A_{ij} = 0 \text{, when } i \ne j.$$
 
 2. **Properties:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents12}
+    1. Diagonal matrices correspond to quadratic functions that are simple sums of squares, of the form:  
+    $$q(x) = \sum_{i=1}^n \lambda_i x_i^2 = x^T \mathbf{diag}(\lambda) x.$$
+
 
 ***
 
@@ -46,10 +49,26 @@ prevLink: /work_files/research/la.html
 
 1. **Definition.**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents21} 
     :   **Symmetric matrices** are square matrices that satisfy $$A_{ij} = A_{ji}$$ for every pair $$(i,j).$$
+    :   **The set of symmetric** $$(n \times n)$$ matrices is denoted $$\mathbf{S}^n$$. This set is a subspace of $$\mathbf{R}^{n \times n}$$.
+
+
 
 2. **Properties:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents22} 
 
-3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents23} 
+3. **Examples:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents23} 
+    1. [**Representation of a weighted, undirected graph.**](http://livebooklabs.com/keeppies/c5a5868ce26b8125/3c5245ebb8a556da){: value="show" onclick="iframePopA(event)"}
+        <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/73a4ae787085d554">` Visit the Book`</a>
+        <div markdown="1"> </div>
+
+    2. [**Laplacian matrix of a graph.**](http://livebooklabs.com/keeppies/c5a5868ce26b8125/0e696ef8a78e090c){: value="show" onclick="iframePopA(event)"}
+        <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/73a4ae787085d554">` Visit the Book`</a>
+        <div markdown="1"> </div>
+    3. [**Hessian of a function.**](http://livebooklabs.com/keeppies/c5a5868ce26b8125/6c0afdfbf11892c6){: value="show" onclick="iframePopA(event)"}
+        <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/73a4ae787085d554">` Visit the Book`</a>
+        <div markdown="1"> </div>
+    4. [**Gram matrix of data points.**](http://livebooklabs.com/keeppies/c5a5868ce26b8125/e236418f4e2d6b3b){: value="show" onclick="iframePopA(event)"}
+        <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/73a4ae787085d554">` Visit the Book`</a>
+        <div markdown="1"> </div>
 
 *** 
 
@@ -250,6 +269,14 @@ prevLink: /work_files/research/la.html
     :   $$ A = uv^T = (\|u\|_2 \cdot |v|_2 ) \cdot (\dfrac{u}{\|u\|_2}) ( \dfrac{v}{\|v\|_2}) ^T = \sigma \tilde{u}\tilde{v}^T,$$  
     :   where $$\sigma > 0$$, and $$\|\tilde{u}\|_2 = \|\tilde{v}\|_2 = 1.$$
 
+5. **Symmetric dyads:**{: style="color: SteelBlue  "}{: .bodyContents8 #bodyContents85}
+    :    Another important class of symmetric matrices is that of the form $$uu^T$$, where $$u \in \mathbf{R}^n$$.
+    The matrix has elements $$u_iu_j$$, and is symmetric.
+    > If $$\|u\|_2 = 1$$, then the dyad is said to be normalized.
+
+    * **Properties:**
+        1. Symmetric dyads corresponds to quadratic functions that are simply squared linear forms:  
+        $$q(x) = (u^Tx)^2$$
 
 ***
 
