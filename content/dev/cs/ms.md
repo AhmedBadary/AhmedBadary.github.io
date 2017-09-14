@@ -1,8 +1,8 @@
 ---
 layout: NotesPage
 title: Memory Safety <br /> Vulnerabilities and Prevention 
-permalink: /work_files/web_dev/security/ms
-prevLink: /work_files/web_dev/security.html
+permalink: /work_files/dev/cs/ms
+prevLink: /work_files/dev/cs.html
 ---
 
 <div markdown="1" class = "TOC">

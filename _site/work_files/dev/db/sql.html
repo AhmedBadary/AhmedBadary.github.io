@@ -49,7 +49,7 @@
   <h2 class="project-tagline"></h2>
   <a href="/work_files/school.html" class="btn">Courses</a>
   <a href="/work_files/school/128a.html" class="btn">Chapters</a>
-  <a href= /work_files/web_dev.html class="btn">This Chapter</a>
+  <a href= /work_files/dev/db.html class="btn">This Chapter</a>
 </section>
 
 <!-- <div>
@@ -221,6 +221,31 @@
   </li>
   <li>
     <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents141">Nested Queries:</strong></dt>
+      <dd>Queries can be nested inside queries for convenience.</dd>
+      <dd>
+        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">&gt;</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span> <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">predicate</span><span class="o">&gt;</span>
+<span class="k">IN</span> <span class="o">||</span> <span class="k">NOT</span> <span class="k">IN</span>
+<span class="p">(</span><span class="k">SELECT</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">-</span><span class="mi">2</span><span class="o">&gt;</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">-</span><span class="mi">2</span><span class="o">&gt;</span> <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">predicate</span><span class="o">-</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">)</span>
+</code></pre>
+        </div>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>The correlated sub-query has to be recomputed for each of Table-1’s tuples.</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents142">Correlated Queries:</strong></dt>
+      <dd>Nested Sub-Queries can reference the original query.<br />
+<img src="/main_files/db/3.png" width="52%" style="position: relative;" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents155">Aggregate Functions:</strong></dt>
       <dd>Computes a (statistical) summary of the results and outputs it.</dd>
     </dl>
@@ -284,11 +309,16 @@
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Set Operators [IN | NOT IN]:</strong></dt>
-      <dd>Specify whether a value exists <em>IN</em> the list specified after the clause.
-        <blockquote>
-          <p><strong>Example:</strong></p>
-        </blockquote>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Set Operators:</strong></dt>
+      <dd>SQL allows us to perform <em>set operations</em> on the data.</dd>
+      <dd>
+        <ul>
+          <li><strong>Set-Membership:</strong>  Specify whether a value exists <em>IN</em> the list specified after the clause .
+            <blockquote>
+              <p><strong>Example:</strong></p>
+            </blockquote>
+          </li>
+        </ul>
       </dd>
       <dd>
         <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span>
@@ -298,9 +328,105 @@
 
 <span class="cm">/* NOT IN */</span>
 <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">&gt;</span> <span class="k">NOT</span> <span class="k">IN</span> <span class="p">(</span><span class="nv">"biking"</span><span class="p">,</span> <span class="nv">"hiking"</span><span class="p">,</span> <span class="nv">"tree climbing"</span><span class="p">,</span> <span class="nv">"rowing"</span><span class="p">);</span>
+
+<span class="cm">/* (NOT) EXISTS */</span>
+<span class="p">(</span><span class="k">NOT</span><span class="p">)</span> <span class="k">EXISTS</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">SubQuery</span><span class="o">&gt;</span><span class="p">)</span>
+
+<span class="cm">/* ANY */</span>
+<span class="k">WHERE</span> 
+
 </code></pre>
         </div>
       </dd>
+      <dd>
+        <ul>
+          <li><strong>Set Comparison:</strong> Compares the elements in two different sets.
+            <blockquote>
+              <p><strong>Example:</strong></p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span>
+
+<span class="cm">/* (NOT) EXISTS */</span>
+<span class="p">(</span><span class="k">NOT</span><span class="p">)</span> <span class="k">EXISTS</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">SubQuery</span><span class="o">&gt;</span><span class="p">)</span>
+
+<span class="cm">/* ANY */</span>
+<span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">-</span><span class="n">i</span><span class="o">&gt;</span> <span class="o">&gt;=</span> <span class="k">ANY</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">SubQuery</span><span class="o">&gt;</span><span class="p">)</span>
+
+<span class="cm">/* ALL */</span>      
+<span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">-</span><span class="n">i</span><span class="o">&gt;</span> <span class="o">&gt;=</span> <span class="k">ALL</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">SubQuery</span><span class="o">&gt;</span><span class="p">)</span>
+</code></pre>
+        </div>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Union and Intersect:</strong>  makes the <em>union</em> or the <em>intersection</em> of two sets.
+            <blockquote>
+              <p><strong>Example:</strong></p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span> <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">predicate</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span>
+
+<span class="cm">/* UNION */</span>
+<span class="k">UNION</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">-</span><span class="mi">2</span><span class="o">&gt;</span> <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">predicate</span><span class="o">-</span><span class="mi">2</span><span class="o">&gt;</span>
+
+
+<span class="cm">/* INTERSECT */</span>
+<span class="k">INTERSECT</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">-</span><span class="mi">3</span><span class="o">&gt;</span> <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">predicate</span><span class="o">-</span><span class="mi">3</span><span class="o">&gt;</span>
+</code></pre>
+        </div>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Set Difference:</strong> returns the difference between two sets returned by two queries.
+            <blockquote>
+              <p><strong>Example:</strong></p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span> <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">predicate</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span>
+
+<span class="cm">/* EXCEPT */</span>
+<span class="k">EXCEPT</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">-</span><span class="mi">2</span><span class="o">&gt;</span> <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">predicate</span><span class="o">-</span><span class="mi">2</span><span class="o">&gt;</span>
+</code></pre>
+        </div>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>Notice: Set Operations does <strong>NOT</strong> return Multi-Sets.</p>
+          <blockquote>
+            <p>The returned results are <strong>distinct</strong>.</p>
+          </blockquote>
+        </blockquote>
+      </dd>
+    </dl>
+
+    <p><img src="/main_files/db/1.png" width="40%" style="position: relative;left:80px" /></p>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents171">Multi-Set Operators:</strong></dt>
+      <dd>Multi-Set operators are the same as the <a href="#bodyContents17">set operators</a> with an added term, <code class="highlighter-rouge">ALL</code>.
+<img src="/main_files/db/2.png" width="43%" style="position: relative;left:41px" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents172">Relational Division:</strong></dt>
+      <dd><strong>The Query:</strong> “Find sailors who’ve reserved all boats.”<br />
+<strong>Equivalent to:</strong> “Sailors with no counter-exapmle missing boat.”<br />
+<img src="/main_files/db/4.png" width="52%" style="position: relative;" /></dd>
     </dl>
   </li>
   <li>
@@ -318,7 +444,6 @@
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents19">Fuzzy Search [Like]:</strong></dt>
       <dd>Querying/Finding “Non-Exact” Matches.</dd>
-      <dd>It is a way of <strong>SELECTING</strong> from the table by creating your own column.</dd>
       <dd>
         <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="cm">/* LIKE */</span>
 <span class="k">SELECT</span> <span class="o">&lt;</span><span class="n">attr1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">attr2</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span>
@@ -331,8 +456,23 @@
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents110">‘CASE’ Statement:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents110">Regular Expressions:</strong></dt>
+      <dd>Matching Strings.</dd>
+      <dd>
+        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="cm">/* LIKE */</span>
+<span class="k">SELECT</span> <span class="o">&lt;</span><span class="n">attr1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">attr2</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span>
+<span class="k">FROM</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span>
+<span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span> <span class="o">~</span> <span class="o">&lt;</span><span class="n">pattern</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre>
+        </div>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents111">‘CASE’ Statement:</strong></dt>
       <dd>Effectively behaves in the same way the “Case” or “Switch” statements do.</dd>
+      <dd>It is a way of <strong>SELECTING</strong> from the table by creating your own column.</dd>
       <dd>
         <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">&lt;</span><span class="n">attr1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">attr2</span><span class="o">&gt;</span><span class="p">,</span>
     <span class="k">CASE</span> 
@@ -456,6 +596,9 @@
 <hr />
 
 <h2 id="content3">Joins</h2>
+
+<h3 id="join-variants">JOIN variants</h3>
+<p><img src="/main_files/db/6.png" width="52%" style="position: relative;" /></p>
 
 <ol>
   <li>
@@ -748,7 +891,45 @@
       <dd>To have all the rows whether they match up or not, use the <code class="highlighter-rouge">OUTER JOIN</code> statement.</dd>
     </dl>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents98">Asynchronous:</strong></li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents98">Set-Operators and Logical-Operators Equivalence:</strong></dt>
+      <dd>
+        <ul>
+          <li><code class="highlighter-rouge">UNION</code> <script type="math/tex">\iff</script> <code class="highlighter-rouge">OR</code>
+            <blockquote>
+              <p>Equivalent</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><code class="highlighter-rouge">INTERSECT</code> <script type="math/tex">\nLeftrightarrow</script> <code class="highlighter-rouge">OR</code>
+            <blockquote>
+              <p>NOT-Equivalent</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents99">ARGMAX:</strong></dt>
+      <dd>The <em>ARGMAX</em> function is not a native of SQL.</dd>
+      <dd>
+        <blockquote>
+          <p>In the <em>example</em> below:</p>
+          <blockquote>
+            <p>The query on the <strong>left:</strong> returns <em>ALL</em> sailors that are tied for ARGMAX.
+The query on the <strong>right:</strong> returns <em>ONLY ONE</em> sailor from those tied for max, randomly.
+ <img src="/main_files/db/5.png" width="52%" style="position: relative;" /></p>
+          </blockquote>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
 </ol>
 
 

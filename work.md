@@ -8,7 +8,7 @@ permalink: /work
 <p class="message">
   Hey there! This page includes a list of the topics I have written notes about.
 </p>
-* ## [Web Development](/work_files/web_dev.html)
+* ## [Development (Computer Science)](/work_files/dev.html)
 
 * ## [Course Work](/work_files/school.html)
 

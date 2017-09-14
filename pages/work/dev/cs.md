@@ -1,10 +1,10 @@
 ---
 layout: page
 title: Computer Security
-permalink: /work_files/web_dev/security
+permalink: /work_files/dev/cs
 ---
 
-# Chapters
+# Topics
 
 * ### [Principles for Building Secure Systems](/work_files/web_dev/security/pbss)
 
@@ -17,5 +17,7 @@ permalink: /work_files/web_dev/security
 * ### [x86 Assembly Convention](/work_files/web_dev/security/x86)
 
 * ### [Secruity Vulnerabilities Examples](/work_files/web_dev/security/sve)
+
+
 
 Updated Soon!

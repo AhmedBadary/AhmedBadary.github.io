@@ -20,6 +20,10 @@ ________BUTTONS________
     * <button>Click for Video</button>{: value="show" .video_buttons #video_buttons14 src="YOUTUBE" onclick="iframePop(event);"}
         <div markdown="1"> </div>
 
+
+<!-- IMAGES -->
+<img src="/main_files/db/1.png" width="40%" style="position: relative;left:80px">
+
 ________CODE________
 
 <!-- JAVASCRIPT CODE BLOCK / JAVASCRIPT CODE SNIPPET -->

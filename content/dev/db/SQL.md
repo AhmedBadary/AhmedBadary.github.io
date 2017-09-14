@@ -1,8 +1,8 @@
 ---
 layout: NotesPage
 title: SQL
-permalink: /work_files/web_dev/sql
-prevLink: /work_files/web_dev.html
+permalink: /work_files/dev/db/sql
+prevLink: /work_files/dev/db.html
 ---
 
 <div markdown="1" class = "TOC">
@@ -100,6 +100,18 @@ prevLink: /work_files/web_dev.html
         * **Properties:**
             1. Used with the "ORDER BY" Method.
 
+41. **Nested Queries:**{: style="color: SteelBlue"}{: .bodyContents1  #bodyContents141}
+    :   Queries can be nested inside queries for convenience.
+    :   ```sql
+        SELECT <attr> FROM <Table-Name-1> WHERE <predicate>
+        IN || NOT IN
+        (SELECT <attr-2> FROM <Table-Name-2> WHERE <predicate-2>)
+        ```  
+    :   > The correlated sub-query has to be recomputed for each of Table-1's tuples. 
+
+42. **Correlated Queries:**{: style="color: SteelBlue"}{: .bodyContents1  #bodyContents142}
+    :   Nested Sub-Queries can reference the original query.  
+    <img src="/main_files/db/3.png" width="52%" style="position: relative;">
 
 5. **Aggregate Functions:**{: style="color: SteelBlue"}{: .bodyContents1  #bodyContents155}
     :   Computes a (statistical) summary of the results and outputs it.
@@ -137,8 +149,9 @@ prevLink: /work_files/web_dev.html
         WHERE <attr> > 50 OR <attr> > 100;
         ```
 
-7. **Set Operators [IN | NOT IN]:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}
-    :   Specify whether a value exists _IN_ the list specified after the clause.
+7. **Set Operators:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}
+    :   SQL allows us to perform _set operations_ on the data.
+    :   * **Set-Membership:**  Specify whether a value exists _IN_ the list specified after the clause .
     > **Example:**
     :   ```sql
         SELECT * FROM <Table-Name>
@@ -148,7 +161,65 @@ prevLink: /work_files/web_dev.html
 
         /* NOT IN */
         WHERE <attr> NOT IN ("biking", "hiking", "tree climbing", "rowing");
-        ```    
+
+        /* (NOT) EXISTS */
+        (NOT) EXISTS (<SubQuery>)
+
+        /* ANY */
+        WHERE 
+
+        ```   
+    :   * **Set Comparison:** Compares the elements in two different sets.
+    > **Example:**
+    :   ```sql
+        SELECT * FROM <Table-Name>
+
+        /* (NOT) EXISTS */
+        (NOT) EXISTS (<SubQuery>)
+
+        /* ANY */
+        WHERE <attr-i> >= ANY (<SubQuery>)
+
+        /* ALL */      
+        WHERE <attr-i> >= ALL (<SubQuery>)
+        ```   
+    :   * **Union and Intersect:**  makes the _union_ or the _intersection_ of two sets.
+    > **Example:**
+    :   ```sql
+        SELECT * FROM <Table-Name-1> WHERE <predicate-1>
+
+        /* UNION */
+        UNION
+        SELECT * FROM <Table-Name-2> WHERE <predicate-2>
+
+
+        /* INTERSECT */
+        INTERSECT
+        SELECT * FROM <Table-Name-3> WHERE <predicate-3>
+        ```   
+    :   * **Set Difference:** returns the difference between two sets returned by two queries.
+    > **Example:**
+    :   ```sql
+        SELECT * FROM <Table-Name-1> WHERE <predicate-1>
+
+        /* EXCEPT */
+        EXCEPT
+        SELECT * FROM <Table-Name-2> WHERE <predicate-2>
+        ```   
+    : > Notice: Set Operations does **NOT** return Multi-Sets.  
+      > > The returned results are **distinct**.  
+
+    <img src="/main_files/db/1.png" width="40%" style="position: relative;left:80px">
+
+71. **Multi-Set Operators:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents171}
+    :   Multi-Set operators are the same as the [set operators](#bodyContents17) with an added term, ```ALL```.
+    <img src="/main_files/db/2.png" width="43%" style="position: relative;left:41px">
+
+72. **Relational Division:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents172}
+    :   **The Query:** "Find sailors who've reserved all boats."  
+    __Equivalent to:__ "Sailors with no counter-exapmle missing boat."  
+    <img src="/main_files/db/4.png" width="52%" style="position: relative;">
+
 
 8. **Nesting Queries (Multiple Tables) and SubQueries:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}
     :   ```sql
@@ -158,7 +229,6 @@ prevLink: /work_files/web_dev.html
 
 9. **Fuzzy Search [Like]:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents19}
     :   Querying/Finding "Non-Exact" Matches.
-    :   It is a way of **SELECTING** from the table by creating your own column.
     :   ```sql
         /* LIKE */
         SELECT <attr1>, <attr2>, ...
@@ -166,8 +236,19 @@ prevLink: /work_files/web_dev.html
         WHERE <attri> LIKE <pattern>;
         ```
 
-10. **'CASE' Statement:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents110} 
+10. **Regular Expressions:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents110}
+    :   Matching Strings.
+    :   ```sql
+        /* LIKE */
+        SELECT <attr1>, <attr2>, ...
+        FROM <table_name>
+        WHERE <attri> ~ <pattern>;
+        ```
+
+
+11. **'CASE' Statement:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents111} 
     :   Effectively behaves in the same way the "Case" or "Switch" statements do.
+    :   It is a way of **SELECTING** from the table by creating your own column.
     :   ```sql
         SELECT <attr1>, <attr2>,
             CASE 
@@ -241,6 +322,9 @@ prevLink: /work_files/web_dev.html
 
 ## Joins
 {: #content3}
+
+### JOIN variants  
+<img src="/main_files/db/6.png" width="52%" style="position: relative;">
 
 1. **Cross Join:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents31}
     :   Produces a result set (known as the Cartesian Product) which is the number of rows in the first table multiplied by the number of rows in the second table if no WHERE clause is used along with CROSS JOIN.
@@ -437,4 +521,15 @@ prevLink: /work_files/web_dev.html
 7. **Joining Tables with Different Rows:**{: style="color: SteelBlue  "}{: .bodyContents9 #bodyContents97}
     :   To have all the rows whether they match up or not, use the ```OUTER JOIN``` statement.
 
-8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents9 #bodyContents98}
+8. **Set-Operators and Logical-Operators Equivalence:**{: style="color: SteelBlue  "}{: .bodyContents9 #bodyContents98}
+    :   * ```UNION``` $$\iff$$ ```OR```
+        > Equivalent
+    :   * ```INTERSECT``` $$\nLeftrightarrow$$ ```OR```
+        > NOT-Equivalent
+
+9. **ARGMAX:**{: style="color: SteelBlue  "}{: .bodyContents9 #bodyContents99}
+    :   The _ARGMAX_ function is not a native of SQL.  
+    :   > In the _example_ below:  
+        > > The query on the **left:** returns _ALL_ sailors that are tied for ARGMAX.
+        > > The query on the **right:** returns _ONLY ONE_ sailor from those tied for max, randomly.
+    <img src="/main_files/db/5.png" width="52%" style="position: relative;">

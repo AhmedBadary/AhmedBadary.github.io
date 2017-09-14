@@ -1,8 +1,8 @@
 ---
 layout: NotesPage
 title: Security Vulnerabilities <br /> Examples
-permalink: /work_files/web_dev/security/sve
-prevLink: /work_files/web_dev/security.html
+permalink: /work_files/dev/cs/sve
+prevLink: /work_files/dev/cs.html
 ---
 
 
