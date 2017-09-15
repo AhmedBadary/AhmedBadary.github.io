@@ -6,17 +6,19 @@ permalink: /work_files/dev/cs
 
 # Topics
 
-* ### [Principles for Building Secure Systems](/work_files/web_dev/security/pbss)
+* ### [Principles for Building Secure Systems](/work_files/dev/cs/pbss)
 
-* ### [Design Patterns for Building Secure Systems](/work_files/web_dev/security/dpbss)
+* ### [Design Patterns for Building Secure Systems](/work_files/dev/cs/dpbss)
 
-* ### [Memory Safety](/work_files/web_dev/security/ms)
+* ### [Memory Safety](/work_files/dev/cs/ms)
 
-* ### [Secure Software Development](/work_files/web_dev/security/ssd)
+* ### [Secure Software Development](/work_files/dev/cs/ssd)
 
-* ### [x86 Assembly Convention](/work_files/web_dev/security/x86)
+* ### [x86 Assembly Convention](/work_files/dev/cs/x86)
 
-* ### [Secruity Vulnerabilities Examples](/work_files/web_dev/security/sve)
+* ### [Reasoning About Code Safety](/work_files/dev/cs/racs)
+
+* ### [Secruity Vulnerabilities Examples](/work_files/dev/cs/sve)
 
 
 

@@ -106,7 +106,7 @@ beyond the bounds of some memory region.
     2. The overwritten return address must point to a valid instruction sequence. The attacker often places the malicious code to execute in the vulnerable buffer. However, the buffer address must be known to set up the jump target correctly. One way to find out this address is to observe the program in a debugger.  
     What could be done to make it harder to accurately find out the address of the start of the malicious code?
         * **Solution:**  
-            **Address Randomization:** When the OS loader puts an executable into memory,   it maps the different sections (text, data/BSS, heap, stack) to fixed memory-safetylocations. In the mitigation technique called address space layout Randomization(ASLR), rather than deterministically allocating the process layout, the OS randomizes the starting base of each section.
+            **Address Randomization:** When the OS loader puts an executable into memory,   it maps the different sections (text, data/BSS, heap, stack) to fixed memory-safety locations. In the mitigation technique called address space layout Randomization(ASLR), rather than deterministically allocating the process layout, the OS randomizes the starting base of each section.
             > For instance, the OS might decide to start stack frames from somewhere other than the highest memory address.
 
         * **Limitations:**  
@@ -157,10 +157,10 @@ beyond the bounds of some memory region.
     ![img](/main_files/web_dev/images/e2.png){: width="87%"} \\
     If the input is too long, the code will write past the end of buf and the saved SP and return address will be overwritten.  
     ```c
-        void vulnerable() {
-            char buf[80];
-            gets(buf);
-        }
+    void vulnerable() {
+        char buf[80];
+        gets(buf);
+    }
     ```
 
 4. **Memory Layout:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents24} \\

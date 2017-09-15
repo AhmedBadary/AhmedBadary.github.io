@@ -202,7 +202,7 @@ for instance, the attacker could arrange to store the malicious code anywhere el
  What could be done to make it harder to accurately find out the address of the start of the malicious code?
         <ul>
           <li><strong>Solution:</strong><br />
-  <strong>Address Randomization:</strong> When the OS loader puts an executable into memory,   it maps the different sections (text, data/BSS, heap, stack) to fixed memory-safetylocations. In the mitigation technique called address space layout Randomization(ASLR), rather than deterministically allocating the process layout, the OS randomizes the starting base of each section.
+  <strong>Address Randomization:</strong> When the OS loader puts an executable into memory,   it maps the different sections (text, data/BSS, heap, stack) to fixed memory-safety locations. In the mitigation technique called address space layout Randomization(ASLR), rather than deterministically allocating the process layout, the OS randomizes the starting base of each section.
             <blockquote>
               <p>For instance, the OS might decide to start stack frames from somewhere other than the highest memory address.</p>
             </blockquote>
@@ -288,8 +288,8 @@ for instance, the attacker could arrange to store the malicious code anywhere el
  <img src="/main_files/web_dev/images/e2.png" alt="img" width="87%" /> <br />
  If the input is too long, the code will write past the end of buf and the saved SP and return address will be overwritten.
         <div class="language-c highlighter-rouge"><pre class="highlight"><code> <span class="kt">void</span> <span class="nf">vulnerable</span><span class="p">()</span> <span class="p">{</span>
-     <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">80</span><span class="p">];</span>
-     <span class="n">gets</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+ <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">80</span><span class="p">];</span>
+ <span class="n">gets</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
  <span class="p">}</span>
 </code></pre>
         </div>

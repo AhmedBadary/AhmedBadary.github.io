@@ -486,6 +486,46 @@
       </dd>
     </dl>
   </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents112">‘WITH’ clause [temp views]:</strong></dt>
+      <dd>The <code class="highlighter-rouge">WITH</code> clause allows us to create a temporary view to use in our queries.
+        <blockquote>
+          <p>Also know as, “Common Table Expressions”.</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">WITH</span> <span class="n">view1</span><span class="p">(</span><span class="n">bid</span><span class="p">,</span> <span class="n">scount</span><span class="p">)</span> <span class="k">AS</span>
+        <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">),</span>
+    <span class="n">view2</span> <span class="k">AS</span>
+        <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">view1</span><span class="p">)</span>
+
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">view2</span><span class="p">;</span>
+</code></pre>
+        </div>
+        <blockquote>
+          <p>Notice that the second query can reference the first.</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <p>OR</p>
+      </dd>
+      <dd>
+        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">bname</span><span class="p">,</span> <span class="n">scount</span>
+<span class="k">FROM</span> <span class="n">Boats2</span> <span class="n">B</span><span class="p">,</span>
+    <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">view1</span><span class="p">(</span><span class="n">bid</span><span class="p">,</span> <span class="n">scount</span><span class="p">)</span>
+
+<span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">predicate</span><span class="o">&gt;</span>
+</code></pre>
+        </div>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>Without using the <code class="highlighter-rouge">WITH</code> clause.</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
 </ol>
 
 <hr />
@@ -523,15 +563,24 @@
     </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">ASYNCHRONUS:</strong></p>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">View:</strong></dt>
+      <dd><strong>A view</strong> is a named query.<br />
+Views are not materialized until run. They can be run multiple times.
+        <blockquote>
+          <p>i.e. We have to evaluate it everytime we run it.</p>
+        </blockquote>
+
+        <p>They, also, must have unique column names.</p>
+      </dd>
+      <dd>
+        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">view_name</span>
+<span class="k">AS</span> <span class="n">select_statement</span>
+</code></pre>
+        </div>
+      </dd>
+    </dl>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">ASYNCHRONUS:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">ASYNCHRONUS:</strong></p>
-  </li>
-  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">ASYNCHRONUS:</strong></li>
 </ol>
 
 <hr />
@@ -597,7 +646,7 @@
 
 <h2 id="content3">Joins</h2>
 
-<h3 id="join-variants">JOIN variants</h3>
+<h4 id="join-variants">JOIN variants</h4>
 <p><img src="/main_files/db/6.png" width="52%" style="position: relative;" /></p>
 
 <ol>
@@ -731,7 +780,22 @@
       </dd>
     </dl>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents36">Asynchronous:</strong></li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents36">Natural Join:</strong></dt>
+      <dd>Behaves like the <a href="#bodyContents32">Inner Join</a> but matches on columns that have the same name/attribute.</dd>
+      <dd>
+        <blockquote>
+          <p>Natural Joins do <strong>NOT</strong> have <code class="highlighter-rouge">ON</code> clause.</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>Natural Joins, unfortuntely, could change meaning on a different schema.</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
 </ol>
 
 <hr />
@@ -746,8 +810,6 @@
       <li><strong>\c {name}:</strong>  Connect to DataBase</li>
       <li><strong>\d:</strong>  View List of Schemas and their respective info (Tables)</li>
       <li><strong>\d {Schema-Name}:</strong>  View List of Attributes/Columns in the Schema</li>
-      <li><strong>:</strong></li>
-      <li><strong>:</strong></li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents52">Commands:</strong> <br />
@@ -768,32 +830,8 @@
         <pre><code class="language-SQL"> psql  -U postgres -h server
 </code></pre>
       </li>
-      <li><strong>:</strong>
- ```SQL</li>
     </ul>
-
-    <div class="highlighter-rouge"><pre class="highlight"><code> * **:**  
- ```SQL
-
-</code></pre>
-    </div>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents53">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents54">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents55">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents56">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents57">Asynchronous:</strong> \</p>
-  </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents58">Asynchronous:</strong> \</li>
 </ol>
 
 <hr />
@@ -889,6 +927,11 @@
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents97">Joining Tables with Different Rows:</strong></dt>
       <dd>To have all the rows whether they match up or not, use the <code class="highlighter-rouge">OUTER JOIN</code> statement.</dd>
+      <dd>
+        <blockquote>
+          <p>Outer Joins will concatenate a “NULL” value if a match isn’t found.</p>
+        </blockquote>
+      </dd>
     </dl>
   </li>
   <li>

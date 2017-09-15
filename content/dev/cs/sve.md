@@ -41,9 +41,7 @@ prevLink: /work_files/dev/cs.html
                 struct food good[32];
                 char bad[1024], cmd[1024];
                 int i, total= 0, ngood = 0, size_bad = 0;
-
                 if (n > 32) return -1;
-
                 for(i = 0; i <= n; ++i) {
                     if (basket[i].calories<100)
                         good[ngood++] = basket[i];
@@ -52,17 +50,14 @@ prevLink: /work_files/dev/cs.html
                         snprintf(bad + size_bad, len, "%s", basket[i].name);
                         size_bad += len;
                     }
-
                     total+=basket[i].calories;
                 }
-
                 if (total > 2500) {
                     const char* fmt = "health-factor--calories %d --bad-items %s";
                     fprintf(stderr, "lotsofcalories!");
                     snprintf(cmd, sizeof cmd, fmt, total, bad);
                     system(cmd);
                 }
-
                 return ngood;
             }
     ```
@@ -134,12 +129,18 @@ prevLink: /work_files/dev/cs.html
 
 ***
 
-## FOURTH
+## Proving Memory Safety
 {: #content4}
 
-1. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents41} \\
+1. **Ex.1:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents41} \\
+    <button>Show Example</button>{: .showText value="show"
+    onclick="showTextPopHide(event);"}
+    ![img](/main_files/cs/sve/41.png){: width="50%" hidden=""}
 
-2. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents42} \\
+2. **Ex.2:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents42} \\
+    <button>Show Example</button>{: .showText value="show"
+    onclick="showTextPopHide(event);"}
+    ![img](/main_files/cs/sve/42.png){: width="60%" hidden=""}
 
 3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents43} \\
 

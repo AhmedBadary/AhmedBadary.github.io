@@ -259,6 +259,29 @@ prevLink: /work_files/dev/db.html
             END as <attr-name>
         ```
 
+12. **'WITH' clause [temp views]:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents112} 
+    :   The ```WITH``` clause allows us to create a temporary view to use in our queries.  
+        > Also know as, "Common Table Expressions".
+    :   ```sql
+        WITH view1(bid, scount) AS
+                (SELECT * FROM <Table-1>),
+            view2 AS
+                (SELECT * FROM <Table-2>, view1)
+
+        SELECT * FROM view2;
+        ```
+        > Notice that the second query can reference the first.  
+
+    :   OR  
+    :   ```sql
+        SELECT bname, scount
+        FROM Boats2 B,
+            (SELECT * FROM <Table-1>) AS view1(bid, scount)
+
+        WHERE <predicate>
+        ```
+    :   > Without using the ```WITH``` clause.
+
 ***
 
 ## Types and Definitions
@@ -270,13 +293,16 @@ prevLink: /work_files/dev/db.html
     :   * CHAR
     :   * INTEGER PRIMARY KEY
 
-2. **ASYNCHRONUS:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}
+2. **View:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}
+    :   **A view** is a named query.  
+        Views are not materialized until run. They can be run multiple times.  
+        > i.e. We have to evaluate it everytime we run it.  
 
-3. **ASYNCHRONUS:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23} 
-    
-4. **ASYNCHRONUS:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}
-
-5. **ASYNCHRONUS:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
+        They, also, must have unique column names.
+    :   ```sql
+        CREATE VIEW view_name
+        AS select_statement
+        ```
     
 ***
 
@@ -323,7 +349,7 @@ prevLink: /work_files/dev/db.html
 ## Joins
 {: #content3}
 
-### JOIN variants  
+#### JOIN variants  
 <img src="/main_files/db/6.png" width="52%" style="position: relative;">
 
 1. **Cross Join:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents31}
@@ -416,7 +442,10 @@ prevLink: /work_files/dev/db.html
         ```
     :   > Use the names given to the table "left and right" (i.e. a & b) to specify the attributes for each respective table.
 
-6. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents36} 
+6. **Natural Join:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents36} 
+    :   Behaves like the [Inner Join](#bodyContents32) but matches on columns that have the same name/attribute.
+    :   > Natural Joins do **NOT** have ```ON``` clause. 
+    :   > Natural Joins, unfortuntely, could change meaning on a different schema.
 
 ***
 
@@ -429,8 +458,6 @@ prevLink: /work_files/dev/db.html
     * **\c {name}:**  Connect to DataBase
     * **\d:**  View List of Schemas and their respective info (Tables)
     * **\d {Schema-Name}:**  View List of Attributes/Columns in the Schema
-    * **\:**  
-    * **\:**  
 
 2. **Commands:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents52} \\
     * **Create DataBase:**  
@@ -449,27 +476,6 @@ prevLink: /work_files/dev/db.html
     ```SQL
     psql  -U postgres -h server
     ```  
-    * **:**  
-    ```SQL
-
-    ```  
-    * **:**  
-    ```SQL
-
-    ```  
-
-3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents53} \\
-
-4. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents54} \\
-
-5. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents55} \\
-
-6. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents56} \\
-
-7. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents57} \\
-
-8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents58} \\
-
 
 ***
 
@@ -520,6 +526,7 @@ prevLink: /work_files/dev/db.html
 
 7. **Joining Tables with Different Rows:**{: style="color: SteelBlue  "}{: .bodyContents9 #bodyContents97}
     :   To have all the rows whether they match up or not, use the ```OUTER JOIN``` statement.
+    :   > Outer Joins will concatenate a "NULL" value if a match isn't found.
 
 8. **Set-Operators and Logical-Operators Equivalence:**{: style="color: SteelBlue  "}{: .bodyContents9 #bodyContents98}
     :   * ```UNION``` $$\iff$$ ```OR```
