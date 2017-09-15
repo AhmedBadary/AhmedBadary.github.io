@@ -20,4 +20,4 @@ No.
 
 ## Q.3)
 
-1. 
+1. Line 4 has a memory vulnerability. It is a buffer overflow vulnerability that could lead to "Stack Smashing Attack".

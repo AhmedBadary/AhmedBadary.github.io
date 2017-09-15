@@ -125,7 +125,6 @@ beyond the bounds of some memory region.
     code would break with this defense in place?
         * **Solution:**  
             **Executable Space Protection:** Modern CPUs include a feature to mark certain memory regions non-executable. AMD calls this feature the NX (no execute) bit and Intel the XD (execute disable) bit. The idea is to combat buffer overflows where the attacker injects their own code.
-            > For instance, the OS might decide to start stack frames from somewhere other than the highest memory address.
 
         * **Limitations:**  
             1. An attacker does not have to inject their own code. It is also possible to leverage existing instruction sequences in memory and jump to them. See part 3 for details.
@@ -157,10 +156,10 @@ beyond the bounds of some memory region.
     ![img](/main_files/web_dev/images/e2.png){: width="87%"} \\
     If the input is too long, the code will write past the end of buf and the saved SP and return address will be overwritten.  
     ```c
-    void vulnerable() {
-        char buf[80];
-        gets(buf);
-    }
+        void vulnerable() {
+            char buf[80];
+            gets(buf);
+        }
     ```
 
 4. **Memory Layout:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents24} \\
