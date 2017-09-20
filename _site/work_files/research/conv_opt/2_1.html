@@ -467,32 +467,12 @@ with optimal <script type="math/tex">x</script> given by<br />
       </dd>
       <dd>
         <ul>
-          <li>
-            <table>
-              <tbody>
-                <tr>
-                  <td>**$$</td>
-                  <td>b</td>
-                  <td><script type="math/tex">** is, Precisely, the *length* of the *closest point*</script>x_0<script type="math/tex">on</script>\mathbf{H}$$ from the origin.</td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
+          <li><script type="math/tex">abs(b)</script> is, Precisely, the <em>length</em> of the <em>closest point</em> <script type="math/tex">x_0</script> on <script type="math/tex">\mathbf{H}</script> from the origin.</li>
         </ul>
       </dd>
       <dd>
         <ul>
-          <li>
-            <table>
-              <tbody>
-                <tr>
-                  <td>**The sign of $$</td>
-                  <td>b</td>
-                  <td><script type="math/tex">** determines if</script>\mathbf{H}<script type="math/tex">is away from the origin along the direction</script>a<script type="math/tex">or</script>-a$$.</td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
+          <li><strong>The sign of <script type="math/tex">b</script></strong> determines if <script type="math/tex">\mathbf{H}</script> is away from the origin along the direction <script type="math/tex">a</script> or <script type="math/tex">-a</script>.</li>
         </ul>
       </dd>
       <dd>
@@ -650,7 +630,7 @@ with optimal <script type="math/tex">x</script> given by<br />
     </blockquote>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents70">Gradient of an Affine Function:</strong>
+    <p><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents70">Gradient of an Affine Function:</strong> <br />
  <img src="/main_files/conv_opt/2/2.1/8.png" alt="img" width="60%" /></p>
   </li>
   <li>
@@ -839,7 +819,7 @@ where the rows of <script type="math/tex">A</script> are given by the vectors <s
   <li>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents86">Trace:</strong></dt>
-      <dd>The trace of a square <script type="math/tex">n \times n</script> matrix <script type="math/tex">A</script>, denoted by <script type="math/tex">\mbox{\bf Tr} A</script>, is the sum of its diagonal elements:</dd>
+      <dd>The trace of a square <script type="math/tex">n \times n</script> matrix <script type="math/tex">A</script>, denoted by <script type="math/tex">\mathbf{Tr} A</script>, is the sum of its diagonal elements:</dd>
       <dd><script type="math/tex">\mathbf{Tr} A = \sum_{i=1}^n A_{ii}</script>.</dd>
     </dl>
     <ul>
@@ -847,9 +827,23 @@ where the rows of <script type="math/tex">A</script> are given by the vectors <s
         <ul>
           <li><script type="math/tex">\mathbf{Tr} A = \mathbf{Tr} A^T</script>.</li>
           <li><script type="math/tex">\mathbf{Tr} (AB) = \mathbf{Tr} (BA)</script>.</li>
-          <li>
-            <script type="math/tex; mode=display">\operatorname{trace}(XYZ) = \operatorname{trace}(ZXY).</script>
+          <li><script type="math/tex">\mathbf{Tr}(XYZ) = \mathbf{Tr}(ZXY) = \mathbf{Tr}(YZX)</script>.</li>
+          <li><script type="math/tex">{\displaystyle \operatorname{tr} (A+B) = \operatorname{tr} (A)+\operatorname{tr} (B)}</script>.</li>
+          <li><script type="math/tex">{\displaystyle \operatorname{tr} (cA) = c\operatorname{tr} (A)}</script>.</li>
+          <li><script type="math/tex">{\displaystyle \operatorname{tr} \left(X^{\mathrm {T} }Y\right)=\operatorname{tr} \left(XY^{\mathrm {T} }\right)=\operatorname{tr} \left(Y^{\mathrm {T} }X\right)=\operatorname{tr} \left(YX^{\mathrm {T} }\right)=\sum _{i,j}X_{ij}Y_{ij}}</script>.</li>
+          <li><script type="math/tex">{\displaystyle \operatorname{tr} \left(X^{\mathrm {T} }Y\right)=\sum _{ij}(X\circ Y)_{ij}}\ \ \ \</script> (The <em>Hadamard</em> product).</li>
+          <li>Arbitrary permutations of the product of matrices is not allowed. Only, <strong>cyclic permutations</strong> are.
+            <blockquote>
+              <p>However, if products of three symmetric matrices are considered, any permutation is allowed.</p>
+            </blockquote>
           </li>
+          <li>The trace of an idempotent matrix <script type="math/tex">A</script>, is the dimension of A.</li>
+          <li>The trace of a nilpotent matrix is zero.</li>
+          <li>If <script type="math/tex">f(x) = (x − \lambda_1)^{d_1}···(x − \lambda_k)^{d_k}</script> is the characteristic polynomial of a matrix <script type="math/tex">A</script>, then <script type="math/tex">{\displaystyle{ \operatorname{tr} (A)=d_{1}\lambda_{1} + \cdots + d_{k} \lambda_{k}}</script>.</li>
+          <li>When both <script type="math/tex">A</script> and <script type="math/tex">B</script> are <script type="math/tex">n \times n</script>, the trace of the (ring-theoretic) commutator of <script type="math/tex">A</script> and <script type="math/tex">B</script> vanishes: <script type="math/tex">\mathbf{tr}([A, B]) = 0</script>; one can state this as “the trace is a map of Lie algebras <script type="math/tex">{\displaystyle \gl_{n} \to k} \gl_{n} \to k</script> from operators to scalars”, as the commutator of scalars is trivial (it is an abelian Lie algebra).</li>
+          <li>The trace of a projection matrix is the dimension of the target space.
+  <script type="math/tex">% <![CDATA[
+{\displaystyle {\begin{aligned}P_{X}&=X\left(X^{\mathrm {T} }X\right)^{-1}X^{\mathrm {T} }\\\Rightarrow \operatorname {tr} \left(P_{X}\right)&=\operatorname {rank} \left(X\right)\end{aligned}}} {\displaystyle {\begin{aligned}P_{X}&=X\left(X^{\mathrm {T} }X\right)^{-1}X^{\mathrm {T} }\\\Rightarrow \operatorname {tr} \left(P_{X}\right)&=\operatorname {rank} \left(X\right)\end{aligned}}}. %]]></script></li>
         </ul>
       </li>
     </ul>

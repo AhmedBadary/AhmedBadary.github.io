@@ -146,6 +146,7 @@ beyond the bounds of some memory region.
 
 2. **How?**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents22}
     :   Stack smashing can be used for malicious code injection.
+    {: style="color: black"}
     * First, the attacker arranges to infiltrate a malicious code sequence somewhere in the program’s address space, at a known address (perhaps using techniques previously mentioned). 
     * Next, the attacker provides a carefully-chosen 88-byte input, where the last four bytes hold the address of the malicious code.
     * The gets() call will overwrite the return address on the stack with the last 4 bytes of the input—in other words, with the address of the malicious code.
@@ -167,7 +168,7 @@ beyond the bounds of some memory region.
     * **The Heap:** stores dynamically allocated data (and grows and shrinks as objects are allocated and freed).
     * **The Stack:** stores local variables and other information associated with each function call (which grows and shrinks with function calls and returns).
 
-    > In the picture above, the text region starts at smaller-numbered memory addresses (e.g., 0x00..0), and the stack region ends at larger-numbered memory addresses (0xFF..F).
+    > Notice that the text region starts at smaller-numbered memory addresses (e.g., 0x00..0), and the stack region ends at larger-numbered memory addresses (0xFF..F).
 
 5. **Convention and Protocol:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents25} \\
     <button>Show List</button>{: .showText value="show"

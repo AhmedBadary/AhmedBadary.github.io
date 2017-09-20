@@ -86,16 +86,14 @@ prevLink: /work_files/research
     1. **Determine the optimal value $$p_1^\ast$$ and the optimal set of the problem $$\min_{x \in \chi} \; |y^Tx|$$:**    
         The minimum value of $$\min_{x \in \chi} \; |y^Tx|$$ is $$p_1^\ast = 0$$.  
         This value is attained either by $$x = 0$$, or by any vector $$x\in\chi_r$$ orthogonal to $$y$$.  
-        The optimal set: $$\chi_{opt} = \left\{x : \ x = Vz, \|z\|_2 \leq r\right\}$$
-
+        The optimal set: $$\chi_{opt} = \left\{x : \ x = Vz, \|z\|_2 \leq r\right\}$$        
     2. **Determine the optimal value $$p_2^\ast$$ and the optimal set of the problem $$\max_{x\in \chi} \; |y^Tx|:$$**
         The optimal value of $$\max_{x\in \chi} \; |y^Tx|$$ is attained for any $$x = \alpha y$$ with $$\|x\|_2 = r$$.  
         Thus for $$|\alpha| = \dfrac{r}{\|y\|_2}$$, for which we have $$p_2^\ast∗ = r\|y\|_2.$$  
         The optimal set contains two points: $$\chi_{opt} = \left\{x : \  x = \alpha y, \alpha = ± \dfrac{r}{\|y\|_2} \right\}$$.
     3. **Determine the optimal value $$p_3^\ast$$ and the optimal set of the problem $$\min_{x\in \chi} \; y^Tx$$:**  
-        We have $$p_3^\ast = −r\|y\|_2,$$ which is attained at the unique optimal point   
-
-        $$x^\ast = −\dfrac{r}{\|y\|_2} y.$$
+        We have $$p_3^\ast = −r\|y\|_2,$$ which is attained at the unique optimal poin   
+        $$x^\ast = −\dfrac{r}{\|y\|_2} y.$$ 
 
     4. **Determine the optimal value $$p_4^\ast$$ and the optimal set of the problem $$\max_{x\in\chi} \; y^Tx$$:**  
         We have $$p_4^\ast = r \|y\|_2,$$ which is attained at the unique optimal point  

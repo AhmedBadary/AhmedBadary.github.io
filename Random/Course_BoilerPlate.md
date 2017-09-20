@@ -4,6 +4,14 @@ title: X.Y <br /> TITLE
 permalink: /work_files/school/CLASS/X_Y
 ---
 
+
+    :   
+    {: style="color: black"}
+
+
+
+
+
 ________BUTTONS________
 
 <!-- Button Hide -->

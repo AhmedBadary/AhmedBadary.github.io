@@ -70,7 +70,7 @@
     <li><a href="#content1">The Singular Value Decomposition</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">SECOND</a></li>
+    <li><a href="#content2">Matrix Properties via SVD</a></li>
   </ul>
   <ul class="TOC3">
     <li><a href="#content3">THIRD</a></li>
@@ -158,7 +158,11 @@ A = \sum_{i=1}^r \sigma_i u_i v_i^T = U \tilde{ {S}} V^T, \;\; \tilde{ {S}} := \
 This step results in a new vector <script type="math/tex">\tilde{y}</script> which now belongs to the output space <script type="math/tex">\mathbf{R}^m</script>.</p>
             </blockquote>
           </li>
-          <li>Finally, we rotate the vector <script type="math/tex">\tilde{y}</script> by the orthogonal matrix <script type="math/tex">U</script>, which results in <script type="math/tex">y = U\tilde{y} = Ax</script>.</li>
+          <li>Finally, we rotate the vector <script type="math/tex">\tilde{y}</script> by the orthogonal matrix <script type="math/tex">U</script>, which results in <script type="math/tex">y = U\tilde{y} = Ax</script>.
+            <blockquote>
+              <p>Notice also: <script type="math/tex">\tilde{x} : = V^Tx, \ x = V\tilde{x}.</script></p>
+            </blockquote>
+          </li>
         </ol>
       </dd>
       <dd><strong>Summary:</strong>
@@ -193,40 +197,121 @@ The corresponding eigenvectors are the left and right singular vectors of <scrip
       </dd>
     </dl>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Asynchronous:</strong> \</p>
-  </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Asynchronous:</strong> \</li>
 </ol>
 
 <hr />
 
-<h2 id="content2">SECOND</h2>
+<h2 id="content2">Matrix Properties via SVD</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Nullspace:</strong></dt>
+      <dd>The SVD allows to <strong>compute an orthonormal basis</strong> for the nullspace of a matrix.</dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Theorem: Nullspace via SVD:</strong></dt>
+      <dd>The nullspace of a matrix A with SVD</dd>
+      <dd>
+        <script type="math/tex; mode=display">% <![CDATA[
+A = U \tilde{S} V^T, \;\; \tilde{S} := \left( \begin{array}{cc}S & 0 \\ 0 & 0 \end{array} \right) , \;\; S = \mathbf{diag}(\sigma_1 , \ldots, \sigma_r), %]]></script>
+      </dd>
+      <dd>where <script type="math/tex">U \in \mathbf{R}^{m \times m}, V \in \mathbf{R}^{n \times n}</script> are both orthogonal matrices, admits the last <script type="math/tex">n-r</script> columns of <script type="math/tex">V</script> as an orthonormal basis.</dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Full Column-Rank Matrices:</strong></dt>
+      <dd>ne-to-one (or, full column rank) matrices are the matrices with nullspace reduced to {0}. If the dimension of the nullspace is zero, then we must have n=r. Thus, full column rank matrices are ones with SVD of the form</dd>
+      <dd>
+        <script type="math/tex; mode=display">A = U \left( \begin{array}{c}  {S} \\ 0 \end{array} \right) V^T.</script>
+      </dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Theorem: Range and Rank via SVD:</strong></dt>
+      <dd>The range of a matrix <script type="math/tex">A</script> with SVD</dd>
+      <dd>
+        <script type="math/tex; mode=display">A = U \tilde{ {S}} V^T, \;\; \tilde{ {S}} = \mathbf{diag}(\sigma_1, \ldots, \sigma_r, 0, \ldots, 0)</script>
+      </dd>
+      <dd>where <script type="math/tex">U \in \mathbf{R}^{m \times m}, V \in \mathbf{R}^{n \times n}</script> are both orthogonal matrices, admits the first <script type="math/tex">r</script> columns of <script type="math/tex">U</script> as an orthonormal basis.</dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Full Row Rank Matrices.:</strong></dt>
+      <dd>An onto (or, full row rank) matrix has a range <script type="math/tex">r=m</script>.<br />
+These matrices are characterized by an SVD of the form</dd>
+      <dd>
+        <script type="math/tex; mode=display">% <![CDATA[
+A = U \left( \begin{array}{cc}  {S} & 0 \end{array} \right) V^T. %]]></script>
+      </dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Fundamental theorem of linear algebra:</strong></dt>
+      <dd>Let <script type="math/tex">A \in \mathbf{R}^{m \times n}</script>. The sets <script type="math/tex">\mathbf{N} (A)</script> and <script type="math/tex">\mathbf{R} (A^T)</script> form an orthogonal decomposition of <script type="math/tex">\mathbf{R}^n</script>, in the sense that any vector  <script type="math/tex">x \in \mathbf{R}^n</script> can be written as</dd>
+      <dd>
+        <script type="math/tex; mode=display">x = y + z, \;\; y \in \mathbf{N} (A), \;\; z \in \mathbf{R} (A^T), \;\; y^Tz = 0.</script>
+      </dd>
+      <dd>In particular, we obtain that the condition on a vector <script type="math/tex">x</script> to be orthogonal to any vector in the nullspace implies that it must be in the range:</dd>
+      <dd>
+        <script type="math/tex; mode=display">x^Ty = 0 \mbox{ whenever } Ay = 0 \Longleftrightarrow \exists \: \lambda \in \mathbf{R}^m ~:~ x = A^T\lambda.</script>
+      </dd>
+      <dd><button class="showText" value="show" onclick="showTextPopHide(event);">Proof.</button>
+<img src="/main_files/conv_opt/2/2.4/pf0.png" alt="img" hidden="" width="100%" /></dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Matrix Norms:</strong></dt>
+      <dd>Matrix norms, which are useful to measure the size of a matrix, can be interpreted in terms of input-output properties of the corresponding linear map; for example, <em>the Frobenius norm measure the average response to unit vectors</em>, while <em>the largest singular (LSV) norm measures the peak gain</em>.<br />
+These two norms can be easily read from the SVD.</dd>
+      <dd>
+        <ul>
+          <li><strong>Frobenius Norm:</strong></li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">\|A\|_F  = \sqrt{\mathbf{Tr} A^TA}</script>
+      </dd>
+      <dd><script type="math/tex">\:\:\:\:\:\:\:\:\:</script>    Using the SVD <script type="math/tex">(U, \tilde{ {S}}, V)</script> of <script type="math/tex">A</script>, we obtain</dd>
+      <dd>
+        <script type="math/tex; mode=display">\|A\|_F^2 = \mathbf{Tr} (V \tilde{ {S}}^T \tilde{ {S}} V^T) = \mathbf{Tr} (V^TV \tilde{ {S}}^T \tilde{ {S}}) = \mathbf{Tr} (\tilde{ {S}}^T \tilde{ {S}}) = \sum_{i=1}^r \sigma_i^2.</script>
+
+        <blockquote>
+          <p>Hence the squared Frobenius norm is nothing else than the sum of the squares of the singular values.</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Largest Singular Value Norm.:</strong> measures a matrix size based on asking the maximum ratio of the norm of the output to the norm of the input. When the norm used is the Euclidean norm, the corresponding quantity</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">\|A\|_{\rm LSV} := \max_x : \|Ax\|_2 ~:~ \|x\|_2 \le 1 = \max_{x \:\:\: \|x\|_2 \le 1} : \|Ax\|_2 = \sigma_1(A),</script>
+      </dd>
+      <dd><script type="math/tex">\:\:\:\:\:\:\:\:\:</script> where <script type="math/tex">\sigma_1(A)</script> is the largest singular value of <script type="math/tex">A</script>, is called the largest singular value (LSV) norm.
+        <blockquote>
+          <p>Any left singular vector associated with the largest singular value achieves the maximum in the above.</p>
+        </blockquote>
+      </dd>
+    </dl>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents28">Asynchronous:</strong> \</p>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents28">Condition Number:</strong></dt>
+      <dd>The condition number of an invertible n times n matrix A is the ratio between the largest and the smallest singular values:</dd>
+      <dd><script type="math/tex">\kappa(A) = \frac{\sigma_1}{\sigma_n}  = \|A\| \cdot \|A^{-1}\|.</script>
+        <blockquote>
+          <p>Provides a measure of the sensitivity of the solution of a linear equation to changes in <script type="math/tex">A</script>.</p>
+        </blockquote>
+      </dd>
+    </dl>
   </li>
 </ol>
 
@@ -236,7 +321,7 @@ The corresponding eigenvectors are the left and right singular vectors of <scrip
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Asynchronous:</strong></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Asynchronous:</strong> \</p>

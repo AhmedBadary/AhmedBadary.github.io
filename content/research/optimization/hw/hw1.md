@@ -135,7 +135,7 @@ prevLink: /work_files/research/conv_opt.html
 
 2. $$\text{proj}_{\vec{w}}(x_0 - v) = \dfrac{|-1|}{\sqrt{1^2+2^2+3^2}} = d$$  
     Point: $$\dfrac{-1}{(1^2+2^2+3^2)} <1,2,3>$$
-    
+
 ## Q.5)
 
 ### 1. We solve the optimization problem.
