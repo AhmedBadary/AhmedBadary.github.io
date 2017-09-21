@@ -66,21 +66,157 @@
       <h2 id="q1">Q.1)</h2>
 <ol>
   <li>
-    <p>array([ 0.23249528+0.j,  0.23249528+0.j,  0.11624764+0.j,  0.69748583+0.j,
-     0.23249528+0.j,  0.58123819+0.j])</p>
+    <script type="math/tex; mode=display">% <![CDATA[
+\left( \begin{array}{cccccc} 0 & 0   & 0 & \frac{1}{3} & 0 & 0 \\ 
+                               1 & 0   & 0 &  0  & 0 & 0 \\ 
+                               0 & \frac{1}{2} & 0 &  0  & 0 & 0 \\ 
+                               0 & 0   & 1 &  0  & 0 & 1 \\ 
+                               0 & 0   & 0 & \frac{1}{3} & 0 & 0 \\ 
+                               0 & \frac{1}{2} & 0 & \frac{1}{3} & 1 & 0
+ \end{array} \right)
+ \\ \\ %]]></script>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">x_2 = \left( \begin{array}{c} 0.23249528+0.j \\ 0.23249528+0.j \\ 0.11624764+0.j \\  0.69748583+0.j \\ 0.23249528+0.j \\  0.58123819+0.j \end{array} \right) \\ \\</script>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">x_3 = \left( \begin{array}{c} 1/9 \\ 1/9 \\ 1/18 \\ 1/3 \\ 1/9 \\  5/18 \end{array} \right)</script>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code> [ 0.11111111,0.11111111,0.05555556,0.33333333,0.11111111,0.27777778]
+    <p>We notice that sequence does indeed converge to the value <script type="math/tex">x_3</script> above.</p>
+
+    <div class="language-python highlighter-rouge"><pre class="highlight"><code>    <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="o">*</span>
+
+    <span class="k">def</span> <span class="nf">importance</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)[</span><span class="mi">1</span><span class="p">][,:</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">iter</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mi">10</span><span class="o">**-</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">old_x</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x0</span><span class="p">),</span> <span class="n">x0</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">allclose</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">old_x</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-010</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-18</span><span class="p">):</span>
+            <span class="n">old_x</span> <span class="o">=</span> <span class="n">x</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span>
+
+    <span class="k">def</span> <span class="nf">sanity_check</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x_2</span><span class="p">,</span> <span class="n">x_3</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">allclose</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x_2</span><span class="p">),</span> <span class="mi">1</span><span class="o">*</span><span class="n">x_2</span><span class="p">)</span> <span class="ow">and</span> <span class="n">allclose</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x_3</span><span class="p">),</span> <span class="mi">1</span><span class="o">*</span><span class="n">x_3</span><span class="p">)</span>
+
+    <span class="n">x0</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="o">*</span><span class="n">ones</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>\
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+
+    <span class="n">x_2</span> <span class="o">=</span> <span class="n">importance</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">x_3</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">x_2</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">array</span><span class="p">([</span> <span class="mf">0.23249528</span><span class="o">+</span><span class="mf">0.</span><span class="n">j</span><span class="p">,</span>  <span class="mf">0.23249528</span><span class="o">+</span><span class="mf">0.</span><span class="n">j</span><span class="p">,</span>  <span class="mf">0.11624764</span><span class="o">+</span><span class="mf">0.</span><span class="n">j</span><span class="p">,</span>  <span class="mf">0.69748583</span><span class="o">+</span><span class="mf">0.</span><span class="n">j</span><span class="p">,</span>
+    <span class="mf">0.23249528</span><span class="o">+</span><span class="mf">0.</span><span class="n">j</span><span class="p">,</span>  <span class="mf">0.58123819</span><span class="o">+</span><span class="mf">0.</span><span class="n">j</span><span class="p">])</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">x_3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">array</span><span class="p">([</span> <span class="mf">0.11111111</span><span class="p">,</span>  <span class="mf">0.11111111</span><span class="p">,</span>  <span class="mf">0.05555556</span><span class="p">,</span>  <span class="mf">0.33333333</span><span class="p">,</span>  <span class="mf">0.11111111</span><span class="p">,</span>
+    <span class="mf">0.27777778</span><span class="p">])</span>
+
+    <span class="n">sanity_check</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x_2</span><span class="p">,</span> <span class="n">x_3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="bp">True</span>
 </code></pre>
     </div>
+    <blockquote>
+      <p>Please run the code to print (dump) all the resulting <script type="math/tex">x_k</script> vectors until convergence.</p>
+    </blockquote>
+
+    <blockquote>
+      <p>Notice also that <script type="math/tex">x_2</script> and <script type="math/tex">x_3</script> refer to the eigenvector that we foind in the <script type="math/tex">i-th</script> question.</p>
+    </blockquote>
   </li>
 </ol>
 
 <h2 id="q2">Q.2)</h2>
-<p>1.
-<script type="math/tex">{\displaystyle \operatorname{tr} (A) = \operatorname{tr}(UDU^T) = \operatorname{tr}(U^TUD) = \operatorname{tr}(D) = \sum_{i=1}^{d} \lambda_i}</script></p>
+
+<ol>
+  <li>
+    <p>We notice first that the output vector <script type="math/tex">y(t)</script> depends only on the state <script type="math/tex">x(t)</script> and that, in-turn, <script type="math/tex">x(t)</script> depends only on the input vector <script type="math/tex">u(t-1)</script>. Since <script type="math/tex">x(t)</script> has a recursive definition, we are voin going to try to find a closed form formula for computing the sequence of <script type="math/tex">x(t)</script> if possible:<br />
+ <script type="math/tex">\\ 
+ x(1) = Ax(0) + Bu(0) = Bu(0), \:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\: \text{(from the initial conditions)} \\
+ x(2) = Ax(1) + Bu(1) = ABu(0) + Bu(1) \\
+ x(3) = Ax(2) + Bu(2) = A^2Bu(0) + ABu(1) + Bu(2) \\
+ x(4) = Ax(3) + Bu(3) = A^3Bu(0) + A^2Bu(1) + ABu(2) + Bu(3)
+ \\</script>
+ From, this, we can extrapolate a formula:
+ <script type="math/tex">x(T) = \sum_{i=0}^{T-1} A^iBu((T-1)-i)</script>,<br />
+ Now, from the definition of <script type="math/tex">U(T)</script>, we re-write:
+ <script type="math/tex">x(T) = H'U(T)</script>,<br />
+ where <script type="math/tex">% <![CDATA[
+H' = \left( \begin{array}{ccccc} A^{T-1}B & A^{T-2}B & \cdots & AB & B \end{array} \right) %]]></script>.</p>
+
+    <p class="message">
+ proof. <br />
+     Induct on $$x(k) = Ax(k-1) + Bu(k-1)$$,  
+     $$ 
+     \begin{align}
+     &amp;= A\left(\sum_{i=0}^{k-2} A^iBu((k-2)-i)\right) + Bu(k-1) \\
+     &amp;= \left(\sum_{i=0}^{k-2} A^{(i+1)}Bu((k-2)-i)\right) + Bu(k-1) \\
+     &amp;= \left(\sum_{i=1}^{k-1} A^{i}Bu((k-1)-i)\right) + Bu(k-1), \:\: (\text{shifting the index}) \\
+     &amp;= \sum_{i=0}^{k-1} A^iBu((k-1)-i), \:\:\:\:\:\:\:\:\: (Bu(k-1)\text{ is the first element}) \\
+     \end{align}
+     \\
+     \:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\: \mathbf{Q.E.D}
+     $$ 
+ </p>
+    <p>Now, that we have a formula for <script type="math/tex">x(T)</script>, we write:</p>
+    <p>
+ $$
+ y(T) = Cx(T) = CH'U(T) = HU(T)
+ $$  
+ </p>
+    <p>where,</p>
+    <p>
+ $$
+ H = CH' = C \left( \begin{array}{ccccc} A^{T-1}B &amp; A^{T-2}B &amp; \cdots &amp; AB &amp; B \end{array} \right) \in \mathbf{R}^{m \times TP}
+ $$
+ </p>
+  </li>
+  <li>
+    <p>The range of <script type="math/tex">H</script>, represents all the possible outputs <script type="math/tex">(y(t))</script> for any possible input vector <script type="math/tex">u(t)</script>. If a vector <script type="math/tex">\vec{v}</script> is not in <script type="math/tex">\mathbf{Range}(H)</script>, then it doesn’t matter what the input <script type="math/tex">u(t)</script> is, we can never get that vector <script type="math/tex">\vec{v}</script> as an output.<br />
+ Notice that this also implies that the range characterizes the output of the LDA given only the input vector <script type="math/tex">u(t)</script> and abstracts away the solution of the state of the system, <script type="math/tex">x(t)</script>.</p>
+  </li>
+</ol>
+
+<h2 id="q3">Q.3)</h2>
+
+<ol>
+  <li><br />
+<script type="math/tex">\operatorname{tr} (A)</script>
+    <p>  
+$${\displaystyle
+\begin{align}
+&amp;= \operatorname{tr}(UDU^T) \:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(A \text{is symmetric}) \\
+&amp;= \operatorname{tr}(U^TUD) \:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(\text{Cyclic property of Trace}) \\
+&amp;= \operatorname{tr}(I_nD) \:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(\text{Orthogonality of} U) \\
+&amp;= \operatorname{tr}(D) \\
+&amp;= \sum_{i=1}^{d} \lambda_i \:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(\text{def. of Trace}) \\
+\end{align}
+}
+$$  
+</p>
+    <p><script type="math/tex">\operatorname{tr} (A)</script></p>
+    <p>  
+$${\displaystyle
+\begin{align}
+&amp;= \operatorname{tr}(UDU^T) \:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(A \text{is symmetric}) \\
+&amp;= \operatorname{tr}(U^TUD) \:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(\text{Cyclic property of Trace}) \\
+&amp;= \operatorname{tr}(I_nD) \:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(\text{Orthogonality of} U) \\
+&amp;= \operatorname{tr}(D) \\
+&amp;= \sum_{i=1}^{d} \lambda_i \:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(\text{def. of Trace}) \\
+\end{align}
+}
+$$  
+</p>
+  </li>
+</ol>
 
 <p>2.
 <script type="math/tex">\langle A,A\rangle \langle I,I\rangle \ge |\langle A,I\rangle|^2</script> or, <script type="math/tex">\operatorname{trace}(A^2)\ge\frac{1}{n}\operatorname{trace}(A)^2</script></p>
+
 
 
       <footer class="site-footer">
