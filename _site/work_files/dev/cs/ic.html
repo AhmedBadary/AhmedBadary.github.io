@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">PCA <br /> Principle Compnent Analysis</h1>
+  <h1 class="project-name">Introduction <br /> Symmetric-Key Cryptography</h1>
   <h2 class="project-tagline"></h2>
   <a href="/work_files/school.html" class="btn">Courses</a>
   <a href="/work_files/school/128a.html" class="btn">Chapters</a>
-  <a href= /work_files/research/conv_opt class="btn">This Chapter</a>
+  <a href= /work_files/dev/cs.html class="btn">This Chapter</a>
 </section>
 
 <!-- <div>
@@ -67,236 +67,187 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">PCA</a></li>
+    <li><a href="#content1">What is Cryptography?</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">Derivation 1. Fitting Gaussians to Data with MLE</a></li>
+    <li><a href="#content2">SECOND</a></li>
   </ul>
   <ul class="TOC3">
-    <li><a href="#content3">Derivation 2. Minimizing Variance</a></li>
+    <li><a href="#content3">THIRD</a></li>
   </ul>
   <ul class="TOC4">
-    <li><a href="#content4">Derivation 3. Minimize Projection Error</a></li>
+    <li><a href="#content4">FOURTH</a></li>
+  </ul>
+  <ul class="TOC5">
+    <li><a href="#content5">FIFTH</a></li>
+  </ul>
+  <ul class="TOC6">
+    <li><a href="#content6">SIXTH</a></li>
   </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content1">PCA</h2>
+<h2 id="content1">What is Cryptography?</h2>
 
 <ol>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?</strong></dt>
-      <dd>It is a statistical procedure that uses an orthogonal transformation to convert a set of observations of possibly correlated variables into a set of values of linearly uncorrelated variables called principal components.</dd>
-    </dl>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Three Main Goals:</strong> <br />
+    <ol>
+      <li><strong>Confidentiality:</strong> Preventing adversiries from reading our data.</li>
+      <li><strong>Integrity:</strong> Preventing attackers from altering our data. (regardless of its privacy)</li>
+      <li><strong>Authentication:</strong> Proving who created a given message or document.</li>
+    </ol>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Goal?</strong></dt>
-      <dd>Given points <script type="math/tex">\in \mathbf{R}^d</script>, find k-directions that capture most of the variation.</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Why?</strong></dt>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents111">The Set Up:</strong></dt>
       <dd>
-        <ol>
-          <li>Find a small basis for representing variations in complex things.
-            <blockquote>
-              <p>e.g. faces, genes.</p>
-            </blockquote>
+        <ul>
+          <li><strong>Who’s involved:</strong>
+            <ol>
+              <li><em>Alice:</em> Sender.</li>
+              <li><em>Bob:</em> Receiver.</li>
+              <li><em>Eve:</em> Eavesdropper.</li>
+              <li><em>Mallory:</em> Manipulator.</li>
+            </ol>
           </li>
-          <li>Reducing the number of dimensions makes some computations cheaper.</li>
-          <li>Remove irrelevant dimensions to reduce overfitting in learnging algorithms.
-            <blockquote>
-              <p>Like “<em>subset selection</em>” but the features are <strong>not</strong> <em>axis aligned</em>.<br />
-They are linear combinations of input features.</p>
-            </blockquote>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Goals:</strong>
+            <ol>
+              <li><em>Attackers Goal:</em> Any Knowledge on <script type="math/tex">M_i</script> besides a bound on it’s length.</li>
+              <li><em>Defenders Goal:</em> Ensure attakcer has no reason to think any <script type="math/tex">M' \in \{0,1\}^n</script> is more likely than any other.
+                <blockquote>
+                  <p>Where <script type="math/tex">len(M_i) = n</script>.</p>
+                </blockquote>
+              </li>
+            </ol>
           </li>
-        </ol>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Current Situation:</strong>
+            <ol>
+              <li><em>Eve’s Capabilities:</em>
+                <ul>
+                  <li>No knowledge of the key <script type="math/tex">K</script>.</li>
+                  <li><strong>Recognition of Success</strong>.
+                    <blockquote>
+                      <p>Eve can tell if she fully (NOT PARTIALLY) recovered <script type="math/tex">M_i</script>.</p>
+                    </blockquote>
+                  </li>
+                </ul>
+              </li>
+              <li><em>The key <script type="math/tex">(k)</script></em>:
+                <ul>
+                  <li>Assume <script type="math/tex">k</script> is selected completely randomly.</li>
+                  <li>For a <script type="math/tex">b</script>-bit key, any <script type="math/tex">k \in \{0,1\}^b</script> is equally likely.</li>
+                </ul>
+              </li>
+            </ol>
+          </li>
+        </ul>
       </dd>
     </dl>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Finding Principle Components:</strong> <br />
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents1111">Terminology:</strong>  <br />
+    1. <strong>Plaintext <script type="math/tex">(M_i)</script>:</strong> The message to be sent. <br />
+    2. <strong>Cyphertext <script type="math/tex">(C_i)</script>:</strong> The encrypted message that is sent.<br />
+    3. <strong>Key <script type="math/tex">(K)</script>:</strong> <br />
+    4. <strong>Encryption Function <script type="math/tex">(E(M_i, K))</script>:</strong> A function of the message and the key that outputs the <em>cyphertext</em>.<br />
+    5. <strong>Decryption Function <script type="math/tex">(D(C_i,K))</script>:</strong></p>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Symmetric Key Encryption:</strong></dt>
+      <dd>When both the sender and receiver have the same key to encrypt and decrypt.</dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Eve’s Capabilities:</strong> <br />
     <ul>
-      <li>Let ‘<script type="math/tex">X</script>’ be an <script type="math/tex">(n \times d)</script> design matrix, centered, with mean <script type="math/tex">\hat{x} = 0</script>.</li>
-      <li>Let ‘<script type="math/tex">w</script>’ be a unit vector.</li>
-      <li>The <em>Orthogonal Projection</em> of the point ‘<script type="math/tex">x</script>’ onto ‘<script type="math/tex">w</script>’ is <script type="math/tex">\tilde{x} = (x.w)w</script>.
-        <blockquote>
-          <p>Or <script type="math/tex">\tilde{x} = \dfrac{x.w}{\|w\|_2^2}w</script>, if <script type="math/tex">w</script> is not a unit vector.</p>
-        </blockquote>
-      </li>
-      <li>Let ‘<script type="math/tex">X^TX</script>’ be the <em>sample covariance matrix</em>,<br />
-  <script type="math/tex">0 \leq \lambda_1 \leq \lambda_2 \leq \cdots \leq \lambda_d</script> be its eigenvalues  and let <script type="math/tex">v_1, v_2, \cdots, v_d</script> be the corresponding <em>Orthogonal Unit Eigen-vectors</em>.</li>
-      <li>
-        <p>Given <em>Orthonormal directions (vectors)</em> <script type="math/tex">v_1, v_2, \ldots, v_k</script>, we can write:</p>
+      <li><strong>NO knowledge of K:</strong></li>
+      <li><strong>Recognition of Success:</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Asynchronous:</strong></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Asynchronous:</strong></li>
+</ol>
 
-        <script type="math/tex; mode=display">\tilde{x} = \sum_{i=1}^k (x.v_i)v_i.</script>
+<hr />
+
+<h2 id="content2">n-Time Pads</h2>
+
+<p class="message"> Provably secure crypto-systems</p>
+
+<ol>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">One-Time Pad:</strong> <br />
+    <ul>
+      <li>We use a different key for each message M.
+        <ul>
+          <li>Different = Completely Independent.</li>
+        </ul>
+      </li>
+      <li>Make the key as long as M.
+ *<script type="math/tex">E(M,k) = M \xor K</script>.</li>
+      <li>
+        <p><strong>Proof of security:</strong><br />
+  Since K is random and independent, all possible bit-patterns for C are equally likely and the attacker cannot know anything about the system even from random text.<br />
+  Thus, observing a given C does not help Eve narrow down the possibilities whether Alice chose M’ or M’’.</p>
+      </li>
+      <li><strong>Issues:</strong>
+        <ol>
+          <li><strong>Key-Generation:</strong> Need truly Random, Indepndent keys. Those are very very difficult to generate.</li>
+          <li>Key-Distribution:** Need to share keys as long as all possible communication</li>
+        </ol>
       </li>
     </ul>
-
-    <blockquote>
-      <p><strong>The Principle Components:</strong> are precisely the eigenvectors of the data’s covariance matrix.</p>
-    </blockquote>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Total Variance and Error Measurement:</strong></dt>
-      <dd>
-        <ul>
-          <li><strong>The Total Variance</strong> of the data can be expressed as the sum of all the eigenvalues:</li>
-        </ul>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">\mathbf{Tr} \Sigma = \mathbf{Tr} (U \Lambda U^T) = \mathbf{Tr} (U^T U \Lambda) = \mathbf{Tr} \Lambda = \lambda_1 + \ldots + \lambda_n.</script>
-      </dd>
-      <dd>
-        <ul>
-          <li><strong>The Total Variance</strong> of the <strong><em>Projected</em></strong> data is:</li>
-        </ul>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">\mathbf{Tr} (P \Sigma P^T ) = \lambda_1 + \lambda_2 + \cdots + \lambda_k.</script>
-      </dd>
-      <dd>
-        <ul>
-          <li><strong>The Error in the Projection</strong> could be measured with respect to variance.
-            <ul>
-              <li>We define the <strong>ratio of variance</strong> “explained” by the projected data as:</li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">\dfrac{\lambda_1 + \ldots + \lambda_k}{\lambda_1 + \ldots + \lambda_n}.</script>
-      </dd>
-      <dd>
-        <blockquote>
-          <p>If the ratio is <em>high</em>, we can say that much of the variation in the data can be observed on the projected plane.</p>
-        </blockquote>
-      </dd>
-    </dl>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Two-Time Pads:</strong> <br />
+    <ul>
+      <li>Reusing a key K one more time.</li>
+      <li>Alice sends C = E(M,K) and C’=E(M’,K).</li>
+      <li>Eve Obseves <script type="math/tex">M \xor K \text{ and } M' \xor K</script> and computes <script type="math/tex">C \xor C' = (M \xor K) \xor (M' \xor K) = M \xor M'</script>.</li>
+      <li>Now, Eve knows everything about M’.</li>
+      <li>Thus, it is insecure.</li>
+    </ul>
   </li>
 </ol>
 
 <hr />
 
-<h2 id="content2">Derivation 1. Fitting Gaussians to Data with MLE</h2>
+<h2 id="content3">Modern Encryption</h2>
 
 <ol>
-  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">What?</strong>
-    <ol>
-      <li>Fit a Gaussian to data with MLE</li>
-      <li>Choose k Gaussian axes of greatest variance.
-        <blockquote>
-          <p>Notice: MLE estimates a <em>covariance matrix</em>; <script type="math/tex">\hat{\Sigma} = \dfrac{1}{n}X^TX</script>.</p>
-        </blockquote>
-      </li>
-    </ol>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Block Cypher:</strong> \</p>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Algorithm:</strong> <br />
-    <ol>
-      <li>Center <script type="math/tex">X</script></li>
-      <li>Normalize <script type="math/tex">X</script>.
-        <blockquote>
-          <p>Optional. Should only be done if the units of measurement of the features differ.</p>
-        </blockquote>
-      </li>
-      <li>Compute the unit Eigen-values and Eigen-vectors of <script type="math/tex">X^TX</script></li>
-      <li>Choose ‘<script type="math/tex">k</script>’ based on the Eigenvalue sizes
-        <blockquote>
-          <p>Optional. Top to bottom.</p>
-        </blockquote>
-      </li>
-      <li>For the best k-dim subspace, pick Eigenvectors <script type="math/tex">v_{d-k+1}, \cdots, v_d</script>.</li>
-      <li>Compute the coordinates ‘<script type="math/tex">x.v_i</script>’ of the trainning/test data in PC-Space.</li>
-    </ol>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Asynchronous:</strong> \</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Asynchronous:</strong> \</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Asynchronous:</strong> \</p>
   </li>
 </ol>
 
-<hr />
-
-<h2 id="content3">Derivation 2. Minimizing Variance</h2>
-
-<ol>
-  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">What?</strong> <br />
-    <ol>
-      <li>Find a direction ‘<script type="math/tex">w</script>’ that maximizes the variance of the projected data.</li>
-      <li>Maximize the variance</li>
-    </ol>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Derivation:</strong></dt>
-      <dd>
-        <script type="math/tex; mode=display">\max_{w : \|w\|_2=1} \: Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\})</script>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-\begin{align}
-& \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \sum_{i=1}{n}(x_i.\dfrac{w}{\|w\|})^2 \\
-& \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \dfrac{\|xw\|^2}{\|w\|^2} \\
-& \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \dfrac{w^TX^TXw}{w^Tw}
-\end{align} %]]></script>
-      </dd>
-      <dd>Where <script type="math/tex">\dfrac{1}{n}\dfrac{w^TX^TXw}{w^Tw}</script> is the <strong><em>Rayleigh Quotient</em></strong>.</dd>
-      <dd>For any Eigen-vector <script type="math/tex">v_i</script>, the <em>Rayleigh Quotient</em> is <script type="math/tex">= \lambda_i</script>.</dd>
-      <dd><script type="math/tex">\implies</script> the vector <script type="math/tex">v_d</script> with the largest <script type="math/tex">\lambda_d</script>, achieves the maximum variance: <script type="math/tex">\dfrac{\lambda_d}{n}.</script></dd>
-      <dd>Thus, the maximum of the <em>Rayleigh Quotient</em> is achieved at the Eigen-vector that has the highest correpsonding Eigen-value.</dd>
-      <dd>We find subsequent vectors by finding the next biggest <script type="math/tex">\lambda_i</script> and choosing its corresponding Eigen-vector.</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Another Derivation from Statistics:</strong></dt>
-      <dd>The data matrix has points <script type="math/tex">x_i</script>; its component along a proposed axis <script type="math/tex">u</script> is <script type="math/tex">(x · u)</script>.</dd>
-      <dd>The variance of this is <script type="math/tex">E(x · u − E(x · u))^2</script></dd>
-      <dd>and the optimization problem is</dd>
-      <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-\begin{align}
-\max_{u : \|u\|_2=1} \: E(x · u − E(x · u))^2 & \\
-& \ = \max_{u : \|u\|_2=1} \:  E[(u \cdot (x − Ex))^2] \\
-& \ = \max_{u : \|u\|_2=1} \:  uE[(x − Ex) \cdot (x − Ex)^T]u \\
-& \ = \max_{u : \|u\|_2=1} \:  u^T \Sigma u
-\end{align} %]]></script>
-      </dd>
-      <dd>where the matrix <script type="math/tex">{\displaystyle \Sigma \:= \dfrac{1}{n} \sum_{j=1}^n (x_j-\hat{x})(x_j-\hat{x})^T}.</script></dd>
-      <dd>Since <script type="math/tex">\Sigma</script> is symmetric, the <script type="math/tex">u</script> that gives the maximum value to <script type="math/tex">u^T\Sigma u</script> is the eigenvector of <script type="math/tex">\Sigma</script> with the largest eigenvalue.</dd>
-      <dd>The second and subsequent principal component axes are the other eigenvectors sorted by eigenvalue.</dd>
-    </dl>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="content4">Derivation 3. Minimize Projection Error</h2>
-
-<ol>
-  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">What?</strong> <br />
-    <ol>
-      <li>Find direction ‘<script type="math/tex">w</script>’ that minimizes the <em>Projection Error</em>.</li>
-    </ol>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Derivation:</strong></dt>
-      <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-\begin{align}
-\min_{u : \|u\|_2 = 1} \; \sum_{i=1}^n \|x_i - \tilde{x_i}\|^2 & \\
-& \ = \min_{u : \|u\|_2 = 1} \; \sum_{i=1}^n \|x_i -\dfrac{x_i \cdot w}{\|w\|_2^2}w\|^2 \\
-& \ = \min_{u : \|u\|_2 = 1} \; \sum_{i=1}^n \left[\|x_i\|^2 - (x_i \cdot \dfrac{w}{\|w\|_2})^2\right] \\
-& \ = \min_{u : \|u\|_2 = 1} \; c - n*\sum_{i=1}^n(x_i \cdot \dfrac{w}{\|w\|_2})^2 \\
-& \ = \min_{u : \|u\|_2 = 1} \; c - n*Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\})
-\end{align} %]]></script>
-      </dd>
-      <dd>Thus, minimizing projection error is equivalent to maximizing variance.</dd>
-    </dl>
-  </li>
-</ol>
 
 
       <footer class="site-footer">

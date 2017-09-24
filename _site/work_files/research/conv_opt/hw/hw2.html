@@ -194,29 +194,85 @@ $${\displaystyle
 &amp;= \operatorname{tr}(I_nD) \:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(\text{Orthogonality of} U) \\
 &amp;= \operatorname{tr}(D) \\
 &amp;= \sum_{i=1}^{d} \lambda_i \:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(\text{def. of Trace}) \\
+&amp;= \vec{\lambda}^T\cdot\vec{1} \:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(\text{where$$ \lambda $$is vec of eigenvalues}) \\
 \end{align}
 }
 $$  
 </p>
-    <p><script type="math/tex">\operatorname{tr} (A)</script></p>
+    <p><script type="math/tex">{\displaystyle \|A\|_{\rm {F}}}</script></p>
     <p>  
-$${\displaystyle
+$$
+{\displaystyle
 \begin{align}
-&amp;= \operatorname{tr}(UDU^T) \:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(A \text{is symmetric}) \\
-&amp;= \operatorname{tr}(U^TUD) \:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(\text{Cyclic property of Trace}) \\
-&amp;= \operatorname{tr}(I_nD) \:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(\text{Orthogonality of} U) \\
-&amp;= \operatorname{tr}(D) \\
-&amp;= \sum_{i=1}^{d} \lambda_i \:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(\text{def. of Trace}) \\
+&amp;= {\sqrt {\sum _{i=1}^{m}\sum _{j=1}^{n}|a_{ij}|^{2}}} \:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(\text{def.}) \\
+&amp;= {\sqrt{\langle A, B \rangle}} \:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(\text{Scalar product}) \\
+&amp;= {\sqrt{\operatorname{tr}(A^TA)}} \:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(\text{Sum of the diagonal entries}) \\
+&amp;= {\sqrt{\operatorname{tr}((U\Lambda U^T)^T(U\Lambda U^T))}} \:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(A\text{ is symmetric}) \\
+&amp;= {\sqrt{\operatorname{tr}(U\Lambda U^TU\Lambda U^T)}} \\
+&amp;= {\sqrt{\operatorname{tr}(U\Lambda^2U^T)}} \\
+&amp;= {\sqrt{\operatorname{tr}(UU^T\Lambda^2)}} \:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(\text{Cyclic property of trace}) \\
+&amp;= {\sqrt{\operatorname{tr}(\Lambda^2)}} \:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(\text{from the first part}) \\
+&amp;= {\sqrt {\sum _{i=1}^{n} \lambda_{i}^{2}(A)}} \\
+&amp;= {\sqrt {\vec{\lambda}*\vec{\lambda}\cdot\vec{1}}} \:\:\:\:\:\:\:\:\:\:\:\:\:\: &amp;(\text{element-wise product}) \\
 \end{align}
 }
 $$  
 </p>
   </li>
+  <li>
+    <p><script type="math/tex">|\langle A,A\rangle| |\langle I,I\rangle| \ge |\langle A,I\rangle|^2</script> (Cauchy Shwartz) or,<br />
+<script type="math/tex">\operatorname{trace}(A^2)\ge\frac{1}{n}\operatorname{trace}(A)^2</script> but n here is just the rank,<br />
+<script type="math/tex">\implies\|A\|_F^2\ge\frac{\operatorname{trace}(A)^2}{rank(A)}</script></p>
+  </li>
+  <li>
+    <p>It appears that the only critireon needed here is the fact that the matrix is square. Otherwise the Trace is not defined. 
+ However, since we did our analysis with respect to the eigenvalues, we should note that the singular values and the eigen values of a matrix may very much not agree if the matrix was not PSD.
+ Notice that if the same analysis could be made with the singularvalues instead.</p>
+
+    <p>Also, notice that even for non-square matrices, we could have a similar tight bound if we replace the <script type="math/tex">trace(A)^2</script> with the trace norm (nuclear norm).</p>
+  </li>
 </ol>
 
-<p>2.
-<script type="math/tex">\langle A,A\rangle \langle I,I\rangle \ge |\langle A,I\rangle|^2</script> or, <script type="math/tex">\operatorname{trace}(A^2)\ge\frac{1}{n}\operatorname{trace}(A)^2</script></p>
+<h2 id="q4">Q.4)</h2>
 
+<ol>
+  <li>
+    <ul>
+      <li><strong>Proof.</strong>
+        <ul>
+          <li>Suppose we have an affine hyperplane defined by <script type="math/tex">c^T \cdot x = b</script> and a point <script type="math/tex">d</script>.</li>
+          <li>Suppose that <script type="math/tex">\vec{x_0} \in \mathbf{R}^n</script> is a point satisfying <script type="math/tex">c^T \cdot \vec{x_0} - b = 0</script>, i.e. it is a point on the plane.</li>
+          <li>
+            <p>We construct the vector <script type="math/tex">d−\vec{x_0}</script> which points from <script type="math/tex">\vec{x_0}</script> to <script type="math/tex">d</script>, and then, project it onto the unique vector perpendicular to the plane, i.e. <script type="math/tex">c^T</script>,</p>
+
+            <script type="math/tex; mode=display">dist=\| \text{proj}_{c} (d-\vec{x_0})\| = \left\| \frac{c^T\cdot(d-\vec{x_0}) }{c^T \cdot c} c \right\| = \|c^T \cdot d - c^T\vec{x_0}\|\frac{\|c\|}{\|c\|^2} = \frac{\|c^T \cdot d - c^T\vec{x_0}\|}{\|c\|}.</script>
+          </li>
+          <li>
+            <p>We chose <script type="math/tex">\vec{x_0}</script> such that <script type="math/tex">c^T\cdot \vec{x_0} = b</script> and <script type="math/tex">\|c\|_2=1</script> so we get</p>
+
+            <script type="math/tex; mode=display">dist=\| \text{proj}_{c} (d-\vec{x_0})\| = \|c^T \cdot d - b\|</script>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><script type="math/tex">\min_{c,b} dist^2 = \min_{c,b} |c^T \cdot d - b|^2 = \min_{c,b} \|c^T \cdot d - b\|_2^2</script>
+<script type="math/tex">\implies \min_{c,b} (c^Td-b)^T(c^Td-b) = (d^Tc-b^T)(c^Td-b)=d^Tcc^Td-d^Tcb-b^Tc^Td+b^Tb \\= c^Tdd^Tc-2b^Tc^Td+b^Tb</script></p>
+  </li>
+  <li>To minimize this, we find both partial derivatives and set them both equal to zero and solve.
+ Since, partial of b is 0 we proceed:<br />
+ <script type="math/tex">frac{d}{db} f_0(b,c) = -2 (dd^T-b^Td) \sum bi = 0</script>
+    <blockquote>
+      <p>This is equal to zero when <script type="math/tex">b = 1/n \sum x_i</script> is the average of the sample points.<br />
+ Now we only need to minimize over <script type="math/tex">c</script>:<br />
+ <script type="math/tex">\min_c (c^T(dd^T-b^Td)c) = \min_c (c^T((d^d)I-dd^T)c) = \min_c (c^T(DD^T)c)</script></p>
+    </blockquote>
+  </li>
+  <li>We can use expressions for projectors from the SVD to obtain for the general solution.
+ We compute the SVD.
+ The sol with minimum norm is V1 Σ−1r UT1 b</li>
+</ol>
 
 
       <footer class="site-footer">

@@ -189,3 +189,20 @@ $$\sigma^2(w) = \dfrac{1}{m} \sum t_i(w)^2  = \dfrac{1}{m} \sum (\vec{w}^T\vec{x
 $$\implies \Sigma = \dfrac{1}{m} \sum \vec{x}^{(i)} {\vec{x}^{(i)}}^T = C$$.  
 Since it is a constant, the eigenvalues are all the same.  
 This implies that $$\Sigma$$ is proportional to the identity matrix with constant of proportionality equals to the constant earlier, where $$C = \sigma^2(w)$$.
+
+
+
+1.
+array([ 0.23249528+0.j,  0.23249528+0.j,  0.11624764+0.j,  0.69748583+0.j,
+        0.23249528+0.j,  0.58123819+0.j])
+
+        [ 0.11111111,0.11111111,0.05555556,0.33333333,0.11111111,0.27777778]
+
+
+tr(A) = tr(UDU T
+) = tr(U
+TUD) = tr(D) = X
+d
+i=1
+λi
+,

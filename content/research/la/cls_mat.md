@@ -274,9 +274,18 @@ prevLink: /work_files/research/la.html
     The matrix has elements $$u_iu_j$$, and is symmetric.
     > If $$\|u\|_2 = 1$$, then the dyad is said to be normalized.
 
-    * **Properties:**
-        1. Symmetric dyads corresponds to quadratic functions that are simply squared linear forms:  
-        $$q(x) = (u^Tx)^2$$
+    :   $$
+        uu^T = \left(\begin{array}{ccc} u_1^2  & u_1u_2  & u_1u_3  \\
+        u_1u_2 & u_2^2   & u_2u_3  \\
+        u_1u_3 & u_2u_3  & u_3^2  \end{array} \right)
+        $$  
+    :   * **Properties:**
+            1. Symmetric dyads corresponds to quadratic functions that are simply squared linear forms:  
+            $$q(x) = (u^Tx)^2$$
+            2. When the vector $$u$$ is normalized (unit), then:  
+            $$\mathbf{Tr}(uu^T) = \|u\|_2^2 = 1^2 = 1$$  
+            > This follows from the fact that the diagonal entries of a symmetric dyad are just $$u_i^2, \forall i \in [1, n]$$
+            3. 
 
 ***
 

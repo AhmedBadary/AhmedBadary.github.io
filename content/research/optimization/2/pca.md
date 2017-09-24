@@ -80,7 +80,7 @@ prevLink: /work_files/research/conv_opt
 2. **Algorithm:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents22} \\
     1. Center $$X$$
     2. Normalize $$X$$.
-        > Optional. Should only be done if the units of measurement differ.
+        > Optional. Should only be done if the units of measurement of the features differ.
     3. Compute the unit Eigen-values and Eigen-vectors of $$X^TX$$
     4. Choose '$$k$$' based on the Eigenvalue sizes
         > Optional. Top to bottom.
@@ -97,11 +97,12 @@ prevLink: /work_files/research/conv_opt
     2. Maximize the variance
 
 2. **Derivation:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents32}
-    :   $$\max_{w : \|w\|_2=1} \: Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\}) = \dfrac{1}{n} \sum_{i=1}{n}(x_i.\dfrac{w}{\|w\|})^2$$
+    :   $$\max_{w : \|w\|_2=1} \: Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\})$$
     :   $$
         \begin{align}
-        & \ = \dfrac{1}{n} \dfrac{\|xw\|^2}{\|w\|^2} \\
-        & \ = \dfrac{1}{n} \dfrac{w^TX^TXw}{w^Tw}
+        & \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \sum_{i=1}{n}(x_i.\dfrac{w}{\|w\|})^2 \\
+        & \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \dfrac{\|xw\|^2}{\|w\|^2} \\
+        & \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \dfrac{w^TX^TXw}{w^Tw}
         \end{align}
         $$
     :   Where $$\dfrac{1}{n}\dfrac{w^TX^TXw}{w^Tw}$$ is the **_Rayleigh Quotient_**.
@@ -114,16 +115,16 @@ prevLink: /work_files/research/conv_opt
     :   The data matrix has points $$x_i$$; its component along a proposed axis $$u$$ is $$(x · u)$$.
     :   The variance of this is $$E(x · u − E(x · u))^2$$
     :   and the optimization problem is
-    :   $$\max_{u : \|u\|_2=1} \: E(x · u − E(x · u))^2$$
     :   $$
         \begin{align}
-        & \ = E[(u \cdot (x − Ex))^2] \\
-        & \ = uE[(x − Ex) \cdot (x − Ex)^T]u \\
-        & \ = u^T \Sigma u
+        \max_{u : \|u\|_2=1} \: E(x · u − E(x · u))^2 & \\
+        & \ = \max_{u : \|u\|_2=1} \:  E[(u \cdot (x − Ex))^2] \\
+        & \ = \max_{u : \|u\|_2=1} \:  uE[(x − Ex) \cdot (x − Ex)^T]u \\
+        & \ = \max_{u : \|u\|_2=1} \:  u^T \Sigma u
         \end{align}
         $$
-    :   where, $$\Sigma := \dfrac{1}{n} \sum_{j=1}^n (x_j-\hat{x})(x_j-\hat{x})^T.$$  
-    :   The $$u$$ that gives the maximum value to $$u^T\Sigma u$$ is the eigenvector of $$\Sigma$$ with the largest eigenvalue.
+    :   where the matrix $${\displaystyle \Sigma \:= \dfrac{1}{n} \sum_{j=1}^n (x_j-\hat{x})(x_j-\hat{x})^T}.$$
+    :   Since $$\Sigma$$ is symmetric, the $$u$$ that gives the maximum value to $$u^T\Sigma u$$ is the eigenvector of $$\Sigma$$ with the largest eigenvalue.
     :   The second and subsequent principal component axes are the other eigenvectors sorted by eigenvalue.
 
 ***
@@ -133,16 +134,15 @@ prevLink: /work_files/research/conv_opt
 
 1. **What?**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents41} \\
     1. Find direction '$$w$$' that minimizes the _Projection Error_.
-    2. 
 
 2. **Derivation:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents42}
-    :   $$\min_{u : \|u\|_2 = 1} \; \sum_{i=1}^n \|x_i - \tilde{x_i}\|^2$$
     :   $$
         \begin{align}
-        & \ = \sum_{i=1}^n \|x_i -\dfrac{x_i \cdot w}{\|w\|_2^2}w\|^2 \\
-        & \ = \sum_{i=1}^n \left[\|x_i\|^2 - (x_i \cdot \dfrac{w}{\|w\|_2})^2\right] \\
-        & \ = c - n*\sum_{i=1}^n(x_i \cdot \dfrac{w}{\|w\|_2})^2 \\
-        & \ = c - n*Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\})
+        \min_{u : \|u\|_2 = 1} \; \sum_{i=1}^n \|x_i - \tilde{x_i}\|^2 & \\
+        & \ = \min_{u : \|u\|_2 = 1} \; \sum_{i=1}^n \|x_i -\dfrac{x_i \cdot w}{\|w\|_2^2}w\|^2 \\
+        & \ = \min_{u : \|u\|_2 = 1} \; \sum_{i=1}^n \left[\|x_i\|^2 - (x_i \cdot \dfrac{w}{\|w\|_2})^2\right] \\
+        & \ = \min_{u : \|u\|_2 = 1} \; c - n*\sum_{i=1}^n(x_i \cdot \dfrac{w}{\|w\|_2})^2 \\
+        & \ = \min_{u : \|u\|_2 = 1} \; c - n*Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\})
         \end{align}
         $$
     :   Thus, minimizing projection error is equivalent to maximizing variance.
