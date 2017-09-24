@@ -70,13 +70,13 @@
     <li><a href="#content1">What is Cryptography?</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">SECOND</a></li>
+    <li><a href="#content2">Caeser Ciphers</a></li>
   </ul>
   <ul class="TOC3">
-    <li><a href="#content3">THIRD</a></li>
+    <li><a href="#content3">n-time Pads</a></li>
   </ul>
   <ul class="TOC4">
-    <li><a href="#content4">FOURTH</a></li>
+    <li><a href="#content4">Modern Block Cyphers</a></li>
   </ul>
   <ul class="TOC5">
     <li><a href="#content5">FIFTH</a></li>
@@ -162,49 +162,120 @@
     4. <strong>Encryption Function <script type="math/tex">(E(M_i, K))</script>:</strong> A function of the message and the key that outputs the <em>cyphertext</em>.<br />
     5. <strong>Decryption Function <script type="math/tex">(D(C_i,K))</script>:</strong></p>
   </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Types of Attacks:</strong> <br />
+    <ol>
+      <li><strong>Cyphertext-only Attack:</strong>
+        <ul>
+          <li>Eve sees every instance of <script type="math/tex">C_i</script>.</li>
+          <li>Eve knows some partial information (Variant).
+            <blockquote>
+              <p>e.g. message is in English.</p>
+            </blockquote>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Known Plaintext:</strong>
+        <ul>
+          <li>Eve knows part of <script type="math/tex">M_i</script> and/or entire other <script type="math/tex">M_j</script>’s.</li>
+        </ul>
+      </li>
+      <li><strong>Chosen Plaintext:</strong>
+        <ul>
+          <li>Eve gets Alice to send <script type="math/tex">M_j</script>’s of Eve’s choosing.</li>
+        </ul>
+      </li>
+      <li><strong>Chose Cyphertext:</strong>
+        <ul>
+          <li>Eve tricks Bob into decrypting some <script type="math/tex">C_j</script> of her choice and he reveals something about the result.</li>
+        </ul>
+      </li>
+      <li><strong>Combination of all above:</strong>
+        <ul>
+          <li>Idealy, we would like to defend against this.</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Symmetric Key Encryption:</strong></dt>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents122">Symmetric Key Encryption:</strong></dt>
       <dd>When both the sender and receiver have the same key to encrypt and decrypt.</dd>
     </dl>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Eve’s Capabilities:</strong> <br />
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Independence Under Chosen Plaintext Attack game (IND=CPA):</strong> <br />
     <ul>
-      <li><strong>NO knowledge of K:</strong></li>
-      <li><strong>Recognition of Success:</strong></li>
+      <li><strong>Eve is interacting with an encryption “Oracle”:</strong> The Oracle has an unknown key <script type="math/tex">k</script>.</li>
+      <li><strong>Eve can provide TWO seperate chosen plaintexts of the same length:</strong> Oracle will randomly select one to encrypt with the unknown key; the game can <em>repeat</em>.</li>
+      <li><strong>Eve’s Goal:</strong> To have a better thatn random chance of guessing which plaintext the Oracle selected.
+        <blockquote>
+          <p>Variations include the Orcale always selecting the first or the second.</p>
+        </blockquote>
+      </li>
+      <li><strong>To be Independent under Chose Plaintext:</strong> Eve must not be able to achieve her goal.</li>
     </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Asynchronous:</strong></p>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Kerckhoffs Principle:</strong> <br />
+    <ol>
+      <li>Cryptosystems should remain secure even when the attakcer knows all the internal details.
+        <blockquote>
+          <p>Don’t rely on security by 0bs<script type="math/tex">\in</script>cur!ty.</p>
+        </blockquote>
+      </li>
+      <li>Key should be the only thing that must stay secret.</li>
+      <li>It should be easy to change keys.</li>
+    </ol>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Asynchronous:</strong></p>
-  </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">Asynchronous:</strong></li>
 </ol>
 
 <hr />
 
-<h2 id="content2">n-Time Pads</h2>
-
-<p class="message"> Provably secure crypto-systems</p>
+<h2 id="content2">Caeser Ciphers</h2>
 
 <ol>
-  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">One-Time Pad:</strong> <br />
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">ROTK and ROT-K:</strong></dt>
+      <dd><strong>ROTK</strong> is an encryption function <script type="math/tex">(E(M,K)=ROTK(M))</script> that takes each letter in <script type="math/tex">M</script> and ‘rotates’ it $K$$ positions (with-wrapping) through the alphabet.</dd>
+      <dd><strong>ROT-K</strong> is a decryption function <script type="math/tex">(D(C,K)=ROT-K(C))</script> that takes each letter in <script type="math/tex">M</script> and ‘rotates’ it $26-K$$ positions (with-wrapping) through the alphabet.</dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Attacks on Caesar Ciphers:</strong> <br />
+    <ol>
+      <li><strong>Brute-Force:</strong> try every possible value of k.</li>
+      <li><strong>Deduction:</strong> (<em>known plaintext</em>) Analyze letter frequencies - (<em>chosen plaintext</em>) Guess possible words.</li>
+    </ol>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Enigma:</strong> 
+ Uses Caesar Ciphers but with a new key for each letter.</li>
+</ol>
+
+<h2 id="n-time-pads">n-time Pads</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents30">The XOR <script type="math/tex">(\oplus)</script> function:</strong></dt>
+      <dd>
+        <script type="math/tex; mode=display">% <![CDATA[
+\\
+     \begin{align}
+     X \oplus 0 &= X \\
+     X \oplus X &= 0 \\
+     X \oplus Y &= Y \oplus X \\
+     X \oplus (Y \oplus Z) &= (X \oplus Y) \oplus Z
+     \end{align} %]]></script>
+      </dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">One-Time Pad:</strong> <br />
     <ul>
       <li>We use a different key for each message M.
         <ul>
           <li>Different = Completely Independent.</li>
         </ul>
       </li>
-      <li>Make the key as long as M.
- *<script type="math/tex">E(M,k) = M \xor K</script>.</li>
+      <li>Make the key as long as M.</li>
+      <li><strong><script type="math/tex">E(M,k) = M \oplus K</script></strong>.</li>
       <li>
         <p><strong>Proof of security:</strong><br />
   Since K is random and independent, all possible bit-patterns for C are equally likely and the attacker cannot know anything about the system even from random text.<br />
@@ -213,16 +284,16 @@
       <li><strong>Issues:</strong>
         <ol>
           <li><strong>Key-Generation:</strong> Need truly Random, Indepndent keys. Those are very very difficult to generate.</li>
-          <li>Key-Distribution:** Need to share keys as long as all possible communication</li>
+          <li><strong>Key-Distribution:</strong> Need to share keys as long as all possible communication.</li>
         </ol>
       </li>
     </ul>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Two-Time Pads:</strong> <br />
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Two-Time Pads:</strong> <br />
     <ul>
       <li>Reusing a key K one more time.</li>
       <li>Alice sends C = E(M,K) and C’=E(M’,K).</li>
-      <li>Eve Obseves <script type="math/tex">M \xor K \text{ and } M' \xor K</script> and computes <script type="math/tex">C \xor C' = (M \xor K) \xor (M' \xor K) = M \xor M'</script>.</li>
+      <li>Eve Obseves <script type="math/tex">M \oplus K \text{ and } M' \oplus K</script> and computes <script type="math/tex">C \oplus C' = (M \oplus K) \oplus (M' \oplus K) = M \oplus M'</script>.</li>
       <li>Now, Eve knows everything about M’.</li>
       <li>Thus, it is insecure.</li>
     </ul>
@@ -234,20 +305,195 @@
 <h2 id="content3">Modern Encryption</h2>
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Block Cypher:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Block Cypher:</strong> <br />
+    <ul>
+      <li>A function <script type="math/tex">E : \{0, 1\}^b \times \{0, 1\}^k \rightarrow \{0, 1\}^b</script>.</li>
+      <li>[For a fixed <script type="math/tex">K</script>] <script type="math/tex">E_K : \{0, 1\}^b \rightarrow \{0, 1\}^b</script>,  denoted by <script type="math/tex">E_K(M) = E(M,K)</script>.</li>
+      <li><strong>Properties:</strong>
+        <ol>
+          <li><em>Correctness:</em>  <script type="math/tex">E_K(M)</script> is a bijective permutation function.</li>
+          <li><em>Efficiency:</em> computable in microseconds.</li>
+          <li><em>Security:</em> For unknown <script type="math/tex">K</script>, “behaves” like a random permutation.</li>
+        </ol>
+      </li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Data Encryption Standard (DES):</strong> <br />
+    <ul>
+      <li>Designed in the Seventies.</li>
+      <li>Block Size 64 bits, Key size 56 bits.</li>
+      <li>Tweaked by the NSA.</li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Advanced Encryption Standard (AES):</strong> <br />
+    <ul>
+      <li>20 years old, Standarized 15 years ago.</li>
+      <li>Block size 128 bits.</li>
+      <li>Key size 128, 192, 256 bits.</li>
+      <li>Assumed (but not proven) secure.</li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Asynchronous:</strong> \</p>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Analysis on Brute-Forcing:</strong> <br />
+    <ul>
+      <li><script type="math/tex">2^128 \leq 10^39</script> possibilities.</li>
+      <li>CPU capacity <script type="math/tex">10^9 = 1b</script> keys/second <script type="math/tex">= 10^18</script> keys/sec.</li>
+      <li>Thus, we will need <script type="math/tex">10^21</script> seconds, or approximately, <script type="math/tex">3*10^13 = 30</script> trillion years.</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">Drawbacks of Block Ciphers:</strong> <br />
+    <ul>
+      <li>Block Ciphers can only encrypt messages of a certain size.
+        <ul>
+          <li>If <script type="math/tex">M</script> is smaller, then just pad it.</li>
+          <li>If <script type="math/tex">M</script> is larger, then repeatedly apply block cipher.</li>
+        </ul>
+      </li>
+    </ul>
   </li>
 </ol>
 
+<h2 id="modern-block-ciphers">Modern Block Ciphers</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Electronic Code Book Mode(ECB):</strong> <br />
+    <ul>
+      <li>Simplest Block Cipher mode.</li>
+      <li>Split the message into b-bit blocks <script type="math/tex">P_1, P_2, \cdots</script>.</li>
+      <li>Each block is enciphered independently, separate from the other blocks <script type="math/tex">C_i = E(P_i, K)</script>.</li>
+      <li>Since the key <script type="math/tex">K</script> is fixed, each block is subject to the same permutation.</li>
+    </ul>
+
+    <p><img src="/main_files/cs/ic/all.png" alt="img" width="100%" /></p>
+
+    <ul>
+      <li><strong>Issues:</strong>
+        <ul>
+          <li>Not IND-CPA</li>
+          <li>Thus, the relationship between the plaintext is reflected in the cyphertext.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Building a better Cipher:</strong> <br />
+    <ol>
+      <li>Ensure blocks incorporate more than just the plaintext to mask relationships between blocks:
+        <ol>
+          <li>Include elements of prior computation.</li>
+          <li>(OR) Include positional information.</li>
+        </ol>
+      </li>
+      <li>Add initial Randomness:
+        <ol>
+          <li>Prevent encryption scheme from determinism revealing relationships between messages.</li>
+          <li>Introduce initialization vector (IV).
+            <blockquote>
+              <p>IV is a public nonce, a use-once unique value: Easiest way to get one is generate it randomly</p>
+            </blockquote>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">CBC Encryption:</strong></dt>
+      <dt> :</dt>
+      <dd>
+        <ul>
+          <li><strong>Algorithm (Encryption)</strong>
+            <ul>
+              <li>If b is the block size of the block cipher, split the plaintext in blocks of size <script type="math/tex">b: P_1, P_2, P_3, \cdots</script>.</li>
+              <li>Choose a random IV (do not reuse for other messages)</li>
+              <li>Define <script type="math/tex">C_0 = IV</script>.</li>
+              <li>The ith ciphertext block is given by <script type="math/tex">C_i = E_K(C_{i−1} \oplus M_i)</script>.</li>
+              <li>The ciphertext is the concatenation of the initial vector and these individual blocks: <script type="math/tex">C = IV \cdot C_1 \cdot C_2 \cdots C_l</script>.</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Algorithm (Decryption)</strong>
+            <ul>
+              <li>Take the <script type="math/tex">IV</script> out of the ciphertext.</li>
+              <li>If <script type="math/tex">b</script> is the block size of the block cipher, split the ciphertext in blocks of size <script type="math/tex">b: C_1, C_2, C_3, \cdots</script>.</li>
+              <li>The ith plaintext block is given by <script type="math/tex">P_i = D_K(C_{i−1} \oplus M_i)</script>.</li>
+              <li>Output the plaintext as the concatenation of <script type="math/tex">P_1, P_2, P_3, \cdots</script>.</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Properties:</strong>
+            <ul>
+              <li>Widely used.</li>
+              <li><em>Security:</em> If no reuse of nonce, both are provably secure (IND-CPA) assuming the underlying block cipher is secure.</li>
+              <li>REusing the <script type="math/tex">IV</script> voids IND-SPA but is not terrible.</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Issues:</strong>
+            <ul>
+              <li>Sequential encryption; we can’t parallelize encryption.</li>
+              <li>Must finish encrypting block <script type="math/tex">b</script> before starting <script type="math/tex">b+1</script>.
+                <blockquote>
+                  <p>But you can parallelize decryption</p>
+                </blockquote>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd><img src="/main_files/cs/ic/all2.png" alt="img" width="100%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">CTR Mode:</strong></dt>
+      <dd>We avoid the issue of not non-parallizable ciphers by by encrypting a counter initialized to IV to obtain a sequence that can now be used as though they were the keys for a one-time pad:<br />
+ namely, <script type="math/tex">Z_i = E_K(IV + i) \</script> and <script type="math/tex">\ C_i = Z_i \oplus M_i</script>.
+        <blockquote>
+          <p>Uses the encryptor for decrypting.<br />
+CTR mode is a <em>Stream Cipher</em>.</p>
+        </blockquote>
+      </dd>
+      <dd>REusing the <script type="math/tex">IV \implies</script> no more security.</dd>
+      <dd><img src="/main_files/cs/ic/all3.png" alt="img" width="100%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents45">CFB Mode:</strong></dt>
+      <dd></dd>
+      <dd>
+        <ul>
+          <li><strong>Properties:</strong>
+            <ul>
+              <li>Since the encryption is XORed with the plaintext.
+                <blockquote>
+                  <p>It is more convineant than CBC since it can end on a “short” block without a problem.</p>
+                </blockquote>
+              </li>
+              <li>Similar security properties as CBC mode:
+                <ol>
+                  <li>Sequential encryption, parallel decryption.</li>
+                  <li>Same error propagation effects.</li>
+                  <li>Effectively the same for IND-CPA.</li>
+                </ol>
+              </li>
+              <li>Worse than CBC if you reuse the <script type="math/tex">IV</script>.</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd><img src="/main_files/cs/ic/all4.png" alt="img" width="100%" /></dd>
+    </dl>
+  </li>
+</ol>
 
 
       <footer class="site-footer">
