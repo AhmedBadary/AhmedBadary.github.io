@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">Security Vulnerabilities <br /> Examples</h1>
+  <h1 class="project-name">Convex Optimization</h1>
   <h2 class="project-tagline"></h2>
   <a href="/work_files/school.html" class="btn">Courses</a>
   <a href="/work_files/school/128a.html" class="btn">Chapters</a>
-  <a href= /work_files/dev/cs.html class="btn">This Chapter</a>
+  <a href= /work_files/research/la.html class="btn">This Chapter</a>
 </section>
 
 <!-- <div>
@@ -67,7 +67,7 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">Buffer Overflow</a></li>
+    <li><a href="#content1">FIRST</a></li>
   </ul>
   <ul class="TOC2">
     <li><a href="#content2">SECOND</a></li>
@@ -89,68 +89,17 @@
 <hr />
 <hr />
 
-<h2 id="content1">Buffer Overflow</h2>
-<p>In this discussion, we are trying to fit data (observations) of the form <script type="math/tex">\{(x_i,y_i),i=1,2,...,n\}</script> to a polynomial that we know looks like this:</p>
-
-<script type="math/tex; mode=display">y = f(x) = a_0 + a_1x + a_2x^2 + a_3x^3 + a_4x^4</script>
-
-<p>In other words, we want to find <script type="math/tex">a_0</script>, <script type="math/tex">a_1</script>, <script type="math/tex">a_2</script>, <script type="math/tex">a_3</script>, and <script type="math/tex">a_4</script> that best fit the data.</p>
-
-<p>More generally, we might want to fit the data to a polynomial of different degree (for instance, if we do not know that the polynomial looks like as above), so we could try to solve for some <script type="math/tex">a_0,a_1,\ldots,a_d</script> that define a <script type="math/tex">d</script>-degree polynomial.</p>
-
-<p>Note that the observations are not perfect – they are <em>noisy</em>, which means that <script type="math/tex">y_i \neq f(x_i)</script> in general! That is what makes this problem interesting.</p>
-
-<p>This first block of code contains functions that will help us set up some useful objects – the polynomial curve for a set of parameters <script type="math/tex">a_0</script>, <script type="math/tex">a_1</script>, <script type="math/tex">a_2</script>, <script type="math/tex">a_3</script>, and <script type="math/tex">a_4</script> and a “data” matrix that we will use to compute the least squares estimate later.</p>
+<h2 id="content1">Convex Sets</h2>
 
 <ol>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Disc.2:</strong> <br />
-    <div class="language-c highlighter-rouge"><pre class="highlight"><code>     <span class="k">struct</span> <span class="n">food</span> <span class="p">{</span>
-         <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">2</span> <span class="mi">4</span><span class="p">];</span>
-         <span class="kt">int</span> <span class="n">c</span> <span class="n">a</span> <span class="n">l</span> <span class="n">o</span> <span class="n">r</span> <span class="n">i</span> <span class="n">e</span> <span class="n">s</span><span class="p">;</span>
-     <span class="p">};</span>
-     <span class="cm">/* Evaluate a shopping basket with at most 32 food items.
-     Returns the number of low-calorie items, or -1 on a problem. */</span>
-         <span class="kt">int</span> <span class="nf">evalbasket</span><span class="p">(</span><span class="k">struct</span> <span class="n">food</span> <span class="n">basket</span><span class="p">[],</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-             <span class="k">struct</span> <span class="n">food</span> <span class="n">good</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
-             <span class="kt">char</span> <span class="n">bad</span><span class="p">[</span><span class="mi">1024</span><span class="p">],</span> <span class="n">cmd</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
-             <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ngood</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">size_bad</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-             <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">32</span><span class="p">)</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-             <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-                 <span class="k">if</span> <span class="p">(</span><span class="n">basket</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">calories</span><span class="o">&lt;</span><span class="mi">100</span><span class="p">)</span>
-                     <span class="n">good</span><span class="p">[</span><span class="n">ngood</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">basket</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-                 <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">basket</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">calories</span><span class="o">&gt;</span><span class="mi">500</span><span class="p">)</span> <span class="p">{</span>
-                     <span class="kt">size_t</span> <span class="n">len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">basket</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span><span class="p">);</span>
-                     <span class="n">snprintf</span><span class="p">(</span><span class="n">bad</span> <span class="o">+</span> <span class="n">size_bad</span><span class="p">,</span> <span class="n">len</span><span class="p">,</span> <span class="s">"%s"</span><span class="p">,</span> <span class="n">basket</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span><span class="p">);</span>
-                     <span class="n">size_bad</span> <span class="o">+=</span> <span class="n">len</span><span class="p">;</span>
-                 <span class="p">}</span>
-                 <span class="n">total</span><span class="o">+=</span><span class="n">basket</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">calories</span><span class="p">;</span>
-             <span class="p">}</span>
-             <span class="k">if</span> <span class="p">(</span><span class="n">total</span> <span class="o">&gt;</span> <span class="mi">2500</span><span class="p">)</span> <span class="p">{</span>
-                 <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">fmt</span> <span class="o">=</span> <span class="s">"health-factor--calories %d --bad-items %s"</span><span class="p">;</span>
-                 <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">"lotsofcalories!"</span><span class="p">);</span>
-                 <span class="n">snprintf</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">total</span><span class="p">,</span> <span class="n">bad</span><span class="p">);</span>
-                 <span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
-             <span class="p">}</span>
-             <span class="k">return</span> <span class="n">ngood</span><span class="p">;</span>
-         <span class="p">}</span>
-</code></pre>
-    </div>
-    <ul>
-      <li><strong>Where:</strong>
-        <ul>
-          <li><code class="highlighter-rouge">strlen</code> calculates the length of a string, not including the terminating ‘\0’ character.</li>
-          <li><code class="highlighter-rouge">snprintf(buf, len, fmt, . . . )</code> works like printf, but instead writes to buf, and won’t write more than len - 1 characters. It terminates the characters written with a <code class="highlighter-rouge">‘\0’</code>.</li>
-          <li>system runs the shell command given by its first argument.</li>
-        </ul>
-      </li>
-      <li><strong>Solution:</strong>
-        <ol>
-          <li>Line 15 has a fencepost error: the conditional test should be i &lt; n rather than i &lt;= n. The test at line 13 assures that n doesn’t exceed 32, but if it’s equal to 32, and if all of the items in basket are “good”, then the assignment at line 17 will write past the end of good, representing a buffer overflow vulnerability.</li>
-          <li>At line 20, there’s an error in that the length passed to snprintf is supposed to be available space in the buffer (which would be sizeof bad - size bad), but instead it’s the length of the string being copied (along with a blank) into the buffer. Therefore by supplying large names for items in basket, the attacker can write past the end of bad at this point, again representing a buffer overflow vulnerability.</li>
-          <li>At line 31, a shell command is run based on the contents of cmd, which in turn includes values from bad, which in turn is derived from input provided by the attacker. That input could include shell command characters such as pipes (‘|’) or command separators (‘;’), facilitating <em>command injection</em>.</li>
-        </ol>
-      </li>
-    </ul>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Asynchronous:</strong></dt>
+      <dd>A subset <script type="math/tex">\mathbf{C}</script> of <script type="math/tex">\mathbf{R}^</script>n is said to be convex if and only if it contains the line segment between any two points in it:</dd>
+      <dd>
+        <script type="math/tex; mode=display">\forall : x_1, x_2 \in \mathbf{C}, \;\; \forall : \lambda \in [0,1] \~:\~ \lambda x_1 + (1-\lambda)  x_2 \in \mathbf{C}</script>
+      </dd>
+    </dl>
   </li>
   <li>
     <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Asynchronous:</strong> \</p>
@@ -237,18 +186,14 @@
 
 <hr />
 
-<h2 id="content4">Proving Memory Safety</h2>
+<h2 id="content4">FOURTH</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Ex.1:</strong> <br />
- <button class="showText" value="show" onclick="showTextPopHide(event);">Show Example</button>
- <img src="/main_files/cs/sve/41.png" alt="img" width="50%" hidden="" /></p>
+    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Asynchronous:</strong> \</p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Ex.2:</strong> <br />
- <button class="showText" value="show" onclick="showTextPopHide(event);">Show Example</button>
- <img src="/main_files/cs/sve/42.png" alt="img" width="60%" hidden="" /></p>
+    <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Asynchronous:</strong> \</p>
   </li>
   <li>
     <p><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Asynchronous:</strong> \</p>
@@ -298,6 +243,151 @@
   </li>
   <li>
     <p><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents58">Asynchronous:</strong> \</p>
+  </li>
+</ol>
+
+<h2 id="content6">Sixth</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents6" id="bodyContents61">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents6" id="bodyContents62">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents6" id="bodyContents63">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents6" id="bodyContents64">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents6" id="bodyContents65">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents6" id="bodyContents66">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents6" id="bodyContents67">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  ">Asynchronous:</strong>{: .bodyContents6 #bodyContents68</p>
+  </li>
+</ol>
+
+<h2 id="content7">Seven</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents71">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents72">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents73">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents74">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents75">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents76">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents77">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents78">Asynchronous:</strong></p>
+  </li>
+</ol>
+
+<h2 id="content8">Eight</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents81">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents82">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents83">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents84">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents85">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents86">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents87">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents88">Asynchronous:</strong></p>
+  </li>
+</ol>
+
+<h2 id="content9">Nine</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents91">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents92">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents93">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents94">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents95">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents96">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents97">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents98">Asynchronous:</strong></p>
+  </li>
+</ol>
+
+<h2 id="content10">Ten</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents10" id="bodyContents101">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents10" id="bodyContents102">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents10" id="bodyContents103">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents10" id="bodyContents104">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents10" id="bodyContents105">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents10" id="bodyContents106">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents10" id="bodyContents107">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents10" id="bodyContents108">Asynchronous:</strong></p>
   </li>
 </ol>
 
