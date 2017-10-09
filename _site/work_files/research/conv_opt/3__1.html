@@ -526,8 +526,87 @@ d < n %]]></script>.
  <img src="/main_files/conv_opt/3/3.1/3.png" alt="img" hidden="" /></dd>
     </dl>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents53">Asynchronous:</strong></li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents53">Composition w/ Affine Function:</strong></dt>
+      <dd>The composition with an affine function preserves convexity:</dd>
+      <dd>If <script type="math/tex">A \in \mathbf{R}^{m \times n}, b \in \mathbf{R}^m \text{ and } f : \mathbf{R}^m \rightarrow \mathbf{R}</script></dd>
+      <dd>is convex, then the function <script type="math/tex">g : \mathbf{R}^n \rightarrow \mathbf{R}</script> with values <script type="math/tex">g(x) = f(Ax+b)</script> is convex.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents54">Point-Wise Maximum:</strong></dt>
+      <dd>The pointwise maximum of a family of convex functions is convex:</dd>
+      <dd>If <script type="math/tex">(f_\alpha)_{\alpha \in {\cal A}}</script> is a family of convex functions index by <script type="math/tex">\alpha</script>, then the function</dd>
+      <dd>
+        <script type="math/tex; mode=display">f(x) := \max_{\alpha \in {\cal A}} : f_\alpha(x)</script>
+      </dd>
+      <dd>is convex.</dd>
+      <dd><button class="showText" value="show" onclick="showTextPopHide(event);">Ex. Convexity of the Dual Norm</button>
+ <img src="/main_files/conv_opt/3/3.1/9.png" alt="img" hidden="" width="80%" /></dd>
+      <dd><button class="showText" value="show" onclick="showTextPopHide(event);">Ex. Convexity of the Largest Singular Value Function</button>
+ <img src="/main_files/conv_opt/3/3.1/10.png" alt="img" hidden="" width="80%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents55">Nonnegative Weighted Sum:</strong></dt>
+      <dd>The nonnegative weighted sum of convex functions is convex.</dd>
+      <dd><button class="showText" value="show" onclick="showTextPopHide(event);">Ex. Convexity of the Negative Entropy Function</button>
+ <img src="/main_files/conv_opt/3/3.1/11.png" alt="img" hidden="" width="80%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents56">Partial Minimum:</strong></dt>
+      <dd>If <script type="math/tex">f</script> is a convex function in <script type="math/tex">x=(y,z),</script> then the function</dd>
+      <dd>
+        <script type="math/tex; mode=display">g(y) := \min_z \: f(y,z)</script>
+      </dd>
+      <dd>is convex.</dd>
+      <dd>
+        <blockquote>
+          <p>Note that joint convexity in <script type="math/tex">(y,z)</script> is essential.</p>
+        </blockquote>
+      </dd>
+      <dd><button class="showText" value="show" onclick="showTextPopHide(event);">Ex. Schurs Complement Lemma</button>
+ <img src="/main_files/conv_opt/3/3.1/12.png" alt="img" hidden="" width="80%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents57">Composition W/ Monotone Convex Functions.:</strong></dt>
+      <dd>The composition with another function does not always preserve convexity. However, if f = h circ g, with h,g convex and h increasing, then f is convex.</dd>
+      <dd>Indeed, the condition <script type="math/tex">f(x) \le t</script> is equivalent to the existence of <script type="math/tex">y</script> such that</dd>
+      <dd>
+        <script type="math/tex; mode=display">h(y) \le t, \;\; g(x) \le y</script>
+      </dd>
+      <dd>The condition above defines a convex set in the space of <script type="math/tex">(x,y,t)</script>-variables.</dd>
+      <dd>The epigraph of <script type="math/tex">f</script> is thus the projection of that convex set on the space of <script type="math/tex">(x,t)</script>-variables, hence it is convex.</dd>
+      <dd><button class="showText" value="show" onclick="showTextPopHide(event);">Ex. Convexity via Monotonicity.</button>
+ <img src="/main_files/conv_opt/3/3.1/13.png" alt="img" hidden="" width="80%" /></dd>
+    </dl>
+  </li>
 </ol>
+
+<ul>
+  <li>
+    <dl>
+      <dt><em>Further Analysis</em>:</dt>
+      <dd>More generally, if the functions <script type="math/tex">g_i : \mathbf{R}^n \rightarrow \mathbf{R}, i=1, \ldots, k</script> are convex and <script type="math/tex">h : \mathbf{R}^k \rightarrow \mathbf{R}</script> is convex and non-decreasing in each argument, with <script type="math/tex">\mathbf{dom}g_i = \mathbf{dom} h = \mathbf{R}</script>, then</dd>
+      <dd>
+        <script type="math/tex; mode=display">x \rightarrow (h \circ g)(x) \: = h(g_1(x), \ldots, g_k(x))</script>
+      </dd>
+      <dd>is convex.</dd>
+      <dd>
+        <blockquote>
+          <p>For example, if <script type="math/tex">g_i</script>’s are convex, then  <script type="math/tex">log \sum_i \exp{g_i}</script> also is.</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+</ul>
 
 <h2 id="content6">Seperation Theorems</h2>
 <p class="message">Separation theorems are one of the most important tools in convex optimization. They convey the intuitive idea that two convex sets that do not intersect can be separated by a straight line.</p>
