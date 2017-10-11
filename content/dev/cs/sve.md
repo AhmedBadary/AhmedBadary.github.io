@@ -28,17 +28,6 @@ prevLink: /work_files/dev/cs.html
 
 ## Buffer Overflow
 {: #content1}
-In this discussion, we are trying to fit data (observations) of the form $$\{(x_i,y_i),i=1,2,...,n\}$$ to a polynomial that we know looks like this:
-
-$$y = f(x) = a_0 + a_1x + a_2x^2 + a_3x^3 + a_4x^4$$
-
-In other words, we want to find $$a_0$$, $$a_1$$, $$a_2$$, $$a_3$$, and $$a_4$$ that best fit the data.
-
-More generally, we might want to fit the data to a polynomial of different degree (for instance, if we do not know that the polynomial looks like as above), so we could try to solve for some $$a_0,a_1,\ldots,a_d$$ that define a $$d$$-degree polynomial.
-
-Note that the observations are not perfect -- they are *noisy*, which means that $$y_i \neq f(x_i)$$ in general! That is what makes this problem interesting.
-
-This first block of code contains functions that will help us set up some useful objects -- the polynomial curve for a set of parameters $$a_0$$, $$a_1$$, $$a_2$$, $$a_3$$, and $$a_4$$ and a "data" matrix that we will use to compute the least squares estimate later.
 
 1. **Disc.2:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents11} \\
     ```c
