@@ -11,16 +11,8 @@ prevLink: /work_files/dev/cs.html
 
   * [Buffer Overflow](#content1)
   {: .TOC1}
-  * [SECOND](#content2)
-  {: .TOC2}
-  * [THIRD](#content3)
-  {: .TOC3}
   * [FOURTH](#content4)
   {: .TOC4}
-  * [FIFTH](#content5)
-  {: .TOC5}
-  * [SIXTH](#content6)
-  {: .TOC6}
 </div>
 
 ***
@@ -29,7 +21,7 @@ prevLink: /work_files/dev/cs.html
 ## Buffer Overflow
 {: #content1}
 
-1. **Disc.2:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents11} \\
+1. **Discussion:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents11} \\
     ```c
         struct food {
             char name[1 0 2 4];
@@ -71,61 +63,6 @@ prevLink: /work_files/dev/cs.html
         2. At line 20, there’s an error in that the length passed to snprintf is supposed to be available space in the buffer (which would be sizeof bad - size bad), but instead it’s the length of the string being copied (along with a blank) into the buffer. Therefore by supplying large names for items in basket, the attacker can write past the end of bad at this point, again representing a buffer overflow vulnerability.
         3. At line 31, a shell command is run based on the contents of cmd, which in turn includes values from bad, which in turn is derived from input provided by the attacker. That input could include shell command characters such as pipes (‘\|’) or command separators (‘;’), facilitating _command injection_.
 
-2. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents12} \\
-
-3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents13} \\
-
-4. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents14} \\
-
-5. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents15} \\
-
-6. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents16} \\
-
-7. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents17} \\
-
-8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents1 #bodyContents18} \\
-
-***
-
-## SECOND
-{: #content2}
-
-1. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents21} \\
-
-2. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents22} \\
-
-3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents23} \\
-
-4. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents24} \\
-
-5. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents25} \\
-
-6. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents26} \\
-
-7. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents27} \\
-
-8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents28} \\
-
-***
-
-## THIRD
-{: #content3}
-
-1. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents31} \\
-
-2. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents32} \\
-
-3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents33} \\
-
-4. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents34} \\
-
-5. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents35} \\
-
-6. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents36} \\
-
-7. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents37} \\
-
-8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents38} \\
 
 ***
 
@@ -141,36 +78,3 @@ prevLink: /work_files/dev/cs.html
     <button>Show Example</button>{: .showText value="show"
     onclick="showTextPopHide(event);"}
     ![img](/main_files/cs/sve/42.png){: width="60%" hidden=""}
-
-3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents43} \\
-
-4. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents44} \\
-
-5. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents45} \\
-
-6. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents46} \\
-
-7. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents47} \\
-
-8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents48} \\
-
-***
-
-## FIFTH
-{: #content5}
-
-1. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents51} \\
-
-2. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents52} \\
-
-3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents53} \\
-
-4. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents54} \\
-
-5. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents55} \\
-
-6. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents56} \\
-
-7. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents57} \\
-
-8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents5 #bodyContents58} \
