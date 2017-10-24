@@ -2,6 +2,7 @@
 layout: page
 title: Research
 permalink: /work_files/research
+prevlink: /#
 ---
 
 # Topics
@@ -12,8 +13,8 @@ permalink: /work_files/research
 
 * ## [Statistical (Machine) Learning](/work_files/research/ml.html)
 
-* ## [Math](/work_files/research/Math.html)
-
 * ## [Statistics and Probability Theory](/work_files/research/stats_prob.html)
+
+* ## [Measure Theory](/work_files/research/measure_theory.html)
 
 Updated Soon!

@@ -18,11 +18,6 @@ permalink: /work_files/research/conv_opt
 
 * ### [Multi-Linear (non-Convex) Optimization](/work_files/research/6)
 
-* ### [Statistics and Probability Theory](/work_files/research/stats_prob.html)
-
-* ### [Optimization Problems](/work_files/research/opt_probs)
-
-* ### [Classes of Matrices](/work_files/research/la/cls_mat)
 
 
 
