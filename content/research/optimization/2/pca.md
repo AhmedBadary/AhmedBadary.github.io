@@ -117,7 +117,7 @@ prevLink: /work_files/research/conv_opt
     :   and the optimization problem is
     :   $$
         \begin{align}
-        \max_{u : \|u\|_2=1} \: E(x · u − E(x · u))^2 & \\
+        \max_{x : \|x\|_2=1} \: E(x · u − E(x · u))^2 & \\
         & \ = \max_{u : \|u\|_2=1} \:  E[(u \cdot (x − Ex))^2] \\
         & \ = \max_{u : \|u\|_2=1} \:  uE[(x − Ex) \cdot (x − Ex)^T]u \\
         & \ = \max_{u : \|u\|_2=1} \:  u^T \Sigma u
@@ -138,11 +138,12 @@ prevLink: /work_files/research/conv_opt
 2. **Derivation:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents42}
     :   $$
         \begin{align}
-        \min_{u : \|u\|_2 = 1} \; \sum_{i=1}^n \|x_i - \tilde{x_i}\|^2 & \\
-        & \ = \min_{u : \|u\|_2 = 1} \; \sum_{i=1}^n \|x_i -\dfrac{x_i \cdot w}{\|w\|_2^2}w\|^2 \\
-        & \ = \min_{u : \|u\|_2 = 1} \; \sum_{i=1}^n \left[\|x_i\|^2 - (x_i \cdot \dfrac{w}{\|w\|_2})^2\right] \\
-        & \ = \min_{u : \|u\|_2 = 1} \; c - n*\sum_{i=1}^n(x_i \cdot \dfrac{w}{\|w\|_2})^2 \\
-        & \ = \min_{u : \|u\|_2 = 1} \; c - n*Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\})
+        \min_{\tilde{x} : \|tilde{x}\|_2 = 1} \; \sum_{i=1}^n \|x_i - \tilde{x_i}\|^2 & \\
+        & \ = \min_{w : \|w\|_2 = 1} \; \sum_{i=1}^n \|x_i -\dfrac{x_i \cdot w}{\|w\|_2^2}w\|^2 \\
+        & \ = \min_{w : \|w\|_2 = 1} \; \sum_{i=1}^n \left[\|x_i\|^2 - (x_i \cdot \dfrac{w}{\|w\|_2})^2\right] \\
+        & \ = \min_{w : \|w\|_2 = 1} \; c - n*\sum_{i=1}^n(x_i \cdot \dfrac{w}{\|w\|_2})^2 \\
+        & \ = \min_{w : \|w\|_2 = 1} \; c - n*Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\}) \\
+        & \ = \max_{w : \|w\|_2 = 1} \; Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\})
         \end{align}
         $$
     :   Thus, minimizing projection error is equivalent to maximizing variance.

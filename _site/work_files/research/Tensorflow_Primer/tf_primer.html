@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Tensorflow <br /> Primer</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/conv_opt.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</code></pre>
+</div>
+
+<h2 id="multiplication">Multiplication</h2>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Creating the Computation Graph</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">)</span>
+
+<span class="n">xy</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Creating the Session</span>
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">f x </span><span class="si">%</span><span class="s">f = </span><span class="si">%</span><span class="s">f"</span><span class="o">%</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="mi">3</span><span class="p">})))</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>2.000000 x 3.000000 = 6.000000
+</code></pre>
+</div>
+
+<h2 id="linear-regression">Linear Regression</h2>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Setting up the data</span>
+<span class="n">trX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">trY</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">trX</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">trX</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">*.</span><span class="mi">35</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">trX</span><span class="p">,</span><span class="n">trY</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p><img src="/content/research/Tensorflow_Primer/output_5_0.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Setting up the variables and the graph</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">)</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">"weights"</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">"bias"</span><span class="p">)</span>
+<span class="n">y_hat</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">w</span><span class="p">),</span><span class="n">b</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Defining the objective function and the optimizer</span>
+<span class="n">cost</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">Y</span> <span class="o">-</span> <span class="n">y_hat</span><span class="p">))</span>
+<span class="n">train_operation</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="o">.</span><span class="mo">01</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Running the Session (Computation)</span>
+<span class="n">numEpochs</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">costs</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numEpochs</span><span class="p">):</span>
+        <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">train_operation</span><span class="p">,</span><span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">X</span><span class="p">:</span><span class="n">trX</span><span class="p">,</span><span class="n">Y</span><span class="p">:</span> <span class="n">trY</span><span class="p">})</span>
+        <span class="n">costs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span><span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">X</span><span class="p">:</span><span class="n">trX</span><span class="p">,</span><span class="n">Y</span><span class="p">:</span> <span class="n">trY</span><span class="p">}))</span>
+        
+    <span class="k">print</span><span class="p">(</span><span class="s">"Final Error is </span><span class="si">%</span><span class="s">f"</span><span class="o">%</span><span class="n">costs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">wfinal</span><span class="p">,</span><span class="n">bfinal</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">w</span><span class="p">),</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Predicting  y = </span><span class="si">%.02</span><span class="s">f x + </span><span class="si">%.02</span><span class="s">f"</span><span class="o">%</span><span class="p">(</span><span class="n">wfinal</span><span class="p">,</span><span class="n">bfinal</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Actually is y = </span><span class="si">%.02</span><span class="s">f x + </span><span class="si">%.02</span><span class="s">f"</span><span class="o">%</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Final Error is 0.195300
+Predicting  y = 1.45 x + 1.95
+Actually is y = 2.00 x + 2.00
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Plotting the cost</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">costs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Mean Squared Error"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Epoch"</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p><img src="/content/research/Tensorflow_Primer/output_9_0.png" alt="png" /></p>
+
+<h2 id="multivariable-linear-regression">(Multivariable) Linear Regression</h2>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Setting up the data</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">NUM_EXAMPLES</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+
+<span class="n">trX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="c"># trY = tf.multiply(X,W) + np.random.randn(NUM_EXAMPLES,m)</span>
+<span class="n">trY</span> <span class="o">=</span> <span class="n">trX</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">NUM_EXAMPLES</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Setting up the variables and the graph</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="n">n</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="n">m</span><span class="p">])</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">]))</span>
+<span class="n">y_hat</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Defining the objective function and the optimizer</span>
+<span class="n">cost</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_hat</span><span class="p">))</span>
+<span class="n">train_operation</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="o">.</span><span class="mo">01</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Running the Session (Computation)</span>
+<span class="n">numEpochs</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">costs</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numEpochs</span><span class="p">):</span>
+        <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">train_operation</span><span class="p">,</span><span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="n">trX</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">trY</span><span class="p">})</span>
+        <span class="n">costs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span><span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="n">trX</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">trY</span><span class="p">}))</span>
+        
+    <span class="k">print</span><span class="p">(</span><span class="s">"Final Error is </span><span class="si">%</span><span class="s">f"</span><span class="o">%</span><span class="n">costs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Final Error is 1.051898
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">costs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Mean Squared Error"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Epoch"</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p><img src="/content/research/Tensorflow_Primer/output_15_0.png" alt="png" /></p>
+
+<h2 id="logistic-regression">Logistic Regression</h2>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Importing the data and initilizing the variables</span>
+<span class="kn">from</span> <span class="nn">tensorflow.examples.tutorials.mnist</span> <span class="kn">import</span> <span class="n">input_data</span>
+
+<span class="n">mnist</span> <span class="o">=</span> <span class="n">input_data</span><span class="o">.</span><span class="n">read_data_sets</span><span class="p">(</span><span class="s">"MNIST/"</span><span class="p">,</span><span class="n">one_hot</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">trX</span><span class="p">,</span> <span class="n">trY</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">images</span><span class="p">,</span> <span class="n">mnist</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">labels</span>
+<span class="n">teX</span><span class="p">,</span> <span class="n">teY</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">images</span><span class="p">,</span> <span class="n">mnist</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">labels</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Successfully downloaded train-images-idx3-ubyte.gz 9912422 bytes.
+Extracting MNIST/train-images-idx3-ubyte.gz
+Successfully downloaded train-labels-idx1-ubyte.gz 28881 bytes.
+Extracting MNIST/train-labels-idx1-ubyte.gz
+Successfully downloaded t10k-images-idx3-ubyte.gz 1648877 bytes.
+Extracting MNIST/t10k-images-idx3-ubyte.gz
+Successfully downloaded t10k-labels-idx1-ubyte.gz 4542 bytes.
+Extracting MNIST/t10k-labels-idx1-ubyte.gz
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Setting up the graph</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span><span class="mi">784</span><span class="p">])</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">([</span><span class="mi">784</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="n">stddev</span><span class="o">=</span><span class="mf">0.01</span><span class="p">))</span>
+
+<span class="n">pred_logit</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
+<span class="n">sample_cost</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax_cross_entropy_with_logits</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">pred_logit</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">total_cost</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">sample_cost</span><span class="p">)</span>
+
+<span class="n">train_operation</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">total_cost</span><span class="p">)</span>
+<span class="n">predict_operation</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">pred_logit</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">accuracy_operation</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span>
+                        <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">predict_operation</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+                        <span class="p">)</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">NUM_EPOCHS</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">200</span>
+
+<span class="n">accuracies</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NUM_EPOCHS</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">trX</span><span class="p">),</span><span class="n">BATCH_SIZE</span><span class="p">):</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">BATCH_SIZE</span>
+            <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">train_operation</span><span class="p">,</span> \
+                    <span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="n">trX</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">],</span><span class="n">Y</span><span class="p">:</span> <span class="n">trY</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]})</span>
+        <span class="n">accuracies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">accuracy_operation</span><span class="p">,</span><span class="n">feed_dict</span><span class="o">=</span> <span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="n">teX</span><span class="p">,</span><span class="n">Y</span><span class="p">:</span> <span class="n">teY</span><span class="p">}))</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">accuracies</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x12c3becc0&gt;]
+</code></pre>
+</div>
+
+<p><img src="/content/research/Tensorflow_Primer/output_20_1.png" alt="png" /></p>
+
+<h2 id="neural-networks">Neural Networks</h2>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">NUM_HIDDEN</span> <span class="o">=</span> <span class="mi">620</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span><span class="mi">784</span><span class="p">])</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">init_weights</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span> <span class="c"># We define this out of convenience</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">stddev</span><span class="o">=</span><span class="mf">0.01</span><span class="p">))</span>
+
+<span class="n">W_h</span> <span class="o">=</span> <span class="n">init_weights</span><span class="p">([</span><span class="mi">784</span><span class="p">,</span><span class="n">NUM_HIDDEN</span><span class="p">])</span> <span class="c"># Weights entering the hidden layer</span>
+<span class="n">W_o</span> <span class="o">=</span> <span class="n">init_weights</span><span class="p">([</span><span class="n">NUM_HIDDEN</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span> <span class="c"># Weights entering the output layer</span>
+<span class="n">entering_hidden</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">W_h</span><span class="p">)</span>
+<span class="n">exiting_hidden</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">entering_hidden</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">exiting_hidden</span><span class="p">,</span><span class="n">W_o</span><span class="p">)</span>
+
+<span class="n">sample_cost</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax_cross_entropy_with_logits</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">model</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">total_cost</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">sample_cost</span><span class="p">)</span>
+
+<span class="n">train_operation</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">total_cost</span><span class="p">)</span>
+<span class="n">predict_operation</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">accuracy_operation</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span>
+                        <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">predict_operation</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+                        <span class="p">)</span>
+<span class="n">NUM_EPOCHS</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="kn">import</span> <span class="nn">tqdm</span>
+<span class="n">accuracies</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">trange</span><span class="p">(</span><span class="n">NUM_EPOCHS</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">trX</span><span class="p">),</span><span class="n">BATCH_SIZE</span><span class="p">):</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">BATCH_SIZE</span>
+            <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">train_operation</span><span class="p">,</span> \
+                    <span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="n">trX</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">],</span><span class="n">Y</span><span class="p">:</span> <span class="n">trY</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]})</span>
+        <span class="n">accuracies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">accuracy_operation</span><span class="p">,</span><span class="n">feed_dict</span><span class="o">=</span> <span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="n">teX</span><span class="p">,</span><span class="n">Y</span><span class="p">:</span> <span class="n">teY</span><span class="p">}))</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">accuracies</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  1%|          | 1/100 [00:05&lt;09:05,  5.51s/it]
+
+0.8196
+
+
+  2%|▏         | 2/100 [00:11&lt;09:03,  5.54s/it]
+
+0.8719
+
+
+  5%|▌         | 5/100 [00:31&lt;09:58,  6.30s/it]
+
+0.9078
+
+
+ 10%|█         | 10/100 [01:05&lt;09:52,  6.58s/it]
+
+0.9186
+
+
+ 15%|█▌        | 15/100 [01:38&lt;09:16,  6.54s/it]
+
+0.926
+
+
+ 20%|██        | 20/100 [02:03&lt;08:14,  6.18s/it]
+
+0.9339
+
+
+ 25%|██▌       | 25/100 [02:28&lt;07:25,  5.94s/it]
+
+0.9407
+
+
+ 30%|███       | 30/100 [02:53&lt;06:44,  5.78s/it]
+
+0.9478
+
+
+ 35%|███▌      | 35/100 [03:20&lt;06:11,  5.72s/it]
+
+0.9521
+
+
+ 36%|███▌      | 36/100 [03:25&lt;06:05,  5.71s/it]
+
+0.953
+
+
+ 37%|███▋      | 37/100 [03:30&lt;05:58,  5.68s/it]
+
+0.9532
+
+
+ 38%|███▊      | 38/100 [03:35&lt;05:50,  5.66s/it]
+
+0.954
+
+
+ 39%|███▉      | 39/100 [03:40&lt;05:44,  5.65s/it]
+
+0.9549
+
+
+ 40%|████      | 40/100 [03:45&lt;05:38,  5.63s/it]
+
+0.9555
+
+
+ 45%|████▌     | 45/100 [04:10&lt;05:06,  5.57s/it]
+
+0.9583
+
+
+ 50%|█████     | 50/100 [04:36&lt;04:36,  5.53s/it]
+
+0.9613
+
+
+ 70%|███████   | 70/100 [06:17&lt;02:41,  5.39s/it]
+
+0.97
+
+ 80%|████████  | 80/100 [07:06&lt;01:46,  5.33s/it]
+
+0.9722
+
+
+ 85%|████████▌ | 85/100 [07:35&lt;01:20,  5.36s/it]
+
+0.9731
+
+
+ 90%|█████████ | 90/100 [08:05&lt;00:53,  5.39s/it]
+
+0.9739
+
+
+ 95%|█████████▌| 95/100 [08:31&lt;00:26,  5.39s/it]
+
+0.9742
+
+
+100%|██████████| 100/100 [08:57&lt;00:00,  5.37s/it]
+
+0.9746
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"Final Accuracy was </span><span class="si">%.04</span><span class="s">f"</span><span class="o">%</span><span class="n">accuracies</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">accuracies</span><span class="p">);</span><span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">.</span><span class="mi">9</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Final Accuracy was 0.9746
+</code></pre>
+</div>
+
+<p><img src="/content/research/Tensorflow_Primer/output_23_1.png" alt="png" /></p>
+
+<h2 id="modern-neural-network">Modern Neural Network</h2>
+<h3 id="relu--dropout--rmsprop-optimization--more-hidden-layers">RELU | Dropout | RMSProp Optimization | More hidden Layers</h3>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">init_weights</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span><span class="n">stddev</span><span class="o">=</span><span class="mf">0.01</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">model_gen</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">w_h</span><span class="p">,</span><span class="n">w_h2</span><span class="p">,</span> <span class="n">w_o</span><span class="p">,</span><span class="n">drop_rate_input</span><span class="p">,</span><span class="n">drop_rate_hidden</span><span class="p">):</span>
+    <span class="n">out_X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">drop_rate_input</span><span class="p">)</span>
+    
+    <span class="n">in_H</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">w_h</span><span class="p">)</span>
+    <span class="n">out_H</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">in_H</span><span class="p">),</span><span class="n">drop_rate_hidden</span><span class="p">)</span>
+    
+    <span class="n">in_H2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">out_H</span><span class="p">,</span><span class="n">w_h2</span><span class="p">)</span>
+    <span class="n">out_H2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">in_H2</span><span class="p">)</span>
+    
+    <span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">out_H2</span><span class="p">,</span><span class="n">w_o</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="mi">784</span><span class="p">])</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+
+<span class="n">w_h</span> <span class="o">=</span> <span class="n">init_weights</span><span class="p">([</span><span class="mi">784</span><span class="p">,</span> <span class="mi">625</span><span class="p">])</span>
+<span class="n">w_h2</span> <span class="o">=</span> <span class="n">init_weights</span><span class="p">([</span><span class="mi">625</span><span class="p">,</span> <span class="mi">625</span><span class="p">])</span>
+<span class="n">w_o</span> <span class="o">=</span> <span class="n">init_weights</span><span class="p">([</span><span class="mi">625</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+
+<span class="n">drop_rate_input</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">)</span>
+<span class="n">drop_rate_hidden</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">)</span>
+
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">model_gen</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">w_h</span><span class="p">,</span><span class="n">w_h2</span><span class="p">,</span><span class="n">w_o</span><span class="p">,</span><span class="n">drop_rate_input</span><span class="p">,</span><span class="n">drop_rate_hidden</span><span class="p">)</span>
+
+<span class="n">sample_cost</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax_cross_entropy_with_logits</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">model</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">total_cost</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">sample_cost</span><span class="p">)</span>
+
+<span class="n">train_operation</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">RMSPropOptimizer</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span><span class="mf">0.9</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">total_cost</span><span class="p">)</span>
+<span class="n">predict_operation</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">accuracy_operation</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span>
+                        <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">predict_operation</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+                        <span class="p">)</span>
+<span class="n">NUM_EPOCHS</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="kn">import</span> <span class="nn">tqdm</span>
+<span class="n">accuracies</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">trange</span><span class="p">(</span><span class="n">NUM_EPOCHS</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">trX</span><span class="p">),</span><span class="n">BATCH_SIZE</span><span class="p">):</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">BATCH_SIZE</span>
+            <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">train_operation</span><span class="p">,</span> \
+                    <span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="n">trX</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">],</span><span class="n">Y</span><span class="p">:</span> <span class="n">trY</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">],</span>
+                    <span class="n">drop_rate_input</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">drop_rate_hidden</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">})</span>
+        <span class="n">accuracies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">accuracy_operation</span><span class="p">,</span><span class="n">feed_dict</span><span class="o">=</span> <span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="n">teX</span><span class="p">,</span><span class="n">Y</span><span class="p">:</span> <span class="n">teY</span><span class="p">,</span><span class="n">drop_rate_input</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">drop_rate_hidden</span><span class="p">:</span> <span class="mi">1</span><span class="p">}))</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">accuracies</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  5%|▌         | 1/20 [00:13&lt;04:19, 13.65s/it]
+
+0.9028
+
+
+ 10%|█         | 2/20 [00:26&lt;03:58, 13.23s/it]
+
+0.9595
+
+
+ 15%|█▌        | 3/20 [00:36&lt;03:29, 12.33s/it]
+
+0.9632
+
+
+ 20%|██        | 4/20 [00:48&lt;03:15, 12.22s/it]
+
+0.9742
+
+
+ 25%|██▌       | 5/20 [01:00&lt;03:02, 12.20s/it]
+
+0.971
+
+
+ 30%|███       | 6/20 [01:12&lt;02:49, 12.14s/it]
+
+0.9753
+
+
+ 35%|███▌      | 7/20 [01:25&lt;02:38, 12.20s/it]
+
+0.9777
+
+
+ 40%|████      | 8/20 [01:37&lt;02:26, 12.19s/it]
+
+0.979
+
+
+ 45%|████▌     | 9/20 [01:49&lt;02:13, 12.15s/it]
+
+0.98
+
+
+ 50%|█████     | 10/20 [02:01&lt;02:01, 12.19s/it]
+
+0.9789
+
+
+ 55%|█████▌    | 11/20 [02:14&lt;01:49, 12.20s/it]
+
+0.9817
+
+
+ 60%|██████    | 12/20 [02:25&lt;01:37, 12.14s/it]
+
+0.9809
+
+
+ 65%|██████▌   | 13/20 [02:36&lt;01:24, 12.07s/it]
+
+0.9823
+
+
+ 70%|███████   | 14/20 [02:47&lt;01:11, 11.96s/it]
+
+0.9824
+
+
+ 75%|███████▌  | 15/20 [02:58&lt;00:59, 11.87s/it]
+
+0.9821
+
+
+ 80%|████████  | 16/20 [03:09&lt;00:47, 11.82s/it]
+
+0.9817
+
+
+ 85%|████████▌ | 17/20 [03:21&lt;00:35, 11.83s/it]
+
+0.984
+
+
+ 90%|█████████ | 18/20 [03:34&lt;00:23, 11.91s/it]
+
+0.9824
+
+
+ 95%|█████████▌| 19/20 [03:46&lt;00:11, 11.94s/it]
+
+0.9833
+
+
+100%|██████████| 20/20 [03:59&lt;00:00, 11.97s/it]
+
+0.9826
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"Final Accuracy was </span><span class="si">%.04</span><span class="s">f"</span><span class="o">%</span><span class="n">accuracies</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">accuracies</span><span class="p">);</span><span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">.</span><span class="mi">9</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Final Accuracy was 0.9826
+</code></pre>
+</div>
+
+<p><img src="/content/research/Tensorflow_Primer/output_26_1.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code>
+</code></pre>
+</div>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text("Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text("Show Content");
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.attr("input");
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text("Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text("Show Content");
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

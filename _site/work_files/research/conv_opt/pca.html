@@ -47,9 +47,9 @@
 <section class="page-header">
   <h1 class="project-name">PCA <br /> Principle Compnent Analysis</h1>
   <h2 class="project-tagline"></h2>
-  <a href="/work_files/school.html" class="btn">Courses</a>
-  <a href="/work_files/school/128a.html" class="btn">Chapters</a>
-  <a href= /work_files/research/conv_opt class="btn">This Chapter</a>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/conv_opt class="btn">Previous</a>
 </section>
 
 <!-- <div>
@@ -257,7 +257,7 @@ They are linear combinations of input features.</p>
       <dd>
         <script type="math/tex; mode=display">% <![CDATA[
 \begin{align}
-\max_{u : \|u\|_2=1} \: E(x · u − E(x · u))^2 & \\
+\max_{x : \|x\|_2=1} \: E(x · u − E(x · u))^2 & \\
 & \ = \max_{u : \|u\|_2=1} \:  E[(u \cdot (x − Ex))^2] \\
 & \ = \max_{u : \|u\|_2=1} \:  uE[(x − Ex) \cdot (x − Ex)^T]u \\
 & \ = \max_{u : \|u\|_2=1} \:  u^T \Sigma u
@@ -286,11 +286,12 @@ They are linear combinations of input features.</p>
       <dd>
         <script type="math/tex; mode=display">% <![CDATA[
 \begin{align}
-\min_{u : \|u\|_2 = 1} \; \sum_{i=1}^n \|x_i - \tilde{x_i}\|^2 & \\
-& \ = \min_{u : \|u\|_2 = 1} \; \sum_{i=1}^n \|x_i -\dfrac{x_i \cdot w}{\|w\|_2^2}w\|^2 \\
-& \ = \min_{u : \|u\|_2 = 1} \; \sum_{i=1}^n \left[\|x_i\|^2 - (x_i \cdot \dfrac{w}{\|w\|_2})^2\right] \\
-& \ = \min_{u : \|u\|_2 = 1} \; c - n*\sum_{i=1}^n(x_i \cdot \dfrac{w}{\|w\|_2})^2 \\
-& \ = \min_{u : \|u\|_2 = 1} \; c - n*Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\})
+\min_{\tilde{x} : \|tilde{x}\|_2 = 1} \; \sum_{i=1}^n \|x_i - \tilde{x_i}\|^2 & \\
+& \ = \min_{w : \|w\|_2 = 1} \; \sum_{i=1}^n \|x_i -\dfrac{x_i \cdot w}{\|w\|_2^2}w\|^2 \\
+& \ = \min_{w : \|w\|_2 = 1} \; \sum_{i=1}^n \left[\|x_i\|^2 - (x_i \cdot \dfrac{w}{\|w\|_2})^2\right] \\
+& \ = \min_{w : \|w\|_2 = 1} \; c - n*\sum_{i=1}^n(x_i \cdot \dfrac{w}{\|w\|_2})^2 \\
+& \ = \min_{w : \|w\|_2 = 1} \; c - n*Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\}) \\
+& \ = \max_{w : \|w\|_2 = 1} \; Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\})
 \end{align} %]]></script>
       </dd>
       <dd>Thus, minimizing projection error is equivalent to maximizing variance.</dd>
