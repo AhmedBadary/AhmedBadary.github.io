@@ -6,7 +6,7 @@ permalink: /work_files/research/conv_opt
 
 # Topics
 
-* ### [Optimization Models](/work_files/research/conv_opt/1)
+* ### [Optimization Models](/work_files/research/1)
 
 * ### [Linear Algebra](/work_files/research/2)
 
@@ -22,3 +22,5 @@ permalink: /work_files/research/conv_opt
 
 
 Updated Soon!
+
+chrome://settings/cookies/detail?site=www.youtube.com

@@ -89,7 +89,7 @@ prevLink: /work_files/research/conv_opt
 
 ***
 
-## Derivation 2. Minimizing Variance
+## Derivation 2. Maximizing Variance
 {: #content3}
 
 1. **What?**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents31} \\
@@ -138,7 +138,7 @@ prevLink: /work_files/research/conv_opt
 2. **Derivation:**{: style="color: SteelBlue  "}{: .bodyContents4 #bodyContents42}
     :   $$
         \begin{align}
-        \min_{\tilde{x} : \|tilde{x}\|_2 = 1} \; \sum_{i=1}^n \|x_i - \tilde{x_i}\|^2 & \\
+        \min_{\tilde{x} : \|\tilde{x}\|_2 = 1} \; \sum_{i=1}^n \|x_i - \tilde{x_i}\|^2 & \\
         & \ = \min_{w : \|w\|_2 = 1} \; \sum_{i=1}^n \|x_i -\dfrac{x_i \cdot w}{\|w\|_2^2}w\|^2 \\
         & \ = \min_{w : \|w\|_2 = 1} \; \sum_{i=1}^n \left[\|x_i\|^2 - (x_i \cdot \dfrac{w}{\|w\|_2})^2\right] \\
         & \ = \min_{w : \|w\|_2 = 1} \; c - n*\sum_{i=1}^n(x_i \cdot \dfrac{w}{\|w\|_2})^2 \\

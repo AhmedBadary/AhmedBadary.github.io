@@ -218,7 +218,7 @@ They are linear combinations of input features.</p>
 
 <hr />
 
-<h2 id="content3">Derivation 2. Minimizing Variance</h2>
+<h2 id="content3">Derivation 2. Maximizing Variance</h2>
 
 <ol>
   <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">What?</strong> <br />
@@ -286,7 +286,7 @@ They are linear combinations of input features.</p>
       <dd>
         <script type="math/tex; mode=display">% <![CDATA[
 \begin{align}
-\min_{\tilde{x} : \|tilde{x}\|_2 = 1} \; \sum_{i=1}^n \|x_i - \tilde{x_i}\|^2 & \\
+\min_{\tilde{x} : \|\tilde{x}\|_2 = 1} \; \sum_{i=1}^n \|x_i - \tilde{x_i}\|^2 & \\
 & \ = \min_{w : \|w\|_2 = 1} \; \sum_{i=1}^n \|x_i -\dfrac{x_i \cdot w}{\|w\|_2^2}w\|^2 \\
 & \ = \min_{w : \|w\|_2 = 1} \; \sum_{i=1}^n \left[\|x_i\|^2 - (x_i \cdot \dfrac{w}{\|w\|_2})^2\right] \\
 & \ = \min_{w : \|w\|_2 = 1} \; c - n*\sum_{i=1}^n(x_i \cdot \dfrac{w}{\|w\|_2})^2 \\

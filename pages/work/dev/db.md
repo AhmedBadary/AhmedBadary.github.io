@@ -8,6 +8,8 @@ permalink: /work_files/dev/db
 
 * ## [SQL](/work_files/dev/db/sql)
 
+* ## [SQL-Notes](/work_files/dev/db/sql_notes)
+
 * ## [HADOOP vs SQL](/work_files/dev/db/HvsS)
 
 
