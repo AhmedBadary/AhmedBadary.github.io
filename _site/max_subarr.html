@@ -183,30 +183,23 @@ We will need to make all the possible kernel sizes, there are <script type="math
 
 <h2 style="color: SteelBlue" id="dynamic-programming-with-max-subarray-solution"><strong>Dynamic Programming with max subarray solution</strong></h2>
 
-<p>In the 2D case, we could still use a naive approach and try all the possible kernel sizes and just compute a convolution amongst all these kernels.<br />
-We will need to make all the possible kernel sizes, there are <script type="math/tex">n^4</script> of them. For each one of those we need to compute a convolution over the whole matrix, which in turn takes <script type="math/tex">\mathcal{O}(n^2)</script>, <br />
+<p>We could, also, utilize the solution to the “<em>Max Sub-Array Problem (1D)</em>”, known as <em>kadanes’ algorithm</em>, by finding sub-solutions to each column and then growing the matrix and keeping track of the paramteres that allows the overall sum to grow.<br />
+If we pre-compute the matrix sums (for matrices with size <script type="math/tex">> 10^4</script>) then we will only need to perform the kadanes algorithm once for every iteration over the columns, where we repeat the operation for each column, assuming we start at the subsequent one everytime.<br />
+Now, since the sub-algorithm is only <script type="math/tex">\mathcal{O}(n)</script> and we only have to run it <script type="math/tex">n^2</script> times,    <br />
 <script type="math/tex">\implies</script></p>
 
 <p><strong><em>Runtime:</em></strong> <script type="math/tex">\mathcal{O}(n^3)</script></p>
 
 <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_submat</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-    <span class="n">max_sum</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="n">MIN_VALUE</span><span class="p">;</span>
-    <span class="n">max_ri</span> <span class="o">=</span> <span class="n">max_ci</span> <span class="o">=</span> <span class="n">max_rj</span> <span class="o">=</span> <span class="n">max_cj</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">max_sum</span> <span class="o">=</span> <span class="n">MIN_VALUE</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="mi">0</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">))]</span>
 
-    <span class="k">for</span> <span class="n">ri</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
-        <span class="k">for</span> <span class="n">ci</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
-            <span class="k">for</span> <span class="n">rj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
-                <span class="k">for</span> <span class="n">cj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
-                    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
-                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rj</span><span class="p">):</span>
-                        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cj</span><span class="p">):</span>
-                            <span class="nb">sum</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
-                    <span class="k">if</span> <span class="n">max_sum</span> <span class="o">&lt;</span> <span class="nb">sum</span><span class="p">:</span>
-                        <span class="n">max_sum</span> <span class="o">=</span> <span class="nb">sum</span>
-                        <span class="n">max_ri</span> <span class="o">=</span> <span class="n">ri</span>
-                        <span class="n">max_ci</span> <span class="o">=</span> <span class="n">ci</span>
-                        <span class="n">max_rj</span> <span class="o">=</span> <span class="n">rj</span>
-                        <span class="n">max_cj</span> <span class="o">=</span> <span class="n">cj</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">c</span><span class="p">]</span>
+        <span class="n">max_sum</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_sum</span><span class="p">,</span> <span class="n">max_sum_subarr</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+
     <span class="k">return</span> <span class="n">max_sum</span>
 </code></pre>
 </div>
