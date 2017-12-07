@@ -91,7 +91,7 @@ We finally compare that to the sub-array that includes both halves overlapping i
 <p>Let <script type="math/tex">A_i</script> be  the maximum subarray sum ending at position <script type="math/tex">i</script>.<br />
 Now, we consider the sub-problem, what does <script type="math/tex">A_{i+1}</script> equal to? what if I already have the solution to <script type="math/tex">A_i</script>?<br />
 Simply,</p>
-<p> $${\displaystyle A_{i+1}=max(A[i+1] + A_{i}, A[i+1])} {\displaystyle B_{i+1}=max(A_{i+1},A_{i+1}+B_{i})}$$</p>
+<p> $${\displaystyle A_{i+1}=max(A[i+1] + A_{i}, A[i+1])} {\displaystyle=max(A_{i+1},A_{i+1}+B_{i})}$$</p>
 <blockquote>
   <p>i.e. The maximum subarray sum ending at position <script type="math/tex">i+1</script> either will be the singlton element at the <script type="math/tex">i+1</script>-st position or will be that added to the maximum subarray sum ending at position <script type="math/tex">i</script>, <script type="math/tex">A_i</script>.</p>
 </blockquote>
@@ -293,6 +293,7 @@ runtime. Default is N=1, i.e. bag-of-visual-words model.<br />
 
 <ul>
   <li>I will be updating this post whenever I have time.</li>
+  <li>Code has been Unit-Tested and <em>most but not all</em> has been stress-tested with edge-cases.</li>
 </ul>
 
 <p class="message">Please note that all code and descriptions here were completely written by me. <br /> However, credit was given for the "C++" implementation of the "Box-Struct". <br /> All code, descriptions and explanations are under a public license <br /> Copyright (C) 2017 MIT</p>
