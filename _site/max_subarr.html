@@ -222,33 +222,81 @@ Now, since the sub-algorithm is only <script type="math/tex">\mathcal{O}(n)</scr
 
 <h2 style="color: SteelBlue" id="branch-and-bound-method"><strong>Branch and Bound Method</strong></h2>
 
-<p>In the 2D case, we could still use a naive approach and try all the possible kernel sizes and just compute a convolution amongst all these kernels.<br />
-We will need to make all the possible kernel sizes, there are <script type="math/tex">n^4</script> of them. For each one of those we need to compute a convolution over the whole matrix, which in turn takes <script type="math/tex">\mathcal{O}(n^2)</script>, <br />
+<p>Here I will explore the unique approach of replacing the sliding-window search with a different search method, namely, <em>Branch and Bound</em> search.<br />
+The default quality function is to use a spatial pyramid kernel with levels of size 1x1, 2x2 … NxN where N can be chosen at 
+runtime. Default is N=1, i.e. bag-of-visual-words model.<br />
 <script type="math/tex">\implies</script></p>
 
 <p><strong><em>Runtime:</em></strong> <script type="math/tex">\mathcal{O}(n^3) \:\:\:,\:\:\: \mathcal{\Omega}(n^2)</script></p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_submat</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-    <span class="n">max_sum</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="n">MIN_VALUE</span><span class="p">;</span>
-    <span class="n">max_ri</span> <span class="o">=</span> <span class="n">max_ci</span> <span class="o">=</span> <span class="n">max_rj</span> <span class="o">=</span> <span class="n">max_cj</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="n">Structure</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="n">c_double</span>
+<span class="kn">from</span> <span class="nn">numpy.ctypeslib</span> <span class="kn">import</span> <span class="n">load_library</span><span class="p">,</span> <span class="n">ndpointer</span>
 
-    <span class="k">for</span> <span class="n">ri</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
-        <span class="k">for</span> <span class="n">ci</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
-            <span class="k">for</span> <span class="n">rj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
-                <span class="k">for</span> <span class="n">cj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
-                    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
-                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rj</span><span class="p">):</span>
-                        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cj</span><span class="p">):</span>
-                            <span class="nb">sum</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
-                    <span class="k">if</span> <span class="n">max_sum</span> <span class="o">&lt;</span> <span class="nb">sum</span><span class="p">:</span>
-                        <span class="n">max_sum</span> <span class="o">=</span> <span class="nb">sum</span>
-                        <span class="n">max_ri</span> <span class="o">=</span> <span class="n">ri</span>
-                        <span class="n">max_ci</span> <span class="o">=</span> <span class="n">ci</span>
-                        <span class="n">max_rj</span> <span class="o">=</span> <span class="n">rj</span>
-                        <span class="n">max_cj</span> <span class="o">=</span> <span class="n">cj</span>
-    <span class="k">return</span> <span class="n">max_sum</span>
+<span class="c"># Box_struct courtesy:</span>
+<span class="c"># https://github.com/npinto</span>
+<span class="k">class</span> <span class="nc">Box_struct</span><span class="p">(</span><span class="n">Structure</span><span class="p">):</span>
+        <span class="s">"""Structure to hold left,top,right,bottom and score of a box instance.
+           The fields have to coincide with the C-version in pyramid_search.h
+        """</span>
+        <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[(</span><span class="s">"left"</span><span class="p">,</span> <span class="n">c_int</span><span class="p">),</span> 
+                    <span class="p">(</span><span class="s">"top"</span><span class="p">,</span> <span class="n">c_int</span><span class="p">),</span> 
+                    <span class="p">(</span><span class="s">"right"</span><span class="p">,</span> <span class="n">c_int</span><span class="p">),</span> 
+                    <span class="p">(</span><span class="s">"bottom"</span><span class="p">,</span> <span class="n">c_int</span><span class="p">),</span> 
+                    <span class="p">(</span><span class="s">"score"</span><span class="p">,</span> <span class="n">c_double</span><span class="p">)</span> <span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">pyramid</span><span class="p">(</span><span class="n">n_pts</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">,</span> <span class="n">cluster</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">lvls</span><span class="p">,</span> <span class="n">weights</span><span class="p">):):</span>
+    <span class="n">pyramidlib</span> <span class="o">=</span> <span class="n">load_library</span><span class="p">(</span><span class="s">"libess.so"</span><span class="p">,</span><span class="s">"."</span><span class="p">)</span>
+    <span class="n">pyramidlib</span><span class="o">.</span><span class="n">pyramid_search</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">Box_struct</span>
+    <span class="n">pyramidlib</span><span class="o">.</span><span class="n">pyramid_search</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">c_int</span><span class="p">,</span><span class="n">c_int</span><span class="p">,</span><span class="n">c_int</span><span class="p">,</span>        
+            <span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">c_double</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s">'C_CONTIGUOUS'</span><span class="p">),</span>
+            <span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">c_double</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s">'C_CONTIGUOUS'</span><span class="p">),</span>
+            <span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">c_double</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s">'C_CONTIGUOUS'</span><span class="p">),</span>
+            <span class="n">c_int</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span>                                           
+            <span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">c_double</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s">'C_CONTIGUOUS'</span><span class="p">)]</span>
+
+    <span class="n">box</span> <span class="o">=</span> <span class="n">pyramidlib</span><span class="o">.</span><span class="n">pyramid_search</span><span class="p">(</span><span class="n">n_pts</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> 
+                      <span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">,</span> <span class="n">cluster</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">lvls</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">box</span>
+
+<span class="k">def</span> <span class="nf">subwindow_search</span><span class="p">(</span><span class="n">n_pts</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">,</span> <span class="n">cluster</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">pyramid</span><span class="p">(</span><span class="n">n_pts</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">,</span> <span class="n">cluster</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+
 </code></pre>
 </div>
+
+<hr />
+<hr />
+
+<h1 id="final-thought-and-conclusions">Final Thought and Conclusions</h1>
+
+<h2 style="color: SteelBlue" id="regarding-my-answers-during-the-interview"><strong>Regarding my answers during the Interview</strong></h2>
+
+<ul>
+  <li>During the interview I was thinking of the dynamic programming approach of trying out the matrices and growing them in sizes after having precomputed their sum values.</li>
+  <li>I, also, tried exlporing the <script type="math/tex">\mathcal{O}(n^3)</script> after you discusses the 1D approach.</li>
+  <li>The branch and bound method is interesting but solves the problem from a different perspective.</li>
+</ul>
+
+<h2 style="color: SteelBlue" id="further-development"><strong>Further Development</strong></h2>
+
+<ul>
+  <li>
+    <p>I believe that the <script type="math/tex">\mathcal{O}(n^3)</script> utilizing Kadane algorithm could be improved by calling the algorithm only in the first loop (not the second) by smartly computing the overlapping values and going across cols then rows instead (two runs, i.e. constant).<br />
+  This will lead the algorithm to be <script type="math/tex">\mathcal{O}(n^2)</script> instead but the idea needs further exploration.</p>
+  </li>
+  <li>
+    <p>Another approach would be to rely on looking at the distribution of the numbers in the matrix (linear), then to sample smartly using an ML approach, perhaps by fitting a hough transform that detects large sum “chunks”.</p>
+  </li>
+</ul>
+
+<h2 style="color: SteelBlue" id="final-comments"><strong>Final Comments</strong></h2>
+
+<ul>
+  <li>I will be updating this post whenever I have time.</li>
+</ul>
+
+<p class="message">Please note that all code and descriptions here were completely written by me. <br /> However, credit was given for the "C++" implementation of the "Box-Struct". <br /> All code, descriptions and explanations are under a public license <br /> Copyright (C) 2017 MIT</p>
+
 
 
     </section>
