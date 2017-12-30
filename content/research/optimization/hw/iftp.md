@@ -6,7 +6,7 @@ prevLink: /work_files/research/conv_opt.html
 ---
 
 **Abstract:**  
-<p class="message">The following analysis demonstrates how to <i>Formulate</i> the Index Fund Tracking Problem as an optimization problem. "Shorting" is treated as an optional constraint where these constraints affect the solution to the optimization problem as demonstrated here. We finally look at how to deal with the mechanics of handling the trade-off between the the tracking error and the number of assets that are being traded.</p>
+<p class="message">The following analysis demonstrates how to <i>Formulate</i> the Index Fund Tracking Problem as an optimization problem. "Shorting" is treated as an optional constraint where these constraints affect the solution to the optimization problem as demonstrated here. We finally look at how to deal with the mechanics of handling the trade-off between the tracking error and the number of assets that are being traded.</p>
 
 ## The Set Up
 
@@ -42,7 +42,7 @@ which we refer to as the "_portfolio vector_".
 #### We plan to find the vector $$x \in \mathbf{R}^n$$ based on the available data, and hold it for some time in the future.
 {: style="color: SteelBlue  "}
 
-## Solution 
+## Proposed Formulation 
 
 ***
 

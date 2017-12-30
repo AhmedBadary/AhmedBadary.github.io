@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Text Processing</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/nlp.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Introduction and Definitions</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Tokenization</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Word-Normalization (Stemming)</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">Sentence Segmentation</a></li>
+  </ul>
+
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">Introduction and Definitions</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Text Normalization:</strong></dt>
+      <dd>Every NLP process starts with a task called <em>Text Normalization</em>.</dd>
+      <dd><strong>Text Normaliization</strong> is the process of transforming text into a single canonical form that it might not have had before.</dd>
+      <dd><strong>Importance:</strong> Normalizing text before storing or processing it allows for <em>separation of concerns</em>, since input is guaranteed to be consistent before operations are performed on it.</dd>
+      <dd><strong>Steps:</strong>
+        <ol>
+          <li>Segmenting/Tokenizing words in running text.</li>
+          <li>Normalizing word formats.</li>
+          <li>Segmenting sentences in running text.</li>
+        </ol>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents10">Methods for Normalization:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Case-Folding</strong>: reducing all letters to lower case.
+            <blockquote>
+              <p>Possibly, with the exception of capital letters mid-sentence.</p>
+            </blockquote>
+          </li>
+          <li><strong>Lemmatization</strong>: reducing inflections or variant forms to base form.
+            <blockquote>
+              <p>Basically, finding the correct dictionary headword form.</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents19">Morphology:</strong></dt>
+      <dd>The study of words, how they are formed, and their relationship to other words in the same language.</dd>
+      <dd>
+        <ul>
+          <li><strong>Morphemes</strong>: the small meaningfuk units that make up words.</li>
+          <li><strong>Stems</strong>: the core meaning-bearing units of words.</li>
+          <li><strong>Affixes</strong>: the bits and pieces that adhere to stems (often with grammatical functions).</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Word Equivalency in NLP:</strong></dt>
+      <dd>Two words have the same
+        <ul>
+          <li><strong>Lemma</strong>, if they have the same:
+            <ul>
+              <li>Stem</li>
+              <li>POS</li>
+              <li>Rough Word-Sense
+                <blockquote>
+                  <p><em>cat</em> &amp; <em>cats</em> -&gt; same Lemma</p>
+                </blockquote>
+              </li>
+            </ul>
+          </li>
+          <li><strong>Wordform</strong>, if they have the same:
+            <ul>
+              <li>full inflected surface form
+                <blockquote>
+                  <p><em>cat</em> &amp; <em>cats</em> -&gt; different wordforms</p>
+                </blockquote>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Types and Tokens:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Type</strong>: an element of the vocabulary.<br />
+  It is the class of all _tokens containing the same character sequence.</li>
+          <li><strong>Token</strong>: an instance of that type in running text.<br />
+  It is an instance of a sequence of characters that are grouped together.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Notation:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>N</strong> = Number of <em>Tokens</em>.</li>
+          <li><strong>V</strong> = Vocabulary = set of <em>Types</em>.</li>
+          <li><strong><script type="math/tex">\|V\|</script></strong> = size/cardinality of the vocabulary.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Growth of the Vocabulary:</strong></dt>
+      <dd>Church and Gale (1990) suggested that the size of the vocabulary grows larger than the square root of the number of tokens in a piece of text:</dd>
+      <dd>
+        <script type="math/tex; mode=display">\|V\| > \mathcal{O}(N^{1/2})</script>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Tokenization</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Tokenization:</strong></dt>
+      <dd>It is the task of chopping up a character sequence and a defined document unit into pieces, called <a href="#bodyContents13"><em>tokens</em></a>.<br />
+It may involve throwing away certain characters, such as punctuation.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Methods for Tokenization:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Regular Expressions</strong></li>
+          <li><strong>A Flag</strong>: Specific squences of characters.</li>
+          <li><strong>Delimiters</strong>: pecific separating characters.</li>
+          <li><strong>Dictionary</strong>: exlicit definitions by a dictionary.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Categorization:</strong></dt>
+      <dd>Tokens are categorized by:
+        <ul>
+          <li>Character Content</li>
+          <li>Context<br />
+ within a data stream.</li>
+        </ul>
+      </dd>
+      <dd><strong>Categories</strong>:
+        <ul>
+          <li><em>Identifiers</em>: names the programmer chooses</li>
+          <li><em>keywords</em>: names already in the programming language.</li>
+          <li><em>Operators</em>: symbols that operate on arguments and produce results.</li>
+          <li><em>Grouping Symbols</em></li>
+          <li><em>Data Types</em></li>
+        </ul>
+      </dd>
+      <dd><em>Categories</em> are used for post-processing of the tokens either by the parser or by other functions in the program.</dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Word-Normalization (Stemming)</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Stemming:</strong></dt>
+      <dd>is the process of reducing inflected (or sometimes derived) words to their word stem, base or root form.</dd>
+      <dd>The stem need <strong>not</strong> map to a valid root in the language.</dd>
+      <dd>
+        <blockquote>
+          <p>Basically, Stemming is a crude chopping of <a href="#bodyContents19">affixes</a></p>
+        </blockquote>
+      </dd>
+      <dd>
+        <blockquote>
+          <p><strong>Example</strong>: “automate”, “automatic”, “automation” -&gt; “automat”.</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Porter’s Algorithm:</strong></dt>
+      <dd>The most comon English stemmer.</dd>
+      <dd>It is an iterated series of simple <em>replace</em> rules.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Algorithms:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>The Production Technique</strong>: we produce the lookup table, that is used by a naive stemmer, semi-automaically.</li>
+          <li><strong>Suffix-Stripping Algorithms</strong>: those algorithms avoid using lookup tables; instead they use a small list of rules to navigate through the text and find theroot forms from word forms.</li>
+          <li><strong>Lemmatisation Algorithms</strong>: the <em>lemmatization</em> process starts determining the <em>part of speech</em> of a word and, then, applying normalization rules to for each part-of-speech.</li>
+          <li><strong>Stochastic Algorithms</strong>: those algorithms are trained on a table of root form-to-inflected form relations to develop a probablistic model.<br />
+ The model looks like a set of rules, similar to the suffic-stripping list of rules.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content4">Sentence Segmentation</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">Sentence Segmentation:</strong></dt>
+      <dd>It is the problem of diving a piece of text into its component sentences.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Identifiers:</strong></dt>
+      <dd>Identifiers such as “!”, “?” are unambiguous; they usually signify the end of a sentence.</dd>
+      <dd>The period “.” is quite ambiguous, since it can be used in other ways, such as in abbreviations and in decimal number notation.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">Dealing with Ambiguous Idenitifiers:</strong></dt>
+      <dd>One way of dealing with ambiguous idenitifiers is by building a <strong>Binary Classifier</strong>.<br />
+On a given occurrence of a period, the classifer has to decide between one of “Yes, this is the end of a sentence” or “No, this is not the end of a sentence”.</dd>
+      <dd><strong>Types of Classifiers:</strong>
+        <ul>
+          <li><em>Decision Trees</em></li>
+          <li><em>Logistic Regression</em></li>
+          <li><em>SVM</em></li>
+          <li><em>Neural-Net</em></li>
+        </ul>
+      </dd>
+      <dd><em>Decision Trees</em> are a common classifier used for this problems.</dd>
+    </dl>
+  </li>
+</ol>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text("Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text("Show Content");
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.attr("input");
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text("Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text("Show Content");
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

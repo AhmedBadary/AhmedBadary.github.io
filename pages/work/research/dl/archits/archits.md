@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Deep Learning
-permalink: /work_files/research/dl
+permalink: /work_files/research/dl/archits
 ---
 
 # Sections
@@ -10,7 +10,7 @@ permalink: /work_files/research/dl
 
 * #### [Feed-Forward Neural Network (FNN) [**Coming Soon**]](/work_files/research/dl/2)
 
-* #### [Convolutional Neural Network (CNN)](/work_files/research/dl/3)
+* #### [Convolutional Neural Network (CNN)](/work_files/research/dl/cnnx)
 
 * #### [Recurrent Neural Network (RNN) [**Coming Soon**]](/work_files/research/dl/4)
 

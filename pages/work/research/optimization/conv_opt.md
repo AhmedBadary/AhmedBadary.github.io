@@ -22,5 +22,3 @@ permalink: /work_files/research/conv_opt
 
 
 Updated Soon!
-
-chrome://settings/cookies/detail?site=www.youtube.com
