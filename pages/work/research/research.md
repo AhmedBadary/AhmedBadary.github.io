@@ -13,10 +13,15 @@ prevlink: /#
 
 * ## [Deep Learning](/work_files/research/dl.html)
 
+* ## [Computer Vision](/work_files/research/cv.html)
+
+* ## [Natural Language Processing](/work_files/research/nlp.html)
+
 * ## [Linear Algebra](/work_files/research/la.html)
 
 * ## [Statistics and Probability Theory](/work_files/research/stats_prob.html)
 
 * ## [Measure Theory](/work_files/research/measure_theory.html)
+
 
 Updated Soon!

@@ -93,105 +93,105 @@ ________MATH________
 ## FIRST
 {: #content1}
 
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11} \\
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}
 
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12} \\
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13} \\
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}
 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14} \\
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15} \\
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}
 
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16} \\
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}
 
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17} \\
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18} \\
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}
 
 ***
 
 ## SECOND
 {: #content2}
 
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21} \\
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}
 
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22} \\
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23} \\
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}
 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24} \\
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25} \\
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}
 
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26} \\
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}
 
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27} \\
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28} \\
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}
 
 ***
 
 ## THIRD
 {: #content3}
 
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31} \\
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}
 
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32} \\
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33} \\
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}
 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34} \\
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35} \\
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}
 
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36} \\
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}
 
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37} \\
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38} \\
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}
 
 ***
 
 ## FOURTH
 {: #content4}
 
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41} \\
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}
 
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42} \\
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43} \\
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}
 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44} \\
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44}
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45} \\
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}
 
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46} \\
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}
 
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47} \\
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents48} \\
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents48}
 
 ***
 
 ## FIFTH
 {: #content5}
 
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents51} \\
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents51}
 
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents52} \\
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents52}
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents53} \\
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents53}
 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents54} \\
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents54}
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents55} \\
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents55}
 
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents56} \\
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents56}
 
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents57} \\
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents57}
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents58} \\
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents58}
 
 ## Sixth
 {: #content6}

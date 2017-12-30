@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Word Vector Representations <br /> word2vec</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/nlp.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Word Meaning</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Word Embeddings</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Word2Vec</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">FOURTH</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">Word Meaning</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Representing the Meaning of a Word:</strong></dt>
+      <dd>Commonest linguistic way of thinking of meaning:<br />
+Signifier $$\iff$ Signified (idea or thing) = denotation</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">How do we have usable meaning in a computer:</strong></dt>
+      <dd>Commonly:  Use a taxonomy like WordNet that has hypernyms (is-a) relationships and synonym sets</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Problems with this discrete representation:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Great as a resource but missing nuances</strong>:
+            <ul>
+              <li>Synonyms:<br />
+  adept, expert, good, practiced, proficient, skillful</li>
+            </ul>
+          </li>
+          <li><strong>Missing New Words</strong></li>
+          <li><strong>Subjective</strong></li>
+          <li><strong>Requires human labor to create and adapt</strong></li>
+          <li><strong>Hard to compute accurate word similarity</strong>:
+            <ul>
+              <li><em>One-Hot Encoding</em>: in vector space terms, this is a vector with one 1 (at the position of the word) and a lot of zeroes (elsewhere).
+                <ul>
+                  <li>It is a <strong>localist</strong> representation</li>
+                  <li>There is <strong>no</strong> natural <strong>notion of similarity</strong> in a set of one-hot vectors</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Distributed Representations of Words:</strong></dt>
+      <dd>A method where vectors encode the similarity between the words.</dd>
+      <dd>The meaning is represented with real-valued numbers and is “<em>smeared</em>” across the vector.</dd>
+      <dd>Contrast with <strong>one-hot encoding</strong>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Distributional Similarity:</strong></dt>
+      <dd>is an idea/hypothesis that one can describe the meaning of words by the context in which they appear in.</dd>
+      <dd>Contrast with <strong>Denotational Meaning</strong> of words.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">The Big Idea:</strong></dt>
+      <dd>We will build a dense vector for each word type, chosen so that it is good at predicting other words appearing in its context.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Learning Neural Network Word Embeddings:</strong></dt>
+      <dd>We define a model that aims to predict between a center word <script type="math/tex">w_t</script> and context words in terms of word vectors.</dd>
+      <dd>
+        <script type="math/tex; mode=display">p(\text{context} \| w_t) = \ldots</script>
+      </dd>
+      <dd><strong>The Loss Function</strong>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">J = 1 - p(w_{-t} \| w_t)</script>
+      </dd>
+      <dd>We look at many positions <script type="math/tex">t</script> in a big language corpus</dd>
+      <dd>We keep adjusting the vector representations of words to minimize this loss</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Relevant Papers:</strong></dt>
+      <dd>
+        <ul>
+          <li>Learning representations by back-propagating errors (Rumelhart et al., 1986)</li>
+          <li>A neural probabilistic language model (Bengio et al., 2003)</li>
+          <li>NLP (almost) from Scratch (Collobert &amp; Weston, 2008)</li>
+          <li>A recent, even simpler and faster model: word2vec (Mikolov et al. 2013) à intro now</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Word Embeddings</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Main Ideas:</strong></dt>
+      <dd>
+        <ul>
+          <li>Words are represented as vectors of real numbers</li>
+          <li>Words with similar vectors are <em>semantically</em> similar</li>
+          <li>Sometimes vectors are low-dimensional compared to the vocabulary size</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">The Clusterings:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Relationships (attributes) Captured</strong>:
+            <ul>
+              <li>Synonyms: car, auto</li>
+              <li>Antonyms: agree, disagree</li>
+              <li>Values-on-a-scale: hot, warm, cold</li>
+              <li>Hyponym-Hypernym: “Truck” is a type of “car”, “dog” is a type of “pet”</li>
+              <li>Co-Hyponyms: “cat”&amp;”dog” is a type of “pet”</li>
+              <li>Context: (Drink, Eat), (Talk, Listen)</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Word Embeddings Theory:</strong></dt>
+      <dd>Distributional Similarity Hypothesis</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">History and Terminology:</strong></dt>
+      <dd>Word Embeddings \=\ Distributional Semantic Model \=\ Distributed Representation \=\ Semantic Vector Space \=\ Vector Space Model</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Applications:</strong></dt>
+      <dd>
+        <ul>
+          <li>Word Similarity</li>
+          <li>Word Grouping</li>
+          <li>Features in Text-Classification</li>
+          <li>Document Clustering</li>
+          <li>NLP:
+            <ul>
+              <li>POS-Tagging</li>
+              <li>Semantic Analysis</li>
+              <li>Syntactic Parsing</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Approaches:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Count</strong>: word count/context co-occurrences
+            <ul>
+              <li><em><strong>Distributional Semantics</strong></em>:
+                <ol>
+                  <li>Summarize the occurrence statistics for each word in a large document set: <br />
+ <img src="/main_files/dl/nlp/2/1.png" alt="img" width="80%" /></li>
+                  <li>Apply some dimensionality reduction transformation (SVD) to the counts to obtain dense real-valued vectors: <br />
+ <img src="/main_files/dl/nlp/1/2.png" alt="img" width="80%" /></li>
+                  <li>Compute similarity between words as vector similarity:<br />
+ <img src="/main_files/dl/nlp/1/3.png" alt="img" width="80%" /></li>
+                </ol>
+              </li>
+            </ul>
+          </li>
+          <li><strong>Predict</strong>: word based on context
+            <ul>
+              <li><strong>word2vec</strong>:
+                <ol>
+                  <li>In one setup, the goal is to predict a word given its context.<br />
+ <img src="/main_files/dl/nlp/1/2.png" alt="img" width="80%" /></li>
+                  <li>Update word representations for each context in the data set</li>
+                  <li>Similar words would be predicted by similar contexts</li>
+                </ol>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Parameters:</strong></dt>
+      <dd>
+        <ul>
+          <li>Underlying Document Set</li>
+          <li>Context Size</li>
+          <li>Context Type</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Software:</strong></dt>
+      <dd><img src="/main_files/dl/nlp/1/5.png" alt="img" width="80%" /></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Word2Vec</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Main Idea:</strong></dt>
+      <dd>Predict between every word and its context words.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Algorithms:</strong></dt>
+      <dd>
+        <ol>
+          <li><strong>Skip-grams (SG)</strong>:<br />
+ Predict context words given target (position independent)</li>
+          <li><strong>Continuous Bag of Words (CBOW)</strong>:<br />
+ Predict target word from bag-of-words context</li>
+        </ol>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Training Methods:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Basic</strong>:
+            <ol>
+              <li>Naive Softmax</li>
+            </ol>
+          </li>
+          <li><strong>(Moderately) Efficient</strong>:
+            <ol>
+              <li>Hierarchical Softmax</li>
+              <li>Negative Sampling</li>
+            </ol>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Skip-Gram Prediction Method:</strong></dt>
+      <dd>Skip-Gram Models aim to predict the <em>distribution (probability)</em> of context words from a center word.
+        <blockquote>
+          <p>CBOW does the opposite, and aims to predict a center word from the surrounding context in terms of word vectors.</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>The Algorithm</strong>:
+            <ol>
+              <li>We generate our one hot input vector <script type="math/tex">x \in \mathbf{R}^\|V\|</script> of the center word.</li>
+              <li>We get our embedded word vector for the center word <script type="math/tex">v_c = V_x \in \mathbf{R}^n</script></li>
+              <li>Generate a score vector <script type="math/tex">z = \mathcal{U}_{v_c}</script></li>
+              <li>Turn the score vector into probabilities, <script type="math/tex">\hat{y} = \text{softmax}(z)</script>
+                <blockquote>
+                  <p>Note that <script type="math/tex">\hat{y}_{c−m}, \ldots, \hat{y}_{c−1}, \hat{y}_{c+1}, \ldots, \hat{y}_{c+m}</script> are the probabilities of observing each context word.</p>
+                </blockquote>
+              </li>
+              <li>We desire our probability vector generated to match the true probabilities, which is<br />
+ <script type="math/tex">s y^{(c−m)} , ldots, y^{(c−1)} , y^{(c+1)} , ldots, y^{(c+m)}</script>,<br />
+  the one hot vectors of the actual output.</li>
+              <li></li>
+            </ol>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Word2Vec Details:</strong></dt>
+      <dd>
+        <ul>
+          <li>For each word <script type="math/tex">t = 1 \ldots T</script>, predict surrounding words in a window of “radius” <script type="math/tex">m</script> of every word.</li>
+          <li>
+            <dl>
+              <dt>For <script type="math/tex">p(w_{t+j} \| w_t)</script> the simplest first formulation is:</dt>
+              <dd><script type="math/tex">\\p(o \| c) = \dfrac{e^{u_o^Tv_c}}{\sum_{w=1}^V e^{u_w^Tv_c}}\\</script><br />
+where, …</dd>
+            </dl>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">The Objective:</strong></dt>
+      <dd>Maximize the probability of any context word given the current center word.</dd>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text("Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text("Show Content");
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.attr("input");
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text("Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text("Show Content");
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

@@ -4,6 +4,41 @@ title: 'Ahmad Badary'
 tagline: 'Main Page'
 ---
 
+
+# Deep Learning
+
+***
+
+## [Computer Vision](/work_files/research/dl/cv.html)
+
+* ### [Convolutional Neural Networks (CNNs)](/work_files/research/dl/cnnx)
+
+* ### [Image Classification and Deep Learning](/work_files/research/dl/conv_net_vis_recog)
+
+## [Natural Language Processing](/work_files/research/dl/nlp.html)
+
+* ### [Introduction to NLP with DL](/work_files/research/dl/nlp/intro)
+
+* ### [Word Embeddings | Word2Vec](/work_files/research/dl/nlp/wordvec)
+
+* ### [TensorFlow in NLP](/work_files/research/dl/nlp/tf_intro)
+
+* ### [Language Modeling | Recurrent Neural Networks (RNNs)](/work_files/research/dl/nlp/rnns)
+
+***
+
+* [Introduction to NLP](/work_files/research/nlp/intro)
+
+* [Text Processing](/work_files/research/nlp/txt_proc)
+
+* [Discriminative Models in NLP \| MaxEnt Models and Discriminative Estimation](/work_files/research/nlp/disc)
+
+* [Text Classification](/work_files/research/nlp/txt_clss)
+
+* [Sentiment Analysis](/work_files/research/nlp/sent_anlys)
+
+* [Information Extraction](/work_files/research/nlp/info_extr)
+
 ## Interesting Reads
 
 ***
