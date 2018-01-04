@@ -1,7 +1,7 @@
 ---
 layout: NotesPage
 title: CNNs <br /> Convolutional Neural Networks
-permalink: /work_files/research/dl/cnn3
+permalink: /work_files/research/dl/cnnx
 prevLink: /work_files/research/dl/cv.html
 ---
 
@@ -52,7 +52,7 @@ prevLink: /work_files/research/dl/cv.html
 
 3. **Functionality:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23} 
     :   A ConvNet is made up of Layers. 
-    Every Layer has a simple API: It transforms an input 3D volume to an output 3D volume with some differentiable function that may or may not have parameters.
+    Every Layer has a simple API: It transforms an input 3D volume to an output 3D volume with some differentiable function that may or may not have parameters.  
 
     
     ![img](/main_files/dl/cnn/1.png){: width="100%"}
@@ -63,7 +63,7 @@ prevLink: /work_files/research/dl/cv.html
         * Pooling Layer  
         * Fully-Connected Layer
 
-41. **Process:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents241} 
+41. **Process:**{: style="color: SteelBlue"}{: .bodyContents2  #bodyContents241} 
     :   ConvNets transform the original image layer by layer from the original pixel values to the final class scores. 
 
 5. **Example Architecture (CIFAR-10):**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25} 
@@ -71,8 +71,8 @@ prevLink: /work_files/research/dl/cv.html
     :   * **INPUT:** [32x32x3] will hold the raw pixel values of the image, in this case an image of width 32, height 32, and with three color channels R,G,B.   
         * **CONV-Layer** will compute the output of neurons that are connected to local regions in the input, each computing a dot product between their weights and a small region they are connected to in the input volume.    
         This may result in volume such as [32x32x12] if we decided to use 12 filters.  
-        * **RELU-Layer:**  will apply an elementwise activation function, thresholding at zero. This leaves the size of the volume unchanged ([32x32x12]).  
-        * **POOL-Layer:** will perform a downsampling operation along the spatial dimensions (width, height), resulting in volume such as [16x16x12].  
+        * **RELU-Layer:**  will apply an element-wise activation function, thresholding at zero. This leaves the size of the volume unchanged ([32x32x12]).  
+        * **POOL-Layer:** will perform a down-sampling operation along the spatial dimensions (width, height), resulting in volume such as [16x16x12].  
         * **Fully-Connected:** will compute the class scores, resulting in volume of size [1x1x10], where each of the 10 numbers correspond to a class score, such as among the 10 categories of CIFAR-10.  
         As with ordinary Neural Networks and as the name implies, each neuron in this layer will be connected to all the numbers in the previous volume.
 
@@ -99,7 +99,7 @@ prevLink: /work_files/research/dl/cv.html
 {: #content3}
 
 1. **Convolutions:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}  
-    :   A Convolution is a mathematical operation on two functions (f and g) to produce a third function, that is typically viewed as a modified version of one of the original functions, giving the integral of the pointwise multiplication of the two functions as a function of the amount that one of the original functions is translated.
+    :   A Convolution is a mathematical operation on two functions (f and g) to produce a third function, that is typically viewed as a modified version of one of the original functions, giving the integral of the point-wise multiplication of the two functions as a function of the amount that one of the original functions is translated.
     :   The convolution of the __continous__ functions f and g:  
     :   $${\displaystyle {\begin{aligned}(f*g)(t)&\,{\stackrel {\mathrm {def} }{=}}\ \int _{-\infty }^{\infty }f(\tau )g(t-\tau )\,d\tau \\&=\int _{-\infty }^{\infty }f(t-\tau )g(\tau )\,d\tau .\end{aligned}}}$$
     :   The convolution of the __discreet__ functions f and g: 
@@ -107,7 +107,7 @@ prevLink: /work_files/research/dl/cv.html
 
 2. **Cross-Correlation:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}  
     :   Cross-Correlation is a measure of similarity of two series as a function of the displacement of one relative to the other.
-    :   The __continuous__ cross-correlation on continous functions f and g:  
+    :   The __continuous__ cross-correlation on continuous functions f and g:  
     :   $$(f\star g)(\tau )\ {\stackrel {\mathrm {def} }{=}}\int _{-\infty }^{\infty }f^{*}(t)\ g(t+\tau )\,dt,$$
     :   The __discrete__ cross-correlation on discreet functions f and g:  
     :   $$(f\star g)[n]\ {\stackrel {\mathrm {def} }{=}}\sum _{m=-\infty }^{\infty }f^{*}[m]\ g[m+n].$$
@@ -180,19 +180,10 @@ prevLink: /work_files/research/dl/cv.html
 1. **Convolution Layer:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}  
     :   One image becomes a stack of filtered images.
 
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}  
-
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
-
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
-
-
-
+***
 
 ## Distinguishing features
-{: #content4}
+{: #contentx}
 
 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents91}
 
@@ -203,14 +194,3 @@ prevLink: /work_files/research/dl/cv.html
             * __Histogram of Oriented Gradients (HOG)__: we count the occurrences of gradient orientation in localized portions of the image.   
             * __Bag of Words__: a _bag of visual words_ is a vector of occurrence counts of a vocabulary of local image features.  
                 > The __visual words__ can be extracted using a clustering algorithm; K-Means.  
-
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents93}
-
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents94}
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents95}
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents96}
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents97}
-

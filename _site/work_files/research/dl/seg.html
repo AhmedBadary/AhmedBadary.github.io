@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Image Segmentation <br /> with Deep Learning</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/cv.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Semantic Segmentation</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Approaches (The Pre-DeepLearning Era)</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Approaches (The Deep Learning Era)</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">Training Methods, Approaches and Algorithms</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">Semantic Segmentation</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Semantic Segmentation:</strong></dt>
+      <dd><strong>Semantic Segmentation</strong> is the task of understanding an image at the pixel level. It seeks to assign an object class to each pixel in the image.</dd>
+      <dd><img src="/main_files/cs231n/11/1.png" alt="img" width="20%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">The Structure:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Input</strong>: Image</li>
+          <li><strong>Output</strong>: A class for each pixel in the image.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Properties:</strong></dt>
+      <dd>In Semantic Segmentation, we don’t differentiate among the instances, instead, we only care about the pixels.</dd>
+      <dd><img src="/main_files/cs231n/11/2.png" alt="img" width="40%" /></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Approaches (The Pre-DeepLearning Era)</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Semantic Texton Forests:</strong></dt>
+      <dd>This approach consists of ensembles of decision trees that act directly on image pixels.</dd>
+      <dd>Semantic Texton Forests (STFs) 
+are randomized decision forests that use only simple pixel comparisons on local image patches, performing both an
+implicit hierarchical clustering into semantic textons and an explicit local classification of the patch category.</dd>
+      <dd>STFs allow us to build powerful texton codebooks without computing expensive filter-banks or descriptors, and without performing costly k-means clustering and nearest-neighbor assignment.</dd>
+      <dd><em>Semantic Texton Forests for Image Categorization and Segmentation, Shawton et al. (2008)</em></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Random Forest-based Classifiers:</strong></dt>
+      <dd>Random Forests have also been used to perform semantic segmentation for a variety of tasks.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Conditional Random Fields:</strong></dt>
+      <dd>CRFs provide a probabilistic framework for labeling and segmenting structured data.</dd>
+      <dd>They try to model the relationship between pixels, e.g.:
+        <ol>
+          <li>nearby pixels more likely to have same label</li>
+          <li>pixels with similar color more likely to have same label</li>
+          <li>the pixels above the pixels “chair” more likely to be “person” instead of “plane”</li>
+          <li>refine results by iterations</li>
+        </ol>
+      </dd>
+      <dd><em>W. Wu, A. Y. C. Chen, L. Zhao and J. J. Corso (2014): “Brain Tumor detection and segmentation in a CRF framework with pixel-pairwise affinity and super pixel-level features”</em></dd>
+      <dd><em>Plath et al. (2009): “Multi-class image segmentation using conditional random fields and global classification”</em></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">SuperPixel Segmentation:</strong></dt>
+      <dd>The concept of superpixels was first introduced by Xiaofeng Ren and Jitendra Malik in 2003.</dd>
+      <dd><strong>Superpixel</strong> is a group of connected pixels with similar colors or gray levels.<br />
+They produce an image patch which is better aligned with intensity edges than a rectangular patch.</dd>
+      <dd><strong>Superpixel segmentation</strong> is the idea of dividing an image into hundreds of non-overlapping superpixels.<br />
+Then, these can be fed into a segmentation algorithm, such as <strong>Conditional Random Fields</strong> or <strong>Graph Cuts</strong>, for the purpose of segmentation.</dd>
+      <dd><em>Efficient graph-based image segmentation, Felzenszwalb, P.F. and Huttenlocher, D.P. International Journal of Computer Vision, 2004</em></dd>
+      <dd><em>Quick shift and kernel methods for mode seeking, Vedaldi, A. and Soatto, S. European Conference on Computer Vision, 2008</em></dd>
+      <dd><em>Peer Neubert &amp; Peter Protzel (2014). Compact Watershed and Preemptive</em></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Approaches (The Deep Learning Era)</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">The Sliding Window Approach:</strong></dt>
+      <dd>We utilize <em>classification</em> for <em>segmentation</em> purposes.</dd>
+      <dd>
+        <ul>
+          <li><strong>Algorithm</strong>:
+            <ul>
+              <li>We break up the input image into tiny “crops” of the input image.</li>
+              <li>Use Classification to find the class of the center pixel of the crop.
+                <blockquote>
+                  <p>Using the same machinery for classification.</p>
+                </blockquote>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>Basically, we do classification on each crop of the image.</dd>
+      <dd>
+        <ul>
+          <li><strong>DrawBacks:</strong>
+            <ul>
+              <li>Very Inefficient and Expensive:<br />
+  To label every pixel in the image, we need a separate “crop” for each pixel in the image, which would be quite a huge number.</li>
+              <li>Disregarding Localized Information:<br />
+  This approach does <strong>not</strong> make use of the shared features between overlapping patches in the image.<br />
+  Further, it does not make use of the spatial information between the pixels.</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd><em>Farabet et al, “Learning Hierarchical Features for Scene Labeling,” TPAMI 2013</em></dd>
+      <dd><em>Pinheiro and Collobert, “Recurrent Convolutional Neural Networks for Scene Labeling”, ICML 2014</em></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Fully Convolutional Networks:</strong></dt>
+      <dd>We make use of convolutional networks by themselves, trained end-to-end, pixels-to-pixels.</dd>
+      <dd>
+        <ul>
+          <li><strong>Structure</strong>:
+            <ul>
+              <li><em>Input</em>: Image vector</li>
+              <li><em>Output</em>: A Tensor <script type="math/tex">(C \times H \times W)</script>, where <script type="math/tex">C</script> is the number of classes.</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>The key observation is that one can view <strong>Fully Connected Layers</strong> as <strong>Convolutions</strong> over the entire image.<br />
+Thus, the structure of the ConvNet is just a stacked number of convolutional layers that <strong>preserve the size of the image</strong>.
+        <ul>
+          <li><strong>Issue with the Architecture:</strong> <br />
+  The proposed approach of preserving the size of the input image leads to an exploding number of hyperparamters.<br />
+  This makes training the network very tedious and it almost never converges.</li>
+          <li><strong>Solution</strong>:<br />
+  We allow the network to perform an encoding of the image by <br />
+  first <strong>Downsampling</strong> the image,<br />
+  then, <strong>Upsampling</strong> the image back, inside the network.<br />
+  The <strong>Upsampling</strong> is <strong>not</strong> done via <em>bicubic interpolation</em>, instead, we use <strong>Deconvolutional</strong> layers (Unpooling) for learning the upsampling. <br />
+  However, (even learnable)upsampling produces coarse segmentation maps because of loss of information during pooling. Therefore, shortcut/skip connections are introduced from higher resolution feature maps.</li>
+        </ul>
+      </dd>
+      <dd><em>Long et. al (2014)</em></dd>
+      <dd><img src="/main_files/cs231n/11/3.png" alt="img" width="80%" /></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content4">Training Methods, Approaches and Algorithms</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">Upsampling:</strong></dt>
+      <dd>Also, known as <strong>“Unpooling”</strong>.</dd>
+      <dd>
+        <ul>
+          <li><strong>Nearest Neighbor</strong>: fill each region with the corresponding pixel value in the original image.<br />
+  <img src="/main_files/cs231n/11/4.png" alt="img" width="40%" /></li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Bed of Nails</strong>: put each corresponding pixel value in the original image into the upper-left corner in each new sub-region, and fill the rest with zeros. <br />
+  <img src="/main_files/cs231n/11/5.png" alt="img" width="40%" /></li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Max-Unpooling</strong>: The same idea as <em>Bed of Nails</em>, however, we re-place the pixel values from the original image into their original values that they were extracted from in the <em>Max-Pooling</em> step.<br />
+  <img src="/main_files/cs231n/11/6.png" alt="img" width="80%" /></li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Learnable Upsampling: Deconvolutional Layers (Transpose Convolution):</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Transpose Convolution</strong>: is a convolution performed on a an <em>input</em> of a small size, each element in the input acts a <em>scalar</em> that gets multiplied by the filter, and then gets placed on a, larger, <em>output</em> matrix, where the regions of overlap get summed. <br />
+<img src="/main_files/cs231n/11/7.png" alt="img" width="80%" /></li>
+        </ul>
+      </dd>
+      <dd>Also known as:
+        <ul>
+          <li>Deconvolution</li>
+          <li>UpConvolution</li>
+          <li>Fractionally Strided Convolution
+            <blockquote>
+              <p>Reason: if you think of the stride as the ratio in step between the input and the output; this is equivalent to a stride one-half convolution, because of the ratio of 1-to-2 between the input and the output.</p>
+            </blockquote>
+          </li>
+          <li>Backward Strided Convolution
+            <blockquote>
+              <p>Reason: The forward pass of a Transpose Convolution is the same mathematical operation as the backward pass of a normal convolution.</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>1-D Example:</strong><br />
+  <img src="/main_files/cs231n/11/8.png" alt="img" width="60%" /></li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Convolution as Tensor Multiplication</strong>: All Convolutions (with stride and padding) can be framed as a <strong>Tensor Product</strong> by placing the filters intelligently in a tensor.<br />
+  The name <strong>Transpose Convolution</strong> comes from the fact that the <strong>Deconvolution</strong> operation, viewed as a <strong>Tensor Product</strong>, is just the <strong>Transpose</strong> of the Convolution operation.
+            <ul>
+              <li>1-D Example: <br />
+  <img src="/main_files/cs231n/11/9.png" alt="img" width="90%" /></li>
+              <li>In-fact, the name <strong>Deconvolution</strong> is a mis-nomer exactly because of this interpretation:<br />
+  The <strong>Transpose</strong> matrix of the Convolution operation is a convolution <strong>iff</strong> the <strong>stride</strong> is equal to 1.<br />
+  If the stride&gt;1, then the transpose matrix no longer represents a convolution.<br />
+      <img src="/main_files/cs231n/11/10.png" alt="img" width="90%" /></li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Issues with Transpose Convolution:</strong>
+            <ul>
+              <li>Since we sum the values that overlap in the region of the upsampled image, the magnitudes in the output will <strong>vary depending on the number of receptive fields in the output</strong>.<br />
+  This leads to some <em>checkerboard artifacts</em>.</li>
+            </ul>
+          </li>
+          <li><strong>Solution:</strong>
+            <ul>
+              <li>Avoid (3x3) stride two deconvolutions.</li>
+              <li>Use (4x4) stride two, or (2x2) stride two deconvolutions.</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text("Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text("Show Content");
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.attr("input");
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text("Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text("Show Content");
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

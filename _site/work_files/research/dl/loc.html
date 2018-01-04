@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">Recurrent Neural Networks (RNNs) <br /> Language Modeling</h1>
+  <h1 class="project-name">Image Classification and Localization <br /> with Deep Learning</h1>
   <h2 class="project-tagline"></h2>
   <a href="/#" class="btn">Home</a>
   <a href="/work" class="btn">Work-Space</a>
-  <a href= /work_files/research/dl/nlp.html class="btn">Previous</a>
+  <a href= /work_files/research/dl/cv.html class="btn">Previous</a>
 </section>
 
 <!-- <div>
@@ -67,109 +67,55 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">Introduction to and History of Language Models</a></li>
+    <li><a href="#content1">Image Localization</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">Recurrent Neural Networks</a></li>
+    <li><a href="#content2">Approaches</a></li>
   </ul>
   <ul class="TOC3">
-    <li><a href="#content3">RNN Language Models</a></li>
-  </ul>
-  <ul class="TOC4">
-    <li><a href="#content4">Training RNNs</a></li>
-  </ul>
-  <ul class="TOC4">
-    <li><a href="#content4">RNNs in Sequence Modeling</a></li>
-  </ul>
-  <ul class="TOC4">
-    <li><a href="#content4">Bidirectional and Deep RNNs</a></li>
+    <li><a href="#content3">Training Methods, Approaches and Algorithms</a></li>
   </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content1">Introduction to and History of Language Models</h2>
+<h2 id="content1">Image Localization</h2>
 
 <ol>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Language Models:</strong></dt>
-      <dd>A <strong>Language Model</strong> is a statistical model that computes a <em>probability distribution</em> over sequences of words.</dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Image Localization:</strong></dt>
+      <dd><strong>Localization</strong> is the task of finding a single object in an image.</dd>
+      <dd><img src="/main_files/cs231n/11_2/1.png" alt="img" width="20%" /></dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Applications:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Image Classification+Localization:</strong></dt>
+      <dd><strong>Localization</strong> can be combined with classification to, not only find the location of an object but, also, to classify it into one of different classes.</dd>
+      <dd><img src="/main_files/cs231n/11_2/2.png" alt="img" width="20%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Structure:</strong></dt>
       <dd>
         <ul>
-          <li><strong>Machine Translation (MT)</strong>:
-            <ul>
-              <li>Word Ordering:<br />
-  p(“the cat is small”) &gt; p(“small the cat is”)</li>
-              <li>Word Choice:<br />
-  p(“walking home after school”) &gt; p(“walking house after school”)</li>
-            </ul>
-          </li>
-          <li><strong>Speech Recognition</strong>:
-            <ul>
-              <li>Word Disambiguation:<br />
-  p(“The listeners <em>recognize speech</em>”) &gt; p(“The listeners <em>wreck a nice beach</em>”)</li>
-            </ul>
-          </li>
-          <li><strong>Information Retrieval</strong>:
-            <ul>
-              <li>Used in <em>query likelihood model</em></li>
-            </ul>
-          </li>
+          <li><strong>Input</strong>: Image</li>
+          <li><strong>Output</strong>: A vector of 4 coordinates of the bounding box.</li>
         </ul>
       </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Traditional Language Models:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Applications:</strong></dt>
       <dd>
         <ul>
-          <li>Probability is usually conditioned on window of <script type="math/tex">n</script> previous words</li>
-          <li>An incorrect but necessary Markov assumption</li>
-        </ul>
-      </dd>
-      <dd><script type="math/tex">P(w_1, ldots, w_m) = \prod_{i=1}^m P(W_i \| w_1, \ldots, w_{i-1}) \approx \prod_{i=1}^m P(w_i \| w_{i-(n-1)}, ldots, w_{i-1})</script>
-        <ul>
-          <li>To estimate probabilities, compute for
-            <ul>
-              <li>Unigrams:<br />
-  <script type="math/tex">P(w_2 \| w_1) = \dfrac{\text{count}(w_1, w_2)}{\text{count}((w_1)}</script></li>
-              <li>Bigrams:<br />
-  <script type="math/tex">P(w_3 \| w_1, w_2) = \dfrac{\text{count}(w_1, w_2, w_3)}{\text{count}((w_1, w_2)}</script></li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Issues with the Traditional Approaches:</strong></dt>
-      <dd>
-        <ul>
-          <li>To improve performance we need to:
-            <ul>
-              <li>Keep higher n-gram counts</li>
-              <li>Use Smoothing</li>
-              <li>Use Backoff (trying n-gram, (n-1)-gram, (n-2)-grams, ect.)</li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
-      <dd>However,
-        <ul>
-          <li>There are <strong>A LOT</strong> of n-grams
-            <ul>
-              <li><script type="math/tex">\implies</script> Gigantic RAM requirements</li>
-            </ul>
-          </li>
+          <li>Smart Cropping</li>
+          <li>Regular Object Extraction (as a pre-processing step)</li>
+          <li>Human Pose Estimation: Represent pose as a set of 14 joint positions</li>
         </ul>
       </dd>
     </dl>
@@ -178,162 +124,39 @@
 
 <hr />
 
-<h2 id="content2">Recurrent Neural Networks</h2>
+<h2 id="content2">Approaches</h2>
 
 <ol>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Recurrent Neural Networks:</strong></dt>
-      <dd>An <strong>RNN</strong> is a class of artificial neural network where connections between units form a directed cycle, allowing it to exhibit dynamic temporal behavior.</dd>
-      <dd>The standard RNN is a nonlinear dynamical system that maps sequences to sequences.</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">The Structure of an RNN:</strong></dt>
-      <dd>The RNN is parameterized with three weight matrices and three bias vectors:</dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Localization as a Regression Problem:</strong></dt>
+      <dd>Since we are concerned with returning real-valued numbers (the bounding box coordinates), we use a method that is suitable for the task, <strong>Regression</strong>.</dd>
       <dd>
-        <script type="math/tex; mode=display">\theta = [W_{hv}, W_{hh}, W_{oh}, b_h, b_o, h_0]</script>
+        <ul>
+          <li><strong>Algorithm</strong>:
+            <ul>
+              <li>Use any classification architecture</li>
+              <li>Attach two <em>Fully Connected Layers</em>, one for <strong>Classification</strong> and one for <strong>Localization</strong></li>
+              <li>Backpropagate through the whole network using <em>cross-entropy loss</em> and <em>L2 loss</em> respectively.</li>
+            </ul>
+          </li>
+        </ul>
       </dd>
-      <dd>These parameter completely describe the RNN.</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">The Algorithm:</strong></dt>
-      <dd>Given an <em>input sequence</em> <script type="math/tex">\hat{x} = [x_1, \ldots, x_T]</script>, the RNN computes a sequence of hidden states <script type="math/tex">h_1^T</script> and a sequence of outputs <script type="math/tex">y_1^T</script> in the following way:<br />
-<strong>for</strong> <script type="math/tex">t</script> <strong>in</strong> <script type="math/tex">[1, ..., T]</script> <strong>do</strong><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">u_t \leftarrow W_{hv}x_t + W_{hh}h_{t-1} + b_h</script><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">h_t \leftarrow g_h(u_t)</script><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">o_t \leftarrow W_{oh}h_{t} + b_o</script><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">y_t \leftarrow g_y(o_t)</script></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">The Loss:</strong></dt>
-      <dd>The loss of an RNN is commonly a sum of per-time losses:</dd>
       <dd>
-        <script type="math/tex; mode=display">L(y, z) = \sum_{t=1}^TL(y_t, z_t)</script>
+        <ul>
+          <li><strong>Evaluation Metric:</strong> Intersection over Union.</li>
+        </ul>
       </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">BPTT:</strong></dt>
-      <dd><strong>for</strong> <script type="math/tex">t</script> <strong>from</strong> <script type="math/tex">T</script> <strong>to</strong> <script type="math/tex">1</script> <strong>do</strong><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">do_t \leftarrow g_y'(o_t) · dL(y_t ; z_t)/dy_t</script><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">db_o \leftarrow db_o + do_t</script><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">dW_{oh} \leftarrow dW_{oh} + do_th_t^T</script><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">dh_t \leftarrow dh_t + W_{oh}^T do_t</script><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">dy_t \leftarrow g_h'(y_t) · dh_t</script><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">dW_{hv} \leftarrow dW_{hv} + dy_tx_t^T</script><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">db_h \leftarrow db_h + dy_t</script><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">dW_{hh} \leftarrow dW_{hh} + dy_th_{t-1}^T</script><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">dh_{t-1} \leftarrow W_{hh}^T dy_t</script><br />
-<strong>Return</strong> <script type="math/tex">\:\:\:\: d\theta = [dW_{hv}, dW_{hh}, dW_{oh}, db_h, db_o, dh_0]</script></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dd><img src="/main_files/cs231n/11_2/3.png" alt="img" width="40%" /></dd>
     </dl>
   </li>
 </ol>
 
 <hr />
 
-<h2 id="content3">RNN Language Models</h2>
+<h2 id="content4">Training Methods, Approaches and Algorithms</h2>
 
-<ol>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Vanishing/Exploding Gradients:</strong></dt>
-      <dd>
-        <ul>
-          <li><strong>Exploding Gradients</strong>:
-            <ul>
-              <li>Truncated BPTT</li>
-              <li>Clip gradients at threshold</li>
-              <li>RMSprop to adjust learning rate</li>
-            </ul>
-          </li>
-          <li><strong>Vanishing Gradient</strong>:
-            <ul>
-              <li>Harder to detect</li>
-              <li>Weight initialization</li>
-              <li>ReLu activation functions</li>
-              <li>RMSprop</li>
-              <li>LSTM, GRUs</li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Vanishing/Exploding Gradients:</strong></dt>
-      <dd>
-        <ul>
-          <li><strong>Exploding Gradients</strong>:
-            <ul>
-              <li>Truncated BPTT</li>
-              <li>Clip gradients at threshold</li>
-              <li>RMSprop to adjust learning rate</li>
-            </ul>
-          </li>
-          <li><strong>Vanishing Gradient</strong>:
-            <ul>
-              <li>Harder to detect</li>
-              <li>Weight initialization</li>
-              <li>ReLu activation functions</li>
-              <li>RMSprop</li>
-              <li>LSTM, GRUs</li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-</ol>
+<h3 id="updated-soon">Updated Soon!</h3>
 
 
       <footer class="site-footer">

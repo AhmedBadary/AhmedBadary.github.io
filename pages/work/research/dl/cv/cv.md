@@ -10,6 +10,11 @@ permalink: /work_files/research/dl/cv
 
 * ### [Image Classification and Deep Learning](/work_files/research/dl/conv_net_vis_recog)
 
+* ### [Recurrent Neural Networks | Applications in Computer Vision](/work_files/research/dl/rnns_cv)
 
+* ### [Image Segmentation with Deep Learning](/work_files/research/dl/seg)
 
-/work_files/research/dl/conv_net_vis_recog
+* ### [Image Classification and Localization with Deep Learning](/work_files/research/dl/loc)
+
+* ### [Object Detection with Deep Learning](/work_files/research/dl/dec)
+
