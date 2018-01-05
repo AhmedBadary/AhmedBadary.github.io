@@ -92,7 +92,7 @@
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Generative (Joint) Models:</strong></dt>
       <dd><strong>Generative Models</strong> are <strong>Joint Models</strong>.</dd>
-      <dd><strong>Joint Models</strong> place probabilities (<script type="math/tex">P(c,d)</script>) over both the observed data and the “target” (hidden) variables that can only be computed from those observed.</dd>
+      <dd><strong>Joint Models</strong> place probabilities <script type="math/tex">\left(P(c,d)\right)</script> over both the observed data and the “target” (hidden) variables that can only be computed from those observed.</dd>
       <dd>Generative models are typically probabilistic, specifying a joint probability distribution (<script type="math/tex">P(d,c)</script>) over observation and target (label) values,<br />
  and tries to <strong>Maximize</strong> this <strong>joint Likelihood</strong>.
         <blockquote>
@@ -104,8 +104,8 @@
           <li>n-gram Models</li>
           <li>Naive Bayes Classifiers</li>
           <li>Hidden Markov Models (HMMs)</li>
-          <li>Probabilistic Context-Free Grammers (PCFGs)</li>
-          <li>IBM Machine Translatino Alignment Models</li>
+          <li>Probabilistic Context-Free Grammars (PCFGs)</li>
+          <li>IBM Machine Translation Alignment Models</li>
         </ul>
       </dd>
     </dl>
@@ -115,8 +115,8 @@
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Discriminative (Conditional) Models:</strong></dt>
       <dd><strong>Discriminative Models</strong> are <strong>Conditional Models</strong>.</dd>
       <dd><strong>Conditional Models</strong> provide a model only for the “target” (hidden) variabless.<br />
-They take the data as give, and put a probability (<script type="math/tex">P(c \| d)</script>) over the “target” (hidden) structures given the data.</dd>
-      <dd>Conditional Models seek to <strong>Maximizr</strong> the <strong>Conditional Likelihood</strong>.
+They take the data as given, and put a probability <script type="math/tex">\left(P(c \| d)\right)</script> over the “target” (hidden) structures given the data.</dd>
+      <dd>Conditional Models seek to <strong>Maximize</strong> the <strong>Conditional Likelihood</strong>.
         <blockquote>
           <p>This (maximization) task is usually harder to do.</p>
         </blockquote>
@@ -179,11 +179,19 @@ One does <strong>not</strong> necessarily outperform the other, in either classi
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Feature Expectations:</strong></dt>
       <dd>
         <ul>
-          <li><strong>Empirical  Expectation (count)</strong>:<br />
-  <script type="math/tex">E_{\text{emp}}(f_i) = \sum_{(c,d)\in\text{observed}(C,D)} f_i(c,d)</script></li>
-          <li><strong>Model Expectation</strong>:<br />
-  <script type="math/tex">E(f_i) = \sum_{(c,d)\in(C,D)} P(c,d)f_i(c,d)</script></li>
+          <li><strong>Empirical  Expectation (count)</strong>:</li>
         </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">E_{\text{emp}}(f_i) = \sum_{(c,d)\in\text{observed}(C,D)} f_i(c,d)</script>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Model Expectation</strong>:</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">E(f_i) = \sum_{(c,d)\in(C,D)} P(c,d)f_i(c,d)</script>
       </dd>
       <dd>
         <blockquote>

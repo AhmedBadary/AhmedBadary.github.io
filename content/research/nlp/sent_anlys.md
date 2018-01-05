@@ -39,34 +39,19 @@ prevLink: /work_files/research/nlp.html
             * Entire-Document Analysis  
         * __main__: second   
 
-4. **Binar:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}  
-    :   
-
 ***
 
 ## Algorithms
 {: #content2}
 
-1. **Binzarized (Boolean Feature) Multinomial Naive Bayes:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
+1. **Binarized (Boolean Feature) Multinomial Naive Bayes:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
     :   This algorithm works exactly the same as the [Multinomial Naive Bayes](http://ahmedbadary.ml/work_files/research/nlp/txt_clss#content2) algorithm.  
     :   However, the features (Tokens) used in this algorithm are counted based on _occurrence_ rather than _frequency_,  
         > i.e. if a certain word occurs in the text then its count is always one, regardless of the number of occurrences of the word in the text.  
-    :   __Justification:__ The reaosn behind the binarized version is evident, intutively, in the nature of the problem.  
-        The sentiment behind a certain piece of text is usally represented in just one occurrence of a word that represents that sentiment (e.g. "Fantastic") rather than how many times did that word actually appear in the sentence.  
+    :   __Justification:__ The reason behind the binarized version is evident, intuitively, in the nature of the problem.  
+        The sentiment behind a certain piece of text is usually represented in just one occurrence of a word that represents that sentiment (e.g. "Fantastic") rather than how many times did that word actually appear in the sentence.  
 2. **Better Algorithms:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
-    :   * Max-Entity  
+    :   * Max-Entropy  
         * SVMs
 
 

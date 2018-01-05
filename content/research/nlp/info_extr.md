@@ -101,8 +101,8 @@ prevLink: /work_files/research/nlp.html
 
 1. **Approach:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}  
     :   * __Training__:   
-            1. Colect a set of representative training documents
-            2. Label each token for its entitiy class or other (O)
+            1. Collect a set of representative training documents
+            2. Label each token for its entity class or other (O)
             3. Design feature extractors appropriate to the text and classes
             4. Train a sequence classifier to predict the labels from the data
     :   * __Testing__:  
@@ -163,7 +163,6 @@ prevLink: /work_files/research/nlp.html
 3. **Exploring the Sequence Space (Search Methods):**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}  
     :   * __Beam Inference__:  
             * *__Algorithm__*:  
-
                 * At each position keep the top $$k$$ complete sequences.  
                 * Extend each sequence in each local way.  
                 * The extensions compete for the $$k$$ slots at the next position.  

@@ -424,7 +424,12 @@ Then, these can be fed into a segmentation algorithm, such as <strong>Conditiona
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Faster R-CNNs:</strong></dt>
       <dd>A single, end-to-end, architecture for object detection based on Fast R-CNNs, that tackles the bottleneck in speed (i.e. computing RoIs) by introducing <strong>Region Proposal Networks (RPNs)</strong> to make a CNN predict proposals from features.   <br />
-Region Proposal Networks share full-image convolutional features with the detection network, thus enabling nearly cost-free region proposals.</dd>
+Region Proposal Networks share full-image convolutional features with the detection network, thus enabling nearly cost-free region proposals. <br />
+The network is jointly trained with 4 losses:
+    1. RPN classify object / not object
+    2. RPN regress box coordinates
+    3. Final classification score (object classes)
+    4. Final box coordinates</dd>
       <dd><img src="/main_files/cs231n/11_3/6.png" alt="img" width="60%" /></dd>
       <dd>
         <ul>

@@ -28,7 +28,7 @@ Given some data $$\{(d,c)\}$$ of paired observations $$d$$ and hidden classes $$
 
 1. **Generative (Joint) Models:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
     :   __Generative Models__ are __Joint Models__.  
-    :   __Joint Models__ place probabilities ($$P(c,d)$$) over both the observed data and the "target" (hidden) variables that can only be computed from those observed.  
+    :   __Joint Models__ place probabilities $$\left(P(c,d)\right)$$ over both the observed data and the "target" (hidden) variables that can only be computed from those observed.  
     :   Generative models are typically probabilistic, specifying a joint probability distribution ($$P(d,c)$$) over observation and target (label) values,  
     and tries to __Maximize__ this __joint Likelihood__.  
         > Choosing weights turn out to be trivial: chosen as the __relative frequencies__.  
@@ -36,14 +36,14 @@ Given some data $$\{(d,c)\}$$ of paired observations $$d$$ and hidden classes $$
         * n-gram Models
         * Naive Bayes Classifiers  
         * Hidden Markov Models (HMMs)
-        * Probabilistic Context-Free Grammers (PCFGs)
-        * IBM Machine Translatino Alignment Models
+        * Probabilistic Context-Free Grammars (PCFGs)
+        * IBM Machine Translation Alignment Models
 
 2. **Discriminative (Conditional) Models:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
     :   __Discriminative Models__ are __Conditional Models__.  
     :   __Conditional Models__ provide a model only for the "target" (hidden) variabless.  
-        They take the data as give, and put a probability ($$P(c \| d)$$) over the "target" (hidden) structures given the data.  
-    :   Conditional Models seek to __Maximizr__ the __Conditional Likelihood__.  
+        They take the data as given, and put a probability $$\left(P(c \| d)\right)$$ over the "target" (hidden) structures given the data.  
+    :   Conditional Models seek to __Maximize__ the __Conditional Likelihood__.  
         > This (maximization) task is usually harder to do.  
     :   __Examples:__  
         * Logistic Regression
@@ -78,9 +78,9 @@ Given some data $$\{(d,c)\}$$ of paired observations $$d$$ and hidden classes $$
 
 4. **Feature Expectations:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}  
     :   * __Empirical  Expectation (count)__:  
-            $$E_{\text{emp}}(f_i) = \sum_{(c,d)\in\text{observed}(C,D)} f_i(c,d)$$    
-        * __Model Expectation__:  
-            $$E(f_i) = \sum_{(c,d)\in(C,D)} P(c,d)f_i(c,d)$$
+    :   $$E_{\text{emp}}(f_i) = \sum_{(c,d)\in\text{observed}(C,D)} f_i(c,d)$$    
+    :   * __Model Expectation__:  
+    :   $$E(f_i) = \sum_{(c,d)\in(C,D)} P(c,d)f_i(c,d)$$
     :   > The two Expectations represent the __Actual__ and the __Predicted__ __Counts__ of a feature __firing__, respectively.  
 
 5. **Features in NLP:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  

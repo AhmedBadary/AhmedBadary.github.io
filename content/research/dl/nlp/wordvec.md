@@ -27,7 +27,7 @@ prevLink: /work_files/research/dl/nlp.html
 
 1. **Representing the Meaning of a Word:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
     :   Commonest linguistic way of thinking of meaning:  
-        Signifier $$\iff$ Signified (idea or thing) = denotation
+        Signifier $$\iff$$ Signified (idea or thing) = denotation
     
 2. **How do we have usable meaning in a computer:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
     :   Commonly:  Use a taxonomy like WordNet that has hypernyms (is-a) relationships and synonym sets

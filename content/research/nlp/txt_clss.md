@@ -55,7 +55,7 @@ prevLink: /work_files/research/nlp.html
 1. **Naive Bayes Classifiers:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}   
     :   are a family of simple probabilitic classifiers based on applying [_Bayes' Theorem_](https://en.wikipedia.org/wiki/Bayes%27_theorem) with strong (naive) independence assumptions between the features.  
     :   __The Probabilistic Model__:  
-        Abstractly, naive Bayes is a conditional probability model: given a problem instance to be classified, represented by a vector $${\displaystyle \mathbf {x} =(x_{1},\dots ,x_{n})} {\mathbf  {x}}=(x_{1},\dots ,x_{n})$$ representing some n features (independent variables), it assigns to this instance probabilities  
+        Abstractly, naive Bayes is a conditional probability model: given a problem instance to be classified, represented by a vector $${\displaystyle \mathbf {x} =(x_{1},\dots ,x_{n})}}=(x_{1},\dots ,x_{n})$$ representing some n features (independent variables), it assigns to this instance probabilities  
     :   $${\displaystyle p(C_{k}\mid x_{1},\dots ,x_{n})\,}$$
     :   for each of the $$k$$ possible outcome or classes $$C_k$$.  
     :   Now, using _Bayes' Theorem_ we decompose the conditional probability as:  
@@ -73,7 +73,7 @@ prevLink: /work_files/research/nlp.html
     :   $${\displaystyle p(C_{k}\mid x_{1},\dots ,x_{n})={\frac {1}{Z}}p(C_{k})\prod _{i=1}^{n}p(x_{i}\mid C_{k})}$$
     :   Where, $${\displaystyle Z=p(\mathbf {x} )=\sum _{k}p(C_{k})\ p(\mathbf {x} \mid C_{k})}$$ is a __constant__ scaling factor, a function of the, _known_, feature variables.  
 
-    :   __The Decision Rule__: we commonly use the [_Maximum A Posteriori (MAP)](https://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation) hypothesis, as the decision rule.  
+    :   __The Decision Rule__: we commonly use the [_Maximum A Posteriori (MAP)_](https://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation) hypothesis, as the decision rule.  
     :   Thus, __the classifier__ becomes:  
     :   $${\displaystyle {\hat {y}}={\underset {k\in \{1,\dots ,K\}}{\operatorname {argmax} }}\ p(C_{k})\displaystyle \prod _{i=1}^{n}p(x_{i}\mid C_{k}).}$$
     :   A function that assigns a class label $${\displaystyle {\hat {y}}=C_{k}}$$ for some $$k$$.
@@ -84,7 +84,7 @@ prevLink: /work_files/research/nlp.html
     :   $${\displaystyle p(\mathbf {x} \mid C_{k})={\frac {(\sum _{i}x_{i})!}{\prod _{i}x_{i}!}}\prod _{i}{p_{ki}}^{x_{i}}}$$  
     :   The multinomial naive Bayes classifier becomes a linear classifier when expressed in log-space:  
     :   $${\displaystyle {\begin{aligned}\log p(C_{k}\mid \mathbf {x} )&\varpropto \log \left(p(C_{k})\prod _{i=1}^{n}{p_{ki}}^{x_{i}}\right)\\&=\log p(C_{k})+\sum _{i=1}^{n}x_{i}\cdot \log p_{ki}\\&=b+\mathbf {w} _{k}^{\top }\mathbf {x} \end{aligned}}}$$  
-    :   where $${\displaystyle b=\log p(C_{k})}$$ and {\displaystyle w_{ki}=\log p_{ki}}$$.  
+    :   where $${\displaystyle b=\log p(C_{k})}$$ and $${\displaystyle w_{ki}=\log p_{ki}}$$.  
 
 3. **Bag-of-Words:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}   
     :   The __bag-of-words model__ (or __vector-space-model__) is a simplifying representation of text/documents.  
@@ -99,16 +99,16 @@ prevLink: /work_files/research/nlp.html
             * $$\hat{P}(c_j) = \dfrac{\text{doc-count}(C=c_j)}{N_\text{doc}}$$  
             > The _Prior Probability_ of a document being in class $$c_j$$, is the fraction of the documents in the training data that are in class $$c_j$$.  
             * $$\hat{P}(w_i | c_i) = \dfrac{\text{count}(w_i,c_j)}{\sum_{w \in V} \text{count}(w, c_j)}$$  
-            > The _liklelihood_ of the word $$w_i$$ given a class $$c_j$$, is the fraction of the occurunces of the word $$w_i$$ in class $$c_j$$ over all words in the class.    
-    :   __The Problem with Maximum Likelihood__:  
-        If a certain word occurs in the test-set but __not__ in the training set, the likelihood of that word given the equation above will be set to $$0$$.  
-        Now, since we are multiplying all the likelihood terms together, the MAP estimate will be set to $$0$$ as well, regardless of the other values.  
+            > The _likelihood_ of the word $$w_i$$ given a class $$c_j$$, is the fraction of the occurunces of the word $$w_i$$ in class $$c_j$$ over all words in the class.    
+    :   * __The Problem with Maximum Likelihood__:  
+            If a certain word occurs in the test-set but __not__ in the training set, the likelihood of that word given the equation above will be set to $$0$$.  
+            Now, since we are multiplying all the likelihood terms together, the MAP estimate will be set to $$0$$ as well, regardless of the other values.  
 
 6. **Solutions to the MLE Problem:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}   
     :   Usually the problem of reducing the estimate to zero is solved by adding a regularization technique known as _smoothing_. 
 
 7. **Lidstone Smoothing (additive smoothing):**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}   
-    :   is a techqniue used to smooth catergorical data as the following:  
+    :   is a technique used to smooth categorical data as the following:  
     :   Given an observation vector $$x = (x_1, \ldots, x_d)$$ from a multinomial distribution with $$N$$ trials, a _smoothed_ version of the data produces the estimators:  
     :   $${\hat {\theta }}_{i}={\frac {x_{i}+\alpha }{N+\alpha d}}\qquad (i=1,\ldots ,d),$$
 
@@ -133,41 +133,37 @@ prevLink: /work_files/research/nlp.html
         * Robust to Irrelevant Features  
             * Irrelevant features cancel each other out.  
         * Works well in domains with many equally important features  
-            * Deicision Trees_ suffer from framentation in such cases - especially if there is little data.  
+            * Decision Trees_ suffer from fragmentation in such cases - especially if there is little data.  
         * It is _Optimal_ if the independence conditions hold.  
 
 ***
 
-## Evalutaion of Text Classification  
+## Evaluation of Text Classification  
 {: #content3}
 
 1. **The $$2x2$$ Contingency Table:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}  
-    :   | | __correct__ (spam) | __not correct__ (not spam)    
-        __selected__ (spam) | tp | fp  
-        __not selected__ (not spam) | fn | tn  
+    :   | | __correct__ (Spam) | __not correct__ (not Spam)    
+        __selected__ (Spam) | tp | fp  
+        __not selected__ (not Spam) | fn | tn  
 
 2. **Accuracy:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}   
     :   $$ \text{Acc} = \dfrac{\text{tp} + \text{tn}}{\text{tp} + \text{fp} + \text{fn} + \text{tn}}$$
     :   __The Problem__:  
         Accuracy can be easily fooled (i.e. produce a very high number) in a scenario where the number of occurrences of a class we desire is much less than the data we are searching.  
 
-3. **Perceision:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}
-  
-    :    Also known as __positive predictive value__ (PPV).  
-    :   is the fraction of relevant instances among the retrieved instances.
+3. **Precision (positive predictive value (PPV)):**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
+    :   is the fraction of relevant instances among the retrieved instances.  
     :   __Equivalently__,  
         the % of selected items that are correct.    
 
     :   $${\displaystyle {\text{Precision}}={\frac {tp}{tp+fp}}\,}$$     
 
-4. **Recall:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
+4. **Recall (True Positive Rate), (Sensitivity):**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
     :   Also referred to as the __true positive rate__ or __sensitivity__. 
     :    is the fraction of relevant instances that have been retrieved over the total amount of relevant instances.  
     :   __Equivalently__,  
         the % of correct items that are selected.  
     :   $${\displaystyle {\text{Recall}}={\frac {tp}{tp+fn}}\,}$$
-
-
 
 5. **The Trade-Off:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}   
     :   Usually, the two measures discusses above have an inverse relation between them due to the quantities they measure.  
@@ -207,5 +203,5 @@ prevLink: /work_files/research/nlp.html
 
 5. **Tweaking the Performance of the Algorithms:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}   
     :   * Utilize __*Domain-Specific* features__ and weights  
-        * __Upweighting__: counting a word as if it occured multiple times.  
+        * __Upweighting__: counting a word as if it occurred multiple times.  
    
