@@ -14,7 +14,7 @@ prevLink: /work_files/research/dl/cv.html
   {: .TOC2}
   * [Approaches (The Deep Learning Era)](#content3)
   {: .TOC3}
-  * [Training Methods, Approaches and Algorithms](#content4)
+  * [Methods, Approaches and Algorithms in Training DL Models](#content4)
   {: .TOC4}
 </div>
 
@@ -115,7 +115,7 @@ implicit hierarchical clustering into semantic textons and an explicit local cla
 
 ***
 
-## Training Methods, Approaches and Algorithms 
+## Methods, Approaches and Algorithms in Training DL Models
 {: #content4}
 
 1. **Upsampling:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}  
