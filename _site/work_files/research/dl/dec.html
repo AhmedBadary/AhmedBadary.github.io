@@ -87,7 +87,7 @@
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Object Detection:</strong></dt>
       <dd><strong>Object Detection</strong> is the process of finding multiple instances of real-world objects such as faces, vehicles, and animals in images.</dd>
-      <dd><img src="/main_files/cs231n/11_3/1.png" alt="img" width="20%" /></dd>
+      <dd><img src="/main_files/cs231n/11_3/1.png" alt="img" width="48%" /></dd>
     </dl>
   </li>
   <li>
@@ -233,34 +233,277 @@ Then, these can be fed into a segmentation algorithm, such as <strong>Conditiona
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Region Proposals:</strong></dt>
-      <dd>We make use of convolutional networks by themselves, trained end-to-end, pixels-to-pixels.</dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Region Proposal Networks (R-CNNs):</strong></dt>
+      <dd>A framework for object detection, that utilizes Region Proposals (Regions of Interest (ROIs)), consisting of three separate architectures.</dd>
+      <dd><img src="/main_files/cs231n/11_3/3.png" alt="img" width="82%" /></dd>
       <dd>
         <ul>
           <li><strong>Structure</strong>:
             <ul>
               <li><em>Input</em>: Image vector</li>
-              <li><em>Output</em>: A Tensor <script type="math/tex">(C \times H \times W)</script>, where <script type="math/tex">C</script> is the number of classes.</li>
+              <li><em>Output</em>: A vector of bounding boxes coordinates and a class prediction for each box</li>
             </ul>
           </li>
         </ul>
       </dd>
-      <dd>The key observation is that one can view <strong>Fully Connected Layers</strong> as <strong>Convolutions</strong> over the entire image.<br />
-Thus, the structure of the ConvNet is just a stacked number of convolutional layers that <strong>preserve the size of the image</strong>.
+      <dd>
         <ul>
-          <li><strong>Issue with the Architecture:</strong> <br />
-  The proposed approach of preserving the size of the input image leads to an exploding number of hyperparamters.<br />
-  This makes training the network very tedious and it almost never converges.</li>
-          <li><strong>Solution</strong>:<br />
-  We allow the network to perform an encoding of the image by <br />
-  first <strong>Downsampling</strong> the image,<br />
-  then, <strong>Upsampling</strong> the image back, inside the network.<br />
-  The <strong>Upsampling</strong> is <strong>not</strong> done via <em>bicubic interpolation</em>, instead, we use <strong>Deconvolutional</strong> layers (Unpooling) for learning the upsampling. <br />
-  However, (even learnable)upsampling produces coarse segmentation maps because of loss of information during pooling. Therefore, shortcut/skip connections are introduced from higher resolution feature maps.</li>
+          <li><strong>Strategy</strong>:<br />
+  Propose a number of “bounding boxes”, then check if any of them, actually, corresponds to an object.
+            <blockquote>
+              <p>The bounding boxes are created using <strong>Selective Search</strong>.</p>
+            </blockquote>
+          </li>
         </ul>
       </dd>
-      <dd><em>Long et. al (2014)</em></dd>
-      <dd><img src="/main_files/cs231n/11/3.png" alt="img" width="80%" /></dd>
+      <dd>
+        <ul>
+          <li><strong>Selective Search</strong>: A method that looks at the image through windows of different sizes, and for each size tries to group together adjacent pixels by texture, color, or intensity to identify objects.  <br />
+  <img src="/main_files/cs231n/11_3/2.png" alt="img" width="100%" /></li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Key Insights</strong>:
+            <ol>
+              <li>One can apply high-capacity convolutional neural networks (CNNs) to bottom-up region proposals in order to localize and segment objects</li>
+              <li>When labeled training data is scarce, supervised pre-training for an auxiliary task, followed by domain-specific fine-tuning, yields a significant performance boost.</li>
+            </ol>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Algorithm</strong>:
+            <ul>
+              <li>Create <em>Region Proposals (Regions of Interest (ROIs))</em> of bounding boxes</li>
+              <li>Warp the regions to a standard square size to fit the “cnn classification models”, due to the FCNs</li>
+              <li>Pass the warped images to a modified version of <em>AlexNet</em> to <em>extract image features</em></li>
+              <li>Pass the <em>image features</em> to an SVM to <em>classify the image regions</em> into a <em>class</em> or <em>background</em></li>
+              <li>Run the bounding box coordinates in a <strong>Linear Regression</strong> model to “tighten” the bounding boxes
+                <ul>
+                  <li><em><strong>Linear Regression</strong></em>:
+                    <ul>
+                      <li><strong>Structure</strong>:
+                        <ul>
+                          <li><em>Input</em>: sub-regions of the image corresponding to objects</li>
+                          <li><em>Output</em>: New bounding box coordinates for the object in the sub-region.</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Issues</strong>:
+            <ul>
+              <li>Ad hoc training objectives:
+                <ul>
+                  <li>Fine-tune network with softmax classifier (log loss)</li>
+                  <li>Train post-hoc linear SVMs (hinge loss)</li>
+                  <li>Train post-hoc bounding-box regressions (least squares)</li>
+                </ul>
+              </li>
+              <li>Training is slow (84h), takes a lot of disk space</li>
+              <li>Inference (detection) is slow
+                <ul>
+                  <li>47s / image with VGG16 [Simonyan &amp; Zisserman. ICLR15]</li>
+                  <li>Fixed by SPP-net [He et al. ECCV14]</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>R-CNN is slow because it performs a ConvNet forward pass for each region proposal, without sharing computation.</dd>
+      <dd><em>R. Girshick, J. Donahue, T. Darrell, J. Malik. (2014): “Rich feature hierarchies for accurate object detection and semantic segmentation”</em></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Fast R-CNNs:</strong></dt>
+      <dd>A single, end-to-end, architecture for object detection based on R-CNNs, that vastly improves on its speed and accuracy by utilizing shared computations of features.</dd>
+      <dd><img src="/main_files/cs231n/11_3/4.png" alt="img" width="82%" /></dd>
+      <dd>
+        <ul>
+          <li><strong>Structure</strong>:
+            <ul>
+              <li><em>Input</em>: Image vector</li>
+              <li><em>Output</em>: A vector of bounding boxes coordinates and a class prediction for each box</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Key Insights</strong>:
+            <ol>
+              <li>Instead of running the ConvNet on <strong>each region proposal separately</strong>, we run the ConvNet on the <strong>entire image</strong>.</li>
+              <li>Instead of taking <strong>crops of the original image</strong>, we <strong>project the regions of interest</strong> onto the <strong>ConvNet Feature Map</strong>, corresponding to each RoI, and then use the <strong>projected regions in the feature map</strong> <em>for classification</em>.<br />
+ This allows us to <strong>reuse</strong> a lot of the expensive computation of the features.</li>
+              <li>Jointly train the CNN, classifier, and bounding box regressor in a single model. Where earlier we had different models to extract image features (CNN), classify (SVM), and tighten bounding boxes (regressor), Fast R-CNN instead used a single network to compute all three.</li>
+            </ol>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Algorithm</strong>:
+            <ul>
+              <li>Create <em>Region Proposals (Regions of Interest (ROIs))</em> of bounding boxes</li>
+              <li>Pass the entire image to a modified version of <em>AlexNet</em> to <em>extract image features</em> by creating an <em>image feature map</em> for the <strong>entire image</strong>.</li>
+              <li>Project each <em>RoI</em> to the <em>feature map</em> and crop each respective projected region</li>
+              <li>Apply <strong>RoI Pooling</strong> to the <em>regions extracted from the feature map</em> to a standard square size to fit the “cnn classification models”, due to the FCNs</li>
+              <li>Pass the <em>image features</em> to an SVM to <em>classify the image regions</em> into a <em>class</em> or <em>background</em></li>
+              <li>Run the bounding box coordinates in a <strong>Linear Regression</strong> model to “tighten” the bounding boxes
+                <ul>
+                  <li><em><strong>Linear Regression</strong></em>:
+                    <ul>
+                      <li><strong>Structure</strong>:
+                        <ul>
+                          <li><em>Input</em>: sub-regions of the image corresponding to objects</li>
+                          <li><em>Output</em>: New bounding box coordinates for the object in the sub-region.</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>RoI Pooling</strong>: is a pooling technique aimed to perform max pooling on inputs of nonuniform sizes to obtain fixed-size feature maps (e.g. 7×7).
+            <ul>
+              <li><em><strong>Structure</strong></em>: <br />
+          * <em>Input</em>: A fixed-size feature map obtained from a deep convolutional network with several convolutions and max pooling layers.<br />
+          * <em>Output</em>: An N x 5 matrix of representing a list of regions of interest, where N is a number of RoIs. The first column represents the image index and the remaining four are the coordinates of the top left and bottom right corners of the region.<br />
+  For every region of interest from the input list, it takes a section of the input feature map that corresponds to it and scales it to some pre-defined size.</li>
+              <li><em><strong>Scaling</strong></em>:
+                <ol>
+                  <li>Divide the RoI into equal-sized sections (the number of which is the same as the dimension of the output)</li>
+                  <li>Find the largest value in each section</li>
+                  <li>Copy these max values to the output buffer<br />
+  The <strong>dimension of the output</strong> is determined solely by <em>the number of sections we divide the proposal</em> into. <br />
+  <img src="/main_files/cs231n/11_3/5.png" alt="img" width="80%" /></li>
+                </ol>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>The Bottleneck</strong>: <br />
+  It appears that Fast R-CNNs are capable of object detection at test time in:
+            <ul>
+              <li><em>Including RoIs</em>: 2.3s</li>
+              <li><em>Excluding RoIs</em>: 0.3s<br />
+  Thus, <strong>the bottleneck</strong> for the speed seems to be the method of creating the RoIs, <em>Selective Search</em></li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd><em>Girshick, Ross (2015). “Fast R-CNN”</em></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Fast R-CNNs:</strong></dt>
+      <dd>A single, end-to-end, architecture for object detection based on R-CNNs, that vastly improves on its speed and accuracy by utilizing shared computations of features.</dd>
+      <dd>
+        <ul>
+          <li><strong>Structure</strong>:
+            <ul>
+              <li><em>Input</em>: Image vector</li>
+              <li><em>Output</em>: A vector of bounding boxes coordinates and a class prediction for each box</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Key Insights</strong>:
+            <ol>
+              <li>Instead of running the ConvNet on <strong>each region proposal separately</strong>, we run the ConvNet on the <strong>entire image</strong>.</li>
+              <li>Instead of taking <strong>crops of the original image</strong>, we <strong>project the regions of interest</strong> onto the <strong>ConvNet Feature Map</strong>, corresponding to each RoI, and then use the <strong>projected regions in the feature map</strong> <em>for classification</em>.<br />
+ This allows us to <strong>reuse</strong> a lot of the expensive computation of the features.</li>
+              <li>Jointly train the CNN, classifier, and bounding box regressor in a single model. Where earlier we had different models to extract image features (CNN), classify (SVM), and tighten bounding boxes (regressor), Fast R-CNN instead used a single network to compute all three.</li>
+            </ol>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Algorithm</strong>:
+            <ul>
+              <li>Create <em>Region Proposals (Regions of Interest (ROIs))</em> of bounding boxes</li>
+              <li>Pass the entire image to a modified version of <em>AlexNet</em> to <em>extract image features</em> by creating an <em>image feature map</em> for the <strong>entire image</strong>.</li>
+              <li>Project each <em>RoI</em> to the <em>feature map</em> and crop each respective projected region</li>
+              <li>Apply <strong>RoI Pooling</strong> to the <em>regions extracted from the feature map</em> to a standard square size to fit the “cnn classification models”, due to the FCNs</li>
+              <li>Pass the <em>image features</em> to an SVM to <em>classify the image regions</em> into a <em>class</em> or <em>background</em></li>
+              <li>Run the bounding box coordinates in a <strong>Linear Regression</strong> model to “tighten” the bounding boxes
+                <ul>
+                  <li><em><strong>Linear Regression</strong></em>:
+                    <ul>
+                      <li><strong>Structure</strong>:
+                        <ul>
+                          <li><em>Input</em>: sub-regions of the image corresponding to objects</li>
+                          <li><em>Output</em>: New bounding box coordinates for the object in the sub-region.</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>RoI Pooling</strong>: is a pooling technique aimed to perform max pooling on inputs of nonuniform sizes to obtain fixed-size feature maps (e.g. 7×7).
+            <ul>
+              <li><em><strong>Structure</strong></em>: <br />
+          * <em>Input</em>: A fixed-size feature map obtained from a deep convolutional network with several convolutions and max pooling layers.<br />
+          * <em>Output</em>: An N x 5 matrix of representing a list of regions of interest, where N is a number of RoIs. The first column represents the image index and the remaining four are the coordinates of the top left and bottom right corners of the region.<br />
+  For every region of interest from the input list, it takes a section of the input feature map that corresponds to it and scales it to some pre-defined size.</li>
+              <li><em><strong>Scaling</strong></em>:
+                <ol>
+                  <li>Divide the RoI into equal-sized sections (the number of which is the same as the dimension of the output)</li>
+                  <li>Find the largest value in each section</li>
+                  <li>Copy these max values to the output buffer<br />
+  The <strong>dimension of the output</strong> is determined solely by <em>the number of sections we divide the proposal</em> into. <br />
+  <img src="/main_files/cs231n/11_3/6.png" alt="img" width="40%" /></li>
+                </ol>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>The Bottleneck</strong>: <br />
+  It appears that Fast R-CNNs are capable of object detection at test time in:
+            <ul>
+              <li><em>Including RoIs</em>: 2.3s</li>
+              <li><em>Excluding RoIs</em>: 0.3s<br />
+  Thus, <strong>the bottleneck</strong> for the speed seems to be the method of creating the RoIs, <em>Selective Search</em></li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd><em>Girshick, Ross (2015). “Fast R-CNN”</em></dd>
+      <dd>
+        <p><img src="/main_files/cs231n/11_3/5.png" alt="img" width="60%" /></p>
+      </dd>
     </dl>
   </li>
 </ol>
