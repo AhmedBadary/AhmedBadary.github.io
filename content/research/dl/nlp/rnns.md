@@ -46,7 +46,7 @@ prevLink: /work_files/research/dl/nlp.html
 3. **Traditional Language Models:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
     :   * Probability is usually conditioned on window of $$n$$ previous words
         * An incorrect but necessary Markov assumption  
-    :   $$P(w_1, ldots, w_m) = \prod_{i=1}^m P(W_i \| w_1, \ldots, w_{i-1}) \approx \prod_{i=1}^m P(w_i \| w_{i-(n-1)}, ldots, w_{i-1})$$  
+    :   $$P(w_1, \ldots, w_m) = \prod_{i=1}^m P(W_i \| w_1, \ldots, w_{i-1}) \approx \prod_{i=1}^m P(w_i \| w_{i-(n-1)}, ldots, w_{i-1})$$  
         * To estimate probabilities, compute for  
             * Unigrams:  
                 $$P(w_2 \| w_1) = \dfrac{\text{count}(w_1, w_2)}{\text{count}((w_1)}$$  

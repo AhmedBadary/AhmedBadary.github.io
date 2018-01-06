@@ -94,7 +94,15 @@ prevLink: /work_files/research/dl/nlp.html
     :   Distributional Similarity Hypothesis
 
 4. **History and Terminology:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
-    :   Word Embeddings \\=\\ Distributional Semantic Model \\=\\ Distributed Representation \\=\\ Semantic Vector Space \\=\\ Vector Space Model 
+    :   Word Embeddings \\
+        = \\
+        Distributional Semantic Model \\
+        = \\
+        Distributed Representation \\
+        = \\
+        Semantic Vector Space \\
+        = \\
+        Vector Space Model 
 
 5. **Applications:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
     :   * Word Similarity
@@ -110,15 +118,15 @@ prevLink: /work_files/research/dl/nlp.html
     :   * __Count__: word count/context co-occurrences   
             * *__Distributional Semantics__*:    
                 1. Summarize the occurrence statistics for each word in a large document set:   
-                    ![img](/main_files/dl/nlp/2/1.png){: width="80%"}  
+                    ![img](/main_files/dl/nlp/1/1.png){: width="40%"}  
                 2. Apply some dimensionality reduction transformation (SVD) to the counts to obtain dense real-valued vectors:   
-                    ![img](/main_files/dl/nlp/1/2.png){: width="80%"}  
+                    ![img](/main_files/dl/nlp/1/2.png){: width="40%"}  
                 3. Compute similarity between words as vector similarity:  
-                    ![img](/main_files/dl/nlp/1/3.png){: width="80%"}  
+                    ![img](/main_files/dl/nlp/1/3.png){: width="40%"}  
         * __Predict__: word based on context  
             * __word2vec__:  
                 1. In one setup, the goal is to predict a word given its context.  
-                    ![img](/main_files/dl/nlp/1/2.png){: width="80%"}   
+                    ![img](/main_files/dl/nlp/1/4.png){: width="80%"}   
                 2. Update word representations for each context in the data set  
                 3. Similar words would be predicted by similar contexts
 
