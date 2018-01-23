@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Articulated Body Pose Estimation <br /> (Human Pose Estimation)</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/cv.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Introduction</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">SECOND</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">THIRD</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">FOURTH</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">Introduction</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Human (Articulated) Body Pose Estimation:</strong></dt>
+      <dd><strong>Human Pose Estimation</strong> is the process of estimating the configuration of the body (pose) from a single, typically monocular, image.</dd>
+      <dd>In computer vision, <strong>Body Pose Estimation</strong> is the study of algorithms and systems that recover the pose of an articulated body, which consists of joints and rigid parts using image-based observations.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Difficulties in Pose Estimation:</strong></dt>
+      <dd>Pose estimation is hard due to many reasons including:
+        <ul>
+          <li><em><strong>High Degree of Freedom (DOF)</strong></em>: 244 DOF</li>
+          <li><em><strong>Variability of human visual appearance</strong></em></li>
+          <li><em><strong>Variability in lighting conditions</strong></em></li>
+          <li><em><strong>Variability in human physique</strong></em></li>
+          <li><em><strong>(partial) Occlusions</strong></em></li>
+          <li><em><strong>Complexity of the human physical structure</strong></em></li>
+          <li><em><strong>high dimensionality of the pose</strong></em></li>
+          <li><em><strong>loss of 3d information that results from observing the pose from 2d planar image projections</strong></em></li>
+          <li><em><strong>(variability in) Clothes</strong></em></li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Theory:</strong></dt>
+      <dd>Human pose estimation is usually formulated <strong>Probabilistically</strong> to account for the variability and ambiguities that exist in the inference.</dd>
+      <dd>In <strong>Probabilistic</strong> approaches, we are interested in estimating the <em><strong>posterior distribution</strong></em> <script type="math/tex">p(\mathbf{x}\vert \mathbf{z})</script>, where <script type="math/tex">\mathbf{x}</script> is the pose of the body and and <script type="math/tex">\mathbf{z}</script> is a feature set derived from the image.</dd>
+      <dd>
+        <ul>
+          <li><strong>The Key Modeling choices</strong> that affect the inference are:
+            <ul>
+              <li>The representation of the pose – <script type="math/tex">\mathbf{x}</script></li>
+              <li>The nature and encoding of image features – <script type="math/tex">\mathbf{z}</script></li>
+              <li>The inference framework required to estimate the posterior – <script type="math/tex">p(\mathbf{x}\vert \mathbf{z})</script></li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd><a href="https://cs.brown.edu/~ls/Publications/SigalEncyclopediaCVdraft.pdf">Further Reading</a></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Model-based Approaches:</strong></dt>
+      <dd>The typical body pose estimation system involves a <strong>model-based approach</strong>, in which the pose estimation is achieved by <em>maximizing/minimizing</em> a <em>similarity/dissimilarity</em> between an <em>observation</em> (input) and a <em>template model</em>.</dd>
+      <dd>Different kinds of sensors have been explored for use in making the observation.
+        <ul>
+          <li><strong>Sensors</strong>:
+            <ul>
+              <li>Visible wavelength imagery</li>
+              <li>Long-wave thermal infrared imagery</li>
+              <li>Time-of-flight imagery</li>
+              <li>Laser range scanner imagery</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>These sensors produce intermediate representations that are directly used by the model.
+        <ul>
+          <li><strong>Representations</strong>:
+            <ul>
+              <li>Image appearance</li>
+              <li>Voxel (volume element) reconstruction</li>
+              <li>3D point clouds, and sum of Gaussian kernels</li>
+              <li>3D surface meshes.</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents133">The Representation:</strong></dt>
+      <dd>A <strong>Representation</strong> is a model to depict the configuration of the human body.<br />
+The <em>configuration of the human body</em> can be represented in a variety of ways.</dd>
+      <dd>There are two common representations used for the human body:
+        <ul>
+          <li><strong>Kinematic Skeleton Tree</strong></li>
+          <li><strong>Part Models</strong></li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents144">Kinematic Skeleton Tree with Quaternions:</strong></dt>
+      <dd>The most direct and common representation is obtained by parameterizing the body as a kinematic tree, <script type="math/tex">\vec{x} = \{\tau, \theta_\tau, \theta_1, \theta_2, \ldots, \theta_N\}</script>, where the pose is encoded using position of the root segment (the <strong>pelvis</strong> is typically used as root to minimize the height of the kinematic tree), <script type="math/tex">\tau</script>, orientation of the root segment in the world, <script type="math/tex">\theta_\tau</script>, and a set of relative joint angels, <script type="math/tex">\{\theta_i\}_{i=1}^N</script>, that represent the orientation of the body parts with respect to their parents along the tree.
+        <blockquote>
+          <p>e.g., the orientation of the thigh with respect to the pelvis, shin with respect to the thigh, etc.</p>
+        </blockquote>
+      </dd>
+      <dd><img src="/main_files/cv/pose_est/1.png" alt="img" width="60%" /></dd>
+      <dd>The kinematic skeleton is constructed by a tree-structured chain where each rigid body segment has its local coordinate system that can be transformed to the world coordinate system via a 4×4 transformation matrix <script type="math/tex">{\displaystyle T_{l}}</script>,</dd>
+      <dd>
+        <script type="math/tex; mode=display">{\displaystyle T_{l}=T_{\operatorname {par} (l)}R_{l},}</script>
+      </dd>
+      <dd>where <script type="math/tex">{\displaystyle R_{l}}</script> denotes the local transformation from body segment <script type="math/tex">{\displaystyle S_{l}}</script> to its parent <script type="math/tex">{\displaystyle \operatorname {par} (S_{l})}</script>.</dd>
+      <dd>Kinematic tree representation can be obtained for 2d, 2.5d, and 3d body models.
+        <ul>
+          <li><strong>2-D</strong>:
+            <ul>
+              <li><script type="math/tex">\tau \in \mathcal{R}^2</script>,</li>
+              <li><script type="math/tex">\theta_\tau \in \mathcal{R}^1</script>,</li>
+              <li><script type="math/tex">\theta_i \in \mathcal{R}^1</script>:   corresponds to pose of the cardboard person in the image plane</li>
+            </ul>
+          </li>
+          <li><strong>3-D</strong>:
+            <ul>
+              <li><script type="math/tex">\tau \in \mathcal{R}^3</script>,</li>
+              <li><script type="math/tex">\theta_\tau \in SO(3)</script>,</li>
+              <li><script type="math/tex">\theta_i \in SO(3)</script>: for spherical joints, e.g. neck<br />
+<script type="math/tex">\theta_i \in \mathcal{R}^2</script>: for saddle joints, e.g. wrist<br />
+<script type="math/tex">\theta_i \in \mathbb{R}^1</script>: for hinge joints, e.g. knee</li>
+            </ul>
+          </li>
+          <li><strong>2.5-D</strong>: are extensions of the <strong>2-D</strong> representations where the pose, <script type="math/tex">\mathbf{x}</script>, is augmented with (discrete)  variables encoding the relative depth (layering) of body parts with respect to one another in the 2-d <em>cardboard</em> model.<br />
+  This representation is not very common.</li>
+        </ul>
+      </dd>
+      <dd>Each joint in the body has 3 degrees of freedom (DoF) rotation. Given a transformation matrix <script type="math/tex">{\displaystyle T_{l}}</script>, the joint position at the T-pose can be transferred to its corresponding position in the world coordination.<br />
+The <strong>3-D joint rotation</strong> is, usually, expressed as a <em><strong>normalized quaternion</strong></em> <script type="math/tex">[x, y, z, w]</script> due to its continuity that can facilitate gradient-based optimization in the parameters estimation.</dd>
+      <dd>In all (dimensionality) cases, kinematic tree representation results in a <strong>high-dimensional pose vector</strong>, <script type="math/tex">\mathbf{x}</script>, in <script type="math/tex">\mathbb{R}^{30} - \mathbb{R}^{70}</script>, depending on the fidelity and exact parameterization of the skeleton and joints.</dd>
+      <dd>Another parameterization uses the (2d or 3d) locations of the major joints in the world. <br />
+However, this parametrization is <strong>not invariant to the morphology</strong> (body segment lengths) of a given individual.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Part-based Models:</strong></dt>
+      <dd>The body is modeled as a <strong>set of parts</strong>, <script type="math/tex">\mathbf{x} = \{\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_M\}</script>, each with its own position and orientation in space, <script type="math/tex">\mathbf{x}_i = \{\tau_i, \theta_i\}</script>, that are connected by a set of statistical or physical constraints that enforce skeletal (and sometimes image) consistency.</dd>
+      <dd>The part model is motivated by the human skeleton, since any object having the property of articulation can be broken down into smaller parts wherein each part can take different orientations, resulting in different articulations of the same object. <br />
+ Different scales and orientations of the main object can be articulated to scales and orientations of the corresponding parts.</dd>
+      <dd>Mathematically, the parts are connected by springs; the model is, also, known as a <strong>spring model</strong>.<br />
+The degree of closeness between each part is accounted for by the compression and expansion of the springs. There is geometric constraint on the orientation of springs. For example, limbs of legs cannot move 360 degrees. Hence parts cannot have that extreme orientation.  This reduces the possible permutations.</dd>
+      <dd>The model can be formulated in 2-D or in 3-D.<br />
+The 2-D parameterizations are much more common.<br />
+In 2-D, each part’s representation is often augmented with an additional variable, <script type="math/tex">s_i</script>, that accounts for uniform scaling of the body part in the image, i.e., <script type="math/tex">\mathbf{x}_i = \{\tau_i, \theta_i, s_i\}</script> with <script type="math/tex">\tau_i \in \mathbb{R}^2, \theta_i \in \mathbb{R}^1</script> and <script type="math/tex">s_i \in \mathbb{R}^1</script>.</dd>
+      <dd>The model results in very high dimensional vectors, even higher than that of <em>kinematic trees</em>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Applications:</strong></dt>
+      <dd>
+        <ul>
+          <li>Markerless motion capture for human-computer interfaces,</li>
+          <li>Physiotherapy</li>
+          <li>3D animation</li>
+          <li>Ergonomics studies</li>
+          <li>Robot control  and</li>
+          <li>Visual surveillance</li>
+          <li>Human-robot interaction</li>
+          <li>Gaming</li>
+          <li>Sports performance analysis</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Image Features:</strong></dt>
+      <dd>In many of the classical approaches image features that represent the salient parts of the image with respect to the human pose play a huge rule in the performance of any pose estimation approach.</dd>
+      <dd><img src="/main_files/cv/pose_est/2.png" alt="img" width="70%" /></dd>
+      <dd>
+        <ul>
+          <li><strong>The most common features</strong>:
+            <ul>
+              <li><em><strong>Silhouettes</strong></em>: for effectively separating the person from background in static scenes</li>
+              <li><em><strong>Color</strong></em>: for modeling un-occluded skin or clothing</li>
+              <li><em><strong>Edges</strong></em>: for modeling external and internal contours of the body</li>
+              <li><em><strong>Gradients</strong></em>: for modeling the texture over the body parts<br />
+Other, less common features, include, <strong>Shading</strong> and <strong>Focus</strong>.</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>To <strong>reduce dimensionality</strong> and <strong>increase robustness to noise</strong>, these raw features are often encapsulated in <em>image descriptors</em>, such as <strong>shape context</strong>, <strong>SIFT</strong>, and <strong>histogram of oriented gradients (HoG)</strong>.<br />
+Alternatively, <em>hierarchical multi-level image encodings</em> can be used, such as <strong>HMAX</strong>, <strong>spatial pyramids</strong>, and <strong>vocabulary trees</strong>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">SECOND</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">THIRD</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content4">FOURTH</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents45">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents46">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text("Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text("Show Content");
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.attr("input");
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text("Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text("Show Content");
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

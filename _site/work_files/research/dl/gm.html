@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Generative Models <br /> Unsupervised Learning</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/cv.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Unsupervised Learning</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Generative Models</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">PixelRNN and PixelCNN</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">Variational Auto-Encoders</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">Unsupervised Learning</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Unsupervised Learning:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Generative Models</h2>
+
+<p>Given some data <script type="math/tex">\{(d,c)\}</script> of paired observations <script type="math/tex">d</script> and hidden classes <script type="math/tex">c</script>:</p>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Generative (Joint) Models:</strong></dt>
+      <dd><strong>Generative Models</strong> are <strong>Joint Models</strong>.</dd>
+      <dd><strong>Joint Models</strong> place probabilities <script type="math/tex">\left(P(c,d)\right)</script> over both the observed data and the “target” (hidden) variables that can only be computed from those observed.</dd>
+      <dd>Generative models are typically probabilistic, specifying a joint probability distribution (<script type="math/tex">P(d,c)</script>) over observation and target (label) values,<br />
+ and tries to <strong>Maximize</strong> this <strong>joint Likelihood</strong>.
+        <blockquote>
+          <p>Choosing weights turn out to be trivial: chosen as the <strong>relative frequencies</strong>.</p>
+        </blockquote>
+      </dd>
+      <dd><strong>Examples:</strong>
+        <ul>
+          <li>Gaussian Mixture Model</li>
+          <li>Naive Bayes Classifiers</li>
+          <li>Hidden Markov Models (HMMs)</li>
+          <li>Restricted Boltzmann Machines (RBMs)</li>
+          <li>AutoEncoders</li>
+          <li>Generative Adversarial Networks (GANs)</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Discriminative (Conditional) Models:</strong></dt>
+      <dd><strong>Discriminative Models</strong> are <strong>Conditional Models</strong>.</dd>
+      <dd><strong>Conditional Models</strong> provide a model only for the “target” (hidden) variabless.<br />
+They take the data as given, and put a probability <script type="math/tex">\left(P(c \vert d)\right)</script> over the “target” (hidden) structures given the data.</dd>
+      <dd>Conditional Models seek to <strong>Maximize</strong> the <strong>Conditional Likelihood</strong>.
+        <blockquote>
+          <p>This (maximization) task is usually harder to do.</p>
+        </blockquote>
+      </dd>
+      <dd><strong>Examples:</strong>
+        <ul>
+          <li>Logistic Regression</li>
+          <li>Conditional LogLinear/Maximum Entropy Models</li>
+          <li>Condtional Random Fields</li>
+          <li>SVMs</li>
+          <li>Perceptrons</li>
+          <li>Neural Networks</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Generative VS Discriminative Models:</strong></dt>
+      <dd>Basically, <em>Discriminative Models</em> infer outputs based on inputs,<br />
+while <em>Generative Models</em> generate, both, inputs and outputs (typically given some hidden paramters).</dd>
+      <dd>However, notice that the two models are usually viewed as complementary procedures.<br />
+One does <strong>not</strong> necessarily outperform the other, in either classificaiton or regression tasks.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Example Uses of Generative Models:</strong></dt>
+      <dd>
+        <ul>
+          <li>Clustering</li>
+          <li>Dimensionality Reduction</li>
+          <li>Feature Learning</li>
+          <li>Density Estimation</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Density Estimation:</strong></dt>
+      <dd><strong>Generative Models</strong>, given training data, will generate new samples from the same distribution.</dd>
+      <dd>They address the <strong>Density Estimation</strong> problem, a core problem in unsupervised learning.</dd>
+      <dd>
+        <ul>
+          <li><strong>Types</strong> of Density Estimation:
+            <ul>
+              <li><em><strong>Explicit</strong></em>: Explicitly define and solve for <script type="math/tex">p_\text{model}(x)</script></li>
+              <li><em><strong>Implicit</strong></em>: Learn model that can sample from <script type="math/tex">p_\text{model}(x)</script> without explicitly defining it</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Applications of Generative Models:</strong></dt>
+      <dd>
+        <ul>
+          <li>Realistic samples for artwork</li>
+          <li>Super-Resolution</li>
+          <li>Colorization</li>
+          <li>Generative models of time-series data can be used for simulation and planning
+            <blockquote>
+              <p>reinforcement learning applications</p>
+            </blockquote>
+          </li>
+          <li>Inference of <strong>Latent Representations</strong> that can be useful as general feature descriptors</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Taxonomy of Generative Models:</strong></dt>
+      <dd><img src="/main_files/cs231n/13/1.png" alt="img" width="100%" /></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">PixelRNN and PixelCNN</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Fully Visible (Deep) Belief Networks:</strong></dt>
+      <dd><strong>Deep Belief Network (DBNs)</strong> are generative graphical models, or alternatively a class of deep neural networks, composed of multiple layers of latent variables (“hidden units”), with connections between the layers but not between units within each layer.</dd>
+      <dd>DBNs undergo unsupervised training to <em>learn to probabilistically reconstruct the inputs</em>.</dd>
+      <dd>They generate an <strong>Explicit Density Model</strong>.</dd>
+      <dd>They use the <strong>chain rule</strong> to <em>decompose the _likelihood of an image</em> <script type="math/tex">x</script> into products of 1-d distributions:</dd>
+      <dd><img src="/main_files/cs231n/13/2.png" alt="img" width="70%" /></dd>
+      <dd>then, they <strong>Maximize</strong> the <strong>Likelihood</strong> of the training data.</dd>
+      <dd>The <strong>conditional distributions over pixels</strong> are very _complex.<br />
+We model them using a <strong>neural network</strong>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">PixelRNN:</strong></dt>
+      <dd>is a proposed architecture (part of the class of <strong>Auto-Regressive</strong> models) to model an explicit distribution of natural images in an <em>expressive, tractable,</em> and <em>scalable</em> way.</dd>
+      <dd>It sequentially predicts the pixels in an image along two spatial dimensions.</dd>
+      <dd>The Method <strong>models</strong> the <strong>discrete probability of the raw pixel values</strong> and <strong>encodes the complete set of dependencies</strong> in an image.</dd>
+      <dd>The approach is to use probabilistic density models (like Gaussian or Normal distribution) to quantify the pixels of an image as a product of conditional distributions.<br />
+This approach turns the modeling problem into a sequence problem where the next pixel value is determined by all the previously generated pixel values.</dd>
+      <dd>
+        <ul>
+          <li><strong>Key Insights</strong>:
+            <ul>
+              <li>Generate image pixels starting from corner</li>
+              <li>Dependency on previous pixels is modeled using an <em>LSTM</em></li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd><img src="/main_files/cs231n/13/3.png" alt="img" width="100%" /></dd>
+      <dd>
+        <ul>
+          <li><strong>The Model</strong>:
+            <ul>
+              <li>Scan the image, one row at a time and one pixel at a time (within each row)</li>
+              <li>Given the scanned content, predict the distribution over the possible values for the next pixel</li>
+              <li>Joint distribution over the pixel values is factorized into a product of conditional distributions thus causing the problem as a sequence problem</li>
+              <li>Parameters used in prediction are shared across all the pixel positions</li>
+              <li>Since each pixel is jointly determined by 3 values (3 colour channels), each channel may be conditioned on other channels as well</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Drawbacks</strong>:
+            <ul>
+              <li>Sequential training is <strong>slow</strong></li>
+              <li>Sequential generation is <strong>slow</strong></li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd><a href="https://gist.github.com/shagunsodhani/e741ebd5ba0e0fc0f49d7836e30891a7">Further Reading</a></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">PixelCNN:</strong></dt>
+      <dd>Similar to the <strong>PixelRNN</strong> model, the <strong>PixelCNN</strong> models  the <em><strong>Pixel Distribution</strong></em> <script type="math/tex">p(\vec{x})</script>, where <script type="math/tex">\vec{x} = (x_0, \ldots, x_n)</script> is the vector of pixel values of a given image.</dd>
+      <dd>Similarly, we use the chain rule for join distribution: <script type="math/tex">% <![CDATA[
+p(x) = p(x_0) \prod_1^n p(x_i | x_{i<}) %]]></script>.
+        <blockquote>
+          <p>such that, the first pixel is independent, the second depends on the first, and the third depends on, both, the first and second, etc.</p>
+        </blockquote>
+      </dd>
+      <dd><img src="/main_files/cs231n/13/4.png" alt="img" width="40%" /></dd>
+      <dd>
+        <ul>
+          <li><strong>Key Insights</strong>:
+            <ul>
+              <li>Still generate image pixels starting from corner</li>
+              <li>Dependency on previous pixels now modeled using a CNN over context region</li>
+              <li>Training: maximize likelihood of training images</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Upsides</strong>:
+            <ul>
+              <li>Training is faster than <strong>PixelRNN</strong>: since we can parallelize the convolutions because the context region values are known from the training images.</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Issues</strong>:
+            <ul>
+              <li>Generation is still sequential, thus, slow.</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd><a href="http://sergeiturukin.com/2017/02/22/pixelcnn.html">Further Reading</a></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Improving PixelCNN Performance:</strong></dt>
+      <dd>
+        <ul>
+          <li>Gated Convolutional Layers</li>
+          <li>Short-cut connections</li>
+          <li>Discretized logistic loss</li>
+          <li>Multi-scale</li>
+          <li>Training tricks</li>
+        </ul>
+      </dd>
+      <dd><strong>Further Reading</strong>:
+        <ul>
+          <li><em><strong>PixelCNN++</strong></em> | <em>Salimans et al. 2017</em></li>
+          <li><em>Van der Oord et al. NIPS 2016</em></li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Pros and Cons of Auto-Regressive Models:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Pros</strong>:
+            <ul>
+              <li>Can explicitly compute likelihood <script type="math/tex">p(x)</script></li>
+              <li>Explicit likelihood of training data gives good evaluation metric</li>
+              <li>Good Samples</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Cons</strong>:
+            <ul>
+              <li>Sequential Generation is <strong>Slow</strong></li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content4">Variational Auto-Encoders</h2>
+
+<p><a href="http://ahmedbadary.ml/work_files/research/dl/aencdrs"><strong>Auto-Encoders</strong></a> (<em>click to read more</em>) are unsupervised learning methods that aim to learn a representation (encoding) for a set of data in a smaller dimension.<br />
+Auto-Encoders generate <strong>Features</strong> that capture <em>factors of variation</em> in the training data.</p>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents40">Auto-Regressive Models VS Variational Auto-Encoders:</strong></dt>
+      <dd><strong>Auto-Regressive Models</strong> defined a <em><strong>tractable</strong></em> (discrete) density function and, then, optimized the likelihood of training data:</dd>
+      <dd>
+        <script type="math/tex; mode=display">% <![CDATA[
+p_\theta(x) = p(x_0) \prod_1^n p(x_i | x_{i<}) %]]></script>
+      </dd>
+      <dd>On the other hand, <strong>VAEs</strong> defines an <em><strong>intractable</strong></em> (continuous) density function with latent variable <script type="math/tex">z</script>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">p_\theta(x) = \int p_\theta(z) p_\theta(x|z) dz</script>
+      </dd>
+      <dd>but cannot optimize directly; instead, derive and optimiz a lower bound on likelihood instead.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">Variational Auto-Encoders (VAEs):</strong></dt>
+      <dd><strong>Variational Autoencoder</strong> models inherit the autoencoder architecture, but make strong assumptions concerning the distribution of latent variables.</dd>
+      <dd>They use variational approach for latent representation learning, which results in an additional loss component and specific training algorithm called Stochastic Gradient Variational Bayes (SGVB).</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Assumptions:</strong></dt>
+      <dd>VAEs assume that:
+        <ul>
+          <li>The data is generated by a directed <strong>graphical model</strong> <script type="math/tex">p(x\vert z)</script></li>
+          <li>The encoder is learning an approximation <script type="math/tex">q_\phi(z|x)</script> to the posterior distribution <script type="math/tex">p_\theta(z|x)</script><br />
+  where <script type="math/tex">{\displaystyle \mathbf {\phi } }</script> and <script type="math/tex">{\displaystyle \mathbf {\theta } }</script> denote the parameters of the encoder (recognition model) and decoder (generative model) respectively.</li>
+          <li>The training data <script type="math/tex">\left\{x^{(i)}\right\}_{i=1}^N</script> is generated from underlying unobserved (latent) representation <script type="math/tex">\mathbf{z}</script></li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">The Objective Function:</strong></dt>
+      <dd>
+        <script type="math/tex; mode=display">{\displaystyle {\mathcal {L}}(\mathbf {\phi } ,\mathbf {\theta } ,\mathbf {x} )=D_{KL}(q_{\phi }(\mathbf {z} |\mathbf {x} )||p_{\theta }(\mathbf {z} ))-\mathbb {E} _{q_{\phi }(\mathbf {z} |\mathbf {x} )}{\big (}\log p_{\theta }(\mathbf {x} |\mathbf {z} ){\big )}}</script>
+      </dd>
+      <dd>where <script type="math/tex">{\displaystyle D_{KL}}</script> is the <strong>Kullback–Leibler divergence</strong> (KL-Div).</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">The Generation Process:</strong></dt>
+      <dd></dd>
+      <dd><img src="/main_files/cs231n/13/5.png" alt="img" width="40%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents45">The Goal:</strong></dt>
+      <dd>The goal is to estimate the true parameters <script type="math/tex">\theta^\ast</script> of this generative model.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents46">Representing the Model:</strong></dt>
+      <dd>
+        <ul>
+          <li>To represent the prior <script type="math/tex">p(z)</script>, we choose it to be simple, usually <strong>Gaussian</strong></li>
+          <li>To represent the conditional (which is very complex), we use a neural-network</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents47">Intractability:</strong></dt>
+      <dd>The <strong>Data Likelihood</strong>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">p_\theta(x) = \int p_\theta(z) p_\theta(x|z) dz</script>
+      </dd>
+      <dd>is intractable to compute for every <script type="math/tex">z</script>.</dd>
+      <dd>Thus, the <strong>Posterior Density</strong>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">p_\theta(z|x) = \dfrac{p_\theta(x|z) p_\theta(z)}{p_\theta(x)} = \dfrac{p_\theta(x|z) p_\theta(z)}{\int p_\theta(z) p_\theta(x|z) dz}</script>
+      </dd>
+      <dd>is, also, intractable</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents48">Dealing with Intractability:</strong></dt>
+      <dd>In addition to decoder network modeling <script type="math/tex">p_\theta(x\vert z)</script>, define additional encoder network <script type="math/tex">q_\phi(z\vert x)</script> that approximates <script type="math/tex">p_\theta(z\vert x)</script></dd>
+      <dd>This allows us to derive a <strong>lower bound</strong> on the data likelihood that is tractable, which we can optimize.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents49">The Model:</strong></dt>
+      <dd>
+        <ul>
+          <li>The <strong>Encoder</strong> (recognition/inference) and <strong>Decoder</strong> (generation) networks are probabilistic and output means and variances of each the conditionals respectively:<br />
+  <img src="/main_files/cs231n/13/6.png" alt="img" width="70%" /></li>
+          <li>The generation (forward-pass) is done via sampling as follows:<br />
+  <img src="/main_files/cs231n/13/7.png" alt="img" width="72%" /></li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents410">The Log-Likelihood of Data:</strong></dt>
+      <dd>
+        <ul>
+          <li>Deriving the Log-Likelihood:</li>
+        </ul>
+      </dd>
+      <dd><img src="/main_files/cs231n/13/8.png" alt="img" width="100%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents411">Training the Model:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents412">Pros, Cons and Research:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Pros</strong>:
+            <ul>
+              <li>Principled approach to generative models</li>
+              <li>Allows inference of <script type="math/tex">q(z\vert x)</script>, can be useful feature representation for other tasks</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Cons</strong>:
+            <ul>
+              <li>Maximizing the lower bound of likelihood is okay, but not as good for evaluation as Auto-regressive models</li>
+              <li>Samples blurrier and lower quality compared to state-of-the-art (GANs)</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Active areas of research</strong>:
+            <ul>
+              <li>More flexible approximations, e.g. richer approximate posterior instead of diagonal Gaussian</li>
+              <li>Incorporating structure in latent variables</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text("Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text("Show Content");
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.attr("input");
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text("Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text("Show Content");
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

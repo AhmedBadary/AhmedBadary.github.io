@@ -45,7 +45,7 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">Image Classification and Localization <br /> with Deep Learning</h1>
+  <h1 class="project-name">Deep-Dream <br /> Visualizing Features in ConvNets</h1>
   <h2 class="project-tagline"></h2>
   <a href="/#" class="btn">Home</a>
   <a href="/work" class="btn">Work-Space</a>
@@ -67,56 +67,50 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">Image Localization</a></li>
+    <li><a href="#content1">Deep-Dream: Deep Feature Visualization</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">Approaches</a></li>
+    <li><a href="#content2">SECOND</a></li>
   </ul>
   <ul class="TOC3">
-    <li><a href="#content3">Training Methods, Approaches and Algorithms</a></li>
+    <li><a href="#content3">THIRD</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">FOURTH</a></li>
   </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content1">Image Localization</h2>
+<h2 id="content1">Deep-Dream: Deep Feature Visualization</h2>
 
 <ol>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Image Localization:</strong></dt>
-      <dd><strong>Localization</strong> is the task of finding a single object in an image.</dd>
-      <dd><img src="/main_files/cs231n/11_2/1.png" alt="img" width="25%" /></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents10">DeepDream:</strong></dt>
+      <dd><strong>DeepDream</strong> is a computer vision program created by Google which uses a ConvNet to find and enhance patterns in images via <em>algorithmic pareidolia</em>, thus creating a dream-like hallucinogenic appearance in the image.</dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Image Classification+Localization:</strong></dt>
-      <dd><strong>Localization</strong> can be combined with classification to, not only find the location of an object but, also, to classify it into one of different classes.</dd>
-      <dd><img src="/main_files/cs231n/11_2/2.png" alt="img" width="35%" /></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">The General Idea:</strong></dt>
+      <dd>Rather than synthesizing an image to maximize a specific neuron, instead try to <strong>amplify</strong> the neuron activations at some layer in the network</dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Structure:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">The Process:</strong></dt>
       <dd>
-        <ul>
-          <li><strong>Input</strong>: Image</li>
-          <li><strong>Output</strong>: A vector of 4 coordinates of the bounding box.</li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Applications:</strong></dt>
-      <dd>
-        <ul>
-          <li>Smart Cropping</li>
-          <li>Regular Object Extraction (as a pre-processing step)</li>
-          <li>Human Pose Estimation: Represent pose as a set of 14 joint positions</li>
-        </ul>
+        <ol>
+          <li>Start with an input image</li>
+          <li>Run it through a ConvNet up to some layer</li>
+          <li>Forward: compute activations at chosen layer</li>
+          <li>Set gradient of chosen layer equal to its activation</li>
+          <li>Backward: Compute gradient on image</li>
+          <li>Update Image</li>
+          <li>Repeat</li>
+        </ol>
       </dd>
     </dl>
   </li>
@@ -124,39 +118,142 @@
 
 <hr />
 
-<h2 id="content2">Approaches</h2>
+<h2 id="content2">Feature Inversion</h2>
 
 <ol>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Localization as a Regression Problem:</strong></dt>
-      <dd>Since we are concerned with returning real-valued numbers (the bounding box coordinates), we use a method that is suitable for the task, <strong>Regression</strong>.</dd>
-      <dd><img src="/main_files/cs231n/11_2/3.png" alt="img" width="80%" /></dd>
-      <dd>
-        <ul>
-          <li><strong>Algorithm</strong>:
-            <ul>
-              <li>Use any classification architecture</li>
-              <li>Attach two <em>Fully Connected Layers</em>, one for <strong>Classification</strong> and one for <strong>Localization</strong></li>
-              <li>Backpropagate through the whole network using <em>cross-entropy loss</em> and <em>L2 loss</em> respectively.</li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
-      <dd>
-        <ul>
-          <li><strong>Evaluation Metric:</strong> Intersection over Union.</li>
-        </ul>
-      </dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Asynchronous:</strong></dt>
+      <dd></dd>
     </dl>
   </li>
 </ol>
 
 <hr />
 
-<h2 id="content4">Training Methods, Approaches and Algorithms</h2>
+<h2 id="content3">THIRD</h2>
 
-<h3 id="updated-soon">Updated Soon!</h3>
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content4">FOURTH</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents45">Asynchronous:</strong></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents46">Asynchronous:</strong></li>
+</ol>
 
 
       <footer class="site-footer">

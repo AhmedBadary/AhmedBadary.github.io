@@ -70,10 +70,10 @@ prevLink: /work_files/research/dl/cv.html
     :   Model: [INPUT - CONV - RELU - POOL - FC]
     :   * **INPUT:** [32x32x3] will hold the raw pixel values of the image, in this case an image of width 32, height 32, and with three color channels R,G,B.   
         * **CONV-Layer** will compute the output of neurons that are connected to local regions in the input, each computing a dot product between their weights and a small region they are connected to in the input volume.    
-        This may result in volume such as [32x32x12] if we decided to use 12 filters.  
-        * **RELU-Layer:**  will apply an element-wise activation function, thresholding at zero. This leaves the size of the volume unchanged ([32x32x12]).  
-        * **POOL-Layer:** will perform a down-sampling operation along the spatial dimensions (width, height), resulting in volume such as [16x16x12].  
-        * **Fully-Connected:** will compute the class scores, resulting in volume of size [1x1x10], where each of the 10 numbers correspond to a class score, such as among the 10 categories of CIFAR-10.  
+        This may result in volume such as [$$32\times32\times12$$] if we decided to use 12 filters.  
+        * **RELU-Layer:**  will apply an element-wise activation function, thresholding at zero. This leaves the size of the volume unchanged ([$$32\times32\times12$$]).  
+        * **POOL-Layer:** will perform a down-sampling operation along the spatial dimensions (width, height), resulting in volume such as [$$16\times16\times12$$].  
+        * **Fully-Connected:** will compute the class scores, resulting in volume of size [$$1\times1\times10$$], where each of the 10 numbers correspond to a class score, such as among the 10 categories of CIFAR-10.  
         As with ordinary Neural Networks and as the name implies, each neuron in this layer will be connected to all the numbers in the previous volume.
 
 6. **Fixed Functions VS Hyper-Parameters:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26} 
@@ -190,7 +190,7 @@ prevLink: /work_files/research/dl/cv.html
 2. **Image Features:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents92}
     :   are certain quantities that are calculated from the image to _better describe the information in the image_, and to _reduce the size of the input vectors_. 
     :   * Examples:  
-            * __Color Histogram__: Compute a (bucked-based) vector of colors with their respective amounts in the image.  
+            * __Color Histogram__: Compute a (bucket-based) vector of colors with their respective amounts in the image.  
             * __Histogram of Oriented Gradients (HOG)__: we count the occurrences of gradient orientation in localized portions of the image.   
             * __Bag of Words__: a _bag of visual words_ is a vector of occurrence counts of a vocabulary of local image features.  
                 > The __visual words__ can be extracted using a clustering algorithm; K-Means.  
