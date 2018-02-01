@@ -78,6 +78,9 @@
   <ul class="TOC4">
     <li><a href="#content4">Variational Auto-Encoders</a></li>
   </ul>
+  <ul class="TOC5">
+    <li><a href="#content5">Generative Adversarial Networks (GANs)</a></li>
+  </ul>
 </div>
 
 <hr />
@@ -526,6 +529,98 @@ p_\theta(x) = p(x_0) \prod_1^n p(x_i | x_{i<}) %]]></script>
           </li>
         </ul>
       </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content5">Generative Adversarial Networks (GANs)</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents40">Auto-Regressive Models VS Variational Auto-Encoders VS GANs:</strong></dt>
+      <dd><strong>Auto-Regressive Models</strong> defined a <em><strong>tractable</strong></em> (discrete) density function and, then, optimized the likelihood of training data:</dd>
+      <dd>
+        <script type="math/tex; mode=display">% <![CDATA[
+p_\theta(x) = p(x_0) \prod_1^n p(x_i | x_{i<}) %]]></script>
+      </dd>
+      <dd>While <strong>VAEs</strong> defined an <em><strong>intractable</strong></em> (continuous) density function with latent variable <script type="math/tex">z</script>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">p_\theta(x) = \int p_\theta(z) p_\theta(x|z) dz</script>
+      </dd>
+      <dd>but cannot optimize directly; instead, derive and optimize a lower bound on likelihood instead.</dd>
+      <dd>On the other hand, <strong>GANs</strong> rejects explicitly defining a probability density function, in favor of only being able to sample.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents51">Generative Adversarial Networks:</strong></dt>
+      <dd>are a class of AI algorithms used in unsupervised machine learning, implemented by a system of two neural networks contesting with each other in a zero-sum game framework.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents52">Motivation:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Problem</strong>: we want to sample from complex, high-dimensional training distribution; there is no direct way of doing this.</li>
+          <li><strong>Solution</strong>: we sample from a simple distribution (e.g. random noise) and learn a transformation that maps to the training distribution, by using a <strong>neural network</strong>.</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Generative VS Discriminative</strong>: discriminative models had much more success because deep generative models suffered due to the difficulty of approximating many intractable probabilistic computations that arise in maximum likelihood estimation and related strategies, and due to difficulty of leveraging the benefits of piecewise linear units in the generative context.<br />
+GANs propose a new framework for generative model estimation that sidesteps these difficulties.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents53">Structure:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Goal</strong>: estimating generative models that capture the training data distribution</li>
+          <li><strong>Framework</strong>: an adversarial process in which two models are simultaneously trained a generative model <script type="math/tex">G</script> that captures the data distribution, and a discriminative model <script type="math/tex">D</script> that estimates the probability that a sample came from the training data rather than <script type="math/tex">G</script>.</li>
+          <li><strong>Training</strong>:
+            <ul>
+              <li><script type="math/tex">G</script> maximizes the probability of <script type="math/tex">D</script> making a mistake</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents54">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents55">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents56">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents57">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents58">Asynchronous:</strong></dt>
+      <dd></dd>
     </dl>
   </li>
 </ol>

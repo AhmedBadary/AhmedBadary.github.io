@@ -1,0 +1,6 @@
+Basketball player makes first free throw and misses the  second. Thereon after, the probability of making the next free throw is the proportion of previous shots he has made. What is the probability he makes 50 of the first 100 shots?
+
+The probability is 1/99. In fact, we show by induction on n that after n shots, the probability of having made any number of shots from $$1$$ to $$n−1$$ is equal to $$1/(n− 1)$$. This is evident for $$n = 2$$. Given the result for n, we see that the probability of Shanille making i shots after $$n + 1$$ attempts is the probability of her making i out of n and then missing plus the probability of her making $$i − 1$$ out of n and then hitting:
+$$ P(m + 1, k) = P(m, k) \dfrac{m − k}{m} + P(m, k − 1)\dfrac{k − 1}{m} = \dfrac{1}{m − 1} \dfrac{m − k}{m}  + \dfrac{1}{m − 1}  \dfrac{k − 1}{m}  = \dfrac{1}{m − 1}  \dfrac{m − k + k − 1}{m}  = \dfrac{1}{m}$$
+
+$$ P(n + 1, i) = P(n, i) \dfrac{n − i}{n} + P(n, i − 1)\dfrac{i − 1}{n} \\ \\ = \dfrac{1}{n − 1} \dfrac{n − i}{n}  + \dfrac{1}{n − 1}  \dfrac{i − 1}{n}  = \dfrac{1}{n − 1}  \dfrac{n − i + i − 1}{n}  = \dfrac{1}{n}$$

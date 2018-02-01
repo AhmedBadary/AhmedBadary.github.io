@@ -85,32 +85,78 @@
 
 <h2 id="content1">Introduction</h2>
 
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">ML-based Compression:</strong></dt>
+      <dd>The main idea behind ML-based compression is that structure is <strong>automatically discovered</strong> instead of <strong>manually engineered</strong>.</dd>
+      <dd>
+        <ul>
+          <li><strong>Examples</strong>:
+            <ul>
+              <li><em><strong>DjVu</strong></em>: employs segmentation and K-means clustering to separate foreground from background and analyze the documents contents.</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
 <hr />
 
-<h2 id="content2">DeepPose</h2>
+<h2 id="content2">WaveOne</h2>
 
-<p><a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/42237.pdf">Further Reading</a></p>
+<p><a href="https://arxiv.org/pdf/1705.05823.pdf">Further Reading</a></p>
+
+<p>WaveOne is a machine learning-based approach to lossy image compression.</p>
 
 <ol>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Main Idea:</strong></dt>
-      <dd>Pose Estimation is formulated as a <strong>DNN-based regression problem</strong> towards <strong>body joints</strong>.<br />
-The <strong>DNN regressors</strong> are presented as a cascade for higher precision in pose estimates.</dd>
+      <dd>An ML-based approach to compression that utilizes the older techniques for quantization but with an encoder-decoder model that depends on adversarial training for a higher quality reconstruction.</dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Structure:</strong></dt>
-      <dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Model:</strong></dt>
+      <dd>The model includes three main steps that are layered together in one pipeline:
         <ul>
-          <li><strong>Input</strong>:
+          <li><strong>Feature Extraction</strong>: an approach that aims to recognize the different types of structures in an image.
             <ul>
-              <li>Full Image</li>
-              <li>7-layered generic Convolutional DNN
-                <blockquote>
-                  <p>Each Joint Regressor uses the full image as a signal.</p>
-                </blockquote>
+              <li><strong>Structures</strong>:
+                <ul>
+                  <li>Across input channels</li>
+                  <li>Within individual scales</li>
+                  <li>Across Scales</li>
+                </ul>
+              </li>
+              <li><strong>Methods</strong>:
+                <ul>
+                  <li><em><strong>Pyramidal Decomposition</strong></em>: for analyzing individual scales</li>
+                  <li><em><strong>Interscale Alignment Procedure</strong></em>:  for exploiting structure shared across scales</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><strong>Code Computation and Regularization</strong>: a module responsible for further compressing the extracted features by *quantizing the features and encoding them via two methods.
+            <ul>
+              <li><strong>Methods</strong>:
+                <ul>
+                  <li><em><strong>Adaptive Arithmetic Coding Scheme</strong></em>: applied on the features binary expansions</li>
+                  <li><em><strong>Adaptive Codelength Regularization</strong></em>:  to penalize the entropy of the features to achieve better compression</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><strong>Adversarial Training (Discriminator Loss)</strong>: a module responsible for enforcing realistic reconstructions.
+            <ul>
+              <li><strong>Methods</strong>:
+                <ul>
+                  <li><em><strong>Adaptive Arithmetic Coding Scheme</strong></em>: applied on the features binary expansions</li>
+                  <li><em><strong>Adaptive Codelength Regularization</strong></em>:  to penalize the entropy of the features to achieve better compression</li>
+                </ul>
               </li>
             </ul>
           </li>
@@ -120,68 +166,167 @@ The <strong>DNN regressors</strong> are presented as a cascade for higher precis
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Key Insights:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Feature Extraction:</strong></dt>
       <dd>
         <ul>
-          <li>Replace the <strong>explicitly designed feature representations and detectors for the parts, the model topology, and the interactions between joints</strong> by a <em><strong>learned representation through a ConvNet</strong></em></li>
-          <li>The (DNN-based) Pose Predictors are presented as a <strong>cascade</strong> to increase the precision of <em>joint localization</em></li>
-          <li>Although the regression loss does not model explicit interactions between joints, such are implicitly captured by all of the 7 hidden layers – all the internal features are shared by all joint regressors</li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Method:</strong></dt>
-      <dd>
-        <ul>
-          <li>Start with an initial pose estimation (based on the full image)</li>
-          <li>Learn DNN-based regressors which refine the joint predictions by using higher resolution sub-images</li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Notation:</strong></dt>
-      <dd>
-        <ul>
-          <li><strong>Pose Vector</strong> = <script type="math/tex">\mathbf{y} = \left(\ldots, \mathbf{y}_i^T, \ldots\right)^T, \: i \in \{1, \ldots, k\}</script></li>
-          <li><strong>Joint Co-ordinates</strong> = <script type="math/tex">\mathbf{y}_i^T = (x_i, y_i)</script> of the <script type="math/tex">i</script>-th joint</li>
-          <li><strong>Labeled Image</strong> = <script type="math/tex">(x, \mathbf{y})</script>
+          <li><strong>Pyramidal Decomposition</strong>: <br />
+  Inspired by <em>the use of wavelets for multiresolution analysis, in which an input is analyzed recursively via feature extraction and downsampling operators</em>, the pyramidal decomposition encoder generalizes the wavelet decomposition idea to <em>learn optimal, nonlinear extractors individually for each scale</em>.<br />
+  For each input <script type="math/tex">\mathbf{x}</script> to the model, and a total of <script type="math/tex">M</script> scales, denote the input to scale <script type="math/tex">m</script> by <script type="math/tex">\mathbf{x}_m</script>.
             <ul>
-              <li><script type="math/tex">x =</script> Image Data</li>
-              <li><script type="math/tex">\mathbf{y} =</script> Ground-Truth Pose Vector</li>
+              <li><em><strong>Algorithm</strong></em>:
+                <ul>
+                  <li>Set input to first scale <script type="math/tex">\mathbf{x}_1 = \mathbf{x}</script></li>
+                  <li>For each scale <script type="math/tex">m</script>:
+                    <ul>
+                      <li>Extract coefficients <script type="math/tex">\mathbf{c}_m = \mathbf{f}_m(\mathbf{x}_m) \in \mathbb{R}^{C_m \times H_m \times W_m}</script> via some parametrized function <script type="math/tex">\mathbf{f}_m(\dot)</script> for output channels <script type="math/tex">C_m</script>, height <script type="math/tex">H_m</script> and width <script type="math/tex">W_m</script></li>
+                      <li>Compute the input to the next scale as <script type="math/tex">\mathbf{x}_{m+1} = \mathbf{D}_m(\mathbf{x}_m)</script>, where <script type="math/tex">\mathbf{D}_m(\dot)</script> is some <em>downsampling operator</em> (either fixed or learned)</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
             </ul>
-          </li>
-          <li><strong>Bounding Box</strong> = <script type="math/tex">b</script>: a box bounding the human body or parts of it</li>
-          <li><strong>Normalization Function</strong> <script type="math/tex">= N(\mathbf{y}_i; b)</script>: normalizes the <em>joint coordinates</em> w.r.t a bounding box <script type="math/tex">b</script>
-            <blockquote>
-              <p>Since the joint coordinates are in absolute image coordinates, and poses vary in size from image to image</p>
-            </blockquote>
 
-            <p><img src="/main_files/cv/pose_est/3.png" alt="img" width="60%" /></p>
+            <p>Typically, <script type="math/tex">M</script> is chosen to be <script type="math/tex">= 6</script> scales.<br />
+  The <strong>feature extractors for the individual scales</strong> are composed of <em><strong>a sequence of convolutions with kernels <script type="math/tex">3 \times 3</script> or <script type="math/tex">1 \times 1</script> and ReLUs with a leak of <script type="math/tex">0.2</script></strong></em>.<br />
+  All <em>downsamplers</em> are learned as <script type="math/tex">4 \times 4</script> convolutions with a stride of <script type="math/tex">2</script>.</p>
+          </li>
+        </ul>
+      </dd>
+      <dd><img src="/main_files/cv/compression/1.png" alt="img" width="80%" /></dd>
+      <dd>
+        <ul>
+          <li><strong>Interscale Alignment</strong>: <br />
+  Designed to leverage information shared across different scales — a benefit not offered by the classic wavelet analysis.
             <ul>
-              <li><em>Translate</em> by <em>box center</em></li>
-              <li><em>Scale</em> by <em>box size</em></li>
+              <li><em><strong>Structure</strong></em>:
+                <ul>
+                  <li><strong>Input</strong>: the set of coefficients extracted from the different scales <script type="math/tex">\{\mathbf{c}_m\}_{m=1}^M \subset \mathbb{R}^{C_m \times H_m \times W_m}</script></li>
+                  <li><strong>Output</strong>: a tensor <script type="math/tex">\mathbf{y} \in \mathbb{R}^{C \times H \times W}</script></li>
+                </ul>
+              </li>
+              <li><em><strong>Algorithm</strong></em>:
+                <ul>
+                  <li>Map each input tensor <script type="math/tex">\mathbf{c}_m</script> to the target dimensionality via some parametrized function <script type="math/tex">\mathbf{g}_m(·)</script>:  this involves ensuring that this function spatially resamples <script type="math/tex">\mathbf{c}_m</script> to the appropriate output map size <script type="math/tex">H \times W</script>, and ouputs the appropriate number of channels <script type="math/tex">C</script></li>
+                  <li>Sum <script type="math/tex">\mathbf{g}_m(\mathbf{c}_m) = 1, \ldots, M</script>, and apply another parameterized non-linear transformation <script type="math/tex">\mathbf{g}(·)</script> for <em>joint processing</em><br />
+<script type="math/tex">\mathbf{g}_m(·)</script> is chosen as a <strong>convolution</strong> or a <strong>deconvolution</strong> with an appropriate stride to produce the target spatial map size <script type="math/tex">H \times W</script>.<br />
+<script type="math/tex">\mathbf{g}(·)</script> is choses as a <strong>sequence of <script type="math/tex">3 \times 3</script> convolutions</strong>.</li>
+                </ul>
+              </li>
             </ul>
           </li>
-          <li><strong>Normalized pose vector</strong> = <script type="math/tex">N(\mathbf{y}; b) = \left(\ldots, N(\mathbf{y}_i; b)^T, \ldots\right)^T</script></li>
-          <li><strong>A crop of image <script type="math/tex">x</script> by bounding box <script type="math/tex">b</script></strong> = <script type="math/tex">N(x; b)</script></li>
-          <li><em><strong>Learned Function</strong></em> = <script type="math/tex">\psi(x;\theta) \in \mathbb{R}^2k</script> is a functions that regresses to normalized pose vector, given an image:
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Code Computation and Regularization:</strong></dt>
+      <dd>Given the output tensor <script type="math/tex">\mathbf{y} \in \mathbb{R}^{C \times H \times W}</script> of the <em>feature extraction step</em> (namely alignment), we proceed to <strong>quantize and encode</strong> it.</dd>
+      <dd>
+        <ul>
+          <li><strong>Quantization</strong>: the tensor <script type="math/tex">\mathbf{y}</script> is quantized to bit precision <script type="math/tex">B</script>:  <br />
+  <img src="/main_files/cv/compression/2.png" alt="img" width="50%" /><br />
+  Given a desired precision of <script type="math/tex">B</script> bits, we quantize the feature tensor into <script type="math/tex">2^B</script> equal-sized bins as:<br />
+  <img src="/main_files/cv/compression/3.png" alt="img" width="80%" /><br />
+  For the special case <script type="math/tex">B = 1</script>, this reduces exactly to a binary quantization scheme.<br />
+  In-practice <script type="math/tex">B = 6</script> is chosen as a smoother quantization method.
             <ul>
-              <li><strong>Input</strong>: image <script type="math/tex">x</script></li>
-              <li><strong>Output</strong>: Normalized pose vector <script type="math/tex">N(\mathbf{y})</script></li>
+              <li><strong>Reason</strong>: <br />
+  Mapping the <em>continuous input values</em> representing the image signal to a <em>smaller countable set</em> to achieve a desired precision of <script type="math/tex">B</script> bits</li>
             </ul>
           </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
           <li>
-            <dl>
-              <dt><em><strong>Pose Prediction</strong></em>:</dt>
-              <dd>
-                <script type="math/tex; mode=display">y^\ast = N^{-1}(\psi(N(x);\theta))</script>
-              </dd>
-            </dl>
+            <p><strong>Bitplane Decomposition</strong>: we transform the <em>quantized tensor</em> <script type="math/tex">\mathbf{\hat{y}}</script> into a <em>binary tensor</em> suitable for encoding via a lossless bitplane decomposition:<br />
+  <img src="/main_files/cv/compression/4.png" alt="img" width="80%" /><br />
+  <script type="math/tex">\mathbf{\hat{y}}</script> is decomposed into <em>bitplanes</em> by a transformation that maps each value <script type="math/tex">\hat{y}_{chw}</script> into its <em>binary expansion</em> of <script type="math/tex">B</script> bits.<br />
+  Hence, each of the <script type="math/tex">C</script> spatial maps <script type="math/tex">\mathbf{\hat{y}}_c \in \mathbb{R}^{H \times W}</script> of <script type="math/tex">\mathbf{\hat{y}}</script> expands into <script type="math/tex">B</script> <em>binary bitplanes</em>.</p>
+
+            <ul>
+              <li><strong>Reason</strong>: <br />
+  This decomposition enables the entropy coder to exploit structure in the distribution of the activations in <script type="math/tex">\mathbf{y}</script> to achieve a compact representation.</li>
+            </ul>
           </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Adaptive Arithmetic Encoding</strong>: encodes <script type="math/tex">\mathbf{b}</script> into its final <em>variable-length binary sequence</em> <script type="math/tex">\mathbf{s}</script> of length <script type="math/tex">\mathcal{l}(\mathbf{s})</script>:<br />
+  <img src="/main_files/cv/compression/5.png" alt="img" width="65%" />
+            <ul>
+              <li>The <em>binary tensor</em> <script type="math/tex">\mathbf{b}</script> that is produced by the bitplane decomposition contains significant structure (e.g. higher bitplanes are sparser, and spatially neighboring bits often have the same value).<br />
+  This structure can be exploited by using Adaptive Arithmetic Encoding.</li>
+              <li><strong>Method</strong>:
+                <ul>
+                  <li><em><strong>Encoding</strong></em>:   <br />
+  Associate each bit location in the <em>binary tensor</em> <script type="math/tex">\mathbf{b}</script> with a <em>context</em>, which comprises a set of features indicative of the bit value.<br />
+  The <em>features</em> are based on the <em>position of the bit</em> and the <em>values of neighboring bits.<br />
+  To predict the value of each bit from its context features, we _train a classifier</em> and use <em>its output probabilities</em> to compress <script type="math/tex">\mathbf{b}</script> via <em>arithmetic coding</em>.</li>
+                  <li><em><strong>Decoding</strong></em>:  <br />
+  At decoding time, we perform the <em>inverse operation</em> to <em>decompress the code</em>.<br />
+  We interleave between:
+                    <ul>
+                      <li>Computing the context of a particular bit using the values of previously decoded bits</li>
+                      <li>Using this context to retrieve the activation probability of the bit and decode it
+                        <blockquote>
+                          <p>This operation constrains the context of each bit to only include features composed of bits already decoded</p>
+                        </blockquote>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><strong>Reason</strong>: <br />
+  We aim to leverage the structure in the data, specifically in the <em>binary tensor</em> <script type="math/tex">\mathbf{b}</script> produced by the <em>bitplane decomposition</em> which has <em>low entropy</em></li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Adaptive Codelength Regularization</strong>: modulates the distribution of the quantized representation <script type="math/tex">\mathbf{\hat{y}}</script> to achieve a target expected bit count across inputs:<br />
+  <img src="/main_files/cv/compression/6.png" alt="img" width="60%" />
+            <ul>
+              <li><strong>Goal</strong>: regulate the expected codelength <script type="math/tex">\mathbb{E}_x[\mathcal{l}(\mathbf{s})]</script> to a target value <script type="math/tex">\mathcal{l}_{\text{target}}</script>.</li>
+              <li><strong>Method</strong>:<br />
+  We design a penalty that encourages a structure that the <strong>AAC</strong> is able to encode.<br />
+  Namely, we <em><strong>regularize</strong></em> the <em>quantized tensor</em> <script type="math/tex">\mathbf{\hat{y}}</script> with:<br />
+  <img src="/main_files/cv/compression/7.png" alt="img" width="60%" /><br />
+  for iteration <script type="math/tex">t</script> and difference index set <script type="math/tex">S = \{(0,1), (1,0), (1,1), (-1,1)\}</script>.
+                <blockquote>
+                  <p>The <strong>first term</strong> <em>penalizes the magnitude of each tensor element</em><br />
+The <strong>Second Term</strong> <em>penalizes deviations between spatial neighbors</em></p>
+                </blockquote>
+              </li>
+              <li><strong>Reason</strong>: <br />
+  The <em>Adaptive Codelength Regularization</em> is designed to solve one problem; the non-variability of the latent space code, which is what controls (defines) the bitrate.<br />
+  It, essentially, allows us to have latent-space codes with different lengths, depending on the complexity of the input, <em>by enabling better prediction by the <strong>AAX</strong></em><br />
+  In practice, a <strong>total-to-target ratio</strong> <script type="math/tex">= BCHW/\mathcal{l}_{\text{target}} = 4</script> works well.</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Adversarial Train:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>GAN Architecture</strong>:
+            <ul>
+              <li><em><strong>Generator</strong></em>: Encoder-Decoder Pipeline</li>
+              <li><em><strong>Discriminator</strong></em>: Classification ConvNet</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Discriminator Design</strong>:</li>
         </ul>
       </dd>
     </dl>
@@ -342,24 +487,24 @@ The <strong>DNN regressors</strong> are presented as a cascade for higher precis
 
 <hr />
 
-<p id="content3">##</p>
+<h2 id="content3">Proposed Changes</h2>
 
 <ol>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Asynchronous:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Gated-Matrix Selection for Latent Space dimensionality estimation and Dynamic bit-rate modification:</strong></dt>
       <dd></dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Asynchronous:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Conditional Generative-Adversarial Training with Random-Forests for Generalizable domain-compression:</strong></dt>
       <dd></dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Asynchronous:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Adversarial Feature Learning for Induced Natural Representation and Artifact Removal:</strong></dt>
       <dd></dd>
     </dl>
   </li>

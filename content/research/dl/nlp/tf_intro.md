@@ -102,3 +102,38 @@ prevLink: /work_files/research/dl/nlp.html
 
 11. **Variable Scope:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents111}  
     :   ![img](/main_files/dl/nlp/t_f/5.png){: width="100%"}
+
+***
+
+## Commands and Notes
+{: #content2}
+
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
+    :   ``` ```
+
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
+    :   ``` ```
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}  
+    :   ``` ```
+
+4. **TensorBoard:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}  
+    :   ```File_writer  = tf.summary.FileWriter('log_simple_graph', sess.graph)```  
+        ```tensorboard --logdir="path"```
+
+5. **Testing if GPU works:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
+    :   ```import tensorflow as tf
+a = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3], name='a')
+b = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[3, 2], name='b')
+c = tf.matmul(a, b)
+sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
+print(sess.run(c)) ```
+
+6. **GPU Usage:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}  
+    :   ```!nvidia-smi ```
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}  
+    :   ``` ```
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}  
+    :   ``` ```
