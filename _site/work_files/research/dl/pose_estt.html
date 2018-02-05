@@ -45,7 +45,7 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">Generative Compression</h1>
+  <h1 class="project-name">Articulated Body Pose Estimation <br /> (Human Pose Estimation)</h1>
   <h2 class="project-tagline"></h2>
   <a href="/#" class="btn">Home</a>
   <a href="/work" class="btn">Work-Space</a>
@@ -70,10 +70,7 @@
     <li><a href="#content1">Introduction</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">WaveOne</a></li>
-  </ul>
-  <ul class="TOC3">
-    <li><a href="#content3">Proposed Changes</a></li>
+    <li><a href="#content2">DeepPose</a></li>
   </ul>
 </div>
 
@@ -85,223 +82,216 @@
 <ol>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">ML-based Compression:</strong></dt>
-      <dd>The main idea behind ML-based compression is that structure is <strong>automatically discovered</strong> instead of <strong>manually engineered</strong>.</dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Human (Articulated) Body Pose Estimation:</strong></dt>
+      <dd><strong>Human Pose Estimation</strong> is the process of estimating the configuration of the body (pose) from a single, typically monocular, image.</dd>
+      <dd>In computer vision, <strong>Body Pose Estimation</strong> is the study of algorithms and systems that recover the pose of an articulated body, which consists of joints and rigid parts using image-based observations.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Difficulties in Pose Estimation:</strong></dt>
+      <dd>Pose estimation is hard due to many reasons including:
+        <ul>
+          <li><em><strong>High Degree of Freedom (DOF)</strong></em>: 244 DOF</li>
+          <li><em><strong>Variability of human visual appearance</strong></em></li>
+          <li><em><strong>Variability in lighting conditions</strong></em></li>
+          <li><em><strong>Variability in human physique</strong></em></li>
+          <li><em><strong>(partial) Occlusions</strong></em></li>
+          <li><em><strong>Complexity of the human physical structure</strong></em></li>
+          <li><em><strong>high dimensionality of the pose</strong></em></li>
+          <li><em><strong>loss of 3d information that results from observing the pose from 2d planar image projections</strong></em></li>
+          <li><em><strong>(variability in) Clothes</strong></em></li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Theory:</strong></dt>
+      <dd>Human pose estimation is usually formulated <strong>Probabilistically</strong> to account for the variability and ambiguities that exist in the inference.</dd>
+      <dd>In <strong>Probabilistic</strong> approaches, we are interested in estimating the <em><strong>posterior distribution</strong></em> <script type="math/tex">p(\mathbf{x}\vert \mathbf{z})</script>, where <script type="math/tex">\mathbf{x}</script> is the pose of the body and and <script type="math/tex">\mathbf{z}</script> is a feature set derived from the image.</dd>
       <dd>
         <ul>
-          <li><strong>Examples</strong>:
+          <li><strong>The Key Modeling choices</strong> that affect the inference are:
             <ul>
-              <li><em><strong>DjVu</strong></em>: employs segmentation and K-means clustering to separate foreground from background and analyze the documents contents.</li>
+              <li>The representation of the pose – <script type="math/tex">\mathbf{x}</script></li>
+              <li>The nature and encoding of image features – <script type="math/tex">\mathbf{z}</script></li>
+              <li>The inference framework required to estimate the posterior – <script type="math/tex">p(\mathbf{x}\vert \mathbf{z})</script></li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd><a href="https://cs.brown.edu/~ls/Publications/SigalEncyclopediaCVdraft.pdf">Further Reading</a></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Model-based Approaches:</strong></dt>
+      <dd>The typical body pose estimation system involves a <strong>model-based approach</strong>, in which the pose estimation is achieved by <em>maximizing/minimizing</em> a <em>similarity/dissimilarity</em> between an <em>observation</em> (input) and a <em>template model</em>.</dd>
+      <dd>Different kinds of sensors have been explored for use in making the observation.
+        <ul>
+          <li><strong>Sensors</strong>:
+            <ul>
+              <li>Visible wavelength imagery</li>
+              <li>Long-wave thermal infrared imagery</li>
+              <li>Time-of-flight imagery</li>
+              <li>Laser range scanner imagery</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>These sensors produce intermediate representations that are directly used by the model.
+        <ul>
+          <li><strong>Representations</strong>:
+            <ul>
+              <li>Image appearance</li>
+              <li>Voxel (volume element) reconstruction</li>
+              <li>3D point clouds, and sum of Gaussian kernels</li>
+              <li>3D surface meshes.</li>
             </ul>
           </li>
         </ul>
       </dd>
     </dl>
   </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">The Representation:</strong></dt>
+      <dd>A <strong>Representation</strong> is a model to depict the configuration of the human body.<br />
+The <em>configuration of the human body</em> can be represented in a variety of ways.</dd>
+      <dd>There are two common representations used for the human body:
+        <ul>
+          <li><strong>Kinematic Skeleton Tree</strong></li>
+          <li><strong>Part Models</strong></li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Kinematic Skeleton Tree with Quaternions:</strong></dt>
+      <dd>The most direct and common representation is obtained by parameterizing the body as a kinematic tree, <script type="math/tex">\vec{x} = \{\tau, \theta_\tau, \theta_1, \theta_2, \ldots, \theta_N\}</script>, where the pose is encoded using position of the root segment (the <strong>pelvis</strong> is typically used as root to minimize the height of the kinematic tree), <script type="math/tex">\tau</script>, orientation of the root segment in the world, <script type="math/tex">\theta_\tau</script>, and a set of relative joint angels, <script type="math/tex">\{\theta_i\}_{i=1}^N</script>, that represent the orientation of the body parts with respect to their parents along the tree.
+        <blockquote>
+          <p>e.g., the orientation of the thigh with respect to the pelvis, shin with respect to the thigh, etc.</p>
+        </blockquote>
+      </dd>
+      <dd><img src="/main_files/cv/pose_est/1.png" alt="img" width="60%" /></dd>
+      <dd>The kinematic skeleton is constructed by a tree-structured chain where each rigid body segment has its local coordinate system that can be transformed to the world coordinate system via a 4×4 transformation matrix <script type="math/tex">{\displaystyle T_{l}}</script>,</dd>
+      <dd>
+        <script type="math/tex; mode=display">{\displaystyle T_{l}=T_{\operatorname {par} (l)}R_{l},}</script>
+      </dd>
+      <dd>where <script type="math/tex">{\displaystyle R_{l}}</script> denotes the local transformation from body segment <script type="math/tex">{\displaystyle S_{l}}</script> to its parent <script type="math/tex">{\displaystyle \operatorname {par} (S_{l})}</script>.</dd>
+      <dd>Kinematic tree representation can be obtained for 2d, 2.5d, and 3d body models.
+        <ul>
+          <li><strong>2-D</strong>:
+            <ul>
+              <li><script type="math/tex">\tau \in \mathcal{R}^2</script>,</li>
+              <li><script type="math/tex">\theta_\tau \in \mathcal{R}^1</script>,</li>
+              <li><script type="math/tex">\theta_i \in \mathcal{R}^1</script>:   corresponds to pose of the cardboard person in the image plane</li>
+            </ul>
+          </li>
+          <li><strong>3-D</strong>:
+            <ul>
+              <li><script type="math/tex">\tau \in \mathcal{R}^3</script>,</li>
+              <li><script type="math/tex">\theta_\tau \in SO(3)</script>,</li>
+              <li><script type="math/tex">\theta_i \in SO(3)</script>: for spherical joints, e.g. neck<br />
+<script type="math/tex">\theta_i \in \mathcal{R}^2</script>: for saddle joints, e.g. wrist<br />
+<script type="math/tex">\theta_i \in \mathbb{R}^1</script>: for hinge joints, e.g. knee</li>
+            </ul>
+          </li>
+          <li><strong>2.5-D</strong>: are extensions of the <strong>2-D</strong> representations where the pose, <script type="math/tex">\mathbf{x}</script>, is augmented with (discrete)  variables encoding the relative depth (layering) of body parts with respect to one another in the 2-d <em>cardboard</em> model.<br />
+  This representation is not very common.</li>
+        </ul>
+      </dd>
+      <dd>Each joint in the body has 3 degrees of freedom (DoF) rotation. Given a transformation matrix <script type="math/tex">{\displaystyle T_{l}}</script>, the joint position at the T-pose can be transferred to its corresponding position in the world coordination.<br />
+The <strong>3-D joint rotation</strong> is, usually, expressed as a <em><strong>normalized quaternion</strong></em> <script type="math/tex">[x, y, z, w]</script> due to its continuity that can facilitate gradient-based optimization in the parameters estimation.</dd>
+      <dd>In all (dimensionality) cases, kinematic tree representation results in a <strong>high-dimensional pose vector</strong>, <script type="math/tex">\mathbf{x}</script>, in <script type="math/tex">\mathbb{R}^{30} - \mathbb{R}^{70}</script>, depending on the fidelity and exact parameterization of the skeleton and joints.</dd>
+      <dd>Another parameterization uses the (2d or 3d) locations of the major joints in the world. <br />
+However, this parametrization is <strong>not invariant to the morphology</strong> (body segment lengths) of a given individual.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Part-based Models:</strong></dt>
+      <dd>The body is modeled as a <strong>set of parts</strong>, <script type="math/tex">\mathbf{x} = \{\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_M\}</script>, each with its own position and orientation in space, <script type="math/tex">\mathbf{x}_i = \{\tau_i, \theta_i\}</script>, that are connected by a set of statistical or physical constraints that enforce skeletal (and sometimes image) consistency.</dd>
+      <dd>The part model is motivated by the human skeleton, since any object having the property of articulation can be broken down into smaller parts wherein each part can take different orientations, resulting in different articulations of the same object. <br />
+ Different scales and orientations of the main object can be articulated to scales and orientations of the corresponding parts.</dd>
+      <dd>Mathematically, the parts are connected by springs; the model is, also, known as a <strong>spring model</strong>.<br />
+The degree of closeness between each part is accounted for by the compression and expansion of the springs. There is geometric constraint on the orientation of springs. For example, limbs of legs cannot move 360 degrees. Hence parts cannot have that extreme orientation.  This reduces the possible permutations.</dd>
+      <dd>The model can be formulated in 2-D or in 3-D.<br />
+The 2-D parameterizations are much more common.<br />
+In 2-D, each part’s representation is often augmented with an additional variable, <script type="math/tex">s_i</script>, that accounts for uniform scaling of the body part in the image, i.e., <script type="math/tex">\mathbf{x}_i = \{\tau_i, \theta_i, s_i\}</script> with <script type="math/tex">\tau_i \in \mathbb{R}^2, \theta_i \in \mathbb{R}^1</script> and <script type="math/tex">s_i \in \mathbb{R}^1</script>.</dd>
+      <dd>The model results in very high dimensional vectors, even higher than that of <em>kinematic trees</em>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Applications:</strong></dt>
+      <dd>
+        <ul>
+          <li>Markerless motion capture for human-computer interfaces,</li>
+          <li>Physiotherapy</li>
+          <li>3D animation</li>
+          <li>Ergonomics studies</li>
+          <li>Robot control  and</li>
+          <li>Visual surveillance</li>
+          <li>Human-robot interaction</li>
+          <li>Gaming</li>
+          <li>Sports performance analysis</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents19">Image Features:</strong></dt>
+      <dd>In many of the classical approaches image features that represent the salient parts of the image with respect to the human pose play a huge rule in the performance of any pose estimation approach.</dd>
+      <dd><img src="/main_files/cv/pose_est/2.png" alt="img" width="70%" /></dd>
+      <dd>
+        <ul>
+          <li><strong>The most common features</strong>:
+            <ul>
+              <li><em><strong>Silhouettes</strong></em>: for effectively separating the person from background in static scenes</li>
+              <li><em><strong>Color</strong></em>: for modeling un-occluded skin or clothing</li>
+              <li><em><strong>Edges</strong></em>: for modeling external and internal contours of the body</li>
+              <li><em><strong>Gradients</strong></em>: for modeling the texture over the body parts<br />
+Other, less common features, include, <strong>Shading</strong> and <strong>Focus</strong>.</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>To <strong>reduce dimensionality</strong> and <strong>increase robustness to noise</strong>, these raw features are often encapsulated in <em>image descriptors</em>, such as <strong>shape context</strong>, <strong>SIFT</strong>, and <strong>histogram of oriented gradients (HoG)</strong>.<br />
+Alternatively, <em>hierarchical multi-level image encodings</em> can be used, such as <strong>HMAX</strong>, <strong>spatial pyramids</strong>, and <strong>vocabulary trees</strong>. <br />
+***</dd>
+    </dl>
+  </li>
 </ol>
 
-<hr />
+<h2 id="content2">DeepPose</h2>
 
-<h2 id="content2">WaveOne</h2>
-
-<p><a href="https://arxiv.org/pdf/1705.05823.pdf">Further Reading</a></p>
-
-<p>WaveOne is a machine learning-based approach to lossy image compression.</p>
+<p><a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/42237.pdf">Further Reading</a></p>
 
 <ol>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Main Idea:</strong></dt>
-      <dd>An ML-based approach to compression that utilizes the older techniques for quantization but with an encoder-decoder model that depends on adversarial training for a higher quality reconstruction.</dd>
+      <dd>Pose Estimation is formulated as a <strong>DNN-based regression problem</strong> towards <strong>body joints</strong>.<br />
+The <strong>DNN regressors</strong> are presented as a cascade for higher precision in pose estimates.</dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Model:</strong></dt>
-      <dd>The model includes three main steps that are layered together in one pipeline:
-        <ul>
-          <li><strong>Feature Extraction</strong>: an approach that aims to recognize the different types of structures in an image.
-            <ul>
-              <li><strong>Structures</strong>:
-                <ul>
-                  <li>Across input channels</li>
-                  <li>Within individual scales</li>
-                  <li>Across Scales</li>
-                </ul>
-              </li>
-              <li><strong>Methods</strong>:
-                <ul>
-                  <li><em><strong>Pyramidal Decomposition</strong></em>: for analyzing individual scales</li>
-                  <li><em><strong>Interscale Alignment Procedure</strong></em>:  for exploiting structure shared across scales</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li><strong>Code Computation and Regularization</strong>: a module responsible for further compressing the extracted features by *quantizing the features and encoding them via two methods.
-            <ul>
-              <li><strong>Methods</strong>:
-                <ul>
-                  <li><em><strong>Adaptive Arithmetic Coding Scheme</strong></em>: applied on the features binary expansions</li>
-                  <li><em><strong>Adaptive Codelength Regularization</strong></em>:  to penalize the entropy of the features to achieve better compression</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li><strong>Adversarial Training (Discriminator Loss)</strong>: a module responsible for enforcing realistic reconstructions.
-            <ul>
-              <li><strong>Methods</strong>:
-                <ul>
-                  <li><em><strong>Adaptive Arithmetic Coding Scheme</strong></em>: applied on the features binary expansions</li>
-                  <li><em><strong>Adaptive Codelength Regularization</strong></em>:  to penalize the entropy of the features to achieve better compression</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Feature Extraction:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Structure:</strong></dt>
       <dd>
         <ul>
-          <li><strong>Pyramidal Decomposition</strong>: <br />
-  Inspired by <em>the use of wavelets for multiresolution analysis, in which an input is analyzed recursively via feature extraction and downsampling operators</em>, the pyramidal decomposition encoder generalizes the wavelet decomposition idea to <em>learn optimal, nonlinear extractors individually for each scale</em>.<br />
-  For each input <script type="math/tex">\mathbf{x}</script> to the model, and a total of <script type="math/tex">M</script> scales, denote the input to scale <script type="math/tex">m</script> by <script type="math/tex">\mathbf{x}_m</script>.
+          <li><strong>Input</strong>:
             <ul>
-              <li><em><strong>Algorithm</strong></em>:
-                <ul>
-                  <li>Set input to first scale <script type="math/tex">\mathbf{x}_1 = \mathbf{x}</script></li>
-                  <li>For each scale <script type="math/tex">m</script>:
-                    <ul>
-                      <li>Extract coefficients <script type="math/tex">\mathbf{c}_m = \mathbf{f}_m(\mathbf{x}_m) \in \mathbb{R}^{C_m \times H_m \times W_m}</script> via some parametrized function <script type="math/tex">\mathbf{f}_m(\dot)</script> for output channels <script type="math/tex">C_m</script>, height <script type="math/tex">H_m</script> and width <script type="math/tex">W_m</script></li>
-                      <li>Compute the input to the next scale as <script type="math/tex">\mathbf{x}_{m+1} = \mathbf{D}_m(\mathbf{x}_m)</script>, where <script type="math/tex">\mathbf{D}_m(\dot)</script> is some <em>downsampling operator</em> (either fixed or learned)</li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-
-            <p>Typically, <script type="math/tex">M</script> is chosen to be <script type="math/tex">= 6</script> scales.<br />
-  The <strong>feature extractors for the individual scales</strong> are composed of <em><strong>a sequence of convolutions with kernels <script type="math/tex">3 \times 3</script> or <script type="math/tex">1 \times 1</script> and ReLUs with a leak of <script type="math/tex">0.2</script></strong></em>.<br />
-  All <em>downsamplers</em> are learned as <script type="math/tex">4 \times 4</script> convolutions with a stride of <script type="math/tex">2</script>.</p>
-          </li>
-        </ul>
-      </dd>
-      <dd><img src="/main_files/cv/compression/1.png" alt="img" width="80%" /></dd>
-      <dd>
-        <ul>
-          <li><strong>Interscale Alignment</strong>: <br />
-  Designed to leverage information shared across different scales — a benefit not offered by the classic wavelet analysis.
-            <ul>
-              <li><em><strong>Structure</strong></em>:
-                <ul>
-                  <li><strong>Input</strong>: the set of coefficients extracted from the different scales <script type="math/tex">\{\mathbf{c}_m\}_{m=1}^M \subset \mathbb{R}^{C_m \times H_m \times W_m}</script></li>
-                  <li><strong>Output</strong>: a tensor <script type="math/tex">\mathbf{y} \in \mathbb{R}^{C \times H \times W}</script></li>
-                </ul>
-              </li>
-              <li><em><strong>Algorithm</strong></em>:
-                <ul>
-                  <li>Map each input tensor <script type="math/tex">\mathbf{c}_m</script> to the target dimensionality via some parametrized function <script type="math/tex">\mathbf{g}_m(·)</script>:  this involves ensuring that this function spatially resamples <script type="math/tex">\mathbf{c}_m</script> to the appropriate output map size <script type="math/tex">H \times W</script>, and ouputs the appropriate number of channels <script type="math/tex">C</script></li>
-                  <li>Sum <script type="math/tex">\mathbf{g}_m(\mathbf{c}_m) = 1, \ldots, M</script>, and apply another parameterized non-linear transformation <script type="math/tex">\mathbf{g}(·)</script> for <em>joint processing</em><br />
-<script type="math/tex">\mathbf{g}_m(·)</script> is chosen as a <strong>convolution</strong> or a <strong>deconvolution</strong> with an appropriate stride to produce the target spatial map size <script type="math/tex">H \times W</script>.<br />
-<script type="math/tex">\mathbf{g}(·)</script> is choses as a <strong>sequence of <script type="math/tex">3 \times 3</script> convolutions</strong>.</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Code Computation and Regularization:</strong></dt>
-      <dd>Given the output tensor <script type="math/tex">\mathbf{y} \in \mathbb{R}^{C \times H \times W}</script> of the <em>feature extraction step</em> (namely alignment), we proceed to <strong>quantize and encode</strong> it.</dd>
-      <dd>
-        <ul>
-          <li><strong>Quantization</strong>: the tensor <script type="math/tex">\mathbf{y}</script> is quantized to bit precision <script type="math/tex">B</script>:  <br />
-  <img src="/main_files/cv/compression/2.png" alt="img" width="50%" /><br />
-  Given a desired precision of <script type="math/tex">B</script> bits, we quantize the feature tensor into <script type="math/tex">2^B</script> equal-sized bins as:<br />
-  <img src="/main_files/cv/compression/3.png" alt="img" width="80%" /><br />
-  For the special case <script type="math/tex">B = 1</script>, this reduces exactly to a binary quantization scheme.<br />
-  In-practice <script type="math/tex">B = 6</script> is chosen as a smoother quantization method.
-            <ul>
-              <li><strong>Reason</strong>: <br />
-  Mapping the <em>continuous input values</em> representing the image signal to a <em>smaller countable set</em> to achieve a desired precision of <script type="math/tex">B</script> bits</li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
-      <dd>
-        <ul>
-          <li>
-            <p><strong>Bitplane Decomposition</strong>: we transform the <em>quantized tensor</em> <script type="math/tex">\mathbf{\hat{y}}</script> into a <em>binary tensor</em> suitable for encoding via a lossless bitplane decomposition:<br />
-  <img src="/main_files/cv/compression/4.png" alt="img" width="80%" /><br />
-  <script type="math/tex">\mathbf{\hat{y}}</script> is decomposed into <em>bitplanes</em> by a transformation that maps each value <script type="math/tex">\hat{y}_{chw}</script> into its <em>binary expansion</em> of <script type="math/tex">B</script> bits.<br />
-  Hence, each of the <script type="math/tex">C</script> spatial maps <script type="math/tex">\mathbf{\hat{y}}_c \in \mathbb{R}^{H \times W}</script> of <script type="math/tex">\mathbf{\hat{y}}</script> expands into <script type="math/tex">B</script> <em>binary bitplanes</em>.</p>
-
-            <ul>
-              <li><strong>Reason</strong>: <br />
-  This decomposition enables the entropy coder to exploit structure in the distribution of the activations in <script type="math/tex">\mathbf{y}</script> to achieve a compact representation.</li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
-      <dd>
-        <ul>
-          <li><strong>Adaptive Arithmetic Encoding</strong>: encodes <script type="math/tex">\mathbf{b}</script> into its final <em>variable-length binary sequence</em> <script type="math/tex">\mathbf{s}</script> of length <script type="math/tex">\mathcal{l}(\mathbf{s})</script>:<br />
-  <img src="/main_files/cv/compression/5.png" alt="img" width="65%" />
-            <ul>
-              <li>The <em>binary tensor</em> <script type="math/tex">\mathbf{b}</script> that is produced by the bitplane decomposition contains significant structure (e.g. higher bitplanes are sparser, and spatially neighboring bits often have the same value).<br />
-  This structure can be exploited by using Adaptive Arithmetic Encoding.</li>
-              <li><strong>Method</strong>:
-                <ul>
-                  <li><em><strong>Encoding</strong></em>:   <br />
-  Associate each bit location in the <em>binary tensor</em> <script type="math/tex">\mathbf{b}</script> with a <em>context</em>, which comprises a set of features indicative of the bit value.<br />
-  The <em>features</em> are based on the <em>position of the bit</em> and the <em>values of neighboring bits.<br />
-  To predict the value of each bit from its context features, we _train a classifier</em> and use <em>its output probabilities</em> to compress <script type="math/tex">\mathbf{b}</script> via <em>arithmetic coding</em>.</li>
-                  <li><em><strong>Decoding</strong></em>:  <br />
-  At decoding time, we perform the <em>inverse operation</em> to <em>decompress the code</em>.<br />
-  We interleave between:
-                    <ul>
-                      <li>Computing the context of a particular bit using the values of previously decoded bits</li>
-                      <li>Using this context to retrieve the activation probability of the bit and decode it
-                        <blockquote>
-                          <p>This operation constrains the context of each bit to only include features composed of bits already decoded</p>
-                        </blockquote>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li><strong>Reason</strong>: <br />
-  We aim to leverage the structure in the data, specifically in the <em>binary tensor</em> <script type="math/tex">\mathbf{b}</script> produced by the <em>bitplane decomposition</em> which has <em>low entropy</em></li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
-      <dd>
-        <ul>
-          <li><strong>Adaptive Codelength Regularization</strong>: modulates the distribution of the quantized representation <script type="math/tex">\mathbf{\hat{y}}</script> to achieve a target expected bit count across inputs:<br />
-  <img src="/main_files/cv/compression/6.png" alt="img" width="60%" />
-            <ul>
-              <li><strong>Goal</strong>: regulate the expected codelength <script type="math/tex">\mathbb{E}_x[\mathcal{l}(\mathbf{s})]</script> to a target value <script type="math/tex">\mathcal{l}_{\text{target}}</script>.</li>
-              <li><strong>Method</strong>:<br />
-  We design a penalty that encourages a structure that the <strong>AAC</strong> is able to encode.<br />
-  Namely, we <em><strong>regularize</strong></em> the <em>quantized tensor</em> <script type="math/tex">\mathbf{\hat{y}}</script> with:<br />
-  <img src="/main_files/cv/compression/7.png" alt="img" width="60%" /><br />
-  for iteration <script type="math/tex">t</script> and difference index set <script type="math/tex">S = \{(0,1), (1,0), (1,1), (-1,1)\}</script>.
+              <li>Full Image</li>
+              <li>7-layered generic Convolutional DNN
                 <blockquote>
-                  <p>The <strong>first term</strong> <em>penalizes the magnitude of each tensor element</em><br />
-The <strong>Second Term</strong> <em>penalizes deviations between spatial neighbors</em></p>
+                  <p>Each Joint Regressor uses the full image as a signal.</p>
                 </blockquote>
               </li>
-              <li><strong>Reason</strong>: <br />
-  The <em>Adaptive Codelength Regularization</em> is designed to solve one problem; the non-variability of the latent space code, which is what controls (defines) the bitrate.<br />
-  It, essentially, allows us to have latent-space codes with different lengths, depending on the complexity of the input, <em>by enabling better prediction by the <strong>AAX</strong></em><br />
-  In practice, a <strong>total-to-target ratio</strong> <script type="math/tex">= BCHW/\mathcal{l}_{\text{target}} = 4</script> works well.</li>
             </ul>
           </li>
         </ul>
@@ -310,20 +300,68 @@ The <strong>Second Term</strong> <em>penalizes deviations between spatial neighb
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Adversarial Train:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Key Insights:</strong></dt>
       <dd>
         <ul>
-          <li><strong>GAN Architecture</strong>:
-            <ul>
-              <li><em><strong>Generator</strong></em>: Encoder-Decoder Pipeline</li>
-              <li><em><strong>Discriminator</strong></em>: Classification ConvNet</li>
-            </ul>
-          </li>
+          <li>Replace the <strong>explicitly designed feature representations and detectors for the parts, the model topology, and the interactions between joints</strong> by a <em><strong>learned representation through a ConvNet</strong></em></li>
+          <li>The (DNN-based) Pose Predictors are presented as a <strong>cascade</strong> to increase the precision of <em>joint localization</em></li>
+          <li>Although the regression loss does not model explicit interactions between joints, such are implicitly captured by all of the 7 hidden layers – all the internal features are shared by all joint regressors</li>
         </ul>
       </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Method:</strong></dt>
       <dd>
         <ul>
-          <li><strong>Discriminator Design</strong>:</li>
+          <li>Start with an initial pose estimation (based on the full image)</li>
+          <li>Learn DNN-based regressors which refine the joint predictions by using higher resolution sub-images</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Notation:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Pose Vector</strong> = <script type="math/tex">\mathbf{y} = \left(\ldots, \mathbf{y}_i^T, \ldots\right)^T, \: i \in \{1, \ldots, k\}</script></li>
+          <li><strong>Joint Co-ordinates</strong> = <script type="math/tex">\mathbf{y}_i^T = (x_i, y_i)</script> of the <script type="math/tex">i</script>-th joint</li>
+          <li><strong>Labeled Image</strong> = <script type="math/tex">(x, \mathbf{y})</script>
+            <ul>
+              <li><script type="math/tex">x =</script> Image Data</li>
+              <li><script type="math/tex">\mathbf{y} =</script> Ground-Truth Pose Vector</li>
+            </ul>
+          </li>
+          <li><strong>Bounding Box</strong> = <script type="math/tex">b</script>: a box bounding the human body or parts of it</li>
+          <li><strong>Normalization Function</strong> <script type="math/tex">= N(\mathbf{y}_i; b)</script>: normalizes the <em>joint coordinates</em> w.r.t a bounding box <script type="math/tex">b</script>
+            <blockquote>
+              <p>Since the joint coordinates are in absolute image coordinates, and poses vary in size from image to image</p>
+            </blockquote>
+
+            <p><img src="/main_files/cv/pose_est/3.png" alt="img" width="60%" /></p>
+            <ul>
+              <li><em>Translate</em> by <em>box center</em></li>
+              <li><em>Scale</em> by <em>box size</em></li>
+            </ul>
+          </li>
+          <li><strong>Normalized pose vector</strong> = <script type="math/tex">N(\mathbf{y}; b) = \left(\ldots, N(\mathbf{y}_i; b)^T, \ldots\right)^T</script></li>
+          <li><strong>A crop of image <script type="math/tex">x</script> by bounding box <script type="math/tex">b</script></strong> = <script type="math/tex">N(x; b)</script></li>
+          <li><em><strong>Learned Function</strong></em> = <script type="math/tex">\psi(x;\theta) \in \mathbb{R}^2k</script> is a functions that regresses to normalized pose vector, given an image:
+            <ul>
+              <li><strong>Input</strong>: image <script type="math/tex">x</script></li>
+              <li><strong>Output</strong>: Normalized pose vector <script type="math/tex">N(\mathbf{y})</script></li>
+            </ul>
+          </li>
+          <li>
+            <dl>
+              <dt><em><strong>Pose Prediction</strong></em>:</dt>
+              <dd>
+                <script type="math/tex; mode=display">y^\ast = N^{-1}(\psi(N(x);\theta))</script>
+              </dd>
+            </dl>
+          </li>
         </ul>
       </dd>
     </dl>
@@ -478,31 +516,6 @@ The <strong>Second Term</strong> <em>penalizes deviations between spatial neighb
           <li>Although the regression loss does not model explicit interactions between joints, such are implicitly captured by all of the 7 hidden layers – all the internal features are shared by all joint regressors</li>
         </ul>
       </dd>
-    </dl>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="content3">Proposed Changes</h2>
-
-<ol>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Gated-Matrix Selection for Latent Space dimensionality estimation and Dynamic bit-rate modification:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Conditional Generative-Adversarial Training with Random-Forests for Generalizable domain-compression:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Adversarial Feature Learning for Induced Natural Representation and Artifact Removal:</strong></dt>
-      <dd></dd>
     </dl>
   </li>
 </ol>

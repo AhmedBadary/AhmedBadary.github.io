@@ -22,6 +22,9 @@ permalink: /work_files/research/dl/archits
 
 * #### [Deep Belief Networks (DBNs) [**Coming Soon**]](/work_files/research/dl/8)
 
-* #### [Auto-Encoders (Vanilla) [**Coming Soon**]](/work_files/research/dl/9)
+* #### [(Vanilla) Auto-Encoders](/work_files/research/dl/aencdrs)
 
-* #### [Auto-Encoders (Variational) [**Coming Soon**]](/work_files/research/dl/10)
+* #### [(Variational) Auto-Encoders (VAEs)](/work_files/research/dl/vae)
+
+* #### [Generative Adversarial Networks](/work_files/research/dl/gans)
+

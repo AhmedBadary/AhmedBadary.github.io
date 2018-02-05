@@ -13,13 +13,18 @@ tagline: 'Main Page'
 
 * ### [Convolutional Neural Networks (CNNs)](/work_files/research/dl/cnnx)
 
-* ### [Recurrent Neural Networks | Applications in Computer Vision](/work_files/research/dl/rnns_cv)
+* ### [CNN Architectures](/work_files/research/dl/arcts)
 
 * ### [Image Segmentation with Deep Learning](/work_files/research/dl/seg)
 
-* ### [Image Classification and Localization with Deep Learning](/work_files/research/dl/loc)
-
 * ### [Object Detection with Deep Learning](/work_files/research/dl/dec)
+
+* ### [Generative Models \| Unsupervised Learning in Computer Vision](/work_files/research/dl/gm)
+
+* ### [Articulated Body Pose Estimation](/work_files/research/dl/pose_estt)
+
+
+* ### [Recurrent Neural Networks | Applications in Computer Vision](/work_files/research/dl/rnns_cv)
 
 ## [Natural Language Processing](/work_files/research/dl/nlp.html)
 
@@ -50,8 +55,10 @@ tagline: 'Main Page'
 ***
 
 * [The Index Fund Tracking Problem](/work_files/research/conv_opt/hw/iftp)
+* [(Variational) Auto-Encoders (VAEs)](/work_files/research/dl/vae)
+* [(Vanilla) Auto-Encoders](/work_files/research/dl/aencdrs)
 * [Principle Compnent Analysis (PCA)](/work_files/research/conv_opt/pca)
-* [Tensorflow Primer](/work_files/research/Tensorflow_Primer/tf_primer)
+* #### [Generative Adversarial Networks](/work_files/research/dl/gans)
 
 
 <div id="home">

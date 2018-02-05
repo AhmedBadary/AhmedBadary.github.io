@@ -8,20 +8,14 @@ prevLink: /work_files/research/dl.html
 <div markdown="1" class = "TOC">
 # Table of Contents
 
-  * [FIRST](#content1)
+  * [Introduction and Architecture](#content1)
   {: .TOC1}
-  * [SECOND](#content2)
-  {: .TOC2}
-  * [THIRD](#content3)
-  {: .TOC3}
-  * [FOURTH](#content4)
-  {: .TOC4}
 </div>
 
 ***
 ***
 
-## Introduction
+## Introduction and Architecture
 {: #content1}
 0. **From PCA to Auto-Encoders:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents10}   
     :   High dimensional data can often be represented using a much lower dimensional code.  
@@ -86,84 +80,3 @@ prevLink: /work_files/research/dl.html
 6. **Auto-Encoders for initializing Neural-Nets:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}  
     :   After training an auto-encoder, we can use the _encoder_ to compress the input data into it's latent representation (which we can view as _features_) and input those to the neural-net (e.g. a classifier) for prediction.  
     :   ![img](/main_files/cs231n/aencdrs/2.png){: width="70%"} 
-
-***
-
-## SECOND
-{: #content2}
-
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
-    :   
-
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
-    :   
-
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}  
-    :   
-
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}  
-    :   
-
-***
-
-## THIRD
-{: #content3}
-
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}  
-    :   
-
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}  
-    :   
-
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
-    :   
-
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
-    :   
-
-***
-
-## FOURTH
-{: #content4}
-
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}  
-    :   
-
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}  
-    :   
-
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}  
-    :   
-
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}  
-    :   

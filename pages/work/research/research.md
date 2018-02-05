@@ -13,7 +13,7 @@ prevlink: /#
 
 * ## [Deep Learning](/work_files/research/dl.html)
 
-* ## [Computer Vision](/work_files/research/cv.html)
+* ## [Computer Vision](/work_files/research/dl/cv.html)
 
 * ## [Natural Language Processing](/work_files/research/nlp.html)
 

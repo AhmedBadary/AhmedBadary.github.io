@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">Auto-Encoders</h1>
+  <h1 class="project-name">Papers</h1>
   <h2 class="project-tagline"></h2>
   <a href="/#" class="btn">Home</a>
   <a href="/work" class="btn">Work-Space</a>
-  <a href= /work_files/research/dl.html class="btn">Previous</a>
+  <a href= / class="btn">Previous</a>
 </section>
 
 <!-- <div>
@@ -67,131 +67,163 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">Introduction and Architecture</a></li>
+    <li><a href="#content1">GANs</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">RNNs</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Math</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">Statistics</a></li>
+  </ul>
+  <ul class="TOC5">
+    <li><a href="#content5">Optimization</a></li>
+  </ul>
+  <ul class="TOC6">
+    <li><a href="#content6">Machine Learning</a></li>
+  </ul>
+  <ul class="TOC7">
+    <li><a href="#content7">Computer Vision</a></li>
+  </ul>
+  <ul class="TOC8">
+    <li><a href="#content8">NLP</a></li>
+  </ul>
+  <ul class="TOC9">
+    <li><a href="#content9">Physics</a></li>
+  </ul>
+  <ul class="TOC10">
+    <li><a href="#content10">Medical-NLP</a></li>
+  </ul>
+  <ul class="TOC11">
+    <li><a href="#content11">Misc.</a></li>
   </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content1">Introduction and Architecture</h2>
+<ol>
+  <li><a href=""></a></li>
+</ol>
+
+<h2 id="content1">GANs</h2>
+
 <ol>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents10">From PCA to Auto-Encoders:</strong></dt>
-      <dd>High dimensional data can often be represented using a much lower dimensional code.<br />
-This happens when  the data lies near a linear manifold in the high dimensional space.<br />
-Thus, if we can this <em>linear manifold</em>, we can project the data on the manifold and, then, represent the data by its position on the manifold without losing much information because in the directions orthogonal to the manifold there isn’t much variation in the data.</dd>
-      <dd>Often, <strong>PCA</strong> is used as a method to determine this <em>linear manifold</em> to reduce the dimensionality of the data from <script type="math/tex">N</script>-dimensions to, say, <script type="math/tex">M</script>-dimensions, where <script type="math/tex">% <![CDATA[
-M < N %]]></script>.</dd>
-      <dd>However, what if the manifold that the data is close to, is non-linear?<br />
-Obviously, we need someway to find this non-linear manifold.</dd>
-      <dd>Deep-Learning provides us with Deep <strong>AutoEncoders</strong>.<br />
-<strong>Auto-Encoders</strong> allows us to deal with <em>curved manifolds</em> un the input space by using deep layers, where the <em>code</em> is a <em>non-linear function</em> of the input, and the <em>reconstruction</em> of the data from the code is, also, a <em>non-linear function</em> of the code.</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Auto-Encoders:</strong></dt>
-      <dd>An <strong>AutoEncoder</strong> is an artificial neural network used for unsupervised learning of efficient codings. <br />
-It aims to learn a representation (encoding) for a set of data, typically for the purpose of <em>dimensionality reduction</em>.</dd>
-      <dd><img src="/main_files/cs231n/aencdrs/1.png" alt="img" width="50%" /></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Architecture:</strong></dt>
-      <dd>An auto-encoder consists of:
-        <ul>
-          <li>An Encoding Function</li>
-          <li>A Decoding Function</li>
-          <li>A Distance Function</li>
-        </ul>
-      </dd>
-      <dd>We choose the <em>encoder</em> and <em>decoder</em> to be  parametric functions (typically neural networks), and to be differentiable with respect to the distance function, so the parameters of the encoding/decoding functions can be optimize to minimize the reconstruction loss, using Stochastic Gradient Descent.</dd>
-      <dd>The simplest form of an autoencoder is a feedforward neural network similar to the multilayer perceptron (MLP) – having an input layer, an output layer and one or more hidden layers connecting them –, but with the output layer having the same number of nodes as the input layer, and with the purpose of reconstructing its own inputs (instead of predicting the target value <script type="math/tex">{\displaystyle Y}</script> given inputs <script type="math/tex">{\displaystyle X}</script>).</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Structure and Mathematics:</strong></dt>
-      <dd>The <em>encoder</em> and the <em>decoder</em> in an auto-encoder can be defined as transitions <script type="math/tex">\phi</script> and <script type="math/tex">{\displaystyle \psi ,}</script> such that:</dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents10">Lists of Papers:</strong></dt>
       <dd>
-        <script type="math/tex; mode=display">{\displaystyle \phi :{\mathcal {X}}\rightarrow {\mathcal {F}}} \\
- {\displaystyle \psi :{\mathcal {F}}\rightarrow {\mathcal {X}}} \\
- {\displaystyle \phi ,\psi =\arg \min _{\phi ,\psi }\|X-(\psi \circ \phi )X\|^{2}}</script>
-      </dd>
-      <dd>where <script type="math/tex">{\mathcal {X} = \mathbf{R}^d}</script> is the input space, and <script type="math/tex">{\mathcal {F} = \mathbf{R}^p}</script> is the latent (feature) space, and <script type="math/tex">% <![CDATA[
-p < d %]]></script>.</dd>
-      <dd>The encoder takes the input <script type="math/tex">{\displaystyle \mathbf {x} \in \mathbb {R} ^{d}={\mathcal {X}}}</script> and maps it to <script type="math/tex">{\displaystyle \mathbf {z} \in \mathbb {R} ^{p}={\mathcal {F}}}</script>:</dd>
-      <dd>
-        <script type="math/tex; mode=display">{\displaystyle \mathbf {z} =\sigma (\mathbf {Wx} +\mathbf {b} )}</script>
-      </dd>
-      <dd>
-        <ul>
-          <li>The image <script type="math/tex">\mathbf{z}</script> is referred to as <em>code</em>, <em>latent variables</em>, or <em>latent representation</em>.</li>
-          <li><script type="math/tex">{\displaystyle \sigma }</script> is an element-wise activation function such as a sigmoid function or a rectified linear unit.</li>
-          <li><script type="math/tex">{\displaystyle \mathbf {W} }</script> is a weight matrix</li>
-          <li><script type="math/tex">{\displaystyle \mathbf {b} }</script> is the bias.</li>
-        </ul>
-      </dd>
-      <dd>The Decoder maps  <script type="math/tex">{\displaystyle \mathbf {z} }</script> to the reconstruction <script type="math/tex">{\displaystyle \mathbf {x'} }</script>  of the same shape as <script type="math/tex">{\displaystyle \mathbf {x} }</script>:</dd>
-      <dd>
-        <script type="math/tex; mode=display">{\displaystyle \mathbf {x'} =\sigma '(\mathbf {W'z} +\mathbf {b'} )}</script>
-      </dd>
-      <dd>where <script type="math/tex">{\displaystyle \mathbf {\sigma '} ,\mathbf {W'} ,{\text{ and }}\mathbf {b'} }</script> for the decoder may differ in general from those of the encoder.</dd>
-      <dd>Autoencoders minimize  reconstruction errors, such as the L-2 loss:</dd>
-      <dd>
-        <script type="math/tex; mode=display">{\displaystyle {\mathcal {L}}(\mathbf {x} ,\psi ( \phi (\mathbf {x} ) ) ) =  {\mathcal {L}}(\mathbf {x} ,\mathbf {x'} )=\|\mathbf {x} -\mathbf {x'} \|^{2}=\|\mathbf {x} -\sigma '(\mathbf {W'} (\sigma (\mathbf {Wx} +\mathbf {b} ))+\mathbf {b'} )\|^{2}}</script>
-      </dd>
-      <dd>where <script type="math/tex">{\displaystyle \mathbf {x} }</script> is usually averaged over some input training set.</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Applications:</strong></dt>
-      <dd>The applications of auto-encoders have changed overtime.<br />
-This is due to the advances in the fields that auto-encoders were applied in, or to the incompetency of the auto-encoders.</dd>
-      <dd>Recently, auto-encoders are applied to:
-        <ul>
-          <li><strong>Data-Denoising</strong></li>
-          <li><strong>Dimensionality Reduction</strong> (for data visualization)</li>
-        </ul>
-      </dd>
-      <dd>
-        <blockquote>
-          <p>With appropriate dimensionality and sparsity constraints, autoencoders can learn data projections that are more interesting than PCA or other basic techniques.</p>
-        </blockquote>
-      </dd>
-      <dd>
-        <blockquote>
-          <p>For 2D visualization specifically, t-SNE is probably the best algorithm around, but it typically requires relatively low-dimensional data. So a good strategy for visualizing similarity relationships in high-dimensional data is to start by using an autoencoder to compress your data into a low-dimensional space (e.g. 32 dimensional) (by an auto-encoder), then use t-SNE for mapping the compressed data to a 2D plane.</p>
-        </blockquote>
+        <ol>
+          <li><a href="https://github.com/terryum/awesome-deep-learning-papers">Awesome DL-Papers</a></li>
+          <li><a href="https://github.com/zhangqianhui/AdversarialNetsPapers">Adversarial Nets Papers</a></li>
+          <li><a href="https://github.com/nightrome/really-awesome-gan">really-awesome-gan</a></li>
+          <li><a href="https://deephunt.in/the-gan-zoo-79597dc8c347">Tha GAN ZOO</a></li>
+          <li><a href="https://github.com/hindupuravinash/the-gan-zoo">Tha GAN ZOO</a></li>
+        </ol>
       </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Types of Auto-Encoders:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Improving Training:</strong></dt>
       <dd>
-        <ul>
-          <li>Vanilla Auto-Encoder</li>
-          <li>Sparse Auto-Encoder</li>
-          <li>Denoising Auto-Encoder</li>
-          <li>Variational Auto-Encoder (VAE)</li>
-          <li>Contractive Auto-Encoder</li>
-        </ul>
+        <ol>
+          <li><a href="https://arxiv.org/pdf/1606.03498.pdf">Improved Techniques for Training GANs</a></li>
+          <li><a href="https://arxiv.org/pdf/1704.00028.pdf">Improved Training of Wasserstein GANs</a></li>
+          <li><a href="https://arxiv.org/abs/1701.07875">WGAN</a></li>
+          <li><a href="https://arxiv.org/abs/1710.10196">Progressive Growing of GANs for Improved Quality, Stability, and Variation</a></li>
+        </ol>
       </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Auto-Encoders for initializing Neural-Nets:</strong></dt>
-      <dd>After training an auto-encoder, we can use the <em>encoder</em> to compress the input data into it’s latent representation (which we can view as <em>features</em>) and input those to the neural-net (e.g. a classifier) for prediction.</dd>
-      <dd><img src="/main_files/cs231n/aencdrs/2.png" alt="img" width="70%" /></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">GAN Architectures:</strong></dt>
+      <dd>
+        <ol>
+          <li><a href=""></a></li>
+          <li><a href="https://arxiv.org/pdf/1511.05644.pdf">Adversarial Autoencoders</a></li>
+        </ol>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Improving GANs (Theory):</strong></dt>
+      <dd>
+        <ol>
+          <li><a href="https://arxiv.org/pdf/1606.03657.pdf">InfoGAN</a></li>
+          <li><a href="https://arxiv.org/pdf/1411.1784.pdf">Conditional GANs | cGANs</a></li>
+        </ol>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Theory:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Code:</strong></dt>
+      <dd>
+        <ol>
+          <li><a href="https://github.com/igul222/improved_wgan_training">improved_wgan_training</a></li>
+          <li><a href="https://github.com/tkarras/progressive_growing_of_gans">Progressive Growing of GANs</a></li>
+          <li><a href="https://github.com/wiseodd/generative-models">Implementation of different GAN architectures</a></li>
+          <li><a href="http://guimperarnau.com/blog/2017/03/Fantastic-GANs-and-where-to-find-them">Fantastic GANs and where to find them</a></li>
+          <li><a href="http://guimperarnau.com/blog/2017/11/Fantastic-GANs-and-where-to-find-them-II">Fantastic GANs and where to find them II</a></li>
+        </ol>
+      </dd>
     </dl>
   </li>
 </ol>
+
+<hr />
+
+<h2 id="content2">RNNs</h2>
+
+<hr />
+
+<h2 id="content3">Maths</h2>
+
+<hr />
+
+<h2 id="content4">Statistics</h2>
+
+<hr />
+
+<h2 id="content5">Optimization</h2>
+
+<hr />
+
+<h2 id="content6">Machine Learning</h2>
+
+<hr />
+
+<h2 id="content7">Computer Vision</h2>
+
+<hr />
+
+<h2 id="content8">NLP</h2>
+
+<hr />
+
+<h2 id="content9">Physics</h2>
+
+<hr />
+
+<h2 id="content10">Medical-NLP</h2>
+<div class="highlighter-rouge"><pre class="highlight"><code>:   1. [Classifying medical notes into standard disease codes](https://arxiv.org/pdf/1802.00382v1.pdf)  
+</code></pre>
+</div>
+
+<hr />
+
+<h2 id="content11">Misc.</h2>
 
 
       <footer class="site-footer">

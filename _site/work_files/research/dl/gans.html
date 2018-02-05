@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">Auto-Encoders</h1>
+  <h1 class="project-name">Generative Adversarial Networks</h1>
   <h2 class="project-tagline"></h2>
   <a href="/#" class="btn">Home</a>
   <a href="/work" class="btn">Work-Space</a>
-  <a href= /work_files/research/dl.html class="btn">Previous</a>
+  <a href= /work_files/research/dl/cv.html class="btn">Previous</a>
 </section>
 
 <!-- <div>
@@ -65,130 +65,70 @@
       
       <div class="TOC">
   <h1 id="table-of-contents">Table of Contents</h1>
-
   <ul class="TOC1">
-    <li><a href="#content1">Introduction and Architecture</a></li>
+    <li><a href="#content1">Variational Auto-Encoders</a></li>
   </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content1">Introduction and Architecture</h2>
+<h2 id="content1">Generative Adversarial Networks (GANs)</h2>
+
 <ol>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents10">From PCA to Auto-Encoders:</strong></dt>
-      <dd>High dimensional data can often be represented using a much lower dimensional code.<br />
-This happens when  the data lies near a linear manifold in the high dimensional space.<br />
-Thus, if we can this <em>linear manifold</em>, we can project the data on the manifold and, then, represent the data by its position on the manifold without losing much information because in the directions orthogonal to the manifold there isn’t much variation in the data.</dd>
-      <dd>Often, <strong>PCA</strong> is used as a method to determine this <em>linear manifold</em> to reduce the dimensionality of the data from <script type="math/tex">N</script>-dimensions to, say, <script type="math/tex">M</script>-dimensions, where <script type="math/tex">% <![CDATA[
-M < N %]]></script>.</dd>
-      <dd>However, what if the manifold that the data is close to, is non-linear?<br />
-Obviously, we need someway to find this non-linear manifold.</dd>
-      <dd>Deep-Learning provides us with Deep <strong>AutoEncoders</strong>.<br />
-<strong>Auto-Encoders</strong> allows us to deal with <em>curved manifolds</em> un the input space by using deep layers, where the <em>code</em> is a <em>non-linear function</em> of the input, and the <em>reconstruction</em> of the data from the code is, also, a <em>non-linear function</em> of the code.</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Auto-Encoders:</strong></dt>
-      <dd>An <strong>AutoEncoder</strong> is an artificial neural network used for unsupervised learning of efficient codings. <br />
-It aims to learn a representation (encoding) for a set of data, typically for the purpose of <em>dimensionality reduction</em>.</dd>
-      <dd><img src="/main_files/cs231n/aencdrs/1.png" alt="img" width="50%" /></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Architecture:</strong></dt>
-      <dd>An auto-encoder consists of:
-        <ul>
-          <li>An Encoding Function</li>
-          <li>A Decoding Function</li>
-          <li>A Distance Function</li>
-        </ul>
-      </dd>
-      <dd>We choose the <em>encoder</em> and <em>decoder</em> to be  parametric functions (typically neural networks), and to be differentiable with respect to the distance function, so the parameters of the encoding/decoding functions can be optimize to minimize the reconstruction loss, using Stochastic Gradient Descent.</dd>
-      <dd>The simplest form of an autoencoder is a feedforward neural network similar to the multilayer perceptron (MLP) – having an input layer, an output layer and one or more hidden layers connecting them –, but with the output layer having the same number of nodes as the input layer, and with the purpose of reconstructing its own inputs (instead of predicting the target value <script type="math/tex">{\displaystyle Y}</script> given inputs <script type="math/tex">{\displaystyle X}</script>).</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Structure and Mathematics:</strong></dt>
-      <dd>The <em>encoder</em> and the <em>decoder</em> in an auto-encoder can be defined as transitions <script type="math/tex">\phi</script> and <script type="math/tex">{\displaystyle \psi ,}</script> such that:</dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents40">Auto-Regressive Models VS Variational Auto-Encoders VS GANs:</strong></dt>
+      <dd><strong>Auto-Regressive Models</strong> defined a <em><strong>tractable</strong></em> (discrete) density function and, then, optimized the likelihood of training data:</dd>
       <dd>
-        <script type="math/tex; mode=display">{\displaystyle \phi :{\mathcal {X}}\rightarrow {\mathcal {F}}} \\
- {\displaystyle \psi :{\mathcal {F}}\rightarrow {\mathcal {X}}} \\
- {\displaystyle \phi ,\psi =\arg \min _{\phi ,\psi }\|X-(\psi \circ \phi )X\|^{2}}</script>
+        <script type="math/tex; mode=display">% <![CDATA[
+p_\theta(x) = p(x_0) \prod_1^n p(x_i | x_{i<}) %]]></script>
       </dd>
-      <dd>where <script type="math/tex">{\mathcal {X} = \mathbf{R}^d}</script> is the input space, and <script type="math/tex">{\mathcal {F} = \mathbf{R}^p}</script> is the latent (feature) space, and <script type="math/tex">% <![CDATA[
-p < d %]]></script>.</dd>
-      <dd>The encoder takes the input <script type="math/tex">{\displaystyle \mathbf {x} \in \mathbb {R} ^{d}={\mathcal {X}}}</script> and maps it to <script type="math/tex">{\displaystyle \mathbf {z} \in \mathbb {R} ^{p}={\mathcal {F}}}</script>:</dd>
+      <dd>While <strong>VAEs</strong> defined an <em><strong>intractable</strong></em> (continuous) density function with latent variable <script type="math/tex">z</script>:</dd>
       <dd>
-        <script type="math/tex; mode=display">{\displaystyle \mathbf {z} =\sigma (\mathbf {Wx} +\mathbf {b} )}</script>
+        <script type="math/tex; mode=display">p_\theta(x) = \int p_\theta(z) p_\theta(x|z) dz</script>
       </dd>
+      <dd>but cannot optimize directly; instead, derive and optimize a lower bound on likelihood instead.</dd>
+      <dd>On the other hand, <strong>GANs</strong> rejects explicitly defining a probability density function, in favor of only being able to sample.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Generative Adversarial Networks:</strong></dt>
+      <dd>are a class of AI algorithms used in unsupervised machine learning, implemented by a system of two neural networks contesting with each other in a zero-sum game framework.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Motivation:</strong></dt>
       <dd>
         <ul>
-          <li>The image <script type="math/tex">\mathbf{z}</script> is referred to as <em>code</em>, <em>latent variables</em>, or <em>latent representation</em>.</li>
-          <li><script type="math/tex">{\displaystyle \sigma }</script> is an element-wise activation function such as a sigmoid function or a rectified linear unit.</li>
-          <li><script type="math/tex">{\displaystyle \mathbf {W} }</script> is a weight matrix</li>
-          <li><script type="math/tex">{\displaystyle \mathbf {b} }</script> is the bias.</li>
-        </ul>
-      </dd>
-      <dd>The Decoder maps  <script type="math/tex">{\displaystyle \mathbf {z} }</script> to the reconstruction <script type="math/tex">{\displaystyle \mathbf {x'} }</script>  of the same shape as <script type="math/tex">{\displaystyle \mathbf {x} }</script>:</dd>
-      <dd>
-        <script type="math/tex; mode=display">{\displaystyle \mathbf {x'} =\sigma '(\mathbf {W'z} +\mathbf {b'} )}</script>
-      </dd>
-      <dd>where <script type="math/tex">{\displaystyle \mathbf {\sigma '} ,\mathbf {W'} ,{\text{ and }}\mathbf {b'} }</script> for the decoder may differ in general from those of the encoder.</dd>
-      <dd>Autoencoders minimize  reconstruction errors, such as the L-2 loss:</dd>
-      <dd>
-        <script type="math/tex; mode=display">{\displaystyle {\mathcal {L}}(\mathbf {x} ,\psi ( \phi (\mathbf {x} ) ) ) =  {\mathcal {L}}(\mathbf {x} ,\mathbf {x'} )=\|\mathbf {x} -\mathbf {x'} \|^{2}=\|\mathbf {x} -\sigma '(\mathbf {W'} (\sigma (\mathbf {Wx} +\mathbf {b} ))+\mathbf {b'} )\|^{2}}</script>
-      </dd>
-      <dd>where <script type="math/tex">{\displaystyle \mathbf {x} }</script> is usually averaged over some input training set.</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Applications:</strong></dt>
-      <dd>The applications of auto-encoders have changed overtime.<br />
-This is due to the advances in the fields that auto-encoders were applied in, or to the incompetency of the auto-encoders.</dd>
-      <dd>Recently, auto-encoders are applied to:
-        <ul>
-          <li><strong>Data-Denoising</strong></li>
-          <li><strong>Dimensionality Reduction</strong> (for data visualization)</li>
+          <li><strong>Problem</strong>: we want to sample from complex, high-dimensional training distribution; there is no direct way of doing this.</li>
+          <li><strong>Solution</strong>: we sample from a simple distribution (e.g. random noise) and learn a transformation that maps to the training distribution, by using a <strong>neural network</strong>.</li>
         </ul>
       </dd>
       <dd>
-        <blockquote>
-          <p>With appropriate dimensionality and sparsity constraints, autoencoders can learn data projections that are more interesting than PCA or other basic techniques.</p>
-        </blockquote>
-      </dd>
-      <dd>
-        <blockquote>
-          <p>For 2D visualization specifically, t-SNE is probably the best algorithm around, but it typically requires relatively low-dimensional data. So a good strategy for visualizing similarity relationships in high-dimensional data is to start by using an autoencoder to compress your data into a low-dimensional space (e.g. 32 dimensional) (by an auto-encoder), then use t-SNE for mapping the compressed data to a 2D plane.</p>
-        </blockquote>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Types of Auto-Encoders:</strong></dt>
-      <dd>
         <ul>
-          <li>Vanilla Auto-Encoder</li>
-          <li>Sparse Auto-Encoder</li>
-          <li>Denoising Auto-Encoder</li>
-          <li>Variational Auto-Encoder (VAE)</li>
-          <li>Contractive Auto-Encoder</li>
+          <li><strong>Generative VS Discriminative</strong>: discriminative models had much more success because deep generative models suffered due to the difficulty of approximating many intractable probabilistic computations that arise in maximum likelihood estimation and related strategies, and due to difficulty of leveraging the benefits of piecewise linear units in the generative context.<br />
+GANs propose a new framework for generative model estimation that sidesteps these difficulties.</li>
         </ul>
       </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Auto-Encoders for initializing Neural-Nets:</strong></dt>
-      <dd>After training an auto-encoder, we can use the <em>encoder</em> to compress the input data into it’s latent representation (which we can view as <em>features</em>) and input those to the neural-net (e.g. a classifier) for prediction.</dd>
-      <dd><img src="/main_files/cs231n/aencdrs/2.png" alt="img" width="70%" /></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Structure:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Goal</strong>: estimating generative models that capture the training data distribution</li>
+          <li><strong>Framework</strong>: an adversarial process in which two models are simultaneously trained a generative model <script type="math/tex">G</script> that captures the data distribution, and a discriminative model <script type="math/tex">D</script> that estimates the probability that a sample came from the training data rather than <script type="math/tex">G</script>.</li>
+          <li><strong>Training</strong>:
+            <ul>
+              <li><script type="math/tex">G</script> maximizes the probability of <script type="math/tex">D</script> making a mistake</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
     </dl>
   </li>
 </ol>

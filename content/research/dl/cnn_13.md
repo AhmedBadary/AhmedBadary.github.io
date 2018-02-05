@@ -269,18 +269,3 @@ Auto-Encoders generate __Features__ that capture _factors of variation_ in the t
         * __Framework__: an adversarial process in which two models are simultaneously trained a generative model $$G$$ that captures the data distribution, and a discriminative model $$D$$ that estimates the probability that a sample came from the training data rather than $$G$$.  
         * __Training__:  
             * $$G$$ maximizes the probability of $$D$$ making a mistake       
-
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents54}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents55}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents56}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents57}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents58}  
-    :   

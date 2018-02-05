@@ -1,7 +1,7 @@
 ---
 layout: NotesPage
 title: Articulated Body Pose Estimation <br /> (Human Pose Estimation)
-permalink: /work_files/research/dl/pose_est
+permalink: /work_files/research/dl/pose_estt
 prevLink: /work_files/research/dl/cv.html
 ---
 
@@ -10,12 +10,8 @@ prevLink: /work_files/research/dl/cv.html
 
   * [Introduction](#content1)
   {: .TOC1}
-  * [SECOND](#content2)
+  * [DeepPose](#content2)
   {: .TOC2}
-  * [THIRD](#content3)
-  {: .TOC3}
-  * [FOURTH](#content4)
-  {: .TOC4}
 </div>
 
 ***
@@ -39,6 +35,7 @@ prevLink: /work_files/research/dl/cv.html
         * *__high dimensionality of the pose__* 
         * *__loss of 3d information that results from observing the pose from 2d planar image projections__* 
         * *__(variability in) Clothes__*  
+
 3. **Theory:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
     :   Human pose estimation is usually formulated __Probabilistically__ to account for the variability and ambiguities that exist in the inference.  
     :   In __Probabilistic__ approaches, we are interested in estimating the *__posterior distribution__* $$p(\mathbf{x}\vert \mathbf{z})$$, where $$\mathbf{x}$$ is the pose of the body and and $$\mathbf{z}$$ is a feature set derived from the image.  
@@ -63,14 +60,14 @@ prevLink: /work_files/research/dl/cv.html
             * 3D point clouds, and sum of Gaussian kernels
             * 3D surface meshes.
 
-33. **The Representation:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents133}  
+5. **The Representation:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}  
     :   A __Representation__ is a model to depict the configuration of the human body.  
         The _configuration of the human body_ can be represented in a variety of ways.  
     :   There are two common representations used for the human body:  
         * __Kinematic Skeleton Tree__  
         * __Part Models__  
 
-44. **Kinematic Skeleton Tree with Quaternions:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents144}  
+6. **Kinematic Skeleton Tree with Quaternions:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}  
     :   The most direct and common representation is obtained by parameterizing the body as a kinematic tree, $$\vec{x} = \{\tau, \theta_\tau, \theta_1, \theta_2, \ldots, \theta_N\}$$, where the pose is encoded using position of the root segment (the __pelvis__ is typically used as root to minimize the height of the kinematic tree), $$\tau$$, orientation of the root segment in the world, $$\theta_\tau$$, and a set of relative joint angels, $$\{\theta_i\}_{i=1}^N$$, that represent the orientation of the body parts with respect to their parents along the tree.  
         > e.g., the orientation of the thigh with respect to the pelvis, shin with respect to the thigh, etc.  
     :   ![img](/main_files/cv/pose_est/1.png){: width="60%"}
@@ -96,7 +93,7 @@ prevLink: /work_files/research/dl/cv.html
     :   Another parameterization uses the (2d or 3d) locations of the major joints in the world.   
         However, this parametrization is __not invariant to the morphology__ (body segment lengths) of a given individual.   
 
-6. **Part-based Models:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}  
+7. **Part-based Models:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
     :   The body is modeled as a __set of parts__, $$\mathbf{x} = \{\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_M\}$$, each with its own position and orientation in space, $$\mathbf{x}_i = \{\tau_i, \theta_i\}$$, that are connected by a set of statistical or physical constraints that enforce skeletal (and sometimes image) consistency.  
     :   The part model is motivated by the human skeleton, since any object having the property of articulation can be broken down into smaller parts wherein each part can take different orientations, resulting in different articulations of the same object.   
     Different scales and orientations of the main object can be articulated to scales and orientations of the corresponding parts.
@@ -107,7 +104,7 @@ prevLink: /work_files/research/dl/cv.html
         In 2-D, each part’s representation is often augmented with an additional variable, $$s_i$$, that accounts for uniform scaling of the body part in the image, i.e., $$\mathbf{x}_i = \{\tau_i, \theta_i, s_i\}$$ with $$\tau_i \in \mathbb{R}^2, \theta_i \in \mathbb{R}^1$$ and $$s_i \in \mathbb{R}^1$$.  
     :   The model results in very high dimensional vectors, even higher than that of _kinematic trees_.  
 
-5. **Applications:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}  
+8. **Applications:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}  
     :   * Markerless motion capture for human-computer interfaces,
         * Physiotherapy 
         * 3D animation 
@@ -119,7 +116,7 @@ prevLink: /work_files/research/dl/cv.html
         * Sports performance analysis
 
 
-7. **Image Features:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
+9. **Image Features:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents19}  
     :   In many of the classical approaches image features that represent the salient parts of the image with respect to the human pose play a huge rule in the performance of any pose estimation approach.   
     :   ![img](/main_files/cv/pose_est/2.png){: width="70%"}
     :   * __The most common features__: 
@@ -130,7 +127,6 @@ prevLink: /work_files/research/dl/cv.html
         Other, less common features, include, __Shading__ and __Focus__.  
     :   To __reduce dimensionality__ and __increase robustness to noise__, these raw features are often encapsulated in _image descriptors_, such as __shape context__, __SIFT__, and __histogram of oriented gradients (HoG)__.  
         Alternatively, _hierarchical multi-level image encodings_ can be used, such as __HMAX__, __spatial pyramids__, and __vocabulary trees__.   
-
 ***
 
 ## DeepPose 

@@ -18,3 +18,18 @@ permalink: /work_files/research/dl/cv
 
 * ### [Object Detection with Deep Learning](/work_files/research/dl/dec)
 
+* ### [Deep Auto-Encoders](/work_files/research/dl/aencdrs)
+
+* ### [Generative Models \| Unsupervised Learning](/work_files/research/dl/gm)
+
+* ### [Articulated Body Pose Estimation](/work_files/research/dl/pose_estt)
+
+* ### [Generative Compression](/work_files/research/dl/compression)
+
+* ### [CNN Architectures](/work_files/research/dl/arcts)
+
+* ### [](/work_files/research/dl/dec)
+
+* ### [](/work_files/research/dl/dec)
+
+* ### [Deep-Dream <br /> Visualizing Features in ConvNets](/work_files/research/dl/tbd)

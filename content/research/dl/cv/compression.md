@@ -1,6 +1,6 @@
 ---
 layout: NotesPage
-title: Articulated Body Pose Estimation <br /> (Human Pose Estimation)
+title: Generative Compression
 permalink: /work_files/research/dl/compression
 prevLink: /work_files/research/dl/cv.html
 ---
@@ -10,12 +10,10 @@ prevLink: /work_files/research/dl/cv.html
 
   * [Introduction](#content1)
   {: .TOC1}
-  * [SECOND](#content2)
+  * [WaveOne](#content2)
   {: .TOC2}
-  * [THIRD](#content3)
+  * [Proposed Changes](#content3)
   {: .TOC3}
-  * [FOURTH](#content4)
-  {: .TOC4}
 </div>
 
 ***
@@ -233,53 +231,4 @@ WaveOne is a machine learning-based approach to lossy image compression.
 
 
 3. **Adversarial Feature Learning for Induced Natural Representation and Artifact Removal:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
-    :   
-
-
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
-    :   
-
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
-    :   
-
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
-    :   
-
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
-    :   
-
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
-    :   
-
-
-***
-
-## FOURTH
-{: #content4}
-
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}  
-    :   
-
-
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}  
-    :   
-
-
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}  
-    :   
-
-
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44}  
-    :   
-
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}  
-    :   
-
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}  
     :   
