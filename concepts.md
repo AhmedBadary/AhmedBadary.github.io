@@ -67,11 +67,20 @@ prevLink: /
 ## RNNs
 {: #content2}
 
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
-    :   
+1. **Gradient Clipping Intuition:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
+    :   ![img](/main_files/main/concepts/1.png){: width="100%"}  
+    :   * The image above is that of the __Error Surface__ of a _single hidden unit RNN_ 
+        * The observation here is that there exists __High Curvature Walls__ 
+            This Curvature Wall will move the gradient to a very different/far, probably less useful area. 
+            Thus, if we clip the gradients we will avoid the walls and will remain in the more useful area that we were exploring already. 
 
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
-    :   
+
+2. **PeepHole Connection:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
+    :   is an addition on the equations of the __LSTM__ as follows: 
+    :   $$ \Gamma_o = \sigma(W_o[a^{(t-1)}, x^{(t)}] + b_o) \\
+        \implies 
+        \sigma(W_o[a^{(t-1)}, x^{(t)}, c^{(t-1)}] + b_o)$$
+    :   Thus, we add the term $$c^{(t-1)}$$ to the output gate.
 
 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}  
     :   
@@ -241,8 +250,30 @@ prevLink: /
 ## NLP
 {: #content8}
 
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents81}  
-    :   
+1. **Towards Better Language Modelling (Lec.9 highlight, 38m):**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents81}  
+    :   To improve a _Language Model_:  
+        1. __Better Inputs__: 
+            Word -> Subword -> Char  
+            ![img](/main_files/main/concepts/2.png){: width="100%"}  
+            _Subword Language Modeling , Mikolov et al. 2012_  
+            _Character-Aware Neural Language Model , Kim et al. 2015_.  
+        2. __Better Regularization/Preprocessing__:  
+            Similar to computer vision, we can do both Regularization and Preprocessing on the data to increase its relevance to the true distribution.  
+            Preprocessing acts as a *__data augmentation__* technique. This allows us to achieve a __Smoother__ distribution, since we are removing more common words and re-enforcing rarer words.  
+            _Zoneout, Kruger et al. 2016_  
+            _Data Noising as Smoothing, Xie et al. 2016_       
+            * *__Regularization__*:  
+                * Use Dropout (Zaremba, et al. 2014). 
+                * Use Stochastic FeedForward depth (Huang et al. 2016)
+                * Use Norm Stabilization (Memisevic 2015)
+                ...  
+            * *__Preprocessing__*:  
+                 * Randomly replacing words in a sentence with other words  
+                 * Use bigram statistics to generate _Kneser-Ney_ inspired replacement (Xie et al. 2016). 
+                 * Replace a word with __fixed__ drop rate
+                 * Replace a word with __adaptive__ drop rate, by how rare two words appear together (i.e. "Humpty Dumpty"), and replace by a unigram draw over vocab
+                 * Replace a word with __adaptive__ drop rate, and draw word from a __proposal distribution__ (i.e. "New York") 
+        3. __Better Model__ (+ all above)
 
 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents82}  
     :   

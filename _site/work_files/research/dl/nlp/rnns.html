@@ -135,7 +135,10 @@
           <li>An incorrect but necessary Markov assumption</li>
         </ul>
       </dd>
-      <dd><script type="math/tex">P(w_1, \ldots, w_m) = \prod_{i=1}^m P(W_i \| w_1, \ldots, w_{i-1}) \approx \prod_{i=1}^m P(w_i \| w_{i-(n-1)}, ldots, w_{i-1})</script>
+      <dd>
+        <script type="math/tex; mode=display">P(w_1, \ldots, w_m) = \prod_{i=1}^m P(W_i \| w_1, \ldots, w_{i-1}) \approx \prod_{i=1}^m P(w_i \| w_{i-(n-1)}, \ldots, w_{i-1})</script>
+      </dd>
+      <dd>
         <ul>
           <li>To estimate probabilities, compute for
             <ul>
@@ -183,7 +186,7 @@
 <ol>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Recurrent Neural Networks:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyCoxqntents21">Recurrent Neural Networks:</strong></dt>
       <dd>An <strong>RNN</strong> is a class of artificial neural network where connections between units form a directed cycle, allowing it to exhibit dynamic temporal behavior.</dd>
       <dd>The standard RNN is a nonlinear dynamical system that maps sequences to sequences.</dd>
     </dl>
@@ -216,12 +219,113 @@
       <dd>
         <script type="math/tex; mode=display">L(y, z) = \sum_{t=1}^TL(y_t, z_t)</script>
       </dd>
+      <dd>
+        <ul>
+          <li><strong>Language Modelling</strong>: 
+  We use the <em><strong>Cross Entropy</strong></em> Loss function but predicting <em>words</em> instead of classes</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">J^{(t)}(\theta) = - \sum_{j=1}^{\vert V \vert} y_{t, j} \log \hat{y_{t, j}}</script>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">\implies</script>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">L(y,z) = J = -\dfrac{1}{T} \sum_{t=1}^{T} \sum_{j=1}^{\vert V \vert} y_{t, j} \log \hat{y_{t, j}}</script>
+      </dd>
+      <dd>To <strong>Evaluate</strong> the model, we use <em><strong>Preplexity</strong></em> :</dd>
+      <dd>
+        <script type="math/tex; mode=display">2^J</script>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>Lower Preplexity is <em>better</em></p>
+        </blockquote>
+      </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Asynchronous:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Analyzing the Gradient:</strong></dt>
+      <dd>Assuming the following formulation of an <strong>RNN</strong>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">h_t = Wf(h_{t-1}) + W^{(hx)}x_{[t]} \\
+\hat{y_t} = W^{(S)}f(h_t)</script>
+      </dd>
+      <dd>
+        <ul>
+          <li>The <strong>Total Error</strong> is the sum of each error at each time step <script type="math/tex">t</script>:</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">\dfrac{\partial E}{\partial W} = \sum_{t=1}^{T} \dfrac{\partial E_t}{\partial W}</script>
+      </dd>
+      <dd>
+        <ul>
+          <li>The <strong>local Error</strong> at a time step <script type="math/tex">t</script>:</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">\dfrac{\partial E_t}{\partial W} = \sum_{k=1}^{t} \dfrac{\partial E_t}{\partial y_t} \dfrac{\partial y_t}{\partial h_t} \dfrac{\partial h_t}{\partial h_k} \dfrac{\partial h_k}{\partial W}</script>
+      </dd>
+      <dd>
+        <ul>
+          <li>To compute the <em>local derivative</em> we need to compute:</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">\dfrac{\partial h_t}{\partial h_k}</script>
+      </dd>
       <dd></dd>
+      <dd>
+        <script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\dfrac{\partial h_t}{\partial h_k} &= \prod_{j=k+1}^t \dfrac{\partial h_j}{\partial h_{j-1}} \\
+&= \prod_{j=k+1}^t J_{j, j-1}
+\end{align} %]]></script>
+      </dd>
+      <dd><script type="math/tex">\:\:\:\:\:\:\:\:</script> where each <script type="math/tex">J_{j, j-1}</script> is the <strong>jacobina matrix</strong> of the partial derivatives of each respective<br />
+<script type="math/tex">\:\:\:\:\:\:\:\:</script> hidden layer.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents29">The Vanishing Gradient Problem:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Analyzing the Norms of the Jacobians</strong> of each partial:</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">\| \dfrac{\partial h_j}{\partial h_{j-1}} \| \leq \| W^T \| \cdot \| \text{ diag}[f'(h_{j-1})] \| \leq \beta_W \beta_h</script>
+      </dd>
+      <dd><script type="math/tex">\:\:\:\:\:\:\:</script> where we defined the <script type="math/tex">\beta</script>s as <em>upper bounds</em> of the <em>norms</em>.</dd>
+      <dd>
+        <ul>
+          <li><strong>The Gradient is the product of these Jacobian Matrices</strong> (each associated with a step in the forward computation):</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">\| \dfrac{\partial h_t}{\partial h_k} \| = \| \prod_{j=k+1}^t \dfrac{\partial h_j}{\partial h_{j-1}} \| \leq (\beta_W \beta_h)^{t-k}</script>
+      </dd>
+      <dd>
+        <ul>
+          <li><em><strong>Conclusion</strong></em>:<br />
+  Now, as the exponential <script type="math/tex">(t-k) \rightarrow \infty</script>:
+            <ul>
+              <li><strong>If <script type="math/tex">% <![CDATA[
+(\beta_W \beta_h) < 1 %]]></script></strong>: <br />
+  <script type="math/tex">(\beta_W \beta_h)^{t-k} \rightarrow 0</script>.<br />
+  known as <strong>Vanishing Gradient</strong>.</li>
+              <li><strong>If <script type="math/tex">(\beta_W \beta_h) > 1</script></strong>:<br />
+  <script type="math/tex">(\beta_W \beta_h)^{t-k} \rightarrow \infty</script>.<br />
+  known as <strong>Exploding Gradient</strong>.</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>As the bound can become <strong>very small</strong> or <strong>very large</strong> quickly, the <em>locality assumption of gradient descent</em> breaks down.</dd>
     </dl>
   </li>
   <li>
@@ -256,7 +360,7 @@
 
 <hr />
 
-<h2 id="content3">RNN Language Models</h2>
+<h2 id="content3">RNNs Extra!</h2>
 
 <ol>
   <li>
@@ -286,14 +390,34 @@
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Applications:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>NER</strong></li>
+          <li><strong>Entity Level Sentiment in context</strong></li>
+          <li><strong>Opinionated Expressions</strong></li>
+        </ul>
+      </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Bidirectional RNNs:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Motivation</strong>:<br />
+  For <em>classification</em> we need to incorporate information from words both preceding and following the word being processed</li>
+        </ul>
+      </dd>
+      <dd><img src="/main_files/dl/nlp/rnn/1.png" alt="img" width="100%" /></dd>
+      <dd><script type="math/tex">\:\:\:\:</script> Here <script type="math/tex">h = [\overrightarrow{h};\overleftarrow{h}]</script> represents (summarizes) the <em>past</em> and the <em>future</em> around a single token.</dd>
+      <dd>
+        <ul>
+          <li><strong>Deep Bidirectional RNNs</strong>:</li>
+        </ul>
+      </dd>
+      <dd><img src="/main_files/dl/nlp/rnn/2.png" alt="img" width="100%" /></dd>
+      <dd><script type="math/tex">\:\:\:\:\:</script> Each memory layer passes an <em>intermediate sequential representation</em> to the next.</dd>
     </dl>
   </li>
   <li>
