@@ -12,6 +12,10 @@ prevLink: /work_files/research/dl/nlp.html
   {: .TOC1}
   * [Connectionist Temporal Classification](#content2)
   {: .TOC2}
+  * [LAS - Seq2Seq with Attention](#content3)
+  {: .TOC3}
+  * [Online Seq2Seq Models](#content4)
+  {: .TOC4}
 </div>
 
 ***
@@ -51,8 +55,16 @@ prevLink: /work_files/research/dl/nlp.html
 ## Connectionist Temporal Classification
 {: #content2}
 
+1. **Motivation:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
+    :   * RNNs require a _target output_ at each time step 
+        * Thus, to train an RNN, we need to __segment__ the training output (i.e. tell the network which label should be output at which time-step) 
+        * This problem usually arises when the timing of the input is variable/inconsistent (e.g. people speaking at different rates/speeds)
+
 2. **Connectionist Temporal Classification (CTC):**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
     :   __CTC__ is a type of _neural network output_ and _associated scoring function_, for training recurrent neural networks (RNNs) such as LSTM networks to tackle sequence problems where the _timing is variable_.  
+    :   Due to time variability, we don't know the __alignment__ of the __input__ with the __output__.  
+        Thus, CTC considers __all possible alignments__.  
+        Then, it gets a __closed formula__ for the __probability__ of __all these possible alignments__ and __maximizes__ it.
 
 1. **Structure:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
     * __Input__:  
@@ -61,19 +73,262 @@ prevLink: /work_files/research/dl/nlp.html
         A sequence of _labels_
 
 3. **Algorithm :**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}  
-    1. Extract the _Spectogram_ from the input
+   ![img](/main_files/dl/nlp/12/3.png){: width="80%"}  
+    1. Extract the (*__LOG MEL__*) _Spectogram_ from the input  
+        > Use raw audio iff there are multiple microphones
     2. Feed the _Spectogram_ into a _(bi-directional) RNN_
-    3. At each frame, we apply a _softmax_ over the entire vocabulary that we are interested in (plus a _blank token_), producing a prediction _log probability_ for a _different token class_ at that time step called the __score__   
+    3. At each frame, we apply a _softmax_ over the entire vocabulary that we are interested in (plus a _blank token_), producing a prediction _log probability_ (called the __score__) for a _different token class_ at that time step.   
+        * Repeated Tokens are duplicated
+        * Any original transcript is mapped to by all the possible paths in the duplicated space
+        * The __Score (log probability)__ of any path is the sum of the scores of individual categories at the different time steps
+        * The probability of any transcript is the sum of probabilities of all paths that correspond to that transcript
+        * __Dynamic Programming__ allopws is to compute the log probability $$p(\mathbf{Y} \vert \mathbf{X})$$ and its gradient exactly.  
+    ![img](/main_files/dl/nlp/12/4.png){: width="80%"}  
 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}  
-    :   
+5. **Analysis:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
+    :   The _ASR_ model consists of an __RNN__ plus a __CTC__ layer.    
+        Jointly, the model learns the __pronunciation__ and __acoustic__ model _together_.  
+        However, a __language model__ is __not__ learned, because the RNN-CTC model makes __strong conditional independence__ assumptions (similar to __HMMs__).  
+        Thus, the RNN-CTC model is capable of mapping _speech acoustics_ to _English characters_ but it makes many _spelling_ and _grammatical_ mistakes.  
+        Thus, the bottleneck in the model is the assumption that the _network outputs_ at _different times_ are __conditionally independent__, given the _internal state_ of the network. 
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}
+4. **Improvements:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}  
+    :   * Add a _language model_ to CTC during training time for _rescoring_.
+           This allows the model to correct spelling and grammar.
+        * Use _word targets_ of a certain vocabulary instead of characters 
 
 7. **Applications:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}  
     :   * on-line Handwriting Recognition
         * Recognizing phonemes in speech audio  
         * ASR
+
+***
+
+## LAS - Seq2Seq with Attention
+{: #content3}
+
+1. **Motivation:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}  
+    :   The __CTC__ model can only make predictions based on the data; once it has made a prediction for a given frame, it __cannot re-adjust__ the prediction.  
+    :   Moreover, the _strong independence assumptions_ that the CTC model makes doesn't allow it to learn a _language model_.   
+
+2. **Listen, Attend and Spell (LAS):**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}  
+    :   __LAS__ is a neural network that learns to transcribe speech utterances to characters.  
+        In particular, it learns all the components of a speech recognizer jointly.
+    :   ![img](/main_files/dl/nlp/12/5.png){: width="80%"}  
+    :   The model is a __seq2seq__ model; it learns a _conditional probability_ of the next _label/character_ given the _input_ and _previous predictions_ $$p(y_{i+1} \vert y_{1..i}, x)$$.  
+    :   The approach that __LAS__ takes is similar to that of __NMT__.     
+        Where, in translation, the input would be the _source sentence_ but in __ASR__, the input is _the audio sequence_.  
+    :   __Attention__ is needed because in speech recognition tasks, the length of the input sequence is very large; for a 10 seconds sample, there will be ~10000 frames to go through.      
+
+3. **Structure:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
+    :   The model has two components:  
+        * __A listener__: a _pyramidal RNN **encoder**_ that accepts _filter bank spectra_ as inputs
+        * __A Speller__: an _attention_-based _RNN **decoder** _ that emits _characters_ as outputs 
+    :   * __Input__:  
+            
+        * __Output__:  
+            
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
+    :   
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
+    :   
+
+6. **Limitations:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
+    :   * Not an online model - input must all be received before transcripts can be produced
+        * Attention is a computational bottleneck since every output token pays attention to every input time step
+        * Length of input has a big impact on accuracy
+
+
+***
+
+## Online Seq2Seq Models
+{: #content4}
+
+1. **Motivation:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}  
+    :   * __Overcome limitations of seq2seq__:  
+            * No need to wait for the entire input sequence to arrive
+            * Avoids the computational bottleneck of Attention over the entire sequence
+        * __Produce outputs as inputs arrive__:  
+            * Solves this problem: When has enough information arrived that the model is confident enough to output symbols 
+
+2. **A Neural Transducer:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}  
+    :    Neural Transducer is a more general class of seq2seq learning models. It avoids the problems of offline seq2seq models by operating on local chunks of data instead of the whole input at once. It is able to make predictions _conditioned on partially observed data and partially made predictions_.    
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}  
+    :   
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44}  
+    :   
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}  
+    :   
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}  
+    :   
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}  
+    :   
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents48}  
+    :   
+
+***
+
+## Eight
+{: #content8}
+
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents81}  
+    :   
+
+2. **Speech Problems and Considerations:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents82}  
+    :   * __ASR__:  
+            * Spontaneous vs Read speech
+            * Large vs Small Vocabulary
+            * Noisy vs Clear input
+            * Low vs High Resources 
+            * Near-field vs Far-field input
+            * Accent-independence 
+            * Speaker-Adaptive vs Stand-Alone (speaker-independent) 
+            * The cocktail party problem 
+        * __TTS__:  
+            * Low Resource
+            * Realistic prosody
+        * __Speaker Identification__
+        * __Speech Enhancement__
+        * __Speech Separation__       
+
+3. **Acoustic Representation:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents83}  
+    :   __What is speech?__{: style="color: red"}  
+        * Waves of changing air pressure - Longitudinal Waves (consisting of compressions and rarefactions)
+        * Realized through excitation from the vocal cords
+        * Modulated by the vocal tract and the articulators (tongue, teeth, lips) 
+        * Vowels are produced with an open vocal tract (stationary)
+            > parametrized by position of tongue
+        * Consonants are constrictions of vocal tract
+        * They get __converted__ to _Voltage_ with a microphone
+        * They are __sampled__ (and quantized) with an _Analogue to Digital Converter_ 
+    :   __Speech as waves:__{: style="color: red"}  
+        * Human hearing range is: $$~50 HZ-20 kHZ$$
+        * Human speech range is: $$~85 HZ-8 kHZ$$
+        * Telephone speech sampling is $$8 kHz$$ and a bandwidth range of $$300 Hz-4 kHz$$ 
+        * 1 bit per sample is intelligible
+        * Contemporary Speech Processing mostly around 16 khz 16 bits/sample  
+            > A lot of data to handle
+    :   __Speech as vectors (digits):__{: style="color: red"}  
+        * We seek a *__low-dimensional__* representation to ease the computation  
+        * The low-dimensional representation needs to be __invariant to__:  
+            * Speaker
+            * Background noise
+            * Rate of Speaking
+            * etc.
+        * We apply __Fourier Analysis__ to see the energy in different frequency bands, which allows analysis and processing
+            * Specifically, we apply _windowed short-term_ *__Fast Fourier Transform (FFT)__*  
+                > e.g. FFT on overlapping $$25ms$$ windows (400 samples) taken every $$10ms$$  
+        * FFT is still too high-dimensional  
+            * We __Downsample__ by local weighted averages on _mel scale_ non-linear spacing, an d take a log:  
+                $$ m = 1127 \ln(1+\dfrac{f}{700})$$  
+            * This results in *__log-mel features__*, $$40+$$ dimensional features per frame    
+                > Default for NN speech modelling  
+    :   __Speech dimensionality for different models:__{: style="color: red"}  
+        * __Gaussian Mixture Models (GMMs)__: 13 *__MFCCs__*  
+            * *__MFCCs - Mel Frequency Cepstral Coefficients__*: are the discrete cosine transformation (DCT) of the mel filterbank energies \| Whitened and low-dimensional.  
+                They are similar to _Principle Components_ of log spectra.  
+            __GMMs__ used local differences (deltas) and second-order differences (delta-deltas) to capture the dynamics of the speech $$(13 \times 3 \text{ dim})$$
+        * __FC-DNN__: 26 stacked frames of *__PLP__*  
+            * *__PLP - Perceptual Linear Prediction__*: a common alternative representation using _Linear Discriminant Analysis (LDA)_  
+                > Class aware __PCA__    
+        * __LSTM/RNN/CNN__: 8 stacked frames of *__PLP__*  
+    :   __Speech as Communication:__{: style="color: red"}      
+        * Speech Consists of sentences (in ASR we usually talk about "utterances")  
+        * Sentences are composed of words 
+        * Minimal unit is a "phoneme" Minimal unit that distinguishes one word from another.
+            * Set of 40-60 distinct sounds.
+            * Vary per language 
+            * Universal representations: 
+                * *__IPA__* : international phonetic alphabet
+                * *__X-SAMPA__* : (ASCII) 
+        * *__Homophones__* : distinct words with the same pronunciation. (e.g. "there" vs "their") 
+        * *__Prosody__* : How something is said can convey meaning. (e.g. "Yeah!" vs "Yeah?")  
+
+4. **(Approximate) History of ASR:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents84}  
+    * 1960s Dynamic Time Warping 
+    * 1970s Hidden Markov Models 
+    * Multi-layer perdptron 1986 
+    * Speech recognition with neural networks 1987-1995 
+    * Superseded by GMMs 1995-2009 
+    * Neural network features 2002— 
+    * Deep networks 2006— (Hinton, 2002) 
+    * Deep networks for speech recognition:
+        * Good results on TIMIT (Mohamed et al., 2009) 
+        * Results on large vocabulary systems 2010 (Dahl et al., 2011) * Google launches DNN ASR product 2011
+        * Dominant paradigm for ASR 2012 (Hinton et al., 2012) 
+    * Recurrent networks for speech recognition 1990, 2012 - New models (CTC attention, LAS, neural transducer) 
+
+5. **Datasets:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents85}  
+    * __TIMIT__: 
+        * Hand-marked phone boundaries are given 
+        * 630 speakers $$\times$$ 10 utterances 
+    * __Wall Street Journal (WSJ)__ 1986 Read speech. WSJO 1991, 30k vocab 
+    * __Broadcast News (BN)__ 1996 104 hours 
+    * __Switchboard (SWB)__ 1992. 2000 hours spontaneous telephone speech -  500 speakers 
+    * __Google voice search__ - anonymized live traffic 3M utterances 2000 hours hand-transcribed 4M vocabulary. Constantly refreshed, synthetic reverberation + additive noise 
+    * __DeepSpeech__ 5000h read (Lombard) speech + SWB with additive noise. 
+    * __YouTube__ 125,000 hours aligned captions (Soltau et al., 2016) 
+
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents86}  
+    :   
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents87}  
+    :   
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents88}  
+    :   
+
+***
+
+## The Methods and Models of Speech Recognition
+{: #content9}
+
+1. **Probabilistic Speech Recognition:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents91}    
+    :   We can view the problem of __ASR__ as a _sequence labeling_ problem, and, so, use statistical models (such as HMMs) to model the conditional probabilities between the states/words by viewing speech signal as a piecewise stationary signal or a short-time stationary signal. 
+    :   * __Representation__: we _represent_ the _speech signal_ as an *__observation sequence__* $$o = \{o_t\}$$  
+        * __Goal__: find the most likely _word sequence_ $$\hat{w}$$   
+        * __Set-Up__:  
+            * The system has a set of discrete states
+            * The transitions from state to state are markovian and are according to the transition probabilities  
+                > __Markovian__: Memoryless  
+            * The _Acoustic Observations_ when making a transition are conditioned on _the state alone_ $$P(o_t \vert c_t)$$
+            * The _goal_ is to _recover the state sequence_ and, consequently, the _word sequence_  
+                
+2. **Fundamental Equation of Speech Recognition:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents92}  
+    :   We set the __decoders output__ as the *__most likely sequence__* $$\hat{w}$$ from all the possible sequences, $$\mathcal{S}$$, for an observation sequence $$o$$:  
+    :   $$\begin{align}
+            \hat{w} & = \mathrm{arg } \max_{w \in \mathcal{S}} P(w \vert o) & (1) \\
+            & = \mathrm{arg } \max_{w \in \mathcal{S}} P(o \vert w) P(w) & (2)
+            \end{align}
+        $$  
+    :   The __Conditional Probability of a sequence of observations given a sequence of (predicted) word__ is a _product_ of an __Acoustic Model__ and a __Language Model__ scores:  
+    :   $$P(o \vert w) = \sum_{d,c,p} P(o \vert c) P(c \vert p) P(p \vert w)$$ 
+    :   where $$p$$ is the __phone sequence__ and $$c$$ is the __state sequence__.  
+
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents93}  
+    :   
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents94}  
+    :   
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents95}  
+    :   
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents96}  
+    :   
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents97}  
+    :   
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents98}  
+    :   

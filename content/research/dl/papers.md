@@ -46,6 +46,7 @@ prevLink: /
         3. [really-awesome-gan](https://github.com/nightrome/really-awesome-gan)
         4. [Tha GAN ZOO](https://deephunt.in/the-gan-zoo-79597dc8c347)
         4. [Tha GAN ZOO](https://github.com/hindupuravinash/the-gan-zoo)
+        5. [Delving Deep into GANs](https://github.com/GKalliatakis/Delving-deep-into-GANs)
 
 1. **Improving Training:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
     :   1. [Improved Techniques for Training GANs](https://arxiv.org/pdf/1606.03498.pdf)

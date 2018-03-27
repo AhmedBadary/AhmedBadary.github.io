@@ -9,6 +9,9 @@ permalink: /work_files/school/CLASS/X_Y
     {: style="color: black"}
 
 
+    :   $$\begin{align}
+
+        \end{align}$$
 
 
 
@@ -164,7 +167,7 @@ ________MATH________
 
 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44}
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45} 
 
 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}
 

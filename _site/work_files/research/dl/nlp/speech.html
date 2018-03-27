@@ -72,6 +72,12 @@
   <ul class="TOC2">
     <li><a href="#content2">Connectionist Temporal Classification</a></li>
   </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">LAS - Seq2Seq with Attention</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">Online Seq2Seq Models</a></li>
+  </ul>
 </div>
 
 <hr />
@@ -139,8 +145,23 @@ Typically, a <em>generative language model</em> is trained on the sentences for 
 <ol>
   <li>
     <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Motivation:</strong></dt>
+      <dd>
+        <ul>
+          <li>RNNs require a <em>target output</em> at each time step</li>
+          <li>Thus, to train an RNN, we need to <strong>segment</strong> the training output (i.e. tell the network which label should be output at which time-step)</li>
+          <li>This problem usually arises when the timing of the input is variable/inconsistent (e.g. people speaking at different rates/speeds)</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Connectionist Temporal Classification (CTC):</strong></dt>
       <dd><strong>CTC</strong> is a type of <em>neural network output</em> and <em>associated scoring function</em>, for training recurrent neural networks (RNNs) such as LSTM networks to tackle sequence problems where the <em>timing is variable</em>.</dd>
+      <dd>Due to time variability, we don’t know the <strong>alignment</strong> of the <strong>input</strong> with the <strong>output</strong>.<br />
+Thus, CTC considers <strong>all possible alignments</strong>.<br />
+Then, it gets a <strong>closed formula</strong> for the <strong>probability</strong> of <strong>all these possible alignments</strong> and <strong>maximizes</strong> it.</dd>
     </dl>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Structure:</strong>
@@ -151,27 +172,48 @@ Typically, a <em>generative language model</em> is trained on the sentences for 
   A sequence of <em>labels</em></li>
     </ul>
   </li>
-  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Algorithm :</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Algorithm :</strong><br />
+<img src="/main_files/dl/nlp/12/3.png" alt="img" width="80%" />
     <ol>
-      <li>Extract the <em>Spectogram</em> from the input</li>
+      <li>Extract the (<em><strong>LOG MEL</strong></em>) <em>Spectogram</em> from the input
+        <blockquote>
+          <p>Use raw audio iff there are multiple microphones</p>
+        </blockquote>
+      </li>
       <li>Feed the <em>Spectogram</em> into a <em>(bi-directional) RNN</em></li>
-      <li>At each frame, we apply a <em>softmax</em> over the entire vocabulary that we are interested in (plus a <em>blank token</em>), producing a prediction <em>log probability</em> for a <em>different token class</em> at that time step called the <strong>score</strong></li>
+      <li>At each frame, we apply a <em>softmax</em> over the entire vocabulary that we are interested in (plus a <em>blank token</em>), producing a prediction <em>log probability</em> (called the <strong>score</strong>) for a <em>different token class</em> at that time step.
+        <ul>
+          <li>Repeated Tokens are duplicated</li>
+          <li>Any original transcript is mapped to by all the possible paths in the duplicated space</li>
+          <li>The <strong>Score (log probability)</strong> of any path is the sum of the scores of individual categories at the different time steps</li>
+          <li>The probability of any transcript is the sum of probabilities of all paths that correspond to that transcript</li>
+          <li><strong>Dynamic Programming</strong> allopws is to compute the log probability <script type="math/tex">p(\mathbf{Y} \vert \mathbf{X})</script> and its gradient exactly.<br />
+ <img src="/main_files/dl/nlp/12/4.png" alt="img" width="80%" /></li>
+        </ul>
+      </li>
     </ol>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Analysis:</strong></dt>
+      <dd>The <em>ASR</em> model consists of an <strong>RNN</strong> plus a <strong>CTC</strong> layer.  <br />
+Jointly, the model learns the <strong>pronunciation</strong> and <strong>acoustic</strong> model <em>together</em>.<br />
+However, a <strong>language model</strong> is <strong>not</strong> learned, because the RNN-CTC model makes <strong>strong conditional independence</strong> assumptions (similar to <strong>HMMs</strong>).<br />
+Thus, the RNN-CTC model is capable of mapping <em>speech acoustics</em> to <em>English characters</em> but it makes many <em>spelling</em> and <em>grammatical</em> mistakes.<br />
+Thus, the bottleneck in the model is the assumption that the <em>network outputs</em> at <em>different times</em> are <strong>conditionally independent</strong>, given the <em>internal state</em> of the network.</dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Improvements:</strong></dt>
+      <dd>
+        <ul>
+          <li>Add a <em>language model</em> to CTC during training time for <em>rescoring</em>.
+ This allows the model to correct spelling and grammar.</li>
+          <li>Use <em>word targets</em> of a certain vocabulary instead of characters</li>
+        </ul>
+      </dd>
     </dl>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Asynchronous:</strong></p>
   </li>
   <li>
     <dl>
@@ -183,6 +225,434 @@ Typically, a <em>generative language model</em> is trained on the sentences for 
           <li>ASR</li>
         </ul>
       </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">LAS - Seq2Seq with Attention</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Motivation:</strong></dt>
+      <dd>The <strong>CTC</strong> model can only make predictions based on the data; once it has made a prediction for a given frame, it <strong>cannot re-adjust</strong> the prediction.</dd>
+      <dd>Moreover, the <em>strong independence assumptions</em> that the CTC model makes doesn’t allow it to learn a <em>language model</em>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Listen, Attend and Spell (LAS):</strong></dt>
+      <dd><strong>LAS</strong> is a neural network that learns to transcribe speech utterances to characters.<br />
+In particular, it learns all the components of a speech recognizer jointly.</dd>
+      <dd><img src="/main_files/dl/nlp/12/5.png" alt="img" width="80%" /></dd>
+      <dd>The model is a <strong>seq2seq</strong> model; it learns a <em>conditional probability</em> of the next <em>label/character</em> given the <em>input</em> and <em>previous predictions</em> <script type="math/tex">p(y_{i+1} \vert y_{1..i}, x)</script>.</dd>
+      <dd>The approach that <strong>LAS</strong> takes is similar to that of <strong>NMT</strong>.   <br />
+Where, in translation, the input would be the <em>source sentence</em> but in <strong>ASR</strong>, the input is <em>the audio sequence</em>.</dd>
+      <dd><strong>Attention</strong> is needed because in speech recognition tasks, the length of the input sequence is very large; for a 10 seconds sample, there will be ~10000 frames to go through.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Structure:</strong></dt>
+      <dd>The model has two components:
+        <ul>
+          <li><strong>A listener</strong>: a <em>pyramidal RNN <strong>encoder</strong></em> that accepts <em>filter bank spectra</em> as inputs</li>
+          <li><strong>A Speller</strong>: an <em>attention</em>-based <em>RNN <strong>decoder</strong> _ that emits _characters</em> as outputs</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>
+            <p><strong>Input</strong>:</p>
+          </li>
+          <li>
+            <p><strong>Output</strong>:</p>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">Limitations:</strong></dt>
+      <dd>
+        <ul>
+          <li>Not an online model - input must all be received before transcripts can be produced</li>
+          <li>Attention is a computational bottleneck since every output token pays attention to every input time step</li>
+          <li>Length of input has a big impact on accuracy</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content4">Online Seq2Seq Models</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">Motivation:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Overcome limitations of seq2seq</strong>:
+            <ul>
+              <li>No need to wait for the entire input sequence to arrive</li>
+              <li>Avoids the computational bottleneck of Attention over the entire sequence</li>
+            </ul>
+          </li>
+          <li><strong>Produce outputs as inputs arrive</strong>:
+            <ul>
+              <li>Solves this problem: When has enough information arrived that the model is confident enough to output symbols</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">A Neural Transducer:</strong></dt>
+      <dd>Neural Transducer is a more general class of seq2seq learning models. It avoids the problems of offline seq2seq models by operating on local chunks of data instead of the whole input at once. It is able to make predictions <em>conditioned on partially observed data and partially made predictions</em>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents45">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents46">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents47">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents48">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content8">Eight</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents81">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents82">Speech Problems and Considerations:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>ASR</strong>:
+            <ul>
+              <li>Spontaneous vs Read speech</li>
+              <li>Large vs Small Vocabulary</li>
+              <li>Noisy vs Clear input</li>
+              <li>Low vs High Resources</li>
+              <li>Near-field vs Far-field input</li>
+              <li>Accent-independence</li>
+              <li>Speaker-Adaptive vs Stand-Alone (speaker-independent)</li>
+              <li>The cocktail party problem</li>
+            </ul>
+          </li>
+          <li><strong>TTS</strong>:
+            <ul>
+              <li>Low Resource</li>
+              <li>Realistic prosody</li>
+            </ul>
+          </li>
+          <li><strong>Speaker Identification</strong></li>
+          <li><strong>Speech Enhancement</strong></li>
+          <li><strong>Speech Separation</strong></li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents83">Acoustic Representation:</strong></dt>
+      <dd><strong style="color: red">What is speech?</strong>
+        <ul>
+          <li>Waves of changing air pressure - Longitudinal Waves (consisting of compressions and rarefactions)</li>
+          <li>Realized through excitation from the vocal cords</li>
+          <li>Modulated by the vocal tract and the articulators (tongue, teeth, lips)</li>
+          <li>Vowels are produced with an open vocal tract (stationary)
+            <blockquote>
+              <p>parametrized by position of tongue</p>
+            </blockquote>
+          </li>
+          <li>Consonants are constrictions of vocal tract</li>
+          <li>They get <strong>converted</strong> to <em>Voltage</em> with a microphone</li>
+          <li>They are <strong>sampled</strong> (and quantized) with an <em>Analogue to Digital Converter</em></li>
+        </ul>
+      </dd>
+      <dd><strong style="color: red">Speech as waves:</strong>
+        <ul>
+          <li>Human hearing range is: <script type="math/tex">~50 HZ-20 kHZ</script></li>
+          <li>Human speech range is: <script type="math/tex">~85 HZ-8 kHZ</script></li>
+          <li>Telephone speech sampling is <script type="math/tex">8 kHz</script> and a bandwidth range of <script type="math/tex">300 Hz-4 kHz</script></li>
+          <li>1 bit per sample is intelligible</li>
+          <li>Contemporary Speech Processing mostly around 16 khz 16 bits/sample
+            <blockquote>
+              <p>A lot of data to handle</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd><strong style="color: red">Speech as vectors (digits):</strong>
+        <ul>
+          <li>We seek a <em><strong>low-dimensional</strong></em> representation to ease the computation</li>
+          <li>The low-dimensional representation needs to be <strong>invariant to</strong>:
+            <ul>
+              <li>Speaker</li>
+              <li>Background noise</li>
+              <li>Rate of Speaking</li>
+              <li>etc.</li>
+            </ul>
+          </li>
+          <li>We apply <strong>Fourier Analysis</strong> to see the energy in different frequency bands, which allows analysis and processing
+            <ul>
+              <li>Specifically, we apply <em>windowed short-term</em> <em><strong>Fast Fourier Transform (FFT)</strong></em>
+                <blockquote>
+                  <p>e.g. FFT on overlapping <script type="math/tex">25ms</script> windows (400 samples) taken every <script type="math/tex">10ms</script></p>
+                </blockquote>
+              </li>
+            </ul>
+          </li>
+          <li>FFT is still too high-dimensional
+            <ul>
+              <li>We <strong>Downsample</strong> by local weighted averages on <em>mel scale</em> non-linear spacing, an d take a log:<br />
+  <script type="math/tex">m = 1127 \ln(1+\dfrac{f}{700})</script></li>
+              <li>This results in <em><strong>log-mel features</strong></em>, <script type="math/tex">40+</script> dimensional features per frame
+                <blockquote>
+                  <p>Default for NN speech modelling</p>
+                </blockquote>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd><strong style="color: red">Speech dimensionality for different models:</strong>
+        <ul>
+          <li><strong>Gaussian Mixture Models (GMMs)</strong>: 13 <em><strong>MFCCs</strong></em>
+            <ul>
+              <li><em><strong>MFCCs - Mel Frequency Cepstral Coefficients</strong></em>: are the discrete cosine transformation (DCT) of the mel filterbank energies | Whitened and low-dimensional.<br />
+  They are similar to <em>Principle Components</em> of log spectra.<br />
+  <strong>GMMs</strong> used local differences (deltas) and second-order differences (delta-deltas) to capture the dynamics of the speech <script type="math/tex">(13 \times 3 \text{ dim})</script></li>
+            </ul>
+          </li>
+          <li><strong>FC-DNN</strong>: 26 stacked frames of <em><strong>PLP</strong></em>
+            <ul>
+              <li><em><strong>PLP - Perceptual Linear Prediction</strong></em>: a common alternative representation using <em>Linear Discriminant Analysis (LDA)</em>
+                <blockquote>
+                  <p>Class aware <strong>PCA</strong></p>
+                </blockquote>
+              </li>
+            </ul>
+          </li>
+          <li><strong>LSTM/RNN/CNN</strong>: 8 stacked frames of <em><strong>PLP</strong></em></li>
+        </ul>
+      </dd>
+      <dd><strong style="color: red">Speech as Communication:</strong>
+        <ul>
+          <li>Speech Consists of sentences (in ASR we usually talk about “utterances”)</li>
+          <li>Sentences are composed of words</li>
+          <li>Minimal unit is a “phoneme” Minimal unit that distinguishes one word from another.
+            <ul>
+              <li>Set of 40-60 distinct sounds.</li>
+              <li>Vary per language</li>
+              <li>Universal representations:
+                <ul>
+                  <li><em><strong>IPA</strong></em> : international phonetic alphabet</li>
+                  <li><em><strong>X-SAMPA</strong></em> : (ASCII)</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><em><strong>Homophones</strong></em> : distinct words with the same pronunciation. (e.g. “there” vs “their”)</li>
+          <li><em><strong>Prosody</strong></em> : How something is said can convey meaning. (e.g. “Yeah!” vs “Yeah?”)</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents84">(Approximate) History of ASR:</strong>
+    <ul>
+      <li>1960s Dynamic Time Warping</li>
+      <li>1970s Hidden Markov Models</li>
+      <li>Multi-layer perdptron 1986</li>
+      <li>Speech recognition with neural networks 1987-1995</li>
+      <li>Superseded by GMMs 1995-2009</li>
+      <li>Neural network features 2002—</li>
+      <li>Deep networks 2006— (Hinton, 2002)</li>
+      <li>Deep networks for speech recognition:
+        <ul>
+          <li>Good results on TIMIT (Mohamed et al., 2009)</li>
+          <li>Results on large vocabulary systems 2010 (Dahl et al., 2011) * Google launches DNN ASR product 2011</li>
+          <li>Dominant paradigm for ASR 2012 (Hinton et al., 2012)</li>
+        </ul>
+      </li>
+      <li>Recurrent networks for speech recognition 1990, 2012 - New models (CTC attention, LAS, neural transducer)</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents85">Datasets:</strong>
+    <ul>
+      <li><strong>TIMIT</strong>:
+        <ul>
+          <li>Hand-marked phone boundaries are given</li>
+          <li>630 speakers <script type="math/tex">\times</script> 10 utterances</li>
+        </ul>
+      </li>
+      <li><strong>Wall Street Journal (WSJ)</strong> 1986 Read speech. WSJO 1991, 30k vocab</li>
+      <li><strong>Broadcast News (BN)</strong> 1996 104 hours</li>
+      <li><strong>Switchboard (SWB)</strong> 1992. 2000 hours spontaneous telephone speech -  500 speakers</li>
+      <li><strong>Google voice search</strong> - anonymized live traffic 3M utterances 2000 hours hand-transcribed 4M vocabulary. Constantly refreshed, synthetic reverberation + additive noise</li>
+      <li><strong>DeepSpeech</strong> 5000h read (Lombard) speech + SWB with additive noise.</li>
+      <li><strong>YouTube</strong> 125,000 hours aligned captions (Soltau et al., 2016)</li>
+    </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents86">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents87">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents88">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content9">The Methods and Models of Speech Recognition</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents91">Probabilistic Speech Recognition:</strong></dt>
+      <dd>We can view the problem of <strong>ASR</strong> as a <em>sequence labeling</em> problem, and, so, use statistical models (such as HMMs) to model the conditional probabilities between the states/words by viewing speech signal as a piecewise stationary signal or a short-time stationary signal.</dd>
+      <dd>
+        <ul>
+          <li><strong>Representation</strong>: we <em>represent</em> the <em>speech signal</em> as an <em><strong>observation sequence</strong></em> <script type="math/tex">o = \{o_t\}</script></li>
+          <li><strong>Goal</strong>: find the most likely <em>word sequence</em> <script type="math/tex">\hat{w}</script></li>
+          <li><strong>Set-Up</strong>:
+            <ul>
+              <li>The system has a set of discrete states</li>
+              <li>The transitions from state to state are markovian and are according to the transition probabilities
+                <blockquote>
+                  <p><strong>Markovian</strong>: Memoryless</p>
+                </blockquote>
+              </li>
+              <li>The <em>Acoustic Observations</em> when making a transition are conditioned on <em>the state alone</em> <script type="math/tex">P(o_t \vert c_t)</script></li>
+              <li>The <em>goal</em> is to <em>recover the state sequence</em> and, consequently, the <em>word sequence</em></li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents92">Fundamental Equation of Speech Recognition:</strong></dt>
+      <dd>We set the <strong>decoders output</strong> as the <em><strong>most likely sequence</strong></em> <script type="math/tex">\hat{w}</script> from all the possible sequences, <script type="math/tex">\mathcal{S}</script>, for an observation sequence <script type="math/tex">o</script>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+    \hat{w} & = \mathrm{arg } \max_{w \in \mathcal{S}} P(w \vert o) & (1) \\
+    & = \mathrm{arg } \max_{w \in \mathcal{S}} P(o \vert w) P(w) & (2)
+    \end{align} %]]></script>
+      </dd>
+      <dd>The <strong>Conditional Probability of a sequence of observations given a sequence of (predicted) word</strong> is a <em>product</em> of an <strong>Acoustic Model</strong> and a <strong>Language Model</strong> scores:</dd>
+      <dd>
+        <script type="math/tex; mode=display">P(o \vert w) = \sum_{d,c,p} P(o \vert c) P(c \vert p) P(p \vert w)</script>
+      </dd>
+      <dd>where <script type="math/tex">p</script> is the <strong>phone sequence</strong> and <script type="math/tex">c</script> is the <strong>state sequence</strong>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents93">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents94">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents95">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents96">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents97">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents98">Asynchronous:</strong></dt>
+      <dd></dd>
     </dl>
   </li>
 </ol>

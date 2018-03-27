@@ -73,6 +73,7 @@ prevLink: /
         * The observation here is that there exists __High Curvature Walls__ 
             This Curvature Wall will move the gradient to a very different/far, probably less useful area. 
             Thus, if we clip the gradients we will avoid the walls and will remain in the more useful area that we were exploring already. 
+    :   Draw a line between the original point on the Error graph and the End (optimized) point then evaluate the Error on points on that line and look at the changes -> this shows changes in the curvature.
 
 
 2. **PeepHole Connection:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
@@ -163,8 +164,8 @@ prevLink: /
 ## Optimization
 {: #content5}
 
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents51}  
-    :   
+1. **Sigmoid:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents51}  
+    :   $$\sigma(-x) = 1 - \sigma(x)$$
 
 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents52}  
     :   
@@ -195,8 +196,19 @@ prevLink: /
 1. **Why NNs are not enough:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents61}  
     :   The gist of it is this: neural nets do *pattern recognition*, which achieves *local generalization* (which works great for supervised perception). But many simple problems require some (small) amount of abstract modeling, which modern neural nets can't learn
 
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents62}  
-    :   
+2. **The Big Formulations:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents62}  
+    :   * __Sequence Labeling__: 
+            * *__Problems__*:  
+                * Speech Recognition 
+                * OCR
+                * Semantic Segmentation
+            * *__Approaches__*:  
+                * CTC - Bi-directional LSTM
+                * Listen Attend and Spell (LAS)
+                * HMMs 
+                * CRFs
+                
+            
 
 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents63}  
     :   
