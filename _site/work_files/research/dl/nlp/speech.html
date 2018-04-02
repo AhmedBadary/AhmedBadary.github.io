@@ -621,26 +621,192 @@ Where, in translation, the input would be the <em>source sentence</em> but in <s
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents93">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents93">Speech Recognition as Transduction:</strong></dt>
+      <dd>The problem of speech recognition can be seen as a transduction problem - mapping different forms of energy to other forms (representations).<br />
+Basically, we are going from <strong>Signal</strong> to <strong>Language</strong>.<br />
+<img src="/main_files/dl/nlp/12/6.png" alt="img" width="60%" /></dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents94">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents94">Gaussian Mixture Models:</strong></dt>
+      <dd>
+        <ul>
+          <li>Dominant paradigm for ASR from 1990 to 2010</li>
+          <li>Model the probability distribution of the acoustic features for each state.<br />
+  <script type="math/tex">P(o_t \vert c_i) = \sum_j w_{ij} N(o_t; \mu_{ij}, \sigma_{ij})</script></li>
+          <li>Often use diagonal covariance Gaussians to keep number of parameters under control.</li>
+          <li>Train by the E-M (Expectation Maximization) algorithm (Dempster et al., 1977) alternating:
+            <ul>
+              <li><strong>M</strong>: forced alignment computing the maximum-likelihood state sequence for each utterance</li>
+              <li><strong>E</strong>: parameter <script type="math/tex">(\mu , \sigma)</script> estimation</li>
+            </ul>
+          </li>
+          <li>Complex training procedures to incrementally fit increasing numbers of components per mixture:
+            <ul>
+              <li>More components, better fit - 79 parameters component.</li>
+            </ul>
+          </li>
+          <li>Given an alignment mapping audio frames to states, this is parallelizable by state.</li>
+          <li>Hard to share parameters/data across states.</li>
+        </ul>
+      </dd>
+      <dd><strong>Forced Alignment:</strong>
+        <ul>
+          <li>Forced alignment uses a model to compute the maximum likelihood alignment between speech features and phonetic states.</li>
+          <li>For each training utterance, construct the set of phonetic states for the ground truth transcription.</li>
+          <li>Use Viterbi algorithm to find ML monotonic state sequence</li>
+          <li>Under constraints such as at least one frame per state.</li>
+          <li>Results in a phonetic label for each frame.</li>
+          <li>Can give hard or soft segmentation.<br />
+<img src="/main_files/dl/nlp/12/7.png" alt="img" width="60%" /></li>
+        </ul>
+      </dd>
     </dl>
+    <ul>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">Algorithm/Training</button>
+ <img src="/main_files/dl/nlp/12/8.png" alt="formula" width="70%" hidden="" /></li>
+      <li><strong>Decoding:</strong> <br />
+  <img src="/main_files/dl/nlp/12/9.png" alt="img" width="20%" />
+        <ul>
+          <li>Speech recognition Unfolds in much the same way.</li>
+          <li>Now we have a graph instead of a straight-through path.</li>
+          <li>Optional silences between words Alternative pronunciation paths.</li>
+          <li>Typically use max probability, and work in the log domain.</li>
+          <li>Hypothesis space is huge, so we only keep a “beam” of the best paths, and can lose what would end up being the true best path.</li>
+        </ul>
+      </li>
+    </ul>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents95">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dd>
+        <ul>
+          <li><strong>Two Paradigms of Neural Networks for Speech</strong>:
+            <ul>
+              <li>Use neural networks to compute nonlinear feature representations:
+                <ul>
+                  <li>“Bottleneck” or “tandem” features (Hermansky et al., 2000)</li>
+                  <li>Low-dimensional representation is modelled conventionally with GMMs.</li>
+                  <li>Allows all the GMM machinery and tricks to be exploited.</li>
+                  <li><em>Bottleneck features</em> outperform <em>Posterior features</em> (Grezl et al. 2017)</li>
+                  <li>Generally, <strong>DNN features + GMMs</strong> reach the same performance as hybrid <strong>DNN-HMM</strong> systems but are much more <em>complex</em></li>
+                </ul>
+              </li>
+              <li>Use neural networks to estimate phonetic unit probabilities</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents96">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents96">Hybrid Networks:</strong></dt>
+      <dd>
+        <ul>
+          <li>Train the network as a classifier with a softmax across the <strong>phonetic units</strong></li>
+          <li>Train with <strong>cross-entropy</strong></li>
+          <li>Softmax:</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">y(i) = \dfrac{e^{\psi(i, \theta)}}{\sum_{j=1}^N e^{\psi(j, \theta)}}</script>
+      </dd>
+      <dd>
+        <ul>
+          <li>We <em>converge to/learn</em> the <strong>posterior probability across phonetic states</strong>:</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">P(c_i \vert o_t)</script>
+      </dd>
+      <dd>
+        <ul>
+          <li>We, then, model <script type="math/tex">P(o \vert c)</script> with a <strong>Neural-Net</strong> instead of a <strong>GMM</strong>:
+            <blockquote>
+              <p>We can ignore <script type="math/tex">P(o_t)</script> since it is the same for all decoding paths</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+    P(o \vert c) & = \prod_t P(o_t \vert c_t) & (3) \\
+    P(o_t \vert c_t) & = \dfrac{P(c_t \vert o_t) P(o_t)}{P(c_t)} & (4) \\
+    & \propto \dfrac{P(c_t \vert o_t)}{P(c_t)} & (5) \\
+    \end{align} %]]></script>
+      </dd>
+      <dd>
+        <ul>
+          <li>The <strong>log scaled posterior</strong>  from the last term:</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">\log P(o_t \vert c_t) = \log P(c_t \vert o_t) - \alpha \log P(c_t)</script>
+      </dd>
+      <dd>
+        <ul>
+          <li>Empirically, a <em><strong>prior smoothing</strong></em> on <script type="math/tex">\alpha</script> <script type="math/tex">(\alpha \approx 0.8)</script> works better</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Input Features</strong>:
+            <ul>
+              <li>NN can handle high-dimensional, correlated, features</li>
+              <li>Use (26) stacked filterbank inputs (40-dim mel-spaced filterbanks)</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>NN Architectures for ASR</strong>:
+            <ul>
+              <li><em><strong>Fully-Connected DNN</strong></em></li>
+              <li><em><strong>CNNs</strong></em>:
+                <ul>
+                  <li>Time delay neural networks:
+                    <ul>
+                      <li>Waibel et al. (1989)</li>
+                      <li>Dilated convolutions (Peddinti et al., 2015)
+                        <blockquote>
+                          <p>Pooling in time results in a loss of information.<br />
+Pooling in frequency domain is more tolerable</p>
+                        </blockquote>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>CNNs in time or frequency domain:
+                    <ul>
+                      <li>Abdel-Hamid et al. (2014)</li>
+                      <li>Sainath et al. (2013)</li>
+                    </ul>
+                  </li>
+                  <li>Wavenet (van den Oord et al., 2016)</li>
+                </ul>
+              </li>
+              <li><em><strong>RNNs</strong></em> :
+                <ul>
+                  <li>RNN (Robinson and Fallside, 1991)</li>
+                  <li>LSTM Graves et al. (2013)</li>
+                  <li>Deep LSTM-P Sak et al. (2014b)</li>
+                  <li>CLDNN (Sainath et al , 2015a)</li>
+                  <li>
+                    <p>GRU. DeepSpeech 1/2 (Amodei et al., 2015)</p>
+                  </li>
+                  <li>Bidirectional (Schuster and Paliwal, 1997) helps, but introduces latency.</li>
+                  <li>Dependencies not long at speech frame rates (100Hz).</li>
+                  <li>Frame stacking and down-sampling help.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
     </dl>
   </li>
   <li>

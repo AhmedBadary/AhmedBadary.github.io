@@ -314,18 +314,96 @@ prevLink: /work_files/research/dl/nlp.html
     :   $$P(o \vert w) = \sum_{d,c,p} P(o \vert c) P(c \vert p) P(p \vert w)$$ 
     :   where $$p$$ is the __phone sequence__ and $$c$$ is the __state sequence__.  
 
+3. **Speech Recognition as Transduction:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents93}  
+    :   The problem of speech recognition can be seen as a transduction problem - mapping different forms of energy to other forms (representations).  
+        Basically, we are going from __Signal__ to __Language__.  
+        ![img](/main_files/dl/nlp/12/6.png){: width="60%"}    
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents93}  
-    :   
-
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents94}  
-    :   
+4. **Gaussian Mixture Models:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents94}  
+    :   * Dominant paradigm for ASR from 1990 to 2010 
+        * Model the probability distribution of the acoustic features for each state.  
+            $$P(o_t \vert c_i) = \sum_j w_{ij} N(o_t; \mu_{ij}, \sigma_{ij})$$   
+        * Often use diagonal covariance Gaussians to keep number of parameters under control. 
+        * Train by the E-M (Expectation Maximization) algorithm (Dempster et al., 1977) alternating:  
+            * __M__: forced alignment computing the maximum-likelihood state sequence for each utterance 
+            * __E__: parameter $$(\mu , \sigma)$$ estimation  
+        * Complex training procedures to incrementally fit increasing numbers of components per mixture:  
+            * More components, better fit - 79 parameters component. 
+        * Given an alignment mapping audio frames to states, this is parallelizable by state.   
+        * Hard to share parameters/data across states.  
+    :   __Forced Alignment:__  
+        * Forced alignment uses a model to compute the maximum likelihood alignment between speech features and phonetic states. 
+        * For each training utterance, construct the set of phonetic states for the ground truth transcription. 
+        * Use Viterbi algorithm to find ML monotonic state sequence 
+        * Under constraints such as at least one frame per state. 
+        * Results in a phonetic label for each frame. 
+        * Can give hard or soft segmentation.  
+        ![img](/main_files/dl/nlp/12/7.png){: width="60%"}  
+    * <button>Algorithm/Training</button>{: .showText value="show"
+     onclick="showTextPopHide(event);"}
+    ![formula](/main_files/dl/nlp/12/8.png){: width="70%" hidden=""}   
+    * __Decoding:__   
+        ![img](/main_files/dl/nlp/12/9.png){: width="20%"}  
+        * Speech recognition Unfolds in much the same way.
+        *  Now we have a graph instead of a straight-through path.
+        *  Optional silences between words Alternative pronunciation paths.
+        *  Typically use max probability, and work in the log domain.
+        *  Hypothesis space is huge, so we only keep a "beam" of the best paths, and can lose what would end up being the true best path.   
 
 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents95}  
-    :   
+    :   * __Two Paradigms of Neural Networks for Speech__:  
+            * Use neural networks to compute nonlinear feature representations:      
+                * "Bottleneck" or "tandem" features (Hermansky et al., 2000)
+                * Low-dimensional representation is modelled conventionally with GMMs.
+                * Allows all the GMM machinery and tricks to be exploited. 
+                * _Bottleneck features_ outperform _Posterior features_ (Grezl et al. 2017)
+                * Generally, __DNN features + GMMs__ reach the same performance as hybrid __DNN-HMM__ systems but are much more _complex_
+            * Use neural networks to estimate phonetic unit probabilities  
 
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents96}  
-    :   
+6. **Hybrid Networks:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents96}  
+    :   * Train the network as a classifier with a softmax across the __phonetic units__  
+        * Train with __cross-entropy__
+        * Softmax:   
+    :   $$y(i) = \dfrac{e^{\psi(i, \theta)}}{\sum_{j=1}^N e^{\psi(j, \theta)}}$$ 
+    :   * We _converge to/learn_ the __posterior probability across phonetic states__:  
+    :   $$P(c_i \vert o_t)$$   
+    :   * We, then, model $$P(o \vert c)$$ with a __Neural-Net__ instead of a __GMM__:   
+            > We can ignore $$P(o_t)$$ since it is the same for all decoding paths   
+    :   $$\begin{align}
+            P(o \vert c) & = \prod_t P(o_t \vert c_t) & (3) \\
+            P(o_t \vert c_t) & = \dfrac{P(c_t \vert o_t) P(o_t)}{P(c_t)} & (4) \\
+            & \propto \dfrac{P(c_t \vert o_t)}{P(c_t)} & (5) \\
+            \end{align}
+        $$  
+    :   * The __log scaled posterior__  from the last term:  
+    :   $$\log P(o_t \vert c_t) = \log P(c_t \vert o_t) - \alpha \log P(c_t)$$ 
+    :   * Empirically, a *__prior smoothing__* on $$\alpha$$ $$(\alpha \approx 0.8)$$ works better 
+    :   * __Input Features__:  
+            * NN can handle high-dimensional, correlated, features
+            * Use (26) stacked filterbank inputs (40-dim mel-spaced filterbanks)
+    :   * __NN Architectures for ASR__:  
+            * *__Fully-Connected DNN__*  
+            * *__CNNs__*: 
+                * Time delay neural networks: 
+                    * Waibel et al. (1989) 
+                    * Dilated convolutions (Peddinti et al., 2015)  
+                        > Pooling in time results in a loss of information.  
+                        > Pooling in frequency domain is more tolerable  
+                * CNNs in time or frequency domain:
+                    * Abdel-Hamid et al. (2014)
+                    * Sainath et al. (2013) 
+                * Wavenet (van den Oord et al., 2016) 
+            * *__RNNs__* :  
+                * RNN (Robinson and Fallside, 1991) 
+                * LSTM Graves et al. (2013)
+                * Deep LSTM-P Sak et al. (2014b)
+                * CLDNN (Sainath et al , 2015a)
+                * GRU. DeepSpeech 1/2 (Amodei et al., 2015)
+
+                * Bidirectional (Schuster and Paliwal, 1997) helps, but introduces latency. 
+                * Dependencies not long at speech frame rates (100Hz).
+                * Frame stacking and down-sampling help. 
+
 
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents97}  
     :   
