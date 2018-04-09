@@ -8,7 +8,11 @@ prevLink: /work_files/research/dl/nlp.html
 <div markdown="1" class = "TOC">
 # Table of Contents
 
-  * [Introduction](#content1)
+  * [Introduction to Speech Recognition](#content8)
+  {: .TOC8}
+  * [The Methods and Models of Speech Recognition](#content9)
+  {: .TOC9}
+  * [Transitioning into Deep Learning](#content1)
   {: .TOC1}
   * [Connectionist Temporal Classification](#content2)
   {: .TOC2}
@@ -16,181 +20,37 @@ prevLink: /work_files/research/dl/nlp.html
   {: .TOC3}
   * [Online Seq2Seq Models](#content4)
   {: .TOC4}
+  * [Real-World Applications](#content6)
+  {: .TOC6}
 </div>
 
 ***
 ***
 
-## Introduction
-{: #content1}
-
-1. **Classical Approach:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
-    :   Classically, _Speech Recognition_ was developed as a big machine incorporating different models from different fields.  
-        The models were _statistical_ and they started from _text sequences_ to _audio features_.  
-        Typically, a _generative language model_ is trained on the sentences for the intended language, then, to make the features, _pronunciation models_, _acoustic models_, and _speech processing models_ had to be developed. Those required a lot of feature engineering and a lot of human intervention and expertise and were very fragile.
-    :   ![img](/main_files/dl/nlp/12/1.png){: width="100%"}  
-    :   __Recognition__ was done through __*Inference*__: Given audio features $$\mathbf{X}=x_1x_2...x_t$$ infer the most likely tedxt sequence $$\mathbf{Y}^\ast=y_1y_2...y_k$$ that caused the audio features.
-    :   $$\displaystyle{\mathbf{Y}^\ast =\mathrm{arg\,min}_{\mathbf{Y}} p(\mathbf{X} \vert \mathbf{Y}) p(\mathbf{Y})}$$
-
-2. **The Neural Network Age:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
-    :   Researchers realized that each of the (independent) components/models that make up the ASR can be improved if it were replaced by a _Neural Network Based Model_.  
-    :   ![img](/main_files/dl/nlp/12/2.png){: width="100%"}  
-
-3. **The Problem with the component-based System:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
-    :   * Each component/model is trained _independently_, with a different _objective_  
-        * Errors in one component may not behave well with errors in another component
-
-4. **Solution to the Component-Based System:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
-    :   We aim to train models that encompass all of these components together, i.e. __End-to-End Model__:  
-        * __Connectionist Temporal Classification (CTC)__
-        * __Sequence-to-Sequence Listen Attend and Spell (LAS)__
-                    
-5. **End-to-End Speech Recognition:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}  
-    :   We treat __End-to-End Speech Recognition__ as a _modeling task_.
-    :   Given __Audio__ $$\mathbf{X}=x_1x_2...x_t$$ (audio/processed spectogram) and corresponding output text $$\mathbf{Y}=y_1y_2...y_k$$  (transcript), we want to learn a *__Probabilistic Model__* $$p(\
-    mathbf{Y} \vert \mathbf{X})$$ 
-
-***
-
-## Connectionist Temporal Classification
-{: #content2}
-
-1. **Motivation:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
-    :   * RNNs require a _target output_ at each time step 
-        * Thus, to train an RNN, we need to __segment__ the training output (i.e. tell the network which label should be output at which time-step) 
-        * This problem usually arises when the timing of the input is variable/inconsistent (e.g. people speaking at different rates/speeds)
-
-2. **Connectionist Temporal Classification (CTC):**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
-    :   __CTC__ is a type of _neural network output_ and _associated scoring function_, for training recurrent neural networks (RNNs) such as LSTM networks to tackle sequence problems where the _timing is variable_.  
-    :   Due to time variability, we don't know the __alignment__ of the __input__ with the __output__.  
-        Thus, CTC considers __all possible alignments__.  
-        Then, it gets a __closed formula__ for the __probability__ of __all these possible alignments__ and __maximizes__ it.
-
-1. **Structure:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
-    * __Input__:  
-        A sequence of _observations_
-    * __Output__:  
-        A sequence of _labels_
-
-3. **Algorithm :**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}  
-   ![img](/main_files/dl/nlp/12/3.png){: width="80%"}  
-    1. Extract the (*__LOG MEL__*) _Spectogram_ from the input  
-        > Use raw audio iff there are multiple microphones
-    2. Feed the _Spectogram_ into a _(bi-directional) RNN_
-    3. At each frame, we apply a _softmax_ over the entire vocabulary that we are interested in (plus a _blank token_), producing a prediction _log probability_ (called the __score__) for a _different token class_ at that time step.   
-        * Repeated Tokens are duplicated
-        * Any original transcript is mapped to by all the possible paths in the duplicated space
-        * The __Score (log probability)__ of any path is the sum of the scores of individual categories at the different time steps
-        * The probability of any transcript is the sum of probabilities of all paths that correspond to that transcript
-        * __Dynamic Programming__ allopws is to compute the log probability $$p(\mathbf{Y} \vert \mathbf{X})$$ and its gradient exactly.  
-    ![img](/main_files/dl/nlp/12/4.png){: width="80%"}  
-
-5. **Analysis:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
-    :   The _ASR_ model consists of an __RNN__ plus a __CTC__ layer.    
-        Jointly, the model learns the __pronunciation__ and __acoustic__ model _together_.  
-        However, a __language model__ is __not__ learned, because the RNN-CTC model makes __strong conditional independence__ assumptions (similar to __HMMs__).  
-        Thus, the RNN-CTC model is capable of mapping _speech acoustics_ to _English characters_ but it makes many _spelling_ and _grammatical_ mistakes.  
-        Thus, the bottleneck in the model is the assumption that the _network outputs_ at _different times_ are __conditionally independent__, given the _internal state_ of the network. 
-
-4. **Improvements:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}  
-    :   * Add a _language model_ to CTC during training time for _rescoring_.
-           This allows the model to correct spelling and grammar.
-        * Use _word targets_ of a certain vocabulary instead of characters 
-
-7. **Applications:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}  
-    :   * on-line Handwriting Recognition
-        * Recognizing phonemes in speech audio  
-        * ASR
-
-***
-
-## LAS - Seq2Seq with Attention
-{: #content3}
-
-1. **Motivation:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}  
-    :   The __CTC__ model can only make predictions based on the data; once it has made a prediction for a given frame, it __cannot re-adjust__ the prediction.  
-    :   Moreover, the _strong independence assumptions_ that the CTC model makes doesn't allow it to learn a _language model_.   
-
-2. **Listen, Attend and Spell (LAS):**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}  
-    :   __LAS__ is a neural network that learns to transcribe speech utterances to characters.  
-        In particular, it learns all the components of a speech recognizer jointly.
-    :   ![img](/main_files/dl/nlp/12/5.png){: width="80%"}  
-    :   The model is a __seq2seq__ model; it learns a _conditional probability_ of the next _label/character_ given the _input_ and _previous predictions_ $$p(y_{i+1} \vert y_{1..i}, x)$$.  
-    :   The approach that __LAS__ takes is similar to that of __NMT__.     
-        Where, in translation, the input would be the _source sentence_ but in __ASR__, the input is _the audio sequence_.  
-    :   __Attention__ is needed because in speech recognition tasks, the length of the input sequence is very large; for a 10 seconds sample, there will be ~10000 frames to go through.      
-
-3. **Structure:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
-    :   The model has two components:  
-        * __A listener__: a _pyramidal RNN **encoder**_ that accepts _filter bank spectra_ as inputs
-        * __A Speller__: an _attention_-based _RNN **decoder** _ that emits _characters_ as outputs 
-    :   * __Input__:  
-            
-        * __Output__:  
-            
-
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
-    :   
-
-6. **Limitations:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
-    :   * Not an online model - input must all be received before transcripts can be produced
-        * Attention is a computational bottleneck since every output token pays attention to every input time step
-        * Length of input has a big impact on accuracy
-
-
-***
-
-## Online Seq2Seq Models
-{: #content4}
-
-1. **Motivation:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}  
-    :   * __Overcome limitations of seq2seq__:  
-            * No need to wait for the entire input sequence to arrive
-            * Avoids the computational bottleneck of Attention over the entire sequence
-        * __Produce outputs as inputs arrive__:  
-            * Solves this problem: When has enough information arrived that the model is confident enough to output symbols 
-
-2. **A Neural Transducer:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}  
-    :    Neural Transducer is a more general class of seq2seq learning models. It avoids the problems of offline seq2seq models by operating on local chunks of data instead of the whole input at once. It is able to make predictions _conditioned on partially observed data and partially made predictions_.    
-
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}  
-    :   
-
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents48}  
-    :   
-
-***
-
-## Eight
+## Introduction to Speech
 {: #content8}
 
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents81}  
-    :   
+1. **Probabilistic Speech Recognition:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents81}  
+    :   Statistical ASR has been introduced/framed by __Frederick Jelinek__ in his famous paper [Continuous Speech Recognition by Statistical Methods](http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=1454428) who framed the problem as an _information theory_ problem.  
+    :   We can view the problem of __ASR__ as a __*sequence labeling*__ problem, and, so, use statistical models (such as HMMs) to model the conditional probabilities between the states/words by viewing speech signal as a piecewise stationary signal or a short-time stationary signal. 
+    :   * __Representation__: we _represent_ the _speech signal_ as an *__observation sequence__* $$o = \{o_t\}$$  
+        * __Goal__: find the most likely _word sequence_ $$\hat{w}$$   
+        * __Set-Up__:  
+            * The system has a set of discrete states
+            * The transitions from state to state are markovian and are according to the transition probabilities  
+                > __Markovian__: Memoryless  
+            * The _Acoustic Observations_ when making a transition are conditioned on _the state alone_ $$P(o_t \vert c_t)$$
+            * The _goal_ is to _recover the state sequence_ and, consequently, the _word sequence_  
 
 2. **Speech Problems and Considerations:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents82}  
     :   * __ASR__:  
-            * Spontaneous vs Read speech
-            * Large vs Small Vocabulary
-            * Noisy vs Clear input
-            * Low vs High Resources 
-            * Near-field vs Far-field input
-            * Accent-independence 
-            * Speaker-Adaptive vs Stand-Alone (speaker-independent) 
+            * _Spontaneous_ vs _Read_ speech
+            * _Large_ vs _Small_ Vocabulary
+            * _Noisy_ vs _Clear_ input
+            * _Low_ vs _High_ Resources 
+            * _Near-field_ vs _Far-field_ input
+            * _Accent_-independence 
+            * _Speaker-Adaptive_ vs _Stand-Alone_ (speaker-independent) 
             * The cocktail party problem 
         * __TTS__:  
             * Low Resource
@@ -216,7 +76,7 @@ prevLink: /work_files/research/dl/nlp.html
         * 1 bit per sample is intelligible
         * Contemporary Speech Processing mostly around 16 khz 16 bits/sample  
             > A lot of data to handle
-    :   __Speech as vectors (digits):__{: style="color: red"}  
+    :   __Speech as digits (vectors):__{: style="color: red"}  
         * We seek a *__low-dimensional__* representation to ease the computation  
         * The low-dimensional representation needs to be __invariant to__:  
             * Speaker
@@ -252,10 +112,24 @@ prevLink: /work_files/research/dl/nlp.html
         * *__Homophones__* : distinct words with the same pronunciation. (e.g. "there" vs "their") 
         * *__Prosody__* : How something is said can convey meaning. (e.g. "Yeah!" vs "Yeah?")  
 
+9. **Microphones and Speakers:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents89}  
+    :   * __Microphones__:  
+            * Their is a _Diaphragm_ in the Mic
+            * The Diaphragm vibrates with air pressure
+            * The diaphragm is connected to a magnet in a coil
+            * The magnet vibrates with the diaphragm
+            * The coil has an electric current induced by the magnet based on the vibrations of the magnet
+    :   * __Speakers__:  
+            * The electric current flows from the sound-player through a wire into a coil
+            * The coil has a metal inside it
+            * The metal becomes magnetic and vibrates inside the coil based on the intensity of the current 
+            * The magnetized metal is attached to a cone that produces the sound
+
+
 4. **(Approximate) History of ASR:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents84}  
     * 1960s Dynamic Time Warping 
     * 1970s Hidden Markov Models 
-    * Multi-layer perdptron 1986 
+    * Multi-layer perceptron 1986 
     * Speech recognition with neural networks 1987-1995 
     * Superseded by GMMs 1995-2009 
     * Neural network features 2002— 
@@ -277,22 +151,13 @@ prevLink: /work_files/research/dl/nlp.html
     * __DeepSpeech__ 5000h read (Lombard) speech + SWB with additive noise. 
     * __YouTube__ 125,000 hours aligned captions (Soltau et al., 2016) 
 
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents86}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents87}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents88}  
-    :   
-
-***
+*** 
 
 ## The Methods and Models of Speech Recognition
 {: #content9}
 
-1. **Probabilistic Speech Recognition:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents91}    
+1. **Probabilistic Speech Recognition:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents91}  
+    :   Statistical ASR has been introduced/framed by __Frederick Jelinek__ in his famous paper [Continuous Speech Recognition by Statistical Methods](http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=1454428) who framed the problem as an _information theory_ problem.  
     :   We can view the problem of __ASR__ as a _sequence labeling_ problem, and, so, use statistical models (such as HMMs) to model the conditional probabilities between the states/words by viewing speech signal as a piecewise stationary signal or a short-time stationary signal. 
     :   * __Representation__: we _represent_ the _speech signal_ as an *__observation sequence__* $$o = \{o_t\}$$  
         * __Goal__: find the most likely _word sequence_ $$\hat{w}$$   
@@ -310,7 +175,8 @@ prevLink: /work_files/research/dl/nlp.html
             & = \mathrm{arg } \max_{w \in \mathcal{S}} P(o \vert w) P(w) & (2)
             \end{align}
         $$  
-    :   The __Conditional Probability of a sequence of observations given a sequence of (predicted) word__ is a _product_ of an __Acoustic Model__ and a __Language Model__ scores:  
+    :   The __Conditional Probability of a sequence of observations given a sequence of (predicted) word__ is a _product (or sum of logs)_ of an __Acoustic Model__ ($$p(o \vert w)$$)  and a __Language Model__ ($$p(w)$$)  scores.
+    :   The __Acoustic Model__ can be written as the following product:    
     :   $$P(o \vert w) = \sum_{d,c,p} P(o \vert c) P(c \vert p) P(p \vert w)$$ 
     :   where $$p$$ is the __phone sequence__ and $$c$$ is the __state sequence__.  
 
@@ -350,7 +216,7 @@ prevLink: /work_files/research/dl/nlp.html
         *  Typically use max probability, and work in the log domain.
         *  Hypothesis space is huge, so we only keep a "beam" of the best paths, and can lose what would end up being the true best path.   
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents95}  
+5. **Neural Networks in ASR:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents95}  
     :   * __Two Paradigms of Neural Networks for Speech__:  
             * Use neural networks to compute nonlinear feature representations:      
                 * "Bottleneck" or "tandem" features (Hermansky et al., 2000)
@@ -400,13 +266,228 @@ prevLink: /work_files/research/dl/nlp.html
                 * CLDNN (Sainath et al , 2015a)
                 * GRU. DeepSpeech 1/2 (Amodei et al., 2015)
 
-                * Bidirectional (Schuster and Paliwal, 1997) helps, but introduces latency. 
-                * Dependencies not long at speech frame rates (100Hz).
-                * Frame stacking and down-sampling help. 
+                * __Tips__ :
+                    * Bidirectional (Schuster and Paliwal, 1997) helps, but introduces latency. 
+                    * Dependencies not long at speech frame rates (100Hz).
+                    * Frame stacking and down-sampling help. 
 
+7. **Sequence Discriminative Training:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents97}  
+    ![img](/main_files/dl/nlp/12/11.png){: width="80%"}  
+    * Conventional training uses Cross-Entropy loss — Tries to maximize probability of the true state sequence given the data. 
+    * We care about Word Error Rate of the complete system. 
+    * Design a loss that's differentiable and closer to what we care about. 
+    * Applied to neural networks (Kingsbury, 2009) 
+    * Posterior scaling gets learnt by the network. 
+    * Improves conventional training and CTC by $$\approx 15%$$ relative. 
+    * bMMI, sMBR(Povey et al., 2008)  
+    ![img](/main_files/dl/nlp/12/10.png){: width="70%"}  
 
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents97}  
-    :   
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents98}  
     :   
+
+***
+
+## Transitioning into Deep Learning
+{: #content1}  
+
+1. **Classical Approach:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
+    :   Classically, _Speech Recognition_ was developed as a big machine incorporating different models from different fields.  
+        The models were _statistical_ and they started from _text sequences_ to _audio features_.  
+        Typically, a _generative language model_ is trained on the sentences for the intended language, then, to make the features, _pronunciation models_, _acoustic models_, and _speech processing models_ had to be developed. Those required a lot of feature engineering and a lot of human intervention and expertise and were very fragile.
+    :   ![img](/main_files/dl/nlp/12/1.png){: width="100%"}  
+    :   __Recognition__ was done through __*Inference*__: Given audio features $$\mathbf{X}=x_1x_2...x_t$$ infer the most likely tedxt sequence $$\mathbf{Y}^\ast=y_1y_2...y_k$$ that caused the audio features.
+    :   $$\displaystyle{\mathbf{Y}^\ast =\mathrm{arg\,min}_{\mathbf{Y}} p(\mathbf{X} \vert \mathbf{Y}) p(\mathbf{Y})}$$
+
+2. **The Neural Network Age:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
+    :   Researchers realized that each of the (independent) components/models that make up the ASR can be improved if it were replaced by a _Neural Network Based Model_.  
+    :   ![img](/main_files/dl/nlp/12/2.png){: width="100%"}  
+
+3. **The Problem with the component-based System:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
+    :   * Each component/model is trained _independently_, with a different _objective_  
+        * Errors in one component may not behave well with errors in another component
+
+4. **Solution to the Component-Based System:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
+    :   We aim to train models that encompass all of these components together, i.e. __End-to-End Model__:  
+        * __Connectionist Temporal Classification (CTC)__
+        * __Sequence-to-Sequence Listen Attend and Spell (LAS)__
+                    
+5. **End-to-End Speech Recognition:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}  
+    :   We treat __End-to-End Speech Recognition__ as a _modeling task_.
+    :   Given __Audio__ $$\mathbf{X}=x_1x_2...x_t$$ (audio/processed spectogram) and corresponding output text $$\mathbf{Y}=y_1y_2...y_k$$  (transcript), we want to learn a *__Probabilistic Model__* $$p(\mathbf{Y} \vert \mathbf{X})$$ 
+
+6. **Deep Learning - What's new?**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}  
+    :    * __Algorithms__:  
+            * Direct modeling of context-dependent (tied triphone states) through the DNN  
+            * Unsupervised Pre-training
+            * Deeper Networks
+            * Better Architectures  
+        * __Data__:  
+            * Larger Data
+        * __Computation__:  
+                * GPUs
+                * TPUs
+        * __Training Criterion__:  
+            * Cross-Entropy -> MMI Sequence -level
+        * __Features__:  
+            * Mel-Frequency Cepstral Coefficients (MFCC) -> FilterBanks
+        * __Training and Regularization__:  
+            * Batch Norm
+            * Distributed SGD
+            * Dropout
+        * __Acoustic Modelling__:  
+            * CNN
+            * CTC
+            * CLDNN
+        * __Language Modelling__:  
+            * RNNs
+            * LSTM
+        * __DATA__:  
+            * More diverse - Noisy, Accents, etc.  
+
+***
+
+## Connectionist Temporal Classification
+{: #content2}
+
+1. **Motivation:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
+    :   * RNNs require a _target output_ at each time step 
+        * Thus, to train an RNN, we need to __segment__ the training output (i.e. tell the network which label should be output at which time-step) 
+        * This problem usually arises when the timing of the input is variable/inconsistent (e.g. people speaking at different rates/speeds)
+
+2. **Connectionist Temporal Classification (CTC):**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
+    :   __CTC__ is a type of _neural network output_ and _associated scoring function_, for training recurrent neural networks (RNNs) such as LSTM networks to tackle sequence problems where the _timing is variable_.  
+    :   Due to time variability, we don't know the __alignment__ of the __input__ with the __output__.  
+        Thus, CTC considers __all possible alignments__.  
+        Then, it gets a __closed formula__ for the __probability__ of __all these possible alignments__ and __maximizes__ it.
+
+8. **Structure:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}  
+    * __Input__:  
+        A sequence of _observations_
+    * __Output__:  
+        A sequence of _labels_
+
+
+3. **Algorithm :**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}  
+   ![img](/main_files/dl/nlp/12/3.png){: width="80%"}  
+    1. Extract the (*__LOG MEL__*) _Spectogram_ from the input  
+        > Use raw audio iff there are multiple microphones
+    2. Feed the _Spectogram_ into a _(bi-directional) RNN_
+    3. At each frame, we apply a _softmax_ over the entire vocabulary that we are interested in (plus a _blank token_), producing a prediction _log probability_ (called the __score__) for a _different token class_ at that time step.   
+        * Repeated Tokens are duplicated
+        * Any original transcript is mapped to by all the possible paths in the duplicated space
+        * The __Score (log probability)__ of any path is the sum of the scores of individual categories at the different time steps
+        * The probability of any transcript is the sum of probabilities of all paths that correspond to that transcript
+        * __Dynamic Programming__ allopws is to compute the log probability $$p(\mathbf{Y} \vert \mathbf{X})$$ and its gradient exactly.  
+    ![img](/main_files/dl/nlp/12/4.png){: width="80%"}  
+
+5. **Analysis:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
+    :   The _ASR_ model consists of an __RNN__ plus a __CTC__ layer.    
+        Jointly, the model learns the __pronunciation__ and __acoustic__ model _together_.  
+        However, a __language model__ is __not__ learned, because the RNN-CTC model makes __strong conditional independence__ assumptions (similar to __HMMs__).  
+        Thus, the RNN-CTC model is capable of mapping _speech acoustics_ to _English characters_ but it makes many _spelling_ and _grammatical_ mistakes.  
+        Thus, the bottleneck in the model is the assumption that the _network outputs_ at _different times_ are __conditionally independent__, given the _internal state_ of the network. 
+
+4. **Improvements:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}  
+    :   * Add a _language model_ to CTC during training time for _rescoring_.
+           This allows the model to correct spelling and grammar.
+        * Use _word targets_ of a certain vocabulary instead of characters 
+
+7. **Applications:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}  
+    :   * on-line Handwriting Recognition
+        * Recognizing phonemes in speech audio  
+        * ASR
+
+9. **Tips:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents29}  
+    :   * Continuous realignment - no need for a bootstrap model
+        * Always use soft targets
+        * Don't scale by the posterior
+        * Produces similar results to conventional training
+        * Simple to implement in the __FST__ framework 
+
+***
+
+## LAS - Seq2Seq with Attention
+{: #content3}
+
+1. **Motivation:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}  
+    :   The __CTC__ model can only make predictions based on the data; once it has made a prediction for a given frame, it __cannot re-adjust__ the prediction.  
+    :   Moreover, the _strong independence assumptions_ that the CTC model makes doesn't allow it to learn a _language model_.   
+
+2. **Listen, Attend and Spell (LAS):**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}  
+    :   __LAS__ is a neural network that learns to transcribe speech utterances to characters.  
+        In particular, it learns all the components of a speech recognizer jointly.
+    :   ![img](/main_files/dl/nlp/12/5.png){: width="80%"}  
+    :   The model is a __seq2seq__ model; it learns a _conditional probability_ of the next _label/character_ given the _input_ and _previous predictions_ $$p(y_{i+1} \vert y_{1..i}, x)$$.  
+    :   The approach that __LAS__ takes is similar to that of __NMT__.     
+        Where, in translation, the input would be the _source sentence_ but in __ASR__, the input is _the audio sequence_.  
+    :   __Attention__ is needed because in speech recognition tasks, the length of the input sequence is very large; for a 10 seconds sample, there will be ~10000 frames to go through.      
+
+3. **Structure:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
+    :   The model has two components:  
+        * __A listener__: a _pyramidal RNN **encoder**_ that accepts _filter bank spectra_ as inputs
+        * __A Speller__: an _attention_-based _RNN **decoder**_ that emits _characters_ as outputs 
+    :   * __Input__:  
+            
+        * __Output__: 
+
+6. **Limitations:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
+    :   * Not an online model - input must all be received before transcripts can be produced
+        * Attention is a computational bottleneck since every output token pays attention to every input time step
+        * Length of input has a big impact on accuracy
+
+***
+
+## Online Seq2Seq Models
+{: #content4}
+
+1. **Motivation:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}  
+    :   * __Overcome limitations of seq2seq__:  
+            * No need to wait for the entire input sequence to arrive
+            * Avoids the computational bottleneck of Attention over the entire sequence
+        * __Produce outputs as inputs arrive__:  
+            * Solves this problem: When has enough information arrived that the model is confident enough to output symbols 
+
+2. **A Neural Transducer:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}  
+    :    Neural Transducer is a more general class of seq2seq learning models. It avoids the problems of offline seq2seq models by operating on local chunks of data instead of the whole input at once. It is able to make predictions _conditioned on partially observed data and partially made predictions_.    
+
+
+*** 
+
+## Real-World Applications
+{: #content6}
+
+1. **Siri:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents61}  
+    :   * __Siri Architecture__:  
+            ![img](/main_files/dl/nlp/12/12.png){: width="80%"}  
+            * Start with a __Wave Form__
+            * Pass the wave form through an ASR system
+            * Then use a Natural Language Model to re-adjust the labels
+            * Output Words
+            * Based on the output, do some action or save the output, etc.
+    :   * __"Hey Siri" DNN__:  
+            ![img](/main_files/dl/nlp/12/13.png){: width="80%"}  
+            * Much smaller DNN than for the full Vocab. ASR
+            * Does _Binary Classification_ - Did the speaker say "hey Siri" or not?  
+            * Consists of 5 Layers
+            * The layers have few parameters
+            * It has a __Threshold__ at the end  
+            * So fast 
+            * Capable of running on the __Apple Watch!__
+    :   * __Two-Pass Detection__:  
+            * *__Problem__*:  
+                    A big problem that arises in the _always-on voice_, is that it needs to run 24/7. 
+            * *__Solution__*:  
+                ![img](/main_files/dl/nlp/12/14.png){: width="90%"}    
+                We use a __Two-Pass Detection__ system:  
+                * There are two processors implemented in the phone:  
+                    * __Low-Compute Processor:__{: style="color: red"}  
+                        * Always __ON__
+                        * Given a threshold value of confidence over binary probabilities the Processor makes the following decision: "Should I wake up the Main Processor"  
+                        * Low power consumption
+                    * __Main Processor:__{: style="color: red"}  
+                        * Only ON if woken up by the _low-compute_ processor 
+                        * Runs a much larger DNN   
+                        * High power consumption
+    :   * __Computation for DL__:   
+            ![img](/main_files/dl/nlp/12/15.png){: width="90%"}  

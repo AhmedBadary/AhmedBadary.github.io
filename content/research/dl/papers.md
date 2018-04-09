@@ -107,6 +107,10 @@ prevLink: /
 
 ## NLP
 {: #content8}
+    :   * __Speech Recognition__:  
+            
+            1. [Human parity in speech recognition (xiong et al. 2016)]()
+            2. [Deep Learning for Speech (Deng et al.)]()
 
 ***
 

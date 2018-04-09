@@ -210,10 +210,28 @@ prevLink: /
                 
             
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents63}  
-    :   
+3. **What is ML?:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents63}  
+    :   Improve on __TASK T__ with respect to __PERFORMANCE METRIC P__ based on __EXPERIENCE E__.  
+    :   __T:__ Categorize email messages as spam or legitimate 
+        __P:__ Percentage of email messages correctly classified 
+        __E:__ Database of emails, some with 
+        human-given labels 
 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents64}  
+        __T:__ Recognizing hand-written words 
+        __P:__ Percentage of words correctly classified 
+        __E:__ Database of human-labeled images of 
+        handwritten words 
+
+        __T:__ playing checkers 
+        __P:__ percentage of games won against an arbitrary opponent 
+        __E:__ Playing practice games against itself 
+
+
+        __T:__ Driving on four-lane highways using vision sensors 
+        __P:__ Average distance traveled before a human-judged error 
+        __E:__ A seq of images and steering commands recorded while observing a human driver  
+
+4. **Graphical Models:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents64}  
     :   
 
 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents65}  
@@ -287,8 +305,9 @@ prevLink: /
                  * Replace a word with __adaptive__ drop rate, and draw word from a __proposal distribution__ (i.e. "New York") 
         3. __Better Model__ (+ all above)
 
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents82}  
-    :   
+2. **Language Models:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents82}  
+    :   * __The ML-Estimate of $$p(w_i \vert w_{i-1})$$__ $$ = \dfrac{c(w_{i-1}\: w_i)}{\sum_{w_i} c(w_{i-1}\: w_i)}$$
+            
 
 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents83}  
     :   
