@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">Ideas</h1>
+  <h1 class="project-name">Information Theory</h1>
   <h2 class="project-tagline"></h2>
   <a href="/#" class="btn">Home</a>
   <a href="/work" class="btn">Work-Space</a>
-  <a href= / class="btn">Previous</a>
+  <a href= /work_files/research/dl/nlp.html class="btn">Previous</a>
 </section>
 
 <!-- <div>
@@ -63,14 +63,116 @@
 
     <section class="main-content">
       
-      <ul>
-  <li>Adversarial Feature Learning</li>
-  <li></li>
-</ul>
+      <h2 id="content1">Information Theory</h2>
 
-<h3 id="speech-recognition-for-arabic-speaking-countries">Speech Recognition for Arabic Speaking countries</h3>
-
-<p>###</p>
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Information Theory:</strong></dt>
+      <dd><strong>Information theory</strong> is a branch of applied mathematics that revolves around quantifying how much information is present in a signal.</dd>
+      <dd>In the context of machine learning, we can also apply information theory to continuous variables where some of these message length interpretations do not apply, instead, we mostly use a few key ideas from information theory to characterize probability distributions or to quantify similarity between probability distributions.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Motivation and Intuition:</strong></dt>
+      <dd>The basic intuition behind information theory is that learning that an unlikely event has occurred is more informative than learning that a likely event has occurred. A message saying “the sun rose this morning” is so uninformative as to be unnecessary to send, but a message saying “there was a solar eclipse this morning” is very informative.</dd>
+      <dd>Thus, information theory quantifies information in a way that formalizes this intuition:
+        <ul>
+          <li>Likely events should have low information content - in the extreme case, guaranteed events have no information at all</li>
+          <li>Less likely events should have higher information content</li>
+          <li>Independent events should have additive information. For example, finding out that a tossed coin has come up as heads twice should convey twice as much information as finding out that a tossed coin has come up as heads once.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Self-Information:</strong></dt>
+      <dd>The <strong>Self-Information</strong> or <strong>surprisal</strong> is a synonym for the surprise when a random variable is sampled.</dd>
+      <dd>The <strong>Self-Information</strong> of an event <script type="math/tex">\mathrm{x} = x</script>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">I(x) = - \log P(x)</script>
+      </dd>
+      <dd>Self-information deals only with a single outcome.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Shannon Entropy:</strong></dt>
+      <dd>To quantify the amount of uncertainty in an entire probability distribution, we use <strong>Shannon Entropy</strong>_.</dd>
+      <dd><strong>Shannon Entropy</strong> is defined as the average amount of information produced by a stochastic source of data.</dd>
+      <dd>
+        <script type="math/tex; mode=display">H(x) = {\displaystyle \operatorname {E}_{x \sim P} [I(x)]} = - {\displaystyle \operatorname {E}_{x \sim P} [\log P(X)]}</script>
+      </dd>
+      <dd><strong>Differential Entropy</strong> is shannons entropy of a <strong>continuous</strong> random variable <script type="math/tex">x</script></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Distributions and Entropy:</strong></dt>
+      <dd>Distributions that are nearly deterministic (where the outcome is nearly certain)have low entropy; distributions that are closer to uniform have high entropy.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Relative Entropy | K-L Divergence:</strong></dt>
+      <dd>The <strong>Kullback–Leibler divergence</strong> (<strong>Relative Entropy</strong>) is a measure of how one probability distribution diverges from a second, expected probability distribution.</dd>
+      <dd>
+        <p><strong>Interpetation:</strong></p>
+        <ul>
+          <li><strong>Discrete variables</strong>:<br />
+  it is the extra amount of information needed to send a message containing symbols drawn from probability distribution <script type="math/tex">P</script>, when we use a code that was designed to minimize the length of messages drawn from probability distribution <script type="math/tex">Q</script>.</li>
+          <li><strong>Continuous variables</strong>:</li>
+        </ul>
+      </dd>
+      <dd>
+        <p><strong>Properties:</strong></p>
+        <ul>
+          <li>Non-Negativity:<br />
+  <script type="math/tex">{\displaystyle D_{\mathrm {KL} }(P\|Q) \geq 0}</script></li>
+          <li><script type="math/tex">{\displaystyle D_{\mathrm {KL} }(P\|Q) = 0 \iff}</script> <script type="math/tex">P</script> and <script type="math/tex">Q</script> are:
+            <ul>
+              <li><em><strong>Discrete Variables</strong></em>:<br />
+  the same distribution</li>
+              <li><em><strong>Continuous Variables</strong></em>:<br />
+  equal “almost everywhere”</li>
+            </ul>
+          </li>
+          <li><script type="math/tex">{\displaystyle D_{\mathrm {KL} }(P\|Q) \neq D_{\mathrm {KL} }(Q\|P)}</script>
+            <blockquote>
+              <p>This asymmetry means that there are important consequences to the choice of the ordering</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd><strong>KL-Div as a Distance:</strong> <br />
+Because the KL divergence is non-negative and measures the difference between two distributions, it is often conceptualized as measuring some sort of distance between these distributions.<br />
+However, it is <strong>not</strong> a true distance measure because it is <strong><em>not symmetric</em></strong>.</dd>
+      <dd><strong>Applications</strong>  <br />
+Characterizing:
+        <ul>
+          <li>Relative (Shannon) entropy in information systems</li>
+          <li>Randomness in continuous time-series</li>
+          <li>Information gain when comparing statistical models of inference</li>
+        </ul>
+      </dd>
+      <dd><img src="/main_files/math/prob/11.png" alt="img" width="100%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Cross Entropy:</strong></dt>
+      <dd>The <strong>Cross Entropy</strong> between two probability distributions <script type="math/tex">{\displaystyle p}</script> and <script type="math/tex">{\displaystyle q}</script> over the same underlying set of events measures the average number of bits needed to identify an event drawn from the set, if a coding scheme is used that is optimized for an “unnatural” probability distribution <script type="math/tex">{\displaystyle q}</script>, rather than the “true” distribution <script type="math/tex">{\displaystyle p}</script>.</dd>
+      <dd>
+        <script type="math/tex; mode=display">H(p,q) = \operatorname{E}_{p}[-\log q]= H(p) + D_{\mathrm{KL}}(p\|q) =-\sum_{x }p(x)\,\log q(x)</script>
+      </dd>
+      <dd>It is similar to <strong>KL-Div</strong> but with an additional quantity - the entropy of <script type="math/tex">p</script>.</dd>
+      <dd>Minimizing the cross-entropy with respect to <script type="math/tex">Q</script> is equivalent to minimizing the KL divergence, because <script type="math/tex">Q</script> does not participate in the omitted term.</dd>
+      <dd>We treat <script type="math/tex">0 \log (0)</script> as <script type="math/tex">\lim_{x \to 0} x \log (x) = 0</script>.</dd>
+    </dl>
+  </li>
+</ol>
 
 
       <footer class="site-footer">

@@ -118,10 +118,7 @@ This assumption is derived from a set of <em>“common sense”</em> arguments t
     </dl>
   </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Asynchronous:</strong></p>
   </li>
   <li>
     <dl>
@@ -156,7 +153,7 @@ This assumption is derived from a set of <em>“common sense”</em> arguments t
 <ol>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Random Variables:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyxContents2" id="bodyContents21">Random Variables:</strong></dt>
       <dd>A <strong>Random Variable</strong> is a variable that can take on different values randomly.<br />
 Precisely, it is a <em>function</em> that maps outcomes to numerical quantities (labels), typically real numbers.</dd>
       <dd>
@@ -203,7 +200,7 @@ Probability Distributions are defined in terms of the <strong>Sample Space</stro
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Probability Mass Function:</strong></dt>
-      <dd>A <strong>Probability Mass Function (PMF)</strong> is a function that gives the probability that a discrete random variable is exactly equal to some value.</dd>
+      <dd>A <strong>Probability Mass Function (PMF)</strong> is a function (probability distribution) that gives the probability that a discrete random variable is exactly equal to some value.</dd>
       <dd><strong>Mathematical Definition</strong>:<br />
 Suppose that <script type="math/tex">X: S \rightarrow A (A {\displaystyle \subseteq }  R)</script> is a discrete random variable defined on a sample space <script type="math/tex">S</script>. Then the probability mass function <script type="math/tex">f_X: A \rightarrow [0, 1]</script> for <script type="math/tex">X</script> is defined as</dd>
       <dd>
@@ -218,39 +215,350 @@ Suppose that <script type="math/tex">X: S \rightarrow A (A {\displaystyle \subse
         <ul>
           <li>The domain of <script type="math/tex">P</script> must be the set of all possible states of <script type="math/tex">x</script>.</li>
           <li><script type="math/tex">\forall x \in \mathrm{x}, \: 0 \leq P(x) \leq 1</script>. Impossible events has probability <script type="math/tex">0</script>. Guaranteed events have probability <script type="math/tex">1</script>.</li>
-          <li><script type="math/tex">\sum_{x \in \mathrm{x}} P(x) = 1</script>, i.e. the PMF must be normalized</li>
+          <li><script type="math/tex">\sum_{x \in \mathrm{x}} P(x) = 1</script>, i.e. the PMF must be normalized.</li>
         </ul>
       </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Asynchronous:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Probability Density Function:</strong></dt>
+      <dd>A <strong>Probability Density Function (PDF)</strong> is a function (probability distribution) whose value at any given sample (or point) in the sample space can be interpreted as providing a relative likelihood that the value of the random variable would equal that sample.</dd>
+      <dd>A Probability Density Function <script type="math/tex">p(x)</script> does not give the probability of a specific state directly; instead the probability of landing inside an infinitesimal region with volume <script type="math/tex">\delta x</script> is given by <script type="math/tex">p(x)\delta x</script>.<br />
+     We can integrate the density function to find the actual probability mass of a set of points. Specifically, the probability that <script type="math/tex">x</script> lies in some set <script type="math/tex">S</script> is given by the integral of <script type="math/tex">p(x)</script> over that set.<br />
+     &gt; In the <strong>Univariate</strong> example, the probability that <script type="math/tex">x</script> lies in the interval <script type="math/tex">[a, b]</script> is given by <script type="math/tex">\int_{[a, b]} p(x)dx</script></dd>
+      <dd>A <strong>PDF</strong> must satisfy these properties:
+        <ul>
+          <li>The domain of <script type="math/tex">P</script> must be the set of all possible states of <script type="math/tex">x</script>.</li>
+          <li><script type="math/tex">\forall x \in \mathrm{x}, \: 0 \leq P(x)</script>. Impossible events has probability <script type="math/tex">0</script>. Guaranteed events have probability <script type="math/tex">1</script>.</li>
+          <li><script type="math/tex">\int p(x)dx = 1</script>, i.e. the integral of the PDF must be normalized.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Marginal Probability:</strong></dt>
+      <dd>The <strong>Marginal Distribution</strong> of a subset of a collection of random variables is the probability distribution of the variables contained in the subset.</dd>
+      <dd><strong>Two-variable Case</strong>:<br />
+Given two random variables <script type="math/tex">X</script> and <script type="math/tex">Y</script> whose joint distribution is known, the marginal distribution of <script type="math/tex">X</script> is simply the probability distribution of <script type="math/tex">X</script> averaging over information about <script type="math/tex">Y</script>.</dd>
+      <dd>
+        <ul>
+          <li><strong>Discrete</strong>:</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">{\displaystyle \Pr(X=x)=\sum _{y}\Pr(X=x,Y=y)=\sum _{y}\Pr(X=x\mid Y=y)\Pr(Y=y)}</script>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Continuous</strong>:</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">{\displaystyle p_{X}(x)=\int _{y}p_{X,Y}(x,y)\,\mathrm {d} y=\int _{y}p_{X\mid Y}(x\mid y)\,p_{Y}(y)\,\mathrm {d} y}</script>
+      </dd>
+      <dd>
+        <ul>
+          <li><em><strong>Marginal Probability as Expectation</strong></em>:</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">{\displaystyle p_{X}(x)=\int _{y}p_{X\mid Y}(x\mid y)\,p_{Y}(y)\,\mathrm {d} y=\mathbb {E} _{Y}[p_{X\mid Y}(x\mid y)]}</script>
+      </dd>
+      <dd><button class="showText" value="show" onclick="showTextPopHide(event);">Intuitive Explanation</button>
+ <img src="/main_files/math/prob/1.png" alt="img" width="100%" hidden="" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Conditional Probability:</strong></dt>
+      <dd><strong>Conditional Probability</strong> is a measure of the probability of an event given that another event has occurred.<br />
+Conditional Probability is only defined when <script type="math/tex">P(x) > 0</script> - We cannot computethe conditional probability conditioned on an event that never happens.</dd>
+      <dd><strong>Definition</strong>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">P(A|B)={\frac {P(A\cap B)}{P(B)}} = {\frac {P(A, B)}{P(B)}}</script>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">The Chain Rule of Conditional Probability:</strong></dt>
+      <dd>Any joint probability distribution over many random variables may be decomposed into conditional distributions over only one variable.<br />
+The chain rule permits the calculation of any member of the joint distribution of a set of random variables using only conditional probabilities:</dd>
+      <dd>
+        <script type="math/tex; mode=display">\mathrm {P} \left(\bigcap _{k=1}^{n}A_{k}\right)=\prod _{k=1}^{n}\mathrm {P} \left(A_{k}\,{\Bigg |}\,\bigcap _{j=1}^{k-1}A_{j}\right)</script>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Independence and Conditional Independence:</strong></dt>
+      <dd>Two random variables <script type="math/tex">x</script> and <script type="math/tex">y</script> are <strong>independent</strong> if their probability distribution can be expressed as a product of two factors, one involving only <script type="math/tex">x</script> and one involving only <script type="math/tex">y</script>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">\mathrm{P}(A \cap B) = \mathrm{P}(A)\mathrm{P}(B)</script>
+      </dd>
+      <dd>Two random variables <script type="math/tex">x</script> and <script type="math/tex">y</script> are conditionally independent given a random variable <script type="math/tex">z</script> if the conditional probability distribution over <script type="math/tex">x</script> and <script type="math/tex">y</script> factorizes in this way for every value of <script type="math/tex">z</script>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">\Pr(A\cap B\mid Y)=\Pr(A\mid Y)\Pr(B\mid Y)</script>
+      </dd>
+      <dd>or equivalently,</dd>
+      <dd>
+        <script type="math/tex; mode=display">\Pr(A\mid B\cap Y)=\Pr(A\mid Y)</script>
+      </dd>
+      <dd><strong>Notation:</strong>
+        <ul>
+          <li><strong><script type="math/tex">x</script> is Independent from <script type="math/tex">y</script></strong>:  <script type="math/tex">x{\perp}y</script></li>
+          <li><strong><script type="math/tex">x</script> and <script type="math/tex">y</script> are conditionally Independent given <script type="math/tex">z</script></strong>:  <script type="math/tex">x{\perp}y \:\vert z</script></li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents29">Expectation:</strong></dt>
+      <dd>The <strong>expectation</strong>, or <strong>expected value</strong>, of some function <script type="math/tex">f(x)</script> with respect to a probability distribution <script type="math/tex">P(x)</script> is the average, or mean value, that <script type="math/tex">f</script> takes on when <script type="math/tex">x</script> is drawn from <script type="math/tex">P</script>.</dd>
+      <dd>
+        <ul>
+          <li><strong>Discrete case</strong>:</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">{\displaystyle \operatorname {E}_{x \sim P} [f(X)]=x_{1}p_{1}+x_{2}p_{2}+\cdots +x_{k}p_{k}} = \sum_x P(x)f(x)</script>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Continuous case</strong>:</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">{\displaystyle \operatorname {E}_{x \sim P} [f(X)] = \int p(x)f(x)dx}</script>
+      </dd>
+      <dd><strong>Linearity of Expectation:</strong></dd>
+      <dd>
+        <script type="math/tex; mode=display">% <![CDATA[
+{\displaystyle {\begin{aligned}\operatorname {E} [X+Y]&=\operatorname {E} [X]+\operatorname {E} [Y],\\[6pt]\operatorname {E} [aX]&=a\operatorname {E} [X],\end{aligned}}} %]]></script>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents210">Variance:</strong></dt>
+      <dd><strong>Variance</strong> is the expectation of the squared deviation of a random variable from its mean.<br />
+It gives a measure of how much the values of a function of a random variable <script type="math/tex">x</script> vary as we sample different values of <script type="math/tex">x</script> from its probability distribution:</dd>
+      <dd>
+        <script type="math/tex; mode=display">\operatorname {Var} (f(x))=\operatorname {E} \left[(f(x)-\mu )^{2}\right]</script>
+      </dd>
+      <dd><strong>Variance expanded</strong>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">% <![CDATA[
+{\displaystyle {\begin{aligned}\operatorname {Var} (X)&=\operatorname {E} \left[(X-\operatorname {E} [X])^{2}\right]\\&=\operatorname {E} \left[X^{2}-2X\operatorname {E} [X]+\operatorname {E} [X]^{2}\right]\\&=\operatorname {E} \left[X^{2}\right]-2\operatorname {E} [X]\operatorname {E} [X]+\operatorname {E} [X]^{2}\\&=\operatorname {E} \left[X^{2}\right]-\operatorname {E} [X]^{2}\end{aligned}}} %]]></script>
+      </dd>
+      <dd><strong>Variance as Covariance</strong>: 
+    Variance can be expressed as the covariance of a random variable with itself:</dd>
+      <dd>
+        <script type="math/tex; mode=display">\operatorname {Var} (X)=\operatorname {Cov} (X,X)</script>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents211">Standard Deviation:</strong></dt>
+      <dd>The <strong>Standard Deviation</strong> is a measure that is used to quantify the amount of variation or dispersion of a set of data values.<br />
+It is defined as the square root of the variance:</dd>
+      <dd>
+        <script type="math/tex; mode=display">% <![CDATA[
+{\displaystyle {\begin{aligned}\sigma &={\sqrt {\operatorname {E} [(X-\mu )^{2}]}}\\&={\sqrt {\operatorname {E} [X^{2}]+\operatorname {E} [-2\mu X]+\operatorname {E} [\mu ^{2}]}}\\&={\sqrt {\operatorname {E} [X^{2}]-2\mu \operatorname {E} [X]+\mu ^{2}}}\\&={\sqrt {\operatorname {E} [X^{2}]-2\mu ^{2}+\mu ^{2}}}\\&={\sqrt {\operatorname {E} [X^{2}]-\mu ^{2}}}\\&={\sqrt {\operatorname {E} [X^{2}]-(\operatorname {E} [X])^{2}}}\end{aligned}}} %]]></script>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents212">Covariance:</strong></dt>
+      <dd><strong>Covariance</strong> is a measure of the joint variability of two random variables.<br />
+It gives some sense of how much two values are linearly related to each other, as well as the scale of these variables:</dd>
+      <dd>
+        <script type="math/tex; mode=display">\operatorname {cov} (X,Y)=\operatorname {E} { {\big[ }(X-\operatorname {E} [X])(Y-\operatorname {E} [Y]){ \big] } }</script>
+      </dd>
+      <dd><strong>Covariance expanded:</strong></dd>
+      <dd>
+        <script type="math/tex; mode=display">% <![CDATA[
+{\displaystyle {\begin{aligned}\operatorname {cov} (X,Y)&=\operatorname {E} \left[\left(X-\operatorname {E} \left[X\right]\right)\left(Y-\operatorname {E} \left[Y\right]\right)\right]\\&=\operatorname {E} \left[XY-X\operatorname {E} \left[Y\right]-\operatorname {E} \left[X\right]Y+\operatorname {E} \left[X\right]\operatorname {E} \left[Y\right]\right]\\&=\operatorname {E} \left[XY\right]-\operatorname {E} \left[X\right]\operatorname {E} \left[Y\right]-\operatorname {E} \left[X\right]\operatorname {E} \left[Y\right]+\operatorname {E} \left[X\right]\operatorname {E} \left[Y\right]\\&=\operatorname {E} \left[XY\right]-\operatorname {E} \left[X\right]\operatorname {E} \left[Y\right].\end{aligned}}} %]]></script>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>when <script type="math/tex">{\displaystyle \operatorname {E} [XY]\approx \operatorname {E} [X]\operatorname {E} [Y]}</script>, this last equation is prone to catastrophic cancellation when computed with floating point arithmetic and thus should be avoided in computer programs when the data has not been centered before.</p>
+        </blockquote>
+      </dd>
+      <dd><strong>Covariance of Random Vectors</strong>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">% <![CDATA[
+{\begin{aligned}\operatorname {cov} (\mathbf {X} ,\mathbf {Y} )&=\operatorname {E} \left[(\mathbf {X} -\operatorname {E} [\mathbf {X} ])(\mathbf {Y} -\operatorname {E} [\mathbf {Y} ])^{\mathrm {T} }\right]\\&=\operatorname {E} \left[\mathbf {X} \mathbf {Y} ^{\mathrm {T} }\right]-\operatorname {E} [\mathbf {X} ]\operatorname {E} [\mathbf {Y} ]^{\mathrm {T} },\end{aligned}} %]]></script>
+      </dd>
+      <dd><strong>The Covariance Matrix</strong> of a random vector <script type="math/tex">x \in \mathbb{R}^n</script> is an <script type="math/tex">n \times n</script> matrix, such that:</dd>
+      <dd>
+        <script type="math/tex; mode=display">\operatorname {cov} (X)_{i,j} = \operatorname {cov}(x_i, x_j) \\
+\operatorname {cov}(x_i, x_j) = \operatorname {Var} (x_i)</script>
+      </dd>
+      <dd><strong>Interpretations</strong>:
+        <ul>
+          <li>High absolute values of the covariance mean that the values change very much and are both far from their respective means at the same time.</li>
+          <li><strong>The sign of the covariance</strong>: <br />
+  The sign of the covariance shows the tendency in the linear relationship between the variables:
+            <ul>
+              <li><em><strong>Positive</strong></em>:<br />
+  the variables tend to show similar behavior</li>
+              <li><em><strong>Negative</strong></em>:<br />
+  the variables tend to show opposite behavior</li>
+              <li><strong>Reason</strong>:<br />
+  If the greater values of one variable mainly correspond with the greater values of the other variable, and the same holds for the lesser values, (i.e., the variables tend to show similar behavior), the covariance is positive. In the opposite case, when the greater values of one variable mainly correspond to the lesser values of the other, (i.e., the variables tend to show opposite behavior), the covariance is negative.</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd><strong>Covariance and Independence:</strong>
+        <ul>
+          <li>Independence <script type="math/tex">\Rightarrow</script> Zero Covariance</li>
+          <li>Zero Covariance <script type="math/tex">\nRightarrow</script> Independence</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents213">Mixtures of Distributions:</strong></dt>
+      <dd>It is also common to define probability distributions by combining other simpler probability distributions. One common way of combining distributions is to construct a <strong>mixture distribution</strong>.</dd>
+      <dd>A <strong>Mixture Distribution</strong> is the probability distribution of a random variable that is derived from a collection of other random variables as follows: first, a random variable is selected by chance from the collection according to given probabilities of selection, and then the value of the selected random variable is realized.<br />
+On each trial, the choice of which component distribution should generate the sample is determined by sampling a component identity from a multinoulli distribution:</dd>
+      <dd>
+        <script type="math/tex; mode=display">P(x) = \sum_i P(x=i)P(x \vert c=i)</script>
+      </dd>
+      <dd>where <script type="math/tex">P(c)</script> is the multinoulli distribution over component identities.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents214">Bayes’ Rule:</strong></dt>
+      <dd><strong>Bayes’ Rule</strong> describes the probability of an event, based on prior knowledge of conditions that might be related to the event.</dd>
+      <dd>
+        <script type="math/tex; mode=display">{\displaystyle P(A\mid B)={\frac {P(B\mid A)\,P(A)}{P(B)}}}</script>
+      </dd>
+      <dd>where,</dd>
+      <dd>
+        <script type="math/tex; mode=display">P(B) =\sum_A P(B \vert A) P(A)</script>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content9">Discrete Distributions</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents91">Uniform Distribution:</strong></dt>
       <dd></dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Asynchronous:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents92">Asynchronous:</strong></dt>
       <dd></dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Asynchronous:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents93">Asynchronous:</strong></dt>
       <dd></dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Asynchronous:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents94">Asynchronous:</strong></dt>
       <dd></dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Asynchronous:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents95">Asynchronous:</strong></dt>
       <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents96">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents97">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents98">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content99">Continuous Distributions</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents99" id="bodyContents991">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents99" id="bodyContents992">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents99" id="bodyContents993">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents99" id="bodyContents994">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents99" id="bodyContents995">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents99" id="bodyContents996">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents99" id="bodyContents997">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents99" id="bodyContents998">Asynchronous:</strong></dt>
+      <dd>
+        <hr />
+      </dd>
     </dl>
   </li>
 </ol>
@@ -261,6 +569,7 @@ Suppose that <script type="math/tex">X: S \rightarrow A (A {\displaystyle \subse
   <li>It is more practical to use a simple but uncertain rule rather than a complex but certain one, even if the true rule is deterministic and our modeling system has the ﬁdelity to accommodate a complex rule.<br />
   For example, the simple rule “Most birds ﬂy” is cheap to develop and is broadly useful, while a rule of the form, “Birds ﬂy, except for very young birds that have not yet learned to ﬂy, sick or injured birds that have lost the ability to ﬂy, ﬂightless species of birds including the cassowary, ostrich and kiwi. . .” is expensive to develop, maintain and communicate and, after all this effort, is still brittle and prone to failure.</li>
 </ul>
+
 
 
       <footer class="site-footer">
