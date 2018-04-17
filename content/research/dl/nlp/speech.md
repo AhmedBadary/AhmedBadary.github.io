@@ -46,6 +46,8 @@ prevLink: /work_files/research/dl/nlp.html
     :   * __ASR__:  
             * _Spontaneous_ vs _Read_ speech
             * _Large_ vs _Small_ Vocabulary
+            * _Continuous_ vs _Isolated_ Speech  
+                > Continuous Speech is harder due to __*Co-Articulation*__   
             * _Noisy_ vs _Clear_ input
             * _Low_ vs _High_ Resources 
             * _Near-field_ vs _Far-field_ input
@@ -86,6 +88,8 @@ prevLink: /work_files/research/dl/nlp.html
         * We apply __Fourier Analysis__ to see the energy in different frequency bands, which allows analysis and processing
             * Specifically, we apply _windowed short-term_ *__Fast Fourier Transform (FFT)__*  
                 > e.g. FFT on overlapping $$25ms$$ windows (400 samples) taken every $$10ms$$  
+        ![img](/main_files/dl/nlp/12/16.png){: width="70%"}  
+        > Each frame is around 25ms of speech  
         * FFT is still too high-dimensional  
             * We __Downsample__ by local weighted averages on _mel scale_ non-linear spacing, an d take a log:  
                 $$ m = 1127 \ln(1+\dfrac{f}{700})$$  
@@ -150,6 +154,9 @@ prevLink: /work_files/research/dl/nlp.html
     * __Google voice search__ - anonymized live traffic 3M utterances 2000 hours hand-transcribed 4M vocabulary. Constantly refreshed, synthetic reverberation + additive noise 
     * __DeepSpeech__ 5000h read (Lombard) speech + SWB with additive noise. 
     * __YouTube__ 125,000 hours aligned captions (Soltau et al., 2016) 
+
+5. **Datasets:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents85}  
+    ![img](/main_files/dl/nlp/12/17.png){: width="75%"}    
 
 *** 
 
@@ -404,6 +411,13 @@ prevLink: /work_files/research/dl/nlp.html
         * Don't scale by the posterior
         * Produces similar results to conventional training
         * Simple to implement in the __FST__ framework 
+        * CTC could learn to __delay__ output on its own in order to improve accuracy:  
+            * In-practice, tends to align transcription closely
+            * This is especially problematic for English letters (spelling)
+            * __Sol__:  
+                bake limited context into model structure; s.t. the model at time-step $$T$$ can see only some future frames. 
+                * Caveat: may need to compute upper layers quickly after sufficient context arrives.  
+                Can be easier if context is near top.   
 
 ***
 
@@ -491,3 +505,117 @@ prevLink: /work_files/research/dl/nlp.html
                         * High power consumption
     :   * __Computation for DL__:   
             ![img](/main_files/dl/nlp/12/15.png){: width="90%"}  
+
+***
+
+## Building ASR Systems
+{: #content11}
+
+1. **Pre-Processing:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents111}  
+    :   A __Spectrogram__ is a visual representation of the spectrum of frequencies of sound or other signal as they vary with time.
+        * Take a small window (~20 ms) of waveform  
+        * Compute __FFT__ and take magnitude (i.e. prower)  
+            > Describes Frequency content in local window  
+    :   ![img](/main_files/dl/nlp/12/18.png){: width="80%"}  
+    :   * Concatenate frames from adjacent windows to form the "spectrogram"  
+        ![img](/main_files/dl/nlp/12/19.png){: width="80%"}  
+
+2. **Acoustic Model:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents112}  
+    :   An __Acoustic Model__ is used in automatic speech recognition to represent the relationship between an audio signal and the phonemes or other linguistic units that make up speech.  
+    :   __Goal__: create a neural network (DNN/RNN) from which we can extract transcriptions, $$y$$ - by training on labeled pairs $$(x, y^\ast)$$.  
+
+3. **Network (example) Architecture:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents113}  
+    :   __RNN to predict graphemes (26 chars + space + blank)__:  
+        * Spectrograms as inputs
+        * 1 Layer of Convolutional Filters
+        * 3 Layers of Gated Recurrent Units
+            * 1000 Neurons per Layer
+        * 1 Fully-Connected Layer to predict $$c$$
+        * Batch Normalization
+        * *__CTC__* __Loss Function__  (Warp-CTC) 
+        * SGD+Nesterov Momentum Optimization/Training
+        ![img](/main_files/dl/nlp/12/20.png){: width="50%"}  
+
+4. **Incorporating a Language Model:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents114}  
+    :   Incorporating a Language Model helps the model learn:  
+        * Spelling 
+        * Grammar
+        * Expand Vocabulary
+    :   __Two Ways__:  
+        1. Fuse the __Acoustic Model__ with the language model $$p(y)$$  
+        2. Incorporate linguistic data: 
+            * Predict Phonemes + Pronunciation Lexicon + LM  
+
+5. **Decoding with Language Models:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents115}  
+    :   * Given a word-based LM of form $$p(w_{t+1} \vert w_{1:t})$$  
+        * Use __Beam Search__ to maximize _(Hannun et al. 2014)_:  
+    :   $$\mathrm{arg } \max_{w} p(w \vert x)\: p(w)^\alpha \: [\text{length}(w)]^\beta$$  
+    :   > * $$p(w \vert x) = p(y \vert x)$$ for characters that make up $$w$$.  
+        > * We tend to penalize long transcriptions due to the multiplicative nature of the objective, so we trade off (re-weight) with $$\alpha , \beta$$  
+    :   * Start with a set of candidate transcript prefixes, $$A = {}$$  
+        * __For $$t = 1 \ldots T$$__:   
+            * __For Each Candidate in $$A$$, consider__:  
+                1. Add blank; don't change prefix; update probability using the AM. 
+                2. Add space to prefix; update probability using LM. 
+                3. Add a character to prefix; update probability using AM. Add new candidates with updated probabilities to $$A_{\text{new}}$$   
+            * $$A := K$$ most probable prefixes in $$A_{\text{new}}$$  
+    :   <button>Algorithm Description</button>{: .showText value="show"
+     onclick="showTextPopHide(event);"}
+        ![formula](/main_files/dl/nlp/12/21.png){: width="100%" hidden=""}  
+
+6. **Rescoring with Neural LM:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents116}  
+    :   The output from the RNN described above consists of a __big list__ of the __top $$k$$ transcriptions__ in terms of probability.  
+        We want to re-score these probabilities based on a strong LM.   
+        * It is Cheap to evaluate $$p(w_k \vert w_{k-1}, w_{k-2}, \ldots, w_1)$$ NLM on many sentences  
+        * In-practice, often combine with N-gram trained from big corpora  
+
+7. **Scaling Up:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents117}  
+    :   * __Data__:  
+            * Transcribing speech data isn't cheap, but not prohibitive  
+                * Roughly 50¢ to $1 per minute
+            * Typical speech benchmarks offer 100s to few 1000s of hours:  
+                * LibriSpeech (audiobooks)  
+                * LDC corpora (Fisher, Switchboard, WSJ) ($$)  
+                * VoxForge  
+            * Data is very Application/Problem dependent and should be chosen with respect to the problem to be solved
+            * Data can be collected as "read"-data for <$10 -- Make sure the data to be read is scripts/plays to get a conversationalist response
+            * Noise is __additive__ and can be incorporated  
+    :   * __Computation__:  
+            * How big is 1 experiment?{: style="color: red"}  
+                $$\geq (\# \text{Connections}) \cdot (\# \text{Frames}) \cdot (\# \text{Utterances}) \cdot (\# \text{Epochs}) \cdot 3 \cdot 2 \:\text{ FLOPs}$$   
+                E.g. for DS2 with 10k hours of data:  
+                $$100*10^6 * 100 * 10^6*20 * 3 * 2 = 1.2*10^{19} \:\text{ FLOPs}$$  
+                ~30 days (with well-optimized code on Titan X)  
+            * Work-arounds and solutions:{: style="color: red"}  
+                * More GPUs with data parallelism:  
+                    * Minibatches up to 1024 
+                    * Aim for $$\geq 64$$ utterances per GPU 
+                ~$$< 1$$-wk training time (~8 Titans)
+            * How to use more GPUs?{: style="color: red"}  
+
+                * Synch. SGD
+                * Asynch SGD 
+                * Synch SGD w/ backup workers
+            * __Tips and Tricks__:  
+                * Make sure the code is _optimized_ single-GPU.  
+                    A lot of off-the-shelf code has inefficiencies.  
+                    E.g. Watch for bad GEMM sizes.
+                * Keep similar-length utterances together:  
+                    The input must be block-sized and will be padded; thus, keeping similar lengths together reduces unnecessary padding.
+    :   * __Throughput__:  
+            * Large DNN/RNN models run well on GPUs, ONLY, if the batch size is high enough.  
+                Processing 1 audio stream at a time is inefficient.  
+                *__Performance for K1200 GPU__*:  
+                | __Batch Size__ | __FLOPs__ | __Throughput__ |
+                | 1 | 0.065 TFLOPs | 1x | 
+                | 10 | 0.31 TFLOPs | 5x | 
+                | 32 | 0.92 TFLOPs | 14x |  
+            * Batch packets together as data comes in:  
+                * Each packet (Arrow) of speech data ~ 100ms  
+                    ![img](/main_files/dl/nlp/12/21.png){: width="80%"}  
+                * Process packets that arrive at similar times in parallel (from    multiple users)  
+                    ![img](/main_files/dl/nlp/12/22.png){: width="80%"}  
+
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents118}  
+    :   

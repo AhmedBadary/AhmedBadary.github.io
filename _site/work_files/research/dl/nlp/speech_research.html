@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">ASR <br /> Research Papers</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/nlp.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Deep Speech</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Towards End-to-End Speech Recognition with Recurrent Neural Networks</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">A Neural Transducer</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">FOURTH</a></li>
+  </ul>
+  <ul class="TOC5">
+    <li><a href="#content5">FIFTH</a></li>
+  </ul>
+  <ul class="TOC6">
+    <li><a href="#content6">SIXTH</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content2">Deep Speech</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Introduction:</strong></dt>
+      <dd>This paper takes a first attempt at an End-to-End system for ASR.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Structure:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Input</strong>: vector of speech spectrograms
+            <ul>
+              <li>An <em><strong>utterance</strong></em> <script type="math/tex">x^{(i)}</script>: is a time-series of length <script type="math/tex">T^{(i)}</script> composed of time-slices where each is a vector of audio (spectrogram) features <script type="math/tex">x_{t,p}^{(i)}, t=1,...,T^{(i)}</script>, where <script type="math/tex">p</script> denotes the power of the p’th frequency bin in the audio frame at time <script type="math/tex">t</script>.</li>
+            </ul>
+          </li>
+          <li><strong>Output</strong>: English text transcript <script type="math/tex">y</script></li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Goal</strong>:<br />
+  The goal of the RNN is to convert an input sequence <script type="math/tex">x</script> into a sequence of character probabilities for the transcription <script type="math/tex">y</script>, with <script type="math/tex">\tilde{y}_t = P(c_t\vert x)</script>, where <script type="math/tex">c_t \in \{\text{a, b, c, } \ldots \text{,  z, space,  apostrophe, blank}\}</script>.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Strategy:</strong></dt>
+      <dd>The goal is to replace the multi-part model with a single RNN network that captures as much of the information needed to do transcription in a single system.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Solves:</strong></dt>
+      <dd>
+        <ul>
+          <li>Previous models only used DNNs as a single component in a complex pipeline.<br />
+  NNs are trained to classify <strong>individual frames of acoustic data</strong>, and then, their output distributions are reformulated as emission probabilities for a HMM.<br />
+  In this case, the objective function used to train the networks is therefore substantially different from the true performance measure (sequence-level transcription accuracy.<br />
+  This leads to problems where one system might have an improved accuracy rate but the overall transcription accuracy can still decrease.</li>
+          <li>An additional problem is that the frame-level training targets must be inferred from the alignments determined by the HMM. This leads to an awkward iterative procedure, where network retraining is alternated with HMM re-alignments to generate more accurate targets.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Key Insights:</strong></dt>
+      <dd>
+        <ul>
+          <li>As an <strong>End-to-End</strong> model, this system avoids the problems of <strong>multi-part</strong> systems that lead to inconsistent training criteria and difficulty of integration. <br />
+  The network is trained directly on the text transcripts: no phonetic representation (and hence no pronunciation dictionary or state tying) is used.</li>
+          <li>Using <strong>CTC</strong> objective, the system is able to better approximate and solve the alignment problem avoiding HMM realignment training.<br />
+  Since CTC integrates out over all possible input-output alignments, no forced alignment is required to provide training targets.</li>
+          <li>The Dataset is augmented with newly synthesized data and modified to include all the variations and effects that face ASR problems.  <br />
+  This greatly increases the system performance on particularly noisy/affected speech.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Preparing Data (Pre-Processing):</strong></dt>
+      <dd>The paper uses <strong>spectrograms</strong> as a minimal preprocessing scheme.</dd>
+      <dd><img src="/main_files/dl/nlp/speech_research/2.png" alt="img" width="60%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Architecture:</strong></dt>
+      <dd>The system is composed of:<br />
+<img src="/main_files/dl/nlp/speech_research/1.png" alt="img" width="80%" />
+        <ul>
+          <li>An <strong>RNN</strong>:
+            <ul>
+              <li>5 layers of <strong>hidden units</strong>:
+                <ul>
+                  <li>3 Layer of <strong>Feed-forward Nets</strong>:
+                    <ul>
+                      <li>For the <strong>input layer</strong>, the output depends on the spectrogram frame <script type="math/tex">x_t</script> along with a context of <script type="math/tex">C</script> frames on each side.
+                        <blockquote>
+                          <script type="math/tex; mode=display">C \in \{5, 7, 9\}</script>
+                        </blockquote>
+                      </li>
+                      <li>The non-recurrent layers operate on independent data for each time step:<br />
+  <script type="math/tex">h_t^{(l)} = g(W^{(l)} h_{(t)}^{(l-1)} + b^{(l)}),</script><br />
+  where <script type="math/tex">g(z) = \min \{\max \{0, z\}, 20\}</script> is the <em>clipped RELU</em>.</li>
+                    </ul>
+                  </li>
+                  <li>2 layers of <strong>Recurrent Nets</strong>:
+                    <ul>
+                      <li>1 layer of a <strong>Bi-LSTM</strong>:
+                        <ul>
+                          <li>Includes two sets of hidden units: 
+  A set with forward recurrence <script type="math/tex">h^{(f)}</script><br />
+  A set with backward recurrence <script type="math/tex">h^{(b)}</script>:<br />
+  <script type="math/tex">h_t^{(f)} = g(W^{(4)}h_t^{(3)} + W_r^{(b)} h_{t-1}^{(b)} + b ^{(4)}) \\ 
+  h_t^{(b)} = g(W^{(4)}h_t^{(3)} + W_r^{(b)} h_{t+1}^{(b)} + b ^{(4)})</script>
+                            <blockquote>
+                              <p>Note that <script type="math/tex">h^{(f)}</script> must be computed sequentially from <script type="math/tex">t = 1</script> to <script type="math/tex">t = T^{(i)}</script> for the i’th utterance, while the units <script type="math/tex">h^{(b)}</script> must be computed sequentially in reverse from <script type="math/tex">t = T^{(i)}</script> to <script type="math/tex">t = 1</script>.</p>
+                            </blockquote>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>1 layer of <strong>Feed-forward Nets</strong>:
+                        <ul>
+                          <li>The fifth (non-recurrent) layer takes both the forward and backward units as inputs:<br />
+  <script type="math/tex">h_t^{(5)} = g(W ^{(5)}h_t ^{(4)} + b ^{(5)}),</script><br />
+  where <script type="math/tex">h_t^{(4)} = h_t^{(f)} + h_t^{(b)}</script></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>An <strong>Output</strong> layer made of a standard <strong>softmax function</strong> that yields the predicted character probabilities for each time-slice <script type="math/tex">t</script> and character <script type="math/tex">k</script> in the alphabet: <br />
+  <script type="math/tex">\displaystyle{h _{(t,k)} ^{(6)} = \hat{y} _{(t,k)} = P(c_t = k \vert x) = \dfrac{\exp (W_k ^{(6)} h_t ^{(5)} + b_k ^{(6)})}{\sum_j \exp (W_j ^{(6)}h_t ^{(5)} + b_j ^{(6)})}},</script><br />
+  where <script type="math/tex">W_k ^{(6)}</script> and <script type="math/tex">b_k ^{(6)}</script> denote the k’th column of the weight matrix and k’th bias.</li>
+            </ul>
+          </li>
+          <li>A <em><strong>CTC</strong></em> <strong>Loss Function</strong> <script type="math/tex">\mathcal{L}(\hat{y}, y)</script></li>
+          <li>An <em><strong>N-gram Language Model</strong></em></li>
+          <li>A <strong>combined Objective Function</strong>:</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">Q(c) = \log (P(x \vert x)) + \alpha \log (P_{\text{LM}}(c) + \beta \text{word_count}(c))</script>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Algorithm:</strong></dt>
+      <dd>
+        <ul>
+          <li>Given the output <script type="math/tex">P(c \vert x)</script> of the RNN: perform a <strong>search</strong> to find the sequence of characters <script type="math/tex">c_1, c_2, ...</script> that is most probable according to both:
+            <ol>
+              <li>The RNN Output</li>
+              <li>The Language Model</li>
+            </ol>
+          </li>
+          <li>We maximize the combined objective:<br />
+  <script type="math/tex">Q(c) = \log (P(x \vert x)) + \alpha \log (P_{\text{LM}}(c) + \beta \text{word_count}(c))</script><br />
+  where the term <script type="math/tex">P_{\text{lm}} denotes the probability of the sequence</script>c$$ according to the N-gram model.</li>
+          <li>The objective is maximized using a highly optimized <strong>beam search</strong> algorithm
+            <blockquote>
+              <p>beam size: 1000-8000</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents19">Training:</strong></dt>
+      <dd>
+        <ul>
+          <li>The gradient of the CTC Loss <script type="math/tex">\nabla_{\hat{y}} \mathcal{L}(\hat{y}, y)</script> with respect to the net outputs given the ground-truth character sequence <script type="math/tex">y</script> is computed</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>Nesterov’s Accelerated gradient</li>
+          <li>Nesterov Momentum</li>
+          <li>Annealing the learning rate by a constant factor</li>
+          <li>Dropout</li>
+          <li>Striding – shortening the recurrent layers by taking strides of size <script type="math/tex">2</script>.<br />
+  The unrolled RNN will have <strong>half</strong> as many steps.
+            <blockquote>
+              <p>similar to a convolutional network with a step-size of 2 in the first layer.</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents110">Parameters:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Momentum</strong>: <script type="math/tex">0.99</script></li>
+          <li><strong>Dropout</strong>: <script type="math/tex">5-10 \%</script> (FFN only)</li>
+          <li><strong>Trade-Off Params</strong>: use cross-validation for <script type="math/tex">\alpha, \beta</script></li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents111">Issues/The Bottleneck:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents112">Results:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>SwitchboardHub5’00</strong>  (
+WER):
+            <ul>
+              <li>Standard: <script type="math/tex">16.0\%</script></li>
+              <li>w/Lexicon of allowed words: <script type="math/tex">21.9\%</script></li>
+              <li>Trigram LM: <script type="math/tex">8.2\%</script></li>
+              <li>w/Baseline system: <script type="math/tex">6.7\%</script></li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents113">Discussion:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Why avoid LSTMs</strong>:<br />
+  One disadvantage of LSTM cells is that they require computing and storing multiple gating neuron responses at each step.<br />
+  Since the forward and backward recurrences are sequential, this small additional cost can become a computational bottleneck.</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Why a homogeneous model</strong>:<br />
+   By using a homogeneous model we have made the computation of the recurrent activations as efficient as possible: computing the ReLu outputs involves only a few highly optimized BLAS operations on the GPU and a single point-wise nonlinearity.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents114">Further Development:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Towards End-to-End Speech Recognition with Recurrent Neural Networks</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Introduction:</strong></dt>
+      <dd>This paper presents an ASR system that directly transcribes audio data with text, <strong>without</strong> requiring an <em>intermediate phonetic representation</em>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Structure:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Input</strong>:</li>
+          <li><strong>Output</strong>:</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Strategy:</strong></dt>
+      <dd>The goal of this paper is a system where as much of the speech pipeline as possible is replaced by a single recurrent neural network (RNN) architecture.<br />
+The language model, however, will be lacking due to the limitation of the audio data to learn a strong LM.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Solves:</strong></dt>
+      <dd>
+        <ul>
+          <li>First attempts used <strong>RNNs</strong> or standard <strong>LSTMs</strong>. These models lacked the complexity that was needed to capture all the models required for ASR.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Key Insights:</strong></dt>
+      <dd>
+        <ul>
+          <li>The model uses Bidirectional LSTMs to capture the nuances of the problem.</li>
+          <li>The system uses a new <strong>objective function</strong> that trains the network to directly optimize the <strong>WER</strong>.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Preparing the Data (Pre-Processing):</strong></dt>
+      <dd>The paper uses <strong>spectrograms</strong> as a minimal preprocessing scheme.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Architecture:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Algorithm:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents29">Issues/The Bottleneck:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents210">Results:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>WSJC</strong> (
+WER):
+            <ul>
+              <li>Standard: <script type="math/tex">27.3\%</script></li>
+              <li>w/Lexicon of allowed words: <script type="math/tex">21.9\%</script></li>
+              <li>Trigram LM: <script type="math/tex">8.2\%</script></li>
+              <li>w/Baseline system: <script type="math/tex">6.7\%</script></li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">A Neural Transducer</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Introduction:</strong></dt>
+      <dd>This paper presents an ASR system that directly transcribes audio data with text, <strong>without</strong> requiring an <em>intermediate phonetic representation</em>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Structure:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Input</strong>:</li>
+          <li><strong>Output</strong>:</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Strategy:</strong></dt>
+      <dd>The goal of this paper is a system where as much of the speech pipeline as possible is replaced by a single recurrent neural network (RNN) architecture.<br />
+The language model, however, will be lacking due to the limitation of the audio data to learn a strong LM.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Solves:</strong></dt>
+      <dd>
+        <ul>
+          <li>Previous models only used DNNs as a single component in a complex pipeline.<br />
+  NNs are trained to classify <strong>individual frames of acoustic data</strong>, and then, their output distributions are reformulated as emission probabilities for a HMM.<br />
+  In this case, the objective function used to train the networks is therefore substantially different from the true performance measure (sequence-level transcription accuracy.<br />
+  This leads to problems where one system might have an improved accuracy rate but the overall transcription accuracy can still decrease.</li>
+          <li>An additional problem is that the frame-level training targets must be inferred from the alignments determined by the HMM. This leads to an awkward iterative procedure, where network retraining is alternated with HMM re-alignments to generate more accurate targets.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Key Insights:</strong></dt>
+      <dd>
+        <ul>
+          <li>As an <strong>End-to-End</strong> model, this system avoids the problems of <strong>multi-part</strong> systems that lead to inconsistent training criteria and difficulty of integration. <br />
+  The network is trained directly on the text transcripts – no phonetic representation (and hence no pronunciation dictionary or state tying) is used.</li>
+          <li>Using <strong>CTC</strong> objective, the system is able to better approximate and solve the alignment problem avoiding HMM realignment training.<br />
+  Since CTC integrates out over all possible input-output alignments, no forced alignment is required to provide training targets.</li>
+          <li>The system uses a new <strong>objective function</strong> that trains the network to directly optimize the <strong>WER</strong>.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">Preparing the Data (Pre-Processing):</strong></dt>
+      <dd>The paper uses <strong>spectrograms</strong> as a minimal preprocessing scheme.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Architecture:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Algorithm:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents39">Issues/The Bottleneck:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents310">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">A Neural Transducer</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content4">FOURTH</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents45">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents46">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents47">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents48">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content5">FIFTH</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents51">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents52">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents53">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents54">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents55">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents56">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents57">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents58">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content6">Sixth</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents61">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents62">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents63">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents64">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents65">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents66">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents67">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue">Asynchronous:</strong>{: .bodyContents6 #bodyContents68</dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<h2 id="content7">Seven</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents71">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents72">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents73">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents74">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents75">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents76">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents77">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents78">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<h2 id="content8">Eight</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents81">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents82">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents83">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents84">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents85">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents86">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents87">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents88">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<h2 id="content9">Nine</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents91">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents92">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents93">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents94">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents95">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents96">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents97">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents98">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<h2 id="content10">Ten</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents101">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents102">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents103">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents104">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents105">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents106">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents107">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents108">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text("Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text("Show Content");
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.attr("input");
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text("Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text("Show Content");
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

@@ -129,6 +129,11 @@
             <ul>
               <li><em>Spontaneous</em> vs <em>Read</em> speech</li>
               <li><em>Large</em> vs <em>Small</em> Vocabulary</li>
+              <li><em>Continuous</em> vs <em>Isolated</em> Speech
+                <blockquote>
+                  <p>Continuous Speech is harder due to <strong><em>Co-Articulation</em></strong></p>
+                </blockquote>
+              </li>
               <li><em>Noisy</em> vs <em>Clear</em> input</li>
               <li><em>Low</em> vs <em>High</em> Resources</li>
               <li><em>Near-field</em> vs <em>Far-field</em> input</li>
@@ -196,7 +201,9 @@
             <ul>
               <li>Specifically, we apply <em>windowed short-term</em> <em><strong>Fast Fourier Transform (FFT)</strong></em>
                 <blockquote>
-                  <p>e.g. FFT on overlapping <script type="math/tex">25ms</script> windows (400 samples) taken every <script type="math/tex">10ms</script></p>
+                  <p>e.g. FFT on overlapping <script type="math/tex">25ms</script> windows (400 samples) taken every <script type="math/tex">10ms</script><br />
+<img src="/main_files/dl/nlp/12/16.png" alt="img" width="70%" /><br />
+Each frame is around 25ms of speech</p>
                 </blockquote>
               </li>
             </ul>
@@ -322,6 +329,8 @@
       <li><strong>YouTube</strong> 125,000 hours aligned captions (Soltau et al., 2016)</li>
     </ul>
   </li>
+  <li><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents85">Datasets:</strong><br />
+ <img src="/main_files/dl/nlp/12/17.png" alt="img" width="75%" /></li>
 </ol>
 
 <hr />
@@ -806,6 +815,19 @@ Thus, the bottleneck in the model is the assumption that the <em>network outputs
           <li>Don’t scale by the posterior</li>
           <li>Produces similar results to conventional training</li>
           <li>Simple to implement in the <strong>FST</strong> framework</li>
+          <li>CTC could learn to <strong>delay</strong> output on its own in order to improve accuracy:
+            <ul>
+              <li>In-practice, tends to align transcription closely</li>
+              <li>This is especially problematic for English letters (spelling)</li>
+              <li><strong>Sol</strong>:<br />
+  bake limited context into model structure; s.t. the model at time-step <script type="math/tex">T</script> can see only some future frames.
+                <ul>
+                  <li>Caveat: may need to compute upper layers quickly after sufficient context arrives.<br />
+  Can be easier if context is near top.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
         </ul>
       </dd>
     </dl>
@@ -982,6 +1004,238 @@ Where, in translation, the input would be the <em>source sentence</em> but in <s
   <img src="/main_files/dl/nlp/12/15.png" alt="img" width="90%" /></li>
         </ul>
       </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content11">Building ASR Systems</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents11" id="bodyContents111">Pre-Processing:</strong></dt>
+      <dd>A <strong>Spectrogram</strong> is a visual representation of the spectrum of frequencies of sound or other signal as they vary with time.
+        <ul>
+          <li>Take a small window (~20 ms) of waveform</li>
+          <li>Compute <strong>FFT</strong> and take magnitude (i.e. prower)
+            <blockquote>
+              <p>Describes Frequency content in local window</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd><img src="/main_files/dl/nlp/12/18.png" alt="img" width="80%" /></dd>
+      <dd>
+        <ul>
+          <li>Concatenate frames from adjacent windows to form the “spectrogram”<br />
+<img src="/main_files/dl/nlp/12/19.png" alt="img" width="80%" /></li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents11" id="bodyContents112">Acoustic Model:</strong></dt>
+      <dd>An <strong>Acoustic Model</strong> is used in automatic speech recognition to represent the relationship between an audio signal and the phonemes or other linguistic units that make up speech.</dd>
+      <dd><strong>Goal</strong>: create a neural network (DNN/RNN) from which we can extract transcriptions, <script type="math/tex">y</script> - by training on labeled pairs <script type="math/tex">(x, y^\ast)</script>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents11" id="bodyContents113">Network (example) Architecture:</strong></dt>
+      <dd><strong>RNN to predict graphemes (26 chars + space + blank)</strong>:
+        <ul>
+          <li>Spectrograms as inputs</li>
+          <li>1 Layer of Convolutional Filters</li>
+          <li>3 Layers of Gated Recurrent Units
+            <ul>
+              <li>1000 Neurons per Layer</li>
+            </ul>
+          </li>
+          <li>1 Fully-Connected Layer to predict <script type="math/tex">c</script></li>
+          <li>Batch Normalization</li>
+          <li><em><strong>CTC</strong></em> <strong>Loss Function</strong>  (Warp-CTC)</li>
+          <li>SGD+Nesterov Momentum Optimization/Training
+<img src="/main_files/dl/nlp/12/20.png" alt="img" width="50%" /></li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents11" id="bodyContents114">Incorporating a Language Model:</strong></dt>
+      <dd>Incorporating a Language Model helps the model learn:
+        <ul>
+          <li>Spelling</li>
+          <li>Grammar</li>
+          <li>Expand Vocabulary</li>
+        </ul>
+      </dd>
+      <dd><strong>Two Ways</strong>:
+        <ol>
+          <li>Fuse the <strong>Acoustic Model</strong> with the language model <script type="math/tex">p(y)</script></li>
+          <li>Incorporate linguistic data:
+            <ul>
+              <li>Predict Phonemes + Pronunciation Lexicon + LM</li>
+            </ul>
+          </li>
+        </ol>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents11" id="bodyContents115">Decoding with Language Models:</strong></dt>
+      <dd>
+        <ul>
+          <li>Given a word-based LM of form <script type="math/tex">p(w_{t+1} \vert w_{1:t})</script></li>
+          <li>Use <strong>Beam Search</strong> to maximize <em>(Hannun et al. 2014)</em>:</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">\mathrm{arg } \max_{w} p(w \vert x)\: p(w)^\alpha \: [\text{length}(w)]^\beta</script>
+      </dd>
+      <dd>
+        <blockquote>
+          <ul>
+            <li><script type="math/tex">p(w \vert x) = p(y \vert x)</script> for characters that make up <script type="math/tex">w</script>.</li>
+            <li>We tend to penalize long transcriptions due to the multiplicative nature of the objective, so we trade off (re-weight) with <script type="math/tex">\alpha , \beta</script></li>
+          </ul>
+        </blockquote>
+      </dd>
+      <dd>
+        <ul>
+          <li>Start with a set of candidate transcript prefixes, <script type="math/tex">A = {}</script></li>
+          <li><strong>For <script type="math/tex">t = 1 \ldots T</script></strong>:
+            <ul>
+              <li><strong>For Each Candidate in <script type="math/tex">A</script>, consider</strong>:
+                <ol>
+                  <li>Add blank; don’t change prefix; update probability using the AM.</li>
+                  <li>Add space to prefix; update probability using LM.</li>
+                  <li>Add a character to prefix; update probability using AM. Add new candidates with updated probabilities to <script type="math/tex">A_{\text{new}}</script></li>
+                </ol>
+              </li>
+              <li><script type="math/tex">A := K</script> most probable prefixes in <script type="math/tex">A_{\text{new}}</script></li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd><button class="showText" value="show" onclick="showTextPopHide(event);">Algorithm Description</button>
+<img src="/main_files/dl/nlp/12/21.png" alt="formula" width="100%" hidden="" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents11" id="bodyContents116">Rescoring with Neural LM:</strong></dt>
+      <dd>The output from the RNN described above consists of a <strong>big list</strong> of the <strong>top <script type="math/tex">k</script> transcriptions</strong> in terms of probability.<br />
+We want to re-score these probabilities based on a strong LM.
+        <ul>
+          <li>It is Cheap to evaluate <script type="math/tex">p(w_k \vert w_{k-1}, w_{k-2}, \ldots, w_1)</script> NLM on many sentences</li>
+          <li>In-practice, often combine with N-gram trained from big corpora</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents11" id="bodyContents117">Scaling Up:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Data</strong>:
+            <ul>
+              <li>Transcribing speech data isn’t cheap, but not prohibitive
+                <ul>
+                  <li>Roughly 50¢ to $1 per minute</li>
+                </ul>
+              </li>
+              <li>Typical speech benchmarks offer 100s to few 1000s of hours:
+                <ul>
+                  <li>LibriSpeech (audiobooks)</li>
+                  <li>LDC corpora (Fisher, Switchboard, WSJ) ($$)</li>
+                  <li>VoxForge</li>
+                </ul>
+              </li>
+              <li>Data is very Application/Problem dependent and should be chosen with respect to the problem to be solved</li>
+              <li>Data can be collected as “read”-data for &lt;$10 – Make sure the data to be read is scripts/plays to get a conversationalist response</li>
+              <li>Noise is <strong>additive</strong> and can be incorporated</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Computation</strong>:
+            <ul>
+              <li>How big is 1 experiment?{: style=”color: red”}<br />
+  <script type="math/tex">\geq (\# \text{Connections}) \cdot (\# \text{Frames}) \cdot (\# \text{Utterances}) \cdot (\# \text{Epochs}) \cdot 3 \cdot 2 \:\text{ FLOPs}</script> <br />
+  E.g. for DS2 with 10k hours of data:<br />
+  <script type="math/tex">100*10^6 * 100 * 10^6*20 * 3 * 2 = 1.2*10^{19} \:\text{ FLOPs}</script><br />
+  ~30 days (with well-optimized code on Titan X)</li>
+              <li>Work-arounds and solutions:{: style=”color: red”}
+                <ul>
+                  <li>More GPUs with data parallelism:
+                    <ul>
+                      <li>Minibatches up to 1024</li>
+                      <li>Aim for <script type="math/tex">\geq 64</script> utterances per GPU 
+  ~<script type="math/tex">% <![CDATA[
+< 1 %]]></script>-wk training time (~8 Titans)</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <p>How to use more GPUs?{: style=”color: red”}</p>
+
+                <ul>
+                  <li>Synch. SGD</li>
+                  <li>Asynch SGD</li>
+                  <li>Synch SGD w/ backup workers</li>
+                </ul>
+              </li>
+              <li><strong>Tips and Tricks</strong>:
+                <ul>
+                  <li>Make sure the code is <em>optimized</em> single-GPU.<br />
+  A lot of off-the-shelf code has inefficiencies.<br />
+  E.g. Watch for bad GEMM sizes.</li>
+                  <li>Keep similar-length utterances together:<br />
+  The input must be block-sized and will be padded; thus, keeping similar lengths together reduces unnecessary padding.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Throughput</strong>:
+            <ul>
+              <li>Large DNN/RNN models run well on GPUs, ONLY, if the batch size is high enough.<br />
+  Processing 1 audio stream at a time is inefficient.<br />
+  <em><strong>Performance for K1200 GPU</strong></em>:<br />
+  | <strong>Batch Size</strong> | <strong>FLOPs</strong> | <strong>Throughput</strong> |
+  | 1 | 0.065 TFLOPs | 1x | 
+  | 10 | 0.31 TFLOPs | 5x | 
+  | 32 | 0.92 TFLOPs | 14x |</li>
+              <li>Batch packets together as data comes in:
+                <ul>
+                  <li>Each packet (Arrow) of speech data ~ 100ms<br />
+  <img src="/main_files/dl/nlp/12/21.png" alt="img" width="80%" /></li>
+                  <li>Process packets that arrive at similar times in parallel (from    multiple users)<br />
+  <img src="/main_files/dl/nlp/12/22.png" alt="img" width="80%" /></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents11" id="bodyContents118">Asynchronous:</strong></dt>
+      <dd></dd>
     </dl>
   </li>
 </ol>

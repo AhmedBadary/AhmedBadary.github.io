@@ -111,6 +111,10 @@ prevLink: /
             
             1. [Human parity in speech recognition (xiong et al. 2016)]()
             2. [Deep Learning for Speech (Deng et al.)]()
+    :   * __Timeline papers__:  
+            1. [Graves &Jaitley (Tpwards End to End Speech Recog. with Neural Nets)](/)
+            2. [Maas et al. (Lexicon Free Conversational Speech Recog. with Neural Nets)]()  
+            3. [Chan et al. (LAS)](/)
 
 ***
 
