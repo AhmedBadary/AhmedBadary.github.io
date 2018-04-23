@@ -375,9 +375,9 @@ prevLink: /work_files/research/dl/nlp.html
         A sequence of _labels_
 
 
-3. **Algorithm :**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}  
+3. **Algorithm:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}  
    ![img](/main_files/dl/nlp/12/3.png){: width="80%"}  
-    1. Extract the (*__LOG MEL__*) _Spectogram_ from the input  
+    1. Extract the (*__LOG MEL__*) _Spectrogram_ from the input  
         > Use raw audio iff there are multiple microphones
     2. Feed the _Spectogram_ into a _(bi-directional) RNN_
     3. At each frame, we apply a _softmax_ over the entire vocabulary that we are interested in (plus a _blank token_), producing a prediction _log probability_ (called the __score__) for a _different token class_ at that time step.   
@@ -387,6 +387,25 @@ prevLink: /work_files/research/dl/nlp.html
         * The probability of any transcript is the sum of probabilities of all paths that correspond to that transcript
         * __Dynamic Programming__ allopws is to compute the log probability $$p(\mathbf{Y} \vert \mathbf{X})$$ and its gradient exactly.  
     ![img](/main_files/dl/nlp/12/4.png){: width="80%"}  
+
+10. **The Math:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents210}  
+    :   Given a length $$T$$ input sequence $$x$$, the output vectors $$y_t$$ are normalized with the __Softmax__ function, then interpreted as the probability of emitting the label (or blank) with index $$k$$ at time $$t$$: 
+    :   $$P(k, t \vert x) = \dfrac{e^{(y_t^k)}}{\sum_{k'} e^{(y_t^{k'})}}$$ 
+    :   where $$y_t^k$$ is element $$k$$ of $$y_t$$.  
+    :   A __CTC alignment__ $$a$$ is a length $$T$$ sequence of blank and label indices.  
+        The probability $$P(a \vert x)$$ of 
+        $$a$$ is the product of the emission probabilities at every time-step:  
+    :   $$P(a \vert x) = \prod_{t=1}^T P(a_t, t \vert x)$$ 
+    :   Denoting by $$\mathcal{B}$$ an operator that removes first the repeated labels, then the blanks from alignments, and observing that the total probability of an output transcription $$y$$ is equal to the sum of the probabilities of the alignments corresponding to it, we can write:  
+    :   $$P(y \vert x) = \sum_{a \in \mathcal{B}^{-1}(y)} P(a \vert x)\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:(*)$$ 
+    :   Given a target transcription $$y^\ast$$, the network can then be trained to minimise the __CTC objective function__:  
+    :   $$\text{CTC}(x) = - \log P(y^\ast \vert x)$$ 
+
+
+11. **Intuition:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents211}  
+    :   The above 'integrating out' over possible alignments eq. $$(*)$$ is what allows the network to be trained with unsegmented data.   
+        The intuition is that, because we don’t know where the labels within a particular transcription will occur, we sum over all the places where they could occur can be efficiently evaluated and differentiated using a dynamic programming algorithm.
+
 
 5. **Analysis:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
     :   The _ASR_ model consists of an __RNN__ plus a __CTC__ layer.    

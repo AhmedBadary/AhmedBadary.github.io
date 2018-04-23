@@ -750,10 +750,10 @@ Then, it gets a <strong>closed formula</strong> for the <strong>probability</str
   A sequence of <em>labels</em></li>
     </ul>
   </li>
-  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Algorithm :</strong><br />
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Algorithm:</strong><br />
 <img src="/main_files/dl/nlp/12/3.png" alt="img" width="80%" />
     <ol>
-      <li>Extract the (<em><strong>LOG MEL</strong></em>) <em>Spectogram</em> from the input
+      <li>Extract the (<em><strong>LOG MEL</strong></em>) <em>Spectrogram</em> from the input
         <blockquote>
           <p>Use raw audio iff there are multiple microphones</p>
         </blockquote>
@@ -770,6 +770,37 @@ Then, it gets a <strong>closed formula</strong> for the <strong>probability</str
         </ul>
       </li>
     </ol>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents210">The Math:</strong></dt>
+      <dd>Given a length <script type="math/tex">T</script> input sequence <script type="math/tex">x</script>, the output vectors <script type="math/tex">y_t</script> are normalized with the <strong>Softmax</strong> function, then interpreted as the probability of emitting the label (or blank) with index <script type="math/tex">k</script> at time <script type="math/tex">t</script>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">P(k, t \vert x) = \dfrac{e^{(y_t^k)}}{\sum_{k'} e^{(y_t^{k'})}}</script>
+      </dd>
+      <dd>where <script type="math/tex">y_t^k</script> is element <script type="math/tex">k</script> of <script type="math/tex">y_t</script>.</dd>
+      <dd>A <strong>CTC alignment</strong> <script type="math/tex">a</script> is a length <script type="math/tex">T</script> sequence of blank and label indices.<br />
+The probability <script type="math/tex">P(a \vert x)</script> of 
+<script type="math/tex">a</script> is the product of the emission probabilities at every time-step:</dd>
+      <dd>
+        <script type="math/tex; mode=display">P(a \vert x) = \prod_{t=1}^T P(a_t, t \vert x)</script>
+      </dd>
+      <dd>Denoting by <script type="math/tex">\mathcal{B}</script> an operator that removes first the repeated labels, then the blanks from alignments, and observing that the total probability of an output transcription <script type="math/tex">y</script> is equal to the sum of the probabilities of the alignments corresponding to it, we can write:</dd>
+      <dd>
+        <script type="math/tex; mode=display">P(y \vert x) = \sum_{a \in \mathcal{B}^{-1}(y)} P(a \vert x)\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:(*)</script>
+      </dd>
+      <dd>Given a target transcription <script type="math/tex">y^\ast</script>, the network can then be trained to minimise the <strong>CTC objective function</strong>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">\text{CTC}(x) = - \log P(y^\ast \vert x)</script>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents211">Intuition:</strong></dt>
+      <dd>The above ‘integrating out’ over possible alignments eq. <script type="math/tex">(*)</script> is what allows the network to be trained with unsegmented data. <br />
+The intuition is that, because we don’t know where the labels within a particular transcription will occur, we sum over all the places where they could occur can be efficiently evaluated and differentiated using a dynamic programming algorithm.</dd>
+    </dl>
   </li>
   <li>
     <dl>

@@ -12,21 +12,25 @@ prevLink: /work_files/research/dl/nlp.html
   {: .TOC1}
   * [Towards End-to-End Speech Recognition with Recurrent Neural Networks](#content2)
   {: .TOC2}
-  * [A Neural Transducer](#content3)
+  * [Attention-Based Models for Speech Recognition](#content3)
   {: .TOC3}
-  * [FOURTH](#content4)
+  * [A Neural Transducer](#content4)
   {: .TOC4}
-  * [FIFTH](#content5)
+  * [Deep Speech 2](#content5)
   {: .TOC5}
-  * [SIXTH](#content6)
+  * [Listen, Attend and Spell (LAS)](#content6)
   {: .TOC6}
+  * [State of the Art Speech Recognition w/ Sequence Modeling](#content7)
+  {: .TOC7}
+  * [Very Deep Convolutional Networks for End-To-End Speech Recognition](#content8)
+  {: .TOC8}
 </div>
 
 ***
 ***
 
 ## Deep Speech 
-{: #content2}
+{: #content1}
 
 1. **Introduction:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
     :   This paper takes a first attempt at an End-to-End system for ASR.  
@@ -62,7 +66,6 @@ prevLink: /work_files/research/dl/nlp.html
 
 7. **Architecture:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
     :   The system is composed of:  
-        ![img](/main_files/dl/nlp/speech_research/1.png){: width="80%"}    
         * An __RNN__:    
             * 5 layers of __hidden units__:  
                 * 3 Layer of __Feed-forward Nets__:  
@@ -89,8 +92,8 @@ prevLink: /work_files/research/dl/nlp.html
         * A *__CTC__* __Loss Function__ $$\mathcal{L}(\hat{y}, y)$$  
         * An *__N-gram Language Model__* 
         * A __combined Objective Function__:  
-    :   $$Q(c) = \log (P(x \vert x)) + \alpha \log (P_{\text{LM}}(c) + \beta \text{word_count}(c))$$ 
-
+    :   $$Q(c) = \log (P(x \vert x)) + \alpha \log (P_{\text{LM}}(c) + \beta \text{word_count}(c))$$   
+    :   ![img](/main_files/dl/nlp/speech_research/1.png){: width="80%"}    
 8. **Algorithm:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}  
     :   * Given the output $$P(c \vert x)$$ of the RNN: perform a __search__ to find the sequence of characters $$c_1, c_2, ...$$ that is most probable according to both:  
             1. The RNN Output
@@ -165,7 +168,20 @@ prevLink: /work_files/research/dl/nlp.html
     :   The paper uses __spectrograms__ as a minimal preprocessing scheme.  
 
 7. **Architecture:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}  
-    :   
+    :   The system is composed of:  
+        * A __Bi-LSTM__  
+        * A __CTC output layer__  
+        * A __combined objective function__:  
+            The new objective function at allows an RNN to be trained to optimize the expected value of an arbitrary loss function defined over output transcriptions (such as __WER__).  
+            Given input sequence $$x$$, the distribution $$P(y\vert x)$$ over transcriptions sequences $$y$$ defined by CTC, and a real-valued transcription loss function $$\mathcal{L}(x, y)$$, the expected transcription loss $$\mathcal{L}(x)$$ is defined:  
+            <p>$$\begin{align}
+                \mathcal{L}(x) &= \sum_y P(y \vert x)\mathcal{L}(x,y) \\ 
+                &= \sum_y \sum_{a \in \mathcal{B}^{-1}(y)} P(a \vert x)\mathcal{L}(x,y) \\
+                &= \sum_a P(a \vert x)\mathcal{L}(x,\mathcal{B}(a))
+                \end{align}$$</p>  
+        <button>Show Derivation</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![Approximation and Differentiation](/main_files/dl/nlp/speech_research/3.png){: hidden="" width="80%"}
+
 
 8. **Algorithm:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}  
     :   
@@ -183,34 +199,56 @@ prevLink: /work_files/research/dl/nlp.html
 
 ***
 
-## A Neural Transducer
+## Attention-Based Models for Speech Recognition
 {: #content3}
 
 1. **Introduction:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}  
-    :   This paper presents an ASR system that directly transcribes audio data with text, __without__ requiring an _intermediate phonetic representation_.
+    :   This paper introduces and extends the attention mechanism with features needed for ASR. It adds location-awareness to the attention mechanism to add robustness against different lengths of utterances.  
+
+2. **Motivation:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}    
+    :   Learning to recognize speech can be viewed as learning to generate a sequence (transcription) given another sequence (speech).  
+        From this perspective it is similar to machine translation and handwriting synthesis tasks, for which attention-based methods have been found suitable. 
+    :   __How ASR differs:__  
+        Compared to _Machine Translation_, speech recognition differs by requesting much longer input sequences which introduces a challenge of distinguishing similar speech fragments in a single utterance.  
+        > thousands of frames instead of dozens of words   
+    :   It is different from _Handwriting Synthesis_, since the input sequence is much noisier and does not have a clear structure.  
 
 2. **Structure:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}    
     :   * __Input__:  
-        * __Output__:  
-                
+        * __Output__:         
 
 3. **Strategy:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
-    :   The goal of this paper is a system where as much of the speech pipeline as possible is replaced by a single recurrent neural network (RNN) architecture.  
-        The language model, however, will be lacking due to the limitation of the audio data to learn a strong LM. 
+    :   The goal of this paper is a system, that uses attention-mechanism with location awareness, whose performance is comparable to that of the conventional approaches.   
+    :   * For each generated phoneme, an attention mechanism selects or weighs the signals produced by a trained feature extraction mechanism at potentially all of the time steps in the input sequence (speech frames).  
+        * The weighted feature vector then helps to condition the generation of the next element of the output sequence.  
+        * Since the utterances in this dataset are rather short (mostly under 5 seconds), we measure the ability of the considered models in recognizing much longer utterances which were created by artificially concatenating the existing utterances.
 
 4. **Solves:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
-    :   * Previous models only used DNNs as a single component in a complex pipeline.  
-            NNs are trained to classify __individual frames of acoustic data__, and then, their output distributions are reformulated as emission probabilities for a HMM.  
-            In this case, the objective function used to train the networks is therefore substantially different from the true performance measure (sequence-level transcription accuracy.  
-            This leads to problems where one system might have an improved accuracy rate but the overall transcription accuracy can still decrease.  
-        *  An additional problem is that the frame-level training targets must be inferred from the alignments determined by the HMM. This leads to an awkward iterative procedure, where network retraining is alternated with HMM re-alignments to generate more accurate targets. 
+    :   * __Problem__:  
+            The [attention-based model proposed for NMT](https://arxiv.org/abs/1409.0473) demonstrates vulnerability to the issue of similar speech fragments with __longer, concatenated utterances__.  
+            The paper argues that  this model adapted to track the absolute location in the input sequence of the content it is recognizing, a strategy feasible for short utterances from the original test set but inherently unscalable.  
+        * __Solution__:  
+            The attention-mechanism is modified to take into account the location of the focus from the previous step and the features of the input sequence by adding as inputs to the attention mechanism auxiliary *__Convolutional Features__* which are extracted by convolving the attention weights from the previous step with trainable filters.  
 
 5. **Key Insights:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
-    :   * As an __End-to-End__ model, this system avoids the problems of __multi-part__ systems that lead to inconsistent training criteria and difficulty of integration.   
-            The network is trained directly on the text transcripts -- no phonetic representation (and hence no pronunciation dictionary or state tying) is used.  
-        * Using __CTC__ objective, the system is able to better approximate and solve the alignment problem avoiding HMM realignment training.  
-            Since CTC integrates out over all possible input-output alignments, no forced alignment is required to provide training targets.  
-        * The system uses a new __objective function__ that trains the network to directly optimize the __WER__.  
+    :   * Introduces attention-mechanism to ASR
+        * The attention-mechanism is modified to take into account:  
+            * location of the focus from the previous step  
+            * features of the input sequence
+        * Proposes a generic method of adding location awareness to the attention mechanism
+        * Introduce a modification of the attention mechanism to avoid concentrating the attention on a single frame  
+
+7. **Attention-based Recurrent Sequence Generator (ARSG):**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
+    :   is a recurrent neural network that stochastically generates an output sequence $$(y_1, \ldots, y_T)$$ from an input $$x$$.  
+    In practice, $$x$$ is often processed by an __encoder__ which outputs a sequential input representation $$h = (h_1, \ldots, h_L)$$ more suitable for the attention mechanism to work with.  
+    :   The __Encoder__: a deep bidirectional recurrent network.  
+        It forms a sequential representation h of length $$L = L'$$.  
+    :   * __Structure__:  
+            * *__Input__*: $$x = (x_1, \ldots, x_{L'})$$ is a sequence of feature vectors   
+                > Each feature vector is extracted from a small overlapping window of audio frames.  
+            * *__Output__*: $$y$$ is a sequence of phonemes
+
+
 
 6. **Preparing the Data (Pre-Processing):**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
     :   The paper uses __spectrograms__ as a minimal preprocessing scheme.  

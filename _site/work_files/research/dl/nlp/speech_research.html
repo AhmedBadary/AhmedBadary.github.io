@@ -73,23 +73,29 @@
     <li><a href="#content2">Towards End-to-End Speech Recognition with Recurrent Neural Networks</a></li>
   </ul>
   <ul class="TOC3">
-    <li><a href="#content3">A Neural Transducer</a></li>
+    <li><a href="#content3">Attention-Based Models for Speech Recognition</a></li>
   </ul>
   <ul class="TOC4">
-    <li><a href="#content4">FOURTH</a></li>
+    <li><a href="#content4">A Neural Transducer</a></li>
   </ul>
   <ul class="TOC5">
-    <li><a href="#content5">FIFTH</a></li>
+    <li><a href="#content5">Deep Speech 2</a></li>
   </ul>
   <ul class="TOC6">
-    <li><a href="#content6">SIXTH</a></li>
+    <li><a href="#content6">Listen, Attend and Spell (LAS)</a></li>
+  </ul>
+  <ul class="TOC7">
+    <li><a href="#content7">State of the Art Speech Recognition w/ Sequence Modeling</a></li>
+  </ul>
+  <ul class="TOC8">
+    <li><a href="#content8">Very Deep Convolutional Networks for End-To-End Speech Recognition</a></li>
   </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content2">Deep Speech</h2>
+<h2 id="content1">Deep Speech</h2>
 
 <ol>
   <li>
@@ -164,8 +170,7 @@
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Architecture:</strong></dt>
-      <dd>The system is composed of:<br />
-<img src="/main_files/dl/nlp/speech_research/1.png" alt="img" width="80%" />
+      <dd>The system is composed of:
         <ul>
           <li>An <strong>RNN</strong>:
             <ul>
@@ -222,6 +227,7 @@
       <dd>
         <script type="math/tex; mode=display">Q(c) = \log (P(x \vert x)) + \alpha \log (P_{\text{LM}}(c) + \beta \text{word_count}(c))</script>
       </dd>
+      <dd><img src="/main_files/dl/nlp/speech_research/1.png" alt="img" width="80%" /></dd>
     </dl>
   </li>
   <li>
@@ -392,7 +398,23 @@ The language model, however, will be lacking due to the limitation of the audio 
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Architecture:</strong></dt>
-      <dd></dd>
+      <dd>The system is composed of:
+        <ul>
+          <li>A <strong>Bi-LSTM</strong></li>
+          <li>A <strong>CTC output layer</strong></li>
+          <li>A <strong>combined objective function</strong>:<br />
+  The new objective function at allows an RNN to be trained to optimize the expected value of an arbitrary loss function defined over output transcriptions (such as <strong>WER</strong>).<br />
+  Given input sequence <script type="math/tex">x</script>, the distribution <script type="math/tex">P(y\vert x)</script> over transcriptions sequences <script type="math/tex">y</script> defined by CTC, and a real-valued transcription loss function <script type="math/tex">\mathcal{L}(x, y)</script>, the expected transcription loss <script type="math/tex">\mathcal{L}(x)</script> is defined:
+            <p>$$\begin{align}
+      \mathcal{L}(x) &amp;= \sum_y P(y \vert x)\mathcal{L}(x,y) \\ 
+      &amp;= \sum_y \sum_{a \in \mathcal{B}^{-1}(y)} P(a \vert x)\mathcal{L}(x,y) \\
+      &amp;= \sum_a P(a \vert x)\mathcal{L}(x,\mathcal{B}(a))
+      \end{align}$$</p>
+            <p><button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/dl/nlp/speech_research/3.png" alt="Approximation and Differentiation" hidden="" width="80%" /></p>
+          </li>
+        </ul>
+      </dd>
     </dl>
   </li>
   <li>
@@ -429,13 +451,27 @@ WER):
 
 <hr />
 
-<h2 id="content3">A Neural Transducer</h2>
+<h2 id="content3">Attention-Based Models for Speech Recognition</h2>
 
 <ol>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Introduction:</strong></dt>
-      <dd>This paper presents an ASR system that directly transcribes audio data with text, <strong>without</strong> requiring an <em>intermediate phonetic representation</em>.</dd>
+      <dd>This paper introduces and extends the attention mechanism with features needed for ASR. It adds location-awareness to the attention mechanism to add robustness against different lengths of utterances.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Motivation:</strong></dt>
+      <dd>Learning to recognize speech can be viewed as learning to generate a sequence (transcription) given another sequence (speech).<br />
+From this perspective it is similar to machine translation and handwriting synthesis tasks, for which attention-based methods have been found suitable.</dd>
+      <dd><strong>How ASR differs:</strong><br />
+Compared to <em>Machine Translation</em>, speech recognition differs by requesting much longer input sequences which introduces a challenge of distinguishing similar speech fragments in a single utterance.
+        <blockquote>
+          <p>thousands of frames instead of dozens of words</p>
+        </blockquote>
+      </dd>
+      <dd>It is different from <em>Handwriting Synthesis</em>, since the input sequence is much noisier and does not have a clear structure.</dd>
     </dl>
   </li>
   <li>
@@ -452,8 +488,14 @@ WER):
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Strategy:</strong></dt>
-      <dd>The goal of this paper is a system where as much of the speech pipeline as possible is replaced by a single recurrent neural network (RNN) architecture.<br />
-The language model, however, will be lacking due to the limitation of the audio data to learn a strong LM.</dd>
+      <dd>The goal of this paper is a system, that uses attention-mechanism with location awareness, whose performance is comparable to that of the conventional approaches.</dd>
+      <dd>
+        <ul>
+          <li>For each generated phoneme, an attention mechanism selects or weighs the signals produced by a trained feature extraction mechanism at potentially all of the time steps in the input sequence (speech frames).</li>
+          <li>The weighted feature vector then helps to condition the generation of the next element of the output sequence.</li>
+          <li>Since the utterances in this dataset are rather short (mostly under 5 seconds), we measure the ability of the considered models in recognizing much longer utterances which were created by artificially concatenating the existing utterances.</li>
+        </ul>
+      </dd>
     </dl>
   </li>
   <li>
@@ -461,11 +503,11 @@ The language model, however, will be lacking due to the limitation of the audio 
       <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Solves:</strong></dt>
       <dd>
         <ul>
-          <li>Previous models only used DNNs as a single component in a complex pipeline.<br />
-  NNs are trained to classify <strong>individual frames of acoustic data</strong>, and then, their output distributions are reformulated as emission probabilities for a HMM.<br />
-  In this case, the objective function used to train the networks is therefore substantially different from the true performance measure (sequence-level transcription accuracy.<br />
-  This leads to problems where one system might have an improved accuracy rate but the overall transcription accuracy can still decrease.</li>
-          <li>An additional problem is that the frame-level training targets must be inferred from the alignments determined by the HMM. This leads to an awkward iterative procedure, where network retraining is alternated with HMM re-alignments to generate more accurate targets.</li>
+          <li><strong>Problem</strong>:<br />
+  The <a href="https://arxiv.org/abs/1409.0473">attention-based model proposed for NMT</a> demonstrates vulnerability to the issue of similar speech fragments with <strong>longer, concatenated utterances</strong>.<br />
+  The paper argues that  this model adapted to track the absolute location in the input sequence of the content it is recognizing, a strategy feasible for short utterances from the original test set but inherently unscalable.</li>
+          <li><strong>Solution</strong>:<br />
+  The attention-mechanism is modified to take into account the location of the focus from the previous step and the features of the input sequence by adding as inputs to the attention mechanism auxiliary <em><strong>Convolutional Features</strong></em> which are extracted by convolving the attention weights from the previous step with trainable filters.</li>
         </ul>
       </dd>
     </dl>
@@ -475,11 +517,38 @@ The language model, however, will be lacking due to the limitation of the audio 
       <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Key Insights:</strong></dt>
       <dd>
         <ul>
-          <li>As an <strong>End-to-End</strong> model, this system avoids the problems of <strong>multi-part</strong> systems that lead to inconsistent training criteria and difficulty of integration. <br />
-  The network is trained directly on the text transcripts – no phonetic representation (and hence no pronunciation dictionary or state tying) is used.</li>
-          <li>Using <strong>CTC</strong> objective, the system is able to better approximate and solve the alignment problem avoiding HMM realignment training.<br />
-  Since CTC integrates out over all possible input-output alignments, no forced alignment is required to provide training targets.</li>
-          <li>The system uses a new <strong>objective function</strong> that trains the network to directly optimize the <strong>WER</strong>.</li>
+          <li>Introduces attention-mechanism to ASR</li>
+          <li>The attention-mechanism is modified to take into account:
+            <ul>
+              <li>location of the focus from the previous step</li>
+              <li>features of the input sequence</li>
+            </ul>
+          </li>
+          <li>Proposes a generic method of adding location awareness to the attention mechanism</li>
+          <li>Introduce a modification of the attention mechanism to avoid concentrating the attention on a single frame</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Attention-based Recurrent Sequence Generator (ARSG):</strong></dt>
+      <dd>is a recurrent neural network that stochastically generates an output sequence <script type="math/tex">(y_1, \ldots, y_T)</script> from an input <script type="math/tex">x</script>.<br />
+ In practice, <script type="math/tex">x</script> is often processed by an <strong>encoder</strong> which outputs a sequential input representation <script type="math/tex">h = (h_1, \ldots, h_L)</script> more suitable for the attention mechanism to work with.</dd>
+      <dd>The <strong>Encoder</strong>: a deep bidirectional recurrent network.<br />
+It forms a sequential representation h of length <script type="math/tex">L = L'</script>.</dd>
+      <dd>
+        <ul>
+          <li><strong>Structure</strong>:
+            <ul>
+              <li><em><strong>Input</strong></em>: <script type="math/tex">x = (x_1, \ldots, x_{L'})</script> is a sequence of feature vectors
+                <blockquote>
+                  <p>Each feature vector is extracted from a small overlapping window of audio frames.</p>
+                </blockquote>
+              </li>
+              <li><em><strong>Output</strong></em>: <script type="math/tex">y</script> is a sequence of phonemes</li>
+            </ul>
+          </li>
         </ul>
       </dd>
     </dl>
