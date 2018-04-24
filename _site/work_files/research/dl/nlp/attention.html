@@ -45,7 +45,7 @@
 
 
 <section class="page-header">
-  <h1 class="project-name"><br /></h1>
+  <h1 class="project-name">Attention Mechanism for DNNs</h1>
   <h2 class="project-tagline"></h2>
   <a href="/#" class="btn">Home</a>
   <a href="/work" class="btn">Work-Space</a>
@@ -70,7 +70,7 @@
     <li><a href="#content1">Introduction</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">SECOND</a></li>
+    <li><a href="#content2">Specialized Attention Varieties</a></li>
   </ul>
 </div>
 
@@ -83,13 +83,27 @@
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Motivation:</strong></dt>
-      <dd>In <em>Vanilla Seq2Seq models__, the only representation of the input is the _fixed-dimensional vector representation <script type="math/tex">(y)</script></em>, that we need to carry through the entire decoding process.</dd>
+      <dd>In <strong>Vanilla Seq2Seq models</strong>, the only representation of the input is the <em>fixed-dimensional vector representation <script type="math/tex">(y)</script></em>, that we need to carry through the entire decoding process. <br />
+This presents a <strong>bottleneck</strong> in condensing all of the information of the <em>entire input sequence</em> into just one <em>fixed-length</em> vector representation.</dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Attention:</strong></dt>
+      <dd>Attention is a mechanism that allows DNNs to focus on (view) certain local or global features of the input sequence as a whole or in part.</dd>
+      <dd>Attention involves focus on <em>certain parts</em> of the input, while having a <em>low-resolution</em> view of the rest of the input – similar to human attention in vision/audio.</dd>
+      <dd>An <strong>Attention Unit</strong> considers all sub regions and contexts as its input and it outputs the weighted arithmetic mean of these regions.
+        <blockquote>
+          <p>The <strong>arithmetic mean</strong> is the inner product of actual values and their probabilities.</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">m_i = \tanh (x_iW_{x_i} + CW_C)</script>
+      </dd>
+      <dd>These <strong>probabilities</strong> are calculated using the <em><strong>context</strong></em>.<br />
+The <strong>Context</strong> <script type="math/tex">C</script> represents everything the RNN has outputted until now.</dd>
+      <dd>The difference between using the <em>hyperbolic tanh</em> and a <em>dot product</em> is the <strong>granularity</strong> of the output regions of interest - <strong>tanh</strong> is more fine-grained with less choppy and smoother sub-regions chosen.</dd>
+      <dd>The probabilities are interpreted as corresponding to the relevance of the sub-region <script type="math/tex">x_i</script> given context C</dd>
     </dl>
   </li>
   <li>
@@ -100,69 +114,288 @@
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Types of Attention:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Soft Attention</strong>: we consider different parts of <em>different subregions</em>
+            <ul>
+              <li>Soft Attention is <strong>deterministic</strong></li>
+            </ul>
+          </li>
+          <li><strong>Hard Attention</strong>: we consider only <em>one subregion</em>
+            <ul>
+              <li>Hard Attention is a <strong>stochastic</strong> process</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Strategy:</strong></dt>
+      <dd>
+        <ul>
+          <li>Encode each word in the sentence into a vector (representation)</li>
+          <li>When decoding, perform a linear combination of these vectors, weighted by <em>attention weights</em></li>
+          <li>Use this combination in picking the next word (subregion)</li>
+        </ul>
+      </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Calculating Attention:</strong></dt>
+      <dd>
+        <ul>
+          <li>Use <strong>query</strong> vector (decoder state) and <strong>key</strong> vectors (all encoder states)</li>
+          <li>For each query-key pair, calculate weight</li>
+          <li>Normalize to add to one using softmax</li>
+          <li>Combine together value vectors (usually encoder states, like key vectors) by taking the weighted sum</li>
+          <li>Use this in any part of the model</li>
+        </ul>
+      </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Attention Score Functions:</strong></dt>
+      <dd><script type="math/tex">q</script> is the query, <script type="math/tex">k</script> is the key:
+        <ul>
+          <li><strong>Multi-Layer Perceptron</strong> <em>(Bahdanau et al. 2015)</em>:
+            <ul>
+              <li>Flexible, often very good with large data</li>
+            </ul>
+          </li>
+        </ul>
+        <p>$$a(q,k) = w_2^T \tanh (W_1[q;k])$$</p>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Bilinear</strong> <em>(luong et al. 2015)</em>:
+            <ul>
+              <li>Not used widely in Seq2Seq models</li>
+              <li>Results are inconsistent</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">a(q,k) = q^TWk</script>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Dot Product</strong> <em>(luong et al. 2015)</em>:
+            <ul>
+              <li>No parameters</li>
+              <li>Requires the sizes to be the same</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">a(q,k) = q^Tk</script>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Scaled Dot Product</strong> <em>(Vaswani et al. 2017)</em>:
+            <ul>
+              <li>Solves the scale problem of the dot-product: the scale of the dot product increases as dimensions get larger</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">a(q,k) = \dfrac{q^Tk}{\sqrt{\vert k \vert}}</script>
+      </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">What to Attend to?</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Input Sentence</strong>:
+            <ul>
+              <li>A previous word for translation - <a href="/">Neural Machine Translation</a></li>
+              <li>Copying Mechanism - <a href="/">Gu et al. 2016</a></li>
+              <li>Lexicon bias <a href="/">Arthur et al. 2016</a></li>
+            </ul>
+          </li>
+          <li><strong>Previously Generated Things</strong>:
+            <ul>
+              <li>In <em><strong>language modeling</strong></em>: attend to the previous words - <a href="/">Merity et al. 2016</a>
+                <blockquote>
+                  <p>Attend to the previous words that you generated and decide whether to use them again (copy)</p>
+                </blockquote>
+              </li>
+              <li>In <strong><em>translation</em></strong>: attend to either input or previous output - <a href="/">Vaswani et al. 2017</a></li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents19">Modalities:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Images</strong> (Xu et al. 2015)</li>
+          <li><strong>Speech</strong> (Chan et al. 2015)</li>
+          <li><strong>Hierarchical Structures</strong> (Yang et al. 2016):
+            <ul>
+              <li>Encode with attention over each sentence then attention over each sentence in the document</li>
+            </ul>
+          </li>
+          <li><strong>Multiple Sources</strong>:
+            <ul>
+              <li>Attend to multiple sentences in different languages to be translated to one target language (Zoph et al. 2015)</li>
+              <li>Attend to a sentence and an image (Huang et al. 2016)</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents110">Intra-Attention/Self-Attention:</strong></dt>
+      <dd>Each element in the sentence attends to other elements – context sensitive encodings.</dd>
+      <dd>It behaves similar to a <strong>Bi-LSTM</strong> in that it tries to encode information about the context (words around the current input) into the representation of the word.<br />
+It differs however:
+        <ol>
+          <li>Intra-Attention is much more direct, as it takes the context directly without being influenced by many steps inside the RNN</li>
+          <li>It is much faster as it is only a dot/matrix product</li>
+        </ol>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents111">Improvement to Attention:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong style="color: red">The Coverage Problem:</strong>  Neural models tend to drop or repeat content when tested on data not very similar to the training set</li>
+          <li><strong style="color: red">Solution:</strong> Model how many times words have been covered
+            <ul>
+              <li><strong>Impose a penalty</strong> if attention is not <script type="math/tex">\approx 1</script> for each word (Cohn et al. 2015) <br />
+  It forces the system to translate each word at least once.</li>
+              <li><strong>Add embeddings indicating coverage</strong> (Mi.. et al. 2016)</li>
+              <li>Incorporating Markov Properties (Cohn et al. 2015)
+                <ul>
+                  <li>Intuition: attention from last time tends to be correlated with attention this time</li>
+                  <li>Strategy: Add information about the last attention when making the next decision</li>
+                </ul>
+              </li>
+              <li><strong>Bidirectional Training</strong> (Cohn et al. 2015):
+                <ul>
+                  <li>Intuition: Our attention should be roughly similar in forward and backward directions</li>
+                  <li>Method: Train so that we get a bonus based on the trace of the matrix product for training in both directions<br />
+  <script type="math/tex">\mathrm{Tr} (A_{X \rightarrow Y}A^T_{Y \rightarrow X})</script></li>
+                </ul>
+              </li>
+              <li><strong>Supervised Training</strong> (Mi et al. 2016):
+                <ul>
+                  <li>Sometimes we can get “gold standard” alignments a-priori:
+                    <ul>
+                      <li>Manual alignments</li>
+                      <li>Pre-trained with strong alignment model</li>
+                    </ul>
+                  </li>
+                  <li>Train the model to match these strong alignments (bias the model)</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents121">Attention is not Alignment <em>(Koehn and Knowles 2017)</em>:</strong></dt>
+      <dd>
+        <ul>
+          <li>Attention is often blurred</li>
+          <li>Attention is often off by one:<br />
+  Since the DNN has already seen parts of the information required to generate previous outputs, it might not need all of the information from the word that is actually matched with its current output.</li>
+        </ul>
+      </dd>
+      <dd>Thus, even if <em>Supervised training</em> is used to increase alignment accuracy, the overall error rate of the task might not actually decrease.</dd>
     </dl>
   </li>
 </ol>
 
 <hr />
 
-<h2 id="content2">SECOND</h2>
+<h2 id="content2">Specialized Attention Varieties</h2>
 
 <ol>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Hard Attention <em>(Xu et al. 2015)</em>:</strong></dt>
+      <dd>
+        <ul>
+          <li>Instead of a <em>soft interpolation</em>, make a <strong>Zero-One decision</strong> about where to attend (Xu et al. 2015)
+            <ul>
+              <li>Harder to train - requires reinforcement learning methods</li>
+            </ul>
+          </li>
+          <li>It helps interpretability (Lei et al. 2016)</li>
+        </ul>
+      </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Monotonic Attention <em>(Yu et al. 2016)</em>:</strong></dt>
+      <dd>
+        <ul>
+          <li>In some cases, we might know the output will be the same order as the input:
+            <ul>
+              <li>Speech Recognition</li>
+              <li>Incremental Translation</li>
+              <li>Morphological Inflection - sometimes</li>
+              <li>Summarization - sometimes</li>
+            </ul>
+          </li>
+          <li>Hard decisions about whether to read more</li>
+        </ul>
+      </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Convolutional Attention <em>(Allamanis et al. 2016)</em>:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Intuition</strong>: we might want to be able to attend to “the word after ‘Mr.’”</li>
+        </ul>
+      </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Multi-headed Attention:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Idea</strong>: multiple <em>attention heads</em> focus on different parts of the sentence</li>
+          <li>Different heads for “copy” vs regular (Allamanis et al. 2016)</li>
+          <li>Multiple independently learned heads (Vaswani et al. 2017)</li>
+        </ul>
+      </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Tips:</strong></dt>
+      <dd>
+        <ul>
+          <li>Don’t use attention with very long sequences - especially those you want to summarize and process efficiently</li>
+          <li><strong>Fertility</strong>: we impose the following heuristic “It is bad to pay attention to the same subregion many times”</li>
+        </ul>
+      </dd>
     </dl>
   </li>
 </ol>

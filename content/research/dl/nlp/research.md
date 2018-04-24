@@ -214,8 +214,9 @@ prevLink: /work_files/research/dl/nlp.html
     :   It is different from _Handwriting Synthesis_, since the input sequence is much noisier and does not have a clear structure.  
 
 2. **Structure:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}    
-    :   * __Input__:  
-        * __Output__:         
+    :   * __Input__: $$x=(x_1, \ldots, x_{L'})$$ is a sequence of feature vectors  
+            * Each feature vector is extracted from a small overlapping window of audio frames
+        * __Output__: $$y$$ a sequence of __phonemes__   
 
 3. **Strategy:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
     :   The goal of this paper is a system, that uses attention-mechanism with location awareness, whose performance is comparable to that of the conventional approaches.   
@@ -243,18 +244,58 @@ prevLink: /work_files/research/dl/nlp.html
     In practice, $$x$$ is often processed by an __encoder__ which outputs a sequential input representation $$h = (h_1, \ldots, h_L)$$ more suitable for the attention mechanism to work with.  
     :   The __Encoder__: a deep bidirectional recurrent network.  
         It forms a sequential representation h of length $$L = L'$$.  
-    :   * __Structure__:  
-            * *__Input__*: $$x = (x_1, \ldots, x_{L'})$$ is a sequence of feature vectors   
-                > Each feature vector is extracted from a small overlapping window of audio frames.  
-            * *__Output__*: $$y$$ is a sequence of phonemes
+    :   __Structure:__{: style="color: red"}    
+        * *__Input__*: $$x = (x_1, \ldots, x_{L'})$$ is a sequence of feature vectors   
+            > Each feature vector is extracted from a small overlapping window of audio frames.  
+        * *__Output__*: $$y$$ is a sequence of phonemes
+    :   __Strategy:__{: style="color: red"}    
+        At the $$i$$-th step an ARSG generates an output $$y_i$$ by focusing on the relevant elements of $$h$$:  
+    :   $$\begin{align}
+        \alpha_i &= \text{Attend}(s_{i-1}, \alpha _{i-1}), h) & (1) \\
+        g_i &= \sum_{j=1}^L \alpha_{i,j} h_j & (2) //
+        y_i &\sim \text{Generate}(s_{i-1}, g_i) & (3)  
+        \end{align}$$
+    :   where $$s_{i−1}$$ is the $$(i − 1)$$-th state of the recurrent neural network to which we refer as the __generator__, $$\alpha_i \in \mathbb{R}^L$$ is a vector of the _attention weights_, also often called the __alignment__; and $$g_i$$ is the __glimpse__.  
+        The step is completed by computing a *__new generator state__*:  
+    :   $$s_i = \text{Recurrency}(s_{i-1}, g_i, y_i)$$  
+    :   where the _Recurrency_ is an RNN.  
+    :   ![img](/main_files/dl/nlp/speech_research/4.png){: width="100%"}  
 
-
+12. **Attention-mechanism Types and Speech Recognition:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents312}  
+    :   __Types of Attention:__{: style="color: red"}      
+        * (Generic) Hybrid Attention: $$\alpha_i = \text{Attend}(s_{i-1}, \alpha_{i-1}, h)$$  
+        * Content-based Attention: $$\alpha_i = \text{Attend}(s_{i-1}, h)$$   
+            In this case, Attend is often implemented by scoring each element in h separately and normalizing the scores:  
+            $$e_{i,j} = \text{Score}(s_{i-1}, h_j) \\$$ 
+              $$\alpha_{i,j} = \dfrac{\text{exp} (e_{i,j}) }{\sum_{j=1}^L \text{exp}(e_{i,j})}$$  
+            * __Limitations__:  
+                The main limitation of such scheme is that identical or very similar elements of $$h$$ are scored equally regardless of their position in the sequence.  
+                Often this issue is partially alleviated by an encoder such as e.g. a BiRNN or a deep convolutional network that encode contextual information into every element of h . However, capacity of h elements is always limited, and thus disambiguation by context is only possible to a limited extent.  
+        * Location-based Attention: $$\alpha_i = \text{Attend}(s_{i-1}, \alpha_{i-1})$$   
+            a location-based attention mechanism computes the alignment from the generator state and the previous alignment only.  
+            * __Limitations__:  
+                the model would have to predict the distance between consequent phonemes using $$s_{i−1}$$ only, which we expect to be hard due to large variance of this quantity.  
+    :   Thus, we conclude that the __*Hybrid Attention*__ mechanism is a suitable candidate.  
+        Ideally, we need an attention model that uses the previous alignment $$\alpha_{i-1}$$ to select a short list of elements from $$h$$, from which the content-based attention, will select the relevant ones without confusion.  
 
 6. **Preparing the Data (Pre-Processing):**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
     :   The paper uses __spectrograms__ as a minimal preprocessing scheme.  
 
 7. **Architecture:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
-    :   
+    :   Start with the __ARSG__-based model:  
+        * __Encoder__: is a __Bi-RNN__  
+        <p>$$e_{i,j} = w^T \tanh (Ws_{i-1} + Vh_j + b)$$</p>
+        * __Attention__: Content-Based Attention extended for _location awareness_  
+            <p>$$e_{i,j} = w^T \tanh (Ws_{i-1} + Vh_j + Uf_{i,j} + b)$$</p>
+    :   __Extending the Attention Mechanism:__  
+        Content-Based Attention extended for _location awareness_ by making it take into account the alignment produced at the previous step.  
+        * First, we extract $$k$$ vectors $$f_{i,j} \in \mathbb{R}^k$$ for every position $$j$$ of the previous alignment $$\alpha_{i−1}$$ by convolving it with a matrix $$F \in \mathbb{R}^{k\times r}$$:  
+            <p>$$f_i = F * \alpha_{i-1}$$</p>
+        * These additional vectors $$f_{i,j} are then used by the scoring mechanism $$e_{i,j}$$:  
+            <p>$$e_{i,j} = w^T \tanh (Ws_{i-1} + Vh_j + Uf_{i,j} + b)$$</p>  
+
+                
+            
 
 8. **Algorithm:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
     :   

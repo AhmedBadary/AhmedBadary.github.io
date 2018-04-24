@@ -479,8 +479,12 @@ Compared to <em>Machine Translation</em>, speech recognition differs by requesti
       <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Structure:</strong></dt>
       <dd>
         <ul>
-          <li><strong>Input</strong>:</li>
-          <li><strong>Output</strong>:</li>
+          <li><strong>Input</strong>: <script type="math/tex">x=(x_1, \ldots, x_{L'})</script> is a sequence of feature vectors
+            <ul>
+              <li>Each feature vector is extracted from a small overlapping window of audio frames</li>
+            </ul>
+          </li>
+          <li><strong>Output</strong>: <script type="math/tex">y</script> a sequence of <strong>phonemes</strong></li>
         </ul>
       </dd>
     </dl>
@@ -537,20 +541,62 @@ Compared to <em>Machine Translation</em>, speech recognition differs by requesti
  In practice, <script type="math/tex">x</script> is often processed by an <strong>encoder</strong> which outputs a sequential input representation <script type="math/tex">h = (h_1, \ldots, h_L)</script> more suitable for the attention mechanism to work with.</dd>
       <dd>The <strong>Encoder</strong>: a deep bidirectional recurrent network.<br />
 It forms a sequential representation h of length <script type="math/tex">L = L'</script>.</dd>
-      <dd>
+      <dd><strong style="color: red">Structure:</strong>
         <ul>
-          <li><strong>Structure</strong>:
+          <li><em><strong>Input</strong></em>: <script type="math/tex">x = (x_1, \ldots, x_{L'})</script> is a sequence of feature vectors
+            <blockquote>
+              <p>Each feature vector is extracted from a small overlapping window of audio frames.</p>
+            </blockquote>
+          </li>
+          <li><em><strong>Output</strong></em>: <script type="math/tex">y</script> is a sequence of phonemes</li>
+        </ul>
+      </dd>
+      <dd><strong style="color: red">Strategy:</strong>  <br />
+At the <script type="math/tex">i</script>-th step an ARSG generates an output <script type="math/tex">y_i</script> by focusing on the relevant elements of <script type="math/tex">h</script>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\alpha_i &= \text{Attend}(s_{i-1}, \alpha _{i-1}), h) & (1) \\
+g_i &= \sum_{j=1}^L \alpha_{i,j} h_j & (2) //
+y_i &\sim \text{Generate}(s_{i-1}, g_i) & (3)  
+\end{align} %]]></script>
+      </dd>
+      <dd>where <script type="math/tex">s_{i−1}</script> is the <script type="math/tex">(i − 1)</script>-th state of the recurrent neural network to which we refer as the <strong>generator</strong>, <script type="math/tex">\alpha_i \in \mathbb{R}^L</script> is a vector of the <em>attention weights</em>, also often called the <strong>alignment</strong>; and <script type="math/tex">g_i</script> is the <strong>glimpse</strong>.<br />
+The step is completed by computing a <em><strong>new generator state</strong></em>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">s_i = \text{Recurrency}(s_{i-1}, g_i, y_i)</script>
+      </dd>
+      <dd>where the <em>Recurrency</em> is an RNN.</dd>
+      <dd><img src="/main_files/dl/nlp/speech_research/4.png" alt="img" width="100%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents312">Attention-mechanism Types and Speech Recognition:</strong></dt>
+      <dd><strong style="color: red">Types of Attention:</strong>
+        <ul>
+          <li>(Generic) Hybrid Attention: <script type="math/tex">\alpha_i = \text{Attend}(s_{i-1}, \alpha_{i-1}, h)</script></li>
+          <li>Content-based Attention: <script type="math/tex">\alpha_i = \text{Attend}(s_{i-1}, h)</script> <br />
+  In this case, Attend is often implemented by scoring each element in h separately and normalizing the scores:<br />
+  <script type="math/tex">e_{i,j} = \text{Score}(s_{i-1}, h_j) \\</script> 
+    <script type="math/tex">\alpha_{i,j} = \dfrac{\text{exp} (e_{i,j}) }{\sum_{j=1}^L \text{exp}(e_{i,j})}</script>
             <ul>
-              <li><em><strong>Input</strong></em>: <script type="math/tex">x = (x_1, \ldots, x_{L'})</script> is a sequence of feature vectors
-                <blockquote>
-                  <p>Each feature vector is extracted from a small overlapping window of audio frames.</p>
-                </blockquote>
-              </li>
-              <li><em><strong>Output</strong></em>: <script type="math/tex">y</script> is a sequence of phonemes</li>
+              <li><strong>Limitations</strong>:<br />
+  The main limitation of such scheme is that identical or very similar elements of <script type="math/tex">h</script> are scored equally regardless of their position in the sequence.<br />
+  Often this issue is partially alleviated by an encoder such as e.g. a BiRNN or a deep convolutional network that encode contextual information into every element of h . However, capacity of h elements is always limited, and thus disambiguation by context is only possible to a limited extent.</li>
+            </ul>
+          </li>
+          <li>Location-based Attention: <script type="math/tex">\alpha_i = \text{Attend}(s_{i-1}, \alpha_{i-1})</script> <br />
+  a location-based attention mechanism computes the alignment from the generator state and the previous alignment only.
+            <ul>
+              <li><strong>Limitations</strong>:<br />
+  the model would have to predict the distance between consequent phonemes using <script type="math/tex">s_{i−1}</script> only, which we expect to be hard due to large variance of this quantity.</li>
             </ul>
           </li>
         </ul>
       </dd>
+      <dd>Thus, we conclude that the <strong><em>Hybrid Attention</em></strong> mechanism is a suitable candidate.<br />
+Ideally, we need an attention model that uses the previous alignment <script type="math/tex">\alpha_{i-1}</script> to select a short list of elements from <script type="math/tex">h</script>, from which the content-based attention, will select the relevant ones without confusion.</dd>
     </dl>
   </li>
   <li>
@@ -562,7 +608,28 @@ It forms a sequential representation h of length <script type="math/tex">L = L'<
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Architecture:</strong></dt>
-      <dd></dd>
+      <dd>Start with the <strong>ARSG</strong>-based model:
+        <ul>
+          <li><strong>Encoder</strong>: is a <strong>Bi-RNN</strong></li>
+        </ul>
+        <p>$$e_{i,j} = w^T \tanh (Ws_{i-1} + Vh_j + b)$$</p>
+        <ul>
+          <li><strong>Attention</strong>: Content-Based Attention extended for <em>location awareness</em>
+            <p>$$e_{i,j} = w^T \tanh (Ws_{i-1} + Vh_j + Uf_{i,j} + b)$$</p>
+          </li>
+        </ul>
+      </dd>
+      <dd><strong>Extending the Attention Mechanism:</strong><br />
+Content-Based Attention extended for <em>location awareness</em> by making it take into account the alignment produced at the previous step.
+        <ul>
+          <li>First, we extract <script type="math/tex">k</script> vectors <script type="math/tex">f_{i,j} \in \mathbb{R}^k</script> for every position <script type="math/tex">j</script> of the previous alignment <script type="math/tex">\alpha_{i−1}</script> by convolving it with a matrix <script type="math/tex">F \in \mathbb{R}^{k\times r}</script>:
+            <p>$$f_i = F * \alpha_{i-1}$$</p>
+          </li>
+          <li>These additional vectors <script type="math/tex">f_{i,j} are then used by the scoring mechanism</script>e_{i,j}$$:
+            <p>$$e_{i,j} = w^T \tanh (Ws_{i-1} + Vh_j + Uf_{i,j} + b)$$</p>
+          </li>
+        </ul>
+      </dd>
     </dl>
   </li>
   <li>
