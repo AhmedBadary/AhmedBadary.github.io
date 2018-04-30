@@ -63,7 +63,9 @@
 
     <section class="main-content">
       
-      <ol>
+      <h2 id="content1">Introduction</h2>
+
+<ol>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Big Idea:</strong></dt>
@@ -75,14 +77,10 @@
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Main Components:</strong></dt>
       <dd>
         <ul>
-          <li><strong>Graph Nodes</strong>: are <strong><em>Operations</em></strong> which have any number of:
-            <ul>
-              <li>Inputs<br />
-  &amp;</li>
-              <li>Outputs</li>
-            </ul>
-          </li>
-          <li><strong>Graph Edges</strong>: are <strong><em>Tensors</em></strong> which flow between nodes</li>
+          <li><strong>Graph Nodes</strong>:<br />
+  are <strong><em>Operations</em></strong> which have any number of Inputs and Outputs</li>
+          <li><strong>Graph Edges</strong>:<br />
+  are <strong><em>Tensors</em></strong> which flow between nodes</li>
         </ul>
       </dd>
     </dl>
@@ -100,18 +98,19 @@
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Components of the Graph:</strong></dt>
       <dd>
         <ul>
-          <li><strong>Variables</strong>: are stateful nodes which output their current value.
+          <li><strong>Variables</strong>: are stateful nodes which output their current value.<br />
+  <img src="/main_files/dl/nlp/t_f/2.png" alt="img" width="20%" />
             <ul>
               <li>State is retained across multiple executions of a graph.</li>
               <li>It is easy to restore saved values to variables</li>
               <li>They can be saved to the disk, during and after training</li>
               <li>Gradient updates, by default, will apply over all the variables in the graph</li>
               <li>Variables are, still, by “definition” <strong>operations</strong></li>
-              <li>They constitute mostly, <strong>Parameters</strong> <br />
-  <img src="/main_files/dl/nlp/t_f/2.png" alt="img" width="20%" /></li>
+              <li>They constitute mostly, <strong>Parameters</strong></li>
             </ul>
           </li>
-          <li><strong>Placeholders</strong>: are nodes whose value is fed in at execution time.
+          <li><strong>Placeholders</strong>: are nodes whose value is fed in at execution time.<br />
+  <img src="/main_files/dl/nlp/t_f/3.png" alt="img" width="20%" />
             <ul>
               <li>They do <strong>not</strong> have initial values</li>
               <li>They are assigned a:
@@ -120,8 +119,7 @@
                   <li>shape of a tensor</li>
                 </ul>
               </li>
-              <li>They constitute mostly, <strong>Inputs</strong> and <strong>labels</strong> <br />
-  <img src="/main_files/dl/nlp/t_f/3.png" alt="img" width="20%" /></li>
+              <li>They constitute mostly, <strong>Inputs</strong> and <strong>labels</strong></li>
             </ul>
           </li>
           <li><strong>Mathematical Operations</strong>: <br />
@@ -260,61 +258,465 @@ Specifies the value of each graph node given in the dictionary.</li>
 
 <hr />
 
-<h2 id="content2">Commands and Notes</h2>
+<h2 id="content3">THIRD</h2>
 
 <ol>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Asynchronous:</strong></dt>
-      <dd><code class="highlighter-rouge"></code></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Introduction and Definitions:</strong></dt>
+      <dd>
+        <ul>
+          <li>Hierarchy:<br />
+  <img src="/main_files/dl/nlp/t_f/6.png" alt="img" width="80%" /></li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Input Function</strong>:<br />
+  An input function is a function that returns a tf.data.Dataset object which outputs the following two-element tuple:
+            <ul>
+              <li>features - A python dict in which:
+                <ul>
+                  <li>Each key is the name of a feature</li>
+                  <li>Each value is an array containing all of that features values</li>
+                </ul>
+              </li>
+              <li>label - An array containing the values of the label for every example.
+                <div class="language-python highlighter-rouge"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">train_input_fn</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
+  <span class="s">"""An input function for training"""</span>
+  <span class="c"># Convert the inputs to a Dataset.</span>
+  <span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="nb">dict</span><span class="p">(</span><span class="n">features</span><span class="p">),</span> <span class="n">labels</span><span class="p">))</span>
+  <span class="c"># Shuffle, repeat, and batch the examples.</span>
+  <span class="k">return</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">()</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
+</code></pre>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Asynchronous:</strong></dt>
-      <dd><code class="highlighter-rouge"></code></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Import and Parse the data sets:</strong></dt>
+      <dd>e.g. Iris DataSet with KERAS</dd>
+      <dd>
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">TRAIN_URL</span> <span class="o">=</span> <span class="s">"http://download.tensorflow.org/data/iris_training.csv"</span>
+<span class="n">TEST_URL</span> <span class="o">=</span> <span class="s">"http://download.tensorflow.org/data/iris_test.csv"</span>
+<span class="c"># Train</span>
+<span class="n">train_path</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_file</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="n">TRAIN_URL</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">origin</span><span class="o">=</span><span class="n">TRAIN_URL</span><span class="p">)</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="o">=</span><span class="n">train_path</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">CSV_COLUMN_NAMES</span><span class="p">)</span>
+<span class="n">train_features</span><span class="p">,</span> <span class="n">train_label</span> <span class="o">=</span> <span class="n">train</span><span class="p">,</span> <span class="n">train</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">label_name</span><span class="p">)</span>
+<span class="c"># Test</span>
+<span class="n">test_path</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_file</span><span class="p">(</span><span class="n">TEST_URL</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">TEST_URL</span><span class="p">)</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">test_path</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">CSV_COLUMN_NAMES</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">test_features</span><span class="p">,</span> <span class="n">test_label</span> <span class="o">=</span> <span class="n">test</span><span class="p">,</span> <span class="n">test</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">label_name</span><span class="p">)</span>
+</code></pre>
+        </div>
+      </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Asynchronous:</strong></dt>
-      <dd><code class="highlighter-rouge"></code></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Describe the data:</strong></dt>
+      <dd>Creating features.<br />
+E.g. Numeric</dd>
+      <dd>
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">my_feature_columns</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">train_x</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">my_feature_columns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">feature_column</span><span class="o">.</span><span class="n">numeric_column</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">))</span>
+</code></pre>
+        </div>
+      </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">TensorBoard:</strong></dt>
-      <dd><code class="highlighter-rouge">File_writer  = tf.summary.FileWriter('log_simple_graph', sess.graph)</code>
-<code class="highlighter-rouge">tensorboard --logdir="path"</code></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Select the type of model:</strong></dt>
+      <dd>To specify a model type, instantiate an Estimator class:
+        <ul>
+          <li>Pre-made</li>
+          <li>Custom</li>
+        </ul>
+      </dd>
+      <dd>E.g. DNNClassifier</dd>
+      <dd>
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">classifier</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">DNNClassifier</span><span class="p">(</span><span class="n">feature_columns</span><span class="o">=</span><span class="n">my_feature_columns</span><span class="p">,</span> <span class="n">hidden_units</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s">'SGD'</span><span class="p">)</span>
+</code></pre>
+        </div>
+      </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Testing if GPU works:</strong></dt>
-      <dd><code class="highlighter-rouge">import tensorflow as tf
-a = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3], name='a')
-b = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[3, 2], name='b')
-c = tf.matmul(a, b)
-sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
-print(sess.run(c))</code></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Train the model:</strong></dt>
+      <dd>Instantiating a tf.Estimator.DNNClassifier creates a framework for learning the model. Basically, we’ve wired a network but haven’t yet let data flow through it.</dd>
+      <dd>To <strong>train</strong> the neural network, call the Estimator object’s <strong>train method</strong>:</dd>
+      <dd>
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">classifier</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
+<span class="n">input_fn</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span><span class="n">train_input_fn</span><span class="p">(</span><span class="n">train_feature</span><span class="p">,</span> <span class="n">train_label</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">batch_size</span><span class="p">),</span>
+<span class="n">steps</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">train_steps</span><span class="p">)</span>
+</code></pre>
+        </div>
+      </dd>
+      <dd>
+        <ul>
+          <li>The steps argument tells train to stop training after the specified number of iterations.</li>
+          <li>The <strong>input_fn</strong> parameter identifies the function that supplies the training data. The call to the train method indicates that the train_input_fn function will supply the training data with signature:
+<code class="highlighter-rouge">def train_input_fn(features, labels, batch_size):</code> <br />
+The following call converts the input features and labels into a tf.data.Dataset object, which is the base class of the Dataset API:
+            <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="nb">dict</span><span class="p">(</span><span class="n">features</span><span class="p">),</span> <span class="n">labels</span><span class="p">))</span>
+<span class="c"># Modifying the data</span>
+  <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">buffer_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
+</code></pre>
+            </div>
+            <blockquote>
+              <p>Setting the buffer_size to a value larger than the number of examples (120) ensures that the data will be well shuffled</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">GPU Usage:</strong></dt>
-      <dd><code class="highlighter-rouge">!nvidia-smi</code></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">Evaluate the model:</strong></dt>
+      <dd>To evaluate a model’s effectiveness, each Estimator provides an evaluate method:</dd>
+      <dd>
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Evaluate the model.</span>
+<span class="n">eval_result</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+ <span class="n">input_fn</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span><span class="n">eval_input_fn</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">batch_size</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">Test set accuracy: {accuracy:0.3f}</span><span class="se">\n</span><span class="s">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">eval_result</span><span class="p">))</span>
+</code></pre>
+        </div>
+      </dd>
+      <dd>The call to classifier.evaluate is similar to the call to classifier.train. The biggest difference is that classifier.evaluate must get its examples from the test set rather than the training set</dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Asynchronous:</strong></dt>
-      <dd><code class="highlighter-rouge"></code></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Predicting:</strong></dt>
+      <dd>Every Estimator provides a predict method, which premade_estimator.py calls as follows:</dd>
+      <dd>
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code> <span class="n">predictions</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+ <span class="n">input_fn</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span><span class="n">eval_input_fn</span><span class="p">(</span><span class="n">predict_x</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">batch_size</span><span class="p">))</span>
+</code></pre>
+        </div>
+      </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Asynchronous:</strong></dt>
-      <dd><code class="highlighter-rouge"></code></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content4">FOURTH</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">To write a TF program based on pre-made Estimator:</strong>
+    <ul>
+      <li>Create one or more input function</li>
+      <li>Define the models feature columns</li>
+      <li>Instantiate an Estimator, specifying the feature columns and various hyperparameters.</li>
+      <li>Call one or more methods on the Estimator object, passing the appropriate input function as the source of the data.</li>
+    </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Checkpoint:</strong></dt>
+      <dd>are saved automatically and are restored automatically after training.</dd>
+      <dd>Save by specifying which <code class="highlighter-rouge">model_dir</code> to save into:</dd>
+      <dd>
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">classifier</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">DNNClassifier</span><span class="p">(</span><span class="n">feature_columns</span><span class="o">=</span><span class="n">feature_columns</span><span class="p">,</span> <span class="n">hidden_units</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">model_dir</span><span class="o">=</span><span class="s">'models/iris'</span><span class="p">)</span>
+</code></pre>
+        </div>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">Feature Column:</strong></dt>
+      <dd><a href="https://www.tensorflow.org/get_started/feature_columns">check this page for the feature column functions</a></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Custom Estimator:</strong></dt>
+      <dd>Basically, you need to write a <strong>model function</strong> (<code class="highlighter-rouge">model_fn</code>) which implements the ML algo.</dd>
+      <dd>
+        <ul>
+          <li>Write an Input Function (same)</li>
+        </ul>
+      </dd>
+    </dl>
+    <ul>
+      <li>Create feature columns (same)</li>
+      <li>Write a Model Function:
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">my_model_fn</span><span class="p">(</span>
+<span class="n">features</span><span class="p">,</span> <span class="c"># This is batch_features from input_fn</span>
+<span class="n">labels</span><span class="p">,</span>   <span class="c"># This is batch_labels from input_fn</span>
+<span class="n">mode</span><span class="p">,</span>     <span class="c"># An instance of tf.estimator.ModeKeys</span>
+<span class="n">params</span><span class="p">):</span>  <span class="c"># Additional configuration</span>
+</code></pre>
+        </div>
+        <blockquote>
+          <p>The mode argument indicates whether the caller is requesting training, predicting, or evaluation.</p>
+        </blockquote>
+      </li>
+      <li>Create the estimator:
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code>  <span class="n">classifier</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">Estimator</span><span class="p">(</span>
+ <span class="n">model_fn</span><span class="o">=</span><span class="n">my_model</span><span class="p">,</span>
+ <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+  <span class="s">'feature_columns'</span><span class="p">:</span> <span class="n">my_feature_columns</span><span class="p">,</span>
+  <span class="c"># Two hidden layers of 10 nodes each.</span>
+  <span class="s">'hidden_units'</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+  <span class="c"># The model must choose between 3 classes.</span>
+  <span class="s">'n_classes'</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+ <span class="p">})</span>
+</code></pre>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents45">Writing Model Function:</strong></dt>
+      <dd>You need to do:</dd>
+    </dl>
+    <ul>
+      <li>Define the Model</li>
+      <li>Specify additional calculations:
+        <ul>
+          <li>Predict</li>
+          <li>Evaluate</li>
+          <li>
+            <dl>
+              <dt>Train</dt>
+              <dd><strong>Define the Model:</strong></dd>
+            </dl>
+          </li>
+        </ul>
+      </li>
+      <li><strong>The Input Layer</strong>:<br />
+  convert the feature dictionary and feature_columns into input for your model
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code>      <span class="c"># Use `input_layer` to apply the feature columns.</span>
+ <span class="n">net</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">feature_column</span><span class="o">.</span><span class="n">input_layer</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s">'feature_columns'</span><span class="p">])</span>
+</code></pre>
+        </div>
+      </li>
+      <li><strong>Hidden Layer</strong>:<br />
+  The Layers API provides a rich set of functions to define all types of hidden layers.
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code>      <span class="c"># Build the hidden layers, sized according to the 'hidden_units' param.</span>
+ <span class="k">for</span> <span class="n">units</span> <span class="ow">in</span> <span class="n">params</span><span class="p">[</span><span class="s">'hidden_units'</span><span class="p">]:</span>
+  <span class="n">net</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">units</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">)</span>
+</code></pre>
+        </div>
+        <p>The variable <strong>net</strong> here signifies the current top layer of the network. During the first iteration, <strong>net</strong> signifies the input layer.<br />
+  On each loop iteration tf.layers.dense creates a new layer, which takes the previous layer’s output as its input, using the variable net.</p>
+      </li>
+      <li><strong>Output Layer</strong>:<br />
+  Define the output layer by calling <code class="highlighter-rouge">tf.layer.dense</code>
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code>  <span class="c"># Compute logits (1 per class).</span>
+ <span class="n">logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s">'n_classes'</span><span class="p">],</span> <span class="n">activation</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+</code></pre>
+        </div>
+        <dl>
+          <dt>When defining an output layer, the units parameter specifies the number of outputs. So, by setting units to params[‘n_classes’], the model produces one output value per class.</dt>
+          <dd><strong>Predict:</strong>
+ <code class="highlighter-rouge">python
+ # Compute predictions.
+predicted_classes = tf.argmax(logits, 1)
+if mode == tf.estimator.ModeKeys.PREDICT:
+ predictions = {
+  'class_ids': predicted_classes[:, tf.newaxis],
+  'probabilities': tf.nn.softmax(logits),
+  'logits': logits,
+ }
+ return tf.estimator.EstimatorSpec(mode, predictions=predictions)
+</code>{}</dd>
+        </dl>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content5">Complete Training Example (Low-Level)</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents51">Computational Graph:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Operations</strong>: the nodes of the graph.<br />
+  They <strong>take in</strong> <em><strong>tensors</strong></em> and <strong>produce</strong> <em><strong>tensors</strong></em>.</li>
+          <li><strong>Tensors</strong>: the edges in the graph.<br />
+  They are the <strong>values</strong> flowing through the graph.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents52">Tensorboard:</strong></dt>
+      <dd>
+        <ul>
+          <li>First, save the computation graph to a tensorboard summary file:</li>
+        </ul>
+
+        <p><code class="highlighter-rouge">writer = tf.summary.FileWriter('.')
+writer.add_graph(tf.get_default_graph())</code> <br />
+    This will produce an <strong>event</strong> file in the current directory.</p>
+        <ul>
+          <li>Launch Tensorboard:
+  <code class="highlighter-rouge">tensorboard --logdir</code></li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents53">Session:</strong></dt>
+      <dd>To evaluate tensors, instantiate a tf.Session object, informally known as a session. <br />
+A session encapsulates the state of the TensorFlow runtime, and runs TensorFlow operations.</dd>
+      <dd>
+        <ul>
+          <li>First, create a session:
+  <code class="highlighter-rouge">sess = tf.Session()</code></li>
+          <li>Run the session:
+  <code class="highlighter-rouge">sess.run()</code><br />
+  It takes a dict of any tuples or any tensor.<br />
+  It evaluates the tensor.</li>
+        </ul>
+      </dd>
+      <dd>Some TensorFlow functions return tf.Operations instead of tf.Tensors. The result of calling run on an Operation is None. You run an operation to cause a side-effect, not to retrieve a value. Examples of this include the initialization, and training ops demonstrated later.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents54">Feeding:</strong></dt>
+      <dd>
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</code></pre>
+        </div>
+      </dd>
+      <dd>
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">4.5</span><span class="p">}))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">y</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]}))</span>
+</code></pre>
+        </div>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents55">Datasets:</strong></dt>
+      <dd>The preferred method of streaming data into a model instead of <strong>placeholders</strong>.</dd>
+      <dd>To get a runnable tf.Tensor from a Dataset you must first convert it to a tf.data.Iterator, and then call the Iterator’s get_next method.</dd>
+      <dd>Create the Iterator:
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">slices</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">(</span><span class="n">my_data</span><span class="p">)</span>
+<span class="n">next_item</span> <span class="o">=</span> <span class="n">slices</span><span class="o">.</span><span class="n">make_one_shot_iterator</span><span class="p">()</span><span class="o">.</span><span class="n">get_next</span><span class="p">()</span>
+<span class="c"># Then pass as follows  </span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+  <span class="k">try</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">next_item</span><span class="p">))</span>
+  <span class="k">except</span> <span class="n">tf</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">OutOfRangeError</span><span class="p">:</span>
+    <span class="k">break</span>
+</code></pre>
+        </div>
+      </dd>
+      <dd>If the Dataset depends on stateful operations (e.g. random value) you may need to initialize the iterator before using it, as shown below:
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">iterator</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">make_initializable_iterator</span><span class="p">()</span>
+<span class="n">next_row</span> <span class="o">=</span> <span class="n">iterator</span><span class="o">.</span><span class="n">get_next</span><span class="p">()</span>
+</code></pre>
+        </div>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents56">Layers:</strong></dt>
+      <dd>A trainable model must modify the values in the graph to get new outputs with the same input. Layers are the preferred way to add trainable parameters to a graph.</dd>
+      <dd>Layers package together both the variables and the operations that act on them.<br />
+The connection weights and biases are managed by the layer object.
+        <blockquote>
+          <p>E.g. a densely-connected layer performs a weighted sum across all inputs for each output and applies an optional activation function.</p>
+        </blockquote>
+      </dd>
+      <dd><strong>Creating Layers</strong>:
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">linear_model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">linear_model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre>
+        </div>
+      </dd>
+      <dd><strong>Initializing Layers:</strong><br />
+The layer contains variables that must be initialized before they can be used.
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">init</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">()</span>
+<span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
+</code></pre>
+        </div>
+      </dd>
+      <dd><strong>Executing Layers:</strong>
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]}))</span>
+</code></pre>
+        </div>
+      </dd>
+      <dd><strong>Layer Function shortcuts</strong>:<br />
+For each layer class (like tf.layers.Dense) TensorFlow also supplies a shortcut function (like tf.layers.dense).<br />
+The only difference is that the shortcut function versions create and run the layer in a single call.</dd>
+      <dd>
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c"># Is Equivalent to:  </span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">linear_model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">linear_model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre>
+        </div>
+        <blockquote>
+          <p>While convenient, this approach allows no access to the tf.layers.Layer object. This makes introspection and debugging more difficult, and layer reuse impossible.</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents57">Example:</strong></dt>
+      <dd>
+        <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">y_true</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="n">linear_model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">linear_model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">y_true</span><span class="p">,</span> <span class="n">predictions</span><span class="o">=</span><span class="n">y_pred</span><span class="p">)</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
+
+<span class="n">init</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">()</span>
+
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5000</span><span class="p">):</span>
+  <span class="n">_</span><span class="p">,</span> <span class="n">loss_value</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">((</span><span class="n">train</span><span class="p">,</span> <span class="n">loss</span><span class="p">))</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">loss_value</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">y_pred</span><span class="p">))</span>
+</code></pre>
+        </div>
+      </dd>
     </dl>
   </li>
 </ol>

@@ -1,141 +1,118 @@
 ---
 layout: NotesPage
-title: ASR <br /> Research Papers
-permalink: /work_files/research/dl/nlp/speech_research
+title: Deep Learning <br /> Research Papers
+permalink: /work_files/research/dl/nlp/research
 prevLink: /work_files/research/dl/nlp.html
 ---
 
 <div markdown="1" class = "TOC">
 # Table of Contents
 
-  * [Deep Speech](#content1)
+  * [Sequence to Sequence Learning with Neural Network](#content1)
   {: .TOC1}
-  * [Towards End-to-End Speech Recognition with Recurrent Neural Networks](#content2)
+  * [2](#content2)
   {: .TOC2}
-  * [Attention-Based Models for Speech Recognition](#content3)
+  * [3](#content3)
   {: .TOC3}
-  * [A Neural Transducer](#content4)
+  * [4](#content4)
   {: .TOC4}
-  * [Deep Speech 2](#content5)
+  * [5](#content5)
   {: .TOC5}
-  * [Listen, Attend and Spell (LAS)](#content6)
+  * [6](#content6)
   {: .TOC6}
-  * [State of the Art Speech Recognition w/ Sequence Modeling](#content7)
+  * [7](#content7)
   {: .TOC7}
-  * [Very Deep Convolutional Networks for End-To-End Speech Recognition](#content8)
+  * [8](#content8)
   {: .TOC8}
 </div>
 
 ***
 ***
 
-## Deep Speech 
+## Sequence to Sequence Learning with Neural Network
 {: #content1}
 
 1. **Introduction:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
-    :   This paper takes a first attempt at an End-to-End system for ASR.  
+    This paper presents a general end-to-end approach to sequence learning that makes minimal assumptions (Domain-Independent) on the sequence structure.  
+    It introduces __Seq2Seq__. 
 
 2. **Structure:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}    
-    :   * __Input__: vector of speech spectrograms  
-            * An *__utterance__* $$x^{(i)}$$: is a time-series of length $$T^{(i)}$$ composed of time-slices where each is a vector of audio (spectrogram) features $$x_{t,p}^{(i)}, t=1,...,T^{(i)}$$, where $$p$$ denotes the power of the p'th frequency bin in the audio frame at time $$t$$.  
-        * __Output__: English text transcript $$y$$  
-    :   * __Goal__:  
-            The goal of the RNN is to convert an input sequence $$x$$ into a sequence of character probabilities for the transcription $$y$$, with $$\tilde{y}_t = P(c_t\vert x)$$, where $$c_t \in \{\text{a, b, c, } \ldots \text{,  z, space,  apostrophe, blank}\}$$.
+    * __Input__: sequence of input vectors  
+    * __Output__: sequence of output labels
                 
 3. **Strategy:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
-    :   The goal is to replace the multi-part model with a single RNN network that captures as much of the information needed to do transcription in a single system.  
+    The idea is to use one LSTM to read the input sequence, one time step at a time, to obtain large fixed dimensional vector representation, and then to use another LSTM to extract the output sequence from that vector.  
+    The second LSTM is essentially a recurrent neural network language model except that it is __conditioned__ on the __input sequence__.
 
 4. **Solves:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
-    :   * Previous models only used DNNs as a single component in a complex pipeline.  
-            NNs are trained to classify __individual frames of acoustic data__, and then, their output distributions are reformulated as emission probabilities for a HMM.  
-            In this case, the objective function used to train the networks is therefore substantially different from the true performance measure (sequence-level transcription accuracy.  
-            This leads to problems where one system might have an improved accuracy rate but the overall transcription accuracy can still decrease.  
-        *  An additional problem is that the frame-level training targets must be inferred from the alignments determined by the HMM. This leads to an awkward iterative procedure, where network retraining is alternated with HMM re-alignments to generate more accurate targets.  
+    * Despite their flexibility and power, DNNs can only be applied to problems whose inputs and targets can be sensibly encoded with vectors of fixed dimensionality. It is a significant limitation, since many important problems are best expressed with sequences whose lengths are not known a-priori.  
+        The RNN can easily map sequences to sequences whenever the alignment between the inputs the outputs is known ahead of time. However, it is not clear how to apply an RNN to problems whose input and the output sequences have different lengths with complicated and non-monotonic relationship.  
+
 
 5. **Key Insights:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}  
-    :   * As an __End-to-End__ model, this system avoids the problems of __multi-part__ systems that lead to inconsistent training criteria and difficulty of integration.   
-            The network is trained directly on the text transcripts: no phonetic representation (and hence no pronunciation dictionary or state tying) is used.  
-        * Using __CTC__ objective, the system is able to better approximate and solve the alignment problem avoiding HMM realignment training.  
-            Since CTC integrates out over all possible input-output alignments, no forced alignment is required to provide training targets.  
-        * The Dataset is augmented with newly synthesized data and modified to include all the variations and effects that face ASR problems.    
-            This greatly increases the system performance on particularly noisy/affected speech.  
+    * Uses LSTMs to capture the information present in a sequence of inputs into one vector of features that can then be used to decode a sequence of output features  
+    * Uses two different LSTM, for the encoder and the decoder respectively  
+    * Reverses the words in the source sentence to make use of short-term dependencies (in translation) that led to better training and convergence 
 
 6. **Preparing Data (Pre-Processing):**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}  
-    :   The paper uses __spectrograms__ as a minimal preprocessing scheme.  
-    :   ![img](/main_files/dl/nlp/speech_research/2.png){: width="60%"}    
+    :   
+                    
 
 7. **Architecture:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
-    :   The system is composed of:  
-        * An __RNN__:    
-            * 5 layers of __hidden units__:  
-                * 3 Layer of __Feed-forward Nets__:  
-                    * For the __input layer__, the output depends on the spectrogram frame $$x_t$$ along with a context of $$C$$ frames on each side.  
-                        > $$C \in \{5, 7, 9\}$$  
-                    * The non-recurrent layers operate on independent data for each time step:  
-                        $$h_t^{(l)} = g(W^{(l)} h_{(t)}^{(l-1)} + b^{(l)}),$$  
-                        where $$g(z) = \min \{\max \{0, z\}, 20\}$$ is the *clipped RELU*.    
-                * 2 layers of __Recurrent Nets__:  
-                    * 1 layer of a __Bi-LSTM__:  
-                        * Includes two sets of hidden units: 
-                            A set with forward recurrence $$h^{(f)}$$  
-                            A set with backward recurrence $$h^{(b)}$$:  
-                            $$h_t^{(f)} = g(W^{(4)}h_t^{(3)} + W_r^{(b)} h_{t-1}^{(b)} + b ^{(4)}) \\ 
-                            h_t^{(b)} = g(W^{(4)}h_t^{(3)} + W_r^{(b)} h_{t+1}^{(b)} + b ^{(4)})$$  
-                            > Note that $$h^{(f)}$$ must be computed sequentially from $$t = 1$$ to $$t = T^{(i)}$$ for the i’th utterance, while the units $$h^{(b)}$$ must be computed sequentially in reverse from $$t = T^{(i)}$$ to $$t = 1$$.  
-                    * 1 layer of __Feed-forward Nets__:   
-                        * The fifth (non-recurrent) layer takes both the forward and backward units as inputs:  
-                            $$h_t^{(5)} = g(W ^{(5)}h_t ^{(4)} + b ^{(5)}),$$  
-                            where $$h_t^{(4)} = h_t^{(f)} + h_t^{(b)}$$ 
-            * An __Output__ layer made of a standard __softmax function__ that yields the predicted character probabilities for each time-slice $$t$$ and character $$k$$ in the alphabet:   
-                $$\displaystyle{h _{(t,k)} ^{(6)} = \hat{y} _{(t,k)} = P(c_t = k \vert x) = \dfrac{\exp (W_k ^{(6)} h_t ^{(5)} + b_k ^{(6)})}{\sum_j \exp (W_j ^{(6)}h_t ^{(5)} + b_j ^{(6)})}},$$  
-                where $$W_k ^{(6)}$$ and $$b_k ^{(6)}$$ denote the k'th column of the weight matrix and k'th bias.  
-        * A *__CTC__* __Loss Function__ $$\mathcal{L}(\hat{y}, y)$$  
-        * An *__N-gram Language Model__* 
-        * A __combined Objective Function__:  
-    :   $$Q(c) = \log (P(x \vert x)) + \alpha \log (P_{\text{LM}}(c) + \beta \text{word_count}(c))$$   
-    :   ![img](/main_files/dl/nlp/speech_research/1.png){: width="80%"}    
+    :   * __Encoder__:  
+            * *__LSTM:__* 
+                * 4 Layers:    
+                    * 1000 Dimensions per layer
+                    * 1000-dimensional word embeddings
+        * __Decoder__:  
+            * *__LSTM:__* 
+                * 4 Layers:    
+                    * 1000 Dimensions per layer
+                    * 1000-dimensional word embeddings
+        * An __Output__ layer made of a standard __softmax function__  
+            > over 80,000 words  
+        * __Objective Function__:  
+            <p>$$\dfrac{1}{\vert \mathbb{S} \vert} \sum_{(T,S) \in \mathbb{S}} \log p(T \vert S)
+            $$</p>  
+            where $$\mathbb{S}$$ is the training set.  
+                
 8. **Algorithm:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}  
-    :   * Given the output $$P(c \vert x)$$ of the RNN: perform a __search__ to find the sequence of characters $$c_1, c_2, ...$$ that is most probable according to both:  
-            1. The RNN Output
-            2. The Language Model  
-        * We maximize the combined objective:  
-            $$Q(c) = \log (P(x \vert x)) + \alpha \log (P_{\text{LM}}(c) + \beta \text{word_count}(c))$$  
-            where the term $$P_{\text{lm}} denotes the probability of the sequence $$c$$ according to the N-gram model.  
-        * The objective is maximized using a highly optimized __beam search__ algorithm  
-            > beam size: 1000-8000
+:   * Train a large deep LSTM 
+    * Train by maximizing the log probability of a correct translation $$T$$  given the source sentence $$S$$  
+    * Produce translations by finding the most likely translation according to the LSTM:   
+        <p>$$\hat{T} = \mathrm{arg } \max_{T} p(T \vert S)$$</p>
+    * Search for the most likely translation using a simple left-to-right beam search decoder which maintains a small number B of partial hypotheses  
+        > A __partial hypothesis__ is a prefix of some translation  
+    * At each time-step we extend each partial hypothesis in the beam with every possible word in the vocabulary  
+        > This greatly increases the number of the hypotheses so we discard all but the $$B$$  most likely hypotheses according to the model’s log probability  
+    * As soon as the “<EOS>” symbol is appended to a hypothesis, it is removed from the beam and is added to the set of complete hypotheses  
+    *
 
 9. **Training:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents19}  
-    :   * The gradient of the CTC Loss $$\nabla_{\hat{y}} \mathcal{L}(\hat{y}, y)$$ with respect to the net outputs given the ground-truth character sequence $$y$$ is computed
-    :   * Nesterov’s Accelerated gradient
-        * Nesterov Momentum
-        * Annealing the learning rate by a constant factor
-        * Dropout  
-        * Striding -- shortening the recurrent layers by taking strides of size $$2$$.  
-            The unrolled RNN will have __half__ as many steps.  
-            > similar to a convolutional network with a step-size of 2 in the first layer.  
+    :   * SGD
+        * Momentum 
+        * Half the learning rate every half epoch after the 5th epoch
+        * Gradient Clipping  
+            > enforce a hard constraint on the norm of the gradient
+        * Sorting input
 
 10. **Parameters:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents110}  
-    :   * __Momentum__: $$0.99$$ 
-        * __Dropout__: $$5-10 \%$$ (FFN only)   
-        * __Trade-Off Params__: use cross-validation for $$\alpha, \beta$$  
+    :   * __Initialization__ of all the LSTM params with __uniform distribution__ $$\in [-0.08, 0.08]$$  
+        * __Learning Rate__: $$0.7$$ 
+        * __Batches__: $$28$$ sequences
+        * __Clipping__: 
+    :   $$g = 5g/\|g\|_2 \text{ if } \|g\|_2 > 5 \text{ else } g$$ 
+                  
 
 11. **Issues/The Bottleneck:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents111}  
-    :   
+    :   * The decoder is __approximate__  
+        * The system puts too much pressure on the last encoded vector to capture all the (long-term) dependencies
 
 12. **Results:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents112}  
-    :   * __SwitchboardHub5’00__  (
-    WER): 
-            * Standard: $$16.0\%$$  
-            * w/Lexicon of allowed words: $$21.9\%$$ 
-            * Trigram LM: $$8.2\%$$ 
-            * w/Baseline system: $$6.7\%$$
+    :   
 
 13. **Discussion:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents113}  
-    :   * __Why avoid LSTMs__:  
-            One disadvantage of LSTM cells is that they require computing and storing multiple gating neuron responses at each step.  
-            Since the forward and backward recurrences are sequential, this small additional cost can become a computational bottleneck.  
-    :   * __Why a homogeneous model__:  
-             By using a homogeneous model we have made the computation of the recurrent activations as efficient as possible: computing the ReLu outputs involves only a few highly optimized BLAS operations on the GPU and a single point-wise nonlinearity.
+    :   * Sequence to sequence learning is a framework that attempts to address the problem of learning variable-length input and output sequences. It uses an encoder RNN to map the sequential variable-length input into a fixed-length vector. A decoder RNN then uses this vector to produce the variable-length output sequence, one token at a time. During training, the model feeds the groundtruth labels as inputs to the decoder. During inference, the model performs a beam search to generate suitable candidates for next step predictions.
 
 14. **Further Development:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents114}  
     :   
@@ -309,35 +286,6 @@ prevLink: /work_files/research/dl/nlp.html
 ***
 
 ## A Neural Transducer
-{: #content3}
-
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}  
-    :   
-
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}  
-    :   
-
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
-    :   
-
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
-    :   
-
-***
-
-## FOURTH
 {: #content4}
 
 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}  

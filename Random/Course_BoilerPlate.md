@@ -13,7 +13,7 @@ permalink: /work_files/school/CLASS/X_Y
 
         \end{align}$$
 
-
+I just implemented a neat hack to solve this problem that I had (i neeeded to integrate an arbitrary looking function) 
 
 ________BUTTONS________
 
@@ -167,7 +167,7 @@ ________MATH________
 
 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44}
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45} 
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}
 
 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}
 
@@ -276,6 +276,31 @@ ________MATH________
 
 ## Ten
 {: #content10}
+
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents101}
+
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents102}
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents103}
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents104}
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents105}
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents106}
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents107}
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents108}
+
+
+***
+***
+
+
+## Tips and Tricks
+{: #content10}
+
 
 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents101}
 

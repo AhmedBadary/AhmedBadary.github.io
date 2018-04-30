@@ -45,7 +45,7 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">ASR <br /> Research Papers</h1>
+  <h1 class="project-name">Deep Learning <br /> Research Papers</h1>
   <h2 class="project-tagline"></h2>
   <a href="/#" class="btn">Home</a>
   <a href="/work" class="btn">Work-Space</a>
@@ -67,167 +67,117 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">Deep Speech</a></li>
+    <li><a href="#content1">Sequence to Sequence Learning with Neural Network</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">Towards End-to-End Speech Recognition with Recurrent Neural Networks</a></li>
+    <li><a href="#content2">2</a></li>
   </ul>
   <ul class="TOC3">
-    <li><a href="#content3">Attention-Based Models for Speech Recognition</a></li>
+    <li><a href="#content3">3</a></li>
   </ul>
   <ul class="TOC4">
-    <li><a href="#content4">A Neural Transducer</a></li>
+    <li><a href="#content4">4</a></li>
   </ul>
   <ul class="TOC5">
-    <li><a href="#content5">Deep Speech 2</a></li>
+    <li><a href="#content5">5</a></li>
   </ul>
   <ul class="TOC6">
-    <li><a href="#content6">Listen, Attend and Spell (LAS)</a></li>
+    <li><a href="#content6">6</a></li>
   </ul>
   <ul class="TOC7">
-    <li><a href="#content7">State of the Art Speech Recognition w/ Sequence Modeling</a></li>
+    <li><a href="#content7">7</a></li>
   </ul>
   <ul class="TOC8">
-    <li><a href="#content8">Very Deep Convolutional Networks for End-To-End Speech Recognition</a></li>
+    <li><a href="#content8">8</a></li>
   </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content1">Deep Speech</h2>
+<h2 id="content1">Sequence to Sequence Learning with Neural Network</h2>
 
 <ol>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Introduction:</strong></dt>
-      <dd>This paper takes a first attempt at an End-to-End system for ASR.</dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Introduction:</strong><br />
+ This paper presents a general end-to-end approach to sequence learning that makes minimal assumptions (Domain-Independent) on the sequence structure.<br />
+ It introduces <strong>Seq2Seq</strong>.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Structure:</strong>
+    <ul>
+      <li><strong>Input</strong>: sequence of input vectors</li>
+      <li><strong>Output</strong>: sequence of output labels</li>
+    </ul>
   </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Structure:</strong></dt>
-      <dd>
-        <ul>
-          <li><strong>Input</strong>: vector of speech spectrograms
-            <ul>
-              <li>An <em><strong>utterance</strong></em> <script type="math/tex">x^{(i)}</script>: is a time-series of length <script type="math/tex">T^{(i)}</script> composed of time-slices where each is a vector of audio (spectrogram) features <script type="math/tex">x_{t,p}^{(i)}, t=1,...,T^{(i)}</script>, where <script type="math/tex">p</script> denotes the power of the p’th frequency bin in the audio frame at time <script type="math/tex">t</script>.</li>
-            </ul>
-          </li>
-          <li><strong>Output</strong>: English text transcript <script type="math/tex">y</script></li>
-        </ul>
-      </dd>
-      <dd>
-        <ul>
-          <li><strong>Goal</strong>:<br />
-  The goal of the RNN is to convert an input sequence <script type="math/tex">x</script> into a sequence of character probabilities for the transcription <script type="math/tex">y</script>, with <script type="math/tex">\tilde{y}_t = P(c_t\vert x)</script>, where <script type="math/tex">c_t \in \{\text{a, b, c, } \ldots \text{,  z, space,  apostrophe, blank}\}</script>.</li>
-        </ul>
-      </dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Strategy:</strong><br />
+ The idea is to use one LSTM to read the input sequence, one time step at a time, to obtain large fixed dimensional vector representation, and then to use another LSTM to extract the output sequence from that vector.<br />
+ The second LSTM is essentially a recurrent neural network language model except that it is <strong>conditioned</strong> on the <strong>input sequence</strong>.</p>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Strategy:</strong></dt>
-      <dd>The goal is to replace the multi-part model with a single RNN network that captures as much of the information needed to do transcription in a single system.</dd>
-    </dl>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Solves:</strong>
+    <ul>
+      <li>Despite their flexibility and power, DNNs can only be applied to problems whose inputs and targets can be sensibly encoded with vectors of fixed dimensionality. It is a significant limitation, since many important problems are best expressed with sequences whose lengths are not known a-priori.<br />
+  The RNN can easily map sequences to sequences whenever the alignment between the inputs the outputs is known ahead of time. However, it is not clear how to apply an RNN to problems whose input and the output sequences have different lengths with complicated and non-monotonic relationship.</li>
+    </ul>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Solves:</strong></dt>
-      <dd>
-        <ul>
-          <li>Previous models only used DNNs as a single component in a complex pipeline.<br />
-  NNs are trained to classify <strong>individual frames of acoustic data</strong>, and then, their output distributions are reformulated as emission probabilities for a HMM.<br />
-  In this case, the objective function used to train the networks is therefore substantially different from the true performance measure (sequence-level transcription accuracy.<br />
-  This leads to problems where one system might have an improved accuracy rate but the overall transcription accuracy can still decrease.</li>
-          <li>An additional problem is that the frame-level training targets must be inferred from the alignments determined by the HMM. This leads to an awkward iterative procedure, where network retraining is alternated with HMM re-alignments to generate more accurate targets.</li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Key Insights:</strong></dt>
-      <dd>
-        <ul>
-          <li>As an <strong>End-to-End</strong> model, this system avoids the problems of <strong>multi-part</strong> systems that lead to inconsistent training criteria and difficulty of integration. <br />
-  The network is trained directly on the text transcripts: no phonetic representation (and hence no pronunciation dictionary or state tying) is used.</li>
-          <li>Using <strong>CTC</strong> objective, the system is able to better approximate and solve the alignment problem avoiding HMM realignment training.<br />
-  Since CTC integrates out over all possible input-output alignments, no forced alignment is required to provide training targets.</li>
-          <li>The Dataset is augmented with newly synthesized data and modified to include all the variations and effects that face ASR problems.  <br />
-  This greatly increases the system performance on particularly noisy/affected speech.</li>
-        </ul>
-      </dd>
-    </dl>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Key Insights:</strong>
+    <ul>
+      <li>Uses LSTMs to capture the information present in a sequence of inputs into one vector of features that can then be used to decode a sequence of output features</li>
+      <li>Uses two different LSTM, for the encoder and the decoder respectively</li>
+      <li>Reverses the words in the source sentence to make use of short-term dependencies (in translation) that led to better training and convergence</li>
+    </ul>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Preparing Data (Pre-Processing):</strong></dt>
-      <dd>The paper uses <strong>spectrograms</strong> of power normalized audio clips as features.</dd>
-      <dd><img src="/main_files/dl/nlp/speech_research/2.png" alt="img" width="60%" /></dd>
+      <dd></dd>
     </dl>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Architecture:</strong></dt>
-      <dd>The system is composed of:
+      <dd>
         <ul>
-          <li>An <strong>RNN</strong>:
+          <li><strong>Encoder</strong>:
             <ul>
-              <li>5 layers of <strong>hidden units</strong>:
+              <li><em><strong>LSTM:</strong></em>
                 <ul>
-                  <li>3 Layer of <strong>Feed-forward Nets</strong>:
+                  <li>4 Layers:
                     <ul>
-                      <li>For the <strong>input layer</strong>, the output depends on the spectrogram frame <script type="math/tex">x_t</script> along with a context of <script type="math/tex">C</script> frames on each side.
-                        <blockquote>
-                          <script type="math/tex; mode=display">C \in \{5, 7, 9\}</script>
-                        </blockquote>
-                      </li>
-                      <li>The non-recurrent layers operate on independent data for each time step:<br />
-  <script type="math/tex">h_t^{(l)} = g(W^{(l)} h_{(t)}^{(l-1)} + b^{(l)}),</script><br />
-  where <script type="math/tex">g(z) = \min \{\max \{0, z\}, 20\}</script> is the <em>clipped RELU</em>.</li>
-                    </ul>
-                  </li>
-                  <li>2 layers of <strong>Recurrent Nets</strong>:
-                    <ul>
-                      <li>1 layer of a <strong>Bi-LSTM</strong>:
-                        <ul>
-                          <li>Includes two sets of hidden units: 
-  A set with forward recurrence <script type="math/tex">h^{(f)}</script><br />
-  A set with backward recurrence <script type="math/tex">h^{(b)}</script>:<br />
-  <script type="math/tex">h_t^{(f)} = g(W^{(4)}h_t^{(3)} + W_r^{(b)} h_{t-1}^{(b)} + b ^{(4)}) \\ 
-  h_t^{(b)} = g(W^{(4)}h_t^{(3)} + W_r^{(b)} h_{t+1}^{(b)} + b ^{(4)})</script>
-                            <blockquote>
-                              <p>Note that <script type="math/tex">h^{(f)}</script> must be computed sequentially from <script type="math/tex">t = 1</script> to <script type="math/tex">t = T^{(i)}</script> for the i’th utterance, while the units <script type="math/tex">h^{(b)}</script> must be computed sequentially in reverse from <script type="math/tex">t = T^{(i)}</script> to <script type="math/tex">t = 1</script>.</p>
-                            </blockquote>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>1 layer of <strong>Feed-forward Nets</strong>:
-                        <ul>
-                          <li>The fifth (non-recurrent) layer takes both the forward and backward units as inputs:<br />
-  <script type="math/tex">h_t^{(5)} = g(W ^{(5)}h_t ^{(4)} + b ^{(5)}),</script><br />
-  where <script type="math/tex">h_t^{(4)} = h_t^{(f)} + h_t^{(b)}</script></li>
-                        </ul>
-                      </li>
+                      <li>1000 Dimensions per layer</li>
+                      <li>1000-dimensional word embeddings</li>
                     </ul>
                   </li>
                 </ul>
               </li>
-              <li>An <strong>Output</strong> layer made of a standard <strong>softmax function</strong> that yields the predicted character probabilities for each time-slice <script type="math/tex">t</script> and character <script type="math/tex">k</script> in the alphabet: <br />
-  <script type="math/tex">\displaystyle{h _{(t,k)} ^{(6)} = \hat{y} _{(t,k)} = P(c_t = k \vert x) = \dfrac{\exp (W_k ^{(6)} h_t ^{(5)} + b_k ^{(6)})}{\sum_j \exp (W_j ^{(6)}h_t ^{(5)} + b_j ^{(6)})}},</script><br />
-  where <script type="math/tex">W_k ^{(6)}</script> and <script type="math/tex">b_k ^{(6)}</script> denote the k’th column of the weight matrix and k’th bias.</li>
             </ul>
           </li>
-          <li>A <em><strong>CTC</strong></em> <strong>Loss Function</strong> <script type="math/tex">\mathcal{L}(\hat{y}, y)</script></li>
-          <li>An <em><strong>N-gram Language Model</strong></em></li>
-          <li>A <strong>combined Objective Function</strong>:</li>
+          <li><strong>Decoder</strong>:
+            <ul>
+              <li><em><strong>LSTM:</strong></em>
+                <ul>
+                  <li>4 Layers:
+                    <ul>
+                      <li>1000 Dimensions per layer</li>
+                      <li>1000-dimensional word embeddings</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>An <strong>Output</strong> layer made of a standard <strong>softmax function</strong>
+            <blockquote>
+              <p>over 80,000 words</p>
+            </blockquote>
+          </li>
+          <li><strong>Objective Function</strong>:
+            <p>$$\dfrac{1}{\vert \mathbb{S} \vert} \sum_{(T,S) \in \mathbb{S}} \log p(T \vert S)
+  $$</p>
+            <p>where <script type="math/tex">\mathbb{S}</script> is the training set.</p>
+          </li>
         </ul>
       </dd>
-      <dd>
-        <script type="math/tex; mode=display">Q(c) = \log (P(x \vert x)) + \alpha \log (P_{\text{LM}}(c) + \beta \text{word_count}(c))</script>
-      </dd>
-      <dd><img src="/main_files/dl/nlp/speech_research/1.png" alt="img" width="80%" /></dd>
     </dl>
   </li>
   <li>
@@ -235,44 +185,43 @@
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Algorithm:</strong></dt>
       <dd>
         <ul>
-          <li>Given the output <script type="math/tex">P(c \vert x)</script> of the RNN: perform a <strong>search</strong> to find the sequence of characters <script type="math/tex">c_1, c_2, ...</script> that is most probable according to both:
-            <ol>
-              <li>The RNN Output</li>
-              <li>The Language Model</li>
-            </ol>
-          </li>
-          <li>We maximize the combined objective:<br />
-  <script type="math/tex">Q(c) = \log (P(x \vert x)) + \alpha \log (P_{\text{LM}}(c) + \beta \text{word_count}(c))</script><br />
-  where the term <script type="math/tex">P_{\text{lm}} denotes the probability of the sequence</script>c$$ according to the N-gram model.</li>
-          <li>The objective is maximized using a highly optimized <strong>beam search</strong> algorithm
-            <blockquote>
-              <p>beam size: 1000-8000</p>
-            </blockquote>
-          </li>
+          <li>Train a large deep LSTM</li>
         </ul>
       </dd>
     </dl>
+    <ul>
+      <li>Train by maximizing the log probability of a correct translation <script type="math/tex">T</script>  given the source sentence <script type="math/tex">S</script></li>
+      <li>Produce translations by finding the most likely translation according to the LSTM:
+        <p>$$\hat{T} = \mathrm{arg } \max_{T} p(T \vert S)$$</p>
+      </li>
+      <li>Search for the most likely translation using a simple left-to-right beam search decoder which maintains a small number B of partial hypotheses
+        <blockquote>
+          <p>A <strong>partial hypothesis</strong> is a prefix of some translation</p>
+        </blockquote>
+      </li>
+      <li>At each time-step we extend each partial hypothesis in the beam with every possible word in the vocabulary
+        <blockquote>
+          <p>This greatly increases the number of the hypotheses so we discard all but the <script type="math/tex">B</script>  most likely hypotheses according to the model’s log probability</p>
+        </blockquote>
+      </li>
+      <li>As soon as the “<EOS>” symbol is appended to a hypothesis, it is removed from the beam and is added to the set of complete hypotheses  
+ *</EOS></li>
+    </ul>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents19">Training:</strong></dt>
       <dd>
         <ul>
-          <li>The gradient of the CTC Loss <script type="math/tex">\nabla_{\hat{y}} \mathcal{L}(\hat{y}, y)</script> with respect to the net outputs given the ground-truth character sequence <script type="math/tex">y</script> is computed</li>
-        </ul>
-      </dd>
-      <dd>
-        <ul>
-          <li>Nesterov’s Accelerated gradient</li>
-          <li>Nesterov Momentum</li>
-          <li>Annealing the learning rate by a constant factor</li>
-          <li>Dropout</li>
-          <li>Striding – shortening the recurrent layers by taking strides of size <script type="math/tex">2</script>.<br />
-  The unrolled RNN will have <strong>half</strong> as many steps.
+          <li>SGD</li>
+          <li>Momentum</li>
+          <li>Half the learning rate every half epoch after the 5th epoch</li>
+          <li>Gradient Clipping
             <blockquote>
-              <p>similar to a convolutional network with a step-size of 2 in the first layer.</p>
+              <p>enforce a hard constraint on the norm of the gradient</p>
             </blockquote>
           </li>
+          <li>Sorting input</li>
         </ul>
       </dd>
     </dl>
@@ -282,35 +231,32 @@
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents110">Parameters:</strong></dt>
       <dd>
         <ul>
-          <li><strong>Momentum</strong>: <script type="math/tex">0.99</script></li>
-          <li><strong>Dropout</strong>: <script type="math/tex">5-10 \%</script> (FFN only)</li>
-          <li><strong>Trade-Off Params</strong>: use cross-validation for <script type="math/tex">\alpha, \beta</script></li>
+          <li><strong>Initialization</strong> of all the LSTM params with <strong>uniform distribution</strong> <script type="math/tex">\in [-0.08, 0.08]</script></li>
+          <li><strong>Learning Rate</strong>: <script type="math/tex">0.7</script></li>
+          <li><strong>Batches</strong>: <script type="math/tex">28</script> sequences</li>
+          <li><strong>Clipping</strong>:</li>
         </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">g = 5g/\|g\|_2 \text{ if } \|g\|_2 > 5 \text{ else } g</script>
       </dd>
     </dl>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents111">Issues/The Bottleneck:</strong></dt>
-      <dd></dd>
+      <dd>
+        <ul>
+          <li>The decoder is <strong>approximate</strong></li>
+          <li>The system puts too much pressure on the last encoded vector to capture all the (long-term) dependencies</li>
+        </ul>
+      </dd>
     </dl>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents112">Results:</strong></dt>
-      <dd>
-        <ul>
-          <li><strong>SwitchboardHub5’00</strong>  (
-WER):
-            <ul>
-              <li>Standard: <script type="math/tex">16.0\%</script></li>
-              <li>w/Lexicon of allowed words: <script type="math/tex">21.9\%</script></li>
-              <li>Trigram LM: <script type="math/tex">8.2\%</script></li>
-              <li>w/Baseline system: <script type="math/tex">6.7\%</script></li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
+      <dd></dd>
     </dl>
   </li>
   <li>
@@ -318,15 +264,7 @@ WER):
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents113">Discussion:</strong></dt>
       <dd>
         <ul>
-          <li><strong>Why avoid LSTMs</strong>:<br />
-  One disadvantage of LSTM cells is that they require computing and storing multiple gating neuron responses at each step.<br />
-  Since the forward and backward recurrences are sequential, this small additional cost can become a computational bottleneck.</li>
-        </ul>
-      </dd>
-      <dd>
-        <ul>
-          <li><strong>Why a homogeneous model</strong>:<br />
-   By using a homogeneous model we have made the computation of the recurrent activations as efficient as possible: computing the ReLu outputs involves only a few highly optimized BLAS operations on the GPU and a single point-wise nonlinearity.</li>
+          <li>Sequence to sequence learning is a framework that attempts to address the problem of learning variable-length input and output sequences. It uses an encoder RNN to map the sequential variable-length input into a fixed-length vector. A decoder RNN then uses this vector to produce the variable-length output sequence, one token at a time. During training, the model feeds the groundtruth labels as inputs to the decoder. During inference, the model performs a beam search to generate suitable candidates for next step predictions.</li>
         </ul>
       </dd>
     </dl>
@@ -709,245 +647,54 @@ Content-Based Attention extended for <em>location awareness</em> by making it ta
 
 <hr />
 
-<h2 id="content5">Deep Speech 2</h2>
+<h2 id="content5">FIFTH</h2>
 
 <ol>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents51">Introduction:</strong></dt>
-      <dd>This paper improves on the previous attempt at an End-to-End system for ASR. It increases the complexity of the architecture and is able to achieve high accuracy on two different languages – English and Chinese.</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents52">Structure:</strong></dt>
-      <dd>
-        <ul>
-          <li><strong>Input</strong>: vector of speech spectrograms
-            <ul>
-              <li>An <em><strong>utterance</strong></em> <script type="math/tex">x^{(i)}</script>: is a time-series of length <script type="math/tex">T^{(i)}</script> composed of time-slices where each is a vector of audio (spectrogram) features <script type="math/tex">x_{t,p}^{(i)}, t=1,...,T^{(i)}</script>, where <script type="math/tex">p</script> denotes the power of the p’th frequency bin in the audio frame at time <script type="math/tex">t</script>.</li>
-            </ul>
-          </li>
-          <li><strong>Output</strong>: English text transcript <script type="math/tex">y</script></li>
-        </ul>
-      </dd>
-      <dd>
-        <ul>
-          <li><strong>Goal</strong>:<br />
-  The goal of the RNN is to convert an input sequence <script type="math/tex">x</script> into a sequence of character probabilities for the transcription <script type="math/tex">y</script>, with <script type="math/tex">\tilde{y}_t = P(c_t\vert x)</script>, where <script type="math/tex">c_t \in \{\text{a, b, c, } \ldots \text{,  z, space,  apostrophe, blank}\}</script>.</li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents53">Strategy:</strong></dt>
-      <dd>The goal is to replace the multi-part model with a single RNN network that captures as much of the information needed to do transcription in a single system.</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents54">Solves:</strong></dt>
-      <dd>
-        <ul>
-          <li>Previous models only used DNNs as a single component in a complex pipeline.<br />
-  NNs are trained to classify <strong>individual frames of acoustic data</strong>, and then, their output distributions are reformulated as emission probabilities for a HMM.<br />
-  In this case, the objective function used to train the networks is therefore substantially different from the true performance measure (sequence-level transcription accuracy.<br />
-  This leads to problems where one system might have an improved accuracy rate but the overall transcription accuracy can still decrease.</li>
-          <li>An additional problem is that the frame-level training targets must be inferred from the alignments determined by the HMM. This leads to an awkward iterative procedure, where network retraining is alternated with HMM re-alignments to generate more accurate targets.</li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents55">Key Insights:</strong></dt>
-      <dd>
-        <ul>
-          <li>As an <strong>End-to-End</strong> model, this system avoids the problems of <strong>multi-part</strong> systems that lead to inconsistent training criteria and difficulty of integration. <br />
-  The network is trained directly on the text transcripts: no phonetic representation (and hence no pronunciation dictionary or state tying) is used.</li>
-          <li>Using <strong>CTC</strong> objective, the system is able to better approximate and solve the alignment problem avoiding HMM realignment training.<br />
-  Since CTC integrates out over all possible input-output alignments, no forced alignment is required to provide training targets.</li>
-          <li>The Dataset is augmented with newly synthesized data and modified to include all the variations and effects that face ASR problems.  <br />
-  This greatly increases the system performance on particularly noisy/affected speech.</li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents56">Preparing Data (Pre-Processing):</strong></dt>
-      <dd>The paper uses <strong>spectrograms</strong> as a minimal preprocessing scheme.</dd>
-      <dd><img src="/main_files/dl/nlp/speech_research/2.png" alt="img" width="60%" /></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents57">Architecture:</strong></dt>
-      <dd>The system is composed of:
-        <ul>
-          <li>An <strong>RNN</strong>:
-            <ul>
-              <li>5 layers of <strong>hidden units</strong>:
-                <ul>
-                  <li>3 Layer of <strong>Feed-forward Nets</strong>:
-                    <ul>
-                      <li>For the <strong>input layer</strong>, the output depends on the spectrogram frame <script type="math/tex">x_t</script> along with a context of <script type="math/tex">C</script> frames on each side.
-                        <blockquote>
-                          <script type="math/tex; mode=display">C \in \{5, 7, 9\}</script>
-                        </blockquote>
-                      </li>
-                      <li>The non-recurrent layers operate on independent data for each time step:<br />
-  <script type="math/tex">h_t^{(l)} = g(W^{(l)} h_{(t)}^{(l-1)} + b^{(l)}),</script><br />
-  where <script type="math/tex">g(z) = \min \{\max \{0, z\}, 20\}</script> is the <em>clipped RELU</em>.</li>
-                    </ul>
-                  </li>
-                  <li>2 layers of <strong>Recurrent Nets</strong>:
-                    <ul>
-                      <li>1 layer of a <strong>Bi-LSTM</strong>:
-                        <ul>
-                          <li>Includes two sets of hidden units: 
-  A set with forward recurrence <script type="math/tex">h^{(f)}</script><br />
-  A set with backward recurrence <script type="math/tex">h^{(b)}</script>:<br />
-  <script type="math/tex">h_t^{(f)} = g(W^{(4)}h_t^{(3)} + W_r^{(b)} h_{t-1}^{(b)} + b ^{(4)}) \\ 
-  h_t^{(b)} = g(W^{(4)}h_t^{(3)} + W_r^{(b)} h_{t+1}^{(b)} + b ^{(4)})</script>
-                            <blockquote>
-                              <p>Note that <script type="math/tex">h^{(f)}</script> must be computed sequentially from <script type="math/tex">t = 1</script> to <script type="math/tex">t = T^{(i)}</script> for the i’th utterance, while the units <script type="math/tex">h^{(b)}</script> must be computed sequentially in reverse from <script type="math/tex">t = T^{(i)}</script> to <script type="math/tex">t = 1</script>.</p>
-                            </blockquote>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>1 layer of <strong>Feed-forward Nets</strong>:
-                        <ul>
-                          <li>The fifth (non-recurrent) layer takes both the forward and backward units as inputs:<br />
-  <script type="math/tex">h_t^{(5)} = g(W ^{(5)}h_t ^{(4)} + b ^{(5)}),</script><br />
-  where <script type="math/tex">h_t^{(4)} = h_t^{(f)} + h_t^{(b)}</script></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li>An <strong>Output</strong> layer made of a standard <strong>softmax function</strong> that yields the predicted character probabilities for each time-slice <script type="math/tex">t</script> and character <script type="math/tex">k</script> in the alphabet: <br />
-  <script type="math/tex">\displaystyle{h _{(t,k)} ^{(6)} = \hat{y} _{(t,k)} = P(c_t = k \vert x) = \dfrac{\exp (W_k ^{(6)} h_t ^{(5)} + b_k ^{(6)})}{\sum_j \exp (W_j ^{(6)}h_t ^{(5)} + b_j ^{(6)})}},</script><br />
-  where <script type="math/tex">W_k ^{(6)}</script> and <script type="math/tex">b_k ^{(6)}</script> denote the k’th column of the weight matrix and k’th bias.</li>
-            </ul>
-          </li>
-          <li>A <em><strong>CTC</strong></em> <strong>Loss Function</strong> <script type="math/tex">\mathcal{L}(\hat{y}, y)</script></li>
-          <li>An <em><strong>N-gram Language Model</strong></em></li>
-          <li>A <strong>combined Objective Function</strong>:</li>
-        </ul>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">Q(c) = \log (P(x \vert x)) + \alpha \log (P_{\text{LM}}(c) + \beta \text{word_count}(c))</script>
-      </dd>
-      <dd><img src="/main_files/dl/nlp/speech_research/1.png" alt="img" width="80%" /></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents58">Algorithm:</strong></dt>
-      <dd>
-        <ul>
-          <li>Given the output <script type="math/tex">P(c \vert x)</script> of the RNN: perform a <strong>search</strong> to find the sequence of characters <script type="math/tex">c_1, c_2, ...</script> that is most probable according to both:
-            <ol>
-              <li>The RNN Output</li>
-              <li>The Language Model</li>
-            </ol>
-          </li>
-          <li>We maximize the combined objective:<br />
-  <script type="math/tex">Q(c) = \log (P(x \vert x)) + \alpha \log (P_{\text{LM}}(c) + \beta \text{word_count}(c))</script><br />
-  where the term <script type="math/tex">P_{\text{lm}} denotes the probability of the sequence</script>c$$ according to the N-gram model.</li>
-          <li>The objective is maximized using a highly optimized <strong>beam search</strong> algorithm
-            <blockquote>
-              <p>beam size: 1000-8000</p>
-            </blockquote>
-          </li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents59">Training:</strong></dt>
-      <dd>
-        <ul>
-          <li>The gradient of the CTC Loss <script type="math/tex">\nabla_{\hat{y}} \mathcal{L}(\hat{y}, y)</script> with respect to the net outputs given the ground-truth character sequence <script type="math/tex">y</script> is computed</li>
-        </ul>
-      </dd>
-      <dd>
-        <ul>
-          <li>Nesterov’s Accelerated gradient</li>
-          <li>Nesterov Momentum</li>
-          <li>Annealing the learning rate by a constant factor</li>
-          <li>Dropout</li>
-          <li>Striding – shortening the recurrent layers by taking strides of size <script type="math/tex">2</script>.<br />
-  The unrolled RNN will have <strong>half</strong> as many steps.
-            <blockquote>
-              <p>similar to a convolutional network with a step-size of 2 in the first layer.</p>
-            </blockquote>
-          </li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents510">Parameters:</strong></dt>
-      <dd>
-        <ul>
-          <li><strong>Momentum</strong>: <script type="math/tex">0.99</script></li>
-          <li><strong>Dropout</strong>: <script type="math/tex">5-10 \%</script> (FFN only)</li>
-          <li><strong>Trade-Off Params</strong>: use cross-validation for <script type="math/tex">\alpha, \beta</script></li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents511">Issues/The Bottleneck:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents51">Asynchronous:</strong></dt>
       <dd></dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents512">Results:</strong></dt>
-      <dd>
-        <ul>
-          <li><strong>SwitchboardHub5’00</strong>  (
-WER):
-            <ul>
-              <li>Standard: <script type="math/tex">16.0\%</script></li>
-              <li>w/Lexicon of allowed words: <script type="math/tex">21.9\%</script></li>
-              <li>Trigram LM: <script type="math/tex">8.2\%</script></li>
-              <li>w/Baseline system: <script type="math/tex">6.7\%</script></li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents52">Asynchronous:</strong></dt>
+      <dd></dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents513">Discussion:</strong></dt>
-      <dd>
-        <ul>
-          <li><strong>Why avoid LSTMs</strong>:<br />
-  One disadvantage of LSTM cells is that they require computing and storing multiple gating neuron responses at each step.<br />
-  Since the forward and backward recurrences are sequential, this small additional cost can become a computational bottleneck.</li>
-        </ul>
-      </dd>
-      <dd>
-        <ul>
-          <li><strong>Why a homogeneous model</strong>:<br />
-  By using a homogeneous model we have made the computation of the recurrent activations as efficient as possible: computing the ReLu outputs involves only a few highly optimized BLAS operations on the GPU and a single point-wise nonlinearity.</li>
-        </ul>
-      </dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents53">Asynchronous:</strong></dt>
+      <dd></dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents514">Further Development:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents54">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents55">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents56">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents57">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents58">Asynchronous:</strong></dt>
       <dd></dd>
     </dl>
   </li>
@@ -955,252 +702,58 @@ WER):
 
 <hr />
 
-<h2 id="content6">Listen, Attend and Spell (LAS)</h2>
+<h2 id="content6">Sixth</h2>
 
 <ol>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents61">Introduction:</strong></dt>
-      <dd>This paper presents a a neural network that learns to transcribe speech utterances to characters.  Unlike traditional DNN-HMM models, this model learns all the components of a speech recognizer jointly.</dd>
-      <dd>The system has two components: a listener and a speller.</dd>
-      <dd><strong>LAS</strong> is based on the sequence to sequence learning framework with attention.</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents62">Structure:</strong></dt>
-      <dd>
-        <ul>
-          <li>
-            <p><strong>Input</strong>: <script type="math/tex">\mathbb{x} = (x_1, \ldots, x_T)</script> a sequence of filter bank spectra (acoustic) features</p>
-          </li>
-          <li>
-            <p><strong>Output</strong>: <script type="math/tex">% <![CDATA[
-\mathbb{y} = (\text{<sos>}, y_1, \ldots, y_S, \text{<eos>}), y_i \in \{\text{a, b, c, · · · , z, 0, · · · , 9, <spacei,<comma>,<period>,<apostrophe>,<unk> }\} %]]></script> the output sequence of characters</p>
-          </li>
-        </ul>
-      </dd>
-      <dd>
-        <ul>
-          <li><strong>Goal</strong>:<br />
-  The goal of the RNN is to convert an input sequence <script type="math/tex">x</script> into a sequence of character probabilities for the transcription <script type="math/tex">y</script>, with <script type="math/tex">\tilde{y}_t = P(c_t\vert x)</script>, where <script type="math/tex">c_t \in \{\text{a, b, c, } \ldots \text{,  z, space,  apostrophe, blank}\}</script>.</li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents63">Strategy:</strong></dt>
-      <dd><strong>LAS</strong> is based on the sequence to sequence learning framework with attention.</dd>
-      <dd>
-        <ul>
-          <li>We want to model each character output <script type="math/tex">y_i</script> as a conditional distribution over the previous characters <script type="math/tex">y_{\leq i+1}</script> and the input signal <script type="math/tex">\mathbb{x}</script> using the chain rule:</li>
-        </ul>
-        <p>$$P(\mathbb{y} \vert \mathbb{x}) = \prod_i P(y_i \vert \mathbb{x}, y_{\leq i+1}) \:\:\:\: (1)$$</p>
-        <ul>
-          <li></li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents64">Solves:</strong></dt>
-      <dd>
-        <ul>
-          <li><strong>CTC</strong>:<br />
-  CTC assumes that the label outputs are conditionally independent of each other</li>
-          <li><strong>Seq2Seq</strong>:<br />
-  the sequence to sequence approach has only been applied to phoneme sequences, and not trained end-to-end for speech recognition.</li>
-          <li></li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents65">Key Insights:</strong></dt>
-      <dd>
-        <ul>
-          <li>Use a pyramidal RNN model for the listener, which reduces the number of time steps that the attention model has to extract relevant information from.<br />
-The pyramid structure also reduces the computational complexity.</li>
-          <li>Character-based transcription allows the handling of rare and OOV words automatically</li>
-          <li>Attention</li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents677">The Model:</strong></dt>
-      <dd><strong>Listen</strong>:<br />
-Uses a <strong>Bi-directional LSTM</strong> with a pyramid structure.
-        <blockquote>
-          <p>The pyramid structure is needed to reduce the length <script type="math/tex">U</script> of <script type="math/tex">\mathbf{h}</script>, from <script type="math/tex">T</script> , the length of the input <script type="math/tex">\mathbb{h}</script> , because the input speech signals can be hundreds to thousands of frames long.</p>
-        </blockquote>
-      </dd>
-    </dl>
-    <ul>
-      <li><strong>Pyramidal LSTM</strong>:<br />
-  The output at the i-th time step, from the j-th layer is changed from:
-        <p>$$h_i^j = \text{BLSTM}(h_{i-1}^j, h_{i}^{j-1})$$</p>
-        <p>to, instead, we concatenate the outputs at consecutive steps of each layer before feeding it to the next layer:</p>
-        <p>$$h_i^j = \text{pBLSTM}(h_{i-1}^j, \left[h_{2i}^{j-1}, h_{2i+1}^{j-1}\right])$$</p>
-        <blockquote>
-          <dl>
-            <dt>In the model, we stack 3 pBLSTMs on top of the bottom BLSTM layer to reduce the time resolution <script type="math/tex">2^3 = 8</script> times.</dt>
-            <dd><strong>Attend and Spell:</strong><br />
-The function is computed using an <strong>attention-based LSTM transducer</strong>.<br />
-At every output step, the transducer produces a probability distribution over the next character conditioned on all the characters seen previously.<br />
-The <strong>distribution</strong> for <script type="math/tex">y_i</script> is a function of the decoder state <script type="math/tex">s_i</script> and context <script type="math/tex">c_i</script>.<br />
-The <strong>decoder state</strong> <script type="math/tex">s_i</script> is a function of the previous state <script type="math/tex">s_{i−1}</script>, the previously emitted character <script type="math/tex">y_{i−1}</script> and context <script type="math/tex">c_{i−1}</script>.<br />
-The <strong>context vector</strong> <script type="math/tex">c_i</script> is produced by an attention mechanism:</dd>
-          </dl>
-        </blockquote>
-      </li>
-    </ul>
-    <p>$$ c_i = \text{AttentionContext}(s_i, \mathbf{h}) \\
-    s_i = \text{RNN}(s_{i-1}, y_{i-1}, c_{i-1}) \\
-P(y_i \vert \mathbf{x}, y_{\leq i+1}) = \text{CharacterDistribution}(s_i, c_i)$$  </p>
-    <p>where <strong>CharacterDistribution</strong> is an <strong>MLP</strong> with softmax outputs over characters, and <strong>RNN</strong> is a 2 layer LSTM.</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents66">Preparing Data (Pre-Processing):</strong></p>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents67">Architecture:</strong></dt>
-      <dd>
-        <ul>
-          <li><strong>Encoder (listener):</strong><br />
-  An <strong>acoustic model</strong> encoder, whose key operation is <code class="highlighter-rouge">Listen</code>.<br />
-  It converts low level speech signals into higher level features.
-            <ul>
-              <li><strong>(pyramidal) RNN</strong>:
-                <ul>
-                  <li>
-                    <p><strong>Bi-Directional LSTM</strong>:</p>
-
-                    <ul>
-                      <li><em><strong>Structure</strong></em>:
-                        <ul>
-                          <li><em><strong>Input:</strong></em> original signal <script type="math/tex">\mathbb{x}</script></li>
-                          <li><em><strong>Output:</strong></em> a high level representation <script type="math/tex">\mathbf{h} = (h_1, ]ldots, h_U)</script>, with <script type="math/tex">U \leq T</script></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li><strong>Decoder (speller)</strong>:<br />
-  The speller is an <em>attention-based</em> <strong>character decoder</strong>, whose key operation is <code class="highlighter-rouge">AttendAndSpell</code>.<br />
-  It converts the higher level features into output utterances by specifying a probability distribution over sequences of characters using the attention mechanism.
-            <ul>
-              <li><strong>RNN</strong>:
-                <ul>
-                  <li><em><strong>Structure</strong></em>:
-                    <ul>
-                      <li><em><strong>Input:</strong></em> features <script type="math/tex">\mathbf{h}</script></li>
-                      <li><em><strong>Output:</strong></em> a probability distribution over character sequences:   <script type="math/tex">\mathbf{h} = (h_1, ]ldots, h_U)</script>, with <script type="math/tex">U \leq T</script></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents68">Algorithm:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents61">Asynchronous:</strong></dt>
       <dd></dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents69">Training:</strong></dt>
-      <dd>
-        <ul>
-          <li>The gradient of the CTC Loss <script type="math/tex">\nabla_{\hat{y}} \mathcal{L}(\hat{y}, y)</script> with respect to the net outputs given the ground-truth character sequence <script type="math/tex">y</script> is computed</li>
-        </ul>
-      </dd>
-      <dd>
-        <ul>
-          <li>Nesterov’s Accelerated gradient</li>
-          <li>Nesterov Momentum</li>
-          <li>Annealing the learning rate by a constant factor</li>
-          <li>Dropout</li>
-          <li>Striding – shortening the recurrent layers by taking strides of size <script type="math/tex">2</script>.<br />
-  The unrolled RNN will have <strong>half</strong> as many steps.
-            <blockquote>
-              <p>similar to a convolutional network with a step-size of 2 in the first layer.</p>
-            </blockquote>
-          </li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents610">Parameters:</strong></dt>
-      <dd>
-        <ul>
-          <li><strong>Momentum</strong>: <script type="math/tex">0.99</script></li>
-          <li><strong>Dropout</strong>: <script type="math/tex">5-10 \%</script> (FFN only)</li>
-          <li><strong>Trade-Off Params</strong>: use cross-validation for <script type="math/tex">\alpha, \beta</script></li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents611">Issues/The Bottleneck:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents62">Asynchronous:</strong></dt>
       <dd></dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents612">Results:</strong></dt>
-      <dd>
-        <ul>
-          <li><strong>SwitchboardHub5’00</strong>  (
-WER):
-            <ul>
-              <li>Standard: <script type="math/tex">16.0\%</script></li>
-              <li>w/Lexicon of allowed words: <script type="math/tex">21.9\%</script></li>
-              <li>Trigram LM: <script type="math/tex">8.2\%</script></li>
-              <li>w/Baseline system: <script type="math/tex">6.7\%</script></li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents63">Asynchronous:</strong></dt>
+      <dd></dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents613">Discussion:</strong></dt>
-      <dd>
-        <ul>
-          <li>Without the attention mechanism, the model overfits the training data significantly, in spite of our large training set of three million utterances - it memorizes the training transcripts without paying attention to the acoustics.</li>
-          <li>Without the pyramid structure in the encoder side, our model converges too slowly - even after a month of training, the error rates were significantly higher than the errors reported</li>
-          <li>To reduce the overfitting of the speller to the training transcripts, use a sampling trick during training</li>
-        </ul>
-      </dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents64">Asynchronous:</strong></dt>
+      <dd></dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents614">Further Development:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents65">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents66">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents67">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue">Asynchronous:</strong>{: .bodyContents6 #bodyContents68</dt>
       <dd></dd>
     </dl>
   </li>
 </ol>
-
-<hr />
 
 <h2 id="content7">Seven</h2>
 

@@ -22,6 +22,8 @@ prevLink: /work_files/research/dl/nlp.html
   {: .TOC4}
   * [Real-World Applications](#content6)
   {: .TOC6}
+  * [Building ASR Systems](#content11)
+  {: .TOC11}
 </div>
 
 ***
@@ -634,7 +636,3 @@ prevLink: /work_files/research/dl/nlp.html
                     ![img](/main_files/dl/nlp/12/21.png){: width="80%"}  
                 * Process packets that arrive at similar times in parallel (from    multiple users)  
                     ![img](/main_files/dl/nlp/12/22.png){: width="80%"}  
-
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents118}  
-    :   
