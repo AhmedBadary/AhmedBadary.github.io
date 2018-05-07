@@ -529,20 +529,38 @@ The following call converts the input features and labels into a tf.data.Dataset
         <dl>
           <dt>When defining an output layer, the units parameter specifies the number of outputs. So, by setting units to params[‘n_classes’], the model produces one output value per class.</dt>
           <dd><strong>Predict:</strong>
- <code class="highlighter-rouge">python
- # Compute predictions.
-predicted_classes = tf.argmax(logits, 1)
-if mode == tf.estimator.ModeKeys.PREDICT:
- predictions = {
-  'class_ids': predicted_classes[:, tf.newaxis],
-  'probabilities': tf.nn.softmax(logits),
-  'logits': logits,
- }
- return tf.estimator.EstimatorSpec(mode, predictions=predictions)
-</code>{}</dd>
+            <div class="language-python highlighter-rouge"><pre class="highlight"><code> <span class="c"># Compute predictions.</span>
+<span class="n">predicted_classes</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">ModeKeys</span><span class="o">.</span><span class="n">PREDICT</span><span class="p">:</span>
+ <span class="n">predictions</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'class_ids'</span><span class="p">:</span> <span class="n">predicted_classes</span><span class="p">[:,</span> <span class="n">tf</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span>
+  <span class="s">'probabilities'</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">),</span>
+  <span class="s">'logits'</span><span class="p">:</span> <span class="n">logits</span><span class="p">,</span>
+ <span class="p">}</span>
+ <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">EstimatorSpec</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">)</span>
+</code></pre>
+            </div>
+          </dd>
         </dl>
       </li>
     </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents46">Embeddings:</strong></dt>
+      <dd>An <strong>embedding</strong> is a mapping from discrete objects, such as words, to vectors of real numbers.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents47">Saving Params:</strong></dt>
+      <dd>```python
+saver = tf.train.Saver() # before ‘with’
+saver.save(sess, ‘./checkpoints/generator.ckpt’) # After (within) first for-loop
+        <h1 id="to-restore">To restore</h1>
+        <p>saver.restore(sess, tf.train.latest_checkpoint(‘checkpoints’)) # after ‘with’</p>
+      </dd>
+    </dl>
   </li>
 </ol>
 

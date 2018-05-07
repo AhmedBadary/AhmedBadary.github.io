@@ -477,4 +477,3 @@ prevLink: /work_files/research/dl/nlp.html
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents108}  
     :   
-

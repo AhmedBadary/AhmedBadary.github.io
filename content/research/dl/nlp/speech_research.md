@@ -94,6 +94,7 @@ prevLink: /work_files/research/dl/nlp.html
         * A __combined Objective Function__:  
     :   $$Q(c) = \log (P(x \vert x)) + \alpha \log (P_{\text{LM}}(c) + \beta \text{word_count}(c))$$   
     :   ![img](/main_files/dl/nlp/speech_research/1.png){: width="80%"}    
+
 8. **Algorithm:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}  
     :   * Given the output $$P(c \vert x)$$ of the RNN: perform a __search__ to find the sequence of characters $$c_1, c_2, ...$$ that is most probable according to both:  
             1. The RNN Output
@@ -503,11 +504,30 @@ prevLink: /work_files/research/dl/nlp.html
     <p>$$ c_i = \text{AttentionContext}(s_i, \mathbf{h}) \\
         s_i = \text{RNN}(s_{i-1}, y_{i-1}, c_{i-1}) \\
     P(y_i \vert \mathbf{x}, y_{\leq i+1}) = \text{CharacterDistribution}(s_i, c_i)$$  </p>  
-    where __CharacterDistribution__ is an __MLP__ with softmax outputs over characters, and __RNN__ is a 2 layer LSTM.
+    where __CharacterDistribution__ is an __MLP__ with softmax outputs over characters, and __RNN__ is a 2 layer LSTM.  
+    The __Attention__ Mechanism:  
+    At each step $$i$$, the attention mechanism, _AttentionContext_ generates a context vector $$c_i$$ encapsulating the information in the acoustic signal needed to generate the next character.  
+    The attention model is __content based__ - the contents of the decoder state $$s_i$$ are matched to the contents of $$h_u$$ representing time step $$u$$ of $$\mathbf{h}$$ to generate an attention vector $$\alpha_i$$.  
+    $$\alpha_i$$ is used to linearly blend vectors $$h_u$$ to create $$c_i$$.  
+    Specifically, at each decoder timestep $$i$$ , the AttentionContext function computes the scalar energy
+    $$e_{i,u}$$ for each time step $$u$$ , using vector $$h_u \in h$$ and $$s_i$$.  
+    The scalar energy $$e_{i,u}$$ is converted into a
+    probability distribution over times steps (or attention) $$\alpha_i$$  using a softmax function. This is used to create the context vector $$c_i$$  by linearly blending the listener features, $$h_u$$, at different time steps:  
+    <p>  
+    $$\begin{align}
+        e_{i,u} &= <\phi(s_i), \psi(h_u)> \\
+        \alpha_{i,u} &= \dfrac{\exp(e_{i,u})}{\sum_u \exp(e_{i,u})} \\
+        c_i &= \sum_u \alpha_{i,u}h_u 
+        \end{align}
+        $$ 
+    </p>  
+    where $$\phi$$ and $$\psi$$ are __MLP__ Networks.  
+    On convergence, the $$\alpha_i$$  distribution is typically very sharp, and focused on only a few frames of $$\mathbf{h}$$ ; $$c_i$$ can be seen as a continuous bag of weighted features of $$\mathbf{h}$$.  
 
 6. **Preparing Data (Pre-Processing):**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents66}  
 
-7. **Architecture:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents67}  
+7. **Architecture:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents67}
+    :   ![img](/main_files/dl/nlp/speech_research/5.png){: width="60%"}  
     :   * __Encoder (listener):__  
             An __acoustic model__ encoder, whose key operation is ```Listen```.  
             It converts low level speech signals into higher level features.  
@@ -539,10 +559,14 @@ prevLink: /work_files/research/dl/nlp.html
             The unrolled RNN will have __half__ as many steps.  
             > similar to a convolutional network with a step-size of 2 in the first layer.  
 
+99. **Inference (Decoding and Rescoring):**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents699}  
+
+
 10. **Parameters:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents610}  
     :   * __Momentum__: $$0.99$$ 
         * __Dropout__: $$5-10 \%$$ (FFN only)   
         * __Trade-Off Params__: use cross-validation for $$\alpha, \beta$$  
+
 
 11. **Issues/The Bottleneck:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents611}  
     :   

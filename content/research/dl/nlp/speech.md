@@ -157,7 +157,7 @@ prevLink: /work_files/research/dl/nlp.html
     * __DeepSpeech__ 5000h read (Lombard) speech + SWB with additive noise. 
     * __YouTube__ 125,000 hours aligned captions (Soltau et al., 2016) 
 
-5. **Datasets:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents85}  
+5. **Development:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents85}  
     ![img](/main_files/dl/nlp/12/17.png){: width="75%"}    
 
 *** 

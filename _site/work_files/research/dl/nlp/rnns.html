@@ -45,7 +45,7 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">Recurrent Neural Networks (RNNs) <br /> Language Modeling</h1>
+  <h1 class="project-name">Language Modeling  <br /> Recurrent Neural Networks (RNNs)</h1>
   <h2 class="project-tagline"></h2>
   <a href="/#" class="btn">Home</a>
   <a href="/work" class="btn">Work-Space</a>
@@ -422,14 +422,39 @@
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Math to Code:</strong></dt>
+      <dd>The Parameters: <script type="math/tex">\{W_{hx}, W_{hh}, W_{oh} ; b_h, b_o, h_o\}</script></dd>
+      <dd>
+        <script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+h_t &= \phi(W_{hx}x_t + W_{hh}h_{t-1} + b_h) \\
+h_t &= \phi(\begin{bmatrix}
+ W_{hx} & ; & W_{hh}
+\end{bmatrix}   
+\begin{bmatrix} x_t  \\ ;   \\ h_{t-1} \end{bmatrix} + b_h)
+\end{align} %]]></script>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">y_t = \phi'(W_{oh}h_t + b_o)</script>
+      </dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Initial States:</strong></dt>
+      <dd><img src="/main_files/dl/nlp/rnn/3.png" alt="img" width="76%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">Specifying the Initial States:</strong></dt>
+      <dd><img src="/main_files/dl/nlp/rnn/4.png" alt="img" width="76%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Teaching Signals:</strong></dt>
+      <dd><img src="/main_files/dl/nlp/rnn/5.png" alt="img" width="76%" /></dd>
     </dl>
   </li>
   <li>
@@ -455,6 +480,19 @@
           </li>
         </ul>
       </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents39">Rectifying the Vanishing/Exploding Gradient Problem:</strong></dt>
+      <dd><img src="/main_files/dl/nlp/rnn/7.png" alt="img" width="76%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Linearity of BackProp:</strong></dt>
+      <dd><img src="/main_files/dl/nlp/rnn/6.png" alt="img" width="76%" /></dd>
+      <dd>The derivative update are also <strong>Correlated</strong> which is bad for SGD.</dd>
     </dl>
   </li>
 </ol>

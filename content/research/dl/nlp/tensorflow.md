@@ -1,7 +1,7 @@
 ---
 layout: NotesPage
 title: TensorFlow 
-permalink: /work_files/research/dl/nlp/tf_intro
+permalink: /work_files/research/dl/nlp/tf_intro_2
 prevLink: /work_files/research/dl/nlp.html
 ---
 
@@ -61,6 +61,7 @@ prevLink: /work_files/research/dl/nlp.html
             # Shuffle, repeat, and batch the examples.
             return dataset.shuffle(1000).repeat().batch(batch_size)
         ```  
+    :   The job of the input function is to create the TF operations that generate data for the model
 
 2. **Model Function:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}
 

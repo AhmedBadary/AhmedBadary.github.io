@@ -1062,7 +1062,25 @@ The <strong>context vector</strong> <script type="math/tex">c_i</script> is prod
     <p>$$ c_i = \text{AttentionContext}(s_i, \mathbf{h}) \\
     s_i = \text{RNN}(s_{i-1}, y_{i-1}, c_{i-1}) \\
 P(y_i \vert \mathbf{x}, y_{\leq i+1}) = \text{CharacterDistribution}(s_i, c_i)$$  </p>
-    <p>where <strong>CharacterDistribution</strong> is an <strong>MLP</strong> with softmax outputs over characters, and <strong>RNN</strong> is a 2 layer LSTM.</p>
+    <p>where <strong>CharacterDistribution</strong> is an <strong>MLP</strong> with softmax outputs over characters, and <strong>RNN</strong> is a 2 layer LSTM.<br />
+The <strong>Attention</strong> Mechanism:<br />
+At each step <script type="math/tex">i</script>, the attention mechanism, <em>AttentionContext</em> generates a context vector <script type="math/tex">c_i</script> encapsulating the information in the acoustic signal needed to generate the next character.<br />
+The attention model is <strong>content based</strong> - the contents of the decoder state <script type="math/tex">s_i</script> are matched to the contents of <script type="math/tex">h_u</script> representing time step <script type="math/tex">u</script> of <script type="math/tex">\mathbf{h}</script> to generate an attention vector <script type="math/tex">\alpha_i</script>.<br />
+<script type="math/tex">\alpha_i</script> is used to linearly blend vectors <script type="math/tex">h_u</script> to create <script type="math/tex">c_i</script>.<br />
+Specifically, at each decoder timestep <script type="math/tex">i</script> , the AttentionContext function computes the scalar energy
+<script type="math/tex">e_{i,u}</script> for each time step <script type="math/tex">u</script> , using vector <script type="math/tex">h_u \in h</script> and <script type="math/tex">s_i</script>.<br />
+The scalar energy <script type="math/tex">e_{i,u}</script> is converted into a
+probability distribution over times steps (or attention) <script type="math/tex">\alpha_i</script>  using a softmax function. This is used to create the context vector <script type="math/tex">c_i</script>  by linearly blending the listener features, <script type="math/tex">h_u</script>, at different time steps:</p>
+    <p>  
+$$\begin{align}
+    e_{i,u} &amp;= &lt;\phi(s_i), \psi(h_u)&gt; \\
+    \alpha_{i,u} &amp;= \dfrac{\exp(e_{i,u})}{\sum_u \exp(e_{i,u})} \\
+    c_i &amp;= \sum_u \alpha_{i,u}h_u 
+    \end{align}
+    $$ 
+</p>
+    <p>where <script type="math/tex">\phi</script> and <script type="math/tex">\psi</script> are <strong>MLP</strong> Networks.<br />
+On convergence, the <script type="math/tex">\alpha_i</script>  distribution is typically very sharp, and focused on only a few frames of <script type="math/tex">\mathbf{h}</script> ; <script type="math/tex">c_i</script> can be seen as a continuous bag of weighted features of <script type="math/tex">\mathbf{h}</script>.</p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents66">Preparing Data (Pre-Processing):</strong></p>
@@ -1070,6 +1088,7 @@ P(y_i \vert \mathbf{x}, y_{\leq i+1}) = \text{CharacterDistribution}(s_i, c_i)$$
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents67">Architecture:</strong></dt>
+      <dd><img src="/main_files/dl/nlp/speech_research/5.png" alt="img" width="60%" /></dd>
       <dd>
         <ul>
           <li><strong>Encoder (listener):</strong><br />
@@ -1143,6 +1162,9 @@ P(y_i \vert \mathbf{x}, y_{\leq i+1}) = \text{CharacterDistribution}(s_i, c_i)$$
         </ul>
       </dd>
     </dl>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents699">Inference (Decoding and Rescoring):</strong></p>
   </li>
   <li>
     <dl>

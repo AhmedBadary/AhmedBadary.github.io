@@ -291,7 +291,20 @@ if mode == tf.estimator.ModeKeys.PREDICT:
         'logits': logits,
     }
     return tf.estimator.EstimatorSpec(mode, predictions=predictions)
-    ```{}
+    ```
+
+6. **Embeddings:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}  
+    :   An __embedding__ is a mapping from discrete objects, such as words, to vectors of real numbers.  
+
+
+7. **Saving Params:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}  
+    :   ```python
+        saver = tf.train.Saver() # before 'with'
+        saver.save(sess, './checkpoints/generator.ckpt') # After (within) first for-loop
+        # To restore
+        saver.restore(sess, tf.train.latest_checkpoint('checkpoints')) # after 'with'
+        
+
 
 ***
 

@@ -1,6 +1,6 @@
 ---
 layout: NotesPage
-title: Recurrent Neural Networks (RNNs) <br /> Language Modeling
+title: Language Modeling  <br /> Recurrent Neural Networks (RNNs)
 permalink: /work_files/research/dl/nlp/rnns
 prevLink: /work_files/research/dl/nlp.html
 ---
@@ -188,11 +188,27 @@ prevLink: /work_files/research/dl/nlp.html
     :   ![img](/main_files/dl/nlp/rnn/2.png){: width="100%"}  
     :   $$\:\:\:\:\:$$ Each memory layer passes an _intermediate sequential representation_ to the next.
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
-    :   
+3. **Math to Code:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
+    :   The Parameters: $$\{W_{hx}, W_{hh}, W_{oh} ; b_h, b_o, h_o\}$$   
+    :   $$\begin{align}
+        h_t &= \phi(W_{hx}x_t + W_{hh}h_{t-1} + b_h) \\
+        h_t &= \phi(\begin{bmatrix}
+    W_{hx} & ; & W_{hh}
+\end{bmatrix}   
+        \begin{bmatrix} x_t  \\ ;   \\ h_{t-1} \end{bmatrix} + b_h)
+        \end{align}
+        $$ 
+    :   $$y_t = \phi'(W_{oh}h_t + b_o)$$ 
 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
-    :   
+4. **Initial States:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
+    :   ![img](/main_files/dl/nlp/rnn/3.png){: width="76%"}  
+
+6. **Specifying the Initial States:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
+    :   ![img](/main_files/dl/nlp/rnn/4.png){: width="76%"}  
+
+7. **Teaching Signals:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
+    :   ![img](/main_files/dl/nlp/rnn/5.png){: width="76%"}  
+
 
 5. **Vanishing/Exploding Gradients:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
     :   * __Exploding Gradients__:  
@@ -205,3 +221,10 @@ prevLink: /work_files/research/dl/nlp.html
             * ReLu activation functions 
             * RMSprop 
             * LSTM, GRUs 
+
+9. **Rectifying the Vanishing/Exploding Gradient Problem:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents39}  
+    :   ![img](/main_files/dl/nlp/rnn/7.png){: width="76%"}  
+
+8. **Linearity of BackProp:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
+    :   ![img](/main_files/dl/nlp/rnn/6.png){: width="76%"}  
+    :   The derivative update are also __Correlated__ which is bad for SGD.  

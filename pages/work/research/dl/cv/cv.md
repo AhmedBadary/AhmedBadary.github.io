@@ -28,8 +28,8 @@ permalink: /work_files/research/dl/cv
 
 * ### [CNN Architectures](/work_files/research/dl/arcts)
 
-* ### [](/work_files/research/dl/dec)
+* ### [RNNs \| Applications in Computer Vision](/work_files/research/dl/rnns_cv)
 
-* ### [](/work_files/research/dl/dec)
+* ### [Generative Adversarial Networks (GANs)](/work_files/research/dl/gans)
 
 * ### [Deep-Dream <br /> Visualizing Features in ConvNets](/work_files/research/dl/tbd)
