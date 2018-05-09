@@ -200,8 +200,38 @@ eval_result = classifier.evaluate(
     input_fn=lambda:eval_input_fn(predict_x,labels=None, batch_size=args.batch_size))
         ```
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
-    :   
+8. **JIRA:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
+    :   __Project__:  
+        * A JIRA Project is a collection of issues 
+        * Every issue belongs to a Project 
+        * Each project is identified by a Name and Key 
+        * Project Key is appended to each issue associated with the 
+        project 
+        * Example: 
+            * Name of Project: Social Media Site 
+            * Project Key: SM 
+            * Issue: SM 24 Add a new friend 
+    :   __Issue:__ 
+        * Issue is the building block of the project 
+        * Depending on how your organization is using JIRA, an issue could represent: 
+            * a software bug 
+            * a project task 
+            * a helpdesk ticket 
+            * a product improvement 
+            * a leave request from client 
+    :   __Components__:   
+        * Components are sub-sections of a project 
+        * Components are used to group issues within a project to smaller parts  
+        ![img](/main_files/dl/nlp/t_f/10.png){: width="80%"}  
+    :   __Workflow:__   
+        * A JIRA workflow is the set of statuses and transitions that an issue goes through during its lifecycle. 
+        * Workflows typically represent business processes. 
+        * JIRA comes with default workflow and it can be customized to fit your organization  
+    :   __Workflow Status and Transitions:__   
+        ![img](/main_files/dl/nlp/t_f/11.png){: width="80%"}  
+
+
+
 
 ***
 
