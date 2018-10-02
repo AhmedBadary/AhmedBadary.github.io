@@ -169,9 +169,9 @@ prevLink: /work_files/research/dl/nlp.html
             4. Turn the score vector into probabilities, $$\hat{y} = \text{softmax}(z)$$ 
                 > Note that $$\hat{y}_{c−m}, \ldots, \hat{y}_{c−1}, \hat{y}_{c+1}, \ldots, \hat{y}_{c+m}$$ are the probabilities of observing each context word.  
             5. We desire our probability vector generated to match the true probabilities, which is  
-                $$ s y^{(c−m)} , ldots, y^{(c−1)} , y^{(c+1)} , ldots, y^{(c+m)}$$,  
+                $$ s y^{(c−m)} , \ldots, y^{(c−1)} , y^{(c+1)} , \ldots, y^{(c+m)}$$,  
                  the one hot vectors of the actual output.  
-            6. 
+
     
 5. **Word2Vec Details:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
     :   * For each word $$t = 1 \ldots T$$, predict surrounding words in a window of “radius” $$m$$ of every word.  
