@@ -163,7 +163,7 @@ prevLink: /work_files/research/dl/nlp.html
     :   Skip-Gram Models aim to predict the _distribution (probability)_ of context words from a center word.  
         > CBOW does the opposite, and aims to predict a center word from the surrounding context in terms of word vectors.  
     :   * __The Algorithm__:    
-            1. We generate our one hot input vector $$x \in \mathbf{R}^\|V\|$$ of the center word.  
+            1. We generate our one hot input vector $$x \in \mathbf{R}^{\|V\|}$$ of the center word.  
             2. We get our embedded word vector for the center word $$v_c = V_x \in \mathbf{R}^n$$  
             3. Generate a score vector $$z = \mathcal{U}_{v_c}$$ 
             4. Turn the score vector into probabilities, $$\hat{y} = \text{softmax}(z)$$ 
