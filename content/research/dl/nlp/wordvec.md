@@ -182,7 +182,10 @@ prevLink: /work_files/research/dl/nlp.html
     
 6. **The Objective:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
     :   Maximize the probability of any context word given the current center word.  
-    :   
+    :   The objective: 
+    :   $$J'(\theta) = \prod_{t=1}^{t} \prod_{-m\leq j\leq m}_{j\neq 0} p(w_{t+j} \| w_t ; \theta))$$
+    :   The _Negative Log Likelihood_:  
+    :   $$J'(\theta) = - \dfrac{1}{T} \sum{t=1}^{t} \sum{-m\leq j\leq m}_{j\neq 0} \log p(w_{t+j} \| w_t ; \theta))$$
     
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
     :   
