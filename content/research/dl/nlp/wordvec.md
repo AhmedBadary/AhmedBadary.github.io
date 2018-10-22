@@ -163,15 +163,15 @@ prevLink: /work_files/research/dl/nlp.html
     :   Skip-Gram Models aim to predict the _distribution (probability)_ of context words from a center word.  
         > CBOW does the opposite, and aims to predict a center word from the surrounding context in terms of word vectors.  
     :   * __The Algorithm__:    
-            1. We generate our one hot input vector $$x \in \mathbf{R}^\|V\|$$ of the center word.  
+            1. We generate our one hot input vector $$x \in \mathbf{R}^{\|V\|}$$ of the center word.  
             2. We get our embedded word vector for the center word $$v_c = V_x \in \mathbf{R}^n$$  
             3. Generate a score vector $$z = \mathcal{U}_{v_c}$$ 
             4. Turn the score vector into probabilities, $$\hat{y} = \text{softmax}(z)$$ 
                 > Note that $$\hat{y}_{c−m}, \ldots, \hat{y}_{c−1}, \hat{y}_{c+1}, \ldots, \hat{y}_{c+m}$$ are the probabilities of observing each context word.  
             5. We desire our probability vector generated to match the true probabilities, which is  
-                $$ s y^{(c−m)} , ldots, y^{(c−1)} , y^{(c+1)} , ldots, y^{(c+m)}$$,  
+                $$ s y^{(c−m)} , \ldots, y^{(c−1)} , y^{(c+1)} , \ldots, y^{(c+m)}$$,  
                  the one hot vectors of the actual output.  
-            6. 
+
     
 5. **Word2Vec Details:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
     :   * For each word $$t = 1 \ldots T$$, predict surrounding words in a window of “radius” $$m$$ of every word.  
@@ -182,7 +182,10 @@ prevLink: /work_files/research/dl/nlp.html
     
 6. **The Objective:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
     :   Maximize the probability of any context word given the current center word.  
-    :   
+    :   The objective: 
+    :   $$J'(\theta) = \prod_{t=1}^{t} \prod_{-m \leq j \leq m \\ \:\:\:\:j \neq 0} p(w_{t+j} \| w_t ; \theta))$$
+    :   The _Negative Log Likelihood_:  
+    :   $$J'(\theta) = - \dfrac{1}{T} \sum_{t=1}^{t} \sum_{-m \leq j \leq m \\ \:\:\:\:j\neq 0} \log p(w_{t+j} \| w_t ; \theta))$$
     
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
     :   
