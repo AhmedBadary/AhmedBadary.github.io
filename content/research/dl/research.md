@@ -10,9 +10,9 @@ prevLink: /work_files/research/dl/nlp.html
 
   * [Sequence to Sequence Learning with Neural Network](#content1)
   {: .TOC1}
-  * [2](#content2)
+  * [Towards End-to-End Speech Recognition with Recurrent Neural Networks](#content2)
   {: .TOC2}
-  * [3](#content3)
+  * [Attention-Based Models for Speech Recognition](#content3)
   {: .TOC3}
   * [4](#content4)
   {: .TOC4}

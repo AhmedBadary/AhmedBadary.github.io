@@ -365,7 +365,7 @@ Vector Space Model</dd>
         <ul>
           <li><strong>The Algorithm</strong>:
             <ol>
-              <li>We generate our one hot input vector <script type="math/tex">x \in \mathbf{R}^\|V\|</script> of the center word.</li>
+              <li>We generate our one hot input vector <script type="math/tex">x \in \mathbf{R}^{\|V\|}</script> of the center word.</li>
               <li>We get our embedded word vector for the center word <script type="math/tex">v_c = V_x \in \mathbf{R}^n</script></li>
               <li>Generate a score vector <script type="math/tex">z = \mathcal{U}_{v_c}</script></li>
               <li>Turn the score vector into probabilities, <script type="math/tex">\hat{y} = \text{softmax}(z)</script>
@@ -374,9 +374,8 @@ Vector Space Model</dd>
                 </blockquote>
               </li>
               <li>We desire our probability vector generated to match the true probabilities, which is<br />
- <script type="math/tex">s y^{(c−m)} , ldots, y^{(c−1)} , y^{(c+1)} , ldots, y^{(c+m)}</script>,<br />
+ <script type="math/tex">s y^{(c−m)} , \ldots, y^{(c−1)} , y^{(c+1)} , \ldots, y^{(c+m)}</script>,<br />
   the one hot vectors of the actual output.</li>
-              <li></li>
             </ol>
           </li>
         </ul>
@@ -404,7 +403,14 @@ where, …</dd>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">The Objective:</strong></dt>
       <dd>Maximize the probability of any context word given the current center word.</dd>
-      <dd></dd>
+      <dd>The objective:</dd>
+      <dd>
+        <script type="math/tex; mode=display">J'(\theta) = \prod_{t=1}^{t} \prod_{-m \leq j \leq m \\ \:\:\:\:j \neq 0} p(w_{t+j} \| w_t ; \theta))</script>
+      </dd>
+      <dd>The <em>Negative Log Likelihood</em>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">J'(\theta) = - \dfrac{1}{T} \sum_{t=1}^{t} \sum_{-m \leq j \leq m \\ \:\:\:\:j\neq 0} \log p(w_{t+j} \| w_t ; \theta))</script>
+      </dd>
     </dl>
   </li>
   <li>

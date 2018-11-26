@@ -26,21 +26,27 @@ prevLink: /work_files/research/dl/nlp.html
     :   Self-information deals only with a single outcome.
 
 4. **Shannon Entropy:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
-    :   To quantify the amount of uncertainty in an entire probability distribution, we use __Shannon Entropy___.  
+    :   To quantify the amount of uncertainty in an entire probability distribution, we use __Shannon Entropy__.  
     :   __Shannon Entropy__ is defined as the average amount of information produced by a stochastic source of data.
     :   $$H(x) = {\displaystyle \operatorname {E}_{x \sim P} [I(x)]} = - {\displaystyle \operatorname {E}_{x \sim P} [\log P(X)]}$$
     :   __Differential Entropy__ is shannons entropy of a __continuous__ random variable $$x$$
 
 5. **Distributions and Entropy:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}  
-    :   Distributions that are nearly deterministic (where the outcome is nearly certain)have low entropy; distributions that are closer to uniform have high entropy. 
+    :   Distributions that are nearly deterministic (where the outcome is nearly certain) have low entropy; distributions that are closer to uniform have high entropy. 
 
-6. **Relative Entropy \| K-L Divergence:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}  
+6. **Relative Entropy \| KL-Divergence:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}  
     :   The __Kullback–Leibler divergence__ (__Relative Entropy__) is a measure of how one probability distribution diverges from a second, expected probability distribution.  
+    :   __Mathematically:__  
+    :   $${\displaystyle D_{\text{KL}}(P\parallel Q)=\operatorname{E}_{x ~ P} \left[\log \dfrac{P(x)}{Q(x)}\right]=\operatorname{E}_{x ~ P} \left[\log P(x) - \log Q(x)\right]}$$
+    :   * __Discrete__:  
+    :   $${\displaystyle D_{\text{KL}}(P\parallel Q)=\sum_{i}P(i)\log \left({\frac {P(i)}{Q(i)}}\right)}$$  
+    :   * __Continuous__:  
+    :   $${\displaystyle D_{\text{KL}}(P\parallel Q)=\int _{-\infty }^{\infty }p(x)\log \left({\frac {p(x)}{q(x)}}\right)\,dx,}$$ 
 
     :   __Interpetation:__  
-        * __Discrete variables__:  
-            it is the extra amount of information needed to send a message containing symbols drawn from probability distribution $$P$$, when we use a code that was designed to minimize the length of messages drawn from probability distribution $$Q$$.  
-        * __Continuous variables__:  
+    * __Discrete variables__:  
+        it is the extra amount of information needed to send a message containing symbols drawn from probability distribution $$P$$, when we use a code that was designed to minimize the length of messages drawn from probability distribution $$Q$$.  
+    * __Continuous variables__:  
             
     :   __Properties:__ 
         * Non-Negativity:  
@@ -49,18 +55,36 @@ prevLink: /work_files/research/dl/nlp.html
             * *__Discrete Variables__*:  
                 the same distribution 
             * *__Continuous Variables__*:  
-                equal "almost everywhere"
+                equal "almost everywhere"  
+        * Additivity of _Independent Distributions_:  
+            $${\displaystyle D_{\text{KL}}(P\parallel Q)=D_{\text{KL}}(P_{1}\parallel Q_{1})+D_{\text{KL}}(P_{2}\parallel Q_{2}).}$$  
         * $${\displaystyle D_{\mathrm {KL} }(P\|Q) \neq D_{\mathrm {KL} }(Q\|P)}$$  
-            > This asymmetry means that there are important consequences to the choice of the ordering 
+            > This asymmetry means that there are important consequences to the choice of the ordering   
+        * Convexity in the pair of PMFs $$(p, q)$$ (i.e. $${\displaystyle (p_{1},q_{1})}$$ and  $${\displaystyle (p_{2},q_{2})}$$ are two pairs of PMFs):  
+            $${\displaystyle D_{\text{KL}}(\lambda p_{1}+(1-\lambda )p_{2}\parallel \lambda q_{1}+(1-\lambda )q_{2})\leq \lambda D_{\text{KL}}(p_{1}\parallel q_{1})+(1-\lambda )D_{\text{KL}}(p_{2}\parallel q_{2}){\text{ for }}0\leq \lambda \leq 1.}$$  
     :   __KL-Div as a Distance:__   
         Because the KL divergence is non-negative and measures the difference between two distributions, it is often conceptualized as measuring some sort of distance between these distributions.  
-        However, it is __not__ a true distance measure because it is __*not symmetric*__.
+        However, it is __not__ a true distance measure because it is __*not symmetric*__.  
+        > KL-div is, however, a *__Quasi-Metric__*, since it satisfies all the properties of a distance-metric except symmetry  
     :   __Applications__    
         Characterizing:  
         * Relative (Shannon) entropy in information systems
         * Randomness in continuous time-series 
         * Information gain when comparing statistical models of inference  
-    :   ![img](/main_files/math/prob/11.png){: width="100%"}
+    :   ![img](/main_files/math/prob/11.png){: width="100%"}  
+    :   __Example Application and Direction of Minimization__  
+        Suppose we have a distribution $$p(x)$$ and we wish to _approximate_ it with another distribution $$q(x)$$:  
+            We have a choice of _minimizing_ either:  
+            1. $${\displaystyle D_{\text{KL}}(p\|q)} \implies q^\ast = \operatorname {arg\,min}_q {\displaystyle D_{\text{KL}}(p\|q)}$$  
+                Produces an approximation that usually places high probability anywhere that the true distribution places high probability.  
+            2. $${\displaystyle D_{\text{KL}}(q\|p)} \implies q^\ast \operatorname {arg\,min}_q {\displaystyle D_{\text{KL}}(q\|p)}$$  
+                Produces an approximation that rarely places high probability anywhere that the true distribution places low probability.  
+        > which are different due to the _asymmetry_ of the KL-divergence  
+    :   <button>Choice of KL-div Direction</button>{: .showText value="show"
+     onclick="showTextPopHide(event);"}
+    ![img](/main_files/math/infothry/1.png){: width="100%" hidden=""}
+
+
 
 7. **Cross Entropy:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
     :   The __Cross Entropy__ between two probability distributions $${\displaystyle p}$$ and $${\displaystyle q}$$ over the same underlying set of events measures the average number of bits needed to identify an event drawn from the set, if a coding scheme is used that is optimized for an "unnatural" probability distribution $${\displaystyle q}$$, rather than the "true" distribution $${\displaystyle p}$$.  

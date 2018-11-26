@@ -100,7 +100,7 @@
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Shannon Entropy:</strong></dt>
-      <dd>To quantify the amount of uncertainty in an entire probability distribution, we use <strong>Shannon Entropy</strong>_.</dd>
+      <dd>To quantify the amount of uncertainty in an entire probability distribution, we use <strong>Shannon Entropy</strong>.</dd>
       <dd><strong>Shannon Entropy</strong> is defined as the average amount of information produced by a stochastic source of data.</dd>
       <dd>
         <script type="math/tex; mode=display">H(x) = {\displaystyle \operatorname {E}_{x \sim P} [I(x)]} = - {\displaystyle \operatorname {E}_{x \sim P} [\log P(X)]}</script>
@@ -111,18 +111,38 @@
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Distributions and Entropy:</strong></dt>
-      <dd>Distributions that are nearly deterministic (where the outcome is nearly certain)have low entropy; distributions that are closer to uniform have high entropy.</dd>
+      <dd>Distributions that are nearly deterministic (where the outcome is nearly certain) have low entropy; distributions that are closer to uniform have high entropy.</dd>
     </dl>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Relative Entropy | K-L Divergence:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Relative Entropy | KL-Divergence:</strong></dt>
       <dd>The <strong>Kullback–Leibler divergence</strong> (<strong>Relative Entropy</strong>) is a measure of how one probability distribution diverges from a second, expected probability distribution.</dd>
+      <dd><strong>Mathematically:</strong></dd>
+      <dd>
+        <script type="math/tex; mode=display">{\displaystyle D_{\text{KL}}(P\parallel Q)=\operatorname{E}_{x ~ P} \left[\log \dfrac{P(x)}{Q(x)}\right]=\operatorname{E}_{x ~ P} \left[\log P(x) - \log Q(x)\right]}</script>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Discrete</strong>:</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">{\displaystyle D_{\text{KL}}(P\parallel Q)=\sum_{i}P(i)\log \left({\frac {P(i)}{Q(i)}}\right)}</script>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Continuous</strong>:</li>
+        </ul>
+      </dd>
+      <dd>
+        <script type="math/tex; mode=display">{\displaystyle D_{\text{KL}}(P\parallel Q)=\int _{-\infty }^{\infty }p(x)\log \left({\frac {p(x)}{q(x)}}\right)\,dx,}</script>
+      </dd>
       <dd>
         <p><strong>Interpetation:</strong></p>
         <ul>
           <li><strong>Discrete variables</strong>:<br />
-  it is the extra amount of information needed to send a message containing symbols drawn from probability distribution <script type="math/tex">P</script>, when we use a code that was designed to minimize the length of messages drawn from probability distribution <script type="math/tex">Q</script>.</li>
+it is the extra amount of information needed to send a message containing symbols drawn from probability distribution <script type="math/tex">P</script>, when we use a code that was designed to minimize the length of messages drawn from probability distribution <script type="math/tex">Q</script>.</li>
           <li><strong>Continuous variables</strong>:</li>
         </ul>
       </dd>
@@ -139,16 +159,24 @@
   equal “almost everywhere”</li>
             </ul>
           </li>
+          <li>Additivity of <em>Independent Distributions</em>:<br />
+  <script type="math/tex">{\displaystyle D_{\text{KL}}(P\parallel Q)=D_{\text{KL}}(P_{1}\parallel Q_{1})+D_{\text{KL}}(P_{2}\parallel Q_{2}).}</script></li>
           <li><script type="math/tex">{\displaystyle D_{\mathrm {KL} }(P\|Q) \neq D_{\mathrm {KL} }(Q\|P)}</script>
             <blockquote>
               <p>This asymmetry means that there are important consequences to the choice of the ordering</p>
             </blockquote>
           </li>
+          <li>Convexity in the pair of PMFs <script type="math/tex">(p, q)</script> (i.e. <script type="math/tex">{\displaystyle (p_{1},q_{1})}</script> and  <script type="math/tex">{\displaystyle (p_{2},q_{2})}</script> are two pairs of PMFs):<br />
+  <script type="math/tex">{\displaystyle D_{\text{KL}}(\lambda p_{1}+(1-\lambda )p_{2}\parallel \lambda q_{1}+(1-\lambda )q_{2})\leq \lambda D_{\text{KL}}(p_{1}\parallel q_{1})+(1-\lambda )D_{\text{KL}}(p_{2}\parallel q_{2}){\text{ for }}0\leq \lambda \leq 1.}</script></li>
         </ul>
       </dd>
       <dd><strong>KL-Div as a Distance:</strong> <br />
 Because the KL divergence is non-negative and measures the difference between two distributions, it is often conceptualized as measuring some sort of distance between these distributions.<br />
-However, it is <strong>not</strong> a true distance measure because it is <strong><em>not symmetric</em></strong>.</dd>
+However, it is <strong>not</strong> a true distance measure because it is <strong><em>not symmetric</em></strong>.
+        <blockquote>
+          <p>KL-div is, however, a <em><strong>Quasi-Metric</strong></em>, since it satisfies all the properties of a distance-metric except symmetry</p>
+        </blockquote>
+      </dd>
       <dd><strong>Applications</strong>  <br />
 Characterizing:
         <ul>
@@ -158,6 +186,19 @@ Characterizing:
         </ul>
       </dd>
       <dd><img src="/main_files/math/prob/11.png" alt="img" width="100%" /></dd>
+      <dd><strong>Example Application and Direction of Minimization</strong><br />
+Suppose we have a distribution <script type="math/tex">p(x)</script> and we wish to <em>approximate</em> it with another distribution <script type="math/tex">q(x)</script>:<br />
+    We have a choice of <em>minimizing</em> either:<br />
+    1. <script type="math/tex">{\displaystyle D_{\text{KL}}(p\|q)} \implies q^\ast = \operatorname {arg\,min}_q {\displaystyle D_{\text{KL}}(p\|q)}</script><br />
+        Produces an approximation that usually places high probability anywhere that the true distribution places high probability.<br />
+    2. <script type="math/tex">{\displaystyle D_{\text{KL}}(q\|p)} \implies q^\ast \operatorname {arg\,min}_q {\displaystyle D_{\text{KL}}(q\|p)}</script><br />
+        Produces an approximation that rarely places high probability anywhere that the true distribution places low probability.
+        <blockquote>
+          <p>which are different due to the <em>asymmetry</em> of the KL-divergence</p>
+        </blockquote>
+      </dd>
+      <dd><button class="showText" value="show" onclick="showTextPopHide(event);">Choice of KL-div Direction</button>
+ <img src="/main_files/math/infothry/1.png" alt="img" width="100%" hidden="" /></dd>
     </dl>
   </li>
   <li>
