@@ -10,11 +10,11 @@ prevLink: /work_files/research/dl/nlp.html
 
   * [Sequence to Sequence Learning with Neural Network](#content1)
   {: .TOC1}
-  * [2](#content2)
+  * [Towards End-to-End Speech Recognition with Recurrent Neural Networks](#content2)
   {: .TOC2}
-  * [3](#content3)
+  * [Attention-Based Models for Speech Recognition](#content3)
   {: .TOC3}
-  * [4](#content4)
+<!--   * [4](#content4)
   {: .TOC4}
   * [5](#content5)
   {: .TOC5}
@@ -23,7 +23,7 @@ prevLink: /work_files/research/dl/nlp.html
   * [7](#content7)
   {: .TOC7}
   * [8](#content8)
-  {: .TOC8}
+  {: .TOC8} -->
 </div>
 
 ***
@@ -288,7 +288,7 @@ prevLink: /work_files/research/dl/nlp.html
 ## A Neural Transducer
 {: #content4}
 
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}  
+<!-- 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}  
     :   
 
 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}  
@@ -310,11 +310,11 @@ prevLink: /work_files/research/dl/nlp.html
     :   
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents48}  
-    :   
+    :    -->
 
 ***
 
-## FIFTH
+<!-- ## FIFTH
 {: #content5}
 
 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents51}  
@@ -339,25 +339,93 @@ prevLink: /work_files/research/dl/nlp.html
     :   
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents58}  
-    :   
+    :   --> 
 
 *** 
 
-## Sixth
+## FastText
 {: #content6}
 
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents61}  
+1. **Introduction:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents61}  
+    This paper proposes a new approach to form word-embeddings based on the skip-gram model, where each word is represented as a bag of character n-grams.
+
+2. **Structure:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents62}    
+    * __Input__: sequence of input vectors  
+    * __Output__: sequence of output labels
+                
+3. **Strategy:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents63}  
+    The idea is to use one LSTM to read the input sequence, one time step at a time, to obtain large fixed dimensional vector representation, and then to use another LSTM to extract the output sequence from that vector.  
+    The second LSTM is essentially a recurrent neural network language model except that it is __conditioned__ on the __input sequence__.
+
+4. **Solves:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents64}  
+    * Despite their flexibility and power, DNNs can only be applied to problems whose inputs and targets can be sensibly encoded with vectors of fixed dimensionality. It is a significant limitation, since many important problems are best expressed with sequences whose lengths are not known a-priori.  
+        The RNN can easily map sequences to sequences whenever the alignment between the inputs the outputs is known ahead of time. However, it is not clear how to apply an RNN to problems whose input and the output sequences have different lengths with complicated and non-monotonic relationship.  
+
+
+5. **Key Insights:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents65}  
+    * Uses LSTMs to capture the information present in a sequence of inputs into one vector of features that can then be used to decode a sequence of output features  
+    * Uses two different LSTM, for the encoder and the decoder respectively  
+    * Reverses the words in the source sentence to make use of short-term dependencies (in translation) that led to better training and convergence 
+
+6. **Preparing Data (Pre-Processing):**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents66}  
+    :   
+                    
+
+7. **Architecture:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents67}  
+    :   * __Encoder__:  
+            * *__LSTM:__* 
+                * 4 Layers:    
+                    * 1000 Dimensions per layer
+                    * 1000-dimensional word embeddings
+        * __Decoder__:  
+            * *__LSTM:__* 
+                * 4 Layers:    
+                    * 1000 Dimensions per layer
+                    * 1000-dimensional word embeddings
+        * An __Output__ layer made of a standard __softmax function__  
+            > over 80,000 words  
+        * __Objective Function__:  
+            <p>$$\dfrac{1}{\vert \mathbb{S} \vert} \sum_{(T,S) \in \mathbb{S}} \log p(T \vert S)
+            $$</p>  
+            where $$\mathbb{S}$$ is the training set.  
+                
+8. **Algorithm:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents68}  
+:   * Train a large deep LSTM 
+    * Train by maximizing the log probability of a correct translation $$T$$  given the source sentence $$S$$  
+    * Produce translations by finding the most likely translation according to the LSTM:   
+        <p>$$\hat{T} = \mathrm{arg } \max_{T} p(T \vert S)$$</p>
+    * Search for the most likely translation using a simple left-to-right beam search decoder which maintains a small number B of partial hypotheses  
+        > A __partial hypothesis__ is a prefix of some translation  
+    * At each time-step we extend each partial hypothesis in the beam with every possible word in the vocabulary  
+        > This greatly increases the number of the hypotheses so we discard all but the $$B$$  most likely hypotheses according to the model’s log probability  
+    * As soon as the “<EOS>” symbol is appended to a hypothesis, it is removed from the beam and is added to the set of complete hypotheses  
+    *
+
+9. **Training:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents69}  
+    :   * SGD
+        * Momentum 
+        * Half the learning rate every half epoch after the 5th epoch
+        * Gradient Clipping  
+            > enforce a hard constraint on the norm of the gradient
+        * Sorting input
+
+10. **Parameters:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents610}  
+    :   * __Initialization__ of all the LSTM params with __uniform distribution__ $$\in [-0.08, 0.08]$$  
+        * __Learning Rate__: $$0.7$$ 
+        * __Batches__: $$28$$ sequences
+        * __Clipping__: 
+                  
+
+11. **Issues/The Bottleneck:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents611}  
+    :   * 
+
+12. **Results:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents612}  
     :   
 
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents62}  
-    :   
+13. **Discussion:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents613}  
+    :   *  
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents63}  
-    :   
-
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents64}  
-    :   
-
+<!-- 
 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents65}  
     :   
 
@@ -367,10 +435,10 @@ prevLink: /work_files/research/dl/nlp.html
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents67}  
     :   
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents68  
-    :   
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents68}  
+    :    -->
 
-## Seven
+<!-- ## Seven
 {: #content7}
 
 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents71}  
@@ -395,9 +463,9 @@ prevLink: /work_files/research/dl/nlp.html
     :   
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents78}  
-    :   
+    :    -->
 
-## Eight
+<!-- ## Eight
 {: #content8}
 
 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents81}  
@@ -477,3 +545,4 @@ prevLink: /work_files/research/dl/nlp.html
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents108}  
     :   
+ -->

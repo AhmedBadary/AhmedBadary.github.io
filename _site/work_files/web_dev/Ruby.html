@@ -113,7 +113,7 @@
 
 <h2 id="content1">Data Types, Input, Output, Constants, File I/O</h2>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="c1"># Ruby is a dynamic, interpreted, object oriented language</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ruby is a dynamic, interpreted, object oriented language</span>
 <span class="c1"># Everything is an object and all of those objects can be overwritten</span>
 <span class="c1"># Ruby is one of the easiest languages to read and with Rails it may be</span>
 <span class="c1"># the best web development option period</span>
@@ -144,28 +144,28 @@
 <span class="c1"># Integers or Fixnums can store extremely large numbers</span>
 <span class="c1"># They can go well beyond 4,611,686,018,427,387,903</span>
 
-<span class="n">numOne</span> <span class="o">=</span> <span class="mi">1</span><span class="o">.</span><span class="mo">000</span>
+<span class="n">numOne</span> <span class="o">=</span> <span class="mf">1.000</span>
 
 <span class="c1"># You must put a 0 before your floats</span>
-<span class="n">num99</span> <span class="o">=</span> <span class="mi">0</span><span class="o">.</span><span class="mi">999</span>
+<span class="n">num99</span> <span class="o">=</span> <span class="mf">0.999</span>
 
 <span class="c1"># Floating point calculations tend to be accurate</span>
 <span class="nb">puts</span> <span class="n">numOne</span><span class="p">.</span><span class="nf">to_s</span> <span class="o">+</span> <span class="s2">" - "</span> <span class="o">+</span> <span class="n">num99</span><span class="p">.</span><span class="nf">to_s</span> <span class="o">+</span> <span class="s2">" = "</span> <span class="o">+</span> <span class="p">(</span><span class="n">numOne</span> <span class="o">-</span> <span class="n">num99</span><span class="p">).</span><span class="nf">to_s</span>
 
 <span class="c1"># 14 Digits of accuracy is the norm</span>
-<span class="n">big_float</span> <span class="o">=</span> <span class="mi">1</span><span class="o">.</span><span class="mi">12345678901234</span>
-<span class="nb">puts</span> <span class="p">(</span><span class="n">big_float</span> <span class="o">+</span> <span class="mi">0</span><span class="o">.</span><span class="mo">00000000000005</span><span class="p">).</span><span class="nf">to_s</span>
+<span class="n">big_float</span> <span class="o">=</span> <span class="mf">1.12345678901234</span>
+<span class="nb">puts</span> <span class="p">(</span><span class="n">big_float</span> <span class="o">+</span> <span class="mf">0.00000000000005</span><span class="p">).</span><span class="nf">to_s</span>
 
 <span class="c1"># Everything is an object</span>
 <span class="nb">puts</span> <span class="mi">1</span><span class="p">.</span><span class="nf">class</span>
-<span class="nb">puts</span> <span class="mi">1</span><span class="o">.</span><span class="mi">234</span><span class="p">.</span><span class="nf">class</span>
+<span class="nb">puts</span> <span class="mf">1.234</span><span class="p">.</span><span class="nf">class</span>
 <span class="nb">puts</span> <span class="s2">"A String"</span><span class="p">.</span><span class="nf">class</span>
 
 <span class="c1"># A Constant starts with an uppercase letter and if you try to change the</span>
 <span class="c1"># value you will be warned</span>
 
-<span class="no">A_CONSTANT</span> <span class="o">=</span> <span class="mi">3</span><span class="o">.</span><span class="mi">14</span>
-<span class="no">A_CONSTANT</span> <span class="o">=</span> <span class="mi">1</span><span class="o">.</span><span class="mi">6</span>
+<span class="no">A_CONSTANT</span> <span class="o">=</span> <span class="mf">3.14</span>
+<span class="no">A_CONSTANT</span> <span class="o">=</span> <span class="mf">1.6</span>
 <span class="nb">puts</span> <span class="no">A_CONSTANT</span>
 
 <span class="c1"># Returns a File object for writing</span>
@@ -184,11 +184,10 @@
 
 <span class="c1"># Use load to execute the code in another Ruby file</span>
 <span class="nb">load</span> <span class="s2">"rubyOrNotRuby2.rb"</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="content2">Conditionals and Looping</h2>
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="cm">=begin
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">=begin
 Multiline comments
 =end</span>
 
@@ -338,15 +337,14 @@ Multiline comments
 
 <span class="c1"># Cycles through numbers 0 through 5</span>
 
-<span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="nf">.</span><span class="mi">5</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+<span class="p">(</span><span class="mi">0</span><span class="o">..</span><span class="mi">5</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
   <span class="nb">puts</span> <span class="s2">"# </span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="content3">Functions and Exceptions</h2>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="c1"># --------------- FUNCTIONS ---------------</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># --------------- FUNCTIONS ---------------</span>
  
 <span class="c1"># Functions start with def, function name, parameters if any</span>
 <span class="c1"># They can return, or not a value</span>
@@ -404,12 +402,11 @@ Multiline comments
 <span class="k">rescue</span> <span class="no">ArgumentError</span>
   <span class="nb">puts</span> <span class="s2">"That is an impossible age"</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="content4">String Methods</h2>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="c1"># --------------- STRINGS ---------------</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># --------------- STRINGS ---------------</span>
 
 <span class="c1"># Strings are a series of characters between " or '</span>
 <span class="c1"># String interpolation doesn't work with '' and neither do backslash</span>
@@ -540,12 +537,11 @@ like </span><span class="si">#{</span><span class="mi">4</span> <span class="o">
 <span class="c1"># \r  Carriage</span>
 <span class="c1"># \t  Tab</span>
 <span class="c1"># \v  Vertical tab</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="content5">Classes, Objects, Inheritance</h2>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="c1"># In an object oriented language we model real world objects using classes</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># In an object oriented language we model real world objects using classes</span>
 <span class="c1"># Every object has attributes (instance variables) and capabilities (methods)</span>
 
 <span class="k">class</span> <span class="nc">Animal</span>
@@ -604,13 +600,13 @@ like </span><span class="si">#{</span><span class="mi">4</span> <span class="o">
 <span class="k">class</span> <span class="nc">Dog</span>
 
   <span class="c1"># Shortcut for creating all getter functions</span>
-  <span class="kp">attr_reader</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:height</span><span class="p">,</span> <span class="ss">:weight</span>
+  <span class="nb">attr_reader</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:height</span><span class="p">,</span> <span class="ss">:weight</span>
 
   <span class="c1"># Shortcut for creating all setter functions</span>
-  <span class="kp">attr_writer</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:height</span><span class="p">,</span> <span class="ss">:weight</span>
+  <span class="nb">attr_writer</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:height</span><span class="p">,</span> <span class="ss">:weight</span>
 
   <span class="c1"># Creates setter and getter methods (Use this One)</span>
-  <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:height</span><span class="p">,</span> <span class="ss">:weight</span>
+  <span class="nb">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:height</span><span class="p">,</span> <span class="ss">:weight</span>
 
   <span class="k">def</span> <span class="nf">bark</span>
     <span class="k">return</span> <span class="s2">"Generic Bark"</span>
@@ -642,12 +638,11 @@ like </span><span class="si">#{</span><span class="mi">4</span> <span class="o">
 <span class="n">max</span><span class="p">.</span><span class="nf">name</span> <span class="o">=</span> <span class="s2">"Max"</span>
 
 <span class="nb">printf</span> <span class="s2">"%s goes %s </span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">max</span><span class="p">.</span><span class="nf">name</span><span class="p">,</span> <span class="n">max</span><span class="p">.</span><span class="nf">bark</span><span class="p">()</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="content6">Modules, Include, Prepend, Polymorphism and Duck Typing</h2>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="c1"># Modules are made up of methods and variables, but they can't be instantiated</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Modules are made up of methods and variables, but they can't be instantiated</span>
 <span class="c1"># They are used to add functionality to a class</span>
 
 <span class="c1"># Allows you access to the Human module (Ruby 2+)</span>
@@ -718,13 +713,12 @@ like </span><span class="si">#{</span><span class="mi">4</span> <span class="o">
 
 <span class="n">generic_bird</span><span class="p">.</span><span class="nf">tweet</span><span class="p">(</span><span class="no">Cardinal</span><span class="p">.</span><span class="nf">new</span><span class="p">)</span>
 <span class="n">generic_bird</span><span class="p">.</span><span class="nf">tweet</span><span class="p">(</span><span class="no">Parrot</span><span class="p">.</span><span class="nf">new</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <h2 id="content7">human.rb</h2>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Human</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Human</span>
   <span class="c1"># Creates setter and getter methods</span>
-  <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:height</span><span class="p">,</span> <span class="ss">:weight</span>
+  <span class="nb">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:height</span><span class="p">,</span> <span class="ss">:weight</span>
 
   <span class="k">def</span> <span class="nf">run</span>
 
@@ -734,24 +728,22 @@ like </span><span class="si">#{</span><span class="mi">4</span> <span class="o">
   <span class="k">end</span>
 
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="content8">smart.rb</h2>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Smart</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Smart</span>
 
   <span class="k">def</span> <span class="nf">act_smart</span>
     <span class="k">return</span> <span class="s2">"E = mc²"</span>
   <span class="k">end</span>
 
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="content9">Symbols</h2>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="c1"># --------------- SYMBOLS ---------------</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># --------------- SYMBOLS ---------------</span>
 
 <span class="c1"># Symbols are strings that can't be changed</span>
 <span class="c1"># You use them to conserve memory and to speed string comparisons</span>
@@ -770,19 +762,18 @@ like </span><span class="si">#{</span><span class="mi">4</span> <span class="o">
 <span class="c1"># attr_accessor :name, :height, :weight that we used earlier</span>
 
 <span class="c1"># Symbols are also used as keys for hashes</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="content10">Arrays</h2>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="c1"># --------------- ARRAYS ---------------</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># --------------- ARRAYS ---------------</span>
 
 <span class="c1"># Creating arrays</span>
 
 <span class="n">array_1</span> <span class="o">=</span> <span class="no">Array</span><span class="p">.</span><span class="nf">new</span>
 <span class="n">array_2</span> <span class="o">=</span> <span class="no">Array</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># Gets nil as default</span>
 <span class="n">array_3</span> <span class="o">=</span> <span class="no">Array</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">"empty"</span><span class="p">)</span>
-<span class="n">array_4</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="s2">"two"</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="o">.</span><span class="mi">5</span><span class="p">]</span> <span class="c1"># You can store multiple object types</span>
+<span class="n">array_4</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="s2">"two"</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">5.5</span><span class="p">]</span> <span class="c1"># You can store multiple object types</span>
 
 <span class="nb">puts</span> <span class="n">array_1</span>
 <span class="nb">puts</span> <span class="n">array_2</span>
@@ -835,19 +826,18 @@ like </span><span class="si">#{</span><span class="mi">4</span> <span class="o">
 <span class="n">array_4</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">value</span><span class="o">|</span>
   <span class="nb">puts</span> <span class="n">value</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="content11">Hashes</h2>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="c1"># --------------- HASHS ---------------</span>
 
 <span class="c1"># A hash is a collection of key object pairs</span>
 
-<span class="n">number_hash</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"PI"</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="o">.</span><span class="mi">14</span><span class="p">,</span>
-                <span class="s2">"Golden"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="o">.</span><span class="mi">618</span><span class="p">,</span>
-                <span class="s2">"e"</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="o">.</span><span class="mi">718</span><span class="p">}</span>
+<span class="n">number_hash</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"PI"</span> <span class="o">=&gt;</span> <span class="mf">3.14</span><span class="p">,</span>
+                <span class="s2">"Golden"</span> <span class="o">=&gt;</span> <span class="mf">1.618</span><span class="p">,</span>
+                <span class="s2">"e"</span> <span class="o">=&gt;</span> <span class="mf">2.718</span><span class="p">}</span>
 
 <span class="nb">puts</span> <span class="n">number_hash</span><span class="p">[</span><span class="s2">"PI"</span><span class="p">]</span>
 
@@ -886,12 +876,11 @@ like </span><span class="si">#{</span><span class="mi">4</span> <span class="o">
 <span class="n">superheroes</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="s2">"Barry Allen"</span><span class="p">)</span>
 
 <span class="nb">puts</span> <span class="s2">"Size of Hash : "</span> <span class="o">+</span> <span class="n">superheroes</span><span class="p">.</span><span class="nf">size</span><span class="p">.</span><span class="nf">to_s</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="content12">Enumerable</h2>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="c1"># Classes that include the Enumerable module gain collection capabilities</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Classes that include the Enumerable module gain collection capabilities</span>
 <span class="c1"># but they must define a function called each</span>
 
 <span class="k">class</span> <span class="nc">Menu</span>
@@ -945,12 +934,11 @@ like </span><span class="si">#{</span><span class="mi">4</span> <span class="o">
 
 <span class="c1"># Return each item in reverse order</span>
 <span class="n">menu_options</span><span class="p">.</span><span class="nf">reverse_each</span> <span class="p">{</span><span class="o">|</span><span class="n">item</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">item</span><span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="content13">File I/O</h2>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="c1"># The class File provides for file manipulation</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># The class File provides for file manipulation</span>
 
 <span class="c1"># Create a file for writing</span>
 <span class="n">file</span> <span class="o">=</span> <span class="no">File</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"authors.out"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span>
@@ -989,8 +977,7 @@ like </span><span class="si">#{</span><span class="mi">4</span> <span class="o">
     <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> was an </span><span class="si">#{</span><span class="n">lang</span><span class="si">}</span><span class="s2"> author that specialized in </span><span class="si">#{</span><span class="n">specialty</span><span class="si">}</span><span class="s2">. They sold over </span><span class="si">#{</span><span class="n">sales</span><span class="si">}</span><span class="s2"> books."</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
       <footer class="site-footer">

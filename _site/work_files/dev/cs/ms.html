@@ -121,36 +121,33 @@ beyond the bounds of some memory region.</dd>
   <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Example:</strong>
     <ol>
       <li>In this example, gets() reads as many bytes of input as are available on standard input, and stores them into buf[]. If the input contains more than 80 bytes of data, then gets() will write past the end of buf, overwriting some other part of memory.
-        <div class="language-c highlighter-rouge"><pre class="highlight"><code> <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">80</span><span class="p">];</span>
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">80</span><span class="p">];</span>
  <span class="kt">void</span> <span class="nf">vulnerable</span><span class="p">()</span> <span class="p">{</span>
      <span class="n">gets</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
  <span class="p">}</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
         <blockquote>
           <p>This is a bug. This bug typically causes a crash and a core-dump.</p>
         </blockquote>
       </li>
       <li>Unfortunately, the authenticated flag is stored in memory right after <code class="highlighter-rouge">buf</code>. If the attacker can write 81 bytes of data to buf (with the 81st byte set to a non-zero value), then this will set the authenticated flag to true, and the attacker will gain access.
-        <div class="language-c highlighter-rouge"><pre class="highlight"><code> <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">80</span><span class="p">];</span>
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">80</span><span class="p">];</span>
  <span class="kt">int</span> <span class="n">authenticated</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
  <span class="kt">void</span> <span class="nf">vulnerable</span><span class="p">()</span> <span class="p">{</span>
      <span class="n">gets</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
  <span class="p">}</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
         <blockquote>
           <p>An attacker who can control the input to the program can bypass the password checks.</p>
         </blockquote>
       </li>
       <li>The function pointer <code class="highlighter-rouge">fnptr</code> is invoked elsewhere in the program (not shown). This enables a more serious attack: the attacker can overwrite fnptr with any address of their choosing, redirecting program execution to some other memory location.
-        <div class="language-c highlighter-rouge"><pre class="highlight"><code> <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">80</span><span class="p">];</span>
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">80</span><span class="p">];</span>
  <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">fnptr</span><span class="p">)();</span>
  <span class="kt">void</span> <span class="nf">vulnerable</span><span class="p">()</span> <span class="p">{</span>
      <span class="n">gets</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
  <span class="p">}</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
         <blockquote>
           <p>A crafty attacker could supply an input that consists of malicious machine instructions, followed by a few bytes that overwrite fnptr with some address A.
  When fnptr is next invoked, the flow of control is redirected to address A.</p>
@@ -174,7 +171,7 @@ for instance, the attacker could arrange to store the malicious code anywhere el
         <ul>
           <li><strong>Solution:</strong><br />
   <strong>Stack Canaries:</strong> A canary or canary word is a known value placed between the local variables and control data on the stack. Before reading the return address, code inserted by the compiler checks the canary against the known value. Since a successful buffer overflows needs to overwrite the canary before reaching the return address, and the attacker cannot predict the canary value, the canary validation will fail and stop execution prior to the jump.
-            <div class="language-c highlighter-rouge"><pre class="highlight"><code>      <span class="cm">/* This number is randomly set before each run. */</span>
+            <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="cm">/* This number is randomly set before each run. */</span>
       <span class="kt">int</span> <span class="n">MAGIC</span> <span class="o">=</span> <span class="n">rand</span><span class="p">();</span>
       <span class="kt">void</span> <span class="nf">vuln</span><span class="p">()</span> <span class="p">{</span>
           <span class="kt">int</span> <span class="n">canary</span> <span class="o">=</span> <span class="n">MAGIC</span><span class="p">;</span>
@@ -183,8 +180,7 @@ for instance, the attacker could arrange to store the malicious code anywhere el
           <span class="k">if</span> <span class="p">(</span><span class="n">canary</span> <span class="o">!=</span> <span class="n">MAGIC</span><span class="p">)</span>
               <span class="n">HALT</span><span class="p">();</span>
       <span class="p">}</span>
-</code></pre>
-            </div>
+</code></pre></div>            </div>
           </li>
           <li><strong>Limitations:</strong>
             <ol>
@@ -285,12 +281,11 @@ for instance, the attacker could arrange to store the malicious code anywhere el
       <li>In this example,     When vulnerable() is called, a stack frame is pushed onto the stack. The stack will look something like this:
  <img src="/main_files/web_dev/images/e2.png" alt="img" width="87%" /> <br />
  If the input is too long, the code will write past the end of buf and the saved SP and return address will be overwritten.
-        <div class="language-c highlighter-rouge"><pre class="highlight"><code> <span class="kt">void</span> <span class="nf">vulnerable</span><span class="p">()</span> <span class="p">{</span>
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kt">void</span> <span class="nf">vulnerable</span><span class="p">()</span> <span class="p">{</span>
      <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">80</span><span class="p">];</span>
      <span class="n">gets</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
  <span class="p">}</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </li>
     </ol>
   </li>
@@ -336,14 +331,13 @@ for instance, the attacker could arrange to store the malicious code anywhere el
   <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Example:</strong> <br />
     <ul>
       <li>In this example, If buf contains any <code class="highlighter-rouge">%</code> characters, <code class="highlighter-rouge">printf()</code> will look for non-existent arguments, and may crash or core-dump the program trying to chase missing pointers.
-        <div class="language-c highlighter-rouge"><pre class="highlight"><code>  <span class="kt">void</span> <span class="nf">vulnerable</span><span class="p">()</span> <span class="p">{</span>
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">void</span> <span class="nf">vulnerable</span><span class="p">()</span> <span class="p">{</span>
       <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">80</span><span class="p">];</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">buf</span><span class="p">,</span> <span class="n">stdin</span><span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
           <span class="k">return</span><span class="p">;</span>
       <span class="n">printf</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
   <span class="p">}</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </li>
       <li><button class="showText" value="show" onclick="showTextPopHide(event);">More Examples</button>
  <img src="/main_files/web_dev/images/strng_frmt.png" alt="formula" hidden="" width="70%" /></li>
@@ -393,9 +387,8 @@ for instance, the attacker could arrange to store the malicious code anywhere el
       <dd>
         <blockquote>
           <p><strong>Command:</strong></p>
-          <div class="language-c highlighter-rouge"><pre class="highlight"><code><span class="n">printf</span><span class="p">(</span><span class="err">“</span><span class="n">this</span> <span class="n">is</span> <span class="n">a</span> <span class="o">%</span><span class="n">s</span><span class="p">,</span> <span class="n">with</span> <span class="n">a</span> <span class="n">number</span> <span class="o">%</span><span class="n">d</span><span class="p">,</span> <span class="n">and</span> <span class="n">address</span> <span class="o">%</span><span class="mi">08</span><span class="n">x</span><span class="err">”</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="o">&amp;</span><span class="n">c</span><span class="p">);</span>
-</code></pre>
-          </div>
+          <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">printf</span><span class="p">(</span><span class="err">“</span><span class="n">this</span> <span class="n">is</span> <span class="n">a</span> <span class="o">%</span><span class="n">s</span><span class="p">,</span> <span class="n">with</span> <span class="n">a</span> <span class="n">number</span> <span class="o">%</span><span class="n">d</span><span class="p">,</span> <span class="n">and</span> <span class="n">address</span> <span class="o">%</span><span class="mi">08</span><span class="n">x</span><span class="err">”</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="o">&amp;</span><span class="n">c</span><span class="p">);</span>
+</code></pre></div>          </div>
         </blockquote>
       </dd>
       <dd>
@@ -453,16 +446,14 @@ for instance, the attacker could arrange to store the malicious code anywhere el
   <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Example:</strong> <br />
     <ol>
       <li>In this example, the prototype for <code class="highlighter-rouge">memcpy()</code> is:
-        <div class="language-c highlighter-rouge"><pre class="highlight"><code> <span class="kt">void</span> <span class="o">*</span><span class="n">memcpy</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">dest</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">);</span> 
-</code></pre>
-        </div>
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kt">void</span> <span class="o">*</span><span class="n">memcpy</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">dest</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">);</span> 
+</code></pre></div>        </div>
         <p>And the definition of <code class="highlighter-rouge">size_t</code> is:</p>
-        <div class="language-c highlighter-rouge"><pre class="highlight"><code> <span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="kt">size_t</span> 
-</code></pre>
-        </div>
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="kt">size_t</span> 
+</code></pre></div>        </div>
         <p>If the attacker provides a negative value for len, the if statement won’t notice anything wrong, and <code class="highlighter-rouge">memcpy()</code> will be executed with a negative third argument.<br />
  C will cast this negative value to an unsigned int and it will become a very large positive.</p>
-        <div class="language-c highlighter-rouge"><pre class="highlight"><code>     <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">80</span><span class="p">];</span>
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">80</span><span class="p">];</span>
      <span class="kt">void</span> <span class="nf">vulnerable</span><span class="p">()</span> <span class="p">{</span>
          <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">read_int_from_network</span><span class="p">();</span>
          <span class="kt">char</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">read_string_from_network</span><span class="p">();</span>
@@ -472,15 +463,14 @@ for instance, the attacker could arrange to store the malicious code anywhere el
          <span class="p">}</span>
          <span class="n">memcpy</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
      <span class="p">}</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
         <blockquote>
           <p>Thus <code class="highlighter-rouge">memcpy()</code> will copy a huge amount of memory into buf, overflowing the buffer.</p>
         </blockquote>
       </li>
       <li>In this example, the code seems to avoid buffer overflow problems (by allocating 5 more bytes than necessary). But, there is a subtle problem: len+5 can wrap around if len is too large. For instance, if <code class="highlighter-rouge">len = 0xFFFFFFFF</code>, then the value of <code class="highlighter-rouge">len+5</code> is 4 (on 32-bit platforms).<br />
  In this case, the code allocates a 4-byte buffer and then writes a lot more than 4 bytes into it: a classic buffer overflow.
-        <div class="language-c highlighter-rouge"><pre class="highlight"><code>     <span class="kt">void</span> <span class="nf">vulnerable</span><span class="p">()</span> <span class="p">{</span>
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="kt">void</span> <span class="nf">vulnerable</span><span class="p">()</span> <span class="p">{</span>
          <span class="kt">size_t</span> <span class="n">len</span><span class="p">;</span>
          <span class="kt">char</span> <span class="o">*</span><span class="n">buf</span><span class="p">;</span>
          <span class="n">len</span> <span class="o">=</span> <span class="n">read_int_from_network</span><span class="p">();</span>
@@ -488,8 +478,7 @@ for instance, the attacker could arrange to store the malicious code anywhere el
          <span class="n">read</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
          <span class="p">...</span>
      <span class="p">}</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </li>
     </ol>
   </li>
@@ -542,48 +531,42 @@ i.e., it writes the top of the stack into the program counter.</p>
         <ol>
           <li>This code ensures that the array access will be within bounds.<br />
   Instead of:
-            <div class="language-c highlighter-rouge"><pre class="highlight"><code>  <span class="kt">char</span> <span class="nf">digit_to_char</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// BAD
+            <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">char</span> <span class="nf">digit_to_char</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// BAD
 </span> <span class="kt">char</span> <span class="n">convert</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"0123456789"</span><span class="p">;</span>
  <span class="k">return</span> <span class="n">convert</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
   <span class="p">}</span>
-</code></pre>
-            </div>
+</code></pre></div>            </div>
             <p>Write:</p>
-            <div class="language-c highlighter-rouge"><pre class="highlight"><code> <span class="kt">char</span> <span class="nf">digit_to_char</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// BETTER
+            <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kt">char</span> <span class="nf">digit_to_char</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// BETTER
 </span>     <span class="kt">char</span> <span class="n">convert</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"0123456789"</span><span class="p">;</span>
      <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">9</span><span class="p">)</span>
          <span class="k">return</span> <span class="s">"?"</span><span class="p">;</span> <span class="c1">// or, call exit()
 </span>     <span class="k">return</span> <span class="n">convert</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
  <span class="p">}</span>
-</code></pre>
-            </div>
+</code></pre></div>            </div>
           </li>
           <li>The latter is better, because <code class="highlighter-rouge">strlcpy(d,s,n)</code> takes care to avoid writing more than <code class="highlighter-rouge">n</code> bytes into the buffer <code class="highlighter-rouge">d</code>.<br />
   Instead of:
-            <div class="language-c highlighter-rouge"><pre class="highlight"><code>  <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
+            <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
   <span class="n">strcpy</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">src</span><span class="p">);</span> <span class="c1">// BAD
-</span></code></pre>
-            </div>
+</span></code></pre></div>            </div>
             <p>Write:</p>
-            <div class="language-c highlighter-rouge"><pre class="highlight"><code>  <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
+            <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
   <span class="n">strlcpy</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">buf</span><span class="p">);</span> <span class="c1">// BETTER
-</span></code></pre>
-            </div>
+</span></code></pre></div>            </div>
             <blockquote>
               <p>Basically, when calling library functions, we can use a library function that incorporates these kinds of checks.</p>
             </blockquote>
           </li>
           <li>The latter is better, because <code class="highlighter-rouge">strlcpy(d,s,n)</code> takes care to avoid writing more than <code class="highlighter-rouge">n</code> bytes into the buffer <code class="highlighter-rouge">d</code>.<br />
   Instead of:
-            <div class="language-c highlighter-rouge"><pre class="highlight"><code>  <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
+            <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
   <span class="n">sprintf</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">src</span><span class="p">);</span> <span class="c1">// BAD
-</span></code></pre>
-            </div>
+</span></code></pre></div>            </div>
             <p>Write:</p>
-            <div class="language-c highlighter-rouge"><pre class="highlight"><code>  <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
+            <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
   <span class="n">snprintf</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">buf</span><span class="p">,</span> <span class="n">src</span><span class="p">);</span> <span class="c1">// BETTER
-</span></code></pre>
-            </div>
+</span></code></pre></div>            </div>
             <blockquote>
               <p>Basically, when calling library functions, we can use a library function that incorporates these kinds of checks.</p>
             </blockquote>

@@ -111,7 +111,7 @@ is saying that we only need to compute the inverse of a matrix that has a lower 
 </ol>
 
 <h2 id="q2">Q.2)</h2>
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span><span class="o">,</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span><span class="o">,</span> <span class="nn">matplotlib.patches</span> <span class="kn">as</span> <span class="nn">mpatches</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span><span class="p">,</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span><span class="p">,</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span> <span class="k">as</span> <span class="n">mpatches</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">spline</span> <span class="c">#ar = array ; %matplotlib inline # Please Uncomment + put each line on a separate line.</span>
@@ -173,15 +173,14 @@ Then it plots them.
         <span class="n">max_errs_ext</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">plot_err</span><span class="p">(</span><span class="n">degs_ext</span><span class="p">,</span> <span class="n">mse_errs_ext</span><span class="p">,</span> <span class="s">"degree-extended"</span><span class="p">,</span> <span class="s">"MSE-Err"</span><span class="p">,</span> <span class="s">'MSE-Err vs Degree-Extended '</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mf">2.9</span><span class="p">,</span><span class="mf">11.1</span><span class="p">],</span> <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span><span class="o">.</span><span class="mi">35</span><span class="p">])</span>
     <span class="n">plot_err</span><span class="p">(</span><span class="n">degs_ext</span><span class="p">,</span> <span class="n">max_errs_ext</span><span class="p">,</span> <span class="s">"degree-extended"</span><span class="p">,</span> <span class="s">"MAX-Err"</span><span class="p">,</span> <span class="s">'MAX-Err vs Degree-Extended '</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mf">2.9</span><span class="p">,</span><span class="mf">11.1</span><span class="p">],</span> <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">1.35</span><span class="p">])</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <blockquote>
   <p>Notice, all the code blocks below (Q.2) refer to this piece of code above.</p>
 </blockquote>
 
 <ol>
   <li>We proceed by using the “polyfit” module in “numpy”.
-    <div class="language-python highlighter-rouge"><pre class="highlight"><code> <span class="o">&gt;&gt;&gt;</span> <span class="n">q2_1</span><span class="p">()</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="o">&gt;&gt;&gt;</span> <span class="n">q2_1</span><span class="p">()</span>
                               <span class="mi">5</span>           <span class="mi">4</span>          <span class="mi">3</span>         <span class="mi">2</span>         <span class="mi">1</span>
  <span class="o">&gt;&gt;&gt;</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span> <span class="p">:</span>  <span class="n">P_5</span> <span class="o">=</span> <span class="mf">0.002876</span> <span class="n">x</span> <span class="o">-</span> <span class="mf">0.06977</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">0.5933</span> <span class="n">x</span> <span class="o">-</span> <span class="mf">2.043</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">2.259</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">5.2</span>
                               <span class="mi">6</span>           <span class="mi">5</span>          <span class="mi">4</span>         <span class="mi">3</span>         <span class="mi">2</span>         <span class="mi">1</span>  
@@ -190,8 +189,7 @@ Then it plots them.
  <span class="o">&gt;&gt;&gt;</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">7</span> <span class="p">:</span>  <span class="n">P_7</span> <span class="o">=</span> <span class="mf">4.785e-06</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">0.001834</span> <span class="n">x</span> <span class="o">-</span> <span class="mf">0.04884</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">0.4609</span> <span class="n">x</span> <span class="o">-</span> <span class="mf">1.895</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">3.181</span> <span class="n">x</span> <span class="o">-</span> <span class="mf">1.562</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">5.33</span>
                              <span class="mi">8</span>          <span class="mi">7</span>         <span class="mi">6</span>         <span class="mi">5</span>         <span class="mi">4</span>         <span class="mi">3</span>         <span class="mi">2</span>
  <span class="o">&gt;&gt;&gt;</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">8</span> <span class="p">:</span>  <span class="n">P_8</span> <span class="o">=</span> <span class="o">-.</span><span class="mo">00067</span> <span class="n">x</span> <span class="o">+</span> <span class="o">.</span><span class="mo">02413</span> <span class="n">x</span> <span class="o">-</span> <span class="o">.</span><span class="mi">3528</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">2.687</span> <span class="n">x</span> <span class="o">-</span> <span class="mf">11.37</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">26.32</span> <span class="n">x</span>  <span class="o">-</span> <span class="mf">30.5</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">13.46</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">5.31</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <p>This gives us the solutions:</p>
     <p>$$
      P_5(x) = 0.002876 x^{5} - 0.06977 x^{4} + 0.5933 x^{3} - 2.043 x^{2} + 2.259 x^{1} + 5.2 \\
@@ -208,13 +206,12 @@ Then it plots them.
     </blockquote>
   </li>
   <li>We proceed by using the found polynomials and the defined “mean-squared-loss” function.
-    <div class="language-python highlighter-rouge"><pre class="highlight"><code> <span class="o">&gt;&gt;&gt;</span> <span class="n">q2_2</span><span class="p">()</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="o">&gt;&gt;&gt;</span> <span class="n">q2_2</span><span class="p">()</span>
  <span class="o">&gt;&gt;&gt;</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span> <span class="p">:</span>  <span class="n">Mean_Sq_Err</span> <span class="o">=</span> <span class="mf">0.23202104429</span> <span class="o">|</span> <span class="n">Max_Err</span> <span class="o">=</span> <span class="mf">0.7823959188</span>
  <span class="o">&gt;&gt;&gt;</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">6</span> <span class="p">:</span>  <span class="n">Mean_Sq_Err</span> <span class="o">=</span> <span class="mf">0.10826098368</span> <span class="o">|</span> <span class="n">Max_Err</span> <span class="o">=</span> <span class="mf">0.3902666906</span>
  <span class="o">&gt;&gt;&gt;</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">7</span> <span class="p">:</span>  <span class="n">Mean_Sq_Err</span> <span class="o">=</span> <span class="mf">0.10825867873</span> <span class="o">|</span> <span class="n">Max_Err</span> <span class="o">=</span> <span class="mf">0.3887930312</span>
  <span class="o">&gt;&gt;&gt;</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">8</span> <span class="p">:</span>  <span class="n">Mean_Sq_Err</span> <span class="o">=</span> <span class="mf">0.00614953188</span> <span class="o">|</span> <span class="n">Max_Err</span> <span class="o">=</span> <span class="mf">0.0200802073</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <p>Now, we plot them and compare them with each other.<br />
  <img src="/main_files/conv_opt/3/3.1/esp1.png" width="48%" style="position: relative;" />
  <img src="/main_files/conv_opt/3/3.1/esp2.png" width="48%" style="position: relative;" /><br />
@@ -277,10 +274,9 @@ Then it plots them.
  We notice that really all we need is to look at what the inverse of <script type="math/tex">A</script> does to the unit ball (unit circle in  <script type="math/tex">\mathbf{R}^2</script>).<br />
  We proceed by computing <script type="math/tex">A^{-1}</script> and then finding the SVD of the inverse matrix. We, then, use the properties of the SVD and the singular values to compute the volumes (areas) of the ellipsoids resulting from transforming the unit ball.<br />
  The example (ellipsoid) with the smaller volume will have less petrubations in the column space (range) of the output <script type="math/tex">x</script>.
-    <div class="language-python highlighter-rouge"><pre class="highlight"><code> <span class="o">&gt;&gt;&gt;</span> <span class="n">q_3_2</span><span class="p">()</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="o">&gt;&gt;&gt;</span> <span class="n">q_3_2</span><span class="p">()</span>
  <span class="o">&gt;&gt;&gt;</span> <span class="n">ArgMin</span> <span class="o">=</span>  <span class="mi">2</span>  <span class="p">:</span> <span class="n">Min</span> <span class="o">=</span>  <span class="mf">0.0523598775598</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <p>We see that the ellipsoid induced by the second scenario is actually smaller and thus has a better chance of getting the correct solution <script type="math/tex">x^\ast</script> with the same bound on the petrubation in the measurement vector.<br />
  Now, the region of uncertainty is just the ellipsoid itself which is characterized by the SVD of <script type="math/tex">A^{-1}</script>:<br />
  Region of uncertainty case 1: <script type="math/tex">\frac{\left(x\right)^2}{0.64339784}+\frac{\left(y\right)^2}{0.07771242}=1^2</script><br />
@@ -291,7 +287,7 @@ Then it plots them.
       <p>case 1: Highlighted ; case 2: not-Highlighted</p>
     </blockquote>
 
-    <div class="language-python highlighter-rouge"><pre class="highlight"><code> <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
  <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="o">*</span>
  <span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="o">*</span>
  <span class="n">ar</span> <span class="o">=</span> <span class="n">array</span>
@@ -310,8 +306,7 @@ Then it plots them.
  <span class="k">def</span> <span class="nf">q_3_2</span><span class="p">():</span>
      <span class="n">area1</span><span class="p">,</span> <span class="n">area2</span> <span class="o">=</span> <span class="n">get_area</span><span class="p">(</span><span class="n">ar</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span> <span class="n">ar</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">ar</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">])),</span> <span class="n">get_area</span><span class="p">(</span><span class="n">ar</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span> <span class="n">ar</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">]),</span> <span class="n">ar</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">]))</span>
      <span class="k">print</span><span class="p">(</span><span class="s">"ArgMin = "</span><span class="p">,</span> <span class="n">argmin</span><span class="p">([</span><span class="n">area1</span><span class="p">,</span><span class="n">area2</span><span class="p">])</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s">" : Min = "</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">area1</span><span class="p">,</span> <span class="n">area2</span><span class="p">))</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <blockquote>
       <p>Please notice that this is the code that Q.3 is referring to.</p>
     </blockquote>
