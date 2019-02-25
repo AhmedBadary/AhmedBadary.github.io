@@ -49,7 +49,7 @@ We achieve that by a double for loop that grows the size of the subarray and mov
 
 <p><strong><em>Runtime:</em></strong> <script type="math/tex">\mathcal{O}(n^2)</script></p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_subarr</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_subarr</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
     <span class="n">max_sum</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">ind_i</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">ind_j</span> <span class="o">=</span> <span class="mi">0</span>
@@ -61,8 +61,7 @@ We achieve that by a double for loop that grows the size of the subarray and mov
                 <span class="n">max_sum</span> <span class="o">=</span> <span class="n">total</span>
                 <span class="n">ind_i</span> <span class="o">=</span> <span class="n">i</span>
                 <span class="n">ind_j</span> <span class="o">=</span> <span class="n">j</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 style="color: SteelBlue" id="recursion"><strong>Recursion</strong></h2>
 
@@ -72,7 +71,7 @@ We finally compare that to the sub-array that includes both halves overlapping i
 
 <p><strong><em>Runtime:</em></strong> <script type="math/tex">\mathcal{O}(n)</script></p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_subarr</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">start_ind</span><span class="p">,</span> <span class="n">end_ind</span><span class="p">):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_subarr</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">start_ind</span><span class="p">,</span> <span class="n">end_ind</span><span class="p">):</span>
     <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">start_ind</span> <span class="o">+</span> <span class="n">end_ind</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
     <span class="n">l_sum</span><span class="p">,</span> <span class="n">l_i</span><span class="p">,</span> <span class="n">l_j</span> <span class="o">=</span> <span class="n">max_subarr</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">start_ind</span><span class="p">,</span> <span class="n">mid</span><span class="p">)</span>
     <span class="n">r_sum</span><span class="p">,</span> <span class="n">l_i</span><span class="p">,</span> <span class="n">r_j</span> <span class="o">=</span> <span class="n">max_subarr</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">end_ind</span><span class="p">)</span>
@@ -81,8 +80,7 @@ We finally compare that to the sub-array that includes both halves overlapping i
     <span class="n">c_sum</span> <span class="o">=</span> <span class="n">r_j</span> <span class="o">-</span> <span class="n">l_i</span> <span class="c"># Considering the center and overlap</span>
     <span class="n">M</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">l_sum</span><span class="p">,</span> <span class="n">r_sum</span><span class="p">,</span> <span class="n">c_sum</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">M</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 style="color: SteelBlue" id="dynamic-programming"><strong>Dynamic Programming</strong></h2>
 
@@ -101,7 +99,7 @@ Simply,</p>
 
 <p><strong><em>Runtime:</em></strong> <script type="math/tex">\mathcal{O}(n)</script></p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_subarr</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_subarr</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
     <span class="n">grow_el</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">max_sum</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">i</span> <span class="o">=</span> <span class="n">j</span> <span class="o">=</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
@@ -112,8 +110,7 @@ Simply,</p>
         <span class="n">max_sum</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_sum</span><span class="p">,</span> <span class="n">grow_el</span><span class="p">)</span>
         <span class="n">c</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="k">if</span> <span class="n">grow_el</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="k">pass</span>
     <span class="k">return</span> <span class="n">max_sum</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <hr />
 
@@ -127,7 +124,7 @@ We will need to make all the possible kernel sizes, there are <script type="math
 
 <p><strong><em>Runtime:</em></strong> <script type="math/tex">\mathcal{O}(n^6)</script></p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_submat</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_submat</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
     <span class="n">max_sum</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="n">MIN_VALUE</span><span class="p">;</span>
     <span class="n">max_ri</span> <span class="o">=</span> <span class="n">max_ci</span> <span class="o">=</span> <span class="n">max_rj</span> <span class="o">=</span> <span class="n">max_cj</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
 
@@ -146,8 +143,7 @@ We will need to make all the possible kernel sizes, there are <script type="math
                         <span class="n">max_rj</span> <span class="o">=</span> <span class="n">rj</span>
                         <span class="n">max_cj</span> <span class="o">=</span> <span class="n">cj</span>
     <span class="k">return</span> <span class="n">max_sum</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 style="color: SteelBlue" id="dynamic-programming-1"><strong>Dynamic Programming</strong></h2>
 
@@ -171,7 +167,7 @@ Namely, for this matrix,</p>
   <p>Let us assume that we precomputed the sum-matrix and called it <code class="highlighter-rouge">sum_Matrix</code>.</p>
 </blockquote>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_submat</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_submat</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
     <span class="n">max_sum</span> <span class="o">=</span> <span class="n">MIN_VALUE</span>
     <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="mi">0</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">))]</span>
 
@@ -193,8 +189,7 @@ Namely, for this matrix,</p>
         <span class="k">return</span> <span class="n">sum_Matrix</span><span class="p">[</span><span class="n">r2</span><span class="p">][</span><span class="n">c2</span><span class="p">]</span> <span class="o">-</span> <span class="n">sum_Matrix</span><span class="p">[</span><span class="n">r1</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">c2</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">sum_Matrix</span><span class="p">[</span><span class="n">r2</span><span class="p">][</span><span class="n">c2</span><span class="p">]</span> <span class="o">-</span> <span class="n">sum_Matrix</span><span class="p">[</span><span class="n">r2</span><span class="p">][</span><span class="n">c1</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span> <span class="n">sum_Matrix</span><span class="p">[</span><span class="n">r1</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">c2</span><span class="p">]</span> <span class="o">+</span> <span class="n">sum_Matrix</span><span class="p">[</span><span class="n">r1</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">c1</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 style="color: SteelBlue" id="dynamic-programming-with-max-subarray-solution"><strong>Dynamic Programming with max subarray solution</strong></h2>
 
@@ -206,7 +201,7 @@ Now, since the sub-algorithm is only <script type="math/tex">\mathcal{O}(n)</scr
 <p><strong><em>Runtime:</em></strong> <script type="math/tex">\mathcal{O}(n^3)</script><br />
 <strong><em>Space-Complexity:</em></strong> <script type="math/tex">\mathcal{O}(n^2)</script></p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_submat</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_submat</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
     <span class="n">max_sum</span> <span class="o">=</span> <span class="n">MIN_VALUE</span>
     <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="mi">0</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">))]</span>
 
@@ -217,8 +212,7 @@ Now, since the sub-algorithm is only <script type="math/tex">\mathcal{O}(n)</scr
         <span class="n">max_sum</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_sum</span><span class="p">,</span> <span class="n">max_sum_subarr</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">max_sum</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 style="color: SteelBlue" id="branch-and-bound-method"><strong>Branch and Bound Method</strong></h2>
 
@@ -229,7 +223,7 @@ runtime. Default is N=1, i.e. bag-of-visual-words model.<br />
 
 <p><strong><em>Runtime:</em></strong> <script type="math/tex">\mathcal{O}(n^3) \:\:\:,\:\:\: \mathcal{\Omega}(n^2)</script></p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="n">Structure</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="n">c_double</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="n">Structure</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="n">c_double</span>
 <span class="kn">from</span> <span class="nn">numpy.ctypeslib</span> <span class="kn">import</span> <span class="n">load_library</span><span class="p">,</span> <span class="n">ndpointer</span>
 
 <span class="c"># Box_struct courtesy:</span>
@@ -261,8 +255,7 @@ runtime. Default is N=1, i.e. bag-of-visual-words model.<br />
 <span class="k">def</span> <span class="nf">subwindow_search</span><span class="p">(</span><span class="n">n_pts</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">,</span> <span class="n">cluster</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">pyramid</span><span class="p">(</span><span class="n">n_pts</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">,</span> <span class="n">cluster</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <hr />
 <hr />

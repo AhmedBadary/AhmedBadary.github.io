@@ -176,11 +176,17 @@ prevLink: /
 ## Statistics
 {: #content4}
 
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}  
-    :   
+1. **ROC Curve:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}  
+    :   * A way to quantify how good a **binary classifier** separates two classes
+        * True-Positive-Rate / False-Positive-Rate
+        * Good classifier has a ROC curve that is near the top-left diagonal (hugging it)
+        * A Bad Classifier has a ROC curve that is close to the diagonal line
+        * It allows you to set the **classification threshold**
+            * You can minimize False-positive rate or maximize the True-Positive Rate
 
-<!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}  
-    :   
+2. **AUC - AUROC:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}  
+    :   * Range $$ = 0.5 - 1.0$$ from poor to perfect 
+
 
 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}  
     :   

@@ -96,9 +96,8 @@
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Creating a Table:</strong></dt>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">attr</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="k">type</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...);</span>
-</code></pre>
-        </div>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">attr</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="k">type</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...);</span>
+</code></pre></div>        </div>
         <blockquote>
           <p>BY CONVENTION: We add the “id” attribute as the first column.</p>
         </blockquote>
@@ -107,9 +106,8 @@
           <dl>
             <dt>Example:</dt>
             <dd>
-              <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">shopping</span> <span class="p">(</span><span class="n">id</span> <span class="n">TEXT</span><span class="p">,</span> <span class="n">price</span> <span class="n">INTEGER</span><span class="p">);</span>
-</code></pre>
-              </div>
+              <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">shopping</span> <span class="p">(</span><span class="n">id</span> <span class="n">TEXT</span><span class="p">,</span> <span class="n">price</span> <span class="n">INTEGER</span><span class="p">);</span>
+</code></pre></div>              </div>
             </dd>
           </dl>
         </blockquote>
@@ -120,15 +118,13 @@
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Inserting into a Table:</strong></dt>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span> <span class="k">VALUES</span> <span class="p">(</span><span class="o">&lt;</span><span class="k">Schema</span><span class="o">-</span><span class="k">Row</span><span class="o">&gt;</span><span class="p">);</span>
-</code></pre>
-        </div>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span> <span class="k">VALUES</span> <span class="p">(</span><span class="o">&lt;</span><span class="k">Schema</span><span class="o">-</span><span class="k">Row</span><span class="o">&gt;</span><span class="p">);</span>
+</code></pre></div>        </div>
         <p>Or, to not specify values to all of the attributes in the Schema,</p>
       </dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span><span class="p">(</span><span class="n">attr1</span><span class="p">,</span> <span class="n">attr3</span><span class="p">,</span> <span class="n">attr6</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">val1</span><span class="p">,</span> <span class="n">val3</span><span class="p">,</span> <span class="n">val6</span><span class="p">);</span>
-</code></pre>
-        </div>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span><span class="p">(</span><span class="n">attr1</span><span class="p">,</span> <span class="n">attr3</span><span class="p">,</span> <span class="n">attr6</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">val1</span><span class="p">,</span> <span class="n">val3</span><span class="p">,</span> <span class="n">val6</span><span class="p">);</span>
+</code></pre></div>        </div>
       </dd>
     </dl>
   </li>
@@ -136,29 +132,27 @@
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Querying a Table:</strong></dt>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">&gt;</span>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">&gt;</span>
 <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span>
 <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">predicate</span><span class="o">&gt;</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="o">&lt;</span><span class="n">attr1</span><span class="p">,</span> <span class="n">attr2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">attrn</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">e</span><span class="p">.</span> <span class="n">Col</span><span class="p">.</span> <span class="n">List</span><span class="p">)</span>
 <span class="k">HAVING</span> <span class="o">&lt;</span><span class="n">predicate</span><span class="o">&gt;</span>
 <span class="k">ORDER</span> <span class="k">BY</span> <span class="o">&lt;</span><span class="n">attr1</span><span class="p">,</span> <span class="n">attr2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">attrn</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">e</span><span class="p">.</span> <span class="n">Col</span><span class="p">.</span> <span class="n">List</span><span class="p">)</span>
 <span class="k">LIMIT</span> <span class="o">&lt;</span><span class="n">int</span><span class="o">&gt;</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
         <blockquote>
           <p>Example:</p>
         </blockquote>
       </dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">S</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="k">AVG</span><span class="p">(</span><span class="n">S</span><span class="p">.</span><span class="n">price</span><span class="p">)</span>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">S</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="k">AVG</span><span class="p">(</span><span class="n">S</span><span class="p">.</span><span class="n">price</span><span class="p">)</span>
 <span class="k">FROM</span> <span class="n">shopping</span> <span class="k">as</span> <span class="n">S</span>
 <span class="k">WHERE</span> <span class="n">S</span><span class="p">.</span><span class="n">price</span> <span class="o">&lt;</span> <span class="mi">100</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">S</span><span class="p">.</span><span class="n">date_of_purchace</span>
 <span class="k">HAVING</span> <span class="n">S</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="s1">'red'</span>
 <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">S</span><span class="p">.</span><span class="n">date_of_purchace</span>
 <span class="k">LIMIT</span> <span class="mi">10</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </dd>
     </dl>
   </li>
@@ -198,9 +192,8 @@
                 <blockquote>
                   <p><strong>Example:</strong></p>
                   <blockquote>
-                    <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">column1</span><span class="p">,</span> <span class="n">column2</span><span class="p">,</span> <span class="p">...</span> <span class="k">ASC</span><span class="o">|</span><span class="k">DESC</span><span class="p">;</span>
-</code></pre>
-                    </div>
+                    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">column1</span><span class="p">,</span> <span class="n">column2</span><span class="p">,</span> <span class="p">...</span> <span class="k">ASC</span><span class="o">|</span><span class="k">DESC</span><span class="p">;</span>
+</code></pre></div>                    </div>
                   </blockquote>
                 </blockquote>
               </li>
@@ -224,11 +217,10 @@
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents141">Nested Queries:</strong></dt>
       <dd>Queries can be nested inside queries for convenience.</dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">&gt;</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span> <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">predicate</span><span class="o">&gt;</span>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">&gt;</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span> <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">predicate</span><span class="o">&gt;</span>
 <span class="k">IN</span> <span class="o">||</span> <span class="k">NOT</span> <span class="k">IN</span>
 <span class="p">(</span><span class="k">SELECT</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">-</span><span class="mi">2</span><span class="o">&gt;</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">-</span><span class="mi">2</span><span class="o">&gt;</span> <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">predicate</span><span class="o">-</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">)</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </dd>
       <dd>
         <blockquote>
@@ -260,9 +252,8 @@
           <dl>
             <dt>Example:</dt>
             <dd>
-              <div class="language-sql highlighter-rouge"><pre class="highlight"><code>  <span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">S</span><span class="p">.</span><span class="n">gpa</span><span class="p">);</span>
-</code></pre>
-              </div>
+              <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">S</span><span class="p">.</span><span class="n">gpa</span><span class="p">);</span>
+</code></pre></div>              </div>
               <p>Notice that the “DISTINCT” tag is inside the Aggregate Function.</p>
             </dd>
           </dl>
@@ -280,9 +271,8 @@
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Auto-Incriment:</strong></dt>
       <dd>To set the id of the table to be auto-assigned and auto-incrimented:</dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">id</span> <span class="n">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="n">AUTOINCREMENT</span><span class="p">,...)</span>
-</code></pre>
-        </div>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">id</span> <span class="n">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="n">AUTOINCREMENT</span><span class="p">,...)</span>
+</code></pre></div>        </div>
       </dd>
     </dl>
   </li>
@@ -295,15 +285,14 @@
         </blockquote>
       </dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span>
 
 <span class="cm">/* AND */</span>
 <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="mi">50</span> <span class="k">AND</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">&gt;</span> <span class="o">&lt;</span> <span class="mi">30</span><span class="p">;</span>
 
 <span class="cm">/* OR */</span>
 <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="mi">50</span> <span class="k">OR</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">;</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </dd>
     </dl>
   </li>
@@ -321,7 +310,7 @@
         </ul>
       </dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span>
 
 <span class="cm">/* IN */</span>
 <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">&gt;</span> <span class="k">IN</span> <span class="p">(</span><span class="nv">"biking"</span><span class="p">,</span> <span class="nv">"hiking"</span><span class="p">,</span> <span class="nv">"tree climbing"</span><span class="p">,</span> <span class="nv">"rowing"</span><span class="p">);</span>
@@ -335,8 +324,7 @@
 <span class="cm">/* ANY */</span>
 <span class="k">WHERE</span> 
 
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </dd>
       <dd>
         <ul>
@@ -348,7 +336,7 @@
         </ul>
       </dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span>
 
 <span class="cm">/* (NOT) EXISTS */</span>
 <span class="p">(</span><span class="k">NOT</span><span class="p">)</span> <span class="k">EXISTS</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">SubQuery</span><span class="o">&gt;</span><span class="p">)</span>
@@ -358,8 +346,7 @@
 
 <span class="cm">/* ALL */</span>      
 <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">-</span><span class="n">i</span><span class="o">&gt;</span> <span class="o">&gt;=</span> <span class="k">ALL</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">SubQuery</span><span class="o">&gt;</span><span class="p">)</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </dd>
       <dd>
         <ul>
@@ -371,7 +358,7 @@
         </ul>
       </dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span> <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">predicate</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span> <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">predicate</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span>
 
 <span class="cm">/* UNION */</span>
 <span class="k">UNION</span>
@@ -381,8 +368,7 @@
 <span class="cm">/* INTERSECT */</span>
 <span class="k">INTERSECT</span>
 <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">-</span><span class="mi">3</span><span class="o">&gt;</span> <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">predicate</span><span class="o">-</span><span class="mi">3</span><span class="o">&gt;</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </dd>
       <dd>
         <ul>
@@ -394,13 +380,12 @@
         </ul>
       </dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span> <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">predicate</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span> <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">predicate</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span>
 
 <span class="cm">/* EXCEPT */</span>
 <span class="k">EXCEPT</span>
 <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">-</span><span class="mi">2</span><span class="o">&gt;</span> <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">predicate</span><span class="o">-</span><span class="mi">2</span><span class="o">&gt;</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </dd>
       <dd>
         <blockquote>
@@ -433,10 +418,9 @@
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Nesting Queries (Multiple Tables) and SubQueries:</strong></dt>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">exercise_logs</span> <span class="k">WHERE</span> <span class="k">type</span> <span class="k">IN</span> <span class="p">(</span>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">exercise_logs</span> <span class="k">WHERE</span> <span class="k">type</span> <span class="k">IN</span> <span class="p">(</span>
     <span class="k">SELECT</span> <span class="k">type</span> <span class="k">FROM</span> <span class="n">drs_favorites</span> <span class="p">);</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </dd>
     </dl>
   </li>
@@ -445,12 +429,11 @@
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents19">Fuzzy Search [Like]:</strong></dt>
       <dd>Querying/Finding “Non-Exact” Matches.</dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="cm">/* LIKE */</span>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* LIKE */</span>
 <span class="k">SELECT</span> <span class="o">&lt;</span><span class="n">attr1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">attr2</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span>
 <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span>
 <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span> <span class="k">LIKE</span> <span class="o">&lt;</span><span class="n">pattern</span><span class="o">&gt;</span><span class="p">;</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </dd>
     </dl>
   </li>
@@ -459,12 +442,11 @@
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents110">Regular Expressions:</strong></dt>
       <dd>Matching Strings.</dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="cm">/* LIKE */</span>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* LIKE */</span>
 <span class="k">SELECT</span> <span class="o">&lt;</span><span class="n">attr1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">attr2</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span>
 <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span>
 <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span> <span class="o">~</span> <span class="o">&lt;</span><span class="n">pattern</span><span class="o">&gt;</span><span class="p">;</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </dd>
     </dl>
   </li>
@@ -474,15 +456,14 @@
       <dd>Effectively behaves in the same way the “Case” or “Switch” statements do.</dd>
       <dd>It is a way of <strong>SELECTING</strong> from the table by creating your own column.</dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">&lt;</span><span class="n">attr1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">attr2</span><span class="o">&gt;</span><span class="p">,</span>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">&lt;</span><span class="n">attr1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">attr2</span><span class="o">&gt;</span><span class="p">,</span>
     <span class="k">CASE</span> 
         <span class="k">WHEN</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="mi">220</span><span class="o">-</span><span class="mi">30</span> <span class="k">THEN</span> <span class="nv">"above max"</span>
         <span class="k">WHEN</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span>  <span class="o">&gt;</span> <span class="n">x</span> <span class="k">THEN</span> <span class="nv">"above target"</span>
         <span class="k">WHEN</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span>  <span class="o">&gt;</span> <span class="n">y</span> <span class="k">THEN</span> <span class="nv">"within target"</span>
         <span class="k">ELSE</span> <span class="nv">"below target"</span>
     <span class="k">END</span> <span class="k">as</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </dd>
     </dl>
   </li>
@@ -495,14 +476,13 @@
         </blockquote>
       </dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">WITH</span> <span class="n">view1</span><span class="p">(</span><span class="n">bid</span><span class="p">,</span> <span class="n">scount</span><span class="p">)</span> <span class="k">AS</span>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">WITH</span> <span class="n">view1</span><span class="p">(</span><span class="n">bid</span><span class="p">,</span> <span class="n">scount</span><span class="p">)</span> <span class="k">AS</span>
         <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">),</span>
     <span class="n">view2</span> <span class="k">AS</span>
         <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">view1</span><span class="p">)</span>
 
 <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">view2</span><span class="p">;</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
         <blockquote>
           <p>Notice that the second query can reference the first.</p>
         </blockquote>
@@ -511,13 +491,12 @@
         <p>OR</p>
       </dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">bname</span><span class="p">,</span> <span class="n">scount</span>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">bname</span><span class="p">,</span> <span class="n">scount</span>
 <span class="k">FROM</span> <span class="n">Boats2</span> <span class="n">B</span><span class="p">,</span>
     <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">view1</span><span class="p">(</span><span class="n">bid</span><span class="p">,</span> <span class="n">scount</span><span class="p">)</span>
 
 <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">predicate</span><span class="o">&gt;</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </dd>
       <dd>
         <blockquote>
@@ -574,10 +553,9 @@ Views are not materialized until run. They can be run multiple times.
         <p>They, also, must have unique column names.</p>
       </dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">view_name</span>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">view_name</span>
 <span class="k">AS</span> <span class="n">select_statement</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </dd>
     </dl>
   </li>
@@ -594,10 +572,9 @@ Views are not materialized until run. They can be run multiple times.
       <dd>We can modify a row using the “UPDATE” Command.</dd>
     </dl>
 
-    <div class="language-sql highlighter-rouge"><pre class="highlight"><code> <span class="k">UPDATE</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span> <span class="k">SET</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nv">"something"</span>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">UPDATE</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span> <span class="k">SET</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nv">"something"</span>
  <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nv">"something else"</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <blockquote>
       <p>We use the “WHERE” command to tell the method which ROW to update.</p>
     </blockquote>
@@ -608,35 +585,31 @@ Views are not materialized until run. They can be run multiple times.
       <dd>We can delete a row using the “DELETE” Command.</dd>
     </dl>
 
-    <div class="language-sql highlighter-rouge"><pre class="highlight"><code> <span class="n">DELETED</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">DELETED</span> <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span>
  <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">attri</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nv">"something else"</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Altering Tables:</strong></dt>
       <dd>We can alter the table by adding columns/attributes.
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span> <span class="k">ADD</span> <span class="o">&lt;</span><span class="k">new</span><span class="o">-</span><span class="n">attr</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="k">new</span><span class="o">-</span><span class="k">type</span><span class="o">&gt;</span>
-</code></pre>
-        </div>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span> <span class="k">ADD</span> <span class="o">&lt;</span><span class="k">new</span><span class="o">-</span><span class="n">attr</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="k">new</span><span class="o">-</span><span class="k">type</span><span class="o">&gt;</span>
+</code></pre></div>        </div>
       </dd>
     </dl>
 
     <blockquote>
       <p>To change the Default Value:</p>
-      <div class="language-sql highlighter-rouge"><pre class="highlight"><code>     <span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span> <span class="k">ADD</span> <span class="o">&lt;</span><span class="k">new</span><span class="o">-</span><span class="n">attr</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="k">new</span><span class="o">-</span><span class="k">type</span><span class="o">&gt;</span> <span class="k">default</span> <span class="nv">"UnKnown"</span>
-</code></pre>
-      </div>
+      <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span> <span class="k">ADD</span> <span class="o">&lt;</span><span class="k">new</span><span class="o">-</span><span class="n">attr</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="k">new</span><span class="o">-</span><span class="k">type</span><span class="o">&gt;</span> <span class="k">default</span> <span class="nv">"UnKnown"</span>
+</code></pre></div>      </div>
     </blockquote>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Deleting a Table:</strong></dt>
       <dd>Will completely erase the table with the data in it.
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span>
-</code></pre>
-        </div>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">-</span><span class="n">Name</span><span class="o">&gt;</span>
+</code></pre></div>        </div>
       </dd>
     </dl>
   </li>
@@ -660,18 +633,16 @@ Views are not materialized until run. They can be run multiple times.
         </blockquote>
       </dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> 
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> 
 <span class="k">FROM</span> <span class="n">table1</span> 
 <span class="k">CROSS</span> <span class="k">JOIN</span> <span class="n">table2</span><span class="p">;</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
         <p>OR</p>
       </dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> 
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> 
 <span class="k">FROM</span> <span class="n">table1</span><span class="p">,</span> <span class="n">table2</span> 
-</code></pre>
-        </div>
+</code></pre></div>        </div>
         <p><img src="/main_files/web_dev/images/cj.png" alt="img" width="34%" /></p>
       </dd>
     </dl>
@@ -686,20 +657,18 @@ Views are not materialized until run. They can be run multiple times.
         </blockquote>
       </dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> 
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> 
 <span class="k">FROM</span> <span class="n">table1</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">table2</span> 
 <span class="k">ON</span> <span class="n">table1</span><span class="p">.</span><span class="k">column_name</span> <span class="o">=</span> <span class="n">table2</span><span class="p">.</span><span class="k">column_name</span><span class="p">;</span> 
-</code></pre>
-        </div>
+</code></pre></div>        </div>
         <p>OR</p>
       </dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> 
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> 
 <span class="k">FROM</span> <span class="n">table1</span>
 <span class="k">JOIN</span> <span class="n">table2</span> 
 <span class="k">ON</span> <span class="n">table1</span><span class="p">.</span><span class="k">column_name</span> <span class="o">=</span> <span class="n">table2</span><span class="p">.</span><span class="k">column_name</span><span class="p">;</span> 
-</code></pre>
-        </div>
+</code></pre></div>        </div>
         <p><img src="/main_files/web_dev/images/ij.png" alt="img" width="34%" /></p>
       </dd>
     </dl>
@@ -720,58 +689,53 @@ Views are not materialized until run. They can be run multiple times.
       </li>
     </ul>
 
-    <div class="language-sql highlighter-rouge"><pre class="highlight"><code>     <span class="k">Select</span> <span class="o">*</span> 
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="k">Select</span> <span class="o">*</span> 
      <span class="k">FROM</span> <span class="n">table1</span><span class="p">,</span> <span class="n">table2</span> 
      <span class="k">WHERE</span> <span class="n">conditions</span> <span class="p">[</span><span class="o">+</span><span class="p">];</span> 
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Left/Right and FULL [OUTER] Joins:</strong>
     <ul>
       <li><strong>LEFT JOIN:</strong> joins two tables and fetches all matching rows of two tables for which the SQL-expression is true, plus rows from the frist table that do not match any row in the second table.</li>
     </ul>
 
-    <div class="language-sql highlighter-rouge"><pre class="highlight"><code>     <span class="k">SELECT</span> <span class="o">*</span>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="k">SELECT</span> <span class="o">*</span>
      <span class="k">FROM</span> <span class="n">table1</span>
      <span class="k">LEFT</span> <span class="p">[</span> <span class="k">OUTER</span> <span class="p">]</span> <span class="k">JOIN</span> <span class="n">table2</span>
      <span class="k">ON</span> <span class="n">table1</span><span class="p">.</span><span class="k">column_name</span><span class="o">=</span><span class="n">table2</span><span class="p">.</span><span class="k">column_name</span><span class="p">;</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <p><img src="/main_files/web_dev/images/lj.png" alt="img" width="34%" /></p>
 
     <ul>
       <li><strong>RIGHT JOIN:</strong> joins two tables and fetches rows based on a condition, which is matching in both the tables, and the unmatched rows will also be available from the table written after the JOIN clause.</li>
     </ul>
 
-    <div class="language-sql highlighter-rouge"><pre class="highlight"><code>     <span class="k">SELECT</span> <span class="o">*</span>
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="k">SELECT</span> <span class="o">*</span>
      <span class="k">FROM</span> <span class="n">table1</span>
      <span class="k">RIGHT</span> <span class="p">[</span> <span class="k">OUTER</span> <span class="p">]</span> <span class="k">JOIN</span> <span class="n">table2</span>
      <span class="k">ON</span> <span class="n">table1</span><span class="p">.</span><span class="k">column_name</span><span class="o">=</span><span class="n">table2</span><span class="p">.</span><span class="k">column_name</span><span class="p">;</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <p><img src="/main_files/web_dev/images/rj.png" alt="img" width="34%" /></p>
 
     <ul>
       <li><strong>FULL OUTER JOIN:</strong> Combines the results of both left and right outer joins and returns all (matched or unmatched) rows from the tables on both sides of the join clause.</li>
     </ul>
 
-    <div class="language-sql highlighter-rouge"><pre class="highlight"><code>     <span class="k">SELECT</span> <span class="o">*</span> 
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="k">SELECT</span> <span class="o">*</span> 
      <span class="k">FROM</span> <span class="n">table1</span> 
      <span class="k">FULL</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">table2</span> 
      <span class="k">ON</span> <span class="n">table1</span><span class="p">.</span><span class="k">column_name</span><span class="o">=</span><span class="n">table2</span><span class="p">.</span><span class="k">column_name</span><span class="p">;</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <p><img src="/main_files/web_dev/images/foj.png" alt="img" width="32%" /></p>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">Self Joins [Joining Tables to themselves]:</strong></dt>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="k">column_name</span><span class="p">,</span> <span class="n">b</span><span class="p">.</span><span class="k">column_name</span><span class="p">...</span> 
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="k">column_name</span><span class="p">,</span> <span class="n">b</span><span class="p">.</span><span class="k">column_name</span><span class="p">...</span> 
 <span class="k">FROM</span> <span class="n">table1</span> <span class="n">a</span><span class="p">,</span> <span class="n">table1</span> <span class="n">b</span> 
 <span class="k">WHERE</span> <span class="n">a</span><span class="p">.</span><span class="n">common_filed</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">common_field</span><span class="p">;</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </dd>
       <dd>
         <blockquote>
@@ -844,11 +808,10 @@ Views are not materialized until run. They can be run multiple times.
         <dl>
           <dt><strong>Wrong:</strong></dt>
           <dd>
-            <div class="language-sql highlighter-rouge"><pre class="highlight"><code>  <span class="k">SELECT</span> <span class="k">type</span><span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">calories</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total_calories</span> <span class="k">FROM</span> <span class="n">exercise_logs</span>
+            <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">SELECT</span> <span class="k">type</span><span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">calories</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total_calories</span> <span class="k">FROM</span> <span class="n">exercise_logs</span>
  <span class="k">WHERE</span> <span class="n">total_calories</span> <span class="o">&gt;</span> <span class="mi">150</span>
  <span class="k">GROUP</span> <span class="k">BY</span> <span class="k">type</span><span class="p">;</span>
-</code></pre>
-            </div>
+</code></pre></div>            </div>
             <blockquote>
               <p>This errors because you can NOT use the new created Aggregate value in Where.</p>
             </blockquote>
@@ -859,11 +822,10 @@ Views are not materialized until run. They can be run multiple times.
         <dl>
           <dt>Right:</dt>
           <dd>
-            <div class="language-sql highlighter-rouge"><pre class="highlight"><code>  <span class="k">SELECT</span> <span class="k">type</span><span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">calories</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total_calories</span> <span class="k">FROM</span> <span class="n">exercise_logs</span>
+            <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">SELECT</span> <span class="k">type</span><span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">calories</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total_calories</span> <span class="k">FROM</span> <span class="n">exercise_logs</span>
  <span class="k">GROUP</span> <span class="k">BY</span> <span class="k">type</span>
  <span class="k">HAVING</span> <span class="n">total_calories</span> <span class="o">&gt;</span> <span class="mi">150</span><span class="p">;</span>
-</code></pre>
-            </div>
+</code></pre></div>            </div>
           </dd>
         </dl>
       </li>
@@ -873,12 +835,11 @@ Views are not materialized until run. They can be run multiple times.
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents92">To Select All Entries with at least “x” entries for a specific “attr”:</strong></dt>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">&gt;</span>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">&gt;</span>
 <span class="k">FROM</span> <span class="o">&lt;</span><span class="k">Table</span><span class="o">&gt;</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="o">&lt;</span><span class="n">attr</span><span class="o">&gt;</span>
 <span class="k">HAVING</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">x</span><span class="p">;</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </dd>
     </dl>
   </li>
@@ -912,9 +873,8 @@ Views are not materialized until run. They can be run multiple times.
         </blockquote>
       </dd>
       <dd>
-        <div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">COUNT</span><span class="p">(</span><span class="n">COALESCE</span><span class="p">(</span><span class="err">{</span><span class="n">attr</span><span class="err">}</span><span class="p">,</span> <span class="err">{</span><span class="n">alternative</span><span class="err">}</span><span class="p">))</span>
-</code></pre>
-        </div>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">COUNT</span><span class="p">(</span><span class="n">COALESCE</span><span class="p">(</span><span class="err">{</span><span class="n">attr</span><span class="err">}</span><span class="p">,</span> <span class="err">{</span><span class="n">alternative</span><span class="err">}</span><span class="p">))</span>
+</code></pre></div>        </div>
       </dd>
       <dd>
         <blockquote>

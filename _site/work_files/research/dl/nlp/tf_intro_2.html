@@ -146,14 +146,13 @@
             </ul>
           </li>
           <li><strong>label</strong> - An array containing the values of the label for every example.
-            <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">train_input_fn</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
+            <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">train_input_fn</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
   <span class="s">"""An input function for training"""</span>
   <span class="c"># Convert the inputs to a Dataset.</span>
   <span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="nb">dict</span><span class="p">(</span><span class="n">features</span><span class="p">),</span> <span class="n">labels</span><span class="p">))</span>
   <span class="c"># Shuffle, repeat, and batch the examples.</span>
   <span class="k">return</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">()</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
-</code></pre>
-            </div>
+</code></pre></div>            </div>
           </li>
         </ul>
       </dd>
@@ -291,7 +290,7 @@
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents64">TensorBoard:</strong></dt>
-      <dd><code class="highlighter-rouge">File_writer  = tf.summary.FileWriter('log_simple_graph', sess.graph)</code>
+      <dd><code class="highlighter-rouge">File_writer  = tf.summary.FileWriter('log_simple_graph', sess.graph)</code><br />
 <code class="highlighter-rouge">tensorboard --logdir="path"</code></dd>
     </dl>
   </li>
@@ -330,9 +329,9 @@ print(sess.run(c))</code></dd>
 A session encapsulates the state of the TensorFlow runtime, and runs TensorFlow operations.</dd>
       <dd>
         <ul>
-          <li>First, create a session:
+          <li>First, create a session:<br />
   <code class="highlighter-rouge">sess = tf.Session()</code></li>
-          <li>Run the session:
+          <li>Run the session:<br />
   <code class="highlighter-rouge">sess.run()</code><br />
   It takes a dict of any tuples or any tensor.<br />
   It evaluates the tensor.</li>

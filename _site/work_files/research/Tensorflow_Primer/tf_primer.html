@@ -63,61 +63,54 @@
 
     <section class="main-content">
       
-      <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+      <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="multiplication">Multiplication</h2>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Creating the Computation Graph</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Creating the Computation Graph</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">)</span>
 
 <span class="n">xy</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Creating the Session</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Creating the Session</span>
 <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">f x </span><span class="si">%</span><span class="s">f = </span><span class="si">%</span><span class="s">f"</span><span class="o">%</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="mi">3</span><span class="p">})))</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>2.000000 x 3.000000 = 6.000000
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2.000000 x 3.000000 = 6.000000
+</code></pre></div></div>
 
 <h2 id="linear-regression">Linear Regression</h2>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Setting up the data</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Setting up the data</span>
 <span class="n">trX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
 <span class="n">trY</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">trX</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">trX</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">*.</span><span class="mi">35</span> <span class="o">+</span> <span class="mi">2</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">trX</span><span class="p">,</span><span class="n">trY</span><span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="/content/research/Tensorflow_Primer/output_5_0.png" alt="png" /></p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Setting up the variables and the graph</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Setting up the variables and the graph</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">)</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">)</span>
 
 <span class="n">w</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">"weights"</span><span class="p">)</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">"bias"</span><span class="p">)</span>
 <span class="n">y_hat</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">w</span><span class="p">),</span><span class="n">b</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Defining the objective function and the optimizer</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Defining the objective function and the optimizer</span>
 <span class="n">cost</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">Y</span> <span class="o">-</span> <span class="n">y_hat</span><span class="p">))</span>
 <span class="n">train_operation</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="o">.</span><span class="mo">01</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Running the Session (Computation)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Running the Session (Computation)</span>
 <span class="n">numEpochs</span> <span class="o">=</span> <span class="mi">200</span>
 <span class="n">costs</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -132,27 +125,24 @@
     <span class="n">wfinal</span><span class="p">,</span><span class="n">bfinal</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">w</span><span class="p">),</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="s">"Predicting  y = </span><span class="si">%.02</span><span class="s">f x + </span><span class="si">%.02</span><span class="s">f"</span><span class="o">%</span><span class="p">(</span><span class="n">wfinal</span><span class="p">,</span><span class="n">bfinal</span><span class="p">))</span>
     <span class="k">print</span><span class="p">(</span><span class="s">"Actually is y = </span><span class="si">%.02</span><span class="s">f x + </span><span class="si">%.02</span><span class="s">f"</span><span class="o">%</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Final Error is 0.195300
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Final Error is 0.195300
 Predicting  y = 1.45 x + 1.95
 Actually is y = 2.00 x + 2.00
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Plotting the cost</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Plotting the cost</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">costs</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Mean Squared Error"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Epoch"</span><span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="/content/research/Tensorflow_Primer/output_9_0.png" alt="png" /></p>
 
 <h2 id="multivariable-linear-regression">(Multivariable) Linear Regression</h2>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Setting up the data</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Setting up the data</span>
 <span class="n">m</span> <span class="o">=</span> <span class="mi">8</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">NUM_EXAMPLES</span> <span class="o">=</span> <span class="mi">100</span>
@@ -162,25 +152,22 @@ Actually is y = 2.00 x + 2.00
 <span class="n">trX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 <span class="c"># trY = tf.multiply(X,W) + np.random.randn(NUM_EXAMPLES,m)</span>
 <span class="n">trY</span> <span class="o">=</span> <span class="n">trX</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">NUM_EXAMPLES</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Setting up the variables and the graph</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Setting up the variables and the graph</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="n">n</span><span class="p">])</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="n">m</span><span class="p">])</span>
 
 <span class="n">w</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">]))</span>
 <span class="n">y_hat</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Defining the objective function and the optimizer</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Defining the objective function and the optimizer</span>
 <span class="n">cost</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_hat</span><span class="p">))</span>
 <span class="n">train_operation</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="o">.</span><span class="mo">01</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Running the Session (Computation)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Running the Session (Computation)</span>
 <span class="n">numEpochs</span> <span class="o">=</span> <span class="mi">1000</span>
 <span class="n">costs</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -192,33 +179,29 @@ Actually is y = 2.00 x + 2.00
         <span class="n">costs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span><span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="n">trX</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">trY</span><span class="p">}))</span>
         
     <span class="k">print</span><span class="p">(</span><span class="s">"Final Error is </span><span class="si">%</span><span class="s">f"</span><span class="o">%</span><span class="n">costs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Final Error is 1.051898
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Final Error is 1.051898
+</code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">costs</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">costs</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Mean Squared Error"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Epoch"</span><span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="/content/research/Tensorflow_Primer/output_15_0.png" alt="png" /></p>
 
 <h2 id="logistic-regression">Logistic Regression</h2>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Importing the data and initilizing the variables</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Importing the data and initilizing the variables</span>
 <span class="kn">from</span> <span class="nn">tensorflow.examples.tutorials.mnist</span> <span class="kn">import</span> <span class="n">input_data</span>
 
 <span class="n">mnist</span> <span class="o">=</span> <span class="n">input_data</span><span class="o">.</span><span class="n">read_data_sets</span><span class="p">(</span><span class="s">"MNIST/"</span><span class="p">,</span><span class="n">one_hot</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="n">trX</span><span class="p">,</span> <span class="n">trY</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">images</span><span class="p">,</span> <span class="n">mnist</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">labels</span>
 <span class="n">teX</span><span class="p">,</span> <span class="n">teY</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">images</span><span class="p">,</span> <span class="n">mnist</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">labels</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Successfully downloaded train-images-idx3-ubyte.gz 9912422 bytes.
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Successfully downloaded train-images-idx3-ubyte.gz 9912422 bytes.
 Extracting MNIST/train-images-idx3-ubyte.gz
 Successfully downloaded train-labels-idx1-ubyte.gz 28881 bytes.
 Extracting MNIST/train-labels-idx1-ubyte.gz
@@ -226,10 +209,9 @@ Successfully downloaded t10k-images-idx3-ubyte.gz 1648877 bytes.
 Extracting MNIST/t10k-images-idx3-ubyte.gz
 Successfully downloaded t10k-labels-idx1-ubyte.gz 4542 bytes.
 Extracting MNIST/t10k-labels-idx1-ubyte.gz
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Setting up the graph</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Setting up the graph</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span><span class="mi">784</span><span class="p">])</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
 
@@ -244,10 +226,9 @@ Extracting MNIST/t10k-labels-idx1-ubyte.gz
 <span class="n">accuracy_operation</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span>
                         <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">predict_operation</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
                         <span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">NUM_EPOCHS</span> <span class="o">=</span> <span class="mi">30</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">NUM_EPOCHS</span> <span class="o">=</span> <span class="mi">30</span>
 <span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">200</span>
 
 <span class="n">accuracies</span> <span class="o">=</span> <span class="p">[]</span>
@@ -261,22 +242,19 @@ Extracting MNIST/t10k-labels-idx1-ubyte.gz
             <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">train_operation</span><span class="p">,</span> \
                     <span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="n">trX</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">],</span><span class="n">Y</span><span class="p">:</span> <span class="n">trY</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]})</span>
         <span class="n">accuracies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">accuracy_operation</span><span class="p">,</span><span class="n">feed_dict</span><span class="o">=</span> <span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="n">teX</span><span class="p">,</span><span class="n">Y</span><span class="p">:</span> <span class="n">teY</span><span class="p">}))</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">accuracies</span><span class="p">)</span>
-</code></pre>
-</div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">accuracies</span><span class="p">)</span>
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x12c3becc0&gt;]
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;matplotlib.lines.Line2D at 0x12c3becc0&gt;]
+</code></pre></div></div>
 
 <p><img src="/content/research/Tensorflow_Primer/output_20_1.png" alt="png" /></p>
 
 <h2 id="neural-networks">Neural Networks</h2>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">NUM_HIDDEN</span> <span class="o">=</span> <span class="mi">620</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">NUM_HIDDEN</span> <span class="o">=</span> <span class="mi">620</span>
 
 <span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span><span class="mi">784</span><span class="p">])</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">"float"</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
@@ -313,10 +291,9 @@ Extracting MNIST/t10k-labels-idx1-ubyte.gz
                     <span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="n">trX</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">],</span><span class="n">Y</span><span class="p">:</span> <span class="n">trY</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]})</span>
         <span class="n">accuracies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">accuracy_operation</span><span class="p">,</span><span class="n">feed_dict</span><span class="o">=</span> <span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="n">teX</span><span class="p">,</span><span class="n">Y</span><span class="p">:</span> <span class="n">teY</span><span class="p">}))</span>
         <span class="k">print</span><span class="p">(</span><span class="n">accuracies</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  1%|          | 1/100 [00:05&lt;09:05,  5.51s/it]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  1%|          | 1/100 [00:05&lt;09:05,  5.51s/it]
 
 0.8196
 
@@ -423,24 +400,21 @@ Extracting MNIST/t10k-labels-idx1-ubyte.gz
 100%|██████████| 100/100 [08:57&lt;00:00,  5.37s/it]
 
 0.9746
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"Final Accuracy was </span><span class="si">%.04</span><span class="s">f"</span><span class="o">%</span><span class="n">accuracies</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"Final Accuracy was </span><span class="si">%.04</span><span class="s">f"</span><span class="o">%</span><span class="n">accuracies</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">accuracies</span><span class="p">);</span><span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">.</span><span class="mi">9</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Final Accuracy was 0.9746
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Final Accuracy was 0.9746
+</code></pre></div></div>
 
 <p><img src="/content/research/Tensorflow_Primer/output_23_1.png" alt="png" /></p>
 
 <h2 id="modern-neural-network">Modern Neural Network</h2>
 <h3 id="relu--dropout--rmsprop-optimization--more-hidden-layers">RELU | Dropout | RMSProp Optimization | More hidden Layers</h3>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">init_weights</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">init_weights</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span><span class="n">stddev</span><span class="o">=</span><span class="mf">0.01</span><span class="p">))</span>
 
 <span class="k">def</span> <span class="nf">model_gen</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">w_h</span><span class="p">,</span><span class="n">w_h2</span><span class="p">,</span> <span class="n">w_o</span><span class="p">,</span><span class="n">drop_rate_input</span><span class="p">,</span><span class="n">drop_rate_hidden</span><span class="p">):</span>
@@ -492,10 +466,9 @@ Extracting MNIST/t10k-labels-idx1-ubyte.gz
                     <span class="n">drop_rate_input</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">drop_rate_hidden</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">})</span>
         <span class="n">accuracies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">accuracy_operation</span><span class="p">,</span><span class="n">feed_dict</span><span class="o">=</span> <span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="n">teX</span><span class="p">,</span><span class="n">Y</span><span class="p">:</span> <span class="n">teY</span><span class="p">,</span><span class="n">drop_rate_input</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">drop_rate_hidden</span><span class="p">:</span> <span class="mi">1</span><span class="p">}))</span>
         <span class="k">print</span><span class="p">(</span><span class="n">accuracies</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  5%|▌         | 1/20 [00:13&lt;04:19, 13.65s/it]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  5%|▌         | 1/20 [00:13&lt;04:19, 13.65s/it]
 
 0.9028
 
@@ -593,23 +566,19 @@ Extracting MNIST/t10k-labels-idx1-ubyte.gz
 100%|██████████| 20/20 [03:59&lt;00:00, 11.97s/it]
 
 0.9826
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"Final Accuracy was </span><span class="si">%.04</span><span class="s">f"</span><span class="o">%</span><span class="n">accuracies</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"Final Accuracy was </span><span class="si">%.04</span><span class="s">f"</span><span class="o">%</span><span class="n">accuracies</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">accuracies</span><span class="p">);</span><span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">.</span><span class="mi">9</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Final Accuracy was 0.9826
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Final Accuracy was 0.9826
+</code></pre></div></div>
 
 <p><img src="/content/research/Tensorflow_Primer/output_26_1.png" alt="png" /></p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code>
-</code></pre>
-</div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
 
 
       <footer class="site-footer">
