@@ -13,7 +13,7 @@ permalink: /work_files/school/CLASS/X_Y
 
         \end{align}$$
 
-I just implemented a neat hack to solve this problem that I had (i neeeded to integrate an arbitrary looking function) 
+I just implemented a neat hack to solve this problem that I had (i needed to integrate an arbitrary looking function) 
 
 ________BUTTONS________
 

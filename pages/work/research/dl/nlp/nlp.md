@@ -10,24 +10,22 @@ permalink: /work_files/research/dl/nlp
 
 * ### [Word Embeddings | Word2Vec](/work_files/research/dl/nlp/wordvec)
 
-* ### [TensorFlow in NLP](/work_files/research/dl/nlp/tf_intro)
-
-* ### [TensorFlow in NLP #2](/work_files/research/dl/nlp/tf_intro_2)
-
 * ### [Language Modeling | Recurrent Neural Networks (RNNs)](/work_files/research/dl/nlp/rnns)
 
 * ### [Neural Machine Translation | Advanced Recurrent Networks](/work_files/research/dl/nlp/nmt)
 
-* ### [Gated Units \| RNN Architectures](/work_files/research/dl/nlp/rnn_archts)
+* ### [Gated Units \| RNN Architectures](/work_files/research/dl/nlp/gated_recurrent_units)
 
 * ### [Attention Mechanism for DNNs](/work_files/research/dl/nlp/attention)
 
 * ### [Speech Processing \| Automatic Speech Recognition](/work_files/research/dl/nlp/speech)
 
+* ### [Sentence Embeddings and Contextualized Embeddings](/work_files/research/dl/nlp/sent_embeds)
+
+
 ## Research
 
-
-* ### [Research Papers](/work_files/research/dl/nlp/research)
+* ### [Research Papers in NLP](/work_files/research/dl/nlp/nlp_research)
 
 * ### [ASR Research Papers](/work_files/research/dl/nlp/speech_research)
 

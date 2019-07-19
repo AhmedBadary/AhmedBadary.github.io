@@ -70,7 +70,10 @@
     <li><a href="#content1">Introduction and Definitions</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">Manifolds</a></li>
+    <li><a href="#content2">Point-Set Topology</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Manifolds</a></li>
   </ul>
 </div>
 
@@ -82,14 +85,284 @@
 <ol>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Power Sets:</strong></dt>
-      <dd><strong>Lemma:</strong> the size of the power set of a set of size <script type="math/tex">n</script> is <script type="math/tex">2^n</script></dd>
-      <dd><strong>Proof:</strong><br />
-Assume that we n</dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Topology:</strong></dt>
+      <dd>is a mathematical field concerned with the properties of space that are preserved under continuous deformations, such as stretching, crumpling and bending, but not tearing or gluing</dd>
     </dl>
   </li>
-  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Topological Space:</strong></li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Topological Space:</strong></dt>
+      <dd>is defined as a set of points <script type="math/tex">\mathbf{X}</script>, along with a set of neighbourhoods (sub-sets) <script type="math/tex">\mathbf{T}</script> for each point, satisfying the following set of axioms relating points and neighbourhoods:
+        <ul>
+          <li><strong><script type="math/tex">\mathbf{T}</script> is the Open Sets</strong>:
+            <ol>
+              <li>The <strong>Empty Set</strong> <script type="math/tex">\emptyset</script> is in <script type="math/tex">\mathbf{T}</script></li>
+              <li><script type="math/tex">\mathbf{X}</script> is in <script type="math/tex">\mathbf{T}</script></li>
+              <li>The <strong>Intersection of a finite number of Sets</strong> in <script type="math/tex">\mathbf{T}</script> is, also, in <script type="math/tex">\mathbf{T}</script></li>
+              <li>The <strong>Union of an arbitrary number of Sets</strong> in <script type="math/tex">\mathbf{T}</script> is, also, in <script type="math/tex">\mathbf{T}</script></li>
+            </ol>
+          </li>
+          <li><strong><script type="math/tex">\mathbf{T}</script> is the Closed Sets</strong>:
+            <ol>
+              <li>The <strong>Empty Set</strong> <script type="math/tex">\emptyset</script> is in <script type="math/tex">\mathbf{T}</script></li>
+              <li><script type="math/tex">\mathbf{X}</script> is in <script type="math/tex">\mathbf{T}</script></li>
+              <li>The <strong>Intersection of an arbitrary number of Sets</strong> in <script type="math/tex">\mathbf{T}</script> is, also, in <script type="math/tex">\mathbf{T}</script></li>
+              <li>The <strong>Union of a finite number of Sets</strong> in <script type="math/tex">\mathbf{T}</script> is, also, in <script type="math/tex">\mathbf{T}</script></li>
+            </ol>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Homeomorphism:</strong></dt>
+      <dd>Intuitively, a <strong>Homeomorphism</strong> or <strong>Topological Isomorphism</strong> or <strong>bi-continuous Function</strong> is a continuous function between topological spaces that has a continuous inverse function.</dd>
+      <dd>Mathematically, a function <script type="math/tex">{\displaystyle f:X\to Y}</script> between two topological spaces <script type="math/tex">{\displaystyle (X,{\mathcal {T}}_{X})}</script> and <script type="math/tex">{\displaystyle (Y,{\mathcal {T}}_{Y})}</script> is called a <strong>Homeomorphism</strong> if it has the following properties:
+        <ul>
+          <li><script type="math/tex">f</script> is a bijection (one-to-one and onto)</li>
+          <li><script type="math/tex">f</script> is continuous</li>
+          <li>the inverse function <script type="math/tex">{\displaystyle f^{-1}}</script> is continuous (<script type="math/tex">{\displaystyle f}</script> is an open mapping).</li>
+        </ul>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>i.e. There exists a <strong>continuous map</strong> with a <strong>continuous inverse</strong></p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Maps and Spaces:</strong></dt>
+      <dd>
+        <table>
+          <tbody>
+            <tr>
+              <td><strong>Map</strong></td>
+              <td><strong>Space</strong></td>
+              <td><strong>Preserved Property</strong></td>
+            </tr>
+            <tr>
+              <td>Linear Map</td>
+              <td>Vector Space</td>
+              <td>Linear Structure: <script type="math/tex">f(aw+v) = af(w)+f(v)</script></td>
+            </tr>
+            <tr>
+              <td>Group Homomorphism</td>
+              <td>Group</td>
+              <td>Group Structure: <script type="math/tex">f(x \ast y) = f(x) \ast f(y)</script></td>
+            </tr>
+            <tr>
+              <td>Continuous Map</td>
+              <td>Topological Space</td>
+              <td>Openness/Closeness: <script type="math/tex">f^{-1}(\{\text{open}\}) \text{ is open}</script></td>
+            </tr>
+            <tr>
+              <td><em>Smooth Map</em></td>
+              <td><em>Topological Space</em></td>
+              <td> </td>
+            </tr>
+          </tbody>
+        </table>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Smooth Maps:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Continuous</strong>:</li>
+          <li><strong>Unique Limits</strong>:</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Hausdorff:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
 </ol>
+
+<hr />
+
+<h2 id="content2">Point-Set Topology</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Open Set:</strong></dt>
+      <dd>A set <script type="math/tex">\chi \subseteq \mathbf{R}^n</script> is said to be open if for any point <script type="math/tex">x \in \chi</script> there exist a ball centered in <script type="math/tex">x</script> which is contained in <script type="math/tex">\chi</script>.</dd>
+      <dd>Precisely, for any <script type="math/tex">x \in \mathbf{R}^n</script> and <script type="math/tex">\epsilon > 0</script> define the Euclidean ball of radius <script type="math/tex">r</script> centered at <script type="math/tex">x</script>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">% <![CDATA[
+B_\epsilon(x) = {z : \|z − x\|_2 < \epsilon} %]]></script>
+      </dd>
+      <dd>Then, <script type="math/tex">\chi \subseteq \mathbf{R}^n</script> is open if</dd>
+      <dd>
+        <script type="math/tex; mode=display">\forall x \: \epsilon \: \chi, \:\: \exists \epsilon > 0 : B_\epsilon(x) \subset \chi .</script>
+      </dd>
+      <dd><strong>Equivalently</strong>,</dd>
+      <dd>
+        <ul>
+          <li>A set <script type="math/tex">\chi \subseteq \mathbf{R}^n</script> is open if and only if <script type="math/tex">\chi = int\; \chi</script>.</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>An open set does not contain any of its boundary points.</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>A closed set contains all of its boundary points.</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>Unions and intersections of open (resp. closed) sets are open (resp. closed).</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Closed Set:</strong></dt>
+      <dd>A set <script type="math/tex">\chi \subseteq \mathbf{R}^n</script> is said to be closed if its complement <script type="math/tex">\mathbf{R}^n \text{ \ } \chi</script> is open.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Interior of a Set:</strong></dt>
+      <dd>The interior of a set <script type="math/tex">\chi \subseteq \mathbf{R}^n</script> is defined as</dd>
+      <dd>
+        <script type="math/tex; mode=display">int\: \chi = \{z \in \chi : B_\epsilon(z) \subseteq \chi, \:\: \text{for some } \epsilon > 0 \}</script>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Closure of a Set:</strong></dt>
+      <dd>The closure of a set <script type="math/tex">\chi \subseteq \mathbf{R}^n</script> is defined as</dd>
+      <dd>
+        <script type="math/tex; mode=display">\bar{\chi} = \{z ∈ \mathbf{R}^n : \: z = \lim_{k\to\infty} x_k, \: x_k \in \chi , \: \forall k\},</script>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>i.e., the closure of <script type="math/tex">\chi</script> is the set of limits of sequences in <script type="math/tex">\chi</script>.</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Boundary of a Set:</strong></dt>
+      <dd>The boundary of X is defined as</dd>
+      <dd>
+        <script type="math/tex; mode=display">\partial \chi = \bar{\chi} \text{ \ }  int\: \chi</script>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Bounded Set:</strong></dt>
+      <dd>A set <script type="math/tex">\chi \subseteq \mathbf{R}^n</script> is said to be bounded if it is contained in a ball of finite radius, that is if there exist <script type="math/tex">x \in \mathbf{R}^n</script> and <script type="math/tex">r > 0</script> such that <script type="math/tex">\chi \subseteq B_r(x)</script>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Compact Set:</strong></dt>
+      <dd>A set <script type="math/tex">\chi \subseteq \mathbf{R}^n</script> is compact <script type="math/tex">\iff</script> it is <strong>Closed</strong> and <strong>Bounded</strong>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents28">Relative Interior [<script type="math/tex">\operatorname{relint}</script>]:</strong></dt>
+      <dd>We define the relative interior of the set <script type="math/tex">\chi</script>, denoted <script type="math/tex">\operatorname{relint} \chi</script>, as its interior relative to <script type="math/tex">\operatorname{aff} C</script>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">\operatorname{relint} \chi = \{x \in \chi : \: B(x, r) \cap \operatorname{aff} \chi \subseteq \chi \text{ for some } r > 0\},</script>
+      </dd>
+      <dd>where <script type="math/tex">B(x, r) = \{y : ky − xk \leq r\}</script>, the ball of radius <script type="math/tex">r</script> and center <script type="math/tex">x</script> in the norm <script type="math/tex">\| · \|</script>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents29">Relative Boundary:</strong></dt>
+      <dd>We can then define the relative boundary of a set <script type="math/tex">\chi</script> as <script type="math/tex">\mathbf{cl}  \chi \text{ \ } \operatorname{relint} \chi,</script> where <script type="math/tex">\mathbf{cl} \chi</script> is the closure of <script type="math/tex">\chi</script>.</dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Manifolds</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Manifold:</strong></dt>
+      <dd>is a topological space that locally resembles Euclidean space near each point
+        <blockquote>
+          <p>i.e. around every point, there is a neighborhood that is topologically the same as the open unit ball in <script type="math/tex">\mathbb{R}^n</script></p>
+        </blockquote>
+      </dd>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Smooth Manifold:</strong></dt>
+      <dd>A topological space <script type="math/tex">M</script> is called a <strong><script type="math/tex">n</script>-dimensional smooth manifold</strong> if:
+        <ul>
+          <li>Is is <strong>Hausdorff</strong></li>
+          <li>It is <strong>Second-Countable</strong></li>
+          <li>It comes with a family <script type="math/tex">\{(U_\alpha, \phi_\alpha)\}</script> with:
+            <ul>
+              <li><strong>Open sets</strong> <script type="math/tex">U_\alpha \subset_\text{open} M</script></li>
+              <li><strong>Homeomorphisms</strong> <script type="math/tex">\phi_\alpha : U_\alpha \rightarrow \mathbb{R}^n</script> <br />
+ such that <script type="math/tex">{\displaystyle M = \bigcup_\alpha U_\alpha}</script><br />
+ and given <script type="math/tex">{\displaystyle U_\alpha \cap U_\beta \neq \emptyset}</script> the map <script type="math/tex">\phi_\beta \circ \phi_\alpha^{-1}</script> is smooth</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
+    :   
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
+    :   
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
+    :   
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
+    :   
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
+    :   
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
+    :   
+ -->
 
 
       <footer class="site-footer">
@@ -292,15 +565,16 @@ bodyContents.each(function(index, element) {
 <script type="text/javascript">
   function showTextPopHide(event) {
     var $button = $(event.target);
-    var txt = $button.attr("input");
+    // var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $button.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $button.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>
@@ -310,15 +584,15 @@ bodyContents.each(function(index, element) {
   function showText_withParent_PopHide(event) {
     var $button = $(event.target);
     var $parent = $button.parent();
-    var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $parent.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $parent.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>

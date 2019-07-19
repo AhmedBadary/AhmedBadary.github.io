@@ -101,65 +101,116 @@
       <dd>We enforce a constraint that achieves a classifier that has a maximum-margin.</dd>
     </dl>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">The Signed Distance:</strong></dt>
-      <dd>The <em>signed distance</em> is the minimum distance from a point to a hyperplane.</dd>
-      <dd>We solve for the signed distance to achieve the following formula for it:</dd>
-      <dd>
-        <script type="math/tex; mode=display">d = \dfrac{\| w \cdot x_0 + b \|}{\|w\|},</script>
-      </dd>
-      <dd>where we have an n-dimensional hyperplane: <script type="math/tex">w \cdot x + b = 0</script> and a point <script type="math/tex">x_0</script>.
-        <blockquote>
-          <p>Also known as, <strong>The Signed Distance</strong>.</p>
-        </blockquote>
-      </dd>
-    </dl>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">The Signed Distance:</strong><br />
+ The <em>signed distance</em> is the minimum distance from a point to a hyperplane.
+ We solve for the signed distance to achieve the following formula for it:
+ <script type="math/tex">d = \dfrac{\| w \cdot x_0 + b \|}{\|w\|},</script><br />
+ where we have an n-dimensional hyperplane: <script type="math/tex">w \cdot x + b = 0</script> and a point <script type="math/tex">\mathbf{x}_ n</script>.
+    <blockquote>
+      <p>Also known as, <strong>The Signed Distance</strong>.</p>
+    </blockquote>
     <ul>
       <li><strong>Proof.</strong>
         <ul>
-          <li>Suppose we have an affine hyperplane defined by <script type="math/tex">w \cdot x + b</script> and a point <script type="math/tex">x_0</script>.</li>
-          <li>Suppose that <script type="math/tex">\vec{v} \in \mathbf{R}^n</script> is a point satisfying <script type="math/tex">w \cdot \vec{v} + b = 0</script>, i.e. it is a point on the plane.</li>
+          <li>Suppose we have an affine hyperplane defined by <script type="math/tex">w \cdot x + b</script> and a point <script type="math/tex">\mathbf{x}_ n</script>.</li>
+          <li>Suppose that <script type="math/tex">\mathbf{x} \in \mathbf{R}^n</script> is a point satisfying <script type="math/tex">w \cdot \mathbf{x} + b = 0</script>, i.e. it is a point on the plane.</li>
           <li>
-            <p>We construct the vector <script type="math/tex">x_0−\vec{v}</script> which points from <script type="math/tex">\vec{v}</script> to <script type="math/tex">x_0</script>, and then, project it onto the unique vector perpendicular to the plane, i.e. <script type="math/tex">w</script>,</p>
+            <p>We construct the vector <script type="math/tex">\mathbf{x}_ n−\mathbf{x}</script> which points from <script type="math/tex">\mathbf{x}</script> to <script type="math/tex">\mathbf{x}_ n</script>, and then, project (scalar projection==signed distance) it onto the unique vector perpendicular to the plane, i.e. <script type="math/tex">w</script>,</p>
 
-            <script type="math/tex; mode=display">d=\| \text{proj}_{w} (x_0-\vec{v})\| = \left\| \frac{(x_0-\vec{v})\cdot w}{w \cdot w} w \right\| = \|x_0 \cdot w - \vec{v} \cdot w\|\frac{\|w\|}{\|w\|^2} = \frac{\|x_0 \cdot w - \vec{v} \cdot w\|}{\|w\|}.</script>
+            <script type="math/tex; mode=display">d=| \text{comp}_{w} (\mathbf{x}_ n-\mathbf{x})| = \left| \frac{(\mathbf{x}_ n-\mathbf{x})\cdot w}{\|w\|} \right| = \frac{|\mathbf{x}_ n \cdot w - \mathbf{x} \cdot w|}{\|w\|}.</script>
           </li>
           <li>
-            <p>We chose <script type="math/tex">\vec{v}</script> such that <script type="math/tex">w\cdot \vec{v}=-b</script> so we get</p>
+            <p>Since <script type="math/tex">\mathbf{x}</script>  is a vector on the plane, it must satisfy <script type="math/tex">w\cdot \mathbf{x}=-b</script> so we get</p>
 
-            <script type="math/tex; mode=display">d=\| \text{proj}_{w} (x_0-\vec{v})\| = \frac{\|x_0 \cdot w +b\|}{\|w\|}</script>
+            <script type="math/tex; mode=display">d=| \text{comp}_{w} (\mathbf{x}_ n-\mathbf{x})| = \frac{|\mathbf{x}_ n \cdot w +b|}{\|w\|}</script>
           </li>
         </ul>
       </li>
     </ul>
 
     <p>Thus, we conclude that if <script type="math/tex">\|w\| = 1</script> then the <em>signed distance</em> from a datapoint <script type="math/tex">X_i</script> to the hyperplane is <script type="math/tex">\|wX_i + b\|</script>.</p>
+
+    <p><strong style="color: red">(Caltech):</strong><br />
+ So, now we can characterize the margin, with its size, as the distance, <script type="math/tex">\frac{1}{\|\mathbf{w}\|}</script>, between the hyperplane/boundary and the closest point to the plane <script type="math/tex">\mathbf{x}_ n</script>, in both directions (multiply by 2) <script type="math/tex">= \frac{2}{\|\mathbf{w}\|}</script> ; given the condition we specified earlier <script type="math/tex">\left|\mathbf{w}^{\top} \mathbf{x}_ {n} + b\right|=1</script> for the closest point <script type="math/tex">\mathbf{x}_ n</script>.</p>
+
+    <p>Thus, we formulate the optimization problem of <em><strong>maximizing the margin</strong></em> by <em>maximizing the distance</em>, subject to the condition on how we derived the distance:</p>
+    <p>$$\max_{\mathbf{w}} \dfrac{2}{\|\mathbf{w}\|} \:\:\: : \:\: \min _{n=1,2, \ldots, N}\left|\mathbf{w}^{\top} \mathbf{x}_{n}+b\right|=1$$</p>
+    <p>Which we can reformulate by (1) Flipping and <strong>Minimizing</strong>, (2) Taking a square since it’s monotonic and convex, and (3) noticing that <script type="math/tex">\left|\mathbf{w}^{T} \mathbf{x}_ {n}+b\right|=y_{n}\left(\mathbf{w}^{T} \mathbf{x}_ {n}+b\right)</script> (since the signal and label must agree, their product will always be positive) and the <script type="math/tex">\min</script> operator can be replaced by ensuring that for all the points the condition <script type="math/tex">y_{n}\left(\mathbf{w}^{\top} \mathbf{x}_ {n}+b\right) \geq 1</script> holds <a href="https://www.youtube.com/watch?v=eHsErlPJWUU&amp;t=1555">proof (by contradiction)</a> as:</p>
+    <p>$$\min_w \dfrac{1}{2} \mathbf{w}^T\mathbf{w} \:\:\: : \:\: y_{n}\left(\mathbf{w}^{\top} \mathbf{x}_ {n}+b\right) \geq 1 \:\: \forall i \in [1,N]$$</p>
+    <p>Now when we solve the “friendly” equation above, we will get the <strong>separating plane</strong> with the <em><strong>best possible margin</strong></em> (best=biggest).</p>
+
+    <p>To solve the above problem, we need something that deals with <strong>inequality constraints</strong>; thus, we use the <strong>KKT method</strong> for solving a <em><strong>Lagrnagian under inequality constraints</strong></em>.<br />
+ The <strong>Lagrange Formulation</strong>:</p>
+    <ul>
+      <li>Formulate the Lagrangian:
+        <ol>
+          <li>Take each inequality constraint and put them in the <em>zero-form</em> (equality with Zero)</li>
+          <li>Multiply each inequality by a Lagrange Multiplier <script type="math/tex">\alpha_n</script></li>
+          <li>Add them to the objective function <script type="math/tex">\min_w \dfrac{1}{2} \mathbf{w}^T\mathbf{w}</script><br />
+ The sign will be <script type="math/tex">-</script> (negative) simply because the inequality is <script type="math/tex">\geq 0</script></li>
+        </ol>
+        <p>$$\min_{w, b} \max_{\alpha_n} \mathcal{L}(\mathbf{w}, b, \boldsymbol{\alpha}) = \dfrac{1}{2} \mathbf{w}^T\mathbf{w} -\sum_{n=1}^{N} \alpha_{n}\left(y_{n}\left(\mathbf{w}^{\top} \mathbf{x}_ {n}+b\right)-1\right) \:\:\: : \:\: \alpha_n \geq 0$$</p>
+      </li>
+      <li>Optimize the objective independently, for each of the unconstrained variables:
+        <ol>
+          <li>Gradient w.r.t. <script type="math/tex">\mathbf{w}</script>:
+            <p>$$\nabla_{\mathrm{w}} \mathcal{L}=\mathrm{w}-\sum_{n=1}^{N} \alpha_{n} y_{n} \mathrm{x}_ {n}=0 \\ \implies \\ \mathbf{w}=\sum_{n=1}^{N} \alpha_{n} y_{n} \mathbf{x}_ {n}$$</p>
+          </li>
+          <li>Derivative w.r.t. <script type="math/tex">b</script>:
+            <p>$$\frac{\partial \mathcal{L}}{\partial b}=-\sum_{n=1}^{N} \alpha_{n} y_{n}=0 \\ \implies \\ \sum_{n=1}^{N} \alpha_{n} y_{n}=0$$</p>
+          </li>
+        </ol>
+      </li>
+      <li>Get the <em><strong>Dual Formulation</strong></em> w.r.t. the (<em>tricky</em>) <strong>constrained</strong> variable <script type="math/tex">\alpha_n</script>:
+        <ul>
+          <li>Substitute with the above conditions in the original lagrangian (such that the optimization w.r.t. <script type="math/tex">\alpha_n</script> will become free of <script type="math/tex">\mathbf{w}</script> and <script type="math/tex">b</script>:
+            <p>$$\mathcal{L}(\boldsymbol{\alpha})=\sum_{n=1}^{N} \alpha_{n}-\frac{1}{2} \sum_{n=1}^{N} \sum_{m=1}^{N} y_{n} y_{m} \alpha_{n} \alpha_{m} \mathbf{x}_{n}^{\mathrm{T}} \mathbf{x}_{m}$$</p>
+          </li>
+          <li>Notice that the first constraint <script type="math/tex">\mathbf{w}=\sum_{n=1}^{N} \alpha_{n} y_{n} \mathbf{x}_ {n}</script> has-no-effect/doesn’t-constraint <script type="math/tex">\alpha_n</script> so it’s a vacuous constraint. However, not the second constraint <script type="math/tex">\sum_{n=1}^{N} \alpha_{n} y_{n}=0</script>.</li>
+          <li>Set the optimization objective and the constraints, a <strong>quadratic function in <script type="math/tex">\alpha_n</script></strong>:</li>
+        </ul>
+        <p>$$\max_{\alpha} \mathcal{L}(\boldsymbol{\alpha})=\sum_{n=1}^{N} \alpha_{n}-\frac{1}{2} \sum_{n=1}^{N} \sum_{m=1}^{N} y_{n} y_{m} \alpha_{n} \alpha_{m} \mathbf{x}_{n}^{\mathrm{T}} \mathbf{x}_{m} \\ \:\:\:\:\:\:\:\:\:\: : \:\: \alpha_n \geq 0 \:\: \forall \: n= 1, \ldots, N \:\: \wedge \:\: \sum_{n=1}^{N} \alpha_{n} y_{n}=0$$</p>
+      </li>
+      <li>Set the problem as a <strong>Quadratic Programming</strong> problem:
+        <ul>
+          <li>Change the <em>maximization</em> to <em>minimization</em> by flipping the signs:
+            <p>$$\min _{\alpha} \frac{1}{2} \sum_{n=1}^{N} \sum_{m=1}^{N} y_{n} y_{m} \alpha_{n} \alpha_{m} \mathbf{x}_{0}^{\mathrm{T}} \mathbf{x}_{m}-\sum_{n=1}^{N} \alpha_{n}$$</p>
+          </li>
+          <li><strong>Isolate the Coeeffecients from the <script type="math/tex">\alpha_n</script>s</strong> and set in <em>matrix-form</em>:
+            <p>$$\min _{\alpha} \frac{1}{2} \alpha^{\top} 
+      \underbrace{\begin{bmatrix}
+          y_{1} y_{1} \mathbf{x}_{1}^{\top} \mathbf{x}_{1} &amp; y_{1} y_{2} \mathbf{x}_{1}^{\top} \mathbf{x}_{2} &amp; \ldots &amp; y_{1} y_{N} \mathbf{x}_{1}^{\top} \mathbf{x}_{N}  \\
+          y_{2} y_{1} \mathbf{x}_{2}^{\top} \mathbf{x}_{1} &amp; y_{2} y_{2} \mathbf{x}_{2}^{\top} \mathbf{x}_{2} &amp; \ldots &amp; y_{2} y_{N} \mathbf{x}_{2}^{\top} \mathbf{x}_{N} \\
+          \ldots &amp; \ldots &amp; \ldots &amp; \ldots \\
+          y_{N} y_{1} \mathbf{x}_{N}^{\top} \mathbf{x}_{1} &amp; y_{N} y_{2} \mathbf{x}_{N}^{\top} \mathbf{x}_{2} &amp; \ldots &amp; y_{N} y_{N} \mathbf{x}_{N}^{\top} \mathbf{x}_{N} 
+      \end{bmatrix}}_{\text{quadratic coefficients}}
+  \alpha+\underbrace{\left(-1^{\top}\right)}_ {\text { linear }} \alpha \\ 
+  \:\:\:\:\:\:\:\:\:\: : \:\: \underbrace{\mathbf{y}^{\top} \boldsymbol{\alpha}=0}_{\text { linear constraint }} \:\: \wedge \:\: \underbrace{0}_{\text { lower bounds }} \leq \alpha \leq \underbrace{\infty}_{\text { upper bounds }}  $$</p>
+            <blockquote>
+              <p>The <em>Quadratic Programming Package</em> asks you for the <strong>Quadratic Term (Matrix)</strong> and the <strong>Linear Term</strong>, and for the <strong>Linear Constraint</strong> and the <strong>Range of <script type="math/tex">\alpha_n</script>s</strong>; and then, gives you back an <script type="math/tex">\mathbf{\alpha}</script>.</p>
+            </blockquote>
+          </li>
+        </ul>
+
+        <p>Equivalently:</p>
+        <p>$$\min _{\alpha} \frac{1}{2} \boldsymbol{\alpha}^{\mathrm{T}} \mathrm{Q} \boldsymbol{\alpha}-\mathbf{1}^{\mathrm{T}} \boldsymbol{\alpha} \quad \text { subject to } \quad \mathbf{y}^{\mathrm{T}} \boldsymbol{\alpha}=0 ; \quad \boldsymbol{\alpha} \geq \mathbf{0}$$</p>
+      </li>
+    </ul>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Geometric Analysis:</strong></dt>
-      <dd>First, we notice that for any given plane <script type="math/tex">w^Tx = 0</script>, the equations, <script type="math/tex">\gamma * w^Tx = 0</script>, where <script type="math/tex">\gamma \in \mathbf{R}</script> is a scalar, basically characterize the same plane and not many planes.<br />
-This is because <script type="math/tex">w^Tx = 0 \iff \gamma * w^Tx = \gamma * 0 \iff \gamma * w^Tx = 0</script>.</dd>
-      <dd>The above implies that any model that takes input <script type="math/tex">w</script> and produces a margin, will have to be <strong><em>Scale Invariant</em></strong>.</dd>
-      <dd>To get around this and simplify the analysis, I am going to consider all the representations of the same plane, and I am going to pick one where we normalize (re-scale) the weight <script type="math/tex">w</script> such that the signed distance (distance to the point closest to the margin) is equal to one:</dd>
-      <dd>
-        <script type="math/tex; mode=display">\|w^TX_n\| > 0 \rightarrow \|w^TX_n\| = 1</script>
-      </dd>
-      <dd>, where <script type="math/tex">X_n</script> is the point closest to the plane.</dd>
-      <dd>We constraint the hyperplane by normalizing <script type="math/tex">w</script> to this equation <script type="math/tex">\|w^TX_i\| = 1</script> or with added bias, <script type="math/tex">\|w^TX_i + b\| = 1</script>.</dd>
-      <dd>This implies that there exists a “slab” of width <script type="math/tex">\dfrac{2}{\|w\|}</script>.</dd>
-    </dl>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Geometric Analysis:</strong><br />
+ First, we notice that for any given plane <script type="math/tex">w^Tx = 0</script>, the equations, <script type="math/tex">\gamma * w^Tx = 0</script>, where <script type="math/tex">\gamma \in \mathbf{R}</script> is a scalar, basically characterize the same plane and not many planes.<br />
+ This is because <script type="math/tex">w^Tx = 0 \iff \gamma * w^Tx = \gamma * 0 \iff \gamma * w^Tx = 0</script>.<br />
+ The above implies that any model that takes input <script type="math/tex">w</script> and produces a margin, will have to be <strong><em>Scale Invariant</em></strong>.<br />
+ To get around this and simplify the analysis, I am going to consider all the representations of the same plane, and I am going to pick one where we normalize (re-scale) the weight <script type="math/tex">w</script> such that the signed distance (distance to the point closest to the margin) is equal to one:
+    <p>$$|w^Tx_n| &gt; 0 \rightarrow |w^Tx_n| = 1$$</p>
+    <p>, where <script type="math/tex">x_n</script> is the point closest to the plane.<br />
+ We constraint the hyperplane by normalizing <script type="math/tex">w</script> to this equation <script type="math/tex">|w^Tx_i| = 1</script> or with added bias, <script type="math/tex">|w^Tx_i + b| = 1</script>.<br />
+ This implies that there exists a “slab” of width <script type="math/tex">\dfrac{2}{\|w\|}</script>.</p>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">The Margin, mathematically:</strong> \</dt>
-      <dd>Now, we can mathematically characterize the margin.</dd>
-      <dd>By substituting the constraints <script type="math/tex">\: y_i(w^TX_i+ b) \geq 1, \forall i \in [1,n]</script> and the signed distance:</dd>
-      <dd>
-        <script type="math/tex; mode=display">\min_i \dfrac{1}{\|w\|} \|w^TX_i + b\| \geq \dfrac{1}{w}</script>
-      </dd>
-    </dl>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">The Margin, mathematically:</strong><br />
+ Now, we can mathematically characterize the margin.<br />
+ By substituting the constraints <script type="math/tex">\: y_i(w^TX_i+ b) \geq 1, \forall i \in [1,n]</script> and the signed distance:
+    <p>$$\min_i \dfrac{1}{\|w\|} \|w^TX_i + b\| \geq \dfrac{1}{w}$$</p>
   </li>
   <li>
     <dl>
@@ -222,7 +273,26 @@ Take any point <script type="math/tex">X</script> on the plane, and let <script 
       </dd>
     </dl>
   </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents112">Notes:</strong>
+    <ul>
+      <li>The weight vector <script type="math/tex">\mathbf{w}</script> is orthogonal to the separating-plane/decision-boundary, defined by <script type="math/tex">\mathbf{w}^T\mathbf{x} + b = 0</script>, in the <script type="math/tex">\mathcal{X}</script> space; Reason:<br />
+  Since if you take any two points <script type="math/tex">\mathbf{x}^\prime</script> and <script type="math/tex">\mathbf{x}^{\prime \prime}</script> on the plane, and create the vector <script type="math/tex">\left(\mathbf{x}^{\prime}-\mathbf{x}^{\prime \prime}\right)</script>  parallel to the plane by subtracting the two points, then the following equations must hold:
+        <p>$$\mathbf{w}^{\top} \mathbf{x}^{\prime}+b=0 \wedge \mathbf{w}^{\top} \mathbf{x}^{\prime \prime}+b=0 \implies \mathbf{w}^{\top}\left(\mathbf{x}^{\prime}-\mathbf{x}^{\prime \prime}\right)=0$$</p>
+      </li>
+      <li>In a problem of minimizing a function:
+        <ul>
+          <li><strong>Unconstrained problem</strong>:<br />
+  You set the gradient of the function to Zero and solve.</li>
+          <li><strong>Constrained (regularization?)</strong>:<br />
+  The gradient becomes related to the constraint; the gradient <script type="math/tex">\nabla E_{\mathrm{in}}</script> is <strong>normal</strong> to the <em><strong>constraint</strong></em>.</li>
+        </ul>
+      </li>
+      <li><strong>Conceptual Dichotomy between Regularization and SVM</strong>:<br />
+  img</li>
+    </ul>
+  </li>
 </ol>
+
 
 
       <footer class="site-footer">
@@ -425,15 +495,16 @@ bodyContents.each(function(index, element) {
 <script type="text/javascript">
   function showTextPopHide(event) {
     var $button = $(event.target);
-    var txt = $button.attr("input");
+    // var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $button.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $button.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>
@@ -443,15 +514,15 @@ bodyContents.each(function(index, element) {
   function showText_withParent_PopHide(event) {
     var $button = $(event.target);
     var $parent = $button.parent();
-    var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $parent.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $parent.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>

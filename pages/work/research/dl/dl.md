@@ -11,3 +11,7 @@ permalink: /work_files/research/dl
 * ### [Natural Language Processing](/work_files/research/dl/nlp.html)
 
 * ### [Computer Vision](/work_files/research/dl/cv.html)
+
+* ### [Applications in Deep Learning](/work_files/research/dl/applcs.html)
+
+* ### [Theory of Deep Learning](/work_files/research/dl/theory.html)

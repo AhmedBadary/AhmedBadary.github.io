@@ -75,106 +75,92 @@
   <ul class="TOC3">
     <li><a href="#content3">Word2Vec</a></li>
   </ul>
-  <ul class="TOC4">
-    <li><a href="#content4">FOURTH</a></li>
-  </ul>
+  <!--   * [FOURTH](#content4)
+  {: .TOC4} -->
 </div>
 
 <hr />
 <hr />
 
+<p><a href="http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/">W2V Detailed Tutorial - Skip Gram (Stanford)</a><br />
+<a href="http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/">W2V Detailed Tutorial - Negative Sampling (Stanford)</a><br />
+<a href="https://github.com/chrisjmccormick/word2vec_commented">Commented word2vec C code</a><br />
+<a href="http://mccormickml.com/2016/04/27/word2vec-resources/">W2V Resources</a></p>
+
 <h2 id="content1">Word Meaning</h2>
 
 <ol>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Representing the Meaning of a Word:</strong></dt>
-      <dd>Commonest linguistic way of thinking of meaning:<br />
-Signifier <script type="math/tex">\iff</script> Signified (idea or thing) = denotation</dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Representing the Meaning of a Word:</strong><br />
+ Commonest linguistic way of thinking of meaning:<br />
+ Signifier <script type="math/tex">\iff</script> Signified (idea or thing) = denotation</p>
   </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">How do we have usable meaning in a computer:</strong></dt>
-      <dd>Commonly:  Use a taxonomy like WordNet that has hypernyms (is-a) relationships and synonym sets</dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">How do we have usable meaning in a computer:</strong><br />
+ Commonly:  Use a taxonomy like WordNet that has hypernyms (is-a) relationships and synonym sets</p>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Problems with this discrete representation:</strong></dt>
-      <dd>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Problems with this discrete representation:</strong>
+    <ul>
+      <li><strong>Great as a resource but missing nuances</strong>:
         <ul>
-          <li><strong>Great as a resource but missing nuances</strong>:
-            <ul>
-              <li>Synonyms:<br />
+          <li>Synonyms:<br />
   adept, expert, good, practiced, proficient, skillful</li>
-            </ul>
-          </li>
-          <li><strong>Missing New Words</strong></li>
-          <li><strong>Subjective</strong></li>
-          <li><strong>Requires human labor to create and adapt</strong></li>
-          <li><strong>Hard to compute accurate word similarity</strong>:
-            <ul>
-              <li><em>One-Hot Encoding</em>: in vector space terms, this is a vector with one 1 (at the position of the word) and a lot of zeroes (elsewhere).
-                <ul>
-                  <li>It is a <strong>localist</strong> representation</li>
-                  <li>There is <strong>no</strong> natural <strong>notion of similarity</strong> in a set of one-hot vectors</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
         </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Distributed Representations of Words:</strong></dt>
-      <dd>A method where vectors encode the similarity between the words.</dd>
-      <dd>The meaning is represented with real-valued numbers and is “<em>smeared</em>” across the vector.</dd>
-      <dd>Contrast with <strong>one-hot encoding</strong>.</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Distributional Similarity:</strong></dt>
-      <dd>is an idea/hypothesis that one can describe the meaning of words by the context in which they appear in.</dd>
-      <dd>Contrast with <strong>Denotational Meaning</strong> of words.</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">The Big Idea:</strong></dt>
-      <dd>We will build a dense vector for each word type, chosen so that it is good at predicting other words appearing in its context.</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Learning Neural Network Word Embeddings:</strong></dt>
-      <dd>We define a model that aims to predict between a center word <script type="math/tex">w_t</script> and context words in terms of word vectors.</dd>
-      <dd>
-        <script type="math/tex; mode=display">p(\text{context} \| w_t) = \ldots</script>
-      </dd>
-      <dd><strong>The Loss Function</strong>:</dd>
-      <dd>
-        <script type="math/tex; mode=display">J = 1 - p(w_{-t} \| w_t)</script>
-      </dd>
-      <dd>We look at many positions <script type="math/tex">t</script> in a big language corpus</dd>
-      <dd>We keep adjusting the vector representations of words to minimize this loss</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Relevant Papers:</strong></dt>
-      <dd>
+      </li>
+      <li><strong>Missing New Words</strong></li>
+      <li><strong>Subjective</strong></li>
+      <li><strong>Requires human labor to create and adapt</strong></li>
+      <li><strong>Hard to compute accurate word similarity</strong>:
         <ul>
-          <li>Learning representations by back-propagating errors (Rumelhart et al., 1986)</li>
-          <li>A neural probabilistic language model (Bengio et al., 2003)</li>
-          <li>NLP (almost) from Scratch (Collobert &amp; Weston, 2008)</li>
-          <li>A recent, even simpler and faster model: word2vec (Mikolov et al. 2013) à intro now</li>
+          <li><em>One-Hot Encoding</em>: in vector space terms, this is a vector with one 1 (at the position of the word) and a lot of zeroes (elsewhere).
+            <ul>
+              <li>It is a <strong>localist</strong> representation</li>
+              <li>There is <strong>no</strong> natural <strong>notion of similarity</strong> in a set of one-hot vectors</li>
+            </ul>
+          </li>
         </ul>
-      </dd>
-    </dl>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Distributed Representations of Words:</strong><br />
+ A method where vectors encode the similarity between the words.</p>
+
+    <p>The meaning is represented with real-valued numbers and is “<em>smeared</em>” across the vector.</p>
+
+    <blockquote>
+      <p>Contrast with <strong>one-hot encoding</strong>.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Distributional Similarity:</strong><br />
+ is an idea/hypothesis that one can describe the meaning of words by the context in which they appear in.</p>
+
+    <blockquote>
+      <p>Contrast with <strong>Denotational Meaning</strong> of words.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">The Big Idea:</strong><br />
+ We will build a dense vector for each word type, chosen so that it is good at predicting other words appearing in its context.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Learning Neural Network Word Embeddings:</strong><br />
+ We define a model that aims to predict between a center word <script type="math/tex">w_t</script> and context words in terms of word vectors.
+    <p>$$p(\text{context} \vert  w_t) = \ldots$$</p>
+
+    <p><strong>The Loss Function</strong>:</p>
+    <p>$$J = 1 - p(w_{-t} \vert  w_t)$$</p>
+
+    <p>We look at many positions <script type="math/tex">t</script> in a big language corpus<br />
+ We keep adjusting the vector representations of words to minimize this loss</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Relevant Papers:</strong>
+    <ul>
+      <li>Learning representations by back-propagating errors (Rumelhart et al., 1986)</li>
+      <li>A neural probabilistic language model (Bengio et al., 2003)</li>
+      <li>NLP (almost) from Scratch (Collobert &amp; Weston, 2008)</li>
+      <li>A recent, even simpler and faster model: word2vec (Mikolov et al. 2013) à intro now</li>
+    </ul>
   </li>
 </ol>
 
@@ -183,130 +169,86 @@ Signifier <script type="math/tex">\iff</script> Signified (idea or thing) = deno
 <h2 id="content2">Word Embeddings</h2>
 
 <ol>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Main Ideas:</strong>
+    <ul>
+      <li>Words are represented as vectors of real numbers</li>
+      <li>Words with similar vectors are <em>semantically</em> similar</li>
+      <li>Sometimes vectors are low-dimensional compared to the vocabulary size</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">The Clusterings:</strong><br />
+ <strong>Relationships (attributes) Captured</strong>:
+    <ul>
+      <li><strong>Synonyms:</strong> car, auto</li>
+      <li><strong>Antonyms:</strong> agree, disagree</li>
+      <li><strong>Values-on-a-scale:</strong> hot, warm, cold</li>
+      <li><strong>Hyponym-Hypernym:</strong> “Truck” is a type of “car”, “dog” is a type of “pet”</li>
+      <li><strong>Co-Hyponyms:</strong> “cat”&amp;”dog” is a type of “pet”</li>
+      <li><strong>Context:</strong> (Drink, Eat), (Talk, Listen)</li>
+    </ul>
+  </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Main Ideas:</strong></dt>
-      <dd>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Word Embeddings Theory:</strong><br />
+ Distributional Similarity Hypothesis</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">History and Terminology:</strong><br />
+ Word Embeddings = Distributional Semantic Model = Distributed Representation = Semantic Vector Space = Vector Space Model</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Applications:</strong>
+    <ul>
+      <li>Word Similarity</li>
+      <li>Word Grouping</li>
+      <li>Features in Text-Classification</li>
+      <li>Document Clustering</li>
+      <li>NLP:
         <ul>
-          <li>Words are represented as vectors of real numbers</li>
-          <li>Words with similar vectors are <em>semantically</em> similar</li>
-          <li>Sometimes vectors are low-dimensional compared to the vocabulary size</li>
+          <li>POS-Tagging</li>
+          <li>Semantic Analysis</li>
+          <li>Syntactic Parsing</li>
         </ul>
-      </dd>
-    </dl>
+      </li>
+    </ul>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">The Clusterings:</strong></dt>
-      <dd>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Approaches:</strong>
+    <ul>
+      <li><strong>Count</strong>: word count/context co-occurrences
         <ul>
-          <li><strong>Relationships (attributes) Captured</strong>:
-            <ul>
-              <li>Synonyms: car, auto</li>
-              <li>Antonyms: agree, disagree</li>
-              <li>Values-on-a-scale: hot, warm, cold</li>
-              <li>Hyponym-Hypernym: “Truck” is a type of “car”, “dog” is a type of “pet”</li>
-              <li>Co-Hyponyms: “cat”&amp;”dog” is a type of “pet”</li>
-              <li>Context: (Drink, Eat), (Talk, Listen)</li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Word Embeddings Theory:</strong></dt>
-      <dd>Distributional Similarity Hypothesis</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">History and Terminology:</strong></dt>
-      <dd>Word Embeddings <br />
-= <br />
-Distributional Semantic Model <br />
-= <br />
-Distributed Representation <br />
-= <br />
-Semantic Vector Space <br />
-= <br />
-Vector Space Model</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Applications:</strong></dt>
-      <dd>
-        <ul>
-          <li>Word Similarity</li>
-          <li>Word Grouping</li>
-          <li>Features in Text-Classification</li>
-          <li>Document Clustering</li>
-          <li>NLP:
-            <ul>
-              <li>POS-Tagging</li>
-              <li>Semantic Analysis</li>
-              <li>Syntactic Parsing</li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Approaches:</strong></dt>
-      <dd>
-        <ul>
-          <li><strong>Count</strong>: word count/context co-occurrences
-            <ul>
-              <li><em><strong>Distributional Semantics</strong></em>:
-                <ol>
-                  <li>Summarize the occurrence statistics for each word in a large document set: <br />
+          <li><em><strong>Distributional Semantics</strong></em>:
+            <ol>
+              <li>Summarize the occurrence statistics for each word in a large document set: <br />
  <img src="/main_files/dl/nlp/1/1.png" alt="img" width="40%" /></li>
-                  <li>Apply some dimensionality reduction transformation (SVD) to the counts to obtain dense real-valued vectors: <br />
+              <li>Apply some dimensionality reduction transformation (SVD) to the counts to obtain dense real-valued vectors: <br />
  <img src="/main_files/dl/nlp/1/2.png" alt="img" width="40%" /></li>
-                  <li>Compute similarity between words as vector similarity:<br />
+              <li>Compute similarity between words as vector similarity:<br />
  <img src="/main_files/dl/nlp/1/3.png" alt="img" width="40%" /></li>
-                </ol>
-              </li>
-            </ul>
-          </li>
-          <li><strong>Predict</strong>: word based on context
-            <ul>
-              <li><strong>word2vec</strong>:
-                <ol>
-                  <li>In one setup, the goal is to predict a word given its context.<br />
- <img src="/main_files/dl/nlp/1/4.png" alt="img" width="80%" /></li>
-                  <li>Update word representations for each context in the data set</li>
-                  <li>Similar words would be predicted by similar contexts</li>
-                </ol>
-              </li>
-            </ul>
+            </ol>
           </li>
         </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Parameters:</strong></dt>
-      <dd>
+      </li>
+      <li><strong>Predict</strong>: word based on context
         <ul>
-          <li>Underlying Document Set</li>
-          <li>Context Size</li>
-          <li>Context Type</li>
+          <li><strong>word2vec</strong>:
+            <ol>
+              <li>In one setup, the goal is to predict a word given its context.<br />
+ <img src="/main_files/dl/nlp/1/4.png" alt="img" width="80%" /></li>
+              <li>Update word representations for each context in the data set</li>
+              <li>Similar words would be predicted by similar contexts</li>
+            </ol>
+          </li>
         </ul>
-      </dd>
-    </dl>
+      </li>
+    </ul>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Software:</strong></dt>
-      <dd><img src="/main_files/dl/nlp/1/5.png" alt="img" width="80%" /></dd>
-    </dl>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Parameters:</strong>
+    <ul>
+      <li>Underlying Document Set</li>
+      <li>Context Size</li>
+      <li>Context Type</li>
+    </ul>
   </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Software:</strong><br />
+ <img src="/main_files/dl/nlp/1/5.png" alt="img" width="80%" /></li>
 </ol>
 
 <hr />
@@ -315,119 +257,149 @@ Vector Space Model</dd>
 
 <ol>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Main Idea:</strong></dt>
-      <dd>Predict between every word and its context words.</dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents311">Word2Vec:</strong><br />
+<strong>Word2Vec</strong> <em>(Mikolov et al. 2013)</em> is a framework for learning word representations as vectors. It is based on the idea of <em>distributional similarity</em>.<br />
+<br /></p>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Algorithms:</strong></dt>
-      <dd>
-        <ol>
-          <li><strong>Skip-grams (SG)</strong>:<br />
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Main Idea:</strong>
+    <ul>
+      <li>Given a large corpus of text</li>
+      <li>Represent every word, in a fixed vocabulary, by a <em>vector</em></li>
+      <li>Go through each position <script type="math/tex">t</script> in the text, which has a <strong>center word</strong> <script type="math/tex">c</script> and <strong>context words</strong> <script type="math/tex">o</script></li>
+      <li>Use the <em><strong>similarity of the word vectors</strong></em> for <script type="math/tex">c</script> and <script type="math/tex">o</script> to <em><strong>calculate the probability</strong></em> of <script type="math/tex">o</script> given <script type="math/tex">c</script> (SG)</li>
+      <li><em><strong>Keep adjusting the word vectors</strong></em> to <strong>maximize this probability</strong></li>
+    </ul>
+
+    <p><img src="/main_files/dl/nlp/1/6.png" alt="img" width="80%" /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Algorithms:</strong>
+    <ol>
+      <li><strong>Skip-grams (SG)</strong>:<br />
  Predict context words given target (position independent)</li>
-          <li><strong>Continuous Bag of Words (CBOW)</strong>:<br />
- Predict target word from bag-of-words context</li>
+      <li><strong>Continuous Bag of Words (CBOW)</strong>:<br />
+ Predict target word from bag-of-words context<br />
+ <br /></li>
+    </ol>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Training Methods:</strong>
+    <ul>
+      <li><strong>Basic</strong>:
+        <ol>
+          <li>Naive Softmax</li>
         </ol>
-      </dd>
-    </dl>
+      </li>
+      <li><strong>(Moderately) Efficient</strong>:
+        <ol>
+          <li>Hierarchical Softmax</li>
+          <li>Negative Sampling <br />
+ <br /></li>
+        </ol>
+      </li>
+    </ul>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Training Methods:</strong></dt>
-      <dd>
-        <ul>
-          <li><strong>Basic</strong>:
-            <ol>
-              <li>Naive Softmax</li>
-            </ol>
-          </li>
-          <li><strong>(Moderately) Efficient</strong>:
-            <ol>
-              <li>Hierarchical Softmax</li>
-              <li>Negative Sampling</li>
-            </ol>
-          </li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Skip-Gram Prediction Method:</strong></dt>
-      <dd>Skip-Gram Models aim to predict the <em>distribution (probability)</em> of context words from a center word.
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Skip-Gram Prediction Method:</strong><br />
+ Skip-Gram Models aim to predict the <em>distribution (probability)</em> of context words from a center word.
+    <blockquote>
+      <p>CBOW does the opposite, and aims to predict a center word from the surrounding context in terms of word vectors.</p>
+    </blockquote>
+
+    <p><strong>The Algorithm</strong>:</p>
+    <ol>
+      <li>We generate our one hot input vector <script type="math/tex">x \in \mathbf{R}^{\vert V\vert }</script> of the center word.</li>
+      <li>We get our embedded word vector for the center word <script type="math/tex">v_c = V_x \in \mathbf{R}^n</script></li>
+      <li>Generate a score vector <script type="math/tex">z = \mathcal{U}_ {v_c}</script></li>
+      <li>Turn the score vector into probabilities, <script type="math/tex">\hat{y} = \text{softmax}(z)</script>
         <blockquote>
-          <p>CBOW does the opposite, and aims to predict a center word from the surrounding context in terms of word vectors.</p>
+          <p>Note that <script type="math/tex">\hat{y}_{c−m}, \ldots, \hat{y}_{c−1}, \hat{y}_{c+1}, \ldots, \hat{y}_{c+m}</script> are the probabilities of observing each context word.</p>
         </blockquote>
-      </dd>
-      <dd>
+      </li>
+      <li>We desire our probability vector generated to match the true probabilities, which is<br />
+ <script type="math/tex">y^{(c−m)} , \ldots, y^{(c−1)} , y^{(c+1)} , \ldots, y^{(c+m)}</script>,<br />
+ the one hot vectors of the actual output.<br />
+ <br /></li>
+    </ol>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Word2Vec Details:</strong>
+    <ul>
+      <li>For each word (position) <script type="math/tex">t = 1 \ldots T</script>, predict surrounding (context) words in a window of <em>“radius”</em> <script type="math/tex">m</script> of every word.</li>
+    </ul>
+
+    <p><strong>Calculating <script type="math/tex">p(o \vert c)</script><sup id="fnref:2"><a href="#fn:2" class="footnote">1</a></sup> the probability of outside words given center word:</strong></p>
+    <ul>
+      <li>We use two vectors per word <script type="math/tex">w</script>:
         <ul>
-          <li><strong>The Algorithm</strong>:
-            <ol>
-              <li>We generate our one hot input vector <script type="math/tex">x \in \mathbf{R}^{\|V\|}</script> of the center word.</li>
-              <li>We get our embedded word vector for the center word <script type="math/tex">v_c = V_x \in \mathbf{R}^n</script></li>
-              <li>Generate a score vector <script type="math/tex">z = \mathcal{U}_{v_c}</script></li>
-              <li>Turn the score vector into probabilities, <script type="math/tex">\hat{y} = \text{softmax}(z)</script>
-                <blockquote>
-                  <p>Note that <script type="math/tex">\hat{y}_{c−m}, \ldots, \hat{y}_{c−1}, \hat{y}_{c+1}, \ldots, \hat{y}_{c+m}</script> are the probabilities of observing each context word.</p>
-                </blockquote>
-              </li>
-              <li>We desire our probability vector generated to match the true probabilities, which is<br />
- <script type="math/tex">s y^{(c−m)} , \ldots, y^{(c−1)} , y^{(c+1)} , \ldots, y^{(c+m)}</script>,<br />
-  the one hot vectors of the actual output.</li>
-            </ol>
-          </li>
+          <li><script type="math/tex">v_{w}</script>: <script type="math/tex">\:</script>  when <script type="math/tex">w</script> is a center word</li>
+          <li><script type="math/tex">u_{w}</script>: <script type="math/tex">\:</script> when <script type="math/tex">w</script> is a context word</li>
         </ul>
-      </dd>
-    </dl>
+      </li>
+      <li>Now, for a center word <script type="math/tex">c</script> and a context word <script type="math/tex">o</script>, we calculate the probability:
+        <p>$$\\{\displaystyle p(o \vert  c) = \dfrac{e^{u_o^Tv_c}}{\sum_{w\in V} e^{u_w^Tv_c}}} \:\:\:\:\:\:\:\:\:\:\:\:\\$$</p>
+        <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Constructing the Probability Distribution (Prediction Function)</button></p>
+        <ul hidden="">
+          <li><img src="/main_files/dl/nlp/1/7.png" alt="img" width="80%" /></li>
+          <li>The Probability Distribution <script type="math/tex">p(o \vert c)</script> is an application of the <strong>softmax</strong> function on the, <strong>dot-product</strong>, similarity function <script type="math/tex">u_o^Tv_c</script></li>
+          <li>The <strong>Softmax</strong> function, allows us to construct a probability distribution by making the numerator positive, and normalizing the function (to <script type="math/tex">1</script>) with the denominator</li>
+          <li>The <strong>similarity function <script type="math/tex">u_o^Tv_c</script></strong> allows us to model as follows: the more the <em>similarity</em> <script type="math/tex">\rightarrow</script> the larger the <em>dot-product</em>; the larger the <em>exponential</em> in the softmax</li>
+        </ul>
+        <p><br /></p>
+      </li>
+    </ul>
   </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Word2Vec Details:</strong></dt>
-      <dd>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">The Objective:</strong><br />
+ <strong style="color: red">Goal:</strong> <br />
+ Maximize the probability of any context word given the current center word.</p>
+
+    <p>We start with the <strong>Likelihood</strong> of being able to predict the context words given center words and the parameters <script type="math/tex">\theta</script> (only the wordvectors).<br />
+ <strong>The Likelihood:</strong></p>
+    <p>$$L(\theta)=\prod_{t=1}^{T} \prod_{-m \leq j \leq m \atop j \neq 0} P\left(w_{t+j} | w_{t} ; \theta\right)$$</p>
+
+    <p><strong style="color: red">The objective:</strong>  <br />
+ The Objective is just the (average) <strong>negative log likelihood</strong>:</p>
+    <p>$$J(\theta) = -\frac{1}{T} \log L(\theta)= - \dfrac{1}{T} \sum_{t=1}^{t} \sum_{-m \leq j \leq m \\ \:\:\:\:j\neq 0} \log p(w_{t+j} \vert  w_t ; \theta))$$</p>
+
+    <p>Notice: Minimizing objective function <script type="math/tex">\iff</script> Maximizing predictive accuracy<sup id="fnref:1"><a href="#fn:1" class="footnote">2</a></sup><br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">The Gradients:</strong><br />
+ We have a vector of parameters <script type="math/tex">\theta</script> that we are trying to optimize over, and We need to calculate the gradient of the two sets of parameters in <script type="math/tex">\theta</script>; namely, <script type="math/tex">\dfrac{\partial}{\partial v_c}</script> and <script type="math/tex">\dfrac{\partial}{\partial u_o}</script>.</p>
+
+    <p><strong style="color: red">The gradient <script type="math/tex">\dfrac{\partial}{\partial v_c}</script>:</strong></p>
+    <p>$$\dfrac{\partial}{\partial v_c} \log p(o\vert c) = u_o - \sum_{w'\in V} p{(w' | c)} \cdot u_{w'}$$</p>
+
+    <p><strong>Interpretation:</strong><br />
+ We are getting the slope by: taking the <strong>observed representation of the context word</strong> and subtracting away (<em>“what the model thinks the context should look like”</em>) the <strong>weighted average of the representations of each word multiplied by its probability in the current model</strong><br />
+ (i.e. the <strong>Expectation of the context word vector</strong> i.e. <strong>the expected context word according to our current model</strong>)</p>
+    <blockquote>
+      <p>I.E.<br />
+     <strong style="color: green">The difference between the expected context word and the actual context word</strong></p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Notes:</strong>
+    <ul>
+      <li><strong>Further Readings</strong>:
         <ul>
-          <li>For each word <script type="math/tex">t = 1 \ldots T</script>, predict surrounding words in a window of “radius” <script type="math/tex">m</script> of every word.</li>
-          <li>
-            <dl>
-              <dt>For <script type="math/tex">p(w_{t+j} \| w_t)</script> the simplest first formulation is:</dt>
-              <dd><script type="math/tex">\\p(o \| c) = \dfrac{e^{u_o^Tv_c}}{\sum_{w=1}^V e^{u_w^Tv_c}}\\</script><br />
-where, …</dd>
-            </dl>
-          </li>
+          <li><a href="https://aclweb.org/anthology/Q16-1028">A Latent Variable Model Approach to PMI-based Word Embeddings</a></li>
+          <li><a href="https://transacl.org/ojs/index.php/tacl/article/viewFile/1346/320">Linear Algebraic Structure of Word Senses, with Applications to Polysemy</a></li>
+          <li><a href="https://papers.nips.cc/paper/7368-on-the-dimensionality-of-word-embedding.pdf">On the Dimensionality of Word Embedding</a></li>
+          <li><a href="https://www.aclweb.org/anthology/Q15-1016">Improving Distributional Similarity with Lessons Learned from Word Embeddings</a></li>
         </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">The Objective:</strong></dt>
-      <dd>Maximize the probability of any context word given the current center word.</dd>
-      <dd>The objective:</dd>
-      <dd>
-        <script type="math/tex; mode=display">J'(\theta) = \prod_{t=1}^{t} \prod_{-m \leq j \leq m \\ \:\:\:\:j \neq 0} p(w_{t+j} \| w_t ; \theta))</script>
-      </dd>
-      <dd>The <em>Negative Log Likelihood</em>:</dd>
-      <dd>
-        <script type="math/tex; mode=display">J'(\theta) = - \dfrac{1}{T} \sum_{t=1}^{t} \sum_{-m \leq j \leq m \\ \:\:\:\:j\neq 0} \log p(w_{t+j} \| w_t ; \theta))</script>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
+      </li>
+    </ul>
   </li>
 </ol>
 
-<hr />
+<div class="footnotes">
+  <ol>
+    <li id="fn:2">
+      <p>I.E. <script type="math/tex">p(w_{t+j} \vert  w_t)</script> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:1">
+      <p>accuracy of predicting words in the context of another word <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
 
       <footer class="site-footer">
@@ -630,15 +602,16 @@ bodyContents.each(function(index, element) {
 <script type="text/javascript">
   function showTextPopHide(event) {
     var $button = $(event.target);
-    var txt = $button.attr("input");
+    // var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $button.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $button.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>
@@ -648,15 +621,15 @@ bodyContents.each(function(index, element) {
   function showText_withParent_PopHide(event) {
     var $button = $(event.target);
     var $parent = $button.parent();
-    var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $parent.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $parent.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>

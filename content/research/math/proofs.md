@@ -1,7 +1,7 @@
 ---
 layout: NotesPage
 title: Topology and Smooth Manifolds
-permalink: /work_files/research/math/manifolds
+permalink: /work_files/research/math/proofs
 prevLink: /work_files/research/dl/cv.html
 ---
 

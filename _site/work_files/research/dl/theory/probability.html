@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Probability Theory <br /> Mathematics of Deep Learning</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/theory.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Motivation</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Basics</a></li>
+  </ul>
+  <!--   * [THIRD](#content3)
+  {: .TOC3} -->
+  <ul class="TOC9">
+    <li><a href="#content9">Discrete Distributions</a></li>
+  </ul>
+  <ul class="TOC10">
+    <li><a href="#content10">Notes, Tips, and Tricks</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<p><a href="http://cs229.stanford.edu/section/cs229-prob.pdf">Review of Probability Theory (Stanford)</a><br />
+<a href="http://julio.staff.ipb.ac.id/files/2015/02/Ross_8th_ed_English.pdf">A First Course in Probability (Book: <em>Sheldon Ross</em>)</a><br />
+<a href="https://www.youtube.com/playlist?list=PL2SOU6wwxB0uwwH80KTQ6ht66KWxbzTIo">Statistics 110: Harvard</a><br />
+<a href="https://www.youtube.com/playlist?list=PLR6O_WZHBlOELxOrXlzB1LCXd2cUIXkkm">Lecture Series on Probability (following DL-book)</a><br />
+<a href="https://www.quora.com/What-is-the-probability-statistics-topic-FAQ">Probability Quora FAQs</a><br />
+<a href="https://projects.iq.harvard.edu/files/stat110/files/math_review_handout.pdf">Math review for Stat 110</a><br />
+<a href="https://jhui.github.io/2017/01/05/Deep-learning-probability-and-distribution/">Deep Learning Probability</a></p>
+
+<h2 id="content1">Motivation</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Uncertainty in General Systems and the need for a Probabilistic Framework:</strong>
+    <ol>
+      <li><strong>Inherent stochasticity in the system being modeled:</strong><br />
+ Take Quantum Mechanics, most interpretations of quantum mechanics describe the dynamics of sub-atomic particles as being probabilistic.</li>
+      <li><strong>Incomplete observability</strong>:<br />
+ Deterministic systems can appear stochastic when we cannot observe all the variables that drive the behavior of the system.
+        <blockquote>
+          <p>i.e. Point-of-View determinism (Monty-Hall)</p>
+        </blockquote>
+      </li>
+      <li><strong>Incomplete modeling</strong>:<br />
+ Building a system that makes strong assumptions about the problem and discards (observed) information result in uncertainty in the predictions.  <br />
+ <br /></li>
+    </ol>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Bayesian Probabilities and Frequentist Probabilities:</strong><br />
+ <strong>Frequentist Probabilities</strong> describe the predicted number of times that a <strong>repeatable</strong> process will result in a given output in an absolute scale.</p>
+
+    <p><strong>Bayesian Probabilities</strong> describe the <em>degree of belief</em> that a certain <strong>non-repeatable</strong> event is going to result in a given output, in an absolute scale.</p>
+
+    <p>We assume that <strong>Bayesian Probabilities</strong> behaves in exactly the same way as <strong>Frequentist Probabilities</strong>.<br />
+ This assumption is derived from a set of <em>“common sense”</em> arguments that end in the logical conclusion that both approaches to probabilities must behave the same way - <a href="https://socialsciences.mcmaster.ca/econ/ugcm/3ll3/ramseyfp/ramsess.pdf">Truth and probability (Ramsey 1926)</a>.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Probability as an extension of Logic:</strong><br />
+ “Probability can be seen as the extension of logic to deal with uncertainty. Logic provides a set of formal rules for determining what propositions are implied to be true or false given the assumption that some other set of propositions is true or false. Probability theory provides a set of formal rules for determining the likelihood of a proposition being true given the likelihood of other propositions.” - deeplearningbook p.54</li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Basics</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents20">Elements of Probability:</strong>
+    <ul>
+      <li><strong>Sample Space <script type="math/tex">\Omega</script></strong>: The set of all the outcomes of a stochastic experiment; where each <em>outcome</em> is a complete description of the state of the real world at the end of the experiment.</li>
+      <li><strong>Event Space <script type="math/tex">{\mathcal {F}}</script></strong>: A set of <em>events</em>; where each event <script type="math/tex">A \in \mathcal{F}</script> is a subset of the sample space <script type="math/tex">\Omega</script> - it is a collection of possible outcomes of an experiment.</li>
+      <li><strong>Probability Measure <script type="math/tex">\operatorname {P}</script></strong>: A function <script type="math/tex">\operatorname {P}: \mathcal{F} \rightarrow \mathbb{R}</script> that satisfies the following properties:
+        <ul>
+          <li><script type="math/tex">\operatorname {P}(A) \geq 0, \: \forall A \in \mathcal{f}</script>,</li>
+          <li><script type="math/tex">\operatorname {P}(\Omega) = 1</script>, <script type="math/tex">\operatorname {P}(\emptyset) = 0</script><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></li>
+          <li><script type="math/tex">{\displaystyle \operatorname {P}(\bigcup_i A_i) = \sum_i \operatorname {P}(A_i) }</script>, where <script type="math/tex">A_1, A_2, ...</script> are <a href="#bodyContents102"><em>disjoint</em> events</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Properties:</strong></p>
+    <ul>
+      <li><script type="math/tex">{\text { If } A \subseteq B \Longrightarrow P(A) \leq P(B)}</script>,</li>
+      <li><script type="math/tex">{P(A \cap B) \leq \min (P(A), P(B))}</script>,</li>
+      <li><strong>Union Bound:</strong> <script type="math/tex">{P(A \cup B) \leq P(A)+P(B)}</script></li>
+      <li><script type="math/tex">{P(\Omega \backslash A)=1-P(A)}</script>.</li>
+      <li><strong>Law of Total Probability (LOTB):</strong> <script type="math/tex">\text { If } A_{1}, \ldots, A_{k} \text { are a set of disjoint events such that } \cup_{i=1}^{k} A_{i}=\Omega, \text { then } \sum_{i=1}^{k} P\left(A_{k}\right)=1</script></li>
+      <li><strong>Inclusion-Exclusion Principle</strong>:
+        <p>$$\mathbb{P}\left(\bigcup_{i=1}^{n} A_{i}\right)=\sum_{i=1}^{n} \mathbb{P}\left(A_{i}\right)-\sum_{i&lt; j} \mathbb{P}\left(A_{i} \cap A_{j}\right)+\sum_{i&lt; j &lt; k} \mathbb{P}\left(A_{i} \cap A_{j} \cap A_{k}\right)-\cdots+(-1)^{n-1} \sum_{i&lt; \ldots&lt; n} \mathbb{P}\left(\bigcap_{i=1}^{n} A_{i}\right)$$</p>
+        <ul>
+          <li><a href="https://www.youtube.com/embed/LZ5Wergp_PA?start=2057" value="show" onclick="iframePopA(event)"><strong>Example 110</strong></a>
+  <a href="https://www.youtube.com/embed/LZ5Wergp_PA?start=2057"></a>
+            <div></div>
+          </li>
+        </ul>
+      </li>
+      <li><a href="https://www.youtube.com/embed/LZ5Wergp_PA?start=1359" value="show" onclick="iframePopA(event)"><strong>Properties and Proofs 110</strong></a>
+ <a href="https://www.youtube.com/embed/LZ5Wergp_PA?start=1359"></a>
+        <div></div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Random Variables:</strong><br />
+ A <strong>Random Variable</strong> is a variable that can take on different values randomly.<br />
+ Formally, a random variable <script type="math/tex">X</script> is a <em>function</em> that maps outcomes to numerical quantities (labels), typically real numbers:
+    <p>$${\displaystyle X\colon \Omega \to \mathbb{R}}$$</p>
+
+    <p>Think of a R.V.: as a numerical “summary” of an aspect of the experiment.</p>
+
+    <p><strong>Types</strong>:</p>
+    <ul>
+      <li><em><strong>Discrete</strong></em>: is a variable that has a finite or countably infinite number of states</li>
+      <li><em><strong>Continuous</strong></em>: is a variable that is a real value</li>
+    </ul>
+
+    <p><strong>Examples:</strong></p>
+    <ul>
+      <li><strong>Bernoulli:</strong> A r.v. <script type="math/tex">X</script> is said to have a <strong>Bernoulli</strong> distribution if <script type="math/tex">X</script> has only <script type="math/tex">2</script> possible values, <script type="math/tex">0</script> and <script type="math/tex">1</script>, and <script type="math/tex">P(X=1) = p, P(X=0) = 1-p</script>; denoted <script type="math/tex">\text{Bern}(p)</script>.</li>
+      <li><strong>Binomial</strong>: The distr. of #successes in <script type="math/tex">n</script> independent <strong><script type="math/tex">\text{Bern}(p)</script></strong> trials and its distribution is <script type="math/tex">P(X=k) = \left(\begin{array}{l}{n} \\ {k}\end{array}\right) p^k (1-p)^{n-k}</script>; denoted <script type="math/tex">\text{Bin}(n, p)</script>.        <br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Probability Distributions:</strong><br />
+ A <strong>Probability Distribution</strong> is a function that describes the likelihood that a random variable (or a set of r.v.) will take on each of its possible states.<br />
+ Probability Distributions are defined in terms of the <strong>Sample Space</strong>.
+    <ul>
+      <li><strong>Classes</strong>:
+        <ul>
+          <li><em><strong>Discrete Probability Distribution:</strong></em> is encoded by a discrete list of the probabilities of the outcomes, known as a <strong>Probability Mass Function (PMF)</strong>.</li>
+          <li><em><strong>Continuous Probability Distribution:</strong></em> is described by a <strong>Probability Density Function (PDF)</strong>.</li>
+        </ul>
+      </li>
+      <li><strong>Types</strong>:
+        <ul>
+          <li><em><strong>Univariate Distributions:</strong></em> are those whose sample space is <script type="math/tex">\mathbb{R}</script>.<br />
+  They give the probabilities of a single random variable taking on various alternative values</li>
+          <li><em><strong>Multivariate Distributions</strong></em> (also known as <em><strong>Joint Probability distributions</strong></em>):  are those whose sample space is a vector space. <br />
+  They give the probabilities of a random vector taking on various combinations of values.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>A <strong>Cumulative Distribution Function (CDF)</strong>: is a general functional form to describe a probability distribution:</p>
+    <p>$${\displaystyle F(x)=\operatorname {P} [X\leq x]\qquad {\text{ for all }}x\in \mathbb {R} .}$$</p>
+    <blockquote>
+      <p>Because a probability distribution P on the real line is determined by the probability of a scalar random variable X being in a half-open interval <script type="math/tex">(−\infty, x]</script>, the probability distribution is completely characterized by its cumulative distribution function (i.e. one can calculate the probability of any event in the event space)</p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Probability Mass Function:</strong><br />
+ A <strong>Probability Mass Function (PMF)</strong> is a function (probability distribution) that gives the probability that a discrete random variable is exactly equal to some value.<br />
+ <strong>Mathematical Definition</strong>:<br />
+ Suppose that <script type="math/tex">X: S \rightarrow A, \:\:\: (A {\displaystyle \subseteq }  \mathbb{R})</script> is a discrete random variable defined on a sample space <script type="math/tex">S</script>. Then the probability mass function <script type="math/tex">f_X: A \rightarrow [0, 1]</script> for <script type="math/tex">X</script> is defined as:
+    <p>$$p_{X}(x)=P(X=x)=P(\{s\in S:X(s)=x\})$$</p>
+    <p>The <strong>total probability for all hypothetical outcomes <script type="math/tex">x</script> is always conserved</strong>:</p>
+    <p>$$\sum _{x\in A}p_{X}(x)=1$$</p>
+    <p><strong>Joint Probability Distribution</strong> is a PMF over many variables, denoted <script type="math/tex">P(\mathrm{x} = x, \mathrm{y} = y)</script> or <script type="math/tex">P(x, y)</script>.</p>
+
+    <p>A <strong>PMF</strong> must satisfy these properties:</p>
+    <ul>
+      <li>The domain of <script type="math/tex">P</script> must be the set of all possible states of <script type="math/tex">\mathrm{x}</script>.</li>
+      <li><script type="math/tex">\forall x \in \mathrm{x}, \: 0 \leq P(x) \leq 1</script>. Impossible events has probability <script type="math/tex">0</script>. Guaranteed events have probability <script type="math/tex">1</script>.</li>
+      <li><script type="math/tex">{\displaystyle \sum_{x \in \mathrm{x}} P(x) = 1}</script>, i.e. the PMF must be normalized.<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Probability Density Function:</strong><br />
+ A <strong>Probability Density Function (PDF)</strong> is a function (probability distribution) whose value at any given sample (or point) in the sample space can be interpreted as providing a relative likelihood that the value of the random variable would equal that sample.<br />
+ The <strong>PDF</strong> is defined as the <em>derivative</em> of the <strong>CDF</strong>:
+    <p>$$f_{X}(x) = \dfrac{dF_{X}(x)}{dx}$$</p>
+    <p>A Probability Density Function <script type="math/tex">p(x)</script> does not give the probability of a specific state directly; instead the probability of landing inside an infinitesimal region with volume <script type="math/tex">\delta x</script> is given by <script type="math/tex">p(x)\delta x</script>.<br />
+ We can integrate the density function to find the actual probability mass of a set of points. Specifically, the probability that <script type="math/tex">x</script> lies in some set <script type="math/tex">S</script> is given by the integral of <script type="math/tex">p(x)</script> over that set.</p>
+    <blockquote>
+      <p>In the <strong>Univariate</strong> example, the probability that <script type="math/tex">x</script> lies in the interval <script type="math/tex">[a, b]</script> is given by <script type="math/tex">\int_{[a, b]} p(x)dx</script></p>
+    </blockquote>
+
+    <p>A <strong>PDF</strong> must satisfy these properties:</p>
+    <ul>
+      <li>The domain of <script type="math/tex">P</script> must be the set of all possible states of <script type="math/tex">x</script>.</li>
+      <li><script type="math/tex">\forall x \in \mathrm{x}, \: 0 \leq P(x) \leq 1</script>. Impossible events has probability <script type="math/tex">0</script>. Guaranteed events have probability <script type="math/tex">1</script>.</li>
+      <li><script type="math/tex">\int p(x)dx = 1</script>, i.e. the integral of the PDF must be normalized.<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents244">Cumulative Distribution Function:</strong><br />
+A <strong>Cumulative Distribution Function (CDF)</strong> is a function (probability distribution) of a real-valued random variable <script type="math/tex">X</script>, or just distribution function of <script type="math/tex">X</script>, evaluated at <script type="math/tex">x</script>, is the probability that <script type="math/tex">X</script> will take a value less than or equal to <script type="math/tex">x</script>.
+    <p>$$F_{X}(x)=\operatorname {P} (X\leq x)$$ </p>
+    <p>The probability that <script type="math/tex">X</script> lies in the semi-closed interval <script type="math/tex">(a, b]</script>, where <script type="math/tex">% <![CDATA[
+a  <  b %]]></script>, is therefore</p>
+    <p>$${\displaystyle \operatorname {P} (a&lt;X\leq b)=F_{X}(b)-F_{X}(a).}$$</p>
+
+    <p><strong>Properties</strong>:</p>
+    <ul>
+      <li><script type="math/tex">0 \leq F(x) \leq 1</script>,</li>
+      <li><script type="math/tex">\lim_{x \rightarrow -\infty} F(x) = 0</script>,</li>
+      <li><script type="math/tex">\lim_{x \rightarrow \infty} F(x) = 1</script>,</li>
+      <li><script type="math/tex">x \leq y \implies F(x) \leq F(y)</script>.<br />
+<br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Marginal Probability:</strong><br />
+ The <strong>Marginal Distribution</strong> of a subset of a collection of random variables is the probability distribution of the variables contained in the subset.<br />
+ <strong>Two-variable Case</strong>:<br />
+ Given two random variables <script type="math/tex">X</script> and <script type="math/tex">Y</script> whose joint distribution is known, the marginal distribution of <script type="math/tex">X</script> is simply the probability distribution of <script type="math/tex">X</script> averaging over information about <script type="math/tex">Y</script>.
+    <ul>
+      <li><strong>Discrete</strong>:
+        <p>$${\displaystyle \Pr(X=x)=\sum_ {y}\Pr(X=x,Y=y)=\sum_ {y}\Pr(X=x\mid Y=y)\Pr(Y=y)}$$</p>
+      </li>
+      <li><strong>Continuous</strong>:
+        <p>$${\displaystyle p_{X}(x)=\int _{y}p_{X,Y}(x,y)\,\mathrm {d} y=\int _{y}p_{X\mid Y}(x\mid y)\,p_{Y}(y)\,\mathrm {d} y}$$</p>
+      </li>
+      <li><em><strong>Marginal Probability as Expectation</strong></em>:</li>
+    </ul>
+    <p>$${\displaystyle p_{X}(x)=\int _{y}p_{X\mid Y}(x\mid y)\,p_{Y}(y)\,\mathrm {d} y=\mathbb {E} _{Y}[p_{X\mid Y}(x\mid y)]}$$</p>
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Intuitive Explanation</button>
+ <img src="/main_files/math/prob/1.png" alt="img" width="100%" hidden="" /></p>
+
+    <blockquote>
+      <p><strong>Marginalization:</strong> the process of forming the marginal distribution with respect to one variable by summing out the other variable</p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Conditional Probability:</strong><br />
+ <strong>Conditional Probability</strong> is a measure of the probability of an event given that another event has occurred.<br />
+ Conditional Probability is only defined when <script type="math/tex">P(x) > 0</script> - We cannot compute the conditional probability conditioned on an event that never happens. <br />
+ <strong>Definition</strong>:
+    <p>$$P(A|B)={\frac {P(A\cap B)}{P(B)}} = {\frac {P(A, B)}{P(B)}}$$</p>
+
+    <blockquote>
+      <p>Intuitively, it is a way of updating your beliefs/probabilities given new evidence. It’s inherently a sequential process.</p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">The Chain Rule of Conditional Probability:</strong><br />
+ Any joint probability distribution over many random variables may be decomposed into conditional distributions over only one variable.<br />
+ The chain rule permits the calculation of any member of the joint distribution of a set of random variables using only conditional probabilities:
+    <p>$$\mathrm {P} \left(\bigcap _{k=1}^{n}A_{k}\right)=\prod _{k=1}^{n}\mathrm {P} \left(A_{k}\,{\Bigg |}\,\bigcap _{j=1}^{k-1}A_{j}\right)$$</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Independence and Conditional Independence:</strong><br />
+ Two random variables <script type="math/tex">x</script> and <script type="math/tex">y</script> (or events ) are <strong>independent</strong> if their probability distribution can be expressed as a product of two factors, one involving only <script type="math/tex">x</script> and one involving only <script type="math/tex">y</script>:
+    <p>$$\mathrm{P}(A \cap B) = \mathrm{P}(A)\mathrm{P}(B)$$</p>
+
+    <p>Two random variables <script type="math/tex">A</script> and <script type="math/tex">B</script> are conditionally independent given a random variable <script type="math/tex">Y</script> if the conditional probability distribution over <script type="math/tex">A</script> and <script type="math/tex">B</script> factorizes in this way for every value of <script type="math/tex">Y</script>:</p>
+    <p>$$\Pr(A\cap B\mid Y)=\Pr(A\mid Y)\Pr(B\mid Y)$$</p>
+    <p>or equivalently,</p>
+    <p>$$\Pr(A\mid B\cap Y)=\Pr(A\mid Y)$$</p>
+    <blockquote>
+      <p>In other words, <script type="math/tex">A</script> and <script type="math/tex">B</script> are conditionally independent given <script type="math/tex">Y</script> if and only if, given knowledge that <script type="math/tex">Y</script> occurs, knowledge of whether <script type="math/tex">A</script> occurs provides no information on the likelihood of <script type="math/tex">B</script> occurring, and knowledge of whether <script type="math/tex">B</script> occurs provides no information on the likelihood of <script type="math/tex">A</script> occurring.</p>
+    </blockquote>
+
+    <p><strong style="color: red">Pairwise VS Mutual Independence:</strong></p>
+    <ul>
+      <li><strong>Pairwise</strong>:
+        <p>$$\mathrm{P}\left(A_{m} \cap A_{k}\right)=\mathrm{P}\left(A_{m}\right) \mathrm{P}\left(A_{k}\right)$$</p>
+      </li>
+      <li><strong>Mutual Independence:</strong>
+        <p>$$\mathrm{P}\left(\bigcap_{i=1}^{k} B_{i}\right)=\prod_{i=1}^{k} \mathrm{P}\left(B_{i}\right)$$</p>
+        <p>for <em><strong>all subsets</strong></em> of size <script type="math/tex">k \leq n</script></p>
+      </li>
+    </ul>
+
+    <p><strong>Pairwise</strong> independence does <strong>not</strong> imply <strong>mutual</strong> independence, but the other way around is TRUE (by definition).</p>
+
+    <p><strong>Notation:</strong></p>
+    <ul>
+      <li><em><strong><script type="math/tex">A</script> is Independent from <script type="math/tex">B</script></strong></em>:  <script type="math/tex">A{\perp}B</script></li>
+      <li><em><strong><script type="math/tex">A</script> and <script type="math/tex">B</script> are conditionally Independent given <script type="math/tex">Y</script></strong></em>:  <script type="math/tex">A{\perp}B \:\vert Y</script><br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents29">Expectation:</strong><br />
+ The <strong>expectation</strong>, or <strong>expected value</strong>, of some function <script type="math/tex">f(x)</script> with respect to a probability distribution <script type="math/tex">P(x)</script> is the <em>“theoretical”</em> average, or mean value, that <script type="math/tex">f</script> takes on when <script type="math/tex">x</script> is drawn from <script type="math/tex">P</script>.
+    <blockquote>
+      <p>The Expectation of a R.V. is a weighted average of the values <script type="math/tex">x</script> that the R.V. can take – <script type="math/tex">\operatorname {E}[X] = \sum_{x \in X} x \cdot p(x)</script></p>
+    </blockquote>
+    <ul>
+      <li><strong>Discrete case</strong>:
+        <p>$${\displaystyle \operatorname {E}_{x \sim P} [f(X)]=f(x_{1})p(x_{1})+f(x_{2})p(x_{2})+\cdots +f(x_{k})p(x_{k})} = \sum_x P(x)f(x)$$</p>
+      </li>
+      <li><strong>Continuous case</strong>:</li>
+    </ul>
+    <p>$${\displaystyle \operatorname {E}_ {x \sim P} [f(X)] = \int p(x)f(x)dx}$$</p>
+    <p><strong>Linearity of Expectation:</strong></p>
+    <p>$${\displaystyle {\begin{aligned}\operatorname {E} [X+Y]&amp;=\operatorname {E} [X]+\operatorname {E} [Y],\\[6pt]\operatorname {E} [aX]&amp;=a\operatorname {E} [X],\end{aligned}}}$$</p>
+    <p><strong>Independence:</strong> <br />
+ If <script type="math/tex">X</script> and <script type="math/tex">Y</script> are independent <script type="math/tex">\implies \operatorname {E} [XY] = \operatorname {E} [X] \operatorname {E} [Y]</script><br />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents210">Variance:</strong><br />
+<strong>Variance</strong> is the expectation of the squared deviation of a random variable from its mean.<br />
+It gives a measure of how much the values of a function of a random variable <script type="math/tex">x</script> vary as we sample different values of <script type="math/tex">x</script> from its probability distribution:
+    <p>$$\operatorname {Var} (f(x))=\operatorname {E} \left[(f(x)-\mu )^{2}\right] = \sum_{x \in X} (x - \mu)^2 \cdot p(x)$$</p>
+    <p><strong>Variance expanded</strong>:</p>
+    <p>$${\displaystyle {\begin{aligned}\operatorname {Var} (X)&amp;=\operatorname {E} \left[(X-\operatorname {E} [X])^{2}\right]\\
+    &amp;=\operatorname {E} \left[X^{2}-2X\operatorname {E} [X]+\operatorname {E} [X]^{2}\right]\\
+    &amp;=\operatorname {E} \left[X^{2}\right]-2\operatorname {E} [X]\operatorname {E} [X]+\operatorname {E} [X]^{2}\\
+    &amp;=\operatorname {E} \left[X^{2}\right]-\operatorname {E} [X]^{2}\end{aligned}}}$$  </p>
+    <p><strong>Variance as Covariance</strong>: 
+Variance can be expressed as the covariance of a random variable with itself:</p>
+    <p>$$\operatorname {Var} (X)=\operatorname {Cov} (X,X)$$</p>
+
+    <p><strong>Properties:</strong></p>
+    <ul>
+      <li><script type="math/tex">\operatorname {Var} [a] = 0, \forall a \in \mathbb{R}</script> (constant <script type="math/tex">a</script>)</li>
+      <li><script type="math/tex">\operatorname {Var} [af(X)] = a^2 \operatorname {Var} [f(X)]</script> (constant <script type="math/tex">a</script>)</li>
+      <li><script type="math/tex">\operatorname {Var} [X + Y] = a^2 \operatorname {Var} [X] + \operatorname {Var} [Y] + 2 \operatorname {Cov} [X, Y]</script>.<br />
+<br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents211">Standard Deviation:</strong><br />
+The <strong>Standard Deviation</strong> is a measure that is used to quantify the amount of variation or dispersion of a set of data values.<br />
+It is defined as the square root of the variance:
+    <p>$${\displaystyle {\begin{aligned}\sigma &amp;={\sqrt {\operatorname {E} [(X-\mu )^{2}]}}\\&amp;={\sqrt {\operatorname {E} [X^{2}]+\operatorname {E} [-2\mu X]+\operatorname {E} [\mu ^{2}]}}\\&amp;={\sqrt {\operatorname {E} [X^{2}]-2\mu \operatorname {E} [X]+\mu ^{2}}}\\&amp;={\sqrt {\operatorname {E} [X^{2}]-2\mu ^{2}+\mu ^{2}}}\\&amp;={\sqrt {\operatorname {E} [X^{2}]-\mu ^{2}}}\\&amp;={\sqrt {\operatorname {E} [X^{2}]-(\operatorname {E} [X])^{2}}}\end{aligned}}}$$</p>
+
+    <p><strong>Properties:</strong></p>
+    <ul>
+      <li>68% of the data-points lie within <script type="math/tex">1 \cdot \sigma</script>s from the mean</li>
+      <li>95% of the data-points lie within <script type="math/tex">2 \cdot \sigma</script>s from the mean</li>
+      <li>99% of the data-points lie within <script type="math/tex">3 \cdot \sigma</script>s from the mean
+<br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents212">Covariance:</strong><br />
+<strong>Covariance</strong> is a measure of the joint variability of two random variables.<br />
+It gives some sense of how much two values are linearly related to each other, as well as the scale of these variables:
+    <p>$$\operatorname {cov} (X,Y)=\operatorname {E} { {\big[ }(X-\operatorname {E} [X])(Y-\operatorname {E} [Y]){ \big] } }$$ </p>
+    <p><strong>Covariance expanded:</strong></p>
+    <p>$${\displaystyle {\begin{aligned}\operatorname {cov} (X,Y)&amp;=\operatorname {E} \left[\left(X-\operatorname {E} \left[X\right]\right)\left(Y-\operatorname {E} \left[Y\right]\right)\right]\\&amp;=\operatorname {E} \left[XY-X\operatorname {E} \left[Y\right]-\operatorname {E} \left[X\right]Y+\operatorname {E} \left[X\right]\operatorname {E} \left[Y\right]\right]\\&amp;=\operatorname {E} \left[XY\right]-\operatorname {E} \left[X\right]\operatorname {E} \left[Y\right]-\operatorname {E} \left[X\right]\operatorname {E} \left[Y\right]+\operatorname {E} \left[X\right]\operatorname {E} \left[Y\right]\\&amp;=\operatorname {E} \left[XY\right]-\operatorname {E} \left[X\right]\operatorname {E} \left[Y\right].\end{aligned}}}$$ </p>
+    <blockquote>
+      <p>when <script type="math/tex">{\displaystyle \operatorname {E} [XY]\approx \operatorname {E} [X]\operatorname {E} [Y]}</script>, this last equation is prone to catastrophic cancellation when computed with floating point arithmetic and thus should be avoided in computer programs when the data has not been centered before.</p>
+    </blockquote>
+
+    <p><strong>Covariance of Random Vectors</strong>:</p>
+    <p>$${\begin{aligned}\operatorname {cov} (\mathbf {X} ,\mathbf {Y} )&amp;=\operatorname {E} \left[(\mathbf {X} -\operatorname {E} [\mathbf {X} ])(\mathbf {Y} -\operatorname {E} [\mathbf {Y} ])^{\mathrm {T} }\right]\\&amp;=\operatorname {E} \left[\mathbf {X} \mathbf {Y} ^{\mathrm {T} }\right]-\operatorname {E} [\mathbf {X} ]\operatorname {E} [\mathbf {Y} ]^{\mathrm {T} },\end{aligned}}$$ </p>
+
+    <p><strong>The Covariance Matrix</strong> of a random vector <script type="math/tex">x \in \mathbb{R}^n</script> is an <script type="math/tex">n \times n</script> matrix, such that:</p>
+    <p>$$ \operatorname {cov} (X)_ {i,j} = \operatorname {cov}(x_i, x_j) \\
+    \operatorname {cov}(x_i, x_j) = \operatorname {Var} (x_i)$$</p>
+    <p><strong>Interpretations</strong>:</p>
+    <ul>
+      <li>High absolute values of the covariance mean that the values change very much and are both far from their respective means at the same time.</li>
+      <li><strong>The sign of the covariance</strong>: <br />
+  The sign of the covariance shows the tendency in the linear relationship between the variables:
+        <ul>
+          <li><em><strong>Positive</strong></em>:<br />
+  the variables tend to show similar behavior</li>
+          <li><em><strong>Negative</strong></em>:<br />
+  the variables tend to show opposite behavior</li>
+          <li><strong>Reason</strong>:<br />
+  If the greater values of one variable mainly correspond with the greater values of the other variable, and the same holds for the lesser values, (i.e., the variables tend to show similar behavior), the covariance is positive. In the opposite case, when the greater values of one variable mainly correspond to the lesser values of the other, (i.e., the variables tend to show opposite behavior), the covariance is negative.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong>Covariance and Variance:</strong></p>
+    <p>$$\operatorname{Var}[X+Y]=\operatorname{Var}[X]+\operatorname{Var}[Y]+2 \operatorname{Cov}[X, Y]$$</p>
+
+    <p><strong>Covariance and Independence:</strong><br />
+If <script type="math/tex">X</script> and <script type="math/tex">Y</script> are independent <script type="math/tex">\implies \operatorname{cov}[X, Y]=\mathrm{E}[X Y]-\mathrm{E}[X] \mathrm{E}[Y] = 0</script>.</p>
+    <ul>
+      <li>Independence <script type="math/tex">\Rightarrow</script> Zero Covariance</li>
+      <li>Zero Covariance <script type="math/tex">\nRightarrow</script> Independence</li>
+    </ul>
+
+    <p><strong>Covariance and Correlation:</strong><br />
+If <script type="math/tex">\operatorname{Cov}[X, Y]=0 \implies</script> <script type="math/tex">X</script> and <script type="math/tex">Y</script> are <strong>Uncorrelated</strong>.</p>
+
+    <ul>
+      <li><a href="https://www.youtube.com/embed/KDw3hC2YNFc" value="show" onclick="iframePopA(event)"><strong>Covariance/Correlation Intuition</strong></a>
+<a href="https://www.youtube.com/embed/KDw3hC2YNFc"></a>
+        <div></div>
+      </li>
+      <li><a href="https://www.youtube.com/embed/IujCYxtpszU" value="show" onclick="iframePopA(event)"><strong>Covariance and Correlation (Harvard Lecture)</strong></a>
+<a href="https://www.youtube.com/embed/IujCYxtpszU"></a>
+        <div></div>
+      </li>
+      <li><a href="https://www.youtube.com/embed/ualmyZiPs9w" value="show" onclick="iframePopA(event)"><strong>Covariance as slope of the Regression Line</strong></a>
+<a href="https://www.youtube.com/embed/ualmyZiPs9w"></a>
+        <div></div>
+      </li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents213">Mixtures of Distributions:</strong><br />
+It is also common to define probability distributions by combining other simpler probability distributions. One common way of combining distributions is to construct a <strong>mixture distribution</strong>.  <br />
+A <strong>Mixture Distribution</strong> is the probability distribution of a random variable that is derived from a collection of other random variables as follows: first, a random variable is selected by chance from the collection according to given probabilities of selection, and then the value of the selected random variable is realized.  <br />
+On each trial, the choice of which component distribution should generate the sample is determined by sampling a component identity from a multinoulli distribution:
+    <p>$$P(x) = \sum_i P(x=i)P(x \vert c=i)$$</p>
+    <p>where <script type="math/tex">P(c)</script> is the multinoulli distribution over component identities.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents214">Bayes’ Rule:</strong><br />
+<strong>Bayes’ Rule</strong> describes the probability of an event, based on prior knowledge of conditions that might be related to the event.
+    <p>$${\displaystyle P(A\mid B)={\frac {P(B\mid A)\,P(A)}{P(B)}}}$$</p>
+    <p>where,</p>
+    <p>$$P(B) =\sum_A P(B \vert A) P(A)$$</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents215">Common Random Variables:</strong><br />
+<strong style="color: red">Discrete RVs:</strong>
+    <ul>
+      <li><strong>Bernoulli</strong>:<br />
+<img src="/main_files/math/prob/2.png" alt="img" width="90%" /></li>
+      <li><strong>Binomial</strong>:<br />
+<img src="/main_files/math/prob/3.png" alt="img" width="90%" /></li>
+      <li><strong>Geometric</strong>:<br />
+<img src="/main_files/math/prob/4.png" alt="img" width="90%" /></li>
+      <li><strong>Poisson</strong>:<br />
+<img src="/main_files/math/prob/5.png" alt="img" width="90%" /></li>
+    </ul>
+
+    <p><strong style="color: red">Continuous RVs:</strong></p>
+    <ul>
+      <li><strong>Uniform</strong>:<br />
+<img src="/main_files/math/prob/6.png" alt="img" width="90%" /></li>
+      <li><strong>Exponential</strong>:<br />
+<img src="/main_files/math/prob/7.png" alt="img" width="90%" /></li>
+      <li><strong>Normal/Gaussian</strong>:<br />
+<img src="/main_files/math/prob/8.png" alt="img" width="90%" /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents216">Summary of Distributions:</strong><br />
+<img src="/main_files/math/prob/9.png" alt="img" width="80%" /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents217">Formulas:</strong>
+    <ul>
+      <li><script type="math/tex">\overline{X} = \hat{\mu}</script>,</li>
+      <li><script type="math/tex">\operatorname {E}[\overline{X}]=\operatorname {E}\left[\frac{X_{1}+\cdots+X_{n}}{n}\right] = \mu</script>,</li>
+      <li><script type="math/tex">\operatorname{Var}[\overline{X}]=\operatorname{Var}\left[\frac{X_{1}+\cdots+X_{n}}{n}\right] = \dfrac{\sigma^2}{n}</script>,</li>
+      <li><script type="math/tex">\operatorname {E}\left[X_{i}^{2}\right]=\operatorname {Var} [X]+\operatorname {E} [X]^{2} = \sigma^{2}+\mu^{2}</script>,</li>
+      <li><script type="math/tex">\operatorname {E}\left[\overline{X}^{2}\right]=\operatorname {E}\left[\hat{\mu}^{2}\right]=\frac{\sigma^{2}}{n}+\mu^{2}\:</script>, <sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup></li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content9">Discrete Distributions</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents91">Uniform Distribution:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents92">Bernoulli Distribution:</strong></dt>
+      <dd>A distribution over a single binary random variable.<br />
+It is controlled by a single parameter <script type="math/tex">\phi \in [0, 1]</script>, which fives the probability of the r.v. being equal to <script type="math/tex">1</script>.
+        <blockquote>
+          <p>It models the probability of a single experiment with a boolean outcome (e.g. coin flip <script type="math/tex">\rightarrow</script> {heads: 1, tails: 0})</p>
+        </blockquote>
+      </dd>
+      <dd><strong>PMF:</strong></dd>
+      <dd>
+        <script type="math/tex; mode=display">% <![CDATA[
+{\displaystyle P(x)={\begin{cases}p&{\text{if }}p=1,\\q=1-p&{\text{if }}p=0.\end{cases}}} %]]></script>
+      </dd>
+      <dd><strong>Properties:</strong>
+        <p>$$P(X=1) = \phi$$</p>
+        <p>$$P(X=0) = 1 - \phi$$</p>
+        <p>$$P(X=x) = \phi^x (1 - \phi)^{1-x}$$</p>
+        <p>$$\operatorname {E}[X] = \phi$$</p>
+        <p>$$\operatorname {Var}(X) = \phi (1 - \phi)$$</p>
+      </dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents93">Binomial Distribution:</strong>
+    <blockquote>
+      <p><script type="math/tex">{\binom {n}{k}}={\frac {n!}{k!(n-k)!}}</script> is the number of possible ways of getting <script type="math/tex">x</script> successes and <script type="math/tex">n-x</script> failures</p>
+    </blockquote>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content10">Notes, Tips and Tricks</h2>
+
+<ul>
+  <li>
+    <p>It is more practical to use a simple but uncertain rule rather than a complex but certain one, even if the true rule is deterministic and our modeling system has the fidelity to accommodate a complex rule.<br />
+  For example, the simple rule “Most birds ﬂy” is cheap to develop and is broadly useful, while a rule of the form, “Birds ﬂy, except for very young birds that have not yet learned to ﬂy, sick or injured birds that have lost the ability to ﬂy, ﬂightless species of birds including the cassowary, ostrich and kiwi. . .” is expensive to develop, maintain and communicate and, after all this effort, is still brittle and prone to failure.</p>
+  </li>
+  <li><strong class="bodyContents10" id="bodyContents102">Disjoint Events (Mutually Exclusive):</strong> are events that cannot occur together at the same time
+  Mathematically:
+    <ul>
+      <li><script type="math/tex">A_i \cap A_j = \varnothing</script> whenever <script type="math/tex">i \neq j</script></li>
+      <li><script type="math/tex">p(A_i, A_j) = 0</script>,</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Describing a Probability Distribution</strong>:<br />
+  A description of a probability distribution is <em>exponential</em> in the number of variables it models</p>
+  </li>
+  <li>
+    <p><strong>Probability VS Likelihood</strong>:<br />
+  <strong>Probabilities</strong> are the areas under a fixed distribution<br />
+  <script type="math/tex">pr(</script>data<script type="math/tex">|</script>distribution<script type="math/tex">)</script><br />
+  i.e. probability of some <em>data</em> (left hand side) given a distribution (described by the right hand side)<br />
+  <strong>Likelihoods</strong> are the y-axis values for fixed data points with distributions that can be moved..<br />
+  <script type="math/tex">L(</script>distribution<script type="math/tex">|</script>observation/data<script type="math/tex">)</script></p>
+
+    <blockquote>
+      <p>Likelihood is, basically, a specific probability that can only be calculated after the fact (of observing some outcomes). It is not normalized to <script type="math/tex">1</script> (it is <strong>not</strong> a probability). It is just a way to quantify how likely a set of observation is to occur given some distribution with some parameters; then you can manipulate the parameters to make the realization of the data more <em>“likely”</em> (it is precisely meant for that purpose of estimating the parameters); it is a <em>function</em> of the <strong>parameters</strong>.<br />
+  Probability, on the other hand, is absolute for all possible outcomes. It is a function of the <strong>Data</strong>.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong>Maximum Likelihood Estimation</strong>:<br />
+  A method that tries to find the <em>optimal value</em> for the <em>mean</em> and/or <em>stdev</em> for a distribution <em><strong>given</strong></em> some observed measurements/data-points.</p>
+  </li>
+  <li>
+    <p><strong>Variance</strong>:<br />
+  When <script type="math/tex">\text{Var}(X) = 0 \implies X = E[X] = \mu</script>. (not interesting)</p>
+  </li>
+  <li><strong>Reason we sometimes prefer Biased Estimators</strong>:</li>
+</ul>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Corresponds to “wanting” the probability of events that are <strong>certain</strong> to have p=1 and events that are <strong>impossible</strong> to have p=0 <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>Comes from <script type="math/tex">\operatorname{Var}[\overline{X}]=\operatorname {E}\left[\overline{X}^{2}\right]-\{\operatorname {E}[\overline{X}]\}^{2}</script> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

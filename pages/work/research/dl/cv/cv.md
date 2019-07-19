@@ -32,4 +32,4 @@ permalink: /work_files/research/dl/cv
 
 * ### [Generative Adversarial Networks (GANs)](/work_files/research/dl/gans)
 
-* ### [Deep-Dream <br /> Visualizing Features in ConvNets](/work_files/research/dl/tbd)
+* ### [Deep-Dream \| Visualizing Features in ConvNets](/work_files/research/dl/tbd)

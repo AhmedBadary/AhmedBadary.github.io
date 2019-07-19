@@ -321,6 +321,45 @@ This implies that the computation doesn’t scale up with the diminsion and, als
   </li>
 </ol>
 
+<hr />
+<hr />
+<hr />
+
+<p><strong style="color: red">Extra info to be added:</strong><br />
+Requiring the Margin to be bigger, puts a restriction on the growth function (i.e. the number of possible dichotomies). So, fewer VC dimension.</p>
+
+<ul>
+  <li><a href="https://arxiv.org/pdf/1306.0239.pdf">Deep Learning with SVM</a></li>
+</ul>
+
+<p><strong>Why <script type="math/tex">w</script> is Orthogonal to the plane:</strong> <br />
+    img</p>
+
+<p>The number of non-zero paramters in a model correspond to the VC dimension</p>
+
+<p>Normalizing <script type="math/tex">w</script>,</p>
+
+<p>Observations:</p>
+<ol>
+  <li>Normalize <script type="math/tex">w</script>:<br />
+ The Hyperplane, <script type="math/tex">\mathbf{w}^{\top} \mathbf{x}=0</script> (which is, incidentally, the <em>signal</em>), defined by <script type="math/tex">w</script> is scale invariant to <script type="math/tex">w</script>; since you can multiply <script type="math/tex">w</script> by any scalar and the equation of the plane will still hold. Thus, you can normalize it by dividing by a scalar.<br />
+ So, we choose <script type="math/tex">w</script> (by normalizing/scaling it) such that the following equation holds for the variable <script type="math/tex">\mathbf{x}_ n</script>:
+    <p>$$\left|\mathbf{w}^{\top} \mathbf{x}_ {n}\right|=1$$</p>
+  </li>
+</ol>
+
+<p>Effect of the gamma hyperparam in RBF kernel:
+    The gamma parameter in SVM tuning signifies the influence of points either near or far away from the hyperplane.
+    For a low gamma, the model will be too constrained and include all points of the training dataset, without really capturing the shape.
+    For a higher gamma, the model will capture the shape of the dataset well.</p>
+
+<p>Bias = Underfit = low complexity (model)
+Variance = Overfit = high complexity</p>
+
+<p>Regularization reduce overfitting = reduce variance = simplify model = increase bias</p>
+
+<p>Increase C hparam in SVM = reduce underfitting</p>
+
 
       <footer class="site-footer">
     <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
@@ -522,15 +561,16 @@ bodyContents.each(function(index, element) {
 <script type="text/javascript">
   function showTextPopHide(event) {
     var $button = $(event.target);
-    var txt = $button.attr("input");
+    // var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $button.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $button.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>
@@ -540,15 +580,15 @@ bodyContents.each(function(index, element) {
   function showText_withParent_PopHide(event) {
     var $button = $(event.target);
     var $parent = $button.parent();
-    var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $parent.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $parent.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>

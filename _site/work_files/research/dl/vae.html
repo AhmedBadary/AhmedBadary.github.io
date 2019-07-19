@@ -75,7 +75,7 @@
 
 <h2 id="content4">Variational Auto-Encoders</h2>
 
-<p><a href="http://ahmedbadary.ml/work_files/research/dl/aencdrs"><strong>Auto-Encoders</strong></a> (<em>click to read more</em>) are unsupervised learning methods that aim to learn a representation (encoding) for a set of data in a smaller dimension.<br />
+<p><a href="http://ahmedbadary.ml/work_files/research/dl/aencdrs"><strong>Auto-Encoders</strong> (<em>click to read more</em>)</a> are unsupervised learning methods that aim to learn a representation (encoding) for a set of data in a smaller dimension.<br />
 Auto-Encoders generate <strong>Features</strong> that capture <em>factors of variation</em> in the training data.</p>
 
 <ol>
@@ -437,15 +437,16 @@ bodyContents.each(function(index, element) {
 <script type="text/javascript">
   function showTextPopHide(event) {
     var $button = $(event.target);
-    var txt = $button.attr("input");
+    // var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $button.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $button.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>
@@ -455,15 +456,15 @@ bodyContents.each(function(index, element) {
   function showText_withParent_PopHide(event) {
     var $button = $(event.target);
     var $parent = $button.parent();
-    var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $parent.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $parent.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>

@@ -135,13 +135,13 @@ A = \sum_{i=1}^r \sigma_i u_i v_i^T = U \tilde{ {S}} V^T, \;\; \tilde{ {S}} := \
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Complexity of the SVD:</strong> <br />
     <ol>
-      <li><strong>Normal Matrices:</strong> the complexity grows as <script type="math/tex">\mathcal{O}(nm min(n,m))</script>.</li>
+      <li><strong>Normal Matrices:</strong> the complexity grows as <script type="math/tex">\mathcal{O}(nm \: min(n,m))</script>.</li>
       <li><strong>Sparse Matrices:</strong> good approximations can be calculated very efficiently.</li>
     </ol>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Geometric Interptation:</strong></dt>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Geometric Interpretation:</strong></dt>
       <dd>The theorem allows to decompose the action of A on a given input vector as a sequence of <strong>three</strong> <em>elementary transformations</em>.
         <ol>
           <li>First, we form <script type="math/tex">\tilde{x} := V^Tx \in \mathbf{R}^n</script>.
@@ -514,15 +514,16 @@ bodyContents.each(function(index, element) {
 <script type="text/javascript">
   function showTextPopHide(event) {
     var $button = $(event.target);
-    var txt = $button.attr("input");
+    // var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $button.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $button.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>
@@ -532,15 +533,15 @@ bodyContents.each(function(index, element) {
   function showText_withParent_PopHide(event) {
     var $button = $(event.target);
     var $parent = $button.parent();
-    var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $parent.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $parent.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>
