@@ -10,8 +10,10 @@ prevLink: /work_files/research/dl/cv.html
 
   * [Introduction and Definitions](#content1)
   {: .TOC1}
-  * [Manifolds](#content2)
+  * [Point-Set Topology](#content2)
   {: .TOC2}
+  * [Manifolds](#content3)
+  {: .TOC3}
 </div>
 
 ***
@@ -57,25 +59,72 @@ prevLink: /work_files/research/dl/cv.html
         * __Unique Limits__:       
 
 6. **Hausdorff:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}  
-    :   
 
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
+<!-- 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
     :   
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}  
     :   
+ -->
+ 
+***
+
+## Point-Set Topology
+{: #content2}
+
+1. **Open Set:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents21} 
+    :   A set $$\chi \subseteq \mathbf{R}^n$$ is said to be open if for any point $$x \in \chi$$ there exist a ball centered in $$x$$ which is contained in $$\chi$$. 
+    :   Precisely, for any $$x \in \mathbf{R}^n$$ and $$\epsilon > 0$$ define the Euclidean ball of radius $$r$$ centered at $$x$$:
+    :   $$B_\epsilon(x) = {z : \|z − x\|_2 < \epsilon}$$
+    :   Then, $$\chi \subseteq \mathbf{R}^n$$ is open if
+    :   $$\forall x \: \epsilon \: \chi, \:\: \exists \epsilon > 0 : B_\epsilon(x) \subset \chi .$$
+    :   **Equivalently**,
+    :   * A set $$\chi \subseteq \mathbf{R}^n$$ is open if and only if $$\chi = int\; \chi$$.
+    :   * An open set does not contain any of its boundary points.
+    :   * A closed set contains all of its boundary points. 
+    :   * Unions and intersections of open (resp. closed) sets are open (resp. closed).
+
+2. **Closed Set:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents22} 
+    :   A set $$\chi \subseteq \mathbf{R}^n$$ is said to be closed if its complement $$ \mathbf{R}^n \text{ \ } \chi$$ is open.
+
+3. **Interior of a Set:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents23}
+    :   The interior of a set $$\chi \subseteq \mathbf{R}^n$$ is defined as 
+    :   $$int\: \chi = \{z \in \chi : B_\epsilon(z) \subseteq \chi, \:\: \text{for some } \epsilon > 0 \}$$
+
+4. **Closure of a Set:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents24}
+    :   The closure of a set $$\chi \subseteq \mathbf{R}^n$$ is defined as
+    :   $$\bar{\chi} = \{z ∈ \mathbf{R}^n : \: z = \lim_{k\to\infty} x_k, \: x_k \in \chi , \: \forall k\},$$  
+    :   > i.e., the closure of $$\chi$$ is the set of limits of sequences in $$\chi$$.
+
+5. **Boundary of a Set:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents25}
+    :   The boundary of X is defined as
+    :   $$\partial \chi = \bar{\chi} \text{ \ }  int\: \chi$$
+
+6. **Bounded Set:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents26}
+    :   A set $$\chi \subseteq \mathbf{R}^n$$ is said to be bounded if it is contained in a ball of finite radius, that is if there exist $$x \in \mathbf{R}^n$$ and $$r > 0$$ such that $$\chi \subseteq B_r(x)$$.
+
+7. **Compact Set:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents27}
+    :   A set $$\chi \subseteq \mathbf{R}^n$$ is compact $$\iff$$ it is **Closed** and **Bounded**.
+
+8. **Relative Interior [$$\operatorname{relint}$$]:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents28}
+    :   We define the relative interior of the set $$\chi$$, denoted $$\operatorname{relint} \chi$$, as its interior relative to $$\operatorname{aff} C$$:
+    :   $$\operatorname{relint} \chi = \{x \in \chi : \: B(x, r) \cap \operatorname{aff} \chi \subseteq \chi \text{ for some } r > 0\},$$
+    :   where $$B(x, r) = \{y : ky − xk \leq r\}$$, the ball of radius $$r$$ and center $$x$$ in the norm $$\| · \|$$.
+
+9. **Relative Boundary:**{: style="color: SteelBlue  "}{: .bodyContents2 #bodyContents29}
+    :   We can then define the relative boundary of a set $$\chi$$ as $$\mathbf{cl}  \chi \text{ \ } \operatorname{relint} \chi,$$ where $$\mathbf{cl} \chi$$ is the closure of $$\chi$$.
 
 ***
 
 ## Manifolds
-{: #content2}
+{: #content3}
 
-1. **Manifold:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
+1. **Manifold:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}  
     :   is a topological space that locally resembles Euclidean space near each point  
         > i.e. around every point, there is a neighborhood that is topologically the same as the open unit ball in $$\mathbb{R}^n$$  
     :   
 
-2. **Smooth Manifold:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
+2. **Smooth Manifold:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}  
     :   A topological space $$M$$ is called a __$$n$$-dimensional smooth manifold__ if:  
         * Is is __Hausdorff__
         * It is __Second-Countable__
@@ -85,20 +134,21 @@ prevLink: /work_files/research/dl/cv.html
     such that $${\displaystyle M = \bigcup_\alpha U_\alpha}$$  
     and given $${\displaystyle U_\alpha \cap U_\beta \neq \emptyset}$$ the map $$\phi_\beta \circ \phi_\alpha^{-1}$$ is smooth
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}  
+<!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
     :   
 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}  
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
     :   
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
     :   
 
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}  
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
     :   
 
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}  
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
     :   
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}  
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
     :   
+ -->

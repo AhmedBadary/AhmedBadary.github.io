@@ -304,15 +304,15 @@ prevLink: /work_files/research/dl/nlp.html
 9. **Issues/The Bottleneck:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents39}  
     :   
 
-10. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents310}  
-    :   
+<!-- 10. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents310}  
+    :    -->
 
 ***
 
 ## A Neural Transducer
 {: #content4}
 
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}  
+<!-- 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}  
     :   
 
 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}  
@@ -334,7 +334,7 @@ prevLink: /work_files/research/dl/nlp.html
     :   
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents48}  
-    :   
+    :   --> 
 
 ***
 
@@ -588,7 +588,7 @@ prevLink: /work_files/research/dl/nlp.html
     :   
 
 ***
-
+<!-- 
 ## Seven
 {: #content7}
 
@@ -697,3 +697,4 @@ prevLink: /work_files/research/dl/nlp.html
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents108}  
     :   
 
+ -->

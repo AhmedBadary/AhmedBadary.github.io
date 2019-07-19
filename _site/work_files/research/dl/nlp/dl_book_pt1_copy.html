@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Deep Learning <br > A Complete Overview - PT 1</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/nlp.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Machine Learning Basics</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">The Mathematics of Neural Networks</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Challenges in Deep Learning</a></li>
+  </ul>
+  <!--   * [FOURTH](#content4)
+  {: .TOC4}
+  * [FIFTH](#content5)
+  {: .TOC5}
+  * [SIXTH](#content6)
+  {: .TOC6} -->
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">Machine Learning Basics</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Introduction and Definitions:</strong>
+    <ul>
+      <li><strong>Two Approaches to Statistics</strong>:
+        <ul>
+          <li>Frequentest Estimators</li>
+          <li>Bayesian Inference</li>
+        </ul>
+      </li>
+      <li><strong>The Design Matrix</strong>:<br />
+  A common way for describing a dataset where it is a matrix containing a different example in each row. Each column of the matrix corresponds to a different feature.</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Learning Algorithms:</strong>
+    <ul>
+      <li><strong>Learning</strong>:<br />
+  A computer program is said to learn from <em><strong>experience</strong></em> <script type="math/tex">E</script> with respect to some class of <em><strong>tasks</strong></em> <script type="math/tex">T</script> and <em><strong>performance measure</strong></em> <script type="math/tex">P</script>, if its performance at tasks in <script type="math/tex">T</script>, as measured by <script type="math/tex">P</script>, improves with experience <script type="math/tex">E</script></li>
+      <li><strong>The Task <script type="math/tex">T</script></strong>:
+        <ul>
+          <li><em><strong>Classification</strong></em>:<br />
+  A task where the computer program is asked to specify which of <script type="math/tex">k</script> categories some input belongs to.<br />
+  To solve this task, the learning algorithm is usually asked to produce a function <script type="math/tex">f:\mathbb{R}^n \rightarrow {1, . . . , k}</script>.<br />
+  When <script type="math/tex">y=f(x)</script>, the model assigns an input described by vector <script type="math/tex">x</script> to a category identified by numeric code <script type="math/tex">y</script>.
+            <blockquote>
+              <p>e.g. Object Recognition</p>
+            </blockquote>
+          </li>
+          <li>
+            <p><em><strong>Classification with Missing Inputs</strong></em>:<br />
+  Classification becomes more challenging if the computer program is not guaranteed that every measurement in its input vector will always be provided.<br />
+  To solve this task, rather than providing a single classification function (as in the normal classification case), the learning algorithm must learn a set of functions, each corresponding to classifying <script type="math/tex">x</script> with a different subset of its inputs missing.</p>
+
+            <p>One way to efficiently define such a large set of functions is to learn a probability distribution over all the relevant variables, then solve the classification task by marginalizing out the missing variables.<br />
+  With <script type="math/tex">n</script> input variables, we can now obtain all <script type="math/tex">2^n</script> different classification functions needed for each possible set of missing inputs, but the computer program needs to learn only a single function describing the joint probability distribution.</p>
+            <blockquote>
+              <p>e.g. Medical Diagnosis (where some tests weren’t conducted for any reason)</p>
+            </blockquote>
+          </li>
+          <li><em><strong>Regression</strong></em>:<br />
+  A computer is asked to predict a numerical value given some input.<br />
+  To solve this task, the learning algorithm is asked to output a function <script type="math/tex">f:\mathbb{R}^n \rightarrow R</script>
+            <blockquote>
+              <p>e.g. Object Localization</p>
+            </blockquote>
+          </li>
+          <li><em><strong>Transcription</strong></em>:<br />
+  In this type of task, the machine learning system is asked to observe a relatively unstructured representation of some kind of data and transcribe the information into discrete textual form.
+            <blockquote>
+              <p>e.g. OCR</p>
+            </blockquote>
+          </li>
+          <li><em><strong>Machine Translation</strong></em>:<br />
+  In a machine translation task, the input already consists of a sequence of symbols in some language, and the computer program must convert this into a sequence of symbols in another language.
+            <blockquote>
+              <p>e.g. Google Translate</p>
+            </blockquote>
+          </li>
+          <li><em><strong>Structured Output</strong></em>:<br />
+  Structured output tasks involve any task where the output is a vector (or other data structure containing multiple values) with important relationships between the different elements.<br />
+  This is a broad category and subsumes the transcription and translation tasks described above, as well as many other tasks.<br />
+  These tasks are called structured output tasks because the program must output several values that are all tightly interrelated. For example, the words produced by an image captioning program must form a valid sentence.
+            <blockquote>
+              <p>e.g. Syntax Parsing, Image Segmentation</p>
+            </blockquote>
+          </li>
+          <li><em><strong>Anomaly Detection</strong></em>:<br />
+  In this type of task, the computer program sifts through a set of events or objects and ﬂags some of them as being unusual or atypical.
+            <blockquote>
+              <p>e.g. Insider Trading Detection</p>
+            </blockquote>
+          </li>
+          <li><em><strong>Synthesis and Sampling</strong></em>:<br />
+  In this type of task, the machine learning algorithm is asked to generate new examples that are similar to those in the training data.<br />
+  This is a kind of structured output task, but with the added qualification that there is no single correct output for each input, and we explicitly desire a large amount of variation in the output, in order for the output to seem more natural and realistic.
+            <blockquote>
+              <p>e.g. Image Synthesis, Speech Synthesis</p>
+            </blockquote>
+          </li>
+          <li><em><strong>Imputation</strong></em>:<br />
+  In this type of task, the machine learning algorithm is given a new example <script type="math/tex">x \in \mathbb{R}^n</script>, but with some entries <script type="math/tex">x_i</script> of <script type="math/tex">x</script> missing. The algorithm must provide a prediction of the values of the missing entries.</li>
+          <li><em><strong>Denoising</strong></em>:<br />
+  In this type of task, the machine learning algorithm is given as input a corrupted example <script type="math/tex">\tilde{x} \in \mathbb{R}^n</script> obtained by an unknown corruption process from a clean example <script type="math/tex">x \in \mathbb{R}^n</script>. The learner must predict the clean example <script type="math/tex">x</script> from its corrupted version <script type="math/tex">\tilde{x}</script>, or more generally predict the conditional probability distribution <script type="math/tex">p(x |\tilde{x})</script>.
+            <blockquote>
+              <p>e.g. Signal Reconstruction, Image Artifact Removal</p>
+            </blockquote>
+          </li>
+          <li><em><strong>Density (Probability Mass Function) Estimation</strong></em>:<br />
+  In the density estimation problem, the machine learning algorithm is asked to learn a function <script type="math/tex">p_\text{model}: \mathbb{R}^n \rightarrow R</script>, where <script type="math/tex">p_\text{model}(x)</script> can be interpreted as a probability density function (if <script type="math/tex">x</script> is continuous) or a probability mass function (if <script type="math/tex">x</script> is discrete) on the space that the examples were drawn from.<br />
+  To do such a task well, the algorithm needs to learn the structure of the data it has seen. It must know where <em>examples cluster tightly</em> and where they are <em>unlikely to occur</em>.<br />
+  Most of the tasks described above require the learning algorithm to at least implicitly capture the structure of the probability distribution (i.e. it can be computed but we don’t have an equation for it). Density estimation enables us to explicitly capture that distribution.<br />
+  In principle,we can then perform computations on that distribution to solve the other tasks as well.<br />
+  For example, if we have performed density estimation to obtain a probability distribution p(x), we can use that distribution to solve the missing value imputation task. Equivalently, if a value <script type="math/tex">x_i</script> is missing, and all the other values, denoted <script type="math/tex">x_{−i}</script>, are given, then we know the distribution over it is given by <script type="math/tex">p(x_i| x_{−i})</script>.<br />
+      In practice, density estimation does not always enable us to solve all these related tasks, because in many cases the required operations on p(x) are computationally intractable.
+            <blockquote>
+              <p>e.g. Language Modeling</p>
+            </blockquote>
+          </li>
+          <li><em><strong>A Lot More</strong></em>:<br />
+  Their are many more tasks that could be defined for and solved by Machine Learning. However, this is a list of the most common problems, which have a well-known set of methods for handling them.</li>
+        </ul>
+      </li>
+      <li><strong>The Performance Measure <script type="math/tex">P</script></strong>:<br />
+  A quantitative measure of the performance of a machine learning algorithm.<br />
+  We often use <strong>accuracy</strong> or <strong>error rate</strong>.</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Estimators:</strong><br />
+ A <strong>Point Estimator</strong> or <strong>statistic</strong> is any function of the data:
+    <p>$$\hat{\boldsymbol{\theta}}_{m}=g\left(\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(m)}\right)$$</p>
+    <p>such that a good estimator is a function whose output is close to the true underlying <script type="math/tex">\theta</script> that generated the training data.</p>
+    <blockquote>
+      <p>We assume that the true <script type="math/tex">\boldsymbol{\theta}</script> is fixed, and that <script type="math/tex">\hat{\boldsymbol{\theta}}</script> is a function of the data, which is drawn from a random process, making <script type="math/tex">\hat{\boldsymbol{\theta}}</script> a <strong>random variable</strong>.</p>
+    </blockquote>
+
+    <p><strong>Function Estimation/Approximation</strong> refers to estimation of the relationship between <em>input</em> and <em>target data</em>.<br />
+ I.E. We are trying to predict a variable <script type="math/tex">y</script> given an input vector <script type="math/tex">x</script>, and we assume that there is a function <script type="math/tex">f(x)</script> that describes the approximate relationship between <script type="math/tex">y</script> and <script type="math/tex">x</script>.<br />
+ If we assume that: <script type="math/tex">y = f(x) + \epsilon</script>, where <script type="math/tex">\epsilon</script> is the part of <script type="math/tex">y</script> that is not predictable from <script type="math/tex">x</script>; then we are interested in approximating <script type="math/tex">f</script> with a model or estimate <script type="math/tex">\hat{f}</script>.</p>
+    <blockquote>
+      <p>Function estimation is really just the same as estimating a parameter <script type="math/tex">\boldsymbol{\theta}</script>; the function estimator <script type="math/tex">\hat{f}</script> is simply a point estimator in function space.</p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Properties of Estimators - Bias and Variance:</strong><br />
+ The <strong>Bias</strong> of an estimator is:
+    <p>$$ \operatorname{bias}\left(\hat{\boldsymbol{\theta}}_{m}\right)=\mathbb{E}\left(\hat{\boldsymbol{\theta}}_{m}\right)-\boldsymbol{\theta} $$</p>
+    <p>where the expectation is over the data (seen as samples from a random variable) and <script type="math/tex">\theta</script> is the true underlying value of <script type="math/tex">\theta</script> used to define the data-generating distribution.</p>
+    <ul>
+      <li><strong>Unbiased Estimators:</strong> An estimator <script type="math/tex">\hat{\boldsymbol{\theta}}_{m}</script> is said to be <strong>unbiased</strong> if <script type="math/tex">\operatorname{bias}\left(\hat{\boldsymbol{\theta}}_{m}\right)=\mathbf{0}</script>, which implies that <script type="math/tex">\mathbb{E}\left(\hat{\boldsymbol{\theta}}_{m}\right)=\boldsymbol{\theta}</script>.</li>
+      <li><strong>Asymptotically Unbiased Estimators:</strong> An estimator is said to be <strong>asymptotically unbiased</strong> if <script type="math/tex">\lim _{m \rightarrow \infty} \operatorname{bias}\left(\hat{\boldsymbol{\theta}}_{m}\right)=\mathbf{0},</script> which implies that <script type="math/tex">\lim _{m \rightarrow \infty} \mathbb{E}\left(\hat{\boldsymbol{\theta}}_{m}\right)=\boldsymbol{\theta}</script></li>
+    </ul>
+
+    <p>The <strong>Variance</strong> of an estimator is a way to measure how much we expect the estimator to vary as a function of the data sample, defined, simply, as the variance over the training set random variable <script type="math/tex">\hat{\theta}</script>:</p>
+    <p>$$ \operatorname{Var}(\hat{\theta}) $$</p>
+
+    <p>The <strong>Standard Error</strong> <script type="math/tex">\operatorname{SE}(\hat{\theta})</script>, of an estimator, is the square root of the variance.</p>
+    <ul>
+      <li>E.g. <strong>The Standard Error of the Mean:</strong><br />
+  <script type="math/tex">\operatorname{SE}\left(\hat{\mu}_{m}\right)=\sqrt{\operatorname{Var}\left[\frac{1}{m} \sum_{i=1}^{m} x^{(i)}\right]}=\frac{\sigma}{\sqrt{m}}</script><br />
+  Where <script type="math/tex">\sigma^2</script> is the true variance of the samples <script type="math/tex">x^i</script>.</li>
+    </ul>
+
+    <blockquote>
+      <p>Unfortunately, neither the square root of the sample variance nor the square root of the unbiased estimator of the variance provide an unbiased estimate of the standard deviation.</p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Generalization Error from Standard Error (of the mean):</strong><br />
+ We often estimate the <strong>generalization error</strong> by computing the <strong>sample mean</strong> of the error on the test set.<br />
+ Taking advantage of the central limit theorem, which tells us that the mean will be approximately distributed with a normal distribution, we can use the standard error to compute the probability that the true expectation falls in any chosen interval.<br />
+ For example, the 95 percent confidence interval centered on the mean <script type="math/tex">\hat{\mu}_ {m}</script> is:
+    <p>$$\left(\hat{\mu}_{m}-1.96 \mathrm{SE}\left(\hat{\mu}_{m}\right), \hat{\mu}_{m}+1.96 \mathrm{SE}\left(\hat{\mu}_{m}\right)\right)$$</p>
+    <p>under the normal distribution with mean <script type="math/tex">\hat{\mu}_{m}</script> and variance <script type="math/tex">\mathrm{SE}\left(\hat{\mu}_{m}\right)^{2}</script>.<br />
+ We say that algorithm <script type="math/tex">\boldsymbol{A}</script> is <strong>better than</strong> algorithm <script type="math/tex">\boldsymbol{B}</script> if the <em>upper bound</em> of the <script type="math/tex">95</script> percent confidence interval for the error of algorithm <script type="math/tex">\boldsymbol{A}</script> is <strong>less than</strong> the <em>lower bound</em> of the <script type="math/tex">95</script> percent confidence interval for the error of algorithm <script type="math/tex">\boldsymbol{B}</script>.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">The Bias Variance Trade-off:</strong><br />
+ Bias and variance measure two different sources of error in an estimator:
+    <ul>
+      <li><strong>Bias</strong>: measures the expected deviation from the true value of the function or parameter</li>
+      <li><strong>Variance</strong>: provides a measure of the deviation from the expected estimator value that any particular sampling of the data is likely to cause</li>
+    </ul>
+
+    <p><strong>Evaluating Models - Trading off Bias and Variance:</strong></p>
+    <ul>
+      <li>The most common way to negotiate this trade-off is to use <strong>cross-validation</strong></li>
+      <li>Alternatively, we can also compare the <strong>mean squared error (MSE)</strong> of the estimates:
+        <p>$$\begin{aligned} \mathrm{MSE} &amp;=\mathbb{E}\left[\left(\hat{\theta}_{m}-\theta\right)^{2}\right] \\ &amp;=\operatorname{Bias}\left(\hat{\theta}_{m}\right)^{2}+\operatorname{Var}\left(\hat{\theta}_{m}\right) \end{aligned}$$</p>
+        <p>The <strong>MSE</strong> measures the overall expected deviation — in a squared error sense — between the estimator and the true value of the parameter <script type="math/tex">\theta</script>.</p>
+      </li>
+    </ul>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Capacity and Bias/Variance</button>
+ <img src="/main_files/dl_book/1.png" alt="img" hidden="" /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Properties of Estimators - Consistency:</strong><br />
+ <strong>Consistency</strong> is a property implying that as the number of data points <script type="math/tex">m</script> in our dataset increases, our point estimates converge to the true value of the corresponding parameters. Formally:
+    <p>$$\mathrm{plim}_{m \rightarrow \infty} \hat{\theta}_{m}=\theta$$</p>
+    <p>Where:  <br />
+ <script type="math/tex">{\text { The symbol plim indicates convergence in probability, meaning that for any } \epsilon>0,}</script></p>
+    <p>$${P\left(\vert\hat{\theta}_{m}-\theta \vert&gt;\epsilon\right) \rightarrow 0 \text { as } m \rightarrow \infty}$$</p>
+    <blockquote>
+      <p>Sometimes referred to as <strong>Weak Consistency</strong></p>
+    </blockquote>
+
+    <p><strong>Strong Consistency</strong> applies to <em><strong>almost sure convergence</strong></em> of <script type="math/tex">\hat{\theta}</script> to <script type="math/tex">\theta</script>.</p>
+
+    <p><strong>Consistency and Asymptotic Bias:</strong></p>
+    <ul>
+      <li>Consistency ensures that the bias induced by the estimator diminishes as the number of data examples grows.</li>
+      <li>However, asymptotic unbiasedness does <strong>not</strong> imply consistency</li>
+    </ul>
+  </li>
+</ol>
+
+<!-- 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}
+ -->
+<hr />
+
+<h2 id="content2">The Mathematics of Neural Networks</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents20">Derivative:</strong></dt>
+      <dd>The derivative of a function is the amount that the value of a function changes when the input changes by an <script type="math/tex">\epsilon</script> amount:</dd>
+      <dd>
+        <script type="math/tex; mode=display">f'(a)=\lim_{h\to 0}{\frac {f(a+h)-f(a)}{h}}. \\
+ \text{i.e. } f(x + \epsilon)\approx f(x)+\epsilon f'(x)</script>
+      </dd>
+      <dd><strong>The Chain Rule</strong> is a way to compute the derivative of <em>composite functions</em>.<br />
+ If <script type="math/tex">y = f(x)</script> and <script type="math/tex">z = g(y)</script>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">\dfrac{\partial z}{\partial x} = \dfrac{\partial z}{\partial y} \dfrac{\partial y}{\partial x}</script>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Gradient: (Vector in, Scalar out)</strong></dt>
+      <dd>Gradients generalize derivatives to <strong><em>scalar functions</em></strong> of several variables</dd>
+      <dd><img src="/main_files/math/calc/1.png" alt="Gradient" width="80%" /></dd>
+      <dd><strong>Property:</strong> the gradient of a function <script type="math/tex">\nabla f(x)</script> points in the direction of <strong>steepest ascent</strong> from <script type="math/tex">x</script>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">The Jacobian: (Vector in, Vector out)</strong></dt>
+      <dd>The <strong>Jacobian</strong> of <script type="math/tex">f: \mathbb{R}^n \rightarrow \mathbb{R}^m</script> is a matrix of <em>first-order partial derivatives</em> of a <strong><em>vector-valued function</em></strong>:</dd>
+      <dd><img src="/main_files/math/calc/2.png" alt="Jacobian" width="80%" /></dd>
+      <dd><strong>The Chain Rule:</strong><br />
+ Let <script type="math/tex">f : \mathbb{R}^N \rightarrow \mathbb{R}^M</script> and <script type="math/tex">g : \mathbb{R}^M \rightarrow \mathbb{R}^ K</script>; and let  <script type="math/tex">x \in \mathbb{R}^N, y \in \mathbb{R}^M</script>, and <script type="math/tex">z \in \mathbb{R}^K</script> with <script type="math/tex">y = f(x)</script> and <script type="math/tex">z = g(y)</script>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">\dfrac{\partial z}{\partial x} = \dfrac{\partial z}{\partial y} \dfrac{\partial y}{\partial x}</script>
+      </dd>
+      <dd>where, <script type="math/tex">\dfrac{\partial z}{\partial y} \in \mathbb{R}^{K \times M}</script> matrix, <script type="math/tex">\dfrac{\partial y}{\partial x} \in \mathbb{R}^{M \times N}</script> matrix, and <script type="math/tex">\dfrac{\partial z}{\partial x} \in \mathbb{R}^{K \times N}</script>  matrix;<br />
+ the multiplication of <script type="math/tex">\dfrac{\partial z}{\partial y}</script>  and <script type="math/tex">\dfrac{\partial y}{\partial x}</script> is a matrix multiplication.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">The Generalized Jacobian: (Tensor in, Tensor out)</strong></dt>
+      <dd><strong>A Tensor</strong> is a D-dimensional grid of number.</dd>
+      <dd>Suppose that <script type="math/tex">f: \mathbb{R}^{N_1 \times \cdots \times N_{D_x}} \rightarrow \mathbb{R}^{M_1 \times \cdots \times M_{D_y}}</script>.<br />
+ If <script type="math/tex">y = f(x)</script> then the derivative <script type="math/tex">\dfrac{\partial y}{\partial x}</script> is a <strong>generalized Jacobian</strong> - an object with shape:</dd>
+      <dd>
+        <script type="math/tex; mode=display">(M_1 \times \cdots \times M_{D_y}) \times (N_1 \times \cdots \times N_{D_x})</script>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>we can think of the generalized Jacobian as generalization of a matrix, where each “row” has the same shape as <script type="math/tex">y</script>  and each “column” has the same shape as <script type="math/tex">x</script>.</p>
+        </blockquote>
+      </dd>
+      <dd>Just like the standard Jacobian, the generalized Jacobian tells us the relative rates of change between all elements of <script type="math/tex">x</script>  and all elements of <script type="math/tex">y</script>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">(\dfrac{\partial y}{\partial x})_{i,j} = \dfrac{\partial y_i}{\partial x_j} \in \mathbb{R}</script>
+      </dd>
+      <dd>Just as the derivative, the generalized Jacobian gives us the relative change in <script type="math/tex">y</script> given a small change in <script type="math/tex">x</script>:</dd>
+      <dd>
+        <script type="math/tex; mode=display">f(x + \delta x)\approx f(x)+ f'(x) \delta x = y + \dfrac{\partial y}{\partial x}\delta x</script>
+      </dd>
+      <dd>where now, <script type="math/tex">\delta x</script> is a tensor in <script type="math/tex">\mathbb{R}{N_1 \cdots N_{d_x}}</script> and <script type="math/tex">\dfrac{\partial y}{\partial x}</script> is a generalized matrix in <script type="math/tex">\mathbb{R}^{(M_1 \times \cdots \times M_{D_y}) \times (N_1 \times \cdots \times N_{D_x})}</script>.<br />
+ The product <script type="math/tex">\dfrac{\partial y_i}{\partial x_j} \delta x</script> is, therefore, a <strong><em>generalized matrix-vector multiply</em></strong>, which results in a tensor in <script type="math/tex">\mathbb{R}^{M_1 \times \cdots \times M_{D_y}}</script>.</dd>
+      <dd>The <strong>generalized matrix-vector multiply</strong> follows the same algebraic rules as a traditional matrix-vector multiply:</dd>
+      <dd><img src="/main_files/math/calc/4.png" alt="matrix-vector mult" width="80%" /></dd>
+      <dd><img src="/main_files/math/calc/5.png" alt="matrix-vector mult-2" width="100%" /></dd>
+      <dd><strong>The Chain Rule:</strong></dd>
+      <dd><img src="/main_files/math/calc/6.png" alt="chain rule" width="100%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">The Hessian:</strong></dt>
+      <dd>The <strong>Hessian</strong> Matrix of a <em>scalar function</em> <script type="math/tex">f: \mathbb{R}^d \rightarrow \mathbb{R}</script> is a matric of <em>second-order partial derivatives</em>:</dd>
+      <dd><img src="/main_files/math/calc/3.png" alt="Hessian" width="80%" /></dd>
+      <dd><strong>Properties:</strong>
+        <ul>
+          <li>The Hessian matrix is <strong><em>symmetric</em></strong> - since we usually work with smooth/differentiable functions - due to <em>Clairauts Theorem</em>.
+            <blockquote>
+              <p><strong>Clairauts Theorem:</strong> if the partial derivatives are continuous, the order of differentiation can be interchanged</p>
+            </blockquote>
+          </li>
+          <li>The Hessian is used in some optimization algorithms such as Newton’s method</li>
+          <li>It is expensive to calculate but can drastically reduce the number of iterations needed to converge to a local minimum by providing information about the curvature of <script type="math/tex">f</script></li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Matrix Calculus:</strong></dt>
+      <dd><strong>Important Identities:</strong></dd>
+      <dd>
+        <script type="math/tex; mode=display">{\frac  {\partial {\mathbf  {a}}^{\top }{\mathbf  {x}}}{\partial {\mathbf  {x}}}}={\frac  {\partial {\mathbf  {x}}^{\top }{\mathbf  {a}}}{\partial {\mathbf  {x}}}}= a \\ 
+ {\frac  {\partial {\mathbf  {x}}^{\top }{\mathbf  {A}}{\mathbf  {x}}}{\partial {\mathbf  {x}}}}=  ({\mathbf  {A}}+{\mathbf  {A}}^{\top }){\mathbf  {x}} \\ 
+ {\frac  {\partial {\mathbf  {x}}^{\top }{\mathbf  {A}}{\mathbf  {x}}}{\partial {\mathbf  {x}}}}=  2{\mathbf  {A}}{\mathbf  {x}} \:\:\:\:\: \text{[Symmetric } A\text{]}</script>
+      </dd>
+      <dd><a href="https://en.wikipedia.org/wiki/Matrix_calculus">Identities</a></dd>
+      <dd><strong>The Product Rule:</strong></dd>
+      <dd>
+        <script type="math/tex; mode=display">% <![CDATA[
+{\displaystyle {\begin{aligned}\nabla (\mathbf {A} \cdot \mathbf {B} )&=(\mathbf {A} \cdot \nabla )\mathbf {B} +(\mathbf {B} \cdot \nabla )\mathbf {A} +\mathbf {A} \times (\nabla \times \mathbf {B} )+\mathbf {B} \times (\nabla \times \mathbf {A} )\\&=\mathbf {J} _{\mathbf {A} }^{\mathrm {T} }\mathbf {B} +\mathbf {J}_{\mathbf {B} }^{\mathrm {T} }\mathbf {A} \\&=\nabla \mathbf {A} \cdot \mathbf {B} +\nabla \mathbf {B} \cdot \mathbf {A} \ \end{aligned}}}\\ 
+ \implies \\ 
+ \nabla (fg) = (f')^T g + (g')^T f %]]></script>
+      </dd>
+      <dd>Thus, we set our function <script type="math/tex">h(x) = \langle f(x), g(x) \rangle = f(x)^T g(x)</script>; then,</dd>
+      <dd>
+        <script type="math/tex; mode=display">\nabla h(x) = f'(x)^T g(x) + g'(x)^T f(x).</script>
+      </dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Notes:</strong>
+    <ul>
+      <li><strong>Derivative Trick</strong>: <br />
+  Treat Least Square Matrix Forms as a simple square, but put the chain rule 2nd calculation to the left and transpose it (since it wasn’t a square it was a transpose):<br />
+  <script type="math/tex">\nable_w \frac{1}{N}\|\mathrm{Xw}-\mathrm{y}\|^{2} = \frac{2}{N}\mathrm{X}^T(\mathrm{Xw}-\mathrm{y})</script></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Asynchronous:</strong></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Asynchronous:</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Challenges in Machine Learning</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">The Curse of Dimensionality:</strong><br />
+ It is a phenomena where many machine learning problems become exceedingly difficult when the number of dimensions in the data is high.</p>
+
+    <ul>
+      <li>The number of possible distinct configurations of a set of variables increases exponentially as the number of variables increases:<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Capacity and Bias/Variance</button>
+  <img src="/main_files/dl_book/2.png" alt="img" hidden="" />
+        <ul>
+          <li><strong>Statistical Challenge:</strong> the number of possible configurations of <script type="math/tex">x</script> is much larger than the number of training examples</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Local Constancy and Smoothness Regularization:</strong><br />
+ Prior believes about the particular data-set/learning-problem can be incorporated as:
+    <ul>
+      <li>Beliefs about the <strong>distribution</strong> of <strong>parameters</strong></li>
+      <li>Beliefs about the <strong>properties</strong> of the estimating <strong>function</strong>
+        <blockquote>
+          <p>expressed implicitly by choosing algorithms that are biased toward choosing some class of functions over another, even though these biases may not be expressed (or even be possible to express) in terms of a probability distribution representing our degree of belief in various functions.</p>
+        </blockquote>
+      </li>
+    </ul>
+
+    <p><strong>The Local Constancy (Smoothness) Prior:</strong> states that the function we learn should not change very much within a small region.<br />
+ Mathematically, traditional ML methods are designed to encourage the learning process to learn a function <script type="math/tex">f^\ast</script> that satisfies the condition:<br />
+ <script type="math/tex">\:\:\:\:\:\:\:</script> <script type="math/tex">\:\:\:\:\:\:\:</script> <script type="math/tex">f^{*}(\boldsymbol{x}) \approx f^{*}(\boldsymbol{x}+\epsilon)</script><br />
+ for most configurations <script type="math/tex">x</script> and small change <script type="math/tex">\epsilon</script>.</p>
+    <ul>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">Example: K-Means</button>
+  <img src="/main_files/dl_book/7.png" alt="img" hidden="" /></li>
+    </ul>
+
+    <p>A <a href="/concepts_#bodyContents60"><strong>Local Kernel</strong></a> can be thought of as a similarity function that performs template matching, by measuring how closely a test example <script type="math/tex">x</script> resembles each training example <script type="math/tex">x^{(i)}</script>.<br />
+ Much of the modern motivation for Deep Learning is derived from studying the limitations of local template matching and how deep models are able to succeed in cases where local template matching fails <em>(Bengio et al., 2006b)</em>.</p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Example: Decision Trees</button>
+ <em hidden="">Decision trees also suffer from the limitations of exclusively smoothness-based learning, because they break the input space into as many regions as there are leaves and use a separate parameter (or sometimes many parameters for extensions of decision trees) in each region. If the target function requires a tree with at least <script type="math/tex">n</script> leaves to be represented accurately, then at least <script type="math/tex">n</script> training examples are required to fit the tree. A multiple of <script type="math/tex">n</script> is needed to achieve some level of statistical confidence in the predicted output.</em></p>
+
+    <p>In general, to distinguish <script type="math/tex">\mathcal{O}(k)</script> regions in input space, all these methods require <script type="math/tex">\mathcal{O}(k)</script> examples. Typically there are <script type="math/tex">\mathcal{O}(k)</script> parameters, with <script type="math/tex">\mathcal{O}(1)</script> parameters associated with each of the <script type="math/tex">\mathcal{O}(k)</script> regions.</p>
+
+    <p><strong>Key Takeaways:</strong></p>
+    <ul>
+      <li><em><strong>Is there a way to represent a complex function that has many more regions to be distinguished than the number of training examples?</strong></em><br />
+  Clearly, assuming only smoothness of the underlying function will not allow a learner to do that.<br />
+  The smoothness assumption and the associated nonparametric learning algorithms work extremely well as long as there are enough examples for the learning algorithm to observe high points on most peaks and low points on most valleys of the true underlying function to be learned.</li>
+      <li><em><strong>Is it possible to represent a complicated function efficiently? and if it is complicated, Is it possible for the estimated function to generalize well to new inputs?</strong></em><br />
+  Yes.<br />
+  The key insight is that a very large number of regions, such as <script type="math/tex">\mathcal{O}(2^k)</script>, can be deﬁned with <script type="math/tex">\mathcal{O}(k)</script> examples, so long as we introduce some dependencies between the regions through additional assumptions about the underlying data-generating distribution.
+  In this way, we can actually generalize non-locally <em>(Bengio and Monperrus, 2005; Bengio et al., 2006c)</em>.</li>
+      <li><em><strong>Deep Learning VS Machine Learning:</strong></em><br />
+  The core idea in deep learning is that we assume that the data was generated by the composition of factors, or features, potentially at multiple levels in a hierarchy.<br />
+  These apparently mild assumptions allow an exponential gain in the relationship between the number of examples and the number of regions that can be distinguished.<br />
+  The exponential advantages conferred by the use of deep distributed representations counter the exponential challenges posed by the curse of dimensionality.
+        <blockquote>
+          <p><strong>Further Reading:</strong> (on the exponential gain) Sections: 6.4.1, 15.4 and 15.5.</p>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Manifold Learning:</strong><br />
+ A <strong>Manifold</strong> - a connected region - is a set of points associated with a neighborhood around each point. From any given point, the manifold locally appears to be a Euclidean space.<br />
+ <img src="/main_files/dl_book/8.png" alt="img" width="100%" /></p>
+
+    <p><strong>Manifolds in ML:</strong><br />
+ In ML, the term is used loosely to designate a connected set of points that can be approximated well by considering only a small number of degrees of freedom, or dimensions, embedded in a higher-dimensional space. Each dimension corresponds to a local direction of variation.<br />
+ In the context of machine learning, we allow the dimensionality of the manifold to vary from one point to another. This often happens when a manifold intersects itself. For example, a figure eight is a manifold that has a single dimension in most places but two dimensions at the intersection at the center.<br />
+ <strong>Manifold Assumptions:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Discussion</button>
+ <em hidden="">Many machine learning problems seem hopeless if we expect the machine learning algorithm to learn functions with interesting variations across all of <script type="math/tex">\mathbb{R}^n</script>. Manifold learning algorithms surmount this obstacle by assuming that most of <script type="math/tex">\mathbb{R}^n</script> consists of invalid inputs, and that interesting inputs occur only a long a collection of manifolds containing a small subset of points, with interesting variations in the output of the learned function occurring only along directions that lie on the manifold, or with interesting variations happening only when we move from one manifold to another. Manifold learning was introduced in the case of continuous-valued data and in the unsupervised learning setting, although this probability concentration idea can be generalized to both discrete data and the supervised learning setting: the key assumption remains that probability mass is highly concentrated.</em><br />
+ We assume that the <em><strong>data lies along a low-dimensional manifold</strong></em>:</p>
+    <ul>
+      <li>May not always be correct or useful</li>
+      <li>In the context of AI tasks (e.g. processing images, sounds, or text): At least approximately correct.<br />
+  To show that is true we need to argue two points:
+        <ul>
+          <li>The probability distribution over images, text strings, and sounds that occur in real life is highly concentrated.<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Example/proof: The Manifold of Natural Images</button>
+  <img src="/main_files/dl_book/9.png" alt="img" hidden="" />
+            <blockquote>
+              <p>Uniform noise essentially never resembles structured inputs from these domains.</p>
+            </blockquote>
+          </li>
+          <li>We must, also, establish that the examples we encounter are connected to each other by other examples, with each example surrounded by other highly similar examples that can be reached by applying transformations to traverse the manifold:<br />
+  <em>Informally,</em> we can imagine such neighborhoods and transformations:<br />
+  In the case of images, we can think of many possible transformations that allow us to trace out a manifold in image space: we can gradually dim or brighten the lights, gradually move or rotate objects in the image, gradually alter the colors on the surfaces of objects, and so forth.
+            <blockquote>
+              <p>Multiple manifolds are likely involved in most applications. For example,the manifold of human face images may not be connected to the manifold of cat face images.<br />
+Rigorous Results: <em>(Cayton, 2005; Narayanan and Mitter,2010; Schölkopf et al., 1998; Roweis and Saul, 2000; Tenenbaum et al., 2000; Brand,2003; Belkin and Niyogi, 2003; Donoho and Grimes, 2003; Weinberger and Saul,2004)</em></p>
+            </blockquote>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong>Benefits:</strong><br />
+ When the data lies on a low-dimensional manifold, it can be most natural for machine learning algorithms to represent the data in terms of coordinates on the manifold, rather than in terms of coordinates in <script type="math/tex">\mathbb{R}^n</script>.<br />
+ E.g. In everyday life, we can think of roads as 1-D manifolds embedded in 3-D space. We give directions to specific addresses in terms of address numbers along these 1-D roads, not in terms of coordinates in 3-D space.</p>
+    <blockquote>
+      <p>Learning Manifold Structure: <em>figure 20.6</em></p>
+    </blockquote>
+  </li>
+</ol>
+
+<!-- ## Activation Functions
+{: #content4}
+
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}
+
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44}
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents48}
+
+*** -->
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

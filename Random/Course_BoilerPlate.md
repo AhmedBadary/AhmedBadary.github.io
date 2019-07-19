@@ -1,8 +1,3 @@
-Gum
-Shower Gel
-Shave Gel
-Dia
-
 ---
 layout: NotesPage
 title: X.Y <br /> TITLE

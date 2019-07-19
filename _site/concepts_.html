@@ -67,7 +67,7 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">ConvNets</a></li>
+    <li><a href="#content1">CNNs</a></li>
   </ul>
   <ul class="TOC2">
     <li><a href="#content2">RNNs</a></li>
@@ -76,7 +76,7 @@
     <li><a href="#content3">Math</a></li>
   </ul>
   <ul class="TOC4">
-    <li><a href="#content4">Statistics</a></li>
+    <li><a href="#content4">Statistics and Probability Theory</a></li>
   </ul>
   <ul class="TOC5">
     <li><a href="#content5">Optimization</a></li>
@@ -94,25 +94,23 @@
     <li><a href="#content9">Physics</a></li>
   </ul>
   <ul class="TOC10">
-    <li><a href="#content10">Game Theory</a></li>
+    <li><a href="#content10">Algorithms</a></li>
   </ul>
   <ul class="TOC11">
     <li><a href="#content11">Misc.</a></li>
+  </ul>
+  <ul class="TOC12">
+    <li><a href="#content12">Game Theory</a></li>
   </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content1">ConvNets</h2>
+<h2 id="content1">CNNs</h2>
 
 <ol>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">:</strong></li>
 </ol>
 
 <!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
@@ -136,61 +134,229 @@
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}  
     :   
  -->
+
+<p><strong>Notes:</strong></p>
+<ul>
+  <li><strong>Structured Convolutions</strong>:<br />
+  <strong>Why?</strong><br />
+  Language has structure, would like it to localize features.
+    <blockquote>
+      <p>e.g. noun-verb pairs very informative, but not captured by normal CNNs</p>
+    </blockquote>
+  </li>
+</ul>
+
+<hr />
 <hr />
 
 <h2 id="content2">RNNs</h2>
 
 <ol>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Gradient Clipping Intuition:</strong></dt>
-      <dd><img src="/main_files/main/concepts/1.png" alt="img" width="100%" /></dd>
-      <dd>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">RNN Architectures:</strong></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Different Connections in RNN Architectures:</strong>
+    <ol>
+      <li><strong>PeepHole Connection:</strong><br />
+ is an addition on the equations of the <strong>LSTM</strong> as follows:
+        <p>$$ \Gamma_o = \sigma(W_o[a^{(t-1)}, x^{(t)}] + b_o) \\
+ \implies 
+ \sigma(W_o[a^{(t-1)}, x^{(t)}, c^{(t-1)}] + b_o)$$</p>
+        <p>Thus, we add the term <script type="math/tex">c^{(t-1)}</script> to the output gate.</p>
+      </li>
+    </ol>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Modeling Sequences - Memory as a model property:</strong><br />
+ <strong style="color: red">Memoryless Models for Sequences:</strong>
+    <ul>
+      <li><strong>Autoregressive Models:</strong><br />
+  Predict the next term in a sequence from a fixed number of previous terms using <em>“delay taps”</em>.
+        <blockquote>
+          <p>It tries to predict the next term, <em>basically as a weighted average</em> (if model is linear) of the previous terms.</p>
+        </blockquote>
+
+        <p><img src="/main_files/concepts/11.png" alt="img" width="50%" /></p>
+      </li>
+      <li><strong>Feed-Forward Neural Nets</strong>:<br />
+  Generalize Auto-regressive models by using one or more layers of non-linear hidden units e.g. Bengio’s first LM.<br />
+  <img src="/main_files/concepts/12.png" alt="img" width="50%" /></li>
+    </ul>
+
+    <p><strong style="color: red">Beyond Memoryless Models:</strong><br />
+ If we give our generative models some <em>hidden state</em>, and if we give this hidden state its own internal dynamics, we get a much more interesting kind of model.</p>
+    <blockquote>
+      <p>The hidden state produces <em>observations</em> that we get to <em>“observe/see”</em></p>
+    </blockquote>
+
+    <ul>
+      <li>It can <strong>store information</strong> in its <em>hidden state</em> for a long time.</li>
+      <li>If the dynamics is noisy and the way it generates outputs from its hidden state is noisy, (by observing the outputs of the model) we can never know its exact hidden state.
+        <ul>
+          <li>The best we can do is to infer a probability distribution over the space of hidden state vectors.</li>
+        </ul>
+      </li>
+      <li>This <strong>inference</strong> (of the hidden states by observing the outputs of the model) is only <strong>tractable</strong> for <em>TWO</em> types of hidden-state models:
+        <ol>
+          <li><strong>Linear Dynamical Systems (LDS) (loved by Engineers):</strong>
+            <ul>
+              <li>These are generative models. They have a real-valued hidden state that cannot be observed directly.
+                <ul>
+                  <li>The hidden state has linear dynamics with Gaussian noise and produces the observations using a linear model with Gaussian noise.</li>
+                  <li>There may also be driving inputs.</li>
+                </ul>
+              </li>
+              <li>To predict the next output (so that we can shoot down the missile) we need to infer the hidden state.
+                <ul>
+                  <li>A linearly transformed Gaussian is a Gaussian. So the distribution over the hidden state given the data/observations so far is Gaussian (because all the noise in a LDS is Gaussian). It can be computed using <em>“Kalman filtering”</em>.
+ <img src="/main_files/concepts/13.png" alt="img" width="35%" /></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><strong>Hidden Markov Models (HMMs) (loved by computer scientists):</strong>
+            <ul>
+              <li>Hidden Markov Models have a <strong>discrete one-of-N</strong> hidden state distributions (rather than <em>Gaussian</em> distributions). Transitions between states are stochastic and controlled by a transition matrix. The outputs produced by a state are stochastic.
+                <ul>
+                  <li>We cannot be sure which state produced a given output (because the outputs produced by a state are stochastic). So the state is “hidden” (behind this <em>“probabilistic veil”</em>).</li>
+                  <li>It is easy to represent a probability distribution across N states with N numbers.<br />
+  So, even tho we cant know what state it is in for sure, we can easily represent the probability distribution</li>
+                </ul>
+              </li>
+              <li>To predict the next output we need to infer the probability distribution over hidden states.
+                <ul>
+                  <li>HMMs have efficient algorithms for inference and learning (dynamic programming).<br />
+ <img src="/main_files/concepts/14.png" alt="img" width="35%" /></li>
+                </ul>
+              </li>
+              <li><strong>A Fundamental Limitation of HMMs</strong>:
+                <ul>
+                  <li>Consider what happens when a hidden Markov model generates data
+                    <ul>
+                      <li>At each time step it must select one of its hidden states. So with <script type="math/tex">N</script> hidden states it can only remember <script type="math/tex">\log(N)</script> bits about what it generated so far.</li>
+                    </ul>
+                  </li>
+                  <li>Consider the information that the first half of an utterance contains about the second half:
+                    <blockquote>
+                      <p>This is the amount of info that the HMM needs to convey to the second half of an utterance it produces from the first half (having produced the first half)</p>
+                    </blockquote>
+
+                    <ul>
+                      <li>The syntax needs to fit (e.g. number and tense agreement)</li>
+                      <li>The semantics needs to fit. The intonation needs to fit.</li>
+                      <li>The accent, rate, volume, and vocal tract characteristics must all fit.</li>
+                    </ul>
+                  </li>
+                  <li>All these aspects combined could be <script type="math/tex">100</script> bits of information that the first half of an utterance needs to convey to the second half. Thus, needing about <script type="math/tex">2^100</script> hidden states to <em>“remember/store”</em> that information.   <script type="math/tex">2^100</script> is big!</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Recurrent Neural Networks (RNNs):</strong></p>
+    <ul>
+      <li>RNNs are very powerful, because they combine two properties:
+        <ul>
+          <li>Distributed hidden state that allows them to store a lot of information about the past efficiently.
+            <blockquote>
+              <p>i.e. several different units can be active at once (unlike HMMs), so they can remember several different things at once.</p>
+            </blockquote>
+          </li>
+          <li>Non-linear dynamics that allows them to update their hidden state in complicated ways (unlike LDSs).</li>
+        </ul>
+      </li>
+      <li>
+        <p>With enough neurons and time, RNNs can compute anything that can be computed by your computer.<br />
+ <img src="/main_files/concepts/15.png" alt="img" width="15%" /></p>
+      </li>
+      <li><a href="https://distill.pub/2019/memorization-in-rnns/">Visualizing memorization in RNNs</a></li>
+    </ul>
+
+    <p><strong>Do generative models need to be stochastic?</strong></p>
+    <ul>
+      <li>Linear dynamical systems and HMMs are stochastic models.
+        <blockquote>
+          <p>The dynamics and the production of observations from the underlying state both involve <strong>intrinsic noise</strong>.</p>
+        </blockquote>
+
+        <ul>
+          <li>But the <strong>posterior probability distribution</strong> over their hidden of the deterministic states given the observed probability distribution over data so far is a <em><strong>deterministic</strong> function of the data</em>.</li>
+        </ul>
+      </li>
+      <li>Recurrent neural networks are hidden Markov models are deterministic.
+        <ul>
+          <li>So think of the hidden state of an RNN as the equivalent of the <strong>deterministic probability distribution over hidden states</strong> in a linear dynamical system or hidden Markov model.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong>What kinds of behavior can RNNs exhibit?</strong></p>
+    <ul>
+      <li>They can oscillate. Good for motor control? (e.g. walking needs varying <em>stride</em>)</li>
+      <li>They can settle to point attractors. Good for retrieving memories?
+        <blockquote>
+          <p>By having the target point-attractors (to settle in) be the memories you want to retrieve.</p>
+        </blockquote>
+      </li>
+      <li>They can behave chaotically. Bad for information processing?</li>
+      <li>RNNs could potentially learn to implement lots of small programs (using different subsets of their hidden state) that each capture a nugget of knowledge and run in parallel, interacting to produce very complicated effects.</li>
+      <li>But the computational power of RNNs makes them very hard to train
+        <ul>
+          <li>For many years we could not exploit the computational power of RNNs despite some heroic efforts (e.g. Tony Robinson’s speech recognizer)</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><strong>A Content-Addressable Memory</strong>: an item can be accessed by just knowing part of its content.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Stability - Vanishing and Exploding Gradients:</strong></p>
+
+    <p><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><strong>Gradient Clipping Intuition</strong>:<br />
+  <img src="/main_files/concepts/1.png" alt="img" width="55%" />
         <ul>
           <li>The image above is that of the <strong>Error Surface</strong> of a <em>single hidden unit RNN</em></li>
-          <li>The observation here is that there exists <strong>High Curvature Walls</strong> 
+          <li>The observation here is that there exists <strong>High Curvature Walls</strong>. <br />
   This Curvature Wall will move the gradient to a very different/far, probably less useful area. 
-  Thus, if we clip the gradients we will avoid the walls and will remain in the more useful area that we were exploring already.</li>
+  Thus, if we clip the gradients we will avoid the walls and will remain in the more useful area that we were exploring already. <br />
+  Draw a line between the original point on the Error graph and the End (optimized) point then evaluate the Error on points on that line and look at the changes <script type="math/tex">\rightarrow</script> this shows changes in the curvature.</li>
         </ul>
-      </dd>
-      <dd>Draw a line between the original point on the Error graph and the End (optimized) point then evaluate the Error on points on that line and look at the changes -&gt; this shows changes in the curvature.</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">PeepHole Connection:</strong></dt>
-      <dd>is an addition on the equations of the <strong>LSTM</strong> as follows:</dd>
-      <dd>
-        <script type="math/tex; mode=display">\Gamma_o = \sigma(W_o[a^{(t-1)}, x^{(t)}] + b_o) \\
-\implies 
-\sigma(W_o[a^{(t-1)}, x^{(t)}, c^{(t-1)}] + b_o)</script>
-      </dd>
-      <dd>Thus, we add the term <script type="math/tex">c^{(t-1)}</script> to the output gate.</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
+      </li>
+    </ul>
   </li>
 </ol>
 
-<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
+<!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
     :   
 
 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}  
     :   
 
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}  
-    :   
+    :   -->
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}  
-    :    -->
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Notes:</strong>
+    <ul>
+      <li><strong>Learning Long-Range Dependencies in RNNs/sequence-models</strong>:<br />
+  One key factor affecting the ability to learn such dependencies is the length of the paths forward and backward signals have to traverse in the network. The shorter these paths between any combination of positions in the input and output sequences, the easier it is to learn long-range dependencies.</li>
+      <li><strong>LSTM (simple) Implementation</strong>: <a href="https://github.com/nicodjimenez/lstm">github</a>, <a href="http://nicodjimenez.github.io/2014/08/08/lstm.html">blog</a></li>
+      <li><a href="https://medium.com/machine-learning-at-petiteprogrammer/sampling-strategies-for-recurrent-neural-networks-9aea02a6616f" value="show" onclick="iframePopA(event)"><strong>Sampling from RNNs</strong></a>
+ <a href="https://medium.com/machine-learning-at-petiteprogrammer/sampling-strategies-for-recurrent-neural-networks-9aea02a6616f"></a>
+        <div></div>
+      </li>
+    </ul>
+  </li>
+</ol>
 
+<hr />
 <hr />
 
 <h2 id="content3">Maths</h2>
@@ -218,7 +384,7 @@ Mathematically, it is a function:</dd>
         </ol>
       </dd>
       <dd><button class="showText" value="show" onclick="showTextPopHide(event);">Examples</button>
- <img src="/main_files/concepts/1.png" alt="img" width="100%" hidden="" /></dd>
+ <img src="/main_files/concepts/10.png" alt="img" width="100%" hidden="" /></dd>
       <dd>A <strong>Quasi-Metric</strong> is a metric that lacks the <em>symmetry</em> property.</dd>
       <dd>One can form a Metric function <script type="math/tex">d'</script>  from a Quasi-metric function <script type="math/tex">d</script> by taking:<br />
 <script type="math/tex">d'(x, y) = ​1⁄2(d(x, y) + d(y, x))</script></dd>
@@ -261,133 +427,259 @@ Mathematically, it is a function:</dd>
       </dd>
     </dl>
   </li>
-</ol>
-
-<!-- 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
-    :   
- -->
-<ol>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Formulas:</strong></dt>
-      <dd>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Proof Methods:</strong>
+    <ul>
+      <li>Direct Proof</li>
+      <li>Mathematical Induction
         <ul>
-          <li><strong>Binomial Theorem</strong>:</li>
+          <li>Strong Induction</li>
+          <li>Infinite Descent</li>
         </ul>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">(x+y)^{n}=\sum_{k=0}^{n}{n \choose k}x^{n-k}y^{k}=\sum_{k=0}^{n}{n \choose k}x^{k}y^{n-k} \\={n \choose 0}x^{n}y^{0}+{n \choose 1}x^{n-1}y^{1}+{n \choose 2}x^{n-2}y^{2}+\cdots +{n \choose n-1}x^{1}y^{n-1}+{n \choose n}x^{0}y^{n},</script>
-      </dd>
-      <dd>
+      </li>
+      <li>Contradiction</li>
+      <li>Contraposition (<script type="math/tex">(p \implies q) \iff (!q \implies !p)</script>)</li>
+      <li>Construction</li>
+      <li>Combinatorial</li>
+      <li>Exhaustion</li>
+      <li>Non-Constructive proof (existence proofs)</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Mathematical Concepts - The Map of Mathematics:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Text</button>
+    <ul hidden="">
+      <li><strong>Real Analysis</strong>:<br />
+  The Real line begets Real Analysis. It’s the study of real numbers and continuous functions on the reals. You have a concrete object (real numbers) and a concrete distance measure (the absolute value function) which is needed for the notions of convergence and continuity.</li>
+      <li><strong>Metric Spaces</strong>:<br />
+  Less concrete than Real Analysis. You have a numerical way of explaining proximity by a distance measure, and you have a similar way of explaining convergence and continuity. Functional Analysis lies in the middle of those two.</li>
+      <li><strong>Topology</strong>:<br />
+  Studies topological spaces, WHERE, everything is up for grabs. The proximity measure is no longer numerical. The proximity “measure” around a point is a poset-like at best. This makes the notions of convergence and continuity more tricky.</li>
+      <li><strong>Functional Analysis</strong>:<br />
+  Can be thought of as a generalization of Linear Algebra to infinite dimensional vector spaces (e.g. spaces of functions with a given property - e.g. continuity).</li>
+      <li><strong>Differential Topology</strong>:<br />
+  is the study of smooth manifolds and smooth maps. It is fundamentally using tools from calculus (hence the “differential” part in the name) but the focus is on spaces and maps up to diffeomorphism, which means that you don’t care at all about notions like angles, lengths, curvature, flatness etc. Just like in ordinary (non-differential) topology, a gently curved line, a straight line, and a totally squiggly line are all the same up to diffeomorphism (the squiggly line should have no sharp cusps and corners though, which is how this is different from ordinary topology).
         <ul>
-          <li><strong>Binomial Coefficient</strong>:</li>
+          <li><strong>Pre-Reqs:</strong> include a very good foundation in real analysis, including multivariate differential analysis; linear algebra; and topology.</li>
         </ul>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">{\binom {n}{k}}={\frac {n!}{k!(n-k)!}}</script>
-      </dd>
-      <dd>
+      </li>
+      <li><strong>Differential Geometry</strong>:<br />
+  Its the study of precisely those things that differential topology doesn’t care about (i.e. angles, curvature, etc.). Here the principal objects of study are manifolds endowed with the much more rigid structure of a (Riemannian) metric, which lets you discuss geometric properties like lengths, angles and curvature.
         <ul>
-          <li><strong>Expansion <script type="math/tex">x^n - y^n</script></strong>:</li>
+          <li><strong>Applications</strong>:<br />
+  It ties well with: Lie Groups, General Relativity, Symplectic Geometry (Mechanics), Algebraic Topology.</li>
+          <li><strong>Pre-Reqs</strong>: similar to those for Differential Topology: solid multivariate analysis, some topology, and of course linear algebra.</li>
         </ul>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">x^n - y^n = (x-y)(x^{n-1} + x^{n-2} y + ... + x y^{n-2} + y^{n-1})</script>
-      </dd>
-      <dd>
+      </li>
+      <li><strong>Algebraic Topology</strong>:<br />
+  the study of algebraic invariants as a tool for classifying topological objects.
+        <blockquote>
+          <p>Some of those invariants can actually be developed via differential topology (de Rham cohomology), but most are defined in completely different terms that do not need the space to have any differential structure whatsoever.</p>
+        </blockquote>
         <ul>
-          <li><strong>Number of subsets of a set of <script type="math/tex">N</script> elements</strong> <script type="math/tex">= 2^N</script></li>
+          <li><strong>Pre-Reqs</strong>: Hard + Touches a lot of math; topology, a good grounding in algebra (abelian groups, rings etc.), know something about categories and functors.</li>
+        </ul>
+      </li>
+      <li><strong>Algebraic Geometry</strong>:<br />
+  very different topic. At the most basic level, its the study of <em>algebraic varieties</em> (i.e. sets of solutions to polynomial equations).<br />
+  Modern algebraic geometry, however, is much wider than this innocent statement seems to imply. It is notoriously complex and requires a very deep understanding of a wide variety of disciplines and domains.
+        <ul>
+          <li><strong>Pre-Reqs</strong>: commutative algebra, Galois theory, some number theory (especially algebraic number theory), complex function theory, category theory, and a serving of algebraic topology wouldn’t hurt.<br />
+  General topology is sort-of required: algebraic geometry uses the notion of “Zariski topology” but, honestly, this topology is so different from the things most analysts and topologists talk about that basic topology won’t help.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><a href="https://www.quora.com/What-are-the-differences-between-differential-topology-differential-geometry-algebraic-topology-and-algebraic-geometry-In-what-order-does-one-usually-go-about-learning-them">Further Reading</a></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">From Topology to Algebraic Topology:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Analysis</button>
+    <ul hidden="">
+      <li>Suppose we have a closed loop of rope, i.e., a rope with its ends connected together. Such a closed loop could be a simple ring or it could be knotted up in various different ways:<br />
+  <img src="/main_files/concepts/2.png" alt="img" width="100%" /></li>
+      <li>Now, whether or not it is knotted does not depend on how thick the rope is, how long the rope is, or how it is positioned in space. As long as we don’t cut the rope, any kind of continuous deformation of the rope, such as moving it around, stretching it, bending it, and so on, does not change an unknotted closed loop into a knotted one. So, if we want to study the possible different ways a closed loop can be knotted, we want to ignore any differences related to all these various kinds of continuous deformations. When we ignore all those properties, what is left are called topological properties. So, while two closed loops of different sizes or shapes are geometrically distinct, they could be topologically identical. They are topologically distinct only if they can not be transformed into each other with any continuous deformation. So, in the context of knot theory, topology is the study of the properties of knottedness, which do not depend on the details of position, shape, size, and so on.</li>
+      <li>Now, algebraic topology is a way of studying topological properties by translating them into algebraic properties. In the case of knot theory, this might involve, for example, a map that assigns a unique integer to any given closed loop. Such a map can be very useful if we can show that it will always assign the same integer to two closed loops that can be continuously deformed into each other, i.e., topologically equivalent closed loops are always assigned the same number. (Such a map is called a knot invariant.) For example, if we are given two closed loops and they are mapped to different integers, then this instantly tells us that they are topologically distinct from each other. The converse is not necessarily true, since a map with poor “resolving power” might take many topologically distinct closed loops to the same integer. Algebraic topology in the context of knot theory is the study of these kinds of maps from topological objects such as closed loops to algebraic objects such as integers. These maps give, as it were, algebraic perspectives on the topological objects, and that is what algebraic topology in general is about.</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Notes:</strong>
+    <ul>
+      <li><strong>Dot Product Scale/Magnitude</strong>: the scale of the dot product increases as dimensions get larger.<br />
+  Assume that the components of <script type="math/tex">q</script> and <script type="math/tex">k</script> are independent random variables with mean <script type="math/tex">0</script> and variance <script type="math/tex">1</script>. Then their dot product, <script type="math/tex">q^Tk = \sum_{i=1}^{d_k} q_ik_i</script>, (where <script type="math/tex">d_k = \vert k \vert</script> is the dimension of <script type="math/tex">k \in \mathbb{R}^{d_k} \iff q \in \mathbb{R}^{d_q}</script>) has mean <script type="math/tex">0</script> and variance <script type="math/tex">d_k</script>.</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Formulas:</strong>
+    <ul>
+      <li><strong>Binomial Theorem</strong>:
+        <p>$$(x+y)^{n}=\sum_{k=0}^{n}{n \choose k}x^{n-k}y^{k}=\sum_{k=0}^{n}{n \choose k}x^{k}y^{n-k} \\={n \choose 0}x^{n}y^{0}+{n \choose 1}x^{n-1}y^{1}+{n \choose 2}x^{n-2}y^{2}+\cdots +{n \choose n-1}x^{1}y^{n-1}+{n \choose n}x^{0}y^{n},$$</p>
+      </li>
+      <li><strong>Binomial Coefficient</strong>:
+        <p>$${\binom {n}{k}}={\frac {n!}{k!(n-k)!}} = N \text{choose} k = N \text{choose} (n-k)$$</p>
+      </li>
+      <li><strong>Expansion <script type="math/tex">x^n - y^n</script></strong>:
+        <p>$$x^n - y^n = (x-y)(x^{n-1} + x^{n-2} y + ... + x y^{n-2} + y^{n-1})$$</p>
+      </li>
+      <li><strong>Number of subsets of a set of <script type="math/tex">N</script> elements</strong> <script type="math/tex">= 2^N</script>
+        <ul>
           <li><strong>Number of pairs (e.g. <script type="math/tex">(a,b)</script>) of a set of <script type="math/tex">N</script> elements</strong> <script type="math/tex">= N^2</script></li>
+          <li>There are at most <script type="math/tex">k^N</script> ways to partition <script type="math/tex">N</script> data points into <script type="math/tex">k</script> clusters - there are <script type="math/tex">N</script> choose <script type="math/tex">k</script> clusters, precisely</li>
         </ul>
-      </dd>
-    </dl>
+      </li>
+      <li><strong>Logarithms</strong>:
+        <p>$$\log_x(y) = \dfrac{\ln(y)}{\ln(x)}$$</p>
+      </li>
+      <li><strong>The length of a vector <script type="math/tex">\mathbf{x}</script>  along a direction (projection)</strong>:
+        <ol>
+          <li>Along a unit-length vector <script type="math/tex">\hat{\mathbf{w}}</script>: <script type="math/tex">\text{comp}_ {\hat{\mathbf{w}}}(\mathbf{x}) = \hat{\mathbf{w}}^T\mathbf{x}</script></li>
+          <li>Along an unnormalized vector <script type="math/tex">\mathbf{w}</script>: <script type="math/tex">\text{comp}_ {\mathbf{w}}(\mathbf{x}) = \dfrac{1}{\|\mathbf{w}\|} \mathbf{w}^T\mathbf{x}</script></li>
+        </ol>
+      </li>
+      <li><strong>Summations</strong>:
+        <ul>
+          <li>
+            <script type="math/tex; mode=display">\sum_{i=1}^{n} 2^{i}=2^{n+1}-2</script>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </li>
 </ol>
 
 <hr />
+<hr />
 
-<h2 id="content4">Statistics</h2>
+<h2 id="content4">Statistics and Probability Theory</h2>
 
 <ol>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">ROC Curve:</strong></dt>
-      <dd>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">ROC Curve:</strong>
+    <ul>
+      <li>A way to quantify how good a <strong>binary classifier</strong> separates two classes</li>
+      <li>True-Positive-Rate / False-Positive-Rate</li>
+      <li>Good classifier has a ROC curve that is near the top-left diagonal (hugging it)</li>
+      <li>A Bad Classifier has a ROC curve that is close to the diagonal line</li>
+      <li>It allows you to set the <strong>classification threshold</strong>
         <ul>
-          <li>A way to quantify how good a <strong>binary classifier</strong> separates two classes</li>
-          <li>True-Positive-Rate / False-Positive-Rate</li>
-          <li>Good classifier has a ROC curve that is near the top-left diagonal (hugging it)</li>
-          <li>A Bad Classifier has a ROC curve that is close to the diagonal line</li>
-          <li>It allows you to set the <strong>classification threshold</strong>
-            <ul>
-              <li>You can minimize False-positive rate or maximize the True-Positive Rate</li>
-            </ul>
-          </li>
+          <li>You can minimize False-positive rate or maximize the True-Positive Rate</li>
         </ul>
-      </dd>
-    </dl>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">AUC - AUROC:</strong>
+    <ul>
+      <li>Range <script type="math/tex">= 0.5 - 1.0</script>, from poor to perfect</li>
+    </ul>
   </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">AUC - AUROC:</strong></dt>
-      <dd>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">Statistical Efficiency:</strong><br />
+ Essentially, a more efficient estimator, experiment, or test needs fewer observations than a less efficient one to achieve a given performance.<br />
+ Efficiencies are often defined using the <em>variance</em> or <em>mean square error</em> as the measure of desirability.<br />
+ An efficient estimator is also the minimum variance unbiased estimator (MVUE).</p>
+
+    <ul>
+      <li>An Efficient Estimator has lower variance than an inefficient one</li>
+      <li>The use of an inefficient estimator gives results equivalent to those obtainable from a subset of data; and is therefor, wasteful of data</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Errors VS Residuals:</strong><br />
+ The <strong>Error</strong> of an observed value is the deviation of the observed value from the (unobservable) <strong><em>true</em></strong> value of a quantity of interest.</p>
+
+    <p>The <strong>Residual</strong> of an observed value is the difference between the observed value and the <em><strong>estimated</strong></em> value of the quantity of interest.</p>
+
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Errors_and_residuals#In_univariate_distributions" value="show" onclick="iframePopA(event)"><strong>Example in Univariate Distributions</strong></a>
+ <a href="https://en.wikipedia.org/wiki/Errors_and_residuals#In_univariate_distributions"></a>
+        <div></div>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents45">Maximum Likelihood Estimation:</strong><br />
+ <strong style="color: red">Likelihood in Parametric Models:</strong><br />
+ Suppose we have a parametric model <script type="math/tex">\{p(y ; \theta) | \theta \in \Theta\}</script> and a sample <script type="math/tex">D=\left\{y_{1}, \ldots, y_{n}\right\}</script>:
+    <ul>
+      <li>The likelihood of parameter estimate <script type="math/tex">\hat{\theta} \in \Theta</script> for sample <script type="math/tex">\mathcal{D}</script> is:
+        <p>$$p(\mathcal{D} ; \hat{\theta})=\prod_{i=1}^{n} p\left(y_{i} ; \hat{\theta}\right)$$</p>
+      </li>
+      <li>In practice, we prefer to work with the <strong>log-likelihood</strong>.  Same maximum but
+        <p>$$\log p(\mathcal{D} ; \hat{\theta})=\sum_{i=1}^{n} \log p\left(y_{i} ; \theta\right)$$</p>
+        <p>and sums are easier to work with than products.</p>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">MLE for Parametric Models:</strong><br />
+ The <strong>maximum likelihood estimator (MLE)</strong> for <script type="math/tex">\theta</script> in the (parametric) model <script type="math/tex">\{p(y, \theta) | \theta \in \Theta\}</script> is:</p>
+    <p>$$\begin{aligned} \hat{\theta} &amp;=\underset{\theta \in \Theta}{\arg \max } \log p(\mathcal{D}, \hat{\theta}) \\ &amp;=\underset{\theta \in \Theta}{\arg \max } \sum_{i=1}^{n} \log p\left(y_{i} ; \theta\right) \end{aligned}$$</p>
+
+    <blockquote>
+      <p>You are finding the value of the parameter <script type="math/tex">\theta</script> that, if used (in the model) to generate the probability of the data, would make the data most <em>“likely”</em> to occur.</p>
+    </blockquote>
+
+    <ul>
+      <li><strong>MLE Intuition</strong>:<br />
+  If I choose a <em>hypothesis</em> <script type="math/tex">h</script> underwhich the <em>observed data</em> is very <em><strong>plausible</strong></em> then the <em>hypothesis</em> is very <em><strong>likely</strong></em>.</li>
+      <li><a href="https://www.youtube.com/embed/JrFj0xpGd2Q?start=2609" value="show" onclick="iframePopA(event)"><strong>Maximum Likelihood as Empirical Risk Minimization</strong></a>
+ <a href="https://www.youtube.com/embed/JrFj0xpGd2Q?start=2609"></a>
+        <div></div>
+      </li>
+      <li>Finding the MLE is an optimization problem.</li>
+      <li>For some model families, calculus gives a closed form for the MLE</li>
+      <li>
+        <p>Can also use numerical methods we know (e.g. SGD)</p>
+      </li>
+      <li><strong>Why maximize the natural log of the likelihood?</strong>:
+        <ol>
+          <li>Numerical Stability: change products to sums</li>
+          <li>The logarithm of a member of the family of exponential probability distributions (which includes the ubiquitous normal) is polynomial in the parameters (i.e. max-likelihood reduces to least-squares for normal distributions)<br />
+  <script type="math/tex">\log\left(\exp\left(-\frac{1}{2}x^2\right)\right) = -\frac{1}{2}x^2</script></li>
+          <li>The latter form is both more numerically stable and symbolically easier to differentiate than the former. It increases the dynamic range of the optimization algorithm (allowing it to work with extremely large or small values in the same way).</li>
+          <li>The logarithm is a monotonic transformation that preserves the locations of the extrema (in particular, the estimated parameters in max-likelihood are identical for the original and the log-transformed formulation)</li>
+        </ol>
+
         <ul>
-          <li>Range <script type="math/tex">= 0.5 - 1.0</script> from poor to perfect</li>
+          <li>Gradient methods generally work better optimizing <script type="math/tex">log_p(x)</script> than <script type="math/tex">p(x)</script> because the gradient of <script type="math/tex">log_p(x)</script> is generally more <strong>well-scaled</strong>. <a href="https://stats.stackexchange.com/questions/174481/why-to-optimize-max-log-probability-instead-of-probability">link</a>
+  <strong>Justification:</strong> the gradient of the original term will include a <script type="math/tex">e^{\vec{x}}</script> multiplicative term that scales very quickly one way or another, requiring the step-size to equally scale/stretch in the opposite direction.</li>
         </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents45">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents46">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents47">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents48">Asynchronous:</strong></dt>
-      <dd>–&gt;</dd>
-    </dl>
+      </li>
+    </ul>
   </li>
 </ol>
 
+<!-- 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}  
+    :   
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}  
+    :     -->
+
+<p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents48">Notes:</strong></p>
+<ul>
+  <li><strong>Why maximize the natural log of the likelihood?</strong>:
+    <ol>
+      <li>Numerical Stability: change products to sums</li>
+      <li>The logarithm of a member of the family of exponential probability distributions (which includes the ubiquitous normal) is polynomial in the parameters (i.e. max-likelihood reduces to least-squares for normal distributions)<br />
+  <script type="math/tex">\log\left(\exp\left(-\frac{1}{2}x^2\right)\right) = -\frac{1}{2}x^2</script></li>
+      <li>The latter form is both more numerically stable and symbolically easier to differentiate than the former. It increases the dynamic range of the optimization algorithm (allowing it to work with extremely large or small values in the same way).</li>
+      <li>The logarithm is a monotonic transformation that preserves the locations of the extrema (in particular, the estimated parameters in max-likelihood are identical for the original and the log-transformed formulation)</li>
+    </ol>
+  </li>
+  <li><a href="http://anotherdatum.com/gumbel-gan.html"><strong>(GANs) Sampling from Discrete Distributions | The Gumbel-Softmax Trick</strong></a></li>
+  <li><strong>Covariance Matrix</strong> is the inverse of the <strong>Metric Tensor</strong>
+    <ul>
+      <li>In <strong>Gaussians</strong>: <script type="math/tex">\Sigma^{1/2}</script> maps spheres to ellipsoids; eigenvalues are radii; they are also the standard deviations along the eigenvectors</li>
+    </ul>
+  </li>
+  <li><strong>Reason we sometimes prefer Biased Estimators</strong>:<br />
+  Mainly, due to the <em><strong>Bias-Variance Decomposition</strong></em>. The <strong>MSE</strong> takes into account both the <em>bias</em> and the <em>variance</em> and sometimes the biased estimator might have a lower variance than the unbiased one, which results in a total <em>decrease</em> in the MSE.</li>
+  <li><strong>Cross-Field Terms</strong>:
+    <ul>
+      <li>Independent Variable <script type="math/tex">\iff</script>  Covariate <script type="math/tex">\iff</script>  Feature </li>
+      <li>(Collection of) Independent Variables <script type="math/tex">\iff</script>  Covariates <script type="math/tex">\iff</script>  Features <script type="math/tex">\iff</script>  Input </li>
+      <li>Dependent Variable <script type="math/tex">\iff</script>  Response <script type="math/tex">\iff</script>  Label <script type="math/tex">\iff</script>  Target <script type="math/tex">\iff</script>  Output</li>
+      <li><a href="https://towardsdatascience.com/the-actual-difference-between-statistics-and-machine-learning-64b49f07ea3">Statistics VS Machine Learning</a></li>
+    </ul>
+  </li>
+  <li><strong>Uncorrelated Features in a Design Matrix</strong>:
+    <p>$$\implies X^TX=nI$$</p>
+  </li>
+</ul>
+
+<hr />
 <hr />
 
 <h2 id="content5">Optimization</h2>
@@ -402,132 +694,744 @@ Mathematically, it is a function:</dd>
     </dl>
   </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents52">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents52">Gradient-Based Optimization:</strong></p>
+
+    <p><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li>Gradients can’t propagate through <strong>argmax</strong></li>
+      <li><strong>Derivative for a max function</strong>:<br />
+  The derivative is defined (even though its not continuous at the threshold) by setting the value at the threshold/zero to be either the right or the left derivative.<br />
+  This is known as the <strong>Sub-Gradient</strong> and that’s why <em>gradient descent</em> still works.</li>
+      <li><a href="https://www.youtube.com/watch?v=jYtCiV1aP44&amp;list=PLnZuxOufsXnvftwTB1HL6mel1V32w0ThI&amp;index=12&amp;t=0s"><strong>Subgradient Descent</strong></a></li>
+      <li><a href="https://www.youtube.com/embed/K2X0eBd-0lc?list=PLoRl3Ht4JOcdU872GhiYWf6jwrk_SNhz9" value="show" onclick="iframePopA(event)"><strong>Hessian-Free Optimization | Conjugate Gradient Method (Hinton)</strong></a>
+ <a href="https://www.youtube.com/embed/K2X0eBd-0lc?list=PLoRl3Ht4JOcdU872GhiYWf6jwrk_SNhz9"></a>
+        <div></div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents53">Backpropagation:</strong></p>
+
+    <p><strong>NOTES:</strong></p>
+    <ul>
+      <li><strong>Backprop (BPTT specifically here) and concept of Locality</strong>:<br />
+  In this context, local in space means that a unit’s weight vector can be updated using only information stored in the connected units and the unit itself such that update complexity of a single unit is linear in the dimensionality of the weight vector. Local in time means that the updates take place continually (on-line) and depend only on the most recent time step rather than on multiple time steps within a given time horizon as in BPTT. Biological neural networks appear to be local with respect to both time and space. <a href="https://en.wikipedia.org/wiki/Recurrent_neural_network#Gradient_descent">wikipedia</a></li>
+      <li><strong>Backpropagation with weight constraints</strong>:
+        <ul>
+          <li>It is easy to modify the backprop algorithm to incorporate linear constraints between the weights.
+            <p>$$\begin{array}{l}{\text { To constrain: } w_{1}=w_{2}} \\ {\text { we need : } \Delta w_{1}=\Delta w_{2}}\end{array}$$</p>
+            <p>So, we compute the gradients as usual for each <script type="math/tex">w_i</script> then average them and update both weights (so they’ll continue to satisfy the constraints).</p>
+          </li>
+        </ul>
+      </li>
+      <li>Backprop is a <strong>Leaky Abstraction</strong></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents54">Error Measures - Loss Functions:</strong>
+    <ul>
+      <li><strong>Cross Entropy</strong>:
+        <ul>
+          <li><strong>Deriving Binary Cross Entropy</strong>:<br />
+  It is the log-likelihood of a Bernoulli probability model.
+            <p>$$\begin{array}{c}{L(p)=p^{y}(1-p)^{1-y}} \\ {\log (L(p))=y \log p+(1-y) \log (1-p)}\end{array}$$</p>
+          </li>
+          <li><strong><a href="https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/">Cross Entropy &gt; MSE for Classification</a></strong></li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><strong>Loss VS Cost Function</strong>:
+        <ul>
+          <li>Loss is just the Error function from Caltech</li>
+          <li>Cost is more general than Loss: usually the sum of all the losses</li>
+          <li><strong>Objective function</strong> is even more general, but a Cost might be a type of <strong>Objective Function</strong>
+            <ul>
+              <li>The <strong>Risk Function</strong> is an objective function is the expected loss</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="https://www.youtube.com/watch?v=1oi_Mwozj5w&amp;list=PLnZuxOufsXnvftwTB1HL6mel1V32w0ThI&amp;index=8"><strong>Loss Functions for Regression</strong></a></li>
+      <li><strong>MSE</strong>:<br />
+  The principle of mean square error can be derived from the principle of maximum likelihood (after we set a linear model where errors are normally distributed).</li>
+      <li><strong>Hinge Loss and 0-1 Loss</strong>:
+        <ul>
+          <li>Hinge loss upper bounds 0-1 loss</li>
+          <li>It is the tightest <em>convex</em> upper bound on the 0/1 loss</li>
+          <li>Minimizing 0-1 loss is NP-hard in the worst-case
+  img</li>
+        </ul>
+      </li>
+      <li><strong>Loss functions of common ML models</strong>:
+        <ul>
+          <li>maximize the posterior probabilities (e.g., naive Bayes)</li>
+          <li>maximize a fitness function (genetic programming)</li>
+          <li>maximize the total reward/value function (reinforcement learning)</li>
+          <li>maximize information gain/minimize child node impurities (CART decision tree classification)</li>
+          <li>minimize a mean squared error cost (or loss) function (CART, decision tree regression, linear regression, adaptive linear neurons, …</li>
+          <li>maximize log-likelihood or minimize cross-entropy loss (or cost) function</li>
+          <li>minimize hinge loss (support vector machine)<br />
+ <br /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents55">Mathematical Properties, Aspects, Considerations:</strong>
+    <ul>
+      <li><strong>The Composition of Invariant Functions</strong>:<br />
+  A function that is <em>invariant</em> to some transformation (e.g. rotation, permutation, etc.) can be composed by averaging over all transformations (rotations -&gt; e.g. rotation invariant filters).<br />
+  Equivalently, for <em>BoW</em>, we average over all permutations (by averaging the words).<br />
+  This causes <em><strong>smearing</strong></em>.</li>
+      <li><strong>Smearing in Invariant Functions</strong>:<br />
+  In the linear case, a rotational invariant function commutes with all rotations of the elements in <script type="math/tex">\mathbb{R}</script>; Any commutative transformation should yield this; or a combo of commutative transformations; thus smearing.
+        <blockquote>
+          <p>Implies that one should not use linear functions to aggregate over the set where we want some transformation invariance</p>
+        </blockquote>
+      </li>
+      <li><strong>The Weight vector of a linear signal is orthogonal to the decision boundary</strong>:<br />
+  The weight vector <script type="math/tex">\mathbf{w}</script> is orthogonal to the separating-plane/decision-boundary, defined by <script type="math/tex">\mathbf{w}^T\mathbf{x} + b = 0</script>, in the <script type="math/tex">\mathcal{X}</script> space; Reason:<br />
+  Since if you take any two points <script type="math/tex">\mathbf{x}^\prime</script> and <script type="math/tex">\mathbf{x}^{\prime \prime}</script> on the plane, and create the vector <script type="math/tex">\left(\mathbf{x}^{\prime}-\mathbf{x}^{\prime \prime}\right)</script>  parallel to the plane by subtracting the two points, then the following equations must hold:
+        <p>$$\mathbf{w}^{\top} \mathbf{x}^{\prime}+b=0 \wedge \mathbf{w}^{\top} \mathbf{x}^{\prime \prime}+b=0 \implies \mathbf{w}^{\top}\left(\mathbf{x}^{\prime}-\mathbf{x}^{\prime \prime}\right)=0$$</p>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Identities:</strong></p>
+    <ul>
+      <li><strong>Math Identities</strong>:
+        <p>$$\frac{1}{N} \sum_{n=1}^{N}\left(\mathbf{w}^{\mathrm{T}} \mathbf{x}_{n}-y_{n}\right)^{2} = \frac{1}{N}\|\mathrm{Xw}-\mathrm{y}\|^{2}$$</p>
+      </li>
+      <li>
+        <script type="math/tex; mode=display">\dfrac{\partial}{\partial y} \vert{x-y}\vert  = - \text{sign}(x-y)</script>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li>The <strong>well-behaved</strong> property from an optimization standpoint, implies that <script type="math/tex">f''(x)</script> doesn’t change too much or too rapidly, leading to a nearly quadratic function that is easy to optimize by gradient methods.</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents56">The Method of Lagrange Multipliers:</strong><br />
+ The <strong>constrained</strong> optimization problem:
+    <p>$$\min_{\mathbf{x}} f(\mathbf{x}) \text { subject to } g(\mathbf{x}) \leq 0$$</p>
+    <p>is equivalent to the <strong>unconstrained</strong> optimization problem:</p>
+    <p>$$\min_{\mathbf{x}}(f(\mathbf{x})+\lambda g(\mathbf{x}))$$</p>
+    <p>where <script type="math/tex">\lambda</script> is a scalar called the <strong>Lagrange multiplier</strong>.<br />
+<br /></p>
   </li>
 </ol>
 
-<!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents53}  
-    :   
-
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents54}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents55}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents56}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents57}  
+<!-- 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents57}  
     :   
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents58}  
     :    -->
 
+<p><strong>NOTES:</strong></p>
+<ul>
+  <li><a href="https://medium.com/inveterate-learner/deep-learning-book-chapter-8-optimization-for-training-deep-models-part-i-20ae75984cb2">Ch.8 Dl-book summary</a></li>
+  <li><a href="https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/">Why You Should Use Cross-Entropy Error Instead Of Classification Error Or Mean Squared Error For Neural Network Classifier Training</a></li>
+  <li>Points that satisfy all constraints (i.e. the feasible region) always convex and polytope.</li>
+  <li><strong><a href="http://ruder.io/optimizing-gradient-descent/index.html#gradientdescentoptimizationalgorithms">Optimization Blog on opt techniques</a></strong></li>
+</ul>
+
+<hr />
 <hr />
 
 <h2 id="content6">Machine Learning</h2>
 
 <ol>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents61">Why NNs are not enough:</strong></dt>
-      <dd>The gist of it is this: neural nets do <em>pattern recognition</em>, which achieves <em>local generalization</em> (which works great for supervised perception). But many simple problems require some (small) amount of abstract modeling, which modern neural nets can’t learn</dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents61">Theory:</strong></p>
+
+    <ul>
+      <li><strong>ML from a Probabilistic Approach</strong>:<br />
+  When employing a <em>probabilistic approach</em> to doing <em>“learning”</em> (i.e. choosing the hypothesis), you are trying to find: <strong>What is the most probable hypothesis, given the Data</strong>.</li>
+    </ul>
+
+    <p><strong>Why NNs are not enough?</strong><br />
+ The gist of it is this: neural nets do <em>pattern recognition</em>, which achieves <em>local generalization</em> (which works great for supervised perception). But many simple problems require some (small) amount of abstract modeling, which modern neural nets can’t learn.</p>
+
+    <p><strong><a href="https://arxiv.org/pdf/1710.05468.pdf">Generalization in Deep Learning</a></strong></p>
+
+    <p><strong>Is there enough info in the labels to learn good, general features in Classification problems?</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Text</button></p>
+    <p hidden="">(((If the task is to learn to classify a particular image into one class/category; and the categories lie on the same manifold (i.e. just cats and dogs; or just vehicles etc.) then, the model can learn the patterns that relate to the particular class the image belongs to, BUT MOREOVER, it learns to ignore the rest of the patterns (i.e. background). So, in a way, yes, there is no information in the labels that tells the network to learn what a tree is (so any objects in the background are somewhat blurred to the network, they have no higher-order meaning) so the overall higher-level vision capabilities of the network doesn't necessarily "develop".   <br />
+ As for the task of pre-training, we both know that even if you learn the patterns of very specific objects/classes (e.g. cats and dogs) you still need to develop certain visual features (e.g. edge/corner detection) and those featurizers will develop well, regardless of the amount of information. i.e. the lower-level visual capabilities will be developed. (we have evidence that pretraining works really well in Vision).  <br />
+ I think the issue here is with Deterministic Noise (i.e. the Bias of the model). The CNN hypothesis just doesn't do things like inverse graphics and whatnot; regardless of the amount of information.  <br />
+ Finally, a big problem is when the information is just conflicting, like two objects that should be recognized but we only label it as one of them. That's the Stochastic Noise. Which relates directly to how well we would generalize. This can be attributed to many things as well: E.g. (1) One-hot vectors need to be smoothed to allow the network to get a sense of the actual different objects in the image, AND to not over-fit the particulars of the data (e.g. consider a cat that looks like a tiger and a cat that looks like a dog; labeling it with 0.8 cat is much better to learn the "cattiness" of the image than the noise) (2) Target labels are just limited. There aren't enough categories in the target, which puts a huge limitation for one-shot learning generalization)))</p>
+
+    <p><strong>Notes:</strong></p>
+    <ul>
+      <li><strong>Intuition of why DL Works</strong>:<br />
+  <strong>Circuit Theory:</strong> There are function you can compute with a “small” L-layer deep NN that shallower networks require exponentially more hidden units to compute. (comes from looking at networks as logic gates).
+        <ul>
+          <li><strong>Example</strong>:<br />
+  Computing <script type="math/tex">x_1 \text{XOR} x_2 \text{XOR} ... \text{XOR} x_n</script>  takes:
+            <ul>
+              <li><script type="math/tex">\mathcal{O}(log(n))</script> in a tree representation.<br />
+  <img src="/main_files/concepts/7.png" alt="img" width="65%" /></li>
+              <li><script type="math/tex">\mathcal{O}(2^n)</script> in a one-hidden-layer network because you need to exhaustively enumerate all possible <script type="math/tex">2^N</script> configurations of the input bits that result in the <script type="math/tex">\text{XOR}</script> being <script type="math/tex">{1, 0}</script>. <br />
+  <img src="/main_files/concepts/8.png" alt="img" width="65%" /></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong><a href="https://github.com/josh-tobin/cs189-su18/blob/master/lecture7.ipynb">Curse of Dimensionality (ipynb)</a></strong></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents62">The Big Formulations:</strong><br />
+ <strong style="color: red">ML Formulation:</strong><br />
+ Improve on <strong>TASK T</strong> with respect to <strong>PERFORMANCE METRIC P</strong> based on <strong>EXPERIENCE E</strong>.</p>
+
+    <p><strong style="color: red">Problems in ML:</strong></p>
+    <ul>
+      <li>
+        <p><strong>T:</strong> Categorize email messages as spam or legitimate 
+  <strong>P:</strong> Percentage of email messages correctly classified 
+  <strong>E:</strong> Database of emails, some with human-given labels</p>
+      </li>
+      <li>
+        <p><strong>T:</strong> Recognizing hand-written words 
+  <strong>P:</strong> Percentage of words correctly classified 
+  <strong>E:</strong> Database of human-labeled images of  handwritten words</p>
+      </li>
+      <li>
+        <p><strong>T:</strong> playing checkers 
+  <strong>P:</strong> percentage of games won against an arbitrary opponent 
+  <strong>E:</strong> Playing practice games against itself</p>
+      </li>
+      <li><strong>T:</strong> Driving on four-lane highways using vision sensors 
+  <strong>P:</strong> Average distance traveled before a human-judged error 
+  <strong>E:</strong> A seq of images and steering commands recorded while observing a human driver</li>
+      <li><strong>Sequence Labeling</strong>:
+        <ul>
+          <li><em><strong>Problems</strong></em>:
+            <ul>
+              <li>Speech Recognition</li>
+              <li>OCR</li>
+              <li>Semantic Segmentation</li>
+            </ul>
+          </li>
+          <li><em><strong>Approaches</strong></em>:
+            <ul>
+              <li>CTC - Bi-directional LSTM</li>
+              <li>Listen Attend and Spell (LAS)</li>
+              <li>HMMs</li>
+              <li>CRFs</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents63">What is ML?:</strong></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents64">Types of Learning:</strong>
+    <ul>
+      <li><strong>Multi-Task Learning</strong>: general term for training on multiple tasks
+        <ul>
+          <li><em>Joint Learning:</em> by choosing mini-batches from two different tasks simultaneously/alternately</li>
+          <li><em>Pre-Training:</em> first train on one task, then train on another
+            <blockquote>
+              <p>widely used for <strong>word embeddings</strong></p>
+            </blockquote>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Transfer Learning</strong>:<br />
+  a type of multi-task learning where we are focused on one task; by learning on another task then applying those models to our main task</li>
+      <li><strong>Domain Adaptation</strong>:<br />
+  a type of transfer learning, where the output is the same, but we want to handle different inputs/topics/genres</li>
+      <li><strong>Zero-Shot Learning</strong>:</li>
+    </ul>
+
+    <p><strong>Notes:</strong></p>
+    <ul>
+      <li><strong>Relationship between Supervised and Unsupervised Learning</strong>:<br />
+  Many ml algorithms can be used to perform both tasks. E.g., the chain rule of probability states that for a vector <script type="math/tex">x \in \mathbb{R}^n</script>, the joint distribution can be decomposed as:<br />
+  <script type="math/tex">p(\mathbf{x})=\prod_{i=1}^{n} p\left(\mathrm{x}_{i} | \mathrm{x}_{1}, \ldots, \mathrm{x}_{i-1}\right)</script><br />
+  which implies that we can solve the Unsupervised problem of modeling <script type="math/tex">p(x)</script> by splitting it into <script type="math/tex">n</script> supervised learning problems.<br />
+  Alternatively, we can solve the supervised learning problem of learning <script type="math/tex">p(y \vert x)</script> by using traditional unsupervised learning technologies to learn the joint distribution <script type="math/tex">p(x, y)</script>, then inferring:<br />
+  <script type="math/tex">p(y | \mathbf{x})=\frac{p(\mathbf{x}, y)}{\sum_{y} p\left(\mathbf{x}, y^{\prime}\right)}</script></li>
+      <li><strong>Intuition on Why Unsupervised Learning works</strong>:
+        <ul>
+          <li>Goal: Learn Portuguese</li>
+          <li>For 1 month you listen to Portuguese on the radio (this is unlabeled data)</li>
+          <li>You develop an intuition for the language, phrases, and grammar (a model in your head)</li>
+          <li>It is easier to learn now from a tutor because you have a better (higher representation) of the data/language</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents65">Linear Models:</strong><br />
+ A <strong>Linear Model</strong> takes an input <script type="math/tex">x</script> and computes a signal <script type="math/tex">s = \sum_{i=0}^d w_ix_i</script> that is a <em>linear combination</em> of the input with weights, then apply a scoring function on the signal <script type="math/tex">s</script>.
+    <ul>
+      <li><strong>Linear Classifier as a Parametric Model</strong>:<br />
+  Linear classifiers <script type="math/tex">f(x, W)=W x+b</script>  are an example of a parametric model that sums up the knowledge of the training data in the parameter: weight-matrix <script type="math/tex">W</script>.</li>
+      <li><strong>Scoring Function</strong>:
+        <ul>
+          <li><em><strong>Linear Classification</strong></em>:<br />
+  <script type="math/tex">h(x) = sign(s)</script></li>
+          <li><em><strong>Linear Regression</strong></em>:<br />
+  <script type="math/tex">h(x) = s</script></li>
+          <li><em><strong>Logistic Regression</strong></em>:<br />
+  <script type="math/tex">h(x) = \sigma(s)</script></li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><strong>The Weight vector of a linear signal is orthogonal to the decision boundary</strong>:<br />
+  The weight vector <script type="math/tex">\mathbf{w}</script> is orthogonal to the separating-plane/decision-boundary, defined by <script type="math/tex">\mathbf{w}^T\mathbf{x} + b = 0</script>, in the <script type="math/tex">\mathcal{X}</script> space; Reason:<br />
+  Since if you take any two points <script type="math/tex">\mathbf{x}^\prime</script> and <script type="math/tex">\mathbf{x}^{\prime \prime}</script> on the plane, and create the vector <script type="math/tex">\left(\mathbf{x}^{\prime}-\mathbf{x}^{\prime \prime}\right)</script>  parallel to the plane by subtracting the two points, then the following equations must hold:
+        <p>$$\mathbf{w}^{\top} \mathbf{x}^{\prime}+b=0 \wedge \mathbf{w}^{\top} \mathbf{x}^{\prime \prime}+b=0 \implies \mathbf{w}^{\top}\left(\mathbf{x}^{\prime}-\mathbf{x}^{\prime \prime}\right)=0$$</p>
+      </li>
+    </ul>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents62">The Big Formulations:</strong></dt>
-      <dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents66">Learning Probabilities with Logistic Regression and Sigmoids:</strong></dt>
+      <dd>Logistic Regression uses the <strong>sigmoid</strong> function to “squash” the output feature/signal into the <script type="math/tex">[0, 1]</script> space. Although, one could interpret the <em>sigmoid classifier</em> as just a function with <script type="math/tex">[0,1]</script> range, it is actually, a <strong>Genuine Probability</strong>.</dd>
+      <dd>To see this:<br />
+ A labeled, classification Data-Set, does <strong>NOT</strong> (explicitly) give you the <em>probability</em> that something is going to happen, rather, just the fact that an event either happened <script type="math/tex">(y=1)</script> or that it did not <script type="math/tex">(y=0)</script>, without the actual probability of that event happening.<br />
+ One can think of this data as being generated by a (the following) noisy target:</dd>
+      <dd><script type="math/tex">% <![CDATA[
+{\displaystyle P(y \vert x) ={\begin{cases}f(x)&{\text{for }}y = +1,\\1-f(x)&{\text{for }}y=-1.\\\end{cases}}} %]]></script> <br />
+ They have the form that a certain probability that the event occurred and a certain probability that the event did NOT occur, given their input-data.<br />
+ This is generated by the target we want to learn; thus, the function <script type="math/tex">f(x)</script> is the target function to approximate.<br />
+ In Logistic Regression, we are trying to learn <script type="math/tex">f(x)</script> not withstanding the fact that the data-points we are learning from are giving us just sample values of <script type="math/tex">y</script> that happen to be generated by <script type="math/tex">f</script>.<br />
+ Thus, the <strong>Target</strong> <script type="math/tex">f : \mathbb{R}^d \longrightarrow [0,1]</script> is the probability.
+        <blockquote>
+          <p>The output of Logistic Regression is treated genuinely as a <strong>probability</strong> even <em>during <strong>Learning</strong></em></p>
+        </blockquote>
+      </dd>
+      <dd><strong>Deriving the Error Measure</strong>:<br />
+ The error measure for logistic regression is based on <strong>likelihood</strong> - it is both, plausible and friendly/well-behaved? (for optimization).</dd>
+    </dl>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents67">Papers:</strong></p>
+
+    <p><strong style="color: red">Fast-Weights:</strong><br />
+ <strong>Basic Idea:</strong></p>
+    <ul>
+      <li>on each connection: Total weight = Sum of:
         <ul>
-          <li><strong>Sequence Labeling</strong>:
+          <li><strong>Standard Slow Weights</strong>. This learns slowly &amp; (may also) decay slowly. Holds long term Knowledge.</li>
+          <li><strong>The Fast Weights</strong>: Learns quickly, decays quickly, Holds Temp. info.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong>Motivation:</strong></p>
+    <ul>
+      <li><strong>Priming:</strong> listen to a word <script type="math/tex">\rightarrow</script> recognize many minutes later in Noisy Env.
+        <ul>
+          <li>If we had <strong>localist Representation</strong> could just temporarily lower the threshold of the “cucumber” weight</li>
+          <li>If we use <strong>point Attractors</strong> instead of “localist units” we con temporarily increase the “attractiveness” of the words unit (by changing the weights between the neurons in that pattern of activity)</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong>Weight Matrices VS Activity Vectors:</strong>
+ Weight Matrices are better:<br />
+ (1) More capacity <script type="math/tex">N^2</script> vs <script type="math/tex">N</script> (2) A fast weight matrix of <script type="math/tex">1000 x 1000</script> can easily make 100 attractors more “attractive”</p>
+
+    <p><strong>Three ways to store Temp. knowledge:</strong></p>
+    <ul>
+      <li><strong>LSTM</strong>, Stores it in its activity vectors [hidden weights] <script type="math/tex">\implies</script> Irrelevant temp Memory <strong>interferes</strong> with on-going process</li>
+      <li><strong>An additional External memory to LSTM</strong>, can store without interference but need to - learn when to read/white.</li>
+      <li><strong>Fast-Weights:</strong> Allow the temporal Knowledge to be stored without having any extra neurons.<br />
+  They just make some attractors easier to fall into; and they also “flavor” the attractor by slightly changing the activity vector you end up with.</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents68">Activation Functions:</strong>
+    <ul>
+      <li><strong>Activation Functions</strong>:
+        <ul>
+          <li><strong>Sigmoid</strong>:<br />
+  Never use as activation, use as an output unit for binary classification.</li>
+          <li><strong>Tanh</strong>:<br />
+  Strictly superior to Sigmoid (scaled version of sigmoid). Good for activation.<br />
+  Reasons: (1) Zero Mean/Centered</li>
+          <li><strong>Relu</strong>:<br />
+  The best for activation.<br />
+  Reasons: (1) Better gradients
             <ul>
-              <li><em><strong>Problems</strong></em>:
+              <li><strong>Properties</strong>:
                 <ul>
-                  <li>Speech Recognition</li>
-                  <li>OCR</li>
-                  <li>Semantic Segmentation</li>
-                </ul>
-              </li>
-              <li><em><strong>Approaches</strong></em>:
-                <ul>
-                  <li>CTC - Bi-directional LSTM</li>
-                  <li>Listen Attend and Spell (LAS)</li>
-                  <li>HMMs</li>
-                  <li>CRFs</li>
+                  <li><strong>ReLU not zero-centered problem</strong>:<br />
+  The problem that ReLU is not zero-centered can be solved/mitigated by using <strong>batch normalization</strong>, which normalizes the signal before activation:
+                    <blockquote>
+                      <p>From paper: We add the BN transform immediately before the nonlinearity, by normalizing <script type="math/tex">x =  Wu + b</script>; normalizing it is likely to produce activations with a stable distribution.</p>
+                    </blockquote>
+                  </li>
+                  <li><strong>Dying ReLUs (Dead Neurons):</strong><br />
+  If a neuron gets clamped to zero in the forward pass (it doesn’t “fire”), then its weights will get zero gradient. Thus, if a ReLU neuron is unfortunately initialized such that it never fires, or if a neuron’s weights ever get knocked off with a large update during training into this regime, then this neuron will remain permanently dead.
+                    <ul>
+                      <li><a href="https://www.youtube.com/embed/gYpoJMlgyXA?start=1249" value="show" onclick="iframePopA(event)"><strong>cs231n Explanation</strong></a>
+  <a href="https://www.youtube.com/embed/gYpoJMlgyXA?start=1249"></a>
+                        <div></div>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><strong>ReLu advantages</strong>:
+                    <ul>
+                      <li>Non-saturation of gradients which accelerates convergence of SGD</li>
+                      <li>sparsity effects and induced regularization. <a href="https://stats.stackexchange.com/questions/176794/how-does-rectilinear-activation-function-solve-the-vanishing-gradient-problem-in/176905#176905">discussion</a></li>
+                    </ul>
+                  </li>
                 </ul>
               </li>
             </ul>
           </li>
+          <li><strong>Leaky Relu</strong>:<br />
+  Sometimes useful. Worth trying.</li>
         </ul>
-      </dd>
-    </dl>
+      </li>
+      <li><strong>Derivatives of Activation Functions</strong>:
+        <ul>
+          <li><strong>Sigmoid</strong>:
+            <p>$$S(z)=\frac{1}{1+e^{-z}} \\ S^{\prime}(z)=S(z) \cdot(1-S(z))$$</p>
+            <p><img src="/main_files/concepts/3.png" alt="img" width="68%" /></p>
+          </li>
+          <li><strong>Tanh</strong>:
+            <p>$$\tanh (z)=\frac{e^{z}-e^{-z}}{e^{z}+e^{-z}} \\ \tanh ^{\prime}(z)=1-\tanh (z)^{2}$$</p>
+            <p><img src="/main_files/concepts/4.png" alt="img" width="68%" /></p>
+          </li>
+          <li><strong>Relu</strong>:
+            <p>$$R(z)=\left\{\begin{array}{cc}{z} &amp; {z&gt;0} \\ {0} &amp; {z&lt;=0}\end{array}\right\} \\  R^{\prime}(z)=\left\{\begin{array}{ll}{1} &amp; {z&gt;0} \\ {0} &amp; {z&lt;0}\end{array}\right\}$$</p>
+            <p><img src="/main_files/concepts/5.png" alt="img" width="68%" /></p>
+          </li>
+          <li><strong>Leaky Relu</strong>:
+            <p>$$R(z)=\left\{\begin{array}{cc}{z} &amp; {z&gt;0} \\ {\alpha z} &amp; {z&lt;=0}\end{array}\right\} \\ 
+  R^{\prime}(z)=\left\{\begin{array}{ll}{1} &amp; {z&gt;0} \\ {\alpha} &amp; {z&lt;0}\end{array}\right\}$$</p>
+            <p><img src="/main_files/concepts/6.png" alt="img" width="68%" /></p>
+          </li>
+          <li><a href="https://ml-cheatsheet.readthedocs.io/en/latest/activation_functions.html">Further Reading</a></li>
+        </ul>
+      </li>
+    </ul>
   </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents63">What is ML?:</strong></dt>
-      <dd>Improve on <strong>TASK T</strong> with respect to <strong>PERFORMANCE METRIC P</strong> based on <strong>EXPERIENCE E</strong>.</dd>
-      <dd><strong>T:</strong> Categorize email messages as spam or legitimate 
-<strong>P:</strong> Percentage of email messages correctly classified 
-<strong>E:</strong> Database of emails, some with 
-human-given labels
+    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents69">Bias-Variance Decomposition Theory:</strong></p>
 
-        <p><strong>T:</strong> Recognizing hand-written words 
-<strong>P:</strong> Percentage of words correctly classified 
-<strong>E:</strong> Database of human-labeled images of 
-handwritten words</p>
-
-        <p><strong>T:</strong> playing checkers 
-<strong>P:</strong> percentage of games won against an arbitrary opponent 
-<strong>E:</strong> Playing practice games against itself</p>
-
-        <p><strong>T:</strong> Driving on four-lane highways using vision sensors 
-<strong>P:</strong> Average distance traveled before a human-judged error 
-<strong>E:</strong> A seq of images and steering commands recorded while observing a human driver</p>
-      </dd>
-    </dl>
+    <p><strong style="color: red">Bias-Variance for Neural-Networks:</strong><br />
+ <img src="/main_files/concepts/9.png" alt="img" width="60%" /><br />
+ <strong>Dealing with Bias and Variance for NN:</strong></p>
+    <ul>
+      <li><strong>High Bias</strong> (<script type="math/tex">E_{\text{train}}</script>) <script type="math/tex">\rightarrow</script> (1) Bigger Net (2) Train longer (3) Different NN archit</li>
+      <li><strong>High Variance</strong> (<script type="math/tex">E_{\text{dev}}</script>) <script type="math/tex">\rightarrow</script> (1) More Data (2) Regularization (3) Different NN archit</li>
+    </ul>
   </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents64">Graphical Models:</strong></dt>
-      <dd></dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents610">Models:</strong></p>
+
+    <p><strong style="color: red">Parametric Models:</strong><br />
+A <strong>parametric model</strong> is a set of probability distributions indexed by a parameter <script type="math/tex">\theta \in \Theta</script>. We denote this as:</p>
+    <p>$$\{p(y ; \theta) | \theta \in \Theta\},$$</p>
+    <p>where <script type="math/tex">\theta</script> is the <strong>parameter</strong> and <script type="math/tex">\Theta</script> is the <strong>Parameter-Space</strong>.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents611">Output Units/Functions:</strong>
+    <ul>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">Output Units: Linear and Sigmoid units</button>
+  <img src="/main_files/concepts/10.jpg" alt="img" hidden="" /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents612">Model Varieties - Regression and Classification:</strong><br />
+<strong>Generalized Regression</strong> also known as <strong style="color: red">Conditional Distribution Estimation:</strong>
+    <ul>
+      <li>Given <script type="math/tex">x</script>, predict probability distribution <script type="math/tex">p(y\vert x)</script></li>
+      <li>How do we represent the probability distribution?
+        <ul>
+          <li>We’ll consider parametric families of distributions
+            <ul>
+              <li>distribution represented by parameter vector</li>
+            </ul>
+          </li>
+          <li>Examples:
+            <ul>
+              <li>Generalized Linear Models (GLM)
+                <ul>
+                  <li>Logistic regression (Bernoulli distribution)</li>
+                  <li>Probit regression (Bernoulli distribution)</li>
+                  <li>Poisson regression (Poisson distribution)</li>
+                  <li>Linear regression (Normal distribution, fixed variance)</li>
+                </ul>
+              </li>
+              <li>Generalized Additive Models (GAM)</li>
+              <li>Gradient Boosting Machines (GBM) / AnyBoost</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Probabilistic Binary Classifiers:</strong></p>
+    <ul>
+      <li>Setting: <script type="math/tex">X=\mathrm{R}^{d}, y=\{0,1\}</script></li>
+      <li>For each <script type="math/tex">x</script>, need to predict a distribution on <script type="math/tex">y=\{0,1\}</script></li>
+      <li>To define a distribution supported on <script type="math/tex">\{0,1\}</script>, it is sufficient to specify the <strong>Bernoulli parameter</strong> <script type="math/tex">\theta=p(y=1 \vert x)</script></li>
+      <li>We can refer to this distribution as <script type="math/tex">\text{Bernoulli}(\theta)</script></li>
+    </ul>
+
+    <p><strong style="color: red">Linear Probabilistic Classifiers:</strong></p>
+    <ul>
+      <li>Setting: <script type="math/tex">X=\mathrm{R}^{d}, y=\{0,1\}</script></li>
+      <li>Want prediction function to map each <script type="math/tex">x \in \mathrm{R}^{d}</script> to the right <script type="math/tex">\theta \in[0,1]</script></li>
+      <li>We first extract information from <script type="math/tex">x \in \mathrm{R}^{d}</script> and summarize in a single number
+        <ul>
+          <li>That number is analogous to the <strong>Score</strong> in <em>classification</em></li>
+        </ul>
+      </li>
+      <li>For a <strong>linear method/model</strong>, this extraction is done with a <strong>linear function</strong>;
+        <p>$$\underbrace{x}_{\in \mathbb{R}^{D}} \mapsto \underbrace{w^{T} x}_{\in \mathrm{R}}$$</p>
+      </li>
+      <li>As usual, <script type="math/tex">x \mapsto w^{T} x</script> will include <strong>affine functions</strong> if we include a constant features in <script type="math/tex">x</script></li>
+      <li><script type="math/tex">w^Tx</script> is called the <strong>linear predictor</strong></li>
+      <li>Still need to map this to <script type="math/tex">[0, 1]</script>; we do so by <strong>Transfer/Response/Inverse-Link function</strong>; usually the <em><strong>logistic function (Sigmoid)</strong></em>
+        <blockquote>
+          <p>Its a function to map the linear predictor in <script type="math/tex">\mathbb{R}</script> to <script type="math/tex">[0,1]</script>:<br />
+      <script type="math/tex">\underbrace{x}_ {\in \mathbf{R}^{D}} \mapsto \underbrace{w^{T}}_{\in R} \mapsto \underbrace{f\left(w^{T} x\right)}_{\in[0,1]}=\theta = p(y=1 | x)</script></p>
+        </blockquote>
+      </li>
+    </ul>
+
+    <p><strong>Learning:</strong><br />
+The hypothesis space/set:</p>
+    <p>$$\mathcal{H}=\left\{x \mapsto f\left(w^{T} x\right) | w \in \mathbb{R}^{d}\right\}$$</p>
+    <p>where the <strong>only <em>“parameter”</em></strong> in this model is <script type="math/tex">w \in \mathbb{R}^d</script>. <br />
+We can choose <script type="math/tex">w</script> using <strong>maximum likelihood:</strong><br />
+<strong>Likelihood Scoring | Bernoulli Regression:</strong></p>
+    <ul>
+      <li>Suppose we have data <script type="math/tex">\mathcal{D}=\left\{\left(x_{1}, y_{1}\right), \ldots,\left(x_{n}, y_{n}\right)\right\}</script></li>
+      <li>The model likelihood for <script type="math/tex">\mathcal{D}</script>:
+        <p>$$\begin{aligned} p_{w}(\mathcal{D}) &amp;=\prod_{i=1}^{n} p_{w}\left(y_{i} | x_{i}\right)[\text { by independence }] \\ &amp;=\prod_{i=1}^{n}\left[f\left(w^{T} x_{i}\right)\right]^{y_{i}}\left[1-f\left(w^{T} x_{i}\right)\right]^{1-y_{i}} \end{aligned}$$</p>
+        <ul>
+          <li>This probability of each data-point <script type="math/tex">p_w(y_i\|x_i)</script> can be summed in the equation <script type="math/tex">\left[f\left(w^{T} x_{i}\right)\right]^{y_{i}}\left[1-f\left(w^{T} x_{i}\right)\right]^{1-y_{i}}</script> which capture both cases <script type="math/tex">p_w(y_i = 1) = f\left(w^{T} x_{i}\right)</script> and <script type="math/tex">p_w(y_i = 0) = 1 - f\left(w^{T} x_{i}\right)</script></li>
+        </ul>
+      </li>
+      <li>The <strong>log likelihood</strong>:
+        <p>$$\log p_{w}(\mathcal{D})=\sum_{i=1}^{n} y_{i} \log f\left(w^{T} x_{i}\right)+\left(1-y_{i}\right) \log \left[1-f\left(w^{T} x_{i}\right)\right]$$</p>
+      </li>
+      <li>Equivalently, minimize the objective function:
+        <p>$$J(w)=-\left[\sum_{i=1}^{n} y_{i} \log f\left(w^{T} x_{i}\right)+\left(1-y_{i}\right) \log \left[1-f\left(w^{T} x_{i}\right)\right]\right]$$</p>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Gaussian Linear Regression/Conditional Gaussian Regression:</strong></p>
+    <ul>
+      <li><a href="https://www.youtube.com/embed/JrFj0xpGd2Q?start=1965" value="show" onclick="iframePopA(event)"><strong>Gaussian Linear Regression</strong></a>
+<a href="https://www.youtube.com/embed/JrFj0xpGd2Q?start=1965"></a>
+        <div></div>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Generalized Regression as Statistical Learning:</strong></p>
+    <ul>
+      <li><a href="https://www.youtube.com/embed/JrFj0xpGd2Q?start=2609" value="show" onclick="iframePopA(event)"><strong>Generalized Regression as Statistical Learning</strong></a>
+<a href="https://www.youtube.com/embed/JrFj0xpGd2Q?start=2609"></a>
+        <div></div>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Generalized Linear Models:</strong></p>
+    <ul>
+      <li><a href="https://www.youtube.com/embed/nLKOQfKLUks?list=PLA89DCFA6ADACE599" value="show" onclick="iframePopA(event)"><strong>Generalized Linear Models (Andrew NG)</strong></a>
+<a href="https://www.youtube.com/embed/nLKOQfKLUks?list=PLA89DCFA6ADACE599"></a>
+        <div></div>
+      </li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents613">Bayesian Conditional Probabilistic Models:</strong>
+    <ul>
+      <li><a href="https://www.youtube.com/embed/Mo4p2B37LwY" value="show" onclick="iframePopA(event)"><strong>Bayesian Conditional Probabilistic Models</strong></a>
+<a href="https://www.youtube.com/embed/Mo4p2B37LwY"></a>
+        <div></div>
+        <p><br /></p>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents614">Latent Variable Models:</strong>
+    <ul>
+      <li><a href="https://www.youtube.com/embed/I9dfOMAhsug" value="show" onclick="iframePopA(event)"><strong>Latent Variable Models/Gaussian Mixture Models</strong></a>
+<a href="https://www.youtube.com/embed/I9dfOMAhsug"></a>
+        <div></div>
+      </li>
+      <li><a href="https://www.youtube.com/embed/lMShR1vjbUo" value="show" onclick="iframePopA(event)"><strong>Expectation-Minimization/EM-Algorithm for Latent Variable Models</strong></a>
+<a href="https://www.youtube.com/embed/lMShR1vjbUo"></a>
+        <div></div>
+        <p><br /></p>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents615">Recommender Systems:</strong>
+    <ul>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">Recommender Systems</button>
+<img src="/main_files/concepts/9.jpg" alt="img" hidden="" /><br />
+<br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents616">Regularization:</strong>
+    <ul>
+      <li><strong>Overfitting and Regularization</strong>:<br />
+  To address over-fitting:
+        <ul>
+          <li>Increase size of training dataset</li>
+          <li>Reduce number of features</li>
+          <li>Do Regularization:
+            <ul>
+              <li>Keep all the features but reduce the magnitude/values of the weights/parameters</li>
+              <li>Works well when we have a lot of features, each of which contributes a bit to predicting <script type="math/tex">y</script></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Regularization Theory</strong>:
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=DCvXYD6xQYw">link1</a></li>
+        </ul>
+      </li>
+      <li><strong>Theoretical Justification for Regularization</strong>:<br />
+  A theoretical justification for regularization is that it attempts to impose Occam’s razor on the solution.<br />
+  From a Bayesian point of view, many regularization techniques correspond to imposing certain prior distributions on model parameters.</li>
+      <li><strong>Tikhonov Regularization</strong>: is essentially a trade-off between fitting the data and reducing a norm of the solution.</li>
+    </ul>
+
+    <p><strong style="color: red">Data Regularization:</strong></p>
+    <ul>
+      <li>The <strong>Design Matrix</strong> contains sample points in each <em><strong>row</strong></em></li>
+      <li><strong>Feature Scaling/Mean Normalization (of data)</strong>:
+        <ul>
+          <li>Define the mean <script type="math/tex">\mu_j</script> of each feature of the datapoints <script type="math/tex">x^{(i)}</script>:</li>
+        </ul>
+        <p>$$\mu_{j}=\frac{1}{m} \sum_{i=1}^{m} x_{j}^{(i)}$$</p>
+        <ul>
+          <li>Replace each <script type="math/tex">x_j^{(i)}</script> with <script type="math/tex">x_j - \mu_j</script></li>
+        </ul>
+      </li>
+      <li><strong>Centering</strong>:  subtracting <script type="math/tex">\mu</script> from each row of <script type="math/tex">X</script></li>
+      <li><strong>Sphering</strong>:  applying the transform <script type="math/tex">X' = X \Sigma^{-1/2}</script></li>
+      <li><strong>Whitening</strong>:  Centering + Sphering (also known as <em><strong>Decorrelating feature space</strong></em>)</li>
+    </ul>
+
+    <p><a href="https://github.com/dalmia/Deep-Learning-Book-Chapter-Summaries/blob/master/07%20-%20Regularization%20for%20Deep%20Learning.ipynb">Ch.7 dl-book summary</a><br />
+<br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents617">Aggregation - Ensemble Methods:</strong></p>
+
+    <ul>
+      <li><strong>Boosting</strong>: create different hypothesis <script type="math/tex">h_i</script>s sequentially + make each new hypothesis <strong>decorrelated</strong> with previous hypothesis.
+        <ul>
+          <li>Assumes that this will be combined/ensembled</li>
+          <li>Ensures that each new model/hypothesis will give a different/independent output</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents618">Kernels:</strong>
+    <ul>
+      <li><strong>Kernels</strong>:
+        <ul>
+          <li><strong>Polynomial Kernel of degree, exactly, <script type="math/tex">d</script></strong>:
+            <p>$$K(\mathbf{u}, \mathbf{v})=(\mathbf{u} \cdot \mathbf{v})^{d}$$</p>
+          </li>
+          <li><strong>Polynomial Kernel of degree, up to, <script type="math/tex">d</script></strong>:
+            <p>$$K(\mathbf{u}, \mathbf{v})=(\mathbf{u} \cdot \mathbf{v}+1)^{d}$$</p>
+          </li>
+          <li><strong>Gaussian Kernel</strong>:
+            <p>$$K(\vec{u}, \vec{v})=\exp \left(-\frac{\|\vec{u}-\vec{v}\|_ {2}^{2}}{2 \sigma^{2}}\right)$$</p>
+          </li>
+          <li><strong>Sigmoid Kernel</strong>:
+            <p>$$K(\mathbf{u}, \mathbf{v})=\tanh (\eta \mathbf{u} \cdot \mathbf{v}+\nu)$$</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p><strong>Local Kernels</strong>: a kernel where <script type="math/tex">k(u, v)</script> is large when <script type="math/tex">u=v</script> and decreases as <script type="math/tex">u</script> and <script type="math/tex">v</script> grow further apart from each other.<br />
+  A local kernel can be thought of as a <strong>similarity function</strong> that performs <strong>template matching</strong>, by measuring how closely a test example <script type="math/tex">x</script> resembles each training example <script type="math/tex">x^{(i)}</script>.</p>
+      </li>
+      <li><a href="http://mccormickml.com/2014/02/26/kernel-regression/">Kernel Regression Introduction</a></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents619">Statistical Learning Theory:</strong><br />
+<strong style="color: red">Notes:</strong>
+    <ul>
+      <li><a href="http://papers.nips.cc/paper/506-principles-of-risk-minimization-for-learning-theory.pdf">Principles of Risk Minimization for Learning Theory (original papers)</a></li>
+      <li><a href="http://www.tml.cs.uni-tuebingen.de/team/luxburg/publications/StatisticalLearningTheory.pdf">Statistical Learning Theory from scratch (paper)</a></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents620">Learning Theory:</strong></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents60">Notes:</strong>
+    <ul>
+      <li><strong>Complexity</strong>:
+        <ul>
+          <li><strong>Caching the activations of a NN</strong>:<br />
+  We need to cache the activation vectors of a NN after each layer <script type="math/tex">Z^{[l]}</script> because they are required in the backward computation.</li>
+        </ul>
+      </li>
+      <li><strong>Initializations</strong>:
+        <ul>
+          <li><strong>Initializing NN</strong>:
+            <ul>
+              <li>Don’t initialize the weights to Zero. The symmetry of hidden units results in a similar computation for each hidden unit, making all the rows of the weight matrix to be equal (by induction).</li>
+              <li>It’s OK to initialize the bias term to zero.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Training</strong>:
+        <ul>
+          <li><a href="http://karpathy.github.io/2019/04/25/recipe/">A Recipe for Training Neural Networks</a></li>
+          <li><a href="http://rishy.github.io/ml/2017/01/05/how-to-train-your-dnn/">Tips for Training Deep Networks</a></li>
+          <li><a href="http://www.chioka.in/why-train-a-model-generatively-and-discriminatively/">Why Train a Model BOTH Generatively and Discriminatively</a></li>
+        </ul>
+      </li>
+      <li><strong>Feature Importance</strong>:
+        <ul>
+          <li>In linear models, feature importance can be calculated by the scale of the coefficients</li>
+          <li>In tree-based methods (such as random forest), important features are likely to appear closer to the root of the tree. We can get a feature’s importance for random forest by computing the averaging depth at which it appears across all trees in the forest</li>
+        </ul>
+      </li>
+    </ul>
   </li>
 </ol>
 
-<!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents65}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents66}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents67}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents68  
-   -->
-<p>:</p>
-
+<hr />
 <hr />
 
 <h2 id="content7">Computer Vision</h2>
 
 <ol>
+  <li><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents71">Edge Detection Filters:</strong>
+    <ul>
+      <li><strong>Sobel Filter:</strong>
+        <p>$$\begin{array}{|c|c|c|}\hline 1 &amp; {0} &amp; {-1} \\ \hline 2 &amp; {0} &amp; {-2} \\ \hline 1 &amp; {0} &amp; {-1} \\ \hline\end{array}$$</p>
+      </li>
+      <li><strong>Schorr Filter</strong>:
+        <p>$$\begin{array}{|c|c|c|}\hline 3 &amp; {0} &amp; {-3} \\ \hline 10 &amp; {0} &amp; {-10} \\ \hline 3 &amp; {0} &amp; {-3} \\ \hline\end{array}$$</p>
+      </li>
+    </ul>
+  </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents71">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents72">Aliasing:</strong><br />
+ Aliasing is an effect that causes different signals to become indistinguishable (or aliases of one another) when sampled. It also refers to the distortion or artifact that results when the signal reconstructed from samples is different from the original continuous signal.</p>
+
+    <p>Aliasing can occur in signals sampled in time, for instance digital audio, and is referred to as <strong>temporal aliasing</strong>. Aliasing can also occur in spatially sampled signals, for instance moiré patterns in digital images. Aliasing in spatially sampled signals is called <strong>spatial aliasing</strong>.</p>
   </li>
 </ol>
 
-<!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents72}  
-    :   
-
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents73}  
+<!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents73}  
     :   
 
 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents74}  
@@ -544,62 +1448,67 @@ handwritten words</p>
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents78}  
   -->
-<p>:</p>
 
+<hr />
 <hr />
 
 <h2 id="content8">NLP</h2>
 
+<p><a href="https://sites.tufts.edu/models/files/2019/04/Norvig.pdf">The Norvig-Chomsky Debate</a></p>
+
 <ol>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents81">Towards Better Language Modeling (Lec.9 highlight, 38m):</strong></dt>
-      <dd>To improve a <em>Language Model</em>:
-        <ol>
-          <li><strong>Better Inputs</strong>: 
+  <li><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents81">Language Modeling:</strong><br />
+ <strong style="color: red">Towards Better Language Modeling (Lec.9 highlight, 38m):</strong><br />
+ To improve a <em>Language Model</em>:
+    <ol>
+      <li><strong>Better Inputs</strong>: 
  Word -&gt; Subword -&gt; Char<br />
- <img src="/main_files/main/concepts/2.png" alt="img" width="100%" /><br />
+ <img src="/main_files/concepts/2.png" alt="img" width="100%" /><br />
  <em>Subword Language Modeling , Mikolov et al. 2012</em><br />
  <em>Character-Aware Neural Language Model , Kim et al. 2015</em>.</li>
-          <li><strong>Better Regularization/Preprocessing</strong>:<br />
+      <li><strong>Better Regularization/Preprocessing</strong>:<br />
  Similar to computer vision, we can do both Regularization and Preprocessing on the data to increase its relevance to the true distribution.<br />
  Preprocessing acts as a <em><strong>data augmentation</strong></em> technique. This allows us to achieve a <strong>Smoother</strong> distribution, since we are removing more common words and re-enforcing rarer words.<br />
  <em>Zoneout, Kruger et al. 2016</em><br />
  <em>Data Noising as Smoothing, Xie et al. 2016</em>
+        <ul>
+          <li><em><strong>Regularization</strong></em>:
             <ul>
-              <li><em><strong>Regularization</strong></em>:
-                <ul>
-                  <li>Use Dropout (Zaremba, et al. 2014).</li>
-                  <li>Use Stochastic FeedForward depth (Huang et al. 2016)</li>
-                  <li>Use Norm Stabilization (Memisevic 2015)
+              <li>Use Dropout (Zaremba, et al. 2014).</li>
+              <li>Use Stochastic FeedForward depth (Huang et al. 2016)</li>
+              <li>Use Norm Stabilization (Memisevic 2015)
   …</li>
-                </ul>
-              </li>
-              <li><em><strong>Preprocessing</strong></em>:
-                <ul>
-                  <li>Randomly replacing words in a sentence with other words</li>
-                  <li>Use bigram statistics to generate <em>Kneser-Ney</em> inspired replacement (Xie et al. 2016).</li>
-                  <li>Replace a word with <strong>fixed</strong> drop rate</li>
-                  <li>Replace a word with <strong>adaptive</strong> drop rate, by how rare two words appear together (i.e. “Humpty Dumpty”), and replace by a unigram draw over vocab</li>
-                  <li>Replace a word with <strong>adaptive</strong> drop rate, and draw word from a <strong>proposal distribution</strong> (i.e. “New York”)</li>
-                </ul>
-              </li>
             </ul>
           </li>
-          <li><strong>Better Model</strong> (+ all above)</li>
-        </ol>
-      </dd>
-    </dl>
+          <li><em><strong>Preprocessing</strong></em>:
+            <ul>
+              <li>Randomly replacing words in a sentence with other words</li>
+              <li>Use bigram statistics to generate <em>Kneser-Ney</em> inspired replacement (Xie et al. 2016).</li>
+              <li>Replace a word with <strong>fixed</strong> drop rate</li>
+              <li>Replace a word with <strong>adaptive</strong> drop rate, by how rare two words appear together (i.e. “Humpty Dumpty”), and replace by a unigram draw over vocab</li>
+              <li>Replace a word with <strong>adaptive</strong> drop rate, and draw word from a <strong>proposal distribution</strong> (i.e. “New York”)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Better Model</strong> (+ all above)</li>
+    </ol>
+
+    <p><strong style="color: red">Recurrent Neural Networks as Language Models:</strong></p>
+    <ul>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">RNN-LM</button>
+ <img src="/main_files/concepts/7.jpg" alt="img" hidden="" /></li>
+    </ul>
+
+    <p><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><strong>The ML-Estimate of <script type="math/tex">p(w_i \vert w_{i-1})</script></strong> <script type="math/tex">= \dfrac{c(w_{i-1}\:, w_i)}{\sum_{w_i} c(w_{i-1}\:, w_i)}</script></li>
+    </ul>
+
+    <p><br /></p>
   </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents82">Language Models:</strong></dt>
-      <dd>
-        <ul>
-          <li><strong>The ML-Estimate of <script type="math/tex">p(w_i \vert w_{i-1})</script></strong> <script type="math/tex">= \dfrac{c(w_{i-1}\: w_i)}{\sum_{w_i} c(w_{i-1}\: w_i)}</script></li>
-        </ul>
-      </dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents82">:</strong></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents83">Neural Text Generation:</strong>
     <ul>
@@ -617,37 +1526,83 @@ handwritten words</p>
       </li>
     </ul>
   </li>
+  <li><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents84">NLP &amp; DL (R. Sorcher):</strong>
+    <ul>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">Common DL-NLP Tasks/Problems in NLP w/ DL</button>
+ <img src="/main_files/concepts/1_1.jpg" alt="img" hidden="" /></li>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">Problems in NLP w/ DL contd</button>
+ <img src="/main_files/concepts/2.jpg" alt="img" hidden="" /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents85">Text Classification:</strong><br />
+ <strong style="color: red">Word-Window Classification:</strong>
+    <ul>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">Classification Setup</button>
+ <img src="/main_files/concepts/3.jpg" alt="img" hidden="" /></li>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">Cross-Entropy and Softmax</button>
+ <img src="/main_files/concepts/3_1.jpg" alt="img" hidden="" /></li>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">Classification over a full dataset</button>
+ <img src="/main_files/concepts/4.jpg" alt="img" hidden="" /></li>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">General ML vs DL Optimization</button>
+ <img src="/main_files/concepts/4_1.jpg" alt="img" hidden="" /></li>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">Window Classification</button>
+ <img src="/main_files/concepts/5.jpg" alt="img" hidden="" /></li>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">Softmax limitations and considerations</button>
+ <img src="/main_files/concepts/6.jpg" alt="img" hidden="" /></li>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">The Max-Margin Loss</button>
+ <img src="/main_files/concepts/6_1.jpg" alt="img" hidden="" /></li>
+    </ul>
+
+    <p><strong style="color: red">CNN Text Classification:</strong></p>
+    <ul>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">The Problem Set-up and the Pooling Layer</button>
+ <img src="/main_files/concepts/8.jpg" alt="img" hidden="" /></li>
+      <li>
+        <p><button class="showText" value="show" onclick="showTextPopHide(event);">Classification and Tips for Learning</button>
+ <img src="/main_files/concepts/8_1.jpg" alt="img" hidden="" /></p>
+      </li>
+      <li><a href="http://mccormickml.com/2016/11/04/interpreting-lsi-document-similarity/">LSI document similarity</a></li>
+      <li><a href="http://mccormickml.com/2016/03/25/lsa-for-text-classification-tutorial/">Latent Semantic Analysis (LSA) for Text Classification Tutorial</a></li>
+      <li><a href="link">answer</a></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents86">:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents87">:</strong></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents88">Word Embeddings:</strong><br />
+ <strong style="color: red">Word Vectors:</strong>
+    <ul>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">Learning Word Vectors and Word2Vec</button>
+ <img src="/main_files/concepts/11.jpg" alt="img" hidden="" /></li>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">Word Vectors and Polysemy</button>
+ <img src="/main_files/concepts/11_1.jpg" alt="img" hidden="" /></li>
+    </ul>
+
+    <p><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><strong>Categorization</strong> is a method for Evaluating w2v Embeddings by creating categorize by clustering, then measuring the purity of the clusters</li>
+    </ul>
+  </li>
 </ol>
 
-<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents84}  
-    :   
+<p><strong>Notes:</strong></p>
+<ul>
+  <li><a href="http://www.cs.toronto.edu/~ilya/pubs/">Ilya Sutskever Pubs/Vids</a></li>
+  <li>Can all NLP tasks be cast as QA problems?!</li>
+</ul>
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents85}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents86}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents87}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents88}  
-    :   -->
-
+<hr />
 <hr />
 
 <h2 id="content9">Physics</h2>
 
-<ol>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents91">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
-</ol>
+<!-- 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents91}  
+    :   
 
-<!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents92}  
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents92}  
     :   
 
 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents93}  
@@ -669,60 +1624,206 @@ handwritten words</p>
     :    -->
 
 <hr />
+<hr />
 
-<h2 id="content10">Game Theory</h2>
+<h2 id="content10">Algorithms</h2>
 
 <ol>
+  <li><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents101">DFS:</strong><br />
+ <strong>Applications</strong>:
+    <ul>
+      <li>Finding (strongly or not) connected components.</li>
+      <li>Topological sorting.</li>
+      <li>Finding the bridges of a graph.</li>
+      <li>Generating words in order to plot the limit set of a group.</li>
+      <li>Finding strongly connected components.</li>
+      <li>Planarity testing.</li>
+      <li>Solving puzzles with only one solution, such as mazes. (DFS can be adapted to find all solutions to a maze by only including nodes on the current path in the visited set.)</li>
+      <li>Maze generation may use a randomized depth-first search.</li>
+      <li>Finding biconnectivity in graphs.</li>
+    </ul>
+
+    <p><strong>Code:</strong></p>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># RECURSIVE</span>
+ <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">visit</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+     <span class="c"># print('n: ', n);print('visit: ', visit);print('graph: ', graph);print('s: ', s)# print("HERE: ", len(visit), len(graph))</span>
+     <span class="n">visit</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+     <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+     <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">s</span><span class="p">]:</span>
+         <span class="k">if</span> <span class="ow">not</span> <span class="n">visit</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
+             <span class="n">dfs</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">visit</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># Pseudo-Code</span>
+ <span class="n">procedure</span> <span class="n">DFS</span><span class="o">-</span><span class="n">iterative</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
+     <span class="n">let</span> <span class="n">S</span> <span class="n">be</span> <span class="n">a</span> <span class="n">stack</span>
+     <span class="n">S</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+     <span class="k">while</span> <span class="n">S</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">empty</span>
+         <span class="n">v</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+         <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">labeled</span> <span class="k">as</span> <span class="n">discovered</span><span class="p">:</span>
+             <span class="n">label</span> <span class="n">v</span> <span class="k">as</span> <span class="n">discovered</span>
+             <span class="k">for</span> <span class="nb">all</span> <span class="n">edges</span> <span class="k">from</span> <span class="n">v</span> <span class="n">to</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">adjacentEdges</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="n">do</span> 
+                 <span class="n">S</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents101">Asynchronous:</strong></dt>
-      <dd></dd>
+      <dt><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents102">Complexity of common Data-Structures:</strong></dt>
+      <dd><img src="/main_files/concepts/bigo.png" alt="img" width="100%" /></dd>
     </dl>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents103">Data-Structures:</strong>
+    <ul>
+      <li><strong>Stack</strong>:
+        <ul>
+          <li><strong>Implementations</strong>:<br />
+  (1) Arrays  <script type="math/tex">\:\:</script> (2) Linked-Lists</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents104">Maps and Networks - The Four Color Problem:</strong>
+    <ul>
+      <li>All maps can be colored with only 4 colors</li>
+      <li>All maps are networks (<strong>planar graphs</strong>) but not all networks (non-planar) are maps</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents105">Recurrence (complexity):</strong>
+    <ul>
+      <li><strong>Master Theorem</strong>:<br />
+ Given the Recurrence:<br />
+ <script type="math/tex">T(n) = aT(n/b) + cn^k,\:\: T(1) = c</script>,<br />
+ where a, b, c, and k are all constants. solves to:<br />
+ <script type="math/tex">T(n) \in \Theta(n^k)</script> if <script type="math/tex">% <![CDATA[
+a < b^k %]]></script><br />
+ <script type="math/tex">T(n) \in \Theta(n^k \log{n})</script> if <script type="math/tex">a = b^k</script><br />
+ <script type="math/tex">T(n) \in \Theta(n^{\log_b(a)})</script> if <script type="math/tex">a > b^k</script></li>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">General Master Theorem</button>
+ <img src="/main_files/concepts/general_master_thm.jpg" alt="img" hidden="" /></li>
+      <li><strong>Recursion Out-of-form</strong>:<br />
+ <script type="math/tex">T(n) = T(n − 1) + c^n</script>, where <script type="math/tex">c</script> is a constant; solves to:<br />
+ Expands to: <script type="math/tex">T(n) = \sum_{i=0}^n c^i</script><br />
+ Where the solution is <script type="math/tex">\Theta(1), \Theta(n), or \Theta(c^n)</script>, depending on if <script type="math/tex">% <![CDATA[
+c < 1, c = 1, or c > 1 %]]></script></li>
+      <li><strong>The height of the binary recursion tree</strong>:<br />
+ Given <script type="math/tex">T(n) = aT(n^{1/k}) + f(n)</script>, the height <script type="math/tex">h</script> is the solution to:<br />
+ <script type="math/tex">n^{1/{k^h}} = 2</script></li>
+      <li><strong>Solution from Recursion Tree</strong>:<br />
+ The solution of a recursion is defined as:
+        <ol>
+          <li>The number of nodes in the tree: <script type="math/tex">= 2^{h+1}-1</script>, where <script type="math/tex">h</script> is the height of the tree</li>
+          <li>Multiplied by the amount of work done at every node: <script type="math/tex">f(n)</script></li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents106">Proofs for Algorithms:</strong>
+    <ul>
+      <li><strong>Strong Induction:</strong> e.g. dijkstras</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents107">Data Structures:</strong>
+    <ul>
+      <li><strong>Array</strong></li>
+      <li><strong>Stack (LIFO)</strong></li>
+      <li><strong>Queue (FIFO)</strong></li>
+      <li><strong>(min/max) Heap</strong></li>
+      <li><strong>Hash Table</strong></li>
+      <li><strong>Binary Tree</strong></li>
+      <li>
+        <p><strong>(single/double) Linked List</strong></p>
+      </li>
+      <li><strong>Array</strong>:</li>
+      <li><strong>Stack</strong>:
+        <ul>
+          <li><strong>Operations O(1)</strong>:
+            <ol>
+              <li>Push</li>
+              <li>Pop</li>
+              <li>Top</li>
+              <li>IsEmpty</li>
+            </ol>
+          </li>
+          <li><strong>Implementations</strong>:
+            <ol>
+              <li>(cyclic) Array: w/ modular indices</li>
+              <li>(doubly) Linked List</li>
+            </ol>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Queue</strong>:
+        <ul>
+          <li><strong>Operations O(1)</strong>:
+            <ol>
+              <li>Enqueue</li>
+              <li>Dequeue</li>
+              <li>Front</li>
+              <li>IsEmpty</li>
+            </ol>
+          </li>
+          <li><strong>Implementations</strong>:
+            <ol>
+              <li>(cyclic) Array: w/ modular indices</li>
+              <li>(doubly) Linked List</li>
+            </ol>
+          </li>
+        </ul>
+      </li>
+      <li><strong>(min/max) Heap</strong>:</li>
+      <li><strong>Hash Table</strong>:
+        <ul>
+          <li><strong>Implementations</strong>:
+            <ol>
+              <li>Array of Linked Lists (access=O(1))</li>
+              <li>Balanced BST (access=O(log(n)))</li>
+            </ol>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Binary Tree</strong>:</li>
+      <li><strong>(single/double) Linked List</strong>:</li>
+    </ul>
   </li>
 </ol>
 
-<!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents102}  
-    :   
-
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents103}  
-    :   
-
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents104}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents105}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents106}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents107}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents108}  
+<!-- 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents108}  
     :    -->
 
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents100">Notes:</strong>
+    <ul>
+      <li><strong>Matrices Trick:</strong> matrices (<script type="math/tex">A,\  B</script>) can be put in a larger matrix (to create one big matrix) for efficient computation/multiplication:<br />
+  <script type="math/tex">% <![CDATA[
+\begin{bmatrix}
+      A & 0 \\
+      0 & B \\
+  \end{bmatrix} %]]></script></li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
 <hr />
 
 <h2 id="content11">Misc.</h2>
 
 <ol>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents11" id="bodyContents111">Philosophy:</strong></dt>
-      <dd><strong>Occam’s Razor:</strong>  Suppose there exist two explanations for an occurrence. In this case the one that requires the least speculation is usually better.<br />
-Another way of saying it is that the more assumptions you have to make, the more unlikely an explanation.</dd>
-    </dl>
+  <li><strong style="color: SteelBlue" class="bodyContents11" id="bodyContents111">Philosophy:</strong><br />
+ <strong>Occam’s Razor:</strong>  Suppose there exist two explanations for an occurrence. In this case the one that requires the least speculation is usually better.<br />
+ Another way of saying it is that the more assumptions you have to make, the more unlikely an explanation.
+    <blockquote>
+      <p>It is neither <em>precise</em> nor <em>self evident</em>.</p>
+    </blockquote>
   </li>
 </ol>
 
-<!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents112}  
-    :   
+<!-- 2. **Misc:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents112}  
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents113}  
-    :   
 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents114}  
+3. **Misc:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents113}   -->
+
+<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents114}  
     :   
 
 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents115}  
@@ -736,6 +1837,24 @@ Another way of saying it is that the more assumptions you have to make, the more
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents118}  
     :    -->
+
+<p><strong>Resources:</strong></p>
+<ul>
+  <li><a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html">Reinforcement Learning Course Lectures UCL</a></li>
+  <li><a href="https://people.eecs.berkeley.edu/~pabbeel/cs287-fa15/">Advanced Robotics Lecture CS287 Berk</a></li>
+  <li><a href="https://fullstackdeeplearning.com/march2019">Full-Stack DL (productionization of DL) Bootcamp Peter Abbeel</a></li>
+  <li><a href="https://sites.google.com/view/berkeley-cs294-158-sp19/home">Deep Unsupervised Learning CS294 Berk</a></li>
+  <li><a href="https://sites.google.com/view/deep-rl-bootcamp/lectures">Deep RL WS1</a></li>
+  <li><a href="https://sites.google.com/view/deep-rl-workshop-nips-2018/home">Deep RL WS2</a></li>
+  <li><a href="http://rail.eecs.berkeley.edu/deeprlcourse/">Deep RL Lec CS294 Berk</a></li>
+  <li><a href="https://en.d2l.ai/d2l-en.pdf">DeepLearning Book (dive into dl) Berkeley</a>
+    <ul>
+      <li><a href="https://www.d2l.ai/">d2l course website</a></li>
+    </ul>
+  </li>
+  <li><a href="https://www.youtube.com/watch?v=Mdp9uC3gXUU">Mathematics of DL</a></li>
+  <li><a href="https://jhui.github.io/2017/01/05/Deep-learning-linear-algebra/">Deep Learning Linear Algebra</a></li>
+</ul>
 
 
       <footer class="site-footer">
@@ -938,15 +2057,16 @@ bodyContents.each(function(index, element) {
 <script type="text/javascript">
   function showTextPopHide(event) {
     var $button = $(event.target);
-    var txt = $button.attr("input");
+    // var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $button.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $button.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>
@@ -956,15 +2076,15 @@ bodyContents.each(function(index, element) {
   function showText_withParent_PopHide(event) {
     var $button = $(event.target);
     var $parent = $button.parent();
-    var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $parent.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $parent.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>

@@ -1,9 +1,19 @@
 ---
 layout: NotesPage
 title: Information Theory
-permalink: /work_files/research/dl/nlp/infothry
-prevLink: /work_files/research/dl/nlp.html
+permalink: /work_files/research/dl/stats/infothry
+prevLink: /work_files/research/dl/stats.html
 ---
+
+<div markdown="1" class = "TOC">
+# Table of Contents
+
+  * [Information Theory](#content1)
+  {: .TOC1}
+</div>
+
+[A Short Introduction to Entropy, Cross-Entropy and KL-Divergence](https://www.youtube.com/watch?v=ErfnhcEV1O8)  
+
 
 ## Information Theory
 {: #content1}
@@ -19,6 +29,9 @@ prevLink: /work_files/research/dl/nlp.html
         * Less likely events should have higher information content
         * Independent events should have additive information. For example, finding out that a tossed coin has come up as heads twice should convey twice as much information as finding out that a tossed coin has come up as heads once. 
 
+33. **Measuring Information:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents133}  
+
+
 3. **Self-Information:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
     :   The __Self-Information__ or __surprisal__ is a synonym for the surprise when a random variable is sampled.
     :   The __Self-Information__ of an event $$\mathrm{x} = x$$:  
@@ -28,8 +41,8 @@ prevLink: /work_files/research/dl/nlp.html
 4. **Shannon Entropy:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
     :   To quantify the amount of uncertainty in an entire probability distribution, we use __Shannon Entropy__.  
     :   __Shannon Entropy__ is defined as the average amount of information produced by a stochastic source of data.
-    :   $$H(x) = {\displaystyle \operatorname {E}_{x \sim P} [I(x)]} = - {\displaystyle \operatorname {E}_{x \sim P} [\log P(X)]}$$
-    :   __Differential Entropy__ is shannons entropy of a __continuous__ random variable $$x$$
+    :   $$H(x) = {\displaystyle \operatorname {E}_{x \sim P} [I(x)]} = - {\displaystyle \operatorname {E}_{x \sim P} [\log P(X)] = -\sum_{i=1}^{n} p\left(x_{i}\right) \log p\left(x_{i}\right)}$$
+    :   __Differential Entropy__ is Shannons entropy of a __continuous__ random variable $$x$$
 
 5. **Distributions and Entropy:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}  
     :   Distributions that are nearly deterministic (where the outcome is nearly certain) have low entropy; distributions that are closer to uniform have high entropy. 
@@ -41,9 +54,9 @@ prevLink: /work_files/research/dl/nlp.html
     :   * __Discrete__:  
     :   $${\displaystyle D_{\text{KL}}(P\parallel Q)=\sum_{i}P(i)\log \left({\frac {P(i)}{Q(i)}}\right)}$$  
     :   * __Continuous__:  
-    :   $${\displaystyle D_{\text{KL}}(P\parallel Q)=\int _{-\infty }^{\infty }p(x)\log \left({\frac {p(x)}{q(x)}}\right)\,dx,}$$ 
+    :   $${\displaystyle D_{\text{KL}}(P\parallel Q)=\int_{-\infty }^{\infty }p(x)\log \left({\frac {p(x)}{q(x)}}\right)\,dx,}$$ 
 
-    :   __Interpetation:__  
+    :   __Interpretation:__  
     * __Discrete variables__:  
         it is the extra amount of information needed to send a message containing symbols drawn from probability distribution $$P$$, when we use a code that was designed to minimize the length of messages drawn from probability distribution $$Q$$.  
     * __Continuous variables__:  
@@ -92,3 +105,6 @@ prevLink: /work_files/research/dl/nlp.html
     :   It is similar to __KL-Div__ but with an additional quantity - the entropy of $$p$$.  
     :   Minimizing the cross-entropy with respect to $$Q$$ is equivalent to minimizing the KL divergence, because $$Q$$ does not participate in the omitted term.
     :    We treat $$0 \log (0)$$ as $$\lim_{x \to 0} x \log (x) = 0$$.  
+
+
+> __Further Info (Lecture):__ https://www.youtube.com/watch?v=XL07WEc2TRI

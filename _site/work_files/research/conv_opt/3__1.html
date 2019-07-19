@@ -84,6 +84,9 @@
   <ul class="TOC6">
     <li><a href="#content6">Seperation Theorem</a></li>
   </ul>
+  <ul class="TOC7">
+    <li><a href="#content7">Convex Functions</a></li>
+  </ul>
 </div>
 
 <hr />
@@ -701,6 +704,8 @@ z^TA \geq 0, \: z^Ty < 0 %]]></script>.</li>
   </li>
 </ol>
 
+<hr />
+
 <h2 id="content7">Convex Functions</h2>
 
 <ol>
@@ -787,9 +792,9 @@ z^TA \geq 0, \: z^Ty < 0 %]]></script>.</li>
       <dd><button class="showText" value="show" onclick="showTextPopHide(event);">Convexity of a quadratic function.</button>
  <img src="/main_files/conv_opt/3/3.1/8.png" alt="img" hidden="" /></dd>
       <dd><button class="showText" value="show" onclick="showTextPopHide(event);">Convexity of the square-to-linear function</button>
- <img src="/main_files/conv_opt/3/3.1/7.png" alt="img" hidden="" /></dd>
-      <dd><button class="showText" value="show" onclick="showTextPopHide(event);">Convexity of the log-sum-exp function.</button>
  <img src="/main_files/conv_opt/3/3.1/6.png" alt="img" hidden="" /></dd>
+      <dd><button class="showText" value="show" onclick="showTextPopHide(event);">Convexity of the log-sum-exp function.</button>
+ <img src="/main_files/conv_opt/3/3.1/7.png" alt="img" hidden="" /></dd>
       <dd><button class="showText" value="show" onclick="showTextPopHide(event);">Example.</button>
  <img src="/main_files/conv_opt/3/3.1/17.png" alt="img" hidden="" /></dd>
     </dl>
@@ -997,15 +1002,16 @@ bodyContents.each(function(index, element) {
 <script type="text/javascript">
   function showTextPopHide(event) {
     var $button = $(event.target);
-    var txt = $button.attr("input");
+    // var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $button.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $button.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>
@@ -1015,15 +1021,15 @@ bodyContents.each(function(index, element) {
   function showText_withParent_PopHide(event) {
     var $button = $(event.target);
     var $parent = $button.parent();
-    var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $parent.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $parent.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>

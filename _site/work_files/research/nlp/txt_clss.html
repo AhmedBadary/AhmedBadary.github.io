@@ -145,7 +145,7 @@
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Naive Bayes Classifiers:</strong></dt>
-      <dd>are a family of simple probabilitic classifiers based on applying <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem"><em>Bayes’ Theorem</em></a> with strong (naive) independence assumptions between the features.</dd>
+      <dd>are a family of simple probabilistic classifiers based on applying <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem"><em>Bayes’ Theorem</em></a> with strong (naive) independence assumptions between the features.</dd>
       <dd><strong>The Probabilistic Model</strong>:<br />
 Abstractly, naive Bayes is a conditional probability model: given a problem instance to be classified, represented by a vector <script type="math/tex">{\displaystyle \mathbf{x} =(x_{1},\dots ,x_{n})}=(x_{1},\dots ,x_{n})</script> representing some n features (independent variables), it assigns to this instance probabilities</dd>
       <dd>
@@ -694,15 +694,16 @@ bodyContents.each(function(index, element) {
 <script type="text/javascript">
   function showTextPopHide(event) {
     var $button = $(event.target);
-    var txt = $button.attr("input");
+    // var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $button.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $button.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>
@@ -712,15 +713,15 @@ bodyContents.each(function(index, element) {
   function showText_withParent_PopHide(event) {
     var $button = $(event.target);
     var $parent = $button.parent();
-    var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $parent.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $parent.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>

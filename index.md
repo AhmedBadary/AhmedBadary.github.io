@@ -4,14 +4,24 @@ title: 'Ahmad Badary'
 tagline: 'Main Page'
 ---
 
-
 # Deep Learning
 
 ***
 
+## [Deep Learning Architectures](/work_files/research/dl/archits.html)
+
+* ### [Convolutional Neural Networks (CNNs)](/work_files/research/dl/archits/convnets)
+
+* ### [Recurrent Neural Networks (RNNs)](/work_files/research/dl/archits/rnns)
+
+* ### [Auto-Encoders](/work_files/research/dl/aencdrs)
+
+* ### [Variational Auto-Encoders](/work_files/research/dl/vae)
+
+
 ## [Computer Vision](/work_files/research/dl/cv.html)
 
-* ### [Convolutional Neural Networks (CNNs)](/work_files/research/dl/cnnx)
+* ### [Convolutional Neural Networks (CNNs)](/work_files/research/dl/archits/convnets)
 
 * ### [CNN Architectures](/work_files/research/dl/arcts)
 
@@ -50,15 +60,24 @@ tagline: 'Main Page'
 
 * [Information Extraction](/work_files/research/nlp/info_extr)
 
-## Interesting Reads
-
 ***
+
+## Interesting Reads
 
 * [The Index Fund Tracking Problem](/work_files/research/conv_opt/hw/iftp)
 * [(Variational) Auto-Encoders (VAEs)](/work_files/research/dl/vae)
 * [(Vanilla) Auto-Encoders](/work_files/research/dl/aencdrs)
 * [Principle Compnent Analysis (PCA)](/work_files/research/conv_opt/pca)
 * #### [Generative Adversarial Networks](/work_files/research/dl/gans)
+
+***
+***
+
+## Personal
+
+* [Ideas](/ideas)
+* [Concepts](/concepts_)
+* [interviews](/interviews)
 
 
 <div id="home">

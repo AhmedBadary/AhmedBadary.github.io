@@ -201,11 +201,9 @@
     </dl>
   </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents200"><script type="math/tex">l_p</script> Norms:</strong></dt>
-      <dd><script type="math/tex">\ \ \ \ \ \ \ \ \ \ \ \ \ \</script>  <script type="math/tex">\ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \</script>  <script type="math/tex">% <![CDATA[
-\|x\|_p = \left( \sum_{k=1}^n \|x_k\|_p \right)^{1/p}, \ 1 \leq p < \infty %]]></script>.</dd>
-    </dl>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents200"><script type="math/tex">l_p</script> Norms:</strong> 
+<script type="math/tex">% <![CDATA[
+\|x\|_p = \left( \sum_{k=1}^n \|x_k\|^p \right)^{1/p}, \ 1 \leq p < \infty %]]></script></p>
   </li>
   <li>
     <dl>
@@ -272,7 +270,7 @@ i.e., <script type="math/tex">\|x\|_2 = \|Vz\|_2 = \|z\|_2,</script> where <scri
             <dt>The above inequality is an equality if and only if <script type="math/tex">x, y</script> are collinear:</dt>
             <dd><script type="math/tex">{\displaystyle \max_{x : \: \|x\|_2 \le 1} \: x^Ty = \|y\|_2,}</script> 
 with optimal <script type="math/tex">x</script> given by<br />
-<script type="math/tex">x^\ast = \dfrac{y}{\|y\|_2}, \</script> if <script type="math/tex">y</script> is non-zero.</dd>
+<script type="math/tex">x^\ast = \dfrac{y}{\|y\|_ 2}, \</script> if <script type="math/tex">y</script> is non-zero.</dd>
           </dl>
         </blockquote>
       </dd>
@@ -283,7 +281,7 @@ with optimal <script type="math/tex">x</script> given by<br />
       <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Angles between vectors:</strong></dt>
       <dd>When none of the vectors x,y is zero, we can define the corresponding angle as theta such that,</dd>
       <dd>
-        <script type="math/tex; mode=display">\cos\  \theta = \dfrac{x^Ty}{\|x\|_2 \|y\|_2} .</script>
+        <script type="math/tex; mode=display">\cos\  \theta = \dfrac{x^Ty}{\|x\|_ 2 \|y\|_ 2} .</script>
       </dd>
     </dl>
 
@@ -296,6 +294,18 @@ with optimal <script type="math/tex">x</script> given by<br />
   </li>
 </ol>
 
+<p><strong>Notes:</strong></p>
+<ul>
+  <li><script type="math/tex">L^q</script> for <script type="math/tex">q \in (0,1)</script> are no longer <strong>Norms</strong>.
+    <ul>
+      <li>They have <strong>non-convex</strong> contours; thus, using them makes the optimization much harder</li>
+      <li>They, however, induce <em>more</em> <strong>sparsity</strong> than <script type="math/tex">L^1</script></li>
+      <li><script type="math/tex">L^1</script> is the best, <em>sparse norm</em>, convex approximation to the <script type="math/tex">L^q</script> for <script type="math/tex">q \in (0,1)</script><br />
+  <img src="/main_files/conv_opt/2/2.1/16.png" alt="img" width="50%" /></li>
+    </ul>
+  </li>
+</ul>
+
 <hr />
 
 <h2 id="content3">Orthogonality</h2>
@@ -307,26 +317,21 @@ with optimal <script type="math/tex">x</script> given by<br />
       <dd>We say that two vectors <script type="math/tex">x, y \in \mathbf{R}^n</script> are orthogonal if <script type="math/tex">x^Ty = 0.</script></dd>
     </dl>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents36">Asynchronous:</strong> \</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents37">Asynchronous:</strong> \</p>
-  </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents38">Asynchronous:</strong> \</li>
 </ol>
+
+<!-- 2. **Orthogonal Matrix:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents32}  
+
+3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents33} \\
+
+4. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents34} \\
+
+5. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents35} \\
+
+6. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents36} \\
+
+7. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents37} \\
+
+8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents38} \\ -->
 
 <hr />
 
@@ -339,12 +344,16 @@ with optimal <script type="math/tex">x</script> given by<br />
       <dd>A line in <script type="math/tex">\mathbf{R}^n</script> passing through <script type="math/tex">x_0 \in \mathbf{R}^n</script> and with direction <script type="math/tex">u \in \mathbf{R}^n</script>:</dd>
       <dd><script type="math/tex">\left\{ x_0 + tu ~:~ t \in \mathbf{R} \right\}</script>,</dd>
     </dl>
+
+    <p><strong style="color: red">Re-Written:</strong><br />
+ A line in <script type="math/tex">\mathbf{R}^n</script> passing through the point <script type="math/tex">x_0 \in \mathbf{R}^n</script> and with direction <script type="math/tex">\mathbf{u} \in \mathbb{R}^n</script>:</p>
+    <p>$$\left\{ x_0 + c \mathbf{u} ~:~ c \in \mathbb{R} \right\}$$</p>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Projection on a line:</strong></dt>
       <dd>The projection of a given point <script type="math/tex">\vec{x}</script> on the line is a vector <script type="math/tex">\vec{z}</script> located on the line, that is closest to <script type="math/tex">\vec{x}</script> (in Euclidean norm). This corresponds to a simple optimization problem:</dd>
-      <dd><script type="math/tex">\min_t \: \|x - x_0 - tu\|_2^2</script>.</dd>
+      <dd><script type="math/tex">\min_t \: \|x - x_0 - tu\|_ 2^2</script>.</dd>
       <dd>
         <blockquote>
           <p>This particular problem is part of a general class of optimization problems known as least-squares.</p>
@@ -356,6 +365,10 @@ with optimal <script type="math/tex">x</script> given by<br />
         </blockquote>
       </dd>
     </dl>
+
+    <p><strong style="color: red">Re-Written:</strong><br />
+ The projection of a given point <script type="math/tex">\mathbf{v}</script> on the line is a vector <script type="math/tex">\tilde{\mathbf{v}}</script> located on the line, that is closest (distance-wise) to <script type="math/tex">\mathbf{v}</script> (in Euclidean norm). This corresponds to a simple optimization problem:</p>
+    <p>$$\min_c \: \|\mathbf{v} - x_0 - c \mathbf{u}\|_ 2^2$$</p>
   </li>
   <li>
     <dl>
@@ -394,6 +407,70 @@ with optimal <script type="math/tex">x</script> given by<br />
       <dd>In general, the scalar product, <script type="math/tex">u^Tx</script>, is simply,<br />
   <strong>the component of <script type="math/tex">x</script></strong> <strong>along</strong> the <strong>normalized direction</strong> <script type="math/tex">\dfrac{\vec{u}}{\|\vec{u}\|_2}</script> defined by <script type="math/tex">\vec{u}</script>.</dd>
     </dl>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents45">Projection:</strong><br />
+ A <strong>Projection</strong> is a <em>linear transformation</em> <script type="math/tex">P</script> from a vector-space to itself such that the matrix <script type="math/tex">P</script> is <em><strong>idempotent</strong></em>:
+    <p>$$P^2 = P$$</p>
+    <p>It leaves its image unchanged.</p>
+
+    <p><strong style="color: red">Mathematically:</strong><br />
+ A <strong>Projection</strong> on a vector space <script type="math/tex">{\displaystyle V}</script> is a linear operator <script type="math/tex">{\displaystyle P:V\mapsto V}</script> such that <script type="math/tex">{\displaystyle P^{2}=P}</script></p>
+
+    <p><strong style="color: red">Properties:</strong></p>
+    <ul>
+      <li>The <strong>Eigenvalues</strong> of a <em>projection matrix</em> must be <script type="math/tex">0</script> or <script type="math/tex">1</script>
+        <blockquote>
+          <p>From the equation <script type="math/tex">P^2 = P \iff x^2 = x = x(x-1)</script> has roots <script type="math/tex">0, 1</script></p>
+        </blockquote>
+      </li>
+      <li><script type="math/tex">{\displaystyle P}</script> is always a <strong>positive semi-definite</strong> matrix
+        <blockquote>
+          <p>Follows from the fact that the <em>eigenvalues</em> are either <script type="math/tex">0</script> or <script type="math/tex">1</script></p>
+        </blockquote>
+      </li>
+      <li>The corresponding <strong>eigenspaces</strong> are (respectively) the <strong>kernel</strong> and <strong>range</strong> of the projection</li>
+      <li>If a projection is <em>nontrivial</em> it has <strong>minimal polynomial</strong> <script type="math/tex">{\displaystyle x^{2}-x=x(x-1)}</script>, which factors into <strong>distinct roots</strong>, and thus <script type="math/tex">{\displaystyle P}</script> is <em><strong>diagonalizable</strong></em></li>
+      <li>The product of projections is <strong>not</strong>, in general, a projection, even if they are orthogonal.
+        <ul>
+          <li>If projections <strong>commute</strong>, then their <strong>product is a projection</strong>.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Centering_matrix"><strong>The Centering Matrix</strong></a>: is an example of a projection matrix</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents46">Orthogonal Projections:</strong><br />
+ An <strong>Orthogonal Projection</strong> is a projection <script type="math/tex">P</script> from a vector-space to itself such that the matrix <script type="math/tex">P</script> is <em><strong>symmetric</strong></em>:
+    <p>$$P = P^T$$</p>
+
+    <p><strong style="color: red">Mathematically:</strong></p>
+    <ul>
+      <li>When <script type="math/tex">{\displaystyle V}</script> has an inner product and is complete (i.e. when <script type="math/tex">{\displaystyle V}</script> is a Hilbert space) the concept of <strong>orthogonality</strong> can be used.<br />
+ Then <script type="math/tex">{\displaystyle P}</script> is called an orthogonal projection if it satisfies <script type="math/tex">{\displaystyle \langle Px,y\rangle =\langle x,Py\rangle }</script> for all <script type="math/tex">{\displaystyle x,y\in V}</script></li>
+      <li>A projection on a Hilbert space that is not orthogonal is called an <strong>oblique projection</strong>.</li>
+      <li>A <strong>square</strong> matrix <script type="math/tex">{\displaystyle P}</script> is called an orthogonal projection matrix if <script type="math/tex">{\displaystyle P^{2}=P=P^{\mathrm {T} }}</script></li>
+      <li>The range <script type="math/tex">{\displaystyle U}</script> and the null space <script type="math/tex">{\displaystyle V}</script> are <strong>orthogonal subspaces</strong>:
+        <p>$$\langle x,Py\rangle =\langle Px,Py\rangle =\langle Px,y\rangle$$</p>
+      </li>
+      <li>An orthogonal projection is a <strong>bounded operator</strong>.<br />
+  By Cauchy Schwartz:
+        <p>$${\displaystyle \|Pv\|^{2}=\langle Pv,Pv\rangle =\langle Pv,v\rangle \leq \|Pv\|\cdot \|v\|} \\ \iff \\ {\displaystyle \|Pv\|\leq \|v\|}$$</p>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Orthogonal Projection onto a Line:</strong><br />
+ If <script type="math/tex">\hat{u}</script> is a <strong>unit vector</strong> on the line, then the projection is given by the <strong>outer-product</strong>:</p>
+    <p>$$P_{\hat{u}} = \hat{u}\hat{u}^T$$</p>
+    <p><strong style="color: red">Orthogonal Projection onto Subspaces:</strong><br />
+ Generalize the above definition, if <script type="math/tex">{\displaystyle \hat{u}_{1},\ldots ,\hat{u}_{k}}</script> are an <strong>orthonormal basis</strong> of the subspace <script type="math/tex">U</script>, and <script type="math/tex">A</script> is the <script type="math/tex">n \times k</script> matrix with columns <script type="math/tex">{\displaystyle \hat{u}_{1},\ldots ,\hat{u}_{k}}</script>, then the projection is given by:</p>
+    <p>$$P_A = AA^T$$</p>
+    <p>Equivalently:</p>
+    <p>$$P_{A}=\sum _{i}\langle u_{i},\cdot \rangle u_{i}$$</p>
+    <p>Dropping the <strong>Orthonormality</strong> condition on the basis, we get:</p>
+    <p>$$P_{A}=A(A^{\mathrm {T} }A)^{-1}A^{\mathrm {T} }$$</p>
   </li>
 </ol>
 
@@ -538,6 +615,8 @@ with optimal <script type="math/tex">x</script> given by<br />
     </dl>
   </li>
 </ol>
+
+<hr />
 
 <h2 id="content7">Linear Functions and Transformations, and Maps</h2>
 
@@ -1078,6 +1157,12 @@ i.e. the square root of the largest eigenvalue of the positive-semidefinite matr
   </li>
 </ol>
 
+<h2 id="notes">NOTES</h2>
+
+<ul>
+  <li><strong>Distance between 2 vectors (from <script type="math/tex">y</script> to <script type="math/tex">x</script>)</strong>:<br />
+  <script type="math/tex">d = \|x-y\|_2^2</script></li>
+</ul>
 
 
       <footer class="site-footer">
@@ -1280,15 +1365,16 @@ bodyContents.each(function(index, element) {
 <script type="text/javascript">
   function showTextPopHide(event) {
     var $button = $(event.target);
-    var txt = $button.attr("input");
+    // var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $button.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $button.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>
@@ -1298,15 +1384,15 @@ bodyContents.each(function(index, element) {
   function showText_withParent_PopHide(event) {
     var $button = $(event.target);
     var $parent = $button.parent();
-    var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $parent.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $parent.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>

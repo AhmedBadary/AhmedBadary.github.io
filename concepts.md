@@ -8,13 +8,13 @@ prevLink: /
 <div markdown="1" class = "TOC">
 # Table of Contents
 
-  * [ConvNets](#content1)
+  * [CNNs](#content1)
   {: .TOC1}
   * [RNNs](#content2)
   {: .TOC2}
   * [Math](#content3)
   {: .TOC3}
-  * [Statistics](#content4)
+  * [Statistics and Probability Theory](#content4)
   {: .TOC4}
   * [Optimization](#content5)
   {: .TOC5}
@@ -26,20 +26,21 @@ prevLink: /
   {: .TOC8}
   * [Physics](#content9)
   {: .TOC9}
-  * [Game Theory](#content10)
+  * [Algorithms](#content10)
   {: .TOC10}
   * [Misc.](#content11)
   {: .TOC11}
+  * [Game Theory](#content12)
+  {: .TOC12}
 </div>
 
 ***
 ***
 
-## ConvNets
+## CNNs
 {: #content1}
 
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
-    :   
+1. **:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
 
 <!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
     :   
@@ -62,45 +63,147 @@ prevLink: /
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}  
     :   
  -->
+
+__Notes:__  
+* __Structured Convolutions__:  
+    __Why?__  
+    Language has structure, would like it to localize features.  
+    > e.g. noun-verb pairs very informative, but not captured by normal CNNs  
+
+        
+
+***
 ***
 
 ## RNNs
 {: #content2}
 
-1. **Gradient Clipping Intuition:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
-    :   ![img](/main_files/main/concepts/1.png){: width="100%"}  
-    :   * The image above is that of the __Error Surface__ of a _single hidden unit RNN_ 
-        * The observation here is that there exists __High Curvature Walls__ 
-            This Curvature Wall will move the gradient to a very different/far, probably less useful area. 
-            Thus, if we clip the gradients we will avoid the walls and will remain in the more useful area that we were exploring already. 
-    :   Draw a line between the original point on the Error graph and the End (optimized) point then evaluate the Error on points on that line and look at the changes -> this shows changes in the curvature.
+1. **RNN Architectures:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
 
 
-2. **PeepHole Connection:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
-    :   is an addition on the equations of the __LSTM__ as follows: 
-    :   $$ \Gamma_o = \sigma(W_o[a^{(t-1)}, x^{(t)}] + b_o) \\
+2. **Different Connections in RNN Architectures:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
+    1. __PeepHole Connection:__  
+        is an addition on the equations of the __LSTM__ as follows:  
+        <p>$$ \Gamma_o = \sigma(W_o[a^{(t-1)}, x^{(t)}] + b_o) \\
         \implies 
-        \sigma(W_o[a^{(t-1)}, x^{(t)}, c^{(t-1)}] + b_o)$$
-    :   Thus, we add the term $$c^{(t-1)}$$ to the output gate.
+        \sigma(W_o[a^{(t-1)}, x^{(t)}, c^{(t-1)}] + b_o)$$</p>  
+        Thus, we add the term $$c^{(t-1)}$$ to the output gate.  
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}  
-    :   
 
-<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}  
-    :   
+3. **Modeling Sequences - Memory as a model property:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}  
+    __Memoryless Models for Sequences:__{: style="color: red"}  
+    * __Autoregressive Models:__  
+        Predict the next term in a sequence from a fixed number of previous terms using _"delay taps"_.  
+        > It tries to predict the next term, _basically as a weighted average_ (if model is linear) of the previous terms.  
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
+        ![img](/main_files/concepts/11.png){: width="50%"}  
+    * __Feed-Forward Neural Nets__:  
+        Generalize Auto-regressive models by using one or more layers of non-linear hidden units e.g. Bengio's first LM.  
+        ![img](/main_files/concepts/12.png){: width="50%"}  
+
+    __Beyond Memoryless Models:__{: style="color: red"}  
+    If we give our generative models some _hidden state_, and if we give this hidden state its own internal dynamics, we get a much more interesting kind of model.  
+    > The hidden state produces _observations_ that we get to _"observe/see"_  
+
+    * It can __store information__ in its _hidden state_ for a long time.  
+    * If the dynamics is noisy and the way it generates outputs from its hidden state is noisy, (by observing the outputs of the model) we can never know its exact hidden state.  
+        * The best we can do is to infer a probability distribution over the space of hidden state vectors.  
+    * This __inference__ (of the hidden states by observing the outputs of the model) is only __tractable__ for _TWO_ types of hidden-state models:  
+        1. __Linear Dynamical Systems (LDS) (loved by Engineers):__  
+            * These are generative models. They have a real-valued hidden state that cannot be observed directly.
+                * The hidden state has linear dynamics with Gaussian noise and produces the observations using a linear model with Gaussian noise.
+                * There may also be driving inputs.
+            * To predict the next output (so that we can shoot down the missile) we need to infer the hidden state.
+                * A linearly transformed Gaussian is a Gaussian. So the distribution over the hidden state given the data/observations so far is Gaussian (because all the noise in a LDS is Gaussian). It can be computed using _"Kalman filtering"_.
+            ![img](/main_files/concepts/13.png){: width="35%"}  
+        2. __Hidden Markov Models (HMMs) (loved by computer scientists):__  
+            * Hidden Markov Models have a __discrete one-of-N__ hidden state distributions (rather than _Gaussian_ distributions). Transitions between states are stochastic and controlled by a transition matrix. The outputs produced by a state are stochastic. 
+                * We cannot be sure which state produced a given output (because the outputs produced by a state are stochastic). So the state is "hidden" (behind this _"probabilistic veil"_).  
+                * It is easy to represent a probability distribution across N states with N numbers.  
+                    So, even tho we cant know what state it is in for sure, we can easily represent the probability distribution
+            * To predict the next output we need to infer the probability distribution over hidden states. 
+                * HMMs have efficient algorithms for inference and learning (dynamic programming).  
+            ![img](/main_files/concepts/14.png){: width="35%"}  
+            * __A Fundamental Limitation of HMMs__:  
+                * Consider what happens when a hidden Markov model generates data
+                    * At each time step it must select one of its hidden states. So with $$N$$ hidden states it can only remember $$\log(N)$$ bits about what it generated so far.
+                * Consider the information that the first half of an utterance contains about the second half:  
+                    > This is the amount of info that the HMM needs to convey to the second half of an utterance it produces from the first half (having produced the first half)  
+
+                    * The syntax needs to fit (e.g. number and tense agreement)
+                    * The semantics needs to fit. The intonation needs to fit.
+                    * The accent, rate, volume, and vocal tract characteristics must all fit.
+                * All these aspects combined could be $$100$$ bits of information that the first half of an utterance needs to convey to the second half. Thus, needing about $$2^100$$ hidden states to _"remember/store"_ that information.   $$2^100$$ is big!
+
+    __Recurrent Neural Networks (RNNs):__{: style="color: red"}  
+    * RNNs are very powerful, because they combine two properties:
+        * Distributed hidden state that allows them to store a lot of information about the past efficiently.  
+            > i.e. several different units can be active at once (unlike HMMs), so they can remember several different things at once.  
+
+        * Non-linear dynamics that allows them to update their hidden state in complicated ways (unlike LDSs).  
+    * With enough neurons and time, RNNs can compute anything that can be computed by your computer.  
+    ![img](/main_files/concepts/15.png){: width="15%"}  
+
+    * [Visualizing memorization in RNNs](https://distill.pub/2019/memorization-in-rnns/)  
+
+    __Do generative models need to be stochastic?__  
+    * Linear dynamical systems and HMMs are stochastic models.  
+        > The dynamics and the production of observations from the underlying state both involve __intrinsic noise__.  
+        
+        * But the __posterior probability distribution__ over their hidden of the deterministic states given the observed probability distribution over data so far is a _**deterministic** function of the data_.    
+    * Recurrent neural networks are hidden Markov models are deterministic.  
+        * So think of the hidden state of an RNN as the equivalent of the __deterministic probability distribution over hidden states__ in a linear dynamical system or hidden Markov model.  
+
+    __What kinds of behavior can RNNs exhibit?__
+    * They can oscillate. Good for motor control? (e.g. walking needs varying _stride_)  
+    * They can settle to point attractors. Good for retrieving memories?  
+        > By having the target point-attractors (to settle in) be the memories you want to retrieve.  
+
+    * They can behave chaotically. Bad for information processing?
+    * RNNs could potentially learn to implement lots of small programs (using different subsets of their hidden state) that each capture a nugget of knowledge and run in parallel, interacting to produce very complicated effects.
+    * But the computational power of RNNs makes them very hard to train
+        * For many years we could not exploit the computational power of RNNs despite some heroic efforts (e.g. Tony Robinson’s speech recognizer)  
+
+
+    __Notes:__{: style="color: red"}  
+    * __A Content-Addressable Memory__: an item can be accessed by just knowing part of its content.   
+            
+                    
+
+
+4. **Stability - Vanishing and Exploding Gradients:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}  
+    
+
+    __Notes:__{: style="color: red"}  
+    * __Gradient Clipping Intuition__:  
+        ![img](/main_files/concepts/1.png){: width="55%"}   
+        * The image above is that of the __Error Surface__ of a _single hidden unit RNN_  
+        * The observation here is that there exists __High Curvature Walls__.   
+            This Curvature Wall will move the gradient to a very different/far, probably less useful area. 
+            Thus, if we clip the gradients we will avoid the walls and will remain in the more useful area that we were exploring already.   
+        Draw a line between the original point on the Error graph and the End (optimized) point then evaluate the Error on points on that line and look at the changes $$\rightarrow$$ this shows changes in the curvature.  
+            
+
+<!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
     :   
 
 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}  
     :   
 
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}  
-    :   
+    :   -->
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}  
-    :    -->
+8. **Notes:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}  
+    * __Learning Long-Range Dependencies in RNNs/sequence-models__:  
+        One key factor affecting the ability to learn such dependencies is the length of the paths forward and backward signals have to traverse in the network. The shorter these paths between any combination of positions in the input and output sequences, the easier it is to learn long-range dependencies.  
+    * __LSTM (simple) Implementation__: [github](https://github.com/nicodjimenez/lstm), [blog](http://nicodjimenez.github.io/2014/08/08/lstm.html)
+    * [**Sampling from RNNs**](https://medium.com/machine-learning-at-petiteprogrammer/sampling-strategies-for-recurrent-neural-networks-9aea02a6616f){: value="show" onclick="iframePopA(event)"}
+    <a href="https://medium.com/machine-learning-at-petiteprogrammer/sampling-strategies-for-recurrent-neural-networks-9aea02a6616f"></a>
+        <div markdown="1"> </div>    
+        
+            
 
+***
 ***
 
 ## Maths
@@ -119,7 +222,7 @@ prevLink: /
         > The first condition is implied by the others.  
     :   <button>Examples</button>{: .showText value="show"
      onclick="showTextPopHide(event);"}
-    ![img](/main_files/concepts/1.png){: width="100%" hidden=""}  
+    ![img](/main_files/concepts/10.png){: width="100%" hidden=""}  
     :   A __Quasi-Metric__ is a metric that lacks the _symmetry_ property.  
     :   One can form a Metric function $$d'$$  from a Quasi-metric function $$d$$ by taking:  
         $$d'(x, y) = ​1⁄2(d(x, y) + d(y, x))$$  
@@ -143,69 +246,184 @@ prevLink: /
         * __Number of pairs (e.g. $$(a,b)$$) of a set of $$N$$ elements__ $$= N^2$$  
             > e.g. $$\mathbb{R} \times \mathbb{R} = \mathbb{R}^2$$  
 
-<!-- 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
-    :   
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
-    :   
+4. **Proof Methods:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
+    * Direct Proof
+    * Mathematical Induction
+        * Strong Induction
+        * Infinite Descent
+    * Contradiction
+    * Contraposition ($$(p \implies q) \iff (!q \implies !p)$$)  
+    * Construction
+    * Combinatorial
+    * Exhaustion
+    * Non-Constructive proof (existence proofs)
 
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
-    :   
+5. **Mathematical Concepts - The Map of Mathematics:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
+    <button>Show Text</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    * __Real Analysis__:  
+        The Real line begets Real Analysis. It's the study of real numbers and continuous functions on the reals. You have a concrete object (real numbers) and a concrete distance measure (the absolute value function) which is needed for the notions of convergence and continuity.  
+    * __Metric Spaces__:  
+        Less concrete than Real Analysis. You have a numerical way of explaining proximity by a distance measure, and you have a similar way of explaining convergence and continuity. Functional Analysis lies in the middle of those two.   
+    * __Topology__:  
+        Studies topological spaces, WHERE, everything is up for grabs. The proximity measure is no longer numerical. The proximity "measure" around a point is a poset-like at best. This makes the notions of convergence and continuity more tricky.  
+    * __Functional Analysis__:  
+        Can be thought of as a generalization of Linear Algebra to infinite dimensional vector spaces (e.g. spaces of functions with a given property - e.g. continuity).  
+    * __Differential Topology__:  
+        is the study of smooth manifolds and smooth maps. It is fundamentally using tools from calculus (hence the "differential" part in the name) but the focus is on spaces and maps up to diffeomorphism, which means that you don't care at all about notions like angles, lengths, curvature, flatness etc. Just like in ordinary (non-differential) topology, a gently curved line, a straight line, and a totally squiggly line are all the same up to diffeomorphism (the squiggly line should have no sharp cusps and corners though, which is how this is different from ordinary topology).  
+        * __Pre-Reqs:__ include a very good foundation in real analysis, including multivariate differential analysis; linear algebra; and topology.  
+    * __Differential Geometry__:  
+        Its the study of precisely those things that differential topology doesn't care about (i.e. angles, curvature, etc.). Here the principal objects of study are manifolds endowed with the much more rigid structure of a (Riemannian) metric, which lets you discuss geometric properties like lengths, angles and curvature. 
+        * __Applications__:  
+            It ties well with: Lie Groups, General Relativity, Symplectic Geometry (Mechanics), Algebraic Topology.  
+        * __Pre-Reqs__: similar to those for Differential Topology: solid multivariate analysis, some topology, and of course linear algebra.  
+    * __Algebraic Topology__:  
+        the study of algebraic invariants as a tool for classifying topological objects.  
+        >  Some of those invariants can actually be developed via differential topology (de Rham cohomology), but most are defined in completely different terms that do not need the space to have any differential structure whatsoever.  
+        * __Pre-Reqs__: Hard + Touches a lot of math; topology, a good grounding in algebra (abelian groups, rings etc.), know something about categories and functors.  
+    * __Algebraic Geometry__:  
+        very different topic. At the most basic level, its the study of _algebraic varieties_ (i.e. sets of solutions to polynomial equations).  
+        Modern algebraic geometry, however, is much wider than this innocent statement seems to imply. It is notoriously complex and requires a very deep understanding of a wide variety of disciplines and domains.  
+        * __Pre-Reqs__: commutative algebra, Galois theory, some number theory (especially algebraic number theory), complex function theory, category theory, and a serving of algebraic topology wouldn't hurt.  
+        General topology is sort-of required: algebraic geometry uses the notion of "Zariski topology" but, honestly, this topology is so different from the things most analysts and topologists talk about that basic topology won't help.
+    {: hidden=''}
 
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
-    :   
+    [Further Reading](https://www.quora.com/What-are-the-differences-between-differential-topology-differential-geometry-algebraic-topology-and-algebraic-geometry-In-what-order-does-one-usually-go-about-learning-them)   
+            
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
-    :   
- -->
+6. **From Topology to Algebraic Topology:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
+    <button>Analysis</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    * Suppose we have a closed loop of rope, i.e., a rope with its ends connected together. Such a closed loop could be a simple ring or it could be knotted up in various different ways:  
+        ![img](/main_files/concepts/2.png){: width="100%"}  
+    * Now, whether or not it is knotted does not depend on how thick the rope is, how long the rope is, or how it is positioned in space. As long as we don't cut the rope, any kind of continuous deformation of the rope, such as moving it around, stretching it, bending it, and so on, does not change an unknotted closed loop into a knotted one. So, if we want to study the possible different ways a closed loop can be knotted, we want to ignore any differences related to all these various kinds of continuous deformations. When we ignore all those properties, what is left are called topological properties. So, while two closed loops of different sizes or shapes are geometrically distinct, they could be topologically identical. They are topologically distinct only if they can not be transformed into each other with any continuous deformation. So, in the context of knot theory, topology is the study of the properties of knottedness, which do not depend on the details of position, shape, size, and so on.  
+    * Now, algebraic topology is a way of studying topological properties by translating them into algebraic properties. In the case of knot theory, this might involve, for example, a map that assigns a unique integer to any given closed loop. Such a map can be very useful if we can show that it will always assign the same integer to two closed loops that can be continuously deformed into each other, i.e., topologically equivalent closed loops are always assigned the same number. (Such a map is called a knot invariant.) For example, if we are given two closed loops and they are mapped to different integers, then this instantly tells us that they are topologically distinct from each other. The converse is not necessarily true, since a map with poor "resolving power" might take many topologically distinct closed loops to the same integer. Algebraic topology in the context of knot theory is the study of these kinds of maps from topological objects such as closed loops to algebraic objects such as integers. These maps give, as it were, algebraic perspectives on the topological objects, and that is what algebraic topology in general is about.
+    {: hidden=''}  
+
+7. **Notes:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
+    * __Dot Product Scale/Magnitude__: the scale of the dot product increases as dimensions get larger.  
+        Assume that the components of $$q$$ and $$k$$ are independent random variables with mean $$0$$ and variance $$1$$. Then their dot product, $$q^Tk = \sum_{i=1}^{d_k} q_ik_i$$, (where $$d_k = \vert k \vert$$ is the dimension of $$k \in \mathbb{R}^{d_k} \iff q \in \mathbb{R}^{d_q}$$) has mean $$0$$ and variance $$d_k$$.  
+            
+
 8. **Formulas:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
-    :   * __Binomial Theorem__:  
-    :   $$(x+y)^{n}=\sum_{k=0}^{n}{n \choose k}x^{n-k}y^{k}=\sum_{k=0}^{n}{n \choose k}x^{k}y^{n-k} \\={n \choose 0}x^{n}y^{0}+{n \choose 1}x^{n-1}y^{1}+{n \choose 2}x^{n-2}y^{2}+\cdots +{n \choose n-1}x^{1}y^{n-1}+{n \choose n}x^{0}y^{n},$$  
-    :   * __Binomial Coefficient__:  
-    :   $${\binom {n}{k}}={\frac {n!}{k!(n-k)!}}$$ 
-    :   * __Expansion $$x^n - y^n$$__:  
-    :   $$x^n - y^n = (x-y)(x^{n-1} + x^{n-2} y + ... + x y^{n-2} + y^{n-1})$$  
-    :   * __Number of subsets of a set of $$N$$ elements__ $$= 2^N$$  
+    * __Binomial Theorem__:  
+        <p>$$(x+y)^{n}=\sum_{k=0}^{n}{n \choose k}x^{n-k}y^{k}=\sum_{k=0}^{n}{n \choose k}x^{k}y^{n-k} \\={n \choose 0}x^{n}y^{0}+{n \choose 1}x^{n-1}y^{1}+{n \choose 2}x^{n-2}y^{2}+\cdots +{n \choose n-1}x^{1}y^{n-1}+{n \choose n}x^{0}y^{n},$$</p>  
+    * __Binomial Coefficient__:  
+        <p>$${\binom {n}{k}}={\frac {n!}{k!(n-k)!}} = N \text{choose} k = N \text{choose} (n-k)$$</p>
+    * __Expansion $$x^n - y^n$$__:  
+        <p>$$x^n - y^n = (x-y)(x^{n-1} + x^{n-2} y + ... + x y^{n-2} + y^{n-1})$$</p>  
+    * __Number of subsets of a set of $$N$$ elements__ $$= 2^N$$  
         * __Number of pairs (e.g. $$(a,b)$$) of a set of $$N$$ elements__ $$= N^2$$  
+        * There are at most $$k^N$$ ways to partition $$N$$ data points into $$k$$ clusters - there are $$N$$ choose $$k$$ clusters, precisely
+    * __Logarithms__:  
+        <p>$$\log_x(y) = \dfrac{\ln(y)}{\ln(x)}$$</p>  
+    * __The length of a vector $$\mathbf{x}$$  along a direction (projection)__:  
+        1. Along a unit-length vector $$\hat{\mathbf{w}}$$: $$\text{comp}_ {\hat{\mathbf{w}}}(\mathbf{x}) = \hat{\mathbf{w}}^T\mathbf{x}$$  
+        2. Along an unnormalized vector $$\mathbf{w}$$: $$\text{comp}_ {\mathbf{w}}(\mathbf{x}) = \dfrac{1}{\|\mathbf{w}\|} \mathbf{w}^T\mathbf{x}$$    
+    * __Summations__:  
+        * $$\sum_{i=1}^{n} 2^{i}=2^{n+1}-2$$  
+            
+            
             
 
 
 ***
+***
 
-## Statistics
+## Statistics and Probability Theory
 {: #content4}
 
 1. **ROC Curve:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}  
-    :   * A way to quantify how good a **binary classifier** separates two classes
-        * True-Positive-Rate / False-Positive-Rate
-        * Good classifier has a ROC curve that is near the top-left diagonal (hugging it)
-        * A Bad Classifier has a ROC curve that is close to the diagonal line
-        * It allows you to set the **classification threshold**
-            * You can minimize False-positive rate or maximize the True-Positive Rate
+    * A way to quantify how good a **binary classifier** separates two classes
+    * True-Positive-Rate / False-Positive-Rate
+    * Good classifier has a ROC curve that is near the top-left diagonal (hugging it)
+    * A Bad Classifier has a ROC curve that is close to the diagonal line
+    * It allows you to set the **classification threshold**  
+        * You can minimize False-positive rate or maximize the True-Positive Rate
 
 2. **AUC - AUROC:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}  
-    :   * Range $$ = 0.5 - 1.0$$ from poor to perfect 
+    * Range $$ = 0.5 - 1.0$$, from poor to perfect  
 
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}  
-    :   
+3. **Statistical Efficiency:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}  
+    Essentially, a more efficient estimator, experiment, or test needs fewer observations than a less efficient one to achieve a given performance.  
+    Efficiencies are often defined using the _variance_ or _mean square error_ as the measure of desirability.  
+    An efficient estimator is also the minimum variance unbiased estimator (MVUE).  
 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44}  
-    :   
+    * An Efficient Estimator has lower variance than an inefficient one  
+    * The use of an inefficient estimator gives results equivalent to those obtainable from a subset of data; and is therefor, wasteful of data  
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}  
-    :   
+4. **Errors VS Residuals:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44}  
+    The __Error__ of an observed value is the deviation of the observed value from the (unobservable) **_true_** value of a quantity of interest.  
 
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}  
+    The __Residual__ of an observed value is the difference between the observed value and the *__estimated__* value of the quantity of interest.  
+
+    * [**Example in Univariate Distributions**](https://en.wikipedia.org/wiki/Errors_and_residuals#In_univariate_distributions){: value="show" onclick="iframePopA(event)"}
+    <a href="https://en.wikipedia.org/wiki/Errors_and_residuals#In_univariate_distributions"></a>
+        <div markdown="1"> </div>    
+
+5. **Maximum Likelihood Estimation:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}  
+    __Likelihood in Parametric Models:__{: style="color: red"}  
+    Suppose we have a parametric model $$\{p(y ; \theta) | \theta \in \Theta\}$$ and a sample $$D=\left\{y_{1}, \ldots, y_{n}\right\}$$:  
+    * The likelihood of parameter estimate $$\hat{\theta} \in \Theta$$ for sample $$\mathcal{D}$$ is:  
+        <p>$$p(\mathcal{D} ; \hat{\theta})=\prod_{i=1}^{n} p\left(y_{i} ; \hat{\theta}\right)$$</p>  
+    * In practice, we prefer to work with the __log-likelihood__.  Same maximum but  
+        <p>$$\log p(\mathcal{D} ; \hat{\theta})=\sum_{i=1}^{n} \log p\left(y_{i} ; \theta\right)$$</p>  
+        and sums are easier to work with than products.  
+
+    __MLE for Parametric Models:__{: style="color: red"}  
+    The __maximum likelihood estimator (MLE)__ for $$\theta$$ in the (parametric) model $$\{p(y, \theta) | \theta \in \Theta\}$$ is:  
+    <p>$$\begin{aligned} \hat{\theta} &=\underset{\theta \in \Theta}{\arg \max } \log p(\mathcal{D}, \hat{\theta}) \\ &=\underset{\theta \in \Theta}{\arg \max } \sum_{i=1}^{n} \log p\left(y_{i} ; \theta\right) \end{aligned}$$</p>  
+
+    > You are finding the value of the parameter $$\theta$$ that, if used (in the model) to generate the probability of the data, would make the data most _"likely"_ to occur.  
+
+    * __MLE Intuition__:  
+        If I choose a _hypothesis_ $$h$$ underwhich the _observed data_ is very *__plausible__* then the _hypothesis_ is very *__likely__*.  
+    * [**Maximum Likelihood as Empirical Risk Minimization**](https://www.youtube.com/embed/JrFj0xpGd2Q?start=2609){: value="show" onclick="iframePopA(event)"}
+    <a href="https://www.youtube.com/embed/JrFj0xpGd2Q?start=2609"></a>
+        <div markdown="1"> </div>    
+    * Finding the MLE is an optimization problem.
+    * For some model families, calculus gives a closed form for the MLE
+    * Can also use numerical methods we know (e.g. SGD)  
+
+
+    * __Why maximize the natural log of the likelihood?__:  
+        1. Numerical Stability: change products to sums  
+        2. The logarithm of a member of the family of exponential probability distributions (which includes the ubiquitous normal) is polynomial in the parameters (i.e. max-likelihood reduces to least-squares for normal distributions)  
+        $$\log\left(\exp\left(-\frac{1}{2}x^2\right)\right) = -\frac{1}{2}x^2$$   
+        3. The latter form is both more numerically stable and symbolically easier to differentiate than the former. It increases the dynamic range of the optimization algorithm (allowing it to work with extremely large or small values in the same way).  
+        4. The logarithm is a monotonic transformation that preserves the locations of the extrema (in particular, the estimated parameters in max-likelihood are identical for the original and the log-transformed formulation)  
+
+        * Gradient methods generally work better optimizing $$log_p(x)$$ than $$p(x)$$ because the gradient of $$log_p(x)$$ is generally more __well-scaled__. [link](https://stats.stackexchange.com/questions/174481/why-to-optimize-max-log-probability-instead-of-probability)
+            __Justification:__ the gradient of the original term will include a $$e^{\vec{x}}$$ multiplicative term that scales very quickly one way or another, requiring the step-size to equally scale/stretch in the opposite direction.  
+
+<!-- 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}  
     :   
 
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}  
-    :   
+    :     -->
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents48}  
-    :    -->
+**Notes:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents48}  
+* __Why maximize the natural log of the likelihood?__:  
+    1. Numerical Stability: change products to sums  
+    2. The logarithm of a member of the family of exponential probability distributions (which includes the ubiquitous normal) is polynomial in the parameters (i.e. max-likelihood reduces to least-squares for normal distributions)  
+    $$\log\left(\exp\left(-\frac{1}{2}x^2\right)\right) = -\frac{1}{2}x^2$$   
+    3. The latter form is both more numerically stable and symbolically easier to differentiate than the former. It increases the dynamic range of the optimization algorithm (allowing it to work with extremely large or small values in the same way).  
+    4. The logarithm is a monotonic transformation that preserves the locations of the extrema (in particular, the estimated parameters in max-likelihood are identical for the original and the log-transformed formulation)  
+* [__(GANs) Sampling from Discrete Distributions \| The Gumbel-Softmax Trick__](http://anotherdatum.com/gumbel-gan.html)  
+* __Covariance Matrix__ is the inverse of the __Metric Tensor__  
+    * In __Gaussians__: $$\Sigma^{1/2}$$ maps spheres to ellipsoids; eigenvalues are radii; they are also the standard deviations along the eigenvectors  
+* __Reason we sometimes prefer Biased Estimators__:  
+    Mainly, due to the *__Bias-Variance Decomposition__*. The __MSE__ takes into account both the _bias_ and the _variance_ and sometimes the biased estimator might have a lower variance than the unbiased one, which results in a total _decrease_ in the MSE.  
+* __Cross-Field Terms__:  
+    * Independent Variable $$\iff$$  Covariate $$\iff$$  Feature   
+    * (Collection of) Independent Variables $$\iff$$  Covariates $$\iff$$  Features $$\iff$$  Input   
+    * Dependent Variable $$\iff$$  Response $$\iff$$  Label $$\iff$$  Target $$\iff$$  Output  
+    * [Statistics VS Machine Learning](https://towardsdatascience.com/the-actual-difference-between-statistics-and-machine-learning-64b49f07ea3)  
+* __Uncorrelated Features in a Design Matrix__:  
+    <p>$$\implies X^TX=nI$$</p>   
+        
 
+***
 ***
 
 ## Optimization
@@ -214,95 +432,524 @@ prevLink: /
 1. **Sigmoid:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents51}  
     :   $$\sigma(-x) = 1 - \sigma(x)$$
 
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents52}  
-    :   
+2. **Gradient-Based Optimization:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents52}  
+    
+    __Notes:__{: style="color: red"}  
+    * Gradients can't propagate through __argmax__  
+    * __Derivative for a max function__:  
+        The derivative is defined (even though its not continuous at the threshold) by setting the value at the threshold/zero to be either the right or the left derivative.  
+        This is known as the __Sub-Gradient__ and that's why _gradient descent_ still works.  
+    * [__Subgradient Descent__](https://www.youtube.com/watch?v=jYtCiV1aP44&list=PLnZuxOufsXnvftwTB1HL6mel1V32w0ThI&index=12&t=0s)  
+    * [**Hessian-Free Optimization \| Conjugate Gradient Method (Hinton)**](https://www.youtube.com/embed/K2X0eBd-0lc?list=PLoRl3Ht4JOcdU872GhiYWf6jwrk_SNhz9){: value="show" onclick="iframePopA(event)"}
+    <a href="https://www.youtube.com/embed/K2X0eBd-0lc?list=PLoRl3Ht4JOcdU872GhiYWf6jwrk_SNhz9"></a>
+        <div markdown="1"> </div>    
 
-<!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents53}  
-    :   
 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents54}  
-    :   
+3. **Backpropagation:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents53}  
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents55}  
-    :   
+    __NOTES:__  
+    * __Backprop (BPTT specifically here) and concept of Locality__:  
+        In this context, local in space means that a unit's weight vector can be updated using only information stored in the connected units and the unit itself such that update complexity of a single unit is linear in the dimensionality of the weight vector. Local in time means that the updates take place continually (on-line) and depend only on the most recent time step rather than on multiple time steps within a given time horizon as in BPTT. Biological neural networks appear to be local with respect to both time and space. [wikipedia](https://en.wikipedia.org/wiki/Recurrent_neural_network#Gradient_descent)
+    * __Backpropagation with weight constraints__:  
+        * It is easy to modify the backprop algorithm to incorporate linear constraints between the weights.  
+            <p>$$\begin{array}{l}{\text { To constrain: } w_{1}=w_{2}} \\ {\text { we need : } \Delta w_{1}=\Delta w_{2}}\end{array}$$</p>  
+            So, we compute the gradients as usual for each $$w_i$$ then average them and update both weights (so they'll continue to satisfy the constraints).    
+    * Backprop is a __Leaky Abstraction__  
 
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents56}  
-    :   
 
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents57}  
+4. **Error Measures - Loss Functions:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents54}  
+    * __Cross Entropy__:  
+        * __Deriving Binary Cross Entropy__:  
+            It is the log-likelihood of a Bernoulli probability model.  
+            <p>$$\begin{array}{c}{L(p)=p^{y}(1-p)^{1-y}} \\ {\log (L(p))=y \log p+(1-y) \log (1-p)}\end{array}$$</p>  
+        * __[Cross Entropy > MSE for Classification](https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/)__  
+                
+                
+            
+
+    __Notes:__{: style="color: red"}   
+    * __Loss VS Cost Function__:  
+        * Loss is just the Error function from Caltech
+        * Cost is more general than Loss: usually the sum of all the losses  
+        * __Objective function__ is even more general, but a Cost might be a type of __Objective Function__  
+            * The __Risk Function__ is an objective function is the expected loss  
+    * [__Loss Functions for Regression__](https://www.youtube.com/watch?v=1oi_Mwozj5w&list=PLnZuxOufsXnvftwTB1HL6mel1V32w0ThI&index=8)  
+    * __MSE__:  
+        The principle of mean square error can be derived from the principle of maximum likelihood (after we set a linear model where errors are normally distributed).  
+    * __Hinge Loss and 0-1 Loss__:  
+        * Hinge loss upper bounds 0-1 loss
+        * It is the tightest _convex_ upper bound on the 0/1 loss  
+        * Minimizing 0-1 loss is NP-hard in the worst-case
+        img  
+    * __Loss functions of common ML models__:  
+        * maximize the posterior probabilities (e.g., naive Bayes)
+        * maximize a fitness function (genetic programming)
+        * maximize the total reward/value function (reinforcement learning)
+        * maximize information gain/minimize child node impurities (CART decision tree classification)
+        * minimize a mean squared error cost (or loss) function (CART, decision tree regression, linear regression, adaptive linear neurons, ...
+        * maximize log-likelihood or minimize cross-entropy loss (or cost) function
+        * minimize hinge loss (support vector machine)  
+    <br>
+
+5. **Mathematical Properties, Aspects, Considerations:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents55}  
+    * __The Composition of Invariant Functions__:  
+        A function that is _invariant_ to some transformation (e.g. rotation, permutation, etc.) can be composed by averaging over all transformations (rotations -> e.g. rotation invariant filters).  
+        Equivalently, for _BoW_, we average over all permutations (by averaging the words).  
+        This causes *__smearing__*.   
+    * __Smearing in Invariant Functions__:  
+        In the linear case, a rotational invariant function commutes with all rotations of the elements in $$\mathbb{R}$$; Any commutative transformation should yield this; or a combo of commutative transformations; thus smearing.  
+        > Implies that one should not use linear functions to aggregate over the set where we want some transformation invariance   
+    * __The Weight vector of a linear signal is orthogonal to the decision boundary__:  
+        The weight vector $$\mathbf{w}$$ is orthogonal to the separating-plane/decision-boundary, defined by $$\mathbf{w}^T\mathbf{x} + b = 0$$, in the $$\mathcal{X}$$ space; Reason:  
+        Since if you take any two points $$\mathbf{x}^\prime$$ and $$\mathbf{x}^{\prime \prime}$$ on the plane, and create the vector $$\left(\mathbf{x}^{\prime}-\mathbf{x}^{\prime \prime}\right)$$  parallel to the plane by subtracting the two points, then the following equations must hold:  
+        <p>$$\mathbf{w}^{\top} \mathbf{x}^{\prime}+b=0 \wedge \mathbf{w}^{\top} \mathbf{x}^{\prime \prime}+b=0 \implies \mathbf{w}^{\top}\left(\mathbf{x}^{\prime}-\mathbf{x}^{\prime \prime}\right)=0$$</p>  
+
+    __Identities:__{: style="color: red"}  
+    * __Math Identities__:  
+        <p>$$\frac{1}{N} \sum_{n=1}^{N}\left(\mathbf{w}^{\mathrm{T}} \mathbf{x}_{n}-y_{n}\right)^{2} = \frac{1}{N}\|\mathrm{Xw}-\mathrm{y}\|^{2}$$</p>  
+    * $$\dfrac{\partial}{\partial y} \vert{x-y}\vert  = - \text{sign}(x-y)$$  
+
+    __Notes:__{: style="color: red"}  
+    * The __well-behaved__ property from an optimization standpoint, implies that $$f''(x)$$ doesn't change too much or too rapidly, leading to a nearly quadratic function that is easy to optimize by gradient methods.  
+
+
+6. **The Method of Lagrange Multipliers:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents56}  
+    The __constrained__ optimization problem:  
+    <p>$$\min_{\mathbf{x}} f(\mathbf{x}) \text { subject to } g(\mathbf{x}) \leq 0$$</p>  
+    is equivalent to the __unconstrained__ optimization problem:  
+    <p>$$\min_{\mathbf{x}}(f(\mathbf{x})+\lambda g(\mathbf{x}))$$</p>    
+    where $$\lambda$$ is a scalar called the __Lagrange multiplier__.  
+<br>
+
+<!-- 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents57}  
     :   
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents58}  
     :    -->
 
+__NOTES:__  
+* [Ch.8 Dl-book summary](https://medium.com/inveterate-learner/deep-learning-book-chapter-8-optimization-for-training-deep-models-part-i-20ae75984cb2)  
+* [Why You Should Use Cross-Entropy Error Instead Of Classification Error Or Mean Squared Error For Neural Network Classifier Training](https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/)  
+* Points that satisfy all constraints (i.e. the feasible region) always convex and polytope.  
+* __[Optimization Blog on opt techniques](http://ruder.io/optimizing-gradient-descent/index.html#gradientdescentoptimizationalgorithms)__  
+
+
+        
+
+***
 ***
 
 ## Machine Learning
 {: #content6}
 
-1. **Why NNs are not enough:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents61}  
-    :   The gist of it is this: neural nets do *pattern recognition*, which achieves *local generalization* (which works great for supervised perception). But many simple problems require some (small) amount of abstract modeling, which modern neural nets can't learn
+1. **Theory:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents61}  
+
+    * __ML from a Probabilistic Approach__:  
+        When employing a _probabilistic approach_ to doing _"learning"_ (i.e. choosing the hypothesis), you are trying to find: __What is the most probable hypothesis, given the Data__.  
+
+    __Why NNs are not enough?__  
+    The gist of it is this: neural nets do *pattern recognition*, which achieves *local generalization* (which works great for supervised perception). But many simple problems require some (small) amount of abstract modeling, which modern neural nets can't learn.  
+
+    __[Generalization in Deep Learning](https://arxiv.org/pdf/1710.05468.pdf)__  
+
+    __Is there enough info in the labels to learn good, general features in Classification problems?__  
+    <button>Show Text</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    <p hidden>(((If the task is to learn to classify a particular image into one class/category; and the categories lie on the same manifold (i.e. just cats and dogs; or just vehicles etc.) then, the model can learn the patterns that relate to the particular class the image belongs to, BUT MOREOVER, it learns to ignore the rest of the patterns (i.e. background). So, in a way, yes, there is no information in the labels that tells the network to learn what a tree is (so any objects in the background are somewhat blurred to the network, they have no higher-order meaning) so the overall higher-level vision capabilities of the network doesn't necessarily "develop".   <br />
+    As for the task of pre-training, we both know that even if you learn the patterns of very specific objects/classes (e.g. cats and dogs) you still need to develop certain visual features (e.g. edge/corner detection) and those featurizers will develop well, regardless of the amount of information. i.e. the lower-level visual capabilities will be developed. (we have evidence that pretraining works really well in Vision).  <br />
+    I think the issue here is with Deterministic Noise (i.e. the Bias of the model). The CNN hypothesis just doesn't do things like inverse graphics and whatnot; regardless of the amount of information.  <br />
+    Finally, a big problem is when the information is just conflicting, like two objects that should be recognized but we only label it as one of them. That's the Stochastic Noise. Which relates directly to how well we would generalize. This can be attributed to many things as well: E.g. (1) One-hot vectors need to be smoothed to allow the network to get a sense of the actual different objects in the image, AND to not over-fit the particulars of the data (e.g. consider a cat that looks like a tiger and a cat that looks like a dog; labeling it with 0.8 cat is much better to learn the "cattiness" of the image than the noise) (2) Target labels are just limited. There aren't enough categories in the target, which puts a huge limitation for one-shot learning generalization)))</p>  
+
+    __Notes:__  
+    * __Intuition of why DL Works__:  
+        __Circuit Theory:__ There are function you can compute with a "small" L-layer deep NN that shallower networks require exponentially more hidden units to compute. (comes from looking at networks as logic gates).  
+        * __Example__:  
+            Computing $$x_1 \text{XOR} x_2 \text{XOR} ... \text{XOR} x_n$$  takes:   
+            * $$\mathcal{O}(log(n))$$ in a tree representation.  
+                ![img](/main_files/concepts/7.png){: width="65%"}  
+            * $$\mathcal{O}(2^n)$$ in a one-hidden-layer network because you need to exhaustively enumerate all possible $$2^N$$ configurations of the input bits that result in the $$\text{XOR}$$ being $${1, 0}$$.   
+                ![img](/main_files/concepts/8.png){: width="65%"}  
+    * __[Curse of Dimensionality (ipynb)](https://github.com/josh-tobin/cs189-su18/blob/master/lecture7.ipynb)__  
+            
+
+
 
 2. **The Big Formulations:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents62}  
-    :   * __Sequence Labeling__: 
-            * *__Problems__*:  
-                * Speech Recognition 
-                * OCR
-                * Semantic Segmentation
-            * *__Approaches__*:  
-                * CTC - Bi-directional LSTM
-                * Listen Attend and Spell (LAS)
-                * HMMs 
-                * CRFs
-                
-            
-3. **What is ML?:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents63}  
-    :   Improve on __TASK T__ with respect to __PERFORMANCE METRIC P__ based on __EXPERIENCE E__.  
-    :   __T:__ Categorize email messages as spam or legitimate 
+    __ML Formulation:__{: style="color: red"}  
+    Improve on __TASK T__ with respect to __PERFORMANCE METRIC P__ based on __EXPERIENCE E__.  
+
+    __Problems in ML:__{: style="color: red"}  
+    * __T:__ Categorize email messages as spam or legitimate 
         __P:__ Percentage of email messages correctly classified 
-        __E:__ Database of emails, some with 
-        human-given labels 
+        __E:__ Database of emails, some with human-given labels  
 
-        __T:__ Recognizing hand-written words 
+    * __T:__ Recognizing hand-written words 
         __P:__ Percentage of words correctly classified 
-        __E:__ Database of human-labeled images of 
-        handwritten words 
+        __E:__ Database of human-labeled images of  handwritten words 
 
-        __T:__ playing checkers 
+    * __T:__ playing checkers 
         __P:__ percentage of games won against an arbitrary opponent 
         __E:__ Playing practice games against itself 
 
-        __T:__ Driving on four-lane highways using vision sensors 
+    * __T:__ Driving on four-lane highways using vision sensors 
         __P:__ Average distance traveled before a human-judged error 
         __E:__ A seq of images and steering commands recorded while observing a human driver  
+    * __Sequence Labeling__: 
+        * *__Problems__*:  
+            * Speech Recognition 
+            * OCR
+            * Semantic Segmentation
+        * *__Approaches__*:  
+            * CTC - Bi-directional LSTM
+            * Listen Attend and Spell (LAS)
+            * HMMs 
+            * CRFs  
 
-4. **Graphical Models:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents64}  
-    :   
+            
+3. **What is ML?:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents63}  
 
-<!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents65}  
-    :   
 
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents66}  
-    :   
+4. **Types of Learning:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents64}  
+    * __Multi-Task Learning__: general term for training on multiple tasks  
+        * _Joint Learning:_ by choosing mini-batches from two different tasks simultaneously/alternately
+        * _Pre-Training:_ first train on one task, then train on another  
+            > widely used for __word embeddings__  
+    * __Transfer Learning__:  
+        a type of multi-task learning where we are focused on one task; by learning on another task then applying those models to our main task  
+    * __Domain Adaptation__:  
+        a type of transfer learning, where the output is the same, but we want to handle different inputs/topics/genres  
+    * __Zero-Shot Learning__:  
 
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents67}  
-    :   
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents68  
-   -->  :   
+    __Notes:__  
+    * __Relationship between Supervised and Unsupervised Learning__:  
+        Many ml algorithms can be used to perform both tasks. E.g., the chain rule of probability states that for a vector $$x \in \mathbb{R}^n$$, the joint distribution can be decomposed as:  
+        $$p(\mathbf{x})=\prod_{i=1}^{n} p\left(\mathrm{x}_{i} | \mathrm{x}_{1}, \ldots, \mathrm{x}_{i-1}\right)$$  
+        which implies that we can solve the Unsupervised problem of modeling $$p(x)$$ by splitting it into $$n$$ supervised learning problems.  
+        Alternatively, we can solve the supervised learning problem of learning $$p(y \vert x)$$ by using traditional unsupervised learning technologies to learn the joint distribution $$p(x, y)$$, then inferring:  
+        $$p(y | \mathbf{x})=\frac{p(\mathbf{x}, y)}{\sum_{y} p\left(\mathbf{x}, y^{\prime}\right)}$$  
+    * __Intuition on Why Unsupervised Learning works__:  
+        * Goal: Learn Portuguese
+        * For 1 month you listen to Portuguese on the radio (this is unlabeled data)
+        * You develop an intuition for the language, phrases, and grammar (a model in your head)
+        * It is easier to learn now from a tutor because you have a better (higher representation) of the data/language  
 
+                
+
+5. **Linear Models:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents65}  
+    A __Linear Model__ takes an input $$x$$ and computes a signal $$s = \sum_{i=0}^d w_ix_i$$ that is a _linear combination_ of the input with weights, then apply a scoring function on the signal $$s$$.  
+    * __Linear Classifier as a Parametric Model__:  
+        Linear classifiers $$f(x, W)=W x+b$$  are an example of a parametric model that sums up the knowledge of the training data in the parameter: weight-matrix $$W$$.  
+    * __Scoring Function__:  
+        * *__Linear Classification__*:  
+            $$h(x) = sign(s)$$  
+        * *__Linear Regression__*:  
+            $$h(x) = s$$  
+        * *__Logistic Regression__*:  
+            $$h(x) = \sigma(s)$$  
+
+    __Notes:__{: style="color: red"}  
+    * __The Weight vector of a linear signal is orthogonal to the decision boundary__:  
+        The weight vector $$\mathbf{w}$$ is orthogonal to the separating-plane/decision-boundary, defined by $$\mathbf{w}^T\mathbf{x} + b = 0$$, in the $$\mathcal{X}$$ space; Reason:  
+        Since if you take any two points $$\mathbf{x}^\prime$$ and $$\mathbf{x}^{\prime \prime}$$ on the plane, and create the vector $$\left(\mathbf{x}^{\prime}-\mathbf{x}^{\prime \prime}\right)$$  parallel to the plane by subtracting the two points, then the following equations must hold:  
+        <p>$$\mathbf{w}^{\top} \mathbf{x}^{\prime}+b=0 \wedge \mathbf{w}^{\top} \mathbf{x}^{\prime \prime}+b=0 \implies \mathbf{w}^{\top}\left(\mathbf{x}^{\prime}-\mathbf{x}^{\prime \prime}\right)=0$$</p>  
+
+
+6. **Learning Probabilities with Logistic Regression and Sigmoids:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents66}  
+:   Logistic Regression uses the __sigmoid__ function to "squash" the output feature/signal into the $$[0, 1]$$ space. Although, one could interpret the _sigmoid classifier_ as just a function with $$[0,1]$$ range, it is actually, a __Genuine Probability__.  
+:   To see this:  
+    A labeled, classification Data-Set, does __NOT__ (explicitly) give you the _probability_ that something is going to happen, rather, just the fact that an event either happened $$(y=1)$$ or that it did not $$(y=0)$$, without the actual probability of that event happening.  
+    One can think of this data as being generated by a (the following) noisy target:  
+:   $${\displaystyle P(y \vert x) ={\begin{cases}f(x)&{\text{for }}y = +1,\\1-f(x)&{\text{for }}y=-1.\\\end{cases}}}$$   
+    They have the form that a certain probability that the event occurred and a certain probability that the event did NOT occur, given their input-data.  
+    This is generated by the target we want to learn; thus, the function $$f(x)$$ is the target function to approximate.  
+    In Logistic Regression, we are trying to learn $$f(x)$$ not withstanding the fact that the data-points we are learning from are giving us just sample values of $$y$$ that happen to be generated by $$f$$.  
+    Thus, the __Target__ $$f : \mathbb{R}^d \longrightarrow [0,1]$$ is the probability.  
+    > The output of Logistic Regression is treated genuinely as a __probability__ even _during **Learning**_
+:   __Deriving the Error Measure__:  
+    The error measure for logistic regression is based on __likelihood__ - it is both, plausible and friendly/well-behaved? (for optimization).  
+          
+
+7. **Papers:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents67}  
+    
+    __Fast-Weights:__{: style="color: red"}  
+    __Basic Idea:__
+    * on each connection: Total weight = Sum of:
+        * __Standard Slow Weights__. This learns slowly & (may also) decay slowly. Holds long term Knowledge.
+        * __The Fast Weights__: Learns quickly, decays quickly, Holds Temp. info.
+
+    __Motivation:__
+    * __Priming:__ listen to a word $$\rightarrow$$ recognize many minutes later in Noisy Env.
+        * If we had __localist Representation__ could just temporarily lower the threshold of the "cucumber" weight
+        * If we use __point Attractors__ instead of "localist units" we con temporarily increase the "attractiveness" of the words unit (by changing the weights between the neurons in that pattern of activity)
+
+    __Weight Matrices VS Activity Vectors:__
+    Weight Matrices are better:  
+    (1) More capacity $$N^2$$ vs $$N$$ (2) A fast weight matrix of $$1000 x 1000$$ can easily make 100 attractors more "attractive"
+
+    __Three ways to store Temp. knowledge:__  
+    * __LSTM__, Stores it in its activity vectors [hidden weights] $$\implies$$ Irrelevant temp Memory __interferes__ with on-going process  
+    * __An additional External memory to LSTM__, can store without interference but need to - learn when to read/white.  
+    * __Fast-Weights:__ Allow the temporal Knowledge to be stored without having any extra neurons.  
+        They just make some attractors easier to fall into; and they also "flavor" the attractor by slightly changing the activity vector you end up with.  
+
+
+8. **Activation Functions:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents68}   
+    * __Activation Functions__:  
+        * __Sigmoid__:  
+            Never use as activation, use as an output unit for binary classification.  
+        * __Tanh__:  
+            Strictly superior to Sigmoid (scaled version of sigmoid). Good for activation.  
+            Reasons: (1) Zero Mean/Centered  
+        * __Relu__:  
+            The best for activation.  
+            Reasons: (1) Better gradients  
+            * __Properties__:  
+                * __ReLU not zero-centered problem__:  
+                    The problem that ReLU is not zero-centered can be solved/mitigated by using __batch normalization__, which normalizes the signal before activation:  
+                    > From paper: We add the BN transform immediately before the nonlinearity, by normalizing $$x =  Wu + b$$; normalizing it is likely to produce activations with a stable distribution.  
+                * __Dying ReLUs (Dead Neurons):__  
+                    If a neuron gets clamped to zero in the forward pass (it doesn’t “fire”), then its weights will get zero gradient. Thus, if a ReLU neuron is unfortunately initialized such that it never fires, or if a neuron’s weights ever get knocked off with a large update during training into this regime, then this neuron will remain permanently dead.  
+                    * [**cs231n Explanation**](https://www.youtube.com/embed/gYpoJMlgyXA?start=1249){: value="show" onclick="iframePopA(event)"}
+                    <a href="https://www.youtube.com/embed/gYpoJMlgyXA?start=1249"></a>
+                        <div markdown="1"> </div>    
+                * __ReLu advantages__:  
+                    * Non-saturation of gradients which accelerates convergence of SGD
+                    * sparsity effects and induced regularization. [discussion](https://stats.stackexchange.com/questions/176794/how-does-rectilinear-activation-function-solve-the-vanishing-gradient-problem-in/176905#176905)  
+                    
+        * __Leaky Relu__:  
+            Sometimes useful. Worth trying.  
+    * __Derivatives of Activation Functions__:  
+        * __Sigmoid__:  
+            <p>$$S(z)=\frac{1}{1+e^{-z}} \\ S^{\prime}(z)=S(z) \cdot(1-S(z))$$</p>  
+            ![img](/main_files/concepts/3.png){: width="68%"}  
+        * __Tanh__:  
+            <p>$$\tanh (z)=\frac{e^{z}-e^{-z}}{e^{z}+e^{-z}} \\ \tanh ^{\prime}(z)=1-\tanh (z)^{2}$$</p>  
+            ![img](/main_files/concepts/4.png){: width="68%"}  
+        * __Relu__:  
+            <p>$$R(z)=\left\{\begin{array}{cc}{z} & {z>0} \\ {0} & {z<=0}\end{array}\right\} \\  R^{\prime}(z)=\left\{\begin{array}{ll}{1} & {z>0} \\ {0} & {z<0}\end{array}\right\}$$</p>  
+            ![img](/main_files/concepts/5.png){: width="68%"}  
+        * __Leaky Relu__:  
+            <p>$$R(z)=\left\{\begin{array}{cc}{z} & {z>0} \\ {\alpha z} & {z<=0}\end{array}\right\} \\ 
+            R^{\prime}(z)=\left\{\begin{array}{ll}{1} & {z>0} \\ {\alpha} & {z<0}\end{array}\right\}$$</p>  
+            ![img](/main_files/concepts/6.png){: width="68%"}  
+        * [Further Reading](https://ml-cheatsheet.readthedocs.io/en/latest/activation_functions.html)  
+
+
+9. **Bias-Variance Decomposition Theory:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents69}   
+    
+    __Bias-Variance for Neural-Networks:__{: style="color: red"}  
+    ![img](/main_files/concepts/9.png){: width="60%"}  
+    __Dealing with Bias and Variance for NN:__  
+    * __High Bias__ ($$E_{\text{train}}$$) $$\rightarrow$$ (1) Bigger Net (2) Train longer (3) Different NN archit  
+    * __High Variance__ ($$E_{\text{dev}}$$) $$\rightarrow$$ (1) More Data (2) Regularization (3) Different NN archit  
+
+10. **Models:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents610}   
+
+
+    __Parametric Models:__{: style="color: red"}  
+    A __parametric model__ is a set of probability distributions indexed by a parameter $$\theta \in \Theta$$. We denote this as:  
+    <p>$$\{p(y ; \theta) | \theta \in \Theta\},$$</p>  
+    where $$\theta$$ is the __parameter__ and $$\Theta$$ is the __Parameter-Space__.  
+    
+
+
+11. **Output Units/Functions:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents611}   
+    * <button>Output Units: Linear and Sigmoid units</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+        ![img](/main_files/concepts/10.jpg){: hidden=""}  
+
+
+12. **Model Varieties - Regression and Classification:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents612}  
+    __Generalized Regression__ also known as __Conditional Distribution Estimation:__{: style="color: red"}    
+    * Given $$x$$, predict probability distribution $$p(y\vert x)$$  
+    * How do we represent the probability distribution?
+        * We'll consider parametric families of distributions
+            * distribution represented by parameter vector
+        * Examples:  
+            * Generalized Linear Models (GLM)
+                * Logistic regression (Bernoulli distribution)
+                * Probit regression (Bernoulli distribution)
+                * Poisson regression (Poisson distribution)
+                * Linear regression (Normal distribution, fixed variance)
+            * Generalized Additive Models (GAM)
+            * Gradient Boosting Machines (GBM) / AnyBoost  
+
+
+    __Probabilistic Binary Classifiers:__{: style="color: red"}  
+    * Setting: $$X=\mathrm{R}^{d}, y=\{0,1\}$$  
+    * For each $$x$$, need to predict a distribution on $$y=\{0,1\}$$  
+    * To define a distribution supported on $$\{0,1\}$$, it is sufficient to specify the __Bernoulli parameter__ $$\theta=p(y=1 \vert x)$$  
+    * We can refer to this distribution as $$\text{Bernoulli}(\theta)$$  
+
+    __Linear Probabilistic Classifiers:__{: style="color: red"}  
+    * Setting: $$X=\mathrm{R}^{d}, y=\{0,1\}$$  
+    * Want prediction function to map each $$x \in \mathrm{R}^{d}$$ to the right $$\theta \in[0,1]$$  
+    * We first extract information from $$ x \in \mathrm{R}^{d}$$ and summarize in a single number  
+        * That number is analogous to the __Score__ in _classification_  
+    * For a __linear method/model__, this extraction is done with a __linear function__;  
+        <p>$$\underbrace{x}_{\in \mathbb{R}^{D}} \mapsto \underbrace{w^{T} x}_{\in \mathrm{R}}$$</p>  
+    * As usual, $$x \mapsto w^{T} x$$ will include __affine functions__ if we include a constant features in $$x$$  
+    * $$w^Tx$$ is called the __linear predictor__ 
+    * Still need to map this to $$[0, 1]$$; we do so by __Transfer/Response/Inverse-Link function__; usually the *__logistic function (Sigmoid)__*   
+        > Its a function to map the linear predictor in $$\mathbb{R}$$ to $$[0,1]$$:  
+            $$\underbrace{x}_ {\in \mathbf{R}^{D}} \mapsto \underbrace{w^{T}}_{\in R} \mapsto \underbrace{f\left(w^{T} x\right)}_{\in[0,1]}=\theta = p(y=1 | x)$$   
+
+    __Learning:__  
+    The hypothesis space/set:  
+    <p>$$\mathcal{H}=\left\{x \mapsto f\left(w^{T} x\right) | w \in \mathbb{R}^{d}\right\}$$</p>  
+    where the **only _"parameter"_** in this model is $$w \in \mathbb{R}^d$$.   
+    We can choose $$w$$ using __maximum likelihood:__  
+    __Likelihood Scoring \| Bernoulli Regression:__  
+    * Suppose we have data $$\mathcal{D}=\left\{\left(x_{1}, y_{1}\right), \ldots,\left(x_{n}, y_{n}\right)\right\}$$  
+    * The model likelihood for $$\mathcal{D}$$:  
+        <p>$$\begin{aligned} p_{w}(\mathcal{D}) &=\prod_{i=1}^{n} p_{w}\left(y_{i} | x_{i}\right)[\text { by independence }] \\ &=\prod_{i=1}^{n}\left[f\left(w^{T} x_{i}\right)\right]^{y_{i}}\left[1-f\left(w^{T} x_{i}\right)\right]^{1-y_{i}} \end{aligned}$$</p>  
+        * This probability of each data-point $$p_w(y_i\|x_i)$$ can be summed in the equation $$\left[f\left(w^{T} x_{i}\right)\right]^{y_{i}}\left[1-f\left(w^{T} x_{i}\right)\right]^{1-y_{i}}$$ which capture both cases $$p_w(y_i = 1) = f\left(w^{T} x_{i}\right)$$ and $$p_w(y_i = 0) = 1 - f\left(w^{T} x_{i}\right)$$ 
+    * The __log likelihood__:  
+        <p>$$\log p_{w}(\mathcal{D})=\sum_{i=1}^{n} y_{i} \log f\left(w^{T} x_{i}\right)+\left(1-y_{i}\right) \log \left[1-f\left(w^{T} x_{i}\right)\right]$$</p>  
+    * Equivalently, minimize the objective function:  
+        <p>$$J(w)=-\left[\sum_{i=1}^{n} y_{i} \log f\left(w^{T} x_{i}\right)+\left(1-y_{i}\right) \log \left[1-f\left(w^{T} x_{i}\right)\right]\right]$$</p>  
+
+
+    __Gaussian Linear Regression/Conditional Gaussian Regression:__{: style="color: red"}  
+    * [**Gaussian Linear Regression**](https://www.youtube.com/embed/JrFj0xpGd2Q?start=1965){: value="show" onclick="iframePopA(event)"}
+    <a href="https://www.youtube.com/embed/JrFj0xpGd2Q?start=1965"></a>
+        <div markdown="1"> </div>    
+
+    __Generalized Regression as Statistical Learning:__{: style="color: red"}  
+    * [**Generalized Regression as Statistical Learning**](https://www.youtube.com/embed/JrFj0xpGd2Q?start=2609){: value="show" onclick="iframePopA(event)"}
+    <a href="https://www.youtube.com/embed/JrFj0xpGd2Q?start=2609"></a>
+        <div markdown="1"> </div>    
+
+    __Generalized Linear Models:__{: style="color: red"}  
+    * [**Generalized Linear Models (Andrew NG)**](https://www.youtube.com/embed/nLKOQfKLUks?list=PLA89DCFA6ADACE599){: value="show" onclick="iframePopA(event)"}
+    <a href="https://www.youtube.com/embed/nLKOQfKLUks?list=PLA89DCFA6ADACE599"></a>
+        <div markdown="1"> </div>    
+
+    <br>
+
+
+
+13. **Bayesian Conditional Probabilistic Models:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents613}  
+    * [**Bayesian Conditional Probabilistic Models**](https://www.youtube.com/embed/Mo4p2B37LwY){: value="show" onclick="iframePopA(event)"}
+    <a href="https://www.youtube.com/embed/Mo4p2B37LwY"></a>
+        <div markdown="1"> </div>    
+    <br>
+
+
+14. **Latent Variable Models:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents614}  
+    * [**Latent Variable Models/Gaussian Mixture Models**](https://www.youtube.com/embed/I9dfOMAhsug){: value="show" onclick="iframePopA(event)"}
+    <a href="https://www.youtube.com/embed/I9dfOMAhsug"></a>
+        <div markdown="1"> </div>    
+    * [**Expectation-Minimization/EM-Algorithm for Latent Variable Models**](https://www.youtube.com/embed/lMShR1vjbUo){: value="show" onclick="iframePopA(event)"}
+    <a href="https://www.youtube.com/embed/lMShR1vjbUo"></a>
+        <div markdown="1"> </div>    
+    <br>
+
+
+15. **Recommender Systems:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents615}  
+    * <button>Recommender Systems</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](/main_files/concepts/9.jpg){: hidden=""}  
+    <br>
+
+16. **Regularization:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents616}  
+    * __Overfitting and Regularization__:  
+        To address over-fitting:
+        * Increase size of training dataset  
+        * Reduce number of features  
+        * Do Regularization:  
+            * Keep all the features but reduce the magnitude/values of the weights/parameters  
+            * Works well when we have a lot of features, each of which contributes a bit to predicting $$y$$  
+    * __Regularization Theory__:  
+        * [link1](https://www.youtube.com/watch?v=DCvXYD6xQYw)
+        
+    * __Theoretical Justification for Regularization__:  
+        A theoretical justification for regularization is that it attempts to impose Occam's razor on the solution.  
+        From a Bayesian point of view, many regularization techniques correspond to imposing certain prior distributions on model parameters.  
+    * __Tikhonov Regularization__: is essentially a trade-off between fitting the data and reducing a norm of the solution.  
+
+    __Data Regularization:__{: style="color: red"}  
+    * The __Design Matrix__ contains sample points in each *__row__* 
+    * __Feature Scaling/Mean Normalization (of data)__:  
+        * Define the mean $$\mu_j$$ of each feature of the datapoints $$x^{(i)}$$:  
+        <p>$$\mu_{j}=\frac{1}{m} \sum_{i=1}^{m} x_{j}^{(i)}$$</p>  
+        * Replace each $$x_j^{(i)}$$ with $$x_j - \mu_j$$  
+    * __Centering__:  subtracting $$\mu$$ from each row of $$X$$ 
+    * __Sphering__:  applying the transform $$X' = X \Sigma^{-1/2}$$  
+    * __Whitening__:  Centering + Sphering (also known as *__Decorrelating feature space__*)  
+            
+
+    [Ch.7 dl-book summary](https://github.com/dalmia/Deep-Learning-Book-Chapter-Summaries/blob/master/07%20-%20Regularization%20for%20Deep%20Learning.ipynb)  
+    <br>
+
+
+17. **Aggregation - Ensemble Methods:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents617}  
+
+    * __Boosting__: create different hypothesis $$h_i$$s sequentially + make each new hypothesis __decorrelated__ with previous hypothesis.  
+        * Assumes that this will be combined/ensembled  
+        * Ensures that each new model/hypothesis will give a different/independent output  
+
+
+18. **Kernels:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents618}  
+    * __Kernels__:  
+        * __Polynomial Kernel of degree, exactly, $$d$$__:  
+            <p>$$K(\mathbf{u}, \mathbf{v})=(\mathbf{u} \cdot \mathbf{v})^{d}$$</p>  
+        * __Polynomial Kernel of degree, up to, $$d$$__:  
+            <p>$$K(\mathbf{u}, \mathbf{v})=(\mathbf{u} \cdot \mathbf{v}+1)^{d}$$</p>  
+        * __Gaussian Kernel__:  
+            <p>$$K(\vec{u}, \vec{v})=\exp \left(-\frac{\|\vec{u}-\vec{v}\|_ {2}^{2}}{2 \sigma^{2}}\right)$$</p>  
+        * __Sigmoid Kernel__:  
+            <p>$$K(\mathbf{u}, \mathbf{v})=\tanh (\eta \mathbf{u} \cdot \mathbf{v}+\nu)$$</p>  
+
+    * __Local Kernels__: a kernel where $$k(u, v)$$ is large when $$u=v$$ and decreases as $$u$$ and $$v$$ grow further apart from each other.  
+        A local kernel can be thought of as a __similarity function__ that performs __template matching__, by measuring how closely a test example $$x$$ resembles each training example $$x^{(i)}$$.  
+
+    * [Kernel Regression Introduction](http://mccormickml.com/2014/02/26/kernel-regression/)  
+
+19. **Statistical Learning Theory:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents619}  
+    __Notes:__{: style="color: red"}  
+    * [Principles of Risk Minimization for Learning Theory (original papers)](http://papers.nips.cc/paper/506-principles-of-risk-minimization-for-learning-theory.pdf)  
+    * [Statistical Learning Theory from scratch (paper)](http://www.tml.cs.uni-tuebingen.de/team/luxburg/publications/StatisticalLearningTheory.pdf)  
+            
+
+20. **Learning Theory:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents620}  
+
+
+0. **Notes:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents60}  
+    * __Complexity__:  
+        * __Caching the activations of a NN__:  
+        We need to cache the activation vectors of a NN after each layer $$Z^{[l]}$$ because they are required in the backward computation.  
+    * __Initializations__:  
+        * __Initializing NN__:  
+            * Don't initialize the weights to Zero. The symmetry of hidden units results in a similar computation for each hidden unit, making all the rows of the weight matrix to be equal (by induction).  
+            * It's OK to initialize the bias term to zero.  
+    * __Training__:  
+        * [A Recipe for Training Neural Networks](http://karpathy.github.io/2019/04/25/recipe/)  
+        * [Tips for Training Deep Networks](http://rishy.github.io/ml/2017/01/05/how-to-train-your-dnn/)  
+        * [Why Train a Model BOTH Generatively and Discriminatively](http://www.chioka.in/why-train-a-model-generatively-and-discriminatively/)  
+    * __Feature Importance__:  
+        * In linear models, feature importance can be calculated by the scale of the coefficients  
+        * In tree-based methods (such as random forest), important features are likely to appear closer to the root of the tree. We can get a feature's importance for random forest by computing the averaging depth at which it appears across all trees in the forest   
+        
+
+***
 ***
 
 ## Computer Vision
 {: #content7}
 
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents71}  
-    :   
+1. **Edge Detection Filters:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents71}  
+    * __Sobel Filter:__  
+        <p>$$\begin{array}{|c|c|c|}\hline 1 & {0} & {-1} \\ \hline 2 & {0} & {-2} \\ \hline 1 & {0} & {-1} \\ \hline\end{array}$$</p>  
+    * __Schorr Filter__:  
+        <p>$$\begin{array}{|c|c|c|}\hline 3 & {0} & {-3} \\ \hline 10 & {0} & {-10} \\ \hline 3 & {0} & {-3} \\ \hline\end{array}$$</p>  
+            
 
-<!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents72}  
-    :   
+2. **Aliasing:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents72}  
+    Aliasing is an effect that causes different signals to become indistinguishable (or aliases of one another) when sampled. It also refers to the distortion or artifact that results when the signal reconstructed from samples is different from the original continuous signal.  
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents73}  
+    Aliasing can occur in signals sampled in time, for instance digital audio, and is referred to as __temporal aliasing__. Aliasing can also occur in spatially sampled signals, for instance moiré patterns in digital images. Aliasing in spatially sampled signals is called __spatial aliasing__.  
+       
+
+<!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents73}  
     :   
 
 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents74}  
@@ -318,40 +965,54 @@ prevLink: /
     :   
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents78}  
-  -->   :   
+  -->
 
+***
 ***
 
 ## NLP
 {: #content8}
 
-1. **Towards Better Language Modeling (Lec.9 highlight, 38m):**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents81}  
-    :   To improve a _Language Model_:  
-        1. __Better Inputs__: 
-            Word -> Subword -> Char  
-            ![img](/main_files/main/concepts/2.png){: width="100%"}  
-            _Subword Language Modeling , Mikolov et al. 2012_  
-            _Character-Aware Neural Language Model , Kim et al. 2015_.  
-        2. __Better Regularization/Preprocessing__:  
-            Similar to computer vision, we can do both Regularization and Preprocessing on the data to increase its relevance to the true distribution.  
-            Preprocessing acts as a *__data augmentation__* technique. This allows us to achieve a __Smoother__ distribution, since we are removing more common words and re-enforcing rarer words.  
-            _Zoneout, Kruger et al. 2016_  
-            _Data Noising as Smoothing, Xie et al. 2016_       
-            * *__Regularization__*:  
-                * Use Dropout (Zaremba, et al. 2014). 
-                * Use Stochastic FeedForward depth (Huang et al. 2016)
-                * Use Norm Stabilization (Memisevic 2015)
-                ...  
-            * *__Preprocessing__*:  
-                 * Randomly replacing words in a sentence with other words  
-                 * Use bigram statistics to generate _Kneser-Ney_ inspired replacement (Xie et al. 2016). 
-                 * Replace a word with __fixed__ drop rate
-                 * Replace a word with __adaptive__ drop rate, by how rare two words appear together (i.e. "Humpty Dumpty"), and replace by a unigram draw over vocab
-                 * Replace a word with __adaptive__ drop rate, and draw word from a __proposal distribution__ (i.e. "New York") 
-        3. __Better Model__ (+ all above)
+[The Norvig-Chomsky Debate](https://sites.tufts.edu/models/files/2019/04/Norvig.pdf)  
 
-2. **Language Models:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents82}  
-    :   * __The ML-Estimate of $$p(w_i \vert w_{i-1})$$__ $$ = \dfrac{c(w_{i-1}\: w_i)}{\sum_{w_i} c(w_{i-1}\: w_i)}$$
+1. **Language Modeling:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents81}  
+    __Towards Better Language Modeling (Lec.9 highlight, 38m):__{: style="color: red"}  
+    To improve a _Language Model_:  
+    1. __Better Inputs__: 
+        Word -> Subword -> Char  
+        ![img](/main_files/concepts/2.png){: width="100%"}  
+        _Subword Language Modeling , Mikolov et al. 2012_  
+        _Character-Aware Neural Language Model , Kim et al. 2015_.  
+    2. __Better Regularization/Preprocessing__:  
+        Similar to computer vision, we can do both Regularization and Preprocessing on the data to increase its relevance to the true distribution.  
+        Preprocessing acts as a *__data augmentation__* technique. This allows us to achieve a __Smoother__ distribution, since we are removing more common words and re-enforcing rarer words.  
+        _Zoneout, Kruger et al. 2016_  
+        _Data Noising as Smoothing, Xie et al. 2016_       
+        * *__Regularization__*:  
+            * Use Dropout (Zaremba, et al. 2014). 
+            * Use Stochastic FeedForward depth (Huang et al. 2016)
+            * Use Norm Stabilization (Memisevic 2015)
+            ...  
+        * *__Preprocessing__*:  
+             * Randomly replacing words in a sentence with other words  
+             * Use bigram statistics to generate _Kneser-Ney_ inspired replacement (Xie et al. 2016). 
+             * Replace a word with __fixed__ drop rate
+             * Replace a word with __adaptive__ drop rate, by how rare two words appear together (i.e. "Humpty Dumpty"), and replace by a unigram draw over vocab
+             * Replace a word with __adaptive__ drop rate, and draw word from a __proposal distribution__ (i.e. "New York") 
+    3. __Better Model__ (+ all above)  
+
+
+    __Recurrent Neural Networks as Language Models:__{: style="color: red"}  
+    * <button>RNN-LM</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](/main_files/concepts/7.jpg){: hidden=""}  
+
+
+    __Notes:__{: style="color: red"}  
+    * __The ML-Estimate of $$p(w_i \vert w_{i-1})$$__ $$ = \dfrac{c(w_{i-1}\:, w_i)}{\sum_{w_i} c(w_{i-1}\:, w_i)}$$  
+
+    <br>
+
+2. **:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents82}  
             
 
 3. **Neural Text Generation:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents83}
@@ -362,30 +1023,86 @@ prevLink: /
         * The models are typically trained via __maximum likelihood__ and __teacher forcing__  
             > These methods are well-suited to optimizing perplexity but can result in poor sample quality since generating text requires conditioning on sequences of words that may have never been observed at training time  
 
-<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents84}  
-    :   
+4. **NLP & DL (R. Sorcher):**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents84}  
+    * <button>Common DL-NLP Tasks/Problems in NLP w/ DL</button>{: .showText value="show"
+     onclick="showTextPopHide(event);"}
+    ![img](/main_files/concepts/1_1.jpg){: hidden=""}  
+    * <button>Problems in NLP w/ DL contd</button>{: .showText value="show"
+     onclick="showTextPopHide(event);"}
+    ![img](/main_files/concepts/2.jpg){: hidden=""}  
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents85}  
-    :   
+5. **Text Classification:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents85}  
+    __Word-Window Classification:__{: style="color: red"}  
+    * <button>Classification Setup</button>{: .showText value="show"
+     onclick="showTextPopHide(event);"}
+    ![img](/main_files/concepts/3.jpg){: hidden=""}  
+    * <button>Cross-Entropy and Softmax</button>{: .showText value="show"
+     onclick="showTextPopHide(event);"}
+    ![img](/main_files/concepts/3_1.jpg){: hidden=""}  
+    * <button>Classification over a full dataset</button>{: .showText value="show"
+     onclick="showTextPopHide(event);"}
+    ![img](/main_files/concepts/4.jpg){: hidden=""}  
+    * <button>General ML vs DL Optimization</button>{: .showText value="show"
+     onclick="showTextPopHide(event);"}
+    ![img](/main_files/concepts/4_1.jpg){: hidden=""}  
+    * <button>Window Classification</button>{: .showText value="show"
+     onclick="showTextPopHide(event);"}
+    ![img](/main_files/concepts/5.jpg){: hidden=""}  
+    * <button>Softmax limitations and considerations</button>{: .showText value="show"
+     onclick="showTextPopHide(event);"}
+    ![img](/main_files/concepts/6.jpg){: hidden=""}  
+    * <button>The Max-Margin Loss</button>{: .showText value="show"
+     onclick="showTextPopHide(event);"}
+    ![img](/main_files/concepts/6_1.jpg){: hidden=""}  
 
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents86}  
-    :   
+    __CNN Text Classification:__{: style="color: red"}  
+    * <button>The Problem Set-up and the Pooling Layer</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](/main_files/concepts/8.jpg){: hidden=""}  
+    * <button>Classification and Tips for Learning</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](/main_files/concepts/8_1.jpg){: hidden=""}  
 
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents87}  
-    :   
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents88}  
-    :   --> 
+    * [LSI document similarity](http://mccormickml.com/2016/11/04/interpreting-lsi-document-similarity/)  
+    * [Latent Semantic Analysis (LSA) for Text Classification Tutorial](http://mccormickml.com/2016/03/25/lsa-for-text-classification-tutorial/)  
+    * [answer](link)
 
+
+6. **:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents86}  
+
+
+
+7. **:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents87}  
+
+
+8. **Word Embeddings:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents88}  
+    __Word Vectors:__{: style="color: red"}  
+    * <button>Learning Word Vectors and Word2Vec</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](/main_files/concepts/11.jpg){: hidden=""}  
+    * <button>Word Vectors and Polysemy</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](/main_files/concepts/11_1.jpg){: hidden=""}  
+
+
+    __Notes:__{: style="color: red"}  
+    * __Categorization__ is a method for Evaluating w2v Embeddings by creating categorize by clustering, then measuring the purity of the clusters  
+
+
+__Notes:__  
+* [Ilya Sutskever Pubs/Vids](http://www.cs.toronto.edu/~ilya/pubs/)  
+* Can all NLP tasks be cast as QA problems?!  
+
+        
+
+
+***
 ***
 
 ## Physics
 {: #content9}
 
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents91}  
+<!-- 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents91}  
     :   
 
-<!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents92}  
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents92}  
     :   
 
 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents93}  
@@ -407,50 +1124,155 @@ prevLink: /
     :    -->
 
 ***
+***
 
-## Game Theory
+## Algorithms
 {: #content10}
 
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents101}  
-    :   
+1. **DFS:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents101}  
+    __Applications__:  
+    * Finding (strongly or not) connected components.
+    * Topological sorting.
+    * Finding the bridges of a graph.
+    * Generating words in order to plot the limit set of a group.
+    * Finding strongly connected components.
+    * Planarity testing.
+    * Solving puzzles with only one solution, such as mazes. (DFS can be adapted to find all solutions to a maze by only including nodes on the current path in the visited set.)
+    * Maze generation may use a randomized depth-first search.
+    * Finding biconnectivity in graphs.  
 
-<!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents102}  
-    :   
+    __Code:__  
+    ```python
+    # RECURSIVE
+    def dfs(n, visit, graph, s):
+        # print('n: ', n);print('visit: ', visit);print('graph: ', graph);print('s: ', s)# print("HERE: ", len(visit), len(graph))
+        visit[s] = 1
+        print(s)
+        for v in graph[s]:
+            if not visit[v]:
+                dfs(n, visit, graph, v)
+    ```   
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents103}  
-    :   
+    ```python
+    # Pseudo-Code
+    procedure DFS-iterative(G,v):
+        let S be a stack
+        S.push(v)
+        while S is not empty
+            v = S.pop()
+            if v is not labeled as discovered:
+                label v as discovered
+                for all edges from v to w in G.adjacentEdges(v) do 
+                    S.push(w)
+    ```
+        
 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents104}  
-    :   
+2. **Complexity of common Data-Structures:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents102}  
+    :   ![img](/main_files/concepts/bigo.png){: width="100%"}  
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents105}  
-    :   
+3. **Data-Structures:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents103}  
+    * __Stack__:  
+        * __Implementations__:  
+            (1) Arrays  $$\:\:$$ (2) Linked-Lists  
+        
 
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents106}  
-    :   
+4. **Maps and Networks - The Four Color Problem:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents104}  
+* All maps can be colored with only 4 colors
+* All maps are networks (__planar graphs__) but not all networks (non-planar) are maps
 
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents107}  
-    :   
+5. **Recurrence (complexity):**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents105}  
+    * __Master Theorem__:  
+    Given the Recurrence:  
+    $$T(n) = aT(n/b) + cn^k,\:\: T(1) = c$$,  
+    where a, b, c, and k are all constants. solves to:  
+    $$T(n) \in \Theta(n^k)$$ if $$a < b^k$$  
+    $$T(n) \in \Theta(n^k \log{n})$$ if $$a = b^k$$  
+    $$T(n) \in \Theta(n^{\log_b(a)})$$ if $$a > b^k$$  
+    * <button>General Master Theorem</button>{: .showText value="show"
+     onclick="showTextPopHide(event);"}
+    ![img](/main_files/concepts/general_master_thm.jpg){: hidden=""}  
+    * __Recursion Out-of-form__:  
+    $$T(n) = T(n − 1) + c^n$$, where $$c$$ is a constant; solves to:  
+    Expands to: $$T(n) = \sum_{i=0}^n c^i$$  
+    Where the solution is $$\Theta(1), \Theta(n), or \Theta(c^n)$$, depending on if $$c < 1, c = 1, or c > 1$$  
+    * __The height of the binary recursion tree__:  
+    Given $$T(n) = aT(n^{1/k}) + f(n)$$, the height $$h$$ is the solution to:  
+    $$n^{1/{k^h}} = 2$$  
+    * __Solution from Recursion Tree__:  
+    The solution of a recursion is defined as:  
+    1. The number of nodes in the tree: $$= 2^{h+1}-1$$, where $$h$$ is the height of the tree  
+    2. Multiplied by the amount of work done at every node: $$f(n)$$     
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents108}  
+6. **Proofs for Algorithms:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents106}  
+    * __Strong Induction:__ e.g. dijkstras
+
+7. **Data Structures:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents107}  
+    * __Array__  
+    * __Stack (LIFO)__  
+    * __Queue (FIFO)__  
+    * __(min/max) Heap__  
+    * __Hash Table__  
+    * __Binary Tree__  
+    * __(single/double) Linked List__  
+
+
+    * __Array__:  
+    * __Stack__:  
+        * __Operations O(1)__:  
+            1. Push
+            2. Pop
+            3. Top
+            4. IsEmpty
+        * __Implementations__:  
+            1. (cyclic) Array: w/ modular indices
+            2. (doubly) Linked List
+    * __Queue__:  
+        * __Operations O(1)__:  
+            1. Enqueue
+            2. Dequeue
+            3. Front
+            4. IsEmpty
+        * __Implementations__:  
+            1. (cyclic) Array: w/ modular indices
+            2. (doubly) Linked List
+    * __(min/max) Heap__:  
+    * __Hash Table__:  
+        * __Implementations__:  
+            1. Array of Linked Lists (access=O(1))
+            2. Balanced BST (access=O(log(n)))
+    * __Binary Tree__:  
+    * __(single/double) Linked List__:  
+
+    
+
+<!-- 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents108}  
     :    -->
 
+0. **Notes:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents100}  
+    * __Matrices Trick:__ matrices ($$A,\  B$$) can be put in a larger matrix (to create one big matrix) for efficient computation/multiplication:  
+        $$\begin{bmatrix}
+            A & 0 \\
+            0 & B \\
+        \end{bmatrix}$$  
+
+***
 ***
 
 ## Misc.
 {: #content11}
 
 1. **Philosophy:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents111}  
-    :   __Occam's Razor:__  Suppose there exist two explanations for an occurrence. In this case the one that requires the least speculation is usually better.  
-        Another way of saying it is that the more assumptions you have to make, the more unlikely an explanation.  
+    __Occam's Razor:__  Suppose there exist two explanations for an occurrence. In this case the one that requires the least speculation is usually better.  
+    Another way of saying it is that the more assumptions you have to make, the more unlikely an explanation.  
+    > It is neither _precise_ nor _self evident_.   
 
-<!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents112}  
-    :   
+<!-- 2. **Misc:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents112}  
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents113}  
-    :   
 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents114}  
+3. **Misc:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents113}   -->
+
+
+<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents114}  
     :   
 
 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents115}  
@@ -464,3 +1286,16 @@ prevLink: /
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents118}  
     :    -->
+
+__Resources:__  
+* [Reinforcement Learning Course Lectures UCL](http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html)  
+* [Advanced Robotics Lecture CS287 Berk](https://people.eecs.berkeley.edu/~pabbeel/cs287-fa15/)
+* [Full-Stack DL (productionization of DL) Bootcamp Peter Abbeel](https://fullstackdeeplearning.com/march2019)
+* [Deep Unsupervised Learning CS294 Berk](https://sites.google.com/view/berkeley-cs294-158-sp19/home)
+* [Deep RL WS1](https://sites.google.com/view/deep-rl-bootcamp/lectures)
+* [Deep RL WS2](https://sites.google.com/view/deep-rl-workshop-nips-2018/home)
+* [Deep RL Lec CS294 Berk](http://rail.eecs.berkeley.edu/deeprlcourse/)
+* [DeepLearning Book (dive into dl) Berkeley](https://en.d2l.ai/d2l-en.pdf)
+    * [d2l course website](https://www.d2l.ai/)  
+* [Mathematics of DL](https://www.youtube.com/watch?v=Mdp9uC3gXUU)  
+* [Deep Learning Linear Algebra](https://jhui.github.io/2017/01/05/Deep-learning-linear-algebra/)  

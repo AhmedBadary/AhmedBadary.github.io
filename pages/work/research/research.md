@@ -7,21 +7,18 @@ prevlink: /#
 
 # Topics
 
-* ## [(Convex) Optimization](/work_files/research/conv_opt.html)
+* ## [Deep Learning - Application and Theory](/work_files/research/dl.html)
 
-* ## [Statistical (Machine) Learning](/work_files/research/ml.html)
+* ## [Machine Learning](/work_files/research/ml.html)
 
-* ## [Deep Learning](/work_files/research/dl.html)
+* ## [Convex Optimization](/work_files/research/conv_opt.html)
 
-* ## [Computer Vision](/work_files/research/dl/cv.html)
+* ## [Math](/work_files/research/math.html)
 
-* ## [Natural Language Processing](/work_files/research/nlp.html)
+* ## [(classical) Natural Language Processing](/work_files/research/nlp.html)
 
-* ## [Linear Algebra](/work_files/research/la.html)
+* ## [Numerical Optimization](/work_files/school/128a.html)
 
-* ## [Statistics and Probability Theory](/work_files/research/stats_prob.html)
-
-* ## [Measure Theory](/work_files/research/measure_theory.html)
-
+* ## [(classical) Computer Vision [coming soon]](/work_files/research/dl/cv.html)
 
 Updated Soon!

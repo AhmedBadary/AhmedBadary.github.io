@@ -67,20 +67,16 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">FIRST</a></li>
+    <li><a href="#content1">Polyhedra</a></li>
   </ul>
-  <ul class="TOC2">
-    <li><a href="#content2">SECOND</a></li>
-  </ul>
-  <ul class="TOC3">
-    <li><a href="#content3">THIRD</a></li>
-  </ul>
-  <ul class="TOC4">
-    <li><a href="#content4">FOURTH</a></li>
-  </ul>
-  <ul class="TOC5">
-    <li><a href="#content5">FIFTH</a></li>
-  </ul>
+  <!--   * [SECOND](#content2)
+  {: .TOC2}
+  * [THIRD](#content3)
+  {: .TOC3}
+  * [FOURTH](#content4)
+  {: .TOC4}
+  * [FIFTH](#content5)
+  {: .TOC5} -->
 </div>
 
 <hr />
@@ -106,7 +102,8 @@
       <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Half-spaces:</strong> \</dt>
       <dd>A half-space is a set defined by a single affine inequality. Precisely, a half-space <script type="math/tex">\in \mathbf{R}^n</script> is a set of the form
  mathbf{H} = left{ x ~:~ a^Tx le b right}, 
-where a in mathbf{R}^n, b in mathbf{R}.</dd>
+where a in mathbf{R}^n, b in mathbf{R}.
+&lt;!–</dd>
     </dl>
   </li>
   <li>
@@ -232,7 +229,8 @@ where a in mathbf{R}^n, b in mathbf{R}.</dd>
     <p><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents53">Asynchronous:</strong> \</p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents54">Asynchronous:</strong> \</p>
+    <p><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents54">Asynchronous:</strong> <br />
+ –&gt;</p>
   </li>
 </ol>
 
@@ -437,15 +435,16 @@ bodyContents.each(function(index, element) {
 <script type="text/javascript">
   function showTextPopHide(event) {
     var $button = $(event.target);
-    var txt = $button.attr("input");
+    // var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $button.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $button.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>
@@ -455,15 +454,15 @@ bodyContents.each(function(index, element) {
   function showText_withParent_PopHide(event) {
     var $button = $(event.target);
     var $parent = $button.parent();
-    var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $parent.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $parent.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>

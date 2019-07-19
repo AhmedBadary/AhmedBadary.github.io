@@ -63,14 +63,72 @@
 
     <section class="main-content">
       
-      <ul>
-  <li>Adversarial Feature Learning</li>
-  <li></li>
+      <h2 id="ideas">Ideas</h2>
+
+<!-- Use <p class="message"></p> -->
+
+<ul>
+  <li>
+    <p>Is multi-task learning (or even weight-sharing) a form of regularization? Is it why we are better at adversarial examples?</p>
+  </li>
+  <li>
+    <p>Add <strong>label smoothing</strong> (softmax should match 0.8/0.9 instead of 1.0 probability) to help generalization of IEML</p>
+  </li>
+  <li>
+    <p>Learn conditional embeddings: i.e. embeddings <script type="math/tex">v_i \in \mathbb{R}^d</script>  that can be projected on <script type="math/tex">N</script> defined hyperplanes, producing embeddings/vectors <script type="math/tex">v_{i,j} \in \mathbb{R}^h</script>, where <script type="math/tex">% <![CDATA[
+h < d %]]></script> and <script type="math/tex">j \in [1, N]</script>. Then use the new vectors to compute different relation in each subspace/hyperplane.<br />
+  Define each relation probabilistically, and the dot product between two vectors on a hyperplane should correspond to the probability that this particular relation is accurate.</p>
+  </li>
+  <li>
+    <p>Replace ReLu with <em>absolute value</em> or <em>exponential</em> function to mitigate the fact that ReLu is not Zero-centered (maybe not absolute value because of symmetry; monotonic (&amp;convex) is better -&gt; preserves convexity of input)</p>
+  </li>
+  <li>
+    <p>Use <strong>Blending (after the fact)</strong>, an ensembling techinque, to learn optimal weights of combining weights in an ensemble in IEML  (Lec.18 59:00 caltech)</p>
+  </li>
+  <li>
+    <p>Use <strong>Max-Margin classification</strong> for IEML</p>
+  </li>
+  <li>
+    <p>Dropout VS Weight-Decay: Dropout encourages the weights to be spread out (cuz cant rely on any one feature), but Weight-Decay encourages weights to be less spread out (because its expensive to put weights on features that are less informative)</p>
+  </li>
+  <li>
+    <p>Speech Recognition for Arabic Speaking countries</p>
+  </li>
+  <li>
+    <p>It seems that the LM used in ASR is mainly learned through Text instead of Speech; i believe that building a LM from speech is important because it will be a different LM from the other one; I believe that humans learn another LM for Speech</p>
+  </li>
+  <li>
+    <p>Adversarial Feature Learning</p>
+  </li>
 </ul>
 
-<h3 id="speech-recognition-for-arabic-speaking-countries">Speech Recognition for Arabic Speaking countries</h3>
+<hr />
 
-<h3 id="it-seems-that-the-lm-used-in-asr-is-mainly-learned-through-text-instead-of-speech-i-believe-that-building-a-lm-from-speech-is-important-because-it-will-be-a-different-lm-from-the-other-one-i-believe-that-humans-learn-another-lm-for-speech">It seems that the LM used in ASR is mainly learned through Text instead of Speech; i believe that building a LM from speech is important because it will be a different LM from the other one; I believe that humans learn another LM for Speech</h3>
+<h2 id="notes">NOTES</h2>
+
+<ul>
+  <li>Personal Reference Code: FS1434471874</li>
+</ul>
+
+<hr />
+
+<ul>
+  <li>Summarize Matrix Calculus idts</li>
+  <li>
+    <p>Write down estimators of certain distributions</p>
+  </li>
+  <li>Total Probability + intuition + Partitioning</li>
+  <li>Bayes + Total-Prob</li>
+  <li>
+    <p>Independence + Conditional Independence + their relation (negative implication)</p>
+  </li>
+  <li>Monty Hall + Extensions + Intuition (simple/<em>extreme</em> cases)</li>
+  <li>
+    <p>Simpsons Paradox + Intuition + Inequality + VS Total-Prob (incorrect) proof</p>
+  </li>
+  <li>Gamblers Ruin Problem + Random Walks + Strategy (wishful thinking/conditioning on what?) +</li>
+  <li>Random Variables +</li>
+</ul>
 
 
       <footer class="site-footer">
@@ -273,15 +331,16 @@ bodyContents.each(function(index, element) {
 <script type="text/javascript">
   function showTextPopHide(event) {
     var $button = $(event.target);
-    var txt = $button.attr("input");
+    // var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $button.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $button.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>
@@ -291,15 +350,15 @@ bodyContents.each(function(index, element) {
   function showText_withParent_PopHide(event) {
     var $button = $(event.target);
     var $parent = $button.parent();
-    var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $parent.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $parent.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>

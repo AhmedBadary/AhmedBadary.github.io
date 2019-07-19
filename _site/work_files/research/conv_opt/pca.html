@@ -83,43 +83,38 @@
 <hr />
 <hr />
 
+<p><a href="https://www.youtube.com/watch?v=5HNr_j6LmPc">Visual of PCA, SVD</a><br />
+<a href="https://www.youtube.com/watch?v=Axs-fuFJVvE">Derivation - Direction of Maximum Variance</a></p>
+
 <h2 id="content1">PCA</h2>
 
 <ol>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?</strong></dt>
-      <dd>It is a statistical procedure that uses an orthogonal transformation to convert a set of observations of possibly correlated variables into a set of values of linearly uncorrelated variables called principal components.</dd>
-    </dl>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?</strong>  <br />
+ It is a statistical procedure that uses an orthogonal transformation to convert a set of observations of possibly correlated variables into a set of values of linearly uncorrelated variables called principal components.</p>
   </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Goal?</strong></dt>
-      <dd>Given points <script type="math/tex">\in \mathbf{R}^d</script>, find k-directions that capture most of the variation.</dd>
-    </dl>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Goal?</strong>  <br />
+ Given points <script type="math/tex">\mathbf{x}_ i \in \mathbf{R}^d</script>, find k-directions that capture most of the variation.</p>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Why?</strong></dt>
-      <dd>
-        <ol>
-          <li>Find a small basis for representing variations in complex things.
-            <blockquote>
-              <p>e.g. faces, genes.</p>
-            </blockquote>
-          </li>
-          <li>Reducing the number of dimensions makes some computations cheaper.</li>
-          <li>Remove irrelevant dimensions to reduce overfitting in learnging algorithms.
-            <blockquote>
-              <p>Like “<em>subset selection</em>” but the features are <strong>not</strong> <em>axis aligned</em>.<br />
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Why?</strong>
+    <ol>
+      <li>Find a small basis for representing variations in complex things.
+        <blockquote>
+          <p>e.g. faces, genes.</p>
+        </blockquote>
+      </li>
+      <li>Reducing the number of dimensions makes some computations cheaper.</li>
+      <li>Remove irrelevant dimensions to reduce over-fitting in learning algorithms.
+        <blockquote>
+          <p>Like “<em>subset selection</em>” but the features are <strong>not</strong> <em>axis aligned</em>.<br />
 They are linear combinations of input features.</p>
-            </blockquote>
-          </li>
-        </ol>
-      </dd>
-    </dl>
+        </blockquote>
+      </li>
+      <li>Represent the data with fewer parameters (dimensions)</li>
+    </ol>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Finding Principle Components:</strong> <br />
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Finding Principle Components:</strong>
     <ul>
       <li>Let ‘<script type="math/tex">X</script>’ be an <script type="math/tex">(n \times d)</script> design matrix, centered, with mean <script type="math/tex">\hat{x} = 0</script>.</li>
       <li>Let ‘<script type="math/tex">w</script>’ be a unit vector.</li>
@@ -141,43 +136,32 @@ They are linear combinations of input features.</p>
       <p><strong>The Principle Components:</strong> are precisely the eigenvectors of the data’s covariance matrix.</p>
     </blockquote>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Total Variance and Error Measurement:</strong></dt>
-      <dd>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Total Variance and Error Measurement:</strong>
+    <ul>
+      <li><strong>The Total Variance</strong> of the data can be expressed as the sum of all the eigenvalues:</li>
+    </ul>
+    <p>$$
+     \mathbf{Tr} \Sigma = \mathbf{Tr} (U \Lambda U^T) = \mathbf{Tr} (U^T U \Lambda) = \mathbf{Tr} \Lambda = \lambda_1 + \ldots + \lambda_n. 
+     $$</p>
+    <ul>
+      <li><strong>The Total Variance</strong> of the <strong><em>Projected</em></strong> data is:</li>
+    </ul>
+    <p>$$
+      \mathbf{Tr} (P \Sigma P^T ) = \lambda_1 + \lambda_2 + \cdots + \lambda_k. 
+     $$</p>
+    <ul>
+      <li><strong>The Error in the Projection</strong> could be measured with respect to variance.
         <ul>
-          <li><strong>The Total Variance</strong> of the data can be expressed as the sum of all the eigenvalues:</li>
+          <li>We define the <strong>ratio of variance</strong> “explained” by the projected data (equivalently, the ratio of information <em>“retained”</em>) as:</li>
         </ul>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">\mathbf{Tr} \Sigma = \mathbf{Tr} (U \Lambda U^T) = \mathbf{Tr} (U^T U \Lambda) = \mathbf{Tr} \Lambda = \lambda_1 + \ldots + \lambda_n.</script>
-      </dd>
-      <dd>
-        <ul>
-          <li><strong>The Total Variance</strong> of the <strong><em>Projected</em></strong> data is:</li>
-        </ul>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">\mathbf{Tr} (P \Sigma P^T ) = \lambda_1 + \lambda_2 + \cdots + \lambda_k.</script>
-      </dd>
-      <dd>
-        <ul>
-          <li><strong>The Error in the Projection</strong> could be measured with respect to variance.
-            <ul>
-              <li>We define the <strong>ratio of variance</strong> “explained” by the projected data as:</li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">\dfrac{\lambda_1 + \ldots + \lambda_k}{\lambda_1 + \ldots + \lambda_n}.</script>
-      </dd>
-      <dd>
-        <blockquote>
-          <p>If the ratio is <em>high</em>, we can say that much of the variation in the data can be observed on the projected plane.</p>
-        </blockquote>
-      </dd>
-    </dl>
+      </li>
+    </ul>
+    <p>$$
+     \dfrac{\lambda_1 + \ldots + \lambda_k}{\lambda_1 + \ldots + \lambda_n}. 
+     $$</p>
+    <blockquote>
+      <p>If the ratio is <em>high</em>, we can say that much of the variation in the data can be observed on the projected plane.</p>
+    </blockquote>
   </li>
 </ol>
 
@@ -196,7 +180,7 @@ They are linear combinations of input features.</p>
       </li>
     </ol>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Algorithm:</strong> <br />
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Algorithm:</strong>
     <ol>
       <li>Center <script type="math/tex">X</script></li>
       <li>Normalize <script type="math/tex">X</script>.
@@ -221,7 +205,7 @@ They are linear combinations of input features.</p>
 <h2 id="content3">Derivation 2. Maximizing Variance</h2>
 
 <ol>
-  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">What?</strong> <br />
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">What?</strong>
     <ol>
       <li>Find a direction ‘<script type="math/tex">w</script>’ that maximizes the variance of the projected data.</li>
       <li>Maximize the variance</li>
@@ -237,36 +221,40 @@ They are linear combinations of input features.</p>
         <script type="math/tex; mode=display">% <![CDATA[
 \begin{align}
 & \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \sum_{i=1}{n}(x_i.\dfrac{w}{\|w\|})^2 \\
-& \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \dfrac{\|xw\|^2}{\|w\|^2} \\
-& \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \dfrac{w^TX^TXw}{w^Tw}
+& \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \dfrac{\|xw\|^2}{\|w\|^2}  \\
+& \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \dfrac{w^TX^TXw}{w^Tw} \\
 \end{align} %]]></script>
       </dd>
-      <dd>Where <script type="math/tex">\dfrac{1}{n}\dfrac{w^TX^TXw}{w^Tw}</script> is the <strong><em>Rayleigh Quotient</em></strong>.</dd>
+      <dd>where <script type="math/tex">\dfrac{1}{n}\dfrac{w^TX^TXw}{w^Tw}</script> is the <strong><em>Rayleigh Quotient</em></strong>.</dd>
       <dd>For any Eigen-vector <script type="math/tex">v_i</script>, the <em>Rayleigh Quotient</em> is <script type="math/tex">= \lambda_i</script>.</dd>
       <dd><script type="math/tex">\implies</script> the vector <script type="math/tex">v_d</script> with the largest <script type="math/tex">\lambda_d</script>, achieves the maximum variance: <script type="math/tex">\dfrac{\lambda_d}{n}.</script></dd>
-      <dd>Thus, the maximum of the <em>Rayleigh Quotient</em> is achieved at the Eigen-vector that has the highest correpsonding Eigen-value.</dd>
-      <dd>We find subsequent vectors by finding the next biggest <script type="math/tex">\lambda_i</script> and choosing its corresponding Eigen-vector.</dd>
+      <dd>Thus, the maximum of the <em>Rayleigh Quotient</em> is achieved at the Eigenvector that has the highest corresponding Eigenvalue.</dd>
+      <dd>We find subsequent vectors by finding the next biggest <script type="math/tex">\lambda_i</script> and choosing its corresponding Eigenvector.</dd>
     </dl>
+
+    <ul>
+      <li><a href="https://www.youtube.com/embed/Axs-fuFJVvE" value="show" onclick="iframePopA(event)"><strong>Full Derivation</strong></a>
+ <a href="https://www.youtube.com/embed/Axs-fuFJVvE"></a>
+        <div></div>
+        <p><br /></p>
+      </li>
+    </ul>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Another Derivation from Statistics:</strong></dt>
-      <dd>The data matrix has points <script type="math/tex">x_i</script>; its component along a proposed axis <script type="math/tex">u</script> is <script type="math/tex">(x · u)</script>.</dd>
-      <dd>The variance of this is <script type="math/tex">E(x · u − E(x · u))^2</script></dd>
-      <dd>and the optimization problem is</dd>
-      <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-\begin{align}
-\max_{x : \|x\|_2=1} \: E(x · u − E(x · u))^2 & \\
-& \ = \max_{u : \|u\|_2=1} \:  E[(u \cdot (x − Ex))^2] \\
-& \ = \max_{u : \|u\|_2=1} \:  uE[(x − Ex) \cdot (x − Ex)^T]u \\
-& \ = \max_{u : \|u\|_2=1} \:  u^T \Sigma u
-\end{align} %]]></script>
-      </dd>
-      <dd>where the matrix <script type="math/tex">{\displaystyle \Sigma \:= \dfrac{1}{n} \sum_{j=1}^n (x_j-\hat{x})(x_j-\hat{x})^T}.</script></dd>
-      <dd>Since <script type="math/tex">\Sigma</script> is symmetric, the <script type="math/tex">u</script> that gives the maximum value to <script type="math/tex">u^T\Sigma u</script> is the eigenvector of <script type="math/tex">\Sigma</script> with the largest eigenvalue.</dd>
-      <dd>The second and subsequent principal component axes are the other eigenvectors sorted by eigenvalue.</dd>
-    </dl>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Another Derivation from Statistics:</strong><br />
+ The data matrix has points <script type="math/tex">x_i</script>; its component along a proposed axis <script type="math/tex">u</script> is <script type="math/tex">(x · u)</script>.<br />
+ The variance of this is <script type="math/tex">E(x · u − E(x · u))^2</script><br />
+ and the optimization problem is
+    <p>$$
+     \begin{align}
+     \max_{x : \|x\|_2=1} \: E(x · u − E(x · u))^2 &amp; \\
+     &amp; \ = \max_{u : \|u\|_2=1} \:  E[(u \cdot (x − Ex))^2] \\
+     &amp; \ = \max_{u : \|u\|_2=1} \:  uE[(x − Ex) \cdot (x − Ex)^T]u \\
+     &amp; \ = \max_{u : \|u\|_2=1} \:  u^T \Sigma u
+     \end{align}
+     $$</p>
+    <p>where the matrix <script type="math/tex">{\displaystyle \Sigma \:= \dfrac{1}{n} \sum_{j=1}^n (x_j-\hat{x})(x_j-\hat{x})^T}.</script><br />
+ Since <script type="math/tex">\Sigma</script> is symmetric, the <script type="math/tex">u</script> that gives the maximum value to <script type="math/tex">u^T\Sigma u</script> is the eigenvector of <script type="math/tex">\Sigma</script> with the largest eigenvalue.<br />
+ The second and subsequent principal component axes are the other eigenvectors sorted by eigenvalue.</p>
   </li>
 </ol>
 
@@ -275,27 +263,23 @@ They are linear combinations of input features.</p>
 <h2 id="content4">Derivation 3. Minimize Projection Error</h2>
 
 <ol>
-  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">What?</strong> <br />
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">What?</strong>
     <ol>
       <li>Find direction ‘<script type="math/tex">w</script>’ that minimizes the <em>Projection Error</em>.</li>
     </ol>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Derivation:</strong></dt>
-      <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-\begin{align}
-\min_{\tilde{x} : \|\tilde{x}\|_2 = 1} \; \sum_{i=1}^n \|x_i - \tilde{x_i}\|^2 & \\
-& \ = \min_{w : \|w\|_2 = 1} \; \sum_{i=1}^n \|x_i -\dfrac{x_i \cdot w}{\|w\|_2^2}w\|^2 \\
-& \ = \min_{w : \|w\|_2 = 1} \; \sum_{i=1}^n \left[\|x_i\|^2 - (x_i \cdot \dfrac{w}{\|w\|_2})^2\right] \\
-& \ = \min_{w : \|w\|_2 = 1} \; c - n*\sum_{i=1}^n(x_i \cdot \dfrac{w}{\|w\|_2})^2 \\
-& \ = \min_{w : \|w\|_2 = 1} \; c - n*Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\}) \\
-& \ = \max_{w : \|w\|_2 = 1} \; Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\})
-\end{align} %]]></script>
-      </dd>
-      <dd>Thus, minimizing projection error is equivalent to maximizing variance.</dd>
-    </dl>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Derivation:</strong>
+    <p>$$
+     \begin{align}
+     \min_{\tilde{x} : \|\tilde{x}\|_2 = 1} \; \sum_{i=1}^n \|x_i - \tilde{x_i}\|^2 &amp; \\
+     &amp; \ = \min_{w : \|w\|_2 = 1} \; \sum_{i=1}^n \|x_i -\dfrac{x_i \cdot w}{\|w\|_2^2}w\|^2 \\
+     &amp; \ = \min_{w : \|w\|_2 = 1} \; \sum_{i=1}^n \left[\|x_i\|^2 - (x_i \cdot \dfrac{w}{\|w\|_2})^2\right] \\
+     &amp; \ = \min_{w : \|w\|_2 = 1} \; c - n*\sum_{i=1}^n(x_i \cdot \dfrac{w}{\|w\|_2})^2 \\
+     &amp; \ = \min_{w : \|w\|_2 = 1} \; c - n*Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\}) \\
+     &amp; \ = \max_{w : \|w\|_2 = 1} \; Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\})
+     \end{align}
+     $$</p>
+    <p>Thus, minimizing projection error is equivalent to maximizing variance.</p>
   </li>
 </ol>
 
@@ -500,15 +484,16 @@ bodyContents.each(function(index, element) {
 <script type="text/javascript">
   function showTextPopHide(event) {
     var $button = $(event.target);
-    var txt = $button.attr("input");
+    // var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $button.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $button.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>
@@ -518,15 +503,15 @@ bodyContents.each(function(index, element) {
   function showText_withParent_PopHide(event) {
     var $button = $(event.target);
     var $parent = $button.parent();
-    var txt = $button.attr("input");
+    var txt = $button.text();
     if ($button.attr('value') == 'show') {
         $button.attr('value', 'hide');
         $parent.next().removeAttr("hidden");
-        $button.text("Hide Content");
+        $button.text(txt + " - Hide Content");
     } else {
         $button.attr('value', 'show');
         $parent.next().attr("hidden", "");
-        $button.text("Show Content");
+        $button.text(txt.replace(" - Hide Content",""));
     }
 }
 </script>

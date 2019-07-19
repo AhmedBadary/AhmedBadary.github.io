@@ -1,7 +1,7 @@
 ---
 layout: NotesPage
 title: Optimization <br > Cheat Sheet
-permalink: /work_files/research/conv_opt/cheat
+permalink: /cheat
 prevLink: /work_files/research/conv_opt.html
 ---
 <div markdown="1" class = "TOC">

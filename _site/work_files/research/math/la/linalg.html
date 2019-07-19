@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">The Essence of Linear Algebra</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/nlp.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Definitions and Intuitions</a></li>
+  </ul>
+  <!--   * [SECOND](#content2)
+  {: .TOC2} -->
+</div>
+
+<hr />
+<hr />
+
+<p><a href="https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab&amp;index=1">Essence of LA - 3b1b</a><br />
+<a href="http://web.stanford.edu/class/cs224n/readings/cs229-linalg.pdf">LA (Stanford Review)</a></p>
+
+<h2 id="content1">Definitions and Intuitions</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Linear Algebra:</strong><br />
+ <strong>Linear Algebra</strong> is about two operations on <em>a list of numbers</em>:
+    <ol>
+      <li>Scalar Multiplication</li>
+      <li>Vector Addition</li>
+    </ol>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Vectors:</strong><br />
+ Think of each element in the vector as a <strong>scalar</strong> that scales the corresponding basis vectors.
+    <blockquote>
+      <p>Meaning, think about how each one stretches or squishes vectors (in this case, the basis vectors <script type="math/tex">\hat{i}, \hat{j}</script>)</p>
+    </blockquote>
+
+    <p>$$\begin{bmatrix}
+         x \\
+         y 
+     \end{bmatrix} = \begin{bmatrix}
+         1 &amp; 0  \\
+         0 &amp; 1 
+     \end{bmatrix}   \begin{bmatrix}
+                         x \\
+                         y 
+                     \end{bmatrix} = \color{red} x \color{red} {\underbrace{\begin{bmatrix}
+         1 \\
+         0 
+     \end{bmatrix}}_ {\hat{i}}} + \color{red} y \color{red} {\underbrace{\begin{bmatrix}
+         0 \\
+         1 
+     \end{bmatrix}}_ {\hat{j}}} = \begin{bmatrix}
+         1\times x + 0 \times y \\
+         0\times x + 1 \times y 
+     \end{bmatrix}
+ $$</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Span:</strong><br />
+ The <strong>Span</strong> of two vectors <script type="math/tex">\mathbf{v}, \mathbf{w}</script> is the set of all linear combinations of the two vectors:
+    <p>$$a \mathbf{v} + b \mathbf{w} \: ; \: a,b \in \mathbb{R}$$</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Linearly Dependent Vectors:</strong><br />
+ If one vector is in the span of the other vectors.<br />
+ Mathematically:
+    <p>$$a \vec{v}+b \vec{w}+c \vec{u}=\overrightarrow{0} \implies a=b=c=0$$</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents144">The Basis:</strong><br />
+The <strong>Basis</strong> of a vector space is a set of <em>linearly independent</em> vectors that <strong>span</strong> the full space.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Matrix as a Linear Transformation:</strong><br />
+ <strong>Summary</strong>:
+    <ol>
+      <li>Each <em><strong>column</strong></em>  is a <em>transformed</em> version of the <em><strong>basis vectors</strong></em> (e.g. <script type="math/tex">\hat{i}, \hat{j}</script>)</li>
+      <li>The result of a <strong>Matrix-Vector Product</strong> is the <strong>linear combination</strong> of the <em><strong>vectors</strong></em> with the appropriate <em><strong>transformed coordinate/basis vectors</strong></em>
+        <blockquote>
+          <p>i.e. <strong>Matrix-Vector Product</strong> is a way to compute what the corresponding linear transformation does to the given vector.</p>
+        </blockquote>
+      </li>
+    </ol>
+
+    <p><strong style="color: red">Matrix as a Linear Transformation:</strong><br />
+ Always think of Matrices as <strong>Transformations of Space</strong>:</p>
+    <ul>
+      <li>A Matrix represents a <em>specific linear transformation</em>
+        <ul>
+          <li>Where the <em><strong>columns</strong></em> represent the <em><strong>coordinates</strong></em> of the <em>transformed</em> <em><strong>basis vectors</strong></em></li>
+        </ul>
+      </li>
+      <li>&amp; <strong>Multiplying a matrix by a vector</strong> is EQUIVALENT to <strong>Applying the transformation to that vector</strong>
+        <blockquote>
+          <p>The word <em>“transformation”</em> suggests that you think using <em><strong>movement</strong></em><br />
+If a transformation takes some input vector to some output vector, we imagine that input vector moving over to the output vector.<br />
+Then to understand the transformation as a whole, we might imagine watching every possible input vector move over to its corresponding output vector.<br />
+This transformation/<em>“movement”</em> is <strong>Linear</strong>, if it keeps all the vectors <em><strong>parallel</strong></em> and <em><strong>evenly spaced</strong></em>, and <em><strong>fixes the origin</strong></em>.</p>
+        </blockquote>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Matrices and Vectors | The Matrix-Vector Product:</strong><br />
+ Again, We think of <em>each element</em> in a vector as a <em><strong>scalar</strong></em> that scales the corresponding <em>basis vectors</em>.</p>
+    <ul>
+      <li>Thus, if we know how the basis vectors get transformed, we can then just scale them (by multiplying with our vector elements).<br />
+  <strong>Mathematically</strong>, we think of the vector:
+        <p>$$\mathbf{v} = \begin{bmatrix}x \\y \end{bmatrix} = x\hat{i} + y\hat{j}$$</p>
+        <p>and its <em>transformed</em> version:</p>
+        <p>$$\text{Transformed } \mathbf{v} = x (\text{Transformed } \hat{i}) + y (\text{Transformed }  \hat{j})$$</p>
+        <p><script type="math/tex">\implies</script> we can describe where any vector <script type="math/tex">\mathbf{v}</script> go, by describing where the <em><strong>basis vectors</strong></em> will land.</p>
+        <blockquote>
+          <p>If you’re given a <em>two-by-two matrix</em> describing a <em>linear transformation</em> and some specific <em>vector</em> and you want to know where that linear transformation takes that vector, you can (1) take the coordinates of the vector (2) multiply them by the corresponding <em><strong>columns</strong></em> of the matrix, (3) then add together what you get.<br />
+  This corresponds with the idea of adding the scaled versions of our new basis vectors.<br />
+      <img src="/main_files/math/la/linalg/1.png" alt="img" width="60%" /></p>
+        </blockquote>
+      </li>
+    </ul>
+
+    <p>$$ \mathbf{v} = 
+     \begin{bmatrix}
+         x \\
+         y 
+     \end{bmatrix} = \begin{bmatrix}
+         1 &amp; 0  \\
+         0 &amp; 1 
+     \end{bmatrix}   \begin{bmatrix}
+                         x \\
+                         y 
+                     \end{bmatrix} = \color{red} x \color{red} {\underbrace{\begin{bmatrix}
+         1 \\
+         0 
+     \end{bmatrix}}_ {\hat{i}}} + \color{red} y \color{red} {\underbrace{\begin{bmatrix}
+         0 \\
+         1 
+     \end{bmatrix}}_ {\hat{j}}} = \begin{bmatrix}
+         1\times x + 0 \times y \\
+         0\times x + 1 \times y 
+     \end{bmatrix} = x\hat{i} + y\hat{j}
+ $$</p>
+
+    <p><strong>The Matrix-Vector Product:</strong><br />
+ <img src="/main_files/math/la/linalg/2.png" alt="img" width="100%" /></p>
+
+    <p><strong style="color: red">Non-Square Matrices <script type="math/tex">(N \times M)</script>:</strong><br />
+ Map vectors from <script type="math/tex">\mathbb{R}^M \rightarrow \mathbb{R}^N</script>.<br />
+ They are <em>transformations between <strong>dimensions</strong></em>.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">The Product of Two Matrices:</strong><br />
+ The Product of Two Matrices Corresponds to the <em><strong>composition of the transformations</strong></em>, being applied from right to left.<br />
+ This is <strong>very important</strong> intuition:
+    <blockquote>
+      <p>e.g. <em>do matrices commute?</em><br />
+ if you think of the matrices as <em>transformations of space</em> then answer quickly is no.<br />
+ Equivalently, <em>Are matrices associative?</em>  Yes, function composition is associative (<script type="math/tex">f \circ(g \circ h) = (f \circ g) \circ h</script>)</p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Linear Transformations:</strong><br />
+ <strong>Linear Transformations</strong> are transformations that preserve the following properties:
+    <ol>
+      <li>All vectors that are <em>parallel</em> remain parallel</li>
+      <li>All vectors are <em>evenly spaced</em></li>
+      <li>The <strong>origin</strong> remains <em>fixed</em></li>
+    </ol>
+
+    <ul>
+      <li><a href="https://www.youtube.com/embed/LyGKycYT2v0?start=295" value="show" onclick="iframePopA(event)"><strong>An Equivalent Definition of Linearity</strong></a>
+ <a href="https://www.youtube.com/embed/LyGKycYT2v0?start=295"></a>
+        <div></div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">The Determinant:</strong><br />
+ <strong>The Determinant</strong> of a transformation is the <em>“scaling factor”</em> by which the transformation changed any <strong>area</strong> in the vector space.</p>
+
+    <p><strong>The Negative Determinant</strong> determines the <em><strong>orientation</strong></em>.</p>
+
+    <p><strong>Linearity of the Determinant</strong>:</p>
+    <p>$$\text{det}(AB) = \text{det}(A) \text{det}(B)$$</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents110">Solving Systems of Equations:</strong><br />
+The Equation <script type="math/tex">A\mathbf{x} = \mathbf{b}</script>, finds the vector <script type="math/tex">\mathbf{x}</script> that <em>lands on the vector <script type="math/tex">\mathbf{b}</script></em> when the transformation <script type="math/tex">A</script> is applied to it.</p>
+
+    <p>Again, the <strong>intuition</strong>: is to think of a linear system of equations, <strong>geometrically</strong>, as trying to find a particular vector that once transformed/moved, lands on the output vector <script type="math/tex">\mathbf{b}</script>.</p>
+    <ul>
+      <li>This becomes more important when you think of the different <strong>properties</strong>, of that transformation/function, encoded (now) in the <em><strong>matrix</strong></em> <script type="math/tex">A</script>:
+        <ul>
+          <li>When the <script type="math/tex">det(A) \neq 0</script> we know that space is preserved, and from the <em>properties of linearity</em>, we know there will always be one (<em><strong>unique</strong></em>) vector that would land on <script type="math/tex">\mathbf{b}</script> once transformed (and you can find it by <em>“playing the transformation in reverse”</em> i.e. the <strong>inverse matrix</strong>).</li>
+          <li>When <script type="math/tex">det(A) = 0</script> then the space is <strong>squished</strong> down to a lower representation, resulting in <strong>information loss</strong>.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents19">The Inverse of a matrix:</strong><br />
+ The <strong>Inverse</strong> of a matrix is the matrix such that if we “algebraically” multiply the two matrices, we get back to the original coordinates (the identity).<br />
+ It is, basically, the transformation applied in <em>reverse</em>.</p>
+
+    <p><strong style="color: red">Why inverse transformation/matrix DNE when det is Zero (i.e. space is squished:</strong><br />
+ To do so, is equivalent to <em>transforming</em> a <strong>line</strong> into a <strong>plane</strong>, which would require <em>mapping</em> each, individual, <strong>vector</strong> into a <strong>“whole line full of vectors” (multiple vectors)</strong>; which is <em>not something a <strong>Function</strong></em> can do.<br />
+ Functions map <em><strong>single input</strong></em> to <em><strong>single output</strong></em>.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents111">The Determinants, Inverses, &amp; Solutions to Equations:</strong><br />
+When the <script type="math/tex">\text{det} = 0</script> the area gets <em>squashed to <script type="math/tex">0</script></em>, and <em>information is lost</em>. Thus:
+    <ol>
+      <li>The Inverse DNE</li>
+      <li>A unique solution DNE
+        <blockquote>
+          <p>i.e. there is no function that can take a line onto a plane; info loss</p>
+        </blockquote>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents112">The Rank:</strong><br />
+<strong>The Rank</strong> is the <em>dimensionality</em> of the output of a transformation.<br />
+<strong>Viewed as a Matrix</strong>, it is the <em>number of independent vectors (as columns)</em> that make up the matrix.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents113">The Column Space:</strong><br />
+<strong>The Column Space</strong> is the set of all possible outputs of a transformation/matrix.
+    <ul>
+      <li>View each column as a <em>basis vector</em>; there span is then, all the possible outputs</li>
+      <li><strong>The Zero Vector (origin)</strong>: is always in the column space (corresponds to preserving the origin)</li>
+    </ul>
+
+    <p>The <strong>Column Space</strong> allows us to understand <em><strong>when a solution exists</strong></em>.<br />
+For example, even when the matrix is not full-rank (det=0) a solution might still exist; if, when <script type="math/tex">A</script> squishes space onto a line, the vector <script type="math/tex">\mathbf{b}</script> lies on that line (in the <strong>span</strong> of that line).</p>
+    <ul>
+      <li>Formally, solution exists if <script type="math/tex">\mathbf{b}</script> is in the <strong>column space</strong> of <script type="math/tex">A</script>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents114">The Null Space:</strong><br />
+<strong>The Null Space</strong> is the set of vectors that get <em>mapped to the origin</em>; also known as <strong>The Kernel</strong>.</p>
+
+    <p>The <strong>Null Space</strong> allows us to understand <em>what the set of all possible solutions look like</em>.</p>
+
+    <p><strong style="color: red">Rank and the Zero Vector:</strong><br />
+A <strong>Full-Rank</strong> matrix maps <strong>only the origin</strong> to itself.<br />
+A <strong>non-full rank (det=0)</strong> (rank=n-1) matrix maps a whole <strong>line</strong> to the origin, (rank=n-2) a <strong>plane</strong> to the origin, etc.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents115">The Dot Product/Scalar Product:</strong><br />
+(for vectors <script type="math/tex">\mathbf{u}, \mathbf{v}</script>)
+    <p>$$\mathbf{u} \cdot \mathbf{v} = \mathbf{u}^T \mathbf{v}$$</p>
+    <ul>
+      <li><strong>Geometrically</strong>:
+        <ol>
+          <li>project</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents116">Cramer’s Rule:</strong>
+    <ul>
+      <li><a href="https://www.youtube.com/embed/jBsC34PxzoM?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" value="show" onclick="iframePopA(event)"><strong>Cramer’s Rule Geometrically</strong></a>
+<a href="https://www.youtube.com/embed/jBsC34PxzoM?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab"></a>
+        <div></div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents117">Coordinate Systems:</strong></p>
+
+    <p>A <strong>Coordinate System</strong> is just a way to formalize the basis vectors and their lengths. All coordinate systems agree on where the <strong>origin</strong> is.<br />
+<strong>Coordinate Systems</strong> are a way to <em>translate</em> between <em><strong>vectors</strong></em> (defined w.r.t. basis vectors being scaled and added in space) and <em><strong>sets of numbers</strong></em> (the elements of the vector/list/array of numbers which we define).</p>
+
+    <ul>
+      <li><a href="https://www.youtube.com/embed/P2LTAUO1TdA?start=257" value="show" onclick="iframePopA(event)"><strong>Translating between Coordinate Systems</strong></a>
+<a href="https://www.youtube.com/embed/P2LTAUO1TdA?start=257"></a>
+        <div></div>
+        <blockquote>
+          <p>Imp: <em>6:47</em></p>
+        </blockquote>
+      </li>
+      <li><a href="https://www.youtube.com/embed/P2LTAUO1TdA?start=552" value="show" onclick="iframePopA(event)"><strong>Translating a Matrix/Transformation between Coordinate Systems</strong></a>
+<a href="https://www.youtube.com/embed/P2LTAUO1TdA?start=552"></a>
+        <div></div>
+      </li>
+    </ul>
+
+    <p><strong>Implicit Assumptions in a Coordinate System:</strong></p>
+    <ul>
+      <li>Direction of each <em>basis vector</em> our vector is scaling</li>
+      <li>The unit of <em>distance</em></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents118">Eigenstuff:</strong></p>
+
+    <ul>
+      <li><a href="https://www.youtube.com/embed/PFDu9oVAE-g?start=322" value="show" onclick="iframePopA(event)"><strong>Computing the Eigenvalues/vectors Intuition</strong></a>
+<a href="https://www.youtube.com/embed/PFDu9oVAE-g?start=322"></a>
+        <div></div>
+      </li>
+      <li><a href="https://www.youtube.com/embed/PFDu9oVAE-g?start=881" value="show" onclick="iframePopA(event)"><strong>Diagonalization</strong></a>
+<a href="https://www.youtube.com/embed/PFDu9oVAE-g?start=881"></a>
+        <div></div>
+      </li>
+    </ul>
+
+    <p><strong>Notes:</strong></p>
+    <ul>
+      <li>Complex Eigenvalues, generally, correspond to some kind of rotation in the transformation/matrix (think, multiplication by <script type="math/tex">i</script> in <script type="math/tex">\mathbb{C}</script> is a <script type="math/tex">90^{\deg}</script> rotation).</li>
+      <li>For a <strong>diagonal matrix</strong>, all the <em><strong>basis vectors</strong></em> are <em><strong>eigenvectors</strong></em> and the <em><strong>diagonal entries</strong></em> are their <em><strong>eigenvalues</strong></em>.</li>
+    </ul>
+  </li>
+</ol>
+
+<!-- 19. **The:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents119}  
+
+20. **The:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents120}  
+
+21. **The:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents121}  
+
+22. **The:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents122}  
+
+23. **The:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents123}  
+
+24. **The:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents124}  
+
+25. **The:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents125}  
+
+26. **The:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents126}  
+
+27. **The:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents127}  
+
+28. **The:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents128}  
+29. **The:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents129}  
+30. **The:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents130}  
+31. **The:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents131}  
+32. **The:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents132}  
+33. **The:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents133}  
+34. **The:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents134}  
+35. **The:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents135}   -->
+
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

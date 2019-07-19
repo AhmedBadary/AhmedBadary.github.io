@@ -1,7 +1,7 @@
 ---
 layout: NotesPage
 title: PCA <br /> Principle Compnent Analysis
-permalink: /work_files/research/conv_opt/pca
+permalink: /work_files/research/conv_opt/pca_opt
 prevLink: /work_files/research/conv_opt
 ---
 

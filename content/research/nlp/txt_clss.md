@@ -53,7 +53,7 @@ prevLink: /work_files/research/nlp.html
 {: #content2}
 
 1. **Naive Bayes Classifiers:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}   
-    :   are a family of simple probabilitic classifiers based on applying [_Bayes' Theorem_](https://en.wikipedia.org/wiki/Bayes%27_theorem) with strong (naive) independence assumptions between the features.  
+    :   are a family of simple probabilistic classifiers based on applying [_Bayes' Theorem_](https://en.wikipedia.org/wiki/Bayes%27_theorem) with strong (naive) independence assumptions between the features.  
     :   __The Probabilistic Model__:  
         Abstractly, naive Bayes is a conditional probability model: given a problem instance to be classified, represented by a vector $${\displaystyle \mathbf{x} =(x_{1},\dots ,x_{n})}=(x_{1},\dots ,x_{n})$$ representing some n features (independent variables), it assigns to this instance probabilities  
     :   $${\displaystyle p(C_{k}\mid x_{1},\dots ,x_{n})\,}$$
