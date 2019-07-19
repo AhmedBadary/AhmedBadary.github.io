@@ -8,12 +8,12 @@ prevLink: /work_files/research/dl/archits.html
 <div markdown="1" class = "TOC">
 # Table of Contents
 
-  * [FIRST](#content1)
+  * [All about RNNs](#content1)
   {: .TOC1}
-  * [SECOND](#content2)
+<!--   * [SECOND](#content2)
   {: .TOC2}
   * [THIRD](#content3)
-  {: .TOC3}
+  {: .TOC3} -->
 <!--   * [FOURTH](#content4)
   {: .TOC4}
   * [FIFTH](#content5)
@@ -34,7 +34,7 @@ prevLink: /work_files/research/dl/archits.html
 
 
 
-## Introduction
+## All about RNNs
 {: #content1}
 
 1. **Recurrent Neural Networks:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  

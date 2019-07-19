@@ -6,7 +6,6 @@ prevLink: /work_files/research/dl/theory.html
 ---
 
 
-
 <div markdown="1" class = "TOC">
 # Table of Contents
 
@@ -397,51 +396,6 @@ prevLink: /work_files/research/dl/theory.html
 
 3. **Binomial Distribution:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents93}     
     > $${\binom {n}{k}}={\frac {n!}{k!(n-k)!}}$$ is the number of possible ways of getting $$x$$ successes and $$n-x$$ failures
-
-<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents94}  
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents95}  
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents96}  
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents97}  
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents98}   -->
-
-***
-
-## 110
-{: #content99}
-
-1. **Problems:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents991}  
-    * [**deMortmonts/Matching problem**](https://www.youtube.com/embed/LZ5Wergp_PA?start=2305){: value="show" onclick="iframePopA(event)"}
-    <a href="https://www.youtube.com/embed/LZ5Wergp_PA?start=2305"></a>
-        <div markdown="1"> </div>    
-        Sol: Inclusion-Exclusion  
-    * [**Newton-Pepys: most likely event of rolling 6's in dice**](https://www.youtube.com/embed/P7NE4WF8j-Q?start=1057){: value="show" onclick="iframePopA(event)"}
-    <a href="https://www.youtube.com/embed/P7NE4WF8j-Q?start=1057"></a>
-        <div markdown="1"> </div>    
-
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents992}  
-    :   
-
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents993}  
-    :   
-
-<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents994}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents995}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents996}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents997}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents998}  
-    :    -->
     
 ***
 

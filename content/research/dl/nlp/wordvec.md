@@ -15,8 +15,8 @@ prevLink: /work_files/research/dl/nlp.html
   {: .TOC2}
   * [Word2Vec](#content3)
   {: .TOC3}
-  * [FOURTH](#content4)
-  {: .TOC4}
+<!--   * [FOURTH](#content4)
+  {: .TOC4} -->
 </div>
 
 ***

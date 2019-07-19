@@ -12,6 +12,9 @@ prevLink: /work_files/research/dl/nlp.html
   {: .TOC1}
   * [Recurrent Neural Networks](#content2)
   {: .TOC2}
+  * [RNNs Extra!](#content3)
+  {: .TOC3}
+<!--   
   * [RNN Language Models](#content3)
   {: .TOC3}
   * [Training RNNs](#content4)
@@ -19,7 +22,7 @@ prevLink: /work_files/research/dl/nlp.html
   * [RNNs in Sequence Modeling](#content4)
   {: .TOC4}
   * [Bidirectional and Deep RNNs](#content4)
-  {: .TOC4}
+  {: .TOC4} -->
 </div>
 
 ***

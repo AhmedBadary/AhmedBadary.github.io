@@ -22,16 +22,10 @@ permalink: /work_files/research/dl/nlp
 
 * ### [Sentence Embeddings and Contextualized Embeddings](/work_files/research/dl/nlp/sent_embeds)
 
-* ### [CNNs in NLP](/work_files/research/dl/nlp/cnnsNnlp)
-
-* ### [TensorFlow in NLP](/work_files/research/dl/nlp/tf_intro)
-
-* ### [TensorFlow in NLP #2](/work_files/research/dl/nlp/tf_intro_2)
-
 
 ## Research
 
-* ### [Research Papers](/work_files/research/dl/nlp/nlp_research)
+* ### [Research Papers in NLP](/work_files/research/dl/nlp/nlp_research)
 
 * ### [ASR Research Papers](/work_files/research/dl/nlp/speech_research)
 

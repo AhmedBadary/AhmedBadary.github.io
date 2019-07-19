@@ -4,7 +4,7 @@ title: 'Ahmad Badary'
 tagline: 'Main Page'
 ---
 
-# Deep Learning
+# Articles
 
 ***
 
@@ -17,6 +17,19 @@ tagline: 'Main Page'
 * ### [Auto-Encoders](/work_files/research/dl/aencdrs)
 
 * ### [Variational Auto-Encoders](/work_files/research/dl/vae)
+
+
+## [Natural Language Processing](/work_files/research/dl/nlp.html)
+
+* ### [The Language Modeling Problem and Recurrent Neural Networks](/work_files/research/dl/nlp/rnns)
+
+* ### [Attention Mechanism for DNNs](/work_files/research/dl/nlp/attention)
+
+* ### [Automatic Speech Recognition (ASRs)](/work_files/research/dl/nlp/speech)
+
+* ### [Word Embeddings | Word2Vec](/work_files/research/dl/nlp/wordvec)
+
+* ### [Research Papers in NLP](/work_files/research/dl/nlp/nlp_research)
 
 
 ## [Computer Vision](/work_files/research/dl/cv.html)
@@ -34,50 +47,21 @@ tagline: 'Main Page'
 * ### [Articulated Body Pose Estimation](/work_files/research/dl/pose_estt)
 
 
-* ### [Recurrent Neural Networks | Applications in Computer Vision](/work_files/research/dl/rnns_cv)
-
-## [Natural Language Processing](/work_files/research/dl/nlp.html)
-
-* ### [Introduction to NLP with DL](/work_files/research/dl/nlp/intro)
-
-* ### [Word Embeddings | Word2Vec](/work_files/research/dl/nlp/wordvec)
-
-* ### [TensorFlow in NLP](/work_files/research/dl/nlp/tf_intro)
-
-* ### [Language Modeling | Recurrent Neural Networks (RNNs)](/work_files/research/dl/nlp/rnns)
-
-***
-
-* [Introduction to NLP](/work_files/research/nlp/intro)
-
-* [Text Processing](/work_files/research/nlp/txt_proc)
-
-* [Discriminative Models in NLP \| MaxEnt Models and Discriminative Estimation](/work_files/research/nlp/disc)
-
-* [Text Classification](/work_files/research/nlp/txt_clss)
-
-* [Sentiment Analysis](/work_files/research/nlp/sent_anlys)
-
-* [Information Extraction](/work_files/research/nlp/info_extr)
-
 ***
 
 ## Interesting Reads
 
+* [Statistical Learning Theory](/work_files/research/dl/theory/stat_lern_thry)
+* [Information Theory](/work_files/research/dl/theory/infothry)
+* [Regularization Theory and Applications](/work_files/research/dl/theory/dl_book_regularization)
+* [Topics in Convex Optimization](/work_files/research/conv_opt/3__1)  
 * [The Index Fund Tracking Problem](/work_files/research/conv_opt/hw/iftp)
-* [(Variational) Auto-Encoders (VAEs)](/work_files/research/dl/vae)
-* [(Vanilla) Auto-Encoders](/work_files/research/dl/aencdrs)
-* [Principle Compnent Analysis (PCA)](/work_files/research/conv_opt/pca)
-* #### [Generative Adversarial Networks](/work_files/research/dl/gans)
+* [Principle Component Analysis (PCA)](/work_files/research/conv_opt/pca)
+* [Probability Theory Review](/work_files/research/dl/theory/probability)
 
-***
-***
 
-## Personal
 
-* [Ideas](/ideas)
-* [Concepts](/concepts_)
-* [interviews](/interviews)
+#### [Note on Copyrights](/copyrights)
 
 
 <div id="home">
