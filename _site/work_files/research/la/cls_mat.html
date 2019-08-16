@@ -98,19 +98,27 @@
 <hr />
 <hr />
 
+<p><a href="https://medium.com/@jonathan_hui/machine-learning-linear-algebra-special-matrices-c750cd742dfe">Special Matrices in ML</a> <br />
+<a href="https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf">Matrix Cookbook</a></p>
+
 <h2 id="content1">Diagonal Matrices</h2>
 
 <ol>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Definition.</strong></dt>
-      <dd><strong>Diagonal matrices</strong> are square matrices <script type="math/tex">A</script> with <script type="math/tex">A_{ij} = 0 \text{, when } i \ne j.</script></dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Definition.</strong><br />
+ <strong>Diagonal matrices</strong> are square matrices <script type="math/tex">A</script> with <script type="math/tex">A_{ij} = 0 \text{, when } i \ne j.</script><br />
+ <br /></p>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Properties:</strong>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Properties:</strong></p>
     <ol>
-      <li>Diagonal matrices correspond to quadratic functions that are simple sums of squares, of the form:<br />
- <script type="math/tex">q(x) = \sum_{i=1}^n \lambda_i x_i^2 = x^T \mathbf{diag}(\lambda) x.</script></li>
+      <li>Diagonal matrices correspond to quadratic functions that are simple sums of squares, of the form:
+        <p>$$q(x) = \sum_{i=1}^n \lambda_i x_i^2 = x^T \mathbf{diag}(\lambda) x.$$</p>
+      </li>
+      <li>They are easy to invert <script type="math/tex">A^{-1}_ {ii} = 1/A_ {ii} \: \forall i \in [1, n]</script></li>
+      <li>The <strong>pseudo-inverse</strong> is easy to compute: keep zero diagonal elements as zero</li>
+      <li>Allow easier matrix multiplication and powers<br />
+ <br /></li>
     </ol>
   </li>
 </ol>
@@ -121,16 +129,30 @@
 
 <ol>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Definition.</strong></dt>
-      <dd><strong>Symmetric matrices</strong> are square matrices that satisfy <script type="math/tex">A_{ij} = A_{ji}</script> for every pair <script type="math/tex">(i,j).</script></dd>
-      <dd><strong>The set of symmetric</strong> <script type="math/tex">(n \times n)</script> matrices is denoted <script type="math/tex">\mathbf{S}^n</script>. This set is a subspace of <script type="math/tex">\mathbf{R}^{n \times n}</script>.</dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Definition:</strong>  <br />
+ <strong>Symmetric matrices</strong> are square matrices that satisfy <script type="math/tex">A_{ij} = A_{ji}</script> for every pair <script type="math/tex">(i,j).</script></p>
+
+    <p><strong>The set of symmetric</strong> <script type="math/tex">(n \times n)</script> matrices is denoted <script type="math/tex">\mathbf{S}^n</script>. This set is a subspace of <script type="math/tex">\mathbf{R}^{n \times n}</script>.<br />
+ <br /></p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Properties:</strong></p>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Properties:</strong>
+    <ul>
+      <li>Has <strong>orthonormal</strong> eigenvectors (even with repeated eigenvalues)</li>
+      <li>Its inverse is also symmetric</li>
+      <li>All eigenvalues of a symmetric matrix are <strong>real</strong></li>
+      <li><script type="math/tex">A^TA</script> is <strong>invertible</strong> iff columns of <script type="math/tex">A</script> are linearly independent</li>
+      <li>Every symmetric matrix <script type="math/tex">S</script> can be diagonalized (factorized) with <script type="math/tex">Q</script> formed by the orthonormal eigenvectors <script type="math/tex">v_i</script> of <script type="math/tex">S</script> and <script type="math/tex">\Lambda</script> is a diagonal matrix holding all the eigenvalues:
+        <p>$$\begin{aligned} S&amp;=Q \Lambda Q^{T} \\
+      &amp;= \lambda_{1} v_{1} v_{1}^{T}+\ldots+\lambda_{n} v_{n} v_{h}^{T} = \sum_{i=1}^n \lambda_i v_i v_i^T
+      \end{aligned}$$</p>
+      </li>
+      <li>One can create a symmetric matrix from any matrix by:
+        <p>$$M = {\displaystyle {\tfrac {1}{2}}\left(A+A^{\textsf {T}}\right)}$$</p>
+        <p><br /></p>
+      </li>
+    </ul>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Examples:</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Examples:</strong>
     <ol>
       <li><a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/3c5245ebb8a556da" value="show" onclick="iframePopA(event)"><strong>Representation of a weighted, undirected graph.</strong></a>
  <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/73a4ae787085d554"><code class="highlighter-rouge"> Visit the Book</code></a>
@@ -147,6 +169,7 @@
       <li><a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/e236418f4e2d6b3b" value="show" onclick="iframePopA(event)"><strong>Gram matrix of data points.</strong></a>
  <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/73a4ae787085d554"><code class="highlighter-rouge"> Visit the Book</code></a>
         <div></div>
+        <p><br /></p>
       </li>
     </ol>
   </li>
@@ -158,13 +181,13 @@
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Definition.</strong></p>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Definition.</strong></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Properties:</strong></p>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Properties:</strong></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Asynchronous:</strong></p>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Asynchronous:</strong></p>
   </li>
 </ol>
 
@@ -173,31 +196,19 @@
 <h2 id="content4">Covariance Matrices</h2>
 
 <ol>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Definition.</strong></dt>
-      <dd>
-        <blockquote>
-          <p><strong>Standard Form:</strong></p>
-        </blockquote>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">\Sigma :=\mathrm {E} \left[\left(\mathbf {X} -\mathrm {E} [\mathbf {X} ]\right)\left(\mathbf {X} -\mathrm {E} [\mathbf {X} ]\right)^{\rm {T}}\right]</script>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">\Sigma := \dfrac{1}{m} \sum_{k=1}^m (x_k - \hat{x})(x_k - \hat{x})^T.</script>
-      </dd>
-      <dd>
-        <blockquote>
-          <p><strong>Matrix Form:</strong></p>
-        </blockquote>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">\Sigma := \dfrac{X^TX}{n}</script>
-      </dd>
-    </dl>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">Definition.</strong> <br />
+ <strong>Standard Form:</strong>
+    <p>$$\Sigma :=\mathrm {E} \left[\left(\mathbf {X} -\mathrm {E} [\mathbf {X} ]\right)\left(\mathbf {X} -\mathrm {E} [\mathbf {X} ]\right)^{\rm {T}}\right]$$</p>
+    <p>$$ \Sigma := \dfrac{1}{m} \sum_{k=1}^m (x_k - \hat{x})(x_k - \hat{x})^T. $$</p>
+
+    <p><strong>Matrix Form:</strong></p>
+    <p>$$ \Sigma := \dfrac{X^TX}{n} $$</p>
+
+    <blockquote>
+      <p>valid only for (1) <script type="math/tex">X</script> w/ samples in rows and variables in columns  (2) <script type="math/tex">X</script> is centered (mean=0)</p>
+    </blockquote>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Properties:</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Properties:</strong>
     <ol>
       <li>
         <p>The sample covariance matrix allows to find the variance along any direction in data space.</p>
@@ -215,7 +226,7 @@
         <p>It is Symmetric.</p>
       </li>
       <li>Every symmetric positive semi-definite matrix is a covariance matrix.<br />
- <a href="http://ahmedbadary.ml/work_files/research/opt_probs#bodyContents12" value="show" onclick="iframePopA(event)"><strong>Proof.</strong></a>
+ <a href="http://ahmedbadary.ml/work_files/research/opt_probs#bodyContents12" value="show" onclick="iframePopA(event)"><strong>Proof.</strong></a><br />
  <a href="http://ahmedbadary.ml/work_files/research/opt_probs#bodyContents12"><code class="highlighter-rouge"> OR, Visit the website</code></a>
         <div></div>
       </li>
@@ -240,7 +251,7 @@
         <p><script type="math/tex">\operatorname {cov} (\mathbf {X} ,\mathbf {Y} )=\operatorname {cov} (\mathbf {Y} ,\mathbf {X} )^{\rm {T}}</script>.</p>
       </li>
       <li>
-        <p><script type="math/tex">\operatorname {cov} (\mathbf {X} _{1}+\mathbf {X} _{2},\mathbf {Y} )=\operatorname {cov} (\mathbf {X} _{1},\mathbf {Y} )+\operatorname {cov} (\mathbf {X} _{2},\mathbf {Y} )</script>.</p>
+        <p><script type="math/tex">\operatorname {cov} (\mathbf {X}_ {1}+\mathbf {X}_ {2},\mathbf {Y} )=\operatorname {cov} (\mathbf {X}_ {1},\mathbf {Y} )+\operatorname {cov} (\mathbf {X}_ {2},\mathbf {Y} )</script>.</p>
       </li>
       <li>
         <p>If <script type="math/tex">(p = q)</script>, then <script type="math/tex">\operatorname {var} (\mathbf {X} +\mathbf {Y} )=\operatorname {var} (\mathbf {X} )+\operatorname {cov} (\mathbf {X} ,\mathbf {Y} )+\operatorname {cov} (\mathbf {Y} ,\mathbf {X} )+\operatorname {var} (\mathbf {Y} )</script>.</p>
@@ -251,9 +262,10 @@
       <li>
         <p>If <script type="math/tex">{\displaystyle \mathbf {X} }</script>  and <script type="math/tex">{\displaystyle \mathbf {Y} }</script>  are independent (or somewhat less restrictedly, if every random variable in <script type="math/tex">{\displaystyle \mathbf {X} }</script> is uncorrelated with every random variable in <script type="math/tex">{\displaystyle \mathbf {Y} }</script>), then <script type="math/tex">{\displaystyle \operatorname {cov} (\mathbf {X} ,\mathbf {Y} )=\mathbf {0} }</script>.</p>
       </li>
-      <li><script type="math/tex">\operatorname {var} (\mathbf {b} ^{\rm {T}}\mathbf {X} )=\mathbf {b} ^{\rm {T}}\operatorname {var} (\mathbf {X} )\mathbf {b} ,\,</script>.
+      <li><script type="math/tex">\operatorname {var} (\mathbf {b} ^{\rm {T}}\mathbf {X} )= \mathbf {b} ^{\rm {T}}\operatorname {cov} (\mathbf {X} )\mathbf {b} = \operatorname {cov} (\mathbf{b}^T\mathbf {X}, \mathbf{b}^T\mathbf {X} ) \geq 0,\,</script>.
         <blockquote>
-          <p>This quantity is NON-Negative because it’s variance.</p>
+          <p>This quantity is NON-Negative because it’s variance.<br />
+Maybe <script type="math/tex">= \mathbf {b} ^{\rm {T}}\operatorname {var} (\mathbf {X} )\mathbf {b}</script>??</p>
         </blockquote>
       </li>
       <li>
@@ -273,7 +285,7 @@
   <script type="math/tex">{\displaystyle \mathbf {X} ,\mathbf {X} _{1}},</script> and <script type="math/tex">{\displaystyle \mathbf {X} _{2}}</script> are random <script type="math/tex">(p\times 1)</script> vectors, <script type="math/tex">{\displaystyle \mathbf {Y} }</script>  is a random <script type="math/tex">(q\times 1)</script> vector, <script type="math/tex">{\displaystyle \mathbf {a} }</script>  is a <script type="math/tex">(q\times 1)</script> vector, <script type="math/tex">{\displaystyle \mathbf {b} }</script> is a <script type="math/tex">(p\times 1)</script> vector, and <script type="math/tex">{\displaystyle \mathbf {A} }</script> and <script type="math/tex">{\displaystyle \mathbf {B} }</script>  are <script type="math/tex">(q\times p)</script> matrices of constants.</p>
     </blockquote>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43"><script type="math/tex">\Sigma</script> as a Linear Operator:</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43"><script type="math/tex">\Sigma</script> as a Linear Operator:</strong>
     <ul>
       <li><strong>Applied to one vector</strong>, the covariance matrix <em>maps a linear combination</em>, <script type="math/tex">c</script>, of the random variables, <script type="math/tex">X</script>, onto a vector of covariances with those variables:</li>
     </ul>
@@ -296,7 +308,7 @@
       <li><strong>The (pseudo-)inverse covariance matrix</strong> provides an <em>inner product</em>,  <script type="math/tex">{\displaystyle \langle c-\mu \|\Sigma ^{+}\| c-\mu \rangle }</script>  which induces the <em>Mahalanobis distance</em>, a measure of the “unlikelihood” of <script type="math/tex">c</script>.</li>
     </ul>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Applications [Examples]:</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Applications [Examples]:</strong>
     <ol>
       <li>
         <p><a href="https://en.wikipedia.org/wiki/Whitening_transformation"><strong>The Whitening Transformation:</strong></a> allows one to completely decorrelate the data,  Equivalently,<br />
@@ -318,7 +330,8 @@
         <p><a href="https://en.wikipedia.org/wiki/Capital_asset_pricing_model"><strong>Capital asset pricing model</strong></a></p>
       </li>
       <li>
-        <p><a href="https://en.wikipedia.org/wiki/Modern_portfolio_theory"><strong>Portfolio Theory:</strong></a> The matrix of covariances among various assets’ returns is used to determine, under certain assumptions, the relative amounts of different assets that investors should (in a normative analysis) or are predicted to (in a positive analysis) choose to hold in a context of diversification.</p>
+        <p><a href="https://en.wikipedia.org/wiki/Modern_portfolio_theory"><strong>Portfolio Theory:</strong></a> The matrix of covariances among various assets’ returns is used to determine, under certain assumptions, the relative amounts of different assets that investors should (in a normative analysis) or are predicted to (in a positive analysis) choose to hold in a context of diversification.
+ <br /></p>
       </li>
     </ol>
   </li>
@@ -330,15 +343,26 @@
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents51">Definition</strong></p>
+    <p><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents51">Definition:</strong><br />
+ A <em><strong>symmetric</strong></em> <script type="math/tex">{\displaystyle n\times n}</script> <em><strong>real</strong></em> matrix <script type="math/tex">{\displaystyle M}</script> is said to be <strong>positive semi-definite</strong> if the scalar <script type="math/tex">{\displaystyle z^{\textsf {T}}Mz}</script> is <em><strong>non-negative</strong></em> for <em><strong>every non-zero</strong></em> column vector <script type="math/tex">{\displaystyle z}</script>  of <script type="math/tex">n</script> real numbers.</p>
+
+    <p><strong>Mathematically:</strong></p>
+    <p>$$M \text { positive semi-definite } \Longleftrightarrow \quad x^{\top} M x \geq 0 \text { for all } x \in \mathbb{R}^{n}$$</p>
+    <p><br /></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents52">Properties:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents53">Asynchronous:</strong></p>
+    <p><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents52">Properties:</strong></p>
+    <ul>
+      <li><script type="math/tex">AA^T</script> and <script type="math/tex">A^TA</script> are PSD</li>
+      <li><script type="math/tex">M</script> is positive definite if All pivots &gt; 0</li>
+      <li><script type="math/tex">M</script> is positive definite if and only if <strong>all of its eigenvalues are non-negative</strong>.</li>
+      <li><strong>Covariance Matrices <script type="math/tex">\Sigma</script></strong> are PSD<br />
+ <br /></li>
+    </ul>
   </li>
 </ol>
+
+<!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents53}    -->
 
 <hr />
 
@@ -346,15 +370,29 @@
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents6" id="bodyContents61">Definition.</strong></p>
+    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents61">Definition:</strong>  <br />
+ A <em><strong>symmetric</strong></em> <script type="math/tex">{\displaystyle n\times n}</script> <em><strong>real</strong></em> matrix <script type="math/tex">{\displaystyle M}</script> is said to be <strong>positive definite</strong> if the scalar <script type="math/tex">{\displaystyle z^{\textsf {T}}Mz}</script> is strictly <em><strong>positive</strong></em> for <em><strong>every non-zero</strong></em> column vector <script type="math/tex">{\displaystyle z}</script>  of <script type="math/tex">n</script> real numbers.</p>
+
+    <p><strong>Mathematically:</strong></p>
+    <p>$$M \text { positive definite } \Longleftrightarrow x^{\top} M x&gt;0 \text { for all } x \in \mathbb{R}^{n} \backslash \mathbf{0}$$</p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents6" id="bodyContents62">Properties:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents6" id="bodyContents63">Asynchronous:</strong></p>
+    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents62">Properties:</strong></p>
+    <ul>
+      <li><script type="math/tex">M</script> is positive definite if and only if <strong>all of its eigenvalues are positive</strong></li>
+      <li>The matrix <script type="math/tex">{\displaystyle M}</script> is positive definite if and only if the bilinear form <script type="math/tex">{\displaystyle \langle z,w\rangle =z^{\textsf {T}}Mw}</script> is positive definite</li>
+      <li>A symmetric matrix <script type="math/tex">{\displaystyle M}</script> is positive definite if and only if its <strong>quadratic form is a strictly convex function</strong></li>
+      <li>Every positive definite matrix is <strong>invertible</strong> and its inverse is also positive definite.</li>
+      <li><script type="math/tex">M</script> is positive definite if All pivots &gt; 0</li>
+      <li><strong>Covariance Matrices <script type="math/tex">\Sigma</script></strong> are positive definite unless one variable is an exact linear function of the others. Conversely, every positive semi-definite matrix is the covariance matrix of some multivariate distribution</li>
+      <li>Any quadratic function from <script type="math/tex">{\displaystyle \mathbb {R} ^{n}}</script> to <script type="math/tex">{\displaystyle \mathbb {R} }</script> can be written as <script type="math/tex">{\displaystyle x^{\textsf {T}}Mx+x^{\textsf {T}}b+c}</script> where <script type="math/tex">{\displaystyle M}</script> is a symmetric <script type="math/tex">{\displaystyle n\times n}</script> matrix, <script type="math/tex">b</script> is a real <script type="math/tex">n</script>-vector, and <script type="math/tex">c</script> a real constant. This quadratic function is strictly convex, and hence has a unique finite global minimum, if and only if <script type="math/tex">{\displaystyle M}</script> is positive definite.<br />
+ <br /></li>
+    </ul>
   </li>
 </ol>
+
+<!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents63}  
+ -->
 
 <hr />
 
@@ -362,25 +400,22 @@
 
 <ol>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents71">Definition.</strong></dt>
-      <dd>Orthogonal (or, unitary) matrices are square matrices, such that the columns form an orthonormal basis.</dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents71">Definition.</strong><br />
+ Orthogonal (or, unitary (complex)) matrices are square matrices, such that the columns form an orthonormal basis.<br />
+ <br /></p>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents72">Properties:</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents72">Properties:</strong>
     <ol>
-      <li>
-        <p>If <script type="math/tex">U = [u_1, \ldots, u_n]</script> is an orthogonal matrix, then<br />
- <script type="math/tex">% <![CDATA[
-u_i^Tu_j = \left\{ \begin{array}{ll} 1 & \mbox{if } i=j, \\  0 & \mbox{otherwise.} \end{array} \right. %]]></script></p>
+      <li>If <script type="math/tex">U = [u_1, \ldots, u_n]</script> is an orthogonal matrix, then
+        <p>$$u_i^Tu_j = \left\{ \begin{array}{ll} 1 &amp; \mbox{if } i=j, \\  0 &amp; \mbox{otherwise.} \end{array} \right. $$</p>
       </li>
       <li>
-        <p><script type="math/tex">U^TU = I_n</script>.</p>
+        <p><script type="math/tex">U^TU = UU^T = I_n</script>.</p>
       </li>
-      <li>
-        <p><script type="math/tex">UU^T = I_n</script>.</p>
+      <li>Easy inverse:
+        <p>$$U^{-1} = U^T$$</p>
       </li>
-      <li>Orthogonal matrices correspond to rotations or reflections across a direction.
+      <li>Geometrically, orthogonal matrices correspond to rotations (around a point) or reflections (around a line passing through the origin).
         <blockquote>
           <p>i.e. they preserve length and angles!<br />
 Proof. Part 5 and 6.</p>
@@ -389,22 +424,22 @@ Proof. Part 5 and 6.</p>
       <li>For all vectors <script type="math/tex">\vec{x}</script>,<br />
  <script type="math/tex">\|Ux\|_2^2 = (Ux)^T(Ux) = x^TU^TUx = x^Tx = \|x\|_2^2 .</script>
         <blockquote>
-          <p>Known as, <em>the rotational invariance</em> of the Euclidean norm.</p>
+          <p>Known as, <em>the rotational invariance</em> of the Euclidean norm.<br />
+Thus, If we multiply x with an orthogonal matrix, the errors present in x will not be magnified. This behavior is very desirable for maintaining numerical stability.</p>
         </blockquote>
       </li>
-      <li>
-        <p>If <script type="math/tex">x, y</script> are two vectors with unit norm, then the angle <script type="math/tex">\theta</script> between them satisfies <script type="math/tex">\cos \theta = x^Ty</script><br />
+      <li>If <script type="math/tex">x, y</script> are two vectors with unit norm, then the angle <script type="math/tex">\theta</script> between them satisfies <script type="math/tex">\cos \theta = x^Ty</script><br />
  while the angle <script type="math/tex">\theta'</script> between the rotated vectors <script type="math/tex">x' = Ux, y' = Uy</script> satisfies <script type="math/tex">\cos \theta' = (x')^Ty'</script>.<br />
- Since, <script type="math/tex">(Ux)^T(Uy) = x^T U^TU y = x^Ty,</script> we obtain that the angles are the same.</p>
-      </li>
-      <li>Geometrically, orthogonal matrices correspond to rotations (around a point) or reflections (around a line passing through the origin).</li>
+ Since, <script type="math/tex">(Ux)^T(Uy) = x^T U^TU y = x^Ty,</script> we obtain that the angles are the same.<br />
+ <br /></li>
     </ol>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents73">Examples:</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents73">Examples:</strong>
     <ul>
       <li><a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/72793237f1b79da9" value="show" onclick="iframePopA(event)"><strong>Permutation Matrices</strong></a>
   <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/72793237f1b79da9"><code class="highlighter-rouge"> Visit the Book</code></a>
         <div></div>
+        <p><br /></p>
       </li>
     </ul>
   </li>
@@ -416,16 +451,14 @@ Proof. Part 5 and 6.</p>
 
 <ol>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents81">Definition.</strong></dt>
-      <dd>A matrix <script type="math/tex">A \in \mathbf{R}^{m \times n}</script> is a dyad if it is of the form <script type="math/tex">A = uv^T</script> for some vectors <script type="math/tex">u \in \mathbf{R}^m, v \in \mathbf{R}^n</script>.<br />
-The dyad acts on an input vector <script type="math/tex">x \in \mathbf{R}^n</script> as follows:</dd>
-      <dd>
-        <script type="math/tex; mode=display">Ax = (uv^T) x = (v^Tx) u.</script>
-      </dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents81">Definition.</strong><br />
+ A matrix <script type="math/tex">A \in \mathbf{R}^{m \times n}</script> is a dyad if it is of the form <script type="math/tex">A = uv^T</script> for some vectors <script type="math/tex">u \in \mathbf{R}^m, v \in \mathbf{R}^n</script>.</p>
+
+    <p>The dyad acts on an input vector <script type="math/tex">x \in \mathbf{R}^n</script> as follows:</p>
+    <p>$$ Ax = (uv^T) x = (v^Tx) u.$$</p>
+    <p><br /></p>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents82">Properties:</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents82">Properties:</strong>
     <ol>
       <li>
         <p>The output always points in the same direction <script type="math/tex">u</script> in output space (<script type="math/tex">\mathbf{R}^m</script>), no matter what the input <script type="math/tex">x</script> is.</p>
@@ -434,21 +467,24 @@ The dyad acts on an input vector <script type="math/tex">x \in \mathbf{R}^n</scr
         <p>The output is always a simple scaled version of <script type="math/tex">u</script>.</p>
       </li>
       <li>
-        <p>The amount of scaling depends on the vector <script type="math/tex">v</script>, via the linear function <script type="math/tex">x \rightarrow v^Tx</script>.</p>
+        <p>The amount of scaling depends on the vector <script type="math/tex">v</script>, via the linear function <script type="math/tex">x \rightarrow v^Tx</script>.<br />
+ <br /></p>
       </li>
     </ol>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents83">Examples:</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents83">Examples:</strong>
     <ul>
       <li><a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/438c7a0d0fc50d09" value="show" onclick="iframePopA(event)"><strong>Single factor model of financial price data</strong></a>
   <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/438c7a0d0fc50d09"><code class="highlighter-rouge"> Visit the Book</code></a>
         <div></div>
       </li>
     </ul>
+
+    <p><br /></p>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents84">Normalized dyads:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents84">Normalized dyads:</strong></dt>
       <dd>We can always normalize the dyad, by assuming that both u,v are of unit (Euclidean) norm, and using a factor to capture their scale.</dd>
       <dd>That is, any dyad can be written in normalized form:</dd>
       <dd>
@@ -459,7 +495,7 @@ The dyad acts on an input vector <script type="math/tex">x \in \mathbf{R}^n</scr
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents85">Symmetric dyads:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents85">Symmetric dyads:</strong></dt>
       <dd>Another important class of symmetric matrices is that of the form <script type="math/tex">uu^T</script>, where <script type="math/tex">u \in \mathbf{R}^n</script>.
  The matrix has elements <script type="math/tex">u_iu_j</script>, and is symmetric.
         <blockquote>
@@ -500,13 +536,13 @@ u_1u_3 & u_2u_3  & u_3^2  \end{array} \right) %]]></script>
 <ol>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents91">Definition.</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents91">Definition.</strong></dt>
       <dd>
         <script type="math/tex; mode=display">{\text{corr}}(\mathbf {X} )=\left({\text{diag}}(\Sigma )\right)^{-{\frac {1}{2}}}\,\Sigma \,\left({\text{diag}}(\Sigma )\right)^{-{\frac {1}{2}}}</script>
       </dd>
     </dl>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents92">Properties:</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents92">Properties:</strong>
     <ol>
       <li>
         <p>It is the matrix of “Pearson product-moment correlation coefficients” between each of the random variables in the random vector <script type="math/tex">{\displaystyle \mathbf {X} }</script>.</p>
@@ -522,39 +558,31 @@ u_1u_3 & u_2u_3  & u_3^2  \end{array} \right) %]]></script>
       </li>
     </ol>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents93">Examples:</strong></li>
 </ol>
 
-<hr />
+<!-- 3. **Examples:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents93}  
 
-<h2 id="content10">Ten</h2>
+***
 
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents10" id="bodyContents101">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents10" id="bodyContents102">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents10" id="bodyContents103">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents10" id="bodyContents104">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents10" id="bodyContents105">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents10" id="bodyContents106">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents10" id="bodyContents107">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents10" id="bodyContents108">Asynchronous:</strong></p>
-  </li>
-</ol>
+## Ten
+{: #content10}
+
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents101}  
+
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents102}  
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents103}  
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents104}  
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents105}  
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents106}  
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents107}  
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents108}  
+ -->
 
 
       <footer class="site-footer">

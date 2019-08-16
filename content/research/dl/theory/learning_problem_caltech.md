@@ -299,17 +299,20 @@ The Current Learning Diagram:
 
     __How to achieve Learning:__{: style="color: red"}    
     We achieve $$E_{\text {out }}(g) \approx 0$$ through:  
+    {: #lst-p}
     1. $$E_{\mathrm{out}}(g) \approx E_{\mathrm{in}}(g)$$  
-        A __theoretical__ result achieved through Hoeffding.   
+        A __theoretical__ result achieved through Hoeffding __PROBABILITY THEORY__{: style="color: red"}  .   
     2. $$E_{\mathrm{in}}(g) \approx 0$$  
-        A __Practical__ result of minimizing the In-Sample Error Function.  
+        A __Practical__ result of minimizing the In-Sample Error Function (ERM) __Optimization__{: style="color: red"}  .  
 
     Learning is, thus, reduced to the 2 following questions:  
+    {: #lst-p}
     1. Can we make sure that $$E_{\text {out }}(g)$$ is close enough to $$E_{\text {in }}(g)$$? (theoretical)  
     2. Can we make $$E_{\text {in}}(g)$$ small enough? (practical)  
 
 
     What the Learning Theory will achieve:  
+    {: #lst-p}
     * Characterizing the _feasibility of learning_ for __infinite $$M$$__ (hypothesis).  
         We are going to measure the model not by the number of hypotheses, but by a single parameter which tells us the sophistication of the model. And that sophistication will reflect the out-of-sample performance as it relates to the in-sample performance (through the Hoeffding (then VC) inequalities).   
     * Characterizing the tradeoff:  
@@ -334,7 +337,12 @@ The Current Learning Diagram:
     <a href="http://vision.stanford.edu/teaching/cs231n-demos/linear-classify/"></a>
         <div markdown="1"> </div>  
     * [Linear Regression from Conditional Distribution (gd example)](https://stats.stackexchange.com/questions/407812/derive-linear-regression-model-from-the-conditional-distribution-of-yx)  
+    * [__Linear Regression Probabilistic Development__](http://bjlkeng.github.io/posts/a-probabilistic-view-of-regression/)  
+    * In a linear model, if the errors belong to a normal distribution the least squares estimators are also the maximum likelihood estimators.[^1]  
             
+
+[^1]: [Reference: Equivalence of Generalized-LS and MLE in Exponential Family](https://www.researchgate.net/publication/254284684_The_Equivalence_of_Generalized_Least_Squares_and_Maximum_Likelihood_Estimates_in_the_Exponential_Family)  
+    
 
 
 
@@ -458,3 +466,5 @@ The Current Learning Diagram:
 ![img](/main_files/dl/theory/caltech/1.jpg){: width="100%"}    
 
 ![img](/main_files/dl/theory/caltech/2.jpg){: width="100%"}    
+
+

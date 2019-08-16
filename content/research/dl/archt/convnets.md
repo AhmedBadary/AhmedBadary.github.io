@@ -44,7 +44,7 @@ prevLink: /work_files/research/dl/cv.html
 
 
 2. **The Big Idea:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}   
-    CNNs use a variation of multilayer perceptrons designed to require minimal preprocessing. In particular, they use the [Convolution Operation](#bodyContents31).   
+    CNNs use a variation of multilayer Perceptrons designed to require minimal preprocessing. In particular, they use the [Convolution Operation](#bodyContents31).   
     The Convolution leverage _three important ideas_ that can help improve a machine learning system:  
     1. __Sparse Interactions/Connectivity/Weights:__  
         Unlike FNNs, where every input unit is connected to every output unit, CNNs have sparse interactions. This is accomplished by making the kernel smaller than the input.  
@@ -66,7 +66,8 @@ prevLink: /work_files/research/dl/cv.html
     2. __Parameter Sharing:__   
         refers to using the same parameter for more than one function in a model.  
 
-        __Benefits:__  
+        __Benefits:__{: style="color: red"}  
+        {: #lst-p}
         * This means that rather than learning a separate set of parameters for every location, we _learn only one set of parameters_.  
             * This does not affect the runtime of forward propagation—it is still $$\mathcal{O}(k \times n)$$  
             * But it does further reduce the storage requirements of the model to $$k$$ parameters ($$k$$ is usually several orders of magnitude smaller than $$m$$)  
@@ -81,7 +82,9 @@ prevLink: /work_files/research/dl/cv.html
             Specifically, a function $$f(x)$$ is equivariant to a function $$g$$ if $$f(g(x)) = g(f(x))$$.   
 
         Thus, if we move the object in the input, its representation will move the same amount in the output.  
-        __Benefits:__  
+        
+        __Benefits:__{: style="color: red"}  
+        {: #lst-p}  
         * It is most useful when we know that some function of a small number of neighboring pixels is useful when applied to multiple input locations (e.g. edge detection)  
         * Shifting the position of an object in the input doesn't confuse the NN  
         * Robustness against translated inputs/images   

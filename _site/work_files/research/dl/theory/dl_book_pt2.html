@@ -67,7 +67,7 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">Introduction: Deep Feedforward Neural Networks</a></li>
+    <li><a href="#content1">Introduction: Deep FeedForward Neural Networks</a></li>
   </ul>
   <ul class="TOC2">
     <li><a href="#content2">Gradient-Based Learning</a></li>
@@ -90,12 +90,12 @@
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">(Deep) Feedforward neural networks:</strong><br />
- Given, for a classifier, <script type="math/tex">y=f^{\ast}(\boldsymbol{x})</script> maps an input <script type="math/tex">\boldsymbol{x}</script> to a category <script type="math/tex">y</script>.<br />
- An <strong>FFN</strong> defines a mapping <script type="math/tex">\boldsymbol{y}=f(\boldsymbol{x} ; \boldsymbol{\theta})</script>  and learns the value of the parameters <script type="math/tex">\boldsymbol{\theta}</script>  that result in the best function approximation.</p>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">(Deep) FeedForward Neural Networks:</strong><br />
+ For a classifier; given <script type="math/tex">y=f^{\ast}(\boldsymbol{x})</script>, maps an input <script type="math/tex">\boldsymbol{x}</script> to a category <script type="math/tex">y</script>.<br />
+ An <strong>FNN</strong> defines a mapping <script type="math/tex">\boldsymbol{y}=f(\boldsymbol{x} ; \boldsymbol{\theta})</script>  and learns the value of the parameters <script type="math/tex">\boldsymbol{\theta}</script>  that result in the best function approximation.</p>
 
     <ul>
-      <li>FFNs are called <strong>networks</strong> because they are typically represented by composing together many different functions</li>
+      <li>FNNs are called <strong>networks</strong> because they are typically represented by composing together many different functions</li>
       <li>The model is associated with a <strong>DAG</strong> describing how the functions are composed together.</li>
       <li>Functions connected in a <strong>chain structure</strong> are the most commonly used structure of neural networks.
         <blockquote>
@@ -104,11 +104,12 @@
       </li>
       <li>The overall length of the chain is the <strong>depth</strong> of the model.</li>
       <li>During training, we drive <script type="math/tex">f(\boldsymbol{x})</script> to match <script type="math/tex">f^{\ast}(\boldsymbol{x})</script>. <br />
-  The training data provides us with noisy, approximate examples of <script type="math/tex">f^{\ast}(\boldsymbol{x})</script> evaluated at different training points.</li>
+  The training data provides us with noisy, approximate examples of <script type="math/tex">f^{\ast}(\boldsymbol{x})</script> evaluated at different training points.<br />
+ <br /></li>
     </ul>
   </li>
   <li>
-    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">FFNs from Linear Models:</strong><br />
+    <p id="lst-p"><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">FNNs from Linear Models:</strong><br />
  Consider linear models biggest limitation: model capacity is limited to linear functions.<br />
  To <strong>extend</strong> linear models to represent non-linear functions of <script type="math/tex">\boldsymbol{x}</script> we can:</p>
     <ul>
@@ -116,7 +117,7 @@
       <li>Equivalently, apply the <strong>kernel trick</strong> to obtain nonlinear learning algorithm based on implicitly applying the <script type="math/tex">\phi</script> mapping.</li>
     </ul>
 
-    <p>We can think of <script type="math/tex">\phi</script> as providing a set of features describing <script type="math/tex">\boldsymbol{x}</script>, or as providing a new representation for <script type="math/tex">\boldsymbol{x}</script>.<br />
+    <p id="lst-p">We can think of <script type="math/tex">\phi</script> as providing a set of features describing <script type="math/tex">\boldsymbol{x}</script>, or as providing a new representation for <script type="math/tex">\boldsymbol{x}</script>.<br />
  <strong>Choosing the mapping <script type="math/tex">\phi</script>:</strong></p>
     <ol>
       <li>Use a very generic <script type="math/tex">\phi</script>, s.a. infinite-dimensional (RBF) kernel.<br />
@@ -128,7 +129,7 @@
         <p>$$y=f(\boldsymbol{x} ; \boldsymbol{\theta}, \boldsymbol{w})=\phi(\boldsymbol{x} ; \boldsymbol{\theta})^{\top} \boldsymbol{w}$$</p>
         <p>We now have parameters <script type="math/tex">\theta</script> that we use to learn <script type="math/tex">\phi</script> from a broad class of functions, and parameters <script type="math/tex">\boldsymbol{w}</script> that map from <script type="math/tex">\phi(\boldsymbol{x})</script> to the desired output.</p>
         <blockquote>
-          <p>This is an example of a <em>deep FFN</em>, with <script type="math/tex">\phi</script> defining a <em>hidden layer</em>.</p>
+          <p>This is an example of a <em>deep FNN</em>, with <script type="math/tex">\phi</script> defining a <em>hidden layer</em>.</p>
         </blockquote>
 
         <p>This approach is the <em>only one</em> of the three that <em>gives up</em> on the <em>convexity</em> of the training problem, but the <em>benefits outweigh the harms</em>.<br />
@@ -139,7 +140,8 @@
   by being highly generic — we do so by using a very broad family <script type="math/tex">\phi(\boldsymbol{x};\theta)</script>.</li>
           <li>Capturing the benefit of the second approach:<br />
   Human practitioners can encode their knowledge to help generalization by designing families <script type="math/tex">\phi(\boldsymbol{x}; \theta)</script> that they expect will perform well.<br />
-  The <strong>advantage</strong> is that the human designer only needs to find the right general function family rather than finding precisely the right function.</li>
+  The <strong>advantage</strong> is that the human designer only needs to find the right general function family rather than finding precisely the right function.<br />
+ <br /></li>
         </ul>
       </li>
     </ol>
@@ -164,12 +166,15 @@
 <h2 id="content2">Gradient-Based Learning</h2>
 
 <ol>
-  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Stochastic Gradient Descent and FFNs:</strong><br />
- <strong>Stochastic Gradient Descent</strong> applied to <em>nonconvex</em> loss functions has <em>no</em> such <em>convergence guarantee</em> and is <em>sensitive</em> to the <em>values</em> of the <em>initial parameters</em>.<br />
- Thus, for FFNs (since they have nonconvex loss functions):
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Stochastic Gradient Descent and FNNs:</strong><br />
+ <strong>Stochastic Gradient Descent</strong> applied to <em>nonconvex</em> loss functions has <em>no convergence guarantees</em> and is <em>sensitive</em> to the <em>values</em> of the <em>initial parameters</em>.</p>
+
+    <p>Thus, for FNNs (since they have <em>nonconvex loss functions</em>):</p>
     <ul>
       <li><em><strong>Initialize all weights to small random values</strong></em>.</li>
-      <li>The <em><strong>biases</strong></em> may be <em><strong>initialized to zero or to small positive values</strong></em>.</li>
+      <li>The <em><strong>biases</strong></em> may be <em><strong>initialized to zero or to small positive values</strong></em>.<br />
+ <br /></li>
     </ul>
   </li>
   <li>
@@ -230,9 +235,9 @@
  The <strong>calculus of variations</strong> can be used to derive the following two important results in Optimization:
     <ol>
       <li>Solving the optimization problem
-        <p>$$f^{\ast}=\underset{f}{\arg \min } \: \mathbb{E}_{\mathbf{x}, \mathbf{y} \sim p_{\text {data }}}\|\boldsymbol{y}-f(\boldsymbol{x})\|^{2} \tag{6.14}$$</p>
+        <p>$${\displaystyle f^{\ast}=\underset{f}{\arg \min } \: \mathbb{E}_{\mathbf{x}, \mathbf{y} \sim p_{\text {data }}}\|\boldsymbol{y}-f(\boldsymbol{x})\|^{2}} \tag{6.14}$$</p>
         <p>yields</p>
-        <p>$$f^{\ast}(\boldsymbol{x})=\mathbb{E}_{\mathbf{y} \sim p_{\text {data }}(\boldsymbol{y} | \boldsymbol{x})}[\boldsymbol{y}] \tag{6.15}$$</p>
+        <p>$${\displaystyle f^{\ast}(\boldsymbol{x})=\mathbb{E}_{\mathbf{y} \sim p_{\text {data }}(\boldsymbol{y} | \boldsymbol{x})}[\boldsymbol{y}] \tag{6.15}}$$</p>
         <p>so long as this function lies within the class we optimize over.<br />
  In words: if we could train on infinitely many samples from the true data distribution, <em><strong>minimizing the MSE cost function</strong></em> would give a <strong><em>function</em> that <em>predicts</em> the <em>mean of <script type="math/tex">\boldsymbol{y}</script></em> for <em>each</em> value of <em><script type="math/tex">\boldsymbol{x}</script></em></strong>.</p>
         <blockquote>
@@ -240,7 +245,7 @@
         </blockquote>
       </li>
       <li>Solving the optimization problem (commonly known as <strong>Mean Absolute Error</strong>)
-        <p>$$f^{\ast}=\underset{f}{\arg \min } \: \mathbb{E}_ {\mathbf{x}, \mathbf{y} \sim p_{\mathrm{data}}}\|\boldsymbol{y}-f(\boldsymbol{x})\|_ {1} \tag{6.16}$$</p>
+        <p>$$f^{\ast}=\underset{f}{\arg \min } \: \underset{\mathbf{x}, \mathbf{y} \sim p_{\mathrm{data}}}{\mathbb{E}}\|\boldsymbol{y}-f(\boldsymbol{x})\|_ {1} \tag{6.16}$$</p>
         <p>yields a <strong><em>function</em> that predicts the <em>median</em> value of <em><script type="math/tex">\boldsymbol{y}</script></em> for each <script type="math/tex">\boldsymbol{x}</script></strong>, as long as such a function may be described by the family of functions we optimize over.</p>
       </li>
     </ol>
@@ -276,8 +281,8 @@
  Thus, the choice of <em>how to represent the output</em> then determines the form of the cross-entropy function.</p>
 
     <p>Throughout this analysis, we suppose that:<br />
- <em>The FFN provides a set of hidden features defined by</em> <script type="math/tex">\boldsymbol{h}=f(\boldsymbol{x} ; \boldsymbol{\theta})</script>.<br />
- The <em>role of the output layer</em>, thus, is to <em>provide some additional transformation from the features to complete the task</em> the FFN is tasked with.</p>
+ <em>The FNN provides a set of hidden features defined by</em> <script type="math/tex">\boldsymbol{h}=f(\boldsymbol{x} ; \boldsymbol{\theta})</script>.<br />
+ The <em>role of the output layer</em>, thus, is to <em>provide some additional transformation from the features to complete the task</em> the FNN is tasked with.</p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Linear Units:</strong><br />
@@ -289,8 +294,9 @@
     <p>$$p(\boldsymbol{y} | \boldsymbol{x})=\mathcal{N}(\boldsymbol{y} ; \hat{\boldsymbol{y}}, \boldsymbol{I}) \tag{6.17}$$</p>
     <p>In this case, <em>maximizing the log-likelihood</em> is equivalent to <em>minimizing the MSE</em>.</p>
 
-    <p><strong>Learning the Covariance of the Gaussian:</strong><br />
- The MLE framework makes it straightforward to:</p>
+    <p><strong>Learning the Covariance of the Gaussian:</strong></p>
+
+    <p id="lst-p">The MLE framework makes it straightforward to:</p>
     <ul>
       <li>Learn the covariance of the Gaussian too</li>
       <li>Make the covariance of the Gaussian be a function of the input<br />
@@ -315,23 +321,19 @@
           <strong>The MLE approach</strong> is to define a <em><strong>Bernoulli distribution</strong></em> over <script type="math/tex">y</script> conditioned on <script type="math/tex">\boldsymbol{x}</script>.<br />
  A <strong>Bernoulli distribution</strong> is defined by just <em>1 single</em> number.</p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Asynchronous:</strong></p>
-  </li>
 </ol>
 
+<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
+
+ -->
 
 
       <footer class="site-footer">

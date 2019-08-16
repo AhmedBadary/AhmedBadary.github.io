@@ -112,34 +112,24 @@
 
 <ol>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Procedure:</strong></dt>
-      <dd>(1) Use a linear classifier<br />
-(2) But, Maximize the Margin<br />
-(3) Do so by Minimizing <script type="math/tex">\|w\|</script><br />
-(4) But allow some points to penetrate the margin</dd>
-    </dl>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Procedure:</strong><br />
+ (1) Use a linear classifier<br />
+ (2) But, Maximize the Margin<br />
+ (3) Do so by Minimizing <script type="math/tex">\|w\|</script><br />
+ (4) But allow some points to penetrate the margin</p>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25"><em>Modified</em> Constraints:</strong></dt>
-      <dd>
-        <script type="math/tex; mode=display">y_i(wX_i + b) \geq 1 - \zeta_i, \forall i \in [1,n]</script>
-      </dd>
-      <dd>where the <script type="math/tex">\zeta_i</script>s are slack variables.</dd>
-      <dd>We, also, enforce the non-negativity constraint on the slack variables:</dd>
-      <dd>
-        <script type="math/tex; mode=display">\zeta_i \geq 0, \:\:\: \forall i \in [1, n]</script>
-      </dd>
-      <dd>
-        <blockquote>
-          <p>The non-negativity constraint forces the slack variables to be zero for all points that do not violate the original constraint:</p>
-          <blockquote>
-            <p>i.e. are not inside the slab.</p>
-          </blockquote>
-        </blockquote>
-      </dd>
-    </dl>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25"><em>Modified</em> Constraints:</strong>
+    <p>$$y_i(wX_i + b) \geq 1 - \zeta_i, \forall i \in [1,n]$$</p>
+    <p>where the <script type="math/tex">\zeta_i</script>s are slack variables.<br />
+ We, also, enforce the non-negativity constraint on the slack variables:</p>
+    <p>$$\zeta_i \geq 0, \:\:\: \forall i \in [1, n]$$</p>
+
+    <blockquote>
+      <p>The non-negativity constraint forces the slack variables to be zero for all points that do not violate the original constraint:</p>
+      <blockquote>
+        <p>i.e. are not inside the slab.</p>
+      </blockquote>
+    </blockquote>
   </li>
   <li>
     <dl>
@@ -149,22 +139,13 @@
       </dd>
     </dl>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">The Optimization Problem:</strong></dt>
-      <dd>Find weights ‘<script type="math/tex">w</script>’, scalar ‘<script type="math/tex">b</script>’, and <script type="math/tex">\zeta_i</script>s that minimize</dd>
-      <dd>
-        <script type="math/tex; mode=display">\dfrac{1}{2} w^Tw + C \sum_{i=1}^n \zeta_i</script>
-      </dd>
-      <dd>Subject to</dd>
-      <dd>
-        <script type="math/tex; mode=display">y_i(wX_i + b) \geq 1 - \zeta_i, \zeta_i \geq 0, \forall i \in [1,n]</script>
-      </dd>
-      <dd>Formally,</dd>
-      <dd>
-        <script type="math/tex; mode=display">\min_w \dfrac{1}{2}w^Tw \:\:\: : \:\: y_i(wX_i + b) \geq 1 - \zeta_i, \zeta_i \geq 0, \forall i \in [1,n]</script>
-      </dd>
-    </dl>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">The Optimization Problem:</strong><br />
+ Find weights ‘<script type="math/tex">w</script>’, scalar ‘<script type="math/tex">b</script>’, and <script type="math/tex">\zeta_i</script>s that minimize
+    <p>$$ \dfrac{1}{2} w^Tw + C \sum_{i=1}^n \zeta_i$$</p>
+    <p>Subject to</p>
+    <p>$$y_i(wX_i + b) \geq 1 - \zeta_i, \zeta_i \geq 0, \forall i \in [1,n]$$</p>
+    <p>Formally,</p>
+    <p>$$\min_w \dfrac{1}{2}w^Tw \:\:\: : \:\: y_i(wX_i + b) \geq 1 - \zeta_i, \zeta_i \geq 0, \forall i \in [1,n]$$</p>
   </li>
   <li>
     <dl>
@@ -241,7 +222,7 @@ On the other hand, the hinge loss is actually convex.</dd>
       <dd>
         <script type="math/tex; mode=display">{\displaystyle \max \left(0, 1-y_{i}({\vec {w}}\cdot {\vec {x}}_{i}-b)\right).}</script>
       </dd>
-      <dd>This function is zero if the constraint, <script type="math/tex">y_{i}({\vec {w}}\cdot {\vec {x}}_{i}-b)\geq 1</script>, is satisfied, in other words, if <script type="math/tex">{\displaystyle {\vec {x}}_{i}} {\vec {x}}_{i}</script> lies on the correct side of the margin.<br />
+      <dd>This function is zero if the constraint, <script type="math/tex">y_{i}({\vec {w}}\cdot {\vec {x}}_{i}-b)\geq 1</script>, is satisfied, in other words, if <script type="math/tex">{\displaystyle {\vec {x}}_{i}} {\vec {x}} _ {i}</script> lies on the correct side of the margin.<br />
 For data on the wrong side of the margin, the function’s value is proportional to the distance from the margin.</dd>
       <dd>All of the above suggests that this loss function is ideal for binary classification as it doesn’t penalize correct classification at all.
         <blockquote>
@@ -254,7 +235,7 @@ For data on the wrong side of the margin, the function’s value is proportional
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Modified Objective Function:</strong></dt>
       <dd>
-        <script type="math/tex; mode=display">R(w) = \dfrac{\lambda}{2} w^Tw +  \sum_{i=1}^n {\displaystyle \max \left(0, 1-y_{i}({\vec {w}}\cdot {\vec {x}}_{i}-b)\right)}</script>
+        <script type="math/tex; mode=display">R(w) = \dfrac{\lambda}{2} w^Tw +  \sum_{i=1}^n {\displaystyle \max \left(0, 1-y _ {i}({\vec {w}}\cdot {\vec {x}} _ {i}-b)\right)}</script>
       </dd>
     </dl>
   </li>
@@ -270,7 +251,7 @@ For data on the wrong side of the margin, the function’s value is proportional
     \zeta_i & \ \geq 1-y_if\left(x_i\right) \geq 0, & \text{from 2nd positivity constraint on} \zeta_i \\
     \iff \zeta_i & \ \geq \max \{0, 1-y_if\left(x_i\right)\} \\
     \zeta_i & \ = \max \{0, 1-y_if\left(x_i\right)\}, & \text{minimizing means } \zeta_i \text{reach lower bound}\\
-    \implies R(w) & \ = \dfrac{\lambda}{2} w^Tw +  \sum_{i=1}^n {\displaystyle \max \left(0, 1-y_{i}({\vec {w}}\cdot {\vec {x}}_{i}-b)\right)}, & \text{plugging in and multplying } \lambda = \dfrac{1}{C}
+    \implies R(w) & \ = \dfrac{\lambda}{2} w^Tw +  \sum_{i=1}^n {\displaystyle \max \left(0, 1-y _ {i}({\vec {w}}\cdot {\vec {x}} _ {i}-b)\right)}, & \text{plugging in and multplying } \lambda = \dfrac{1}{C}
     \end{align} %]]></script>
       </dd>
     </dl>
@@ -280,7 +261,7 @@ For data on the wrong side of the margin, the function’s value is proportional
       <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">The Optimization Problem:</strong></dt>
       <dd>Find weights ‘<script type="math/tex">w</script>’ and scalar ‘<script type="math/tex">b</script>’ that minimize</dd>
       <dd>
-        <script type="math/tex; mode=display">\dfrac{\lambda}{2} w^Tw +  \sum_{i=1}^n {\displaystyle \max \left(0, 1-y_{i}({\vec {w}}\cdot {\vec {x}}_{i}-b)\right)}</script>
+        <script type="math/tex; mode=display">\dfrac{\lambda}{2} w^Tw +  \sum_{i=1}^n {\displaystyle \max \left(0, 1-y _ {i}({\vec {w}}\cdot {\vec {x}} _ {i}-b)\right)}</script>
       </dd>
       <dd>Subject to</dd>
       <dd>
@@ -288,7 +269,7 @@ For data on the wrong side of the margin, the function’s value is proportional
       </dd>
       <dd>Formally,</dd>
       <dd>
-        <script type="math/tex; mode=display">\min_{w, b}\dfrac{\lambda}{2} w^Tw +  \sum_{i=1}^n {\displaystyle \max \left(0, 1-y_{i}({\vec {w}}\cdot {\vec {x}}_{i}-b)\right)}, \:\: \forall i \in [1,n]</script>
+        <script type="math/tex; mode=display">\min_{w, b}\dfrac{\lambda}{2} w^Tw +  \sum_{i=1}^n {\displaystyle \max \left(0, 1-y _ {i}({\vec {w}}\cdot {\vec {x}} _ {i}-b)\right)}, \:\: \forall i \in [1,n]</script>
       </dd>
     </dl>
   </li>
@@ -302,8 +283,8 @@ For data on the wrong side of the margin, the function’s value is proportional
       <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Generalization:</strong></dt>
       <dd>We notice that, geometrically, the hyperplane (the maximum margin classifier) is completely characterized by the <em>support vectors</em> (the vectors that lie on the margin).</dd>
       <dd>A very important conclusion arises.<br />
-The maximum margin classifier (SVM) depends <strong>only</strong> on the number of support vectors and <strong><em>not</em></strong> on the diminsion of the problem.<br />
-This implies that the computation doesn’t scale up with the diminsion and, also implies, that <strong>the <em>kernel trick</em> works very well</strong>.</dd>
+The maximum margin classifier (SVM) depends <strong>only</strong> on the number of support vectors and <strong><em>not</em></strong> on the dimension of the problem.<br />
+This implies that the computation doesn’t scale up with the dimension and, also implies, that <strong>the <em>kernel trick</em> works very well</strong>.</dd>
     </dl>
   </li>
   <li>
@@ -313,8 +294,8 @@ This implies that the computation doesn’t scale up with the diminsion and, als
         <ol>
           <li>In addition to performing linear classification, SVMs can efficiently perform a non-linear classification using what is called the kernel trick, implicitly mapping their inputs into high-dimensional feature spaces.</li>
           <li>The hyperplane is determined solely by its support vectors.</li>
-          <li>The SVM always converges on linearly seprable data.</li>
-          <li>The Soft-Margin SVM will converge on non-linearly seprable data.</li>
+          <li>The SVM always converges on linearly separable data.</li>
+          <li>The Soft-Margin SVM will converge on non-linearly separable data.</li>
         </ol>
       </dd>
     </dl>

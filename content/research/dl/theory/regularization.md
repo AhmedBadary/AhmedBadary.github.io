@@ -1,7 +1,7 @@
 ---
 layout: NotesPage
 title: Regularization
-permalink: /work_files/research/dl/theory/dl_book_regularization
+permalink: /work_files/research/dl/theory/regularization
 prevLink: /work_files/research/dl/theory.html
 ---
 
@@ -25,6 +25,8 @@ prevLink: /work_files/research/dl/theory.html
 [How Regularization Reduces Variance from bias-var-decomp](http://cs229.stanford.edu/notes-spring2019/addendum_bias_variance.pdf)  
 [Probabilistic Interpretation of Regularization (MAP)](http://bjlkeng.github.io/posts/probabilistic-interpretation-of-regularization)  
 [The Math of Regularization](https://www.wikiwand.com/en/Regularization_(mathematics))  
+[Regularization from excess risk](https://people.eecs.berkeley.edu/~bartlett/courses/281b-sp08/20.pdf)  
+[Bayesian Interpretation of Regularization (wikipedia)](https://en.wikipedia.org/wiki/Bayesian_interpretation_of_kernel_regularization)  
 
 
 ## Regularization Basics and Definitions
@@ -34,6 +36,7 @@ prevLink: /work_files/research/dl/theory.html
     __Regularization__ can be, loosely, defined as: any modification we make to a learning algorithm that is intended to _reduce_ its _generalization error_ but not its _training error_.  
 
     Formally, it is a set of techniques that impose certain restrictions on the hypothesis space (by adding information) in order to solve an __ill-posed__ problem or to prevent __overfitting__.[^1]  
+    <br>
 
 
 2. **Theoretical Justification for Regularization:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}    
@@ -63,7 +66,7 @@ prevLink: /work_files/research/dl/theory.html
 1. **Parameter Norms:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
     Many regularization approaches are based on limiting the capacity of models by adding a parameter norm penalty $$\Omega(\boldsymbol{\theta})$$ to the objective function $$J$$. We denote the regularized objective function by $$\tilde{J}$$:  
     <p>$$\tilde{J}(\boldsymbol{\theta} ; \boldsymbol{X}, \boldsymbol{y})=J(\boldsymbol{\theta} ; \boldsymbol{X}, \boldsymbol{y})+\alpha \Omega(\boldsymbol{\theta}) \tag{7.1}$$</p>  
-    where $$\alpha \in[0, \infty)$$ is a HP that weights the relative contribution of the norml penalty term, $$\Omega$$, relative to the standard objective function $$J$$.  
+    where $$\alpha \in[0, \infty)$$ is a HP that weights the relative contribution of the norm penalty term, $$\Omega$$, relative to the standard objective function $$J$$.  
     * __Effects of $$\alpha$$__:  
         * $$\alpha = 0$$ results in NO regularization
         * Larger values of $$\alpha$$ correspond to MORE regularization
@@ -124,7 +127,7 @@ prevLink: /work_files/research/dl/theory.html
         * As $$\alpha$$ grows: we apply __spectral decomposition__ to the __real and symmetric__ $$\boldsymbol{H} = \boldsymbol{Q} \boldsymbol{\Lambda} \boldsymbol{Q}^{\top}$$:  
             <p>$$\begin{aligned} \tilde{\boldsymbol{w}} &=\left(\boldsymbol{Q} \mathbf{\Lambda} \boldsymbol{Q}^{\top}+\alpha \boldsymbol{I}\right)^{-1} \boldsymbol{Q} \boldsymbol{\Lambda} \boldsymbol{Q}^{\top} \boldsymbol{w}^{\ast} \\ &=\left[\boldsymbol{Q}(\boldsymbol{\Lambda}+\alpha \boldsymbol{I}) \boldsymbol{Q}^{\top}\right]^{-1} \boldsymbol{Q} \boldsymbol{\Lambda} \boldsymbol{Q}^{\top} \boldsymbol{w}^{\ast} \\ &=\boldsymbol{Q}(\boldsymbol{\Lambda}+\alpha \boldsymbol{I})^{-1} \boldsymbol{\Lambda} \boldsymbol{Q}^{\top} \boldsymbol{w}^{\ast} \end{aligned} \tag{7.13}$$</p>  
 
-        Thus, we see that the effect of weight decay is to rescale $$\boldsymbol{w}^{\ast}$$ along the axes defined by the eigenvector of $$\boldsymbol{H}$$ . Specifically, the component of $$\boldsymbol{w}^{\ast}$$ that is aligned with the $$i$$-th eigenvector of $$\boldsymbol{H}$$  is rescaled by a factor of $$\frac{\lambda_{i}}{\lambda_{i}+\alpha}$$.  
+        Thus, we see that the effect of weight decay is to rescale $$\boldsymbol{w}^{\ast}$$ along the axes defined by the eigenvector of $$\boldsymbol{H}$$. Specifically, the component of $$\boldsymbol{w}^{\ast}$$ that is aligned with the $$i$$-th eigenvector of $$\boldsymbol{H}$$  is rescaled by a factor of $$\frac{\lambda_{i}}{\lambda_{i}+\alpha}$$.  
 
         ![img](/main_files/dl_book/regularization/1.png){: width="100%"}   
 
@@ -148,14 +151,20 @@ prevLink: /work_files/research/dl/theory.html
     <p hidden="">$$\begin{aligned} \hat{\theta}_ {\mathrm{MAP}} &=\arg \max_{\theta} P(\theta | y) \\ &=\arg \max_{\theta} \frac{P(y | \theta) P(\theta)}{P(y)} \\ &=\arg \max_{\theta} P(y | \theta) P(\theta) \\ &=\arg \max_{\theta} \log (P(y | \theta) P(\theta)) \\ &=\arg \max_{\theta} \log P(y | \theta)+\log P(\theta) \end{aligned}$$</p>  
     
     We place a __Gaussian Prior__ on the weights, with __zero mean__ and __equal variance $$\tau^2$$__:  
-    <p>$$\begin{aligned} \hat{\theta}_ {\mathrm{MAP}} &=\arg \max_{\theta} \log P(y | \theta)+\log P(\theta) \\ &=\arg \max _{\boldsymbol{w}}\left[\log \prod_{i=1}^{n} \dfrac{1}{\sigma \sqrt{2 \pi}} e^{-\dfrac{\left(y_{i}-\boldsymbol{w}^T\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}}+\log \prod_{j=0}^{p} \dfrac{1}{\tau \sqrt{2 \pi}} e^{-\dfrac{w_{j}^{2}}{2 \tau^{2}}} \right] \\ &=\arg \max _{\boldsymbol{w}} \left[-\sum_{i=1}^{n} \dfrac{\left(y_{i}-\boldsymbol{w}^T\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}-\sum_{j=0}^{p} \dfrac{w_{j}^{2}}{2 \tau^{2}}\right] \\ &=\arg \min_{\boldsymbol{w}} \dfrac{1}{2 \sigma^{2}}\left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^T\boldsymbol{x}_i\right)^{2}+\dfrac{\sigma^{2}}{\tau^{2}} \sum_{j=0}^{p} w_{j}^{2}\right] \\ &=\arg \min_{\boldsymbol{w}} \left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^T\boldsymbol{x}_i\right)^{2}+\lambda \sum_{j=0}^{p} w_{j}^{2}\right] \\ &= \arg \min_{\boldsymbol{w}} \left[ \|XW - \boldsymbol{y}\|^2 + \lambda {\|\boldsymbol{w}\|_ 2}^2\right]\end{aligned}$$</p>  
+    <p>$$\begin{aligned} \hat{\theta}_ {\mathrm{MAP}} &=\arg \max_{\theta} \log P(y | \theta)+\log P(\theta) \\ &=\arg \max _{\boldsymbol{w}}\left[\log \prod_{i=1}^{n} \dfrac{1}{\sigma \sqrt{2 \pi}} e^{-\dfrac{\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}}+\log \prod_{j=0}^{p} \dfrac{1}{\tau \sqrt{2 \pi}} e^{-\dfrac{w_{j}^{2}}{2 \tau^{2}}} \right] \\ &=\arg \max _{\boldsymbol{w}} \left[-\sum_{i=1}^{n} \dfrac{\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}-\sum_{j=0}^{p} \dfrac{w_{j}^{2}}{2 \tau^{2}}\right] \\ &=\arg \min_{\boldsymbol{w}} \dfrac{1}{2 \sigma^{2}}\left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}+\dfrac{\sigma^{2}}{\tau^{2}} \sum_{j=0}^{p} w_{j}^{2}\right] \\ &=\arg \min_{\boldsymbol{w}} \left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}+\lambda \sum_{j=0}^{p} w_{j}^{2}\right] \\ &= \arg \min_{\boldsymbol{w}} \left[ \|XW - \boldsymbol{y}\|^2 + \lambda {\|\boldsymbol{w}\|_ 2}^2\right]\end{aligned}$$</p>  
     <button>Different Notation</button>{: .showText value="show" onclick="showTextPopHide(event);"}
     ![img](/main_files/dl_book/regularization/4.png){: width="100%" hidden=""}   
     <br>
 
     __Properties:__{: style="color: red"}  
-    * Notice that L2-regularization has a rotational invariance. This actually makes it more sensitive to irrelevant features.  [Ref](https://www.cs.ubc.ca/~schmidtm/Courses/540-W18/L6.pdf)  
+    {: #lst-p}
+    * Notice that L2-regularization has a rotational invariance. This actually makes it more sensitive to irrelevant features.  [\[Ref\]](https://www.cs.ubc.ca/~schmidtm/Courses/540-W18/L6.pdf)  
+        > [Paper](https://icml.cc/Conferences/2004/proceedings/papers/354.pdf)  
     * Adding L2-regularization to a convex function gives a strongly-convex function. So L2-regularization can make gradient descent converge much faster.  (^ same ref)      
+
+    __Notes:__{: style="color: red"}  
+    {: #lst-p}
+    * [L2-reg and Adversarial Examples (New Angle)](https://thomas-tanay.github.io/post--L2-regularization/)  
     <br>
 
 5. **$$L^1$$ Regularization:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
@@ -183,7 +192,11 @@ prevLink: /work_files/research/dl/theory.html
     <p>$$\log p(\boldsymbol{w})=\sum_{i} \log \operatorname{Laplace}\left(w_{i} ; 0, \frac{1}{\alpha}\right)=-\alpha\|\boldsymbol{w}\|_ {1}+n \log \alpha-n \log 2 \tag{7.24}$$</p>  
     note that we can ignore the terms $$\log \alpha-\log 2$$ because they do not depend on $$\boldsymbol{w}$$.      
     <button>Derivation</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
-    <p hidden="">$$\begin{aligned} \hat{\theta}_ {\mathrm{MAP}} &=\arg \max_{\theta} \log P(y | \theta)+\log P(\theta) \\  &=\arg \max _{\boldsymbol{w}}\left[\log \prod_{i=1}^{n} \dfrac{1}{\sigma \sqrt{2 \pi}} e^{-\dfrac{\left(y_{i}-\boldsymbol{w}^T\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}}+\log \prod_{j=0}^{p} \dfrac{1}{2 b} e^{-\dfrac{\left|\theta_{j}\right|}{2 b}} \right] \\    &=\arg \max _{\boldsymbol{w}} \left[-\sum_{i=1}^{n} \dfrac{\left(y_{i}-\boldsymbol{w}^T\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}-\sum_{j=0}^{p} \dfrac{\left|w_{j}\right|}{2 b}\right] \\    &=\arg \min_{\boldsymbol{w}} \dfrac{1}{2 \sigma^{2}}\left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^T\boldsymbol{x}_i\right)^{2}+\dfrac{\sigma^{2}}{b} \sum_{j=0}^{p}\left|w_{j}\right|\right] \\    &=\arg \min_{\boldsymbol{w}} \left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^T\boldsymbol{x}_i\right)^{2}+\lambda \sum_{j=0}^{p}\left|w_{j}\right|\right] \\    &= \arg \min_{\boldsymbol{w}} \left[ \|XW - \boldsymbol{y}\|^2 + \lambda \|\boldsymbol{w}\|_ 1\right]\end{aligned}$$</p>
+    <p hidden="">$$\begin{aligned} \hat{\theta}_ {\mathrm{MAP}} &=\arg \max_{\theta} \log P(y | \theta)+\log P(\theta) \\  &=\arg \max _{\boldsymbol{w}}\left[\log \prod_{i=1}^{n} \dfrac{1}{\sigma \sqrt{2 \pi}} e^{-\dfrac{\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}}+\log \prod_{j=0}^{p} \dfrac{1}{2 b} e^{-\dfrac{\left|\theta_{j}\right|}{2 b}} \right] \\    &=\arg \max _{\boldsymbol{w}} \left[-\sum_{i=1}^{n} \dfrac{\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}-\sum_{j=0}^{p} \dfrac{\left|w_{j}\right|}{2 b}\right] \\    &=\arg \min_{\boldsymbol{w}} \dfrac{1}{2 \sigma^{2}}\left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}+\dfrac{\sigma^{2}}{b} \sum_{j=0}^{p}\left|w_{j}\right|\right] \\    &=\arg \min_{\boldsymbol{w}} \left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}+\lambda \sum_{j=0}^{p}\left|w_{j}\right|\right] \\    &= \arg \min_{\boldsymbol{w}} \left[ \|XW - \boldsymbol{y}\|^2 + \lambda \|\boldsymbol{w}\|_ 1\right]\end{aligned}$$</p>
+
+    __Properties:__{: style="color: red"}  
+    {: #lst-p}
+    * $$L^1$$ regularization can occasionally produce non-unique solutions. A simple example is provided in the figure when the space of possible solutions lies on a 45 degree line. 
     <br>
 
 
@@ -215,6 +228,7 @@ __Notes:__{: style="color: red"}
     * Combines both $$L^1$$ and $$L^2$$  
     * Used to __produce sparse solutions__, but to avoid the problem of $$L^1$$ solutions being sometimes __Non-Unique__  
         * The problem mainly arises with __correlated features__  
+    * Elastic net regularization tends to have a grouping effect, where correlated input features are assigned equal weights.  
 
 
 
@@ -230,8 +244,8 @@ __Notes:__{: style="color: red"}
 1. **Regularization and Under-Constrained Problems:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}  
     In some cases, regularization is necessary for machine learning problems to be properly define.  
 
-    Many linear models (e.g. Linear Regression, PCA) depend on __inverting $$\boldsymbol{X}^T\boldsymbol{X}$$__. This is not possible if $$\boldsymbol{X}^T\boldsymbol{X}$$ is singular. In this case, many forms of regularization correspond to solving inverting $$\boldsymbol{X}^{\top} \boldsymbol{X}+\alpha \boldsymbol{I}$$ instead. This regularized matrix is __guaranteed to be invertible__.  
-    * $$\boldsymbol{X}^T\boldsymbol{X}$$ can be singular if:  
+    Many linear models (e.g. Linear Regression, PCA) depend on __inverting $$\boldsymbol{X}^{\top}\boldsymbol{X}$$__. This is not possible if $$\boldsymbol{X}^{\top}\boldsymbol{X}$$ is singular. In this case, many forms of regularization correspond to solving inverting $$\boldsymbol{X}^{\top} \boldsymbol{X}+\alpha \boldsymbol{I}$$ instead. This regularized matrix is __guaranteed to be invertible__.  
+    * $$\boldsymbol{X}^{\top}\boldsymbol{X}$$ can be singular if:  
         * The data-generating function truly has no variance in some direction.  
         * No Variance is _observed_ in some direction because there are fewer examples (rows of $$\boldsymbol{X}$$) than input features (columns).  
 
@@ -246,6 +260,11 @@ __Notes:__{: style="color: red"}
     Specifically, $$7.29$$ is the limit of eq $$7.17$$ as the _regularization coefficient shrinks to zero_.  
     We can thus interpret the pseudoinverse as __stabilizing underdetermined problems using regularization__.  
 
+    __The Pseudoinverse:__{: style="color: red"}  
+    When applied to underdetermined systems w/ non-unique solutions; It finds the minimum norm solution to a linear system.  
+    This "OLS" solution implies that not all linear functions are the same for OLS. It restricts the space of all possible non-unique linear functions that satisfy the equation to a subset of minimal norm.  
+    From __SLT__ perspective, the pseudoinverse introduces __bias__ towards certain solutions.  
+    <br>
 
 2. **Dataset Augmentation:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}  
     Having more data is the most desirable thing to improving a machine learning model’s performance. In many cases, it is relatively easy to artificially generate data.  
@@ -263,16 +282,21 @@ __Notes:__{: style="color: red"}
     It can be seen as doing data-augmentation at *__multiple levels of abstraction__*. This approach can be highly effective provided that the magnitude of the noise is carefully tuned _(Poole et al. 2014)_.  
     > __Dropout__ can be seen as a process of constructing new inputs by _multiplying_ by noise.  
 
+    <br>
 
 3. **Noise Robustness:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
     We can apply __Noise Injection__ to different components of the model as a way to regularize the model:  
     __Injecting Noise in the Input Layer:__{: style="color: red"}  
+    {: #lst-p}
     * __Motivation__:  
         We have motivated the injection of noise, to the inputs, as a dataset augmentation strategy.        
     * __Interpretation__:  
         For some models, the addition of noise with infinitesimal variance at the input of the model is equivalent to __imposing a penalty on the norm of the weights__ _(Bishop, 1995a,b)_.  
 
     __Injecting Noise in the Hidden Layers:__{: style="color: red"}  
+    {: #lst-p}
+    * __Motivation__:  
+        We can motivate it as a variation of data augmentation.  
     * __Interpretation__:  
         It can be seen as doing __data-augmentation__ at *__multiple levels of abstraction__*.  
     * __Applications__:  
@@ -280,6 +304,7 @@ __Notes:__{: style="color: red"}
         It can be seen as a process of constructing new inputs by _multiplying_ by noise.  
 
     __Injecting Noise in the Weight Matrices:__{: style="color: red"}  
+    {: #lst-p}
     * __Interpretation__:  
         1. It can be interpreted as a stochastic implementation of Bayesian inference over the weights.  
             * __The Bayesian View__:  
@@ -291,6 +316,7 @@ __Notes:__{: style="color: red"}
         This technique has been used primarily in the context of __recurrent neural networks__ _(Jim et al., 1996; Graves, 2011)_.  
 
     __Injecting Noise in the Output Layer:__{: style="color: red"}  
+    {: #lst-p}
     * __Motivation__:  
         * Most datasets have some number of mistakes in the $$y$$ labels. It can be harmful to maximize $$\log p(y | \boldsymbol{x})$$ when $$y$$ is a mistake. One way to prevent this is to explicitly model the noise on the labels.  
         One can assume that for some small constant $$\epsilon$$, the training set label $$y$$ is correct with probability $$1-\epsilon$$.  
@@ -303,6 +329,7 @@ __Notes:__{: style="color: red"}
         * [__Applied to MLE problem:__](#bodyContents33mle) Label smoothing, compared to weight-decay, has the advantage of preventing the pursuit of hard probabilities without discouraging correct classification.  
         * Application in modern NN: _(Szegedy et al. 2015)_ 
 
+    <br>
 
 4. **Semi-Supervised Learning:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
     __Semi-Supervised Learning__ is a class of ML tasks and techniques that makes use of both unlabeled examples from $$P(\mathbf{x})$$ and labeled examples from $$P(\mathbf{x}, \mathbf{y})$$ to estimate $$P(\mathbf{y} | \mathbf{x})$$ or predict $$\mathbf{y}$$ from $$\mathbf{x}$$.  
@@ -316,7 +343,21 @@ __Notes:__{: style="color: red"}
     The idea is to share the unsupervised/generative criterion with the supervised criterion to _express a prior belief that the structure of $$P(\mathbf{x})$$ (or $$P(\mathbf{x}, \mathbf{y})$$) is connected to the structure of $$P(\mathbf{y} \vert \mathbf{x})$$_, which is captured by the _shared parameters_.  
     By controlling how much of the generative criterion is included in the total criterion, one can find a better trade-off than with a purely generative or a purely discriminative training criterion _(Lasserre et al., 2006; Larochelle and Bengio, 2008)_.  
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
+<br>
+
+__Notes:__{: style="color: red"}  
+{: #lst-p}
+* A practical rule for choosing a regularizer:  
+    * Stochastic noise is "high frequency"  
+    * Deterministic noise is also non-smooth  
+
+    Thus, we should constrain learning towards smoother hypotheses. I.E. fit the signal more than you fit the noise (which is non-smooth). We end up harming both, but harming the irregular, non-smooth noise more.  
+* __Regularization does two things - reduce fit to noise AND reduce overfitting__:  
+    ![img](/main_files/dl_book/regularization/5.png){: width="100%"}   
+        
+
+
+<!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
 
 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
 
@@ -324,3 +365,4 @@ __Notes:__{: style="color: red"}
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
 
+ -->

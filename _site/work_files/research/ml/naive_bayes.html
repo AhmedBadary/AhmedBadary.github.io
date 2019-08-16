@@ -78,7 +78,8 @@
 
 <p><a href="http://www.cs.columbia.edu/~mcollins/em.pdf">Full Treatment of Naive Bayes Classification</a><br />
 <a href="https://www.cs.helsinki.fi/u/jkivinen/opetus/iml/2013/Bayes.pdf">Bayes Classifier and Bayes Error (paper)</a><br />
-<a href="https://stats.stackexchange.com/questions/296014/why-is-the-naive-bayes-classifier-optimal-for-0-1-loss?noredirect=1&amp;lq=1">Bayes Classifier and Bayes Error (question)</a></p>
+<a href="https://stats.stackexchange.com/questions/296014/why-is-the-naive-bayes-classifier-optimal-for-0-1-loss?noredirect=1&amp;lq=1">Bayes Classifier and Bayes Error (question)</a><br />
+<a href="https://www.youtube.com/watch?v=1nOb0vwWkAE">Naive Bayes CS188 (+Probabilistic Calibration)</a></p>
 
 <h2 id="content1">Introduction and the Naive Bayes Classifier</h2>
 
@@ -91,13 +92,14 @@
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Naive Bayes Classifiers:</strong><br />
  <strong>Naive Bayes Classifiers</strong> are a family of simple probabilistic classifiers based on applying <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem"><em>Bayes’ Theorem</em></a> with strong (naive) independence assumptions between the features.</p>
 
-    <p><strong style="color: red">The Assumptions:</strong></p>
+    <p id="lst-p"><strong style="color: red">The Assumptions:</strong></p>
     <ol>
       <li><strong>Naive Independence</strong>: the feature probabilities are indpendenet given a class <script type="math/tex">c</script>.</li>
-      <li><strong>Bag-of-Words</strong>: we assume that the position of the words does <em>not</em> matter.</li>
+      <li><strong>Bag-of-Words</strong>: we assume that the position of the words does <em>not</em> matter.<br />
+ <br /></li>
     </ol>
 
-    <p><strong style="color: red">Notes:</strong></p>
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
     <ul>
       <li>Not a <strong>Bayesian Method</strong>: the name only references the use of Bayes’ theorem in the classifier’s decision rule</li>
       <li>The <strong>Naive Bayes Classifier</strong> is a <em><strong>Bayes Classifier</strong></em> (i.e. minimizes the prob of misclassification)<br />
@@ -139,7 +141,9 @@
 
     <p>The Classifier is the <em>function that assigns a class label <script type="math/tex">\hat{y} = C_k</script></em> for some <script type="math/tex">k</script> as follows:</p>
     <p>$${\displaystyle {\hat {y}}={\underset {k\in \{1,\dots ,K\}}{\operatorname {argmax} }}\ p(C_{k})\displaystyle \prod _{i=1}^{n}p(x_{i}\mid C_{k}).}$$</p>
-    <p><br /></p>
+
+    <p>It, basically, maximizes the probability of the class given an input <script type="math/tex">\boldsymbol{x}</script>.<br />
+ <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Naive Bayes Estimate VS MAP Estimate:</strong><br />
  <strong>MAP Estimate:</strong>
@@ -175,7 +179,8 @@
     <p>The <strong>Likelihood</strong> of the observed data (TBC)</p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Asynchronous:</strong></p>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Motivation:</strong><br />
+ To estimate the parameters of the “true” MAP estimate, we need a prohibitive number of examples ~ <script type="math/tex">\mathcal{O}(\vert x\vert^n \cdot \vert C\vert</script>.</p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Notes:</strong></li>
 </ol>

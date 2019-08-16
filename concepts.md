@@ -43,33 +43,15 @@ prevLink: /
 1. **:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
 
 <!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
-    :   
-
 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
-    :   
-
 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}  
-    :   
- -->
+-->
 
 __Notes:__  
 * __Structured Convolutions__:  
     __Why?__  
     Language has structure, would like it to localize features.  
     > e.g. noun-verb pairs very informative, but not captured by normal CNNs  
-
         
 
 ***
@@ -78,8 +60,7 @@ __Notes:__
 ## RNNs
 {: #content2}
 
-1. **RNN Architectures:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
-
+<!-- 1. **RNN Architectures:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}   -->
 
 2. **Different Connections in RNN Architectures:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
     1. __PeepHole Connection:__  
@@ -148,10 +129,11 @@ __Notes:__
 
     __Do generative models need to be stochastic?__  
     * Linear dynamical systems and HMMs are stochastic models.  
-        > The dynamics and the production of observations from the underlying state both involve __intrinsic noise__.  
+        The dynamics and the production of observations from the underlying state both involve __intrinsic noise__.  
         
-        * But the __posterior probability distribution__ over their hidden of the deterministic states given the observed probability distribution over data so far is a _**deterministic** function of the data_.    
-    * Recurrent neural networks are hidden Markov models are deterministic.  
+        * But the __posterior probability distribution__ over their hidden states given the observed  data so far is a _**deterministic** function of the data_.    
+    <br>    
+    * Recurrent neural networks are deterministic.
         * So think of the hidden state of an RNN as the equivalent of the __deterministic probability distribution over hidden states__ in a linear dynamical system or hidden Markov model.  
 
     __What kinds of behavior can RNNs exhibit?__
@@ -166,9 +148,7 @@ __Notes:__
 
 
     __Notes:__{: style="color: red"}  
-    * __A Content-Addressable Memory__: an item can be accessed by just knowing part of its content.   
-            
-                    
+    * __A Content-Addressable Memory__: an item can be accessed by just knowing part of its content.                    
 
 
 4. **Stability - Vanishing and Exploding Gradients:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}  
@@ -185,11 +165,7 @@ __Notes:__
             
 
 <!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
-    :   
-
 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}  
-    :   
-
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}  
     :   -->
 
@@ -323,7 +299,12 @@ __Notes:__
         * $$\sum_{i=1}^{n} 2^{i}=2^{n+1}-2$$  
             
             
-            
+9. **Linear Algebra:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents39}       
+    __Matrices:__{: style="color: red"}  
+    * __Symmetric Matrices:__{: style="color: blue"}  
+        * can choose its eigenvectors to be __orthonormal__  
+    * __PSD:__{: style="color: blue"}  
+    * __PD:__{: style="color: blue"}  
 
 
 ***
@@ -338,11 +319,16 @@ __Notes:__
     * Good classifier has a ROC curve that is near the top-left diagonal (hugging it)
     * A Bad Classifier has a ROC curve that is close to the diagonal line
     * It allows you to set the **classification threshold**  
-        * You can minimize False-positive rate or maximize the True-Positive Rate
+        * You can minimize False-positive rate or maximize the True-Positive Rate  
+
+    __Notes:__{: style="color: red"}  
+    {: #lst-p}
+    * ROC curves (& AUC) are useful even if the __predicted probabilities__ are not *__"properly calibrated"__*  
+    <br>
 
 2. **AUC - AUROC:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}  
     * Range $$ = 0.5 - 1.0$$, from poor to perfect  
-
+    <br>
 
 3. **Statistical Efficiency:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}  
     Essentially, a more efficient estimator, experiment, or test needs fewer observations than a less efficient one to achieve a given performance.  
@@ -397,8 +383,6 @@ __Notes:__
             __Justification:__ the gradient of the original term will include a $$e^{\vec{x}}$$ multiplicative term that scales very quickly one way or another, requiring the step-size to equally scale/stretch in the opposite direction.  
 
 <!-- 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}  
-    :   
-
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}  
     :     -->
 
@@ -421,6 +405,8 @@ __Notes:__
     * [Statistics VS Machine Learning](https://towardsdatascience.com/the-actual-difference-between-statistics-and-machine-learning-64b49f07ea3)  
 * __Uncorrelated Features in a Design Matrix__:  
     <p>$$\implies X^TX=nI$$</p>   
+* __Expectation Maximization (EM) Algorithm__:  
+    [EM-Algo Math](http://bjlkeng.github.io/posts/the-expectation-maximization-algorithm/)  
         
 
 ***
@@ -433,7 +419,6 @@ __Notes:__
     :   $$\sigma(-x) = 1 - \sigma(x)$$
 
 2. **Gradient-Based Optimization:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents52}  
-    
     __Notes:__{: style="color: red"}  
     * Gradients can't propagate through __argmax__  
     * __Derivative for a max function__:  
@@ -455,6 +440,9 @@ __Notes:__
             <p>$$\begin{array}{l}{\text { To constrain: } w_{1}=w_{2}} \\ {\text { we need : } \Delta w_{1}=\Delta w_{2}}\end{array}$$</p>  
             So, we compute the gradients as usual for each $$w_i$$ then average them and update both weights (so they'll continue to satisfy the constraints).    
     * Backprop is a __Leaky Abstraction__  
+    * __Properties of Loss Functions for Backpropagation__:  
+        The mathematical expression of the loss function must fulfill two conditions in order for it to be possibly used in back propagation.[3] The first is that it can be written as an average $${\textstyle E={\frac {1}{n}}\sum _{x}E_{x}}$$ over error functions $${\textstyle E_{x}}$$ {\textstyle E_{x}}, for $${\textstyle n}$$ individual training examples, $${\textstyle x}$$. The reason for this assumption is that the backpropagation algorithm calculates the gradient of the error function for a single training example, which needs to be generalized to the overall error function. The second assumption is that it can be written as a function of the outputs from the neural network.  
+            
 
 
 4. **Error Measures - Loss Functions:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents54}  
@@ -463,9 +451,7 @@ __Notes:__
             It is the log-likelihood of a Bernoulli probability model.  
             <p>$$\begin{array}{c}{L(p)=p^{y}(1-p)^{1-y}} \\ {\log (L(p))=y \log p+(1-y) \log (1-p)}\end{array}$$</p>  
         * __[Cross Entropy > MSE for Classification](https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/)__  
-                
-                
-            
+    <br>
 
     __Notes:__{: style="color: red"}   
     * __Loss VS Cost Function__:  
@@ -479,7 +465,7 @@ __Notes:__
     * __Hinge Loss and 0-1 Loss__:  
         * Hinge loss upper bounds 0-1 loss
         * It is the tightest _convex_ upper bound on the 0/1 loss  
-        * Minimizing 0-1 loss is NP-hard in the worst-case
+        * Minimizing 0-1 loss is NP-hard in the worst-case  
         img  
     * __Loss functions of common ML models__:  
         * maximize the posterior probabilities (e.g., naive Bayes)
@@ -493,7 +479,7 @@ __Notes:__
 
 5. **Mathematical Properties, Aspects, Considerations:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents55}  
     * __The Composition of Invariant Functions__:  
-        A function that is _invariant_ to some transformation (e.g. rotation, permutation, etc.) can be composed by averaging over all transformations (rotations -> e.g. rotation invariant filters).  
+        A function that is _invariant_ to some transformation (e.g. rotation, permutation, etc.) can be composed by averaging over all transformations (rotations $$\rightarrow$$ e.g. rotation invariant filters).  
         Equivalently, for _BoW_, we average over all permutations (by averaging the words).  
         This causes *__smearing__*.   
     * __Smearing in Invariant Functions__:  
@@ -507,9 +493,11 @@ __Notes:__
     __Identities:__{: style="color: red"}  
     * __Math Identities__:  
         <p>$$\frac{1}{N} \sum_{n=1}^{N}\left(\mathbf{w}^{\mathrm{T}} \mathbf{x}_{n}-y_{n}\right)^{2} = \frac{1}{N}\|\mathrm{Xw}-\mathrm{y}\|^{2}$$</p>  
-    * $$\dfrac{\partial}{\partial y} \vert{x-y}\vert  = - \text{sign}(x-y)$$  
+        * $$\dfrac{\partial}{\partial y} \vert{x-y}\vert  = - \text{sign}(x-y)$$  
+    <br>
 
     __Notes:__{: style="color: red"}  
+    {: #lst-p}
     * The __well-behaved__ property from an optimization standpoint, implies that $$f''(x)$$ doesn't change too much or too rapidly, leading to a nearly quadratic function that is easy to optimize by gradient methods.  
 
 
@@ -522,19 +510,20 @@ __Notes:__
 <br>
 
 <!-- 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents57}  
-    :   
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents58}  
-    :    -->
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents58}  -->
 
 __NOTES:__  
 * [Ch.8 Dl-book summary](https://medium.com/inveterate-learner/deep-learning-book-chapter-8-optimization-for-training-deep-models-part-i-20ae75984cb2)  
 * [Why You Should Use Cross-Entropy Error Instead Of Classification Error Or Mean Squared Error For Neural Network Classifier Training](https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/)  
 * Points that satisfy all constraints (i.e. the feasible region) always convex and polytope.  
 * __[Optimization Blog on opt techniques](http://ruder.io/optimizing-gradient-descent/index.html#gradientdescentoptimizationalgorithms)__  
+* [WHY NORMALIZE THE INPUTS/DATA/SIGNAL](https://www.youtube.com/watch?v=FDCfw-YqWTE&list=PLkDaE6sCZn6Hn0vK8co82zjQtt3T2Nkqc&index=10&t=0s)
+* [Optimization by Vector Space Methods (book)](http://math.oregonstate.edu/~show/old/142_Luenberger.pdf)
+* [__OLS Derivation and Theory__](https://web.stanford.edu/~mrosenfe/soc_meth_proj3/matrix_OLS_NYU_notes.pdf)   
 
 
-        
+<br>
 
 ***
 ***
@@ -558,6 +547,11 @@ __NOTES:__
     As for the task of pre-training, we both know that even if you learn the patterns of very specific objects/classes (e.g. cats and dogs) you still need to develop certain visual features (e.g. edge/corner detection) and those featurizers will develop well, regardless of the amount of information. i.e. the lower-level visual capabilities will be developed. (we have evidence that pretraining works really well in Vision).  <br />
     I think the issue here is with Deterministic Noise (i.e. the Bias of the model). The CNN hypothesis just doesn't do things like inverse graphics and whatnot; regardless of the amount of information.  <br />
     Finally, a big problem is when the information is just conflicting, like two objects that should be recognized but we only label it as one of them. That's the Stochastic Noise. Which relates directly to how well we would generalize. This can be attributed to many things as well: E.g. (1) One-hot vectors need to be smoothed to allow the network to get a sense of the actual different objects in the image, AND to not over-fit the particulars of the data (e.g. consider a cat that looks like a tiger and a cat that looks like a dog; labeling it with 0.8 cat is much better to learn the "cattiness" of the image than the noise) (2) Target labels are just limited. There aren't enough categories in the target, which puts a huge limitation for one-shot learning generalization)))</p>  
+
+    __Neural Tangent Kernel:__  
+    [Video](https://www.youtube.com/watch?v=raT2ECrvbag)  
+    As width (of NN) $$\rightarrow \infty$$, trajectory approaches the trajectory of GD for a kernel regression problem, where the (fixed) kernel in question is the so-called Neural Tangent Kernel (NTK). (For convolutional nets the kernel is Convolutional NTK or CNTK.)  
+
 
     __Notes:__  
     * __Intuition of why DL Works__:  
@@ -648,6 +642,7 @@ __NOTES:__
             $$h(x) = \sigma(s)$$  
 
     __Notes:__{: style="color: red"}  
+    {: #lst-p}
     * __The Weight vector of a linear signal is orthogonal to the decision boundary__:  
         The weight vector $$\mathbf{w}$$ is orthogonal to the separating-plane/decision-boundary, defined by $$\mathbf{w}^T\mathbf{x} + b = 0$$, in the $$\mathcal{X}$$ space; Reason:  
         Since if you take any two points $$\mathbf{x}^\prime$$ and $$\mathbf{x}^{\prime \prime}$$ on the plane, and create the vector $$\left(\mathbf{x}^{\prime}-\mathbf{x}^{\prime \prime}\right)$$  parallel to the plane by subtracting the two points, then the following equations must hold:  
@@ -691,49 +686,107 @@ __NOTES:__
     * __An additional External memory to LSTM__, can store without interference but need to - learn when to read/white.  
     * __Fast-Weights:__ Allow the temporal Knowledge to be stored without having any extra neurons.  
         They just make some attractors easier to fall into; and they also "flavor" the attractor by slightly changing the activity vector you end up with.  
-
+    <br>
 
 8. **Activation Functions:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents68}   
-    * __Activation Functions__:  
+    __Desirable Properties:__{: style="color: red"}  
+    * __Non-Linearity__:  
+        When the activation function is non-linear, then a two-layer neural network can be proven to be a universal function approximator. The identity activation function does not satisfy this property. When multiple layers use the identity activation function, the entire network is equivalent to a single-layer model. 
+    * __Range__:  
+        When the range of the activation function is finite, gradient-based training methods tend to be more stable, because pattern presentations significantly affect only limited weights. When the range is infinite, training is generally more efficient because pattern presentations significantly affect most of the weights. In the latter case, smaller learning rates are typically necessary.  
+    * __Continuously Differentiable__:  
+        This property is desirable for enabling gradient-based optimization methods. The binary step activation function is not differentiable at 0, and it differentiates to 0 for all other values, so gradient-based methods can make no progress with it.
+    * __Monotonicity__:  
+        When the activation function is monotonic, the error surface associated with a single-layer model is guaranteed to be convex.  
+    * __Smoothness with Monotonic Derivatives__:  
+        These have been shown to generalize better in some cases.  
+    * __Approximating Identity near Origin__:  
+        Equivalent to $${\displaystyle f(0)=0}$$ and $${\displaystyle f'(0)=1}$$, and $${\displaystyle f'}$$ is continuous at $$0$$.  
+        When activation functions have this property, the neural network will learn efficiently when its weights are initialized with small random values. When the activation function does not approximate identity near the origin, special care must be used when initializing the weights.  
+    * __Zero-Centered Range__:  
+        Has effects of centering the data (zero mean) by centering the activations. Makes learning easier.   
+        > [WHY NORMALIZING THE DATA/SIGNAL IS IMPORTANT](https://www.youtube.com/watch?v=FDCfw-YqWTE&list=PLkDaE6sCZn6Hn0vK8co82zjQtt3T2Nkqc&index=10&t=0s)
+            
+    __Undesirable Properties:__{: style="color: red"}  
+    {: #lst-p}
+    * __Saturation__:  
+        An activation functions output, with finite range, may saturate near its tail or head (e.g. $$\{0, 1\}$$ for sigmoid). This leads to a problem called __vanishing gradient__.  
+    * __Vanishing Gradients__:  
+        Happens when the gradient of an activation function is very small/zero. This usually happens when the activation function __saturates__ at either of its tails.  
+        The chain-rule will *__multiply__* the local gradient (of activation function) with the whole objective. Thus, when gradient is small/zero, it will "kill" the gradient $$\rightarrow$$ no signal will flow through the neuron to its weights or to its data.  
+        __Slows/Stops learning completely__.  
+    * __Range Not Zero-Centered__:  
+        This is undesirable since neurons in later layers of processing in a Neural Network would be receiving data that is not zero-centered. This has implications on the dynamics during gradient descent, because if the data coming into a neuron is always positive (e.g. $$x>0$$ elementwise in $$f=w^Tx+b$$), then the gradient on the weights $$w$$ will during backpropagation become either all be positive, or all negative (depending on the gradient of the whole expression $$f$$). This could introduce undesirable zig-zagging dynamics in the gradient updates for the weights. However, notice that once these gradients are added up across a batch of data the final update for the weights can have variable signs, somewhat mitigating this issue. Therefore, this is an inconvenience but it has less severe consequences compared to the saturated activation problem above.  
+        __Makes optimization harder.__   
+                
+            
+    __Activation Functions:__{: style="color: red"}  
+    ![img](/main_files/concepts/16.png){: max-width="180%" width="180%"}  
+    * __Properties__:                  
         * __Sigmoid__:  
             Never use as activation, use as an output unit for binary classification.  
+            * __Pros__:  
+                * Has a nice interpretation as the firing rate of a neuron  
+            * __Cons__:  
+                * They Saturate and kill gradients $$\rightarrow$$ Gives rise to __vanishing gradients__[^1] $$\rightarrow$$ Stop Learning  
+                    * Happens when initialization weights are too large  
+                    * or sloppy with data preprocessing  
+                    * Neurons Activation saturates at either tail of $$0$$ or $$1$$  
+                * Output NOT __Zero-Centered__ $$\rightarrow$$ Gradient updates go too far in different directions $$\rightarrow$$ makes optimization harder   
+                * The local gradient $$(z * (1-z))$$ achieves maximum at $$0.25$$, when $$z = 0.5$$. $$\rightarrow$$ very time the gradient signal flows through a sigmoid gate, its magnitude always diminishes by one quarter (or more) $$\rightarrow$$ with basic SGD, the lower layers of a network train much slower than the higher one  
         * __Tanh__:  
-            Strictly superior to Sigmoid (scaled version of sigmoid). Good for activation.  
-            Reasons: (1) Zero Mean/Centered  
-        * __Relu__:  
-            The best for activation.  
-            Reasons: (1) Better gradients  
-            * __Properties__:  
+            Strictly superior to Sigmoid (scaled version of sigmoid \| stronger gradient). Good for activation.  
+            * __Pros__:  
+                * Zero Mean/Centered  
+            * __Cons__:  
+                * They Saturate and kill gradients $$\rightarrow$$ Gives rise to __vanishing gradients__[^1] $$\rightarrow$$ Stop Learning  
+        * __ReLU__:  
+            The best for activation (Better gradients).  
+            * __Pros__:  
+                * Non-saturation of gradients which _accelerates convergence_ of SGD  
+                * Sparsity effects and induced regularization. [discussion](https://stats.stackexchange.com/questions/176794/how-does-rectilinear-activation-function-solve-the-vanishing-gradient-problem-in/176905#176905)  
+                * Not computationally expensive  
+            * __Cons__:  
                 * __ReLU not zero-centered problem__:  
                     The problem that ReLU is not zero-centered can be solved/mitigated by using __batch normalization__, which normalizes the signal before activation:  
                     > From paper: We add the BN transform immediately before the nonlinearity, by normalizing $$x =  Wu + b$$; normalizing it is likely to produce activations with a stable distribution.  
+                    > * [WHY NORMALIZING THE SIGNAL IS IMPORTANT](https://www.youtube.com/watch?v=FDCfw-YqWTE&list=PLkDaE6sCZn6Hn0vK8co82zjQtt3T2Nkqc&index=10&t=0s)
                 * __Dying ReLUs (Dead Neurons):__  
-                    If a neuron gets clamped to zero in the forward pass (it doesn’t “fire”), then its weights will get zero gradient. Thus, if a ReLU neuron is unfortunately initialized such that it never fires, or if a neuron’s weights ever get knocked off with a large update during training into this regime, then this neuron will remain permanently dead.  
+                    If a neuron gets clamped to zero in the forward pass (it doesn’t "fire" / $$x<0$$), then its weights will get zero gradient. Thus, if a ReLU neuron is unfortunately initialized such that it never fires, or if a neuron’s weights ever get knocked off with a large update during training into this regime (usually as a symptom of aggressive learning rates), then this neuron will remain permanently dead.  
                     * [**cs231n Explanation**](https://www.youtube.com/embed/gYpoJMlgyXA?start=1249){: value="show" onclick="iframePopA(event)"}
                     <a href="https://www.youtube.com/embed/gYpoJMlgyXA?start=1249"></a>
                         <div markdown="1"> </div>    
-                * __ReLu advantages__:  
-                    * Non-saturation of gradients which accelerates convergence of SGD
-                    * sparsity effects and induced regularization. [discussion](https://stats.stackexchange.com/questions/176794/how-does-rectilinear-activation-function-solve-the-vanishing-gradient-problem-in/176905#176905)  
-                    
+                * __Infinite Range__:  
+                    Can blow up the activation.  
         * __Leaky Relu__:  
             Sometimes useful. Worth trying.  
+            * __Pros__:  
+                * Leaky ReLUs are one attempt to fix the “dying ReLU” problem by having a small negative slope (of 0.01, or so).  
+            * __Cons__:  
+                The consistency of the benefit across tasks is presently unclear.  
+        * __ELU__:  
+            
     * __Derivatives of Activation Functions__:  
         * __Sigmoid__:  
             <p>$$S(z)=\frac{1}{1+e^{-z}} \\ S^{\prime}(z)=S(z) \cdot(1-S(z))$$</p>  
-            ![img](/main_files/concepts/3.png){: width="68%"}  
+            ![img](/main_files/concepts/3.png){: width="68%" .center-image}  
         * __Tanh__:  
             <p>$$\tanh (z)=\frac{e^{z}-e^{-z}}{e^{z}+e^{-z}} \\ \tanh ^{\prime}(z)=1-\tanh (z)^{2}$$</p>  
-            ![img](/main_files/concepts/4.png){: width="68%"}  
+            ![img](/main_files/concepts/4.png){: width="68%" .center-image}  
         * __Relu__:  
             <p>$$R(z)=\left\{\begin{array}{cc}{z} & {z>0} \\ {0} & {z<=0}\end{array}\right\} \\  R^{\prime}(z)=\left\{\begin{array}{ll}{1} & {z>0} \\ {0} & {z<0}\end{array}\right\}$$</p>  
-            ![img](/main_files/concepts/5.png){: width="68%"}  
+            ![img](/main_files/concepts/5.png){: width="68%" .center-image}  
         * __Leaky Relu__:  
             <p>$$R(z)=\left\{\begin{array}{cc}{z} & {z>0} \\ {\alpha z} & {z<=0}\end{array}\right\} \\ 
             R^{\prime}(z)=\left\{\begin{array}{ll}{1} & {z>0} \\ {\alpha} & {z<0}\end{array}\right\}$$</p>  
-            ![img](/main_files/concepts/6.png){: width="68%"}  
+            ![img](/main_files/concepts/6.png){: width="68%" .center-image}  
         * [Further Reading](https://ml-cheatsheet.readthedocs.io/en/latest/activation_functions.html)  
 
+    __Notes:__{: style="color: red"}  
+    * It is very rare to mix and match different types of neurons in the same network, even though there is no fundamental problem with doing so.  
+    * __Identity Mappings__:  
+        When an activation function cannot achieve an identity mapping (e.g. ReLU map all negative inputs to zero); then adding extra depth actually decreases the best performance, in the case a shallower one would suffice (Deep Residual Net paper).  
+    <br>
 
 9. **Bias-Variance Decomposition Theory:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents69}   
     
@@ -823,6 +876,7 @@ __NOTES:__
     * [**Generalized Linear Models (Andrew NG)**](https://www.youtube.com/embed/nLKOQfKLUks?list=PLA89DCFA6ADACE599){: value="show" onclick="iframePopA(event)"}
     <a href="https://www.youtube.com/embed/nLKOQfKLUks?list=PLA89DCFA6ADACE599"></a>
         <div markdown="1"> </div>    
+    * [GLM Probabilistic Development](http://bjlkeng.github.io/posts/a-probabilistic-view-of-regression/)  
 
     <br>
 
@@ -839,7 +893,7 @@ __NOTES:__
     * [**Latent Variable Models/Gaussian Mixture Models**](https://www.youtube.com/embed/I9dfOMAhsug){: value="show" onclick="iframePopA(event)"}
     <a href="https://www.youtube.com/embed/I9dfOMAhsug"></a>
         <div markdown="1"> </div>    
-    * [**Expectation-Minimization/EM-Algorithm for Latent Variable Models**](https://www.youtube.com/embed/lMShR1vjbUo){: value="show" onclick="iframePopA(event)"}
+    * [**Expectation-Maximization/EM-Algorithm for Latent Variable Models**](https://www.youtube.com/embed/lMShR1vjbUo){: value="show" onclick="iframePopA(event)"}
     <a href="https://www.youtube.com/embed/lMShR1vjbUo"></a>
         <div markdown="1"> </div>    
     <br>
@@ -875,7 +929,9 @@ __NOTES:__
     * __Centering__:  subtracting $$\mu$$ from each row of $$X$$ 
     * __Sphering__:  applying the transform $$X' = X \Sigma^{-1/2}$$  
     * __Whitening__:  Centering + Sphering (also known as *__Decorrelating feature space__*)  
-            
+
+
+    [Pre-processing for Deep Learning (data regularization)](https://hadrienj.github.io/posts/Preprocessing-for-deep-learning/)          
 
     [Ch.7 dl-book summary](https://github.com/dalmia/Deep-Learning-Book-Chapter-Summaries/blob/master/07%20-%20Regularization%20for%20Deep%20Learning.ipynb)  
     <br>
@@ -913,6 +969,19 @@ __NOTES:__
 20. **Learning Theory:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents620}  
 
 
+
+21. **Curse of Dimensionality:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents621}  
+    __The Curse of Dimensionality__, in general, refers to various phenomena, that arise when analyzing and organizing data in high-dimensional spaces, that do not occur in low-dimensional settings such as the three-dimensional physical space of everyday experience.  
+
+    __Common Theme:__{: style="color: red"}  
+    When the dimensionality increases, the _volume of the space increases so fast_ that the available _data become sparse_. This __sparsity__ is problematic for any method that requires __statistical significance__. In order to obtain a statistically sound and reliable result, the _amount of data needed_ to support the result often _grows exponentially with the dimensionality_. Also, organizing and searching data often relies on detecting areas where objects form groups with similar properties (_clustering_); in high dimensional data, however, all objects appear to be sparse and dissimilar in many ways, which prevents common data organization strategies from being efficient.  
+
+    __Sampling:__{: style="color: red"}  
+    The sampling density is proportional to $$N^{1/p}$$, where $$p$$ is the dimension of the input space and $$N$$ is the sample size. Thus, if $$N_1 = 100$$ represents a dense sample for a single input problem, then $$N_{10} = 100^{10}$$ is the sample size required for the same sampling density with $$10$$ inputs. Thus in high dimensions all feasible training samples sparsely populate the input space.  
+
+    [Story on Geometry in high-dimensional spaces](https://marckhoury.github.io/counterintuitive-properties-of-high-dimensional-space/)  
+
+
 0. **Notes:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents60}  
     * __Complexity__:  
         * __Caching the activations of a NN__:  
@@ -928,7 +997,32 @@ __NOTES:__
     * __Feature Importance__:  
         * In linear models, feature importance can be calculated by the scale of the coefficients  
         * In tree-based methods (such as random forest), important features are likely to appear closer to the root of the tree. We can get a feature's importance for random forest by computing the averaging depth at which it appears across all trees in the forest   
-        
+    * __Probabilistic Calibration__:  
+        * [Plot and Explanation](https://scikit-learn.org/stable/modules/calibration.html)  
+        * [Blog on How to do it](http://alondaks.com/2017/12/31/the-importance-of-calibrating-your-deep-model/)  
+    * __Complexity in ML__:  
+        * __Definitions of the complexity of an object ($$h$$)__:  
+            * __Minimum Description Length (MDL)__: the number of bits for specifying an object.  
+            * __Order of a Polynomial__  
+        * __Definitions of the complexity of a class of objects ($$\mathcal{H}$$)__:  
+            * __Entropy__  
+            * __VC-dim__  
+                    
+                
+            
+    <br>
+
+30. **Observations from Papers:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents630}  
+    * For calibrating output probabilities in Deep Nets; Temperature scaling outperforms Platt scaling. [paper](https://arxiv.org/pdf/1706.04599.pdf)  
+    * deep neural networks seemingly violate the common understanding of learning theory that large models with little regularization will not generalize well. The observed disconnect between NLL and 0/1 loss suggests that these high capacity models are not necessarily immune from overfitting, but rather, overfitting manifests in probabilistic error rather than classification error. [paper](https://arxiv.org/pdf/1706.04599.pdf)  
+
+
+
+    * [__Is Optimization a Sufficient Language for Understanding Deep Learning?__](http://www.offconvex.org/2019/06/03/trajectories/)  
+        * __Conventional View (CV) of Optimization__:  
+            Find a solution of minimum possible value of the objective, as fast as possible.  
+        * If our goal is mathematical understanding of deep learning, then the CV of Opt is potentially __insufficient__.  
+
 
 ***
 ***
@@ -950,21 +1044,7 @@ __NOTES:__
        
 
 <!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents73}  
-    :   
-
 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents74}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents75}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents76}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents77}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents78}  
   -->
 
 ***
@@ -974,12 +1054,15 @@ __NOTES:__
 {: #content8}
 
 [The Norvig-Chomsky Debate](https://sites.tufts.edu/models/files/2019/04/Norvig.pdf)  
+[Modern Deep Learning Techniques Applied to Natural Language Processing (Amazing Resource)](https://nlpoverview.com)  
+[Deep Learning for NLP: Advancements & Trends](https://tryolabs.com/blog/2017/12/12/deep-learning-for-nlp-advancements-and-trends-in-2017/?utm_campaign=Revue%20newsletter&utm_medium=Newsletter&utm_source=The%20Wild%20Week%20in%20AI)  
+
 
 1. **Language Modeling:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents81}  
     __Towards Better Language Modeling (Lec.9 highlight, 38m):__{: style="color: red"}  
     To improve a _Language Model_:  
     1. __Better Inputs__: 
-        Word -> Subword -> Char  
+        Word $$\rightarrow$$ Subword $$\rightarrow$$ Char  
         ![img](/main_files/concepts/2.png){: width="100%"}  
         _Subword Language Modeling , Mikolov et al. 2012_  
         _Character-Aware Neural Language Model , Kim et al. 2015_.  
@@ -1062,16 +1145,73 @@ __NOTES:__
     ![img](/main_files/concepts/8_1.jpg){: hidden=""}  
 
 
+    * [CNN Text Classification](http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp)  
+    * [1d CNNs for Time-Sequences](https://blog.goodaudience.com/introduction-to-1d-convolutional-neural-networks-in-keras-for-time-sequences-3a7ff801a2cf)  
     * [LSI document similarity](http://mccormickml.com/2016/11/04/interpreting-lsi-document-similarity/)  
     * [Latent Semantic Analysis (LSA) for Text Classification Tutorial](http://mccormickml.com/2016/03/25/lsa-for-text-classification-tutorial/)  
-    * [answer](link)
 
 
 6. **:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents86}  
 
 
+7. **Coreference Resolution:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents87}  
+    __Coreference Resolution:__ Identify all mentions that refer to the same real world entity.  
 
-7. **:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents87}  
+    __Applications:__{: style="color: red"}  
+    {: #lst-p}
+    * __Full text understanding__:  
+        * information extraction, question answering, summarization, ...  
+        * “He was born in 1961” (Who?)  
+    * __Machine Translation__:  
+        * languages have different features for gender, number, dropped pronouns, etc.  
+    * __Dialogue Systems__:  
+        “Book tickets to see <span>James Bond</span>{: style="color: red"}”  
+        “<span>Spectre</span>{: style="color: red"} is playing near you at 2:00 and <span>3:00</span>{: style="color: blue"} today. <span>How many tickets</span>{: style="color: orange"} would you like?”  
+        “<span>Two</span>{: style="color: orange"} tickets for the showing at <span>three</span>{: style="color: blue"}”  
+
+
+    __An approach for Coref-Res in 2 steps:__{: style="color: red"}  
+    {: #lst-p}
+    1. __Detect the Mentions__ (easy)  
+        “Book tickets to see <span>James Bond</span>{: style="color: gray"}”  
+        “<span>Spectre</span>{: style="color: gray"} is playing near you at 2:00 and <span>3:00</span>{: style="color: gray"} today. <span>How many tickets</span>{: style="color: gray"} would you like?”  
+        “<span>Two</span>{: style="color: gray"} tickets for the showing at <span>three</span>{: style="color: gray"}”  
+    2. __Cluster the Mentions__ (hard)  
+        “Book tickets to see <span>James Bond</span>{: style="color: red"}”  
+        “<span>Spectre</span>{: style="color: red"} is playing near you at 2:00 and <span>3:00</span>{: style="color: blue"} today. <span>How many tickets</span>{: style="color: orange"} would you like?”  
+        “<span>Two</span>{: style="color: orange"} tickets for the showing at <span>three</span>{: style="color: blue"}”  
+
+
+    __Mention Detection:__{: style="color: red"}  
+    __Mention:__ span of text referring to some entity.  
+
+    __Types of Mention:__  
+    {: #lst-p}
+    1. __Pronouns__  
+        "I", "your", "it", "she", "him"  
+    2. __Named Entities__  
+        People, places, etc.  
+    3. __Noun Phrases__  
+        "a dog", "the big fluffy cat stuck in the tree"  
+
+    __Detection:__  
+    Use other NLP systems for the detection task:  
+    {: #lst-p}
+    1. Pronouns: __POS-Tagger__  
+    2. Named Entities: __NER__  
+    3. Noun Phrases: __(Constituency) Parser__  
+
+    __Problem with Detection - Extra/bad mentions:__  
+    Notice that the systems above will overmatch on possible mentions that don't have a concrete entity that they refer to: e.g. [It] is sunny, [Every student], [No student], [The best donut in the world], [100 miles].  
+
+    __Dealing with bad mentions:__  
+    * Train a classifier to filter out spurious mentions
+    * (more commonly) keep all mentions as “candidate mentions”  
+        * After your coreference system is done running discard all singleton mentions (i.e., ones that have not been marked as coreference with anything else)  
+
+    [Continue Lecture (CS224N)](https://www.youtube.com/watch?v=i19m4GzBhfc&list=PLoROMvodv4rOhcuXMZkNm7j3fVwBBY42z&index=17&t=1320s)   
+
+    <br>
 
 
 8. **Word Embeddings:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents88}  
@@ -1089,8 +1229,7 @@ __NOTES:__
 __Notes:__  
 * [Ilya Sutskever Pubs/Vids](http://www.cs.toronto.edu/~ilya/pubs/)  
 * Can all NLP tasks be cast as QA problems?!  
-
-        
+* [Survey of the State of the Art in Natural Language Generation](https://arxiv.org/pdf/1703.09902.pdf)  
 
 
 ***
@@ -1099,29 +1238,11 @@ __Notes:__
 ## Physics
 {: #content9}
 
-<!-- 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents91}  
-    :   
-
+<!-- 
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents91}  
 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents92}  
-    :   
-
 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents93}  
-    :   
-
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents94}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents95}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents96}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents97}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents98}  
-    :    -->
+-->
 
 ***
 ***
@@ -1254,6 +1375,7 @@ __Notes:__
             A & 0 \\
             0 & B \\
         \end{bmatrix}$$  
+    * [Computable Functions and Turing Machines](https://marckhoury.github.io/on-computable-functions/)   
 
 ***
 ***
@@ -1267,25 +1389,10 @@ __Notes:__
     > It is neither _precise_ nor _self evident_.   
 
 <!-- 2. **Misc:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents112}  
-
-
 3. **Misc:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents113}   -->
 
+[^1]: Remember that the chain-rule will multiply the local gradient (of sigmoid) with the whole object. Thus, when gradient is small/zero, it will "kill" the gradient $$\rightarrow$$ no signal will flow through the neuron to its weights or to its data.  
 
-<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents114}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents115}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents116}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents117}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents118}  
-    :    -->
 
 __Resources:__  
 * [Reinforcement Learning Course Lectures UCL](http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html)  
@@ -1299,3 +1406,9 @@ __Resources:__
     * [d2l course website](https://www.d2l.ai/)  
 * [Mathematics of DL](https://www.youtube.com/watch?v=Mdp9uC3gXUU)  
 * [Deep Learning Linear Algebra](https://jhui.github.io/2017/01/05/Deep-learning-linear-algebra/)  
+* [Intro to Causal Inference (do-Calculus)](https://www.inference.vc/untitled/)  
+* [DL and Physics](https://www.technologyreview.com/s/602344/the-extraordinary-link-between-deep-neural-networks-and-the-nature-of-the-universe/)  
+* [EE227C: Convex Optimization and Approximation](https://ee227c.github.io/)  
+* [Boyd Cvx-Opt](https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf)  
+* [Tibshirani Cvx-Opt](http://www.stat.cmu.edu/~ryantibs/convexopt/)  
+* 

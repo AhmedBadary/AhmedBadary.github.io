@@ -6,25 +6,27 @@ permalink: /work_files/research/dl/archits
 
 # Sections
 
-* ### [Multi-Layer Perceptrons (MLP) [**Coming Soon**]](/work_files/research/dl/1)
+* ### [Feed-Forward Neural Network (FNN)](/work_files/research/dl/archits/fnn&mlp#content1)
 
-* ### [Feed-Forward Neural Network (FNN) [**Coming Soon**]](/work_files/research/dl/2)
+* ### [Multi-Layer Perceptron (MLP)](/work_files/research/dl/archits/fnn&mlp#content2)
+
+* ### [Deep FeedForward Neural Network](/work_files/research/dl/theory/dl_book_pt2#content1)
 
 * ### [Convolutional Neural Network (CNN)](/work_files/research/dl/archits/convnets) 
 
-* ### [Probabilistic Graphical Models (PGMs)](/work_files/research/dl/nlp/pgm)
-
 * ### [Recurrent Neural Network (RNN)](/work_files/research/dl/archits/rnns)
 
-* ### [Long-Short-Term Memory Network (LSTM)](/work_files/research/dl/nlp/gated_units)
+* ### [Probabilistic Graphical Models (PGMs)](/work_files/research/dl/archits/pgm)
 
-* ### [Gated-Recurrent Units Network (GRU)](/work_files/research/dl/nlp/gated_units)
+* ### [Long-Short-Term Memory Network (LSTM)](/work_files/research/dl/nlp/gated_units#content3)
 
-* ### [(Vanilla) Auto-Encoders](/work_files/research/dl/aencdrs)
+* ### [Gated-Recurrent Units Network (GRU)](/work_files/research/dl/nlp/gated_units#content2)
 
-* ### [(Variational) Auto-Encoders (VAEs)](/work_files/research/dl/vae)
+* ### [(Vanilla) Auto-Encoders](/work_files/research/dl/archits/aencdrs)
 
-* ### [Generative Adversarial Networks](/work_files/research/dl/gans)
+* ### [(Variational) Auto-Encoders (VAEs)](/work_files/research/dl/archits/vae)
+
+* ### [Generative Adversarial Networks](/work_files/research/dl/archits/gans)
 
 * ### [Restricted Boltzmann Machines (RBMs) [**Coming Soon**]](/work_files/research/dl/7)
 

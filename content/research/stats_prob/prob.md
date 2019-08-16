@@ -33,6 +33,8 @@ prevLink: /work_files/research/dl/theory.html
 [Probability Quora FAQs](https://www.quora.com/What-is-the-probability-statistics-topic-FAQ)  
 [Math review for Stat 110](https://projects.iq.harvard.edu/files/stat110/files/math_review_handout.pdf)  
 [Deep Learning Probability](https://jhui.github.io/2017/01/05/Deep-learning-probability-and-distribution/)  
+[Probability as Extended Logic](http://bjlkeng.github.io/posts/probability-the-logic-of-science/)  
+[CS188 Probability Lecture (very intuitive)](https://www.youtube.com/watch?v=sMNbLXsvRig&list=PL7k0r4t5c108AZRwfW-FhnkZ0sCKBChLH&index=13&t=0s)  
 
 
 ## Motivation
@@ -186,7 +188,25 @@ prevLink: /work_files/research/dl/theory.html
      onclick="showTextPopHide(event);"}
     ![img](/main_files/math/prob/1.png){: width="100%" hidden=""}  
 
-    > __Marginalization:__ the process of forming the marginal distribution with respect to one variable by summing out the other variable  
+    __Marginalization:__{: style="color: red"} the process of forming the marginal distribution with respect to one variable by summing out the other variable  
+
+    __Notes:__{: style="color: red"}  
+    {: #lst-p}
+    * __Marginal Distribution of a variable__: is just the prior distr of the variable  
+    * __Marginal Likelihood__: also known as the evidence, or model evidence, is the denominator of the Bayes equation. Its only role is to guarantee that the posterior is a valid probability by making its area sum to 1.  
+        ![Example](https://cdn.mathpix.com/snip/images/UPUhBUhhUivvvIHO3nt5S52UcqPkSMS_eZEg3mhDXhk.original.fullsize.png)  
+    * __both terms above are the same__  
+    * __Marginal Distr VS Prior__:  
+        * [Discussion](https://stats.stackexchange.com/questions/249275/whats-the-difference-between-prior-and-marginal-probabilities?rq=1)  
+        * __Summary__:  
+            Basically, it's a conceptual difference.  
+            The prior, denoted $$p(\theta)$$, denotes the probability of some event 𝜔 even before any data has been taken.  
+            A marginal distribution is rather different. You hold a variable value and integrate over the unknown values.  
+            But, in some contexts they are the same.  
+
+            
+
+
             
 
 
@@ -209,7 +229,7 @@ prevLink: /work_files/research/dl/theory.html
     Two random variables $$x$$ and $$y$$ (or events ) are __independent__ if their probability distribution can be expressed as a product of two factors, one involving only $$x$$ and one involving only $$y$$:  
     <p>$$\mathrm{P}(A \cap B) = \mathrm{P}(A)\mathrm{P}(B)$$</p>  
 
-    Two random variables $$A$$ and $$B$$ are conditionally independent given a random variable $$Y$$ if the conditional probability distribution over $$A$$ and $$B$$ factorizes in this way for every value of $$Y$$:  
+    Two random variables $$A$$ and $$B$$ are __conditionally independent__ _given a random variable $$Y$$_ if the conditional probability distribution over $$A$$ and $$B$$ factorizes in this way for every value of $$Y$$:  
     <p>$$\Pr(A\cap B\mid Y)=\Pr(A\mid Y)\Pr(B\mid Y)$$</p>  
     or equivalently,  
     <p>$$\Pr(A\mid B\cap Y)=\Pr(A\mid Y)$$</p>  
@@ -230,6 +250,12 @@ prevLink: /work_files/research/dl/theory.html
     __Notation:__  
     * *__$$A$$ is Independent from $$B$$__*:  $$A{\perp}B$$
     * *__$$A$$ and $$B$$ are conditionally Independent given $$Y$$__*:  $$A{\perp}B \:\vert Y$$  
+
+    __Notes:__{: style="color: red"}  
+    {: #lst-p}
+    * Unconditional Independence is very rare (there is usually some hidden factor influencing the interaction between the two events/variables)  
+    * _Conditional Independence_ is the most basic and robust form of knowledge about uncertain environments  
+            
     <br>
                 
 9. **Expectation:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents29}  
@@ -368,6 +394,58 @@ prevLink: /work_files/research/dl/theory.html
     * $$\operatorname {E}\left[X_{i}^{2}\right]=\operatorname {Var} [X]+\operatorname {E} [X]^{2} = \sigma^{2}+\mu^{2}$$,  
     * $$\operatorname {E}\left[\overline{X}^{2}\right]=\operatorname {E}\left[\hat{\mu}^{2}\right]=\frac{\sigma^{2}}{n}+\mu^{2}\:$$, [^2]  
 
+    <br>
+
+
+18. **Correlation:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents218}  
+    In the broadest sense __correlation__ is any statistical association, though it commonly refers to the degree to which a pair of variables are linearly related.  
+
+    There are several correlation coefficients, often denoted $${\displaystyle \rho }$$ or $$r$$, measuring the degree of correlation:  
+
+    __Pearson Correlation Coefficient [\[wiki\]](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient):__{: style="color: red"}  
+    It is a measure of the __linear correlation__ between two variables $$X$$ and $$Y$$.  
+    <p>$$\rho_{X, Y}=\frac{\operatorname{cov}(X, Y)}{\sigma_{X} \sigma_{Y}}$$</p>  
+    where, $${\displaystyle \sigma_{X}}$$ is the standard deviation of $${\displaystyle X}$$ and $${\displaystyle \sigma_{Y}}$$  is the standard deviation of $${\displaystyle Y}$$, and $$\rho \in [-1, 1]$$.   
+
+
+
+    __Correlation and Independence:__{: style="color: red"}  
+    1. Uncorrelated $$\nRightarrow$$ Independent  
+    2. Independent $$\implies$$ Uncorrelated  
+
+    Zero correlation will indicate no linear dependency, however won't capture non-linearity. Typical example is uniform random variable $$x$$, and $$x^2$$ over $$[-1,1]$$ with zero mean. Correlation is zero but clearly not independent.  
+
+    <br> 
+
+19. **Probabilistic Inference:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents219}  
+    __Probabilistic Inference:__ compute a desired probability from other known probabilities (e.g. conditional from joint).  
+
+    __We generally compute Conditional Probabilities:__  
+    {: #lst-p}
+    * $$p(\text{sun} \vert T=\text{12 pm}) = 0.99$$  
+    * These represent the agents beliefs given the evidence  
+
+    __Probabilities change with new evidence:__  
+    {: #lst-p} 
+    * $$p(\text{sun} \vert T=\text{12 pm}, C=\text{Stockholm}) = 0.85$$  
+    $$\longrightarrow$$  
+    * $$p(\text{sun} \vert T=\text{12 pm}, C=\text{Stockholm}, M=\text{Jan}) = 0.40$$  
+    * Observing new evidence causes beliefs to be updated
+
+    __Inference by Enumeration:__{: style="color: red"}  
+    {: #lst-p}
+    * [**CS188 Lec. 10-2**](https://www.youtube.com/embed/sMNbLXsvRig?start=3508){: value="show" onclick="iframePopA(event)"}
+    <a href="https://www.youtube.com/embed/sMNbLXsvRig?start=3508"></a>
+        <div markdown="1"> </div>    
+
+    __Problems:__  
+    * Worst-case time complexity $$\mathrm{O}\left(\mathrm{d}^{n}\right)$$
+    * Space complexity $$\mathrm{O}\left(\mathrm{d}^{n}\right)$$ to store the joint distribution  
+
+    __Inference with Bayes Theorem:__{: style="color: red"}  
+    * __Diagnostic Probability from Causal Probability:__  
+        <p>$$P(\text { cause } | \text { effect })=\frac{P(\text { effect } | \text { cause }) P(\text { cause })}{P(\text { effect })}$$</p>  
+
 
 
 
@@ -449,15 +527,16 @@ prevLink: /work_files/research/dl/theory.html
 {: #content10}
 
 * It is more practical to use a simple but uncertain rule rather than a complex but certain one, even if the true rule is deterministic and our modeling system has the fidelity to accommodate a complex rule.  
-    For example, the simple rule “Most birds ﬂy” is cheap to develop and is broadly useful, while a rule of the form, “Birds ﬂy, except for very young birds that have not yet learned to ﬂy, sick or injured birds that have lost the ability to ﬂy, ﬂightless species of birds including the cassowary, ostrich and kiwi. . .” is expensive to develop, maintain and communicate and, after all this effort, is still brittle and prone to failure.
+    For example, the simple rule “Most birds fly” is cheap to develop and is broadly useful, while a rule of the form, “Birds fly, except for very young birds that have not yet learned to fly, sick or injured birds that have lost the ability to fly, flightless species of birds including the cassowary, ostrich and kiwi. . .” is expensive to develop, maintain and communicate and, after all this effort, is still brittle and prone to failure.
 
 * __Disjoint Events (Mutually Exclusive):__{: .bodyContents10 #bodyContents102} are events that cannot occur together at the same time
     Mathematically:  
     * $$A_i \cap A_j = \varnothing$$ whenever $$i \neq j$$  
     * $$p(A_i, A_j) = 0$$,  
 
-* __Describing a Probability Distribution__:  
-    A description of a probability distribution is _exponential_ in the number of variables it models
+* __Complexity of Describing a Probability Distribution__:  
+    A description of a probability distribution is _exponential_ in the number of variables it models.  
+    The number of possibilities is __exponential__ in the number of variables.  
 
 * __Probability VS Likelihood__:  
     __Probabilities__ are the areas under a fixed distribution  

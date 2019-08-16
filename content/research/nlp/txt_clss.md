@@ -27,14 +27,14 @@ prevLink: /work_files/research/nlp.html
 1. **Text Classification:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}   
     :    The task of assigning a piece of text to one or more classes or categories.  
 
-2. **Applications:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}
-    :   * __Spam Filtering__: discerning spam emails form legitimate emails.  
-        * __Email Routing__: sending an email sento to a genral address to a specfic affress based on the topic.  
-        * __Language Identification__: automatiacally determining the genre of a piece of text.  
-        * Readibility Assessment__: determining the degree of readability of a piece of text.  
-        * __Sentiment Analysis__: determining the general emotion/feeling/attitude of the author of a piece of text.  
-        * __Authorship Attribution__: determining which author wrote which piece of text.  
-        * __Age/Gender Identification__: determining the age and/or gender of the author of a piece of text.      
+2. **Applications:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
+    * __Spam Filtering__: discerning spam emails form legitimate emails.  
+    * __Email Routing__: sending an email sento to a genral address to a specfic affress based on the topic.  
+    * __Language Identification__: automatiacally determining the genre of a piece of text.  
+    * Readibility Assessment__: determining the degree of readability of a piece of text.  
+    * __Sentiment Analysis__: determining the general emotion/feeling/attitude of the author of a piece of text.  
+    * __Authorship Attribution__: determining which author wrote which piece of text.  
+    * __Age/Gender Identification__: determining the age and/or gender of the author of a piece of text.      
 
 3. **Classification Methods:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
     :   * __(Hand-Coded)Rules-Based Algorithms__: use rules based on combinations of words or other features.   

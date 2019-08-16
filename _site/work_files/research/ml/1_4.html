@@ -67,7 +67,7 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">Introduction</a></li>
+    <li><a href="#content1">Introduction - Support Vector Machines</a></li>
   </ul>
   <ul class="TOC2">
     <li><a href="#content2">The Hard-Margin SVM</a></li>
@@ -80,28 +80,22 @@
 <hr />
 <hr />
 
-<h2 id="content1">Introduction</h2>
+<h2 id="content1">Introduction - Support Vector Machines</h2>
 
 <ol>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Support Vector Machines:</strong></dt>
-      <dd><strong>Support Vector Machines</strong> (SVMs) are supervised learning models with associated learning algorithms that analyze data used for classification and regression analysis.</dd>
-      <dd>The SVM is a <a href="/work_files/research/ml/1_3"><em>Maximum Margin Classifier</em></a> that aims to find the “maximum-margin hyperplane” that divides the group of points <script type="math/tex">{\displaystyle {\vec {x}}_{i}} {\vec {x}}_{i}</script> for which <script type="math/tex">{\displaystyle y_{i}=1}</script> from the group of points for which <script type="math/tex">{\displaystyle y_{i}=-1}</script>.</dd>
-    </dl>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Support Vector Machines:</strong><br />
+ <strong>Support Vector Machines</strong> (SVMs) are supervised learning models with associated learning algorithms that analyze data used for classification and regression analysis.<br />
+ The SVM is a <a href="/work_files/research/ml/1_3"><em>Maximum Margin Classifier</em></a> that aims to find the “maximum-margin hyperplane” that divides the group of points <script type="math/tex">{\displaystyle {\vec {x}}_{i}} {\vec {x}}_{i}</script> for which <script type="math/tex">{\displaystyle y_{i}=1}</script> from the group of points for which <script type="math/tex">{\displaystyle y_{i}=-1}</script>.</p>
   </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Support Vectors:</strong></dt>
-      <dd><strong>Support Vectors</strong> are the data-points that lie exactly on the margin (i.e. on the boundary of the slab).</dd>
-      <dd>They satisfy <script type="math/tex">\|wX' + b\| = 1, \forall</script> support vectors <script type="math/tex">X'</script></dd>
-    </dl>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Support Vectors:</strong><br />
+ <strong>Support Vectors</strong> are the data-points that lie exactly on the margin (i.e. on the boundary of the slab).<br />
+ They satisfy <script type="math/tex">\|w^TX' + b\| = 1, \forall</script> support vectors <script type="math/tex">X'</script></p>
   </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">The Hard-Margin SVM:</strong></dt>
-      <dd>The <em>Hard-Margin SVM</em> is just a maximum-margin classifier with features and kernels (discussed later).</dd>
-    </dl>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">The Hard-Margin SVM:</strong><br />
+ The <em>Hard-Margin SVM</em> is just a maximum-margin classifier with features and kernels (discussed later).</p>
   </li>
 </ol>
 
@@ -122,12 +116,10 @@
     </dl>
   </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Procedure:</strong></dt>
-      <dd>(1) Use a linear classifier
-(2) But, Maximize the Margin
-(3) Do so by Minimizing <script type="math/tex">\|w\|</script></dd>
-    </dl>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Procedure:</strong> <br />
+ (1) Use a linear classifier
+ (2) But, Maximize the Margin
+ (3) Do so by Minimizing <script type="math/tex">\|w\|</script></p>
   </li>
   <li>
     <dl>
@@ -146,22 +138,13 @@
       </dd>
     </dl>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">The Optimization Problem:</strong></dt>
-      <dd>Find weights ‘<script type="math/tex">w</script>’ and scalar ‘<script type="math/tex">b</script>’ that minimize</dd>
-      <dd>
-        <script type="math/tex; mode=display">\dfrac{1}{2} w^Tw</script>
-      </dd>
-      <dd>Subject to</dd>
-      <dd>
-        <script type="math/tex; mode=display">y_i(wX_i + b) \geq 1, \forall i \in [1,n]</script>
-      </dd>
-      <dd>Formally,</dd>
-      <dd>
-        <script type="math/tex; mode=display">\min_w \dfrac{1}{2}w^Tw \:\:\: : \:\: y_i(wX_i + b) \geq 1, \forall i \in [1,n]</script>
-      </dd>
-    </dl>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">The Optimization Problem:</strong>  <br />
+ Find weights ‘<script type="math/tex">w</script>’ and scalar ‘<script type="math/tex">b</script>’ that minimize
+    <p>$$ \dfrac{1}{2} w^Tw$$</p>
+    <p>Subject to</p>
+    <p>$$y_i(wX_i + b) \geq 1, \forall i \in [1,n]$$</p>
+    <p>Formally,</p>
+    <p>$$\min_w \dfrac{1}{2}w^Tw \:\:\: : \:\: y_i(wX_i + b) \geq 1, \forall i \in [1,n]$$</p>
   </li>
   <li>
     <dl>

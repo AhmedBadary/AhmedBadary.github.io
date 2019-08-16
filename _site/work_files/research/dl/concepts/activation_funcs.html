@@ -67,10 +67,10 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">FIRST</a></li>
+    <li><a href="#content1">Introduction</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">SECOND</a></li>
+    <li><a href="#content2">Activation Functions</a></li>
   </ul>
   <!--     * [THIRD](#content3)
   {: .TOC3}
@@ -85,96 +85,195 @@
 <hr />
 <hr />
 
-<h2 id="content1">FIRST</h2>
+<h2 id="content1">Introduction</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Linear Models:</strong></p>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Activation Functions:</strong><br />
+  In NNs, the <strong>activation function</strong> of a node defines the output of that node given an input or set of inputs.<br />
+  The activation function is an abstraction representing the rate of action potential firing in the cell.<br />
+  <br /></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Asynchronous:</strong></p>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Motivation:</strong></p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Asynchronous:</strong></p>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Desirable Properties:</strong>
+    <ul>
+      <li><strong>Non-Linearity</strong>:<br />
+ When the activation function is non-linear, then a two-layer neural network can be proven to be a universal function approximator. The identity activation function does not satisfy this property. When multiple layers use the identity activation function, the entire network is equivalent to a single-layer model.</li>
+      <li><strong>Range</strong>:<br />
+ When the range of the activation function is finite, gradient-based training methods tend to be more stable, because pattern presentations significantly affect only limited weights. When the range is infinite, training is generally more efficient because pattern presentations significantly affect most of the weights. In the latter case, smaller learning rates are typically necessary.</li>
+      <li><strong>Continuously Differentiable</strong>:<br />
+ This property is desirable for enabling gradient-based optimization methods. The binary step activation function is not differentiable at 0, and it differentiates to 0 for all other values, so gradient-based methods can make no progress with it.</li>
+      <li><strong>Monotonicity</strong>:<br />
+ When the activation function is monotonic, the error surface associated with a single-layer model is guaranteed to be convex.</li>
+      <li><strong>Smoothness with Monotonic Derivatives</strong>:<br />
+ These have been shown to generalize better in some cases.</li>
+      <li><strong>Approximating Identity near Origin</strong>:<br />
+ Equivalent to <script type="math/tex">{\displaystyle f(0)=0}</script> and <script type="math/tex">{\displaystyle f'(0)=1}</script>, and <script type="math/tex">{\displaystyle f'}</script> is continuous at <script type="math/tex">0</script>.<br />
+ When activation functions have this property, the neural network will learn efficiently when its weights are initialized with small random values. When the activation function does not approximate identity near the origin, special care must be used when initializing the weights.</li>
+      <li><strong>Zero-Centered Range</strong>:<br />
+ Has effects of centering the data (zero mean) by centering the activations. Makes learning easier.
+        <blockquote>
+          <p><a href="https://www.youtube.com/watch?v=FDCfw-YqWTE&amp;list=PLkDaE6sCZn6Hn0vK8co82zjQtt3T2Nkqc&amp;index=10&amp;t=0s">WHY NORMALIZING THE DATA/SIGNAL IS IMPORTANT</a></p>
+        </blockquote>
+      </li>
+    </ul>
+
+    <p><br /></p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Asynchronous:</strong></p>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Undesirable Properties:</strong>
+    <ul>
+      <li><strong>Saturation</strong>:<br />
+ An activation functions output, with finite range, may saturate near its tail or head (e.g. <script type="math/tex">\{0, 1\}</script> for sigmoid). This leads to a problem called <strong>vanishing gradient</strong>.</li>
+      <li><strong>Vanishing Gradients</strong>:<br />
+ Happens when the gradient of an activation function is very small/zero. This usually happens when the activation function <strong>saturates</strong> at either of its tails.<br />
+ The chain-rule will <em><strong>multiply</strong></em> the local gradient (of activation function) with the whole objective. Thus, when gradient is small/zero, it will “kill” the gradient <script type="math/tex">\rightarrow</script> no signal will flow through the neuron to its weights or to its data.<br />
+ <strong>Slows/Stops learning completely</strong>.</li>
+      <li><strong>Range Not Zero-Centered</strong>:<br />
+ This is undesirable since neurons in later layers of processing in a Neural Network would be receiving data that is not zero-centered. This has implications on the dynamics during gradient descent, because if the data coming into a neuron is always positive (e.g. <script type="math/tex">x>0</script> elementwise in <script type="math/tex">f=w^Tx+b</script>), then the gradient on the weights <script type="math/tex">w</script> will during backpropagation become either all be positive, or all negative (depending on the gradient of the whole expression <script type="math/tex">f</script>). This could introduce undesirable zig-zagging dynamics in the gradient updates for the weights. However, notice that once these gradients are added up across a batch of data the final update for the weights can have variable signs, somewhat mitigating this issue. Therefore, this is an inconvenience but it has less severe consequences compared to the saturated activation problem above.<br />
+ <strong>Makes optimization harder.</strong> <br />
+  <br /></li>
+    </ul>
   </li>
 </ol>
+
+<!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}  
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}  
+ -->
 
 <hr />
 
-<h2 id="content2">SECOND</h2>
+<h2 id="content2">Activation Functions</h2>
+
+<p><img src="/main_files/concepts/16.png" alt="img" max-width="180%" width="180%" /></p>
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Asynchronous:</strong></p>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Sigmoid:</strong>
+    <p>$$S(z)=\frac{1}{1+e^{-z}} \\ S^{\prime}(z)=S(z) \cdot(1-S(z))$$</p>
+    <p><img src="/main_files/concepts/3.png" alt="img" width="68%" class="center-image" /><br />
+ <strong style="color: red">Properties:</strong><br />
+ Never use as activation, use as an output unit for binary classification.</p>
+    <ul>
+      <li><strong>Pros</strong>:
+        <ul>
+          <li>Has a nice interpretation as the firing rate of a neuron</li>
+        </ul>
+      </li>
+      <li><strong>Cons</strong>:
+        <ul>
+          <li>They Saturate and kill gradients <script type="math/tex">\rightarrow</script> Gives rise to <strong>vanishing gradients</strong>[^1] <script type="math/tex">\rightarrow</script> Stop Learning
+            <ul>
+              <li>Happens when initialization weights are too large</li>
+              <li>or sloppy with data preprocessing</li>
+              <li>Neurons Activation saturates at either tail of <script type="math/tex">0</script> or <script type="math/tex">1</script></li>
+            </ul>
+          </li>
+          <li>Output NOT <strong>Zero-Centered</strong> <script type="math/tex">\rightarrow</script> Gradient updates go too far in different directions <script type="math/tex">\rightarrow</script> makes optimization harder</li>
+          <li>The local gradient <script type="math/tex">(z * (1-z))</script> achieves maximum at <script type="math/tex">0.25</script>, when <script type="math/tex">z = 0.5</script>. <script type="math/tex">\rightarrow</script> very time the gradient signal flows through a sigmoid gate, its magnitude always diminishes by one quarter (or more) <script type="math/tex">\rightarrow</script> with basic SGD, the lower layers of a network train much slower than the higher one</li>
+        </ul>
+      </li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Asynchronous:</strong></p>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Tanh:</strong>
+    <p>$$\tanh (z)=\frac{e^{z}-e^{-z}}{e^{z}+e^{-z}} \\ \tanh ^{\prime}(z)=1-\tanh (z)^{2}$$</p>
+    <p><img src="/main_files/concepts/4.png" alt="img" width="68%" class="center-image" /></p>
+
+    <p><strong style="color: red">Properties:</strong><br />
+ Strictly superior to Sigmoid (scaled version of sigmoid | stronger gradient). Good for activation.</p>
+    <ul>
+      <li><strong>Pros</strong>:
+        <ul>
+          <li>Zero Mean/Centered</li>
+        </ul>
+      </li>
+      <li><strong>Cons</strong>:
+        <ul>
+          <li>They Saturate and kill gradients <script type="math/tex">\rightarrow</script> Gives rise to <strong>vanishing gradients</strong>[^1] <script type="math/tex">\rightarrow</script> Stop Learning<br />
+ <br /></li>
+        </ul>
+      </li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Asynchronous:</strong></p>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">ReLU:</strong>
+    <p>$$R(z)=\left\{\begin{array}{cc}{z} &amp; {z&gt;0} \\ {0} &amp; {z&lt;=0}\end{array}\right\} \\  R^{\prime}(z)=\left\{\begin{array}{ll}{1} &amp; {z&gt;0} \\ {0} &amp; {z&lt;0}\end{array}\right\}$$</p>
+    <p><img src="/main_files/concepts/5.png" alt="img" width="68%" class="center-image" /></p>
+
+    <p><strong style="color: red">Properties:</strong><br />
+ The best for activation (Better gradients).</p>
+    <ul>
+      <li><strong>Pros</strong>:
+        <ul>
+          <li>Non-saturation of gradients which <em>accelerates convergence</em> of SGD</li>
+          <li>Sparsity effects and induced regularization. <a href="https://stats.stackexchange.com/questions/176794/how-does-rectilinear-activation-function-solve-the-vanishing-gradient-problem-in/176905#176905">discussion</a></li>
+          <li>Not computationally expensive</li>
+        </ul>
+      </li>
+      <li><strong>Cons</strong>:
+        <ul>
+          <li><strong>ReLU not zero-centered problem</strong>:<br />
+The problem that ReLU is not zero-centered can be solved/mitigated by using <strong>batch normalization</strong>, which normalizes the signal before activation:
+            <blockquote>
+              <p>From paper: We add the BN transform immediately before the nonlinearity, by normalizing <script type="math/tex">x =  Wu + b</script>; normalizing it is likely to produce activations with a stable distribution.</p>
+              <ul>
+                <li><a href="https://www.youtube.com/watch?v=FDCfw-YqWTE&amp;list=PLkDaE6sCZn6Hn0vK8co82zjQtt3T2Nkqc&amp;index=10&amp;t=0s">WHY NORMALIZING THE SIGNAL IS IMPORTANT</a></li>
+              </ul>
+            </blockquote>
+          </li>
+          <li><strong>Dying ReLUs (Dead Neurons):</strong><br />
+If a neuron gets clamped to zero in the forward pass (it doesn’t “fire” / <script type="math/tex">% <![CDATA[
+x<0 %]]></script>), then its weights will get zero gradient. Thus, if a ReLU neuron is unfortunately initialized such that it never fires, or if a neuron’s weights ever get knocked off with a large update during training into this regime (usually as a symptom of aggressive learning rates), then this neuron will remain permanently dead.
+            <ul>
+              <li><a href="https://www.youtube.com/embed/gYpoJMlgyXA?start=1249" value="show" onclick="iframePopA(event)"><strong>cs231n Explanation</strong></a>
+<a href="https://www.youtube.com/embed/gYpoJMlgyXA?start=1249"></a>
+                <div></div>
+              </li>
+            </ul>
+          </li>
+          <li><strong>Infinite Range</strong>:<br />
+Can blow up the activation.<br />
+ <br /></li>
+        </ul>
+      </li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Asynchronous:</strong></p>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Leaky-ReLU:</strong>
+    <p>$$R(z)=\left\{\begin{array}{cc}{z} &amp; {z&gt;0} \\ {\alpha z} &amp; {z&lt;=0}\end{array}\right\} \\ 
+   R^{\prime}(z)=\left\{\begin{array}{ll}{1} &amp; {z&gt;0} \\ {\alpha} &amp; {z&lt;0}\end{array}\right\}$$</p>
+    <p><img src="/main_files/concepts/6.png" alt="img" width="68%" class="center-image" /></p>
+
+    <p><strong style="color: red">Properties:</strong><br />
+ Sometimes useful. Worth trying.</p>
+    <ul>
+      <li><strong>Pros</strong>:
+        <ul>
+          <li>Leaky ReLUs are one attempt to fix the “dying ReLU” problem by having a small negative slope (of 0.01, or so).</li>
+        </ul>
+      </li>
+      <li><strong>Cons</strong>:<br />
+The consistency of the benefit across tasks is presently unclear.<br />
+ <br /></li>
+    </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Asynchronous:</strong></p>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">ELU:</strong></li>
+</ol>
+
+<!-- 
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}  
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}  
+ -->
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Notes:</strong>
+    <ul>
+      <li>It is very rare to mix and match different types of neurons in the same network, even though there is no fundamental problem with doing so.</li>
+      <li><strong>Identity Mappings</strong>:<br />
+ When an activation function cannot achieve an identity mapping (e.g. ReLU map all negative inputs to zero); then adding extra depth actually decreases the best performance, in the case a shallower one would suffice (Deep Residual Net paper).</li>
+    </ul>
   </li>
 </ol>
 
-<hr />
-
-<h2 id="content3">THIRD</h2>
-
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Asynchronous:</strong></p>
-  </li>
-</ol>
 
 
       <footer class="site-footer">

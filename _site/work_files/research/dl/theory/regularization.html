@@ -85,7 +85,9 @@
 <a href="https://medium.com/inveterate-learner/deep-learning-book-chapter-7-regularization-for-deep-learning-937ff261875c">Regularization Ch.7 Summary</a><br />
 <a href="http://cs229.stanford.edu/notes-spring2019/addendum_bias_variance.pdf">How Regularization Reduces Variance from bias-var-decomp</a><br />
 <a href="http://bjlkeng.github.io/posts/probabilistic-interpretation-of-regularization">Probabilistic Interpretation of Regularization (MAP)</a><br />
-<a href="https://www.wikiwand.com/en/Regularization_(mathematics)">The Math of Regularization</a></p>
+<a href="https://www.wikiwand.com/en/Regularization_(mathematics)">The Math of Regularization</a><br />
+<a href="https://people.eecs.berkeley.edu/~bartlett/courses/281b-sp08/20.pdf">Regularization from excess risk</a><br />
+<a href="https://en.wikipedia.org/wiki/Bayesian_interpretation_of_kernel_regularization">Bayesian Interpretation of Regularization (wikipedia)</a></p>
 
 <h2 id="content1">Regularization Basics and Definitions</h2>
 
@@ -94,7 +96,8 @@
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Regularization:</strong>  <br />
  <strong>Regularization</strong> can be, loosely, defined as: any modification we make to a learning algorithm that is intended to <em>reduce</em> its <em>generalization error</em> but not its <em>training error</em>.</p>
 
-    <p>Formally, it is a set of techniques that impose certain restrictions on the hypothesis space (by adding information) in order to solve an <strong>ill-posed</strong> problem or to prevent <strong>overfitting</strong>.<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></p>
+    <p>Formally, it is a set of techniques that impose certain restrictions on the hypothesis space (by adding information) in order to solve an <strong>ill-posed</strong> problem or to prevent <strong>overfitting</strong>.<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup><br />
+ <br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Theoretical Justification for Regularization:</strong>  <br />
@@ -125,7 +128,7 @@
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Parameter Norms:</strong><br />
  Many regularization approaches are based on limiting the capacity of models by adding a parameter norm penalty <script type="math/tex">\Omega(\boldsymbol{\theta})</script> to the objective function <script type="math/tex">J</script>. We denote the regularized objective function by <script type="math/tex">\tilde{J}</script>:
     <p>$$\tilde{J}(\boldsymbol{\theta} ; \boldsymbol{X}, \boldsymbol{y})=J(\boldsymbol{\theta} ; \boldsymbol{X}, \boldsymbol{y})+\alpha \Omega(\boldsymbol{\theta}) \tag{7.1}$$</p>
-    <p>where <script type="math/tex">\alpha \in[0, \infty)</script> is a HP that weights the relative contribution of the norml penalty term, <script type="math/tex">\Omega</script>, relative to the standard objective function <script type="math/tex">J</script>.</p>
+    <p>where <script type="math/tex">\alpha \in[0, \infty)</script> is a HP that weights the relative contribution of the norm penalty term, <script type="math/tex">\Omega</script>, relative to the standard objective function <script type="math/tex">J</script>.</p>
     <ul>
       <li><strong>Effects of <script type="math/tex">\alpha</script></strong>:
         <ul>
@@ -196,7 +199,7 @@
           </li>
         </ul>
 
-        <p>Thus, we see that the effect of weight decay is to rescale <script type="math/tex">\boldsymbol{w}^{\ast}</script> along the axes defined by the eigenvector of <script type="math/tex">\boldsymbol{H}</script> . Specifically, the component of <script type="math/tex">\boldsymbol{w}^{\ast}</script> that is aligned with the <script type="math/tex">i</script>-th eigenvector of <script type="math/tex">\boldsymbol{H}</script>  is rescaled by a factor of <script type="math/tex">\frac{\lambda_{i}}{\lambda_{i}+\alpha}</script>.</p>
+        <p>Thus, we see that the effect of weight decay is to rescale <script type="math/tex">\boldsymbol{w}^{\ast}</script> along the axes defined by the eigenvector of <script type="math/tex">\boldsymbol{H}</script>. Specifically, the component of <script type="math/tex">\boldsymbol{w}^{\ast}</script> that is aligned with the <script type="math/tex">i</script>-th eigenvector of <script type="math/tex">\boldsymbol{H}</script>  is rescaled by a factor of <script type="math/tex">\frac{\lambda_{i}}{\lambda_{i}+\alpha}</script>.</p>
 
         <p><img src="/main_files/dl_book/regularization/1.png" alt="img" width="100%" /></p>
 
@@ -237,15 +240,24 @@
     <p hidden="">$$\begin{aligned} \hat{\theta}_ {\mathrm{MAP}} &amp;=\arg \max_{\theta} P(\theta | y) \\ &amp;=\arg \max_{\theta} \frac{P(y | \theta) P(\theta)}{P(y)} \\ &amp;=\arg \max_{\theta} P(y | \theta) P(\theta) \\ &amp;=\arg \max_{\theta} \log (P(y | \theta) P(\theta)) \\ &amp;=\arg \max_{\theta} \log P(y | \theta)+\log P(\theta) \end{aligned}$$</p>
 
     <p>We place a <strong>Gaussian Prior</strong> on the weights, with <strong>zero mean</strong> and <strong>equal variance <script type="math/tex">\tau^2</script></strong>:</p>
-    <p>$$\begin{aligned} \hat{\theta}_ {\mathrm{MAP}} &amp;=\arg \max_{\theta} \log P(y | \theta)+\log P(\theta) \\ &amp;=\arg \max _{\boldsymbol{w}}\left[\log \prod_{i=1}^{n} \dfrac{1}{\sigma \sqrt{2 \pi}} e^{-\dfrac{\left(y_{i}-\boldsymbol{w}^T\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}}+\log \prod_{j=0}^{p} \dfrac{1}{\tau \sqrt{2 \pi}} e^{-\dfrac{w_{j}^{2}}{2 \tau^{2}}} \right] \\ &amp;=\arg \max _{\boldsymbol{w}} \left[-\sum_{i=1}^{n} \dfrac{\left(y_{i}-\boldsymbol{w}^T\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}-\sum_{j=0}^{p} \dfrac{w_{j}^{2}}{2 \tau^{2}}\right] \\ &amp;=\arg \min_{\boldsymbol{w}} \dfrac{1}{2 \sigma^{2}}\left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^T\boldsymbol{x}_i\right)^{2}+\dfrac{\sigma^{2}}{\tau^{2}} \sum_{j=0}^{p} w_{j}^{2}\right] \\ &amp;=\arg \min_{\boldsymbol{w}} \left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^T\boldsymbol{x}_i\right)^{2}+\lambda \sum_{j=0}^{p} w_{j}^{2}\right] \\ &amp;= \arg \min_{\boldsymbol{w}} \left[ \|XW - \boldsymbol{y}\|^2 + \lambda {\|\boldsymbol{w}\|_ 2}^2\right]\end{aligned}$$</p>
+    <p>$$\begin{aligned} \hat{\theta}_ {\mathrm{MAP}} &amp;=\arg \max_{\theta} \log P(y | \theta)+\log P(\theta) \\ &amp;=\arg \max _{\boldsymbol{w}}\left[\log \prod_{i=1}^{n} \dfrac{1}{\sigma \sqrt{2 \pi}} e^{-\dfrac{\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}}+\log \prod_{j=0}^{p} \dfrac{1}{\tau \sqrt{2 \pi}} e^{-\dfrac{w_{j}^{2}}{2 \tau^{2}}} \right] \\ &amp;=\arg \max _{\boldsymbol{w}} \left[-\sum_{i=1}^{n} \dfrac{\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}-\sum_{j=0}^{p} \dfrac{w_{j}^{2}}{2 \tau^{2}}\right] \\ &amp;=\arg \min_{\boldsymbol{w}} \dfrac{1}{2 \sigma^{2}}\left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}+\dfrac{\sigma^{2}}{\tau^{2}} \sum_{j=0}^{p} w_{j}^{2}\right] \\ &amp;=\arg \min_{\boldsymbol{w}} \left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}+\lambda \sum_{j=0}^{p} w_{j}^{2}\right] \\ &amp;= \arg \min_{\boldsymbol{w}} \left[ \|XW - \boldsymbol{y}\|^2 + \lambda {\|\boldsymbol{w}\|_ 2}^2\right]\end{aligned}$$</p>
     <p><button class="showText" value="show" onclick="showTextPopHide(event);">Different Notation</button>
  <img src="/main_files/dl_book/regularization/4.png" alt="img" width="100%" hidden="" /> <br />
  <br /></p>
 
-    <p><strong style="color: red">Properties:</strong></p>
+    <p id="lst-p"><strong style="color: red">Properties:</strong></p>
     <ul>
-      <li>Notice that L2-regularization has a rotational invariance. This actually makes it more sensitive to irrelevant features.  <a href="https://www.cs.ubc.ca/~schmidtm/Courses/540-W18/L6.pdf">Ref</a></li>
-      <li>Adding L2-regularization to a convex function gives a strongly-convex function. So L2-regularization can make gradient descent converge much faster.  (^ same ref)    <br />
+      <li>Notice that L2-regularization has a rotational invariance. This actually makes it more sensitive to irrelevant features.  <a href="https://www.cs.ubc.ca/~schmidtm/Courses/540-W18/L6.pdf">[Ref]</a>
+        <blockquote>
+          <p><a href="https://icml.cc/Conferences/2004/proceedings/papers/354.pdf">Paper</a></p>
+        </blockquote>
+      </li>
+      <li>Adding L2-regularization to a convex function gives a strongly-convex function. So L2-regularization can make gradient descent converge much faster.  (^ same ref)</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><a href="https://thomas-tanay.github.io/post--L2-regularization/">L2-reg and Adversarial Examples (New Angle)</a><br />
  <br /></li>
     </ul>
   </li>
@@ -276,8 +288,13 @@
     <p>$$\log p(\boldsymbol{w})=\sum_{i} \log \operatorname{Laplace}\left(w_{i} ; 0, \frac{1}{\alpha}\right)=-\alpha\|\boldsymbol{w}\|_ {1}+n \log \alpha-n \log 2 \tag{7.24}$$</p>
     <p>note that we can ignore the terms <script type="math/tex">\log \alpha-\log 2</script> because they do not depend on <script type="math/tex">\boldsymbol{w}</script>.    <br />
  <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Derivation</button></p>
-    <p hidden="">$$\begin{aligned} \hat{\theta}_ {\mathrm{MAP}} &amp;=\arg \max_{\theta} \log P(y | \theta)+\log P(\theta) \\  &amp;=\arg \max _{\boldsymbol{w}}\left[\log \prod_{i=1}^{n} \dfrac{1}{\sigma \sqrt{2 \pi}} e^{-\dfrac{\left(y_{i}-\boldsymbol{w}^T\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}}+\log \prod_{j=0}^{p} \dfrac{1}{2 b} e^{-\dfrac{\left|\theta_{j}\right|}{2 b}} \right] \\    &amp;=\arg \max _{\boldsymbol{w}} \left[-\sum_{i=1}^{n} \dfrac{\left(y_{i}-\boldsymbol{w}^T\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}-\sum_{j=0}^{p} \dfrac{\left|w_{j}\right|}{2 b}\right] \\    &amp;=\arg \min_{\boldsymbol{w}} \dfrac{1}{2 \sigma^{2}}\left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^T\boldsymbol{x}_i\right)^{2}+\dfrac{\sigma^{2}}{b} \sum_{j=0}^{p}\left|w_{j}\right|\right] \\    &amp;=\arg \min_{\boldsymbol{w}} \left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^T\boldsymbol{x}_i\right)^{2}+\lambda \sum_{j=0}^{p}\left|w_{j}\right|\right] \\    &amp;= \arg \min_{\boldsymbol{w}} \left[ \|XW - \boldsymbol{y}\|^2 + \lambda \|\boldsymbol{w}\|_ 1\right]\end{aligned}$$</p>
-    <p><br /></p>
+    <p hidden="">$$\begin{aligned} \hat{\theta}_ {\mathrm{MAP}} &amp;=\arg \max_{\theta} \log P(y | \theta)+\log P(\theta) \\  &amp;=\arg \max _{\boldsymbol{w}}\left[\log \prod_{i=1}^{n} \dfrac{1}{\sigma \sqrt{2 \pi}} e^{-\dfrac{\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}}+\log \prod_{j=0}^{p} \dfrac{1}{2 b} e^{-\dfrac{\left|\theta_{j}\right|}{2 b}} \right] \\    &amp;=\arg \max _{\boldsymbol{w}} \left[-\sum_{i=1}^{n} \dfrac{\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}-\sum_{j=0}^{p} \dfrac{\left|w_{j}\right|}{2 b}\right] \\    &amp;=\arg \min_{\boldsymbol{w}} \dfrac{1}{2 \sigma^{2}}\left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}+\dfrac{\sigma^{2}}{b} \sum_{j=0}^{p}\left|w_{j}\right|\right] \\    &amp;=\arg \min_{\boldsymbol{w}} \left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}+\lambda \sum_{j=0}^{p}\left|w_{j}\right|\right] \\    &amp;= \arg \min_{\boldsymbol{w}} \left[ \|XW - \boldsymbol{y}\|^2 + \lambda \|\boldsymbol{w}\|_ 1\right]\end{aligned}$$</p>
+
+    <p id="lst-p"><strong style="color: red">Properties:</strong></p>
+    <ul>
+      <li><script type="math/tex">L^1</script> regularization can occasionally produce non-unique solutions. A simple example is provided in the figure when the space of possible solutions lies on a 45 degree line. 
+ <br /></li>
+    </ul>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26"><script type="math/tex">L^1</script> VS <script type="math/tex">L^2</script> Regularization:</strong></p>
@@ -328,6 +345,7 @@
           <li>The problem mainly arises with <strong>correlated features</strong></li>
         </ul>
       </li>
+      <li>Elastic net regularization tends to have a grouping effect, where correlated input features are assigned equal weights.</li>
     </ul>
   </li>
 </ul>
@@ -341,9 +359,9 @@
     <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Regularization and Under-Constrained Problems:</strong><br />
  In some cases, regularization is necessary for machine learning problems to be properly define.</p>
 
-    <p>Many linear models (e.g. Linear Regression, PCA) depend on <strong>inverting <script type="math/tex">\boldsymbol{X}^T\boldsymbol{X}</script></strong>. This is not possible if <script type="math/tex">\boldsymbol{X}^T\boldsymbol{X}</script> is singular. In this case, many forms of regularization correspond to solving inverting <script type="math/tex">\boldsymbol{X}^{\top} \boldsymbol{X}+\alpha \boldsymbol{I}</script> instead. This regularized matrix is <strong>guaranteed to be invertible</strong>.</p>
+    <p>Many linear models (e.g. Linear Regression, PCA) depend on <strong>inverting <script type="math/tex">\boldsymbol{X}^{\top}\boldsymbol{X}</script></strong>. This is not possible if <script type="math/tex">\boldsymbol{X}^{\top}\boldsymbol{X}</script> is singular. In this case, many forms of regularization correspond to solving inverting <script type="math/tex">\boldsymbol{X}^{\top} \boldsymbol{X}+\alpha \boldsymbol{I}</script> instead. This regularized matrix is <strong>guaranteed to be invertible</strong>.</p>
     <ul>
-      <li><script type="math/tex">\boldsymbol{X}^T\boldsymbol{X}</script> can be singular if:
+      <li><script type="math/tex">\boldsymbol{X}^{\top}\boldsymbol{X}</script> can be singular if:
         <ul>
           <li>The data-generating function truly has no variance in some direction.</li>
           <li>No Variance is <em>observed</em> in some direction because there are fewer examples (rows of <script type="math/tex">\boldsymbol{X}</script>) than input features (columns).</li>
@@ -361,6 +379,12 @@
     <p>we can now recognize the equation as <strong>performing linear regression with weight-decay</strong>.<br />
  Specifically, <script type="math/tex">7.29</script> is the limit of eq <script type="math/tex">7.17</script> as the <em>regularization coefficient shrinks to zero</em>.<br />
  We can thus interpret the pseudoinverse as <strong>stabilizing underdetermined problems using regularization</strong>.</p>
+
+    <p><strong style="color: red">The Pseudoinverse:</strong><br />
+ When applied to underdetermined systems w/ non-unique solutions; It finds the minimum norm solution to a linear system.<br />
+ This “OLS” solution implies that not all linear functions are the same for OLS. It restricts the space of all possible non-unique linear functions that satisfy the equation to a subset of minimal norm.<br />
+ From <strong>SLT</strong> perspective, the pseudoinverse introduces <strong>bias</strong> towards certain solutions.<br />
+ <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Dataset Augmentation:</strong><br />
  Having more data is the most desirable thing to improving a machine learning model’s performance. In many cases, it is relatively easy to artificially generate data.
@@ -386,6 +410,8 @@
     <blockquote>
       <p><strong>Dropout</strong> can be seen as a process of constructing new inputs by <em>multiplying</em> by noise.</p>
     </blockquote>
+
+    <p><br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Noise Robustness:</strong><br />
  We can apply <strong>Noise Injection</strong> to different components of the model as a way to regularize the model:<br />
@@ -397,8 +423,10 @@
   For some models, the addition of noise with infinitesimal variance at the input of the model is equivalent to <strong>imposing a penalty on the norm of the weights</strong> <em>(Bishop, 1995a,b)</em>.</li>
     </ul>
 
-    <p><strong style="color: red">Injecting Noise in the Hidden Layers:</strong></p>
+    <p id="lst-p"><strong style="color: red">Injecting Noise in the Hidden Layers:</strong></p>
     <ul>
+      <li><strong>Motivation</strong>:<br />
+  We can motivate it as a variation of data augmentation.</li>
       <li><strong>Interpretation</strong>:<br />
   It can be seen as doing <strong>data-augmentation</strong> at <em><strong>multiple levels of abstraction</strong></em>.</li>
       <li><strong>Applications</strong>:<br />
@@ -406,7 +434,7 @@
   It can be seen as a process of constructing new inputs by <em>multiplying</em> by noise.</li>
     </ul>
 
-    <p><strong style="color: red">Injecting Noise in the Weight Matrices:</strong></p>
+    <p id="lst-p"><strong style="color: red">Injecting Noise in the Weight Matrices:</strong></p>
     <ul>
       <li><strong>Interpretation</strong>:
         <ol>
@@ -428,7 +456,7 @@
   This technique has been used primarily in the context of <strong>recurrent neural networks</strong> <em>(Jim et al., 1996; Graves, 2011)</em>.</li>
     </ul>
 
-    <p><strong style="color: red">Injecting Noise in the Output Layer:</strong></p>
+    <p id="lst-p"><strong style="color: red">Injecting Noise in the Output Layer:</strong></p>
     <ul>
       <li><strong>Motivation</strong>:
         <ul>
@@ -448,6 +476,8 @@
         </ul>
       </li>
     </ul>
+
+    <p><br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Semi-Supervised Learning:</strong><br />
@@ -464,18 +494,33 @@
  The idea is to share the unsupervised/generative criterion with the supervised criterion to <em>express a prior belief that the structure of <script type="math/tex">P(\mathbf{x})</script> (or <script type="math/tex">P(\mathbf{x}, \mathbf{y})</script>) is connected to the structure of <script type="math/tex">P(\mathbf{y} \vert \mathbf{x})</script></em>, which is captured by the <em>shared parameters</em>.<br />
  By controlling how much of the generative criterion is included in the total criterion, one can find a better trade-off than with a purely generative or a purely discriminative training criterion <em>(Lasserre et al., 2006; Larochelle and Bengio, 2008)</em>.</p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Asynchronous:</strong></p>
-  </li>
-  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Asynchronous:</strong></li>
 </ol>
 
+<p><br /></p>
+
+<p id="lst-p"><strong style="color: red">Notes:</strong></p>
+<ul>
+  <li>A practical rule for choosing a regularizer:
+    <ul>
+      <li>Stochastic noise is “high frequency”</li>
+      <li>Deterministic noise is also non-smooth</li>
+    </ul>
+
+    <p>Thus, we should constrain learning towards smoother hypotheses. I.E. fit the signal more than you fit the noise (which is non-smooth). We end up harming both, but harming the irregular, non-smooth noise more.</p>
+  </li>
+  <li><strong>Regularization does two things - reduce fit to noise AND reduce overfitting</strong>:<br />
+  <img src="/main_files/dl_book/regularization/5.png" alt="img" width="100%" /></li>
+</ul>
+
+<!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
+
+ -->
 <div class="footnotes">
   <ol>
     <li id="fn:1">

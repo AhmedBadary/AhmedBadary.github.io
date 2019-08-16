@@ -125,6 +125,7 @@ prevLink: /work_files/research/dl/theory.html
     Under this process, the __expected test error is greater than or equal to the expected value of training error__.  
 
     The factors determining how well a machine learning algorithm will perform are its ability to:  
+    {: #lst-p}
     1. Make the training error small
     2. Make the gap between training and test error small  
     
@@ -133,7 +134,8 @@ prevLink: /work_files/research/dl/theory.html
     __Overfitting:__ occurs when the gap between the training error and test error is too large.  
 
     We can control whether a model is more likely to overfit or underfit by altering its __capacity__.  
-    __Capacity:__ a models capacity is its ability to fir a wide variety of functions:  
+    __Capacity:__ a models capacity is its ability to fit a wide variety of functions.  
+    {: #lst-p}
     * Models with __low capacity__ may struggle to fit the training set. 
     * Models with __high capacity__ can overfit by memorizing properties of the training set that do not serve them well on the test set. 
 
@@ -199,12 +201,18 @@ prevLink: /work_files/research/dl/theory.html
     <p>$$ \operatorname{Var}(\hat{\theta}) $$</p>  
 
     The __Standard Error__ $$\operatorname{SE}(\hat{\theta})$$, of an estimator, is the square root of the variance.  
-    * E.g. __The Standard Error of the Mean:__  
+    * E.g. __The Standard Error of the (Sample) Mean:__  
         $$\operatorname{SE}\left(\hat{\mu}_{m}\right)=\sqrt{\operatorname{Var}\left[\frac{1}{m} \sum_{i=1}^{m} x^{(i)}\right]}=\frac{\sigma}{\sqrt{m}}$$  
         Where $$\sigma^2$$ is the true variance of the samples $$x^i$$.  
 
-    > Unfortunately, neither the square root of the sample variance nor the square root of the unbiased estimator of the variance provide an unbiased estimate of the standard deviation.
+        <button>Derivation</button>{: .showText value="show"
+        onclick="showText_withParent_PopHide(event);"}
+        <p hidden="">$$\begin{aligned} \operatorname{Var}\left[\overline{X}_{n}\right] &=\operatorname{Var}\left[\frac{1}{n} \sum_{i=1}^{n} X_{i}\right] \\ &=\frac{1}{n^{2}} \operatorname{Var}\left[\sum_{i=1}^{n} X_{i}\right] \\ &=\frac{1}{n^{2}} \sum_{i=1}^{n} \operatorname{Var}\left[X_{i}\right] \\ &=\frac{1}{n^{2}} \sum_{i=1}^{n} \sigma^{2} \\ &=\frac{1}{n^{2}} n \sigma^{2}=\frac{\sigma^{2}}{n} \end{aligned}$$</p>  
 
+    > Unfortunately, neither the square root of the sample variance nor the square root of the unbiased estimator of the variance provide an unbiased estimate of the standard deviation.  
+
+    * [Properties of the Sample Mean Estimator (Derivations)](https://www.statlect.com/fundamentals-of-statistics/mean-estimation)  
+    <br>
 
 5. **Generalization Error from Standard Error (of the mean):**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}  
     We often estimate the __generalization error__ by computing the __sample mean__ of the error on the test set.  

@@ -14,13 +14,17 @@ permalink: /work_files/research/dl/nlp
 
 * ### [Neural Machine Translation | Advanced Recurrent Networks](/work_files/research/dl/nlp/nmt)
 
-* ### [Gated Units \| RNN Architectures](/work_files/research/dl/nlp/gated_recurrent_units)
+* ### [Gated Units \| RNN Architectures](/work_files/research/dl/nlp/gated_units)
 
 * ### [Attention Mechanism for DNNs](/work_files/research/dl/nlp/attention)
 
 * ### [Speech Processing \| Automatic Speech Recognition](/work_files/research/dl/nlp/speech)
 
 * ### [Sentence Embeddings and Contextualized Embeddings](/work_files/research/dl/nlp/sent_embeds)
+
+* ### [Contextual Word Representations and Pretraining (Transformers)](/work_files/research/dl/nlp/ctxt_word_repr)
+
+* ### [Text Classification](/work_files/research/dl/nlp/txt_cls)
 
 * ### [CNNs in NLP](/work_files/research/dl/nlp/cnnsNnlp)
 

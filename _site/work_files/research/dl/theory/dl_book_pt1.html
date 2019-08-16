@@ -232,7 +232,7 @@ The <strong>ML process:</strong><br />
 We sample the training set, then use it to choose the parameters to reduce training set error, then sample the test set.<br />
 Under this process, the <strong>expected test error is greater than or equal to the expected value of training error</strong>.</p>
 
-    <p>The factors determining how well a machine learning algorithm will perform are its ability to:</p>
+    <p id="lst-p">The factors determining how well a machine learning algorithm will perform are its ability to:</p>
     <ol>
       <li>Make the training error small</li>
       <li>Make the gap between training and test error small</li>
@@ -242,8 +242,8 @@ Under this process, the <strong>expected test error is greater than or equal to 
 <strong>Underfitting:</strong>  occurs when the model is not able to obtain a sufficiently low error value on the training set.<br />
 <strong>Overfitting:</strong> occurs when the gap between the training error and test error is too large.</p>
 
-    <p>We can control whether a model is more likely to overfit or underfit by altering its <strong>capacity</strong>.<br />
-<strong>Capacity:</strong> a models capacity is its ability to fir a wide variety of functions:</p>
+    <p id="lst-p">We can control whether a model is more likely to overfit or underfit by altering its <strong>capacity</strong>.<br />
+<strong>Capacity:</strong> a models capacity is its ability to fit a wide variety of functions.</p>
     <ul>
       <li>Models with <strong>low capacity</strong> may struggle to fit the training set.</li>
       <li>Models with <strong>high capacity</strong> can overfit by memorizing properties of the training set that do not serve them well on the test set.</li>
@@ -320,14 +320,24 @@ It is a regularization form that adds the <script type="math/tex">L^2</script> n
 
     <p>The <strong>Standard Error</strong> <script type="math/tex">\operatorname{SE}(\hat{\theta})</script>, of an estimator, is the square root of the variance.</p>
     <ul>
-      <li>E.g. <strong>The Standard Error of the Mean:</strong><br />
+      <li>
+        <p>E.g. <strong>The Standard Error of the (Sample) Mean:</strong><br />
   <script type="math/tex">\operatorname{SE}\left(\hat{\mu}_{m}\right)=\sqrt{\operatorname{Var}\left[\frac{1}{m} \sum_{i=1}^{m} x^{(i)}\right]}=\frac{\sigma}{\sqrt{m}}</script><br />
-  Where <script type="math/tex">\sigma^2</script> is the true variance of the samples <script type="math/tex">x^i</script>.</li>
+  Where <script type="math/tex">\sigma^2</script> is the true variance of the samples <script type="math/tex">x^i</script>.</p>
+
+        <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Derivation</button></p>
+        <p hidden="">$$\begin{aligned} \operatorname{Var}\left[\overline{X}_{n}\right] &amp;=\operatorname{Var}\left[\frac{1}{n} \sum_{i=1}^{n} X_{i}\right] \\ &amp;=\frac{1}{n^{2}} \operatorname{Var}\left[\sum_{i=1}^{n} X_{i}\right] \\ &amp;=\frac{1}{n^{2}} \sum_{i=1}^{n} \operatorname{Var}\left[X_{i}\right] \\ &amp;=\frac{1}{n^{2}} \sum_{i=1}^{n} \sigma^{2} \\ &amp;=\frac{1}{n^{2}} n \sigma^{2}=\frac{\sigma^{2}}{n} \end{aligned}$$</p>
+      </li>
     </ul>
 
     <blockquote>
       <p>Unfortunately, neither the square root of the sample variance nor the square root of the unbiased estimator of the variance provide an unbiased estimate of the standard deviation.</p>
     </blockquote>
+
+    <ul>
+      <li><a href="https://www.statlect.com/fundamentals-of-statistics/mean-estimation">Properties of the Sample Mean Estimator (Derivations)</a><br />
+ <br /></li>
+    </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Generalization Error from Standard Error (of the mean):</strong><br />
  We often estimate the <strong>generalization error</strong> by computing the <strong>sample mean</strong> of the error on the test set.<br />

@@ -91,7 +91,9 @@
 <a href="https://www.youtube.com/playlist?list=PLR6O_WZHBlOELxOrXlzB1LCXd2cUIXkkm">Lecture Series on Probability (following DL-book)</a><br />
 <a href="https://www.quora.com/What-is-the-probability-statistics-topic-FAQ">Probability Quora FAQs</a><br />
 <a href="https://projects.iq.harvard.edu/files/stat110/files/math_review_handout.pdf">Math review for Stat 110</a><br />
-<a href="https://jhui.github.io/2017/01/05/Deep-learning-probability-and-distribution/">Deep Learning Probability</a></p>
+<a href="https://jhui.github.io/2017/01/05/Deep-learning-probability-and-distribution/">Deep Learning Probability</a><br />
+<a href="http://bjlkeng.github.io/posts/probability-the-logic-of-science/">Probability as Extended Logic</a><br />
+<a href="https://www.youtube.com/watch?v=sMNbLXsvRig&amp;list=PL7k0r4t5c108AZRwfW-FhnkZ0sCKBChLH&amp;index=13&amp;t=0s">CS188 Probability Lecture (very intuitive)</a></p>
 
 <h2 id="content1">Motivation</h2>
 
@@ -281,9 +283,25 @@ a  <  b %]]></script>, is therefore</p>
     <p><button class="showText" value="show" onclick="showTextPopHide(event);">Intuitive Explanation</button>
  <img src="/main_files/math/prob/1.png" alt="img" width="100%" hidden="" /></p>
 
-    <blockquote>
-      <p><strong>Marginalization:</strong> the process of forming the marginal distribution with respect to one variable by summing out the other variable</p>
-    </blockquote>
+    <p><strong style="color: red">Marginalization:</strong> the process of forming the marginal distribution with respect to one variable by summing out the other variable</p>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><strong>Marginal Distribution of a variable</strong>: is just the prior distr of the variable</li>
+      <li><strong>Marginal Likelihood</strong>: also known as the evidence, or model evidence, is the denominator of the Bayes equation. Its only role is to guarantee that the posterior is a valid probability by making its area sum to 1.<br />
+  <img src="https://cdn.mathpix.com/snip/images/UPUhBUhhUivvvIHO3nt5S52UcqPkSMS_eZEg3mhDXhk.original.fullsize.png" alt="Example" /></li>
+      <li><strong>both terms above are the same</strong></li>
+      <li><strong>Marginal Distr VS Prior</strong>:
+        <ul>
+          <li><a href="https://stats.stackexchange.com/questions/249275/whats-the-difference-between-prior-and-marginal-probabilities?rq=1">Discussion</a></li>
+          <li><strong>Summary</strong>:<br />
+  Basically, it’s a conceptual difference.<br />
+  The prior, denoted <script type="math/tex">p(\theta)</script>, denotes the probability of some event 𝜔 even before any data has been taken.<br />
+  A marginal distribution is rather different. You hold a variable value and integrate over the unknown values.<br />
+  But, in some contexts they are the same.</li>
+        </ul>
+      </li>
+    </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Conditional Probability:</strong><br />
  <strong>Conditional Probability</strong> is a measure of the probability of an event given that another event has occurred.<br />
@@ -304,7 +322,7 @@ a  <  b %]]></script>, is therefore</p>
  Two random variables <script type="math/tex">x</script> and <script type="math/tex">y</script> (or events ) are <strong>independent</strong> if their probability distribution can be expressed as a product of two factors, one involving only <script type="math/tex">x</script> and one involving only <script type="math/tex">y</script>:
     <p>$$\mathrm{P}(A \cap B) = \mathrm{P}(A)\mathrm{P}(B)$$</p>
 
-    <p>Two random variables <script type="math/tex">A</script> and <script type="math/tex">B</script> are conditionally independent given a random variable <script type="math/tex">Y</script> if the conditional probability distribution over <script type="math/tex">A</script> and <script type="math/tex">B</script> factorizes in this way for every value of <script type="math/tex">Y</script>:</p>
+    <p>Two random variables <script type="math/tex">A</script> and <script type="math/tex">B</script> are <strong>conditionally independent</strong> <em>given a random variable <script type="math/tex">Y</script></em> if the conditional probability distribution over <script type="math/tex">A</script> and <script type="math/tex">B</script> factorizes in this way for every value of <script type="math/tex">Y</script>:</p>
     <p>$$\Pr(A\cap B\mid Y)=\Pr(A\mid Y)\Pr(B\mid Y)$$</p>
     <p>or equivalently,</p>
     <p>$$\Pr(A\mid B\cap Y)=\Pr(A\mid Y)$$</p>
@@ -328,9 +346,16 @@ a  <  b %]]></script>, is therefore</p>
     <p><strong>Notation:</strong></p>
     <ul>
       <li><em><strong><script type="math/tex">A</script> is Independent from <script type="math/tex">B</script></strong></em>:  <script type="math/tex">A{\perp}B</script></li>
-      <li><em><strong><script type="math/tex">A</script> and <script type="math/tex">B</script> are conditionally Independent given <script type="math/tex">Y</script></strong></em>:  <script type="math/tex">A{\perp}B \:\vert Y</script><br />
- <br /></li>
+      <li><em><strong><script type="math/tex">A</script> and <script type="math/tex">B</script> are conditionally Independent given <script type="math/tex">Y</script></strong></em>:  <script type="math/tex">A{\perp}B \:\vert Y</script></li>
     </ul>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li>Unconditional Independence is very rare (there is usually some hidden factor influencing the interaction between the two events/variables)</li>
+      <li><em>Conditional Independence</em> is the most basic and robust form of knowledge about uncertain environments</li>
+    </ul>
+
+    <p><br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents29">Expectation:</strong><br />
  The <strong>expectation</strong>, or <strong>expected value</strong>, of some function <script type="math/tex">f(x)</script> with respect to a probability distribution <script type="math/tex">P(x)</script> is the <em>“theoretical”</em> average, or mean value, that <script type="math/tex">f</script> takes on when <script type="math/tex">x</script> is drawn from <script type="math/tex">P</script>.
@@ -494,6 +519,72 @@ On each trial, the choice of which component distribution should generate the sa
       <li><script type="math/tex">\operatorname {E}\left[X_{i}^{2}\right]=\operatorname {Var} [X]+\operatorname {E} [X]^{2} = \sigma^{2}+\mu^{2}</script>,</li>
       <li><script type="math/tex">\operatorname {E}\left[\overline{X}^{2}\right]=\operatorname {E}\left[\hat{\mu}^{2}\right]=\frac{\sigma^{2}}{n}+\mu^{2}\:</script>, <sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup></li>
     </ul>
+
+    <p><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents218">Correlation:</strong><br />
+In the broadest sense <strong>correlation</strong> is any statistical association, though it commonly refers to the degree to which a pair of variables are linearly related.</p>
+
+    <p>There are several correlation coefficients, often denoted <script type="math/tex">{\displaystyle \rho }</script> or <script type="math/tex">r</script>, measuring the degree of correlation:</p>
+
+    <p><strong style="color: red">Pearson Correlation Coefficient <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">[wiki]</a>:</strong><br />
+It is a measure of the <strong>linear correlation</strong> between two variables <script type="math/tex">X</script> and <script type="math/tex">Y</script>.</p>
+    <p>$$\rho_{X, Y}=\frac{\operatorname{cov}(X, Y)}{\sigma_{X} \sigma_{Y}}$$</p>
+    <p>where, <script type="math/tex">{\displaystyle \sigma_{X}}</script> is the standard deviation of <script type="math/tex">{\displaystyle X}</script> and <script type="math/tex">{\displaystyle \sigma_{Y}}</script>  is the standard deviation of <script type="math/tex">{\displaystyle Y}</script>, and <script type="math/tex">\rho \in [-1, 1]</script>.</p>
+
+    <p><strong style="color: red">Correlation and Independence:</strong></p>
+    <ol>
+      <li>Uncorrelated <script type="math/tex">\nRightarrow</script> Independent</li>
+      <li>Independent <script type="math/tex">\implies</script> Uncorrelated</li>
+    </ol>
+
+    <p>Zero correlation will indicate no linear dependency, however won’t capture non-linearity. Typical example is uniform random variable <script type="math/tex">x</script>, and <script type="math/tex">x^2</script> over <script type="math/tex">[-1,1]</script> with zero mean. Correlation is zero but clearly not independent.</p>
+
+    <p><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents219">Probabilistic Inference:</strong><br />
+<strong>Probabilistic Inference:</strong> compute a desired probability from other known probabilities (e.g. conditional from joint).</p>
+
+    <p id="lst-p"><strong>We generally compute Conditional Probabilities:</strong></p>
+    <ul>
+      <li>
+        <script type="math/tex; mode=display">p(\text{sun} \vert T=\text{12 pm}) = 0.99</script>
+      </li>
+      <li>These represent the agents beliefs given the evidence</li>
+    </ul>
+
+    <p id="lst-p"><strong>Probabilities change with new evidence:</strong></p>
+    <ul>
+      <li><script type="math/tex">p(\text{sun} \vert T=\text{12 pm}, C=\text{Stockholm}) = 0.85</script><br />
+<script type="math/tex">\longrightarrow</script></li>
+      <li>
+        <script type="math/tex; mode=display">p(\text{sun} \vert T=\text{12 pm}, C=\text{Stockholm}, M=\text{Jan}) = 0.40</script>
+      </li>
+      <li>Observing new evidence causes beliefs to be updated</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Inference by Enumeration:</strong></p>
+    <ul>
+      <li><a href="https://www.youtube.com/embed/sMNbLXsvRig?start=3508" value="show" onclick="iframePopA(event)"><strong>CS188 Lec. 10-2</strong></a>
+<a href="https://www.youtube.com/embed/sMNbLXsvRig?start=3508"></a>
+        <div></div>
+      </li>
+    </ul>
+
+    <p><strong>Problems:</strong></p>
+    <ul>
+      <li>Worst-case time complexity <script type="math/tex">\mathrm{O}\left(\mathrm{d}^{n}\right)</script></li>
+      <li>Space complexity <script type="math/tex">\mathrm{O}\left(\mathrm{d}^{n}\right)</script> to store the joint distribution</li>
+    </ul>
+
+    <p><strong style="color: red">Inference with Bayes Theorem:</strong></p>
+    <ul>
+      <li><strong>Diagnostic Probability from Causal Probability:</strong>
+        <p>$$P(\text { cause } | \text { effect })=\frac{P(\text { effect } | \text { cause }) P(\text { cause })}{P(\text { effect })}$$</p>
+      </li>
+    </ul>
   </li>
 </ol>
 
@@ -602,7 +693,7 @@ It is controlled by a single parameter <script type="math/tex">\phi \in [0, 1]</
 <ul>
   <li>
     <p>It is more practical to use a simple but uncertain rule rather than a complex but certain one, even if the true rule is deterministic and our modeling system has the fidelity to accommodate a complex rule.<br />
-  For example, the simple rule “Most birds ﬂy” is cheap to develop and is broadly useful, while a rule of the form, “Birds ﬂy, except for very young birds that have not yet learned to ﬂy, sick or injured birds that have lost the ability to ﬂy, ﬂightless species of birds including the cassowary, ostrich and kiwi. . .” is expensive to develop, maintain and communicate and, after all this effort, is still brittle and prone to failure.</p>
+  For example, the simple rule “Most birds fly” is cheap to develop and is broadly useful, while a rule of the form, “Birds fly, except for very young birds that have not yet learned to fly, sick or injured birds that have lost the ability to fly, flightless species of birds including the cassowary, ostrich and kiwi. . .” is expensive to develop, maintain and communicate and, after all this effort, is still brittle and prone to failure.</p>
   </li>
   <li><strong class="bodyContents10" id="bodyContents102">Disjoint Events (Mutually Exclusive):</strong> are events that cannot occur together at the same time
   Mathematically:
@@ -612,8 +703,9 @@ It is controlled by a single parameter <script type="math/tex">\phi \in [0, 1]</
     </ul>
   </li>
   <li>
-    <p><strong>Describing a Probability Distribution</strong>:<br />
-  A description of a probability distribution is <em>exponential</em> in the number of variables it models</p>
+    <p><strong>Complexity of Describing a Probability Distribution</strong>:<br />
+  A description of a probability distribution is <em>exponential</em> in the number of variables it models.<br />
+  The number of possibilities is <strong>exponential</strong> in the number of variables.</p>
   </li>
   <li>
     <p><strong>Probability VS Likelihood</strong>:<br />

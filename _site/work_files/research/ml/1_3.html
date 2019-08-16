@@ -78,10 +78,9 @@
 
 <ol>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">The Margin:</strong></dt>
-      <dd>The <strong>margin</strong> of a linear classifier is the distance from the decision boundary to the nearest sample point.</dd>
-    </dl>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">The Margin:</strong>  <br />
+ The <strong>margin</strong> of a linear classifier is the distance from the decision boundary to the nearest sample point.<br />
+ <br /></p>
   </li>
   <li>
     <dl>
@@ -101,14 +100,11 @@
       <dd>We enforce a constraint that achieves a classifier that has a maximum-margin.</dd>
     </dl>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">The Signed Distance:</strong><br />
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">The Signed Distance:</strong>  <br />
  The <em>signed distance</em> is the minimum distance from a point to a hyperplane.
  We solve for the signed distance to achieve the following formula for it:
  <script type="math/tex">d = \dfrac{\| w \cdot x_0 + b \|}{\|w\|},</script><br />
  where we have an n-dimensional hyperplane: <script type="math/tex">w \cdot x + b = 0</script> and a point <script type="math/tex">\mathbf{x}_ n</script>.
-    <blockquote>
-      <p>Also known as, <strong>The Signed Distance</strong>.</p>
-    </blockquote>
     <ul>
       <li><strong>Proof.</strong>
         <ul>
@@ -176,7 +172,7 @@
           <li>Change the <em>maximization</em> to <em>minimization</em> by flipping the signs:
             <p>$$\min _{\alpha} \frac{1}{2} \sum_{n=1}^{N} \sum_{m=1}^{N} y_{n} y_{m} \alpha_{n} \alpha_{m} \mathbf{x}_{0}^{\mathrm{T}} \mathbf{x}_{m}-\sum_{n=1}^{N} \alpha_{n}$$</p>
           </li>
-          <li><strong>Isolate the Coeeffecients from the <script type="math/tex">\alpha_n</script>s</strong> and set in <em>matrix-form</em>:
+          <li><strong>Isolate the Coefficients from the <script type="math/tex">\alpha_n</script>s</strong> and set in <em>matrix-form</em>:
             <p>$$\min _{\alpha} \frac{1}{2} \alpha^{\top} 
       \underbrace{\begin{bmatrix}
           y_{1} y_{1} \mathbf{x}_{1}^{\top} \mathbf{x}_{1} &amp; y_{1} y_{2} \mathbf{x}_{1}^{\top} \mathbf{x}_{2} &amp; \ldots &amp; y_{1} y_{N} \mathbf{x}_{1}^{\top} \mathbf{x}_{N}  \\
@@ -197,7 +193,7 @@
       </li>
     </ul>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Geometric Analysis:</strong><br />
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Geometric Analysis:</strong>  <br />
  First, we notice that for any given plane <script type="math/tex">w^Tx = 0</script>, the equations, <script type="math/tex">\gamma * w^Tx = 0</script>, where <script type="math/tex">\gamma \in \mathbf{R}</script> is a scalar, basically characterize the same plane and not many planes.<br />
  This is because <script type="math/tex">w^Tx = 0 \iff \gamma * w^Tx = \gamma * 0 \iff \gamma * w^Tx = 0</script>.<br />
  The above implies that any model that takes input <script type="math/tex">w</script> and produces a margin, will have to be <strong><em>Scale Invariant</em></strong>.<br />
@@ -207,7 +203,7 @@
  We constraint the hyperplane by normalizing <script type="math/tex">w</script> to this equation <script type="math/tex">|w^Tx_i| = 1</script> or with added bias, <script type="math/tex">|w^Tx_i + b| = 1</script>.<br />
  This implies that there exists a “slab” of width <script type="math/tex">\dfrac{2}{\|w\|}</script>.</p>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">The Margin, mathematically:</strong><br />
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">The Margin, mathematically:</strong>  <br />
  Now, we can mathematically characterize the margin.<br />
  By substituting the constraints <script type="math/tex">\: y_i(w^TX_i+ b) \geq 1, \forall i \in [1,n]</script> and the signed distance:
     <p>$$\min_i \dfrac{1}{\|w\|} \|w^TX_i + b\| \geq \dfrac{1}{w}$$</p>
@@ -236,7 +232,7 @@ Take any point <script type="math/tex">X</script> on the plane, and let <script 
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Slab Existance:</strong></dt>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Slab Existence:</strong></dt>
       <dd>The analysis done above allows us to conclusively prove that there exists a slab of width <script type="math/tex">\dfrac{2}{\|w\|}</script> containing no sample points where the hyperplane runs through (bisects) its center.</dd>
     </dl>
   </li>

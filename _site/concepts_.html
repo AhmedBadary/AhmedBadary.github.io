@@ -114,26 +114,9 @@
 </ol>
 
 <!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
-    :   
-
 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
-    :   
-
 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}  
-    :   
- -->
+-->
 
 <p><strong>Notes:</strong></p>
 <ul>
@@ -151,10 +134,9 @@
 
 <h2 id="content2">RNNs</h2>
 
+<!-- 1. **RNN Architectures:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}   -->
+
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">RNN Architectures:</strong></p>
-  </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Different Connections in RNN Architectures:</strong>
     <ol>
       <li><strong>PeepHole Connection:</strong><br />
@@ -276,16 +258,17 @@
 
     <p><strong>Do generative models need to be stochastic?</strong></p>
     <ul>
-      <li>Linear dynamical systems and HMMs are stochastic models.
-        <blockquote>
-          <p>The dynamics and the production of observations from the underlying state both involve <strong>intrinsic noise</strong>.</p>
-        </blockquote>
+      <li>
+        <p>Linear dynamical systems and HMMs are stochastic models.<br />
+  The dynamics and the production of observations from the underlying state both involve <strong>intrinsic noise</strong>.</p>
 
         <ul>
-          <li>But the <strong>posterior probability distribution</strong> over their hidden of the deterministic states given the observed probability distribution over data so far is a <em><strong>deterministic</strong> function of the data</em>.</li>
+          <li>But the <strong>posterior probability distribution</strong> over their hidden states given the observed  data so far is a <em><strong>deterministic</strong> function of the data</em>.  <br />
+ <br /></li>
         </ul>
       </li>
-      <li>Recurrent neural networks are hidden Markov models are deterministic.
+      <li>
+        <p>Recurrent neural networks are deterministic.</p>
         <ul>
           <li>So think of the hidden state of an RNN as the equivalent of the <strong>deterministic probability distribution over hidden states</strong> in a linear dynamical system or hidden Markov model.</li>
         </ul>
@@ -334,11 +317,7 @@
 </ol>
 
 <!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
-    :   
-
 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}  
-    :   
-
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}  
     :   -->
 
@@ -540,6 +519,18 @@ Mathematically, it is a function:</dd>
       </li>
     </ul>
   </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents39">Linear Algebra:</strong>     <br />
+ <strong style="color: red">Matrices:</strong>
+    <ul>
+      <li><strong style="color: blue">Symmetric Matrices:</strong>
+        <ul>
+          <li>can choose its eigenvectors to be <strong>orthonormal</strong></li>
+        </ul>
+      </li>
+      <li><strong style="color: blue">PSD:</strong></li>
+      <li><strong style="color: blue">PD:</strong></li>
+    </ul>
+  </li>
 </ol>
 
 <hr />
@@ -560,10 +551,17 @@ Mathematically, it is a function:</dd>
         </ul>
       </li>
     </ul>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li>ROC curves (&amp; AUC) are useful even if the <strong>predicted probabilities</strong> are not <em><strong>“properly calibrated”</strong></em><br />
+ <br /></li>
+    </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">AUC - AUROC:</strong>
     <ul>
-      <li>Range <script type="math/tex">= 0.5 - 1.0</script>, from poor to perfect</li>
+      <li>Range <script type="math/tex">= 0.5 - 1.0</script>, from poor to perfect<br />
+ <br /></li>
     </ul>
   </li>
   <li>
@@ -642,8 +640,6 @@ Mathematically, it is a function:</dd>
 </ol>
 
 <!-- 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}  
-    :   
-
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}  
     :     -->
 
@@ -677,6 +673,8 @@ Mathematically, it is a function:</dd>
   <li><strong>Uncorrelated Features in a Design Matrix</strong>:
     <p>$$\implies X^TX=nI$$</p>
   </li>
+  <li><strong>Expectation Maximization (EM) Algorithm</strong>:<br />
+  <a href="http://bjlkeng.github.io/posts/the-expectation-maximization-algorithm/">EM-Algo Math</a></li>
 </ul>
 
 <hr />
@@ -693,10 +691,8 @@ Mathematically, it is a function:</dd>
       </dd>
     </dl>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents52">Gradient-Based Optimization:</strong></p>
-
-    <p><strong style="color: red">Notes:</strong></p>
+  <li><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents52">Gradient-Based Optimization:</strong><br />
+ <strong style="color: red">Notes:</strong>
     <ul>
       <li>Gradients can’t propagate through <strong>argmax</strong></li>
       <li><strong>Derivative for a max function</strong>:<br />
@@ -725,6 +721,8 @@ Mathematically, it is a function:</dd>
         </ul>
       </li>
       <li>Backprop is a <strong>Leaky Abstraction</strong></li>
+      <li><strong>Properties of Loss Functions for Backpropagation</strong>:<br />
+  The mathematical expression of the loss function must fulfill two conditions in order for it to be possibly used in back propagation.[3] The first is that it can be written as an average <script type="math/tex">{\textstyle E={\frac {1}{n}}\sum _{x}E_{x}}</script> over error functions <script type="math/tex">{\textstyle E_{x}}</script> {\textstyle E_{x}}, for <script type="math/tex">{\textstyle n}</script> individual training examples, <script type="math/tex">{\textstyle x}</script>. The reason for this assumption is that the backpropagation algorithm calculates the gradient of the error function for a single training example, which needs to be generalized to the overall error function. The second assumption is that it can be written as a function of the outputs from the neural network.</li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents54">Error Measures - Loss Functions:</strong>
@@ -735,7 +733,8 @@ Mathematically, it is a function:</dd>
   It is the log-likelihood of a Bernoulli probability model.
             <p>$$\begin{array}{c}{L(p)=p^{y}(1-p)^{1-y}} \\ {\log (L(p))=y \log p+(1-y) \log (1-p)}\end{array}$$</p>
           </li>
-          <li><strong><a href="https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/">Cross Entropy &gt; MSE for Classification</a></strong></li>
+          <li><strong><a href="https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/">Cross Entropy &gt; MSE for Classification</a></strong><br />
+ <br /></li>
         </ul>
       </li>
     </ul>
@@ -760,7 +759,7 @@ Mathematically, it is a function:</dd>
         <ul>
           <li>Hinge loss upper bounds 0-1 loss</li>
           <li>It is the tightest <em>convex</em> upper bound on the 0/1 loss</li>
-          <li>Minimizing 0-1 loss is NP-hard in the worst-case
+          <li>Minimizing 0-1 loss is NP-hard in the worst-case<br />
   img</li>
         </ul>
       </li>
@@ -781,7 +780,7 @@ Mathematically, it is a function:</dd>
   <li><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents55">Mathematical Properties, Aspects, Considerations:</strong>
     <ul>
       <li><strong>The Composition of Invariant Functions</strong>:<br />
-  A function that is <em>invariant</em> to some transformation (e.g. rotation, permutation, etc.) can be composed by averaging over all transformations (rotations -&gt; e.g. rotation invariant filters).<br />
+  A function that is <em>invariant</em> to some transformation (e.g. rotation, permutation, etc.) can be composed by averaging over all transformations (rotations <script type="math/tex">\rightarrow</script> e.g. rotation invariant filters).<br />
   Equivalently, for <em>BoW</em>, we average over all permutations (by averaging the words).<br />
   This causes <em><strong>smearing</strong></em>.</li>
       <li><strong>Smearing in Invariant Functions</strong>:<br />
@@ -801,13 +800,14 @@ Mathematically, it is a function:</dd>
     <ul>
       <li><strong>Math Identities</strong>:
         <p>$$\frac{1}{N} \sum_{n=1}^{N}\left(\mathbf{w}^{\mathrm{T}} \mathbf{x}_{n}-y_{n}\right)^{2} = \frac{1}{N}\|\mathrm{Xw}-\mathrm{y}\|^{2}$$</p>
-      </li>
-      <li>
-        <script type="math/tex; mode=display">\dfrac{\partial}{\partial y} \vert{x-y}\vert  = - \text{sign}(x-y)</script>
+        <ul>
+          <li><script type="math/tex">\dfrac{\partial}{\partial y} \vert{x-y}\vert  = - \text{sign}(x-y)</script><br />
+ <br /></li>
+        </ul>
       </li>
     </ul>
 
-    <p><strong style="color: red">Notes:</strong></p>
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
     <ul>
       <li>The <strong>well-behaved</strong> property from an optimization standpoint, implies that <script type="math/tex">f''(x)</script> doesn’t change too much or too rapidly, leading to a nearly quadratic function that is easy to optimize by gradient methods.</li>
     </ul>
@@ -823,10 +823,8 @@ Mathematically, it is a function:</dd>
 </ol>
 
 <!-- 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents57}  
-    :   
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents58}  
-    :    -->
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents58}  -->
 
 <p><strong>NOTES:</strong></p>
 <ul>
@@ -834,7 +832,12 @@ Mathematically, it is a function:</dd>
   <li><a href="https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/">Why You Should Use Cross-Entropy Error Instead Of Classification Error Or Mean Squared Error For Neural Network Classifier Training</a></li>
   <li>Points that satisfy all constraints (i.e. the feasible region) always convex and polytope.</li>
   <li><strong><a href="http://ruder.io/optimizing-gradient-descent/index.html#gradientdescentoptimizationalgorithms">Optimization Blog on opt techniques</a></strong></li>
+  <li><a href="https://www.youtube.com/watch?v=FDCfw-YqWTE&amp;list=PLkDaE6sCZn6Hn0vK8co82zjQtt3T2Nkqc&amp;index=10&amp;t=0s">WHY NORMALIZE THE INPUTS/DATA/SIGNAL</a></li>
+  <li><a href="http://math.oregonstate.edu/~show/old/142_Luenberger.pdf">Optimization by Vector Space Methods (book)</a></li>
+  <li><a href="https://web.stanford.edu/~mrosenfe/soc_meth_proj3/matrix_OLS_NYU_notes.pdf"><strong>OLS Derivation and Theory</strong></a></li>
 </ul>
+
+<p><br /></p>
 
 <hr />
 <hr />
@@ -861,6 +864,10 @@ Mathematically, it is a function:</dd>
  As for the task of pre-training, we both know that even if you learn the patterns of very specific objects/classes (e.g. cats and dogs) you still need to develop certain visual features (e.g. edge/corner detection) and those featurizers will develop well, regardless of the amount of information. i.e. the lower-level visual capabilities will be developed. (we have evidence that pretraining works really well in Vision).  <br />
  I think the issue here is with Deterministic Noise (i.e. the Bias of the model). The CNN hypothesis just doesn't do things like inverse graphics and whatnot; regardless of the amount of information.  <br />
  Finally, a big problem is when the information is just conflicting, like two objects that should be recognized but we only label it as one of them. That's the Stochastic Noise. Which relates directly to how well we would generalize. This can be attributed to many things as well: E.g. (1) One-hot vectors need to be smoothed to allow the network to get a sense of the actual different objects in the image, AND to not over-fit the particulars of the data (e.g. consider a cat that looks like a tiger and a cat that looks like a dog; labeling it with 0.8 cat is much better to learn the "cattiness" of the image than the noise) (2) Target labels are just limited. There aren't enough categories in the target, which puts a huge limitation for one-shot learning generalization)))</p>
+
+    <p><strong>Neural Tangent Kernel:</strong><br />
+ <a href="https://www.youtube.com/watch?v=raT2ECrvbag">Video</a><br />
+ As width (of NN) <script type="math/tex">\rightarrow \infty</script>, trajectory approaches the trajectory of GD for a kernel regression problem, where the (fixed) kernel in question is the so-called Neural Tangent Kernel (NTK). (For convolutional nets the kernel is Convolutional NTK or CNTK.)</p>
 
     <p><strong>Notes:</strong></p>
     <ul>
@@ -984,7 +991,7 @@ Mathematically, it is a function:</dd>
       </li>
     </ul>
 
-    <p><strong style="color: red">Notes:</strong></p>
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
     <ul>
       <li><strong>The Weight vector of a linear signal is orthogonal to the decision boundary</strong>:<br />
   The weight vector <script type="math/tex">\mathbf{w}</script> is orthogonal to the separating-plane/decision-boundary, defined by <script type="math/tex">\mathbf{w}^T\mathbf{x} + b = 0</script>, in the <script type="math/tex">\mathcal{X}</script> space; Reason:<br />
@@ -1047,32 +1054,114 @@ Mathematically, it is a function:</dd>
       <li><strong>LSTM</strong>, Stores it in its activity vectors [hidden weights] <script type="math/tex">\implies</script> Irrelevant temp Memory <strong>interferes</strong> with on-going process</li>
       <li><strong>An additional External memory to LSTM</strong>, can store without interference but need to - learn when to read/white.</li>
       <li><strong>Fast-Weights:</strong> Allow the temporal Knowledge to be stored without having any extra neurons.<br />
-  They just make some attractors easier to fall into; and they also “flavor” the attractor by slightly changing the activity vector you end up with.</li>
+  They just make some attractors easier to fall into; and they also “flavor” the attractor by slightly changing the activity vector you end up with.<br />
+ <br /></li>
     </ul>
   </li>
-  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents68">Activation Functions:</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents68">Activation Functions:</strong> <br />
+ <strong style="color: red">Desirable Properties:</strong>
     <ul>
-      <li><strong>Activation Functions</strong>:
+      <li><strong>Non-Linearity</strong>:<br />
+  When the activation function is non-linear, then a two-layer neural network can be proven to be a universal function approximator. The identity activation function does not satisfy this property. When multiple layers use the identity activation function, the entire network is equivalent to a single-layer model.</li>
+      <li><strong>Range</strong>:<br />
+  When the range of the activation function is finite, gradient-based training methods tend to be more stable, because pattern presentations significantly affect only limited weights. When the range is infinite, training is generally more efficient because pattern presentations significantly affect most of the weights. In the latter case, smaller learning rates are typically necessary.</li>
+      <li><strong>Continuously Differentiable</strong>:<br />
+  This property is desirable for enabling gradient-based optimization methods. The binary step activation function is not differentiable at 0, and it differentiates to 0 for all other values, so gradient-based methods can make no progress with it.</li>
+      <li><strong>Monotonicity</strong>:<br />
+  When the activation function is monotonic, the error surface associated with a single-layer model is guaranteed to be convex.</li>
+      <li><strong>Smoothness with Monotonic Derivatives</strong>:<br />
+  These have been shown to generalize better in some cases.</li>
+      <li><strong>Approximating Identity near Origin</strong>:<br />
+  Equivalent to <script type="math/tex">{\displaystyle f(0)=0}</script> and <script type="math/tex">{\displaystyle f'(0)=1}</script>, and <script type="math/tex">{\displaystyle f'}</script> is continuous at <script type="math/tex">0</script>.<br />
+  When activation functions have this property, the neural network will learn efficiently when its weights are initialized with small random values. When the activation function does not approximate identity near the origin, special care must be used when initializing the weights.</li>
+      <li><strong>Zero-Centered Range</strong>:<br />
+  Has effects of centering the data (zero mean) by centering the activations. Makes learning easier.
+        <blockquote>
+          <p><a href="https://www.youtube.com/watch?v=FDCfw-YqWTE&amp;list=PLkDaE6sCZn6Hn0vK8co82zjQtt3T2Nkqc&amp;index=10&amp;t=0s">WHY NORMALIZING THE DATA/SIGNAL IS IMPORTANT</a></p>
+        </blockquote>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Undesirable Properties:</strong></p>
+    <ul>
+      <li><strong>Saturation</strong>:<br />
+  An activation functions output, with finite range, may saturate near its tail or head (e.g. <script type="math/tex">\{0, 1\}</script> for sigmoid). This leads to a problem called <strong>vanishing gradient</strong>.</li>
+      <li><strong>Vanishing Gradients</strong>:<br />
+  Happens when the gradient of an activation function is very small/zero. This usually happens when the activation function <strong>saturates</strong> at either of its tails.<br />
+  The chain-rule will <em><strong>multiply</strong></em> the local gradient (of activation function) with the whole objective. Thus, when gradient is small/zero, it will “kill” the gradient <script type="math/tex">\rightarrow</script> no signal will flow through the neuron to its weights or to its data.<br />
+  <strong>Slows/Stops learning completely</strong>.</li>
+      <li><strong>Range Not Zero-Centered</strong>:<br />
+  This is undesirable since neurons in later layers of processing in a Neural Network would be receiving data that is not zero-centered. This has implications on the dynamics during gradient descent, because if the data coming into a neuron is always positive (e.g. <script type="math/tex">x>0</script> elementwise in <script type="math/tex">f=w^Tx+b</script>), then the gradient on the weights <script type="math/tex">w</script> will during backpropagation become either all be positive, or all negative (depending on the gradient of the whole expression <script type="math/tex">f</script>). This could introduce undesirable zig-zagging dynamics in the gradient updates for the weights. However, notice that once these gradients are added up across a batch of data the final update for the weights can have variable signs, somewhat mitigating this issue. Therefore, this is an inconvenience but it has less severe consequences compared to the saturated activation problem above.<br />
+  <strong>Makes optimization harder.</strong></li>
+    </ul>
+
+    <p><strong style="color: red">Activation Functions:</strong><br />
+ <img src="/main_files/concepts/16.png" alt="img" max-width="180%" width="180%" /></p>
+    <ul>
+      <li><strong>Properties</strong>:
         <ul>
           <li><strong>Sigmoid</strong>:<br />
-  Never use as activation, use as an output unit for binary classification.</li>
-          <li><strong>Tanh</strong>:<br />
-  Strictly superior to Sigmoid (scaled version of sigmoid). Good for activation.<br />
-  Reasons: (1) Zero Mean/Centered</li>
-          <li><strong>Relu</strong>:<br />
-  The best for activation.<br />
-  Reasons: (1) Better gradients
+  Never use as activation, use as an output unit for binary classification.
             <ul>
-              <li><strong>Properties</strong>:
+              <li><strong>Pros</strong>:
+                <ul>
+                  <li>Has a nice interpretation as the firing rate of a neuron</li>
+                </ul>
+              </li>
+              <li><strong>Cons</strong>:
+                <ul>
+                  <li>They Saturate and kill gradients <script type="math/tex">\rightarrow</script> Gives rise to <strong>vanishing gradients</strong><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> <script type="math/tex">\rightarrow</script> Stop Learning
+                    <ul>
+                      <li>Happens when initialization weights are too large</li>
+                      <li>or sloppy with data preprocessing</li>
+                      <li>Neurons Activation saturates at either tail of <script type="math/tex">0</script> or <script type="math/tex">1</script></li>
+                    </ul>
+                  </li>
+                  <li>Output NOT <strong>Zero-Centered</strong> <script type="math/tex">\rightarrow</script> Gradient updates go too far in different directions <script type="math/tex">\rightarrow</script> makes optimization harder</li>
+                  <li>The local gradient <script type="math/tex">(z * (1-z))</script> achieves maximum at <script type="math/tex">0.25</script>, when <script type="math/tex">z = 0.5</script>. <script type="math/tex">\rightarrow</script> very time the gradient signal flows through a sigmoid gate, its magnitude always diminishes by one quarter (or more) <script type="math/tex">\rightarrow</script> with basic SGD, the lower layers of a network train much slower than the higher one</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><strong>Tanh</strong>:<br />
+  Strictly superior to Sigmoid (scaled version of sigmoid | stronger gradient). Good for activation.
+            <ul>
+              <li><strong>Pros</strong>:
+                <ul>
+                  <li>Zero Mean/Centered</li>
+                </ul>
+              </li>
+              <li><strong>Cons</strong>:
+                <ul>
+                  <li>They Saturate and kill gradients <script type="math/tex">\rightarrow</script> Gives rise to <strong>vanishing gradients</strong><sup id="fnref:1:1"><a href="#fn:1" class="footnote">1</a></sup> <script type="math/tex">\rightarrow</script> Stop Learning</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><strong>ReLU</strong>:<br />
+  The best for activation (Better gradients).
+            <ul>
+              <li><strong>Pros</strong>:
+                <ul>
+                  <li>Non-saturation of gradients which <em>accelerates convergence</em> of SGD</li>
+                  <li>Sparsity effects and induced regularization. <a href="https://stats.stackexchange.com/questions/176794/how-does-rectilinear-activation-function-solve-the-vanishing-gradient-problem-in/176905#176905">discussion</a></li>
+                  <li>Not computationally expensive</li>
+                </ul>
+              </li>
+              <li><strong>Cons</strong>:
                 <ul>
                   <li><strong>ReLU not zero-centered problem</strong>:<br />
   The problem that ReLU is not zero-centered can be solved/mitigated by using <strong>batch normalization</strong>, which normalizes the signal before activation:
                     <blockquote>
                       <p>From paper: We add the BN transform immediately before the nonlinearity, by normalizing <script type="math/tex">x =  Wu + b</script>; normalizing it is likely to produce activations with a stable distribution.</p>
+                      <ul>
+                        <li><a href="https://www.youtube.com/watch?v=FDCfw-YqWTE&amp;list=PLkDaE6sCZn6Hn0vK8co82zjQtt3T2Nkqc&amp;index=10&amp;t=0s">WHY NORMALIZING THE SIGNAL IS IMPORTANT</a></li>
+                      </ul>
                     </blockquote>
                   </li>
                   <li><strong>Dying ReLUs (Dead Neurons):</strong><br />
-  If a neuron gets clamped to zero in the forward pass (it doesn’t “fire”), then its weights will get zero gradient. Thus, if a ReLU neuron is unfortunately initialized such that it never fires, or if a neuron’s weights ever get knocked off with a large update during training into this regime, then this neuron will remain permanently dead.
+  If a neuron gets clamped to zero in the forward pass (it doesn’t “fire” / <script type="math/tex">% <![CDATA[
+x<0 %]]></script>), then its weights will get zero gradient. Thus, if a ReLU neuron is unfortunately initialized such that it never fires, or if a neuron’s weights ever get knocked off with a large update during training into this regime (usually as a symptom of aggressive learning rates), then this neuron will remain permanently dead.
                     <ul>
                       <li><a href="https://www.youtube.com/embed/gYpoJMlgyXA?start=1249" value="show" onclick="iframePopA(event)"><strong>cs231n Explanation</strong></a>
   <a href="https://www.youtube.com/embed/gYpoJMlgyXA?start=1249"></a>
@@ -1080,42 +1169,57 @@ Mathematically, it is a function:</dd>
                       </li>
                     </ul>
                   </li>
-                  <li><strong>ReLu advantages</strong>:
-                    <ul>
-                      <li>Non-saturation of gradients which accelerates convergence of SGD</li>
-                      <li>sparsity effects and induced regularization. <a href="https://stats.stackexchange.com/questions/176794/how-does-rectilinear-activation-function-solve-the-vanishing-gradient-problem-in/176905#176905">discussion</a></li>
-                    </ul>
-                  </li>
+                  <li><strong>Infinite Range</strong>:<br />
+  Can blow up the activation.</li>
                 </ul>
               </li>
             </ul>
           </li>
           <li><strong>Leaky Relu</strong>:<br />
-  Sometimes useful. Worth trying.</li>
+  Sometimes useful. Worth trying.
+            <ul>
+              <li><strong>Pros</strong>:
+                <ul>
+                  <li>Leaky ReLUs are one attempt to fix the “dying ReLU” problem by having a small negative slope (of 0.01, or so).</li>
+                </ul>
+              </li>
+              <li><strong>Cons</strong>:<br />
+  The consistency of the benefit across tasks is presently unclear.</li>
+            </ul>
+          </li>
+          <li><strong>ELU</strong>:</li>
         </ul>
       </li>
       <li><strong>Derivatives of Activation Functions</strong>:
         <ul>
           <li><strong>Sigmoid</strong>:
             <p>$$S(z)=\frac{1}{1+e^{-z}} \\ S^{\prime}(z)=S(z) \cdot(1-S(z))$$</p>
-            <p><img src="/main_files/concepts/3.png" alt="img" width="68%" /></p>
+            <p><img src="/main_files/concepts/3.png" alt="img" width="68%" class="center-image" /></p>
           </li>
           <li><strong>Tanh</strong>:
             <p>$$\tanh (z)=\frac{e^{z}-e^{-z}}{e^{z}+e^{-z}} \\ \tanh ^{\prime}(z)=1-\tanh (z)^{2}$$</p>
-            <p><img src="/main_files/concepts/4.png" alt="img" width="68%" /></p>
+            <p><img src="/main_files/concepts/4.png" alt="img" width="68%" class="center-image" /></p>
           </li>
           <li><strong>Relu</strong>:
             <p>$$R(z)=\left\{\begin{array}{cc}{z} &amp; {z&gt;0} \\ {0} &amp; {z&lt;=0}\end{array}\right\} \\  R^{\prime}(z)=\left\{\begin{array}{ll}{1} &amp; {z&gt;0} \\ {0} &amp; {z&lt;0}\end{array}\right\}$$</p>
-            <p><img src="/main_files/concepts/5.png" alt="img" width="68%" /></p>
+            <p><img src="/main_files/concepts/5.png" alt="img" width="68%" class="center-image" /></p>
           </li>
           <li><strong>Leaky Relu</strong>:
             <p>$$R(z)=\left\{\begin{array}{cc}{z} &amp; {z&gt;0} \\ {\alpha z} &amp; {z&lt;=0}\end{array}\right\} \\ 
   R^{\prime}(z)=\left\{\begin{array}{ll}{1} &amp; {z&gt;0} \\ {\alpha} &amp; {z&lt;0}\end{array}\right\}$$</p>
-            <p><img src="/main_files/concepts/6.png" alt="img" width="68%" /></p>
+            <p><img src="/main_files/concepts/6.png" alt="img" width="68%" class="center-image" /></p>
           </li>
           <li><a href="https://ml-cheatsheet.readthedocs.io/en/latest/activation_functions.html">Further Reading</a></li>
         </ul>
       </li>
+    </ul>
+
+    <p><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li>It is very rare to mix and match different types of neurons in the same network, even though there is no fundamental problem with doing so.</li>
+      <li><strong>Identity Mappings</strong>:<br />
+  When an activation function cannot achieve an identity mapping (e.g. ReLU map all negative inputs to zero); then adding extra depth actually decreases the best performance, in the case a shallower one would suffice (Deep Residual Net paper).<br />
+ <br /></li>
     </ul>
   </li>
   <li>
@@ -1246,6 +1350,7 @@ We can choose <script type="math/tex">w</script> using <strong>maximum likelihoo
 <a href="https://www.youtube.com/embed/nLKOQfKLUks?list=PLA89DCFA6ADACE599"></a>
         <div></div>
       </li>
+      <li><a href="http://bjlkeng.github.io/posts/a-probabilistic-view-of-regression/">GLM Probabilistic Development</a></li>
     </ul>
 
     <p><br /></p>
@@ -1265,7 +1370,7 @@ We can choose <script type="math/tex">w</script> using <strong>maximum likelihoo
 <a href="https://www.youtube.com/embed/I9dfOMAhsug"></a>
         <div></div>
       </li>
-      <li><a href="https://www.youtube.com/embed/lMShR1vjbUo" value="show" onclick="iframePopA(event)"><strong>Expectation-Minimization/EM-Algorithm for Latent Variable Models</strong></a>
+      <li><a href="https://www.youtube.com/embed/lMShR1vjbUo" value="show" onclick="iframePopA(event)"><strong>Expectation-Maximization/EM-Algorithm for Latent Variable Models</strong></a>
 <a href="https://www.youtube.com/embed/lMShR1vjbUo"></a>
         <div></div>
         <p><br /></p>
@@ -1322,6 +1427,8 @@ We can choose <script type="math/tex">w</script> using <strong>maximum likelihoo
       <li><strong>Whitening</strong>:  Centering + Sphering (also known as <em><strong>Decorrelating feature space</strong></em>)</li>
     </ul>
 
+    <p><a href="https://hadrienj.github.io/posts/Preprocessing-for-deep-learning/">Pre-processing for Deep Learning (data regularization)</a></p>
+
     <p><a href="https://github.com/dalmia/Deep-Learning-Book-Chapter-Summaries/blob/master/07%20-%20Regularization%20for%20Deep%20Learning.ipynb">Ch.7 dl-book summary</a><br />
 <br /></p>
   </li>
@@ -1372,6 +1479,18 @@ We can choose <script type="math/tex">w</script> using <strong>maximum likelihoo
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents620">Learning Theory:</strong></p>
   </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents621">Curse of Dimensionality:</strong><br />
+<strong>The Curse of Dimensionality</strong>, in general, refers to various phenomena, that arise when analyzing and organizing data in high-dimensional spaces, that do not occur in low-dimensional settings such as the three-dimensional physical space of everyday experience.</p>
+
+    <p><strong style="color: red">Common Theme:</strong><br />
+When the dimensionality increases, the <em>volume of the space increases so fast</em> that the available <em>data become sparse</em>. This <strong>sparsity</strong> is problematic for any method that requires <strong>statistical significance</strong>. In order to obtain a statistically sound and reliable result, the <em>amount of data needed</em> to support the result often <em>grows exponentially with the dimensionality</em>. Also, organizing and searching data often relies on detecting areas where objects form groups with similar properties (<em>clustering</em>); in high dimensional data, however, all objects appear to be sparse and dissimilar in many ways, which prevents common data organization strategies from being efficient.</p>
+
+    <p><strong style="color: red">Sampling:</strong><br />
+The sampling density is proportional to <script type="math/tex">N^{1/p}</script>, where <script type="math/tex">p</script> is the dimension of the input space and <script type="math/tex">N</script> is the sample size. Thus, if <script type="math/tex">N_1 = 100</script> represents a dense sample for a single input problem, then <script type="math/tex">N_{10} = 100^{10}</script> is the sample size required for the same sampling density with <script type="math/tex">10</script> inputs. Thus in high dimensions all feasible training samples sparsely populate the input space.</p>
+
+    <p><a href="https://marckhoury.github.io/counterintuitive-properties-of-high-dimensional-space/">Story on Geometry in high-dimensional spaces</a></p>
+  </li>
   <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents60">Notes:</strong>
     <ul>
       <li><strong>Complexity</strong>:
@@ -1403,6 +1522,45 @@ We can choose <script type="math/tex">w</script> using <strong>maximum likelihoo
           <li>In tree-based methods (such as random forest), important features are likely to appear closer to the root of the tree. We can get a feature’s importance for random forest by computing the averaging depth at which it appears across all trees in the forest</li>
         </ul>
       </li>
+      <li><strong>Probabilistic Calibration</strong>:
+        <ul>
+          <li><a href="https://scikit-learn.org/stable/modules/calibration.html">Plot and Explanation</a></li>
+          <li><a href="http://alondaks.com/2017/12/31/the-importance-of-calibrating-your-deep-model/">Blog on How to do it</a></li>
+        </ul>
+      </li>
+      <li><strong>Complexity in ML</strong>:
+        <ul>
+          <li><strong>Definitions of the complexity of an object (<script type="math/tex">h</script>)</strong>:
+            <ul>
+              <li><strong>Minimum Description Length (MDL)</strong>: the number of bits for specifying an object.</li>
+              <li><strong>Order of a Polynomial</strong></li>
+            </ul>
+          </li>
+          <li><strong>Definitions of the complexity of a class of objects (<script type="math/tex">\mathcal{H}</script>)</strong>:
+            <ul>
+              <li><strong>Entropy</strong></li>
+              <li><strong>VC-dim</strong></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents630">Observations from Papers:</strong>
+    <ul>
+      <li>For calibrating output probabilities in Deep Nets; Temperature scaling outperforms Platt scaling. <a href="https://arxiv.org/pdf/1706.04599.pdf">paper</a></li>
+      <li>
+        <p>deep neural networks seemingly violate the common understanding of learning theory that large models with little regularization will not generalize well. The observed disconnect between NLL and 0/1 loss suggests that these high capacity models are not necessarily immune from overfitting, but rather, overfitting manifests in probabilistic error rather than classification error. <a href="https://arxiv.org/pdf/1706.04599.pdf">paper</a></p>
+      </li>
+      <li><a href="http://www.offconvex.org/2019/06/03/trajectories/"><strong>Is Optimization a Sufficient Language for Understanding Deep Learning?</strong></a>
+        <ul>
+          <li><strong>Conventional View (CV) of Optimization</strong>:<br />
+  Find a solution of minimum possible value of the objective, as fast as possible.</li>
+          <li>If our goal is mathematical understanding of deep learning, then the CV of Opt is potentially <strong>insufficient</strong>.</li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ol>
@@ -1432,21 +1590,7 @@ We can choose <script type="math/tex">w</script> using <strong>maximum likelihoo
 </ol>
 
 <!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents73}  
-    :   
-
 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents74}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents75}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents76}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents77}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents78}  
   -->
 
 <hr />
@@ -1454,7 +1598,9 @@ We can choose <script type="math/tex">w</script> using <strong>maximum likelihoo
 
 <h2 id="content8">NLP</h2>
 
-<p><a href="https://sites.tufts.edu/models/files/2019/04/Norvig.pdf">The Norvig-Chomsky Debate</a></p>
+<p><a href="https://sites.tufts.edu/models/files/2019/04/Norvig.pdf">The Norvig-Chomsky Debate</a><br />
+<a href="https://nlpoverview.com">Modern Deep Learning Techniques Applied to Natural Language Processing (Amazing Resource)</a><br />
+<a href="https://tryolabs.com/blog/2017/12/12/deep-learning-for-nlp-advancements-and-trends-in-2017/?utm_campaign=Revue%20newsletter&amp;utm_medium=Newsletter&amp;utm_source=The%20Wild%20Week%20in%20AI">Deep Learning for NLP: Advancements &amp; Trends</a></p>
 
 <ol>
   <li><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents81">Language Modeling:</strong><br />
@@ -1462,7 +1608,7 @@ We can choose <script type="math/tex">w</script> using <strong>maximum likelihoo
  To improve a <em>Language Model</em>:
     <ol>
       <li><strong>Better Inputs</strong>: 
- Word -&gt; Subword -&gt; Char<br />
+ Word <script type="math/tex">\rightarrow</script> Subword <script type="math/tex">\rightarrow</script> Char<br />
  <img src="/main_files/concepts/2.png" alt="img" width="100%" /><br />
  <em>Subword Language Modeling , Mikolov et al. 2012</em><br />
  <em>Character-Aware Neural Language Model , Kim et al. 2015</em>.</li>
@@ -1561,16 +1707,87 @@ We can choose <script type="math/tex">w</script> using <strong>maximum likelihoo
         <p><button class="showText" value="show" onclick="showTextPopHide(event);">Classification and Tips for Learning</button>
  <img src="/main_files/concepts/8_1.jpg" alt="img" hidden="" /></p>
       </li>
+      <li><a href="http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp">CNN Text Classification</a></li>
+      <li><a href="https://blog.goodaudience.com/introduction-to-1d-convolutional-neural-networks-in-keras-for-time-sequences-3a7ff801a2cf">1d CNNs for Time-Sequences</a></li>
       <li><a href="http://mccormickml.com/2016/11/04/interpreting-lsi-document-similarity/">LSI document similarity</a></li>
       <li><a href="http://mccormickml.com/2016/03/25/lsa-for-text-classification-tutorial/">Latent Semantic Analysis (LSA) for Text Classification Tutorial</a></li>
-      <li><a href="link">answer</a></li>
     </ul>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents86">:</strong></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents87">:</strong></p>
+    <p><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents87">Coreference Resolution:</strong><br />
+ <strong>Coreference Resolution:</strong> Identify all mentions that refer to the same real world entity.</p>
+
+    <p id="lst-p"><strong style="color: red">Applications:</strong></p>
+    <ul>
+      <li><strong>Full text understanding</strong>:
+        <ul>
+          <li>information extraction, question answering, summarization, …</li>
+          <li>“He was born in 1961” (Who?)</li>
+        </ul>
+      </li>
+      <li><strong>Machine Translation</strong>:
+        <ul>
+          <li>languages have different features for gender, number, dropped pronouns, etc.</li>
+        </ul>
+      </li>
+      <li><strong>Dialogue Systems</strong>:<br />
+  “Book tickets to see <span style="color: red">James Bond</span>”<br />
+  “<span style="color: red">Spectre</span> is playing near you at 2:00 and <span style="color: blue">3:00</span> today. <span style="color: orange">How many tickets</span> would you like?”<br />
+  “<span style="color: orange">Two</span> tickets for the showing at <span style="color: blue">three</span>”</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">An approach for Coref-Res in 2 steps:</strong></p>
+    <ol>
+      <li><strong>Detect the Mentions</strong> (easy)<br />
+ “Book tickets to see <span style="color: gray">James Bond</span>”<br />
+ “<span style="color: gray">Spectre</span> is playing near you at 2:00 and <span style="color: gray">3:00</span> today. <span style="color: gray">How many tickets</span> would you like?”<br />
+ “<span style="color: gray">Two</span> tickets for the showing at <span style="color: gray">three</span>”</li>
+      <li><strong>Cluster the Mentions</strong> (hard)<br />
+ “Book tickets to see <span style="color: red">James Bond</span>”<br />
+ “<span style="color: red">Spectre</span> is playing near you at 2:00 and <span style="color: blue">3:00</span> today. <span style="color: orange">How many tickets</span> would you like?”<br />
+ “<span style="color: orange">Two</span> tickets for the showing at <span style="color: blue">three</span>”</li>
+    </ol>
+
+    <p><strong style="color: red">Mention Detection:</strong><br />
+ <strong>Mention:</strong> span of text referring to some entity.</p>
+
+    <p id="lst-p"><strong>Types of Mention:</strong></p>
+    <ol>
+      <li><strong>Pronouns</strong><br />
+ “I”, “your”, “it”, “she”, “him”</li>
+      <li><strong>Named Entities</strong><br />
+ People, places, etc.</li>
+      <li><strong>Noun Phrases</strong><br />
+ “a dog”, “the big fluffy cat stuck in the tree”</li>
+    </ol>
+
+    <p id="lst-p"><strong>Detection:</strong><br />
+ Use other NLP systems for the detection task:</p>
+    <ol>
+      <li>Pronouns: <strong>POS-Tagger</strong></li>
+      <li>Named Entities: <strong>NER</strong></li>
+      <li>Noun Phrases: <strong>(Constituency) Parser</strong></li>
+    </ol>
+
+    <p><strong>Problem with Detection - Extra/bad mentions:</strong><br />
+ Notice that the systems above will overmatch on possible mentions that don’t have a concrete entity that they refer to: e.g. [It] is sunny, [Every student], [No student], [The best donut in the world], [100 miles].</p>
+
+    <p><strong>Dealing with bad mentions:</strong></p>
+    <ul>
+      <li>Train a classifier to filter out spurious mentions</li>
+      <li>(more commonly) keep all mentions as “candidate mentions”
+        <ul>
+          <li>After your coreference system is done running discard all singleton mentions (i.e., ones that have not been marked as coreference with anything else)</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><a href="https://www.youtube.com/watch?v=i19m4GzBhfc&amp;list=PLoROMvodv4rOhcuXMZkNm7j3fVwBBY42z&amp;index=17&amp;t=1320s">Continue Lecture (CS224N)</a></p>
+
+    <p><br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents88">Word Embeddings:</strong><br />
  <strong style="color: red">Word Vectors:</strong>
@@ -1592,6 +1809,7 @@ We can choose <script type="math/tex">w</script> using <strong>maximum likelihoo
 <ul>
   <li><a href="http://www.cs.toronto.edu/~ilya/pubs/">Ilya Sutskever Pubs/Vids</a></li>
   <li>Can all NLP tasks be cast as QA problems?!</li>
+  <li><a href="https://arxiv.org/pdf/1703.09902.pdf">Survey of the State of the Art in Natural Language Generation</a></li>
 </ul>
 
 <hr />
@@ -1599,29 +1817,11 @@ We can choose <script type="math/tex">w</script> using <strong>maximum likelihoo
 
 <h2 id="content9">Physics</h2>
 
-<!-- 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents91}  
-    :   
-
+<!-- 
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents91}  
 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents92}  
-    :   
-
 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents93}  
-    :   
-
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents94}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents95}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents96}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents97}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents98}  
-    :    -->
+-->
 
 <hr />
 <hr />
@@ -1799,6 +1999,7 @@ c < 1, c = 1, or c > 1 %]]></script></li>
       A & 0 \\
       0 & B \\
   \end{bmatrix} %]]></script></li>
+      <li><a href="https://marckhoury.github.io/on-computable-functions/">Computable Functions and Turing Machines</a></li>
     </ul>
   </li>
 </ol>
@@ -1819,24 +2020,7 @@ c < 1, c = 1, or c > 1 %]]></script></li>
 </ol>
 
 <!-- 2. **Misc:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents112}  
-
-
 3. **Misc:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents113}   -->
-
-<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents114}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents115}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents116}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents117}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents118}  
-    :    -->
 
 <p><strong>Resources:</strong></p>
 <ul>
@@ -1854,7 +2038,20 @@ c < 1, c = 1, or c > 1 %]]></script></li>
   </li>
   <li><a href="https://www.youtube.com/watch?v=Mdp9uC3gXUU">Mathematics of DL</a></li>
   <li><a href="https://jhui.github.io/2017/01/05/Deep-learning-linear-algebra/">Deep Learning Linear Algebra</a></li>
+  <li><a href="https://www.inference.vc/untitled/">Intro to Causal Inference (do-Calculus)</a></li>
+  <li><a href="https://www.technologyreview.com/s/602344/the-extraordinary-link-between-deep-neural-networks-and-the-nature-of-the-universe/">DL and Physics</a></li>
+  <li><a href="https://ee227c.github.io/">EE227C: Convex Optimization and Approximation</a></li>
+  <li><a href="https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf">Boyd Cvx-Opt</a></li>
+  <li><a href="http://www.stat.cmu.edu/~ryantibs/convexopt/">Tibshirani Cvx-Opt</a></li>
+  <li></li>
 </ul>
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Remember that the chain-rule will multiply the local gradient (of sigmoid) with the whole object. Thus, when gradient is small/zero, it will “kill” the gradient <script type="math/tex">\rightarrow</script> no signal will flow through the neuron to its weights or to its data. <a href="#fnref:1" class="reversefootnote">&#8617;</a> <a href="#fnref:1:1" class="reversefootnote">&#8617;<sup>2</sup></a></p>
+    </li>
+  </ol>
+</div>
 
 
       <footer class="site-footer">

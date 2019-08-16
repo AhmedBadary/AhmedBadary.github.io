@@ -45,7 +45,7 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">PCA <br /> Principle Compnent Analysis</h1>
+  <h1 class="project-name">PCA <br /> Principal Compnent Analysis</h1>
   <h2 class="project-tagline"></h2>
   <a href="/#" class="btn">Home</a>
   <a href="/work" class="btn">Work-Space</a>
@@ -84,20 +84,24 @@
 <hr />
 
 <p><a href="https://www.youtube.com/watch?v=5HNr_j6LmPc">Visual of PCA, SVD</a><br />
-<a href="https://www.youtube.com/watch?v=Axs-fuFJVvE">Derivation - Direction of Maximum Variance</a></p>
+<a href="https://www.youtube.com/watch?v=Axs-fuFJVvE">Derivation - Direction of Maximum Variance</a><br />
+<a href="https://github.com/AhmedBadary/Statistical-Analysis/blob/master/Image%20Compression%20using%20Low-Rank%20Approximation%20(SVD).ipynb">Low-Rank Approximation w/ SVD (code, my github)</a><br />
+<a href="https://people.cs.pitt.edu/~milos/courses/cs3750-Fall2007/lectures/class17.pdf">PPCA - Probabilistic PCA Slides</a></p>
 
 <h2 id="content1">PCA</h2>
 
 <ol>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?</strong>  <br />
- It is a statistical procedure that uses an orthogonal transformation to convert a set of observations of possibly correlated variables into a set of values of linearly uncorrelated variables called principal components.</p>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">What?</strong>  <br />
+ It is a statistical procedure that uses an orthogonal transformation to convert a set of observations of possibly correlated variables into a set of values of linearly uncorrelated variables called principal components.<br />
+ <br /></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Goal?</strong>  <br />
- Given points <script type="math/tex">\mathbf{x}_ i \in \mathbf{R}^d</script>, find k-directions that capture most of the variation.</p>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Goal?</strong>  <br />
+ Given points <script type="math/tex">\mathbf{x}_ i \in \mathbf{R}^d</script>, find k-directions that capture most of the variation.<br />
+ <br /></p>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Why?</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Why?</strong>
     <ol>
       <li>Find a small basis for representing variations in complex things.
         <blockquote>
@@ -111,10 +115,11 @@
 They are linear combinations of input features.</p>
         </blockquote>
       </li>
-      <li>Represent the data with fewer parameters (dimensions)</li>
+      <li>Represent the data with fewer parameters (dimensions)<br />
+ <br /></li>
     </ol>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Finding Principle Components:</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Finding Principal Components:</strong>
     <ul>
       <li>Let ‘<script type="math/tex">X</script>’ be an <script type="math/tex">(n \times d)</script> design matrix, centered, with mean <script type="math/tex">\hat{x} = 0</script>.</li>
       <li>Let ‘<script type="math/tex">w</script>’ be a unit vector.</li>
@@ -133,10 +138,12 @@ They are linear combinations of input features.</p>
     </ul>
 
     <blockquote>
-      <p><strong>The Principle Components:</strong> are precisely the eigenvectors of the data’s covariance matrix.</p>
+      <p><strong>The Principal Components:</strong> are precisely the eigenvectors of the data’s covariance matrix. <a href="#pcvspd">Read More</a></p>
     </blockquote>
+
+    <p><br /></p>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Total Variance and Error Measurement:</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Total Variance and Error Measurement:</strong>
     <ul>
       <li><strong>The Total Variance</strong> of the data can be expressed as the sum of all the eigenvalues:</li>
     </ul>
@@ -162,15 +169,135 @@ They are linear combinations of input features.</p>
     <blockquote>
       <p>If the ratio is <em>high</em>, we can say that much of the variation in the data can be observed on the projected plane.</p>
     </blockquote>
+
+    <p><br /></p>
   </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Mathematical Formulation:</strong><br />
+ PCA is mathematically defined as an orthogonal linear transformation that transforms the data to a new coordinate system such that the greatest variance by some projection of the data comes to lie on the first coordinate (called the first principal component), the second greatest variance on the second coordinate, and so on.</p>
+
+    <p>Consider a data matrix, <script type="math/tex">X</script>, with column-wise zero empirical mean (the sample mean of each column has been shifted to zero), where each of the <script type="math/tex">n</script> rows represents a different repetition of the experiment, and each of the <script type="math/tex">p</script> columns gives a particular kind of feature (say, the results from a particular sensor).</p>
+
+    <p>Mathematically, the transformation is defined by a set of <script type="math/tex">p</script>-dimensional vectors of weights or coefficients <script type="math/tex">{\displaystyle \mathbf {v}_ {(k)}=(v_{1},\dots ,v_{p})_ {(k)}}</script> that map each row vector <script type="math/tex">{\displaystyle \mathbf {x}_ {(i)}}</script> of <script type="math/tex">X</script> to a new vector of principal component scores <script type="math/tex">{\displaystyle \mathbf {t} _{(i)}=(t_{1},\dots ,t_{l})_ {(i)}}</script>, given by:</p>
+    <p>$${\displaystyle {t_{k}}_{(i)}=\mathbf {x}_ {(i)}\cdot \mathbf {v}_ {(k)}\qquad \mathrm {for} \qquad i=1,\dots ,n\qquad k=1,\dots ,l}$$</p>
+    <p>in such a way that the individual variables <script type="math/tex">{\displaystyle t_{1},\dots ,t_{l}}</script>  of <script type="math/tex">t</script> considered over the data set successively inherit the maximum possible variance from <script type="math/tex">X</script>, with each coefficient vector <script type="math/tex">v</script> constrained to be a unit vector (where <script type="math/tex">l</script> is usually selected to be less than <script type="math/tex">{\displaystyle p}</script> to reduce dimensionality).</p>
+
+    <p id="lst-p"><strong style="color: red">The Procedure and what it does:</strong></p>
+    <ul>
+      <li>Finds a lower dimensional subspace (PCs) that Minimizes the RSS of projection errors</li>
+      <li>Produces a vector (1st PC) with the highest possible variance, each succeeding component in turn has the highest variance possible under the constraint that it is orthogonal to the preceding components.</li>
+      <li>Results in an <strong>uncorrelated orthogonal basis set</strong>.</li>
+      <li>PCA constructs new axes that point to the directions of maximal variance (in the original variable space)<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents19">Intuition:</strong> <br />
+ PCA can be thought of as fitting a p-dimensional ellipsoid to the data, where each axis of the ellipsoid represents a principal component. If some axis of the ellipsoid is small, then the variance along that axis is also small, and by omitting that axis and its corresponding principal component from our representation of the dataset, we lose only a commensurately small amount of information.</p>
+
+    <ul>
+      <li>Its operation can be thought of as revealing the internal structure of the data in a way that best explains the variance in the data.<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents111">PCA Algorithm:</strong>
+    <ul>
+      <li><strong>Data Preprocessing</strong>:
+        <ul>
+          <li>Training set: <script type="math/tex">x^{(1)}, x^{(2)}, \ldots, x^{(m)}</script></li>
+          <li>Preprocessing (<strong>feature scaling</strong> + <strong>mean normalization</strong>):
+            <ul>
+              <li><strong>mean normalization</strong>:<br />
+  <script type="math/tex">\mu_{j}=\frac{1}{m} \sum_{i=1}^{m} x_{j}^{(i)}</script><br />
+  Replace each <script type="math/tex">x_{j}^{(i)}</script> with <script type="math/tex">x_j^{(i)} - \mu_j</script></li>
+              <li><strong>feature scaling</strong>:<br />
+  If different features on different, scale features to have comparable range<br />
+  <script type="math/tex">s_j = S.D(X_j)</script> (the standard deviation of feature <script type="math/tex">j</script>)<br />
+  Replace each <script type="math/tex">x_{j}^{(i)}</script> with <script type="math/tex">\dfrac{x_j^{(i)} - \mu_j}{s_j}</script></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Computing the Principal Components</strong>:
+        <ul>
+          <li>Compute the <strong>SVD</strong> of the matrix <script type="math/tex">X = U S V^T</script></li>
+          <li>Compute the Principal Components:
+            <p>$$T = US = XV$$</p>
+            <blockquote>
+              <p>Note: The <script type="math/tex">j</script>-th principal component is: <script type="math/tex">Xv_j</script></p>
+            </blockquote>
+          </li>
+          <li>Choose the top <script type="math/tex">k</script> components singular values in <script type="math/tex">S = S_k</script></li>
+          <li>Compute the Truncated Principal Components:
+            <p>$$T_k = US_k$$</p>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Computing the Low-rank Approximation Matrix <script type="math/tex">X_k</script></strong>:
+        <ul>
+          <li>Compute the reconstruction matrix:
+            <p>$$X_k = T_kV^T = US_kV^T$$</p>
+            <p><br /></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Results and Definitions:</strong></p>
+    <ul>
+      <li>Columns of <script type="math/tex">V</script> are principal directions/axes</li>
+      <li>Columns of <script type="math/tex">US</script> are principal components (“scores”)</li>
+      <li><a href="https://stats.stackexchange.com/questions/174601/difference-between-principal-directions-and-principal-component-scores-in-the-co" id="pcvspd">Principal Components (“scores”) VS Principal Directions/Axes</a></li>
+    </ul>
+
+    <blockquote>
+      <p><strong>NOTE:</strong> the analysis above is valid only for (1) <script type="math/tex">X</script> w/ samples in rows and variables in columns  (2) <script type="math/tex">X</script> is centered (mean=0)<br />
+<br /></p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents110">Properties and Limitations:</strong> <br />
+<strong style="color: red">Limitations:</strong>
+    <ul>
+      <li>PCA is highly sensitive to the (relative) scaling of the data; no consensus on best scaling.<br />
+<br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents112">Optimality:</strong>     <br />
+Optimal for Finding a lower dimensional subspace (PCs) that Minimizes the RSS of projection errors<br />
+<br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">How does PCA relate to CCA:</strong> <br />
+ <strong>CCA</strong> defines coordinate systems that optimally describe the cross-covariance between two datasets while <strong>PCA</strong> defines a new orthogonal coordinate system that optimally describes variance in a single dataset.<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">How does PCA relate to ICA:</strong> <br />
+ <strong>Independent component analysis (ICA)</strong> is directed to similar problems as principal component analysis, but finds additively separable components rather than successive approximations.<br />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents113">What’s the difference between PCA estimate and OLS estimate:</strong></li>
 </ol>
+
+<p id="lst-p"><strong style="color: red">Notes:</strong></p>
+<ul>
+  <li><strong>Variance</strong> is the <em>measure of spread</em> along only <em><strong>one axis</strong></em></li>
+  <li><strong>SVD(X) vs Spectral-Decomposition(<script type="math/tex">\Sigma = X^TX</script>)</strong>:<br />
+  SVD is better <script type="math/tex">\iff</script> more numerically stable <script type="math/tex">iff</script> faster</li>
+  <li><strong>When are the PCs <em>independent</em>?</strong><br />
+  Assuming that the dataset is Gaussian distributed would guarantee that the PCs are independent. <a href="https://datascience.stackexchange.com/questions/25789/why-does-pca-assume-gaussian-distribution">Discussion</a></li>
+</ul>
 
 <hr />
 
 <h2 id="content2">Derivation 1. Fitting Gaussians to Data with MLE</h2>
 
+<p><a href="http://scribblethink.org/Work/PCAderivations/PCAderivations.pdf">Three Derivations of Principal Components (concise)</a><br />
+<a href="https://www.stat.cmu.edu/~cshalizi/uADA/12/lectures/ch18.pdf">Better Derivations (longer)</a></p>
+
 <ol>
-  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">What?</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">What?</strong>
     <ol>
       <li>Fit a Gaussian to data with MLE</li>
       <li>Choose k Gaussian axes of greatest variance.
@@ -180,7 +307,7 @@ They are linear combinations of input features.</p>
       </li>
     </ol>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Algorithm:</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Algorithm:</strong>
     <ol>
       <li>Center <script type="math/tex">X</script></li>
       <li>Normalize <script type="math/tex">X</script>.
@@ -205,7 +332,7 @@ They are linear combinations of input features.</p>
 <h2 id="content3">Derivation 2. Maximizing Variance</h2>
 
 <ol>
-  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">What?</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">What?</strong>
     <ol>
       <li>Find a direction ‘<script type="math/tex">w</script>’ that maximizes the variance of the projected data.</li>
       <li>Maximize the variance</li>
@@ -213,14 +340,14 @@ They are linear combinations of input features.</p>
   </li>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Derivation:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Derivation:</strong></dt>
       <dd>
         <script type="math/tex; mode=display">\max_{w : \|w\|_2=1} \: Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\})</script>
       </dd>
       <dd>
         <script type="math/tex; mode=display">% <![CDATA[
 \begin{align}
-& \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \sum_{i=1}{n}(x_i.\dfrac{w}{\|w\|})^2 \\
+& \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \sum_{i=1}^{n}(x_i.\dfrac{w}{\|w\|})^2 \\
 & \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \dfrac{\|xw\|^2}{\|w\|^2}  \\
 & \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \dfrac{w^TX^TXw}{w^Tw} \\
 \end{align} %]]></script>
@@ -240,10 +367,13 @@ They are linear combinations of input features.</p>
       </li>
     </ul>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Another Derivation from Statistics:</strong><br />
- The data matrix has points <script type="math/tex">x_i</script>; its component along a proposed axis <script type="math/tex">u</script> is <script type="math/tex">(x · u)</script>.<br />
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Another Derivation from Statistics:</strong><br />
+ First, we note that, The sample variance along direction <script type="math/tex">u</script> can be expressed as a quadratic form in <script type="math/tex">u</script>:
+    <p>$$ \sigma^2(u) = \dfrac{1}{n} \sum_{k=1}^n [u^T(x_k-\hat{x})]^2 = u^T \Sigma u,$$</p>
+
+    <p>The data matrix has points <script type="math/tex">x_i</script>; its component along a proposed axis <script type="math/tex">u</script> is <script type="math/tex">(x · u)</script>.<br />
  The variance of this is <script type="math/tex">E(x · u − E(x · u))^2</script><br />
- and the optimization problem is
+ and the optimization problem is</p>
     <p>$$
      \begin{align}
      \max_{x : \|x\|_2=1} \: E(x · u − E(x · u))^2 &amp; \\
@@ -255,6 +385,14 @@ They are linear combinations of input features.</p>
     <p>where the matrix <script type="math/tex">{\displaystyle \Sigma \:= \dfrac{1}{n} \sum_{j=1}^n (x_j-\hat{x})(x_j-\hat{x})^T}.</script><br />
  Since <script type="math/tex">\Sigma</script> is symmetric, the <script type="math/tex">u</script> that gives the maximum value to <script type="math/tex">u^T\Sigma u</script> is the eigenvector of <script type="math/tex">\Sigma</script> with the largest eigenvalue.<br />
  The second and subsequent principal component axes are the other eigenvectors sorted by eigenvalue.</p>
+
+    <p><strong style="color: red">Proof of variance along a direction:</strong></p>
+    <p>$$\boldsymbol{u}^{\top} \operatorname{cov}(\boldsymbol{X}) \boldsymbol{u}=\boldsymbol{u}^{\top} \mathbb{E}\left[(\boldsymbol{X}-\mathbb{E}(\boldsymbol{X}))(\boldsymbol{X}-\mathbb{E}(\boldsymbol{X}))^{\top}\right] \boldsymbol{u}=\mathbb{E}\left[\langle\boldsymbol{u}, \boldsymbol{X}-\mathbb{E}(\boldsymbol{X})\rangle^{2}\right] \geq 0 \\ \implies \\ 
+ \operatorname{var}(\langle\boldsymbol{u}, \boldsymbol{X}\rangle)=\mathbb{E}\left[\langle\boldsymbol{u}, \boldsymbol{X}-\mathbb{E} \boldsymbol{X}\rangle^{2}\right]=\boldsymbol{u}^{\top} \operatorname{cov}(\boldsymbol{X}) \boldsymbol{u}$$</p>
+
+    <ul>
+      <li><a href="http://www.cs.columbia.edu/~djhsu/AML/lectures/notes-pca.pdf">PCA and Covariance Matrices (paper)</a></li>
+    </ul>
   </li>
 </ol>
 
@@ -263,12 +401,12 @@ They are linear combinations of input features.</p>
 <h2 id="content4">Derivation 3. Minimize Projection Error</h2>
 
 <ol>
-  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">What?</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">What?</strong>
     <ol>
       <li>Find direction ‘<script type="math/tex">w</script>’ that minimizes the <em>Projection Error</em>.</li>
     </ol>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Derivation:</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Derivation:</strong>
     <p>$$
      \begin{align}
      \min_{\tilde{x} : \|\tilde{x}\|_2 = 1} \; \sum_{i=1}^n \|x_i - \tilde{x_i}\|^2 &amp; \\

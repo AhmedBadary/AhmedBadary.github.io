@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Normalization Methods in Deep Learning</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/concepts.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Normalization</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Batch Normalization</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Weight Normalization</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">Layer Normalization</a></li>
+  </ul>
+  <ul class="TOC5">
+    <li><a href="#content5">Instance Normalization</a></li>
+  </ul>
+  <ul class="TOC6">
+    <li><a href="#content6">Group Normalization</a></li>
+  </ul>
+  <ul class="TOC7">
+    <li><a href="#content7">Batch ReNormalization</a></li>
+  </ul>
+  <ul class="TOC8">
+    <li><a href="#content8">Batch-Instance Normalization</a></li>
+  </ul>
+  <ul class="TOC9">
+    <li><a href="#content9">Switchable Normalization</a></li>
+  </ul>
+  <ul class="TOC10">
+    <li><a href="#content10">Spectral Normalization</a></li>
+  </ul>
+  <ul class="TOC11">
+    <li><a href="#content11">Further Exploration/Discussions</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<p><a href="https://medium.com/@SeoJaeDuk/deeper-understanding-of-batch-normalization-with-interactive-code-in-tensorflow-manual-back-1d50d6903d35">Deeper Understanding of Batch Normalization</a><br />
+<a href="https://hadrienj.github.io/posts/Preprocessing-for-deep-learning/">Preprocessing for Deep Learning</a><br />
+<a href="https://arxiv.org/pdf/1706.02515.pdf">Self Normalizing Neural Networks</a><br />
+<a href="http://mlexplained.com/2018/11/30/an-overview-of-normalization-methods-in-deep-learning/">An Overview of Normalization Methods in Deep Learning</a></p>
+
+<p><img src="/main_files/dl/concepts/normalization/1.png" alt="img" width="100%" /></p>
+
+<h2 id="content1">Normalization</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Normalization:</strong><br />
+ <strong>Normalization</strong>, aka <strong>Feature Scaling</strong>, is a method used to normalize the range of independent variables or features of data. It is generally performed during the data preprocessing step.</p>
+
+    <p><strong style="color: red">Motivation:</strong><br />
+ Since the range of values of raw data varies widely, in some machine learning algorithms, objective functions will not work properly without normalization (e.g. dot-product-based functions are scale sensitive).<br />
+ Moreover, normalizing the inputs leads to <strong>spherical contours</strong> of the objective which makes the optimization easier (for vanilla sgd) and speeds up the convergence.</p>
+
+    <ul>
+      <li><a href="https://www.youtube.com/embed/FDCfw-YqWTE" value="show" onclick="iframePopA(event)"><strong>Why&amp;How to Normalize Inputs (Ng)</strong></a>
+ <a href="https://www.youtube.com/embed/FDCfw-YqWTE"></a>
+        <div></div>
+      </li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Input Normalization:</strong></p>
+
+    <p><strong style="color: red">Rescaling (min-max normalization):</strong><br />
+ is the simplest method and consists in rescaling the range of features to scale the range in <script type="math/tex">[0, 1]</script> or <script type="math/tex">[−1, 1]</script>. Selecting the target range depends on the nature of the data. To rescale to <script type="math/tex">[0, 1]</script> range:</p>
+    <p>$$x'=\dfrac{x-{\text{min}}(x)}{ {\text{max}}(x)-{\text{min}}(x)}$$</p>
+
+    <p>To rescale a range between an arbitrary set of values <script type="math/tex">[a, b]</script>, the formula becomes:</p>
+    <p>$${\displaystyle x'=a+{\frac {(x-{\text{min}}(x))(b-a)}{ {\text{max}}(x)-{\text{min}}(x)}}}$$</p>
+    <p>where <script type="math/tex">a,\: b</script> are the min-max values.</p>
+
+    <p><strong style="color: red">(Zero-) Centering - Mean Normalization:</strong></p>
+    <ul>
+      <li>Define the mean <script type="math/tex">\mu_j</script> of each feature of the datapoints <script type="math/tex">x^{(i)}</script>:
+        <p>$$\mu_{j}=\frac{1}{m} \sum_{i=1}^{m} x_{j}^{(i)}$$</p>
+      </li>
+      <li>Replace each <script type="math/tex">x_j^{(i)}</script> with <script type="math/tex">x_j - \mu_j</script></li>
+    </ul>
+
+    <p><strong style="color: red">Standardization (Z-score Normalization):</strong><br />
+ Feature standardization makes the values of each feature in the data have zero-mean (when subtracting the mean in the numerator) and unit-variance. Subtract the mean from each feature, then, divide the values of each feature by its standard deviation.</p>
+    <p>$$x' = \frac{x - \bar{x}}{\sigma}$$</p>
+
+    <p><strong style="color: red">(Scaling to) Unit Length Normalization:</strong><br />
+ Another option that is widely used in machine-learning is to scale the components of a feature vector such that the complete vector has length one. This usually means dividing each component by the Euclidean length of the vector:</p>
+    <p>$${\displaystyle x'={\frac {x}{\left\|{x}\right\|}}}$$</p>
+    <p>We can use <script type="math/tex">L_1</script> norm or other metrics based on problem.</p>
+
+    <p><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Activation Normalization:</strong><br />
+ Extends the idea of <strong>input normalization</strong> to deeper networks. Interprets activations in a layer as a featurized input (abstract representation of the input) and aims to normalize those layer outputs/activations.</p>
+
+    <p><span id="affine_transform">The difference however, is in the target mean and variance we want to achieve. Unlike <em>inputs</em>, we might not want to force the activations to have mean<script type="math/tex">=0</script> and variance<script type="math/tex">=1</script>. E.g. if we are using the sigmoid activation; mean<script type="math/tex">=0</script> and variance<script type="math/tex">=1</script> will utilize the <em><strong>linear</strong></em> part of sigmoid. So, changing the mean and variance will allow the network to take advantage of the non-linearity.</span> <br />
+ <img src="/main_files/concepts/3.png" alt="img" width="40%" class="center-image" /></p>
+
+    <blockquote>
+      <p>In practice, it’s much more common to normalize the outputs before applying the activation (e.g. in Batch-Norm)</p>
+    </blockquote>
+
+    <p><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14"><a href="https://en.wikipedia.org/wiki/Normalization_(statistics)">Statistical Normalization</a> - Transformations:</strong><br />
+ Let <script type="math/tex">X</script> be <script type="math/tex">n \times d</script> design matrix of sample pts.<br />
+ Each row <script type="math/tex">i</script> of <script type="math/tex">X</script> is a sample pt <script type="math/tex">X_i^T</script>.</p>
+
+    <p><strong style="color: red">Centering Transform:</strong><br />
+ AKA <strong>Mean Normalization</strong> is just removing the mean from each observation. It centers the data around <script type="math/tex">0</script>.</p>
+    <p>$$X' = X - \mathbf{\mu}$$</p>
+    <p>where <script type="math/tex">\mathbf{\mu}</script> is the mean of all the rows of <script type="math/tex">X</script>.</p>
+
+    <p><strong style="color: red">Decorrelation Transform:</strong><br />
+ removes only the correlations but leaves variances intact,</p>
+    <p>$$Z = X'V$$</p>
+    <p>where <script type="math/tex">\text{Var}(X') = \Sigma = \dfrac{1}{n}X'^TX' = V\Lambda V^T</script>, and <script type="math/tex">\text{Var}(Z) = \Lambda</script> is the sample covariance matrix.</p>
+
+    <p>It transforms the sample points to the eigenvector coordinate system.</p>
+
+    <p><strong style="color: red">Standardization Transform:</strong><br />
+ sets variances to <script type="math/tex">1</script> but leaves correlations intact,</p>
+    <p>$$X'_s = \dfrac{X - \mathbf{\mu}}{\mathbf{\sigma}_ X}$$</p>
+    <p>where <script type="math/tex">\mathbf{\sigma}_ X</script> is the standard deviation of all the rows of <script type="math/tex">X</script>.</p>
+
+    <p><strong style="color: red">Sphering Transform:</strong><br />
+ Rescales the uncorrelated matrix <script type="math/tex">Z</script> in order to obtain a covariance matrix corresponding to the identity matrix. To do that we scale our decorrelated data by dividing each dimension by the square-root of its corresponding eigenvalue.</p>
+    <p>$$W = X'\Sigma^{-1/2} = X'(V \Lambda^{-1/2} V^T)$$</p>
+    <p>this is <strong>ZCA whitening</strong>.</p>
+
+    <p><strong style="color: red">Whitening Transform:</strong><br />
+ The <a href="https://en.wikipedia.org/wiki/Whitening_transformation">Whitening Transformation</a> is a linear transformation that transforms a vector of random variables with a known covariance matrix into a set of new variables whose covariance is the identity matrix, meaning that they are uncorrelated and each have variance 1. The transformation is called “whitening” because it changes the input vector into a white noise vector.<br />
+ = <strong>Centering</strong> + <strong>Sphering</strong></p>
+
+    <p>Then <script type="math/tex">W</script> has covariance matrix <script type="math/tex">I . \left[\text { If } X_{i} \sim \mathcal{N}(\mu, \Sigma), \text { then approximately, } W_{i} \sim \mathcal{N}(0, I)\right]</script>.</p>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><strong>Decorrelation:</strong> intuitively, it means that we want to rotate the data until there is no correlation anymore.</li>
+      <li><strong>Centering</strong> seems to make it easier for hidden units to get into a good operating region of the sigmoid or ReLU</li>
+      <li><strong>Standardization (normalizing variance)</strong> makes the objective function better conditioned, so gradient descent converges faster</li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+</ol>
+
+<!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}  
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}  -->
+
+<hr />
+
+<h2 id="content2">Batch Normalization</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Batch Normalization:</strong><br />
+ <strong>Batch Normalization</strong> is a normalization method that normalizes activations in a network across the mini-batch. For each feature, batch normalization computes the mean and variance of that feature in the mini-batch. It then subtracts the mean and divides the feature by its mini-batch standard deviation.<br />
+ <span style="color: goldenrod">This restricts the activations to have <strong><script type="math/tex">0</script></strong> mean and <strong>unit</strong> variance.</span><br />
+ This is followed by an <strong>affine transformation</strong> of the normalized activations to <strong>rescale the mean and variance</strong>, in a learnable way, to whatever the network sees fit. <a href="#affine_transform">This is done because restricting the mean and variance of the activations might hinder the network from taking advantage of the freedom of setting the distribution of the activations to something that might help the later layers learn faster</a>. <em>This means that the expressiveness of the network does not change.</em></p>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show Paper</button></p>
+    <p hidden=""><img style="float: left" width="45%" src="https://cdn.mathpix.com/snip/images/iQfN-SDV0z9nzlyRhX8oUuX8ZUgxd9kuAjmpKhROwBk.original.fullsize.png" />
+ <iframe src="https://docs.google.com/viewerng/viewer?url=https://arxiv.org/pdf/1502.03167.pdf&amp;embedded=true" frameborder="0" height="535" width="415" title="Batch Normalization" scrolling="auto"></iframe></p>
+    <p><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Effectiveness of Batch Normalization:</strong><br />
+ There are many different proposed reasons that try to explain the wide success and effectiveness of the method. We summarize here some of those reasons and give an intuition to why those reasons apply.</p>
+
+    <p><strong>Summarizing the intuition of why BN works:</strong><br />
+ The overall intuition is that batch normalization makes the loss surface “easier to navigate”, making optimization easier, enabling the use of higher learning rates, and improving model performance across multiple tasks.<br />
+ Further, there is a <em>regularization</em> effect when using BN induced by added noise to the estimate of the mean and variance of the data due to using mini-batches instead.</p>
+
+    <ul>
+      <li><a href="https://blog.paperspace.com/busting-the-myths-about-batch-normalization/">Busting the myth about batch normalization</a></li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents222">Internal Covariate Shift as an Intuitive but Wrong Motivation for the Success of BN:</strong><br />
+The correlation between batch normalization and internal covariate shift is widely accepted but was not supported by experimental results. Scholars recently show with experiments that the hypothesized relationship is not an accurate one. Rather, the enhanced accuracy with the batch normalization layer seems to be independent of internal covariate shift.</p>
+
+    <p><strong>Two Problems with the ICS Explanation:</strong></p>
+    <ol>
+      <li>Even if the mean and variance are constant, the distribution of activations can still change. Why are the mean and variance so important?</li>
+      <li>If we introduce <script type="math/tex">\gamma</script>  and <script type="math/tex">\beta</script>, the mean and variance will deviate from <script type="math/tex">0</script> and <script type="math/tex">1</script> anyway. What then, is the point of batch normalization?<br />
+<br /></li>
+    </ol>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Suppressing Higher-Order Effects (Goodfellow):</strong></p>
+
+    <p id="lst-p"><strong>Quick Intuition:</strong></p>
+    <ul>
+      <li>In a neural network, changing one weight affects subsequent layers, which then affect subsequent layers, and so on.</li>
+      <li>This means changing one weight can make the activations fly all over the place in complex ways.</li>
+      <li>This forces us to use lower learning rates to prevent the gradients from exploding, or – if we use sigmoid activations – to prevent the gradients from disappearing.</li>
+      <li>Batch normalization to the rescue! Batch normalization reparameterizes the network to make optimization easier.</li>
+      <li>With batch normalization, we can control the magnitude and mean of the activations <strong>independent</strong> of all other layers.</li>
+      <li>This means weights don’t fly all over the place (as long as we have sensible initial means and magnitudes), and we can optimize much easier.</li>
+    </ul>
+
+    <p><strong>Further Intuition:</strong><br />
+ Deep Neural networks have higher-order interactions, which means changing weights of one layer might also effect the statistics of other layers in addition to the loss function. These cross layer interactions, when unaccounted lead to internal covariate shift. Every time we update the weights of a layer, there is a chance that it effects the statistics of a layer further in the neural network in an unfavorable way.<br />
+ Convergence may require careful initializing, hyperparameter tuning and longer training durations in such cases. However, when we add the batch normalized layer between the layers, the statistics of a layer are only effected by the two hyperparameters  <script type="math/tex">\gamma</script>  and <script type="math/tex">\beta</script>. Now our optimization algorithm has to adjust only two hyperparameters to control the statistics of any layer, rather than the entire weights in the previous layer. This greatly speeds up convergence, and avoids the need for careful initialization and hyperparameter tuning. Therefore, Batch Norm acts more like a check pointing mechanism.</p>
+    <blockquote>
+      <p>Notice that the ability to arbitrarily set the mean and the standard deviation of a layer also means that we can recover the original distribution if that was sufficient for proper training.</p>
+    </blockquote>
+
+    <ul>
+      <li><a href="https://www.youtube.com/embed/Xogn6veSyxA?start=225" value="show" onclick="iframePopA(event)"><strong>GoodFellow Lecture</strong></a>
+ <a href="https://www.youtube.com/embed/Xogn6veSyxA?start=225"></a>
+        <div></div>
+      </li>
+      <li><a href="http://mlexplained.com/2018/01/10/an-intuitive-explanation-of-why-batch-normalization-really-works-normalization-in-deep-learning-part-1/">Further Discussion of Higher-Order Effects</a></li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Induced Smoothness of the Optimization Landscape (<a href="https://arxiv.org/pdf/1805.11604.pdf">Santurkar et al.</a>):</strong><br />
+ In a new paper, the authors claim that BN works because it makes the loss surface <strong>smoother</strong>. Concretely, it improves the <script type="math/tex">\beta</script>-smoothness or the Lipschitzness of the function. This smoothness induces a more predictive and stable behavior of the gradients, allowing for faster training.</p>
+
+    <ul>
+      <li><a href="https://arxiv.org/pdf/1805.11604.pdf" value="show" onclick="iframePopA(event)"><strong>How Does Batch Normalization Help Optimization? (Santurkar et al.)</strong></a>
+ <a href="https://arxiv.org/pdf/1805.11604.pdf"></a>
+        <div></div>
+      </li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Batch Norm as a Regularizer:</strong><br />
+ BN also acts a regularizer. The mean and the variance estimated for each batch is a noisier version of the true mean, and this injects randomness in our optima search. This helps in regularization.<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Length-Direction Decoupling:</strong><br />
+ It is argued that the success of batch normalization could be at least partially credited to the <strong>length-direction decoupling effect</strong> that the method provides.</p>
+
+    <p>By interpreting the batch normalization procedure as the reparametrization of weight space, it could be shown that the length and the direction of the weights are separated after the procedure, and they could thus be trained separately.</p>
+
+    <p id="lst-p">This property could then be used to <strong>prove the faster convergence of problems with batch normalization</strong>:</p>
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Batch_normalization#Linear_Convergence_of_the_Least-Square_Problem_with_Batch_Normalization">Linear Convergence of the <strong>Least-Squares</strong> Problem with Batch Normalization</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Batch_normalization#Linear_Convergence_of_the_Learning_Halfspace_Problem_with_Batch_Normalization">Linear Convergence of the <strong>Learning Halfspace</strong> Problem with Batch Normalization</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Batch_normalization#Linear_Convergence_of_Neural_Networks_with_Batch_Normalization">Linear Convergence of <strong>Neural Networks</strong> with Batch Normalization</a><br />
+ <br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Limitations/Problems of BN:</strong></p>
+
+    <p>When doing normalization, we ideally want to the use the <strong>global</strong> mean and variance to standardize our data. Computing this for each layer is far too expensive though, so we need to approximate using some other measures. BN approximates the mean and variance with those of the <strong>mini batch</strong>, which is a noisy estimate. Although, we motivated some of the effectiveness of BN to its regularizing effects due to this, same, noisy estimate, this estimate can be problematic in the following scenarios:</p>
+    <ol>
+      <li><strong>Small Batch Sizes:</strong><br />
+ If the batch size is <script type="math/tex">1</script>, the variance is <script type="math/tex">0</script> so batch normalization cannot be applied. Slightly larger mini-batch sizes won’t have this problem, but small mini-batches make our estimates very noisy and can negatively impact training, meaning batch normalization imposes a certain lower bound on our batch size.</li>
+      <li><strong>Recurrent Connections in an RNN:</strong><br />
+ In an RNN, <em>the recurrent activations of each time-step will have different statistics</em>. This means that we have to <em>fit a separate batch normalization layer for each time-step</em>. This makes the model <em>more complicated</em> and – more importantly – it <em>forces us to store the statistics for each time-step during training</em>.</li>
+      <li><strong>Dependence of the loss between samples in a mini-batch:</strong><br />
+ BN makes the loss value for each sample in a mini-batch dependent on other samples in the mini-batch. For instance, if a sample causes a certain layer’s activations to become much larger, this will make the mean and variance larger as well. This will change the activation for all other samples in the mini-batch as well. Furthermore, the mini-batch statistics will depend on the mini-batch size as well (a smaller mini-batch size will increase the random variation in the mean and variance statistics).
+ The problem arises not when training a model on a single machine, but when we start to conduct distributed training, things can get ugly. As mentioned in <a href="https://arxiv.org/pdf/1706.02677.pdf">this paper</a>, we need to take extra care in choosing the batch size and learning rate in the presence of batch normalization when doing distributed training. If two different machines use different batch sizes, they will indirectly be optimizing different loss functions: this means that the value of <script type="math/tex">\gamma</script> that worked for one machine is unlikely to work for another machine. This is why the authors stressed that the batch size for each worker must be kept constant across all machines.</li>
+      <li><strong>BN parameters in Fine-Tuning Applications:</strong><br />
+ When Fine-Tuning a larger network by freezing all the layers except the last layer; it is unclear if one should use the mean and variance computed on the <em><strong>original dataset</strong></em> or use the mean and variance of the mini-batches. Though most frameworks use the mini-batch statistics, if we are using a different mini-batch size there will be a mismatch between the optimal batch normalization parameters and the parameters in the network.<br />
+ If there is a mis-match in the mini-batch sizes it seems to be better to use the statistics of the <em>original dataset</em> instead.<br />
+ <a href="https://forums.fast.ai/t/freezing-batch-norm/8377/5">Further Discussion</a></li>
+    </ol>
+
+    <p><br /></p>
+  </li>
+</ol>
+
+<!-- 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}  
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}   -->
+
+<hr />
+
+<h2 id="content3">Weight Normalization</h2>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Paper</button></p>
+<iframe hidden="" src="https://arxiv.org/pdf/1602.07868.pdf" frameborder="0" height="780" width="600" title="Weight Normalization" scrolling="auto"></iframe>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Weight Normalization:</strong><br />
+ <strong>Weight Normalization</strong> is a normalization method that, instead of normalizing the <em>mini-batch</em>, <span style="color: goldenrod">normalizes the weights of the layer</span>.</p>
+
+    <p>WN reparameterizes the weights <script type="math/tex">\boldsymbol{w}</script> of any layer in the network in the following way:</p>
+    <p>$$\boldsymbol{w}=\frac{g}{\|\boldsymbol{v}\|} \boldsymbol{v} \:\:\:\:\:\:\: $$</p>
+    <p>where <script type="math/tex">\boldsymbol{v}</script> is a <script type="math/tex">k</script>-dimensional vector, <script type="math/tex">g</script> is a scalar, and <script type="math/tex">\|\boldsymbol{v}\|</script> denotes the Euclidean norm of <script type="math/tex">\boldsymbol{v}</script>.<br />
+ This reparameterization has the effect of fixing the Euclidean norm of the weight vector <script type="math/tex">\boldsymbol{w}</script>: we now have <script type="math/tex">\|\boldsymbol{w}\| = g</script>, independent of the parameters <script type="math/tex">\boldsymbol{v}</script>.</p>
+
+    <p id="lst-p">Weight Normalization <span style="color: goldenrod">separates the norm of the weight vector from its direction without reducing expressiveness</span>:</p>
+    <ul>
+      <li>For variance, this has a similar effect to <em>dividing the inputs by the standard deviation in batch normalization</em>.</li>
+      <li>As for the mean, the authors of the paper proposed using a method called <a href="#bodyContents33"><strong>“mean-only batch normalization”</strong></a> together with weight normalization.<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Advantages:</strong>
+    <ul>
+      <li>Since WN separates the norm of the weight vector from its direction, and then optimizes both <script type="math/tex">g</script> and <script type="math/tex">\boldsymbol{v}</script> using gradient descent. This change in learning dynamics makes optimization easier.</li>
+      <li>It makes the mean and variance <strong>independent of the batch</strong>; since now they are connected to the weights of the network.</li>
+      <li>It is often <strong>much faster</strong> than BN. In CNNs, the number of weights tends to be far smaller than the number of inputs, meaning weight normalization is computationally cheaper compared to batch normalization (CNNs share weights). <br />
+ <br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Mean-Only Batch Normalization:</strong><br />
+ Although weight normalization on its own can assist training, the authors of the paper proposed using a method called “mean-only batch normalization” in conjunction with weight normalization.</p>
+
+    <p><strong>Mean-Only Batch Normalization</strong> is a method that subtracts out the mean of the mini-batch but does not divide the inputs by the standard deviation or rescales them.</p>
+
+    <p id="lst-p">Though this method counteracts some of the computational speed-up of weight normalization, it is cheaper than batch-normalization since it does not need to compute the standard deviations. The authors claim that this method provides the following benefits:</p>
+    <ol>
+      <li>It makes the mean of the activations independent from <script type="math/tex">\boldsymbol{v}</script>:<br />
+ Weight normalization independently cannot isolate the mean of the activations from the weights of the layer, causing high-level dependencies between the means of each layer. Mean-only batch normalization can resolve this problem.</li>
+      <li>It adds “gentler noise” to the activations:<br />
+ One of the side-effects of batch normalization is that it adds some stochastic noise to the activations as a result of using noisy estimates computed on the mini-batches. This has a regularization effect in some applications but can be potentially harmful in some noise-sensitive domains like reinforcement learning. The noise caused by the mean estimations, however, are “gentler” since the law of large numbers ensures the mean of the activations is approximately normally distributed.<br />
+ Thus, weight normalization <span style="color: goldenrod">can still work in settings with a smaller mini-batch size</span>.<br />
+ <br /></li>
+    </ol>
+  </li>
+</ol>
+
+<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}   -->
+
+<hr />
+
+<h2 id="content4">Layer Normalization</h2>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Paper</button></p>
+<iframe hidden="" src="https://arxiv.org/pdf/1607.06450.pdf" frameborder="0" height="840" width="646" title="Layer Normalization" scrolling="auto"></iframe>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">Layer Normalization:</strong><br />
+ <strong>Layer Normalization</strong> is a normalization method developed by Hinton that, instead of normalizing the inputs across batches like BN, <span style="color: goldenrod">normalizes the inputs across the <strong>features</strong></span>:
+    <p>$$\begin{aligned} \mu_{i} &amp;=\frac{1}{m} \sum_{j=1}^{m} x_{i j} \\ \sigma_{i}^{2} &amp;=\frac{1}{m} \sum_{j=1}^{m}\left(x_{i j}-\mu_{i}\right)^{2} \\ \hat{x}_{i j} &amp;=\frac{x_{i j}-\mu_{i}}{\sqrt{\sigma_{i}^{2}+\epsilon}} \end{aligned}$$</p>
+
+    <p>This is deceptively similar to the batch norm equations:</p>
+    <p>$$\begin{aligned} \mu_{j} &amp;=\frac{1}{m} \sum_{i=1}^{m} x_{i j} \\ \sigma_{j}^{2} &amp;=\frac{1}{m} \sum_{i=1}^{m}\left(x_{i j}-\mu_{j}\right)^{2} \\ \hat{x}_{i j} &amp;=\frac{x_{i j}-\mu_{j}}{\sqrt{\sigma_{j}^{2}+\epsilon}} \end{aligned}$$</p>
+    <p>where <script type="math/tex">x_{i j}</script>  is the <script type="math/tex">i,j</script>-th element of the input, the first dimension represents the batch and the second represents the feature (I have modified the notation from the original papers to make the contrast clearer).</p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">BN vs LN Illustration</button>
+ <img src="https://cdn.mathpix.com/snip/images/oLjDSgRfXNgvvaobfQKjDuNfUhcjce-K7TKcX8-DjWM.original.fullsize.png" alt="LN vs BN" width="70%" hidden="" /><br />
+ In batch normalization, the statistics are computed across the batch and are the same for each example in the batch. In contrast, in layer normalization, the statistics are computed across each feature and are <strong>independent of other examples</strong>.</p>
+
+    <p>This means that layer normalization is <strong>not a simple reparameterization of the network</strong>, unlike the case of weight normalization and batch normalization, which both have the same expressive power as an unnormalized neural network. The layer normalized model, thus, has <strong>different invariance properties than the other methods</strong>. <br />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Advantages:</strong>
+    <ul>
+      <li>The independence between inputs means that each input has a different normalization operation, allowing arbitrary mini-batch sizes to be used.</li>
+      <li>The experimental results show that layer normalization performs well for recurrent neural networks.<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">Analysis of the Invariance Properties of LN:</strong><br />
+ <br /></li>
+</ol>
+
+<hr />
+
+<h2 id="content5">Instance Normalization</h2>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Paper</button></p>
+<iframe hidden="" src="https://docs.google.com/viewer?url=https://arxiv.org/pdf/1607.08022.pdf&amp;embedded=true" frameborder="0" height="840" width="646" title="Layer Normalization" scrolling="auto"></iframe>
+
+<!-- <iframe hidden="" src="https://arxiv.org/pdf/1607.08022.pdf" frameborder="0" height="840" width="646" title="Layer Normalization" scrolling="auto"></iframe> -->
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents51">Instance Normalization:</strong><br />
+ <strong>Instance Normalization</strong> is similar to layer normalization but with an extra restriction: it computes the mean/standard deviation and normalize across <strong>each channel in each training example</strong>.</p>
+
+    <p><strong style="color: red">Motivation:</strong><br />
+ In <strong>Style Transfer</strong> problems, the network should be <em>agnostic to the <strong>contrast</strong> of the original image</em>. <br />
+ Therefore, it is specific to images and not trivially extendable to RNNs.</p>
+
+    <p>Experimental results show that instance normalization performs well on style transfer when replacing batch normalization. Recently, instance normalization has also been used as a replacement for batch normalization in <strong>GANs</strong>. <br />
+ <br /></p>
+  </li>
+</ol>
+
+<!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents52}  
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents53}   -->
+
+<hr />
+
+<h2 id="content6">Group Normalization</h2>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Paper</button></p>
+<iframe hidden="" src="https://docs.google.com/viewer?url=https://arxiv.org/pdf/1803.08494.pdf&amp;embedded=true" frameborder="0" height="840" width="646" title="Layer Normalization" scrolling="auto"></iframe>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents61">Group Normalization:</strong><br />
+ <strong>Group Normalization</strong> computes the mean and standard deviation over <strong>groups of channels</strong> for <em>each training example</em>.<br />
+ You can think of GN as being half way between <em>layer normalization</em> and <em>instance normalization</em>:
+    <ul>
+      <li>When we put all the channels into a single group, it becomes <strong>Layer Normalization</strong></li>
+      <li>When we put each channel in a different group, it becomes <strong>Instance Normalization</strong><br />
+ <br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents62">Motivation/Advantages:</strong><br />
+ <em>Layer Norm</em> and <em>Instance Norm</em> were significantly inferior to BN on image recognition tasks. Group Normalization was able to achieve much closer performance to BN with a batch-size of 32 on ImageNet and outperformed it on smaller batch sizes.</p>
+
+    <p>For tasks like <em>object detection</em> and <em>segmentation</em> that <strong>use much higher resolution images</strong> (and therefore cannot increase their batch size due to memory constraints), Group Normalization was shown to be a very effective normalization method.<br />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents63">Effectiveness of Group Normalization:</strong>
+    <blockquote>
+      <p><strong>Why is group normalization so effective compared to layer normalization and instance normalization?</strong></p>
+    </blockquote>
+
+    <p><strong>Layer Norm</strong> makes an implicit assumption that <span style="color: goldenrod">all channels are “equally important” when computing the mean</span>. This assumption is often not true in <strong>convolution layers</strong>.<br />
+ For instance, neurons near the edge of an image and neurons near the center of an image will have very different activation statistics.  This means that computing different statistics for different channels can give models much-needed flexibility.</p>
+
+    <p><strong>Instance Norm</strong>, on the other hand, assumes that the <span style="color: goldenrod">channels are completely independent from each other</span>. Channels in an image are not completely independent though, so being able to leverage the statistics of nearby channels is an advantage group normalization has over instance normalization.<br />
+ <br /></p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content7">Batch ReNormalization</h2>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Paper</button></p>
+<iframe hidden="" src="https://docs.google.com/viewer?url=https://arxiv.org/pdf/1702.03275.pdf&amp;embedded=true" frameborder="0" height="840" width="646" title="Layer Normalization" scrolling="auto"></iframe>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents71">Batch ReNormalization:</strong><br />
+ <strong>Batch ReNormalization</strong> is an extension of BN for applying batch normalization to small batch sizes.
+    <blockquote>
+      <p>In the Authors words: “an effective extension to ensure that the training and inference models generate the same outputs that depend on individual examples rather than the entire mini-batch”</p>
+    </blockquote>
+
+    <p>The authors propose to use a moving average while also taking the effect of previous layers on the statistics into account. Their method is – at its core – a simple reparameterization of normalization with the moving average. If we denote the moving average mean and standard deviation as <script type="math/tex">\mu</script> and <script type="math/tex">\sigma</script> and the mini-batch mean and standard deviation as <script type="math/tex">\mu_B</script> and <script type="math/tex">\sigma_B</script>, the batch renormalization equation is:</p>
+    <p>$$\frac{x_{i}-\mu}{\sigma}=\frac{x_{i}-\mu_{\mathcal{B}}}{\sigma_{\mathcal{B}}} \cdot r+d, \quad \text { where } r=\frac{\sigma_{\mathcal{B}}}{\sigma}, \quad d=\frac{\mu_{\mathcal{B}}-\mu}{\sigma}$$</p>
+
+    <p>In other words, we multiply the batch normalized activations by <script type="math/tex">r</script> and add <script type="math/tex">d</script>, where both <script type="math/tex">r</script> and <script type="math/tex">d</script> are computed from the mini-batch statistics and moving average statistics. The trick here is to <strong>not backpropagate</strong> through <script type="math/tex">r</script> and <script type="math/tex">d</script>. Though this means we ignore some of the effects of previous layers on previous mini batches, since the mini batch statistics and moving average statistics should be the same on average, the overall effect of this should cancel out on average as well.<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents72">Motivation (derivation):</strong><br />
+ The basic idea behind batch renormalization comes from the fact that we do not use the individual mini-batch statistics for batch normalization during inference. Instead, we use a <strong>moving average</strong> of the mini-batch statistics. This is because a moving average provides a better estimate of the true mean and variance compared to individual mini-batches.</p>
+
+    <p><strong>Why don’t we use the moving average during training?</strong><br />
+ The answer has to do with the fact that during training, we need to perform backpropagation. In essence, when we use some statistics to normalize the data, we need to <strong>backpropagate through those statistics as well</strong>. If we use the statistics of activations from previous mini-batches to normalize the data, we need to account for how the previous layer affected those statistics during backpropagation. If we ignore these interactions, we could potentially cause previous layers to keep on increasing the magnitude of their activations even though it has no effect on the loss. This means that if we use a moving average, we would need to store the data from all previous mini-batches during training, which is far too expensive.<br />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents73">Performance:</strong><br />
+ Unfortunately, batch renormalization’s performance still degrades when the batch size decreases (though not as badly as batch normalization), meaning group normalization still has a slight advantage in the small batch size regime.
+ <br /></li>
+</ol>
+
+<hr />
+
+<h2 id="content8">Batch-Instance Normalization</h2>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Paper</button></p>
+<iframe hidden="" src="https://docs.google.com/viewer?url=https://arxiv.org/pdf/1805.07925.pdf&amp;embedded=true" frameborder="0" height="840" width="646" title="Layer Normalization" scrolling="auto"></iframe>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents81">Batch-Instance Normalization:</strong><br />
+ <strong>Batch-Instance Normalization</strong> is an extension of <em>instance normalization</em> that attempts to <span style="color: goldenrod">account for differences in contrast and style in images</span>. It is basically, just, an <em>interpolation between batch normalization and instance normalization</em>.</p>
+
+    <p>Denoting the batch normalized outputs and the instance normalized outputs as <script type="math/tex">\hat{x}^{(B)}</script> and <script type="math/tex">\hat{x}^{(I)}</script> each, the batch-instance normalized output can be expressed as:</p>
+    <p>$$\mathbf{y}=\left(\rho \cdot \hat{\mathbf{x}}^{(B)}+(1-\rho) \cdot \hat{\mathbf{x}}^{(I)}\right) \cdot \gamma+\beta$$</p>
+    <p>The interesting aspect of batch-instance normalization is that the balancing parameter <script type="math/tex">\rho</script> is <strong>learned</strong> through gradient descent.<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents82">Motivation:</strong><br />
+ The problem with instance normalization is that it <strong>completely erases style information</strong>. Though this is beneficial in certain settings like style transfer, it can be problematic in settings like weather classification where the style (e.g. the brightness of the image) can be a crucial feature. In other words, the degree of style information that should be removed is dependent on the task at hand. Batch-instance normalization attempts to deal with this by <strong>learning</strong> how much style information should be used for each <strong>task and feature map (channel)</strong>.<br />
+ Thus, B-IN extends instance normalization to account for differences in contrast and style in images.<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents83">Performance:</strong><br />
+ Batch-instance normalization outperformed batch normalization on CIFAR-10/100, ImageNet, domain adaptation, and style transfer. In image classification tasks, the value of <script type="math/tex">\rho</script>  tended to be close to <script type="math/tex">0</script> or <script type="math/tex">1</script>, meaning many layers used either instance or batch normalization almost exclusively. In addition, layers tended to use batch normalization more than instance normalization, which fits the intuition proposed by the authors that instance normalization serves more as a method to eliminate unnecessary style variation. On style transfer – on the other hand – the model tended to use instance normalization more, which makes sense given style is much less important in style transfer.</p>
+
+    <p>The authors also found that in practice, using a higher learning rate for <script type="math/tex">\rho</script> improves performance.</p>
+
+    <p>One important contribution of batch-instance normalization is that it showed that <strong>models could learn to adaptively use different normalization methods using gradient descent</strong>. This raises the question: <em>could models learn to use an even wider variety of normalization methods?</em><br />
+ This nicely leads us to the next normalization method: <strong>Switchable Normalization</strong>.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content9">Switchable Normalization</h2>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Paper</button></p>
+<iframe hidden="" src="https://docs.google.com/viewer?url=https://arxiv.org/pdf/1811.07727.pdf&amp;embedded=true" frameborder="0" height="840" width="646" title="Layer Normalization" scrolling="auto"></iframe>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Arxiv</button></p>
+<iframe hidden="" src="https://arxiv.org/pdf/1811.07727.pdf" frameborder="0" height="840" width="646" title="Layer Normalization" scrolling="auto"></iframe>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents91">Switchable Normalization:</strong><br />
+ <strong>Switchable Normalization</strong> is a method that uses a weighted average of different mean and variance statistics from batch normalization, instance normalization, and layer normalization. Similar to batch-instance normalization, the weights were learned through backpropagation.<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents92">Motivation:</strong><br />
+ Given the different methods proposed for normalization, common questions arise, including:<br />
+ Is batch normalization still the best normalization method out-of-the-box? What if we combine different normalization methods? What if the best normalization method actually differs depending on the depth of the layer?<br />
+ Switchable Normalization aims to answer those questions.<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents93">Performance:</strong><br />
+ The authors showed that switch normalization could potentially outperform batch normalization on tasks such as image classification and object detection.</p>
+
+    <p>Perhaps more interestingly, the paper showed that <span style="color: goldenrod">the statistics of instance normalization were used more heavily in earlier layers</span>, whereas <span style="color: goldenrod">layer normalization was preferred in the later layers</span>, and <span style="color: goldenrod">batch normalization being used in the middle</span>. Smaller batch sizes lead to a preference towards layer normalization and instance normalization, as is expected.<br />
+ <br /></p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content10">Spectral Normalization</h2>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Paper</button></p>
+<iframe hidden="" src="https://docs.google.com/viewer?url=https://arxiv.org/pdf/1805.07925.pdf&amp;embedded=true" frameborder="0" height="840" width="646" title="Layer Normalization" scrolling="auto"></iframe>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents101">Spectral Normalization:</strong><br />
+ <strong>Spectral Normalization</strong> is a method proposed to improve the training of <strong>GANs</strong> by limiting the Lipschitz constant of the discriminator.<br />
+ The authors restrict the Lipschitz constant by normalizing the weight matrices by their largest eigenvalue (or their spectral norm – hence the name). The largest eigenvalue is computed using the <em>power method</em> which makes the computational cost of this method very cheap. (Compared to weight normalization, spectral normalization does not reduce the rank of the weight matrix.)<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup><br />
+ <br /></p>
+
+    <p>SN is not designed to be a replacement for batch normalization, but it gives us a very interesting look into normalization in deep learning in general.<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents102">Performance:</strong><br />
+ Experimental results show that spectral normalization improves the training of GANs with minimal additional tuning.<br />
+ <br /></p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content11">Further Exploration/Discussions</h2>
+
+<p>Though recent papers have explored different normalization methods at different depths of the network, there are still many dimensions that can be explored. In <a href="https://arxiv.org/pdf/1805.11604.pdf">this paper</a>, the authors show that <script type="math/tex">L_1</script> normalization performs better than batch normalization, suggesting that as we understand batch normalization better, we might be able to come up with more principled methods of normalization. This means that we might see new normalization methods use different statistics instead of changing what they compute the statistics over.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Most likely a wrong statement <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

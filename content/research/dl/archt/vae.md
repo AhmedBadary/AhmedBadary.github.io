@@ -1,7 +1,7 @@
 ---
 layout: NotesPage
 title: Variational Auto-Encoders
-permalink: /work_files/research/dl/vae
+permalink: /work_files/research/dl/archits/vae
 prevLink: /work_files/research/dl/cv.html
 ---
 

@@ -47,7 +47,7 @@ prevLink: /work_files/research/nlp.html
         * __Affixes__: the bits and pieces that adhere to stems (often with grammatical functions).     
 
 
-2. **Word Equivalency in NLP:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
+2. **Word Equivalence in NLP:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
     :   Two words have the same  
         * __Lemma__, if they have the same:  
             * Stem  
@@ -116,7 +116,7 @@ prevLink: /work_files/research/nlp.html
     :   > __Example__: "automate", "automatic", "automation" -> "automat".  
 
 2. **Porter's Algorithm:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}  
-    :   The most comon English stemmer.  
+    :   The most common English stemmer.  
     :   It is an iterated series of simple _replace_ rules.  
 
 
@@ -139,9 +139,9 @@ prevLink: /work_files/research/nlp.html
     :   Identifiers such as "!", "?" are unambiguous; they usually signify the end of a sentence.  
     :   The period "." is quite ambiguous, since it can be used in other ways, such as in abbreviations and in decimal number notation.  
 
-3. **Dealing with Ambiguous Idenitifiers:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}  
-    :   One way of dealing with ambiguous idenitifiers is by building a __Binary Classifier__.  
-        On a given occurrence of a period, the classifer has to decide between one of "Yes, this is the end of a sentence" or "No, this is not the end of a sentence".  
+3. **Dealing with Ambiguous Identifiers:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}  
+    :   One way of dealing with ambiguous identifiers is by building a __Binary Classifier__.  
+        On a given occurrence of a period, the classifier has to decide between one of "Yes, this is the end of a sentence" or "No, this is not the end of a sentence".  
     :   __Types of Classifiers:__  
         * _Decision Trees_  
         * _Logistic Regression_  

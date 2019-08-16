@@ -85,6 +85,7 @@ prevLink: /work_files/research/ml.html
     <p>$$S=\sum_{i=1}^{n}\left(Y_{i}-\beta_{0}-\beta_{1} \phi_{1}\left(X_{i 1}\right)-\cdots-\beta_{p} \phi_{p}\left(X_{i p}\right)\right)^{2}$$</p>  
 
     __Effects of Linearity:__  
+    {: #lst-p}
     * The function to be minimized is a quadratic function of the $$\beta_j$$ for which minimization is a relatively simple problem  
     * The derivatives of the function are linear functions of the $$\beta_j$$ making it easy to find the minimizing values  
     * The minimizing values $$\beta_j$$ are linear functions of the observations $$Y_i$$  
@@ -135,7 +136,7 @@ prevLink: /work_files/research/ml.html
         * *__Logistic Regression__*:  
             $$h(x) = \sigma(s)$$  
 
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}
+<!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}
 
 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}
 
@@ -169,3 +170,4 @@ prevLink: /work_files/research/ml.html
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}
+ -->

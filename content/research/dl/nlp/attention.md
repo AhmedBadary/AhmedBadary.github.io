@@ -22,6 +22,8 @@ prevLink: /work_files/research/dl/nlp.html
 [Transformer Implementation TF G-Colab](https://www.tensorflow.org/alpha/tutorials/text/transformer)  
 [A Guide to Attention Mechanisms and Memory Networks (skymind)](https://skymind.ai/wiki/attention-mechanism-memory-network)  
 [Soft and Hard Attention](https://jhui.github.io/2017/03/15/Soft-and-hard-attention/)  
+[Attention (WildML)](http://www.wildml.com/2016/01/attention-and-memory-in-deep-learning-and-nlp/)  
+
 
 
 

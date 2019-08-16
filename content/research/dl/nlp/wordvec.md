@@ -26,6 +26,11 @@ prevLink: /work_files/research/dl/nlp.html
 [W2V Detailed Tutorial - Negative Sampling (Stanford)](http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/)  
 [Commented word2vec C code](https://github.com/chrisjmccormick/word2vec_commented)  
 [W2V Resources](http://mccormickml.com/2016/04/27/word2vec-resources/)  
+[An overview of word embeddings and their connection to distributional semantic models
+](http://blog.aylien.com/overview-word-embeddings-history-word2vec-cbow-glove/)  
+[On Word Embeddings (Ruder)](http://ruder.io/word-embeddings-1/)  
+
+
 
 
 ## Word Meaning

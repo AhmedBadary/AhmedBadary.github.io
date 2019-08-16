@@ -103,7 +103,7 @@
     <p>Convolutional networks are simply neural networks that use convolution in place of general matrix multiplication in at least one of their layers.</p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">The Big Idea:</strong> <br />
- CNNs use a variation of multilayer perceptrons designed to require minimal preprocessing. In particular, they use the <a href="#bodyContents31">Convolution Operation</a>. <br />
+ CNNs use a variation of multilayer Perceptrons designed to require minimal preprocessing. In particular, they use the <a href="#bodyContents31">Convolution Operation</a>. <br />
  The Convolution leverage <em>three important ideas</em> that can help improve a machine learning system:
     <ol>
       <li><strong>Sparse Interactions/Connectivity/Weights:</strong><br />
@@ -134,7 +134,7 @@
         <p><strong>Parameter Sharing:</strong> <br />
  refers to using the same parameter for more than one function in a model.</p>
 
-        <p><strong>Benefits:</strong></p>
+        <p id="lst-p"><strong style="color: red">Benefits:</strong></p>
         <ul>
           <li>This means that rather than learning a separate set of parameters for every location, we <em>learn only one set of parameters</em>.
             <ul>
@@ -155,8 +155,9 @@
      Specifically, a function <script type="math/tex">f(x)</script> is equivariant to a function <script type="math/tex">g</script> if <script type="math/tex">f(g(x)) = g(f(x))</script>.</p>
         </blockquote>
 
-        <p>Thus, if we move the object in the input, its representation will move the same amount in the output.<br />
- <strong>Benefits:</strong></p>
+        <p>Thus, if we move the object in the input, its representation will move the same amount in the output.</p>
+
+        <p id="lst-p"><strong style="color: red">Benefits:</strong></p>
         <ul>
           <li>It is most useful when we know that some function of a small number of neighboring pixels is useful when applied to multiple input locations (e.g. edge detection)</li>
           <li>Shifting the position of an object in the input doesn’t confuse the NN</li>

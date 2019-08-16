@@ -89,248 +89,238 @@
 <p><a href="https://isaacchanghau.github.io/post/loss_functions/">Loss Functions (blog)</a><br />
 <a href="https://jhui.github.io/2017/01/05/Deep-learning-Information-theory/">Information Theory (Cross-Entropy and MLE, MSE, Nash, etc.)</a></p>
 
-<h2 id="content1">Loss Functions</h2>
+<h1 id="content1">Loss Functions</h1>
 
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Loss Functions:</strong>  <br />
- Abstractly, a <strong>loss function</strong> or <strong>cost function</strong> is a function that maps an event or values of one or more variables onto a real number, intuitively, representing some “cost” associated with the event.</p>
+<h3 id="loss-functions"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents1" id="bodyContents11">Loss Functions</strong></h3>
+<p>Abstractly, a <strong>loss function</strong> or <strong>cost function</strong> is a function that maps an event or values of one or more variables onto a real number, intuitively, representing some “cost” associated with the event.</p>
 
-    <p>Formally, a <strong>loss function</strong> is a function <script type="math/tex">L :(\hat{y}, y) \in \mathbb{R} \times Y \longmapsto L(\hat{y}, y) \in \mathbb{R}</script>  that takes as inputs the predicted value <script type="math/tex">\hat{y}</script> corresponding to the real data value <script type="math/tex">y</script> and outputs how different they are.</p>
-  </li>
-</ol>
-
-<!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
-
-3. **:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}    
-
-
-4. **Loss Functions for Classification:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}    
-
-5. **Loss Functions for Regression:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}    
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}  
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}  
- -->
+<p>Formally, a <strong>loss function</strong> is a function <script type="math/tex">L :(\hat{y}, y) \in \mathbb{R} \times Y \longmapsto L(\hat{y}, y) \in \mathbb{R}</script>  that takes as inputs the predicted value <script type="math/tex">\hat{y}</script> corresponding to the real data value <script type="math/tex">y</script> and outputs how different they are.</p>
 
 <hr />
 
-<h2 id="content2">Loss Functions for Regression</h2>
+<h1 id="content2">Loss Functions for Regression</h1>
 
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents211">Introduction:</strong>  <br />
-Regression Losses usually only depend on the <strong>residual</strong> <script type="math/tex">r = y - \hat{y}</script> (i.e. what you have to add to your prediction to match the target)</p>
+<p><img src="/main_files/dl/concepts/loss_funcs/6.png" alt="img" width="61%" /><br />
+<br /></p>
 
-    <p><strong style="color: red">Distance-Based Loss Functions:</strong><br />
+<h3 id="introduction"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents2" id="bodyContents211">Introduction</strong></h3>
+<p>Regression Losses usually only depend on the <strong>residual</strong> <script type="math/tex">r = y - \hat{y}</script> (i.e. what you have to add to your prediction to match the target)</p>
+
+<p><strong style="color: red">Distance-Based Loss Functions:</strong><br />
 A Loss function <script type="math/tex">L(\hat{y}, y)</script> is called <strong>distance-based</strong> if it:</p>
-    <ul>
-      <li>Only depends on the <strong>residual</strong>:
-        <p>$$L(\hat{y}, y) = \psi(y-\hat{y})  \:\: \text{for some } \psi : \mathbb{R} \longmapsto \mathbb{R}$$</p>
-      </li>
-      <li>Loss is <script type="math/tex">0</script> when residual is <script type="math/tex">0</script>:
-        <p>$$\psi(0) = 0$$</p>
-      </li>
-    </ul>
+<ul>
+  <li>Only depends on the <strong>residual</strong>:
+    <p>$$L(\hat{y}, y) = \psi(y-\hat{y})  \:\: \text{for some } \psi : \mathbb{R} \longmapsto \mathbb{R}$$</p>
+  </li>
+  <li>Loss is <script type="math/tex">0</script> when residual is <script type="math/tex">0</script>:
+    <p>$$\psi(0) = 0$$</p>
+  </li>
+</ul>
 
-    <p><strong style="color: red">Translation Invariance:</strong><br />
+<p><strong style="color: red">Translation Invariance:</strong><br />
 Distance-based losses are translation-invariant:</p>
-    <p>$$L(\hat{y}+a, y+a) = L(\hat{y}, y)$$</p>
+<p>$$L(\hat{y}+a, y+a) = L(\hat{y}, y)$$</p>
 
-    <blockquote>
-      <p>Sometimes <strong>Relative-Error</strong> <script type="math/tex">\dfrac{\hat{y}-y}{y}</script> is a more <em>natural</em> loss but it is NOT translation-invariant</p>
-    </blockquote>
-  </li>
-  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">MSE:</strong>  <br />
- The <strong>MSE</strong> minimizes the sum of <em><strong>squared differences</strong></em> between the predicted values and the target values.
-    <p>$$L(\hat{y}, y) = \dfrac{1}{n} \sum_{i=1}^{n}\left(y_{i}-\hat{y}_ {i}\right)^{2}$$</p>
-    <p><img src="/main_files/dl/concepts/loss_funcs/1.png" alt="img" width="30%" class="center-image" /></p>
+<blockquote>
+  <p>Sometimes <strong>Relative-Error</strong> <script type="math/tex">\dfrac{\hat{y}-y}{y}</script> is a more <em>natural</em> loss but it is NOT translation-invariant</p>
+</blockquote>
 
-    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Derivation</button>
- <img src="/main_files/dl/concepts/loss_funcs/5.png" alt="img" width="100%" hidden="" /></p>
-  </li>
-  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">MAE:</strong>  <br />
- The <strong>MAE</strong> minimizes the sum of <em><strong>absolute differences</strong></em> between the predicted values and the target values.
-    <p>$$L(\hat{y}, y) = \dfrac{1}{n} \sum_{i=1}^{n}\vert y_{i}-\hat{y}_ {i}\vert$$</p>
+<p><br /></p>
 
-    <p><strong style="color: red">Properties:</strong></p>
-    <ul>
-      <li>Solution may be <strong>Non-unique</strong></li>
-      <li><strong>Robustness</strong> to outliers</li>
-      <li><strong id="bodyContents22stability">Unstable Solutions:</strong>  <br />
+<h3 id="mse"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents2" id="bodyContents21">MSE</strong></h3>
+<p>The <strong>MSE</strong> minimizes the sum of <em><strong>squared differences</strong></em> between the predicted values and the target values.</p>
+<p>$$L(\hat{y}, y) = \dfrac{1}{n} \sum_{i=1}^{n}\left(y_{i}-\hat{y}_ {i}\right)^{2}$$</p>
+<p><img src="/main_files/dl/concepts/loss_funcs/1.png" alt="img" width="30%" class="center-image" /></p>
+
+<p><button class="showText" value="show" onclick="showTextPopHide(event);">Derivation</button>
+<img src="/main_files/dl/concepts/loss_funcs/5.png" alt="img" width="100%" hidden="" /><br />
+<br /></p>
+
+<h3 id="mae"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents2" id="bodyContents22">MAE</strong></h3>
+<p>The <strong>MAE</strong> minimizes the sum of <em><strong>absolute differences</strong></em> between the predicted values and the target values.</p>
+<p>$$L(\hat{y}, y) = \dfrac{1}{n} \sum_{i=1}^{n}\vert y_{i}-\hat{y}_ {i}\vert$$</p>
+
+<p><strong style="color: red">Properties:</strong></p>
+<ul>
+  <li>Solution may be <strong>Non-unique</strong></li>
+  <li><strong>Robustness</strong> to outliers</li>
+  <li><strong id="bodyContents22stability">Unstable Solutions:</strong>  <br />
   <button class="showText" value="show" onclick="showTextPopHide(event);">Explanation</button>
   <em hidden="">The instability property of the method of least absolute deviations means that, for a small horizontal adjustment of a datum, the regression line may jump a large amount. The method has continuous solutions for some data configurations; however, by moving a datum a small amount, one could “jump past” a configuration which has multiple solutions that span a region. After passing this region of solutions, the least absolute deviations line has a slope that may differ greatly from that of the previous line. In contrast, the least squares solutions is stable in that, for any small adjustment of a data point, the regression line will always move only slightly; that is, the regression parameters are continuous functions of the data.</em></li>
-      <li><strong>Data-points “Latching”<sup id="fnref:3"><a href="#fn:3" class="footnote">1</a></sup>:</strong>
-        <ul>
-          <li><strong>Unique Solution</strong>:<br />
+  <li><strong>Data-points “Latching”<sup id="fnref:3"><a href="#fn:3" class="footnote">1</a></sup>:</strong>
+    <ul>
+      <li><strong>Unique Solution</strong>:<br />
   If there are <script type="math/tex">k</script> <em><strong>features</strong></em> (including the constant), then at least one optimal regression surface will pass through <script type="math/tex">k</script> of the <em><strong>data points</strong></em>; unless there are multiple solutions.</li>
-          <li><strong>Multiple Solutions</strong>:<br />
+      <li><strong>Multiple Solutions</strong>:<br />
   The region of valid least absolute deviations solutions will be <strong>bounded by at least <script type="math/tex">k</script> lines</strong>, each of which <strong>passes through at least <script type="math/tex">k</script> data points</strong>.
-            <blockquote>
-              <p><a href="https://en.wikipedia.org/wiki/Least_absolute_deviations#Other_properties">Wikipedia</a></p>
-            </blockquote>
-          </li>
-        </ul>
+        <blockquote>
+          <p><a href="https://en.wikipedia.org/wiki/Least_absolute_deviations#Other_properties">Wikipedia</a></p>
+        </blockquote>
       </li>
-      <li></li>
     </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Huber Loss:</strong></p>
+  <li><br /></li>
+</ul>
 
-    <p>AKA: <strong>Smooth Mean Absolute Error</strong></p>
-    <p>$$L(\hat{y}, y) = \left\{\begin{array}{cc}{\frac{1}{2}(y-\hat{y})^{2}} &amp; {\text { if }|(y-\hat{y})|&lt;\delta} \\ {\delta(y-\hat{y})-\frac{1}{2} \delta} &amp; {\text { otherwise }}\end{array}\right.$$</p>
+<h3 id="huber-loss"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents2" id="bodyContents23">Huber Loss</strong></h3>
 
-    <p><strong style="color: red">Properties:</strong></p>
+<p>AKA: <strong>Smooth Mean Absolute Error</strong></p>
+<p>$$L(\hat{y}, y) = \left\{\begin{array}{cc}{\frac{1}{2}(y-\hat{y})^{2}} &amp; {\text { if }|(y-\hat{y})|&lt;\delta} \\ {\delta(y-\hat{y})-\frac{1}{2} \delta} &amp; {\text { otherwise }}\end{array}\right.$$</p>
+
+<p><strong style="color: red">Properties:</strong></p>
+<ul>
+  <li>It’s <strong style="color: green">less sensitive</strong> to outliers than the <em>MSE</em> as it treats error as square only inside an interval.</li>
+</ul>
+
+<p><strong style="color: red">Code:</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">Huber</span><span class="p">(</span><span class="n">yHat</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">yHat</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">delta</span><span class="p">,</span><span class="o">.</span><span class="mi">5</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">yHat</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="p">,</span> <span class="n">delta</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">yHat</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">delta</span><span class="p">))</span>
+</code></pre></div></div>
+<p><br /></p>
+
+<h3 id="kl-divergence"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents2" id="bodyContents25">KL-Divergence</strong></h3>
+
+<p>$$L(\hat{y}, y) = $$</p>
+
+<p><br /></p>
+
+<h3 id="analysis-and-discussion"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents2" id="bodyContents26">Analysis and Discussion</strong></h3>
+<p><strong style="color: red">MSE vs MAE:</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>MSE</strong></td>
+      <td><strong>MAE</strong></td>
+    </tr>
+    <tr>
+      <td>Sensitive to <em>outliers</em></td>
+      <td>Robust to <em>outliers</em></td>
+    </tr>
+    <tr>
+      <td>Differentiable Everywhere</td>
+      <td>Non-Differentiable at <script type="math/tex">0</script></td>
+    </tr>
+    <tr>
+      <td>Stable<sup id="fnref:1"><a href="#fn:1" class="footnote">2</a></sup> Solutions</td>
+      <td>Unstable Solutions</td>
+    </tr>
+    <tr>
+      <td>Unique Solution</td>
+      <td>Possibly multiple<sup id="fnref:2"><a href="#fn:2" class="footnote">3</a></sup> solutions</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>Statistical Efficiency</strong>:
     <ul>
-      <li>It’s <strong style="color: green">less sensitive</strong> to outliers than the <em>MSE</em> as it treats error as square only inside an interval.</li>
+      <li>“For normal observations MSE is about <script type="math/tex">12\%</script> more efficient than MAE” - Fisher</li>
+      <li><script type="math/tex">1\%</script> Error is enough to make MAE more efficient</li>
+      <li>2/1000 bad observations, make the median more efficient than the mean</li>
     </ul>
-
-    <p><strong style="color: red">Code:</strong></p>
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">Huber</span><span class="p">(</span><span class="n">yHat</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
-     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">yHat</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">delta</span><span class="p">,</span><span class="o">.</span><span class="mi">5</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">yHat</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="p">,</span> <span class="n">delta</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">yHat</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">delta</span><span class="p">))</span>
-</code></pre></div>    </div>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">KL-Divergence:</strong></p>
-
-    <p>$$L(\hat{y}, y) = $$</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Analysis and Discussion:</strong><br />
- <strong style="color: red">MSE vs MAE:</strong></p>
-
-    <table>
-      <tbody>
-        <tr>
-          <td><strong>MSE</strong></td>
-          <td><strong>MAE</strong></td>
-        </tr>
-        <tr>
-          <td>Sensitive to <em>outliers</em></td>
-          <td>Robust to <em>outliers</em></td>
-        </tr>
-        <tr>
-          <td>Differentiable Everywhere</td>
-          <td>Non-Differentiable at <script type="math/tex">0</script></td>
-        </tr>
-        <tr>
-          <td>Stable<sup id="fnref:1"><a href="#fn:1" class="footnote">2</a></sup> Solutions</td>
-          <td>Unstable Solutions</td>
-        </tr>
-        <tr>
-          <td>Unique Solution</td>
-          <td>Possibly multiple<sup id="fnref:2"><a href="#fn:2" class="footnote">3</a></sup> solutions</td>
-        </tr>
-      </tbody>
-    </table>
-
+  <li>Subgradient methods are slower than gradient descent
     <ul>
-      <li><strong>Statistical Efficiency</strong>:
-        <ul>
-          <li>“For normal observations MSE is about <script type="math/tex">12%</script> more efficient than MAE” - Fisher</li>
-          <li><script type="math/tex">1%</script> Error is enough to make MAE more efficient</li>
-          <li>2/1000 bad observations, make the median more efficient than the mean</li>
-        </ul>
-      </li>
-      <li>Subgradient methods are slower than gradient descent
-        <ul>
-          <li>you get a lot better convergence rate guarantees for MSE</li>
-        </ul>
-      </li>
+      <li>you get a lot better convergence rate guarantees for MSE</li>
     </ul>
   </li>
-  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Notes:</strong></li>
-</ol>
+</ul>
+
+<p><br /></p>
+
+<h3 id="notes"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents2" id="bodyContents27">Notes</strong></h3>
 
 <hr />
 
-<h2 id="content3">Loss Functions for Classification</h2>
+<h1 id="content3">Loss Functions for Classification</h1>
 
-<p><img src="/main_files/dl/concepts/loss_funcs/0.png" alt="img" width="65%" /></p>
+<p><img src="/main_files/dl/concepts/loss_funcs/0.png" alt="img" width="65%" id="losses" /><br />
+<br /></p>
 
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents311"><script type="math/tex">0-1</script> Loss:</strong></p>
+<h3 id="0-1-loss"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents3" id="bodyContents311"><script type="math/tex">0-1</script> Loss</strong></h3>
 
-    <p>$$L(\hat{y}, y) = I(\hat{y} \neq y) = \left\{\begin{array}{ll}{0} &amp; {\hat{y}=y} \\ {1} &amp; {\hat{y} \neq y}\end{array}\right.$$</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">MSE:</strong></p>
+<p>$$L(\hat{y}, y) = I(\hat{y} \neq y) = \left\{\begin{array}{ll}{0} &amp; {\hat{y}=y} \\ {1} &amp; {\hat{y} \neq y}\end{array}\right.$$</p>
+<p><br /></p>
 
-    <p>We can write the loss in terms of the margin <script type="math/tex">m = y\hat{y}</script>:<br />
- <script type="math/tex">L(\hat{y}, y)=(y - \hat{y})^{2}=(1-y\hat{y})^{2}=(1-m)^{2}</script></p>
-    <blockquote>
-      <p>Since <script type="math/tex">y \in {-1,1} \implies y^2 = 1</script></p>
-    </blockquote>
+<h3 id="mse-1"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents3" id="bodyContents31">MSE</strong></h3>
 
-    <p>$$L(\hat{y}, y) = (1-y \hat{y})^{2}$$</p>
+<p>We can write the loss in terms of the margin <script type="math/tex">m = y\hat{y}</script>:<br />
+<script type="math/tex">L(\hat{y}, y)=(y - \hat{y})^{2}=(1-y\hat{y})^{2}=(1-m)^{2}</script></p>
+<blockquote>
+  <p>Since <script type="math/tex">y \in {-1,1} \implies y^2 = 1</script></p>
+</blockquote>
 
-    <p><img src="/main_files/dl/concepts/loss_funcs/1.png" alt="img" width="30%" class="center-image" /></p>
+<p>$$L(\hat{y}, y) = (1-y \hat{y})^{2}$$</p>
 
-    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Derivation</button>
- <img src="/main_files/dl/concepts/loss_funcs/5.png" alt="img" width="100%" hidden="" /></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Hinge Loss:</strong></p>
+<p><img src="/main_files/dl/concepts/loss_funcs/1.png" alt="img" width="30%" class="center-image" /></p>
 
-    <p>$$L(\hat{y}, y) = \max (0,1-y \hat{y})=|1-y \hat{y}|_ {+}$$</p>
+<p><button class="showText" value="show" onclick="showTextPopHide(event);">Derivation</button>
+<img src="/main_files/dl/concepts/loss_funcs/5.png" alt="img" width="100%" hidden="" /></p>
 
-    <p><strong style="color: red">Properties:</strong></p>
-    <ul>
-      <li>Continuous, Convex, Non-Differentiable</li>
-    </ul>
+<p><br /></p>
 
-    <p><img src="/main_files/dl/concepts/loss_funcs/3.png" alt="img" width="30%" class="center-image" /></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Logistic Loss:</strong></p>
+<h3 id="hinge-loss"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents3" id="bodyContents32">Hinge Loss</strong></h3>
 
-    <p>AKA: <strong>Log-Loss</strong>, <strong>Logarithmic Loss</strong></p>
+<p>$$L(\hat{y}, y) = \max (0,1-y \hat{y})=|1-y \hat{y}|_ {+}$$</p>
 
-    <p>$$L(\hat{y}, y) = \log{\left(1+e^{-y \hat{y}}\right)}$$</p>
+<p><strong style="color: red">Properties:</strong></p>
+<ul>
+  <li>Continuous, Convex, Non-Differentiable</li>
+</ul>
 
-    <p><img src="/main_files/dl/concepts/loss_funcs/2.png" alt="img" width="30%" class="center-image" /></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Cross-Entropy (Log Loss):</strong></p>
+<p><img src="/main_files/dl/concepts/loss_funcs/3.png" alt="img" width="30%" class="center-image" /><br />
+<br /></p>
 
-    <p>$$L(\hat{y}, y) = -\sum_{i} y_i \log \left(\hat{y}_ {i}\right)$$</p>
+<h3 id="logistic-loss"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents3" id="bodyContents33">Logistic Loss</strong></h3>
 
-    <p><strong style="color: red">Binary Cross-Entropy:</strong></p>
-    <p>$$L(\hat{y}, y) = -\left[y \log \hat{y}+\left(1-y\right) \log \left(1-\hat{y}_ {n}\right)\right]$$</p>
+<p>AKA: <strong>Log-Loss</strong>, <strong>Logarithmic Loss</strong></p>
 
-    <p><img src="/main_files/dl/concepts/loss_funcs/4.png" alt="img" width="30%" class="center-image" /></p>
+<p>$$L(\hat{y}, y) = \log{\left(1+e^{-y \hat{y}}\right)}$$</p>
 
-    <p><strong style="color: red">Cross-Entropy and Negative-Log-Probability:</strong><br />
- The <strong>Cross-Entropy</strong> is equal to the <strong>Negative-Log-Probability</strong> (of predicting the true class) in the case that the true distribution that we are trying to match is <em><strong>peaked at a single point</strong></em> and is <em><strong>identically zero everywhere else</strong></em>; this is usually the case in ML when we are using a <em>one-hot encoded vector</em> with one class <script type="math/tex">y = [0 \: 0 \: \ldots \: 0 \: 1 \: 0 \: \ldots \: 0]</script> peaked at the <script type="math/tex">j</script>-th position <br />
- <script type="math/tex">\implies</script></p>
-    <p>$$L(\hat{y}, y) = -\sum_{i} y_i \log \left(\hat{y}_ {i}\right) = - \log (\hat{y}_ {j})$$</p>
+<p><img src="/main_files/dl/concepts/loss_funcs/2.png" alt="img" width="30%" class="center-image" /></p>
 
-    <p><strong style="color: red">Cross-Entropy and Log-Loss:</strong>  <br />
- The <strong>Cross-Entropy</strong> is equal to the <strong>Log-Loss</strong> in the case of <script type="math/tex">0, 1</script> classification.</p>
+<p id="lst-p"><strong style="color: red">Properties:</strong></p>
+<ul>
+  <li>The logistic loss function does not assign zero penalty to any points. Instead, functions that correctly classify points with high confidence (i.e., with high values of <script type="math/tex">{\displaystyle \vert f({\vec {x}})\vert}</script>) are penalized less. This structure leads the logistic loss function to be sensitive to outliers in the data.<br />
+<br /></li>
+</ul>
 
-    <p><strong>Equivalence of <em>Binary Cross-Entropy</em> and <em>Logistic-Loss</em>:</strong><br />
- Given <script type="math/tex">p \in\{y, 1-y\}</script> and <script type="math/tex">q \in\{\hat{y}, 1-\hat{y}\}</script>:</p>
-    <p>$$H(p,q)=-\sum_{x }p(x)\,\log q(x) = -y \log \hat{y}-(1-y) \log (1-\hat{y}) = L(\hat{y}, y)$$</p>
+<h3 id="cross-entropy-log-loss"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents3" id="bodyContents34">Cross-Entropy (Log Loss)</strong></h3>
 
-    <ul>
-      <li>Notice the following property of the <strong>logistic function</strong> <script type="math/tex">\sigma</script> (used in derivation below): <br />
+<p>$$L(\hat{y}, y) = -\sum_{i} y_i \log \left(\hat{y}_ {i}\right)$$</p>
+
+<p><strong style="color: red">Binary Cross-Entropy:</strong></p>
+<p>$$L(\hat{y}, y) = -\left[y \log \hat{y}+\left(1-y\right) \log \left(1-\hat{y}_ {n}\right)\right]$$</p>
+
+<p><img src="/main_files/dl/concepts/loss_funcs/4.png" alt="img" width="30%" class="center-image" /></p>
+
+<p><strong style="color: red">Cross-Entropy and Negative-Log-Probability:</strong><br />
+The <strong>Cross-Entropy</strong> is equal to the <strong>Negative-Log-Probability</strong> (of predicting the true class) in the case that the true distribution that we are trying to match is <em><strong>peaked at a single point</strong></em> and is <em><strong>identically zero everywhere else</strong></em>; this is usually the case in ML when we are using a <em>one-hot encoded vector</em> with one class <script type="math/tex">y = [0 \: 0 \: \ldots \: 0 \: 1 \: 0 \: \ldots \: 0]</script> peaked at the <script type="math/tex">j</script>-th position <br />
+<script type="math/tex">\implies</script></p>
+<p>$$L(\hat{y}, y) = -\sum_{i} y_i \log \left(\hat{y}_ {i}\right) = - \log (\hat{y}_ {j})$$</p>
+
+<p><strong style="color: red">Cross-Entropy and Log-Loss:</strong>  <br />
+The <strong>Cross-Entropy</strong> is equal to the <strong>Log-Loss</strong> in the case of <script type="math/tex">0, 1</script> classification.</p>
+
+<p><strong>Equivalence of <em>Binary Cross-Entropy</em> and <em>Logistic-Loss</em>:</strong><br />
+Given <script type="math/tex">p \in\{y, 1-y\}</script> and <script type="math/tex">q \in\{\hat{y}, 1-\hat{y}\}</script>:</p>
+<p>$$H(p,q)=-\sum_{x }p(x)\,\log q(x) = -y \log \hat{y}-(1-y) \log (1-\hat{y}) = L(\hat{y}, y)$$</p>
+
+<ul>
+  <li>Notice the following property of the <strong>logistic function</strong> <script type="math/tex">\sigma</script> (used in derivation below): <br />
   <script type="math/tex">\sigma(-x) = 1-\sigma(x)</script></li>
-    </ul>
+</ul>
 
-    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Derivation</button>
- <em hidden="">Given:</em></p>
-    <ul hidden="">
-      <li><script type="math/tex">\hat{y} = \sigma(yf(x))</script>,<sup id="fnref:5"><a href="#fn:5" class="footnote">4</a></sup></li>
-      <li><script type="math/tex">y \in \{-1, 1\}</script>,</li>
-      <li><script type="math/tex">\hat{y}' = \sigma(f(x))</script>,</li>
-      <li><script type="math/tex">% <![CDATA[
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Derivation</button>
+<em hidden="">Given:</em></p>
+<ul hidden="">
+  <li><script type="math/tex">\hat{y} = \sigma(yf(x))</script>,<sup id="fnref:5"><a href="#fn:5" class="footnote">4</a></sup></li>
+  <li><script type="math/tex">y \in \{-1, 1\}</script>,</li>
+  <li><script type="math/tex">\hat{y}' = \sigma(f(x))</script>,</li>
+  <li><script type="math/tex">% <![CDATA[
 y' = (1+y)/2 = \left\{\begin{array}{ll}{1} & {\text { for }} y' = 1 \\ {0} & {\text { for }} y = -1\end{array}\right. \in \{0, 1\} %]]></script><sup id="fnref:4"><a href="#fn:4" class="footnote">5</a></sup></li>
-      <li>We start with the modified binary cross-entropy<br />
+  <li>We start with the modified binary cross-entropy<br />
   <script type="math/tex">% <![CDATA[
 \begin{aligned} -y' \log \hat{y}'-(1-y') \log (1-\hat{y}') &= \left\{\begin{array}{ll}{-\log\hat{y}'} & {\text { for }} y' = 1 \\ {-\log(1-\hat{y}')} & {\text { for }} y' = 0\end{array}\right. \\ \\
   &= \left\{\begin{array}{ll}{-\log\sigma(f(x))} & {\text { for }} y' = 1 \\ {-\log(1-\sigma(f(x)))} & {\text { for }} y' = 0\end{array}\right. \\ \\
@@ -343,45 +333,45 @@ y' = (1+y)/2 = \left\{\begin{array}{ll}{1} & {\text { for }} y' = 1 \\ {0} & {\t
   &= \log\left[\sigma(yf(x))^{-1}\right] \\ \\
   &= \log\left[ \left(\dfrac{1}{1+e^{-yf(x)}}\right)^{-1}\right] \\ \\
   &= \log \left(1+e^{-yf(x)}\right)\end{aligned} %]]></script></li>
-    </ul>
+</ul>
 
-    <blockquote>
-      <p><a href="https://towardsdatascience.com/understanding-binary-cross-entropy-log-loss-a-visual-explanation-a3ac6025181a">Reference (Understanding binary-cross-entropy-log-loss)</a></p>
-    </blockquote>
+<blockquote>
+  <p><a href="https://towardsdatascience.com/understanding-binary-cross-entropy-log-loss-a-visual-explanation-a3ac6025181a">Reference (Understanding binary-cross-entropy-log-loss)</a></p>
+</blockquote>
 
-    <p><strong style="color: red">Cross-Entropy as Negative-Log-Likelihood (w/ equal probability outcomes):</strong></p>
+<p><strong style="color: red">Cross-Entropy as Negative-Log-Likelihood (w/ equal probability outcomes):</strong></p>
 
-    <p><strong style="color: red">Cross-Entropy and KL-Div:</strong><br />
- When comparing a distribution <script type="math/tex">{\displaystyle q}</script> against a fixed reference distribution <script type="math/tex">{\displaystyle p}</script>, cross entropy and KL divergence are identical up to an additive constant (since <script type="math/tex">{\displaystyle p}</script> is fixed): both take on their minimal values when <script type="math/tex">{\displaystyle p=q} p=q, which is</script>{\displaystyle 0} for KL divergence, and <script type="math/tex">{\displaystyle \mathrm {H} (p)}</script> for cross entropy.</p>
-    <blockquote>
-      <p>Basically, minimizing either will result in the same solution.</p>
-    </blockquote>
+<p><strong style="color: red">Cross-Entropy and KL-Div:</strong><br />
+When comparing a distribution <script type="math/tex">{\displaystyle q}</script> against a fixed reference distribution <script type="math/tex">{\displaystyle p}</script>, cross entropy and KL divergence are identical up to an additive constant (since <script type="math/tex">{\displaystyle p}</script> is fixed): both take on their minimal values when <script type="math/tex">{\displaystyle p=q}</script>, which is <script type="math/tex">{\displaystyle 0}</script> for KL divergence, and <script type="math/tex">{\displaystyle \mathrm {H} (p)}</script> for cross entropy.</p>
+<blockquote>
+  <p>Basically, minimizing either will result in the same solution.</p>
+</blockquote>
 
-    <p><strong style="color: red">Cross-Entropy VS MSE (&amp; Classification Loss):</strong><br />
- Basically, CE &gt; MSE because the gradient of MSE <script type="math/tex">z(1-z)</script> leads to saturation when then output <script type="math/tex">z</script> of a neuron is near <script type="math/tex">0</script> or <script type="math/tex">1</script> making the gradient very small and, thus, slowing down training.<br />
- CE &gt; Class-Loss because Class-Loss is binary and doesn’t take into account <em>“how well”</em> are we actually approximating the probabilities as opposed to just having the target class be slightly higher than the rest (e.g. <script type="math/tex">[c_1=0.3, c_2=0.3, c_3=0.4]</script>).</p>
-    <ul>
-      <li><a href="https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/">Why You Should Use Cross-Entropy Error Instead Of Classification Error Or Mean Squared Error For Neural Network Classifier Training</a></li>
-    </ul>
+<p><strong style="color: red">Cross-Entropy VS MSE (&amp; Classification Loss):</strong><br />
+Basically, CE &gt; MSE because the gradient of MSE <script type="math/tex">z(1-z)</script> leads to saturation when then output <script type="math/tex">z</script> of a neuron is near <script type="math/tex">0</script> or <script type="math/tex">1</script> making the gradient very small and, thus, slowing down training.<br />
+CE &gt; Class-Loss because Class-Loss is binary and doesn’t take into account <em>“how well”</em> are we actually approximating the probabilities as opposed to just having the target class be slightly higher than the rest (e.g. <script type="math/tex">[c_1=0.3, c_2=0.3, c_3=0.4]</script>).</p>
+<ul>
+  <li><a href="https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/">Why You Should Use Cross-Entropy Error Instead Of Classification Error Or Mean Squared Error For Neural Network Classifier Training</a></li>
+</ul>
 
-    <p><br /></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Exponential Loss:</strong></p>
+<p><br /></p>
 
-    <p>$$L(\hat{y}, y) = e^{-\beta y \hat{y}}$$</p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">Perceptron Loss:</strong></p>
+<h3 id="exponential-loss"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents3" id="bodyContents35">Exponential Loss</strong></h3>
 
-    <p>$${\displaystyle L(z, y_i) = {\begin{cases}0&amp;{\text{if }}\ y_i\cdot z_i \geq 0\\-y_i z&amp;{\text{otherwise}}\end{cases}}}$$</p>
-  </li>
-</ol>
+<p>$$L(\hat{y}, y) = e^{-\beta y \hat{y}}$$</p>
+<p><br /></p>
 
-<!-- 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
+<h3 id="perceptron-loss"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents3" id="bodyContents36">Perceptron Loss</strong></h3>
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
- -->
+<p>$${\displaystyle L(z, y_i) = {\begin{cases}0&amp;{\text{if }}\ y_i\cdot z_i \geq 0\\-y_i z&amp;{\text{otherwise}}\end{cases}}}$$</p>
+<p><br /></p>
+
+<h3 id="notes-1"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents3" id="bodyContents37">Notes</strong></h3>
+<ul>
+  <li><strong>Logistic loss</strong> diverges faster than <strong>hinge loss</strong> <a href="#losses">(image)</a>. So, in general, it will be more sensitive to outliers. <a href="https://towardsdatascience.com/support-vector-machine-vs-logistic-regression-94cc2975433f">Reference. Bad info?</a></li>
+</ul>
+
+<p><br /><br /></p>
 
 <div class="footnotes">
   <ol>

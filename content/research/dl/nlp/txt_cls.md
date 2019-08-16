@@ -8,12 +8,12 @@ prevLink: /work_files/research/dl/nlp.html
 <div markdown="1" class = "TOC">
 # Table of Contents
 
-  * [FIRST](#content1)
+  * [Introduction](#content1)
   {: .TOC1}
-  * [SECOND](#content2)
+<!--   * [SECOND](#content2)
   {: .TOC2}
   * [THIRD](#content3)
-  {: .TOC3}
+  {: .TOC3} -->
 </div>
 
 ***
@@ -23,9 +23,9 @@ prevLink: /work_files/research/dl/nlp.html
 [Text Classification (Oxford)](https://www.youtube.com/watch?v=0qG7gjTNhwM&list=PL613dYIGMXoZBtZhbyiBqb0QtgK6oJbpm&index=8)  
 
 
-SpatialDropout1D(0.2)
 
-## FIRST
+
+## Introduction
 {: #content1}
 
 1. **Text Classification Breakdown:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
@@ -65,7 +65,7 @@ SpatialDropout1D(0.2)
     1. __Context-window modeling:__ for *__tagging__* etc. get the surrounding context before tagging.  
     2. __Sentence modeling:__ do convolution to extract n-grams, pooling to combine over whole sentence.  
 
-
+<!-- 
 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}
 
 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}
@@ -118,3 +118,4 @@ SpatialDropout1D(0.2)
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}
 
+ -->

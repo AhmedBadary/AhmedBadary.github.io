@@ -5,34 +5,51 @@ permalink: /interviews
 prevLink: /work_files.html
 ---
 
+<div markdown="1" class = "TOC">
+# Table of Contents
+
+  * [Algorithms](#content1)
+  {: .TOC1}
+  * [Quantitative Analysis](#content2)
+  {: .TOC2}
+  * [Strings](#content3)
+  {: .TOC3}
+</div>
+
+***
+***
+
+
 ## Algorithms
 {: #content1}
 
 1. **Array Duplicates:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
-    :   Given an array of n elements which contains elements from 0 to n-1, with any of these numbers appearing any number of times. Find these repeating numbers in O(n) and using only constant memory space.
-    :   1. Mathematical Solution: $$O(n), O(1)$$  
-            * Traverse the given array from i= 0 to n-1 elements  
-                * Go to index arr[i]%n and increment its value by n.  
-            * Now traverse the array again and print all those   
-                * indexes i for which arr[i]/n is greater than 1.  
-        2. Indexes Solution: $$O(n), O(1)$$  
-            ```
-            traverse the list for i= 0 to n-1 elements
-            {
-              check for sign of A[abs(A[i])] ;
-              if positive then
-                 make it negative by   A[abs(A[i])]=-A[abs(A[i])];
-              else  // i.e., A[abs(A[i])] is negative
-                 this   element (ith element of list) is a repetition
-            }
-            ```
+    Given an array of n elements which contains elements from 0 to n-1, with any of these numbers appearing any number of times. Find these repeating numbers in O(n) and using only constant memory space.  
+    
+    1. Mathematical Solution: $$O(n), O(1)$$  
+        * Traverse the given array from i= 0 to n-1 elements  
+            * Go to index arr[i]%n and increment its value by n.  
+        * Now traverse the array again and print all those   
+            * indexes i for which arr[i]/n is greater than 1.  
+    2. Indexes Solution: $$O(n), O(1)$$  
+        ```
+        traverse the list for i= 0 to n-1 elements
+        {
+          check for sign of A[abs(A[i])] ;
+          if positive then
+             make it negative by   A[abs(A[i])]=-A[abs(A[i])];
+          else  // i.e., A[abs(A[i])] is negative
+             this   element (ith element of list) is a repetition
+        }
+        ```
 
 2. **Re-Arranging Array Indexes:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
-    :   Rearrange an array so that arr[i] becomes arr[arr[i]] with O(1) extra space
-    :   1. Mathematical Solution: $$O(n), O(1)$$   
-            * Increase every array element arr[i] by $$(\text{arr}[\text{arr}[i]] % n) * n$$.
-            * Divide every element by $$n$$.  
-        > The idea is to store both numbers as the quotient and the remainder inside the array element  
+    Rearrange an array so that arr[i] becomes arr[arr[i]] with O(1) extra space  
+    1. Mathematical Solution: $$O(n), O(1)$$   
+        * Increase every array element arr[i] by $$(\text{arr}[\text{arr}[i]] % n) * n$$.
+        * Divide every element by $$n$$.  
+    
+    > The idea is to store both numbers as the quotient and the remainder inside the array element  
 
 3. **Two Sum Problem:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
     Given an array of integers, return indices of the two numbers such that they add up to a specific target.  
@@ -170,28 +187,15 @@ prevLink: /work_files.html
         return self.ans
     ```
 
-7. **:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
-
-
-## Quantitative Analysis
-{: #content2}
-
-1. **Basketball Hoops:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
-    Basketball player makes first free throw and misses the  second. Thereon after, the probability of making the next free throw is the proportion of previous shots he has made. What is the probability he makes 50 of the first 100 shots?
-
-    The probability is 1/99. In fact, we show by induction on n that after n shots, the probability of having made any number of shots from $$1$$ to $$n−1$$ is equal to $$1/(n− 1)$$. This is evident for $$n = 2$$. Given the result for n, we see that the probability of Shanille making i shots after $$n + 1$$ attempts is the probability of her making i out of n and then missing plus the probability of her making $$i − 1$$ out of n and then hitting:
-    $$ P(m + 1, k) = P(m, k) \dfrac{m − k}{m} + P(m, k − 1)\dfrac{k − 1}{m} = \dfrac{1}{m − 1} \dfrac{m − k}{m}  + \dfrac{1}{m − 1}  \dfrac{k − 1}{m}  = \dfrac{1}{m − 1}  \dfrac{m − k + k − 1}{m}  = \dfrac{1}{m}$$
-
-    $$ P(n + 1, i) = P(n, i) \dfrac{n − i}{n} + P(n, i − 1)\dfrac{i − 1}{n} \\ \\ = \dfrac{1}{n − 1} \dfrac{n − i}{n}  + \dfrac{1}{n − 1}  \dfrac{i − 1}{n}  = \dfrac{1}{n − 1}  \dfrac{n − i + i − 1}{n}  = \dfrac{1}{n}$$
+<!-- 7. **:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}   -->
 
 
 ***
+***
+
 
 ## Strings
 {: #content3}
-
-* Ask ASCII or UTF8
-
 
 1. **Uniqueness of characters:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}  
     1. Array of indices / Hashmap: O(n=len(string)), O(256)
@@ -225,12 +229,13 @@ prevLink: /work_files.html
     * Note: str b always substring of str a+a (e.g. "waterbottle", "erbottlewat": "erbottlewat" isSubstr of "waterbottle"+"waterbottle"="wat_erbottlewat_erbottle")
 
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
+8. **Notes:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
+    * Ask ASCII or UTF8  
 
 
 
-
-
+***
+***
 
 ## NOTES
 
@@ -248,11 +253,11 @@ prevLink: /work_files.html
     Data Structures, Algorithms, Space&Time Complexity
     System Design, OOP, 
 
-    Djikstras, A*, DFS, BFS, Tree, traversal, 
+    Dijkstra, A\*, DFS, BFS, Tree, traversal, 
     NP-Complete, NapSack, Traveling Salesman, NP-Completeness, Discrete Math, Counting (n choose k problems), 
     Recursion: iterative to recursive, complexity
     OS: processes, threads, concurrency issues, locks etc., resource allocation, context switching, scheduling
-    System Design: feature sets, interfaces, class heirarchies, distributed systems, constrained system design
+    System Design: feature sets, interfaces, class hierarchies, distributed systems, constrained system design
     The Internet: routers, servers, search, DNS, firewalls
 
     Testing Experience, Unit Tests, Interesting Test-cases, integration Tests for Gmail?
@@ -273,3 +278,54 @@ prevLink: /work_files.html
 
 
 * Arrays and Strings questions are interchangeable
+
+
+__Face-up/Face-down Cards:__{: style="color: red"}  
+[Video](https://www.youtube.com/watch?v=HCp_eN6JSac)  
+
+1. A card deck of 52 cards, 13 face-up.
+2. The Face-up cards are distributed randomly throughout the deck.
+3. You are blindfolded and you don't know anything about the cards.
+4. How can you create two piles with the same amount of face-up cards?
+
+> <span>Let $$x$$ be the number of face-up cards in pile #1</span>{: style="color: goldenrod"} 
+
+| | __$$\uparrow$$__{: style="color: blue"} | __$$\downarrow$$__{: style="color: blue"} 
+__pile #1 $$= 13$$__{: style="color: blue"} | $$x$$ | $$13 - x$$
+__pile #2 $$= 39$$__{: style="color: blue"} | $$13 - x$$ | $$26 + x$$
+
+
+__Face-up/Face-down Cards Generic Version:__{: style="color: red"}  
+1. A card deck of 52 cards, $$k$$ face-up.
+
+> <span>Let $$x$$ be the number of face-up cards in pile #1</span>{: style="color: goldenrod"} 
+
+| | __$$\uparrow$$__{: style="color: blue"} | __$$\downarrow$$__{: style="color: blue"} 
+__pile #1 $$= k$$__{: style="color: blue"} | $$x$$ | $$k - x$$
+__pile #2 $$= 52-k$$__{: style="color: blue"} | $$k - x$$ | $$(52-k) - (k-x)$$
+
+
+__Face-up/Face-down Cards Generic Version (flipped):__{: style="color: red"}  
+1. A card deck of 52 cards, $$k$$ face-down.
+4. How can you create two piles with the same amount of face-down cards?
+
+> <span>Let $$x$$ be the number of face-down cards in pile #1</span>{: style="color: goldenrod"} 
+
+| | __$$\uparrow$$__{: style="color: blue"} | __$$\downarrow$$__{: style="color: blue"} 
+__pile #1 $$= k$$__{: style="color: blue"} | $$k-x$$ | $$x$$
+__pile #2 $$= 52-k$$__{: style="color: blue"} | $$(52-k)-(k-x)$$ | $$k - x$$
+
+
+<!-- ## Quantitative Analysis
+{: #content2}
+
+1. **Basketball Hoops:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
+    Basketball player makes first free throw and misses the  second. Thereon after, the probability of making the next free throw is the proportion of previous shots he has made. What is the probability he makes 50 of the first 100 shots?
+
+    The probability is 1/99. In fact, we show by induction on n that after n shots, the probability of having made any number of shots from $$1$$ to $$n−1$$ is equal to $$1/(n− 1)$$. This is evident for $$n = 2$$. Given the result for n, we see that the probability of Shanille making i shots after $$n + 1$$ attempts is the probability of her making i out of n and then missing plus the probability of her making $$i − 1$$ out of n and then hitting:
+    $$ P(m + 1, k) = P(m, k) \dfrac{m − k}{m} + P(m, k − 1)\dfrac{k − 1}{m} = \dfrac{1}{m − 1} \dfrac{m − k}{m}  + \dfrac{1}{m − 1}  \dfrac{k − 1}{m}  = \dfrac{1}{m − 1}  \dfrac{m − k + k − 1}{m}  = \dfrac{1}{m}$$
+
+    $$ P(n + 1, i) = P(n, i) \dfrac{n − i}{n} + P(n, i − 1)\dfrac{i − 1}{n} \\ \\ = \dfrac{1}{n − 1} \dfrac{n − i}{n}  + \dfrac{1}{n − 1}  \dfrac{i − 1}{n}  = \dfrac{1}{n − 1}  \dfrac{n − i + i − 1}{n}  = \dfrac{1}{n}$$
+
+
+ -->

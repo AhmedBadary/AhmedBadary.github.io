@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">PGMs <br /> Probabilistic Graphical Models</h1>
+  <h1 class="project-name">Data Processing</h1>
   <h2 class="project-tagline"></h2>
   <a href="/#" class="btn">Home</a>
   <a href="/work" class="btn">Work-Space</a>
-  <a href= /work_files/research/dl/nlp.html class="btn">Previous</a>
+  <a href= /work_files/research/dl/concepts class="btn">Previous</a>
 </section>
 
 <!-- <div>
@@ -67,144 +67,169 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">Introduction</a></li>
+    <li><a href="#content1">Dimensionality Reduction</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">SECOND</a></li>
+    <li><a href="#content2">Feature Selection</a></li>
   </ul>
   <ul class="TOC3">
-    <li><a href="#content3">THIRD</a></li>
+    <li><a href="#content3">Feature Extraction</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">Feature Importance</a></li>
+  </ul>
+  <ul class="TOC5">
+    <li><a href="#content5">Imputation</a></li>
+  </ul>
+  <ul class="TOC6">
+    <li><a href="#content6">Normalization</a></li>
+  </ul>
+  <ul class="TOC7">
+    <li><a href="#content7">Outliers Handling</a></li>
   </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content1">Introduction</h2>
+<h2 style="font-size: 1.60em" id="content1">Dimensionality Reduction</h2>
 
-<ol>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents10">Motivation:</strong></dt>
-      <dd>Machine learning algorithms often involve probability distributions over a very large number of random variables. Often, these probability distributions involve direct interactions between relatively few variables. Using a single function to describe the entire joint probability distribution can be very inefficient (both computationally and statistically).
-        <blockquote>
-          <p>A description of a probability distribution is <em>exponential</em> in the number of variables it models.</p>
-        </blockquote>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Graphical Model:</strong></dt>
-      <dd>A <strong>graphical model</strong> or <strong>probabilistic graphical model (PGM)</strong> or <strong>structured probabilistic model</strong> is a probabilistic model for which a graph expresses the conditional dependence structure (factorization of a probability distribution) between random variables.
-        <blockquote>
-          <p>Generally, this is one of the most common <em>statistical models</em></p>
-        </blockquote>
-      </dd>
-      <dd><strong>Graph Structure:</strong><br />
-A PGM uses a graph <script type="math/tex">\mathcal{G}</script> in which each <em>node</em> in the graph corresponds to a <em>random variable</em>, and an <em>edge</em> connecting two r.vs means that the probability distribution is able to <em>represent interactions</em> between those two r.vs.</dd>
-      <dd><strong>Types:</strong>
-        <ul>
-          <li><strong>Directed</strong>:<br />
-  Directed models use graphs with directed edges, and they represent factorizations into conditional probability distributions.<br />
-  They contain one factor for every random variable <script type="math/tex">x_i</script> in the distribution, and that factor consists of the conditional distribution over <script type="math/tex">x_i</script> given the parents of <script type="math/tex">x_i</script>.</li>
-          <li><strong>UnDirected</strong>:<br />
-  Undirected models use graphs with undirected edges, and they represent factorizations into a set of functions; unlike in the directed case, these functions are usually not probability distributions of any kind.</li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-</ol>
+<h3 id="dimensionality-reduction"><strong style="color: SteelBlue; font-size: 1.15em" class="bodyContents1" id="bodyContents11">Dimensionality Reduction</strong></h3>
+<p><strong>Dimensionality Reduction</strong> is the process of reducing the number of random variables under consideration by obtaining a set of principal variables. It can be divided into <strong style="color: goldenrod">feature selection</strong> and <strong style="color: goldenrod">feature extraction</strong>.<br />
+<br /></p>
 
-<!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
-    :   
+<!-- __Advantages:__{: style="color: red"}  
+{: #lst-p}
+1. Reduces time and 
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
-    :   
+### **Feature Selection**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents1 #bodyContents12}   -->
+<p><br /></p>
 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}  
-    :   -->
-
-<hr />
-
-<h2 id="content2">Bayesian Network</h2>
-
-<ol>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Bayesian Network:</strong></dt>
-      <dd>A <strong>Bayesian network</strong>, <strong>Bayes network</strong>, <strong>belief network</strong>, or <strong>probabilistic directed acyclic graphical model</strong> is a probabilistic graphical model that represents a set of variables and their conditional dependencies via a directed acyclic graph (<strong>DAG</strong>).
-        <blockquote>
-          <p>E.g. a Bayesian network could represent the probabilistic relationships between diseases and symptoms.</p>
-        </blockquote>
-      </dd>
-    </dl>
-  </li>
-</ol>
-
-<!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
-    :   
-
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}  
-    :   
-
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}  
-    :   
+<!--  
+### **Asynchronous**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents1 #bodyContents13}  
+<br>
+### **Asynchronous**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents1 #bodyContents14}  
+<br>
+### **Asynchronous**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents1 #bodyContents15}  
+<br>
+### **Asynchronous**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents1 #bodyContents16}  
+<br>
+### **Asynchronous**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents1 #bodyContents17}  
+<br>
+### **Asynchronous**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents1 #bodyContents18}  
  -->
 
 <hr />
+<hr />
 
-<!-- ## THIRD
-{: #content3}
+<h2 style="font-size: 1.60em" id="content2">Feature Selection</h2>
 
-1. **HMMs:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}  
-    :   
+<h3 id="feature-selection"><strong style="color: SteelBlue; font-size: 1.15em" class="bodyContents2" id="bodyContents21">Feature Selection</strong></h3>
+<p><strong>Feature Selection</strong> is the process of selecting a subset of relevant features (variables, predictors) for use in model construction.</p>
 
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}  
-    :   
+<p id="lst-p"><strong style="color: red">Applications:</strong></p>
+<ul>
+  <li>Simplification of models to make them easier to interpret by researchers/users</li>
+  <li>Shorter training time</li>
+  <li>A way to handle <em>curse of dimensionality</em></li>
+  <li>Reduction of Variance <script type="math/tex">\rightarrow</script> Reduce Overfitting <script type="math/tex">\rightarrow</script> Enhanced Generalization</li>
+</ul>
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
-    :   
+<p id="lst-p"><strong style="color: red">Strategies/Approaches:</strong></p>
+<ul>
+  <li><strong>Wrapper Strategy</strong>:<br />
+  Wrapper methods use a predictive model to score feature subsets. Each new subset is used to train a model, which is tested on a hold-out set. Counting the number of mistakes made on that hold-out set (the error rate of the model) gives the score for that subset. As wrapper methods train a new model for each subset, they are very computationally intensive, but usually provide the best performing feature set for that particular type of model.<br />
+  <strong>e.g.</strong> <strong style="color: goldenrod">Search Guided by Accuracy</strong>, <strong style="color: goldenrod">Stepwise Selection</strong></li>
+  <li><strong>Filter Strategy</strong>:<br />
+  Filter methods use a <em>proxy measure</em> instead of the error rate <em>to score a feature subset</em>. This measure is chosen to be fast to compute, while still capturing the usefulness of the feature set.<br />
+  Filter methods produce a feature set which is <em>not tuned to a specific model</em>, usually giving lower prediction performance than a wrapper, but are more general and more useful for exposing the relationships between features.<br />
+  <strong>e.g.</strong> <strong style="color: goldenrod">Information Gain</strong>, <strong style="color: goldenrod">pointwise-mutual/mutual information</strong>, <strong style="color: goldenrod">Pearson Correlation</strong></li>
+  <li><strong>Embedded Strategy:</strong><br />
+  Embedded methods are a catch-all group of techniques which perform feature selection as part of the model construction process.<br />
+  <strong>e.g.</strong> <strong style="color: goldenrod">LASSO</strong></li>
+</ul>
 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
-    :   
+<p><br /></p>
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
-    :   
+<h3 id="correlation-feature-selection"><strong style="color: SteelBlue; font-size: 1.15em" class="bodyContents2" id="bodyContents22">Correlation Feature Selection</strong></h3>
+<p>The <strong>Correlation Feature Selection (CFS)</strong> measure evaluates subsets of features on the basis of the following hypothesis:<br />
+“<strong style="color: goldenrod">Good feature subsets contain features highly correlated with the classification, yet uncorrelated to each other</strong>”.</p>
 
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
-    :   
+<p>The following equation gives the <strong>merit of a feature subset</strong> <script type="math/tex">S</script> consisting of <script type="math/tex">k</script> features:</p>
+<p>$${\displaystyle \mathrm {Merit} _{S_{k}}={\frac {k{\overline {r_{cf}}}}{\sqrt {k+k(k-1){\overline {r_{ff}}}}}}.}$$</p>
+<p>where, <script type="math/tex">{\displaystyle {\overline {r_{cf}}}}</script> is the average value of all feature-classification correlations, and <script type="math/tex">{\displaystyle {\overline {r_{ff}}}}</script> is the average value of all feature-feature correlations.</p>
 
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
-    :   
+<p>The <strong>CFS criterion</strong> is defined as follows:</p>
+<p>$$\mathrm {CFS} =\max _{S_{k}}\left[{\frac {r_{cf_{1}}+r_{cf_{2}}+\cdots +r_{cf_{k}}}{\sqrt {k+2(r_{f_{1}f_{2}}+\cdots +r_{f_{i}f_{j}}+\cdots +r_{f_{k}f_{1}})}}}\right]$$</p>
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
-    :   
- -->
+<p><br /></p>
+
+<h3 id="feature-selection-embedded-in-learning-algorithms"><strong style="color: SteelBlue; font-size: 1.15em" class="bodyContents2" id="bodyContents23">Feature Selection Embedded in Learning Algorithms</strong></h3>
+<ul>
+  <li><script type="math/tex">l_{1}</script>-regularization techniques, such as sparse regression, LASSO, and <script type="math/tex">{\displaystyle l_{1}}</script>-SVM</li>
+  <li>Regularized trees, e.g. regularized random forest implemented in the RRF package</li>
+  <li>Decision tree</li>
+  <li>Memetic algorithm</li>
+  <li>Random multinomial logit (RMNL)</li>
+  <li>Auto-encoding networks with a bottleneck-layer</li>
+  <li>Submodular feature selection</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="information-theory-based-feature-selection-mechanisms"><strong style="color: SteelBlue; font-size: 1.15em" class="bodyContents2" id="bodyContents24">Information Theory Based Feature Selection Mechanisms</strong></h3>
+<p>There are different Feature Selection mechanisms around that <strong>utilize mutual information for scoring the different features</strong>.<br />
+They all usually use the same algorithm:</p>
+<ol>
+  <li>Calculate the mutual information as score for between all features (<script type="math/tex">{\displaystyle f_{i}\in F}</script>) and the target class (<script type="math/tex">c</script>)</li>
+  <li>Select the feature with the largest score (e.g. <script type="math/tex">{\displaystyle argmax_{f_{i}\in F}(I(f_{i},c))}</script>) and add it to the set of selected features (<script type="math/tex">S</script>)</li>
+  <li>Calculate the score which might be derived form the mutual information</li>
+  <li>Select the feature with the largest score and add it to the set of select features (e.g. <script type="math/tex">{\displaystyle {\arg \max }_{f_{i}\in F}(I_{derived}(f_{i},c))}</script>)</li>
+  <li>Repeat 3. and 4. until a certain number of features is selected (e.g. <script type="math/tex">{\displaystyle \vert S\vert =l}</script>)</li>
+</ol>
+
+<!-- <br> ### **Asynchronous**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents2 #bodyContents25}  
+### **Asynchronous**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents2 #bodyContents26}   -->
+
+<hr />
+<hr />
+
+<h2 style="font-size: 1.60em" id="content3">Feature Extraction</h2>
+
+<h3 id="feature-extraction"><strong style="color: SteelBlue; font-size: 1.15em" class="bodyContents3" id="bodyContents31">Feature Extraction</strong></h3>
+<p><strong>Feature Extraction</strong> starts from an initial set of measured data and builds derived values (features) intended to be informative and non-redundant, facilitating the subsequent learning and generalization steps, and in some cases leading to better human interpretations.</p>
+
+<p>In <strong>dimensionality reduction</strong>, feature extraction is also called <strong>Feature Projection</strong>, which is a method that transforms the data in the high-dimensional space to a space of fewer dimensions. The data transformation may be linear, as in principal component analysis (PCA), but many nonlinear dimensionality reduction techniques also exist.</p>
+
+<p id="lst-p"><strong style="color: red">Methods/Algorithms:</strong></p>
+<ul>
+  <li>Independent component analysis</li>
+  <li>Isomap</li>
+  <li>Kernel PCA</li>
+  <li>Latent semantic analysis</li>
+  <li>Partial least squares</li>
+  <li>Principal component analysis</li>
+  <li>Autoencoder</li>
+  <li>Linear Discriminant Analysis (LDA)</li>
+  <li>Non-negative matrix factorization (NMF)</li>
+</ul>
+
+<p><br /></p>
+
+<!-- ### ****{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents3 #bodyContents32}  
+### ****{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents3 #bodyContents33}   -->
+
+<p><a href="https://en.wikipedia.org/wiki/Outlier#Working_with_outliers">Outliers</a><br />
+<a href="https://en.wikipedia.org/wiki/Robust_statistics#Replacing_outliers_and_missing_values">Replacing Outliers</a><br />
+<a href="https://en.wikipedia.org/wiki/Data_transformation_(statistics)">Data Transformation - Outliers - Standardization</a><br />
+<a href="https://hadrienj.github.io/posts/Preprocessing-for-deep-learning/">PreProcessing in DL - Data Normalization</a><br />
+<a href="https://towardsdatascience.com/the-complete-beginners-guide-to-data-cleaning-and-preprocessing-2070b7d4c6d">Imputation and Feature Scaling</a><br />
+<a href="https://en.wikipedia.org/wiki/Missing_data#Techniques_of_dealing_with_missing_data">Missing Data - Imputation</a><br />
+<a href="https://en.wikipedia.org/wiki/Random_projection">Dim-Red - Random Projections</a><br />
+<a href="https://en.wikipedia.org/wiki/Relief_(feature_selection)">F-Selection - Relief</a><br />
+<a href="https://www.statisticshowto.datasciencecentral.com/box-cox-transformation/">Box-Cox Transf - outliers</a><br />
+<a href="https://en.wikipedia.org/wiki/Analysis_of_covariance">ANCOVA</a><br />
+<a href="https://www.analyticsvidhya.com/blog/2016/12/introduction-to-feature-selection-methods-with-an-example-or-how-to-select-the-right-variables/">Feature Selection Methods</a></p>
 
 
       <footer class="site-footer">

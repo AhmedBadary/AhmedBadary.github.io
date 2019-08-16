@@ -22,13 +22,15 @@ prevLink: /work_files/research/dl/theory.html
 1. **Information Theory:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
     __Information theory__ is a branch of applied mathematics that revolves around quantifying how much information is present in a signal.    
     In the context of machine learning, we can also apply information theory to continuous variables where some of these message length interpretations do not apply, instead, we mostly use a few key ideas from information theory to characterize probability distributions or to quantify similarity between probability distributions.  
+    <br>
 
 2. **Motivation and Intuition:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
     The basic intuition behind information theory is that learning that an unlikely event has occurred is more informative than learning that a likely event has occurred. A message saying “the sun rose this morning” is so uninformative as to be unnecessary to send, but a message saying “there was a solar eclipse this morning” is very informative.  
     Thus, information theory quantifies information in a way that formalizes this intuition:    
     * Likely events should have low information content - in the extreme case, guaranteed events have no information at all  
     * Less likely events should have higher information content
-    * Independent events should have additive information. For example, finding out that a tossed coin has come up as heads twice should convey twice as much information as finding out that a tossed coin has come up as heads once. 
+    * Independent events should have additive information. For example, finding out that a tossed coin has come up as heads twice should convey twice as much information as finding out that a tossed coin has come up as heads once.  
+    <br>
 
 33. **Measuring Information:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents133}  
     In Shannons Theory, to __transmit $$1$$ bit of information__ means to __divide the recipients *Uncertainty* by a factor of $$2$$__.  

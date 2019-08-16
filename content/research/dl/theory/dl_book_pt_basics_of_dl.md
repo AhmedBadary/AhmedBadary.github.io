@@ -8,7 +8,7 @@ prevLink: /work_files/research/dl/theory.html
 <div markdown="1" class = "TOC">
 # Table of Contents
 
-  * [Introduction: Deep Feedforward Neural Networks](#content1)
+  * [Introduction: Deep FeedForward Neural Networks](#content1)
   {: .TOC1}
   * [Gradient-Based Learning](#content2)
   {: .TOC2}
@@ -28,27 +28,29 @@ prevLink: /work_files/research/dl/theory.html
 ## Introduction: Deep Feedforward Neural Networks
 {: #content1}
 
-1. **(Deep) Feedforward neural networks:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
-    Given, for a classifier, $$y=f^{\ast}(\boldsymbol{x})$$ maps an input $$\boldsymbol{x}$$ to a category $$y$$.  
-    An __FFN__ defines a mapping $$\boldsymbol{y}=f(\boldsymbol{x} ; \boldsymbol{\theta})$$  and learns the value of the parameters $$\boldsymbol{\theta}$$  that result in the best function approximation.  
+1. **(Deep) FeedForward Neural Networks:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
+    For a classifier; given $$y=f^{\ast}(\boldsymbol{x})$$, maps an input $$\boldsymbol{x}$$ to a category $$y$$.  
+    An __FNN__ defines a mapping $$\boldsymbol{y}=f(\boldsymbol{x} ; \boldsymbol{\theta})$$  and learns the value of the parameters $$\boldsymbol{\theta}$$  that result in the best function approximation.  
 
-    * FFNs are called __networks__ because they are typically represented by composing together many different functions
+    * FNNs are called __networks__ because they are typically represented by composing together many different functions
     * The model is associated with a __DAG__ describing how the functions are composed together. 
     * Functions connected in a __chain structure__ are the most commonly used structure of neural networks.  
         > E.g. we might have three functions $$f^{(1)}, f^{(2)},$$ and $$f^{(3)}$$ connected in a chain, to form $$f(\boldsymbol{x})=f^{(3)}\left(f^{(2)}\left(f^{(1)}(\boldsymbol{x})\right)\right)$$; being called the $$n$$-th __Layer__ respectively.   
     * The overall length of the chain is the __depth__ of the model.  
     * During training, we drive $$f(\boldsymbol{x})$$ to match $$f^{\ast}(\boldsymbol{x})$$.   
         The training data provides us with noisy, approximate examples of $$f^{\ast}(\boldsymbol{x})$$ evaluated at different training points.  
+    <br>
 
-
-2. **FFNs from Linear Models:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
+2. **FNNs from Linear Models:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
     Consider linear models biggest limitation: model capacity is limited to linear functions.  
     To __extend__ linear models to represent non-linear functions of $$\boldsymbol{x}$$ we can:  
+    {: #lst-p}
     * Apply the linear model not to $$\boldsymbol{x}$$ itself but _to a transformed input_ $$\phi(\boldsymbol{x})$$, where $$\phi$$ is a nonlinear transformation.  
     * Equivalently, apply the __kernel trick__ to obtain nonlinear learning algorithm based on implicitly applying the $$\phi$$ mapping.  
 
     We can think of $$\phi$$ as providing a set of features describing $$\boldsymbol{x}$$, or as providing a new representation for $$\boldsymbol{x}$$.  
     __Choosing the mapping $$\phi$$:__  
+    {: #lst-p}
     1. Use a very generic $$\phi$$, s.a. infinite-dimensional (RBF) kernel.  
         If $$\phi(\boldsymbol{x})$$ is of _high enough dimension_, we can _always have enough capacity_ to fit the training set, but _generalization_ to the test set often _remains poor_.  
         Very generic feature mappings are usually _based only_ on the _principle of local smoothness_ and do not encode enough prior information to solve advanced problems.  
@@ -57,7 +59,7 @@ prevLink: /work_files/research/dl/theory.html
     3. The _strategy_ of _deep learning_ is to __learn $$\phi$$__. We have a model:  
         <p>$$y=f(\boldsymbol{x} ; \boldsymbol{\theta}, \boldsymbol{w})=\phi(\boldsymbol{x} ; \boldsymbol{\theta})^{\top} \boldsymbol{w}$$</p>  
         We now have parameters $$\theta$$ that we use to learn $$\phi$$ from a broad class of functions, and parameters $$\boldsymbol{w}$$ that map from $$\phi(\boldsymbol{x})$$ to the desired output.  
-        > This is an example of a _deep FFN_, with $$\phi$$ defining a _hidden layer_.   
+        > This is an example of a _deep FNN_, with $$\phi$$ defining a _hidden layer_.   
 
         This approach is the _only one_ of the three that _gives up_ on the _convexity_ of the training problem, but the _benefits outweigh the harms_.  
         In this approach, we parametrize the representation as $$\phi(\boldsymbol{x}; \theta)$$ and use the optimization algorithm to find the $$\theta$$ that corresponds to a good representation.  
@@ -67,6 +69,7 @@ prevLink: /work_files/research/dl/theory.html
         * Capturing the benefit of the second approach:  
             Human practitioners can encode their knowledge to help generalization by designing families $$\phi(\boldsymbol{x}; \theta)$$ that they expect will perform well.  
             The __advantage__ is that the human designer only needs to find the right general function family rather than finding precisely the right function.  
+    <br>
 
 <!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}
 
@@ -86,11 +89,13 @@ prevLink: /work_files/research/dl/theory.html
 ## Gradient-Based Learning
 {: #content2}
 
-1. **Stochastic Gradient Descent and FFNs:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
-    __Stochastic Gradient Descent__ applied to _nonconvex_ loss functions has _no_ such _convergence guarantee_ and is _sensitive_ to the _values_ of the _initial parameters_.  
-    Thus, for FFNs (since they have nonconvex loss functions):  
+1. **Stochastic Gradient Descent and FNNs:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
+    __Stochastic Gradient Descent__ applied to _nonconvex_ loss functions has _no convergence guarantees_ and is _sensitive_ to the _values_ of the _initial parameters_.  
+
+    Thus, for FNNs (since they have _nonconvex loss functions_):  
     * *__Initialize all weights to small random values__*.  
     * The *__biases__* may be *__initialized to zero or to small positive values__*.  
+    <br>
 
 2. **Learning Conditional Distributions with Maximum Likelihood:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
     When __Training__ using __Maximum Likelihood__:  
@@ -141,14 +146,14 @@ prevLink: /work_files/research/dl/theory.html
 4. **Important Results in Optimization:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}  
     The __calculus of variations__ can be used to derive the following two important results in Optimization:  
     1. Solving the optimization problem  
-        <p>$$f^{\ast}=\underset{f}{\arg \min } \: \mathbb{E}_{\mathbf{x}, \mathbf{y} \sim p_{\text {data }}}\|\boldsymbol{y}-f(\boldsymbol{x})\|^{2} \tag{6.14}$$</p>   
+        <p>$${\displaystyle f^{\ast}=\underset{f}{\arg \min } \: \mathbb{E}_{\mathbf{x}, \mathbf{y} \sim p_{\text {data }}}\|\boldsymbol{y}-f(\boldsymbol{x})\|^{2}} \tag{6.14}$$</p>   
         yields  
-        <p>$$f^{\ast}(\boldsymbol{x})=\mathbb{E}_{\mathbf{y} \sim p_{\text {data }}(\boldsymbol{y} | \boldsymbol{x})}[\boldsymbol{y}] \tag{6.15}$$</p>  
+        <p>$${\displaystyle f^{\ast}(\boldsymbol{x})=\mathbb{E}_{\mathbf{y} \sim p_{\text {data }}(\boldsymbol{y} | \boldsymbol{x})}[\boldsymbol{y}] \tag{6.15}}$$</p>  
         so long as this function lies within the class we optimize over.  
         In words: if we could train on infinitely many samples from the true data distribution, *__minimizing the MSE cost function__* would give a __*function* that *predicts* the *mean of $$\boldsymbol{y}$$* for *each* value of *$$\boldsymbol{x}$$*__.  
         > Different cost functions give different statistics.  
     2. Solving the optimization problem (commonly known as __Mean Absolute Error__)  
-        <p>$$f^{\ast}=\underset{f}{\arg \min } \: \mathbb{E}_ {\mathbf{x}, \mathbf{y} \sim p_{\mathrm{data}}}\|\boldsymbol{y}-f(\boldsymbol{x})\|_ {1} \tag{6.16}$$</p>  
+        <p>$$f^{\ast}=\underset{f}{\arg \min } \: \underset{\mathbf{x}, \mathbf{y} \sim p_{\mathrm{data}}}{\mathbb{E}}\|\boldsymbol{y}-f(\boldsymbol{x})\|_ {1} \tag{6.16}$$</p>  
         yields a __*function* that predicts the *median* value of *$$\boldsymbol{y}$$* for each $$\boldsymbol{x}$$__, as long as such a function may be described by the family of functions we optimize over.   
 
     * [Derivations (linear? prob not)](http://www.stat.cmu.edu/~larry/=stat401/lecture-01.pdf)  
@@ -179,8 +184,8 @@ prevLink: /work_files/research/dl/theory.html
     Thus, the choice of _how to represent the output_ then determines the form of the cross-entropy function.  
 
     Throughout this analysis, we suppose that:  
-    _The FFN provides a set of hidden features defined by_ $$\boldsymbol{h}=f(\boldsymbol{x} ; \boldsymbol{\theta})$$.  
-    The _role of the output layer_, thus, is to _provide some additional transformation from the features to complete the task_ the FFN is tasked with.  
+    _The FNN provides a set of hidden features defined by_ $$\boldsymbol{h}=f(\boldsymbol{x} ; \boldsymbol{\theta})$$.  
+    The _role of the output layer_, thus, is to _provide some additional transformation from the features to complete the task_ the FNN is tasked with.  
 
 
 2. **Linear Units:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}  
@@ -193,7 +198,9 @@ prevLink: /work_files/research/dl/theory.html
     In this case, _maximizing the log-likelihood_ is equivalent to _minimizing the MSE_.  
 
     __Learning the Covariance of the Gaussian:__  
+
     The MLE framework makes it straightforward to:  
+    {: #lst-p}
     * Learn the covariance of the Gaussian too
     * Make the covariance of the Gaussian be a function of the input  
     However, the covariance must be constrained to be a _positive definite matrix_ for all inputs.  
@@ -214,9 +221,7 @@ prevLink: /work_files/research/dl/theory.html
     A __Bernoulli distribution__ is defined by just _1 single_ number.  
 
 
-    
-
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
+<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
 
 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
 
@@ -226,3 +231,4 @@ prevLink: /work_files/research/dl/theory.html
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
 
+ -->

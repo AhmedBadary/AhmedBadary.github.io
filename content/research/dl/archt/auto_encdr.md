@@ -1,7 +1,7 @@
 ---
 layout: NotesPage
 title: Auto-Encoders
-permalink: /work_files/research/dl/aencdrs
+permalink: /work_files/research/dl/archits/aencdrs
 prevLink: /work_files/research/dl.html
 ---
 

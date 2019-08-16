@@ -46,7 +46,7 @@ prevLink: /work_files/research/dl/nlp.html
         
 * __Gradients__:  
   * __Properties__:  
-    * Always __normal__ to _contour lines_.  
+    * Always __normal__ to _contour lines_  
 
 
 ## FIRST

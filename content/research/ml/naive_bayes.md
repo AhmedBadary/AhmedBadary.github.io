@@ -21,6 +21,7 @@ prevLink: /work_files/research/dl/ml.html
 [Full Treatment of Naive Bayes Classification](http://www.cs.columbia.edu/~mcollins/em.pdf)  
 [Bayes Classifier and Bayes Error (paper)](https://www.cs.helsinki.fi/u/jkivinen/opetus/iml/2013/Bayes.pdf)  
 [Bayes Classifier and Bayes Error (question)](https://stats.stackexchange.com/questions/296014/why-is-the-naive-bayes-classifier-optimal-for-0-1-loss?noredirect=1&lq=1)  
+[Naive Bayes CS188 (+Probabilistic Calibration)](https://www.youtube.com/watch?v=1nOb0vwWkAE)  
 
 
 ## Introduction and the Naive Bayes Classifier
@@ -33,11 +34,14 @@ prevLink: /work_files/research/dl/ml.html
     __Naive Bayes Classifiers__ are a family of simple probabilistic classifiers based on applying [_Bayes' Theorem_](https://en.wikipedia.org/wiki/Bayes%27_theorem) with strong (naive) independence assumptions between the features.  
 
     __The Assumptions:__{: style="color: red"}  
+    {: #lst-p}
     1. __Naive Independence__: the feature probabilities are indpendenet given a class $$c$$.   
     2. __Bag-of-Words__: we assume that the position of the words does _not_ matter.  
+    <br>
 
 
     __Notes:__{: style="color: red"}  
+    {: #lst-p}
     * Not a __Bayesian Method__: the name only references the use of Bayes' theorem in the classifier's decision rule  
     * The __Naive Bayes Classifier__ is a *__Bayes Classifier__* (i.e. minimizes the prob of misclassification)  
     <br>
@@ -76,6 +80,8 @@ prevLink: /work_files/research/dl/ml.html
 
     The Classifier is the _function that assigns a class label $$\hat{y} = C_k$$_ for some $$k$$ as follows:  
     <p>$${\displaystyle {\hat {y}}={\underset {k\in \{1,\dots ,K\}}{\operatorname {argmax} }}\ p(C_{k})\displaystyle \prod _{i=1}^{n}p(x_{i}\mid C_{k}).}$$</p>  
+
+    It, basically, maximizes the probability of the class given an input $$\boldsymbol{x}$$.  
     <br>
 
 4. **Naive Bayes Estimate VS MAP Estimate:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
@@ -104,7 +110,8 @@ prevLink: /work_files/research/dl/ml.html
     
     The __Likelihood__ of the observed data (TBC)  
 
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}
+7. **Motivation:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
+    To estimate the parameters of the "true" MAP estimate, we need a prohibitive number of examples ~ $$\mathcal{O}(\vert x\vert^n \cdot \vert C\vert$$.  
 
 8. **Notes:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}
 
