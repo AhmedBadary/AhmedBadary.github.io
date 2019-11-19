@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Ping Technical Specifications</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= / class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <h3 id="tasks"><strong>TASKS</strong></h3>
+<ul>
+  <li><strong style="color: SteelBlue">Automatic Timesheet Completion/Filling:</strong>
+    <ul>
+      <li><strong>Description:</strong> Making tools that make sound guesses at what a user would want to do in filling out a timesheet and do it for them</li>
+      <li><strong>Current Stack</strong>:
+        <ul>
+          <li><strong>Gradient-Boosted Models (GBMs)</strong>: model per data source (1 UK firm, 1 US firm)</li>
+        </ul>
+      </li>
+      <li><strong>Desiderata:</strong>
+        <ul>
+          <li><strong style="color: DarkRed">Mitigating the “Cold-Start” Problem:</strong>
+            <ul>
+              <li><strong>Description:</strong> We also could use ways of limiting cold start effects when we deploy at a new site.</li>
+            </ul>
+          </li>
+          <li><strong style="color: DarkRed">Feature Importance (aka Timeseries Entry Ranking):</strong>
+            <ul>
+              <li><strong>Description:</strong> For the <strong>time entries we can’t quite predict with confidence</strong>, can we at least <span style="color: purple"><strong>predict the likelihood that the user will actually <em>bill</em> for that time entry</strong></span>?
+                <ul>
+                  <li>That way we can put the important stuff at the top of their time entry lists.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><strong style="color: DarkRed">Generalized Modeling + Transfer Learning:</strong>
+            <ul>
+              <li><strong>Description:</strong> How quickly can we get away from a model for every customer?</li>
+            </ul>
+          </li>
+          <li><strong style="color: DarkRed">Feature Engineering:</strong>
+            <ul>
+              <li><strong>Description:</strong> Create other metrics/features to track and collect as part of data collection.</li>
+            </ul>
+          </li>
+          <li><strong style="color: DarkRed">User-level Models:</strong>
+            <ul>
+              <li><strong>Description:</strong> Create Personalized Models per/user that attends to there characteristics</li>
+            </ul>
+          </li>
+          <li>An accurate <strong>NER</strong> system that may be fine-tuned on the domain of legal documents.
+            <ul>
+              <li><strong>Description:</strong></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue">Data Anonymization:</strong>
+    <ul>
+      <li><strong>Description:</strong> Anonymize customer data meeting security standards.</li>
+      <li><strong>Current Stack</strong>:
+        <ul>
+          <li><strong>Locality-based Hash:</strong> Replace all <em>proper nouns</em> in the document titles and bodies.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue">Activity Segmentation:</strong>
+    <ul>
+      <li><strong>Description:</strong> Since we collect the user’s activity in too much detail, we need to help them <span style="color: purple"><strong>group several activities</strong> together as a <strong>single billable unit</strong></span>.</li>
+      <li><strong>Notes</strong>:
+        <ul>
+          <li>Most clustering algos want to know <em>how many clusters to make</em> and don’t like leaving things out of clusters.<br />
+  So this requires some creativity or research.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue">Timesheet Summarization (aka Narrative Generation):</strong>
+    <ul>
+      <li><strong>Notes</strong>:
+        <ul>
+          <li>I also think that <strong>narrative generation</strong> should be driven by <span style="color: purple"><strong>completion tries</strong></span>.<br />
+  We all know the theory behind those, but when you get into it, there are lots of fun implementation details (fast serialization/deserialization, how much to send, how quickly can we update it).</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue">Activity-Type Classification:</strong>
+    <ul>
+      <li><strong>Description</strong>: We also need a model that weeds out personal vs work emails and web sessions.</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue">Topic Modeling (aka Document-Type Classifier):</strong>
+    <ul>
+      <li><strong>Description:</strong> Can we build a <span style="color: purple"><strong>generic document type classifier</strong></span>?</li>
+      <li><strong>Notes</strong>:
+        <ul>
+          <li>Each firm will have their own templates that they use for documents they create, so those should be easy.</li>
+          <li>They will also get documents through email from other firms that would be great to identify.</li>
+          <li>I personally think if we can figure out the document types, we can make an excellent advancement on narratives, phase/task codes and matter categorization for users.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>(<em><strong>Long-Term</strong></em>) <strong style="color: SteelBlue">Time-Series Analytics:</strong>
+    <ul>
+      <li><strong>Description:</strong> In time, we expect to show law firms analytics that help them understand how their lawyers are working, and how long cases of different types take.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="data"><strong>DATA</strong></h3>
+<ul>
+  <li><strong>Input:</strong> User Activity
+    <ul>
+      <li><strong>User Activities:</strong>
+        <ul>
+          <li>Document Type (worked on) / Activity Type (e.g. phone call)</li>
+          <li>Document Title</li>
+          <li>Time-Period of Work (Total + Work-Intervals)</li>
+          <li>First 8K of the Document</li>
+          <li>Past Behavior</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Output:</strong> Timesheets
+    <ul>
+      <li><strong>Timesheet Entry:</strong>
+        <ul>
+          <li><strong>Case Number:</strong> i.e. related matter/subject</li>
+          <li><strong>Phase/Task code:</strong> Discovery - Depositions (see UTBMS in wikipedia for details)</li>
+          <li><strong>Narrative</strong>: short summary of the (case?)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Data-Collection</strong>: Engineering tracks a users activity and we use the data they scraped to fill in the entries</li>
+  <li><strong>Sources</strong>: 1 UK firm + 1 US firm</li>
+  <li><strong>Notes</strong>:
+    <ul>
+      <li><span style="color: green">Labeled Targets Exist (labeled time-sheets)</span></li>
+      <li><span style="color: red">Input Features are <em>limited</em></span></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="complications"><strong>COMPLICATIONS</strong></h3>
+<ul>
+  <li>Limited Data Resources (quantity, variety)</li>
+  <li>Different Countries have different documents <script type="math/tex">\implies</script> different datasets have different targets:<br />
+  <strong>Notes:</strong> The US and UK have separate phase/task code systems, so we may always have two models.</li>
+  <li>Single-Tenancy implies no <span style="color: purple">data sharing</span></li>
+  <li><strong>Long-term storage</strong> of client Data requires <span style="color: purple"><strong>full Anonymization</strong></span>
+    <ul>
+      <li>Current <strong>NER</strong> is, <em>possibly</em>, too “aggressive”</li>
+    </ul>
+  </li>
+</ul>
+
+<p id="lst-p"><strong style="color: red">Notes:</strong></p>
+<ul>
+  <li>Right now we have matter categorization (which case), phase task code prediction, and NER scrubbing in production.</li>
+  <li>I’m finishing a microservice that will make cleaner narratives.</li>
+  <li>Gilles is finishing the first gen entry grouper.</li>
+  <li>A toy model built on Enron data exists in demo only to detect personal emails vs work.</li>
+  <li>I’m not thrilled with any of them, but the customers seem happy with getting some assistance over none.<br />
+  It is a start, and get better from here.</li>
+  <li>A feature I forgot is the included parties on an email or phone call.</li>
+  <li>30% of all work is email based.</li>
+  <li>Three primary high-dollar adjustment categories for attorney invoices are 1) inadequate description of work; 2) unreasonable time spent on the activity; and 3) lack or prior authorization for the activity.<br />
+  Is the description adequate? Was the time reasonable? Was authorization actually given?<br />
+  In other words, humans are required to evaluate and analyze what the software has flagged, and then to make a judgement about whether to adjust the line item or leave it alone.</li>
+  <li>litigation code classification - <a href="https://www.mishcon.com/upload/files/Pre-trained_Contextual_Embeddings_for_Litigation_Code_Classification.Bartolo_etal.pdf">Bert for lcc</a></li>
+  <li></li>
+</ul>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

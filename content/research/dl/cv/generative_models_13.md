@@ -23,11 +23,22 @@ prevLink: /work_files/research/dl/cv.html
 ***
 ***
 
+[Learning Deep Generative Models (pdf)](https://www.cs.cmu.edu/~rsalakhu/papers/annrev.pdf)  
+[AutoRegressive Models (CS236 pdf)](https://deepgenerativemodels.github.io/notes/autoregressive/)  
+[Deep Generative Models (CS236 pdf)](https://deepgenerativemodels.github.io/notes/index.html)  
+[Deep Generative Models (Lecture)](https://www.youtube.com/watch?v=JrO5fSskISY)  
+[CS294 Berkeley - Deep Unsupervised Learning](https://sites.google.com/view/berkeley-cs294-158-sp19/home)  
+
+
+
 ## Unsupervised Learning
 {: #content1}
 
 1. **Unsupervised Learning:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
-    :   
+    __Data:__ $$x$$ Just data, no labels!   
+    __Goal:__ Learn some underlying hidden _structure_ of the data  
+    __Examples:__ Clustering, dimensionality reduction, feature learning, density estimation, etc.  
+    <br>
 
 ***
 
@@ -37,18 +48,23 @@ prevLink: /work_files/research/dl/cv.html
 Given some data $$\{(d,c)\}$$ of paired observations $$d$$ and hidden classes $$c$$:  
 
 1. **Generative (Joint) Models:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
-    :   __Generative Models__ are __Joint Models__.  
-    :   __Joint Models__ place probabilities $$\left(P(c,d)\right)$$ over both the observed data and the "target" (hidden) variables that can only be computed from those observed.  
-    :   Generative models are typically probabilistic, specifying a joint probability distribution ($$P(d,c)$$) over observation and target (label) values,  
-    and tries to __Maximize__ this __joint Likelihood__.  
-        > Choosing weights turn out to be trivial: chosen as the __relative frequencies__.  
-    :   __Examples:__  
-        * Gaussian Mixture Model
-        * Naive Bayes Classifiers  
-        * Hidden Markov Models (HMMs)
-        * Restricted Boltzmann Machines (RBMs)
-        * AutoEncoders
-        * Generative Adversarial Networks (GANs)
+    __Generative Models__ are __Joint Models__.  
+    __Joint Models__ place probabilities $$\left(P(c,d)\right)$$ over both the observed data and the "target" (hidden) variables that can only be computed from those observed.  
+    
+    Generative models are typically probabilistic, specifying a joint probability distribution ($$P(d,c)$$) over observation and target (label) values, and tries to __Maximize__ this __joint Likelihood__.  
+    > Choosing weights turn out to be trivial: chosen as the __relative frequencies__.  
+
+    They address the problem of __density estimation__, a core problem in unsupervised learning.  
+
+    __Examples:__  
+    {: #lst-p}
+    * Gaussian Mixture Model
+    * Naive Bayes Classifiers  
+    * Hidden Markov Models (HMMs)
+    * Restricted Boltzmann Machines (RBMs)
+    * AutoEncoders
+    * Generative Adversarial Networks (GANs)
+
 
 2. **Discriminative (Conditional) Models:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
     :   __Discriminative Models__ are __Conditional Models__.  
@@ -65,10 +81,11 @@ Given some data $$\{(d,c)\}$$ of paired observations $$d$$ and hidden classes $$
         * Neural Networks
 
 3. **Generative VS Discriminative Models:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}  
-    :   Basically, _Discriminative Models_ infer outputs based on inputs,  
-        while _Generative Models_ generate, both, inputs and outputs (typically given some hidden paramters).  
-    :   However, notice that the two models are usually viewed as complementary procedures.  
-        One does __not__ necessarily outperform the other, in either classificaiton or regression tasks.   
+    Basically, _Discriminative Models_ infer outputs based on inputs,  
+    while _Generative Models_ generate, both, inputs and outputs (typically given some hidden paramters).  
+    
+    However, notice that the two models are usually viewed as complementary procedures.  
+    One does __not__ necessarily outperform the other, in either classificaiton or regression tasks.   
 
 4. **Example Uses of Generative Models:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}  
     :   * Clustering
@@ -96,18 +113,24 @@ Given some data $$\{(d,c)\}$$ of paired observations $$d$$ and hidden classes $$
 
 ***
 
-## PixelRNN and PixelCNN
+## AutoRegressive Models - PixelRNN and PixelCNN
 {: #content3}
 
+[AutoRegressive Models (pdf)](https://deepgenerativemodels.github.io/notes/autoregressive/)  
+
 1. **Fully Visible (Deep) Belief Networks:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}  
-    :   __Deep Belief Network (DBNs)__ are generative graphical models, or alternatively a class of deep neural networks, composed of multiple layers of latent variables ("hidden units"), with connections between the layers but not between units within each layer.  
-    :   DBNs undergo unsupervised training to _learn to probabilistically reconstruct the inputs_.  
-    :   They generate an __Explicit Density Model__.  
-    :   They use the __chain rule__ to _decompose the _likelihood of an image_ $$x$$ into products of 1-d distributions:  
-    :   ![img](/main_files/cs231n/13/2.png){: width="70%"}    
-    :   then, they __Maximize__ the __Likelihood__ of the training data.  
-    :   The __conditional distributions over pixels__ are very _complex.  
-        We model them using a __neural network__. 
+    __Deep Belief Network (DBNs)__ are generative graphical models, or alternatively a class of deep neural networks, composed of multiple layers of latent variables ("hidden units"), with connections between the layers but not between units within each layer.  
+    
+    DBNs undergo unsupervised training to _learn to probabilistically reconstruct the inputs_.  
+
+    They generate an __Explicit Density Model__.  
+
+    They use the __chain rule__ to _decompose the _likelihood of an image_ $$x$$ into products of 1-d distributions:  
+    ![img](/main_files/cs231n/13/2.png){: width="70%"}    
+    then, they __Maximize__ the __Likelihood__ of the training data.  
+
+    The __conditional distributions over pixels__ are very _complex_.  
+    We model them using a __neural network__. 
 
 2. **PixelRNN:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}  
     :   is a proposed architecture (part of the class of __Auto-Regressive__ models) to model an explicit distribution of natural images in an _expressive, tractable,_ and _scalable_ way.  
@@ -147,22 +170,25 @@ Given some data $$\{(d,c)\}$$ of paired observations $$d$$ and hidden classes $$
 
 
 4. **Improving PixelCNN Performance:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
-    :   * Gated Convolutional Layers 
-        * Short-cut connections
-        * Discretized logistic loss
-        * Multi-scale
-        * Training tricks
-    :   __Further Reading__: 
-        * *__PixelCNN++__* \| _Salimans et al. 2017_    
-        * _Van der Oord et al. NIPS 2016_
+    * Gated Convolutional Layers 
+    * Short-cut connections
+    * Discretized logistic loss
+    * Multi-scale
+    * Training tricks
+
+    __Further Reading__:  
+    {: #lst-p}
+    * *__PixelCNN++__* \| _Salimans et al. 2017_    
+    * _Van der Oord et al. NIPS 2016_
+    * __Pixel-Snail__  
 
 5. **Pros and Cons of Auto-Regressive Models:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
-    :   * __Pros__:   
-            * Can explicitly compute likelihood $$p(x)$$
-            * Explicit likelihood of training data gives good evaluation metric
-            * Good Samples
-    :   * __Cons__:  
-            * Sequential Generation is __Slow__  
+    * __Pros__:   
+        * Can explicitly compute likelihood $$p(x)$$
+        * Explicit likelihood of training data gives good evaluation metric
+        * Good Samples
+    * __Cons__:  
+        * Sequential Generation is __Slow__  
 
 ***
 

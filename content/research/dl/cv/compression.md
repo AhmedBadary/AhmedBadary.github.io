@@ -19,6 +19,12 @@ prevLink: /work_files/research/dl/cv.html
 ***
 ***
 
+
+[Feature Extraction (Notes - Docs)](https://docs.google.com/document/d/12yb9bhZfr84e6tPJwwJrKXpNKVEhhbmoMgOGl_gGbBY/edit)  
+[Audio Compression](https://docs.google.com/document/d/1TUHWxU3TPR1mRCDF1kUM9xgNmvVHe5f9KxvBb4sPu_Q/edit)  
+* [A Deep Learning Approach to Data Compression (Blog+Paper!)](https://bair.berkeley.edu/blog/2019/09/19/bit-swap/)  
+
+
 ## Introduction
 {: #content1}
  
@@ -232,3 +238,31 @@ WaveOne is a machine learning-based approach to lossy image compression.
 
 3. **Adversarial Feature Learning for Induced Natural Representation and Artifact Removal:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
     :   
+
+
+***
+
+__Papers:__  
+* __Generative Compression__
+    * WaveOne: https://arxiv.org/pdf/1705.05823.pdf
+    * MIT Generative Compression: https://arxiv.org/pdf/1703.01467.pdf
+
+* __Current Standards__
+    * An overview of the JPEG2000 still image compression standard
+        * Paper:http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.128.9040&rep=rep1&type=pdf
+        * Notes: Pretty in-depth, by Eastman Kodak Company, from early 2000s (maybe improvements since then?)
+
+1. WaveOne
+    Paper: https://arxiv.org/pdf/1705.05823.pdf
+    Site: http://www.wave.one/
+    Post: http://www.wave.one/icml2017
+2. Generative Compression -- Santurker, Budden, Shavit (MIT)
+    Paper: https://arxiv.org/pdf/1703.01467.pdf
+3. Toward Conceptual Compression -- DeepMind
+    Paper: https://papers.nips.cc/paper/6542-towards-conceptual-compression.pdf
+
+
+* Generative Compression:  
+    Generative Compression (https://arxiv.org/pdf/1703.01467.pdf and http://www.wave.one/icml2017/ ), think about streaming videos with orders of magnitude better compression. The results are pretty insane, and this could possibly be the key to bringing AR/VR into the everyday market. If we can figure out how to integrate this into real-time systems, like lets say a phone, you could take hidef video, buffer it and encode it to compress it (the above waveone model can compress 100 img/sec from the Kodak dataset -- not shabby at all), we could save massive amounts of data with order of magnitude less storage. We could easily create a mobile app as a proof of concept, but this shit could be huge. These can be also trained to be domain specific, because they are learned not hardcoded. We could create an API allowing any device to connect to it and dynamically compress data, think drones, etc. We can also build in encryption into the system, which adds a layer of security.
+
+

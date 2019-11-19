@@ -1,6 +1,6 @@
 ---
 layout: NotesPage
-title: PCA <br /> Principal Compnent Analysis
+title: PCA <br /> Principal Component Analysis
 permalink: /work_files/research/conv_opt/pca
 prevLink: /work_files/research/conv_opt
 ---

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">ML Models</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/theory.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Statistical Models</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">SECOND</a></li>
+  </ul>
+  <!--     * [THIRD](#content3)
+  {: .TOC3}
+  * [FOURTH](#content4)
+  {: .TOC4}
+  * [FIFTH](#content5)
+  {: .TOC5}
+  * [SIXTH](#content6)
+  {: .TOC6} -->
+</div>
+
+<hr />
+<hr />
+
+<ul>
+  <li><a href="http://mlvis2016.hiit.fi/latentVariableGenerativeModels.pdf">Latent Variable Model Intuition (slides!)</a></li>
+  <li><a href="http://www.cs.toronto.edu/~radford/res-latent.html">Radford Neal’s Research: Latent Variable Models (publications)</a></li>
+</ul>
+
+<h2 id="content1">Statistical Models</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents122">Statistical Models:</strong><br />
+A <strong>Statistical Model</strong> is a, non-deterministic, mathematical model that embodies a set of <em>statistical assumptions</em> concerning the generation of sample data.<br />
+It is specified as a mathematical relationship between one or more <em>random variables</em> and other non-random variables.</p>
+
+    <p><strong style="color: red">Formal Definition:</strong><br />
+A <strong>Statistical Model</strong> consists of a pair <script type="math/tex">(S, \mathcal{P})</script> where <script type="math/tex">S</script> is the <em>set of possible observations</em> (the <em>sample space</em>) and <script type="math/tex">\mathcal{P}</script> is a <span style="color: purple"><em><strong>set</strong></em> of <strong>probability distributions</strong></span> on <script type="math/tex">S</script>.</p>
+
+    <p>The set <script type="math/tex">\mathcal{P}</script> can be (and is usually) <strong>parametrized</strong>:</p>
+    <p>$$\mathcal{P}=\left\{P_{\theta} : \theta \in \Theta\right\}$$</p>
+    <p>The set <script type="math/tex">\Theta</script> defines the <strong>parameters</strong> of the model.</p>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li>It is important that a statistical model consists of a <strong>set</strong> of probability distributions,<br />
+  while a <em>probability model</em> is just one <em><strong>known</strong></em> distribution.<br />
+<br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Parametric Model:</strong><br />
+ A <strong>parametric model</strong> is a set of probability distributions indexed by a parameter <script type="math/tex">\theta \in \Theta</script>. We denote this as:
+    <p>$$\{p(y ; \theta) | \theta \in \Theta\},$$</p>
+    <p>where <script type="math/tex">\theta</script> is the <strong>parameter</strong> and <script type="math/tex">\Theta</script> is the <strong>Parameter-Space</strong>.<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Non-Parametric Model:</strong><br />
+ <strong>Non-parametric models</strong> differ from parametric models in that the model structure is not specified a priori but is instead <em>determined from data</em>. The term <em>non-parametric</em> is not meant to imply that such models completely lack parameters but that the number and nature of the parameters are flexible and not fixed in advance.</p>
+
+    <p id="lst-p"><strong>Examples:</strong></p>
+    <ul>
+      <li>A <strong>histogram</strong> is a simple nonparametric estimate of a probability distribution.</li>
+      <li><strong>Kernel density estimation</strong> provides better estimates of the density than histograms.</li>
+      <li><strong>Nonparametric regression and semiparametric regression</strong> methods have been developed based on kernels, splines, and wavelets.</li>
+      <li><strong>Data envelopment analysis</strong> provides efficiency coefficients similar to those obtained by multivariate analysis without any distributional assumption.</li>
+      <li><strong>KNNs</strong> classify the unseen instance based on the K points in the training set which are nearest to it.</li>
+      <li>A <strong>support vector machine (SVM)</strong> (with a Gaussian kernel) is a nonparametric large-margin classifier.</li>
+      <li><strong>Method of moments</strong> (statistics) with polynomial probability distributions.<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Other classes of Statistical Models:</strong><br />
+ Given <script type="math/tex">\mathcal{P}=\left\{P_{\theta} : \theta \in \Theta\right\}</script>, the <em>set of probability distributions on <script type="math/tex">S</script></em>.
+    <ul>
+      <li>A model is <strong>“parametric”</strong> if all the parameters are in finite-dimensional parameter spaces; i.e. <script type="math/tex">\Theta</script> has <strong><em>finite dimension</em></strong></li>
+      <li>A model is <strong>“non-parametric”</strong> if all the parameters are in infinite-dimensional parameter spaces</li>
+      <li>A <strong>“semi-parametric”</strong> model contains finite-dimensional parameters of interest and infinite-dimensional nuisance parameters</li>
+      <li>A <strong>“semi-nonparametric”</strong> model has both finite-dimensional and infinite-dimensional unknown parameters of interest<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Types of Statistical Models:</strong>
+    <ul>
+      <li>Linear Model</li>
+      <li>GLM - General Linear Model</li>
+      <li>GiLM - Generalized Linear Model</li>
+      <li>Latent Variable Model
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents111">The Statistical Model for Linear Regression:</strong><br />
+Given a (random) sample <script type="math/tex">\left(Y_{i}, X_{i 1}, \ldots, X_{i p}\right), i=1, \ldots, n</script> the relation between the <em>observations</em> <script type="math/tex">Y_i</script> and the <em>independent variables</em> <script type="math/tex">X_{ij}</script> is formulated as:
+    <p>$$Y_{i}=\beta_{0}+\beta_{1} \phi_{1}\left(X_{i 1}\right)+\cdots+\beta_{p} \phi_{p}\left(X_{i p}\right)+\varepsilon_{i} \qquad i=1, \ldots, n$$</p>
+    <p>where <script type="math/tex">{\displaystyle \phi_{1},\ldots ,\phi_{p}}</script> may be nonlinear functions. In the above, the quantities <script type="math/tex">\varepsilon_i</script> are random variables representing errors in the relationship.</p>
+
+    <p><strong style="color: red">The Linearity of the Model:</strong><br />
+The <em>“linear”</em> part of the designation relates to the appearance of the regression coefficients, <script type="math/tex">\beta_j</script> in a linear way in the above relationship.<br />
+Alternatively, one may say that the predicted values corresponding to the above model, namely:</p>
+    <p>$$\hat{Y}_{i}=\beta_{0}+\beta_{1} \phi_{1}\left(X_{i 1}\right)+\cdots+\beta_{p} \phi_{p}\left(X_{i p}\right) \qquad(i=1, \ldots, n)$$</p>
+    <p>are <strong>linear functions</strong> of the <strong>coefficients</strong> <script type="math/tex">\beta_j</script>.</p>
+
+    <p><strong>Estimating the Parameters <script type="math/tex">\beta_j</script>:</strong><br />
+Assuming an estimation on the basis of a <strong>least-squares</strong> analysis, estimates of the unknown parameters <script type="math/tex">\beta_j</script> are determined by <em>minimizing a sum of squares function:</em></p>
+    <p>$$S=\sum_{i=1}^{n}\left(Y_{i}-\beta_{0}-\beta_{1} \phi_{1}\left(X_{i 1}\right)-\cdots-\beta_{p} \phi_{p}\left(X_{i p}\right)\right)^{2}$$</p>
+
+    <p id="lst-p"><strong>Effects of Linearity:</strong></p>
+    <ul>
+      <li>The function to be minimized is a quadratic function of the <script type="math/tex">\beta_j</script> for which minimization is a relatively simple problem</li>
+      <li>The derivatives of the function are linear functions of the <script type="math/tex">\beta_j</script> making it easy to find the minimizing values</li>
+      <li>The minimizing values <script type="math/tex">\beta_j</script> are linear functions of the observations <script type="math/tex">Y_i</script></li>
+      <li>The minimizing values <script type="math/tex">\beta_j</script> are linear functions of the random errors <script type="math/tex">\varepsilon_i</script>  which makes it relatively easy to determine the statistical properties of the estimated values of <script type="math/tex">\beta_j</script>.<br />
+<br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Latent Variable Models:</strong><br />
+ <strong>Latent Variable Models</strong> are statistical models that relate a set of observable variables (so-called manifest variables) to a set of latent variables.</p>
+
+    <p><strong style="color: red">Core Assumption - Local Independence:</strong><br />
+ <strong>Local Independence:</strong><br />
+ The observed items are conditionally independent of each other given an individual score on the latent variable(s). This means that the latent variable <em><strong>explains</strong></em> why the observed items are related to another.</p>
+
+    <p>In other words, the targets/labels on the observations are the result of an individual’s position on the latent variable(s), and that the observations have nothing in common after controlling for the latent variable.</p>
+
+    <p>$$p(A,B\vert z) = p(A\vert z) \times (B\vert z)$$</p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Example of Local Independence</button>
+ <img src="https://cdn.mathpix.com/snip/images/wnxPRKkVBA88V1k3i4HdWBTtn0NQFBi5gdNkTLcCeFk.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p id="lst-p"><strong style="color: red">Methods for inferring Latent Variables:</strong></p>
+    <ul>
+      <li>Hidden Markov models (HMMs)</li>
+      <li>Factor analysis</li>
+      <li>Principal component analysis (PCA)</li>
+      <li>Partial least squares regression</li>
+      <li>Latent semantic analysis and probabilistic latent semantic analysis</li>
+      <li>EM algorithms</li>
+      <li>Pseudo-Marginal Metropolis-Hastings algorithm</li>
+      <li>Bayesian Methods: LDA</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li>Latent Variables <em><strong>encode</strong></em>  information about the data<br />
+  e.g. in compression, a 1-bit latent variable can encode if a face is Male/Female.</li>
+      <li><strong>Data Projection:</strong><br />
+  You <em><strong>“hypothesis”</strong></em> how the data might have been generated (by LVs).<br />
+  Then, the LVs <strong>generate</strong> the data/observations.<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Visualisation with Density (Generative) Models</button>
+  <img src="https://cdn.mathpix.com/snip/images/ctljXHCOfIzpttSIOCsFbQxjFmjrEcf4a5Dr9KbWnTI.original.fullsize.png" alt="img" width="100%" hidden="" /></li>
+      <li><a href="https://www.youtube.com/embed/I9dfOMAhsug" value="show" onclick="iframePopA(event)"><strong>Latent Variable Models/Gaussian Mixture Models</strong></a>
+ <a href="https://www.youtube.com/embed/I9dfOMAhsug"></a>
+        <div></div>
+      </li>
+      <li><a href="https://www.youtube.com/embed/lMShR1vjbUo" value="show" onclick="iframePopA(event)"><strong>Expectation-Maximization/EM-Algorithm for Latent Variable Models</strong></a>
+ <a href="https://www.youtube.com/embed/lMShR1vjbUo"></a>
+        <div></div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<!-- 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}
+ -->
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Three ways to build classifiers:</strong>
+    <ol>
+      <li>Generative models (e.g. LDA) [We’ll learn about LDA next lecture.]
+        <ul>
+          <li>Assume sample points come from probability distributions, different for each class.</li>
+          <li>Guess form of distributions</li>
+          <li>For each class <script type="math/tex">C</script>, fit distribution parameters to class <script type="math/tex">C</script> points, giving <script type="math/tex">P(X\vert Y = C)</script></li>
+          <li>For each <script type="math/tex">C</script>, estimate <script type="math/tex">P(Y = C)</script></li>
+          <li>Bayes’ Theorem gives <script type="math/tex">P(Y\vert X)</script></li>
+          <li>If <script type="math/tex">0-1</script> loss, pick class <script type="math/tex">C</script> that maximizes <script type="math/tex">P(Y = C\vert X = x)</script> [posterior probability] equivalently, maximizes <script type="math/tex">P(X = x\vert Y = C) P(Y = C)</script></li>
+        </ul>
+      </li>
+      <li>Discriminative models (e.g. logistic regression) [We’ll learn about logistic regression in a few weeks.]
+        <ul>
+          <li>Model <script type="math/tex">P(Y\vert X)</script> directly</li>
+        </ul>
+      </li>
+      <li>Find decision boundary (e.g. SVM)
+        <ul>
+          <li>Model <script type="math/tex">r(x)</script> directly (no posterior)</li>
+        </ul>
+      </li>
+    </ol>
+
+    <p>Advantage of (1 &amp; 2): <script type="math/tex">P(Y\vert X)</script> tells you probability your guess is wrong<br />
+     [This is something SVMs don’t do.]<br />
+ Advantage of (1): you can diagnose outliers: <script type="math/tex">P(X)</script> is very small<br />
+ Disadvantages of (1): often hard to estimate distributions accurately;<br />
+     real distributions rarely match standard ones.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Regression Models</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Linear Models:</strong><br />
+ A <strong>Linear Model</strong> takes an input <script type="math/tex">x</script> and computes a signal <script type="math/tex">s = \sum_{i=0}^d w_ix_i</script> that is a <em>linear combination</em> of the input with weights, then apply a scoring function on the signal <script type="math/tex">s</script>.
+    <ul>
+      <li><strong>Linear Classifier as a Parametric Model</strong>:<br />
+  Linear classifiers <script type="math/tex">f(x, W)=W x+b</script>  are an example of a parametric model that sums up the knowledge of the training data in the parameter: weight-matrix <script type="math/tex">W</script>.</li>
+      <li><strong>Scoring Function</strong>:
+        <ul>
+          <li><em><strong>Linear Classification</strong></em>:<br />
+  <script type="math/tex">h(x) = sign(s)</script></li>
+          <li><em><strong>Linear Regression</strong></em>:<br />
+  <script type="math/tex">h(x) = s</script></li>
+          <li><em><strong>Logistic Regression</strong></em>:<br />
+  <script type="math/tex">h(x) = \sigma(s)</script></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}
+
+***
+
+## THIRD
+{: #content3}
+
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}
+
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}
+ -->
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

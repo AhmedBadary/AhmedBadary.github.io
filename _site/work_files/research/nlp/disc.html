@@ -73,11 +73,10 @@
     <li><a href="#content2">Feature Extraction for Discriminative Models in NLP</a></li>
   </ul>
   <ul class="TOC3">
-    <li><a href="#content3">THIRD</a></li>
+    <li><a href="#content3">Feature-Based Linear Classifiers</a></li>
   </ul>
-  <ul class="TOC4">
-    <li><a href="#content4">FOURTH</a></li>
-  </ul>
+  <p><!-- * [FOURTH](#content4)
+  {: .TOC4} --></p>
 </div>
 
 <hr />
@@ -136,9 +135,9 @@ They take the data as given, and put a probability <script type="math/tex">\left
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Generative VS Discriminative Models:</strong></dt>
       <dd>Basically, <em>Discriminative Models</em> infer outputs based on inputs,<br />
-while <em>Generative Models</em> generate, both, inputs and outputs (typically given some hidden paramters).</dd>
+while <em>Generative Models</em> generate, both, inputs and outputs (typically given some hidden parameters).</dd>
       <dd>However, notice that the two models are usually viewed as complementary procedures.<br />
-One does <strong>not</strong> necessarily outperform the other, in either classificaiton or regression tasks.</dd>
+One does <strong>not</strong> necessarily outperform the other, in either classification or regression tasks.</dd>
     </dl>
   </li>
 </ol>
@@ -151,7 +150,7 @@ One does <strong>not</strong> necessarily outperform the other, in either classi
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Features (Intuitively):</strong></dt>
-      <dd><strong>Features</strong> (<script type="math/tex">f</script>) are elementary pieces of evidence that link aspects od what we observe (<script type="math/tex">d</script>) with a category (<script type="math/tex">c</script>) that we want to predict.</dd>
+      <dd><strong>Features</strong> (<script type="math/tex">f</script>) are elementary pieces of evidence that link aspects of what we observe (<script type="math/tex">d</script>) with a category (<script type="math/tex">c</script>) that we want to predict.</dd>
     </dl>
   </li>
   <li>
@@ -169,7 +168,7 @@ One does <strong>not</strong> necessarily outperform the other, in either classi
       <dd>Models will assign a <strong>weight</strong> to each Feature:
         <ul>
           <li>A <strong>Positive Weight</strong> votes that this configuration is likely <em>Correct</em>.</li>
-          <li>A <strong>Negative Weight</strong> votes that this configuration is likely <em>InCorrect</em>.</li>
+          <li>A <strong>Negative Weight</strong> votes that this configuration is likely <em>Incorrect</em>.</li>
         </ul>
       </dd>
     </dl>
@@ -200,26 +199,20 @@ One does <strong>not</strong> necessarily outperform the other, in either classi
       </dd>
     </dl>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Features in NLP:</strong></dt>
-      <dd>In NLP, features have a particular form.<br />
-They consist of:
-        <ul>
-          <li><strong>Indicator Function</strong>: a boolean matching function of properties of the input</li>
-          <li><strong>A Particular Class</strong>: specifies some class <script type="math/tex">c_j</script></li>
-        </ul>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">f_i(c,d) \cong [\Phi(d) \wedge c=c_j] = \{0 \vee 1\}</script>
-      </dd>
-      <dd>where <script type="math/tex">\Phi(d)</script> is a given predicate on the data <script type="math/tex">d</script>, and <script type="math/tex">c_j</script> is a particular class.</dd>
-      <dd>
-        <blockquote>
-          <p>Basically, each feature picks out a data subset and suggests a label for it.</p>
-        </blockquote>
-      </dd>
-    </dl>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Features in NLP:</strong><br />
+ In NLP, features have a particular form.<br />
+ They consist of:
+    <ul>
+      <li><strong>Indicator Function</strong>: a boolean matching function of properties of the input</li>
+      <li><strong>A Particular Class</strong>: specifies some class <script type="math/tex">c_j</script>
+        <p>$$f_i(c,d) \cong [\Phi(d) \wedge c=c_j] = \{0 \vee 1\}$$</p>
+        <p>where <script type="math/tex">\Phi(d)</script> is a given predicate on the data <script type="math/tex">d</script>, and <script type="math/tex">c_j</script> is a particular class.</p>
+      </li>
+    </ul>
+
+    <blockquote>
+      <p>Basically, each feature picks out a data subset and suggests a label for it.</p>
+    </blockquote>
   </li>
 </ol>
 
@@ -294,121 +287,66 @@ They consist of:
       </dd>
     </dl>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Exponential Models (Training) | Maximizing the Likelihood:</strong></dt>
-      <dd><strong>The Likelihood Value</strong>:
-        <ul>
-          <li>The (log) conditional likelihood of a maxend model is a function of the iid data <script type="math/tex">(C,D)</script> and the parameters (<script type="math/tex">\lambda</script>):</li>
-        </ul>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">log P(C \| D,\lambda) = log \prod_{(c,d) \in (C,D)} P(c \| d,\lambda) = \sum_{(c,d) \in (C,D)} log P(c \| d,\lambda)</script>
-      </dd>
-      <dd>
-        <ul>
-          <li>If there aren’t many values of <script type="math/tex">c</script>, it’s easy to calculate:</li>
-        </ul>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">log P(c \| d,\lambda) = \sum_{(c,d) \in (C,D)} log \dfrac{e^{\sum_i \lambda_if_i(c,d)}}{\sum_c e^{\sum_i \lambda_if_i(c,d)}}</script>
-      </dd>
-      <dd>
-        <ul>
-          <li>We can separate this into two components:</li>
-        </ul>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">log P(c \| d,\lambda) = \sum_{(c,d) \in (C,D)} log e^{\sum_i \lambda_if_i(c,d)} - \sum_{(c,d) \in (C,D)} log \sum_c' e^{\sum_i \lambda_if_i(c',d)}</script>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">\implies</script>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">log P(C \| D, \lambda) = N(\lambda) - M(\lambda)</script>
-      </dd>
-      <dd>
-        <ul>
-          <li>The Derivative of the Numerator is easy to calculate:</li>
-        </ul>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">\dfrac{\partial N(\lambda)}{\partial \lambda_i} = \dfrac{\partial \sum_{(c,d) \in (C,D)} log e^{\sum_i \lambda_if_i(c,d)}}{\partial \lambda_i}
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Exponential Models (Training) | Maximizing the Likelihood:</strong><br />
+ <strong>The Likelihood Value</strong>:
+    <ul>
+      <li>The <strong>(log) conditional likelihood</strong> of a MaxEnt model is a function of the i.i.d. data <script type="math/tex">(C,D)</script> and the parameters (<script type="math/tex">\lambda</script>):
+        <p>$$\log P(C \| D,\lambda) = \log \prod_{(c,d) \in (C,D)} P(c \| d,\lambda) = \sum_{(c,d) \in (C,D)} \log P(c \| d,\lambda)$$</p>
+      </li>
+      <li>If there aren’t many values of <script type="math/tex">c</script>, it’s easy to calculate:
+        <p>$$\log P(c \| d,\lambda) = \sum_{(c,d) \in (C,D)} \log \dfrac{e^{\sum_i \lambda_if_i(c,d)}}{\sum_c e^{\sum_i \lambda_if_i(c,d)}}$$</p>
+      </li>
+      <li>We can separate this into two components:
+        <p>$$\log P(c \| d,\lambda) = \sum_{(c,d) \in (C,D)} \log e^{\sum_i \lambda_if_i(c,d)} - \sum_{(c,d) \in (C,D)} \log \sum_c' e^{\sum_i \lambda_if_i(c',d)}$$</p>
+        <p>$$\implies$$</p>
+        <p>$$\log P(C \| D, \lambda) = N(\lambda) - M(\lambda)$$</p>
+      </li>
+      <li>The Derivative of the Numerator is easy to calculate:
+        <p>$$\dfrac{\partial N(\lambda)}{\partial \lambda_i} = \dfrac{\partial \sum_{(c,d) \in (C,D)} \log e^{\sum_i \lambda_if_i(c,d)}}{\partial \lambda_i}  
  \\= \dfrac{\partial \sum_{(c,d) \in (C,D)} \sum_i \lambda_if_i(c,d)}{\partial \lambda_i} 
  \\\\= \sum_{(c,d) \in (C,D)} \dfrac{\partial \sum_i \lambda_if_i(c,d)}{\partial \lambda_i} 
- \\\\= \sum_{(c,d) \in (C,D)} f_i(c,d)</script>
-      </dd>
-      <dd>The derivative of the Numerator is <strong>the Empirical Expectation</strong>, <script type="math/tex">E_{\text{emp}}(f_i)</script></dd>
-      <dd>
+ \\\\= \sum_{(c,d) \in (C,D)} f_i(c,d)$$</p>
+      </li>
+      <li>The derivative of the Numerator is <strong>the Empirical Expectation</strong>, <script type="math/tex">E_{\text{emp}}(f_i)</script></li>
+      <li>The Derivative of the Denominator:
+        <p>$$\dfrac{\partial M(\lambda)}{\partial \lambda_i}  = \dfrac{\partial \sum_{(c,d) \in (C,D)} \log \sum_c' e^{\sum_i \lambda_if_i(c',d)}}{\partial \lambda_i} \\\\= \sum_{(c,d) \in (C,D)} \sum_c' P(c' \| d, \lambda)f_i(c', d)$$</p>
+      </li>
+      <li>The derivative of the Denominator is equal to <strong>the Predicted Expectation (count)</strong>, <script type="math/tex">E(f_i, \lambda)</script></li>
+      <li>Thus, the derivative of the log likelihood is:
+        <p>$$\dfrac{\partial \log P(C \| D, \vec{\lambda})}{\partial \lambda_i} = \text{Actual Count}(f_i, C) - \text{Predicted Count}(f_i, \vec{\lambda})$$</p>
+      </li>
+      <li>Thus, the optimum parameters are those for which each feature’s <em>predicted expectation</em> equals its <em>empirical expectation</em>.</li>
+    </ul>
+
+    <p id="lst-p">The <strong>Optimum Distribution</strong> is always:</p>
+    <ul>
+      <li>Unique (parameters need not be unique)</li>
+      <li>Exists (if feature counts are from actual data)</li>
+    </ul>
+
+    <p>These models are called <strong>Maximum Entropy (Maxent)</strong> Models because we find the model having the maximum entropy, and satisfying the constraints:</p>
+    <p>$$E_p(f_j) = E_\hat{p}(f_j), \:\:\: \forall j$$</p>
+
+    <p>Finally, to find the optimal parameters <script type="math/tex">\lambda_1, \dots, \lambda_d</script> one needs to optimize (maximize) the log likelihood, or equivalently, minimize the -ve likelihood.  <br />
+ One can do that in variety of ways using optimization methods.</p>
+
+    <p id="lst-p">Common <strong>Optimization Methods</strong>:</p>
+    <ul>
+      <li>(Stochastic) Gradient Descent</li>
+      <li>Iterative Proportional Fitting Methods:
         <ul>
-          <li>The Derivative of the Denominator:</li>
+          <li>Generalized Iterative Scaling (GIS)</li>
+          <li>Improved Iterative Scaling (IIS)</li>
         </ul>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">\dfrac{\partial M(\lambda)}{\partial \lambda_i}
- = \dfrac{\partial \sum_{(c,d) \in (C,D)} log \sum_c' e^{\sum_i \lambda_if_i(c',d)}}{\partial \lambda_i}
- \\\\= \sum_{(c,d) \in (C,D)} \sum_c' P(c' \| d, \lambda)f_i(c', d)</script>
-      </dd>
-      <dd>The derivative of the Denominator is equal to <strong>the Predicted Expectation (count)</strong>, <script type="math/tex">E(f_i, \lambda)</script></dd>
-      <dd>Thus, the derivative of the log likelihood is:</dd>
-      <dd>
-        <script type="math/tex; mode=display">\dfrac{\partial log P(C \| D, \vec{\lambda})}{\partial \lambda_i} = \text{Actual Count}(f_i, C) - \text{Predicted Count}(f_i, \vec{\lambda})</script>
-      </dd>
-      <dd>
+      </li>
+      <li>Conjugate Gradient (CG) (+ Preconditioning)</li>
+      <li>Quasi-Newton Methods -  Limited-Memory Variable Metric (LMVM):
         <ul>
-          <li>Thus, the optimum parameters are those for which rach feature’s <em>predicted expectation</em> equals its <em>empirical expectation</em>.</li>
+          <li>L-BFGS
+  This one is the most commonly used.</li>
         </ul>
-      </dd>
-      <dd>
-        <ul>
-          <li>The <strong>Optimum Distribution</strong> is always:
-            <ul>
-              <li>Unique (parameters need not be unique)</li>
-              <li>Exists (if feature counts are from actual data)</li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
-      <dd>
-        <ul>
-          <li>These models are called <strong>Maximum Entropy (Maxent)</strong> Models because we find the model having the maximum entropy, and satisfying the constraints:</li>
-        </ul>
-      </dd>
-      <dd>
-        <script type="math/tex; mode=display">E_p(f_j) = E_\hat{p}(f_j), \:\:\: \forall j</script>
-      </dd>
-      <dd>
-        <ul>
-          <li>Finally, to find the optimal parameters <script type="math/tex">\lambda_1, \dots, \lambda_d</script> one needs to optimize (maximize) the log liklehood, or equivalently, minimize the -ve loglik.<br />
-  One can do that in variety of was using optimization methods.</li>
-        </ul>
-      </dd>
-      <dd>
-        <ul>
-          <li>Common <strong>Optimization Methods</strong>:
-            <ul>
-              <li>(Stochastic) Gradient Descent</li>
-              <li>Iterative Proportional Fitting Methods:
-                <ul>
-                  <li>Generalized Iterative Scaling (GIS)</li>
-                  <li>Improved Iterative Scaling (IIS)</li>
-                </ul>
-              </li>
-              <li>Conjugate Gradient (CG) (+ Preconditioning)</li>
-              <li>Quasi-Newton Methods -  Limited-Memory Variable Metric (LMVM):
-                <ul>
-                  <li>L-BFGS
-                    <blockquote>
-                      <p>This one is the most commonly used.</p>
-                    </blockquote>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
-    </dl>
+      </li>
+    </ul>
   </li>
 </ol>
 

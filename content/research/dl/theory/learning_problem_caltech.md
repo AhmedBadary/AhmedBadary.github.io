@@ -30,6 +30,75 @@ prevLink: /work_files/research/dl/nlp.html
 [Empirical Risk Minimization (Cornell)](https://www.youtube.com/watch?v=AkmPv2WEsHw)  
 
 
+__Fundamental Problem of Machine Learning: It is *Ill-Posed*:__{: style="color: red"}  
+Learning appears __impossible__: Learning a truly "unknown" function is __impossible__.  
+<button>Show Discussion</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+![img](https://cdn.mathpix.com/snip/images/lgiqZ1ILbIe7TEciHCRsTgXrIfSDdrrpzvT078EloAI.original.fullsize.png){: width="100%" hidden=""}  
+* __Solution: Work with a Restricted Hypothesis Space:__{: style="color: red"}  
+    Either by <span>applying prior knowledge</span>{: style="color: purple"} or by <span>guessing</span>{: style="color: purple"}, we choose a space of hypotheses $$H$$ that is smaller than the space of all possible functions:  
+    * simple conjunctive rules, linear functions, multivariate Gaussian joint probability distributions, etc.  
+
+    * Lets say you have an unknown target function $$f: X \rightarrow Y$$ that you are trying to capture by learning. In order to capture the target function you have to come up with (__guess__) some hypotheses $$h_{1}, \ldots, h_{n}$$ where $$h \in H$$, and then __search__ through these hypotheses to select the best one that approximates the target function.   
+
+
+__Two Views of Learning and their corresponding Strategies:__{: style="color: red"}  
+{: #lst-p}
+1. Learning is the _removal_ of our remaining __uncertainty__  
+    – Suppose we knew that the unknown function was an m-of-n boolean function. Then we could use the training examples to deduce which function it is.  
+    – Our prior "knowledge" might be wrong  
+    * __Strategy__: Develop Languages for Expressing Prior Knowledge  
+        Rule grammars, stochastic models, Bayesian networks  
+2. Learning requires __guessing__ a good, small _hypothesis class_.  
+    – We can start with a very small class and enlarge it until it contains an hypothesis that fits the data.  
+    – Our guess of the hypothesis class could be wrong: The smaller the class, the more likely we are wrong.  
+    * __Strategy__: Develop Flexible Hypothesis Spaces  
+        Nested collections of hypotheses: decision trees, neural networks, cases, SVMs  
+
+
+__Key Issues in Machine Learning:__{: style="color: red"}  
+<button>List</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+* What are good hypothesis spaces?
+    - which spaces have been useful in practical applications?  
+* What algorithms can work with these spaces?
+    - Are there general design principles for learning algorithms?  
+* How can we optimize accuracy on future data points?
+    - This is related to the problem of "overfitting"
+* How can we have confidence in the results? (the __statistical__ question)
+    - How much training data is required to find an accurate hypotheses?
+* Are some learning problems computational intractable? (the __computational__ question)
+* How can we formulate application problems as machine learning problems? (the __engineering__ question)    
+{: hidden=""}
+
+
+__A Framework for Hypothesis Spaces:__{: style="color: red"}  
+{: #lst-p}
+* __Size__: Does the hypothesis space have a __fixed size__ or a __variable size__?  
+    * __Fixed-sized__ spaces are easier to understand, but variable-sized spaces are generally more useful.  
+    * __Variable-sized__ spaces introduce the problem of __overfiting__.  
+* __Stochasticity:__ Is the hypothesis a __classifier__, a __conditional distribution__, or a __joint distribution__?  
+    This affects how we evaluate hypotheses.  
+    * For a __deterministic__ hypothesis, a training example is either consistent (correctly predicted) or inconsistent (incorrectly predicted).  
+    * For a __stochastic__ hypothesis, a training example is more likely or less likely.  
+* __Parameterization:__ Is each hypothesis described by a set of __symbolic (discrete)__ choices or is it described by a set of __continuous__ parameters?  
+    If both are required, we say the space has a __mixed__ parameterization.  
+    * __Discrete parameters__ must be found by combinatorial search methods  
+    * __Continuous parameters__ can be found by numerical search methods  
+* <button>Hypothesis Spaces Diagram</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+![img](https://cdn.mathpix.com/snip/images/VFFJtf0S4AltKowR4d_7VR0v-ztBmt108ogBYAPDa5o.original.fullsize.png){: width="100%" hidden=""}  
+    Note: __LTU__ == Linear Threshold Unit.  
+
+
+__A Framework for Learning Algorithms:__{: style="color: red"}  
+{: #lst-p}
+* <button>Show Discussion</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+![img](https://cdn.mathpix.com/snip/images/jww-nPeIv3F0oytJ4PqraBXL49bL30kGCg4JwL1bi70.original.fullsize.png){: width="100%" hidden=""}  
+* <button>Show Diagram</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+![img](https://cdn.mathpix.com/snip/images/y1wmxHjLNnaAzMg3rojdoNoid06vpgoVp1NMIlt6-sk.original.fullsize.png){: width="100%" hidden=""}  
+* <button>Three Components of Learning Algorithms</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](https://cdn.mathpix.com/snip/images/qsm50cMRH8q1Sr5QTJWNWDf4kFrhGIZTZjvjWRlN0aw.original.fullsize.png){: width="100%" hidden=""}  
+
+
+
 ## The Learning Problem
 {: #content1}
 
@@ -42,7 +111,7 @@ prevLink: /work_files/research/dl/nlp.html
     We usually can do without the first two. But the third condition we __CANNOT__ do without.  
     The Theory of Learning only depends on the data.  
 
-    > "We have to have data. We are learning from data. So if someone knocks on my door with an interesting machine learning application, and they tell me how exciting it is, and how great the application would be, and how much money they would make, the first question I ask, __'what data do you have?'__. If you have data, we are in business. If you don't, you are _out of luck_." - Prof. NG
+    > "We have to have data. We are learning from data. So if someone knocks on my door with an interesting machine learning application, and they tell me how exciting it is, and how great the application would be, and how much money they would make, the first question I ask, __'what data do you have?'__. If you have data, we are in business. If you don't, you are _out of luck_." - Prof. Ng
 
 
 2. **The ML Approach to Problem Solving:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
@@ -58,15 +127,15 @@ prevLink: /work_files/research/dl/nlp.html
         * Start with the __Ratings__ (dataset) that the users assigned to each movie  
         * Then _deduce_ the "factors/features" that are consistent with those Ratings  
             Note: we usually start with random initial numbers for the factors  
-
+    <br>
 
 3. **Components of Learning:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
     * __Input__: $$\vec{x}$$  
     * __Output__: $$y$$ 
-    * __Data__:  $${(\vec{x}_1, y_1), (\vec{x}_2, y_2), ..., (\vec{x}_N, y_N)}$$ 
+    * __Data__:  $${(\vec{x}_ 1, y_ 1), (\vec{x}_ 2, y_ 2), ..., (\vec{x}_ N, y_ N)}$$ 
     * __Target Function__: $$f : \mathcal{X} \rightarrow \mathcal{Y}$$  (Unknown/Unobserved)  
-    * __Hypothesis__: $$g : \mathcal{X} \rightarrow \mathcal{Y}$$ 
-                
+    * __Hypothesis__: $$g : \mathcal{X} \rightarrow \mathcal{Y}$$  
+    <br>
 
 5. **Components of the Solution:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}  
     * __The Learning Model__:  
@@ -79,12 +148,13 @@ prevLink: /work_files/research/dl/nlp.html
     * __No Downsides__: There is __no loss of generality__ by including a hypothesis set, since any restrictions on the elements of the set have no effect on what the learning algorithms  
         Basically, there is no downside because from a practical POV thats what you do; by choosing an initial approach, e.g. SVM, Linear Regression, Neural Network, etc., we are already dictating a hypothesis set. If we don't choose one, then the hypothesis set has no restrictions and is the set of all possible hypothesis without loss of generalization.  
     * __Upside__: The hypothesis set plays a pivotal role in the _theory of learning_, by dictating whether we can learn or not.  
-
+    <br>
 
 6. **The Basic Premise/Goal of Learning:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}  
     "Using a set of observations to uncover an underlying process"  
     Rephrased mathematically, the __Goal of Learning__ is:   
     Use the Data to find a hypothesis $$g \in \mathcal{H}$$, from the hypothesis set $$\mathcal{H}=\{h\}$$, that _approximates_ $$f$$ well.  
+    <br>
 
 7. **Types of Learning:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
     * __Supervised Learning__: the task of learning a function that maps an input to an output based on example input-output pairs.  
@@ -94,6 +164,7 @@ prevLink: /work_files/research/dl/nlp.html
         > Unsupervised Learning is another name for [Hebbian Learning](https://en.wikipedia.org/wiki/Hebbian_theory)
     * __Reinforcement Leaning__: the task of learning how software agents ought to take actions in an environment so as to maximize some notion of cumulative reward.  
         ![img](/main_files/dl/theory/caltech/6.png){: width="70%"}  
+    <br>
 
 8. **The Learning Diagram:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}  
     ![img](/main_files/dl/theory/caltech/3.png){: width="70%"}  
@@ -109,80 +180,82 @@ The Goal of this Section is to answer the question: Can we make any statements/i
     Learning a truly __Unknown__ function is __Impossible__, since outside of the observed values, the function could assume _any value_ it wants.  
 
 2. **The Bin Analogy - A Related Experiment::**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
-    ![img](/main_files/dl/theory/caltech/7.png){: width="70%"}  
+    <button>Show Discussion</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    * ![img](/main_files/dl/theory/caltech/7.png){: width="70%"}  
 
-    $$\mu$$ is a constant that describes the actual/real probability of picking the red marble.  
-    $$\nu$$, however, is random and depends on the frequency of red marbles in the particular sample that you have collected.    
+        $$\mu$$ is a constant that describes the actual/real probability of picking the red marble.  
+        $$\nu$$, however, is random and depends on the frequency of red marbles in the particular sample that you have collected.    
 
-    Does $$\nu$$ approximate $$\mu$$?  
-    * The short answer is __NO__:  
-        The Sample an be mostly green while bin is mostly red.  
-    * The Long answer is __YES__:  
-        The Sample frequency $$\nu$$ is likely/probably close to bin frequency $$\mu$$.  
-        > Think of a presidential poll of 3000 people that can predict how the larger $$10^8$$ mil. people will vote  
+        Does $$\nu$$ approximate $$\mu$$?  
+        * The short answer is __NO__:  
+            The Sample an be mostly green while bin is mostly red.  
+        * The Long answer is __YES__:  
+            The Sample frequency $$\nu$$ is likely/probably close to bin frequency $$\mu$$.  
+            > Think of a presidential poll of 3000 people that can predict how the larger $$10^8$$ mil. people will vote  
 
-    The Main distinction between the two answers is in the difference between *__Possible__* VS *__Probable__*. 
+        The Main distinction between the two answers is in the difference between *__Possible__* VS *__Probable__*. 
 
-    What does $$\nu$$ say about $$\mu$$?  
-    In a big sample (Large $$N$$), $$\nu$$ is _probably_ close to $$\mu$$ (within $$\epsilon$$).   
-    Formally, we the __Hoeffding's Inequality__:  
-    <p>$$\mathbb{P}[|\nu-\mu|>\epsilon] \leq 2 e^{-2 \epsilon^{2} N}$$</p>  
-    In other words, the probability that $$\nu$$ does not approximate $$\mu$$ well (they are not within an $$\epsilon$$ of each other), is bounded by a negative exponential that dampens fast but depends directly on the tolerance $$\epsilon$$.  
-    > This reduces to the statement that "$$\mu = \nu$$" is PAC (PAC: Probably, Approximately Correct).    
+        What does $$\nu$$ say about $$\mu$$?  
+        In a big sample (Large $$N$$), $$\nu$$ is _probably_ close to $$\mu$$ (within $$\epsilon$$).   
+        Formally, we the __Hoeffding's Inequality__:  
+        <p>$$\mathbb{P}[|\nu-\mu|>\epsilon] \leq 2 e^{-2 \epsilon^{2} N}$$</p>  
+        In other words, the probability that $$\nu$$ does not approximate $$\mu$$ well (they are not within an $$\epsilon$$ of each other), is bounded by a negative exponential that dampens fast but depends directly on the tolerance $$\epsilon$$.  
+        > This reduces to the statement that "$$\mu = \nu$$" is PAC (PAC: Probably, Approximately Correct).    
 
-    Properties:  
-    * It is valid for $$N$$ and $$\epsilon$$. 
-    * The bound does not depend on the value of $$\mu$$.  
-    * There is a __Trade-off__ between the number of samples $$N$$ and the tolerance $$\epsilon$$.  
-    * Saying that $$\nu \approx \mu \implies \mu \approx \nu$$, i.e. saying $$\nu$$ is approximately the same as $$\mu$$, implies that $$\mu$$ is approximately the same as $$\nu$$ (yes, tautology).   
-        The logic here is subtle:  
-        * Logically, the inequality is making a statement on $$\nu$$ (the random variable), it is saying that $$\nu$$ tends to be close to $$\mu$$ (the constant, real probability).  
-        * However, since the inequality is symmetric, we are using the inequality to infer $$\mu$$ from $$\nu$$.  
-            But that is not the cause and effect that actually takes place. $$\mu$$, actually, affects $$\nu$$.  
+        Properties:  
+        * It is valid for $$N$$ and $$\epsilon$$. 
+        * The bound does not depend on the value of $$\mu$$.  
+        * There is a __Trade-off__ between the number of samples $$N$$ and the tolerance $$\epsilon$$.  
+        * Saying that $$\nu \approx \mu \implies \mu \approx \nu$$, i.e. saying $$\nu$$ is approximately the same as $$\mu$$, implies that $$\mu$$ is approximately the same as $$\nu$$ (yes, tautology).   
+            The logic here is subtle:  
+            * Logically, the inequality is making a statement on $$\nu$$ (the random variable), it is saying that $$\nu$$ tends to be close to $$\mu$$ (the constant, real probability).  
+            * However, since the inequality is symmetric, we are using the inequality to infer $$\mu$$ from $$\nu$$.  
+                But that is not the cause and effect that actually takes place. $$\mu$$, actually, affects $$\nu$$.  
 
-    Translating to the Learning Problem:  
-    ![img](/main_files/dl/theory/caltech/8.png){: width="70%"}  
-    > Notice how the meaning of the accordance between $$\mu$$ and $$\nu$$  is not accuracy of the model, but rather accuracy of the TEST.  
+        Translating to the Learning Problem:  
+        ![img](/main_files/dl/theory/caltech/8.png){: width="70%"}  
+        > Notice how the meaning of the accordance between $$\mu$$ and $$\nu$$  is not accuracy of the model, but rather accuracy of the TEST.  
 
-    Back to the Learning Diagram:  
-    ![img](/main_files/dl/theory/caltech/9.png){: width="70%"}  
-    The marbles in the bin correspond to the input space (datapoints). This adds a NEW COMPONENT to the Learning problem - the probability of generating the input datapoints (up to this point we treated learning in an absolute sense based on some fixed datapoints).   
-    To adjust the statement of the learning problem to accommodate the new component:  
-    we add a probability distribution $$P$$  over the input space $$\mathcal{X}$$. This, however, doesn't restrict the argument at all; we can invoke any probability on the space, and the machinery still holds. We, also, do not, even, need to know what $$P$$ is (even though $$P$$ affects $$\mu$$), since Hoeffding's Inequality allows us to bound the LHS with no dependence on $$\mu$$.  
-    Thus, now we assume that the input datapoints $$\vec{x}_1, ..., \vec{x}_N$$ are assumed to be generated by $$P$$, __independently__.  
-    So this is a very benign addition, that would give us high dividends - The Feasibility of Learning.    
+        Back to the Learning Diagram:  
+        ![img](/main_files/dl/theory/caltech/9.png){: width="70%"}  
+        The marbles in the bin correspond to the input space (datapoints). This adds a NEW COMPONENT to the Learning problem - the probability of generating the input datapoints (up to this point we treated learning in an absolute sense based on some fixed datapoints).   
+        To adjust the statement of the learning problem to accommodate the new component:  
+        we add a probability distribution $$P$$  over the input space $$\mathcal{X}$$. This, however, doesn't restrict the argument at all; we can invoke any probability on the space, and the machinery still holds. We, also, do not, even, need to know what $$P$$ is (even though $$P$$ affects $$\mu$$), since Hoeffding's Inequality allows us to bound the LHS with no dependence on $$\mu$$.  
+        Thus, now we assume that the input datapoints $$\vec{x}_1, ..., \vec{x}_N$$ are assumed to be generated by $$P$$, __independently__.  
+        So this is a very benign addition, that would give us high dividends - The Feasibility of Learning.    
 
-    However, this is not learning; it is __Verification__. Learning involves using an algorithm to search a space $$\mathcal{H}$$  and try different functions $$h \in \mathcal{H}$$. Here, we have already picked some specific function and are testing its performance on a sample, using maths to guarantee the accuracy of the test within some threshold we are willing to tolerate.  
+        However, this is not learning; it is __Verification__. Learning involves using an algorithm to search a space $$\mathcal{H}$$  and try different functions $$h \in \mathcal{H}$$. Here, we have already picked some specific function and are testing its performance on a sample, using maths to guarantee the accuracy of the test within some threshold we are willing to tolerate.  
 
 
-    Extending Hoeffding's Inequality to Multiple hypotheses $$h_i$$:  
-    ![img](/main_files/dl/theory/caltech/10.png){: width="70%"}  
-    ![img](/main_files/dl/theory/caltech/11.png){: width="70%"}  
+        Extending Hoeffding's Inequality to Multiple hypotheses $$h_i$$:  
+        ![img](/main_files/dl/theory/caltech/10.png){: width="70%"}  
+        ![img](/main_files/dl/theory/caltech/11.png){: width="70%"}  
 
-    Putting the right notation:  
-    ![img](/main_files/dl/theory/caltech/12.png){: width="70%"}  
-    ![img](/main_files/dl/theory/caltech/13.png){: width="70%"}  
+        Putting the right notation:  
+        ![img](/main_files/dl/theory/caltech/12.png){: width="70%"}  
+        ![img](/main_files/dl/theory/caltech/13.png){: width="70%"}  
 
-    <button>Why Hoeffding Inequality doesn't apply for multiple bins</button>{: .showText value="show" onclick="showTextPopHide(event);"}
-    ![img](/main_files/dl/theory/caltech/14.png){: hidden=""}  
-    > i.e. the 10 heads are not a good indication of the real probability  
-    
-    <button>From coins to learning</button>{: .showText value="show" onclick="showTextPopHide(event);"}
-    ![img](/main_files/dl/theory/caltech/15.png){: hidden=""}  
-    Equivalently, in learning, if the hypothesis set size is 1000, and there are 10 points we test against, the probability that one of those hypothesis performing well on the 10 points, but actually being a bad hypothesis is high, and increases with the hypothesis set size.  
-    > Hoeffding's inequality has a guarantee for one experiment, that gets terribly diluted as you increase the number of experiments.  
+        <button>Why Hoeffding Inequality doesn't apply for multiple bins</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+        ![img](/main_files/dl/theory/caltech/14.png){: hidden=""}  
+        > i.e. the 10 heads are not a good indication of the real probability  
+        
+        <button>From coins to learning</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+        ![img](/main_files/dl/theory/caltech/15.png){: hidden=""}  
+        Equivalently, in learning, if the hypothesis set size is 1000, and there are 10 points we test against, the probability that one of those hypothesis performing well on the 10 points, but actually being a bad hypothesis is high, and increases with the hypothesis set size.  
+        > Hoeffding's inequality has a guarantee for one experiment, that gets terribly diluted as you increase the number of experiments.  
 
-    Solution:  
-    We follow the very same reasoning: we want to know the probability of at least one failing. This can be bounded by the union bound, which intuitively says that the maximum probability of at least an event occurring in N is when all the events are independent, in which case you just sum up the probabilities:  
-    <p>$$\begin{aligned} \mathbb{P}\left[ | E_{\text {in }}(g)-E_{\text {out }}(g) |>\epsilon\right] \leq \mathbb{P}[ & | E_{\text {in }}\left(h_{1}\right)-E_{\text {out }}\left(h_{1}\right) |>\epsilon \\ & \text {or } | E_{\text {in }}\left(h_{2}\right)-E_{\text {out }}\left(h_{2}\right) |>\epsilon \\ & \cdots \\ & \text {or } | E_{\text {in }}\left(h_{M}\right)-E_{\text {out }}\left(h_{M}\right) |>\epsilon ] \\ \leq & \sum_{m=1}^{M} \mathbb{P}\left[ | E_{\text {in }}\left(h_{m}\right)-E_{\text {out }}\left(h_{m}\right) |>\epsilon\right] \end{aligned}$$</p>  
-    Which implies:  
-    <p>$$\begin{aligned} \mathbb{P}\left[ | E_{\text {in }}(g)-E_{\text {out }}(g) |>\epsilon\right] & \leq \sum_{m=1}^{M} \mathbb{P}\left[ | E_{\text {in }}\left(h_{m}\right)-E_{\text {out }}\left(h_{m}\right) |>\epsilon\right] \\ & \leq \sum_{m=1}^{M} 2 e^{-2 \epsilon^{2} N} \end{aligned}$$</p>   
-    Or,  
-    <p>$$\mathbb{P}\left[ | E_{\ln }(g)-E_{\text {out }}(g) |>\epsilon\right] \leq 2 M e^{-2 \epsilon^{2} N}$$</p>  
-    The more sophisticated the model you use, the looser that in-sample will track the out-of-sample. Because the probability of them deviating becomes bigger and bigger and bigger.  
-    The conclusion may seem both awkward and obvious, but the bigger the hypothesis set, the higher the probability of at least one function being very bad. In the event that we have an infinite hypothesis set, of course this bound goes to infinity and tells us nothing new.  
+        Solution:  
+        We follow the very same reasoning: we want to know the probability of at least one failing. This can be bounded by the union bound, which intuitively says that the maximum probability of at least an event occurring in N is when all the events are independent, in which case you just sum up the probabilities:  
+        <p>$$\begin{aligned} \mathbb{P}\left[ | E_{\text {in }}(g)-E_{\text {out }}(g) |>\epsilon\right] \leq \mathbb{P}[ & | E_{\text {in }}\left(h_{1}\right)-E_{\text {out }}\left(h_{1}\right) |>\epsilon \\ & \text {or } | E_{\text {in }}\left(h_{2}\right)-E_{\text {out }}\left(h_{2}\right) |>\epsilon \\ & \cdots \\ & \text {or } | E_{\text {in }}\left(h_{M}\right)-E_{\text {out }}\left(h_{M}\right) |>\epsilon ] \\ \leq & \sum_{m=1}^{M} \mathbb{P}\left[ | E_{\text {in }}\left(h_{m}\right)-E_{\text {out }}\left(h_{m}\right) |>\epsilon\right] \end{aligned}$$</p>  
+        Which implies:  
+        <p>$$\begin{aligned} \mathbb{P}\left[ | E_{\text {in }}(g)-E_{\text {out }}(g) |>\epsilon\right] & \leq \sum_{m=1}^{M} \mathbb{P}\left[ | E_{\text {in }}\left(h_{m}\right)-E_{\text {out }}\left(h_{m}\right) |>\epsilon\right] \\ & \leq \sum_{m=1}^{M} 2 e^{-2 \epsilon^{2} N} \end{aligned}$$</p>   
+        Or,  
+        <p>$$\mathbb{P}\left[ | E_{\ln }(g)-E_{\text {out }}(g) |>\epsilon\right] \leq 2 M e^{-2 \epsilon^{2} N}$$</p>  
+        The more sophisticated the model you use, the looser that in-sample will track the out-of-sample. Because the probability of them deviating becomes bigger and bigger and bigger.  
+        The conclusion may seem both awkward and obvious, but the bigger the hypothesis set, the higher the probability of at least one function being very bad. In the event that we have an infinite hypothesis set, of course this bound goes to infinity and tells us nothing new.  
 
-    [References](http://testuggine.ninja/notes/feasibility-of-learning#fnref:limited)
+        [References](http://testuggine.ninja/notes/feasibility-of-learning#fnref:limited)
+    {: hidden=""}
 
 
 3. **The Learning Analogy:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}  
@@ -367,6 +440,17 @@ The Current Learning Diagram:
 ## The Linear Model II
 {: #content5}
 
+* [Logistic Regression vs LDA? (ESL)](https://web.stanford.edu/~hastie/Papers/ESLII.pdf#page=146)  
+* [Derivation of Logistic Regression](http://www.haija.org/derivation_logistic_regression.pdf)  
+* [The Simpler Derivation of Logistic Regression](http://www.win-vector.com/blog/2011/09/the-simpler-derivation-of-logistic-regression/)  
+* [Logistic Regression, Generalized Linear and Additive Models (CMU)](http://www.stat.cmu.edu/~cshalizi/uADA/12/lectures/ch12.pdf)  
+* [Why do we use the Bernoulli distribution in the logistic regression model? (Quora)](https://www.quora.com/Why-do-we-use-the-Bernoulli-distribution-in-the-logistic-regression-model)  
+* [Logistic Regression - ML Cheatsheet](https://ml-cheatsheet.readthedocs.io/en/latest/logistic_regression.html)  
+* [Logistic Regression - CS Cheatsheet](https://cs-cheatsheet.readthedocs.io/en/latest/subjects/machine_learning/logistic_regression.html)  
+* [Logistic Regression (Lec Ng)](https://www.youtube.com/watch?v=hjrYrynGWGA&list=PLkDaE6sCZn6Ec-XTbcX1uRg2_u4xOEky0&index=9)  
+
+
+
 1. **Linear Models - Logistic Regression:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents51}  
     ![img](/main_files/dl/theory/caltech/25.png){: width="80%"}   
     The __Logistic Regression__ applies a _non-linear transform_  on the _signal_; it's a softer approximation to the hard-threshold non-linearity applied by _Linear Classification_.  
@@ -390,7 +474,19 @@ The Current Learning Diagram:
     We learn $$\:\:\:\: g(\mathbf{x})=\theta\left(\mathbf{w}^{\top} \mathbf{x}\right) \approx f(\mathbf{x})$$.   
     > In words: So I'm going to call the probability the target function itself. The probability that someone gets heart attack is $$f(\mathbf{x})$$. And I'm trying to learn $$f$$, notwithstanding the fact that the examples that I am getting are giving me just sample values of $$y$$, that happen to be generated by $$f$$.  
 
-    [Further Analysis](/concepts_#bodyContents66)  
+    <button>Further Analysis</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    * Logistic Regression uses the __sigmoid__ function to "squash" the output feature/signal into the $$[0, 1]$$ space.  
+        Although, one could interpret the _sigmoid classifier_ as just a function with $$[0,1]$$ range, it is actually, a __Genuine Probability__.  
+    * To see this:  
+        * A labeled, classification Data-Set, does __NOT__ (explicitly) give you the _probability_ that something is going to happen, rather, just the fact that an event either happened $$(y=1)$$ or that it did not $$(y=0)$$, without the actual probability of that event happening.  
+        * One can think of this data as being generated by a (the following) noisy target:  
+            $${\displaystyle P(y \vert x) ={\begin{cases}f(x)&{\text{for }}y = +1,\\1-f(x)&{\text{for }}y=-1.\\\end{cases}}}$$   
+        * They have the form that a certain probability that the event occurred and a certain probability that the event did NOT occur, given their input-data.  
+        * This is generated by the target we want to learn; thus, the function $$f(x)$$ is the target function to approximate.  
+    * In Logistic Regression, we are trying to learn $$f(x)$$ not withstanding the fact that the data-points we are learning from are giving us just sample values of $$y$$ that happen to be generated by $$f$$.  
+    * Thus, the __Target__ $$f : \mathbb{R}^d \longrightarrow [0,1]$$ is the probability.  
+        <span>The output of Logistic Regression is treated genuinely as a __probability__ even _during **Learning**_.</span>{: style="color: purple"}   
+    {: hidden=""}
 
 4. **Deriving the Error Measure (Cross-Entropy) from Likelihood:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents54}  
     The error measure for logistic regression is based on __likelihood__ - it is both, plausible and friendly/well-behaved? (for optimization).  

@@ -101,7 +101,9 @@
 <a href="http://www.seas.ucla.edu/~vandenbe/236C/lectures/cg.pdf">Conjugate Gradient</a><br />
 <a href="http://web.stanford.edu/class/msande318/notes/notes-first-order-smooth.pdf">NOTES ON FIRST-ORDER METHODS FOR MINIMIZING SMOOTH FUNCTIONS</a><br />
 <a href="https://blog.paperspace.com/intro-to-optimization-in-deep-learning-gradient-descent/">Gradient Descent (paperspace)</a><br />
-<a href="http://mlexplained.com/2018/02/02/an-introduction-to-second-order-optimization-for-deep-learning-practitioners-basic-math-for-deep-learning-part-1/">An Intuitive Introduction to the Hessian for Deep Learning</a></p>
+<a href="http://mlexplained.com/2018/02/02/an-introduction-to-second-order-optimization-for-deep-learning-practitioners-basic-math-for-deep-learning-part-1/">An Intuitive Introduction to the Hessian for Deep Learning</a><br />
+<a href="https://channel9.msdn.com/Events/Neural-Information-Processing-Systems-Conference/Neural-Information-Processing-Systems-Conference-NIPS-2016/Large-Scale-Optimization-Beyond-Stochastic-Gradient-Descent-and-Convexity">NIPS Optimization Lecture!!</a><br />
+<a href="https://www.kdnuggets.com/2019/06/gradient-descent-algorithms-cheat-sheet.html">10 Gradient Descent Optimisation Algorithms + Cheat Sheet (Blog!)</a></p>
 
 <h2 id="content1">Gradient-Based Optimization</h2>
 
@@ -303,20 +305,39 @@ Note: usually NOT used in DL</p>
  Moreover, if <script type="math/tex">f</script> is convex, all local minima are global minimia, so convergence is to the global minimum.<br />
  <br /></p>
   </li>
-</ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Choosing (tuning) the hyperparameters:</strong><br />
+ We can set/tune most hyperparameters by reasoning about their effect on <strong>model capacity</strong>.<br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Effect of HPs on model capacity</button>
+ <img src="https://cdn.mathpix.com/snip/images/uEjsgHkxOZlxf4mXE6XnJYqegpjvoQfKG28_A4nG0Fk.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
 
-<!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}
+    <p id="lst-p"><strong>Important HPs:</strong></p>
+    <ol>
+      <li>Learning Rate</li>
+      <li># Hidden Units</li>
+      <li>Mini-batch Size</li>
+      <li>Momentum Coefficient</li>
+    </ol>
 
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}
+    <p><strong style="color: red">Hyperparameter search:</strong><br />
+ Sample at random in a grid (hypercube) of different parameters, then zoom in to a tighter range of “good” values.<br />
+ Search (sample) on a logarithmic scale to get uniform sizes between values:</p>
+    <ul>
+      <li>Select value <script type="math/tex">r \in [a, b]</script> (e.g. <script type="math/tex">\in [-4, 0]</script>, and set your hp as <script type="math/tex">10^r</script> (e.g. <script type="math/tex">\epsilon = 10^{r}</script>). You’ll be effectively sampling <script type="math/tex">\in [10^{-4}, 10^0] \iff [0.0001, 1]</script>.   <br />
+ <br /></li>
+    </ul>
 
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27} -->
-
-<ol>
+    <p>&lt;!– 6. <strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Asynchronous:</strong></p>
+    <ol>
+      <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Asynchronous:</strong> –&gt;</li>
+    </ol>
+  </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Notes:</strong>
     <ul>
-      <li>Gradient descent can be viewed as <strong>applying Euler’s method for solving ordinary differential equations <script type="math/tex">{\displaystyle x'(t)=-\nabla f(x(t))}</script> to a gradient flow</strong>.</li>
+      <li>Gradient descent can be viewed as <strong>applying Euler’s method for solving ordinary differential equations <script type="math/tex">{\displaystyle x'(t)=-\nabla f(x(t))}</script> to a <a href="https://en.wikipedia.org/wiki/Vector_field#Gradient_field_in_euclidean_spaces">gradient flow</a></strong>.</li>
       <li>Neural nets are unconstrained optimization problems with many, many local minima. They sometimes benefit from line search or second-order optimization algorithms, but when the input data set is very large, researchers often favor the dumb, blind, stochastic versions of gradient descent.</li>
-      <li>Grid search suffers from the curse of dimensionality, but is often embarrassingly parallel because typically the hyperparameter settings it evaluates are independent of each other.</li>
+      <li>Grid search suffers from the curse of dimensionality, but is often embarrassingly parallel because typically the hyperparameter settings it evaluates are independent of each other.<br />
+ <br /></li>
     </ul>
   </li>
 </ol>
@@ -395,6 +416,51 @@ Note: usually NOT used in DL</p>
  <br /></li>
     </ul>
   </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents422">Preliminaries - Important Concepts:</strong><br />
+<strong style="color: red">Exponentially Weighted Averages:</strong><br />
+<a href="https://www.youtube.com/watch?v=lAq96T8FkTw&amp;list=PLkDaE6sCZn6Hn0vK8co82zjQtt3T2Nkqc&amp;index=17">EWAs (NG)</a>
+    <p>$$v_{t}=\beta v_{t-1}+ (1-\beta) \theta_{t}$$</p>
+    <p>You can think of <script type="math/tex">v_t</script> as approximately averaging over <script type="math/tex">\approx \dfrac{1}{1-\beta}</script> previous values <script type="math/tex">\theta_i</script>.</p>
+
+    <p>The <em>larger</em> the <script type="math/tex">\beta</script> the <em>slower</em> <script type="math/tex">v_t</script> adapts to changes in (new) <script type="math/tex">\theta</script> and the <em>less</em> <strong>noisy</strong> the value of <script type="math/tex">v_t</script>.</p>
+
+    <p><strong style="color: brown">Intuition:</strong><br />
+It is a recursive equation. Thus,</p>
+    <p>$$v_{100} = (1-\beta) \theta_{100} + (1-\beta)\beta \theta_{99} + (1-\beta)\beta^{2} \theta_{98} + (1-\beta)\beta^{3} \theta_{97} + (1-\beta)\beta^{4} \theta_{96} + \ldots + (1-\beta)\beta^{100} \theta_{1}$$</p>
+    <ul>
+      <li>It is an element-wise product between the values of <script type="math/tex">\theta_i</script> and an <strong>exponentially decaying</strong> function <script type="math/tex">v(i)</script>.<br />
+  For <em><script type="math/tex">T=100, \beta=0.9</script></em>:<br />
+  <img src="https://cdn.mathpix.com/snip/images/e4SvtXH_4R88TdhgIJmfbhSMgTqc4lt5QJOnpi-hBuw.original.fullsize.png" alt="img" width="34%" /></li>
+      <li>The sum of the coefficients of <script type="math/tex">\theta_i</script> is equal to <script type="math/tex">\approx 1</script>
+        <blockquote>
+          <p>But not exactly <script type="math/tex">1</script> which is why <strong>bias correction</strong> is needed.</p>
+        </blockquote>
+      </li>
+      <li>It takes about <script type="math/tex">(1-\beta)^{\dfrac{1}{\beta}}</script> time-steps for <script type="math/tex">v</script> to decay to about a third of its peak value. So, after <script type="math/tex">(1-\beta)^{\dfrac{1}{\beta}}</script> steps, the weight decays to about a third of the weight of the current time-step <script type="math/tex">\theta</script> value.<br />
+  In general:
+        <p>$$(1-\epsilon)^{\dfrac{1}{\epsilon}} \approx \dfrac{1}{e} \approx 0.35 \approx \dfrac{1}{3}$$</p>
+        <p><a href="https://www.youtube.com/watch?v=NxTFlzBjS-4&amp;list=PLkDaE6sCZn6Hn0vK8co82zjQtt3T2Nkqc&amp;index=18">EWAs Intuition (NG)</a><br />
+<br />
+<br /></p>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Exponentially Weighted Averages Bias Correction:</strong></p>
+
+    <p><strong style="color: brown">The Problem:</strong><br />
+The estimate of the first value <script type="math/tex">\theta_1</script> will not be a good estimate of because it will be multiplied by <script type="math/tex">% <![CDATA[
+(1-\beta) << 1 %]]></script>. This will be a much lower estimate especially during the initial phase of the estimate. It will produce the <em>purple</em> curve instead of the <em>green</em> curve:<br />
+<img src="https://cdn.mathpix.com/snip/images/_IAbXpX9_bnr1pvchJG3UxN-354OAsrmDoFpFYocI8g.original.fullsize.png" alt="img" width="50%" /></p>
+
+    <p><strong style="color: brown">Bias Correction:</strong>  <br />
+Replace <script type="math/tex">v_t</script> with:<br />
+<script type="math/tex">\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\: \dfrac{v_{t}}{1-\beta^{t}}</script></p>
+    <ul>
+      <li><strong>Small <script type="math/tex">t</script>:</strong> <script type="math/tex">\implies \beta^t</script> is large <script type="math/tex">\implies \dfrac{1}{1-\beta^t}</script> is large</li>
+      <li><strong>Large <script type="math/tex">t</script></strong>: <script type="math/tex">\implies \beta^t</script> is large <script type="math/tex">\implies \dfrac{1}{1-\beta^t} \approx 1</script><br />
+<br /></li>
+    </ul>
+  </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Momentum:</strong><br />
  <strong style="color: red">Motivation:</strong><br />
@@ -408,21 +474,42 @@ Note: usually NOT used in DL</p>
       <p>Note: Some implementations exchange the signs in the equations. The momentum term <script type="math/tex">\gamma</script> is usually set to <script type="math/tex">0.9</script> or a similar value, and <script type="math/tex">v_0 = 0</script>.</p>
     </blockquote>
 
+    <p><img src="https://cdn.mathpix.com/snip/images/jnTKkZmZsRZXw_8BNtgUxb7tZEg68sgRCspxVOmTw0I.original.fullsize.png" alt="img" width="70%" /></p>
+
     <p>Essentially, when using momentum, we push a ball down a hill. The ball accumulates momentum as it rolls downhill, becoming faster and faster on the way (until it reaches its terminal velocity if there is air resistance, i.e.  <script type="math/tex">% <![CDATA[
 \gamma < 1 %]]></script>). The same thing happens to our parameter updates: The momentum term increases for dimensions whose gradients point in the same directions and reduces updates for dimensions whose gradients change directions. As a result, we gain faster convergence and reduced oscillation.<br />
  In this case we think of the equation as:</p>
     <p>$$v_{t} =\underbrace{\gamma}_{\text{friction }} \: \underbrace{v_{t-1}}_{\text{velocity}}+\eta \underbrace{\nabla_{\theta} J(\theta)}_ {\text{acceleration}}$$</p>
+    <blockquote>
+      <p>Instead of using the gradient to change the position of the weight “particle,” use it to change the velocity. - Hinton</p>
+    </blockquote>
 
     <ul>
       <li><a href="https://www.youtube.com/embed/k8fTYJPd3_I" value="show" onclick="iframePopA(event)"><strong>Momentum NG</strong></a>
  <a href="https://www.youtube.com/embed/k8fTYJPd3_I"></a>
         <div></div>
+        <p><strong>Momentum Calculation (EWAs):</strong></p>
+        <p>$$\begin{align} 
+      v_{dw} &amp;= \beta\:v_{dw}+(1-\beta) dw \\ 
+      v_{db} &amp;=\beta\:v_{db}+(1-\beta) db \end{align}$$</p>
+        <p><strong>Parameter Updates:</strong></p>
+        <p>$$\begin{align} 
+      w &amp;= w - \epsilon\:v_{dw} \\ 
+      b &amp;= b - \epsilon\:v_{d_b} \end{align}$$</p>
       </li>
       <li><a href="https://distill.pub/2017/momentum/" value="show" onclick="iframePopA(event)"><strong>Why Momentum Really Works (distill)</strong></a>
  <a href="https://distill.pub/2017/momentum/"></a>
         <div></div>
-        <p><br /></p>
       </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li>Bias Correction is NOT used in practice; only 10 iterations needed to catch up.</li>
+      <li>The <script type="math/tex">(1-\beta)</script> coefficient usually gets dropped in the literature. The effect is that that lr needs to be rescaled which is not a problem.</li>
+      <li><a href="https://www.iro.umontreal.ca/~vincentp/ift3395/lectures/backprop_old.pdf">Learning representations by back-propagating errors (Rumelhart, Hinton)</a></li>
+      <li><a href="https://www.youtube.com/watch?v=7HZk7kGk5bU">visualizing Momentum (video)</a><br />
+ <br /></li>
     </ul>
   </li>
   <li>
@@ -431,7 +518,7 @@ Note: usually NOT used in DL</p>
  Momentum is good, however, a ball that rolls down a hill, blindly following the slope, is highly unsatisfactory. We’d like to have a smarter ball, a ball that has a notion of where it is going so that it knows to slow down before the hill slopes up again.</p>
 
     <p><strong style="color: red">Nesterov Accelerated Gradient (NAG):</strong><br />
- <strong>NAG</strong><sup id="fnref:6"><a href="#fn:6" class="footnote">6</a></sup> is a way to five our momentum term this kind of prescience. Since we know that we will use the momentum term <script type="math/tex">\gamma v_{t-1}</script> to move the parameters <script type="math/tex">\theta</script>, we can compute a rough approximation of the next position of the parameters with <script type="math/tex">\theta - \gamma v_{t-1}</script> (w/o the gradient). This allows us to, effectively, look ahead by calculating the gradient not wrt. our current parameters <script type="math/tex">\theta</script> but wrt. the approximate future position of our parameters:</p>
+ <strong>NAG</strong><sup id="fnref:6"><a href="#fn:6" class="footnote">6</a></sup> is a way to five our momentum term this kind of prescience. Since we know that we will use the momentum term <script type="math/tex">\gamma\:v_{t-1}</script> to move the parameters <script type="math/tex">\theta</script>, we can compute a rough approximation of the next position of the parameters with <script type="math/tex">\theta - \gamma v_{t-1}</script> (w/o the gradient). This allows us to, effectively, look ahead by calculating the gradient not wrt. our current parameters <script type="math/tex">\theta</script> but wrt. the approximate future position of our parameters:</p>
     <p>$$\begin{aligned} v_{t} &amp;=\gamma v_{t-1}+\eta \nabla_{\theta} J\left(\theta-\gamma v_{t-1}\right) \\ \theta &amp;=\theta-v_{t} \end{aligned}$$</p>
     <blockquote>
       <p><script type="math/tex">\gamma = 0.9</script>,</p>
@@ -447,10 +534,12 @@ Note: usually NOT used in DL</p>
  <br /></li>
     </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Adagrad:</strong><br />
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Adagrad:</strong><br />
  <strong style="color: red">Motivation:</strong><br />
- Now that we are able to <strong style="color: goldenrod">adapt our updates to the slope of our error function</strong> and speed up SGD in turn, we would also like to <strong style="color: goldenrod">adapt our updates to each individual parameter</strong> to perform larger or smaller updates depending on their importance.</p>
+ Now that we are able to <strong style="color: goldenrod">adapt our updates to the slope of our error function</strong> and speed up SGD in turn, we would also like to <strong style="color: goldenrod">adapt our updates to each individual parameter</strong> to perform larger or smaller updates depending on their importance.
+    <blockquote>
+      <p>The magnitude of the gradient can be very different for different weights and can change during learning: This makes it <span style="color: goldenrod">hard to choose single global learning rate</span>.  - Hinton</p>
+    </blockquote>
 
     <p><strong style="color: red">Adagrad:</strong><br />
  <strong>Adagrad</strong><sup id="fnref:9"><a href="#fn:9" class="footnote">9</a></sup> is an algorithm for gradient-based optimization that does just this: It adapts the learning rate to the parameters, performing smaller updates (i.e. low learning rates) for parameters associated with frequently occurring features, and larger updates (i.e. high learning rates) for parameters associated with infrequent features.</p>
@@ -460,7 +549,7 @@ Note: usually NOT used in DL</p>
 
     <p>The SGD update for every parameter <script type="math/tex">\theta_i</script> at each time step <script type="math/tex">t</script> is:</p>
     <p>$$\theta_{t+1, i}=\theta_{t, i}-\eta \cdot g_{t, i}$$</p>
-    <p>where <script type="math/tex">g_{t, i}=\nabla_{\theta} J\left(\theta_{t, i}\right.</script> is the partial derivative of the objective function w.r.t. to the parameter <script type="math/tex">\theta_i</script> at time step <script type="math/tex">t</script>, and <script type="math/tex">g_{t}</script> is the gradient at time-step <script type="math/tex">t</script>.</p>
+    <p>where <script type="math/tex">g_{t, i}=\nabla_{\theta} J\left(\theta_{t, i}\right)</script>, is the partial derivative of the objective function w.r.t. to the parameter <script type="math/tex">\theta_i</script> at time step <script type="math/tex">t</script>, and <script type="math/tex">g_{t}</script> is the gradient at time-step <script type="math/tex">t</script>.</p>
 
     <p>In its update rule, Adagrad modifies the general learning rate <script type="math/tex">\eta</script> at each time step <script type="math/tex">t</script> for every parameter <script type="math/tex">\theta_i</script> based on the past gradients that have been computed for <script type="math/tex">\theta_i</script>:</p>
     <p>$$\theta_{t+1, i}=\theta_{t, i}-\frac{\eta}{\sqrt{G_{t, i i}+\epsilon}} \cdot g_{t, i}$$</p>
@@ -483,7 +572,8 @@ Note: usually NOT used in DL</p>
       <li><strong>Eliminates need for manual tuning of lr</strong>:<br />
   One of Adagrad’s main benefits is that it eliminates the need to manually tune the learning rate. Most implementations use a default value of <script type="math/tex">0.01</script> and leave it at that.</li>
       <li><strong>Weakness -&gt; Accumulation of the squared gradients in the denominator</strong>:<br />
-  Since every added term is positive, the accumulated sum keeps growing during training. This in turn causes the learning rate to shrink and eventually become infinitesimally small, at which point the algorithm is no longer able to acquire additional knowledge.<br />
+  Since every added term is positive, the accumulated sum keeps growing during training. This in turn causes the learning rate to shrink and eventually become infinitesimally small, at which point the algorithm is no longer able to acquire additional knowledge.</li>
+      <li><a href="https://www.youtube.com/watch?v=Cy2g9_hR-5Y">Visualization - How adaptive gradient methods speedup convergence</a><br />
  <br /></li>
     </ul>
   </li>
@@ -536,8 +626,23 @@ Note: usually NOT used in DL</p>
     <p>$$\begin{align}  \begin{split}  E[g^2]_t &amp;= 0.9 E[g^2]_{t-1} + 0.1 g^2_t \\  \theta_{t+1} &amp;= \theta_{t} - \dfrac{\eta}{\sqrt{E[g^2]_t + \epsilon}} g_{t}  \end{split}  \end{align}$$</p>
 
     <p>RMSprop as well <strong style="color: goldenrod">divides the learning rate by an exponentially decaying average of squared gradients</strong>.<br />
- Hinton suggests <script type="math/tex">\gamma</script> to be set to <script type="math/tex">0.9</script>, while a good default value for the learning rate <script type="math/tex">\eta</script> is <script type="math/tex">0.001</script>.<br />
+ Hinton suggests <script type="math/tex">\gamma</script> to be set to <script type="math/tex">0.9</script>, while a good default value for the learning rate <script type="math/tex">\eta</script> is <script type="math/tex">0.001</script>.</p>
+
+    <p><strong style="color: red">RMSprop as an extension of Rprop:</strong><br />
+ Hinton, actually, thought of RMSprop as a way of extending <em>Rprop</em> to work with <strong>mini-batches</strong>.<br />
+ <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Why Rprop does not work with mini-batches?</button>
+ <img src="https://cdn.mathpix.com/snip/images/KxK61epXdFZw6Rqb7mwqXSIDUouk-TWeNdLu3M_wBFU.original.fullsize.png" alt="img" width="100%" hidden="" /><br />
+ <strong>Rprop:</strong> is equivalent to using the gradient but also dividing by the magnitude of the gradient.<br />
+ The problem with mini-batch rprop is that we divide by a different number for each mini-batch.<br />
+ So why not <strong>force the number we divide by to be very similar for adjacent mini-batches</strong>?<br />
+ That is the idea behind RMSprop.<br />
  <br /></p>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li>It is of note that Hinton has tried to add <em>momentum</em> to RMSprop and found that “it does not help as much as it normally does - needs more investigation”.</li>
+      <li><a href="https://www.youtube.com/watch?v=Cy2g9_hR-5Y">Visualizing Rprop - How adaptive gradient methods speedup convergence</a></li>
+    </ul>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents47">Adam:</strong><br />

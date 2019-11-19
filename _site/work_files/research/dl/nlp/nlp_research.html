@@ -597,25 +597,57 @@ Content-Based Attention extended for <em>location awareness</em> by making it ta
  The model relies completely on <strong>Attention</strong> and disregards <em>recurrence/convolutions</em> completely.</p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Motivation:</strong><br />
- Motivation for dropping:
+ Motivation for <strong>Dropping</strong>:
     <ul>
-      <li><strong>Recurrent Connections</strong>:<br />
-  Complex, tricky to train and regularize, capturing long-term dependencies is limited, and hard to parallelize. Sequence-aligned states in RNN are wasteful. Hard to model hierarchical-like domains such as languages.</li>
-      <li><strong>Convolutional Connections</strong>:<br />
-  Convolutional approaches are sometimes effective (more on this), but they tend to be memory-intensive. Path length between positions can be logarithmic when using dilated convolutions, left-padding for text. (autoregressive CNNs WaveNet, ByteNET)</li>
+      <li><strong>Recurrent Connections</strong>:
+        <ul>
+          <li><span style="color: purple">Complex</span></li>
+          <li>Tricky to <span style="color: purple">Train</span> and <span style="color: purple">Regularize</span></li>
+          <li><span style="color: purple">Capturing <strong>long-term dependencies</strong> is <em>limited</em> and <em>hard</em> to <em><strong>parallelize</strong></em></span></li>
+          <li><strong>Sequence-aligned states</strong> in RNN are <em>wasteful</em>.</li>
+          <li>Hard to model <strong>hierarchical-like domains</strong> such as languages.</li>
+        </ul>
+      </li>
+      <li><strong>Convolutional Connections</strong>:
+        <ul>
+          <li>Convolutional approaches are sometimes effective (more on this)</li>
+          <li>But they tend to be <span style="color: purple">memory-intensive</span>.</li>
+          <li><span style="color: purple"><strong>Path length</strong> between <em>positions</em> can be <strong>logarithmic</strong> when using</span> <strong>dilated convolutions</strong>; and <strong>Left-padding</strong> (for text). (autoregressive CNNs WaveNet, ByteNET)
+            <ul>
+              <li>However, <strong>Long-distance dependencies require many layers</strong>.</li>
+            </ul>
+          </li>
+          <li>Modeling long-range dependencies with CNNs requires either:
+            <ul>
+              <li><strong>Many Layers:</strong> likely making training harder</li>
+              <li><strong>Large Kernels</strong>: at large parameter/computational cost</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
     </ul>
 
-    <p>Motivation for <strong>Transformer</strong>:</p>
-    <ul>
-      <li>It gives us the shortest possible path through the network between any two input-output locations.</li>
-    </ul>
+    <p>Motivation for <strong>Transformer</strong>:<br />
+ It gives us the <span style="color: purple"><strong>shortest possible path</strong> through the network <em>between any two <strong>input-output locations</strong></em></span>.</p>
 
-    <p>Motivation in <strong>NLP</strong>:</p>
+    <p>Motivation in <strong>NLP</strong>:<br />
+ The following quote:<br />
+ <span style="color: purple">“You can’t cram the meaning of a whole %&amp;!$# sentence into a single $&amp;!#* vector!”</span> - ACL 2014
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents422">Idea:</strong><br />
+<span style="color: purple">Why not use <strong>Attention</strong> for <em><strong>Representations?</strong></em></span></p>
+
     <ul>
-      <li>The following quote:
-        <blockquote>
-          <p>“You can’t cram the meaning of a whole %&amp;!$# sentence into a single $&amp;!#* vector!” - ACL 2014</p>
-        </blockquote>
+      <li><strong>Self-Attention:</strong> You try to represent (re-express) yourself (the word_i) as a weighted combination of your entire neighborhood</li>
+      <li><strong>FFN Layers:</strong> they compute new features for the representations from the attention weighted combination</li>
+      <li><strong>Residual Connections:</strong> Residuals carry/propagate <span style="color: purple">positional information</span> about the inputs to higher layers, among other info.</li>
+      <li><strong>Attention-Layer</strong>:
+        <ul>
+          <li>Think of as a feature detector.<br />
+<br /></li>
+        </ul>
       </li>
     </ul>
   </li>
@@ -626,16 +658,19 @@ Content-Based Attention extended for <em>location awareness</em> by making it ta
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Strategy:</strong><br />
- The idea here is to learn a context vector (say <script type="math/tex">U</script>), which gives us a global level information on all the inputs and tells us about the most important information.<br />
+ The idea here is to <span style="color: purple">learn a context vector</span> (say <script type="math/tex">U</script>), which gives us <span style="color: purple"><strong>global level information</strong> on all the inputs</span> and tells us about the most important information.<br />
  E.g. This could be done by taking a cosine similarity of this context vector <script type="math/tex">U</script>  w.r.t the input hidden states from the fully connected layer. We do this for each input <script type="math/tex">x_i</script> and thus obtain a <script type="math/tex">\theta_i</script> (attention weights).</p>
 
-    <p><strong style="color: red">The Goal(s):</strong></p>
+    <p id="lst-p"><strong style="color: red">The Goal(s):</strong></p>
     <ul>
-      <li><strong>Parallelization of Seq2Seq:</strong> RNN/CNN handle sequences word-by-word sequentially which is an obstacle to parallelize. Transformer achieves parallelization by replacing recurrence with attention and encoding the symbol position in the sequence. This, in turn, leads to a significantly shorter training time.</li>
-      <li><strong>Reduce sequential computation</strong>: Constant <script type="math/tex">\mathcal{O}(1)</script> number of operations to learn dependency between two symbols independently of their position distance in sequence.</li>
+      <li><strong>Parallelization of Seq2Seq:</strong> RNN/CNN handle sequences word-by-word sequentially which is an obstacle to parallelize.<br />
+  Transformer achieves parallelization by replacing recurrence with attention and encoding the symbol position in the sequence.<br />
+  This, in turn, leads to a significantly shorter training time.</li>
+      <li><strong>Reduce sequential computation</strong>: Constant <script type="math/tex">\mathcal{O}(1)</script> number of operations to learn dependency between two symbols independently of their position/distance in sequence.</li>
     </ul>
 
-    <p>The Transformer reduces the number of sequential operations to relate two symbols from input/output sequences to a constant <script type="math/tex">\mathcal{O}(1)</script> number of operations. Transformer achieves this with the multi-head attention mechanism that allows to model dependencies regardless of their distance in input or output sentence (by counteracting reduced effective resolution due to averaging the attention-weighted positions).</p>
+    <p>The Transformer reduces the number of sequential operations to relate two symbols from input/output sequences to a constant <script type="math/tex">\mathcal{O}(1)</script> number of operations.<br />
+ It achieves this with the <strong>multi-head attention</strong> mechanism that allows it to <span style="color: purple">model dependencies regardless of their distance in input or output sentence</span> (by counteracting reduced effective resolution due to averaging the attention-weighted positions).</p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents46">Architecture:</strong><br />
@@ -668,16 +703,18 @@ Content-Based Attention extended for <em>location awareness</em> by making it ta
       </li>
       <li><strong>Multi-Head Attention</strong>:<br />
   <img src="/main_files/research/2.png" alt="img" width="28%" />  <br />
-  Instead of performing a single attention function with <script type="math/tex">d_{\text{model}}</script>-dimensional keys, values and queries; linearly project the queries, keys and values h times with different, learned linear projections to <script type="math/tex">d_k, d_k</script> and <script type="math/tex">d_v</script> dimensions, respectively. Then, attend (apply <script type="math/tex">\text{Attention}</script> function) on each of the projected versions, <em>in parallel</em>, yielding <script type="math/tex">d_v</script>-dimensional output values. The final values are obtained by <em>concatenating</em> and <em>projecting</em> the <script type="math/tex">d_v</script>-dimensional output values from each of the attention-heads.
-        <p>$$\begin{aligned} \text { MultiHead }(Q, K, V) &amp;=\text { Concat }\left(\text { head}_{1}, \ldots, \text { head}_{h}\right) W^{O} \\ \text { where head}_{i} &amp;=\text { Attention }\left(Q W_{i}^{Q}, K W_{i}^{K}, V W_{i}^{V}\right) \end{aligned}$$</p>
-        <p>Where the projections are parameter matrices <script type="math/tex">W_{i}^{Q} \in \mathbb{R}^{d_{\text {model }} \times d_{k}}, W_{i}^{K} \in</script> <script type="math/tex">\mathbb{R}^{d_{\text {model }} \times d_{k}},</script> <script type="math/tex">W_{i}^{V} \in \mathbb{R}^{d_{\text {model }} \times d_{v}}</script> and <script type="math/tex">W^O \in \mathbb{R}^{hd_v \times d_{\text {model }}}</script>.<br />
-  This paper choses <script type="math/tex">h = 8</script> parallel attention layers/<em>heads</em>. For each, they use <script type="math/tex">d_k=d_v=d_{\text{model}}/h = 64</script>. The reduced dimensionality of each head, allows the total computation cost to be similar to that of a single head w/ full dimensionality.</p>
+  Instead of performing a single attention function with <script type="math/tex">d_{\text{model}}</script>-dimensional keys, values and queries; linearly project the queries, keys and values <script type="math/tex">h</script> times with different, learned linear projections to <script type="math/tex">d_k, d_k</script> and <script type="math/tex">d_v</script> dimensions, respectively. Then, attend (apply <script type="math/tex">\text{Attention}</script> function) on each of the projected versions, <em>in parallel</em>, yielding <script type="math/tex">d_v</script>-dimensional output values. The final values are obtained by <em>concatenating</em> and <em>projecting</em> the <script type="math/tex">d_v</script>-dimensional output values from each of the attention-heads.
+        <p>$$\begin{aligned} \text {MultiHead}(Q, K, V) &amp;=\text {Concat}\left(\text {head}_ {1}, \ldots, \text {head}_ {h}\right) W^{O} \\ \text { where head}_ {i} &amp;=\text {Attention}\left(Q W_{i}^{Q}, K W_{i}^{K}, V W_{i}^{V}\right) \end{aligned}$$</p>
+        <p>Where the projections are parameter matrices <script type="math/tex">W_{i}^{Q} \in \mathbb{R}^{d_{\text {model}} \times d_{k}}, W_{i}^{K} \in</script> <script type="math/tex">\mathbb{R}^{d_{\text {model}} \times d_{k}},</script> <script type="math/tex">W_{i}^{V} \in \mathbb{R}^{d_{\text {model}} \times d_{v}}</script> and <script type="math/tex">W^O \in \mathbb{R}^{hd_v \times d_{\text {model}}}</script>.<br />
+  This paper choses <script type="math/tex">h = 8</script> parallel attention layers/<em>heads</em>.<br />
+  For each, they use <script type="math/tex">d_k=d_v=d_{\text{model}}/h = 64</script>.<br />
+  The reduced dimensionality of each head, allows the total computation cost to be similar to that of a single head w/ full dimensionality.</p>
 
         <p><strong>Motivation:</strong> Multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions. With a single attention head, averaging inhibits this.</p>
       </li>
     </ul>
 
-    <p><strong style="color: red">Applications of Attention in the Model:</strong><br />
+    <p id="lst-p"><strong style="color: red">Applications of Attention in the Model:</strong><br />
  The Transformer uses multi-head attention in three different ways:</p>
     <ul>
       <li><strong>Encode-Decoder Attention Layer</strong> (standard layer):
@@ -716,7 +753,7 @@ Content-Based Attention extended for <em>location awareness</em> by making it ta
       <p>Equivalently, we can describe this as, <strong>two convolutions</strong> with <strong>kernel-size</strong> <script type="math/tex">= 1</script></p>
     </blockquote>
 
-    <p><strong>Dimensional Analysis</strong>:</p>
+    <p id="lst-p"><strong>Dimensional Analysis</strong>:</p>
     <ul>
       <li>Input/Output: <script type="math/tex">\in \mathbb{R}^{d_\text{model} = 512}</script></li>
       <li>Inner-Layer: <script type="math/tex">\in \mathbb{R}^{d_{ff} = 2048}</script></li>
@@ -732,17 +769,19 @@ Content-Based Attention extended for <em>location awareness</em> by making it ta
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents410">The Model - Positional Encoding:</strong><br />
-<strong>Motivation:</strong> Since the model contains no recurrence and no convolution, in order for the model to make use of the order of the sequence, we must inject some information about the relative or absolute position of the tokens in the sequence.</p>
+<strong>Motivation:</strong><br />
+Since the model contains no recurrence and no convolution, in order for the model to make use of the order of the sequence, we must inject some information about the relative or absolute position of the tokens in the sequence.</p>
 
     <p><strong>Positional Encoding:</strong><br />
 A way to add positional information to an embedding.<br />
 There are many choices of positional encodings, learned and fixed. <em>[Gehring et al. 2017]</em><br />
-The positional encodings have the same dimension <script type="math/tex">d_{\text{model}}</script> as the embeddings, so that the two can be summed.<br />
-<strong>Approach:</strong><br />
+The positional encodings have the same dimension <script type="math/tex">d_{\text{model}}</script> as the embeddings, so that the two can be summed.</p>
+
+    <p><strong>Approach:</strong><br />
 Add “positional encodings” to the input embeddings at the bottoms of the encoder and decoder stacks.<br />
 Use <strong>sine</strong> and <strong>cosine</strong> functions of different frequencies:</p>
-    <p>$$ \begin{aligned} P E_{(p o s, 2 i)} &amp;=\sin \left(p o s / 10000^{2 i / d_{\mathrm{model}}}\right) \\ P E_{(p o s, 2 i+1)} &amp;=\cos \left(p o s / 10000^{2 i / d_{\mathrm{model}}}\right) \end{aligned} $$</p>
-    <p>where <script type="math/tex">p o s</script> is the position and <script type="math/tex">i</script> is the dimension.<br />
+    <p>$$ \begin{aligned} P E_{(\text{pos}, 2 i)} &amp;=\sin \left(\text{pos} / 10000^{2 i / d_{\mathrm{model}}}\right) \\ P E_{(\text{pos}, 2 i+1)} &amp;=\cos \left(\text{pos}/ 10000^{2 i / d_{\mathrm{model}}}\right) \end{aligned} $$</p>
+    <p>where <script type="math/tex">\text{pos}</script> is the position and <script type="math/tex">i</script> is the dimension.<br />
 That is, each dimension of the positional encoding corresponds to a sinusoid. The wavelengths form a geometric progression from <script type="math/tex">2\pi</script> to <script type="math/tex">10000 \cdot 2\pi</script>.</p>
 
     <p><strong>Motivation</strong>:<br />
@@ -755,7 +794,8 @@ We chose this function because we hypothesized it would allow the model to easil
       <li><strong>Layer Normalization:</strong> Help ensure that layers remain in reasonable range</li>
       <li><strong>Specialized Training Schedule:</strong> Adjust default learning rate of the Adam optimizer</li>
       <li><strong>Label Smoothing:</strong> Insert some uncertainty in the training process</li>
-      <li><strong>Masking (for decoder attention):</strong> for Efficient Training using matrix-operations</li>
+      <li><strong>Masking (for decoder attention):</strong> for Efficient Training using matrix-operations
+<br /></li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents412">Why Self-Attention? (as opposed to Conv/Recur. layers):</strong><br />
@@ -771,12 +811,10 @@ We chose this function because we hypothesized it would allow the model to easil
   This would increase the maximum path length to <script type="math/tex">\mathcal{O}(n/r)</script>.</li>
     </ul>
 
-    <p><strong style="color: red">Parallelizable Computations:</strong> (measured by the minimum number of sequential ops required)</p>
-    <ul>
-      <li>Self-Attention layers connect all positions with a constant number of sequentially executed operations, whereas a recurrent layer requires <script type="math/tex">\mathcal{O}(n)</script> sequential operations.</li>
-    </ul>
+    <p><strong style="color: red">Parallelizable Computations:</strong> (measured by the minimum number of sequential ops required)<br />
+Self-Attention layers connect all positions with a constant number of sequentially executed operations, whereas a recurrent layer requires <script type="math/tex">\mathcal{O}(n)</script> sequential operations.</p>
 
-    <p><strong style="color: red">Path Length between Positions:</strong> (Long-Range Dependencies)</p>
+    <p id="lst-p"><strong style="color: red">Path Length between Positions:</strong> (Long-Range Dependencies)</p>
     <ul>
       <li><strong>Convolutional Layers:</strong> A single convolutional layer with kernel width <script type="math/tex">% <![CDATA[
 k < n %]]></script> does not connect all pairs of input and output positions.<br />
@@ -792,14 +830,14 @@ k < n %]]></script> does not connect all pairs of input and output positions.<br
           <p>Convolutional layers are generally more expensive than recurrent layers, by a factor of <script type="math/tex">k</script>.</p>
         </blockquote>
       </li>
-      <li>
-        <p><strong>Self-Attention</strong>:<br />
-  Even with <script type="math/tex">k = n</script>, the complexity of a separable convolution is equal to the combination of a self-attention layer and a point-wise feed-forward layer, the approach taken in this model.</p>
-      </li>
-      <li><strong>Interpretability</strong>:<br />
-  As side benefit, self-attention could yield more interpretable models.<br />
-  Not only do individual attention heads clearly learn to perform different tasks, many appear to exhibit behavior related to the syntactic and semantic structure of the sentences.</li>
+      <li><strong>Self-Attention</strong>:<br />
+  Even with <script type="math/tex">k = n</script>, the complexity of a separable convolution is equal to the combination of a self-attention layer and a point-wise feed-forward layer, the approach taken in this model.</li>
     </ul>
+
+    <p><strong style="color: red">Interpretability:</strong><br />
+As side benefit, self-attention could yield more interpretable models.<br />
+Not only do individual attention heads clearly learn to perform different tasks, many appear to exhibit behavior related to the syntactic and semantic structure of the sentences.<br />
+<br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents419">Results:</strong>
     <ul>

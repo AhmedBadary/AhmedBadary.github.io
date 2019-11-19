@@ -90,6 +90,11 @@
 <a href="http://blog.aylien.com/overview-word-embeddings-history-word2vec-cbow-glove/">An overview of word embeddings and their connection to distributional semantic models
 </a><br />
 <a href="http://ruder.io/word-embeddings-1/">On Word Embeddings (Ruder)</a></p>
+<ul>
+  <li><a href="http://jmlr.org/papers/volume16/dhillon15a/dhillon15a.pdf">Eigenwords: Spectral Word Embeddings (paper!)</a></li>
+  <li><a href="https://multithreaded.stitchfix.com/blog/2017/10/18/stop-using-word2vec/">Stop Using word2vec (blog)</a></li>
+  <li><a href="https://medium.com/building-creative-market/word2vec-inspired-recommendations-in-production-f2c6a6b5b0bf">Word2vec Inspired Recommendations In Production (blog)</a></li>
+</ul>
 
 <h2 id="content1">Word Meaning</h2>
 
@@ -379,9 +384,31 @@
       <p>I.E.<br />
      <strong style="color: green">The difference between the expected context word and the actual context word</strong></p>
     </blockquote>
+
+    <p><strong style="color: red">Importance Sampling:</strong></p>
+    <p>$$\sum_{w_{i} \in V} \left[\frac{\exp \left(-\mathcal{E}\left(w_{i}\right)\right)}{\sum_{w_{i} \in V} \exp \left(-\mathcal{E}\left(w_{i}\right)\right)}\right] \nabla_{\theta} \mathcal{E}\left(w_{i}\right) \\ = \sum_{w_{i} \in V} P\left(w_{i}\right) \nabla_{\theta} \mathcal{E}\left(w_{i}\right)$$</p>
+    <p><br /></p>
+
+    <p>$$\mathbb{E}_{w_{i} \sim P}\left[\nabla_{\theta} \mathcal{E}\left(w_{i}\right)\right] =\sum_{w_{i} \in V} P\left(w_{i}\right) \nabla_{\theta} \mathcal{E}\left(w_{i}\right)$$</p>
+
+    <ul>
+      <li><script type="math/tex">P\left(w_{i}\right) \approx \frac{r(w_i)}{R}</script>,</li>
+    </ul>
+
+    <p>$$\mathbb{E}_{w_{i} \sim P}\left[\nabla_{\theta} \mathcal{E}\left(w_{i}\right)\right] \approx \sum_{w_{i} \in V} \frac{r(w_i)}{R} \nabla_{\theta} \mathcal{E}\left(w_{i}\right)$$</p>
+
+    <p>$$\mathbb{E}_{w_{i} \sim P}\left[\nabla_{\theta} \mathcal{E}\left(w_{i}\right)\right] \approx \frac{1}{R} \sum_{i=1}^{m} r\left(w_{i}\right) \nabla_{\theta} \mathcal{E}\left(w_{i}\right)$$</p>
+
+    <p>where <script type="math/tex">r(w)=\frac{\exp (-\mathcal{E}(w))}{Q(w)}</script>, <script type="math/tex">R=\sum_{j=1}^{m} r\left(w_{j}\right)</script>, and <script type="math/tex">Q</script> is the <strong>unigram distribution</strong> of the training set.</p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Notes:</strong>
     <ul>
+      <li><strong>Mikolov on SkipGram vs CBOW</strong>:
+        <ul>
+          <li>Skip-gram: works well with small amount of the training data, represents well even rare words or phrases.</li>
+          <li>CBOW: several times faster to train than the skip-gram, slightly better accuracy for the frequent words.</li>
+        </ul>
+      </li>
       <li><strong>Further Readings</strong>:
         <ul>
           <li><a href="https://aclweb.org/anthology/Q16-1028">A Latent Variable Model Approach to PMI-based Word Embeddings</a></li>

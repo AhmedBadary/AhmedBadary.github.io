@@ -5,25 +5,12 @@ permalink: /work_files/research/prep_qs
 prevLink: /work_files/research.html
 ---
 
-<!-- 
-<button>Show</button>{: .showText value="show"
-    onclick="showText_withParent_PopHide(event);"}
-
-    {: hidden=""}
 
 
 
-<button>Show</button>{: .showText value="show"
-    onclick="showTextPopHide(event);"}
-
-    {: hidden=""}
-
-<iframe src="https://drive.google.com/viewerng/viewer?url=[https://arxiv.org/pdf/1805.11604.pdf]&amp;embedded=true" frameborder="0" height="780" width="600" title="" scrolling="auto"></iframe>
- -->
-
-
-# Gradient-Based Optimization
+## Gradient-Based Optimization
 * __Define Gradient Methods:__{: style="color: red"}  
+
 * __Give examples of Gradient-Based Algorithms:__{: style="color: red"}  
 * __What is Gradient Descent:__{: style="color: red"}  
 * __Explain it intuitively:__{: style="color: red"}  
@@ -132,7 +119,7 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
-# Maximum Margin Classifiers
+## Maximum Margin Classifiers
 1. __Define Margin Classifiers:__{: style="color: red"}  
 1. __What is a Margin for a linear classifier?__{: style="color: red"}  
 1. __Give the motivation for margin classifiers:__{: style="color: red"}  
@@ -151,7 +138,7 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
-# Hard-Margin SVMs
+## Hard-Margin SVMs
 1. __Define:__{: style="color: red"}  
     1. __SVMs:__{: style="color: blue"}  
     1. __Support Vectors:__{: style="color: blue"}  
@@ -176,7 +163,7 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
-# Soft-Margin SVM
+## Soft-Margin SVM
 1. __Motivate the soft-margin SVM:__{: style="color: red"}  
 1. __What is the main idea behind it?__{: style="color: red"}  
 1. __Define the following wrt soft-margin SVM:__{: style="color: red"}  
@@ -196,13 +183,14 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
-# Loss Functions
+## Loss Functions
 1. __Define:__{: style="color: red"}  
     1. __Loss Functions:__{: style="color: blue"}  
     1. __Distance-Based Loss Functions:__{: style="color: blue"}  
         1. __Describe an important property of dist-based losses:__{: style="color: blue"}  
+        1. __What are they used for?__{: style="color: blue"}  
     1. __Relative Error - What does it lack?__{: style="color: blue"}  
-1. __List 4 Regression Loss Functions__{: style="color: red"}  
+1. __List 3 Regression Loss Functions__{: style="color: red"}  
 
 <button>Show the rest of the questions</button>{: .showText value="show"
 onclick="showText_withParent_PopHide(event);"}
@@ -219,16 +207,10 @@ onclick="showText_withParent_PopHide(event);"}
     1. __List properties:__{: style="color: blue"}  
 1. __Huber Loss__{: style="color: red"}  
     1. __AKA:__{: style="color: blue"}  
-    1. __What does it minimize:__{: style="color: blue"}  
     1. __Formula:__{: style="color: blue"}  
     1. __Graph:__{: style="color: blue"}  
     1. __Derivation:__{: style="color: blue"}  
     1. __List properties:__{: style="color: blue"}  
-1. __KL-Divergence__{: style="color: red"}  
-    1. __What does it minimize:__{: style="color: blue"}  
-    1. __Formula:__{: style="color: blue"}  
-    1. __Graph:__{: style="color: blue"}  
-    1. __Derivation:__{: style="color: blue"}  
 1. __Analyze MSE vs MAE:__{: style="color: red"}  
 {: hidden=""}
 
@@ -241,21 +223,22 @@ onclick="showText_withParent_PopHide(event);"}
     1. __Formula:__{: style="color: blue"}  
     1. __Graph:__{: style="color: blue"}  
 1. __MSE__{: style="color: red"}  
-    1. __What does it minimize:__{: style="color: blue"}  
     1. __Formula:__{: style="color: blue"}  
     1. __Graph:__{: style="color: blue"}  
     1. __Derivation (for classification) - give assumptions:__{: style="color: blue"}  
+    1. __Properties:__{: style="color: blue"}  
 1. __Hinge Loss__{: style="color: red"}  
     1. __What does it minimize:__{: style="color: blue"}  
     1. __Formula:__{: style="color: blue"}  
     1. __Graph:__{: style="color: blue"}  
-    1. __Properties:__{: style="color: blue"}  
+    1. __Describe the Properties of the Hinge loss and why it is used?__{: style="color: blue"}  
 1. __Logistic Loss__{: style="color: red"}
     1. __AKA:__{: style="color: blue"}    
     1. __What does it minimize:__{: style="color: blue"}  
     1. __Formula:__{: style="color: blue"}  
     1. __Graph:__{: style="color: blue"}  
     1. __Derivation:__{: style="color: blue"}  
+    1. __Properties:__{: style="color: blue"}  
 1. __Cross-Entropy__{: style="color: red"}  
     1. __What does it minimize:__{: style="color: blue"}  
     1. __Formula:__{: style="color: blue"}  
@@ -267,6 +250,7 @@ onclick="showText_withParent_PopHide(event);"}
     1. __CE and KL-Div:__{: style="color: blue"}  
 1. __Exponential Loss__{: style="color: red"}  
     1. __Formula:__{: style="color: blue"}  
+    1. __Properties:__{: style="color: blue"}  
 1. __Perceptron Loss__{: style="color: red"}  
     1. __Formula:__{: style="color: blue"}  
 1. __Analysis__{: style="color: red"}  
@@ -277,7 +261,7 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
-# Information Theory
+## Information Theory
 1. __What is Information Theory? In the context of ML?__{: style="color: red"}  
 1. __Describe the Intuition for Information Theory. Intuitively, how does the theory quantify information (list)?__{: style="color: red"}  
 1. __Measuring Information - Definitions and Formulas:__{: style="color: red"}  
@@ -305,23 +289,41 @@ onclick="showText_withParent_PopHide(event);"}
     1. __What does it measure?__{: style="color: blue"}  
     1. __How does it relate to *relative entropy*?__{: style="color: blue"}  
     1. __When are they equivalent (wrt. optimization)?__{: style="color: blue"}  
+1. __Mutual Information:__{: style="color: red"}  
+    1. __Definition:__{: style="color: blue"}  
+    1. __What does it measure?__{: style="color: blue"}  
+    1. __Intuitive Definitions:__{: style="color: blue"}  
+    1. __Interpretations XXX:__{: style="color: blue"}   
+    1. __Properties:__{: style="color: blue"}  
+    1. __Applications:__{: style="color: blue"}  
+
+    <button>Show</button>{: .showText value="show"
+    onclick="showText_withParent_PopHide(event);"}
+    1. __As KL-Divergence:__{: style="color: blue"}  
+    1. __In-terms of PMFs for discrete distributions:__{: style="color: blue"}  
+    1. __In terms of PDFs for continuous distributions:__{: style="color: blue"}  
+    1. __Relation to PMI:__{: style="color: blue"}  
+    {: hidden=""}
+1. __Pointwise Mutual Information (PMI):__{: style="color: red"}  
+    1. __Definition:__{: style="color: blue"}  
+    1. __Relation to MI:__{: style="color: blue"}  
 
 ***
 
 
 
-# Recommendation Systems
+## Recommendation Systems
 1. __Describe the different algorithms for recommendation systems:__{: style="color: red"}  
 
 ***
 
-# Ensemble Learning
+## Ensemble Learning
 1. __What are the two paradigms of ensemble methods?__{: style="color: red"}  
 1. __Random Forest VS GBM?__{: style="color: red"}  
 
 ***
 
-# Data Processing and Analysis
+## Data Processing and Analysis
 1. __What are 3 data preprocessing techniques to handle outliers?__{: style="color: red"}  
 1. __Describe the strategies to dimensionality reduction:__{: style="color: red"}  
 1. __What are 3 ways of reducing dimensionality?__{: style="color: red"}  
@@ -337,18 +339,18 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
-# ML/Statistical Models
+## ML/Statistical Models
 1. __What are parametric models?__{: style="color: red"}  
 1. __What is a classifier?__{: style="color: red"}  
 
 
 ***
 
-# K-NN
+## K-NN
 
 ***
 
-# PCA
+## PCA
 1. __What is PCA?__{: style="color: red"}  
 1. __What is the Goal of PCA?__{: style="color: red"}  
 1. __List the applications of PCA:__{: style="color: red"}  
@@ -358,7 +360,7 @@ onclick="showText_withParent_PopHide(event);"}
     1. __Principal Directions/Axes:__{: style="color: blue"}  
     1. __Principal Components (scores):__{: style="color: blue"}  
     1. __The $$j$$-th principal component:__{: style="color: blue"}  
-<!-- 1. __Describe how to find the principal components:__{: style="color: red"}   -->
+1. __Describe how to find the principal components:__{: style="color: red"}  
 1. __Define the transformation, mathematically:__{: style="color: red"}  
 1. __What does PCA produce/result in?__{: style="color: red"}  
     <button>Show</button>{: .showText value="show"
@@ -395,7 +397,7 @@ onclick="showText_withParent_PopHide(event);"}
 ***
 
 
-# The Centroid Method
+## The Centroid Method
 * **Define "The Centroid":**{: style="color: red"}    
 * **Describe the Procedure:**{: style="color: red"}    
 * **What is the Decision Function:**{: style="color: red"}    
@@ -405,7 +407,7 @@ onclick="showText_withParent_PopHide(event);"}
 ***
 
 
-# K-Means
+## K-Means
 1. __What is K-Means?__{: style="color: red"}  
 1. __What is the idea behind K-Means?__{: style="color: red"}  
 1. __What does K-Mean find?__{: style="color: red"}  
@@ -428,7 +430,7 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
-# [Naive Bayes](/work_files/research/ml/naive_bayes)
+## Naive Bayes
 1. __Define:__{: style="color: red"}  
     1. __Naive Bayes:__{: style="color: blue"}  
     1. __Naive Bayes Classifiers:__{: style="color: blue"}  
@@ -470,7 +472,7 @@ onclick="showText_withParent_PopHide(event);"}
 ***
 
 
-# CNNs
+## CNNs
 1. __What is a CNN?__{: style="color: red"}  
 1. __What are the layers of a CNN?__{: style="color: red"}  
 1. __What are the four important ideas and their benefits that the convolution affords CNNs:__{: style="color: red"}  
@@ -567,10 +569,10 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
-# Theory
+## Theory
 
 
-# RNNs
+## RNNs
 1. __What is an RNN?__{: style="color: red"}  
     1. __Definition:__{: style="color: blue"}  
     1. __What machine-type is the standard RNN:__{: style="color: blue"}  
@@ -600,7 +602,7 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
-# Optimization
+## Optimization
 1. __Define the *sigmoid* function and some of its properties:__{: style="color: red"}  
 1. __Backpropagation:__{: style="color: red"}  
     1. __Definition:__{: style="color: blue"}  
@@ -631,7 +633,7 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
-# ML Theory
+## ML Theory
 1. __Explain intuitively why Deep Learning works?__{: style="color: red"}  
 1. __List the different types of Learning Tasks and their definitions:__{: style="color: red"}  
 [answer](/concepts_#bodyContents64)  
@@ -648,7 +650,7 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
-# Statistical Learning Theory
+## Statistical Learning Theory
 1. __Define Statistical Learning Theory:__{: style="color: red"}  
     <button>Show</button>{: .showText value="show"
      onclick="showTextPopHide(event);"}
@@ -696,7 +698,7 @@ onclick="showText_withParent_PopHide(event);"}
 1. __What does the (VC) Learning Theory Achieve?__{: style="color: red"}  
 1. __Why do we need the probabilistic framework?__{: style="color: red"}  
 1. __Give the Formal Definition of SLT:__{: style="color: red"}  
-1. __What is the *Approximation-Generalization Tradeoff*:__{: style="color: red"}  
+1. __What is the *Approximation-Generalization Tradeoff*? How is it characterized?:__{: style="color: red"}  
 1. __What are the factors determining how well an ML-algo will perform?__{: style="color: red"}  
 1. __Define the following and their usage/application & how they relate to each other:__{: style="color: red"}  
     1. __Underfitting:__{: style="color: blue"}  
@@ -715,16 +717,16 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
-# Bias-Variance Decomposition Theory
+## Bias-Variance Decomposition Theory
 1. __What is the Bias-Variance Decomposition Theory:__{: style="color: red"}  
 1. __What are the Assumptions made by the theory?__{: style="color: red"}  
-1. __What is the question that the theory tries to answer? What assumption is important? How do you achieve the answer/goal?__{: style="color: red"}
+1. __What is the question that the theory tries to answer? How do you achieve the answer to this question? What assumption is important?__{: style="color: red"}
 1. __What is the Bias-Variance Decomposition:__{: style="color: red"}  
-1. __Define each term w.r.t. source of the error:__{: style="color: red"}  
+1. __Define each term w.r.t. source of the error (error from):__{: style="color: red"}  
     1. __Bias:__{: style="color: blue"}  
     1. __Variance:__{: style="color: blue"}  
     1. __Irreducible Error:__{: style="color: blue"}  
-1. __What does each of the following measure? Describe it in Words? Give their AKA in statistics?__{: style="color: red"}  
+1. __What does each of the following measure (error in)? Describe this measured quantity in words, mathematically. Describe Bias&Variance in Words as a question statement. Give their AKA in statistics.__{: style="color: red"}  
     1. __Bias:__{: style="color: blue"}  
     1. __Variance:__{: style="color: blue"}  
     1. __Irreducible Error:__{: style="color: blue"}  
@@ -742,12 +744,28 @@ onclick="showText_withParent_PopHide(event);"}
 1. __What are the key Takeaways from the Tradeoff?__{: style="color: red"}  
 1. __What are the most common ways to negotiate the Tradeoff? (i.e. selecting/comparing models)__{: style="color: red"}  
 1. __How does the decomposition relate to Classification?__{: style="color: red"}  
+1. __Increasing/Decreasing Bias&Variance:__{: style="color: red"}    
+    1. __Adding Good Feature__: 
+    1. __Adding Bad Feature__: 
+    1. __Adding ANY Feature__: 
+    1. __Adding more Data__: 
+    1. __Noise in Test Set__: 
+    1. __Noise in Training Set__: 
+    1. __Dimensionality Reduction__: 
+    1. __Feature Selection__: 
+    1. __Regularization__: 
+    1. __Increasing # of Hidden Units in ANNs__: 
+    1. __Increasing # of Hidden Layers in ANNs__: 
+    1. __Increasing $$k$$ in K-NN__: 
+    1. __Increasing Depth in Decision-Trees__: 
+    1. __Boosting__: 
+    1. __Bagging__: 
     
 
 
 ***
 
-# Activation Functions
+## Activation Functions
 1. __Describe the Desirable Properties for activation functions:__{: style="color: red"}  
     <button>Explain the specifics of the desirability of each of the following</button>{: .showText value="show"
     onclick="showTextPopHide(event);"}
@@ -771,6 +789,7 @@ onclick="showText_withParent_PopHide(event);"}
 
 <button>Show Questions</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
 1. __Fill in the following table:__{: style="color: red"}  
+    ![img](/main_files/dl/concepts/act_funcs/0.png){: width="100%"}  
 1. __Tanh VS Sigmoid for activation?__{: style="color: red"}  
 1. __ReLU:__{: style="color: red"}  
     1. __What makes it superior/advantageous?__{: style="color: red"}  
@@ -782,7 +801,7 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
-# Kernels
+## Kernels
 1. __Define "Local Kernel" and give an analogy to describe it:__{: style="color: red"}  
 1. __Write the following kernels:__{: style="color: red"}  
     1. __Polynomial Kernel of degree, up to, $$d$$:__{: style="color: blue"}  
@@ -794,7 +813,7 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
-# Math
+## Math
 1. __What is a metric?__{: style="color: red"}  
 [Metric](http://localhost:8889/concepts_#bodyContents31)
 
@@ -823,7 +842,7 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
-# Statistics
+## Statistics
 1. __ROC curve:__{: style="color: red"}  
     1. __Definition:__{: style="color: blue"}  
     1. __Purpose:__{: style="color: blue"}  
@@ -843,16 +862,6 @@ onclick="showText_withParent_PopHide(event);"}
     * __How's the use of an inefficient estimator bad compared to an efficient one?__{: style="color: blue"}  
 1. __Whats the difference between *Errors* and *Residuals*:__{: style="color: red"}  
     1. __Compute the statistical errors and residuals of the univariate, normal distribution defined as $$X_{1}, \ldots, X_{n} \sim N\left(\mu, \sigma^{2}\right)$$:__{: style="color: blue"}  
-1. __Clearly Define MLE and derive the final formula:__{: style="color: red"}  
-    1. __Write MLE as an expectation wrt the Empirical Distribution:__{: style="color: blue"}  
-    1. __Describe formally the relationship between MLE and the KL-divergence:__{: style="color: blue"}  
-    1. __Extend the argument to show the link between MLE and Cross-Entropy. Give an example:__{: style="color: blue"}  
-    1. __How does MLE relate to the model distribution and the empirical distribution?__{: style="color: blue"}  
-    1. __What is the intuition behind using MLE?__{: style="color: blue"}  
-    1. __What does MLE find/result in?__{: style="color: blue"}  
-    1. __What kind of problem is MLE and how to solve for it?__{: style="color: blue"}  
-    1. __How does it relate to SLT:__{: style="color: blue"}   
-    1. __Explain clearly why we maximize the natural log of the likelihood__{: style="color: blue"}  
 1. __What is a biased estimator?__{: style="color: red"}  
     1. __Why would we prefer biased estimators in some cases?__{: style="color: blue"}  
 1. __What is the difference between "Probability" and "Likelihood":__{: style="color: red"}  
@@ -868,24 +877,46 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
-# Text-Classification \| Classical
+
+## (Statistics) - MLE
+1. __Clearly Define MLE and derive the final formula:__{: style="color: red"}  
+    1. __Write MLE as an expectation wrt the Empirical Distribution:__{: style="color: blue"}  
+    1. __Describe formally the relationship between MLE and the KL-divergence:__{: style="color: blue"}  
+    1. __Extend the argument to show the link between MLE and Cross-Entropy. Give an example:__{: style="color: blue"}  
+    1. __How does MLE relate to the model distribution and the empirical distribution?__{: style="color: blue"}  
+    1. __What is the intuition behind using MLE?__{: style="color: blue"}  
+    1. __What does MLE find/result in?__{: style="color: blue"}  
+    1. __What kind of problem is MLE and how to solve for it?__{: style="color: blue"}  
+    1. __How does it relate to SLT:__{: style="color: blue"}   
+    1. __Explain clearly why we maximize the natural log of the likelihood__{: style="color: blue"}  
+
+
+***
+
+
+## Text-Classification \| Classical
 1. __List some Classification Methods:__{: style="color: red"}  
 1. __List some Applications of Txt Classification:__{: style="color: red"}  
 
 ***
 
-# NLP
+## NLP
 1. __List some problems in NLP:__{: style="color: red"}  
 1. __List the Solved Problems in NLP:__{: style="color: red"}  
 1. __List the "within reach" problems in NLP:__{: style="color: red"}  
 1. __List the Open Problems in NLP:__{: style="color: red"}  
 1. __Why is NLP hard? List Issues:__{: style="color: red"}  
 1. __Define:__{: style="color: red"}  
+    1. __Morphology:__{: style="color: blue"}  
     1. __Morphemes:__{: style="color: blue"}  
+    1. __Stems:__{: style="color: blue"}  
+    1. __Affixes:__{: style="color: blue"}  
+    1. __Stemming:__{: style="color: blue"}  
+    1. __Lemmatization:__{: style="color: blue"}  
 
 ***
 
-# Language Modeling
+## Language Modeling
 1. __What is a Language Model?__{: style="color: red"}  
 1. __List some Applications of LMs:__{: style="color: red"}  
 1. __Traditional LMs:__{: style="color: red"}  
@@ -949,7 +980,7 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
-# Regularization
+## Regularization
 1. __Define Regularization both intuitively and formally:__{: style="color: red"}  
 1. __Define "well-posedness":__{: style="color: red"}  
 1. __Give four aspects of justification for regularization (theoretical):__{: style="color: red"}  
@@ -1051,7 +1082,7 @@ onclick="showText_withParent_PopHide(event);"}
     1. __Are there any guarantees that we achieve with regularization?__{: style="color: blue"}  
     {: hidden=""}
 1. __Describe dataset augmentation and its techniques:__{: style="color: red"}  
-1. __When is it applicable?__{: style="color: red"}  
+1. __When is dataset augmentation applicable?__{: style="color: red"}  
 1. __When is it not?__{: style="color: red"}  
 1. __Motivate Noise Robustness property:__{: style="color: red"}  
 1. __How can Noise Robustness motivate a regularization technique?__{: style="color: red"}  
@@ -1088,7 +1119,7 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
-# Misc.
+## Misc.
 1. __Explain Latent Dirichlet Allocation (LDA)__{: style="color: red"}  
 1. __How to deal with curse of dimensionality__{: style="color: red"}  
 1. __How to detect correlation of "categorical variables"?__{: style="color: red"}  
@@ -1107,4 +1138,83 @@ onclick="showText_withParent_PopHide(event);"}
 1. __What are collinearity and multicollinearity?__{: style="color: red"}  
 1. __What are the two paradigms of ensemble methods?__{: style="color: red"}  
 1. __Describe Label Smoothing as a regularization technique:__{: style="color: red"}  
-    1. __Give its motivation:__{: style="color: blue"}  
+    1. __Give its motivation:__{: style="color: blue"}   
+* __What is data normalization and why do we need it?:__{: style="color: blue"}  
+* __Weight initialization in neural networks?:__{: style="color: blue"}  
+* __How to improve Generalization__{: style="color: red"}  
+* __How to prevent Overfitting__{: style="color: red"}  
+* __How to control the capacity__{: style="color: red"}  
+* __Why small weights in NN lead to lower capacity:__{: style="color: red"}  
+
+__INTERVIEWS__  
+* __Can they derive the back-propagation and weights update?:__{: style="color: blue"}  
+* __Extend the above question to non-trivial layers such as convolutional layers, pooling layers, etc.:__{: style="color: blue"}  
+* __How to implement dropout:__{: style="color: blue"}  
+* __Their intuition when and why some tricks such as max pooling, ReLU, maxout, etc. work. There are no right answers but it helps to understand their thoughts and research experience.:__{: style="color: blue"}  
+* __Can they abstract the forward, backward, update operations as matrix operations, to leverage BLAS and GPU?:__{: style="color: blue"}  
+* __What is an auto-encoder? Why do we "auto-encode"? Hint: it's really a misnomer.:__{: style="color: blue"}  
+* __What is a Boltzmann Machine? Why a Boltzmann Machine?:__{: style="color: blue"}  
+* __Why do we use sigmoid for an output function? Why tanh? Why not cosine? Why any function in particular?:__{: style="color: blue"}  
+* __Why are CNNs used primarily in imaging and not so much other tasks?:__{: style="color: blue"}  
+* __Explain backpropagation. Seriously. To the target audience described above.:__{: style="color: blue"}  
+* __Is it OK to connect from a Layer 4 output back to a Layer 2 input?:__{: style="color: blue"}  
+* __A data-scientist person recently put up a YouTube video explaining that the essential difference between a Neural Network and a Deep Learning network is that the former is trained from output back to input, while the latter is trained from input toward output. Do you agree? Explain.:__{: style="color: blue"}  
+* [Interview Qs (Quora)](https://www.quora.com/What-are-the-toughest-neural-networks-and-deep-learning-interview-questions)  
+* [NLP-Interview](https://docs.google.com/document/d/1eYcKSc5NcaWL0TdQD1l5iypfW27S1d9SDrvaUnGEENE/edit)  
+* [Robin-Interview](https://docs.google.com/document/d/1ORo2m8cCr5ZnwAH_VHHOpj6jxL6-xuxeIXu2QJA0LbA/edit)  
+* [Robin](https://docs.google.com/document/d/1WqSkunRb0Bue1LX3nZYUXEJMQt7-sHikVtZ96qwE6zs/edit)  
+* [CV-Inter](https://docs.google.com/document/d/1-F52-xt4O57Ut75DfF6bx-XYcWWZtRhQKVAMcZrMAes/edit)  
+* [Polarr-Inter](https://docs.google.com/document/d/1Yipw1BsW9-BO4FuBKG2SvtH-PIiZN_MQ78P1n9QT3_s/edit)  
+
+
+***
+
+
+## FeedForward Neural Network
+1. __Define "FeedForward Neural Network":__{: style="color: red"}  
+1. __What is the Architecture of an FFN:__{: style="color: red"}  
+1. __List the Classes of FNNs:__{: style="color: red"}  
+    <button>Further Questions</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    1. __Describe the "Single-Layer Perceptron":__{: style="color: blue"}  
+    1. __Describe the "Multi-Layer Perceptron":__{: style="color: blue"}  
+    {: hidden=""}
+
+***
+
+## Multilayer Perceptron
+1. __Define the "Multi-Layer Perceptron":__{: style="color: red"}  
+1. __What is the Architecture of an MLP:__{: style="color: red"}  
+    <button>Further Questions</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __What are the Layers:__{: style="color: blue"}  
+    1. __What are the Connections:__{: style="color: blue"}  
+    1. __What else is important to make it multi-layer? why?__{: style="color: blue"}  
+    {: hidden=""}
+1. __Describe "Learning" of an MLP:__{: style="color: red"}  
+1. __List the properties of the MLP:__{: style="color: red"}  
+
+***
+
+## Deep Feedforward Neural Networks
+1. __Describe the Deep Feedforward Neural Networks:__{: style="color: red"}  
+    <button>Further Questions</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __As a "Classifier":__{: style="color: blue"}  
+    1. __What is its function?__{: style="color: blue"}  
+    1. __How does it model the targets?__{: style="color: blue"}  
+    1. __What does it learn?__{: style="color: blue"}  
+    1. __What is its goal?__{: style="color: blue"}  
+    1. __Why are they called "networks"/how are they represented?:__{: style="color: blue"}  
+    {: hidden=""}
+
+    <button>Further Further Questions</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __How are the Functions composed together?__{: style="color: blue"}    
+    1. __How is this composition described?__{: style="color: blue"}  
+    1. __What is the common structure for connecting the functions (from layer to layer)?__{: style="color: blue"}  
+    1. __How do we define Depth:__{: style="color: blue"}  
+    1. __What does the Training Data provide? and how do we learn from it?__{: style="color: blue"}  
+    {: hidden=""}
+1. __Describe the Motivation for Deep FFNs:__{: style="color: red"}  
+    <button>Further Questions</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __topic:__{: style="color: blue"}    
+    {: hidden=""}
+1. __Interpretation of Neural Networks__{: style="color: red"}
+

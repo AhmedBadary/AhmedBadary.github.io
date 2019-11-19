@@ -5,6 +5,10 @@ permalink: /work_files/research/ml/kmeans
 prevLink: /work_files/research/dl/ml.html
 ---
 
+
+***
+***
+
 [Explanation](http://www.chioka.in/explain-to-myself-k-means-algorithm/)  
 [KMeans Full Treatment](https://cseweb.ucsd.edu/~dasgupta/291-unsup/lec2.pdf)  
 [KMeans and EM-Algorithms](http://lear.inrialpes.fr/people/mairal/teaching/2014-2015/M2ENS/notes_cours7.pdf)  

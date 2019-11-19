@@ -19,11 +19,21 @@ prevLink: /work_files/research/dl/nlp.html
 ***
 ***
 
-[Paper on Contextual Word Representations](https://arxiv.org/pdf/1902.06006.pdf)  
+* [Paper on Contextual Word Representations](https://arxiv.org/pdf/1902.06006.pdf)  
 
 
 ## Word Representations and their progress
 {: #content1}
+
+
+__Summary of Progress:__{: style="color: red"}  
+{: #lst-p}
+* __2011-13s__: Learning Unsupervised Representations for words (Pre-Trained Word Vectors) is crucial for making Supervised Learning work (e.g. for NERs, POS-Tagging, etc.)  
+* __2014-18s__: Pre-Trained Word Vectors are not actually necessary for _good performance_ of supervised methods.  
+    * The reason is due to advances in training supervised methods: __regularization__, __non-linearities__, etc.  
+    * They can boost the performance by ~ $$1\%$$ on average.   
+<br>
+
 
 1. **Word Representations (Accepted Methods):**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
     The current accepted methods provide one representation of words:  
@@ -35,17 +45,22 @@ prevLink: /work_files/research/dl/nlp.html
     ![img](/main_files/dl/nlp/ctxt_word_repr/2.png){: width="80%" hidden=""}  
 
     __Problems:__  
+    {: #lst-p}
     * __Word Senses__: Always the same representation for a __word type__ regardless of the context in which a __word token__ occurs  
         * We might want very fine-grained word sense disambiguation (e.g. not just 'holywood star' and 'astronomical star'; but also 'rock star', 'star student' etc.)  
 
-    * We just have one representation for a word, but words have different __aspects__, including semantics, syntactic behavior, and register/connotations (e.g. when is it appropriate to use 'bathroom' vs 'shithole' etc.; 'can'-noun vs 'can'-verb have same vector)  
+    * We just have __one representation__ for a word, but words have __different aspects__: including __semantics__, __syntactic behavior__, and __register/connotations__ (e.g. when is it appropriate to use 'bathroom' vs 'shithole' etc.; 'can'-noun vs 'can'-verb have same vector)  
 
     __Possible Solution (that we always had?):__  
+    {: #lst-p}
     * In a NLM, LSTM layers are trained to predict the next word, producing hidden/state vectors, that are basically __context-specific__ word representations, at each position  
+        <button>LSTM Representations</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+        ![img](https://cdn.mathpix.com/snip/images/wWkGdRomPB3JlxbnRWCNrAX8nfHerQyAymnxmTU6--Q.original.fullsize.png){: width="100%" hidden=""}  
     <br>  
 
 2. **TagLM (Peters et al. 2017) — Pre-Elmo:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
-    __Idea:__ 
+    __Idea:__  
+    {: #lst-p}
     * Want meaning of word in context, but standardly learn task RNN only on small task-labeled data (e.g. NER).  
     * Do __semi-supervised__ approach where we train NLM on large unlabeled corpus, rather than just word vectors.  
     * Run a BiRNN-LM and concatenate the For and Back representations
@@ -53,6 +68,7 @@ prevLink: /work_files/research/dl/nlp.html
     * Also, train a Char-CNN/RNN to get character level embedding and concatenate all of them together
 
     __Details:__  
+    {: #lst-p}
     * Language model is trained on 800 million training words of "Billion word benchmark"  
     * __Language model observations__:  
         * An LM trained on supervised data does not help 
@@ -62,8 +78,10 @@ prevLink: /work_files/research/dl/nlp.html
         * Using just the LM embeddings to predict isn't great: 88.17 F1  
             * Well below just using an BiLSTM tagger on labeled data      
 
-    <button>Tag LM</button>{: .showText value="show" onclick="showTextPopHide(event);"}
-    ![img](/main_files/dl/nlp/ctxt_word_repr/3.png){: width="100%" hidden=""}
+    <button>Tag LM Detailed</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](/main_files/dl/nlp/ctxt_word_repr/3.png){: width="100%" hidden=""}  
+    <button>TagLM step-by-step Overview</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](https://cdn.mathpix.com/snip/images/LZid2lHBZj9P1EQAOhHzDYxk6o_I0kh-gtfIBDbI6Rg.original.fullsize.png){: width="100%" hidden=""}  
     <br>
 
 3. **Cove - Pre-Elmo:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
@@ -79,6 +97,7 @@ prevLink: /work_files/research/dl/nlp.html
 
 4. **Elmo - Embeddings from Language Models (Peters et al. 2018):**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
     __Idea:__  
+    {: #lst-p}
     * Train a bidirectional LM  
     * Aim at performant but not overly large LM:  
         * Use 2 biLSTM layers  
@@ -89,6 +108,7 @@ prevLink: /work_files/research/dl/nlp.html
         * Tie parameters of token input and output (softmax) and tie these between forward and backward LMs  
 
     __Key Results:__  
+    {: #lst-p}
     * ELMo learns task-specific combination of BiLM representations  
     * This is an innovation that improves on just using top layer of LSTM stack
     <p>$$\begin{aligned} R_{k} &=\left\{\mathbf{x}_{k}^{L M}, \overrightarrow{\mathbf{h}}_{k, j}^{L M}, \mathbf{h}_{k, j}^{L M} | j=1, \ldots, L\right\} \\ &=\left\{\mathbf{h}_{k, j}^{L M} | j=0, \ldots, L\right\} \end{aligned}$$</p>  
@@ -98,6 +118,7 @@ prevLink: /work_files/research/dl/nlp.html
     > Possibly this is a way of saying different semantic and syntactic meanings of a word are represented in different layers; and by doing a weighted average of those, in a task-specific manner, we can leverage the appropriate kind of information for each task.  
 
     __Using ELMo with a Task:__  
+    {: #lst-p}
     * First run biLM to get representations for each word
     * Then let (whatever) end-task model use them
         * Freeze weights of ELMo for purposes of supervised model
@@ -108,6 +129,7 @@ prevLink: /work_files/research/dl/nlp.html
 
     
     __Weighting of Layers:__  
+    {: #lst-p}
     * The two Bi-LSTM NLP Layers have differentiated uses/meanings  
         * Lower layer is better for lower-level syntax, etc.  
             * POS-Tagging, Syntactic Dependencies, NER  
@@ -131,6 +153,7 @@ prevLink: /work_files/research/dl/nlp.html
     __Idea:__ Pre-training of Deep Bidirectional Transformers for Language Understanding.  
 
     __Model Architecture:__  
+    {: #lst-p}
     * Transformer Encoder
     * Self-attention --> no locality bias
         * Long-distance context has "equal opportunity"  
@@ -141,6 +164,7 @@ prevLink: /work_files/research/dl/nlp.html
 
 
     __Model Training:__  
+    {: #lst-p}
     * Train on Wikipedia + BookCorpus
     * Train 2 model sizes:  
         * __BERT-Base__
@@ -149,14 +173,17 @@ prevLink: /work_files/research/dl/nlp.html
 
 
     __Model Fine-Tuning:__  
+    {: #lst-p}
     * Simply learn a classifier built on top layer for each task that you fine-tune for.
                 
 
     __Problem with Unidirectional and Bidirectional LMs:__  
+    {: #lst-p}
     * __Uni:__ build representation incrementally; not enough context from the sentence  
     * __Bi:__  Cross-Talk; words can "see themselves"  
 
     __Solution:__  
+    {: #lst-p}
     * Mask out $$k\%$$ of the input words, and then predict the masked words
         * They always use $$k=15%$$  
         > Ex: "The man went to the _[MASK]_ to buy a _[MASK]_ of milk."  
@@ -176,6 +203,28 @@ prevLink: /work_files/research/dl/nlp.html
 
     * [BERT Word Embeddings Tutorial](http://mccormickml.com/2019/05/14/BERT-word-embeddings-tutorial/)  
 
+
+__Notes:__{: style="color: red"}  
+{: #lst-p}
+* __Tips for unknown words with word vectors:__  
+    * Simplest and common solution:
+    * Train time: Vocab is $$\{\text { words occurring, say, } \geq 5 \text { times }\} \cup\{<UNK>\}$$  
+    * Map __all__ rarer $$(<5)$$ words to $$<UNK>$$, train a word vector for it
+    * Runtime: use $$<UNK>$$ when out-of-vocabulary (OOV) words occur
+
+    * __Problems:__  
+        * No way to distinguish different $$UNK$$ words, either for identity or meaning  
+    * __Solutions:__  
+        1. Hey, we just learned about char-level models to build vectors! Let's do that!  
+            * Especially in applications like question answering  
+                * Where it is important to match on word identity, even for words outside your word vector vocabulary  
+        2. Try these tips (from Dhingra, Liu, Salakhutdinov, Cohen 2017)  
+            a. If the <UNK> word at test time appears in your unsupervised word embeddings, use that vector as is at test time.
+            b. Additionally, for other words, just assign them a random vector, adding them to your vocabulary
+            
+            a. definitely helps a lot; b. may help a little more  
+        3. Another thing you can try:  
+            * Collapsing things to word classes (like unknown number, capitalized thing, etc. and having an <UNK-class> for each  
     
 
 <!-- 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}
@@ -190,33 +239,58 @@ prevLink: /work_files/research/dl/nlp.html
 
 
 1. **Self-Attention:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
-    * __Computational Complexity Comparison__:  
-        ![img](/main_files/dl/nlp/ctxt_word_repr/1.png){: width="70%"}  
-    * __Self-Attention/Relative-Attention Interpretations__:  
-        * Can achieve __Translational Equivariance__ (like convs) (by removing pos-encoding).
-        * Can model similarity graphs. 
-        * Connected to __message-passing NNs__. Can think of self-atten as _passing messages bet pairs of nodes in graph_; equiv. _imposing a complete bipartite graph_ and you're passing messages between nodes.  
-            Mathematically, the difference is message-passing NNs impose condition that messages pass ONLY bet pairs of nodes; while self-atten uses softmax and thus passes messages between all nodes.  
+    __Computational Complexity Comparison__:  
+    ![img](/main_files/dl/nlp/ctxt_word_repr/1.png){: width="70%"}  
+    It is favorable when the __sequence-length__ $$<<$$ __dimension-representations__.  
 
-    * __Self-Attention Summary__:  
-        * Constant path-length between any two positions
-        * Unbounded memory (ie no fixed size h_state) 
-        * Trivial to parallelize (per layer)
-        * Models self-similarity
-        * Relative attention provides expressive timing, equivariance, and extends naturally to graphs  
+    __Self-Attention/Relative-Attention Interpretations__:  
+    {: #lst-p}
+    * Can achieve __Translational Equivariance__ (like convs) (by removing pos-encoding).
+    * Can model __similarity graphs__.  
+    * Connected to __message-passing NNs__: Can think of self-attention as _passing messages between pairs of nodes in graph_; equivalently, _imposing a complete bipartite graph_ and you're passing messages between nodes.  
+        Mathematically, the difference is message-passing NNs impose condition that messages pass ONLY bet pairs of nodes; while self-attention uses softmax and thus passes messages between all nodes.  
 
-    * __Current Issues__:  
-        * __Slow Generation__:  
-            Mainly due to __Auto-Regressive__ generation, which is necessary to break the multimodality of generation. Multimodality prohibits naive parallel generation.  
-            Multimodality refers to the fact that there are multiple different sentences in german that are considered a correct translation of a sentence in english, and they all depend on the word that was generated first (ie no parallelization).   
-        * __Active Area of Research__:  
-            __Non Auto-Regressive Transformers__.  
-            * Papers:  
-                * _Non autoregressive transformer (Gu and Bradbury et al., 2018)_  
-                * _Deterministic Non-Autoregressive Neural Sequence Modeling by Iterative Refinement (Lee, Manismov, and Cho, 2018)_  
-                * _Fast Decoding in Sequence Models Using Discrete Latent Variables (ICML 2018) Kaiser, Roy, Vaswani, Pamar, Bengio, Uszkoreit, Shazeer_  
-                * _Towards a Better Understanding of Vector Quantized Autoencoders Roy, Vaswani, Parmar, Neelakantan, 2018_  
-                * _Blockwise Parallel Decoding For Deep Autogressive Models (NeurIPS 2019) Stern, Shazeer, Uszkoreit_   
+    __Self-Attention Summary/Properties__:  
+    {: #lst-p}
+    * <span>__Constant__ path-length</span>{: style="color: purple"} between any two positions  
+    * Unbounded memory (i.e no fixed size h-state)  
+    * Gating/multiplicative interactions  
+        Because you multiply attention probabilities w/ activations. PixelCNN needed those interactions too.  
+    * Trivial to parallelize (per layer): just matmuls  
+    * Models __self-similarity__    
+    * Relative attention provides __expressive timing__, __equivariance__, and extends naturally to graphs  
+    * (Without __positional encoding__) It's <span>Permutation-Invariant and Translation-Equivariant</span>{: style="color: purple"}  
+        It can learn to __copy__ well.  
+
+
+    __Current Issues__:  
+    {: #lst-p}
+    * __Slow Generation__:  
+        Mainly due to __Auto-Regressive__ generation, which is necessary to break the multi-modality of generation. Multi-modality prohibits naive parallel generation.  
+        Multi-modality refers to the fact that there are multiple different sentences in german that are considered a correct translation of a sentence in english, and they all depend on the word that was generated first (ie no parallelization).   
+    * __Active Area of Research__:  
+        <span>__Non Auto-Regressive Transformers__</span>{: style="color: purple"}.  
+        * Papers:  
+            * _Non autoregressive transformer (Gu and Bradbury et al., 2018)_  
+            * _Deterministic Non-Autoregressive Neural Sequence Modeling by Iterative Refinement (Lee, Manismov, and Cho, 2018)_  
+            * _Fast Decoding in Sequence Models Using Discrete Latent Variables (ICML 2018) Kaiser, Roy, Vaswani, Pamar, Bengio, Uszkoreit, Shazeer_  
+            * _Towards a Better Understanding of Vector Quantized Autoencoders Roy, Vaswani, Parmar, Neelakantan, 2018_  
+            * _Blockwise Parallel Decoding For Deep Autogressive Models (NeurIPS 2019) Stern, Shazeer, Uszkoreit_   
+
+    __Notes:__{: style="color: red"}  
+    {: #lst-p}
+    * __Self-Similarity:__  
+        * Use Encoder-Self-Attention and replace word-embeddings with image-patches: you compute a notion of content-based similarity between the elements (patches), then - based on this content-based similarity - it computes a convex combination that brings the patches together.  
+            * You can think about it as a <span>*__differentiable__* way to perform __non-local means__</span>{: style="color: purple"}.  
+            * __Issue - Computational Problem:__  
+                Attention is Cheap only if _length_ $$<<$$ _dim_.  
+                Length for images is $$32\times 32\times 3 = 3072$$:   
+                <button>Diagram</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+                ![img](https://cdn.mathpix.com/snip/images/zvEcczfCg3TLiJ76y0QohmJNP2V-OxYsYFCQTaHBy40.original.fullsize.png){: width="100%" hidden=""}  
+            * __Solution - Combining Locality with Self-Attention__:  
+                Restrict the attention windows to be local neighborhoods.  
+                Good assumption for images because of spatial locality.  
+    <br>
 
 <!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}
 

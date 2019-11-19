@@ -219,13 +219,13 @@ prevLink: /work_files/research/dl/nlp.html
 
 2. **The Structure of an RNN:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
     :   The RNN is parameterized with three weight matrices and three bias vectors:  
-    :   $$ \theta = [W_{hv}, W_{hh}, W_{oh}, b_h, b_o, h_0] $$
+    :   $$ \theta = [W_{hx}, W_{hh}, W_{oh}, b_h, b_o, h_0] $$
     :   These parameter completely describe the RNN.  
 
 3. **The Algorithm:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}  
     :   Given an _input sequence_ $$\hat{x} = [x_1, \ldots, x_T]$$, the RNN computes a sequence of hidden states $$h_1^T$$ and a sequence of outputs $$y_1^T$$ in the following way:  
         __for__ $$t$$ __in__ $$[1, ..., T]$$ __do__  
-            $$\ \ \ \ \ \ \ \ \ \ $$ $$u_t \leftarrow W_{hv}x_t + W_{hh}h_{t-1} + b_h$$  
+            $$\ \ \ \ \ \ \ \ \ \ $$ $$u_t \leftarrow W_{hx}x_t + W_{hh}h_{t-1} + b_h$$  
             $$\ \ \ \ \ \ \ \ \ \ $$ $$h_t \leftarrow g_h(u_t)$$  
             $$\ \ \ \ \ \ \ \ \ \ $$ $$o_t \leftarrow W_{oh}h_{t} + b_o$$  
             $$\ \ \ \ \ \ \ \ \ \ $$ $$y_t \leftarrow g_y(o_t)$$   
@@ -283,17 +283,50 @@ prevLink: /work_files/research/dl/nlp.html
 
 
 6. **BPTT:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}  
-    :   __for__ $$t$$ __from__ $$T$$ __to__ $$1$$ __do__  
-            $$\ \ \ \ \ \ \ \ \ \ $$ $$do_t \leftarrow g_y'(o_t) · dL(y_t ; z_t)/dy_t$$  
-            $$\ \ \ \ \ \ \ \ \ \ $$ $$db_o \leftarrow db_o + do_t$$  
-            $$\ \ \ \ \ \ \ \ \ \ $$ $$dW_{oh} \leftarrow dW_{oh} + do_th_t^T$$  
-            $$\ \ \ \ \ \ \ \ \ \ $$ $$dh_t \leftarrow dh_t + W_{oh}^T do_t$$  
-            $$\ \ \ \ \ \ \ \ \ \ $$ $$dy_t \leftarrow g_h'(y_t) · dh_t$$  
-            $$\ \ \ \ \ \ \ \ \ \ $$ $$dW_{hv} \leftarrow dW_{hv} + dy_tx_t^T$$  
-            $$\ \ \ \ \ \ \ \ \ \ $$ $$db_h \leftarrow db_h + dy_t$$  
-            $$\ \ \ \ \ \ \ \ \ \ $$ $$dW_{hh} \leftarrow dW_{hh} + dy_th_{t-1}^T$$  
-            $$\ \ \ \ \ \ \ \ \ \ $$ $$dh_{t-1} \leftarrow W_{hh}^T dy_t$$  
-        __Return__ $$\:\:\:\: d\theta = [dW_{hv}, dW_{hh}, dW_{oh}, db_h, db_o, dh_0]$$
+    __for__ $$t$$ __from__ $$T$$ __to__ $$1$$ __do__  
+        <!-- $$\ \ \ \ \ \ \ \ \ \ $$ $$dy_t \leftarrow g_y'(o_t) · dy_t$$   -->
+    $$\begin{align}
+    \ \ \ \ \ \ \ \ \ \ do_t &\leftarrow dy_t · g_y'(o_t) \\
+    \ \ \ \ \ \ \ \ \ \ db_o &\leftarrow db_o + do_t \\
+    \ \ \ \ \ \ \ \ \ \ dW_{oh} &\leftarrow dW_{oh} + do_th_t^T \\
+    \ \ \ \ \ \ \ \ \ \ dh_t &\leftarrow dh_t + W_{oh}^T do_t \\
+    \ \ \ \ \ \ \ \ \ \ du_t &\leftarrow dh_t · g_h'(u_t) \\
+    \ \ \ \ \ \ \ \ \ \ dW_{hx} &\leftarrow dW_{hx} + du_tx_t^T \\
+    \ \ \ \ \ \ \ \ \ \ db_h &\leftarrow db_h + du_t \\
+    \ \ \ \ \ \ \ \ \ \ dW_{hh} &\leftarrow dW_{hh} + du_th_{t-1}^T \\
+    \ \ \ \ \ \ \ \ \ \ dh_{t-1} &\leftarrow W_{hh}^T du_t 
+    \end{align}
+    $$  
+    __Return__ $$\:\:\:\: d\theta = [dW_{hx}, dW_{hh}, dW_{oh}, db_h, db_o, dh_0]$$  
+
+    <br>
+    __Expanded:__   
+    $$\begin{align}
+        L(y, \hat{y}) &= \sum_{t} L^{(t)} = -\sum_{t} \log \hat{y}_ t = -\sum_{t} \log p_{\text {model }}\left(y^{(t)} |\left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}\right\}\right) \\
+        \hat{y}_ t &= \text{softmax}(o_t) \\
+        dy_{\tau} &= \frac{\partial L}{\partial L^{(t)}}=1 \\
+        do_t &= g_y'(o_t) = \text{softmax}'(o_t) = \hat{y}_{i}^{(t)}-\mathbf{1}_{i=y^{(t)}} \\
+        dh_{\tau} &= W_{oh}^T do_t \\
+        dh_t &= \left(\frac{\partial \boldsymbol{h}^{(t+1)}}{\partial \boldsymbol{h}^{(t)}}\right)^{\top}\left(\nabla_{\boldsymbol{h}^{(t+1)}} L\right)+\left(\frac{\partial \boldsymbol{o}^{(t)}}{\partial \boldsymbol{h}^{(t)}}\right)^{\top}\left(\nabla_{\boldsymbol{o}^{(t)}} L\right) = \boldsymbol{W_{hh}}^{\top} \operatorname{diag}\left(1-\left(\boldsymbol{h}^{(t+1)}\right)^{2}\right)\left(\nabla_{\boldsymbol{h}^{(t+1)}} L\right)+\boldsymbol{W_{oh}}^{\top}\left(\nabla_{\boldsymbol{o}^{(t)}} L\right) \\
+        du_t &= dh_t · g_h'(u_t) = dh_t · \operatorname{tanh}'(u_t) = dh_t · \sum_{t} \operatorname{diag}\left(1-\left(h^{(t)}\right)^{2}\right) \\
+        db_o &= do_t \\
+        dW_{oh} &= do_th_t^T \\
+        dW_{hx} &= du_tx_t^T \\
+        db_h &= du_t \\
+        dW_{hh} &= du_th_{t-1}^T \\
+        dh_{t-1} &= W_{hh}^T du_t
+    \end{align}
+    $$  
+
+    __Notes:__{: style="color: red"}  
+    {: #lst-p}
+    * $$dh_{\tau}$$: We need to get the gradient of $$h$$ at the last node/time-step $$\tau$$ i.e. $$h_{\tau}$$  
+    * $$dh_t$$: We can then iterate backward in time to back-propagate gradients through time, from $$t=\tau-1$$ down to $$t=1$$, noting that $$h^{(t)}(\text { for } t<\tau)$$ has as <span>__descendants__</span>{: style="color: goldenrod"} both $$\boldsymbol{o}^{(t)}$$ and $$\boldsymbol{h}^{(t+1)}$$.  
+        <button>From Graph</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+          ![img](/main_files/dl/archits/rnns/9.png){: width="100%" hidden=""}  
+
+
+
 
 
 7. **Backpropagation Through Time:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}  
@@ -329,7 +362,7 @@ prevLink: /work_files/research/dl/nlp.html
 
 __LSTMS:__  
 * The core of the history/memory is captured in the _cell-state $$c_{n}$$_ instead of the hidden state $$h_{n}$$.  
-* (&) __Key Idea:__ The update to the cell-state $$c_{n}=c_{n-1}+\operatorname{stanh}\left(V\left[w_{n-1} ; h_{n-1}\right]+b_{c}\right)$$  here are __additive__. (differentiating a sum gives the identity) Making the gradient flow nicely through the sum. As opposed to the multiplicative updates to $$h_n$$ in vanilla RNNs.  
+* (&) __Key Idea:__ The update to the cell-state $$c_{n}=c_{n-1}+\operatorname{tanh}\left(V\left[w_{n-1} ; h_{n-1}\right]+b_{c}\right)$$  here are __additive__. (differentiating a sum gives the identity) Making the gradient flow nicely through the sum. As opposed to the multiplicative updates to $$h_n$$ in vanilla RNNs.  
     > There is non-linear funcs applied to the history/context cell-state. It is composed of linear functions. Thus, avoids gradient shrinking.  
 
 * In the recurrency of the LSTM the activation function is the identity function with a derivative of 1.0. So, the backpropagated gradient neither vanishes or explodes when passing through, but remains constant.

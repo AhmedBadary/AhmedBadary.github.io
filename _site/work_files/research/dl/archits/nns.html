@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Neural Networks <br> Architectures & Interpretations</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Neural Architectures</a></li>
+  </ul>
+  <p><!-- * [SECOND](#content2)
+  {: .TOC2} --></p>
+</div>
+
+<hr />
+<hr />
+
+<p id="lst-p"><strong style="color: red">Resources:</strong></p>
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Types_of_artificial_neural_networks">Types of artificial neural networks (wiki!)</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Artificial_neural_network">Artificial Neural Networks Complete Description (wiki!)</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/History_of_artificial_neural_networks">History of ANNs (wiki!)</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Mathematics_of_artificial_neural_networks">Mathematics of ANNs (wiki)</a></li>
+  <li><a href="http://www.computervisionblog.com/2015/04/deep-learning-vs-probabilistic.html">Deep Learning vs Probabilistic Graphical Models vs Logic (Blog!)</a></li>
+  <li><a href="https://www.inference.vc/design-patterns/">A Cookbook for Machine Learning: Vol 1 (Blog!)</a></li>
+</ul>
+
+<p id="lst-p"><strong style="color: red">Interpretation of NNs:</strong></p>
+<ul>
+  <li>Schmidhuber was a pioneer for the view of “neural networks as programs”, which is claimed in his blog post. As opposed to the “representation learning view” by Hinton, Bengio, and other people, which is currently dominant in deep learning.</li>
+</ul>
+
+<h2 id="content1">Neural Architectures</h2>
+
+<!-- 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}   -->
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Neural Architectures - Graphical and Probabilistic Properties:</strong></p>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Properties</button></p>
+    <ul hidden="">
+      <li><strong>FFN</strong>
+        <ul>
+          <li>Directed</li>
+          <li>Acyclic</li>
+          <li>?</li>
+        </ul>
+      </li>
+      <li><strong>MLP</strong>
+        <ul>
+          <li>Directed</li>
+          <li>Acyclic</li>
+          <li>Fully Connected (Complete?)</li>
+        </ul>
+      </li>
+      <li><strong>CNN</strong>
+        <ul>
+          <li>Directed</li>
+          <li>Acyclic</li>
+          <li>?</li>
+        </ul>
+      </li>
+      <li><strong>RNN</strong>
+        <ul>
+          <li>Directed</li>
+          <li>Cyclic</li>
+          <li>?</li>
+        </ul>
+      </li>
+      <li><strong>Hopfield</strong>
+        <ul>
+          <li>Undirected</li>
+          <li>Cyclic</li>
+          <li>Complete</li>
+        </ul>
+      </li>
+      <li><strong>Boltzmann Machine</strong>
+        <ul>
+          <li>Undirected</li>
+          <li>Cyclic</li>
+          <li>Complete</li>
+        </ul>
+      </li>
+      <li><strong>RBM</strong>
+        <ul>
+          <li>Undirected</li>
+          <li>Cyclic</li>
+          <li>Bipartite</li>
+        </ul>
+      </li>
+      <li><strong>Bayesian Networks</strong>
+        <ul>
+          <li>Directed</li>
+          <li>Acyclic</li>
+          <li>?</li>
+        </ul>
+      </li>
+      <li><strong>HMMs</strong>
+        <ul>
+          <li>Directed</li>
+          <li>Acyclic</li>
+          <li>?</li>
+        </ul>
+      </li>
+      <li><strong>MRF</strong>
+        <ul>
+          <li>Undirected</li>
+          <li>Cyclic</li>
+          <li>?</li>
+        </ul>
+      </li>
+      <li><strong>CRF</strong>
+        <ul>
+          <li>Undirected</li>
+          <li>Cyclic</li>
+          <li>?</li>
+        </ul>
+      </li>
+      <li><strong>DBN</strong>
+        <ul>
+          <li>Directed</li>
+          <li>Acyclic</li>
+          <li>?</li>
+        </ul>
+      </li>
+      <li><strong>GAN</strong>
+        <ul>
+          <li>?</li>
+          <li>?</li>
+          <li>Bipartite-Complete</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Mathematics_of_artificial_neural_networks#Neural_networks_as_functions">NNs Graphical VS Functional view (wiki!)</a><br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents122">Neural Architectures:</strong><br />
+<strong style="color: red">FeedForward Network:</strong>
+    <ul>
+      <li><strong>Representations</strong>:
+        <ul>
+          <li><strong>Representational-Power:</strong> Universal Function Approximator.<br />
+  Learns non-linear features.</li>
+        </ul>
+      </li>
+      <li><strong>Input Structure</strong>:
+        <ul>
+          <li></li>
+          <li><strong>Size:</strong> Fixed-Sized Inputs.</li>
+        </ul>
+      </li>
+      <li><strong>Transformation/Operation</strong>: Linear-Transformations (Matrix-Multiplication).</li>
+      <li><strong>Inductive Biases</strong>:</li>
+      <li><strong>Computational Power</strong>:</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Convolutional Network:</strong></p>
+    <ul>
+      <li><strong>Representations</strong>:
+        <ul>
+          <li><strong>Representational-Power:</strong> Universal Function Approximator.</li>
+          <li><strong>Representations Properties</strong>:
+            <ul>
+              <li><strong>Translational-Equivariance</strong> via Convolutions (Translational-Equivariant Representations)</li>
+              <li><strong>Translational-Invariance</strong> via Pooling</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Input Structure</strong>:
+        <ul>
+          <li>Inputs with grid-like topology.<br />
+  Images, Time-series, Sentences.</li>
+          <li><strong>Size:</strong> Variable-Sized Inputs.</li>
+        </ul>
+      </li>
+      <li><strong>Transformation/Operation</strong>: Convolution.</li>
+      <li><strong>Inductive Biases</strong>:
+        <ul>
+          <li><strong>Local-Connectivity</strong>: Spatially Local Correlations.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Recurrent Network:</strong></p>
+    <ul>
+      <li><strong>Representations</strong>:
+        <ul>
+          <li><strong>Representational-Power:</strong></li>
+        </ul>
+      </li>
+      <li><strong>Input Structure</strong>:
+        <ul>
+          <li>Sequential Data.<br />
+  Sentences, Time-series, Images.</li>
+        </ul>
+      </li>
+      <li><strong>Transformation/Operation</strong>: Gated Linear-Transformations (Matrix-Multiplication).</li>
+      <li><strong>Inductive Biases</strong>:</li>
+      <li>
+        <p><strong>Computational Power (Model of Computation)</strong>: Turing Complete (Universal Turing Machine).</p>
+      </li>
+      <li><strong>Mathematical Model/System</strong>: Non-Linear Dynamical System.</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Transformer Network:</strong></p>
+    <ul>
+      <li><strong>Representations</strong>:
+        <ul>
+          <li><strong>Representational-Power:</strong></li>
+        </ul>
+      </li>
+      <li><strong>Input Structure</strong>:</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Recursive Network:</strong></p>
+    <ul>
+      <li><strong>Representational-Power:</strong></li>
+      <li><strong>Input Structure</strong>: Any Hierarchical Structure.</li>
+    </ul>
+
+    <p><strong style="color: red">Further Network Architectures (More Specialized):</strong><br />
+<button class="showText" value="show" onclick="showTextPopHide(event);">List</button></p>
+    <ul hidden="">
+      <li><strong>Residual Network</strong>:</li>
+      <li><strong>Highway Network</strong>:</li>
+      <li><strong>Reversible Network</strong>:</li>
+      <li><strong>Generative Adversarial Network</strong>:</li>
+      <li><strong>Autoencoder Network</strong>:</li>
+      <li><strong>Symmetrically Connected Networks</strong>:
+        <ul>
+          <li><strong>Hopfield Network</strong>:</li>
+          <li><strong>Boltzmann Machines</strong>:</li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Types_of_artificial_neural_networks">Types of ANNs (wiki)</a><br />
+<br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents133">Types/Taxonomy of Neural Networks:</strong><br />
+<button class="showText" value="show" onclick="showTextPopHide(event);">List</button>
+    <ul hidden="">
+      <li><strong style="color: red">FeedForward Neural Networks</strong>
+        <ul>
+          <li><strong style="color: blue">Group method of data handling (GMDH) Network</strong></li>
+          <li><strong style="color: blue">Autoencoder Network</strong></li>
+          <li><strong style="color: blue">Probabilistic Neural Network</strong></li>
+          <li><strong style="color: blue">Time Delay Neural Network</strong></li>
+          <li><strong style="color: blue">Convolutional Neural Network</strong></li>
+          <li><strong style="color: blue">(Vanilla/Tensor) Deep Stacking Network</strong></li>
+        </ul>
+      </li>
+      <li><strong style="color: red">Recurrent Neural Networks:</strong>
+        <ul>
+          <li><strong style="color: blue">Fully Recurrent Neural Network</strong></li>
+          <li><strong style="color: blue">Hopfield Network</strong></li>
+          <li><strong style="color: blue">Boltzmann Machine Network</strong></li>
+          <li><strong style="color: blue">Self-Organizing Map</strong></li>
+          <li><strong style="color: blue">Learning Vector Quantization</strong></li>
+          <li><strong style="color: blue">Simple Recurrent</strong></li>
+          <li><strong style="color: blue">Reservoir Computing</strong></li>
+          <li><strong style="color: blue">Echo State</strong></li>
+          <li><strong style="color: blue">Long Short-term Memory (LSTM)</strong></li>
+          <li><strong style="color: blue">Bi-Directional</strong></li>
+          <li><strong style="color: blue">Hierarchical</strong></li>
+          <li><strong style="color: blue">Stochastic</strong></li>
+          <li><strong style="color: blue">Genetic Scale</strong></li>
+        </ul>
+      </li>
+      <li><strong style="color: red">Memory Networks</strong>
+        <ul>
+          <li><strong style="color: blue">One-Shot Associative Memory</strong></li>
+          <li><strong style="color: blue">Hierarchical Temporal Memory</strong></li>
+          <li><strong style="color: blue">Holographic Associative Memory</strong></li>
+          <li><strong style="color: blue">LSTM-related Differentiable Memory Structures</strong><br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">List</button>
+            <ul hidden="">
+              <li>Differentiable push and pop actions for alternative memory networks called neural stack machines</li>
+              <li>Memory networks where the control network’s external differentiable storage is in the fast weights of another network</li>
+              <li>LSTM forget gates</li>
+              <li>Self-referential RNNs with special output units for addressing and rapidly manipulating the RNN’s own weights in differentiable fashion (internal storage)</li>
+              <li>Learning to transduce with unbounded memory</li>
+            </ul>
+          </li>
+          <li><strong style="color: blue">Neural Turing Machines</strong></li>
+          <li><strong style="color: blue">Semantic Hashing</strong></li>
+          <li><strong style="color: blue">Pointer Networks</strong></li>
+        </ul>
+      </li>
+    </ul>
+    <p><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Neural Networks and Graphical Models:</strong><br />
+ <strong style="color: red">Deep NNs as PGMs:</strong><br />
+ You can view a deep neural network as a graphical model, but here, the CPDs are not probabilistic but are deterministic. Consider for example that the input to a neuron is <script type="math/tex">\vec{x}</script> and the output of the neuron is <script type="math/tex">y .</script> In the CPD for this neuron we have, <script type="math/tex">p(\vec{x}, y)=1,</script> and <script type="math/tex">p(\vec{x}, \hat{y})=0</script> for <script type="math/tex">\hat{y} \neq y .</script> Refer to the section 10.2 .3 of Deep Learning Book for more details.<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Neural Networks as Gaussian Processes:</strong><br />
+ It’s long been known that these deep tools can be related to Gaussian processes, the ones I mentioned above. Take a neural network (a recursive application of weighted linear functions followed by non-linear functions), put a probability distribution over each weight (a normal distribution for example), and with infinitely many weights you recover a Gaussian process (see <a href="http://www.cs.toronto.edu/pub/radford/thesis.pdf">Neal</a> or <a href="http://papers.nips.cc/paper/1197-computing-with-infinite-networks.pdf">Williams</a> for more details).</p>
+
+    <p>We can think about the finite model as an approximation to a Gaussian process.<br />
+ When we optimise our objective, we minimise some “distance” (KL divergence to be more exact) between your model and the Gaussian process.</p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Illustration</button>
+ <img src="https://cdn.mathpix.com/snip/images/9AhiNOhdojUkjscIHxrF6VDwDB6C87sJQk0te27ahY4.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Neural Layers and Block Architectures:</strong>
+    <ul>
+      <li><strong>Feed-Forward Layer</strong>:
+        <ul>
+          <li><strong>Representational-Power:</strong> Universal Function Approximator.<br />
+  Learns non-linear features.</li>
+          <li><strong>Input Structure</strong>:</li>
+        </ul>
+      </li>
+      <li><strong>Convolutional Layer</strong>:
+        <ul>
+          <li><strong>Representational-Power:</strong></li>
+          <li><strong>Input Structure</strong>:</li>
+        </ul>
+      </li>
+      <li><strong>Recurrent Layer</strong>:
+        <ul>
+          <li><strong>Representational-Power:</strong></li>
+          <li><strong>Input Structure</strong>:</li>
+        </ul>
+      </li>
+      <li><strong>Recursive Layer</strong>:
+        <ul>
+          <li><strong>Representational-Power:</strong></li>
+        </ul>
+      </li>
+      <li><strong>Attention Layer</strong>:
+        <ul>
+          <li><strong>Representational-Power:</strong></li>
+          <li><strong>Input Structure</strong>:</li>
+        </ul>
+      </li>
+      <li><strong>Attention Block</strong>:
+        <ul>
+          <li><strong>Representational-Power:</strong></li>
+        </ul>
+      </li>
+      <li><strong>Residual Block</strong>:
+        <ul>
+          <li><strong>Representational-Power:</strong></li>
+        </ul>
+      </li>
+      <li><strong>Reversible Block</strong>:
+        <ul>
+          <li><strong>Representational-Power:</strong></li>
+        </ul>
+      </li>
+      <li><strong>Reversible Layer</strong>:
+        <ul>
+          <li><strong>Representational-Power:</strong> 
+ <br /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents10">Notes:</strong>
+    <ul>
+      <li><strong>Complexity</strong>:
+        <ul>
+          <li><strong>Caching the activations of a NN</strong>:<br />
+  We need to cache the activation vectors of a NN after each layer <script type="math/tex">Z^{[l]}</script> because they are required in the backward computation.</li>
+        </ul>
+      </li>
+      <li><strong>Initializations</strong>:
+        <ul>
+          <li><strong>Initializing NN</strong>:
+            <ul>
+              <li>Don’t initialize the weights to Zero. The symmetry of hidden units results in a similar computation for each hidden unit, making all the rows of the weight matrix to be equal (by induction).</li>
+              <li>It’s OK to initialize the bias term to zero.</li>
+              <li>Since a neuron takes the sum of <script type="math/tex">N</script> inputsXweights, if <script type="math/tex">N</script> is large, you want smaller <script type="math/tex">w_i</script>s. You want to initialize with a <strong>variance</strong> <script type="math/tex">\propto \dfrac{1}{n}</script> (i.e. multiply by <script type="math/tex">\dfrac{1}{\sqrt{n}}</script>; <script type="math/tex">n</script> is the number of weights in <em><strong>previous layer</strong></em>).<br />
+  This doesnt solve but reduces vanishing/exploding gradient problem because <script type="math/tex">z</script> would take a similar distribution.
+                <ul>
+                  <li><strong>Xavier Initialization:</strong> assumes <script type="math/tex">\tanh</script> activation; ^ uses logic above; samples from normal distribution and multiplies by <script type="math/tex">\dfrac{1}{\sqrt{n}}</script>.</li>
+                  <li>If <strong>ReLU</strong> activation, it turns out to be better to make variance <script type="math/tex">\propto \dfrac{2}{n}</script> instead.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Training</strong>:
+        <ul>
+          <li><a href="http://karpathy.github.io/2019/04/25/recipe/">A Recipe for Training Neural Networks</a></li>
+          <li><a href="http://rishy.github.io/ml/2017/01/05/how-to-train-your-dnn/">Tips for Training Deep Networks</a></li>
+          <li><a href="http://www.chioka.in/why-train-a-model-generatively-and-discriminatively/">Why Train a Model BOTH Generatively and Discriminatively</a></li>
+        </ul>
+      </li>
+      <li>The <strong>Bias Parameter</strong>:
+        <ul>
+          <li><a href="https://stackoverflow.com/questions/2480650/role-of-bias-in-neural-networks">Role of Bias in a NN</a></li>
+        </ul>
+      </li>
+      <li><strong>Failures of Neural Networks</strong>:
+        <ul>
+          <li><a href="https://scholarworks.umass.edu/cgi/viewcontent.cgi?article=1001&amp;context=ics_owplinguist">Vanilla Sequence-to-Sequence Neural Nets cannot Model Reduplication (paper)</a></li>
+        </ul>
+      </li>
+      <li><strong>Bayesian Deep Learning</strong>:<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">List of Topics</button>
+        <ul hidden="">
+          <li>Uncertainty in deep learning,</li>
+          <li>Applications of Bayesian deep learning,</li>
+          <li>Probabilistic deep models (such as extensions and application of Bayesian neural networks),</li>
+          <li>Deep probabilistic models (such as hierarchical Bayesian models and their applications),</li>
+          <li>Generative deep models (such as variational autoencoders),</li>
+          <li>Information theory in deep learning,</li>
+          <li>Deep ensemble uncertainty,</li>
+          <li>NTK and Bayesian modeling,</li>
+          <li>Connections between NNs and GPs,</li>
+          <li>Incorporating explicit prior knowledge in deep learning (such as posterior regularisation with logic rules),</li>
+          <li>Approximate inference for Bayesian deep learning (such as variational Bayes / expectation propagation / etc. in Bayesian neural networks),</li>
+          <li>Scalable MCMC inference in Bayesian deep models,</li>
+          <li>Deep recognition models for variational inference (amortised inference),</li>
+          <li>Bayesian deep reinforcement learning,</li>
+          <li>Deep learning with small data,</li>
+          <li>Deep learning in Bayesian modelling,</li>
+          <li>Probabilistic semi-supervised learning techniques,</li>
+          <li>Active learning and Bayesian optimisation for experimental design,</li>
+          <li>Kernel methods in Bayesian deep learning,</li>
+          <li>Implicit inference,</li>
+          <li>Applying non-parametric methods, one-shot learning, and Bayesian deep learning in general.</li>
+        </ul>
+        <p><br /></p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}
+ -->
+
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

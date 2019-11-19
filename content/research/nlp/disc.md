@@ -12,10 +12,10 @@ prevLink: /work_files/research/dl.html
   {: .TOC1}
   * [Feature Extraction for Discriminative Models in NLP](#content2)
   {: .TOC2}
-  * [THIRD](#content3)
+  * [Feature-Based Linear Classifiers](#content3)
   {: .TOC3}
-  * [FOURTH](#content4)
-  {: .TOC4}
+  <!-- * [FOURTH](#content4)
+  {: .TOC4} -->
 </div>
 
 ***
@@ -54,9 +54,9 @@ Given some data $$\{(d,c)\}$$ of paired observations $$d$$ and hidden classes $$
 
 3. **Generative VS Discriminative Models:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
     :   Basically, _Discriminative Models_ infer outputs based on inputs,  
-        while _Generative Models_ generate, both, inputs and outputs (typically given some hidden paramters).  
+        while _Generative Models_ generate, both, inputs and outputs (typically given some hidden parameters).  
     :   However, notice that the two models are usually viewed as complementary procedures.  
-        One does __not__ necessarily outperform the other, in either classificaiton or regression tasks.   
+        One does __not__ necessarily outperform the other, in either classification or regression tasks.   
 
 ***
 
@@ -64,7 +64,7 @@ Given some data $$\{(d,c)\}$$ of paired observations $$d$$ and hidden classes $$
 {: #content2}
 
 1. **Features (Intuitively):**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
-    :   __Features__ ($$f$$) are elementary pieces of evidence that link aspects od what we observe ($$d$$) with a category ($$c$$) that we want to predict.  
+    :   __Features__ ($$f$$) are elementary pieces of evidence that link aspects of what we observe ($$d$$) with a category ($$c$$) that we want to predict.  
 
 2. **Features (Mathematically):**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
     :   A __Feature__ $$f$$ is a function with a bounded real value.  
@@ -74,7 +74,7 @@ Given some data $$\{(d,c)\}$$ of paired observations $$d$$ and hidden classes $$
 3. **Models and Features:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}  
     :   Models will assign a __weight__ to each Feature:  
         * A __Positive Weight__ votes that this configuration is likely _Correct_.  
-        * A __Negative Weight__ votes that this configuration is likely _InCorrect_. 
+        * A __Negative Weight__ votes that this configuration is likely _Incorrect_. 
 
 4. **Feature Expectations:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}  
     :   * __Empirical  Expectation (count)__:  
@@ -84,17 +84,19 @@ Given some data $$\{(d,c)\}$$ of paired observations $$d$$ and hidden classes $$
     :   > The two Expectations represent the __Actual__ and the __Predicted__ __Counts__ of a feature __firing__, respectively.  
 
 5. **Features in NLP:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
-    :   In NLP, features have a particular form.  
-        They consist of:  
-        * __Indicator Function__: a boolean matching function of properties of the input  
-        * __A Particular Class__: specifies some class $$c_j$$  
-    : $$f_i(c,d) \cong [\Phi(d) \wedge c=c_j] = \{0 \vee 1\}$$  
-    :   where $$\Phi(d)$$ is a given predicate on the data $$d$$, and $$c_j$$ is a particular class.  
-    :   > Basically, each feature picks out a data subset and suggests a label for it.  
+    In NLP, features have a particular form.  
+    They consist of:  
+    {: #lst-p}
+    * __Indicator Function__: a boolean matching function of properties of the input  
+    * __A Particular Class__: specifies some class $$c_j$$  
+        <p>$$f_i(c,d) \cong [\Phi(d) \wedge c=c_j] = \{0 \vee 1\}$$</p>  
+        where $$\Phi(d)$$ is a given predicate on the data $$d$$, and $$c_j$$ is a particular class.  
+    
+    > Basically, each feature picks out a data subset and suggests a label for it.  
 
 ***
 
-## Feature-Based Linear Classifiers  
+## Feature-Based Linear Classifiers
 {: #content3}
 
 1. **Linear Classifiers (Classification):**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}  
@@ -127,42 +129,52 @@ Given some data $$\{(d,c)\}$$ of paired observations $$d$$ and hidden classes $$
         * Gibbs Model 
 
 3. **Exponential Models (Training) | Maximizing the Likelihood:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
-    :   __The Likelihood Value__:  
-        * The (log) conditional likelihood of a maxend model is a function of the iid data $$(C,D)$$ and the parameters ($$\lambda$$):  
-    :   $$log P(C \| D,\lambda) = log \prod_{(c,d) \in (C,D)} P(c \| d,\lambda) = \sum_{(c,d) \in (C,D)} log P(c \| d,\lambda)$$
-    :   * If there aren't many values of $$c$$, it's easy to calculate:  
-    :   $$log P(c \| d,\lambda) = \sum_{(c,d) \in (C,D)} log \dfrac{e^{\sum_i \lambda_if_i(c,d)}}{\sum_c e^{\sum_i \lambda_if_i(c,d)}}$$
-    :   * We can separate this into two components:  
-    :   $$log P(c \| d,\lambda) = \sum_{(c,d) \in (C,D)} log e^{\sum_i \lambda_if_i(c,d)} - \sum_{(c,d) \in (C,D)} log \sum_c' e^{\sum_i \lambda_if_i(c',d)}$$
-    :   $$\implies$$
-    :   $$log P(C \| D, \lambda) = N(\lambda) - M(\lambda)$$
-    :   * The Derivative of the Numerator is easy to calculate:  
-    :   $$\dfrac{\partial N(\lambda)}{\partial \lambda_i} = \dfrac{\partial \sum_{(c,d) \in (C,D)} log e^{\sum_i \lambda_if_i(c,d)}}{\partial \lambda_i}
+    __The Likelihood Value__:   
+    {: #lst-p} 
+    * The __(log) conditional likelihood__ of a MaxEnt model is a function of the i.i.d. data $$(C,D)$$ and the parameters ($$\lambda$$):  
+        <p>$$\log P(C \| D,\lambda) = \log \prod_{(c,d) \in (C,D)} P(c \| d,\lambda) = \sum_{(c,d) \in (C,D)} \log P(c \| d,\lambda)$$</p>  
+    * If there aren't many values of $$c$$, it's easy to calculate:    
+        <p>$$\log P(c \| d,\lambda) = \sum_{(c,d) \in (C,D)} \log \dfrac{e^{\sum_i \lambda_if_i(c,d)}}{\sum_c e^{\sum_i \lambda_if_i(c,d)}}$$</p>    
+    * We can separate this into two components:    
+        <p>$$\log P(c \| d,\lambda) = \sum_{(c,d) \in (C,D)} \log e^{\sum_i \lambda_if_i(c,d)} - \sum_{(c,d) \in (C,D)} \log \sum_c' e^{\sum_i \lambda_if_i(c',d)}$$</p>    
+        <p>$$\implies$$</p>    
+        <p>$$\log P(C \| D, \lambda) = N(\lambda) - M(\lambda)$$</p>    
+    * The Derivative of the Numerator is easy to calculate:    
+        <p>$$\dfrac{\partial N(\lambda)}{\partial \lambda_i} = \dfrac{\partial \sum_{(c,d) \in (C,D)} \log e^{\sum_i \lambda_if_i(c,d)}}{\partial \lambda_i}  
     \\= \dfrac{\partial \sum_{(c,d) \in (C,D)} \sum_i \lambda_if_i(c,d)}{\partial \lambda_i} 
     \\\\= \sum_{(c,d) \in (C,D)} \dfrac{\partial \sum_i \lambda_if_i(c,d)}{\partial \lambda_i} 
-    \\\\= \sum_{(c,d) \in (C,D)} f_i(c,d)$$
-    :   The derivative of the Numerator is __the Empirical Expectation__, $$E_{\text{emp}}(f_i)$$
-    :   * The Derivative of the Denominator:  
-    :   $$\dfrac{\partial M(\lambda)}{\partial \lambda_i}
-    = \dfrac{\partial \sum_{(c,d) \in (C,D)} log \sum_c' e^{\sum_i \lambda_if_i(c',d)}}{\partial \lambda_i}
-    \\\\= \sum_{(c,d) \in (C,D)} \sum_c' P(c' \| d, \lambda)f_i(c', d)$$
-    :   The derivative of the Denominator is equal to __the Predicted Expectation (count)__, $$E(f_i, \lambda)$$
-    : Thus, the derivative of the log likelihood is:  
-    :   $$\dfrac{\partial log P(C \| D, \vec{\lambda})}{\partial \lambda_i} = \text{Actual Count}(f_i, C) - \text{Predicted Count}(f_i, \vec{\lambda})$$
-    :   * Thus, the optimum parameters are those for which rach feature's _predicted expectation_ equals its _empirical expectation_.  
-    :   * The __Optimum Distribution__ is always:  
-            * Unique (parameters need not be unique)
-            * Exists (if feature counts are from actual data)
-    :   * These models are called __Maximum Entropy (Maxent)__ Models because we find the model having the maximum entropy, and satisfying the constraints:  
-    :   $$E_p(f_j) = E_\hat{p}(f_j), \:\:\: \forall j$$
-    :   * Finally, to find the optimal parameters $$\lambda_1, \dots, \lambda_d$$ one needs to optimize (maximize) the log liklehood, or equivalently, minimize the -ve loglik.  
-            One can do that in variety of was using optimization methods.  
-    :   * Common __Optimization Methods__:  
-            * (Stochastic) Gradient Descent
-            * Iterative Proportional Fitting Methods:  
-                * Generalized Iterative Scaling (GIS)
-                * Improved Iterative Scaling (IIS)
-            * Conjugate Gradient (CG) (+ Preconditioning)
-            * Quasi-Newton Methods -  Limited-Memory Variable Metric (LMVM):  
-                * L-BFGS
-                > This one is the most commonly used.  
+    \\\\= \sum_{(c,d) \in (C,D)} f_i(c,d)$$</p>    
+
+    * The derivative of the Numerator is __the Empirical Expectation__, $$E_{\text{emp}}(f_i)$$  
+    * The Derivative of the Denominator:    
+        <p>$$\dfrac{\partial M(\lambda)}{\partial \lambda_i}  = \dfrac{\partial \sum_{(c,d) \in (C,D)} \log \sum_c' e^{\sum_i \lambda_if_i(c',d)}}{\partial \lambda_i} \\\\= \sum_{(c,d) \in (C,D)} \sum_c' P(c' \| d, \lambda)f_i(c', d)$$</p>  
+
+    * The derivative of the Denominator is equal to __the Predicted Expectation (count)__, $$E(f_i, \lambda)$$  
+    * Thus, the derivative of the log likelihood is:  
+        <p>$$\dfrac{\partial \log P(C \| D, \vec{\lambda})}{\partial \lambda_i} = \text{Actual Count}(f_i, C) - \text{Predicted Count}(f_i, \vec{\lambda})$$</p>    
+    * Thus, the optimum parameters are those for which each feature's _predicted expectation_ equals its _empirical expectation_.    
+    
+
+    The __Optimum Distribution__ is always:  
+    {: #lst-p}
+    * Unique (parameters need not be unique)  
+    * Exists (if feature counts are from actual data)  
+
+
+    These models are called __Maximum Entropy (Maxent)__ Models because we find the model having the maximum entropy, and satisfying the constraints:    
+    <p>$$E_p(f_j) = E_\hat{p}(f_j), \:\:\: \forall j$$</p>   
+    
+    
+    Finally, to find the optimal parameters $$\lambda_1, \dots, \lambda_d$$ one needs to optimize (maximize) the log likelihood, or equivalently, minimize the -ve likelihood.    
+    One can do that in variety of ways using optimization methods.  
+    
+    Common __Optimization Methods__:    
+    {: #lst-p}
+    * (Stochastic) Gradient Descent
+    * Iterative Proportional Fitting Methods:  
+        * Generalized Iterative Scaling (GIS)
+        * Improved Iterative Scaling (IIS)
+    * Conjugate Gradient (CG) (+ Preconditioning)
+    * Quasi-Newton Methods -  Limited-Memory Variable Metric (LMVM):  
+        * L-BFGS
+            This one is the most commonly used.  

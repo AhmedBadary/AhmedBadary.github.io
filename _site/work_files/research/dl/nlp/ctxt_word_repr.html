@@ -79,9 +79,23 @@
 <hr />
 <hr />
 
-<p><a href="https://arxiv.org/pdf/1902.06006.pdf">Paper on Contextual Word Representations</a></p>
+<ul>
+  <li><a href="https://arxiv.org/pdf/1902.06006.pdf">Paper on Contextual Word Representations</a></li>
+</ul>
 
 <h2 id="content1">Word Representations and their progress</h2>
+
+<p id="lst-p"><strong style="color: red">Summary of Progress:</strong></p>
+<ul>
+  <li><strong>2011-13s</strong>: Learning Unsupervised Representations for words (Pre-Trained Word Vectors) is crucial for making Supervised Learning work (e.g. for NERs, POS-Tagging, etc.)</li>
+  <li><strong>2014-18s</strong>: Pre-Trained Word Vectors are not actually necessary for <em>good performance</em> of supervised methods.
+    <ul>
+      <li>The reason is due to advances in training supervised methods: <strong>regularization</strong>, <strong>non-linearities</strong>, etc.</li>
+      <li>They can boost the performance by ~ <script type="math/tex">1\%</script> on average. <br />
+<br /></li>
+    </ul>
+  </li>
+</ul>
 
 <ol>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Word Representations (Accepted Methods):</strong><br />
@@ -95,19 +109,21 @@
     <p><button class="showText" value="show" onclick="showTextPopHide(event);">Early Day Results</button>
  <img src="/main_files/dl/nlp/ctxt_word_repr/2.png" alt="img" width="80%" hidden="" /></p>
 
-    <p><strong>Problems:</strong></p>
+    <p id="lst-p"><strong>Problems:</strong></p>
     <ul>
       <li><strong>Word Senses</strong>: Always the same representation for a <strong>word type</strong> regardless of the context in which a <strong>word token</strong> occurs
         <ul>
           <li>We might want very fine-grained word sense disambiguation (e.g. not just ‘holywood star’ and ‘astronomical star’; but also ‘rock star’, ‘star student’ etc.)</li>
         </ul>
       </li>
-      <li>We just have one representation for a word, but words have different <strong>aspects</strong>, including semantics, syntactic behavior, and register/connotations (e.g. when is it appropriate to use ‘bathroom’ vs ‘shithole’ etc.; ‘can’-noun vs ‘can’-verb have same vector)</li>
+      <li>We just have <strong>one representation</strong> for a word, but words have <strong>different aspects</strong>: including <strong>semantics</strong>, <strong>syntactic behavior</strong>, and <strong>register/connotations</strong> (e.g. when is it appropriate to use ‘bathroom’ vs ‘shithole’ etc.; ‘can’-noun vs ‘can’-verb have same vector)</li>
     </ul>
 
-    <p><strong>Possible Solution (that we always had?):</strong></p>
+    <p id="lst-p"><strong>Possible Solution (that we always had?):</strong></p>
     <ul>
       <li>In a NLM, LSTM layers are trained to predict the next word, producing hidden/state vectors, that are basically <strong>context-specific</strong> word representations, at each position<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">LSTM Representations</button>
+  <img src="https://cdn.mathpix.com/snip/images/wWkGdRomPB3JlxbnRWCNrAX8nfHerQyAymnxmTU6--Q.original.fullsize.png" alt="img" width="100%" hidden="" /><br />
  <br /></li>
     </ul>
   </li>
@@ -121,7 +137,7 @@
       <li>Also, train a Char-CNN/RNN to get character level embedding and concatenate all of them together</li>
     </ul>
 
-    <p><strong>Details:</strong></p>
+    <p id="lst-p"><strong>Details:</strong></p>
     <ul>
       <li>Language model is trained on 800 million training words of “Billion word benchmark”</li>
       <li><strong>Language model observations</strong>:
@@ -142,8 +158,10 @@
       </li>
     </ul>
 
-    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Tag LM</button>
- <img src="/main_files/dl/nlp/ctxt_word_repr/3.png" alt="img" width="100%" hidden="" />
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Tag LM Detailed</button>
+ <img src="/main_files/dl/nlp/ctxt_word_repr/3.png" alt="img" width="100%" hidden="" /><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">TagLM step-by-step Overview</button>
+ <img src="https://cdn.mathpix.com/snip/images/LZid2lHBZj9P1EQAOhHzDYxk6o_I0kh-gtfIBDbI6Rg.original.fullsize.png" alt="img" width="100%" hidden="" /><br />
  <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Cove - Pre-Elmo:</strong>
@@ -181,7 +199,7 @@
       </li>
     </ul>
 
-    <p><strong>Key Results:</strong></p>
+    <p id="lst-p"><strong>Key Results:</strong></p>
     <ul>
       <li>ELMo learns task-specific combination of BiLM representations</li>
       <li>This is an innovation that improves on just using top layer of LSTM stack</li>
@@ -197,7 +215,7 @@
       </li>
     </ul>
 
-    <p><strong>Using ELMo with a Task:</strong></p>
+    <p id="lst-p"><strong>Using ELMo with a Task:</strong></p>
     <ul>
       <li>First run biLM to get representations for each word</li>
       <li>Then let (whatever) end-task model use them
@@ -217,7 +235,7 @@
       </li>
     </ul>
 
-    <p><strong>Weighting of Layers:</strong></p>
+    <p id="lst-p"><strong>Weighting of Layers:</strong></p>
     <ul>
       <li>The two Bi-LSTM NLP Layers have differentiated uses/meanings
         <ul>
@@ -253,7 +271,7 @@
  BERT - Bidirectional Encoder Representations from Transformers:<br />
  <strong>Idea:</strong> Pre-training of Deep Bidirectional Transformers for Language Understanding.</p>
 
-    <p><strong>Model Architecture:</strong></p>
+    <p id="lst-p"><strong>Model Architecture:</strong></p>
     <ul>
       <li>Transformer Encoder</li>
       <li>Self-attention –&gt; no locality bias
@@ -270,7 +288,7 @@
       </li>
     </ul>
 
-    <p><strong>Model Training:</strong></p>
+    <p id="lst-p"><strong>Model Training:</strong></p>
     <ul>
       <li>Train on Wikipedia + BookCorpus</li>
       <li>Train 2 model sizes:
@@ -282,18 +300,18 @@
       <li>Trained on <script type="math/tex">4\times 4</script>  or <script type="math/tex">8\times 8</script> TPU slice for 4 days</li>
     </ul>
 
-    <p><strong>Model Fine-Tuning:</strong></p>
+    <p id="lst-p"><strong>Model Fine-Tuning:</strong></p>
     <ul>
       <li>Simply learn a classifier built on top layer for each task that you fine-tune for.</li>
     </ul>
 
-    <p><strong>Problem with Unidirectional and Bidirectional LMs:</strong></p>
+    <p id="lst-p"><strong>Problem with Unidirectional and Bidirectional LMs:</strong></p>
     <ul>
       <li><strong>Uni:</strong> build representation incrementally; not enough context from the sentence</li>
       <li><strong>Bi:</strong>  Cross-Talk; words can “see themselves”</li>
     </ul>
 
-    <p><strong>Solution:</strong></p>
+    <p id="lst-p"><strong>Solution:</strong></p>
     <ul>
       <li>Mask out <script type="math/tex">k\%</script> of the input words, and then predict the masked words
         <ul>
@@ -326,6 +344,54 @@
   </li>
 </ol>
 
+<p id="lst-p"><strong style="color: red">Notes:</strong></p>
+<ul>
+  <li><strong>Tips for unknown words with word vectors:</strong>
+    <ul>
+      <li>Simplest and common solution:</li>
+      <li>Train time: Vocab is <script type="math/tex">% <![CDATA[
+\{\text { words occurring, say, } \geq 5 \text { times }\} \cup\{<UNK>\} %]]></script></li>
+      <li>Map <strong>all</strong> rarer <script type="math/tex">% <![CDATA[
+(<5) %]]></script> words to <script type="math/tex">% <![CDATA[
+<UNK> %]]></script>, train a word vector for it</li>
+      <li>
+        <p>Runtime: use <script type="math/tex">% <![CDATA[
+<UNK> %]]></script> when out-of-vocabulary (OOV) words occur</p>
+      </li>
+      <li><strong>Problems:</strong>
+        <ul>
+          <li>No way to distinguish different <script type="math/tex">UNK</script> words, either for identity or meaning</li>
+        </ul>
+      </li>
+      <li><strong>Solutions:</strong>
+        <ol>
+          <li>Hey, we just learned about char-level models to build vectors! Let’s do that!
+            <ul>
+              <li>Especially in applications like question answering
+                <ul>
+                  <li>Where it is important to match on word identity, even for words outside your word vector vocabulary</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p>Try these tips (from Dhingra, Liu, Salakhutdinov, Cohen 2017)<br />
+ a. If the <UNK> word at test time appears in your unsupervised word embeddings, use that vector as is at test time.
+ b. Additionally, for other words, just assign them a random vector, adding them to your vocabulary</UNK></p>
+
+            <p>a. definitely helps a lot; b. may help a little more</p>
+          </li>
+          <li>Another thing you can try:
+            <ul>
+              <li>Collapsing things to word classes (like unknown number, capitalized thing, etc. and having an <UNK-class> for each</UNK-class></li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ul>
+
 <!-- 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}
@@ -336,44 +402,72 @@
 <h2 id="content2">The Transformer</h2>
 
 <ol>
-  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Self-Attention:</strong>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Self-Attention:</strong><br />
+ <strong>Computational Complexity Comparison</strong>:<br />
+ <img src="/main_files/dl/nlp/ctxt_word_repr/1.png" alt="img" width="70%" /><br />
+ It is favorable when the <strong>sequence-length</strong> <script type="math/tex">% <![CDATA[
+<< %]]></script> <strong>dimension-representations</strong>.</p>
+
+    <p id="lst-p"><strong>Self-Attention/Relative-Attention Interpretations</strong>:</p>
     <ul>
-      <li><strong>Computational Complexity Comparison</strong>:<br />
-  <img src="/main_files/dl/nlp/ctxt_word_repr/1.png" alt="img" width="70%" /></li>
-      <li><strong>Self-Attention/Relative-Attention Interpretations</strong>:
+      <li>Can achieve <strong>Translational Equivariance</strong> (like convs) (by removing pos-encoding).</li>
+      <li>Can model <strong>similarity graphs</strong>.</li>
+      <li>Connected to <strong>message-passing NNs</strong>: Can think of self-attention as <em>passing messages between pairs of nodes in graph</em>; equivalently, <em>imposing a complete bipartite graph</em> and you’re passing messages between nodes.<br />
+  Mathematically, the difference is message-passing NNs impose condition that messages pass ONLY bet pairs of nodes; while self-attention uses softmax and thus passes messages between all nodes.</li>
+    </ul>
+
+    <p id="lst-p"><strong>Self-Attention Summary/Properties</strong>:</p>
+    <ul>
+      <li><span style="color: purple"><strong>Constant</strong> path-length</span> between any two positions</li>
+      <li>Unbounded memory (i.e no fixed size h-state)</li>
+      <li>Gating/multiplicative interactions<br />
+  Because you multiply attention probabilities w/ activations. PixelCNN needed those interactions too.</li>
+      <li>Trivial to parallelize (per layer): just matmuls</li>
+      <li>Models <strong>self-similarity</strong></li>
+      <li>Relative attention provides <strong>expressive timing</strong>, <strong>equivariance</strong>, and extends naturally to graphs</li>
+      <li>(Without <strong>positional encoding</strong>) It’s <span style="color: purple">Permutation-Invariant and Translation-Equivariant</span><br />
+  It can learn to <strong>copy</strong> well.</li>
+    </ul>
+
+    <p id="lst-p"><strong>Current Issues</strong>:</p>
+    <ul>
+      <li><strong>Slow Generation</strong>:<br />
+  Mainly due to <strong>Auto-Regressive</strong> generation, which is necessary to break the multi-modality of generation. Multi-modality prohibits naive parallel generation.<br />
+  Multi-modality refers to the fact that there are multiple different sentences in german that are considered a correct translation of a sentence in english, and they all depend on the word that was generated first (ie no parallelization).</li>
+      <li><strong>Active Area of Research</strong>:<br />
+  <span style="color: purple"><strong>Non Auto-Regressive Transformers</strong></span>.
         <ul>
-          <li>Can achieve <strong>Translational Equivariance</strong> (like convs) (by removing pos-encoding).</li>
-          <li>Can model similarity graphs.</li>
-          <li>Connected to <strong>message-passing NNs</strong>. Can think of self-atten as <em>passing messages bet pairs of nodes in graph</em>; equiv. <em>imposing a complete bipartite graph</em> and you’re passing messages between nodes.<br />
-  Mathematically, the difference is message-passing NNs impose condition that messages pass ONLY bet pairs of nodes; while self-atten uses softmax and thus passes messages between all nodes.</li>
-        </ul>
-      </li>
-      <li><strong>Self-Attention Summary</strong>:
-        <ul>
-          <li>Constant path-length between any two positions</li>
-          <li>Unbounded memory (ie no fixed size h_state)</li>
-          <li>Trivial to parallelize (per layer)</li>
-          <li>Models self-similarity</li>
-          <li>Relative attention provides expressive timing, equivariance, and extends naturally to graphs</li>
-        </ul>
-      </li>
-      <li><strong>Current Issues</strong>:
-        <ul>
-          <li><strong>Slow Generation</strong>:<br />
-  Mainly due to <strong>Auto-Regressive</strong> generation, which is necessary to break the multimodality of generation. Multimodality prohibits naive parallel generation.<br />
-  Multimodality refers to the fact that there are multiple different sentences in german that are considered a correct translation of a sentence in english, and they all depend on the word that was generated first (ie no parallelization).</li>
-          <li><strong>Active Area of Research</strong>:<br />
-  <strong>Non Auto-Regressive Transformers</strong>.
+          <li>Papers:
             <ul>
-              <li>Papers:
-                <ul>
-                  <li><em>Non autoregressive transformer (Gu and Bradbury et al., 2018)</em></li>
-                  <li><em>Deterministic Non-Autoregressive Neural Sequence Modeling by Iterative Refinement (Lee, Manismov, and Cho, 2018)</em></li>
-                  <li><em>Fast Decoding in Sequence Models Using Discrete Latent Variables (ICML 2018) Kaiser, Roy, Vaswani, Pamar, Bengio, Uszkoreit, Shazeer</em></li>
-                  <li><em>Towards a Better Understanding of Vector Quantized Autoencoders Roy, Vaswani, Parmar, Neelakantan, 2018</em></li>
-                  <li><em>Blockwise Parallel Decoding For Deep Autogressive Models (NeurIPS 2019) Stern, Shazeer, Uszkoreit</em></li>
-                </ul>
-              </li>
+              <li><em>Non autoregressive transformer (Gu and Bradbury et al., 2018)</em></li>
+              <li><em>Deterministic Non-Autoregressive Neural Sequence Modeling by Iterative Refinement (Lee, Manismov, and Cho, 2018)</em></li>
+              <li><em>Fast Decoding in Sequence Models Using Discrete Latent Variables (ICML 2018) Kaiser, Roy, Vaswani, Pamar, Bengio, Uszkoreit, Shazeer</em></li>
+              <li><em>Towards a Better Understanding of Vector Quantized Autoencoders Roy, Vaswani, Parmar, Neelakantan, 2018</em></li>
+              <li><em>Blockwise Parallel Decoding For Deep Autogressive Models (NeurIPS 2019) Stern, Shazeer, Uszkoreit</em></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><strong>Self-Similarity:</strong>
+        <ul>
+          <li>Use Encoder-Self-Attention and replace word-embeddings with image-patches: you compute a notion of content-based similarity between the elements (patches), then - based on this content-based similarity - it computes a convex combination that brings the patches together.
+            <ul>
+              <li>You can think about it as a <span style="color: purple"><em><strong>differentiable</strong></em> way to perform <strong>non-local means</strong></span>.</li>
+              <li><strong>Issue - Computational Problem:</strong><br />
+  Attention is Cheap only if <em>length</em> <script type="math/tex">% <![CDATA[
+<< %]]></script> <em>dim</em>.<br />
+  Length for images is <script type="math/tex">32\times 32\times 3 = 3072</script>: <br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Diagram</button>
+  <img src="https://cdn.mathpix.com/snip/images/zvEcczfCg3TLiJ76y0QohmJNP2V-OxYsYFCQTaHBy40.original.fullsize.png" alt="img" width="100%" hidden="" /></li>
+              <li><strong>Solution - Combining Locality with Self-Attention</strong>:<br />
+  Restrict the attention windows to be local neighborhoods.<br />
+  Good assumption for images because of spatial locality.<br />
+ <br /></li>
             </ul>
           </li>
         </ul>

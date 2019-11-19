@@ -71,8 +71,12 @@
   </ul>
 </div>
 
+<hr />
+<hr />
+
 <p><a href="https://www.youtube.com/watch?v=ErfnhcEV1O8">A Short Introduction to Entropy, Cross-Entropy and KL-Divergence</a><br />
-<a href="https://jhui.github.io/2017/01/05/Deep-learning-Information-theory/">Deep Learning Information Theory (Cross-Entropy and MLE)</a></p>
+<a href="https://jhui.github.io/2017/01/05/Deep-learning-Information-theory/">Deep Learning Information Theory (Cross-Entropy and MLE)</a><br />
+<a href="https://www.youtube.com/watch?v=XL07WEc2TRI">Further Info (Lecture)</a></p>
 
 <h2 id="content1">Information Theory</h2>
 
@@ -113,17 +117,20 @@ Equivalently, the amount of information that you get from one sample drawn from 
  The <strong>Self-Information</strong> or <strong>surprisal</strong> is a synonym for the surprise when a random variable is sampled.<br />
  The <strong>Self-Information</strong> of an event <script type="math/tex">\mathrm{x} = x</script>:
     <p>$$I(x) = - \log P(x)$$</p>
-    <p>Self-information deals only with a single outcome.</p>
+    <p>Self-information deals only with a single outcome.
+ <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Shannon Entropy:</strong><br />
  To quantify the amount of uncertainty in an entire probability distribution, we use <strong>Shannon Entropy</strong>.  <br />
  <strong>Shannon Entropy</strong> is defined as the average amount of information produced by a stochastic source of data.
     <p>$$H(x) = {\displaystyle \operatorname {E}_{x \sim P} [I(x)]} = - {\displaystyle \operatorname {E}_{x \sim P} [\log P(X)] = -\sum_{i=1}^{n} p\left(x_{i}\right) \log p\left(x_{i}\right)}$$</p>
-    <p><strong>Differential Entropy</strong> is Shannons entropy of a <strong>continuous</strong> random variable <script type="math/tex">x</script></p>
+    <p><strong>Differential Entropy</strong> is Shannons entropy of a <strong>continuous</strong> random variable <script type="math/tex">x</script>
+ <br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Distributions and Entropy:</strong><br />
- Distributions that are nearly deterministic (where the outcome is nearly certain) have low entropy; distributions that are closer to uniform have high entropy.</p>
+ Distributions that are nearly deterministic (where the outcome is nearly certain) have low entropy; distributions that are closer to uniform have high entropy.
+ <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Relative Entropy | KL-Divergence:</strong><br />
  The <strong>Kullback–Leibler divergence</strong> (<strong>Relative Entropy</strong>) is a measure of how one probability distribution diverges from a second, expected probability distribution.  <br />
@@ -180,7 +187,7 @@ Equivalently, the amount of information that you get from one sample drawn from 
     <ul>
       <li>Relative (Shannon) entropy in information systems</li>
       <li>Randomness in continuous time-series</li>
-      <li>Information gain when comparing statistical models of inference<br />
+      <li>It is a measure of <strong>Information Gain</strong>; used when comparing statistical models of inference<br />
  <img src="/main_files/math/prob/11.png" alt="img" width="100%" /></li>
     </ul>
 
@@ -199,7 +206,8 @@ Equivalently, the amount of information that you get from one sample drawn from 
     </ol>
 
     <p><button class="showText" value="show" onclick="showTextPopHide(event);">Choice of KL-div Direction</button>
- <img src="/main_files/math/infothry/1.png" alt="img" width="100%" hidden="" /></p>
+ <img src="/main_files/math/infothry/1.png" alt="img" width="100%" hidden="" />
+ <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Cross Entropy:</strong><br />
  The <strong>Cross Entropy</strong> between two probability distributions <script type="math/tex">{\displaystyle p}</script> and <script type="math/tex">{\displaystyle q}</script> over the same underlying set of events measures the average number of bits needed to identify an event drawn from the set, if a coding scheme is used that is optimized for an “unnatural” probability distribution <script type="math/tex">{\displaystyle q}</script>, rather than the “true” distribution <script type="math/tex">{\displaystyle p}</script>.
@@ -209,13 +217,97 @@ Equivalently, the amount of information that you get from one sample drawn from 
 
     <p>Minimizing the cross-entropy with respect to <script type="math/tex">Q</script> is equivalent to minimizing the KL divergence, because <script type="math/tex">Q</script> does not participate in the omitted term.</p>
 
-    <p>We treat <script type="math/tex">0 \log (0)</script> as <script type="math/tex">\lim_{x \to 0} x \log (x) = 0</script>.</p>
+    <p>We treat <script type="math/tex">0 \log (0)</script> as <script type="math/tex">\lim_{x \to 0} x \log (x) = 0</script>.  <br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Mutual Information:</strong><br />
+ The <strong>Mutual Information (MI)</strong> of two random variables is a measure of the mutual dependence between the two variables.<br />
+ More specifically, it quantifies the “amount of information” (in bits) obtained about one random variable through observing the other random variable.</p>
+
+    <p>It can be seen as a way of measuring the reduction in uncertainty (information content) of measuring a part of the system after observing the outcome of another parts of the system; given two R.Vs, knowing the value of one of the R.Vs in the system gives a corresponding reduction in (the uncertainty (information content) of) measuring the other one.</p>
+
+    <p><strong>As KL-Divergence:</strong><br />
+ Let <script type="math/tex">(X, Y)</script> be a pair of random variables with values over the space <script type="math/tex">\mathcal{X} \times \mathcal{Y}</script> . If their joint distribution is <script type="math/tex">P_{(X, Y)}</script> and the marginal distributions are <script type="math/tex">P_{X}</script> and <script type="math/tex">P_{Y},</script> the mutual information is defined as:</p>
+    <p>$$I(X ; Y)=D_{\mathrm{KL}}\left(P_{(X, Y)} \| P_{X} \otimes P_{Y}\right)$$</p>
+
+    <p><strong>In terms of PMFs for discrete distributions:</strong><br />
+ The mutual information of two jointly discrete random variables <script type="math/tex">X</script> and <script type="math/tex">Y</script> is calculated as a double sum:</p>
+    <p>$$\mathrm{I}(X ; Y)=\sum_{y \in \mathcal{Y}} \sum_{x \in \mathcal{X}} p_{(X, Y)}(x, y) \log \left(\frac{p_{(X, Y)}(x, y)}{p_{X}(x) p_{Y}(y)}\right)$$</p>
+    <p>where <script type="math/tex">{\displaystyle p_{(X,Y)}}</script> is the joint probability mass function of <script type="math/tex">{\displaystyle X}</script> X and <script type="math/tex">{\displaystyle Y}</script>, and <script type="math/tex">{\displaystyle p_{X}}</script> and <script type="math/tex">{\displaystyle p_{Y}}</script> are the marginal probability mass functions of <script type="math/tex">{\displaystyle X}</script> and <script type="math/tex">{\displaystyle Y}</script> respectively.</p>
+
+    <p><strong>In terms of PDFs for continuous distributions:</strong><br />
+ In the case of jointly continuous random variables, the double sum is replaced by a double integral:</p>
+    <p>$$\mathrm{I}(X ; Y)=\int_{\mathcal{Y}} \int_{\mathcal{X}} p_{(X, Y)}(x, y) \log \left(\frac{p_{(X, Y)}(x, y)}{p_{X}(x) p_{Y}(y)}\right) d x d y$$</p>
+    <p>where <script type="math/tex">p_{(X, Y)}</script> is now the joint probability density function of <script type="math/tex">X</script> and <script type="math/tex">Y</script> and <script type="math/tex">p_{X}</script> and <script type="math/tex">p_{Y}</script> are the marginal probability density functions of <script type="math/tex">X</script> and <script type="math/tex">Y</script> respectively.</p>
+
+    <p id="lst-p"><strong style="color: red">Intuitive Definitions:</strong></p>
+    <ul>
+      <li>Measures the information that <script type="math/tex">X</script> and <script type="math/tex">Y</script> share:<br />
+  It measures how much knowing one of these variables reduces uncertainty about the other.
+        <ul>
+          <li><strong><script type="math/tex">X, Y</script> Independent</strong>  <script type="math/tex">\implies I(X; Y) = 0</script>: their MI is zero</li>
+          <li><strong><script type="math/tex">X</script> deterministic function of <script type="math/tex">Y</script> and vice versa</strong> <script type="math/tex">\implies I(X; Y) = H(X) = H(Y)</script> their MI is equal to entropy of each variable</li>
+        </ul>
+      </li>
+      <li>It’s a Measure of the inherent dependence expressed in the joint distribution of  <script type="math/tex">X</script> and  <script type="math/tex">Y</script> relative to the joint distribution of <script type="math/tex">X</script> and <script type="math/tex">Y</script> under the assumption of independence.<br />
+  i.e. The price for encoding <script type="math/tex">{\displaystyle (X,Y)}</script> as a pair of independent random variables, when in reality they are not.</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Properties:</strong></p>
+    <ul>
+      <li>The KL-divergence shows that <script type="math/tex">I(X; Y)</script> is equal to zero precisely when <span style="color: goldenrod">the joint distribution conicides with the product of the marginals i.e. when </span> <strong style="color: goldenrod"><script type="math/tex">X</script> and <script type="math/tex">Y</script> are <em>independent</em></strong>.</li>
+      <li>The MI is <strong>non-negative</strong>: <script type="math/tex">I(X; Y) \geq 0</script>
+        <ul>
+          <li>It is a measure of the price for encoding <script type="math/tex">{\displaystyle (X,Y)}</script> as a pair of independent random variables, when in reality they are not.</li>
+        </ul>
+      </li>
+      <li>It is <strong>symmetric</strong>: <script type="math/tex">I(X; Y) = I(Y; X)</script></li>
+      <li><strong>Related to conditional and joint entropies:</strong>
+        <p>$${\displaystyle {\begin{aligned}\operatorname {I} (X;Y)&amp;{}\equiv \mathrm {H} (X)-\mathrm {H} (X|Y)\\&amp;{}\equiv \mathrm {H} (Y)-\mathrm {H} (Y|X)\\&amp;{}\equiv \mathrm {H} (X)+\mathrm {H} (Y)-\mathrm {H} (X,Y)\\&amp;{}\equiv \mathrm {H} (X,Y)-\mathrm {H} (X|Y)-\mathrm {H} (Y|X)\end{aligned}}}$$</p>
+        <p>where <script type="math/tex">\mathrm{H}(X)</script> and <script type="math/tex">\mathrm{H}(Y)</script> are the marginal entropies, <script type="math/tex">\mathrm{H}(X | Y)</script> and <script type="math/tex">\mathrm{H}(Y | X)</script> are the conditional entopries, and <script type="math/tex">\mathrm{H}(X, Y)</script> is the joint entropy of <script type="math/tex">X</script> and <script type="math/tex">Y</script>.</p>
+        <ul>
+          <li>Note the <em>analogy to the <strong>union, difference, and intersection of two sets</strong></em>:<br />
+  <img src="https://cdn.mathpix.com/snip/images/aT2_JfK4TlRP9b5JawVqQigLD7dzxOrFjDIapoSF-F4.original.fullsize.png" alt="img" width="35%" class="center-image" /></li>
+        </ul>
+      </li>
+      <li><strong>Related to KL-div of conditional distribution:</strong>
+        <p>$$\mathrm{I}(X ; Y)=\mathbb{E}_{Y}\left[D_{\mathrm{KL}}\left(p_{X | Y} \| p_{X}\right)\right]$$</p>
+      </li>
+      <li><a href="https://www.youtube.com/watch?v=U9h1xkNELvY">MI (tutorial #1)</a></li>
+      <li><a href="https://www.youtube.com/watch?v=d7AUaut6hso">MI (tutorial #2)</a></li>
+    </ul>
+
+    <p><strong style="color: red">Applications:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Lists</button></p>
+    <ul hidden="">
+      <li>In search engine technology, mutual information between phrases and contexts is used as a feature for k-means clustering to discover semantic clusters (concepts)</li>
+      <li>Discriminative training procedures for hidden Markov models have been proposed based on the maximum mutual information (MMI) criterion.</li>
+      <li>Mutual information has been used as a criterion for feature selection and feature transformations in machine learning. It can be used to characterize both the relevance and redundancy of variables, such as the minimum redundancy feature selection.</li>
+      <li>Mutual information is used in determining the similarity of two different clusterings of a dataset. As such, it provides some advantages over the traditional Rand index.</li>
+      <li>Mutual information of words is often used as a significance function for the computation of collocations in corpus linguistics.</li>
+      <li>Detection of phase synchronization in time series analysis</li>
+      <li>The mutual information is used to learn the structure of Bayesian networks/dynamic Bayesian networks, which is thought to explain the causal relationship between random variables</li>
+      <li>Popular cost function in decision tree learning.</li>
+      <li>In the infomax method for neural-net and other machine learning, including the infomax-based Independent component analysis algorithm</li>
+    </ul>
+
+    <p><strong style="color: red">Independence assumptions and low-rank matrix approximation (alternative definition):</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">show analysis</button>
+  <img src="https://cdn.mathpix.com/snip/images/jzmGBSoIKS4x2IrykIaQR3P21Y2z8RS_VmZNKkOfjZQ.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p><strong style="color: red">As a Metric (relation to Jaccard distance):</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">show analysis</button>
+ <img src="https://cdn.mathpix.com/snip/images/dOB7qr575sMswJ1MPEbHmFvlqvJp8ncf9ulYlR4aKDY.original.fullsize.png" alt="img" width="100%" hidden="" />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents19">Pointwise Mutual Information (PMI):</strong><br />
+ The PMI of a pair of outcomes <script type="math/tex">x</script> and <script type="math/tex">y</script> belonging to discrete random variables <script type="math/tex">X</script> and <script type="math/tex">Y</script> quantifies the discrepancy between the probability of their coincidence given their joint distribution and their individual distributions, assuming independence. Mathematically:
+    <p>$$\operatorname{pmi}(x ; y) \equiv \log \frac{p(x, y)}{p(x) p(y)}=\log \frac{p(x | y)}{p(x)}=\log \frac{p(y | x)}{p(y)}$$</p>
+    <p>In contrast to mutual information (MI) which builds upon PMI, it refers to single events, whereas MI refers to the average of all possible events.<br />
+ The mutual information (MI) of the random variables <script type="math/tex">X</script> and <script type="math/tex">Y</script> is the expected value of the PMI (over all possible outcomes).</p>
   </li>
 </ol>
-
-<blockquote>
-  <p><strong>Further Info (Lecture):</strong> https://www.youtube.com/watch?v=XL07WEc2TRI</p>
-</blockquote>
 
 
       <footer class="site-footer">

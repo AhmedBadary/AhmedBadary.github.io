@@ -37,6 +37,8 @@ prevLink: /work_files/research/dl/concepts.html
 [NOTES ON FIRST-ORDER METHODS FOR MINIMIZING SMOOTH FUNCTIONS](http://web.stanford.edu/class/msande318/notes/notes-first-order-smooth.pdf)  
 [Gradient Descent (paperspace)](https://blog.paperspace.com/intro-to-optimization-in-deep-learning-gradient-descent/)  
 [An Intuitive Introduction to the Hessian for Deep Learning](http://mlexplained.com/2018/02/02/an-introduction-to-second-order-optimization-for-deep-learning-practitioners-basic-math-for-deep-learning-part-1/)  
+[NIPS Optimization Lecture!!](https://channel9.msdn.com/Events/Neural-Information-Processing-Systems-Conference/Neural-Information-Processing-Systems-Conference-NIPS-2016/Large-Scale-Optimization-Beyond-Stochastic-Gradient-Descent-and-Convexity)  
+[10 Gradient Descent Optimisation Algorithms + Cheat Sheet (Blog!)](https://www.kdnuggets.com/2019/06/gradient-descent-algorithms-cheat-sheet.html)  
 
 
 
@@ -221,16 +223,33 @@ prevLink: /work_files/research/dl/concepts.html
     Moreover, if $$f$$ is convex, all local minima are global minimia, so convergence is to the global minimum.  
     <br>
 
-<!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}
+5. **Choosing (tuning) the hyperparameters:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
+    We can set/tune most hyperparameters by reasoning about their effect on __model capacity__.  
+    <button>Effect of HPs on model capacity</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](https://cdn.mathpix.com/snip/images/uEjsgHkxOZlxf4mXE6XnJYqegpjvoQfKG28_A4nG0Fk.original.fullsize.png){: width="100%" hidden=""}  
 
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}
+    __Important HPs:__  
+    {: #lst-p}
+    1. Learning Rate  
+    1. \# Hidden Units  
+    1. Mini-batch Size  
+    1. Momentum Coefficient  
 
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27} -->
+    
+    __Hyperparameter search:__{: style="color: red"}  
+    Sample at random in a grid (hypercube) of different parameters, then zoom in to a tighter range of "good" values.  
+    Search (sample) on a logarithmic scale to get uniform sizes between values:  
+    * Select value $$r \in [a, b]$$ (e.g. $$\in [-4, 0]$$, and set your hp as $$10^r$$ (e.g. $$\epsilon = 10^{r}$$). You'll be effectively sampling $$\in [10^{-4}, 10^0] \iff [0.0001, 1]$$.     
+    <br>
+
+    <!-- 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}
+    7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27} -->
 
 8. **Notes:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}  
-    * Gradient descent can be viewed as __applying Euler's method for solving ordinary differential equations $${\displaystyle x'(t)=-\nabla f(x(t))}$$ to a gradient flow__.  
+    * Gradient descent can be viewed as __applying Euler's method for solving ordinary differential equations $${\displaystyle x'(t)=-\nabla f(x(t))}$$ to a [gradient flow](https://en.wikipedia.org/wiki/Vector_field#Gradient_field_in_euclidean_spaces)__.  
     * Neural nets are unconstrained optimization problems with many, many local minima. They sometimes benefit from line search or second-order optimization algorithms, but when the input data set is very large, researchers often favor the dumb, blind, stochastic versions of gradient descent.  
     * Grid search suffers from the curse of dimensionality, but is often embarrassingly parallel because typically the hyperparameter settings it evaluates are independent of each other.  
+    <br>
 
 ***
 
@@ -238,6 +257,7 @@ prevLink: /work_files/research/dl/concepts.html
 {: #content3}
 
 There are three variants of gradient descent, which differ in the amount of data used to compute the gradient. The amount of data imposes a trade-off between the accuracy of the parameter updates and the time it takes to perform the update.  
+
 
 1. **Batch Gradient Descent:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}  
     __Batch Gradient Descent__ AKA __Vanilla Gradient Descent__, computes the gradient of the objective wrt. the parameters $$\theta$$ for the entire dataset:  
@@ -299,6 +319,42 @@ There are three variants of gradient descent, which differ in the amount of data
     * Another key challenge of minimizing highly non-convex error functions common for neural networks is avoiding getting trapped in their numerous suboptimal local minima. Dauphin et al.[^3] argue that the difficulty arises in fact not from local minima but from saddle points, i.e. points where one dimension slopes up and another slopes down. These saddle points are usually surrounded by a plateau of the same error, which makes it notoriously hard for SGD to escape, as the gradient is close to zero in all dimensions.  
     <br>
 
+22. **Preliminaries - Important Concepts:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents422}  
+    __Exponentially Weighted Averages:__{: style="color: red"}  
+    [EWAs (NG)](https://www.youtube.com/watch?v=lAq96T8FkTw&list=PLkDaE6sCZn6Hn0vK8co82zjQtt3T2Nkqc&index=17)  
+    <p>$$v_{t}=\beta v_{t-1}+ (1-\beta) \theta_{t}$$</p>  
+    You can think of $$v_t$$ as approximately averaging over $$\approx \dfrac{1}{1-\beta}$$ previous values $$\theta_i$$.  
+
+    The _larger_ the $$\beta$$ the _slower_ $$v_t$$ adapts to changes in (new) $$\theta$$ and the _less_ __noisy__ the value of $$v_t$$.  
+
+    __Intuition:__{: style="color: brown"}  
+    It is a recursive equation. Thus, 
+    <p>$$v_{100} = (1-\beta) \theta_{100} + (1-\beta)\beta \theta_{99} + (1-\beta)\beta^{2} \theta_{98} + (1-\beta)\beta^{3} \theta_{97} + (1-\beta)\beta^{4} \theta_{96} + \ldots + (1-\beta)\beta^{100} \theta_{1}$$</p>  
+    * It is an element-wise product between the values of $$\theta_i$$ and an __exponentially decaying__ function $$v(i)$$.  
+        For _$$ T=100, \beta=0.9$$_:  
+        ![img](https://cdn.mathpix.com/snip/images/e4SvtXH_4R88TdhgIJmfbhSMgTqc4lt5QJOnpi-hBuw.original.fullsize.png){: width="34%"}  
+    * The sum of the coefficients of $$\theta_i$$ is equal to $$\approx 1$$   
+        > But not exactly $$1$$ which is why __bias correction__ is needed.  
+    * It takes about $$(1-\beta)^{\dfrac{1}{\beta}}$$ time-steps for $$v$$ to decay to about a third of its peak value. So, after $$(1-\beta)^{\dfrac{1}{\beta}}$$ steps, the weight decays to about a third of the weight of the current time-step $$\theta$$ value.  
+        In general:   
+        <p>$$(1-\epsilon)^{\dfrac{1}{\epsilon}} \approx \dfrac{1}{e} \approx 0.35 \approx \dfrac{1}{3}$$</p>    
+    [EWAs Intuition (NG)](https://www.youtube.com/watch?v=NxTFlzBjS-4&list=PLkDaE6sCZn6Hn0vK8co82zjQtt3T2Nkqc&index=18)  
+    <br>
+    <br>
+
+    __Exponentially Weighted Averages Bias Correction:__{: style="color: red"}  
+
+    __The Problem:__{: style="color: brown"}  
+    The estimate of the first value $$\theta_1$$ will not be a good estimate of because it will be multiplied by $$(1-\beta) << 1$$. This will be a much lower estimate especially during the initial phase of the estimate. It will produce the _purple_ curve instead of the _green_ curve:  
+    ![img](https://cdn.mathpix.com/snip/images/_IAbXpX9_bnr1pvchJG3UxN-354OAsrmDoFpFYocI8g.original.fullsize.png){: width="50%"}  
+
+    __Bias Correction:__{: style="color: brown"}    
+    Replace $$v_t$$ with:  
+    $$\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\: \dfrac{v_{t}}{1-\beta^{t}}$$   
+    * __Small $$t$$:__ $$\implies \beta^t$$ is large $$\implies \dfrac{1}{1-\beta^t}$$ is large  
+    * __Large $$t$$__: $$\implies \beta^t$$ is large $$\implies \dfrac{1}{1-\beta^t} \approx 1$$  
+    <br> 
+
 
 2. **Momentum:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}  
     __Motivation:__{: style="color: red"}  
@@ -310,16 +366,35 @@ There are three variants of gradient descent, which differ in the amount of data
     <p>$$\begin{aligned} v_{t} &=\gamma v_{t-1}+\eta \nabla_{\theta} J(\theta) \\ \theta &=\theta-v_{t} \end{aligned}$$</p>  
     > Note: Some implementations exchange the signs in the equations. The momentum term $$\gamma$$ is usually set to $$0.9$$ or a similar value, and $$v_0 = 0$$.  
 
+    ![img](https://cdn.mathpix.com/snip/images/jnTKkZmZsRZXw_8BNtgUxb7tZEg68sgRCspxVOmTw0I.original.fullsize.png){: width="70%"}  
+
     Essentially, when using momentum, we push a ball down a hill. The ball accumulates momentum as it rolls downhill, becoming faster and faster on the way (until it reaches its terminal velocity if there is air resistance, i.e.  $$\gamma < 1$$). The same thing happens to our parameter updates: The momentum term increases for dimensions whose gradients point in the same directions and reduces updates for dimensions whose gradients change directions. As a result, we gain faster convergence and reduced oscillation.  
     In this case we think of the equation as:  
-    <p>$$v_{t} =\underbrace{\gamma}_{\text{friction }} \: \underbrace{v_{t-1}}_{\text{velocity}}+\eta \underbrace{\nabla_{\theta} J(\theta)}_ {\text{acceleration}}$$</p> 
+    <p>$$v_{t} =\underbrace{\gamma}_{\text{friction }} \: \underbrace{v_{t-1}}_{\text{velocity}}+\eta \underbrace{\nabla_{\theta} J(\theta)}_ {\text{acceleration}}$$</p>  
+    > Instead of using the gradient to change the position of the weight "particle," use it to change the velocity. - Hinton  
+
 
     * [**Momentum NG**](https://www.youtube.com/embed/k8fTYJPd3_I){: value="show" onclick="iframePopA(event)"}
     <a href="https://www.youtube.com/embed/k8fTYJPd3_I"></a>
         <div markdown="1"> </div>    
+        __Momentum Calculation (EWAs):__  
+        <p>$$\begin{align} 
+            v_{dw} &= \beta\:v_{dw}+(1-\beta) dw \\ 
+            v_{db} &=\beta\:v_{db}+(1-\beta) db \end{align}$$</p>  
+        __Parameter Updates:__  
+        <p>$$\begin{align} 
+            w &= w - \epsilon\:v_{dw} \\ 
+            b &= b - \epsilon\:v_{d_b} \end{align}$$</p>  
     * [**Why Momentum Really Works (distill)**](https://distill.pub/2017/momentum/){: value="show" onclick="iframePopA(event)"}
     <a href="https://distill.pub/2017/momentum/"></a>
         <div markdown="1"> </div>    
+
+    __Notes:__{: style="color: red"}  
+    {: #lst-p}
+    * Bias Correction is NOT used in practice; only 10 iterations needed to catch up.  
+    * The $$(1-\beta)$$ coefficient usually gets dropped in the literature. The effect is that that lr needs to be rescaled which is not a problem.  
+    * [Learning representations by back-propagating errors (Rumelhart, Hinton)](https://www.iro.umontreal.ca/~vincentp/ift3395/lectures/backprop_old.pdf)  
+    * [visualizing Momentum (video)](https://www.youtube.com/watch?v=7HZk7kGk5bU)  
     <br>
 
 
@@ -328,7 +403,7 @@ There are three variants of gradient descent, which differ in the amount of data
     Momentum is good, however, a ball that rolls down a hill, blindly following the slope, is highly unsatisfactory. We'd like to have a smarter ball, a ball that has a notion of where it is going so that it knows to slow down before the hill slopes up again.  
 
     __Nesterov Accelerated Gradient (NAG):__{: style="color: red"}  
-    __NAG__[^6] is a way to five our momentum term this kind of prescience. Since we know that we will use the momentum term $$\gamma v_{t-1}$$ to move the parameters $$\theta$$, we can compute a rough approximation of the next position of the parameters with $$\theta - \gamma v_{t-1}$$ (w/o the gradient). This allows us to, effectively, look ahead by calculating the gradient not wrt. our current parameters $$\theta$$ but wrt. the approximate future position of our parameters:  
+    __NAG__[^6] is a way to five our momentum term this kind of prescience. Since we know that we will use the momentum term $$\gamma\:v_{t-1}$$ to move the parameters $$\theta$$, we can compute a rough approximation of the next position of the parameters with $$\theta - \gamma v_{t-1}$$ (w/o the gradient). This allows us to, effectively, look ahead by calculating the gradient not wrt. our current parameters $$\theta$$ but wrt. the approximate future position of our parameters:  
     <p>$$\begin{aligned} v_{t} &=\gamma v_{t-1}+\eta \nabla_{\theta} J\left(\theta-\gamma v_{t-1}\right) \\ \theta &=\theta-v_{t} \end{aligned}$$</p>  
     > $$\gamma = 0.9$$,  
 
@@ -344,6 +419,8 @@ There are three variants of gradient descent, which differ in the amount of data
 4. **Adagrad:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44}  
     __Motivation:__{: style="color: red"}  
     Now that we are able to __adapt our updates to the slope of our error function__{: style="color: goldenrod"} and speed up SGD in turn, we would also like to __adapt our updates to each individual parameter__{: style="color: goldenrod"} to perform larger or smaller updates depending on their importance.  
+    > The magnitude of the gradient can be very different for different weights and can change during learning: This makes it <span>hard to choose single global learning rate</span>{: style="color: goldenrod"}.  - Hinton
+
 
     __Adagrad:__{: style="color: red"}  
     __Adagrad__[^9] is an algorithm for gradient-based optimization that does just this: It adapts the learning rate to the parameters, performing smaller updates (i.e. low learning rates) for parameters associated with frequently occurring features, and larger updates (i.e. high learning rates) for parameters associated with infrequent features.  
@@ -353,7 +430,7 @@ There are three variants of gradient descent, which differ in the amount of data
     
     The SGD update for every parameter $$\theta_i$$ at each time step $$t$$ is:  
     <p>$$\theta_{t+1, i}=\theta_{t, i}-\eta \cdot g_{t, i}$$</p>  
-    where $$g_{t, i}=\nabla_{\theta} J\left(\theta_{t, i}\right.$$ is the partial derivative of the objective function w.r.t. to the parameter $$\theta_i$$ at time step $$t$$, and $$g_{t}$$ is the gradient at time-step $$t$$.  
+    where $$g_{t, i}=\nabla_{\theta} J\left(\theta_{t, i}\right)$$, is the partial derivative of the objective function w.r.t. to the parameter $$\theta_i$$ at time step $$t$$, and $$g_{t}$$ is the gradient at time-step $$t$$.  
 
     In its update rule, Adagrad modifies the general learning rate $$\eta$$ at each time step $$t$$ for every parameter $$\theta_i$$ based on the past gradients that have been computed for $$\theta_i$$:  
     <p>$$\theta_{t+1, i}=\theta_{t, i}-\frac{\eta}{\sqrt{G_{t, i i}+\epsilon}} \cdot g_{t, i}$$</p>  
@@ -373,6 +450,7 @@ There are three variants of gradient descent, which differ in the amount of data
         One of Adagrad's main benefits is that it eliminates the need to manually tune the learning rate. Most implementations use a default value of $$0.01$$ and leave it at that.  
     * __Weakness -> Accumulation of the squared gradients in the denominator__:  
         Since every added term is positive, the accumulated sum keeps growing during training. This in turn causes the learning rate to shrink and eventually become infinitesimally small, at which point the algorithm is no longer able to acquire additional knowledge.  
+    * [Visualization - How adaptive gradient methods speedup convergence](https://www.youtube.com/watch?v=Cy2g9_hR-5Y)  
     <br>
 
 5. **Adadelta:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}  
@@ -423,7 +501,24 @@ There are three variants of gradient descent, which differ in the amount of data
 
     RMSprop as well __divides the learning rate by an exponentially decaying average of squared gradients__{: style="color: goldenrod"}.  
     Hinton suggests $$\gamma$$ to be set to $$0.9$$, while a good default value for the learning rate $$\eta$$ is $$0.001$$.  
+
+
+    __RMSprop as an extension of Rprop:__{: style="color: red"}  
+    Hinton, actually, thought of RMSprop as a way of extending _Rprop_ to work with __mini-batches__.  
+    <button>Why Rprop does not work with mini-batches?</button>{: .showText value="show"
+     onclick="showText_withParent_PopHide(event);"}
+    ![img](https://cdn.mathpix.com/snip/images/KxK61epXdFZw6Rqb7mwqXSIDUouk-TWeNdLu3M_wBFU.original.fullsize.png){: width="100%" hidden=""}  
+    __Rprop:__ is equivalent to using the gradient but also dividing by the magnitude of the gradient.  
+    The problem with mini-batch rprop is that we divide by a different number for each mini-batch.  
+    So why not __force the number we divide by to be very similar for adjacent mini-batches__?  
+    That is the idea behind RMSprop.  
     <br>
+
+    __Notes:__{: style="color: red"}  
+    {: #lst-p}
+    * It is of note that Hinton has tried to add _momentum_ to RMSprop and found that "it does not help as much as it normally does - needs more investigation".  
+    * [Visualizing Rprop - How adaptive gradient methods speedup convergence](https://www.youtube.com/watch?v=Cy2g9_hR-5Y)  
+
 
 7. **Adam:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}  
     __Motivation:__  

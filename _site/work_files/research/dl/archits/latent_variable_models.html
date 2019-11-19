@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Latent Variable Models</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/archits.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Latent Variable Models</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Linear Factor Models</a></li>
+  </ul>
+  <p><!-- * [THIRD](#content3)
+  {: .TOC3} --></p>
+</div>
+
+<hr />
+<hr />
+
+<ul>
+  <li><a href="https://www.one-tab.com/page/ZBsF69s-QzOY6Eb5uDha_Q">OneTab</a></li>
+  <li><a href="http://cs229.stanford.edu/notes/cs229-notes11.pdf">ICA (Stanford Notes)</a></li>
+  <li><a href="https://towardsdatascience.com/deep-independent-component-analysis-in-tensorflow-manual-back-prop-in-tf-94602a08b13f">Deep ICA (+code)</a></li>
+</ul>
+
+<h2 id="content1">Latent Variable Models</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Latent Variable Models:</strong><br />
+ <strong>Latent Variable Models</strong> are statistical models that relate a set of observable variables (so-called manifest variables) to a set of latent variables.</p>
+
+    <p><strong style="color: red">Core Assumption - Local Independence:</strong><br />
+ <strong>Local Independence:</strong><br />
+ The observed items are conditionally independent of each other given an individual score on the latent variable(s). This means that the latent variable <em><strong>explains</strong></em> why the observed items are related to another.</p>
+
+    <p>In other words, the targets/labels on the observations are the result of an individual’s position on the latent variable(s), and that the observations have nothing in common after controlling for the latent variable.</p>
+
+    <p>$$p(A,B\vert z) = p(A\vert z) \times (B\vert z)$$</p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Example of Local Independence</button>
+ <img src="https://cdn.mathpix.com/snip/images/wnxPRKkVBA88V1k3i4HdWBTtn0NQFBi5gdNkTLcCeFk.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p><strong style="color: red">Methods for inferring Latent Variables:</strong><br />
+ <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show List</button></p>
+    <ul hidden="">
+      <li>Hidden Markov models (HMMs)</li>
+      <li>Factor analysis</li>
+      <li>Principal component analysis (PCA)</li>
+      <li>Partial least squares regression</li>
+      <li>Latent semantic analysis and probabilistic latent semantic analysis</li>
+      <li>EM algorithms</li>
+      <li>Pseudo-Marginal Metropolis-Hastings algorithm</li>
+      <li>Bayesian Methods: LDA</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li>Latent Variables <em><strong>encode</strong></em>  information about the data<br />
+  e.g. in compression, a 1-bit latent variable can encode if a face is Male/Female.</li>
+      <li><strong>Data Projection:</strong><br />
+  You <em><strong>“hypothesis”</strong></em> how the data might have been generated (by LVs).<br />
+  Then, the LVs <strong>generate</strong> the data/observations.<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Visualisation with Density (Generative) Models</button>
+  <img src="https://cdn.mathpix.com/snip/images/ctljXHCOfIzpttSIOCsFbQxjFmjrEcf4a5Dr9KbWnTI.original.fullsize.png" alt="img" width="100%" hidden="" /></li>
+      <li><a href="https://www.youtube.com/embed/I9dfOMAhsug" value="show" onclick="iframePopA(event)"><strong>Latent Variable Models/Gaussian Mixture Models</strong></a>
+ <a href="https://www.youtube.com/embed/I9dfOMAhsug"></a>
+        <div></div>
+      </li>
+      <li><a href="https://www.youtube.com/embed/lMShR1vjbUo" value="show" onclick="iframePopA(event)"><strong>Expectation-Maximization/EM-Algorithm for Latent Variable Models</strong></a>
+ <a href="https://www.youtube.com/embed/lMShR1vjbUo"></a>
+        <div></div>
+        <p><br /></p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18} -->
+
+<hr />
+
+<h2 id="content2">Linear Factor Models</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Linear Factor Models:</strong><br />
+ <strong>Linear Factor Models</strong> are <em><strong>generative models</strong></em> that are the simplest class of <em><strong>latent variable models</strong></em><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>.<br />
+ A linear factor model is defined by the use of a <em><strong>stochastic</strong></em>, <em><strong>linear</strong></em> <strong>decoder</strong> function that <span style="color: goldenrod"><em>generates</em> <script type="math/tex">\boldsymbol{x}</script> by adding <strong>noise</strong> to a <strong>linear transformation</strong> of <script type="math/tex">\boldsymbol{h}</script></span>.</p>
+
+    <p id="lst-p"><strong style="color: red">Applications/Motivation:</strong></p>
+    <ul>
+      <li>Building blocks of <strong>mixture models</strong> <em>(Hinton et al., 1995a; Ghahramani and Hinton, 1996; Roweis et al., 2002)</em></li>
+      <li>Building blocks of larger, <strong>deep probabilistic models</strong> <em>(Tang et al., 2012)</em></li>
+      <li>They also show many of the basic approaches necessary to build <strong>generative models</strong> that the more advanced deep models will extend further.</li>
+      <li>These models are interesting because they allow us to discover explanatory factors that have a simple joint distribution.</li>
+      <li>The simplicity of using a <strong>linear decoder</strong> made these models some of the first latent variable models to be extensively studied.</li>
+    </ul>
+
+    <p><strong style="color: red">LFTs as Generative Models:</strong><br />
+ Linear factor models are some of the simplest <strong>generative models</strong> and some of the simplest models that <span style="color: purple">learn a <strong>representation</strong> of data</span>.</p>
+
+    <p id="lst-p"><strong style="color: DarkRed">Data Generation Process:</strong>  <br />
+ A linear factor model describes the data generation process as follows:</p>
+    <ol>
+      <li><strong>Sample</strong> the <em><strong>explanatory factors</strong></em> <script type="math/tex">\boldsymbol{h}</script> from a <strong>distribution</strong>:
+        <p>$$\mathbf{h} \sim p(\boldsymbol{h}) \tag{1}$$</p>
+        <p>where <script type="math/tex">p(\boldsymbol{h})</script> is a factorial distribution, with <script type="math/tex">p(\boldsymbol{h})=\prod_{i} p\left(h_{i}\right),</script> so that it is easy to sample from.</p>
+      </li>
+      <li><strong>Sample</strong> the <em>real-valued</em> <em><strong>observable variables</strong></em> <em>given</em> the <strong>factors</strong>:
+        <p>$$\boldsymbol{x}=\boldsymbol{W} \boldsymbol{h}+\boldsymbol{b}+ \text{ noise} \tag{2}$$</p>
+        <p>where the noise is typically <strong>Gaussian</strong> and <strong>diagonal</strong> (independent across dimensions).</p>
+      </li>
+    </ol>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Illustration</button>
+ <img src="https://cdn.mathpix.com/snip/images/rrWlVKLy8vrKZTdgB-eLoAFHVMFAc39GG7nXAO80a3Q.original.fullsize.png" alt="img" width="100%" hidden="" /><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Factor Analysis:</strong><br />
+ <strong>Probabilistic PCA (principal components analysis)</strong>, <strong>Factor Analysis</strong> and other <strong>linear factor models</strong> are special cases of the above equations (1 and 2) and only differ in the choices made for the <em><strong>noise distribution</strong></em> and the model’s <em><strong>prior over latent variables</strong></em> <script type="math/tex">\boldsymbol{h}</script> before observing <script type="math/tex">\boldsymbol{x}</script>.</p>
+
+    <p><strong style="color: red">Factor Analysis:</strong><br />
+ In <strong>factor analysis</strong> <em>(Bartholomew, 1987; Basilevsky, 1994)</em>, the <em><strong>latent variable prior</strong></em> is just the <span style="color: purple"><strong>unit variance Gaussian</strong></span>:</p>
+    <p>$$\mathbf{h} \sim \mathcal{N}(\boldsymbol{h} ; \mathbf{0}, \boldsymbol{I})$$</p>
+    <p>while the <strong>observed variables</strong> <script type="math/tex">x_i</script> are assumed to be <em><strong>conditionally independent</strong></em>, given <script type="math/tex">\boldsymbol{h}</script>.<br />
+ Specifically, the <em><strong>noise</strong></em> is assumed to be drawn from a <span style="color: purple"><strong>diagonal covariance Gaussian distribution</strong></span>, with covariance matrix <script type="math/tex">\boldsymbol{\psi}=\operatorname{diag}\left(\boldsymbol{\sigma}^{2}\right),</script> with <script type="math/tex">\boldsymbol{\sigma}^{2}=\left[\sigma_{1}^{2}, \sigma_{2}^{2}, \ldots, \sigma_{n}^{2}\right]^{\top}</script> a vector of <span style="color: purple"><em><strong>per-variable</strong></em> <strong>variances</strong></span>.</p>
+
+    <p>The <em><strong>role</strong></em> of the <strong>latent variables</strong> is thus to <span style="color: purple">capture the <em><strong>dependencies</strong></em> between the different observed variables <script type="math/tex">x_i</script></span>.<br />
+ Indeed, it can easily be shown that <script type="math/tex">\boldsymbol{x}</script> is just a <span style="color: purple"><strong>multivariate normal random variable</strong></span>, with:</p>
+    <p>$$\mathbf{x} \sim \mathcal{N}\left(\boldsymbol{x} ; \boldsymbol{b}, \boldsymbol{W} \boldsymbol{W}^{\top}+\boldsymbol{\psi}\right)$$</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Probabilistic PCA:</strong><br />
+ <strong>Probabilistic PCA (principal components analysis)</strong>, <strong>Factor Analysis</strong> and other <strong>linear factor models</strong> are special cases of the above equations (1 and 2) and only differ in the choices made for the <em><strong>noise distribution</strong></em> and the model’s <em><strong>prior over latent variables</strong></em> <script type="math/tex">\boldsymbol{h}</script> before observing <script type="math/tex">\boldsymbol{x}</script>.</p>
+
+    <ul>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);"><strong>Motivation</strong></button>
+        <ul hidden="">
+          <li>Addresses limitations of regular PCA</li>
+          <li>PCA can be used as a general Gaussian density model in addition to reducing dimensions</li>
+          <li>Maximum-likelihood estimates can be computed for elements associated with principal components</li>
+          <li>Captures dominant correlations with few parameters</li>
+          <li>Multiple PCA models can be combined as a probabilistic mixture</li>
+          <li>Can be used as a base for Bayesian PCA</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Probabilistic PCA:</strong><br />
+ In order to <em>cast</em> <strong>PCA</strong> in a <em><strong>probabilistic framework</strong></em>, we can make a slight <em>modification</em> to the <strong>factor analysis model</strong>, making the <strong>conditional variances</strong> <script type="math/tex">\sigma_i^2</script> <span style="color: purple">equal to each other</span>.<br />
+ In that case the covariance of <script type="math/tex">\boldsymbol{x}</script> is just <script type="math/tex">\boldsymbol{W} \boldsymbol{W}^{\top}+\sigma^{2} \boldsymbol{I}</script>, where <script type="math/tex">\sigma^2</script> is now a <strong>scalar</strong>.<br />
+ This yields the <strong>conditional distribution</strong>:</p>
+    <p>$$\mathbf{x} \sim \mathcal{N}\left(\boldsymbol{x} ; \boldsymbol{b}, \boldsymbol{W} \boldsymbol{W}^{\top}+\sigma^{2} \boldsymbol{I}\right)$$</p>
+    <p>or, equivalently,</p>
+    <p>$$\mathbf{x}=\boldsymbol{W} \mathbf{h}+\boldsymbol{b}+\sigma \mathbf{z}$$</p>
+    <p>where <script type="math/tex">\mathbf{z} \sim \mathcal{N}(\boldsymbol{z} ; \mathbf{0}, \boldsymbol{I})</script> is <strong>Gaussian noise</strong>.</p>
+
+    <p>Notice that <script type="math/tex">\boldsymbol{b}</script> is the <span style="color: purple"><strong>mean</strong> value (over all data) on the directions that are not captured/represented</span>.</p>
+
+    <p>This probabilistic PCA model takes advantage of the observation that <span style="color: goldenrod">most variations in the data can be captured by the latent variables <script type="math/tex">\boldsymbol{h},</script> up to some small residual</span> <span style="color: goldenrod"><strong>reconstruction error</strong></span> <script type="math/tex">\sigma^2</script>.</p>
+
+    <p><strong style="color: DarkRed">Learning (parameter estimation):</strong><br />
+ <em>Tipping and Bishop (1999)</em> then show an <em><strong>iterative</strong></em> <strong>EM</strong> algorithm for estimating the parameters <script type="math/tex">\boldsymbol{W}</script> and <script type="math/tex">\sigma^{2}</script>.</p>
+
+    <p><strong style="color: DarkRed">Relation to PCA - Limit Analysis:</strong><br />
+ <em>Tipping and Bishop (1999)</em> show that probabilistic PCA becomes <script type="math/tex">\mathrm{PCA}</script> as <script type="math/tex">\sigma \rightarrow 0</script>.<br />
+ In that case, the conditional expected value of <script type="math/tex">\boldsymbol{h}</script> given <script type="math/tex">\boldsymbol{x}</script> becomes an orthogonal projection of <script type="math/tex">\boldsymbol{x} - \boldsymbol{b}</script>  onto the space spanned by the <script type="math/tex">d</script> columns of <script type="math/tex">\boldsymbol{W}</script>, like in PCA.</p>
+
+    <p>As <script type="math/tex">\sigma \rightarrow 0,</script> the density model defined by probabilistic PCA becomes very sharp around these <script type="math/tex">d</script> dimensions spanned by the columns of <script type="math/tex">\boldsymbol{W}</script>.<br />
+ This can make the model assign very low likelihood to the data if the data does not actually cluster near a hyperplane.</p>
+
+    <p id="lst-p"><strong style="color: red">PPCA vs Factor Analysis:</strong></p>
+    <ul>
+      <li>Covariance
+        <ul>
+          <li><strong>PPCA</strong> (&amp; PCA) is covariant under rotation of the original data axes</li>
+          <li><strong>Factor analysis</strong> is covariant under component-wise rescaling</li>
+        </ul>
+      </li>
+      <li>Principal components (or factors)
+        <ul>
+          <li><strong>PPCA</strong>: different principal components (axes) can be found incrementally</li>
+          <li><strong>Factor analysis</strong>: factors from a two-factor model may not correspond to those from a one-factor model</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Manifold Interpretation of PCA:</strong><br />
+ Linear factor models including PCA and factor analysis can be interpreted as <span style="color: goldenrod">learning a <strong>manifold</strong></span> <em>(Hinton et al., 1997)</em>.<br />
+ We can view <strong>PPCA</strong> as <span style="color: purple">defining a <strong>thin pancake-shaped region of high probability</strong></span>—a <strong>Gaussian distribution</strong> that is very narrow along some axes, just as a pancake is very flat along its vertical axis, but is elongated along other axes, just as a pancake is wide along its horizontal axes.<br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Illustration</button>
+ <img src="https://cdn.mathpix.com/snip/images/ayo7yf-CBpBA38gdTlc0sCPWk9gG0PhFSpXzfSOp1HU.original.fullsize.png" alt="img" width="100%" hidden="" /><br />
+ <strong>PCA</strong> can be interpreted as <span style="color: goldenrod">aligning this pancake with a linear manifold in a higher-dimensional space</span>.<br />
+ This interpretation applies not just to traditional PCA but also to any <strong>linear autoencoder</strong> that learns matrices <script type="math/tex">\boldsymbol{W}</script> and <script type="math/tex">\boldsymbol{V}</script> with the goal of making the reconstruction of <script type="math/tex">x</script> lie as close to <script type="math/tex">x</script> as possible:</p>
+    <ul>
+      <li>Let the <strong>Encoder</strong> be:
+        <p>$$\boldsymbol{h}=f(\boldsymbol{x})=\boldsymbol{W}^{\top}(\boldsymbol{x}-\boldsymbol{\mu})$$</p>
+        <p>The encoder computes a <strong>low-dimensional representation</strong> of <script type="math/tex">h</script>.</p>
+      </li>
+      <li>With the <strong>autoencoder view</strong>, we have a <strong>decoder</strong> computing the <em><strong>reconstruction</strong></em>:
+        <p>$$\hat{\boldsymbol{x}}=g(\boldsymbol{h})=\boldsymbol{b}+\boldsymbol{V} \boldsymbol{h}$$</p>
+      </li>
+      <li>The choices of linear encoder and decoder that minimize <strong>reconstruction error</strong>:
+        <p>$$\mathbb{E}\left[\|\boldsymbol{x}-\hat{\boldsymbol{x}}\|^{2}\right]$$</p>
+        <p>correspond to <script type="math/tex">\boldsymbol{V}=\boldsymbol{W}, \boldsymbol{\mu}=\boldsymbol{b}=\mathbb{E}[\boldsymbol{x}]</script> and the columns of <script type="math/tex">\boldsymbol{W}</script> form an orthonormal basis which spans the same subspace as the principal eigenvectors of the covariance matrix:</p>
+        <p>$$\boldsymbol{C}=\mathbb{E}\left[(\boldsymbol{x}-\boldsymbol{\mu})(\boldsymbol{x}-\boldsymbol{\mu})^{\top}\right]$$</p>
+      </li>
+      <li>In the case of PCA, the columns of <script type="math/tex">\boldsymbol{W}</script> are these eigenvectors, ordered by the magnitude of the corresponding eigenvalues (which are all real and non-negative).</li>
+      <li><strong>Variances:</strong><br />
+  One can also show that eigenvalue <script type="math/tex">\lambda_{i}</script> of <script type="math/tex">\boldsymbol{C}</script> corresponds to the variance of <script type="math/tex">x</script> in the direction of eigenvector <script type="math/tex">\boldsymbol{v}^{(i)}</script>.</li>
+      <li><strong>Optimal Reconstruction:</strong>
+        <ul>
+          <li>If <script type="math/tex">\boldsymbol{x} \in \mathbb{R}^{D}</script> and <script type="math/tex">\boldsymbol{h} \in \mathbb{R}^{d}</script> with <script type="math/tex">% <![CDATA[
+d<D %]]></script>, then the <span style="color: goldenrod"><strong><em>optimal</em></strong> <strong>reconstruction error</strong></span>  (choosing <script type="math/tex">\mu, b, V</script> and $$W$ as above) is:
+            <p>$$\min \mathbb{E}\left[\|\boldsymbol{x}-\hat{\boldsymbol{x}}\|^{2}\right]=\sum_{i=d+1}^{D} \lambda_{i}$$</p>
+          </li>
+          <li>Hence, if the <strong>covariance</strong> has <em><strong>rank</strong></em> <script type="math/tex">d,</script> the <strong>eigenvalues</strong> <script type="math/tex">\lambda_{d+1}</script> to <script type="math/tex">\lambda_{D}</script> are <script type="math/tex">0</script> and <strong>reconstruction error</strong> is $$0$.</li>
+          <li>Furthermore, one can also show that the above solution can be obtained by <span style="color: purple"><strong><em>maximizing</em> the variances of the elements</strong> of <script type="math/tex">\boldsymbol{h},</script> under <em>orthogonal</em> <script type="math/tex">\boldsymbol{W}</script></span>, instead of <em><strong>minimizing reconstruction error</strong></em>.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><a href="https://people.cs.pitt.edu/~milos/courses/cs3750-Fall2007/lectures/class17.pdf">PPCA - Probabilistic PCA Slides</a>  /  <a href="https://www.cs.ubc.ca/~schmidtm/Courses/540-W16/L12.pdf">PPCA Better Slides</a></li>
+      <li><a href="http://www.robots.ox.ac.uk/~cvrg/hilary2006/ppca.pdf">Probabilistic PCA (Original Paper!)</a></li>
+      <li>EM Algorithm for PCA is more advantageous than MLE (closed form).</li>
+      <li><strong>Mixtures of probabilistic PCAs</strong>: can be defined and are a combination of local probabilistic PCA models.</li>
+      <li>PCA can be generalized to the <strong>nonlinear Autoencoders</strong>.</li>
+      <li>ICA can be generalized to a <strong>nonlinear generative model</strong>, in which we use a nonlinear function <script type="math/tex">f</script> to generate the observed data.<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Independent Component Analysis (ICA):</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Slow Feature Analysis:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Sparse Coding:</strong><br />
+ <strong>Sparse Coding</strong> <em>(Olshausen and Field, 1996)</em> is a <em><strong>linear factor model</strong></em> that has been heavily studied as an <span style="color: purple">unsupervised feature learning</span> and <span style="color: purple">feature extraction</span> mechanism.<br />
+ In Sparse Coding the <em><strong>noise distribution</strong></em> is <span style="color: purple"><strong>Gaussian noise</strong></span> with <span style="color: purple">isotropic precision</span> <script type="math/tex">\beta</script>:</p>
+    <p>$$p(\boldsymbol{x} \vert \boldsymbol{h})=\mathcal{N}\left(\boldsymbol{x} ; \boldsymbol{W} \boldsymbol{h}+\boldsymbol{b}, \frac{1}{\beta} \boldsymbol{I}\right)$$</p>
+
+    <p id="lst-p">The <em><strong>latent variable prior</strong></em> <script type="math/tex">p(\boldsymbol{h})</script> is chosen to be one with sharp peaks near <script type="math/tex">0</script>.<br />
+ Common choices include:</p>
+    <ul>
+      <li><strong>factorized Laplace</strong>:
+        <p>$$p\left(h_{i}\right)=$ Laplace $\left(h_{i} ; 0, \frac{2}{\lambda}\right)=\frac{\lambda}{4} e^{-\frac{1}{2} \lambda\left|h_{i}\right|}$$</p>
+      </li>
+      <li><strong>factorized Student-t distributions</strong>:
+        <p>$$p\left(h_{i}\right) \propto \frac{1}{\left(1+\frac{h_{i}^{2}}{\nu}\right)^{\frac{\nu+1}{2}}}$$</p>
+      </li>
+      <li><strong>Cauchy</strong></li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Learning/Training:</strong></p>
+    <ul>
+      <li>Training sparse coding with <strong>maximum likelihood</strong> is <strong style="color: purple"><em>intractable</em></strong>.</li>
+      <li>Instead, the training <em>alternates</em> between <span style="color: purple"><strong>encoding</strong> the data</span> and <span style="color: purple">training the decoder to <strong>better reconstruct the data</strong> given the encoding</span>.<br />
+  This is a <a href="/work_files/research/dl/concepts/inference#bodyContents15map_sc">principled approximation to Maximum-Likelihood</a>.
+        <ul>
+          <li>Minimization wrt. <script type="math/tex">\boldsymbol{h}</script></li>
+          <li>Minimization wrt. <script type="math/tex">\boldsymbol{W}</script></li>
+        </ul>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Architecture:</strong></p>
+    <ul>
+      <li><strong>Encoder</strong>:
+        <ul>
+          <li><span style="color: purple">Non-parametric</span>.</li>
+          <li>It is an <span style="color: goldenrod">optimization algorithm</span> that solves an <strong>optimization problem</strong> in which we seek the <span style="color: purple"><em><strong>single most likely code value</strong></em></span>:
+            <p>$$\boldsymbol{h}^{* }=f(\boldsymbol{x})=\underset{\boldsymbol{h}}{\arg \max } p(\boldsymbol{h} vert \boldsymbol{x})$$</p>
+            <ul>
+              <li>Assuming a <strong>Laplace Prior</strong> on <script type="math/tex">p(\boldsymbol{h})</script>:
+                <p>$$\boldsymbol{h}^{* }=\underset{h}{\arg \min } \lambda\|\boldsymbol{h}\|_{1}+\beta\|\boldsymbol{x}-\boldsymbol{W h}\|_{2}^{2}$$</p>
+                <p>where we have taken a log, dropped terms not depending on <script type="math/tex">\boldsymbol{h}</script>, and divided by positive scaling factors to simplify the equation.</p>
+              </li>
+              <li><strong>Hyperparameters:</strong><br />
+  Both <script type="math/tex">\beta</script> and <script type="math/tex">\lambda</script> are hyperparameters.<br />
+  However, <script type="math/tex">\beta</script> is usually set to <script type="math/tex">1</script> because its role is shared with <script type="math/tex">\lambda</script>.<br />
+  It could also be treated as a parameter of the model and <em>“learned”</em><sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Variations:</strong><br />
+ Not all approaches to sparse coding explicitly build a <script type="math/tex">p(\boldsymbol{h})</script> and a <script type="math/tex">p(\boldsymbol{x} \vert \boldsymbol{h})</script>.<br />
+ Often we are just interested in learning a dictionary of features with activation values that will often be zero when extracted using this inference procedure.</p>
+
+    <p id="lst-p"><strong style="color: red">Sparsity:</strong></p>
+    <ul>
+      <li>Due to the imposition of an <script type="math/tex">L^{1}</script> norm on <script type="math/tex">\boldsymbol{h},</script> this procedure will yield a sparse <script type="math/tex">\boldsymbol{h}^{* }</script>.</li>
+      <li>If we sample <script type="math/tex">\boldsymbol{h}</script> from a Laplace prior, it is in fact a <span style="color: purple">zero probability event</span> for an element of <script type="math/tex">\boldsymbol{h}</script> to actually be zero.<br />
+  <span style="color: purple">The <strong>generative model</strong> itself is <em><strong>not</strong></em> especially <strong>sparse</strong>, <em><strong>only</strong></em> the <strong>feature extractor</strong> is</span>.
+        <ul>
+          <li><em>Goodfellow et al. (2013d)</em> describe approximate inference in a different model family, the spike and slab sparse coding model, for which samples from the prior usually contain true zeros.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Properties:</strong></p>
+    <ul>
+      <li><span style="color: purple"><strong>Advantages:</strong></span>
+        <ul>
+          <li>The sparse coding approach combined with the use of the <em><strong>non-parametric</strong></em> <strong>encoder</strong>  can in principle minimize the combination of reconstruction error and log-prior better than any specific parametric encoder.</li>
+          <li>Another advantage is that there is no generalization error to the encoder.<br />
+  Thus, resulting in better generalization when sparse coding is used as a feature extractor for a classifier than when a parametric function is used to predict the code.
+            <ul>
+              <li>A parametric encoder must learn how to map <script type="math/tex">\boldsymbol{x}</script> to <script type="math/tex">\boldsymbol{h}</script> in a way that generalizes. For unusual <script type="math/tex">\boldsymbol{x}</script> that do not resemble the training data, a learned, parametric encoder may fail to find an <script type="math/tex">\boldsymbol{h}</script> that results in accurate reconstruction or a sparse code.</li>
+              <li>For the vast majority of formulations of sparse coding models, where the inference problem is convex, the optimization procedure will always find the optimal code (unless degenerate cases such as replicated weight vectors occur).</li>
+              <li>Obviously, the sparsity and reconstruction costs can still rise on unfamiliar points, but this is due to generalization error in the decoder weights, rather than generalization error in the encoder.</li>
+              <li>Thus, the lack of generalization error in sparse coding’s optimization-based encoding process may result in better generalization when sparse coding is used as a feature extractor for a classifier than when a parametric function is used to predict the code.<br />
+  <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Results</button>
+                <ul hidden="">
+                  <li><em>Coates and Ng (2011)</em> demonstrated that sparse coding features generalize better for object recognition tasks than the features of a related model based on a parametric encoder, the linear-sigmoid autoencoder.</li>
+                  <li><em>Goodfellow et al. (2013d)</em> showed that a variant of sparse coding generalizes better than other feature extractors in the regime where extremely few labels are available (twenty or fewer labels per class).</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span style="color: purple"><strong>Disadvantages:</strong></span>
+        <ul>
+          <li>The primary disadvantage of the <strong><em>non-parametric</em> encoder</strong> is that it requires greater time to compute <script type="math/tex">\boldsymbol{h}</script> given <script type="math/tex">\boldsymbol{x}</script> because the non-parametric approach requires running an iterative algorithm.
+            <ul>
+              <li>The parametric autoencoder approach uses only a fixed number of layers, often only one.</li>
+            </ul>
+          </li>
+          <li>It is not straight-forward to back-propagate through the non-parametric encoder: which makes it difficult to pretrain a sparse coding model with an unsupervised criterion and then fine-tune it using a supervised criterion.
+            <ul>
+              <li>Modified versions of sparse coding that permit approximate derivatives do exist but are not widely used <em>(Bagnell and Bradley, 2009)</em>.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Generation (Sampling):</strong></p>
+    <ul>
+      <li>Sparse coding, like other linear factor models, often produces poor samples.<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Examples</button>
+  <img src="https://cdn.mathpix.com/snip/images/dnnZUyAMmMg__pGi1O1os8yQXGUu0lY3LcpuWtWKTok.original.fullsize.png" alt="img" width="100%" hidden="" /></li>
+      <li>This happens even when the model is able to reconstruct the data well and provide useful features for a classifier.
+        <ul>
+          <li>The <strong>reason</strong> is that <span style="color: purple">each individual feature may be learned well</span>, but the <span style="color: goldenrod"><strong>factorial prior</strong> on the <strong>hidden code</strong> results in the model including <strong><em>random</em> subsets</strong> of <strong><em>all</em></strong> of the <strong>features</strong> in each generated sample</span>.</li>
+        </ul>
+      </li>
+      <li><strong style="color: red">Motivating Deep Models:</strong><br />
+  This motivates the development of deeper models that can <span style="color: goldenrod">impose a <strong>non-factorial distribution</strong> on the <em><strong>deepest code layer</strong></em></span>, as well as the development of more sophisticated shallow models.</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><a href="https://www.youtube.com/watch?v=7a0_iEruGoM&amp;list=PL6Xpj9I5qXYEcOhn7TqghAJ6NAPrNmUBH&amp;index=60">Sparse Coding (Hugo Larochelle!)</a><br />
+ <br /></li>
+    </ul>
+  </li>
+</ol>
+
+<!-- 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28} -->
+
+<!-- 
+
+***
+
+## THIRD
+{: #content3}
+
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}
+*** 
+-->
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p><strong>Probabilistic Models</strong>, with <strong>latent variables</strong>. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>some terms depending on <script type="math/tex">\beta</script> omitted from above equation* which are needed to learn <script type="math/tex">\beta</script>. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

@@ -14,6 +14,18 @@ prevLink: /work_files/research/dl/cv.html
 ***
 ***
 
+
+__Resources:__{: style="color: red"}  
+{: #lst-p}
+* [VAEs (pdf)](https://deepgenerativemodels.github.io/notes/vae/)  
+* [Scalable semi-supervised learning with deep variational autoencoders (Code)](https://github.com/clinicalml/vae_ssl)  
+* [Tutorial: Categorical Variational Autoencoders using Gumbel-Softmax (+Code)](https://blog.evjang.com/2016/11/)  
+* [Variational Autoencoders Pursue PCA Directions [by Accident] (paper!)](https://arxiv.org/abs/1812.06775)  
+* [Latent Variable Models and AutoEncoders (Intuition Blog!)](https://medium.com/datadriveninvestor/latent-variable-models-and-autoencoders-97c44858caa0)  
+* [Tutorial: Categorical Variational Autoencoders using Gumbel-Softmax (Kingma)](https://blog.evjang.com/2016/11/)  
+
+
+
 ## Variational Auto-Encoders
 {: #content4}
 
@@ -39,52 +51,80 @@ Auto-Encoders generate __Features__ that capture _factors of variation_ in the t
         * The training data $$\left\{x^{(i)}\right\}_{i=1}^N$$ is generated from underlying unobserved (latent) representation $$\mathbf{z}$$
 
 3. **The Objective Function:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}    
-    :   $${\displaystyle {\mathcal {L}}(\mathbf {\phi } ,\mathbf {\theta } ,\mathbf {x} )=D_{KL}(q_{\phi }(\mathbf {z} |\mathbf {x} )||p_{\theta }(\mathbf {z} ))-\mathbb {E} _{q_{\phi }(\mathbf {z} |\mathbf {x} )}{\big (}\log p_{\theta }(\mathbf {x} |\mathbf {z} ){\big )}}$$
-    :   where $${\displaystyle D_{KL}}$$ is the __Kullback–Leibler divergence__ (KL-Div).  
+    <p>$${\displaystyle {\mathcal {L}}(\mathbf {\phi } ,\mathbf {\theta } ,\mathbf {x} )=D_{KL}(q_{\phi }(\mathbf {z} |\mathbf {x} )||p_{\theta }(\mathbf {z} ))-\mathbb {E} _{q_{\phi }(\mathbf {z} |\mathbf {x} )}{\big (}\log p_{\theta }(\mathbf {x} |\mathbf {z} ){\big )}}$$</p>  
+    where $${\displaystyle D_{KL}}$$ is the __Kullback–Leibler divergence__ (KL-Div).  
+
+    __Notes:__{: style="color: red"}  
+    {: #lst-p}
+    * $$\boldsymbol{z}$$ is some latent vector (representation); where each element is capturing how much of some factor of variation that we have in our training data.  
+        e.g. attributes, orientations, position of certain objects, etc.  
 
 4. **The Generation Process:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44}  
-    :   
-    :   ![img](/main_files/cs231n/13/5.png){: width="40%"} 
+    ![img](/main_files/cs231n/13/5.png){: width="40%"}  
+
 
 5. **The Goal:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}  
-    :   The goal is to estimate the true parameters $$\theta^\ast$$ of this generative model.
+    The goal is to estimate the true parameters $$\theta^\ast$$ of this generative model.  
+    <br>
 
 6. **Representing the Model:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}  
-    :   * To represent the prior $$p(z)$$, we choose it to be simple, usually __Gaussian__  
-        * To represent the conditional (which is very complex), we use a neural-network  
+    \- To represent the __prior $$p(z)$$__, we choose it to be simple, usually __Gaussian__  
+    \- To represent the __conditional $$p_{\theta^{*}}\left(x | z^{(i)}\right)$$__  (which is very complex), we use a neural-network  
+    <br>
 
 7. **Intractability:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}  
-    :   The __Data Likelihood__:  
-    :   $$p_\theta(x) = \int p_\theta(z) p_\theta(x|z) dz$$
-    :   is intractable to compute for every $$z$$.  
-    :   Thus, the __Posterior Density__:  
-    :   $$p_\theta(z|x) = \dfrac{p_\theta(x|z) p_\theta(z)}{p_\theta(x)} = \dfrac{p_\theta(x|z) p_\theta(z)}{\int p_\theta(z) p_\theta(x|z) dz}$$ 
-    :   is, also, intractable
+    The __Data Likelihood__:  
+    <p>$$p_\theta(x) = \int p_\theta(z) p_\theta(x|z) dz$$</p>  
+    is intractable to compute for every $$z$$.  
+
+    Thus, the __Posterior Density__:  
+    <p>$$p_\theta(z|x) = \dfrac{p_\theta(x|z) p_\theta(z)}{p_\theta(x)} = \dfrac{p_\theta(x|z) p_\theta(z)}{\int p_\theta(z) p_\theta(x|z) dz}$$</p>   
+    is, also, intractable.
+    <br>
 
 8. **Dealing with Intractability:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents48}  
-    :   In addition to decoder network modeling $$p_\theta(x\vert z)$$, define additional encoder network $$q_\phi(z\vert x)$$ that approximates $$p_\theta(z\vert x)$$
-    :   This allows us to derive a __lower bound__ on the data likelihood that is tractable, which we can optimize.  
+    In addition to decoder network modeling $$p_\theta(x\vert z)$$, define additional encoder network $$q_\phi(z\vert x)$$ that approximates $$p_\theta(z\vert x)$$.  
+    This allows us to derive a __lower bound__ on the data likelihood that is _tractable_, which we can optimize.
+    <br>
 
 9. **The Model:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents49}  
-    :   * The __Encoder__ (recognition/inference) and __Decoder__ (generation) networks are probabilistic and output means and variances of each the conditionals respectively:  
-            ![img](/main_files/cs231n/13/6.png){: width="70%"}   
-        * The generation (forward-pass) is done via sampling as follows:  
-            ![img](/main_files/cs231n/13/7.png){: width="72%"}   
+    The __Encoder__ (recognition/inference) and __Decoder__ (generation) networks are probabilistic and output means and variances of each the conditionals respectively:  
+    ![img](/main_files/cs231n/13/6.png){: width="70%"}   
+    
+    The __generation (forward-pass)__ is done via *__sampling__* as follows:  
+    ![img](/main_files/cs231n/13/7.png){: width="72%"}   
+
 
 10. **The Log-Likelihood of Data:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents410}  
-    :   * Deriving the Log-Likelihood:  
-    :   ![img](/main_files/cs231n/13/8.png){: width="100%"}   
+    __Deriving the Log-Likelihood:__  
+    ![img](/main_files/cs231n/13/8.png){: width="100%"}   
 
-11. **Training the Model:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents411}  
-    :   
+11. **Training:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents411}  
+    __Computing the bound (forward pass) for a given minibatch of input data:__  
+    ![img](https://cdn.mathpix.com/snip/images/AqnvjBWU8hztHMIccTxpe8mMqP4GTJ6b5Rfv79r8Lzk.original.fullsize.png){: width="80%"}  
 
-12. **Pros, Cons and Research:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents412}  
-    :   * __Pros__: 
-            * Principled approach to generative models
-            * Allows inference of $$q(z\vert x)$$, can be useful feature representation for other tasks  
-    :   * __Cons__: 
-            * Maximizing the lower bound of likelihood is okay, but not as good for evaluation as Auto-regressive models
-            * Samples blurrier and lower quality compared to state-of-the-art (GANs)
-    :   * __Active areas of research__:   
-            * More flexible approximations, e.g. richer approximate posterior instead of diagonal Gaussian
-            * Incorporating structure in latent variables
+12. **Generation:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents412}  
+    ![img](https://cdn.mathpix.com/snip/images/UvH6YyerATQDxb9M3fUbaWhbi9axEdZ5Z-1w_HCR0zM.original.fullsize.png){: width="40%"}  
+
+    \- Diagonal prior on $$\boldsymbol{z} \implies$$ independent latent variables  
+    \- Different dimensions of $$\boldsymbol{z}$$ encode interpretable factors of variation  
+    {: #lst-p}
+    * Also good feature representation that can be computed using $$\mathrm{q}_ {\phi}(\mathrm{z} \vert \mathrm{x})$$!  
+
+    __Examples:__  
+    {: #lst-p} 
+    * __MNIST:__  
+        ![img](https://cdn.mathpix.com/snip/images/B0FCHMcL0yTM4eJ7si-sE23Z8GEoXDh7XU1XVstRzZ0.original.fullsize.png){: width="30%"}  
+    * __CelebA__:  
+        ![img](/main_files/cs231n/13/9.png){: width="30%"}  
+
+13. **Pros, Cons and Research:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents413}  
+    * __Pros__:  
+        * Principled approach to generative models
+        * Allows inference of $$q(z\vert x)$$, can be useful feature representation for other tasks  
+    * __Cons__:  
+        * Maximizing the lower bound of likelihood is okay, but not as good for evaluation as Auto-regressive models
+        * Samples blurrier and lower quality compared to state-of-the-art (GANs)  
+    * __Active areas of research__:   
+        * More flexible approximations, e.g. richer approximate posterior instead of diagonal Gaussian
+        * Incorporating structure in latent variables, e.g., Categorical Distributions  

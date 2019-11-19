@@ -91,10 +91,9 @@
 
 <ol>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">What?:</strong></dt>
-      <dd>Sentence Representation/Embedding Learning is focused on producing one feature vector to represent a sentence in a latent (semantic) space, while preserving linear properties (distances, angles).</dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">What?:</strong><br />
+ Sentence Representation/Embedding Learning is focused on producing one feature vector to represent a sentence in a latent (semantic) space, while preserving linear properties (distances, angles).<br />
+ <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Tasks:</strong>
     <ul>
@@ -102,20 +101,22 @@
       <li>Paraphrase Identification</li>
       <li>Semantic Similarity</li>
       <li>Textual Entailment (i.e. Natural Language Inference)</li>
-      <li>Retrieval</li>
+      <li>Retrieval<br />
+ <br /></li>
     </ul>
   </li>
-  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Methods:</strong>
-    <ul>
-      <li><strong>Multi-Task Learning</strong>:<br />
-  In particular, people do <strong><em>Pre-Training</em></strong> on other tasks, and then use the pre-trained weights and fine-tune them on a new task.</li>
-    </ul>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Methods:</strong><br />
+ <strong>Multi-Task Learning</strong>:<br />
+ In particular, people do <strong><em>Pre-Training</em></strong> on other tasks, and then use the pre-trained weights and fine-tune them on a new task.
+ <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">End-To-End VS Pre-Training:</strong><br />
  We can always use End-To-End objectives, however, there are two problems that arise, and can be mitigated by pre-training:
     <ul>
       <li>Paucity of Training Data</li>
-      <li>Weak Feedback from end of sentence only for text classification (explain?)</li>
+      <li>Weak Feedback from end of sentence only for text classification (explain?)
+ <br /></li>
     </ul>
   </li>
 </ol>
@@ -138,7 +139,8 @@
       <li><strong>Model:</strong> LSTM</li>
       <li><strong>Objective:</strong> Language modeling objective</li>
       <li><strong>Data:</strong> Classification data itself, or Amazon reviews</li>
-      <li><strong>Downstream:</strong> On text classification, initialize weights and continue training</li>
+      <li><strong>Downstream:</strong> On text classification, initialize weights and continue training
+ <br /></li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Unidirectional Training + Transformer - OpenAI GPT <em>(Radford et al. 2018)</em>:</strong>
@@ -146,7 +148,8 @@
       <li><strong>Model:</strong>  Masked self-attention</li>
       <li><strong>Objective:</strong>  Predict the next word left-&gt;right</li>
       <li><strong>Data:</strong>  BooksCorpus</li>
-      <li><strong>Downstream:</strong>  Some task fine-tuning, other tasks additional multi-sentence training</li>
+      <li><strong>Downstream:</strong>  Some task fine-tuning, other tasks additional multi-sentence training
+ <br /></li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Auto-encoder Transfer <em>(Dai and Le 2015)</em>:</strong>
@@ -154,7 +157,8 @@
       <li><strong>Model:</strong> LSTM</li>
       <li><strong>Objective:</strong> From single sentence vector, reconstruct the sentence</li>
       <li><strong>Data:</strong> Classification data itself, or Amazon reviews</li>
-      <li><strong>Downstream:</strong> On text classification, initialize weights and continue training</li>
+      <li><strong>Downstream:</strong> On text classification, initialize weights and continue training
+ <br /></li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Context Prediction Transfer - SkipThought Vectors <em>(Kiros et al. 2015)</em>:</strong>
@@ -162,7 +166,8 @@
       <li><strong>Model:</strong>  LSTM</li>
       <li><strong>Objective:</strong>  Predict the surrounding sentences</li>
       <li><strong>Data:</strong>  Books, important because of context</li>
-      <li><strong>Downstream:</strong>  Train logistic regression on <script type="math/tex">[\|u-v\|; u * v]</script> (component-wise)</li>
+      <li><strong>Downstream:</strong>  Train logistic regression on <script type="math/tex">[\|u-v\|; u * v]</script> (component-wise)
+ <br /></li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Paraphrase ID Transfer <em>(Wieting et al. 2015)</em>:</strong>
@@ -187,7 +192,8 @@
         </ul>
       </li>
       <li><strong>Downstream Usage:</strong> Sentence similarity, classification, etc.</li>
-      <li><strong>Result:</strong> Interestingly, LSTMs work well on in-domain data, but word averaging generalizes better</li>
+      <li><strong>Result:</strong> Interestingly, LSTMs work well on in-domain data, but word averaging generalizes better
+ <br /></li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Entailment Transfer - InferSent <em>(Conneau et al. 2017)</em>:</strong>
@@ -203,72 +209,53 @@
       <li><strong>Results:</strong> Tends to be better than unsupervised objectives such as SkipThought</li>
     </ul>
   </li>
-  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Asynchronous:</strong></li>
 </ol>
+
+<!-- 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28} -->
 
 <hr />
 
 <h2 id="content3">Contextualized Word Representations</h2>
 
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Asynchronous:</strong></p>
-  </li>
-</ol>
+<!-- 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}
+
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}
+ -->
 
 <hr />
 
-<h2 id="content4">FOURTH</h2>
+<!-- ## FOURTH
+{: #content4}
 
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents45">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents46">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents47">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents48">Asynchronous:</strong></p>
-  </li>
-</ol>
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}
 
-<hr />
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44}
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents48}
+
+-->
 
 
       <footer class="site-footer">

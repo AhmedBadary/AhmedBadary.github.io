@@ -148,6 +148,8 @@ prevLink: /work_files/research/dl/cv.html
 ## ResNet _(He et al., 2015)_
 {: #content4}
 
+* [Residual Blocks (Blog)](https://towardsdatascience.com/residual-blocks-building-blocks-of-resnet-fd90ca15d6ec)  
+
 1. **Architecture:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}  
     :   ![img](/main_files/cs231n/9/17.png){: width="85%"}
 

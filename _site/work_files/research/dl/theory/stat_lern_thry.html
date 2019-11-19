@@ -75,9 +75,10 @@
   <ul class="TOC3">
     <li><a href="#content3">The Bias-Variance Decomposition Theory</a></li>
   </ul>
-  <!--  * [FOURTH](#content4)
-  {: .TOC4}
-  * [FIFTH](#content5)
+  <ul class="TOC4">
+    <li><a href="#content4">Generalization Theory</a></li>
+  </ul>
+  <!--  * [FIFTH](#content5)
   {: .TOC5}
   * [SIXTH](#content6)
   {: .TOC6} -->
@@ -95,6 +96,87 @@
   <li><a href="https://courses.cs.washington.edu/courses/cse522/11wi/scribes/lecture4.pdf">Generalization Bounds for Hypothesis Spaces</a></li>
   <li><a href="https://mostafa-samir.github.io/ml-theory-pt2/">Generalization Bound Derivation</a></li>
   <li><a href="http://mlexplained.com/2018/04/24/overfitting-isnt-simple-overfitting-re-explained-with-priors-biases-and-no-free-lunch/">Overfitting isn’t simple: Overfitting Re-explained with Priors, Biases, and No Free Lunch</a></li>
+  <li><a href="http://www.mit.edu/~9.520/fall17/">9.520/6.860: Statistical Learning Theory and Applications, Fall 2017</a></li>
+  <li><a href="https://machinelearningmastery.com/what-is-a-hypothesis-in-machine-learning/">What is a Hypothesis in Machine Learning? (blog)</a></li>
+  <li><a href="http://www.cs.cornell.edu/courses/cs6783/2015fa/lec3.pdf">No Free Lunch Theorem and PAC Learning (Lec Notes!)</a></li>
+  <li><a href="https://web.stanford.edu/~hastie/Papers/ESLII.pdf#page=186">Regularization and Reproducing Kernel Hilbert Spaces (ESL)</a></li>
+</ul>
+
+<p><strong style="color: red">Fundamental Theorem of Statistical Learning (binary classification):</strong><br />
+Let <script type="math/tex">\mathcal{H}</script> be a hypothesis class of functions from a domain <script type="math/tex">X</script> to <script type="math/tex">\{0,1\}</script> and let the loss function be the <script type="math/tex">0-1</script> loss.<br />
+The following are equivalent:<br />
+<script type="math/tex">\begin{array}{l}{\text { 1. } \mathcal{H} \text { has uniform convergence. }} \\ {\text { 2. The ERM is a PAC learning algorithm for } \mathcal{H} \text { . }} \\ {\text { 3. } \mathcal{H} \text { is } PAC \text { learnable. }} \\ {\text { 4. } \mathcal{H} \text { has finite } VC \text { dimension. }}\end{array}</script><br />
+This can be extended to <strong>regression</strong> and <strong>multiclass classification</strong>.</p>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Proof.</button></p>
+<div hidden="">
+  <ul>
+    <li>1 <script type="math/tex">\Rightarrow 2</script> We have seen uniform convergence implies that <script type="math/tex">\mathrm{ERM}</script> is <script type="math/tex">\mathrm{PAC}</script> learnable</li>
+    <li>2 <script type="math/tex">\Rightarrow 3</script> Obvious.</li>
+    <li>3 <script type="math/tex">\Rightarrow 4</script> We just proved that PAC learnability implies finite <script type="math/tex">\mathrm{VC}</script> dimension.</li>
+    <li>4 <script type="math/tex">\Rightarrow 1</script> We proved that finite <script type="math/tex">\mathrm{VC}</script> dimension implies uniform convergence.</li>
+  </ul>
+</div>
+
+<p id="lst-p"><strong style="color: red">Notes:</strong></p>
+<ul>
+  <li>VC dimension fully determines <span style="color: goldenrod">learnability</span> for binary classification.</li>
+  <li>The VC dimension doesn’t just determine <strong>learnability</strong>, it also gives a <span style="color: goldenrod">bound on the sample complexity</span> (which can be shown to be <strong style="color: goldenrod">tight</strong>).</li>
+  <li><a href="https://www.cs.toronto.edu/~jlucas/teaching/csc411/lectures/lec23_24_handout.pdf">Lecture Slides (ref)</a></li>
+  <li><button class="showText" value="show" onclick="showTextPopHide(event);">Extra Notes (what you should know)</button>
+  <img src="https://cdn.mathpix.com/snip/images/9bYxbit2n1mvyrttH3CzgI-2CgdrrDNVkejd1fP5-AU.original.fullsize.png" alt="img" width="100%" hidden="" /></li>
+</ul>
+
+<p id="lst-p"><strong style="color: red">Theoretical Concepts:</strong></p>
+<ul>
+  <li><strong>Kolmogorov Complexity</strong>:<br />
+  In <strong>Algorithmic Information Theory</strong>, the <strong>Kolmogorov Complexity</strong> of an object, such as a piece of text, is the <span style="color: purple"><strong>length</strong> of the <em><strong>shortest</strong></em> <strong>computer program</strong></span> (in a predetermined programming language) that <span style="color: purple"><em>produces</em> the object as <strong>output</strong></span>.<br />
+  It is a measure of the <strong>computational resources</strong> needed to <em><strong>specify</strong></em> the object.<br />
+  It is also known as <strong>algorithmic complexity</strong>, <strong>Solomonoff–Kolmogorov complexity</strong>, <strong>program-size complexity</strong>, <strong>descriptive complexity</strong>, or <strong>algorithmic entropy</strong>.</li>
+  <li><strong>Rademacher Complexity</strong>:</li>
+  <li><strong>Generalization Bounds</strong>:</li>
+  <li><strong>Sample Complexity</strong>:</li>
+  <li><strong>PAC-Bayes Bound</strong>:</li>
+  <li><strong>Kolmogorov Randomness</strong>:</li>
+  <li><strong>Minimum Description Length (MDL)</strong>: <br />
+  The <a href="https://en.wikipedia.org/wiki/Minimum_description_length"><strong>minimum description length (MDL) principle</strong></a> is a formalization of <strong>Occam’s razor</strong> in which the best hypothesis (a model and its parameters) for a given set of data is the one that leads to the <span style="color: purple">best compression of the data</span>.</li>
+  <li><strong>Minimum Message Length (MML)</strong>:<br />
+  <a href="https://en.wikipedia.org/wiki/Minimum_message_length"><strong>MML</strong></a> is a formal Information Theory restatement of <strong>Occam’s Razor</strong>: even when models are equal in goodness of fit accuracy to the observed data, the one generating the <span style="color: purple">shortest overall message</span> is more likely to be correct (where the message consists of a statement of the model, followed by a statement of data encoded concisely using that model).</li>
+  <li><a href="https://web.stanford.edu/~hastie/Papers/ESLII.pdf#page=37">Statistical Decision Theory (ESL!)</a></li>
+  <li><strong>PAC Learnability</strong>:<br />
+  A hypothesis class <script type="math/tex">\mathcal{H}</script> is PAC learnable, if there exists a learning algorithm A, satisfying that for any <script type="math/tex">\epsilon>0</script> and <script type="math/tex">\delta \in(0,1)</script> there exist <script type="math/tex">\mathfrak{M}(\epsilon, \delta)=</script> poly <script type="math/tex">\left(\frac{1}{\epsilon}, \frac{1}{\delta}\right)</script> such that for i.i.d samples <script type="math/tex">S^{m}=\left\{\left(x_{i}, y_{i}\right)\right\}_ {i=1}^{m}</script> drawn from any distribution <script type="math/tex">\mathcal{D}</script> and <script type="math/tex">m \geq \mathfrak{M}(\epsilon, \delta)</script> the algorithm returns a hypothesis <script type="math/tex">A\left(S^{m}\right) \in \mathcal{H}</script> satisfying
+    <p>$$P_{S^{m} \sim \mathcal{D}^{m}}\left(L_{\mathcal{D}}(A(S))&gt;\min _{h \in \mathcal{H}} L_{\mathcal{D}}(h)+\epsilon\right)&lt;\delta$$</p>
+    <p>To show that empirical risk minimization (ERM) is a PAC learning algorithm, we need to show that <script type="math/tex">L_{S}(h) \approx L_{\mathcal{D}}(h)</script> for all <script type="math/tex">h</script>.</p>
+  </li>
+  <li>
+    <p><strong>Uniform Convergence</strong>:<br />
+  A hypothesis class <script type="math/tex">\mathcal{H}</script> has the uniform convergence property, if for any <script type="math/tex">\epsilon>0</script> and <script type="math/tex">\delta \in(0,1)</script> there exist <script type="math/tex">\mathfrak{M}(\epsilon, \delta)=</script> <script type="math/tex">\text{poly}\left(\frac{1}{\epsilon}, \frac{1}{\delta}\right)</script> such that for any distribution <script type="math/tex">\mathcal{D}</script> and <script type="math/tex">m \geq \mathfrak{M}(\epsilon, \delta)</script> i.i.d samples <script type="math/tex">S^{m}=\left\{\left(x_{i}, y_{i}\right)\right\}_ {i=1}^{m} \sim \mathcal{D}^{m}</script> with probability at least <script type="math/tex">1-\delta</script>, <script type="math/tex">% <![CDATA[
+\left\vert L_{S}^{m}(h)-L_{\mathcal{D}}(h)\right\vert <\epsilon %]]></script> for all <script type="math/tex">h \in \mathcal{H}</script>.</p>
+
+    <ul>
+      <li>For a single <script type="math/tex">h,</script> law of large numbers says <script type="math/tex">L_{S}^{m}(h) \stackrel{m \rightarrow \infty}{\rightarrow} L_{\mathcal{D}}(h)</script></li>
+      <li>For loss bounded by 1 the Hoeffding inequality states:
+        <p>$$P\left(\left\vert L_{S}^{m}(h)-L_{\mathcal{D}}(h)\right\vert &gt;\epsilon\right) \leq 2 e^{-2 \epsilon^{2} m}$$</p>
+      </li>
+      <li>The difficulty is to bound all the <script type="math/tex">h \in \mathcal{H}</script> <span style="color: purple">uniformly</span>.</li>
+    </ul>
+  </li>
+  <li><strong>Complexity in ML</strong>:
+    <ul>
+      <li><strong>Definitions of the complexity of an object (<script type="math/tex">h</script>)</strong>:
+        <ul>
+          <li><strong>Minimum Description Length (MDL)</strong>: the number of bits for specifying an object.</li>
+          <li><strong>Order of a Polynomial</strong></li>
+        </ul>
+      </li>
+      <li><strong>Definitions of the complexity of a class of objects (<script type="math/tex">\mathcal{H}</script>)</strong>:
+        <ul>
+          <li><strong>Entropy</strong></li>
+          <li><strong>VC-dim</strong></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="content1">Statistical Learning Theory</h2>
@@ -106,7 +188,8 @@
       <p><strong style="color: blue">How can we affect performance on the test set when we can only observe the training set?</strong></p>
     </blockquote>
 
-    <p>It is a <em>statistical</em> approach to <strong>Computational Learning Theory</strong>.</p>
+    <p>It is a <em>statistical</em> approach to <strong>Computational Learning Theory</strong>.<br />
+ <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Formal Definition:</strong><br />
  Let:
@@ -157,6 +240,7 @@
  Is a <em><strong>proxy measure</strong></em> for the <strong>expected risk</strong>, based on the training set.<br />
  It is necessary because the probability distribution <script type="math/tex">p(\vec{x}, y)</script> is <em>unknown</em>.</p>
     <p>$$I_{S}[f]=\frac{1}{n} \sum_{i=1}^{n} V\left(f\left(\vec{x}_{i}\right), y_{i}\right)$$</p>
+    <p><br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Empirical risk minimization:</strong><br />
@@ -182,6 +266,7 @@
         </ul>
       </li>
     </ul>
+    <p><br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Definitions:</strong>
     <ul>
@@ -387,7 +472,7 @@
  &amp;=\mathbb{E}_{x}{\big [}\operatorname {Bias} [g^{(\mathcal{D})}]^{2}+\sigma ^{2}+\operatorname {Var} {\big [}g^{(\mathcal{D})}{\big ]}{\big ]}\\
 \end{aligned}}}$$</p>
     <p>where:<br />
- <script type="math/tex">\overline{g}(\mathbf{x})=\mathbb{E}_{\mathcal{D}}\left[g^{(\mathcal{D})}(\mathbf{x})\right]</script> is the <strong>average hypothesis</strong> over all realization of <script type="math/tex">N</script> data-points <script type="math/tex">\mathcal{D}_ i</script>.</p>
+ <script type="math/tex">\overline{g}(\mathbf{x})=\mathbb{E}_{\mathcal{D}}\left[g^{(\mathcal{D})}(\mathbf{x})\right]</script> is the <strong>average hypothesis</strong> over all realization of <script type="math/tex">N</script> data-points <script type="math/tex">\mathcal{D}_ i</script>, and <script type="math/tex">{\displaystyle \varepsilon }</script> and <script type="math/tex">{\displaystyle {\hat {f}}} = g^{(\mathcal{D})}</script> are <strong>independent</strong>.</p>
 
     <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Derivation with Wikipedia Notation</button></p>
     <p hidden="">$${\displaystyle {\begin{aligned}\operatorname {E}_ {\mathcal{D}} {\big [}(y-{\hat {f}})^{2}{\big ]}&amp;=\operatorname {E} {\big [}(f+\varepsilon -{\hat {f}})^{2}{\big ]}\\&amp;=\operatorname {E} {\big [}(f+\varepsilon -{\hat {f}}+\operatorname {E} [{\hat {f}}]-\operatorname {E} [{\hat {f}}])^{2}{\big ]}\\&amp;=\operatorname {E} {\big [}(f-\operatorname {E} [{\hat {f}}])^{2}{\big ]}+\operatorname {E} [\varepsilon ^{2}]+\operatorname {E} {\big [}(\operatorname {E} [{\hat {f}}]-{\hat {f}})^{2}{\big ]}+2\operatorname {E} {\big [}(f-\operatorname {E} [{\hat {f}}])\varepsilon {\big ]}+2\operatorname {E} {\big [}\varepsilon (\operatorname {E} [{\hat {f}}]-{\hat {f}}){\big ]}+2\operatorname {E} {\big [}(\operatorname {E} [{\hat {f}}]-{\hat {f}})(f-\operatorname {E} [{\hat {f}}]){\big ]}\\&amp;=(f-\operatorname {E} [{\hat {f}}])^{2}+\operatorname {E} [\varepsilon ^{2}]+\operatorname {E} {\big [}(\operatorname {E} [{\hat {f}}]-{\hat {f}})^{2}{\big ]}+2(f-\operatorname {E} [{\hat {f}}])\operatorname {E} [\varepsilon ]+2\operatorname {E} [\varepsilon ]\operatorname {E} {\big [}\operatorname {E} [{\hat {f}}]-{\hat {f}}{\big ]}+2\operatorname {E} {\big [}\operatorname {E} [{\hat {f}}]-{\hat {f}}{\big ]}(f-\operatorname {E} [{\hat {f}}])\\&amp;=(f-\operatorname {E} [{\hat {f}}])^{2}+\operatorname {E} [\varepsilon ^{2}]+\operatorname {E} {\big [}(\operatorname {E} [{\hat {f}}]-{\hat {f}})^{2}{\big ]}\\&amp;=(f-\operatorname {E} [{\hat {f}}])^{2}+\operatorname {Var} [y]+\operatorname {Var} {\big [}{\hat {f}}{\big ]}\\&amp;=\operatorname {Bias} [{\hat {f}}]^{2}+\operatorname {Var} [y]+\operatorname {Var} {\big [}{\hat {f}}{\big ]}\\&amp;=\operatorname {Bias} [{\hat {f}}]^{2}+\sigma ^{2}+\operatorname {Var} {\big [}{\hat {f}}{\big ]}\\\end{aligned}}}$$</p>
@@ -524,14 +609,134 @@
       </li>
     </ul>
     <p>$$\mathrm{E}\left[(f(x)-\hat{f}(x))^{2}\right] = (\operatorname{Bias}[\hat{f}(x)])^{2}+\operatorname{Var}[\hat{f}(x)]$$</p>
+
+    <ul>
+      <li>if you dont want to mess with stat-jargon; lemme rephrase:<br />
+  is the minimizer <script type="math/tex">{\displaystyle f=\inf_{h \in \mathcal{H}} I[h]}</script> where <script type="math/tex">I[h]</script> is the expected-risk/generalization-error (assume MSE);<br />
+  is it <script type="math/tex">\overline{f}(\mathbf{x})=\mathbb{E}_ {\mathcal{D}}\left[f^{(\mathcal{D})}(\mathbf{x})\right]</script> the average hypothesis over all realizations of <script type="math/tex">N</script> data-points <script type="math/tex">\mathcal{D}_ i</script>??</li>
+    </ul>
   </li>
 </ol>
 
-<p>[<br />
-if you dont want to mess with stat-jargon; lemme rephrase:<br />
-is the minimizer <script type="math/tex">{\displaystyle f=\inf_{h \in \mathcal{H}} I[h]}</script> where <script type="math/tex">I[h]</script> is the expected-risk/generalization-error (assume MSE);<br />
-is it <script type="math/tex">\overline{f}(\mathbf{x})=\mathbb{E}_{\mathcal{D}}\left[f^{(\mathcal{D})}(\mathbf{x})\right]</script> the average hypothesis over all realizations of <script type="math/tex">N</script> data-points <script type="math/tex">\mathcal{D}_i</script>??<br />
-]</p>
+<hr />
+
+<h2 id="content4">Generalization Theory</h2>
+
+<ul>
+  <li><a href="https://www.cs.princeton.edu/courses/archive/fall17/cos597A/lecnotes/generalize.pdf">Generalization Bounds: PAC-Bayes, Rademacher, ERM, etc. (Notes!)</a></li>
+  <li><a href="http://www.offconvex.org/2017/12/08/generalization1/">Deep Learning Generalization (blog!)</a></li>
+</ul>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">Generalization Theory:</strong></p>
+
+    <p id="lst-p"><strong style="color: red">Approaches to (Notions of) Quantitative Description of Generalization Theory:</strong></p>
+    <ul>
+      <li>VC Dimension</li>
+      <li>Rademacher Complexity</li>
+      <li>PAC-Bayes Bound</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Prescriptive vs Descriptive Theory:</strong></p>
+    <ul>
+      <li><strong>Prescriptive</strong>: only attaches a label to the problem, without giving any insight into how to solve the problem.</li>
+      <li><strong>Descriptive</strong>: describes the problem in detail (e.g. by providing cause) and allows you to solve the problem.</li>
+    </ul>
+
+    <p id="lst-p">Generalization Theory Notions consist of attaching a descriptive label to the basic phenomenon of lack of generalization. They are hard to compute for today’s complicated ML models, let alone to use as a guide in designing learning systems.<br />
+ <strong style="color: red">Generalization Bounds as Descriptive Labels:</strong></p>
+    <ul>
+      <li><strong>Rademacher Complexity</strong>:<br />
+  <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Assumptions</button>
+        <ul hidden="">
+          <li>labels and loss are 0,1,</li>
+          <li>the badly generalizing <script type="math/tex">h</script> predicts perfectly on the training sample <script type="math/tex">S</script> and<br />
+  is completely wrong on the heldout set <script type="math/tex">S_2</script>, meaning:
+            <p>$$\Delta_{S}(h)-\Delta_{S_{2}}(h) \approx-1$$</p>
+          </li>
+        </ul>
+        <p><br /></p>
+      </li>
+    </ul>
+
+    <p><!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}
+     3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43} --></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Overfitting:</strong><br />
+ One way to summarize <strong>Overfitting</strong> is:<br />
+ <span style="color: purple">discovering patterns in data that do not exist in the intended application</span>.<br />
+ The typical case of overfitting “<span style="color: purple">decreasing loss only on the training set and increasing the loss on the validation set</span>” is only one example of this.</p>
+
+    <p>The question then is how we prevent overfitting from occurring.<br />
+ The problem is that <span style="color: purple">we cannot know apriori what patterns will generalize from the dataset</span>.</p>
+
+    <p id="lst-p"><strong style="color: red">No-Free-Lunch (NFL) Theorem:</strong></p>
+    <ul>
+      <li><strong>NFL Theorems for Supervised Machine Learning:</strong>
+        <ul>
+          <li>In his 1996 paper The Lack of A Priori Distinctions Between Learning Algorithms, David Wolpert examines if it is possible to get useful theoretical results with a training data set and a learning algorithm without making any assumptions about the target variable.</li>
+          <li><em>Wolpert</em> proves that given a noise-free data set (i.e. no random variation, only trend) and a machine learning algorithm where the cost function is the error rate, all machine learning algorithms are equivalent when assessed with a generalization error rate (the model’s error rate on a validation data set).</li>
+          <li>Extending this logic he demonstrates that for any two algorithms, A and B, there are as many scenarios where A will perform worse than B as there are where A will outperform B. This even holds true when one of the given algorithms is random guessing.</li>
+          <li>This is because nearly all (non-rote) machine learning algorithms make some assumptions (known as inductive or learning bias) about the relationships between the predictor and target variables, introducing bias into the model.<br />
+  The assumptions made by machine learning algorithms mean that some algorithms will fit certain data sets better than others. It also (by definition) means that there will be as many data sets that a given algorithm will not be able to model effectively.<br />
+  How effective a model will be is directly dependent on how well the assumptions made by the model fit the true nature of the data.</li>
+          <li>Implication: you can’t get good machine learning “for free”.<br />
+  You must use knowledge about your data and the context of the world we live in (or the world your data lives in) to select an appropriate machine learning model.<br />
+  There is no such thing as a single, universally-best machine learning algorithm, and there are no context or usage-independent (a priori) reasons to favor one algorithm over all others.</li>
+        </ul>
+      </li>
+      <li><strong>NFL Theorem for Search/Optimization:</strong>
+        <ul>
+          <li>All algorithms that search for an extremum of a cost function perform exactly the same when averaged over all possible cost functions. So, for any search/optimization algorithm, any elevated performance over one class of problems is exactly paid for in performance over another class.</li>
+          <li>It state that any two optimization algorithms are equivalent when their performance is averaged across all possible problems.</li>
+          <li>Wolpert and McReady essentially say that <span style="color: purple">you need some prior knowledge that is encoded in your algorithm in order to search well</span>.<br />
+  They created the theorem to give an easy counter example to researchers that would create a (tweak on an) algorithm and claimed that it would work better on all possible problems. It can’t. There’s a proof. If you have a good algorithm, it must in some way fit on your problem space, and you will have to investigate how.</li>
+        </ul>
+      </li>
+      <li><button class="showText" value="show" onclick="showText_withParent_PopHide(event);"><strong>Explanation through a thought experiment:</strong></button>
+        <ul hidden="">
+          <li>Suppose you see someone toss a coin and get heads. What is the probability distribution over the next result of the coin toss?<br />
+  Did you think heads 50% and tails 50%?<br />
+  If so, you’re wrong: the answer is that we don’t know.<br />
+  For all we know, the coin could have heads on both sides. Or, it might even obey some strange laws of physics and come out as tails every second toss.<br />
+  The point is, <span style="color: purple">there is no way we can extract only patterns that will <strong>generalize</strong></span>: there will always be some scenarios where those patterns will not exist.<br />
+  This is the essence of what is called the <strong>No Free Lunch Theorem</strong>: <span style="color: purple">any model that you create will always “overfit” and be completely wrong in some scenarios</span>.</li>
+        </ul>
+      </li>
+      <li><strong>Main Concept:</strong> Generalizing is extrapolating to new data. To do that you need to make assumptions and for problems where the assumptions don’t hold you will be suboptimal.</li>
+      <li><strong>Practical Implications</strong>:
+        <ul>
+          <li>Bias-free learning is futile because a learner that makes no a priori assumptions will have no rational basis for creating estimates when provided new, unseen input data.<br />
+  Models are simplifications of a specific component of reality (observed with data). To simplify reality, a machine learning algorithm or statistical model needs to make assumptions and introduce bias (known specifically as inductive or learning bias).<br />
+  The assumptions of an algorithm will work for some data sets but fail for others.</li>
+          <li>This shows that we need some restriction on <script type="math/tex">\mathcal{H}</script> even for the realizable PAC setting. We cannot learn arbitrary set of hypothesis, there is no free lunch.</li>
+          <li>There is no universal (one that works for all <script type="math/tex">\mathcal{H}</script>) learning algorithm.<br />
+  I.e., if the algorithm <script type="math/tex">A</script> has no idea about <script type="math/tex">\mathcal{H},</script> even the singleton hypothesis class <script type="math/tex">\mathcal{H}=\{h\}</script> (as in the statement of the theorem) is not PAC learnable.</li>
+          <li>Why do we have to fix a hypothesis class when coming up with a learning algorithm? Can we <em>“just learn”</em>?<br />
+  The NFL theorem formally shows that the answer is <strong>NO</strong>.</li>
+          <li>Counter the following claim: “My machine learning algorithm/optimization strategy is the best, always and forever, for all the scenarios”.</li>
+          <li>Always check your assumptions before relying on a model or search algorithm.</li>
+          <li>There is no “super algorithm” that will work perfectly for all datasets.</li>
+          <li>Variable length and redundant encodings are not covered by the NFL theorems. Does Genetic Programming get a pass?</li>
+          <li>NFL theorems are like a statistician sitting with his head in the fridge, and his feet in the oven. On average, his temperature is okay! NFL theorems prove that the arithmetic mean of performance is constant over all problems, it doesn’t prove that for other statistics this is the case. There has been an interesting ‘counter’ proof, where a researcher proved that for a particular problem space, a hill-climber would outperform a hill-descender on 90% of the problem instances, and did that by virtue of being exponentially worse on the remaining 10% of the problems. Its average performance abided by the NFL theorem and the two algorithms were equal when looking at mean performance, yet the hill-climber was better in 90% of the problems, i.e., it had a much better median performance. So is there maybe a free appetizer?</li>
+          <li>While no one model/algorithm works best for every problem, it may be that one model/algorithm works best for all real-world problems, or all problems that we care about, practically speaking.</li>
+        </ul>
+      </li>
+      <li><a href="http://www.no-free-lunch.org/">No Free Lunch Theorems Main Site</a></li>
+      <li><a href="http://www.cs.utah.edu/~bhaskara/courses/theoryml/scribes/lecture3.pdf">No Free Lunch Theorem (Lec Notes)</a></li>
+      <li><a href="http://www.cs.cornell.edu/courses/cs6783/2015fa/lec3.pdf">Machine Learning Theory - NFL Theorem (Lec Notes)</a></li>
+      <li><a href="http://mlexplained.com/2018/04/24/overfitting-isnt-simple-overfitting-re-explained-with-priors-biases-and-no-free-lunch/">Overfitting isn’t simple: Overfitting Re-explained with Priors, Biases, and No Free Lunch (Blog)</a></li>
+      <li><a href="https://artint.info/html/ArtInt_191.html">Learning as Refining the Hypothesis Space (Blog-Paper)</a></li>
+      <li><a href="https://community.alteryx.com/t5/Data-Science-Blog/All-Models-Are-Wrong/ba-p/348080">All Models Are Wrong (Blog)</a></li>
+      <li><a href="https://www.quora.com/Does-the-no-free-lunch-theorem-also-apply-to-deep-learning">Does the ‘no free lunch’ theorem also apply to deep learning? (Quora)</a></li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+</ol>
+
 <div class="footnotes">
   <ol>
     <li id="fn:2">

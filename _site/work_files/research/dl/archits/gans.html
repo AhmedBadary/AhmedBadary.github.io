@@ -73,6 +73,13 @@
 <hr />
 <hr />
 
+<ul>
+  <li><a href="https://deepgenerativemodels.github.io/notes/gan/">Generative Adversarial Networks (CS236 pdf)</a></li>
+  <li><a href="https://www.youtube.com/watch?v=AJVyzd0rqdc">GANs (Goodfellow)</a></li>
+  <li><a href="https://sites.google.com/view/cvpr2018tutorialongans/">GANs (tutorial lectures)</a></li>
+  <li><a href="https://github.com/hindupuravinash/the-gan-zoo">GAN ZOO (Blog)</a></li>
+</ul>
+
 <h2 id="content1">Generative Adversarial Networks (GANs)</h2>
 
 <ol>
@@ -95,9 +102,12 @@
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Motivation:</strong>
     <ul>
       <li><strong>Problem</strong>: we want to sample from complex, high-dimensional training distribution; there is no direct way of doing this.</li>
-      <li>
-        <p><strong>Solution</strong>: we sample from a simple distribution (e.g. random noise) and learn a transformation that maps to the training distribution, by using a <strong>neural network</strong>.</p>
-      </li>
+      <li><strong>Solution</strong>: we sample from a simple distribution (e.g. random noise) and learn a transformation that maps to the training distribution, by using a <strong>neural network</strong>.</li>
+    </ul>
+
+    <p><img src="https://cdn.mathpix.com/snip/images/28l-qxaMy4eTm9gBce5VKfd4K98boqFs0eNOTCkMnog.original.fullsize.png" alt="img" width="40%" /></p>
+
+    <ul>
       <li><strong>Generative VS Discriminative</strong>: discriminative models had much more success because deep generative models suffered due to the difficulty of approximating many intractable probabilistic computations that arise in maximum likelihood estimation and related strategies, and due to difficulty of leveraging the benefits of piecewise linear units in the generative context.<br />
   GANs propose a new framework for generative model estimation that sidesteps these difficulties.    <br />
  <br /></li>
@@ -113,7 +123,133 @@
   <script type="math/tex">G</script> maximizes the probability of <script type="math/tex">D</script> making a mistake</li>
     </ul>
   </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Training:</strong><br />
+ <strong>Generator network:</strong> try to fool the discriminator by generating real-looking images<br />
+ <strong>Discriminator network:</strong> try to distinguish between real and fake images<br />
+ <img src="https://cdn.mathpix.com/snip/images/12HQ0mKEIlrX4e2EanOSjUhjgdTpW6nV2gyn8G7-s0A.original.fullsize.png" alt="img" width="67%" /></p>
+
+    <ul>
+      <li>Train <strong>jointly</strong> in <strong>minimax game</strong>.
+        <ul>
+          <li>Minimax objective function:
+            <p>$$\min _{\theta_{g}} \max _{\theta_{d}}\left[\mathbb{E}_{x \sim p_{\text {data }}} \log D_{\theta_{d}}(x)+\mathbb{E}_{z \sim p(z)} \log \left(1-D_{\theta_{d}}\left(G_{\theta_{g}}(z)\right)\right)\right]$$</p>
+            <p>- Discriminator outputs likelihood in <script type="math/tex">(0,1)</script> of real image<br />
+  - <script type="math/tex">D_{\theta_{d}}(x)</script>: Discriminator output for real data <script type="math/tex">\boldsymbol{x}</script><br />
+  - <script type="math/tex">D_{\theta_{d}}\left(G_{\theta_{g}}(z)\right)</script>: Discriminator output for generated fake data <script type="math/tex">G(z)</script><br />
+  - Discriminator <script type="math/tex">\left(\theta_{d}\right)</script> wants to maximize objective such that <script type="math/tex">\mathrm{D}(\mathrm{x})</script> is close to <script type="math/tex">1</script> (real) and <script type="math/tex">\mathrm{D}(\mathrm{G}(\mathrm{z}))</script> is close to <script type="math/tex">0</script> (fake)<br />
+  - Generator <script type="math/tex">\left(\mathrm{f}_ {\mathrm{g}}\right)</script> “wants to minimize objective such that <script type="math/tex">\mathrm{D}(\mathrm{G}(\mathrm{z}))</script> is close to <script type="math/tex">1</script> (discriminator is fooled into thinking generated <script type="math/tex">\mathrm{G}(\mathrm{z})</script> is real)</p>
+          </li>
+        </ul>
+      </li>
+      <li>Alternate between*:
+        <ol>
+          <li><strong>Gradient Ascent</strong> on Discriminator:
+            <p>$$\max _{\theta_{d}}\left[\mathbb{E}_{x \sim p_{\text {data}}} \log D_{\theta_{d}}(x)+\mathbb{E}_{z \sim p(z)} \log \left(1-D_{\theta_{d}}\left(G_{\theta_{g}}(z)\right)\right)\right]$$</p>
+          </li>
+          <li><strong>Gradient Ascent</strong> on Generator (different objective):
+            <p>$$\max _{\theta_{g}} \mathbb{E}_{z \sim p(z)} \log \left(D_{\theta_{d}}\left(G_{\theta_{g}}(z)\right)\right)$$</p>
+          </li>
+        </ol>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">GAN Training Algorithm:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Algorithm</button>
+ <img src="https://cdn.mathpix.com/snip/images/vJzBJcFh5ASuKowEV6B5OMklS-PPNIgqvnnDclMMu3g.original.fullsize.png" alt="img" width="100%" hidden="" /><br />
+ - <strong># of Training steps <script type="math/tex">\mathrm{k}</script>:</strong> some find <script type="math/tex">\mathrm{k}=1</script> more stable, others use <script type="math/tex">\mathrm{k}>1</script> no best rule.</p>
+    <ul>
+      <li>Recent work (e.g. Wasserstein GAN) alleviates this problem, better stability!</li>
+    </ul>
+
+    <p><img src="https://cdn.mathpix.com/snip/images/nFIqQ5afG4h-GIcPQSbOwUxro5zj55HY9rAOf_f3C_Q.original.fullsize.png" alt="img" width="67%" /></p>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li>* Instead of minimizing likelihood of discriminator being correct, now maximize likelihood of discriminator being wrong. Same objective of fooling discriminator, but now higher gradient signal for bad samples =&gt; works much better! Standard in practice.
+        <ul>
+          <li>Previously we used to do gradient <strong>descent</strong> on generator:
+            <p>$$\min _{\theta_{g}} \mathbb{E}_{z \sim p(z)} \log \left(1-D_{\theta_{d}}\left(G_{\theta_{g}}(z)\right)\right)$$</p>
+            <p>In practice, optimizing this generator objective does not work well.<br />
+  <img src="/main_files/cs231n/gans/2.png" alt="img" width="40%" /></p>
+          </li>
+          <li>Now we are doing gradient <em><strong>ascent</strong></em> on the generator:
+            <p>$$\max _{\theta_{g}} \mathbb{E}_{z \sim p(z)} \log \left(D_{\theta_{d}}\left(G_{\theta_{g}}(z)\right)\right)$$</p>
+            <p><img src="/main_files/cs231n/gans/1.png" alt="img" width="40%" /></p>
+          </li>
+        </ul>
+      </li>
+      <li>Jointly training two networks is challenging, can be unstable. Choosing objectives with better loss landscapes helps training, is an active area of research.</li>
+      <li><strong>The representations have nice structure:</strong>
+        <ul>
+          <li>Average <script type="math/tex">\boldsymbol{z}</script> vectors, do arithmetic:<br />
+  <img src="https://cdn.mathpix.com/snip/images/iNB2WF_B-fA6AUeNPkqjaPCQRzCi1iEp9O7AmNsNGX0.original.fullsize.png" alt="img" width="40%" /><br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Glasses</button>
+  <img src="https://cdn.mathpix.com/snip/images/It81yGTPcd7AtoxXUL6zmFRv475nN_ryCP8EL2SsPUs.original.fullsize.png" alt="img" width="60%" hidden="" /></li>
+          <li>Interpolating between random points in latent space is possible<br />
+ <br /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Generative Adversarial Nets: Convolutional Architectures:</strong><br />
+ - <strong>Discriminator</strong> is a standard <strong>convolutional network</strong>.<br />
+ - <strong>Generator</strong> is an <strong>upsampling network</strong> with <strong>fractionally-strided convolutions</strong>.<br />
+ <img src="https://cdn.mathpix.com/snip/images/sPjqzCuh41DM_xCX9RYshgKPi1TDZsFpZxELmngXn9g.original.fullsize.png" alt="img" width="40%" /></p>
+
+    <p id="lst-p"><strong style="color: red">Architecture guidelines for stable Deep Convolutional GANs:</strong></p>
+    <ul>
+      <li>Replace any pooling layers with strided convolutions (discriminator) and fractional-strided convolutions (generator).</li>
+      <li>Use batchnorm in both the generator and the discriminator.</li>
+      <li>Remove fully connected hidden layers for deeper architectures.</li>
+      <li>Use ReLU activation in generator for all layers except for the output, which uses Tanh.</li>
+      <li>Use LeakyReLU activation in the discriminator for all layers.<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents46">Pros, Cons and Research:</strong>
+    <ul>
+      <li><strong>Pros</strong>:
+        <ul>
+          <li>Beautiful, state-of-the-art samples!</li>
+        </ul>
+      </li>
+      <li><strong>Cons</strong>:
+        <ul>
+          <li>Trickier / more unstable to train</li>
+          <li>Can’t solve inference queries such as <script type="math/tex">p(x), p(z\vert x)</script></li>
+        </ul>
+      </li>
+      <li><strong>Active areas of research:</strong>
+        <ul>
+          <li>Better loss functions, more stable training (Wasserstein GAN, LSGAN, many others)</li>
+          <li>Conditional GANs, GANs for all kinds of applications</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ol>
+
+<p id="lst-p"><strong style="color: red">Notes:</strong></p>
+<ul>
+  <li><strong>Generative Adversarial Network (GAN).</strong> This has been one of the most popular models (research-wise) in recent years (<a href="https://arxiv.org/abs/1406.2661">Goodfellow et al., 2014</a>). This OpenAI <a href="https://blog.openai.com/generative-models/">blogpost</a> gives a good overview of a few architectures based on the GAN (although only from OpenAI). Other interesting models include pix2pix (<a href="https://arxiv.org/abs/1611.07004">Isola et al., 2017</a>), CycleGAN (<a href="https://arxiv.org/abs/1703.10593">Zhu et al., 2017</a>) and WGAN (<a href="https://arxiv.org/abs/1701.07875">Arjovsky et al., 2017</a>). The first two deal with image-to-image translation (eg. photograph to Monet/Van Gogh or summer photo to winter photo), while the last work focuses on using Wasserstein distance as a metric for stabilizing the GAN (since GANs are known to be unstable and difficult to train).</li>
+  <li><strong>Limitation of GANs</strong>:
+    <ul>
+      <li><a href="https://arxiv.org/pdf/1711.00970.pdf">A Classification–Based Study of Covariate Shift in GAN Distributions (paper)</a></li>
+      <li><a href="https://arxiv.org/pdf/1706.09884.pdf">On the Limitations of First-Order Approximation in GAN Dynamics (paper)</a></li>
+      <li><a href="http://www.offconvex.org/2018/03/12/bigan/">Limitations of Encoder-Decoder GAN architectures (4) (Blog+Paper!)</a></li>
+      <li><a href="http://www.offconvex.org/2017/07/06/GANs3/">Do GANs actually do distribution learning? (3) (Blog+Paper!)</a></li>
+      <li><a href="http://www.offconvex.org/2017/03/15/GANs/">Generative Adversarial Networks (2), Some Open Questions (Blog+Paper)</a></li>
+      <li><a href="http://www.offconvex.org/2017/03/30/GANs2/">Generalization and Equilibrium in Generative Adversarial Networks (1) (Blog+Papers)</a></li>
+      <li><a href="inference.vc/my-notes-on-the-numerics-of-gans/">GANs are Broken in More than One Way: The Numerics of GANs (Blog)</a></li>
+    </ul>
+  </li>
+  <li><strong>Cool GAN papers</strong>:<br />
+  Cycle-GAN, BigGAN, PGGAN, WGAN-GP, StyleGAN, SGAN,</li>
+  <li><a href="https://twitter.com/fhuszar/status/1046469743480373248">GAN discussion usefulness and applications (twitter)</a><br />
+<br /></li>
+</ul>
 
 
       <footer class="site-footer">

@@ -86,15 +86,20 @@
 <hr />
 <hr />
 
+<p><a href="https://www.cs.cmu.edu/~rsalakhu/papers/annrev.pdf">Learning Deep Generative Models (pdf)</a><br />
+<a href="https://deepgenerativemodels.github.io/notes/autoregressive/">AutoRegressive Models (CS236 pdf)</a><br />
+<a href="https://deepgenerativemodels.github.io/notes/index.html">Deep Generative Models (CS236 pdf)</a><br />
+<a href="https://www.youtube.com/watch?v=JrO5fSskISY">Deep Generative Models (Lecture)</a><br />
+<a href="https://sites.google.com/view/berkeley-cs294-158-sp19/home">CS294 Berkeley - Deep Unsupervised Learning</a></p>
+
 <h2 id="content1">Unsupervised Learning</h2>
 
 <ol>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Unsupervised Learning:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Unsupervised Learning:</strong><br />
+ <strong>Data:</strong> <script type="math/tex">x</script> Just data, no labels! <br />
+ <strong>Goal:</strong> Learn some underlying hidden <em>structure</em> of the data<br />
+ <strong>Examples:</strong> Clustering, dimensionality reduction, feature learning, density estimation, etc.<br />
+ <br /></li>
 </ol>
 
 <hr />
@@ -105,27 +110,26 @@
 
 <ol>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Generative (Joint) Models:</strong></dt>
-      <dd><strong>Generative Models</strong> are <strong>Joint Models</strong>.</dd>
-      <dd><strong>Joint Models</strong> place probabilities <script type="math/tex">\left(P(c,d)\right)</script> over both the observed data and the “target” (hidden) variables that can only be computed from those observed.</dd>
-      <dd>Generative models are typically probabilistic, specifying a joint probability distribution (<script type="math/tex">P(d,c)</script>) over observation and target (label) values,<br />
- and tries to <strong>Maximize</strong> this <strong>joint Likelihood</strong>.
-        <blockquote>
-          <p>Choosing weights turn out to be trivial: chosen as the <strong>relative frequencies</strong>.</p>
-        </blockquote>
-      </dd>
-      <dd><strong>Examples:</strong>
-        <ul>
-          <li>Gaussian Mixture Model</li>
-          <li>Naive Bayes Classifiers</li>
-          <li>Hidden Markov Models (HMMs)</li>
-          <li>Restricted Boltzmann Machines (RBMs)</li>
-          <li>AutoEncoders</li>
-          <li>Generative Adversarial Networks (GANs)</li>
-        </ul>
-      </dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Generative (Joint) Models:</strong><br />
+ <strong>Generative Models</strong> are <strong>Joint Models</strong>.<br />
+ <strong>Joint Models</strong> place probabilities <script type="math/tex">\left(P(c,d)\right)</script> over both the observed data and the “target” (hidden) variables that can only be computed from those observed.</p>
+
+    <p>Generative models are typically probabilistic, specifying a joint probability distribution (<script type="math/tex">P(d,c)</script>) over observation and target (label) values, and tries to <strong>Maximize</strong> this <strong>joint Likelihood</strong>.</p>
+    <blockquote>
+      <p>Choosing weights turn out to be trivial: chosen as the <strong>relative frequencies</strong>.</p>
+    </blockquote>
+
+    <p>They address the problem of <strong>density estimation</strong>, a core problem in unsupervised learning.</p>
+
+    <p id="lst-p"><strong>Examples:</strong></p>
+    <ul>
+      <li>Gaussian Mixture Model</li>
+      <li>Naive Bayes Classifiers</li>
+      <li>Hidden Markov Models (HMMs)</li>
+      <li>Restricted Boltzmann Machines (RBMs)</li>
+      <li>AutoEncoders</li>
+      <li>Generative Adversarial Networks (GANs)</li>
+    </ul>
   </li>
   <li>
     <dl>
@@ -151,13 +155,12 @@ They take the data as given, and put a probability <script type="math/tex">\left
     </dl>
   </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Generative VS Discriminative Models:</strong></dt>
-      <dd>Basically, <em>Discriminative Models</em> infer outputs based on inputs,<br />
-while <em>Generative Models</em> generate, both, inputs and outputs (typically given some hidden paramters).</dd>
-      <dd>However, notice that the two models are usually viewed as complementary procedures.<br />
-One does <strong>not</strong> necessarily outperform the other, in either classificaiton or regression tasks.</dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Generative VS Discriminative Models:</strong><br />
+ Basically, <em>Discriminative Models</em> infer outputs based on inputs,<br />
+ while <em>Generative Models</em> generate, both, inputs and outputs (typically given some hidden paramters).</p>
+
+    <p>However, notice that the two models are usually viewed as complementary procedures.<br />
+ One does <strong>not</strong> necessarily outperform the other, in either classificaiton or regression tasks.</p>
   </li>
   <li>
     <dl>
@@ -217,21 +220,25 @@ One does <strong>not</strong> necessarily outperform the other, in either classi
 
 <hr />
 
-<h2 id="content3">PixelRNN and PixelCNN</h2>
+<h2 id="content3">AutoRegressive Models - PixelRNN and PixelCNN</h2>
+
+<p><a href="https://deepgenerativemodels.github.io/notes/autoregressive/">AutoRegressive Models (pdf)</a></p>
 
 <ol>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Fully Visible (Deep) Belief Networks:</strong></dt>
-      <dd><strong>Deep Belief Network (DBNs)</strong> are generative graphical models, or alternatively a class of deep neural networks, composed of multiple layers of latent variables (“hidden units”), with connections between the layers but not between units within each layer.</dd>
-      <dd>DBNs undergo unsupervised training to <em>learn to probabilistically reconstruct the inputs</em>.</dd>
-      <dd>They generate an <strong>Explicit Density Model</strong>.</dd>
-      <dd>They use the <strong>chain rule</strong> to <em>decompose the _likelihood of an image</em> <script type="math/tex">x</script> into products of 1-d distributions:</dd>
-      <dd><img src="/main_files/cs231n/13/2.png" alt="img" width="70%" /></dd>
-      <dd>then, they <strong>Maximize</strong> the <strong>Likelihood</strong> of the training data.</dd>
-      <dd>The <strong>conditional distributions over pixels</strong> are very _complex.<br />
-We model them using a <strong>neural network</strong>.</dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Fully Visible (Deep) Belief Networks:</strong><br />
+ <strong>Deep Belief Network (DBNs)</strong> are generative graphical models, or alternatively a class of deep neural networks, composed of multiple layers of latent variables (“hidden units”), with connections between the layers but not between units within each layer.</p>
+
+    <p>DBNs undergo unsupervised training to <em>learn to probabilistically reconstruct the inputs</em>.</p>
+
+    <p>They generate an <strong>Explicit Density Model</strong>.</p>
+
+    <p>They use the <strong>chain rule</strong> to <em>decompose the _likelihood of an image</em> <script type="math/tex">x</script> into products of 1-d distributions:<br />
+ <img src="/main_files/cs231n/13/2.png" alt="img" width="70%" />  <br />
+ then, they <strong>Maximize</strong> the <strong>Likelihood</strong> of the training data.</p>
+
+    <p>The <strong>conditional distributions over pixels</strong> are very <em>complex</em>.<br />
+ We model them using a <strong>neural network</strong>.</p>
   </li>
   <li>
     <dl>
@@ -321,50 +328,37 @@ p(x) = p(x_0) \prod_1^n p(x_i | x_{i<}) %]]></script>.
       <dd><a href="http://sergeiturukin.com/2017/02/22/pixelcnn.html">Further Reading</a></dd>
     </dl>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Improving PixelCNN Performance:</strong></dt>
-      <dd>
-        <ul>
-          <li>Gated Convolutional Layers</li>
-          <li>Short-cut connections</li>
-          <li>Discretized logistic loss</li>
-          <li>Multi-scale</li>
-          <li>Training tricks</li>
-        </ul>
-      </dd>
-      <dd><strong>Further Reading</strong>:
-        <ul>
-          <li><em><strong>PixelCNN++</strong></em> | <em>Salimans et al. 2017</em></li>
-          <li><em>Van der Oord et al. NIPS 2016</em></li>
-        </ul>
-      </dd>
-    </dl>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Improving PixelCNN Performance:</strong>
+    <ul>
+      <li>Gated Convolutional Layers</li>
+      <li>Short-cut connections</li>
+      <li>Discretized logistic loss</li>
+      <li>Multi-scale</li>
+      <li>Training tricks</li>
+    </ul>
+
+    <p id="lst-p"><strong>Further Reading</strong>:</p>
+    <ul>
+      <li><em><strong>PixelCNN++</strong></em> | <em>Salimans et al. 2017</em></li>
+      <li><em>Van der Oord et al. NIPS 2016</em></li>
+      <li><strong>Pixel-Snail</strong></li>
+    </ul>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Pros and Cons of Auto-Regressive Models:</strong></dt>
-      <dd>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Pros and Cons of Auto-Regressive Models:</strong>
+    <ul>
+      <li><strong>Pros</strong>:
         <ul>
-          <li><strong>Pros</strong>:
-            <ul>
-              <li>Can explicitly compute likelihood <script type="math/tex">p(x)</script></li>
-              <li>Explicit likelihood of training data gives good evaluation metric</li>
-              <li>Good Samples</li>
-            </ul>
-          </li>
+          <li>Can explicitly compute likelihood <script type="math/tex">p(x)</script></li>
+          <li>Explicit likelihood of training data gives good evaluation metric</li>
+          <li>Good Samples</li>
         </ul>
-      </dd>
-      <dd>
+      </li>
+      <li><strong>Cons</strong>:
         <ul>
-          <li><strong>Cons</strong>:
-            <ul>
-              <li>Sequential Generation is <strong>Slow</strong></li>
-            </ul>
-          </li>
+          <li>Sequential Generation is <strong>Slow</strong></li>
         </ul>
-      </dd>
-    </dl>
+      </li>
+    </ul>
   </li>
 </ol>
 

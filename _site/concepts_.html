@@ -107,27 +107,29 @@
 <hr />
 <hr />
 
+<p><button class="showText" value="show" onclick="showTextPopHide(event);">The Scientific Method as an Ongoing Process</button>
+<img src="https://cdn.mathpix.com/snip/images/XCvcfM_6eAB3B5pXgL2IZTyO1FkhciXiaVCcQBjsiAc.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+<p><strong style="color: red">PyTorch:</strong><br />
+<button class="showText" value="show" onclick="showTextPopHide(event);">Packages</button>
+<img src="https://cdn.mathpix.com/snip/images/dq-w7AFpBfdXveRL3uGmnerIGtfIPyeJFRfj2o97XSU.original.fullsize.png" alt="img" width="100%" hidden="" /><br />
+CNN Tensor Shape: <script type="math/tex">[B, C, H, W]</script></p>
+
 <h2 id="content1">CNNs</h2>
 
-<ol>
-  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">:</strong></li>
-</ol>
+<!-- 1. **:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}   -->
 
 <!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
 -->
 
-<p><strong>Notes:</strong></p>
-<ul>
-  <li><strong>Structured Convolutions</strong>:<br />
-  <strong>Why?</strong><br />
-  Language has structure, would like it to localize features.
-    <blockquote>
-      <p>e.g. noun-verb pairs very informative, but not captured by normal CNNs</p>
-    </blockquote>
-  </li>
-</ul>
+<!-- __Notes:__   -->
+<!-- * __Structured Convolutions__:  
+    __Why?__  
+    Language has structure, would like it to localize features.  
+    > e.g. noun-verb pairs very informative, but not captured by normal CNNs  
+ -->
 
 <hr />
 <hr />
@@ -135,204 +137,176 @@
 <h2 id="content2">RNNs</h2>
 
 <!-- 1. **RNN Architectures:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}   -->
+<!-- 2. **Different Connections in RNN Architectures:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}   -->
 
 <ol>
-  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Different Connections in RNN Architectures:</strong>
-    <ol>
-      <li><strong>PeepHole Connection:</strong><br />
- is an addition on the equations of the <strong>LSTM</strong> as follows:
-        <p>$$ \Gamma_o = \sigma(W_o[a^{(t-1)}, x^{(t)}] + b_o) \\
- \implies 
- \sigma(W_o[a^{(t-1)}, x^{(t)}, c^{(t-1)}] + b_o)$$</p>
-        <p>Thus, we add the term <script type="math/tex">c^{(t-1)}</script> to the output gate.</p>
-      </li>
-    </ol>
-  </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Modeling Sequences - Memory as a model property:</strong><br />
- <strong style="color: red">Memoryless Models for Sequences:</strong>
-    <ul>
-      <li><strong>Autoregressive Models:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Content</button>
+    <ul hidden="">
+      <li>Everything:<br />
+  <strong style="color: red">Memoryless Models for Sequences:</strong>
+        <ul>
+          <li><strong>Autoregressive Models:</strong><br />
   Predict the next term in a sequence from a fixed number of previous terms using <em>“delay taps”</em>.
-        <blockquote>
-          <p>It tries to predict the next term, <em>basically as a weighted average</em> (if model is linear) of the previous terms.</p>
-        </blockquote>
+            <blockquote>
+              <p>It tries to predict the next term, <em>basically as a weighted average</em> (if model is linear) of the previous terms.</p>
+            </blockquote>
 
-        <p><img src="/main_files/concepts/11.png" alt="img" width="50%" /></p>
-      </li>
-      <li><strong>Feed-Forward Neural Nets</strong>:<br />
+            <p><img src="/main_files/concepts/11.png" alt="img" width="50%" /></p>
+          </li>
+          <li><strong>Feed-Forward Neural Nets</strong>:<br />
   Generalize Auto-regressive models by using one or more layers of non-linear hidden units e.g. Bengio’s first LM.<br />
   <img src="/main_files/concepts/12.png" alt="img" width="50%" /></li>
-    </ul>
-
-    <p><strong style="color: red">Beyond Memoryless Models:</strong><br />
- If we give our generative models some <em>hidden state</em>, and if we give this hidden state its own internal dynamics, we get a much more interesting kind of model.</p>
-    <blockquote>
-      <p>The hidden state produces <em>observations</em> that we get to <em>“observe/see”</em></p>
-    </blockquote>
-
-    <ul>
-      <li>It can <strong>store information</strong> in its <em>hidden state</em> for a long time.</li>
-      <li>If the dynamics is noisy and the way it generates outputs from its hidden state is noisy, (by observing the outputs of the model) we can never know its exact hidden state.
-        <ul>
-          <li>The best we can do is to infer a probability distribution over the space of hidden state vectors.</li>
         </ul>
-      </li>
-      <li>This <strong>inference</strong> (of the hidden states by observing the outputs of the model) is only <strong>tractable</strong> for <em>TWO</em> types of hidden-state models:
-        <ol>
-          <li><strong>Linear Dynamical Systems (LDS) (loved by Engineers):</strong>
+
+        <p id="lst-p"><strong style="color: red">Beyond Memoryless Models:</strong></p>
+        <p>If we give our generative models some <em>hidden state</em>, and if we give this hidden state its own internal dynamics, we get a much more interesting kind of model.</p>
+        <blockquote>
+          <p>The hidden state produces <em>observations</em> that we get to <em>“observe/see”</em></p>
+        </blockquote>
+
+        <ul>
+          <li>It can <strong>store information</strong> in its <em>hidden state</em> for a long time.</li>
+          <li>If the dynamics is noisy and the way it generates outputs from its hidden state is noisy, (by observing the outputs of the model) we can never know its exact hidden state.
             <ul>
-              <li>These are generative models. They have a real-valued hidden state that cannot be observed directly.
+              <li>The best we can do is to infer a probability distribution over the space of hidden state vectors.</li>
+            </ul>
+          </li>
+          <li>This <strong>inference</strong> (of the hidden states by observing the outputs of the model) is only <strong>tractable</strong> for <em>TWO</em> types of hidden-state models:
+            <ol>
+              <li><strong>Linear Dynamical Systems (LDS) (loved by Engineers):</strong>
                 <ul>
-                  <li>The hidden state has linear dynamics with Gaussian noise and produces the observations using a linear model with Gaussian noise.</li>
-                  <li>There may also be driving inputs.</li>
-                </ul>
-              </li>
-              <li>To predict the next output (so that we can shoot down the missile) we need to infer the hidden state.
-                <ul>
-                  <li>A linearly transformed Gaussian is a Gaussian. So the distribution over the hidden state given the data/observations so far is Gaussian (because all the noise in a LDS is Gaussian). It can be computed using <em>“Kalman filtering”</em>.
+                  <li>These are generative models. They have a real-valued hidden state that cannot be observed directly.
+                    <ul>
+                      <li>The hidden state has linear dynamics with Gaussian noise and produces the observations using a linear model with Gaussian noise.</li>
+                      <li>There may also be driving inputs.</li>
+                    </ul>
+                  </li>
+                  <li>To predict the next output (so that we can shoot down the missile) we need to infer the hidden state.
+                    <ul>
+                      <li>A linearly transformed Gaussian is a Gaussian. So the distribution over the hidden state given the data/observations so far is Gaussian (because all the noise in a LDS is Gaussian). It can be computed using <em>“Kalman filtering”</em>.
  <img src="/main_files/concepts/13.png" alt="img" width="35%" /></li>
+                    </ul>
+                  </li>
                 </ul>
               </li>
-            </ul>
-          </li>
-          <li><strong>Hidden Markov Models (HMMs) (loved by computer scientists):</strong>
-            <ul>
-              <li>Hidden Markov Models have a <strong>discrete one-of-N</strong> hidden state distributions (rather than <em>Gaussian</em> distributions). Transitions between states are stochastic and controlled by a transition matrix. The outputs produced by a state are stochastic.
+              <li><strong>Hidden Markov Models (HMMs) (loved by computer scientists):</strong>
                 <ul>
-                  <li>We cannot be sure which state produced a given output (because the outputs produced by a state are stochastic). So the state is “hidden” (behind this <em>“probabilistic veil”</em>).</li>
-                  <li>It is easy to represent a probability distribution across N states with N numbers.<br />
+                  <li>Hidden Markov Models have a <strong>discrete one-of-N</strong> hidden state distributions (rather than <em>Gaussian</em> distributions). Transitions between states are stochastic and controlled by a transition matrix. The outputs produced by a state are stochastic.
+                    <ul>
+                      <li>We cannot be sure which state produced a given output (because the outputs produced by a state are stochastic). So the state is “hidden” (behind this <em>“probabilistic veil”</em>).</li>
+                      <li>It is easy to represent a probability distribution across N states with N numbers.<br />
   So, even tho we cant know what state it is in for sure, we can easily represent the probability distribution</li>
-                </ul>
-              </li>
-              <li>To predict the next output we need to infer the probability distribution over hidden states.
-                <ul>
-                  <li>HMMs have efficient algorithms for inference and learning (dynamic programming).<br />
+                    </ul>
+                  </li>
+                  <li>To predict the next output we need to infer the probability distribution over hidden states.
+                    <ul>
+                      <li>HMMs have efficient algorithms for inference and learning (dynamic programming).<br />
  <img src="/main_files/concepts/14.png" alt="img" width="35%" /></li>
-                </ul>
-              </li>
-              <li><strong>A Fundamental Limitation of HMMs</strong>:
-                <ul>
-                  <li>Consider what happens when a hidden Markov model generates data
-                    <ul>
-                      <li>At each time step it must select one of its hidden states. So with <script type="math/tex">N</script> hidden states it can only remember <script type="math/tex">\log(N)</script> bits about what it generated so far.</li>
                     </ul>
                   </li>
-                  <li>Consider the information that the first half of an utterance contains about the second half:
-                    <blockquote>
-                      <p>This is the amount of info that the HMM needs to convey to the second half of an utterance it produces from the first half (having produced the first half)</p>
-                    </blockquote>
+                  <li><strong>A Fundamental Limitation of HMMs</strong>:
+                    <ul>
+                      <li>Consider what happens when a hidden Markov model generates data
+                        <ul>
+                          <li>At each time step it must select one of its hidden states. So with <script type="math/tex">N</script> hidden states it can only remember <script type="math/tex">\log(N)</script> bits about what it generated so far.</li>
+                        </ul>
+                      </li>
+                      <li>Consider the information that the first half of an utterance contains about the second half:
+                        <blockquote>
+                          <p>This is the amount of info that the HMM needs to convey to the second half of an utterance it produces from the first half (having produced the first half)</p>
+                        </blockquote>
 
-                    <ul>
-                      <li>The syntax needs to fit (e.g. number and tense agreement)</li>
-                      <li>The semantics needs to fit. The intonation needs to fit.</li>
-                      <li>The accent, rate, volume, and vocal tract characteristics must all fit.</li>
+                        <ul>
+                          <li>The syntax needs to fit (e.g. number and tense agreement)</li>
+                          <li>The semantics needs to fit. The intonation needs to fit.</li>
+                          <li>The accent, rate, volume, and vocal tract characteristics must all fit.</li>
+                        </ul>
+                      </li>
+                      <li>All these aspects combined could be <script type="math/tex">100</script> bits of information that the first half of an utterance needs to convey to the second half. Thus, needing about <script type="math/tex">2^100</script> hidden states to <em>“remember/store”</em> that information.   <script type="math/tex">2^100</script> is big!</li>
                     </ul>
                   </li>
-                  <li>All these aspects combined could be <script type="math/tex">100</script> bits of information that the first half of an utterance needs to convey to the second half. Thus, needing about <script type="math/tex">2^100</script> hidden states to <em>“remember/store”</em> that information.   <script type="math/tex">2^100</script> is big!</li>
                 </ul>
               </li>
+            </ol>
+          </li>
+        </ul>
+
+        <p id="lst-p"><strong style="color: red">Recurrent Neural Networks (RNNs):</strong></p>
+        <ul>
+          <li>RNNs are very powerful, because they combine two properties:
+            <ul>
+              <li>Distributed hidden state that allows them to store a lot of information about the past efficiently.
+                <blockquote>
+                  <p>i.e. several different units can be active at once (unlike HMMs), so they can remember several different things at once.</p>
+                </blockquote>
+              </li>
+              <li>Non-linear dynamics that allows them to update their hidden state in complicated ways (unlike LDSs).</li>
             </ul>
           </li>
-        </ol>
-      </li>
-    </ul>
-
-    <p><strong style="color: red">Recurrent Neural Networks (RNNs):</strong></p>
-    <ul>
-      <li>RNNs are very powerful, because they combine two properties:
-        <ul>
-          <li>Distributed hidden state that allows them to store a lot of information about the past efficiently.
-            <blockquote>
-              <p>i.e. several different units can be active at once (unlike HMMs), so they can remember several different things at once.</p>
-            </blockquote>
+          <li>
+            <p>With enough neurons and time, RNNs can compute anything that can be computed by your computer.<br />
+  <img src="/main_files/concepts/15.png" alt="img" width="15%" /></p>
           </li>
-          <li>Non-linear dynamics that allows them to update their hidden state in complicated ways (unlike LDSs).</li>
+          <li><a href="https://distill.pub/2019/memorization-in-rnns/">Visualizing memorization in RNNs</a></li>
         </ul>
-      </li>
-      <li>
-        <p>With enough neurons and time, RNNs can compute anything that can be computed by your computer.<br />
- <img src="/main_files/concepts/15.png" alt="img" width="15%" /></p>
-      </li>
-      <li><a href="https://distill.pub/2019/memorization-in-rnns/">Visualizing memorization in RNNs</a></li>
-    </ul>
 
-    <p><strong>Do generative models need to be stochastic?</strong></p>
-    <ul>
-      <li>
-        <p>Linear dynamical systems and HMMs are stochastic models.<br />
+        <p><strong>Do generative models need to be stochastic?</strong></p>
+        <ul>
+          <li>
+            <p>Linear dynamical systems and HMMs are stochastic models.<br />
   The dynamics and the production of observations from the underlying state both involve <strong>intrinsic noise</strong>.</p>
 
+            <ul>
+              <li>But the <strong>posterior probability distribution</strong> over their hidden states given the observed  data so far is a <em><strong>deterministic</strong> function of the data</em>.  <br />
+  <br /></li>
+            </ul>
+          </li>
+          <li>
+            <p>Recurrent neural networks are deterministic.</p>
+            <ul>
+              <li>So think of the hidden state of an RNN as the equivalent of the <strong>deterministic probability distribution over hidden states</strong> in a linear dynamical system or hidden Markov model.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p><strong>What kinds of behavior can RNNs exhibit?</strong></p>
         <ul>
-          <li>But the <strong>posterior probability distribution</strong> over their hidden states given the observed  data so far is a <em><strong>deterministic</strong> function of the data</em>.  <br />
+          <li>They can oscillate. Good for motor control? (e.g. walking needs varying <em>stride</em>)</li>
+          <li>They can settle to point attractors. Good for retrieving memories?
+            <blockquote>
+              <p>By having the target point-attractors (to settle in) be the memories you want to retrieve.</p>
+            </blockquote>
+          </li>
+          <li>They can behave chaotically. Bad for information processing?</li>
+          <li>RNNs could potentially learn to implement lots of small programs (using different subsets of their hidden state) that each capture a nugget of knowledge and run in parallel, interacting to produce very complicated effects.</li>
+          <li>But the computational power of RNNs makes them very hard to train
+            <ul>
+              <li>For many years we could not exploit the computational power of RNNs despite some heroic efforts (e.g. Tony Robinson’s speech recognizer)</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+        <ul>
+          <li><strong>A Content-Addressable Memory</strong>: an item can be accessed by just knowing part of its content.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><a href="https://arxiv.org/pdf/1602.03032.pdf">Associative LSTMs (Paper)</a><br />
  <br /></li>
-        </ul>
-      </li>
-      <li>
-        <p>Recurrent neural networks are deterministic.</p>
-        <ul>
-          <li>So think of the hidden state of an RNN as the equivalent of the <strong>deterministic probability distribution over hidden states</strong> in a linear dynamical system or hidden Markov model.</li>
-        </ul>
-      </li>
-    </ul>
-
-    <p><strong>What kinds of behavior can RNNs exhibit?</strong></p>
-    <ul>
-      <li>They can oscillate. Good for motor control? (e.g. walking needs varying <em>stride</em>)</li>
-      <li>They can settle to point attractors. Good for retrieving memories?
-        <blockquote>
-          <p>By having the target point-attractors (to settle in) be the memories you want to retrieve.</p>
-        </blockquote>
-      </li>
-      <li>They can behave chaotically. Bad for information processing?</li>
-      <li>RNNs could potentially learn to implement lots of small programs (using different subsets of their hidden state) that each capture a nugget of knowledge and run in parallel, interacting to produce very complicated effects.</li>
-      <li>But the computational power of RNNs makes them very hard to train
-        <ul>
-          <li>For many years we could not exploit the computational power of RNNs despite some heroic efforts (e.g. Tony Robinson’s speech recognizer)</li>
-        </ul>
-      </li>
-    </ul>
-
-    <p><strong style="color: red">Notes:</strong></p>
-    <ul>
-      <li><strong>A Content-Addressable Memory</strong>: an item can be accessed by just knowing part of its content.</li>
     </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Stability - Vanishing and Exploding Gradients:</strong></p>
-
-    <p><strong style="color: red">Notes:</strong></p>
-    <ul>
-      <li><strong>Gradient Clipping Intuition</strong>:<br />
-  <img src="/main_files/concepts/1.png" alt="img" width="55%" />
-        <ul>
-          <li>The image above is that of the <strong>Error Surface</strong> of a <em>single hidden unit RNN</em></li>
-          <li>The observation here is that there exists <strong>High Curvature Walls</strong>. <br />
-  This Curvature Wall will move the gradient to a very different/far, probably less useful area. 
-  Thus, if we clip the gradients we will avoid the walls and will remain in the more useful area that we were exploring already. <br />
-  Draw a line between the original point on the Error graph and the End (optimized) point then evaluate the Error on points on that line and look at the changes <script type="math/tex">\rightarrow</script> this shows changes in the curvature.</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ol>
-
-<!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}  
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}  
-    :   -->
-
-<ol>
-  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Notes:</strong>
-    <ul>
-      <li><strong>Learning Long-Range Dependencies in RNNs/sequence-models</strong>:<br />
-  One key factor affecting the ability to learn such dependencies is the length of the paths forward and backward signals have to traverse in the network. The shorter these paths between any combination of positions in the input and output sequences, the easier it is to learn long-range dependencies.</li>
-      <li><strong>LSTM (simple) Implementation</strong>: <a href="https://github.com/nicodjimenez/lstm">github</a>, <a href="http://nicodjimenez.github.io/2014/08/08/lstm.html">blog</a></li>
-      <li><a href="https://medium.com/machine-learning-at-petiteprogrammer/sampling-strategies-for-recurrent-neural-networks-9aea02a6616f" value="show" onclick="iframePopA(event)"><strong>Sampling from RNNs</strong></a>
- <a href="https://medium.com/machine-learning-at-petiteprogrammer/sampling-strategies-for-recurrent-neural-networks-9aea02a6616f"></a>
-        <div></div>
-      </li>
-    </ul>
-  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Stability - Vanishing and Exploding Gradients:</strong><br />
+ <!-- 
+     5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}
+     6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}
+     7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}
+     8. **Notes:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}           
+ --></li>
 </ol>
 
 <hr />
@@ -341,16 +315,15 @@
 <h2 id="content3">Maths</h2>
 
 <ol>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Metrics and Quasi-Metrics:</strong></dt>
-      <dd>A <strong>Metric (distance function)</strong> <script type="math/tex">d</script>  is a function that defines a distance between each pair of elements of a set <script type="math/tex">X</script>.<br />
-A Metric induces a <em>topology</em> on a set; BUT, not all topologies can be generated by a metric.<br />
-Mathematically, it is a function:</dd>
-      <dd>
-        <script type="math/tex; mode=display">{\displaystyle d:X\times X\to [0,\infty )},</script>
-      </dd>
-      <dd>that must satisfy the following properties:
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Metrics and Quasi-Metrics:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Content</button>
+    <ul hidden="">
+      <li>content:<br />
+  A <strong>Metric (distance function)</strong> <script type="math/tex">d</script>  is a function that defines a distance between each pair of elements of a set <script type="math/tex">X</script>.<br />
+  A Metric induces a <em>topology</em> on a set; BUT, not all topologies can be generated by a metric.<br />
+  Mathematically, it is a function:<br />
+  <script type="math/tex">{\displaystyle d:X\times X\to [0,\infty )},</script><br />
+  that must satisfy the following properties:
         <ol>
           <li><script type="math/tex">{\displaystyle d(x,y)\geq 0}</script> <script type="math/tex">\:\:\:\:\:\:\:</script>   non-negativity or separation axiom</li>
           <li><script type="math/tex">{\displaystyle d(x,y)=0\Leftrightarrow x=y}</script> <script type="math/tex">\:\:\:\:\:\:\:</script>  identity of indiscernibles</li>
@@ -361,53 +334,50 @@ Mathematically, it is a function:</dd>
             </blockquote>
           </li>
         </ol>
-      </dd>
-      <dd><button class="showText" value="show" onclick="showTextPopHide(event);">Examples</button>
- <img src="/main_files/concepts/10.png" alt="img" width="100%" hidden="" /></dd>
-      <dd>A <strong>Quasi-Metric</strong> is a metric that lacks the <em>symmetry</em> property.</dd>
-      <dd>One can form a Metric function <script type="math/tex">d'</script>  from a Quasi-metric function <script type="math/tex">d</script> by taking:<br />
-<script type="math/tex">d'(x, y) = ​1⁄2(d(x, y) + d(y, x))</script></dd>
-    </dl>
+
+        <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Examples</button><br />
+  <img src="/main_files/concepts/10.png" alt="img" width="100%" hidden="" /><br />
+  A <strong>Quasi-Metric</strong> is a metric that lacks the <em>symmetry</em> property.<br />
+  One can form a Metric function <script type="math/tex">d'</script>  from a Quasi-metric function <script type="math/tex">d</script> by taking:<br />
+  <script type="math/tex">d'(x, y) = ​1⁄2(d(x, y) + d(y, x))</script></p>
+      </li>
+    </ul>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Binary Relations (abstract algebra):</strong></dt>
-      <dd>A <strong>binary relation</strong> on a set <script type="math/tex">A</script> is a set of ordered pairs of elements of <script type="math/tex">A</script>. In other words, it is a subset of the Cartesian product <script type="math/tex">A^2 = A ×A</script>.</dd>
-      <dd>The number of binary relations on a set of <script type="math/tex">N</script> elements is <script type="math/tex">= 2^{N^2}</script></dd>
-      <dd><strong>Examples:</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Binary Relations (abstract algebra):</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Content</button>
+    <ul hidden="">
+      <li>
+        <p>content:<br />
+  A <strong>binary relation</strong> on a set <script type="math/tex">A</script> is a set of ordered pairs of elements of <script type="math/tex">A</script>. In other words, it is a subset of the Cartesian product <script type="math/tex">A^2 = A ×A</script>.  <br />
+  The number of binary relations on a set of <script type="math/tex">N</script> elements is <script type="math/tex">= 2^{N^2}</script></p>
+
+        <p id="lst-p"><strong>Examples:</strong></p>
         <ul>
           <li>“is greater than”</li>
           <li>“is equal to”</li>
           <li>A function <script type="math/tex">f(x)</script></li>
         </ul>
-      </dd>
-      <dd><strong>Properties:</strong>  (for a relation <script type="math/tex">R</script> and set <script type="math/tex">X</script>)
+
+        <p id="lst-p"><strong>Properties:</strong>  (for a relation <script type="math/tex">R</script> and set <script type="math/tex">X</script>)</p>
         <ul>
           <li><em>Reflexive:</em> for all <script type="math/tex">x</script> in <script type="math/tex">X</script> it holds that <script type="math/tex">xRx</script></li>
           <li><em>Symmetric:</em> for all <script type="math/tex">x</script> and <script type="math/tex">y</script> in <script type="math/tex">X</script> it holds that if <script type="math/tex">xRy</script> then <script type="math/tex">yRx</script></li>
-          <li><em>Transitive:</em> for all <script type="math/tex">x</script>, <script type="math/tex">y</script> and <script type="math/tex">z</script> in <script type="math/tex">X</script> it holds that if <script type="math/tex">xRy</script> and <script type="math/tex">yRz</script> then <script type="math/tex">xRz</script></li>
+          <li><em>Transitive:</em> for all <script type="math/tex">x</script>, <script type="math/tex">y</script> and <script type="math/tex">z</script> in <script type="math/tex">X</script> it holds that if <script type="math/tex">xRy</script> and <script type="math/tex">yRz</script> then <script type="math/tex">xRz</script><br />
+  An <strong>Equivalence Relation</strong> has all of the above properties.</li>
         </ul>
-      </dd>
-      <dd>An <strong>Equivalence Relation</strong> has all of the above properties.</dd>
-    </dl>
+      </li>
+    </ul>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Set Theory:</strong></dt>
-      <dd>
-        <ul>
-          <li><strong>Number of subsets of a set of <script type="math/tex">N</script> elements</strong> <script type="math/tex">= 2^N</script></li>
-          <li><strong>Number of pairs (e.g. <script type="math/tex">(a,b)</script>) of a set of <script type="math/tex">N</script> elements</strong> <script type="math/tex">= N^2</script>
-            <blockquote>
-              <p>e.g. <script type="math/tex">\mathbb{R} \times \mathbb{R} = \mathbb{R}^2</script></p>
-            </blockquote>
-          </li>
-        </ul>
-      </dd>
-    </dl>
-  </li>
-  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Proof Methods:</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Set Theory:</strong>
     <ul>
+      <li><strong>Number of subsets of a set of <script type="math/tex">N</script> elements</strong> <script type="math/tex">= 2^N</script></li>
+      <li><strong>Number of pairs (e.g. <script type="math/tex">(a,b)</script>) of a set of <script type="math/tex">N</script> elements</strong> <script type="math/tex">= N^2</script><br />
+  e.g. <script type="math/tex">\mathbb{R} \times \mathbb{R} = \mathbb{R}^2</script></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Proof Methods:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show List</button>
+    <ul hidden="">
       <li>Direct Proof</li>
       <li>Mathematical Induction
         <ul>
@@ -484,8 +454,9 @@ Mathematically, it is a function:</dd>
   Assume that the components of <script type="math/tex">q</script> and <script type="math/tex">k</script> are independent random variables with mean <script type="math/tex">0</script> and variance <script type="math/tex">1</script>. Then their dot product, <script type="math/tex">q^Tk = \sum_{i=1}^{d_k} q_ik_i</script>, (where <script type="math/tex">d_k = \vert k \vert</script> is the dimension of <script type="math/tex">k \in \mathbb{R}^{d_k} \iff q \in \mathbb{R}^{d_q}</script>) has mean <script type="math/tex">0</script> and variance <script type="math/tex">d_k</script>.</li>
     </ul>
   </li>
-  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Formulas:</strong>
-    <ul>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Formulas:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Formulas</button>
+    <ul hidden="">
       <li><strong>Binomial Theorem</strong>:
         <p>$$(x+y)^{n}=\sum_{k=0}^{n}{n \choose k}x^{n-k}y^{k}=\sum_{k=0}^{n}{n \choose k}x^{k}y^{n-k} \\={n \choose 0}x^{n}y^{0}+{n \choose 1}x^{n-1}y^{1}+{n \choose 2}x^{n-2}y^{2}+\cdots +{n \choose n-1}x^{1}y^{n-1}+{n \choose n}x^{0}y^{n},$$</p>
       </li>
@@ -587,55 +558,8 @@ Mathematically, it is a function:</dd>
         <div></div>
       </li>
     </ul>
-  </li>
-  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents45">Maximum Likelihood Estimation:</strong><br />
- <strong style="color: red">Likelihood in Parametric Models:</strong><br />
- Suppose we have a parametric model <script type="math/tex">\{p(y ; \theta) | \theta \in \Theta\}</script> and a sample <script type="math/tex">D=\left\{y_{1}, \ldots, y_{n}\right\}</script>:
-    <ul>
-      <li>The likelihood of parameter estimate <script type="math/tex">\hat{\theta} \in \Theta</script> for sample <script type="math/tex">\mathcal{D}</script> is:
-        <p>$$p(\mathcal{D} ; \hat{\theta})=\prod_{i=1}^{n} p\left(y_{i} ; \hat{\theta}\right)$$</p>
-      </li>
-      <li>In practice, we prefer to work with the <strong>log-likelihood</strong>.  Same maximum but
-        <p>$$\log p(\mathcal{D} ; \hat{\theta})=\sum_{i=1}^{n} \log p\left(y_{i} ; \theta\right)$$</p>
-        <p>and sums are easier to work with than products.</p>
-      </li>
-    </ul>
 
-    <p><strong style="color: red">MLE for Parametric Models:</strong><br />
- The <strong>maximum likelihood estimator (MLE)</strong> for <script type="math/tex">\theta</script> in the (parametric) model <script type="math/tex">\{p(y, \theta) | \theta \in \Theta\}</script> is:</p>
-    <p>$$\begin{aligned} \hat{\theta} &amp;=\underset{\theta \in \Theta}{\arg \max } \log p(\mathcal{D}, \hat{\theta}) \\ &amp;=\underset{\theta \in \Theta}{\arg \max } \sum_{i=1}^{n} \log p\left(y_{i} ; \theta\right) \end{aligned}$$</p>
-
-    <blockquote>
-      <p>You are finding the value of the parameter <script type="math/tex">\theta</script> that, if used (in the model) to generate the probability of the data, would make the data most <em>“likely”</em> to occur.</p>
-    </blockquote>
-
-    <ul>
-      <li><strong>MLE Intuition</strong>:<br />
-  If I choose a <em>hypothesis</em> <script type="math/tex">h</script> underwhich the <em>observed data</em> is very <em><strong>plausible</strong></em> then the <em>hypothesis</em> is very <em><strong>likely</strong></em>.</li>
-      <li><a href="https://www.youtube.com/embed/JrFj0xpGd2Q?start=2609" value="show" onclick="iframePopA(event)"><strong>Maximum Likelihood as Empirical Risk Minimization</strong></a>
- <a href="https://www.youtube.com/embed/JrFj0xpGd2Q?start=2609"></a>
-        <div></div>
-      </li>
-      <li>Finding the MLE is an optimization problem.</li>
-      <li>For some model families, calculus gives a closed form for the MLE</li>
-      <li>
-        <p>Can also use numerical methods we know (e.g. SGD)</p>
-      </li>
-      <li><strong>Why maximize the natural log of the likelihood?</strong>:
-        <ol>
-          <li>Numerical Stability: change products to sums</li>
-          <li>The logarithm of a member of the family of exponential probability distributions (which includes the ubiquitous normal) is polynomial in the parameters (i.e. max-likelihood reduces to least-squares for normal distributions)<br />
-  <script type="math/tex">\log\left(\exp\left(-\frac{1}{2}x^2\right)\right) = -\frac{1}{2}x^2</script></li>
-          <li>The latter form is both more numerically stable and symbolically easier to differentiate than the former. It increases the dynamic range of the optimization algorithm (allowing it to work with extremely large or small values in the same way).</li>
-          <li>The logarithm is a monotonic transformation that preserves the locations of the extrema (in particular, the estimated parameters in max-likelihood are identical for the original and the log-transformed formulation)</li>
-        </ol>
-
-        <ul>
-          <li>Gradient methods generally work better optimizing <script type="math/tex">log_p(x)</script> than <script type="math/tex">p(x)</script> because the gradient of <script type="math/tex">log_p(x)</script> is generally more <strong>well-scaled</strong>. <a href="https://stats.stackexchange.com/questions/174481/why-to-optimize-max-log-probability-instead-of-probability">link</a>
-  <strong>Justification:</strong> the gradient of the original term will include a <script type="math/tex">e^{\vec{x}}</script> multiplicative term that scales very quickly one way or another, requiring the step-size to equally scale/stretch in the opposite direction.</li>
-        </ul>
-      </li>
-    </ul>
+    <p><!-- 5. **Maximum Likelihood Estimation:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}   --></p>
   </li>
 </ol>
 
@@ -643,7 +567,7 @@ Mathematically, it is a function:</dd>
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}  
     :     -->
 
-<p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents48">Notes:</strong></p>
+<p id="lst-p"><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents48">Notes:</strong></p>
 <ul>
   <li><strong>Why maximize the natural log of the likelihood?</strong>:
     <ol>
@@ -684,12 +608,8 @@ Mathematically, it is a function:</dd>
 
 <ol>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents51">Sigmoid:</strong></dt>
-      <dd>
-        <script type="math/tex; mode=display">\sigma(-x) = 1 - \sigma(x)</script>
-      </dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents51">Sigmoid:</strong><br />
+ <script type="math/tex">\sigma(-x) = 1 - \sigma(x)</script></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents52">Gradient-Based Optimization:</strong><br />
  <strong style="color: red">Notes:</strong>
@@ -710,6 +630,11 @@ Mathematically, it is a function:</dd>
 
     <p><strong>NOTES:</strong></p>
     <ul>
+      <li><a href="https://www.mladdict.com/neural-network-simulator">Neural Network Simulator for learning Backprop</a></li>
+    </ul>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show</button></p>
+    <ul hidden="">
       <li><strong>Backprop (BPTT specifically here) and concept of Locality</strong>:<br />
   In this context, local in space means that a unit’s weight vector can be updated using only information stored in the connected units and the unit itself such that update complexity of a single unit is linear in the dimensionality of the weight vector. Local in time means that the updates take place continually (on-line) and depend only on the most recent time step rather than on multiple time steps within a given time horizon as in BPTT. Biological neural networks appear to be local with respect to both time and space. <a href="https://en.wikipedia.org/wiki/Recurrent_neural_network#Gradient_descent">wikipedia</a></li>
       <li><strong>Backpropagation with weight constraints</strong>:
@@ -739,7 +664,7 @@ Mathematically, it is a function:</dd>
       </li>
     </ul>
 
-    <p><strong style="color: red">Notes:</strong></p>
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
     <ul>
       <li><strong>Loss VS Cost Function</strong>:
         <ul>
@@ -789,6 +714,11 @@ Mathematically, it is a function:</dd>
           <p>Implies that one should not use linear functions to aggregate over the set where we want some transformation invariance</p>
         </blockquote>
       </li>
+      <li><strong>Permutation Invariance</strong>:
+        <ul>
+          <li><a href="https://www.inference.vc/deepsets-modeling-permutation-invariance/">DeepSets: Modeling Permutation Invariance</a></li>
+        </ul>
+      </li>
       <li><strong>The Weight vector of a linear signal is orthogonal to the decision boundary</strong>:<br />
   The weight vector <script type="math/tex">\mathbf{w}</script> is orthogonal to the separating-plane/decision-boundary, defined by <script type="math/tex">\mathbf{w}^T\mathbf{x} + b = 0</script>, in the <script type="math/tex">\mathcal{X}</script> space; Reason:<br />
   Since if you take any two points <script type="math/tex">\mathbf{x}^\prime</script> and <script type="math/tex">\mathbf{x}^{\prime \prime}</script> on the plane, and create the vector <script type="math/tex">\left(\mathbf{x}^{\prime}-\mathbf{x}^{\prime \prime}\right)</script>  parallel to the plane by subtracting the two points, then the following equations must hold:
@@ -796,7 +726,7 @@ Mathematically, it is a function:</dd>
       </li>
     </ul>
 
-    <p><strong style="color: red">Identities:</strong></p>
+    <p id="lst-p"><strong style="color: red">Identities:</strong></p>
     <ul>
       <li><strong>Math Identities</strong>:
         <p>$$\frac{1}{N} \sum_{n=1}^{N}\left(\mathbf{w}^{\mathrm{T}} \mathbf{x}_{n}-y_{n}\right)^{2} = \frac{1}{N}\|\mathrm{Xw}-\mathrm{y}\|^{2}$$</p>
@@ -845,9 +775,7 @@ Mathematically, it is a function:</dd>
 <h2 id="content6">Machine Learning</h2>
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents61">Theory:</strong></p>
-
+  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents61">Theory:</strong>
     <ul>
       <li><strong>ML from a Probabilistic Approach</strong>:<br />
   When employing a <em>probabilistic approach</em> to doing <em>“learning”</em> (i.e. choosing the hypothesis), you are trying to find: <strong>What is the most probable hypothesis, given the Data</strong>.</li>
@@ -856,20 +784,103 @@ Mathematically, it is a function:</dd>
     <p><strong>Why NNs are not enough?</strong><br />
  The gist of it is this: neural nets do <em>pattern recognition</em>, which achieves <em>local generalization</em> (which works great for supervised perception). But many simple problems require some (small) amount of abstract modeling, which modern neural nets can’t learn.</p>
 
-    <p><strong><a href="https://arxiv.org/pdf/1710.05468.pdf">Generalization in Deep Learning</a></strong></p>
-
     <p><strong>Is there enough info in the labels to learn good, general features in Classification problems?</strong><br />
- <button class="showText" value="show" onclick="showTextPopHide(event);">Show Text</button></p>
+ <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show Text</button></p>
     <p hidden="">(((If the task is to learn to classify a particular image into one class/category; and the categories lie on the same manifold (i.e. just cats and dogs; or just vehicles etc.) then, the model can learn the patterns that relate to the particular class the image belongs to, BUT MOREOVER, it learns to ignore the rest of the patterns (i.e. background). So, in a way, yes, there is no information in the labels that tells the network to learn what a tree is (so any objects in the background are somewhat blurred to the network, they have no higher-order meaning) so the overall higher-level vision capabilities of the network doesn't necessarily "develop".   <br />
  As for the task of pre-training, we both know that even if you learn the patterns of very specific objects/classes (e.g. cats and dogs) you still need to develop certain visual features (e.g. edge/corner detection) and those featurizers will develop well, regardless of the amount of information. i.e. the lower-level visual capabilities will be developed. (we have evidence that pretraining works really well in Vision).  <br />
  I think the issue here is with Deterministic Noise (i.e. the Bias of the model). The CNN hypothesis just doesn't do things like inverse graphics and whatnot; regardless of the amount of information.  <br />
  Finally, a big problem is when the information is just conflicting, like two objects that should be recognized but we only label it as one of them. That's the Stochastic Noise. Which relates directly to how well we would generalize. This can be attributed to many things as well: E.g. (1) One-hot vectors need to be smoothed to allow the network to get a sense of the actual different objects in the image, AND to not over-fit the particulars of the data (e.g. consider a cat that looks like a tiger and a cat that looks like a dog; labeling it with 0.8 cat is much better to learn the "cattiness" of the image than the noise) (2) Target labels are just limited. There aren't enough categories in the target, which puts a huge limitation for one-shot learning generalization)))</p>
 
-    <p><strong>Neural Tangent Kernel:</strong><br />
- <a href="https://www.youtube.com/watch?v=raT2ECrvbag">Video</a><br />
- As width (of NN) <script type="math/tex">\rightarrow \infty</script>, trajectory approaches the trajectory of GD for a kernel regression problem, where the (fixed) kernel in question is the so-called Neural Tangent Kernel (NTK). (For convolutional nets the kernel is Convolutional NTK or CNTK.)</p>
+    <p id="lst-p"><strong>Neural Tangent Kernel:</strong></p>
+    <ul>
+      <li><a href="https://www.youtube.com/watch?v=raT2ECrvbag">Video</a></li>
+      <li><a href="https://arxiv.org/pdf/1806.07572.pdf">Neural Tangent Kernel: Convergence and Generalization in Neural Networks (paper)</a></li>
+    </ul>
 
-    <p><strong>Notes:</strong></p>
+    <p><strong>NTK Theorem:</strong> A properly randomly initialized <span style="color: purple">sufficiently wide</span> deep neural network <span style="color: purple">trained by gradient descent</span> with infinitesimal step size (a.k.a. gradient flow) is <span style="color: purple">equivalent to a kernel regression predictor</span> with a <span style="color: purple">deterministic</span> kernel called neural tangent kernel (NTK).</p>
+
+    <p>Thus, As width (of NN) <script type="math/tex">\rightarrow \infty</script>, trajectory approaches the trajectory of GD for a kernel regression problem, where the (fixed) kernel in question is the so-called Neural Tangent Kernel (NTK). (For convolutional nets the kernel is Convolutional NTK or CNTK.)<br />
+ The paper proves that the evolution of an ANN during training can also be described by a kernel.</p>
+
+    <p id="lst-p"><strong style="color: red">Analysis and Discussion:</strong></p>
+    <ul>
+      <li>Start with: Fully-Connected Network, Any Depth, Lipschitz Non-Linearity</li>
+      <li>Gather all <strong>parameters</strong> in the network into one vector <script type="math/tex">\theta</script>: initialized randomly, trained w/ GD</li>
+      <li>Since cost is non-convex, the analysis is difficult</li>
+      <li>Instead, study the network function <script type="math/tex">f_{\theta} : \mathbb{R}^{n_0} \rightarrow \mathbb{R}^{n_L}</script> which maps inputs to outputs<br />
+  We fully characterize the behavior of <script type="math/tex">f_{\theta}</script> in the <strong>infinite-width limit</strong> (# of neurons in hidden layer <script type="math/tex">\rightarrow \infty</script>)</li>
+      <li><strong>Behavior in the limit of the width:</strong>
+        <ul>
+          <li>In the limit, the network function has a <strong>Gaussian distribution</strong> at <em><strong>initialization</strong></em><br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Plot of 20 random initialization of <script type="math/tex">f_{\theta}</script> on the unit circle</button>
+  <img src="https://cdn.mathpix.com/snip/images/dWbTf3G6bbXIF7jMNZMD9wbRv2fwXgGYRvvvLCRyjPM.original.fullsize.png" alt="img" width="55%" hidden="" /></li>
+          <li>The effect of GD on a single point <script type="math/tex">\boldsymbol{x}_ 0</script> at initialization is to move that point and nearby points slightly<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">graph</button>
+  <img src="https://cdn.mathpix.com/snip/images/O3g9y_EIlF4v0KDqkvs3uG3MJC9UG28M0BzkgVseyJY.original.fullsize.png" alt="img" width="55%" hidden="" /></li>
+          <li>The difference between the two time-steps results in a <strong>smooth spike</strong> centered at <script type="math/tex">\boldsymbol{x}_ 0</script><br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">graph</button>
+  <img src="https://cdn.mathpix.com/snip/images/q4Hiw3g9THS93MVV_eBJvWLfmEeNuui81mYfzKf-lzM.original.fullsize.png" alt="img" width="55%" hidden="" /></li>
+          <li>The difference is the same for different initializations.<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">graph</button>
+  <img src="https://cdn.mathpix.com/snip/images/wi4MRjf0aCh4hIquTJxG-Bqg8Pztg_sIYDOXDJoEwLw.original.fullsize.png" alt="img" width="55%" hidden="" /></li>
+          <li>As we increase the <strong>width</strong> of the network, they differences become even more similar<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">graph</button>
+  <img src="https://cdn.mathpix.com/snip/images/KytLYBbrNPzO76F4dlFYKDf_HcIZ1ZFHbLcIIUxjhd4.original.fullsize.png" alt="img" width="55%" hidden="" /></li>
+          <li>The behavior is <strong>linear</strong> i.e. adding another datapoint <script type="math/tex">\boldsymbol{x}_ 1</script>  results in the two spikes being <strong>added up</strong><br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">graph</button>
+  <img src="https://cdn.mathpix.com/snip/images/H4sVN01wI0Tc2GWXUmRwM9tgjoUrJb9MeM-VvvXLLfI.original.fullsize.png" alt="img" width="100%" hidden="" /></li>
+        </ul>
+      </li>
+      <li>This behavior in the limit can be nicely described by a <strong>kernel</strong>.<br />
+  The <strong>Neural Tangent Kernel (NTK)</strong>:<br />
+  <img src="https://cdn.mathpix.com/snip/images/Rym-odIEPt0sZJuKmvccyeBFasKNM_LZWm060ONv_cI.original.fullsize.png" alt="img" width="30%" class="center-image" />
+        <ul>
+          <li><strong>Defined</strong>: in terms of the <span style="color: purple">derivatives of the function wrt the parameters <script type="math/tex">\theta</script></span></li>
+          <li><strong>Describes</strong>: how <span style="color: purple"><em>modifying</em> the <strong>network function <script type="math/tex">f_{\theta}</script></strong> at the point <script type="math/tex">\boldsymbol{x}</script> will <em>influence</em> another point <script type="math/tex">\boldsymbol{y}</script></span></li>
+        </ul>
+      </li>
+      <li><strong>Properties</strong>:
+        <ul>
+          <li><strong>Finite Width</strong>:<br />
+  <em><strong>Depends</strong></em> on the <strong>parameters</strong>, thus it is:
+            <ul>
+              <li><span style="color: purple"><strong>Random</strong> at initialization  </span></li>
+              <li><span style="color: purple"><strong>Time-dependent</strong></span>: varies during training</li>
+            </ul>
+          </li>
+          <li><strong>Infinite width limit</strong> :
+            <p>$$\theta^{(L)}(x, y) \rightarrow \theta_{\infty}^{(L)}(x, y)  \:\: n_i \rightarrow \infty \forall i \in [1, ..., L-1]$$</p>
+            <p id="lst-p"><em><strong>Independent</strong></em> on the <strong>parameters</strong>, thus it is:</p>
+            <ul>
+              <li><span style="color: purple">Deterministic</span>: converges to a deterministic limit at initialization</li>
+              <li><span style="color: purple">Fixed</span>: its rate of change during training <script type="math/tex">\rightarrow 0</script></li>
+            </ul>
+
+            <p>This explains why the effect of GD was so similar for different initializations.  <br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">graph</button>
+  <img src="https://cdn.mathpix.com/snip/images/Pp0Hxm5V_iEZ4U6hbTl5ihRwKKnE7ZpKUaokDEjgls4.original.fullsize.png" alt="img" width="50%" hidden="" /></p>
+          </li>
+        </ul>
+      </li>
+      <li>Now we have all the tools to fully describe the behavior of the network function during training:
+        <ul>
+          <li><strong>Ex. Least-Squares Regression on 3 points</strong>:
+            <ul>
+              <li>Start w/ <strong>random Gaussian Process</strong></li>
+              <li>Follow the <strong>kernel gradient of the cost</strong> wrt <strong>NTK</strong></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><span style="color: purple"><strong>Kernel GD</strong> is simply a <em><strong>generalization</strong></em> of <strong>GD</strong> to</span> <strong style="color: goldenrod">Function Spaces</strong>
+        <ul>
+          <li>Because the cost is <strong>convex</strong> in function space the function will converge to the minimum if the kernel is <strong>Positive Definite</strong></li>
+        </ul>
+      </li>
+      <li>As width (of NN) <script type="math/tex">\rightarrow \infty</script>, trajectory approaches the trajectory of GD for a kernel regression problem, where the (fixed) kernel in question is the so-called Neural Tangent Kernel (NTK). (For convolutional nets the kernel is Convolutional NTK or CNTK.)</li>
+    </ul>
+
+    <p id="lst-p"><strong>Notes:</strong></p>
     <ul>
       <li><strong>Intuition of why DL Works</strong>:<br />
   <strong>Circuit Theory:</strong> There are function you can compute with a “small” L-layer deep NN that shallower networks require exponentially more hidden units to compute. (comes from looking at networks as logic gates).
@@ -878,14 +889,24 @@ Mathematically, it is a function:</dd>
   Computing <script type="math/tex">x_1 \text{XOR} x_2 \text{XOR} ... \text{XOR} x_n</script>  takes:
             <ul>
               <li><script type="math/tex">\mathcal{O}(log(n))</script> in a tree representation.<br />
-  <img src="/main_files/concepts/7.png" alt="img" width="65%" /></li>
+  <img src="/main_files/concepts/7.png" alt="img" width="40%" /></li>
               <li><script type="math/tex">\mathcal{O}(2^n)</script> in a one-hidden-layer network because you need to exhaustively enumerate all possible <script type="math/tex">2^N</script> configurations of the input bits that result in the <script type="math/tex">\text{XOR}</script> being <script type="math/tex">{1, 0}</script>. <br />
-  <img src="/main_files/concepts/8.png" alt="img" width="65%" /></li>
+  <img src="/main_files/concepts/8.png" alt="img" width="40%" /></li>
             </ul>
           </li>
         </ul>
       </li>
       <li><strong><a href="https://github.com/josh-tobin/cs189-su18/blob/master/lecture7.ipynb">Curse of Dimensionality (ipynb)</a></strong></li>
+      <li><strong>The Hypothesis space of Neural Networks is Convex</strong>:<br />
+  Composition of affine-relu functions; induction.</li>
+      <li><strong><a href="https://arxiv.org/pdf/1710.05468.pdf">Generalization in Deep Learning</a></strong></li>
+      <li><strong>Catastrophic Forgetting:</strong>
+        <ul>
+          <li>mitigating catastrophic forgetting [McCloskey and Cohen, 1989, Ratcliff, 1990, Kemker et al., 2017] by penalizing the norm of parameters when training on a new task [Kirkpatrick et al., 2017], the norm of the difference between parameters for previously learned tasks during parameter updates [Hashimoto et al., 2016], incrementally matching modes [Lee et al., 2017], rehearsing on old tasks [Robins, 1995], using adaptive memory buffers [Gepperth and Karaoguz, 2016], finding task-specific paths through networks [Fernando et al., 2017], and packing new tasks into already trained networks [Mallya and Lazebnik, 2017].</li>
+          <li><a href="https://arxiv.org/abs/1612.00796">Overcoming catastrophic forgetting in neural networks (paper)</a><br />
+ <br /></li>
+        </ul>
+      </li>
     </ul>
   </li>
   <li>
@@ -893,8 +914,9 @@ Mathematically, it is a function:</dd>
  <strong style="color: red">ML Formulation:</strong><br />
  Improve on <strong>TASK T</strong> with respect to <strong>PERFORMANCE METRIC P</strong> based on <strong>EXPERIENCE E</strong>.</p>
 
-    <p><strong style="color: red">Problems in ML:</strong></p>
-    <ul>
+    <p><strong style="color: red">Problems in ML:</strong><br />
+ <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show</button></p>
+    <ul hidden="">
       <li>
         <p><strong>T:</strong> Categorize email messages as spam or legitimate 
   <strong>P:</strong> Percentage of email messages correctly classified 
@@ -934,9 +956,11 @@ Mathematically, it is a function:</dd>
       </li>
     </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents63">What is ML?:</strong></p>
-  </li>
+</ol>
+
+<!-- 3. **What is ML?:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents63}   -->
+
+<ol>
   <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents64">Types of Learning:</strong>
     <ul>
       <li><strong>Multi-Task Learning</strong>: general term for training on multiple tasks
@@ -956,14 +980,14 @@ Mathematically, it is a function:</dd>
       <li><strong>Zero-Shot Learning</strong>:</li>
     </ul>
 
-    <p><strong>Notes:</strong></p>
+    <p id="lst-p"><strong>Notes:</strong></p>
     <ul>
       <li><strong>Relationship between Supervised and Unsupervised Learning</strong>:<br />
   Many ml algorithms can be used to perform both tasks. E.g., the chain rule of probability states that for a vector <script type="math/tex">x \in \mathbb{R}^n</script>, the joint distribution can be decomposed as:<br />
-  <script type="math/tex">p(\mathbf{x})=\prod_{i=1}^{n} p\left(\mathrm{x}_{i} | \mathrm{x}_{1}, \ldots, \mathrm{x}_{i-1}\right)</script><br />
+  <script type="math/tex">p(\mathbf{x})=\prod_{i=1}^{n} p\left(\mathrm{x}_{i} \vert \mathrm{x}_{1}, \ldots, \mathrm{x}_{i-1}\right)</script><br />
   which implies that we can solve the Unsupervised problem of modeling <script type="math/tex">p(x)</script> by splitting it into <script type="math/tex">n</script> supervised learning problems.<br />
   Alternatively, we can solve the supervised learning problem of learning <script type="math/tex">p(y \vert x)</script> by using traditional unsupervised learning technologies to learn the joint distribution <script type="math/tex">p(x, y)</script>, then inferring:<br />
-  <script type="math/tex">p(y | \mathbf{x})=\frac{p(\mathbf{x}, y)}{\sum_{y} p\left(\mathbf{x}, y^{\prime}\right)}</script></li>
+  <script type="math/tex">p(y \vert \mathbf{x})=\frac{p(\mathbf{x}, y)}{\sum_{y} p\left(\mathbf{x}, y^{\prime}\right)}</script></li>
       <li><strong>Intuition on Why Unsupervised Learning works</strong>:
         <ul>
           <li>Goal: Learn Portuguese</li>
@@ -999,253 +1023,34 @@ Mathematically, it is a function:</dd>
         <p>$$\mathbf{w}^{\top} \mathbf{x}^{\prime}+b=0 \wedge \mathbf{w}^{\top} \mathbf{x}^{\prime \prime}+b=0 \implies \mathbf{w}^{\top}\left(\mathbf{x}^{\prime}-\mathbf{x}^{\prime \prime}\right)=0$$</p>
       </li>
     </ul>
+
+    <p><!-- 6. **Learning Probabilities with Logistic Regression and Sigmoids:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents66}   --></p>
+
+    <p><!-- 7. **Papers:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents67}   --></p>
+
+    <p><!-- 8. **Activation Functions:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents68}    --></p>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents66">Learning Probabilities with Logistic Regression and Sigmoids:</strong></dt>
-      <dd>Logistic Regression uses the <strong>sigmoid</strong> function to “squash” the output feature/signal into the <script type="math/tex">[0, 1]</script> space. Although, one could interpret the <em>sigmoid classifier</em> as just a function with <script type="math/tex">[0,1]</script> range, it is actually, a <strong>Genuine Probability</strong>.</dd>
-      <dd>To see this:<br />
- A labeled, classification Data-Set, does <strong>NOT</strong> (explicitly) give you the <em>probability</em> that something is going to happen, rather, just the fact that an event either happened <script type="math/tex">(y=1)</script> or that it did not <script type="math/tex">(y=0)</script>, without the actual probability of that event happening.<br />
- One can think of this data as being generated by a (the following) noisy target:</dd>
-      <dd><script type="math/tex">% <![CDATA[
-{\displaystyle P(y \vert x) ={\begin{cases}f(x)&{\text{for }}y = +1,\\1-f(x)&{\text{for }}y=-1.\\\end{cases}}} %]]></script> <br />
- They have the form that a certain probability that the event occurred and a certain probability that the event did NOT occur, given their input-data.<br />
- This is generated by the target we want to learn; thus, the function <script type="math/tex">f(x)</script> is the target function to approximate.<br />
- In Logistic Regression, we are trying to learn <script type="math/tex">f(x)</script> not withstanding the fact that the data-points we are learning from are giving us just sample values of <script type="math/tex">y</script> that happen to be generated by <script type="math/tex">f</script>.<br />
- Thus, the <strong>Target</strong> <script type="math/tex">f : \mathbb{R}^d \longrightarrow [0,1]</script> is the probability.
-        <blockquote>
-          <p>The output of Logistic Regression is treated genuinely as a <strong>probability</strong> even <em>during <strong>Learning</strong></em></p>
-        </blockquote>
-      </dd>
-      <dd><strong>Deriving the Error Measure</strong>:<br />
- The error measure for logistic regression is based on <strong>likelihood</strong> - it is both, plausible and friendly/well-behaved? (for optimization).</dd>
-    </dl>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents67">Papers:</strong></p>
-
-    <p><strong style="color: red">Fast-Weights:</strong><br />
- <strong>Basic Idea:</strong></p>
-    <ul>
-      <li>on each connection: Total weight = Sum of:
-        <ul>
-          <li><strong>Standard Slow Weights</strong>. This learns slowly &amp; (may also) decay slowly. Holds long term Knowledge.</li>
-          <li><strong>The Fast Weights</strong>: Learns quickly, decays quickly, Holds Temp. info.</li>
-        </ul>
-      </li>
-    </ul>
-
-    <p><strong>Motivation:</strong></p>
-    <ul>
-      <li><strong>Priming:</strong> listen to a word <script type="math/tex">\rightarrow</script> recognize many minutes later in Noisy Env.
-        <ul>
-          <li>If we had <strong>localist Representation</strong> could just temporarily lower the threshold of the “cucumber” weight</li>
-          <li>If we use <strong>point Attractors</strong> instead of “localist units” we con temporarily increase the “attractiveness” of the words unit (by changing the weights between the neurons in that pattern of activity)</li>
-        </ul>
-      </li>
-    </ul>
-
-    <p><strong>Weight Matrices VS Activity Vectors:</strong>
- Weight Matrices are better:<br />
- (1) More capacity <script type="math/tex">N^2</script> vs <script type="math/tex">N</script> (2) A fast weight matrix of <script type="math/tex">1000 x 1000</script> can easily make 100 attractors more “attractive”</p>
-
-    <p><strong>Three ways to store Temp. knowledge:</strong></p>
-    <ul>
-      <li><strong>LSTM</strong>, Stores it in its activity vectors [hidden weights] <script type="math/tex">\implies</script> Irrelevant temp Memory <strong>interferes</strong> with on-going process</li>
-      <li><strong>An additional External memory to LSTM</strong>, can store without interference but need to - learn when to read/white.</li>
-      <li><strong>Fast-Weights:</strong> Allow the temporal Knowledge to be stored without having any extra neurons.<br />
-  They just make some attractors easier to fall into; and they also “flavor” the attractor by slightly changing the activity vector you end up with.<br />
- <br /></li>
-    </ul>
-  </li>
-  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents68">Activation Functions:</strong> <br />
- <strong style="color: red">Desirable Properties:</strong>
-    <ul>
-      <li><strong>Non-Linearity</strong>:<br />
-  When the activation function is non-linear, then a two-layer neural network can be proven to be a universal function approximator. The identity activation function does not satisfy this property. When multiple layers use the identity activation function, the entire network is equivalent to a single-layer model.</li>
-      <li><strong>Range</strong>:<br />
-  When the range of the activation function is finite, gradient-based training methods tend to be more stable, because pattern presentations significantly affect only limited weights. When the range is infinite, training is generally more efficient because pattern presentations significantly affect most of the weights. In the latter case, smaller learning rates are typically necessary.</li>
-      <li><strong>Continuously Differentiable</strong>:<br />
-  This property is desirable for enabling gradient-based optimization methods. The binary step activation function is not differentiable at 0, and it differentiates to 0 for all other values, so gradient-based methods can make no progress with it.</li>
-      <li><strong>Monotonicity</strong>:<br />
-  When the activation function is monotonic, the error surface associated with a single-layer model is guaranteed to be convex.</li>
-      <li><strong>Smoothness with Monotonic Derivatives</strong>:<br />
-  These have been shown to generalize better in some cases.</li>
-      <li><strong>Approximating Identity near Origin</strong>:<br />
-  Equivalent to <script type="math/tex">{\displaystyle f(0)=0}</script> and <script type="math/tex">{\displaystyle f'(0)=1}</script>, and <script type="math/tex">{\displaystyle f'}</script> is continuous at <script type="math/tex">0</script>.<br />
-  When activation functions have this property, the neural network will learn efficiently when its weights are initialized with small random values. When the activation function does not approximate identity near the origin, special care must be used when initializing the weights.</li>
-      <li><strong>Zero-Centered Range</strong>:<br />
-  Has effects of centering the data (zero mean) by centering the activations. Makes learning easier.
-        <blockquote>
-          <p><a href="https://www.youtube.com/watch?v=FDCfw-YqWTE&amp;list=PLkDaE6sCZn6Hn0vK8co82zjQtt3T2Nkqc&amp;index=10&amp;t=0s">WHY NORMALIZING THE DATA/SIGNAL IS IMPORTANT</a></p>
-        </blockquote>
-      </li>
-    </ul>
-
-    <p id="lst-p"><strong style="color: red">Undesirable Properties:</strong></p>
-    <ul>
-      <li><strong>Saturation</strong>:<br />
-  An activation functions output, with finite range, may saturate near its tail or head (e.g. <script type="math/tex">\{0, 1\}</script> for sigmoid). This leads to a problem called <strong>vanishing gradient</strong>.</li>
-      <li><strong>Vanishing Gradients</strong>:<br />
-  Happens when the gradient of an activation function is very small/zero. This usually happens when the activation function <strong>saturates</strong> at either of its tails.<br />
-  The chain-rule will <em><strong>multiply</strong></em> the local gradient (of activation function) with the whole objective. Thus, when gradient is small/zero, it will “kill” the gradient <script type="math/tex">\rightarrow</script> no signal will flow through the neuron to its weights or to its data.<br />
-  <strong>Slows/Stops learning completely</strong>.</li>
-      <li><strong>Range Not Zero-Centered</strong>:<br />
-  This is undesirable since neurons in later layers of processing in a Neural Network would be receiving data that is not zero-centered. This has implications on the dynamics during gradient descent, because if the data coming into a neuron is always positive (e.g. <script type="math/tex">x>0</script> elementwise in <script type="math/tex">f=w^Tx+b</script>), then the gradient on the weights <script type="math/tex">w</script> will during backpropagation become either all be positive, or all negative (depending on the gradient of the whole expression <script type="math/tex">f</script>). This could introduce undesirable zig-zagging dynamics in the gradient updates for the weights. However, notice that once these gradients are added up across a batch of data the final update for the weights can have variable signs, somewhat mitigating this issue. Therefore, this is an inconvenience but it has less severe consequences compared to the saturated activation problem above.<br />
-  <strong>Makes optimization harder.</strong></li>
-    </ul>
-
-    <p><strong style="color: red">Activation Functions:</strong><br />
- <img src="/main_files/concepts/16.png" alt="img" max-width="180%" width="180%" /></p>
-    <ul>
-      <li><strong>Properties</strong>:
-        <ul>
-          <li><strong>Sigmoid</strong>:<br />
-  Never use as activation, use as an output unit for binary classification.
-            <ul>
-              <li><strong>Pros</strong>:
-                <ul>
-                  <li>Has a nice interpretation as the firing rate of a neuron</li>
-                </ul>
-              </li>
-              <li><strong>Cons</strong>:
-                <ul>
-                  <li>They Saturate and kill gradients <script type="math/tex">\rightarrow</script> Gives rise to <strong>vanishing gradients</strong><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> <script type="math/tex">\rightarrow</script> Stop Learning
-                    <ul>
-                      <li>Happens when initialization weights are too large</li>
-                      <li>or sloppy with data preprocessing</li>
-                      <li>Neurons Activation saturates at either tail of <script type="math/tex">0</script> or <script type="math/tex">1</script></li>
-                    </ul>
-                  </li>
-                  <li>Output NOT <strong>Zero-Centered</strong> <script type="math/tex">\rightarrow</script> Gradient updates go too far in different directions <script type="math/tex">\rightarrow</script> makes optimization harder</li>
-                  <li>The local gradient <script type="math/tex">(z * (1-z))</script> achieves maximum at <script type="math/tex">0.25</script>, when <script type="math/tex">z = 0.5</script>. <script type="math/tex">\rightarrow</script> very time the gradient signal flows through a sigmoid gate, its magnitude always diminishes by one quarter (or more) <script type="math/tex">\rightarrow</script> with basic SGD, the lower layers of a network train much slower than the higher one</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li><strong>Tanh</strong>:<br />
-  Strictly superior to Sigmoid (scaled version of sigmoid | stronger gradient). Good for activation.
-            <ul>
-              <li><strong>Pros</strong>:
-                <ul>
-                  <li>Zero Mean/Centered</li>
-                </ul>
-              </li>
-              <li><strong>Cons</strong>:
-                <ul>
-                  <li>They Saturate and kill gradients <script type="math/tex">\rightarrow</script> Gives rise to <strong>vanishing gradients</strong><sup id="fnref:1:1"><a href="#fn:1" class="footnote">1</a></sup> <script type="math/tex">\rightarrow</script> Stop Learning</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li><strong>ReLU</strong>:<br />
-  The best for activation (Better gradients).
-            <ul>
-              <li><strong>Pros</strong>:
-                <ul>
-                  <li>Non-saturation of gradients which <em>accelerates convergence</em> of SGD</li>
-                  <li>Sparsity effects and induced regularization. <a href="https://stats.stackexchange.com/questions/176794/how-does-rectilinear-activation-function-solve-the-vanishing-gradient-problem-in/176905#176905">discussion</a></li>
-                  <li>Not computationally expensive</li>
-                </ul>
-              </li>
-              <li><strong>Cons</strong>:
-                <ul>
-                  <li><strong>ReLU not zero-centered problem</strong>:<br />
-  The problem that ReLU is not zero-centered can be solved/mitigated by using <strong>batch normalization</strong>, which normalizes the signal before activation:
-                    <blockquote>
-                      <p>From paper: We add the BN transform immediately before the nonlinearity, by normalizing <script type="math/tex">x =  Wu + b</script>; normalizing it is likely to produce activations with a stable distribution.</p>
-                      <ul>
-                        <li><a href="https://www.youtube.com/watch?v=FDCfw-YqWTE&amp;list=PLkDaE6sCZn6Hn0vK8co82zjQtt3T2Nkqc&amp;index=10&amp;t=0s">WHY NORMALIZING THE SIGNAL IS IMPORTANT</a></li>
-                      </ul>
-                    </blockquote>
-                  </li>
-                  <li><strong>Dying ReLUs (Dead Neurons):</strong><br />
-  If a neuron gets clamped to zero in the forward pass (it doesn’t “fire” / <script type="math/tex">% <![CDATA[
-x<0 %]]></script>), then its weights will get zero gradient. Thus, if a ReLU neuron is unfortunately initialized such that it never fires, or if a neuron’s weights ever get knocked off with a large update during training into this regime (usually as a symptom of aggressive learning rates), then this neuron will remain permanently dead.
-                    <ul>
-                      <li><a href="https://www.youtube.com/embed/gYpoJMlgyXA?start=1249" value="show" onclick="iframePopA(event)"><strong>cs231n Explanation</strong></a>
-  <a href="https://www.youtube.com/embed/gYpoJMlgyXA?start=1249"></a>
-                        <div></div>
-                      </li>
-                    </ul>
-                  </li>
-                  <li><strong>Infinite Range</strong>:<br />
-  Can blow up the activation.</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li><strong>Leaky Relu</strong>:<br />
-  Sometimes useful. Worth trying.
-            <ul>
-              <li><strong>Pros</strong>:
-                <ul>
-                  <li>Leaky ReLUs are one attempt to fix the “dying ReLU” problem by having a small negative slope (of 0.01, or so).</li>
-                </ul>
-              </li>
-              <li><strong>Cons</strong>:<br />
-  The consistency of the benefit across tasks is presently unclear.</li>
-            </ul>
-          </li>
-          <li><strong>ELU</strong>:</li>
-        </ul>
-      </li>
-      <li><strong>Derivatives of Activation Functions</strong>:
-        <ul>
-          <li><strong>Sigmoid</strong>:
-            <p>$$S(z)=\frac{1}{1+e^{-z}} \\ S^{\prime}(z)=S(z) \cdot(1-S(z))$$</p>
-            <p><img src="/main_files/concepts/3.png" alt="img" width="68%" class="center-image" /></p>
-          </li>
-          <li><strong>Tanh</strong>:
-            <p>$$\tanh (z)=\frac{e^{z}-e^{-z}}{e^{z}+e^{-z}} \\ \tanh ^{\prime}(z)=1-\tanh (z)^{2}$$</p>
-            <p><img src="/main_files/concepts/4.png" alt="img" width="68%" class="center-image" /></p>
-          </li>
-          <li><strong>Relu</strong>:
-            <p>$$R(z)=\left\{\begin{array}{cc}{z} &amp; {z&gt;0} \\ {0} &amp; {z&lt;=0}\end{array}\right\} \\  R^{\prime}(z)=\left\{\begin{array}{ll}{1} &amp; {z&gt;0} \\ {0} &amp; {z&lt;0}\end{array}\right\}$$</p>
-            <p><img src="/main_files/concepts/5.png" alt="img" width="68%" class="center-image" /></p>
-          </li>
-          <li><strong>Leaky Relu</strong>:
-            <p>$$R(z)=\left\{\begin{array}{cc}{z} &amp; {z&gt;0} \\ {\alpha z} &amp; {z&lt;=0}\end{array}\right\} \\ 
-  R^{\prime}(z)=\left\{\begin{array}{ll}{1} &amp; {z&gt;0} \\ {\alpha} &amp; {z&lt;0}\end{array}\right\}$$</p>
-            <p><img src="/main_files/concepts/6.png" alt="img" width="68%" class="center-image" /></p>
-          </li>
-          <li><a href="https://ml-cheatsheet.readthedocs.io/en/latest/activation_functions.html">Further Reading</a></li>
-        </ul>
-      </li>
-    </ul>
-
-    <p><strong style="color: red">Notes:</strong></p>
-    <ul>
-      <li>It is very rare to mix and match different types of neurons in the same network, even though there is no fundamental problem with doing so.</li>
-      <li><strong>Identity Mappings</strong>:<br />
-  When an activation function cannot achieve an identity mapping (e.g. ReLU map all negative inputs to zero); then adding extra depth actually decreases the best performance, in the case a shallower one would suffice (Deep Residual Net paper).<br />
- <br /></li>
-    </ul>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents69">Bias-Variance Decomposition Theory:</strong></p>
-
-    <p><strong style="color: red">Bias-Variance for Neural-Networks:</strong><br />
- <img src="/main_files/concepts/9.png" alt="img" width="60%" /><br />
+  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents69">Bias-Variance Decomposition Theory:</strong> <br />
+ <strong style="color: red">Bias-Variance for Neural-Networks:</strong>
+    <p><img src="/main_files/concepts/9.png" alt="img" width="60%" /><br />
  <strong>Dealing with Bias and Variance for NN:</strong></p>
     <ul>
       <li><strong>High Bias</strong> (<script type="math/tex">E_{\text{train}}</script>) <script type="math/tex">\rightarrow</script> (1) Bigger Net (2) Train longer (3) Different NN archit</li>
-      <li><strong>High Variance</strong> (<script type="math/tex">E_{\text{dev}}</script>) <script type="math/tex">\rightarrow</script> (1) More Data (2) Regularization (3) Different NN archit</li>
+      <li><strong>High Variance</strong> (<script type="math/tex">E_{\text{dev}}</script>) <script type="math/tex">\rightarrow</script> (1) More Data (2) Regularization (3) Different NN archit<br />
+ <br /></li>
     </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents610">Models:</strong> <br />
+<strong style="color: red">Parametric Models:</strong><br />
+A <strong>parametric model</strong> is a set of probability distributions indexed by a parameter <script type="math/tex">\theta \in \Theta</script>. We denote this as:
+    <p>$$\{p(y ; \theta) \vert \theta \in \Theta\},$$</p>
+    <p>where <script type="math/tex">\theta</script> is the <strong>parameter</strong> and <script type="math/tex">\Theta</script> is the <strong>Parameter-Space</strong>.<br />
+<br /></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents610">Models:</strong></p>
-
-    <p><strong style="color: red">Parametric Models:</strong><br />
-A <strong>parametric model</strong> is a set of probability distributions indexed by a parameter <script type="math/tex">\theta \in \Theta</script>. We denote this as:</p>
-    <p>$$\{p(y ; \theta) | \theta \in \Theta\},$$</p>
-    <p>where <script type="math/tex">\theta</script> is the <strong>parameter</strong> and <script type="math/tex">\Theta</script> is the <strong>Parameter-Space</strong>.</p>
-  </li>
-  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents611">Output Units/Functions:</strong>
-    <ul>
-      <li><button class="showText" value="show" onclick="showTextPopHide(event);">Output Units: Linear and Sigmoid units</button>
-  <img src="/main_files/concepts/10.jpg" alt="img" hidden="" /></li>
-    </ul>
+    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents611">Output Units/Functions:</strong> <br />
+<button class="showText" value="show" onclick="showTextPopHide(event);">Output Units: Linear and Sigmoid units</button>
+<img src="/main_files/concepts/10.jpg" alt="img" hidden="" /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents612">Model Varieties - Regression and Classification:</strong><br />
 <strong>Generalized Regression</strong> also known as <strong style="color: red">Conditional Distribution Estimation:</strong>
@@ -1276,7 +1081,7 @@ A <strong>parametric model</strong> is a set of probability distributions indexe
       </li>
     </ul>
 
-    <p><strong style="color: red">Probabilistic Binary Classifiers:</strong></p>
+    <p id="lst-p"><strong style="color: red">Probabilistic Binary Classifiers:</strong></p>
     <ul>
       <li>Setting: <script type="math/tex">X=\mathrm{R}^{d}, y=\{0,1\}</script></li>
       <li>For each <script type="math/tex">x</script>, need to predict a distribution on <script type="math/tex">y=\{0,1\}</script></li>
@@ -1284,7 +1089,7 @@ A <strong>parametric model</strong> is a set of probability distributions indexe
       <li>We can refer to this distribution as <script type="math/tex">\text{Bernoulli}(\theta)</script></li>
     </ul>
 
-    <p><strong style="color: red">Linear Probabilistic Classifiers:</strong></p>
+    <p id="lst-p"><strong style="color: red">Linear Probabilistic Classifiers:</strong></p>
     <ul>
       <li>Setting: <script type="math/tex">X=\mathrm{R}^{d}, y=\{0,1\}</script></li>
       <li>Want prediction function to map each <script type="math/tex">x \in \mathrm{R}^{d}</script> to the right <script type="math/tex">\theta \in[0,1]</script></li>
@@ -1301,21 +1106,21 @@ A <strong>parametric model</strong> is a set of probability distributions indexe
       <li>Still need to map this to <script type="math/tex">[0, 1]</script>; we do so by <strong>Transfer/Response/Inverse-Link function</strong>; usually the <em><strong>logistic function (Sigmoid)</strong></em>
         <blockquote>
           <p>Its a function to map the linear predictor in <script type="math/tex">\mathbb{R}</script> to <script type="math/tex">[0,1]</script>:<br />
-      <script type="math/tex">\underbrace{x}_ {\in \mathbf{R}^{D}} \mapsto \underbrace{w^{T}}_{\in R} \mapsto \underbrace{f\left(w^{T} x\right)}_{\in[0,1]}=\theta = p(y=1 | x)</script></p>
+      <script type="math/tex">\underbrace{x}_ {\in \mathbf{R}^{D}} \mapsto \underbrace{w^{T}}_{\in R} \mapsto \underbrace{f\left(w^{T} x\right)}_{\in[0,1]}=\theta = p(y=1 \vert x)</script></p>
         </blockquote>
       </li>
     </ul>
 
     <p><strong>Learning:</strong><br />
 The hypothesis space/set:</p>
-    <p>$$\mathcal{H}=\left\{x \mapsto f\left(w^{T} x\right) | w \in \mathbb{R}^{d}\right\}$$</p>
+    <p>$$\mathcal{H}=\left\{x \mapsto f\left(w^{T} x\right) \vert w \in \mathbb{R}^{d}\right\}$$</p>
     <p>where the <strong>only <em>“parameter”</em></strong> in this model is <script type="math/tex">w \in \mathbb{R}^d</script>. <br />
 We can choose <script type="math/tex">w</script> using <strong>maximum likelihood:</strong><br />
 <strong>Likelihood Scoring | Bernoulli Regression:</strong></p>
     <ul>
       <li>Suppose we have data <script type="math/tex">\mathcal{D}=\left\{\left(x_{1}, y_{1}\right), \ldots,\left(x_{n}, y_{n}\right)\right\}</script></li>
       <li>The model likelihood for <script type="math/tex">\mathcal{D}</script>:
-        <p>$$\begin{aligned} p_{w}(\mathcal{D}) &amp;=\prod_{i=1}^{n} p_{w}\left(y_{i} | x_{i}\right)[\text { by independence }] \\ &amp;=\prod_{i=1}^{n}\left[f\left(w^{T} x_{i}\right)\right]^{y_{i}}\left[1-f\left(w^{T} x_{i}\right)\right]^{1-y_{i}} \end{aligned}$$</p>
+        <p>$$\begin{aligned} p_{w}(\mathcal{D}) &amp;=\prod_{i=1}^{n} p_{w}\left(y_{i} \vert x_{i}\right)[\text { by independence }] \\ &amp;=\prod_{i=1}^{n}\left[f\left(w^{T} x_{i}\right)\right]^{y_{i}}\left[1-f\left(w^{T} x_{i}\right)\right]^{1-y_{i}} \end{aligned}$$</p>
         <ul>
           <li>This probability of each data-point <script type="math/tex">p_w(y_i\|x_i)</script> can be summed in the equation <script type="math/tex">\left[f\left(w^{T} x_{i}\right)\right]^{y_{i}}\left[1-f\left(w^{T} x_{i}\right)\right]^{1-y_{i}}</script> which capture both cases <script type="math/tex">p_w(y_i = 1) = f\left(w^{T} x_{i}\right)</script> and <script type="math/tex">p_w(y_i = 0) = 1 - f\left(w^{T} x_{i}\right)</script></li>
         </ul>
@@ -1328,7 +1133,7 @@ We can choose <script type="math/tex">w</script> using <strong>maximum likelihoo
       </li>
     </ul>
 
-    <p><strong style="color: red">Gaussian Linear Regression/Conditional Gaussian Regression:</strong></p>
+    <p id="lst-p"><strong style="color: red">Gaussian Linear Regression/Conditional Gaussian Regression:</strong></p>
     <ul>
       <li><a href="https://www.youtube.com/embed/JrFj0xpGd2Q?start=1965" value="show" onclick="iframePopA(event)"><strong>Gaussian Linear Regression</strong></a>
 <a href="https://www.youtube.com/embed/JrFj0xpGd2Q?start=1965"></a>
@@ -1336,7 +1141,7 @@ We can choose <script type="math/tex">w</script> using <strong>maximum likelihoo
       </li>
     </ul>
 
-    <p><strong style="color: red">Generalized Regression as Statistical Learning:</strong></p>
+    <p id="lst-p"><strong style="color: red">Generalized Regression as Statistical Learning:</strong></p>
     <ul>
       <li><a href="https://www.youtube.com/embed/JrFj0xpGd2Q?start=2609" value="show" onclick="iframePopA(event)"><strong>Generalized Regression as Statistical Learning</strong></a>
 <a href="https://www.youtube.com/embed/JrFj0xpGd2Q?start=2609"></a>
@@ -1344,16 +1149,15 @@ We can choose <script type="math/tex">w</script> using <strong>maximum likelihoo
       </li>
     </ul>
 
-    <p><strong style="color: red">Generalized Linear Models:</strong></p>
+    <p id="lst-p"><strong style="color: red">Generalized Linear Models:</strong></p>
     <ul>
       <li><a href="https://www.youtube.com/embed/nLKOQfKLUks?list=PLA89DCFA6ADACE599" value="show" onclick="iframePopA(event)"><strong>Generalized Linear Models (Andrew NG)</strong></a>
 <a href="https://www.youtube.com/embed/nLKOQfKLUks?list=PLA89DCFA6ADACE599"></a>
         <div></div>
       </li>
-      <li><a href="http://bjlkeng.github.io/posts/a-probabilistic-view-of-regression/">GLM Probabilistic Development</a></li>
+      <li><a href="http://bjlkeng.github.io/posts/a-probabilistic-view-of-regression/">GLM Probabilistic Development</a><br />
+<br /></li>
     </ul>
-
-    <p><br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents613">Bayesian Conditional Probabilistic Models:</strong>
     <ul>
@@ -1364,23 +1168,12 @@ We can choose <script type="math/tex">w</script> using <strong>maximum likelihoo
       </li>
     </ul>
   </li>
-  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents614">Latent Variable Models:</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents615">Recommendation Systems:</strong>
     <ul>
-      <li><a href="https://www.youtube.com/embed/I9dfOMAhsug" value="show" onclick="iframePopA(event)"><strong>Latent Variable Models/Gaussian Mixture Models</strong></a>
-<a href="https://www.youtube.com/embed/I9dfOMAhsug"></a>
-        <div></div>
-      </li>
-      <li><a href="https://www.youtube.com/embed/lMShR1vjbUo" value="show" onclick="iframePopA(event)"><strong>Expectation-Maximization/EM-Algorithm for Latent Variable Models</strong></a>
-<a href="https://www.youtube.com/embed/lMShR1vjbUo"></a>
-        <div></div>
-        <p><br /></p>
-      </li>
-    </ul>
-  </li>
-  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents615">Recommender Systems:</strong>
-    <ul>
-      <li><button class="showText" value="show" onclick="showTextPopHide(event);">Recommender Systems</button>
-<img src="/main_files/concepts/9.jpg" alt="img" hidden="" /><br />
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">Recommendation Systems</button>
+<img src="/main_files/concepts/9.jpg" alt="img" hidden="" /></li>
+      <li><a href="https://blog.echen.me/2011/10/24/winning-the-netflix-prize-a-summary/">Winning the Netflix Prize: A Summary (blog!)</a></li>
+      <li><a href="https://blog.echen.me/2014/10/07/moving-beyond-ctr-better-recommendations-through-human-evaluation/">Moving Beyond CTR: Better Recommendations Through Human Evaluation (blog)</a><br />
 <br /></li>
     </ul>
   </li>
@@ -1410,7 +1203,7 @@ We can choose <script type="math/tex">w</script> using <strong>maximum likelihoo
       <li><strong>Tikhonov Regularization</strong>: is essentially a trade-off between fitting the data and reducing a norm of the solution.</li>
     </ul>
 
-    <p><strong style="color: red">Data Regularization:</strong></p>
+    <p id="lst-p"><strong style="color: red">Data Regularization:</strong></p>
     <ul>
       <li>The <strong>Design Matrix</strong> contains sample points in each <em><strong>row</strong></em></li>
       <li><strong>Feature Scaling/Mean Normalization (of data)</strong>:
@@ -1462,22 +1255,13 @@ We can choose <script type="math/tex">w</script> using <strong>maximum likelihoo
           </li>
         </ul>
       </li>
+      <li><strong>Local Kernels</strong>: a kernel where <script type="math/tex">k(u, v)</script> is large when <script type="math/tex">u=v</script> and decreases as <script type="math/tex">u</script> and <script type="math/tex">v</script> grow further apart from each other.<br />
+  A local kernel can be thought of as a <strong>similarity function</strong> that performs <strong>template matching</strong>, by measuring how closely a test example <script type="math/tex">x</script> resembles each training example <script type="math/tex">x^{(i)}</script>.</li>
       <li>
-        <p><strong>Local Kernels</strong>: a kernel where <script type="math/tex">k(u, v)</script> is large when <script type="math/tex">u=v</script> and decreases as <script type="math/tex">u</script> and <script type="math/tex">v</script> grow further apart from each other.<br />
-  A local kernel can be thought of as a <strong>similarity function</strong> that performs <strong>template matching</strong>, by measuring how closely a test example <script type="math/tex">x</script> resembles each training example <script type="math/tex">x^{(i)}</script>.</p>
+        <p>The kernel trick can NOT be applied to any learning algorithm</p>
       </li>
       <li><a href="http://mccormickml.com/2014/02/26/kernel-regression/">Kernel Regression Introduction</a></li>
     </ul>
-  </li>
-  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents619">Statistical Learning Theory:</strong><br />
-<strong style="color: red">Notes:</strong>
-    <ul>
-      <li><a href="http://papers.nips.cc/paper/506-principles-of-risk-minimization-for-learning-theory.pdf">Principles of Risk Minimization for Learning Theory (original papers)</a></li>
-      <li><a href="http://www.tml.cs.uni-tuebingen.de/team/luxburg/publications/StatisticalLearningTheory.pdf">Statistical Learning Theory from scratch (paper)</a></li>
-    </ul>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents620">Learning Theory:</strong></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents621">Curse of Dimensionality:</strong><br />
@@ -1505,6 +1289,13 @@ The sampling density is proportional to <script type="math/tex">N^{1/p}</script>
             <ul>
               <li>Don’t initialize the weights to Zero. The symmetry of hidden units results in a similar computation for each hidden unit, making all the rows of the weight matrix to be equal (by induction).</li>
               <li>It’s OK to initialize the bias term to zero.</li>
+              <li>Since a neuron takes the sum of <script type="math/tex">N</script> inputsXweights, if <script type="math/tex">N</script> is large, you want smaller <script type="math/tex">w_i</script>s. You want to initialize with a <strong>variance</strong> <script type="math/tex">\propto \dfrac{1}{n}</script> (i.e. multiply by <script type="math/tex">\dfrac{1}{\sqrt{n}}</script>; <script type="math/tex">n</script> is the number of weights in <em><strong>previous layer</strong></em>).<br />
+  This doesnt solve but reduces vanishing/exploding gradient problem because <script type="math/tex">z</script> would take a similar distribution.
+                <ul>
+                  <li><strong>Xavier Initialization:</strong> assumes <script type="math/tex">\tanh</script> activation; ^ uses logic above; samples from normal distribution and multiplies by <script type="math/tex">\dfrac{1}{\sqrt{n}}</script>.</li>
+                  <li>If <strong>ReLU</strong> activation, it turns out to be better to make variance <script type="math/tex">\propto \dfrac{2}{n}</script> instead.</li>
+                </ul>
+              </li>
             </ul>
           </li>
         </ul>
@@ -1544,21 +1335,107 @@ The sampling density is proportional to <script type="math/tex">N^{1/p}</script>
           </li>
         </ul>
       </li>
-    </ul>
-
-    <p><br /></p>
-  </li>
-  <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents630">Observations from Papers:</strong>
-    <ul>
-      <li>For calibrating output probabilities in Deep Nets; Temperature scaling outperforms Platt scaling. <a href="https://arxiv.org/pdf/1706.04599.pdf">paper</a></li>
-      <li>
-        <p>deep neural networks seemingly violate the common understanding of learning theory that large models with little regularization will not generalize well. The observed disconnect between NLL and 0/1 loss suggests that these high capacity models are not necessarily immune from overfitting, but rather, overfitting manifests in probabilistic error rather than classification error. <a href="https://arxiv.org/pdf/1706.04599.pdf">paper</a></p>
-      </li>
-      <li><a href="http://www.offconvex.org/2019/06/03/trajectories/"><strong>Is Optimization a Sufficient Language for Understanding Deep Learning?</strong></a>
+      <li><strong>Gaussian Discriminant Analysis</strong>:
         <ul>
-          <li><strong>Conventional View (CV) of Optimization</strong>:<br />
-  Find a solution of minimum possible value of the objective, as fast as possible.</li>
-          <li>If our goal is mathematical understanding of deep learning, then the CV of Opt is potentially <strong>insufficient</strong>.</li>
+          <li>models $P(Y=y \vert X)$ as a logistic function.</li>
+          <li>is a generative model.</li>
+          <li>can be used to classify points without ever computing an exponential</li>
+          <li><strong>decision boundary shapes:</strong>
+            <ul>
+              <li>Hyperplane</li>
+              <li>Nonlinear quadric surface (quadric = the isosurface of a quadratic function)</li>
+              <li>The empty set (the classifier always returns the same class)</li>
+            </ul>
+          </li>
+          <li><a href="https://web.stanford.edu/~hastie/Papers/ESLII.pdf#page=146">Logistic Regression vs LDA? (ESL)</a></li>
+        </ul>
+      </li>
+      <li><strong>Geometry of Gaussian Distributions</strong>:
+        <ul>
+          <li>Multivariate Normal Distribution:
+            <ul>
+              <li>Isotropic:
+                <ul>
+                  <li>I.E. Isosurfaces are spheres</li>
+                  <li>Covariance Matrix <script type="math/tex">\Sigma = \sigma^2 I</script><br />
+  where <script type="math/tex">\sigma^2</script> is the variance of any one feature.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>The <strong>Bias Parameter</strong>:
+        <ul>
+          <li><a href="https://stackoverflow.com/questions/2480650/role-of-bias-in-neural-networks">Role of Bias in a NN</a></li>
+        </ul>
+      </li>
+      <li><strong>When is does an ML problem become a <em>Research Problem</em></strong>:<br />
+  A problem that you are trying to solve using ML becomes a <strong>research problem</strong> as opposed to those solved by <strong>applied practitioners</strong> when the only way to learn the problem is to <span style="color: purple">improve the <strong>learning algorithm</strong> itself</span>. This happens in two situations:
+        <ol>
+          <li>You can fit the <strong>training data</strong> well but cannot improve <strong>generalization error</strong>:<br />
+ This happens when: It is not feasible to gather more data</li>
+          <li>You cannot fit the <strong>training data</strong> well even when you increase the capacity of your models as much as you <em>“feasibly”</em> can</li>
+        </ol>
+      </li>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">Designing Human-Centered AI</button>
+  <img src="https://cdn.mathpix.com/snip/images/QMFDyvhLtOO4V5sJ5UXNzc5ykwllgkghEmpqncZ0P4Y.original.fullsize.png" alt="img" width="100%" hidden="" /></li>
+      <li><strong>Bayesian Deep Learning</strong>:<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">List of Topics</button>
+        <ul hidden="">
+          <li>Uncertainty in deep learning,</li>
+          <li>Applications of Bayesian deep learning,</li>
+          <li>Probabilistic deep models (such as extensions and application of Bayesian neural networks),</li>
+          <li>Deep probabilistic models (such as hierarchical Bayesian models and their applications),</li>
+          <li>Generative deep models (such as variational autoencoders),</li>
+          <li>Information theory in deep learning,</li>
+          <li>Deep ensemble uncertainty,</li>
+          <li>NTK and Bayesian modelling,</li>
+          <li>Connections between NNs and GPs,</li>
+          <li>Incorporating explicit prior knowledge in deep learning (such as posterior regularisation with logic rules),</li>
+          <li>Approximate inference for Bayesian deep learning (such as variational Bayes / expectation propagation / etc. in Bayesian neural networks),</li>
+          <li>Scalable MCMC inference in Bayesian deep models,</li>
+          <li>Deep recognition models for variational inference (amortised inference),</li>
+          <li>Bayesian deep reinforcement learning,</li>
+          <li>Deep learning with small data,</li>
+          <li>Deep learning in Bayesian modelling,</li>
+          <li>Probabilistic semi-supervised learning techniques,</li>
+          <li>Active learning and Bayesian optimisation for experimental design,</li>
+          <li>Kernel methods in Bayesian deep learning,</li>
+          <li>Implicit inference,</li>
+          <li>Applying non-parametric methods, one-shot learning, and Bayesian deep learning in general.</li>
+        </ul>
+      </li>
+      <li><strong>Learning Problems</strong>:
+        <ul>
+          <li>Counting/Arithmetic</li>
+          <li>Copying</li>
+          <li>Identity Mapping</li>
+          <li>Pointing (Copying?)</li>
+          <li></li>
+        </ul>
+      </li>
+      <li><strong>Learning Features</strong>:
+        <ul>
+          <li>Higher-Order/k-Order Interactions</li>
+          <li>Global Dependencies</li>
+          <li>Local Dependencies</li>
+          <li>Self-Similarity</li>
+          <li>Non-Locality (<a href="https://arxiv.org/pdf/1711.07971.pdf">Non-local Neural Networks (paper!)</a>)</li>
+          <li>Long-Range Dependencies</li>
+          <li>Memory: Long-Term, Short-Term (working memory)
+            <ul>
+              <li>Associative Retrieval</li>
+            </ul>
+          </li>
+          <li>Mathematical (Symbolic?) Manipulation: Arithmetic?: Counting</li>
+        </ul>
+      </li>
+      <li><strong>Input Representations</strong>:
+        <ul>
+          <li>Localist Representations</li>
+          <li>Point Attractors
+ <br /></li>
         </ul>
       </li>
     </ul>
@@ -1570,24 +1447,20 @@ The sampling density is proportional to <script type="math/tex">N^{1/p}</script>
 
 <h2 id="content7">Computer Vision</h2>
 
-<ol>
-  <li><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents71">Edge Detection Filters:</strong>
-    <ul>
-      <li><strong>Sobel Filter:</strong>
-        <p>$$\begin{array}{|c|c|c|}\hline 1 &amp; {0} &amp; {-1} \\ \hline 2 &amp; {0} &amp; {-2} \\ \hline 1 &amp; {0} &amp; {-1} \\ \hline\end{array}$$</p>
-      </li>
-      <li><strong>Schorr Filter</strong>:
-        <p>$$\begin{array}{|c|c|c|}\hline 3 &amp; {0} &amp; {-3} \\ \hline 10 &amp; {0} &amp; {-10} \\ \hline 3 &amp; {0} &amp; {-3} \\ \hline\end{array}$$</p>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents72">Aliasing:</strong><br />
- Aliasing is an effect that causes different signals to become indistinguishable (or aliases of one another) when sampled. It also refers to the distortion or artifact that results when the signal reconstructed from samples is different from the original continuous signal.</p>
+<!-- 
 
-    <p>Aliasing can occur in signals sampled in time, for instance digital audio, and is referred to as <strong>temporal aliasing</strong>. Aliasing can also occur in spatially sampled signals, for instance moiré patterns in digital images. Aliasing in spatially sampled signals is called <strong>spatial aliasing</strong>.</p>
-  </li>
-</ol>
+1. **Edge Detection Filters:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents71}  
+    * __Sobel Filter:__  
+        <p>$$\begin{array}{|c|c|c|}\hline 1 & {0} & {-1} \\ \hline 2 & {0} & {-2} \\ \hline 1 & {0} & {-1} \\ \hline\end{array}$$</p>  
+    * __Schorr Filter__:  
+        <p>$$\begin{array}{|c|c|c|}\hline 3 & {0} & {-3} \\ \hline 10 & {0} & {-10} \\ \hline 3 & {0} & {-3} \\ \hline\end{array}$$</p>  
+            
+
+2. **Aliasing:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents72}  
+    Aliasing is an effect that causes different signals to become indistinguishable (or aliases of one another) when sampled. It also refers to the distortion or artifact that results when the signal reconstructed from samples is different from the original continuous signal.  
+
+    Aliasing can occur in signals sampled in time, for instance digital audio, and is referred to as __temporal aliasing__. Aliasing can also occur in spatially sampled signals, for instance moiré patterns in digital images. Aliasing in spatially sampled signals is called __spatial aliasing__.  
+        -->
 
 <!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents73}  
 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents74}  
@@ -1604,12 +1477,13 @@ The sampling density is proportional to <script type="math/tex">N^{1/p}</script>
 
 <ol>
   <li><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents81">Language Modeling:</strong><br />
- <strong style="color: red">Towards Better Language Modeling (Lec.9 highlight, 38m):</strong><br />
- To improve a <em>Language Model</em>:
+ <strong style="color: red">Towards Better Language Modeling (Lec.9 highlight, 38m):</strong>
+    <p>To improve a <em>Language Model</em>:</p>
     <ol>
       <li><strong>Better Inputs</strong>: 
  Word <script type="math/tex">\rightarrow</script> Subword <script type="math/tex">\rightarrow</script> Char<br />
- <img src="/main_files/concepts/2.png" alt="img" width="100%" /><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Slide</button>
+ <img src="/main_files/concepts/2.png" alt="img" width="100%" hidden="" /><br />
  <em>Subword Language Modeling , Mikolov et al. 2012</em><br />
  <em>Character-Aware Neural Language Model , Kim et al. 2015</em>.</li>
       <li><strong>Better Regularization/Preprocessing</strong>:<br />
@@ -1640,21 +1514,19 @@ The sampling density is proportional to <script type="math/tex">N^{1/p}</script>
       <li><strong>Better Model</strong> (+ all above)</li>
     </ol>
 
-    <p><strong style="color: red">Recurrent Neural Networks as Language Models:</strong></p>
+    <p id="lst-p"><strong style="color: red">Recurrent Neural Networks as Language Models:</strong></p>
     <ul>
       <li><button class="showText" value="show" onclick="showTextPopHide(event);">RNN-LM</button>
  <img src="/main_files/concepts/7.jpg" alt="img" hidden="" /></li>
     </ul>
 
-    <p><strong style="color: red">Notes:</strong></p>
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
     <ul>
-      <li><strong>The ML-Estimate of <script type="math/tex">p(w_i \vert w_{i-1})</script></strong> <script type="math/tex">= \dfrac{c(w_{i-1}\:, w_i)}{\sum_{w_i} c(w_{i-1}\:, w_i)}</script></li>
+      <li><strong>The ML-Estimate of <script type="math/tex">p(w_i \vert w_{i-1})</script></strong> <script type="math/tex">= \dfrac{c(w_{i-1}\:, w_i)}{\sum_{w_i} c(w_{i-1}\:, w_i)}</script><br />
+ <br /></li>
     </ul>
 
-    <p><br /></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents82">:</strong></p>
+    <p><!-- 2. **:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents82}   --></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents83">Neural Text Generation:</strong>
     <ul>
@@ -1699,7 +1571,7 @@ The sampling density is proportional to <script type="math/tex">N^{1/p}</script>
  <img src="/main_files/concepts/6_1.jpg" alt="img" hidden="" /></li>
     </ul>
 
-    <p><strong style="color: red">CNN Text Classification:</strong></p>
+    <p id="lst-p"><strong style="color: red">CNN Text Classification:</strong></p>
     <ul>
       <li><button class="showText" value="show" onclick="showTextPopHide(event);">The Problem Set-up and the Pooling Layer</button>
  <img src="/main_files/concepts/8.jpg" alt="img" hidden="" /></li>
@@ -1711,10 +1583,10 @@ The sampling density is proportional to <script type="math/tex">N^{1/p}</script>
       <li><a href="https://blog.goodaudience.com/introduction-to-1d-convolutional-neural-networks-in-keras-for-time-sequences-3a7ff801a2cf">1d CNNs for Time-Sequences</a></li>
       <li><a href="http://mccormickml.com/2016/11/04/interpreting-lsi-document-similarity/">LSI document similarity</a></li>
       <li><a href="http://mccormickml.com/2016/03/25/lsa-for-text-classification-tutorial/">Latent Semantic Analysis (LSA) for Text Classification Tutorial</a></li>
+      <li><a href="https://www.analyticsvidhya.com/blog/2018/04/a-comprehensive-guide-to-understand-and-implement-text-classification-in-python/">A Comprehensive Guide to Understand and Implement Text Classification in Python (All Models for Txt Cls. - very useful)</a></li>
     </ul>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents86">:</strong></p>
+
+    <p><!-- 6. **:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents86}   --></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents87">Coreference Resolution:</strong><br />
@@ -1775,7 +1647,7 @@ The sampling density is proportional to <script type="math/tex">N^{1/p}</script>
     <p><strong>Problem with Detection - Extra/bad mentions:</strong><br />
  Notice that the systems above will overmatch on possible mentions that don’t have a concrete entity that they refer to: e.g. [It] is sunny, [Every student], [No student], [The best donut in the world], [100 miles].</p>
 
-    <p><strong>Dealing with bad mentions:</strong></p>
+    <p id="lst-p"><strong>Dealing with bad mentions:</strong></p>
     <ul>
       <li>Train a classifier to filter out spurious mentions</li>
       <li>(more commonly) keep all mentions as “candidate mentions”
@@ -1785,9 +1657,8 @@ The sampling density is proportional to <script type="math/tex">N^{1/p}</script>
       </li>
     </ul>
 
-    <p><a href="https://www.youtube.com/watch?v=i19m4GzBhfc&amp;list=PLoROMvodv4rOhcuXMZkNm7j3fVwBBY42z&amp;index=17&amp;t=1320s">Continue Lecture (CS224N)</a></p>
-
-    <p><br /></p>
+    <p><a href="https://www.youtube.com/watch?v=i19m4GzBhfc&amp;list=PLoROMvodv4rOhcuXMZkNm7j3fVwBBY42z&amp;index=17&amp;t=1320s">Continue Lecture (CS224N)</a> 
+ <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents88">Word Embeddings:</strong><br />
  <strong style="color: red">Word Vectors:</strong>
@@ -1798,24 +1669,27 @@ The sampling density is proportional to <script type="math/tex">N^{1/p}</script>
  <img src="/main_files/concepts/11_1.jpg" alt="img" hidden="" /></li>
     </ul>
 
-    <p><strong style="color: red">Notes:</strong></p>
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
     <ul>
       <li><strong>Categorization</strong> is a method for Evaluating w2v Embeddings by creating categorize by clustering, then measuring the purity of the clusters</li>
     </ul>
   </li>
 </ol>
 
-<p><strong>Notes:</strong></p>
+<p id="lst-p"><strong style="color: red">Notes:</strong></p>
 <ul>
   <li><a href="http://www.cs.toronto.edu/~ilya/pubs/">Ilya Sutskever Pubs/Vids</a></li>
   <li>Can all NLP tasks be cast as QA problems?!</li>
   <li><a href="https://arxiv.org/pdf/1703.09902.pdf">Survey of the State of the Art in Natural Language Generation</a></li>
 </ul>
 
-<hr />
-<hr />
+<!-- 
+***
+***
 
-<h2 id="content9">Physics</h2>
+## Physics
+{: #content9} 
+-->
 
 <!-- 
 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents91}  
@@ -1826,203 +1700,152 @@ The sampling density is proportional to <script type="math/tex">N^{1/p}</script>
 <hr />
 <hr />
 
-<h2 id="content10">Algorithms</h2>
+<!-- ## Algorithms
+{: #content10}
 
-<ol>
-  <li><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents101">DFS:</strong><br />
- <strong>Applications</strong>:
-    <ul>
-      <li>Finding (strongly or not) connected components.</li>
-      <li>Topological sorting.</li>
-      <li>Finding the bridges of a graph.</li>
-      <li>Generating words in order to plot the limit set of a group.</li>
-      <li>Finding strongly connected components.</li>
-      <li>Planarity testing.</li>
-      <li>Solving puzzles with only one solution, such as mazes. (DFS can be adapted to find all solutions to a maze by only including nodes on the current path in the visited set.)</li>
-      <li>Maze generation may use a randomized depth-first search.</li>
-      <li>Finding biconnectivity in graphs.</li>
-    </ul>
+1. **DFS:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents101}  
+    __Applications__:  
+    * Finding (strongly or not) connected components.
+    * Topological sorting.
+    * Finding the bridges of a graph.
+    * Generating words in order to plot the limit set of a group.
+    * Finding strongly connected components.
+    * Planarity testing.
+    * Solving puzzles with only one solution, such as mazes. (DFS can be adapted to find all solutions to a maze by only including nodes on the current path in the visited set.)
+    * Maze generation may use a randomized depth-first search.
+    * Finding biconnectivity in graphs.  
 
-    <p><strong>Code:</strong></p>
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># RECURSIVE</span>
- <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">visit</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
-     <span class="c"># print('n: ', n);print('visit: ', visit);print('graph: ', graph);print('s: ', s)# print("HERE: ", len(visit), len(graph))</span>
-     <span class="n">visit</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-     <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-     <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">s</span><span class="p">]:</span>
-         <span class="k">if</span> <span class="ow">not</span> <span class="n">visit</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
-             <span class="n">dfs</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">visit</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-</code></pre></div>    </div>
+    __Code:__  
+    ```python
+    # RECURSIVE
+    def dfs(n, visit, graph, s):
+        # print('n: ', n);print('visit: ', visit);print('graph: ', graph);print('s: ', s)# print("HERE: ", len(visit), len(graph))
+        visit[s] = 1
+        print(s)
+        for v in graph[s]:
+            if not visit[v]:
+                dfs(n, visit, graph, v)
+    ```   
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># Pseudo-Code</span>
- <span class="n">procedure</span> <span class="n">DFS</span><span class="o">-</span><span class="n">iterative</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
-     <span class="n">let</span> <span class="n">S</span> <span class="n">be</span> <span class="n">a</span> <span class="n">stack</span>
-     <span class="n">S</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-     <span class="k">while</span> <span class="n">S</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">empty</span>
-         <span class="n">v</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-         <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">labeled</span> <span class="k">as</span> <span class="n">discovered</span><span class="p">:</span>
-             <span class="n">label</span> <span class="n">v</span> <span class="k">as</span> <span class="n">discovered</span>
-             <span class="k">for</span> <span class="nb">all</span> <span class="n">edges</span> <span class="k">from</span> <span class="n">v</span> <span class="n">to</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">adjacentEdges</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="n">do</span> 
-                 <span class="n">S</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents102">Complexity of common Data-Structures:</strong></dt>
-      <dd><img src="/main_files/concepts/bigo.png" alt="img" width="100%" /></dd>
-    </dl>
-  </li>
-  <li><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents103">Data-Structures:</strong>
-    <ul>
-      <li><strong>Stack</strong>:
-        <ul>
-          <li><strong>Implementations</strong>:<br />
-  (1) Arrays  <script type="math/tex">\:\:</script> (2) Linked-Lists</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents104">Maps and Networks - The Four Color Problem:</strong>
-    <ul>
-      <li>All maps can be colored with only 4 colors</li>
-      <li>All maps are networks (<strong>planar graphs</strong>) but not all networks (non-planar) are maps</li>
-    </ul>
-  </li>
-  <li><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents105">Recurrence (complexity):</strong>
-    <ul>
-      <li><strong>Master Theorem</strong>:<br />
- Given the Recurrence:<br />
- <script type="math/tex">T(n) = aT(n/b) + cn^k,\:\: T(1) = c</script>,<br />
- where a, b, c, and k are all constants. solves to:<br />
- <script type="math/tex">T(n) \in \Theta(n^k)</script> if <script type="math/tex">% <![CDATA[
-a < b^k %]]></script><br />
- <script type="math/tex">T(n) \in \Theta(n^k \log{n})</script> if <script type="math/tex">a = b^k</script><br />
- <script type="math/tex">T(n) \in \Theta(n^{\log_b(a)})</script> if <script type="math/tex">a > b^k</script></li>
-      <li><button class="showText" value="show" onclick="showTextPopHide(event);">General Master Theorem</button>
- <img src="/main_files/concepts/general_master_thm.jpg" alt="img" hidden="" /></li>
-      <li><strong>Recursion Out-of-form</strong>:<br />
- <script type="math/tex">T(n) = T(n − 1) + c^n</script>, where <script type="math/tex">c</script> is a constant; solves to:<br />
- Expands to: <script type="math/tex">T(n) = \sum_{i=0}^n c^i</script><br />
- Where the solution is <script type="math/tex">\Theta(1), \Theta(n), or \Theta(c^n)</script>, depending on if <script type="math/tex">% <![CDATA[
-c < 1, c = 1, or c > 1 %]]></script></li>
-      <li><strong>The height of the binary recursion tree</strong>:<br />
- Given <script type="math/tex">T(n) = aT(n^{1/k}) + f(n)</script>, the height <script type="math/tex">h</script> is the solution to:<br />
- <script type="math/tex">n^{1/{k^h}} = 2</script></li>
-      <li><strong>Solution from Recursion Tree</strong>:<br />
- The solution of a recursion is defined as:
-        <ol>
-          <li>The number of nodes in the tree: <script type="math/tex">= 2^{h+1}-1</script>, where <script type="math/tex">h</script> is the height of the tree</li>
-          <li>Multiplied by the amount of work done at every node: <script type="math/tex">f(n)</script></li>
-        </ol>
-      </li>
-    </ul>
-  </li>
-  <li><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents106">Proofs for Algorithms:</strong>
-    <ul>
-      <li><strong>Strong Induction:</strong> e.g. dijkstras</li>
-    </ul>
-  </li>
-  <li><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents107">Data Structures:</strong>
-    <ul>
-      <li><strong>Array</strong></li>
-      <li><strong>Stack (LIFO)</strong></li>
-      <li><strong>Queue (FIFO)</strong></li>
-      <li><strong>(min/max) Heap</strong></li>
-      <li><strong>Hash Table</strong></li>
-      <li><strong>Binary Tree</strong></li>
-      <li>
-        <p><strong>(single/double) Linked List</strong></p>
-      </li>
-      <li><strong>Array</strong>:</li>
-      <li><strong>Stack</strong>:
-        <ul>
-          <li><strong>Operations O(1)</strong>:
-            <ol>
-              <li>Push</li>
-              <li>Pop</li>
-              <li>Top</li>
-              <li>IsEmpty</li>
-            </ol>
-          </li>
-          <li><strong>Implementations</strong>:
-            <ol>
-              <li>(cyclic) Array: w/ modular indices</li>
-              <li>(doubly) Linked List</li>
-            </ol>
-          </li>
-        </ul>
-      </li>
-      <li><strong>Queue</strong>:
-        <ul>
-          <li><strong>Operations O(1)</strong>:
-            <ol>
-              <li>Enqueue</li>
-              <li>Dequeue</li>
-              <li>Front</li>
-              <li>IsEmpty</li>
-            </ol>
-          </li>
-          <li><strong>Implementations</strong>:
-            <ol>
-              <li>(cyclic) Array: w/ modular indices</li>
-              <li>(doubly) Linked List</li>
-            </ol>
-          </li>
-        </ul>
-      </li>
-      <li><strong>(min/max) Heap</strong>:</li>
-      <li><strong>Hash Table</strong>:
-        <ul>
-          <li><strong>Implementations</strong>:
-            <ol>
-              <li>Array of Linked Lists (access=O(1))</li>
-              <li>Balanced BST (access=O(log(n)))</li>
-            </ol>
-          </li>
-        </ul>
-      </li>
-      <li><strong>Binary Tree</strong>:</li>
-      <li><strong>(single/double) Linked List</strong>:</li>
-    </ul>
-  </li>
-</ol>
+    ```python
+    # Pseudo-Code
+    procedure DFS-iterative(G,v):
+        let S be a stack
+        S.push(v)
+        while S is not empty
+            v = S.pop()
+            if v is not labeled as discovered:
+                label v as discovered
+                for all edges from v to w in G.adjacentEdges(v) do 
+                    S.push(w)
+    ```
+        
 
-<!-- 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents108}  
-    :    -->
+2. **Complexity of common Data-Structures:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents102}  
+    :   ![img](/main_files/concepts/bigo.png){: width="100%"}  
 
-<ol>
-  <li><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents100">Notes:</strong>
-    <ul>
-      <li><strong>Matrices Trick:</strong> matrices (<script type="math/tex">A,\  B</script>) can be put in a larger matrix (to create one big matrix) for efficient computation/multiplication:<br />
-  <script type="math/tex">% <![CDATA[
-\begin{bmatrix}
-      A & 0 \\
-      0 & B \\
-  \end{bmatrix} %]]></script></li>
-      <li><a href="https://marckhoury.github.io/on-computable-functions/">Computable Functions and Turing Machines</a></li>
-    </ul>
-  </li>
-</ol>
+3. **Data-Structures:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents103}  
+    * __Stack__:  
+        * __Implementations__:  
+            (1) Arrays  $$\:\:$$ (2) Linked-Lists  
+        
 
-<hr />
-<hr />
+4. **Maps and Networks - The Four Color Problem:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents104}  
+* All maps can be colored with only 4 colors
+* All maps are networks (__planar graphs__) but not all networks (non-planar) are maps
 
-<h2 id="content11">Misc.</h2>
+5. **Recurrence (complexity):**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents105}  
+    * __Master Theorem__:  
+    Given the Recurrence:  
+    $$T(n) = aT(n/b) + cn^k,\:\: T(1) = c$$,  
+    where a, b, c, and k are all constants. solves to:  
+    $$T(n) \in \Theta(n^k)$$ if $$a < b^k$$  
+    $$T(n) \in \Theta(n^k \log{n})$$ if $$a = b^k$$  
+    $$T(n) \in \Theta(n^{\log_b(a)})$$ if $$a > b^k$$  
+    * <button>General Master Theorem</button>{: .showText value="show"
+     onclick="showTextPopHide(event);"}
+    ![img](/main_files/concepts/general_master_thm.jpg){: hidden=""}  
+    * __Recursion Out-of-form__:  
+    $$T(n) = T(n − 1) + c^n$$, where $$c$$ is a constant; solves to:  
+    Expands to: $$T(n) = \sum_{i=0}^n c^i$$  
+    Where the solution is $$\Theta(1), \Theta(n), or \Theta(c^n)$$, depending on if $$c < 1, c = 1, or c > 1$$  
+    * __The height of the binary recursion tree__:  
+    Given $$T(n) = aT(n^{1/k}) + f(n)$$, the height $$h$$ is the solution to:  
+    $$n^{1/{k^h}} = 2$$  
+    * __Solution from Recursion Tree__:  
+    The solution of a recursion is defined as:  
+    1. The number of nodes in the tree: $$= 2^{h+1}-1$$, where $$h$$ is the height of the tree  
+    2. Multiplied by the amount of work done at every node: $$f(n)$$     
 
-<ol>
-  <li><strong style="color: SteelBlue" class="bodyContents11" id="bodyContents111">Philosophy:</strong><br />
- <strong>Occam’s Razor:</strong>  Suppose there exist two explanations for an occurrence. In this case the one that requires the least speculation is usually better.<br />
- Another way of saying it is that the more assumptions you have to make, the more unlikely an explanation.
-    <blockquote>
-      <p>It is neither <em>precise</em> nor <em>self evident</em>.</p>
-    </blockquote>
-  </li>
-</ol>
+6. **Proofs for Algorithms:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents106}  
+    * __Strong Induction:__ e.g. dijkstras
+
+7. **Data Structures:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents107}  
+    * __Array__  
+    * __Stack (LIFO)__  
+    * __Queue (FIFO)__  
+    * __(min/max) Heap__  
+    * __Hash Table__  
+    * __Binary Tree__  
+    * __(single/double) Linked List__  
+
+
+    * __Array__:  
+    * __Stack__:  
+        * __Operations O(1)__:  
+            1. Push
+            2. Pop
+            3. Top
+            4. IsEmpty
+        * __Implementations__:  
+            1. (cyclic) Array: w/ modular indices
+            2. (doubly) Linked List
+    * __Queue__:  
+        * __Operations O(1)__:  
+            1. Enqueue
+            2. Dequeue
+            3. Front
+            4. IsEmpty
+        * __Implementations__:  
+            1. (cyclic) Array: w/ modular indices
+            2. (doubly) Linked List
+    * __(min/max) Heap__:  
+    * __Hash Table__:  
+        * __Implementations__:  
+            1. Array of Linked Lists (access=O(1))
+            2. Balanced BST (access=O(log(n)))
+    * __Binary Tree__:  
+    * __(single/double) Linked List__:  
+
+    
+
+    8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents108}  
+    :
+
+0. **Notes:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents100}  
+    * __Matrices Trick:__ matrices ($$A,\  B$$) can be put in a larger matrix (to create one big matrix) for efficient computation/multiplication:  
+        $$\begin{bmatrix}
+            A & 0 \\
+            0 & B \\
+        \end{bmatrix}$$  
+    * [Computable Functions and Turing Machines](https://marckhoury.github.io/on-computable-functions/)   
+
+***
+***
+ -->
+
+<!-- ## Misc.
+{: #content11}
+
+1. **Philosophy:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents111}  
+    __Occam's Razor:__  Suppose there exist two explanations for an occurrence. In this case the one that requires the least speculation is usually better.  
+    Another way of saying it is that the more assumptions you have to make, the more unlikely an explanation.  
+    > It is neither _precise_ nor _self evident_.    -->
 
 <!-- 2. **Misc:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents112}  
 3. **Misc:**{: style="color: SteelBlue"}{: .bodyContents11 #bodyContents113}   -->
 
-<p><strong>Resources:</strong></p>
+<p id="lst-p"><strong style="color: red">Resources:</strong></p>
 <ul>
   <li><a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html">Reinforcement Learning Course Lectures UCL</a></li>
   <li><a href="https://people.eecs.berkeley.edu/~pabbeel/cs287-fa15/">Advanced Robotics Lecture CS287 Berk</a></li>
@@ -2043,15 +1866,11 @@ c < 1, c = 1, or c > 1 %]]></script></li>
   <li><a href="https://ee227c.github.io/">EE227C: Convex Optimization and Approximation</a></li>
   <li><a href="https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf">Boyd Cvx-Opt</a></li>
   <li><a href="http://www.stat.cmu.edu/~ryantibs/convexopt/">Tibshirani Cvx-Opt</a></li>
-  <li></li>
+  <li><a href="https://docs.google.com/document/d/1w_fcJKNyXUMhMS328w7qiOr-P1dSOHALuBnOjEbiZYA/edit">Efficient DL</a></li>
+  <li><a href="https://sailinglab.github.io/pgm-spring-2019/">Probabilistic Graphical Models CS-708 (CMU!)</a></li>
+  <li><a href="https://berkeley-deep-learning.github.io">Deep learning courses at UC Berkeley!</a></li>
+  <li><a href="https://bcourses.berkeley.edu/courses/1478831/pages/cs182-slash-282a-designing-visualizing-and-understanding-deep-neural-networks-spring-2019">CS182/282A Designing, Visualizing and Understanding Deep Neural Networks Spring 2019</a></li>
 </ul>
-<div class="footnotes">
-  <ol>
-    <li id="fn:1">
-      <p>Remember that the chain-rule will multiply the local gradient (of sigmoid) with the whole object. Thus, when gradient is small/zero, it will “kill” the gradient <script type="math/tex">\rightarrow</script> no signal will flow through the neuron to its weights or to its data. <a href="#fnref:1" class="reversefootnote">&#8617;</a> <a href="#fnref:1:1" class="reversefootnote">&#8617;<sup>2</sup></a></p>
-    </li>
-  </ol>
-</div>
 
 
       <footer class="site-footer">

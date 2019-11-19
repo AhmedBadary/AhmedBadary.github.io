@@ -25,6 +25,8 @@ prevLink: /work_files/research/dl/theory.html
 ***
 ***
 
+![img](https://cdn.mathpix.com/snip/images/xdjhM_cvHBtsMV1_70E_u-aDqFodvye8v9dcrB_QWDA.original.fullsize.png){: width="80%"}  
+
 ## Introduction: Deep Feedforward Neural Networks
 {: #content1}
 
@@ -45,10 +47,10 @@ prevLink: /work_files/research/dl/theory.html
     Consider linear models biggest limitation: model capacity is limited to linear functions.  
     To __extend__ linear models to represent non-linear functions of $$\boldsymbol{x}$$ we can:  
     {: #lst-p}
-    * Apply the linear model not to $$\boldsymbol{x}$$ itself but _to a transformed input_ $$\phi(\boldsymbol{x})$$, where $$\phi$$ is a nonlinear transformation.  
+    * Apply the linear model not to $$\boldsymbol{x}$$ itself but <span>_to a transformed input_ $$\phi(\boldsymbol{x})$$</span>{: style="color: purple"}, where $$\phi$$ is a <span>__nonlinear transformation__</span>{: style="color: purple"}.  
     * Equivalently, apply the __kernel trick__ to obtain nonlinear learning algorithm based on implicitly applying the $$\phi$$ mapping.  
 
-    We can think of $$\phi$$ as providing a set of features describing $$\boldsymbol{x}$$, or as providing a new representation for $$\boldsymbol{x}$$.  
+    <span>We can think of $$\phi$$ as providing a __set of features *describing*__ $$\boldsymbol{x}$$, or as providing a __new representation__ for $$\boldsymbol{x}$$.</span>{: style="color: goldenrod"}  
     __Choosing the mapping $$\phi$$:__  
     {: #lst-p}
     1. Use a very generic $$\phi$$, s.a. infinite-dimensional (RBF) kernel.  
@@ -56,26 +58,46 @@ prevLink: /work_files/research/dl/theory.html
         Very generic feature mappings are usually _based only_ on the _principle of local smoothness_ and do not encode enough prior information to solve advanced problems.  
     2. Manually Engineer $$\phi$$.  
         Requires decades of human effort and the results are usually poor and non-scalable.  
-    3. The _strategy_ of _deep learning_ is to __learn $$\phi$$__. We have a model:  
-        <p>$$y=f(\boldsymbol{x} ; \boldsymbol{\theta}, \boldsymbol{w})=\phi(\boldsymbol{x} ; \boldsymbol{\theta})^{\top} \boldsymbol{w}$$</p>  
-        We now have parameters $$\theta$$ that we use to learn $$\phi$$ from a broad class of functions, and parameters $$\boldsymbol{w}$$ that map from $$\phi(\boldsymbol{x})$$ to the desired output.  
-        > This is an example of a _deep FNN_, with $$\phi$$ defining a _hidden layer_.   
+    3. The _strategy_ of __deep learning__ is to <span>__learn $$\phi$$__</span>{: style="color: purple"}.  
+        * We have a __model__:  
+            <p>$$y=f(\boldsymbol{x} ; \boldsymbol{\theta}, \boldsymbol{w})=\phi(\boldsymbol{x} ; \boldsymbol{\theta})^{\top} \boldsymbol{w}$$</p>  
+            We now have __parameters $$\theta$$__ that we <span>use to __learn $$\phi$$__ from a <span>*__broad class of functions__*</span>{: style="color: purple"}</span>{: style="color: purple"}, and __parameters $$\boldsymbol{w}$$__ that <span>__map__ from _$$\phi(\boldsymbol{x})$$_ to the _desired output_</span>{: style="color: purple"}.  
+            This is an example of a __deep FNN__, with $$\phi$$ defining a __hidden layer__.   
+        * This approach is the _only one_ of the three that _gives up_ on the _convexity_ of the training problem, but the _benefits outweigh the harms_.  
+        * In this approach, we parametrize the representation as $$\phi(\boldsymbol{x}; \theta)$$ and use the optimization algorithm to find the $$\theta$$ that corresponds to a good representation.  
+        * __Advantages:__  
+            * __Capturing the benefit of the *first* approach__:  
+                by being highly generic — we do so by using a very broad family $$\phi(\boldsymbol{x};\theta)$$.  
+            * __Capturing the benefit of the *second* approach__:  
+                Human practitioners can encode their knowledge to help generalization by designing families $$\phi(\boldsymbol{x}; \theta)$$ that they expect will perform well.  
+                The __advantage__ is that the human designer only needs to find the right general function family rather than finding precisely the right function.  
 
-        This approach is the _only one_ of the three that _gives up_ on the _convexity_ of the training problem, but the _benefits outweigh the harms_.  
-        In this approach, we parametrize the representation as $$\phi(\boldsymbol{x}; \theta)$$ and use the optimization algorithm to find the $$\theta$$ that corresponds to a good representation.  
+    Thus, we can _motivate_ __Deep NNs__ as a way to do <span>__automatic, *non-linear* feature extraction__</span>{: style="color: goldenrod"} from the __inputs__.  
 
-        * Capturing the benefit of the first approach:  
-            by being highly generic — we do so by using a very broad family $$\phi(\boldsymbol{x};\theta)$$.  
-        * Capturing the benefit of the second approach:  
-            Human practitioners can encode their knowledge to help generalization by designing families $$\phi(\boldsymbol{x}; \theta)$$ that they expect will perform well.  
-            The __advantage__ is that the human designer only needs to find the right general function family rather than finding precisely the right function.  
+    This general principle of <span>improving models by learning features</span>{: style="color: purple"} extends beyond the feedforward networks to all models in deep learning.  
+    FFNs are the application of this principle to learning __deterministic mappings__ from $$\boldsymbol{x}$$ to $$\boldsymbol{y}$$ that __lack__ *__feedback connections__*.  
+    Other models, apply these principles to learning __stochastic mappings__, __functions with feedback__, and __probability distributions__ _over a single vector_.  
+
+
+    __Advantage and Comparison of Deep NNs:__{: style="color: red"}  
+    {: #lst-p}
+    * __Linear classifier:__  
+        * __Negative:__ Limited representational power
+        * __Positive:__ Simple
+    * __Shallow Neural network (Exactly one hidden layer):__  
+        * __Positive:__ Unlimited representational power
+        * __Negative:__ Sometimes prohibitively wide 
+    * __Deep Neural network:__  
+        * __Positive:__ Unlimited representational power
+        * __Positive:__ Relatively small number of hidden units needed
     <br>
 
-<!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}
+3. **Interpretation of Neural Networks:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
+    It is best to think of feedforward networks as __function approximation machines__ that are designed to achieve <span>_statistical generalization_</span>{: style="color: purple"}, occasionally drawing some insights from what we know about the brain, rather than as models of brain function.  
 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}
+<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14} -->
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}
+<!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}
 
 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}
 
@@ -93,6 +115,7 @@ prevLink: /work_files/research/dl/theory.html
     __Stochastic Gradient Descent__ applied to _nonconvex_ loss functions has _no convergence guarantees_ and is _sensitive_ to the _values_ of the _initial parameters_.  
 
     Thus, for FNNs (since they have _nonconvex loss functions_):  
+    {: #lst-p}
     * *__Initialize all weights to small random values__*.  
     * The *__biases__* may be *__initialized to zero or to small positive values__*.  
     <br>
@@ -217,8 +240,10 @@ prevLink: /work_files/research/dl/theory.html
     __Sigmoid Units__ 
 
     __Binary Classification:__ is a classification problem over two classes. It requires predicting the value of a _binary variable $$y$$_. It is one of many tasks requiring that.  
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__The MLE approach__ is to define a *__Bernoulli distribution__* over $$y$$ conditioned on $$\boldsymbol{x}$$.  
-    A __Bernoulli distribution__ is defined by just _1 single_ number.  
+    __The MLE approach__ is to define a *__Bernoulli distribution__* over $$y$$ conditioned on $$\boldsymbol{x}$$.  
+    A __Bernoulli distribution__ is defined by just _a single_ number.  
+    The Neural Network needs to predict only $$P(y=1 \vert \boldsymbol{x})$$.  
+
 
 
 <!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  

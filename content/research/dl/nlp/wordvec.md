@@ -29,6 +29,9 @@ prevLink: /work_files/research/dl/nlp.html
 [An overview of word embeddings and their connection to distributional semantic models
 ](http://blog.aylien.com/overview-word-embeddings-history-word2vec-cbow-glove/)  
 [On Word Embeddings (Ruder)](http://ruder.io/word-embeddings-1/)  
+* [Eigenwords: Spectral Word Embeddings (paper!)](http://jmlr.org/papers/volume16/dhillon15a/dhillon15a.pdf)  
+* [Stop Using word2vec (blog)](https://multithreaded.stitchfix.com/blog/2017/10/18/stop-using-word2vec/)  
+* [Word2vec Inspired Recommendations In Production (blog)](https://medium.com/building-creative-market/word2vec-inspired-recommendations-in-production-f2c6a6b5b0bf)  
 
 
 
@@ -239,8 +242,25 @@ prevLink: /work_files/research/dl/nlp.html
     > I.E.  
         __The difference between the expected context word and the actual context word__{: style="color: green"}  
     
+
+    __Importance Sampling:__{: style="color: red"}  
+    <p>$$\sum_{w_{i} \in V} \left[\frac{\exp \left(-\mathcal{E}\left(w_{i}\right)\right)}{\sum_{w_{i} \in V} \exp \left(-\mathcal{E}\left(w_{i}\right)\right)}\right] \nabla_{\theta} \mathcal{E}\left(w_{i}\right) \\ = \sum_{w_{i} \in V} P\left(w_{i}\right) \nabla_{\theta} \mathcal{E}\left(w_{i}\right)$$</p>  
+    <br>
+
+    <p>$$\mathbb{E}_{w_{i} \sim P}\left[\nabla_{\theta} \mathcal{E}\left(w_{i}\right)\right] =\sum_{w_{i} \in V} P\left(w_{i}\right) \nabla_{\theta} \mathcal{E}\left(w_{i}\right)$$</p>  
+
+    * $$P\left(w_{i}\right) \approx \frac{r(w_i)}{R}$$,  
+
+    <p>$$\mathbb{E}_{w_{i} \sim P}\left[\nabla_{\theta} \mathcal{E}\left(w_{i}\right)\right] \approx \sum_{w_{i} \in V} \frac{r(w_i)}{R} \nabla_{\theta} \mathcal{E}\left(w_{i}\right)$$</p>  
+
+    <p>$$\mathbb{E}_{w_{i} \sim P}\left[\nabla_{\theta} \mathcal{E}\left(w_{i}\right)\right] \approx \frac{1}{R} \sum_{i=1}^{m} r\left(w_{i}\right) \nabla_{\theta} \mathcal{E}\left(w_{i}\right)$$</p>  
     
+    where $$r(w)=\frac{\exp (-\mathcal{E}(w))}{Q(w)}$$, $$R=\sum_{j=1}^{m} r\left(w_{j}\right)$$, and $$Q$$ is the __unigram distribution__ of the training set.    
+
 8. **Notes:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
+    * __Mikolov on SkipGram vs CBOW__:  
+        * Skip-gram: works well with small amount of the training data, represents well even rare words or phrases.  
+        * CBOW: several times faster to train than the skip-gram, slightly better accuracy for the frequent words.  
     * __Further Readings__:  
         * [A Latent Variable Model Approach to PMI-based Word Embeddings](https://aclweb.org/anthology/Q16-1028)
         * [Linear Algebraic Structure of Word Senses, with Applications to Polysemy](https://transacl.org/ojs/index.php/tacl/article/viewFile/1346/320)

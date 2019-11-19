@@ -29,6 +29,17 @@ prevLink: /work_files/research/dl/nlp.html
 ***
 ***
 
+<button>ASR Youtube Tutorials</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+- [How to Make a Simple Tensorflow Speech Recognizer - YouTube](https://www.youtube.com/watch?v=u9FPqkuoEJ8&t=0s)
+- [Almost Unsupervised Text to Speech and Automatic Speech Recognition - YouTube](https://www.youtube.com/watch?v=UXpHzPrDJ2w&t=0s)
+- [13. Speech Recognition with Convolutional Neural Networks in Keras/TensorFlow (2019) - YouTube](https://www.youtube.com/watch?v=Qf4YJcHXtcY&t=0s)
+- [TensorFlow and Neural Networks for Speech Recognition - YouTube](https://www.youtube.com/watch?v=0y4LaZbdGvQ&t=0s)
+- [DSP Background - Deep Learning for Audio Classification p.1 - YouTube](https://www.youtube.com/watch?v=Z7YM-HAz-IY&t=0s)
+- [The PyTorch-Kaldi Toolkit - YouTube](https://www.youtube.com/watch?v=VDQaf0SS4K0&t=0s)
+- [Almost Unsupervised Text to Speech and Automatic Speech Recognition](https://arxiv.org/pdf/1905.06791.pdf)  
+{: hidden=""}
+
+
 ## Introduction to Speech
 {: #content8}
 

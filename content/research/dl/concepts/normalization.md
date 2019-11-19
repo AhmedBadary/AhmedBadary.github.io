@@ -156,7 +156,23 @@ prevLink: /work_files/research/dl/concepts.html
     <button>Show Paper</button>{: .showText value="show"
      onclick="showText_withParent_PopHide(event);"}
     <p hidden=""><img style="float: left" width="45%" src="https://cdn.mathpix.com/snip/images/iQfN-SDV0z9nzlyRhX8oUuX8ZUgxd9kuAjmpKhROwBk.original.fullsize.png" />
-    <iframe src="https://docs.google.com/viewerng/viewer?url=https://arxiv.org/pdf/1502.03167.pdf&amp;embedded=true" frameborder="0" height="535" width="415" title="Batch Normalization" scrolling="auto"></iframe></p>
+    <iframe src="https://docs.google.com/viewerng/viewer?url=https://arxiv.org/pdf/1502.03167.pdf&amp;embedded=true" frameborder="0" height="535" width="415" title="Batch Normalization" scrolling="auto"></iframe></p>  
+
+    __Notes:__{: style="color: red"}  
+    {: #lst-p}
+    * __Scale Invariance:__ Batch Norm renders the loss function of neural networks scale invariant.  
+        I.E. scaling the weights by a constant does not change the output, or the loss, of the batch normalized network.  
+        * __Implications of Scale Invariance -__ [__Exponentially Growing Learning Rate__](https://www.inference.vc/exponentially-growing-learning-rate-implications-of-scale-invariance-induced-by-batchnorm/):  
+            * It is possible to use <span>__exponentially growing__ learning rate schedule</span>{: style="color: purple"} when training neural networks with batch normalization.  
+            * The paper establishes the following __Equivalence__:  
+                * __Weight decay__ with __constant__ learning rate  
+                * __No__ weight decay and an __exponentially growing__ learning rate  
+
+                This equivalence holds for other normalization layers as well, __Group Normalization__, __Layer Normalization__, __Instance Norm__, etc.  
+    * __Weight Decay and BN:__  
+        * [This Paper](https://arxiv.org/pdf/1810.12281.pdf) shows that __weight decay__ on a BN-network is just <span>tweaking the __*effective* learning rate__</span>{: style="color: purple"}.  
+        * Without weight decay, the gradient of a BN-network is always __orthogonal to the current value of the parameter vector__ and therefore __increases the scale of weights__ (__reduces effective learning rate__).  
+            Intuitively, you can compensate the decrease of effective learning rate by using an exponential learning rate scheme or just simply weight decay.  
     <br>
 
 2. **Effectiveness of Batch Normalization:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  

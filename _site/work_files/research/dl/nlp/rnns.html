@@ -369,7 +369,7 @@ The probability, decomposed w/ chain rule:
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">The Structure of an RNN:</strong></dt>
       <dd>The RNN is parameterized with three weight matrices and three bias vectors:</dd>
       <dd>
-        <script type="math/tex; mode=display">\theta = [W_{hv}, W_{hh}, W_{oh}, b_h, b_o, h_0]</script>
+        <script type="math/tex; mode=display">\theta = [W_{hx}, W_{hh}, W_{oh}, b_h, b_o, h_0]</script>
       </dd>
       <dd>These parameter completely describe the RNN.</dd>
     </dl>
@@ -379,7 +379,7 @@ The probability, decomposed w/ chain rule:
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">The Algorithm:</strong></dt>
       <dd>Given an <em>input sequence</em> <script type="math/tex">\hat{x} = [x_1, \ldots, x_T]</script>, the RNN computes a sequence of hidden states <script type="math/tex">h_1^T</script> and a sequence of outputs <script type="math/tex">y_1^T</script> in the following way:<br />
 <strong>for</strong> <script type="math/tex">t</script> <strong>in</strong> <script type="math/tex">[1, ..., T]</script> <strong>do</strong><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">u_t \leftarrow W_{hv}x_t + W_{hh}h_{t-1} + b_h</script><br />
+    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">u_t \leftarrow W_{hx}x_t + W_{hh}h_{t-1} + b_h</script><br />
     <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">h_t \leftarrow g_h(u_t)</script><br />
     <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">o_t \leftarrow W_{oh}h_{t} + b_o</script><br />
     <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">y_t \leftarrow g_y(o_t)</script></dd>
@@ -502,20 +502,50 @@ The probability, decomposed w/ chain rule:
     </dl>
   </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">BPTT:</strong></dt>
-      <dd><strong>for</strong> <script type="math/tex">t</script> <strong>from</strong> <script type="math/tex">T</script> <strong>to</strong> <script type="math/tex">1</script> <strong>do</strong><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">do_t \leftarrow g_y'(o_t) · dL(y_t ; z_t)/dy_t</script><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">db_o \leftarrow db_o + do_t</script><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">dW_{oh} \leftarrow dW_{oh} + do_th_t^T</script><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">dh_t \leftarrow dh_t + W_{oh}^T do_t</script><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">dy_t \leftarrow g_h'(y_t) · dh_t</script><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">dW_{hv} \leftarrow dW_{hv} + dy_tx_t^T</script><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">db_h \leftarrow db_h + dy_t</script><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">dW_{hh} \leftarrow dW_{hh} + dy_th_{t-1}^T</script><br />
-    <script type="math/tex">\ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">dh_{t-1} \leftarrow W_{hh}^T dy_t</script><br />
-<strong>Return</strong> <script type="math/tex">\:\:\:\: d\theta = [dW_{hv}, dW_{hh}, dW_{oh}, db_h, db_o, dh_0]</script></dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">BPTT:</strong><br />
+ <strong>for</strong> <script type="math/tex">t</script> <strong>from</strong> <script type="math/tex">T</script> <strong>to</strong> <script type="math/tex">1</script> <strong>do</strong><br />
+     <!-- $$\ \ \ \ \ \ \ \ \ \ $$ $$dy_t \leftarrow g_y'(o_t) · dy_t$$   -->
+ <script type="math/tex">% <![CDATA[
+\begin{align}
+ \ \ \ \ \ \ \ \ \ \ do_t &\leftarrow dy_t · g_y'(o_t) \\
+ \ \ \ \ \ \ \ \ \ \ db_o &\leftarrow db_o + do_t \\
+ \ \ \ \ \ \ \ \ \ \ dW_{oh} &\leftarrow dW_{oh} + do_th_t^T \\
+ \ \ \ \ \ \ \ \ \ \ dh_t &\leftarrow dh_t + W_{oh}^T do_t \\
+ \ \ \ \ \ \ \ \ \ \ du_t &\leftarrow dh_t · g_h'(u_t) \\
+ \ \ \ \ \ \ \ \ \ \ dW_{hx} &\leftarrow dW_{hx} + du_tx_t^T \\
+ \ \ \ \ \ \ \ \ \ \ db_h &\leftarrow db_h + du_t \\
+ \ \ \ \ \ \ \ \ \ \ dW_{hh} &\leftarrow dW_{hh} + du_th_{t-1}^T \\
+ \ \ \ \ \ \ \ \ \ \ dh_{t-1} &\leftarrow W_{hh}^T du_t 
+ \end{align} %]]></script><br />
+ <strong>Return</strong> <script type="math/tex">\:\:\:\: d\theta = [dW_{hx}, dW_{hh}, dW_{oh}, db_h, db_o, dh_0]</script></p>
+
+    <p><br />
+ <strong>Expanded:</strong> <br />
+ <script type="math/tex">% <![CDATA[
+\begin{align}
+     L(y, \hat{y}) &= \sum_{t} L^{(t)} = -\sum_{t} \log \hat{y}_ t = -\sum_{t} \log p_{\text {model }}\left(y^{(t)} |\left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}\right\}\right) \\
+     \hat{y}_ t &= \text{softmax}(o_t) \\
+     dy_{\tau} &= \frac{\partial L}{\partial L^{(t)}}=1 \\
+     do_t &= g_y'(o_t) = \text{softmax}'(o_t) = \hat{y}_{i}^{(t)}-\mathbf{1}_{i=y^{(t)}} \\
+     dh_{\tau} &= W_{oh}^T do_t \\
+     dh_t &= \left(\frac{\partial \boldsymbol{h}^{(t+1)}}{\partial \boldsymbol{h}^{(t)}}\right)^{\top}\left(\nabla_{\boldsymbol{h}^{(t+1)}} L\right)+\left(\frac{\partial \boldsymbol{o}^{(t)}}{\partial \boldsymbol{h}^{(t)}}\right)^{\top}\left(\nabla_{\boldsymbol{o}^{(t)}} L\right) = \boldsymbol{W_{hh}}^{\top} \operatorname{diag}\left(1-\left(\boldsymbol{h}^{(t+1)}\right)^{2}\right)\left(\nabla_{\boldsymbol{h}^{(t+1)}} L\right)+\boldsymbol{W_{oh}}^{\top}\left(\nabla_{\boldsymbol{o}^{(t)}} L\right) \\
+     du_t &= dh_t · g_h'(u_t) = dh_t · \operatorname{tanh}'(u_t) = dh_t · \sum_{t} \operatorname{diag}\left(1-\left(h^{(t)}\right)^{2}\right) \\
+     db_o &= do_t \\
+     dW_{oh} &= do_th_t^T \\
+     dW_{hx} &= du_tx_t^T \\
+     db_h &= du_t \\
+     dW_{hh} &= du_th_{t-1}^T \\
+     dh_{t-1} &= W_{hh}^T du_t
+ \end{align} %]]></script></p>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><script type="math/tex">dh_{\tau}</script>: We need to get the gradient of <script type="math/tex">h</script> at the last node/time-step <script type="math/tex">\tau</script> i.e. <script type="math/tex">h_{\tau}</script></li>
+      <li><script type="math/tex">dh_t</script>: We can then iterate backward in time to back-propagate gradients through time, from <script type="math/tex">t=\tau-1</script> down to <script type="math/tex">t=1</script>, noting that <script type="math/tex">% <![CDATA[
+h^{(t)}(\text { for } t<\tau) %]]></script> has as <span style="color: goldenrod"><strong>descendants</strong></span> both <script type="math/tex">\boldsymbol{o}^{(t)}</script> and <script type="math/tex">\boldsymbol{h}^{(t+1)}</script>.<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">From Graph</button>
+    <img src="/main_files/dl/archits/rnns/9.png" alt="img" width="100%" hidden="" /></li>
+    </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Backpropagation Through Time:</strong>
     <ul>
@@ -558,7 +588,7 @@ The probability, decomposed w/ chain rule:
 <p><strong>LSTMS:</strong></p>
 <ul>
   <li>The core of the history/memory is captured in the <em>cell-state <script type="math/tex">c_{n}</script></em> instead of the hidden state <script type="math/tex">h_{n}</script>.</li>
-  <li>(&amp;) <strong>Key Idea:</strong> The update to the cell-state <script type="math/tex">c_{n}=c_{n-1}+\operatorname{stanh}\left(V\left[w_{n-1} ; h_{n-1}\right]+b_{c}\right)</script>  here are <strong>additive</strong>. (differentiating a sum gives the identity) Making the gradient flow nicely through the sum. As opposed to the multiplicative updates to <script type="math/tex">h_n</script> in vanilla RNNs.
+  <li>(&amp;) <strong>Key Idea:</strong> The update to the cell-state <script type="math/tex">c_{n}=c_{n-1}+\operatorname{tanh}\left(V\left[w_{n-1} ; h_{n-1}\right]+b_{c}\right)</script>  here are <strong>additive</strong>. (differentiating a sum gives the identity) Making the gradient flow nicely through the sum. As opposed to the multiplicative updates to <script type="math/tex">h_n</script> in vanilla RNNs.
     <blockquote>
       <p>There is non-linear funcs applied to the history/context cell-state. It is composed of linear functions. Thus, avoids gradient shrinking.</p>
     </blockquote>

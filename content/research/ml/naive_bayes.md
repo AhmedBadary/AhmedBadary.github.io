@@ -2,7 +2,7 @@
 layout: NotesPage
 title: The Naive Bayes Classifier
 permalink: /work_files/research/ml/naive_bayes
-prevLink: /work_files/research/dl/ml.html
+prevLink: /work_files/research/ml.html
 ---
 
 

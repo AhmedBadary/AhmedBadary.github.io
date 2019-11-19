@@ -29,24 +29,29 @@ prevLink: /work_files/research/dl/nlp.html
 ## Sentence Representations
 {: #content1}
 
-1. **What?:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}
-    :   Sentence Representation/Embedding Learning is focused on producing one feature vector to represent a sentence in a latent (semantic) space, while preserving linear properties (distances, angles).  
+1. **What?:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
+    Sentence Representation/Embedding Learning is focused on producing one feature vector to represent a sentence in a latent (semantic) space, while preserving linear properties (distances, angles).  
+    <br>
 
-2. **Tasks:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}
+2. **Tasks:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
     * Sentence Classification
     * Paraphrase Identification
     * Semantic Similarity
     * Textual Entailment (i.e. Natural Language Inference)
-    * Retrieval
+    * Retrieval  
+    <br>
 
-3. **Methods:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}
-    * __Multi-Task Learning__:  
-        In particular, people do __*Pre-Training*__ on other tasks, and then use the pre-trained weights and fine-tune them on a new task.  
+3. **Methods:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
+    __Multi-Task Learning__:  
+    In particular, people do __*Pre-Training*__ on other tasks, and then use the pre-trained weights and fine-tune them on a new task.
+    <br>
 
 4. **End-To-End VS Pre-Training:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
     We can always use End-To-End objectives, however, there are two problems that arise, and can be mitigated by pre-training:  
+    {: #lst-p}
     * Paucity of Training Data  
     * Weak Feedback from end of sentence only for text classification (explain?)
+    <br>
 
 <!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}
 
@@ -66,24 +71,28 @@ prevLink: /work_files/research/dl/nlp.html
     * __Objective:__ Language modeling objective
     * __Data:__ Classification data itself, or Amazon reviews
     * __Downstream:__ On text classification, initialize weights and continue training
+    <br>
 
 2. **Unidirectional Training + Transformer - OpenAI GPT _(Radford et al. 2018)_:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
     * __Model:__  Masked self-attention
     * __Objective:__  Predict the next word left->right
     * __Data:__  BooksCorpus
     * __Downstream:__  Some task fine-tuning, other tasks additional multi-sentence training
+    <br>
 
 3. **Auto-encoder Transfer _(Dai and Le 2015)_:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}  
     * __Model:__ LSTM
     * __Objective:__ From single sentence vector, reconstruct the sentence
     * __Data:__ Classification data itself, or Amazon reviews
     * __Downstream:__ On text classification, initialize weights and continue training
+    <br>
 
 4. **Context Prediction Transfer - SkipThought Vectors _(Kiros et al. 2015)_:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}  
     * __Model:__  LSTM
     * __Objective:__  Predict the surrounding sentences
     * __Data:__  Books, important because of context
     * __Downstream:__  Train logistic regression on $$[\|u-v\|; u * v]$$ (component-wise)
+    <br>
 
 5. **Paraphrase ID Transfer _(Wieting et al. 2015)_:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}
     * __Model:__ Try many different ones
@@ -98,7 +107,7 @@ prevLink: /work_files/research/dl/nlp.html
             * Trained representations work quite well and generalize  
     * __Downstream Usage:__ Sentence similarity, classification, etc.
     * __Result:__ Interestingly, LSTMs work well on in-domain data, but word averaging generalizes better
-
+    <br>
 
 7. **Entailment Transfer - InferSent _(Conneau et al. 2017)_:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}  
     * __Previous objectives__ use no human labels, but what if:
@@ -108,14 +117,14 @@ prevLink: /work_files/research/dl/nlp.html
     * __Data:__ Stanford NLI, MultiNLI
     * __Results:__ Tends to be better than unsupervised objectives such as SkipThought  
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}
+<!-- 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28} -->
 
 ***
 
 ## Contextualized Word Representations
 {: #content3}
 
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}
+<!-- 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}
 
 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}
 
@@ -130,10 +139,12 @@ prevLink: /work_files/research/dl/nlp.html
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}
+ -->
 
 ***
 
-## FOURTH
+
+<!-- ## FOURTH
 {: #content4}
 
 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}
@@ -152,4 +163,4 @@ prevLink: /work_files/research/dl/nlp.html
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents48}
 
-***
+-->

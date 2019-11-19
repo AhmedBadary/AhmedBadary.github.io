@@ -80,14 +80,20 @@
 <hr />
 <hr />
 
-<p><a href="/work_files/research/dl/nlp/dl_book_pt1#bodyContents133">Regularization in FFN</a><br />
-<a href="/concepts_#bodyContents616">Regularization Concept</a><br />
-<a href="https://medium.com/inveterate-learner/deep-learning-book-chapter-7-regularization-for-deep-learning-937ff261875c">Regularization Ch.7 Summary</a><br />
-<a href="http://cs229.stanford.edu/notes-spring2019/addendum_bias_variance.pdf">How Regularization Reduces Variance from bias-var-decomp</a><br />
-<a href="http://bjlkeng.github.io/posts/probabilistic-interpretation-of-regularization">Probabilistic Interpretation of Regularization (MAP)</a><br />
-<a href="https://www.wikiwand.com/en/Regularization_(mathematics)">The Math of Regularization</a><br />
-<a href="https://people.eecs.berkeley.edu/~bartlett/courses/281b-sp08/20.pdf">Regularization from excess risk</a><br />
-<a href="https://en.wikipedia.org/wiki/Bayesian_interpretation_of_kernel_regularization">Bayesian Interpretation of Regularization (wikipedia)</a></p>
+<p id="lst-p"><strong style="color: red">Resources:</strong></p>
+<ul>
+  <li><a href="/work_files/research/dl/nlp/dl_book_pt1#bodyContents133">Regularization in FFN</a></li>
+  <li><a href="/concepts_#bodyContents616">Regularization Concept</a></li>
+  <li><a href="https://medium.com/inveterate-learner/deep-learning-book-chapter-7-regularization-for-deep-learning-937ff261875c">Regularization Ch.7 Summary</a></li>
+  <li><a href="http://cs229.stanford.edu/notes-spring2019/addendum_bias_variance.pdf">How Regularization Reduces Variance from bias-var-decomp</a></li>
+  <li><a href="http://bjlkeng.github.io/posts/probabilistic-interpretation-of-regularization">Probabilistic Interpretation of Regularization (MAP)</a></li>
+  <li><a href="https://www.wikiwand.com/en/Regularization_(mathematics)">The Math of Regularization</a></li>
+  <li><a href="https://people.eecs.berkeley.edu/~bartlett/courses/281b-sp08/20.pdf">Regularization from excess risk</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Bayesian_interpretation_of_kernel_regularization">Bayesian Interpretation of Regularization (wikipedia)</a></li>
+  <li><a href="http://www.isikdogan.com/blog/regularization.html">Regularization Methods Papers Explained</a></li>
+  <li><a href="https://srdas.github.io/DLBook/ImprovingModelGeneralization.html">Improving Model Generalization (book)</a></li>
+  <li><a href="https://web.stanford.edu/~hastie/Papers/ESLII.pdf#page=186">Regularization and Reproducing Kernel Hilbert Spaces (ESL)</a></li>
+</ul>
 
 <h2 id="content1">Regularization Basics and Definitions</h2>
 
@@ -102,8 +108,36 @@
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Theoretical Justification for Regularization:</strong>  <br />
  A theoretical justification for regularization is that it attempts to impose Occam’s razor on the solution.<br />
- From a Bayesian point of view, many regularization techniques correspond to imposing certain prior distributions on model parameters.
- <br /></p>
+ From a Bayesian point of view, many regularization techniques correspond to imposing certain prior distributions on model parameters.</p>
+
+    <p id="lst-p"><strong style="color: red">Regularization from the NFL Theorem(s):</strong></p>
+    <ul>
+      <li>The <strong>No Free Lunch Theorem</strong>:<br />
+  The following statement is <strong>FALSE</strong>:<br />
+  <span style="color: purple">“Given a number of points (and a confidence), we can always achieve a prescribed error.”</span></li>
+      <li><strong>Interpretation:</strong> inference from finite samples can be effectively performed if and only if the problem satisfies some a priori condition.</li>
+      <li><strong>Implications</strong>:
+        <ul>
+          <li>This implies that there is no silver bullet: we shouldn’t expect any single optimization method to be perfect for all problems. Rather, we should try to design optimization methods that are tailored to the problem we’re trying to solve.<br />
+  e.g. if you want to use local search, you’ll probably need to define a neighborhood relation that is informed by the problem domain.</li>
+          <li>A practical implication is that machine learning won’t work if there is no structure at all on the space of possible models/hypotheses.<br />
+  Instead, we need some kind of prior that makes some models more likely than others.</li>
+        </ul>
+      </li>
+      <li><strong>Implying Regularization</strong>:<br />
+  One of the most used <strong>priors</strong> is <strong style="color: goldenrod">Occam’s Razor</strong> which assumes that “simpler” models are more likely than complex one’s.<br />
+  This leads to use of regularization in machine learning, as it effectively applies Occam’s razor to candidate models.<sup id="fnref:6"><a href="#fn:6" class="footnote">2</a></sup></li>
+      <li><strong>Summary:</strong> NFL Theorem shows that regularization strategies are <em>necessary</em> to obtain <span style="color: purple">good generalization</span>.</li>
+      <li><a href="https://cs.stackexchange.com/questions/88192/are-the-no-free-lunch-theorems-useful-for-anything">Ref</a></li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li>Regularization emerges in a probabilistic (Bayesian) framework, where regularization can be performed by selecting a larger prior probability over simpler models; but also in statistical learning theory, where the goal is to minimize over two quantities: the ‘empirical risk’ and the ‘structural risk’, which roughly corresponds to the error over the training set and the predicted error in unseen data due to overfitting. - <a href="https://en.wikipedia.org/wiki/Artificial_neural_network#Generalization_and_statistics">wikipedia</a>
+ <br /></li>
+    </ul>
+
+    <p><br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Regularization in Deep Learning:</strong><br />
@@ -140,19 +174,22 @@
 
     <p>The <strong>effect of minimizing the regularized objective function</strong> is that it will <em><strong>decrease</strong></em>, both, <em>the original objective <script type="math/tex">J</script></em> on the training data and some <em>measure of the size of the parameters <script type="math/tex">\boldsymbol{\theta}</script></em>.</p>
 
-    <p>Different choices for the parameter norm <script type="math/tex">\Omega</script> can result in different solutions being preferred.</p>
+    <p>Different choices for the parameter norm <script type="math/tex">\Omega</script> can result in different solutions being preferred.<br />
+ <br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Parameter Penalties and the Bias parameter:</strong><br />
  In NN, we usually penalize <strong>only the weights</strong> of the affine transformation at each layer and we leave the <strong>biases unregularized</strong>.<br />
- Biases typically require less data than the weights to fit accurately. The reason is that <em>each weight specifies how TWO variables interact</em> so fitting the weights well, requires observing both variable sin a variety of conditions. However, <em>each bias controls only a single variable</em>, thus, we dont induce too much <em>variance</em> by leaving the biases unregularized. If anything, regularizing the bias can introduce a significant amount of <em>underfitting</em>.</p>
+ Biases typically require less data than the weights to fit accurately. The reason is that <em>each weight specifies how TWO variables interact</em> so fitting the weights well, requires observing both variable sin a variety of conditions. However, <em>each bias controls only a single variable</em>, thus, we dont induce too much <em>variance</em> by leaving the biases unregularized. If anything, regularizing the bias can introduce a significant amount of <em>underfitting</em>.<br />
+ <br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Note on the <script type="math/tex">\alpha</script> parameter for different hidden layers:</strong><br />
- In the context of neural networks, it is sometimes desirable to use a separate penalty with a different <script type="math/tex">\alpha</script> coefficient for each layer of the network. Because it can be expensive to search for the correct value of multiple hyperparameters, it is still reasonable to use the same weight decay at all layers just to reduce the size of search space.</p>
+ In the context of neural networks, it is sometimes desirable to use a separate penalty with a different <script type="math/tex">\alpha</script> coefficient for each layer of the network. Because it can be expensive to search for the correct value of multiple hyperparameters, it is still reasonable to use the same weight decay at all layers just to reduce the size of search space.<br />
+ <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24"><script type="math/tex">L^2</script> Parameter Regularization (Weight Decay):</strong><br />
- It is a regularization strategy that <em>drives the weights closer to the origin</em><sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup> by adding a regularization term:
+ It is a regularization strategy that <em>drives the weights closer to the origin</em><sup id="fnref:2"><a href="#fn:2" class="footnote">3</a></sup> by adding a regularization term:
     <p>$$\Omega(\mathbf{\theta}) = \frac{1}{2}\|\boldsymbol{w}\|_ {2}^{2}$$</p>
     <p>to the objective function.</p>
 
@@ -175,7 +212,7 @@
         <p>Observe that the addition of the weight decay term has modified the learning rule to <strong>multiplicatively shrink the weight vector by  a constant factor on each step</strong>, just before performing the usual gradient update.</p>
       </li>
       <li><strong>What happens over the Entire course of training</strong>:<br />
-  We simplify the analysis by making a quadratic (2nd-order Taylor) approximation to the objective function in the neighborhood of the optimal wight-parameter of the unregularized objective <script type="math/tex">\mathbf{w}^{\ast} = \arg \min_{\boldsymbol{w}} J(\boldsymbol{w})</script>.<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup><br />
+  We simplify the analysis by making a quadratic (2nd-order Taylor) approximation to the objective function in the neighborhood of the optimal wight-parameter of the unregularized objective <script type="math/tex">\mathbf{w}^{\ast} = \arg \min_{\boldsymbol{w}} J(\boldsymbol{w})</script>.<sup id="fnref:3"><a href="#fn:3" class="footnote">4</a></sup><br />
   The approximation <script type="math/tex">\hat{J}</script>:
         <p>$$\hat{J}(\boldsymbol{\theta})=J\left(\boldsymbol{w}^{\ast}\right)+\frac{1}{2}\left(\boldsymbol{w}-\boldsymbol{w}^{\ast}\right)^{\top} \boldsymbol{H}(J(\boldsymbol{w}^{\ast}))\left(\boldsymbol{w}-\boldsymbol{w}^{\ast}\right)  \tag{7.6}$$</p>
         <p>where <script type="math/tex">\boldsymbol{H}</script> is the Hessian matrix of <script type="math/tex">J</script> with respect to <script type="math/tex">\mathbf{w}</script> evaluated at <script type="math/tex">\mathbf{w}^{\ast}</script>.</p>
@@ -205,23 +242,10 @@
 
         <p><strong>Summary:</strong></p>
 
-        <table>
-          <tbody>
-            <tr>
-              <td><strong>Condition</strong></td>
-              <td><strong>Effect of Regularization</strong></td>
-            </tr>
-            <tr>
-              <td><script type="math/tex">\lambda_{i}>>\alpha</script></td>
-              <td>Not much</td>
-            </tr>
-            <tr>
-              <td><script type="math/tex">% <![CDATA[
-\lambda_{i}<<\alpha %]]></script></td>
-              <td>The weight value almost shrunk to <script type="math/tex">0</script></td>
-            </tr>
-          </tbody>
-        </table>
+        <p>\vert <strong>Condition</strong>|<strong>Effect of Regularization</strong> \vert <br />
+  \vert <script type="math/tex">\lambda_{i}>>\alpha</script> \vert Not much \vert<br />
+  \vert <script type="math/tex">% <![CDATA[
+\lambda_{i}<<\alpha %]]></script> \vert The weight value almost shrunk to <script type="math/tex">0</script> \vert</p>
       </li>
       <li><strong>Applying <script type="math/tex">L^2</script> regularization to <em>Linear Regression</em> :</strong>
         <ul>
@@ -229,6 +253,7 @@
   <img src="/main_files/dl_book/regularization/2.png" alt="img" width="100%" hidden="" /></li>
         </ul>
       </li>
+      <li><a href="https://h1man5hu.github.io/regularization/understanding-the-mathematics-of-weight-decay/">Weight Decay Analysis (blog)</a></li>
     </ul>
     <p><br /></p>
 
@@ -237,10 +262,10 @@
 
     <p><strong>The MAP Estimate:</strong><br />
  <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show MAP Estimate Derivation</button></p>
-    <p hidden="">$$\begin{aligned} \hat{\theta}_ {\mathrm{MAP}} &amp;=\arg \max_{\theta} P(\theta | y) \\ &amp;=\arg \max_{\theta} \frac{P(y | \theta) P(\theta)}{P(y)} \\ &amp;=\arg \max_{\theta} P(y | \theta) P(\theta) \\ &amp;=\arg \max_{\theta} \log (P(y | \theta) P(\theta)) \\ &amp;=\arg \max_{\theta} \log P(y | \theta)+\log P(\theta) \end{aligned}$$</p>
+    <p hidden="">$$\begin{aligned} \hat{\theta}_ {\mathrm{MAP}} &amp;=\arg \max_{\theta} P(\theta \vert y) \\ &amp;=\arg \max_{\theta} \frac{P(y \vert \theta) P(\theta)}{P(y)} \\ &amp;=\arg \max_{\theta} P(y \vert \theta) P(\theta) \\ &amp;=\arg \max_{\theta} \log (P(y \vert \theta) P(\theta)) \\ &amp;=\arg \max_{\theta} \log P(y \vert \theta)+\log P(\theta) \end{aligned}$$</p>
 
     <p>We place a <strong>Gaussian Prior</strong> on the weights, with <strong>zero mean</strong> and <strong>equal variance <script type="math/tex">\tau^2</script></strong>:</p>
-    <p>$$\begin{aligned} \hat{\theta}_ {\mathrm{MAP}} &amp;=\arg \max_{\theta} \log P(y | \theta)+\log P(\theta) \\ &amp;=\arg \max _{\boldsymbol{w}}\left[\log \prod_{i=1}^{n} \dfrac{1}{\sigma \sqrt{2 \pi}} e^{-\dfrac{\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}}+\log \prod_{j=0}^{p} \dfrac{1}{\tau \sqrt{2 \pi}} e^{-\dfrac{w_{j}^{2}}{2 \tau^{2}}} \right] \\ &amp;=\arg \max _{\boldsymbol{w}} \left[-\sum_{i=1}^{n} \dfrac{\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}-\sum_{j=0}^{p} \dfrac{w_{j}^{2}}{2 \tau^{2}}\right] \\ &amp;=\arg \min_{\boldsymbol{w}} \dfrac{1}{2 \sigma^{2}}\left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}+\dfrac{\sigma^{2}}{\tau^{2}} \sum_{j=0}^{p} w_{j}^{2}\right] \\ &amp;=\arg \min_{\boldsymbol{w}} \left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}+\lambda \sum_{j=0}^{p} w_{j}^{2}\right] \\ &amp;= \arg \min_{\boldsymbol{w}} \left[ \|XW - \boldsymbol{y}\|^2 + \lambda {\|\boldsymbol{w}\|_ 2}^2\right]\end{aligned}$$</p>
+    <p>$$\begin{aligned} \hat{\theta}_ {\mathrm{MAP}} &amp;=\arg \max_{\theta} \log P(y \vert \theta)+\log P(\theta) \\ &amp;=\arg \max _{\boldsymbol{w}}\left[\log \prod_{i=1}^{n} \dfrac{1}{\sigma \sqrt{2 \pi}} e^{-\dfrac{\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}}+\log \prod_{j=0}^{p} \dfrac{1}{\tau \sqrt{2 \pi}} e^{-\dfrac{w_{j}^{2}}{2 \tau^{2}}} \right] \\ &amp;=\arg \max _{\boldsymbol{w}} \left[-\sum_{i=1}^{n} \dfrac{\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}-\sum_{j=0}^{p} \dfrac{w_{j}^{2}}{2 \tau^{2}}\right] \\ &amp;=\arg \min_{\boldsymbol{w}} \dfrac{1}{2 \sigma^{2}}\left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}+\dfrac{\sigma^{2}}{\tau^{2}} \sum_{j=0}^{p} w_{j}^{2}\right] \\ &amp;=\arg \min_{\boldsymbol{w}} \left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}+\lambda \sum_{j=0}^{p} w_{j}^{2}\right] \\ &amp;= \arg \min_{\boldsymbol{w}} \left[ \|XW - \boldsymbol{y}\|^2 + \lambda {\|\boldsymbol{w}\|_ 2}^2\right]\end{aligned}$$</p>
     <p><button class="showText" value="show" onclick="showTextPopHide(event);">Different Notation</button>
  <img src="/main_files/dl_book/regularization/4.png" alt="img" width="100%" hidden="" /> <br />
  <br /></p>
@@ -257,8 +282,16 @@
 
     <p id="lst-p"><strong style="color: red">Notes:</strong></p>
     <ul>
-      <li><a href="https://thomas-tanay.github.io/post--L2-regularization/">L2-reg and Adversarial Examples (New Angle)</a><br />
+      <li><a href="https://thomas-tanay.github.io/post--L2-regularization/">L2-reg and Adversarial Examples (New Angle)</a></li>
+      <li><a href="https://h1man5hu.github.io/regularization/understanding-the-mathematics-of-weight-decay/">Weight Decay Analysis (blog)</a></li>
+      <li><strong>Interpreting the Penalty term <script type="math/tex">\lambda</script>:</strong><br />
+  In the Bayesian Interpretation of Weight Decay; by assuming a <strong>Gaussian Distribution</strong> on the errors:<br />
+  the Penalty term <script type="math/tex">\lambda</script> can be interpreted as the (squared) <span style="color: purple">ratio of two <strong>variances</strong></span> of the <strong>data</strong> and the <strong>weights</strong> respectively: <script type="math/tex">\lambda = \frac{\sigma_{D}^{2}}{\sigma_{W}^{2}}</script>.
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=_WZAD2uhvUM&amp;list=PLiPvV5TNogxKKwvKb1RKwkq2hm7ZvpHz0&amp;index=60">Learning the <strong>VARIANCES</strong> of the distributions/Priors (Hinton!)</a><br />
  <br /></li>
+        </ul>
+      </li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25"><script type="math/tex">L^1</script> Regularization:</strong><br />
@@ -288,7 +321,7 @@
     <p>$$\log p(\boldsymbol{w})=\sum_{i} \log \operatorname{Laplace}\left(w_{i} ; 0, \frac{1}{\alpha}\right)=-\alpha\|\boldsymbol{w}\|_ {1}+n \log \alpha-n \log 2 \tag{7.24}$$</p>
     <p>note that we can ignore the terms <script type="math/tex">\log \alpha-\log 2</script> because they do not depend on <script type="math/tex">\boldsymbol{w}</script>.    <br />
  <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Derivation</button></p>
-    <p hidden="">$$\begin{aligned} \hat{\theta}_ {\mathrm{MAP}} &amp;=\arg \max_{\theta} \log P(y | \theta)+\log P(\theta) \\  &amp;=\arg \max _{\boldsymbol{w}}\left[\log \prod_{i=1}^{n} \dfrac{1}{\sigma \sqrt{2 \pi}} e^{-\dfrac{\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}}+\log \prod_{j=0}^{p} \dfrac{1}{2 b} e^{-\dfrac{\left|\theta_{j}\right|}{2 b}} \right] \\    &amp;=\arg \max _{\boldsymbol{w}} \left[-\sum_{i=1}^{n} \dfrac{\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}-\sum_{j=0}^{p} \dfrac{\left|w_{j}\right|}{2 b}\right] \\    &amp;=\arg \min_{\boldsymbol{w}} \dfrac{1}{2 \sigma^{2}}\left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}+\dfrac{\sigma^{2}}{b} \sum_{j=0}^{p}\left|w_{j}\right|\right] \\    &amp;=\arg \min_{\boldsymbol{w}} \left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}+\lambda \sum_{j=0}^{p}\left|w_{j}\right|\right] \\    &amp;= \arg \min_{\boldsymbol{w}} \left[ \|XW - \boldsymbol{y}\|^2 + \lambda \|\boldsymbol{w}\|_ 1\right]\end{aligned}$$</p>
+    <p hidden="">$$\begin{aligned} \hat{\theta}_ {\mathrm{MAP}} &amp;=\arg \max_{\theta} \log P(y \vert \theta)+\log P(\theta) \\  &amp;=\arg \max _{\boldsymbol{w}}\left[\log \prod_{i=1}^{n} \dfrac{1}{\sigma \sqrt{2 \pi}} e^{-\dfrac{\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}}+\log \prod_{j=0}^{p} \dfrac{1}{2 b} e^{-\dfrac{\left|\theta_{j}\right|}{2 b}} \right] \\    &amp;=\arg \max _{\boldsymbol{w}} \left[-\sum_{i=1}^{n} \dfrac{\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}}{2 \sigma^{2}}-\sum_{j=0}^{p} \dfrac{\left|w_{j}\right|}{2 b}\right] \\    &amp;=\arg \min_{\boldsymbol{w}} \dfrac{1}{2 \sigma^{2}}\left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}+\dfrac{\sigma^{2}}{b} \sum_{j=0}^{p}\left|w_{j}\right|\right] \\    &amp;=\arg \min_{\boldsymbol{w}} \left[\sum_{i=1}^{n}\left(y_{i}-\boldsymbol{w}^{\top}\boldsymbol{x}_i\right)^{2}+\lambda \sum_{j=0}^{p}\left|w_{j}\right|\right] \\    &amp;= \arg \min_{\boldsymbol{w}} \left[ \|XW - \boldsymbol{y}\|^2 + \lambda \|\boldsymbol{w}\|_ 1\right]\end{aligned}$$</p>
 
     <p id="lst-p"><strong style="color: red">Properties:</strong></p>
     <ul>
@@ -460,7 +493,7 @@
     <ul>
       <li><strong>Motivation</strong>:
         <ul>
-          <li>Most datasets have some number of mistakes in the <script type="math/tex">y</script> labels. It can be harmful to maximize <script type="math/tex">\log p(y | \boldsymbol{x})</script> when <script type="math/tex">y</script> is a mistake. One way to prevent this is to explicitly model the noise on the labels.<br />
+          <li>Most datasets have some number of mistakes in the <script type="math/tex">y</script> labels. It can be harmful to maximize <script type="math/tex">\log p(y \vert \boldsymbol{x})</script> when <script type="math/tex">y</script> is a mistake. One way to prevent this is to explicitly model the noise on the labels.<br />
   One can assume that for some small constant <script type="math/tex">\epsilon</script>, the training set label <script type="math/tex">y</script> is correct with probability <script type="math/tex">1-\epsilon</script>.<br />
   This assumption is easy to incorporate into the cost function analytically, rather than by explicitly drawing noise samples (e.g. <strong>label smoothing</strong>).</li>
           <li>MLE with a softmax classifier and hard targets may never converge - the softmax can never predict a probability of exactly <script type="math/tex">0</script> or <script type="math/tex">1</script>, so it will continue to learn larger and larger weights, making more extreme predictions forever.{: #bodyContents33mle}</li>
@@ -477,11 +510,15 @@
       </li>
     </ul>
 
-    <p><br /></p>
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><a href="https://www.youtube.com/watch?v=5Fveuxdg8rU&amp;list=PLiPvV5TNogxKKwvKb1RKwkq2hm7ZvpHz0&amp;index=57">Using Noise as a Regularizer (Hinton Lec!)</a><br />
+ <br /></li>
+    </ul>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Semi-Supervised Learning:</strong><br />
- <strong>Semi-Supervised Learning</strong> is a class of ML tasks and techniques that makes use of both unlabeled examples from <script type="math/tex">P(\mathbf{x})</script> and labeled examples from <script type="math/tex">P(\mathbf{x}, \mathbf{y})</script> to estimate <script type="math/tex">P(\mathbf{y} | \mathbf{x})</script> or predict <script type="math/tex">\mathbf{y}</script> from <script type="math/tex">\mathbf{x}</script>.</p>
+ <strong>Semi-Supervised Learning</strong> is a class of ML tasks and techniques that makes use of both unlabeled examples from <script type="math/tex">P(\mathbf{x})</script> and labeled examples from <script type="math/tex">P(\mathbf{x}, \mathbf{y})</script> to estimate <script type="math/tex">P(\mathbf{y} \vert \mathbf{x})</script> or predict <script type="math/tex">\mathbf{y}</script> from <script type="math/tex">\mathbf{x}</script>.</p>
 
     <p>In the context of Deep Learning, Semi-Supervised Learning usually refers to <em>learning a representation <script type="math/tex">\boldsymbol{h}=f(\boldsymbol{x})</script></em>; the goal being to learn a representation such that <strong>examples from the same class have similar representations</strong>. <br />
  Usually, <strong>Unsupervised Learning</strong> provides us clues (e.g. clustering) that influence the representation of the data.</p>
@@ -493,10 +530,400 @@
  Instead of separating the supervised and unsupervised criteria, we can instead have a generative model of <script type="math/tex">P(\mathbf{x})</script> (or <script type="math/tex">P(\mathbf{x}, \mathbf{y})</script>) which shares parameters with a discriminative model <script type="math/tex">P(\mathbf{y} \vert \mathbf{x})</script>.<br />
  The idea is to share the unsupervised/generative criterion with the supervised criterion to <em>express a prior belief that the structure of <script type="math/tex">P(\mathbf{x})</script> (or <script type="math/tex">P(\mathbf{x}, \mathbf{y})</script>) is connected to the structure of <script type="math/tex">P(\mathbf{y} \vert \mathbf{x})</script></em>, which is captured by the <em>shared parameters</em>.<br />
  By controlling how much of the generative criterion is included in the total criterion, one can find a better trade-off than with a purely generative or a purely discriminative training criterion <em>(Lasserre et al., 2006; Larochelle and Bengio, 2008)</em>.</p>
+
+    <p><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Multitask Learning:</strong><br />
+ <strong>Multitask Learning</strong> is a way to improve generalization by pooling the examples (which can be seen as soft constraints imposed on the parameters) arising out of several tasks. In the same way that additional data put more pressure on the parameters of the model toward values that generalize well, when part of a model is shared across tasks, that part of the model is more constrained toward good values (assuming the sharing is justified), often yielding better generalization.</p>
+
+    <p>Improved generalization due to improved statistical strength of the shared parameters (in proportion w/ increased # of examples). This happens only is some assumptions about the statistical relationship of the different tasks are valid; i.e. they share something.</p>
+
+    <p>From the point of view of deep learning, the underlying prior belief is the following:<br />
+ <span style="color: goldenrod">Among the factors that explain the variations observed in the data associated with the different tasks, some are shared across two or more tasks.</span></p>
+
+    <p id="lst-p"><strong style="color: red">Types:</strong></p>
+    <ul>
+      <li><strong>Task-specific</strong>: These parameters benefit only from that particular task for generalization.<br />
+  These are the <em><strong>later layers</strong></em> in the NN.</li>
+      <li><strong>Generic, (shared across all tasks)</strong>: benefit from the pooled data of all the tasks.<br />
+  These are the <em><strong>earlier layers</strong></em> in the NN.<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">Early Stopping:</strong><br />
+ <strong>Early Stopping:</strong> is a regularization method that aims to obtain a model with better validation set error (<script type="math/tex">\implies</script> generalization) by saving the model parameters at every epoch and returning to the parameter setting at the point in time with the lowest validation set error.</p>
+
+    <p><strong style="color: red">Premise of Early Stopping:</strong><br />
+ For a model with high representational capacity, after a certain point of time during training, the training error continues to decrease but the validation error begins to increase (overfitting). In such a scenario, a better idea would be to return back to the point where the validation error was the least.<br />
+ <img src="https://cdn.mathpix.com/snip/images/nP6B2kfVhfI_4XZH9mE7IZUJYysgSD7xJwCHWWI1Zd8.original.fullsize.png" alt="img" width="50%" class="center-image" /></p>
+
+    <p id="lst-p"><strong style="color: red">Algorithm:</strong><br />
+ Early stopping requires the use of a <strong>validation set</strong>. Thus, we are not using the entire dataset for training. Choosing the ideal number of steps before we stop training can be done with cross-validation. Then, to utilize the entire dataset, a second phase of training can be done where the complete training set is used. There are two choices here:</p>
+    <ol>
+      <li>Train from scratch for the same number of steps as in the Early Stopping case.</li>
+      <li>Use the weights learned from the first phase of training and <em>continue training</em> using the complete data (not as well behaved).</li>
+    </ol>
+
+    <p><strong style="color: red">As Regularization:</strong><br />
+ Early Stopping affects the optimization procedure by restricting it to a small volume of the parameter space, in the neighbourhood of the initial parameter value <script type="math/tex">\boldsymbol{\theta}_ {O}</script>.<br />
+ <img src="https://cdn.mathpix.com/snip/images/OV_Sn63r2qP3Ke35-9vIewoMdlOaLcm7OjmDy2k-awc.original.fullsize.png" alt="img" width="45%" class="center-image" />
+ <img src="https://cdn.mathpix.com/snip/images/3GPG44-IDdIae6EJcN4XqM1xU8Tx3igHCBzrqbWFbJ4.original.fullsize.png" alt="img" width="48%" class="center-image" /><br />
+ Let <script type="math/tex">\tau</script> be the number of optimization steps taken (<script type="math/tex">\tau</script> training iterations) with lr <script type="math/tex">\epsilon</script>. The product <script type="math/tex">\epsilon\tau</script> can be seen as a <strong style="color: goldenrod">measure of effective capacity</strong>. Assuming the gradient is bounded, restricting both the number of iterations and the learning rate limits the volume of parameter space reachable from <script type="math/tex">\boldsymbol{\theta}_ {O}</script>; thus, <script type="math/tex">\epsilon\tau</script> behaves as the reciprocal of the regularization coefficient for <strong>weight decay</strong>: <script type="math/tex">\epsilon\tau \approx \dfrac{1}{\lambda}</script> <script type="math/tex">\implies</script>  <br />
+ The number of training iterations has a role <em>inversely proportional</em> to the <strong>weight decay</strong> coefficient:</p>
+    <p>$$\tau \approx \dfrac{1}{\epsilon\lambda}$$</p>
+    <ul>
+      <li>When the number of iterations <script type="math/tex">\tau</script> is small <script type="math/tex">\iff \lambda</script> is large: Regularization is large and the capacity is small</li>
+      <li>When the number of iterations <script type="math/tex">\tau</script> is large <script type="math/tex">\iff \lambda</script> is small: Regularization is small and the capacity is large<br />
+ Parameter values corresponding to directions of significant curvature (of the objective function) are regularized less than directions of less curvature. Of course, in the context of early stopping, this really means that parameters that correspond to directions of significant curvature tend to learn early relative to parameters corresponding to directions of less curvature.</li>
+    </ul>
+
+    <p><strong>Equivalence to Weight Decay for Linear Models:</strong><br />
+ To compare with classical <script type="math/tex">L^{2}</script> regularization, we examine a simple setting where the only parameters are linear weights <script type="math/tex">(\boldsymbol{\theta}=\boldsymbol{w})</script>. We can model the cost function <script type="math/tex">J</script> with a quadratic approximation in the neighborhood of the empirically optimal value of the weights <script type="math/tex">\boldsymbol{w}^{ * }</script>:</p>
+    <p>$$\hat{J}(\boldsymbol{\theta})=J\left(\boldsymbol{w}^{ * }\right)+\frac{1}{2}\left(\boldsymbol{w}-\boldsymbol{w}^{ * }\right)^{\top} \boldsymbol{H}\left(\boldsymbol{w}-\boldsymbol{w}^{ * }\right)$$</p>
+    <p>where <script type="math/tex">\boldsymbol{H}</script> is the Hessian matrix of <script type="math/tex">J</script> with respect to <script type="math/tex">\boldsymbol{w}</script> evaluated at <script type="math/tex">\boldsymbol{w}^{ * } .</script> Given the assumption that <script type="math/tex">\boldsymbol{w}^{ * }</script> is a minimum of <script type="math/tex">J(\boldsymbol{w}),</script> we know that <script type="math/tex">\boldsymbol{H}</script> is positive semidefinite.</p>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Derivation</button></p>
+
+    <p hidden=""><img src="https://cdn.mathpix.com/snip/images/huUJWa3v29VPPcKVQ8YFGh87GqYWSGjlHXdJBHLLHKw.original.fullsize.png" alt="img" width="100%" /><br />
+ <img src="https://cdn.mathpix.com/snip/images/PcTAhXy0F88H4S4L9wWe6TWynvWUd2Bqq9nig3sKujQ.original.fullsize.png" alt="img" width="100%" /></p>
+
+    <p id="lst-p"><strong style="color: red">Properties:</strong></p>
+    <ul>
+      <li>Early stopping is an <strong>unobtrusive form of regularization</strong>, in that it requires almost no change in the underlying training procedure, the objective function, or the set of allowable parameter values:
+        <ul>
+          <li>This means that it is easy to use early stopping without damaging the learning dynamics. This is in contrast to weight decay, where one must be careful not to use too much weight decay and trap the network in a bad local minimum corresponding to a solution with pathologically small weights.</li>
+        </ul>
+      </li>
+      <li>Early Stopping does not add any extra hyperparameters, making it easy to incorporate without the need for extra tuning.</li>
+      <li>It <strong>reduces the computation cost of training</strong> by:
+        <ol>
+          <li>Lowering the number of training steps</li>
+          <li>Regularizing the model without having to add additional penalty terms (computation of gradients of additional terms)</li>
+        </ol>
+      </li>
+      <li>Early stopping may be used either alone or in conjunction with other regularization strategies. Even when using regularization strategies that modify the objective function to encourage better generalization, it is rare for the best generalization to occur at a local minimum of the training objective.</li>
+      <li>It is a form of <strong>spectral regularization</strong></li>
+      <li><a href="http://web.mit.edu/lrosasco/www/publications/earlystop.pdf">ON EARLY STOPPING IN GRADIENT DESCENT LEARNING (paper)</a></li>
+    </ul>
+
+    <p><strong style="color: red">Intuition:</strong><br />
+ (1) One way to think of early stopping is as a very efficient <span style="color: goldenrod">hyperparameter selection</span> algorithm. In this view, the <em>number of training steps is just another hyperparameter</em>. We can see that this hyperparameter has a <script type="math/tex">U</script>-shaped validation set performance curve. Most hyperparameters that control model capacity have such a <script type="math/tex">U</script>-shaped validation set performance curve. In the case of early stopping, we are <span style="color: goldenrod">controlling the effective capacity of the model by determining how many steps it can take to fit the training set</span>.</p>
+
+    <p>(2) Early stopping can be viewed as <span style="color: goldenrod">regularization in time</span>. Intuitively, a training procedure like gradient descent will tend to learn more and more complex functions as the number of iterations increases. By regularizing on time, the complexity of the model can be controlled, improving generalization.</p>
+
+    <p>(3) With a bounded step size, the number of steps dictates the radius ball (around your initial point) of points that is reachable. By stopping early, you limit this radius. “Weight decay is equivalent to a Lagrangian relaxation of a constraint on the weight norm. Early stopping (by previous argument) gives you the same constraint (assuming you start from 0). If you don’t start from 0, you might be able to still use triangle inequality to prove it.”</p>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><strong>Why small weights in NN lead to lower capacity:</strong><br />
+  For <em>sigmoid activation</em>, when the weights are very small, every hidden unit is in its linear range.<br />
+  So a net with a large layer of hidden units has no more capacity than a linear net in which inputs are directly connected to the outputs.<br />
+  This implies that the effective number of parameters is <script type="math/tex">N</script> minus the number of hidden unit parameters.<br />
+  Thus, we can think of Early Stopping as controlling the effective number of parameters in the model by allowing it to use more of them until it fits the right amount of patterns in the data. (hinton Lec 9a)</li>
+      <li><a href="https://blog.ml.cmu.edu/2019/03/07/a-continuous-time-view-of-early-stopping-for-least-squares/">A Continuous-Time View of Early Stopping for Least Squares (or: How I Learned to Stop Worrying and Love Early Stopping) (blog!)</a></li>
+      <li><a href="https://www.mitpressjournals.org/doi/abs/10.1162/089976699300016557">No Free Lunch for Early Stopping (paper)</a><br />
+  Shows that with a uniform prior on models having the same training error, early stopping at some fixed training error above the training error minimum results in an increase in the expected generalization error.<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Parameter Tying and Parameter Sharing:</strong><br />
+ Unlike the the methods focused on bringing the weights to a fixed point, e.g. 0 in the case of norm penalty, there might be situations where we might have some prior knowledge on the kind of dependencies that the model should encode.</p>
+
+    <p><strong style="color: red">Parameter Tying:</strong><br />
+ If two tasks are similar enough (similar input/output distributions), we might want to have the parameters of both models be close to each other in value. We do this with <strong>Parameter Tying:</strong> to use regularization to have two sets of parameters close to each other.<br />
+ One way to achieve that (in an application) is to regularize the parameters of one model (<script type="math/tex">L^2</script> norm), trained as a classifier in a supervised paradigm, to be close to the parameters of another model, trained in an unsupervised paradigm (to capture the distribution of the observed input data).<sup id="fnref:5"><a href="#fn:5" class="footnote">5</a></sup></p>
+
+    <p><strong style="color: red">Parameter Sharing:</strong><br />
+ The more popular way is <strong>Parameter Sharing:</strong> to use constraints, <span style="color: goldenrod">to force sets of parameters to be equal</span>.</p>
+
+    <p>A significant advantage of parameter sharing over regularizing the parameters to be close (via a norm penalty) is that only a subset of the parameters (the unique set) needs to be stored in memory, e.g. in CNNs this can lead to significant reduction in the memory footprint of the model.</p>
+
+    <p>Parameter sharing has enabled CNNs to dramatically lower the number of unique model parameters and to significantly increase network sizes without requiring a corresponding increase in training data.</p>
+
+    <p><br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Sparse Representations:</strong><br />
+ Another strategy is to place a <strong>penalty on the activations</strong> of the units in a neural network, encouraging their activations to be sparse. This indirectly imposes a complicated penalty on the model parameters.
+    <blockquote>
+      <p>Unlike Weight decay which acts by placing a penalty directly on the model parameters.</p>
+    </blockquote>
+
+    <p><script type="math/tex">L^1</script> regularization induces <span style="color: goldenrod">sparse parametrization</span> i.e. sparse weights.<br />
+ <strong>Representational sparsity</strong>, on the other hand, induces <span style="color: goldenrod">sparse</span> <strong style="color: goldenrod">representations</strong> i.e. describes a representation where many of the elements of the representation are zero (or close to zero).</p>
+
+    <p>Norm penalty regularization of representations is performed by adding to the loss function $J$ a norm penalty on the representation. This penalty is denoted <script type="math/tex">\Omega(\boldsymbol{h}) .</script> As before, we denote the regularized loss function by <script type="math/tex">\tilde{J}</script>:</p>
+    <p>$$\tilde{J}(\boldsymbol{\theta} ; \boldsymbol{X}, \boldsymbol{y})=J(\boldsymbol{\theta} ; \boldsymbol{X}, \boldsymbol{y})+\alpha \Omega(\boldsymbol{h})$$</p>
+    <p>where <script type="math/tex">\alpha \in[0, \infty)</script> weights the relative contribution of the norm penalty term, with larger values of <script type="math/tex">\alpha</script> corresponding to more regularization.</p>
+
+    <p id="lst-p">The <strong>regularizer</strong> <script type="math/tex">\Omega</script>:</p>
+    <ul>
+      <li><script type="math/tex">L^1</script> norm can be used</li>
+      <li>Penalty derived from a Student $t$ <em>prior</em> distribution on the representation</li>
+      <li>KL-divergence penalties: especially useful for representations with elements constrained to lie on the unit interval<br />
+ Other approaches obtain representational sparsity with a hard constraint on the activation values. For example, <strong>orthogonal matching pursuit (OMP)</strong> (Pati et al, 1993) encodes an input <script type="math/tex">x</script> with the representation <script type="math/tex">h</script> that solves the constrained optimization problem:</li>
+    </ul>
+    <p>$$\underset{\boldsymbol{h},\|\boldsymbol{h}\|_ {0}&lt; k}{\arg \min }\|\boldsymbol{x}-\boldsymbol{W} \boldsymbol{h}\|^{2}$$</p>
+    <p>where <script type="math/tex">\|\boldsymbol{h}\|_ {0}</script> is the number of nonzero entries of <script type="math/tex">\boldsymbol{h}</script> . This problem can be solved efficiently when <script type="math/tex">\boldsymbol{W}</script> is constrained to be orthogonal. This method is often called <strong>OMP-<script type="math/tex">k</script></strong>, with the value of <script type="math/tex">k</script> specified to indicate the number of nonzero features allowed. Coates and <script type="math/tex">\mathrm{Ng}(2011)</script> demonstrated that <script type="math/tex">\mathrm{OMP}-1</script> can be a very effective feature extractor for deep architectures.<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents39">Ensemble Learning:</strong><br />
+ <strong>Ensemble Learning</strong> is a set of <strong>ensemble methods</strong> that use multiple learning algorithms, (models) and a strategy called <strong>model averaging</strong> to combine the outcomes of those model, to obtain better predictive performance.</p>
+
+    <p><strong>Model averaging</strong> is an extremely powerful and reliable method for reducing generalization error.</p>
+
+    <p><strong style="color: red">Motivation:</strong><br />
+ The reason that model averaging works is that different models will usually not make all the same errors on the test set.<br />
+ Consider for example a set of <script type="math/tex">k</script> regression models. Suppose that each model makes an error <script type="math/tex">\epsilon_{i}</script> on each example, with the errors drawn from a zero-mean multivariate normal distribution with variances <script type="math/tex">\mathbb{E}\left[\epsilon_{i}^{2}\right]=v</script> and covariances <script type="math/tex">\mathbb{E}\left[\epsilon_{i} \epsilon_{j}\right]=c</script>. Then the error made by the average prediction of all the ensemble models is <script type="math/tex">\frac{1}{k} \sum_{i} \epsilon_{i}</script>. The expected squared error of the ensemble predictor is:</p>
+    <p>$$\begin{aligned} \mathbb{E}\left[\left(\frac{1}{k} \sum_{i} \epsilon_{i}\right)^{2}\right] &amp;=\frac{1}{k^{2}} \mathbb{E}\left[\sum_{i}\left(\epsilon_{i}^{2}+\sum_{j \neq i} \epsilon_{i} \epsilon_{j}\right)\right] \\ &amp;=\frac{1}{k} v+\frac{k-1}{k} c \end{aligned}$$</p>
+    <ul>
+      <li>When the errors are <em><strong>perfectly correlated <script type="math/tex">c=v</script></strong></em>: the MSE reduces to <script type="math/tex">v</script>, so the model averaging does not help at all.</li>
+      <li>When the errors are <em><strong>perfectly uncorrelated <script type="math/tex">c=0</script></strong></em>, the expected squared error of the ensemble is only <script type="math/tex">\dfrac{1}{k} v</script>.<br />
+  Thus, the <span style="color: goldenrod">expected squared error of the ensemble is inversely proportional to the ensemble size</span>.<br />
+ In other words, on average, the ensemble will perform at least as well as any of its members, and if the members make independent errors, the ensemble will perform significantly better than its members.</li>
+    </ul>
+
+    <p><strong style="color: red">As Regularization:</strong><br />
+ Regularization has two general definitions:<br />
+ (1) Any modification we make to a learning algorithm that is intended to <span style="color: goldenrod"><em>reduce</em> its <em>generalization error</em></span> but <span style="color: goldenrod">not its <em>training error</em></span>.<br />
+ (2) Regularization is a (more general) way of <strong>controlling a models capacity</strong> by <span style="color: goldenrod">allowing us to express preference for one function over another in the same hypothesis space</span>; instead of including or excluding members from the hypothesis space completely.</p>
+
+    <p>From those perspectives, the analysis (motivation) above shows that <strong>ensemble methods</strong> satisfy both criteria in gold.</p>
+
+    <p><strong style="color: red">Bagging:</strong><br />
+ <strong>Bagging</strong> is an ensemble method that aims to reduce the generalization error.<br />
+ It reduces <strong>variance</strong> which corresponds to <strong>generalization error</strong>, thus decreasing <strong>capacity</strong>.</p>
+
+    <p><strong style="color: red">Boosting:</strong><br />
+ <em>Not all techniques for constructing ensembles are designed to make the ensemble more regularized than the individual models</em>. For example, a technique called <strong>boosting</strong> (Freund and Schapire, 1996b,a) constructs an ensemble with <em>higher capacity than the individual models</em>. <br />
+ It reduces <strong>bias</strong> which corresponds to <strong>approximation error</strong>, thus increasing <strong>capacity</strong>.<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents310">Dropout:</strong><br />
+<strong>Dropout</strong> <em>(Srivastava et al., 2014)</em> provides a computationally inexpensive but powerful method of regularizing a broad family of models.</p>
+
+    <p><strong style="color: red">Dropout as (an approximation to) Bagging Ensemble Method for Neural Networks:</strong><br />
+To a first approximation, dropout can be thought of as a method of making <strong>bagging</strong> practical for ensembles of very many large neural networks.<br />
+Bagging involves training multiple models and evaluating multiple models on each test example. This seems impractical when each model is a large neural network, since training and evaluating such networks is costly in terms of runtime and memory. It is common to use ensembles of five to ten neural networks—Szegedy et al. (2014a) used six to win the ILSVRC— but more than this rapidly becomes unwieldy.<br />
+Dropout provides an inexpensive approximation to training and evaluating a bagged ensemble of exponentially many neural networks. Specifically, dropout trains the ensemble consisting of all subnetworks that can be formed by removing nonoutput units from an underlying base network. In modern NNs, we can remove a unit by “multiplying” its output by zero.</p>
+
+    <p>Recall that to learn with bagging, we define <script type="math/tex">k</script> different models, construct <script type="math/tex">k</script> different datasets by sampling from the training set with replacement, and then train model <script type="math/tex">i</script> on dataset <script type="math/tex">i</script>. Dropout aims to approximate this process, but with an exponentially large number of neural networks.</p>
+
+    <p id="lst-p"><strong>Dropout Algorithm:</strong><br />
+To train with dropout, we:</p>
+    <ul>
+      <li>Use a minibatch-based learning algorithm that makes small steps, such as stochastic gradient descent.</li>
+      <li>Each time we load an example into a minibatch, we randomly sample a different binary mask to apply to all the input and hidden units in the network.
+        <ul>
+          <li>The mask for each unit is sampled <strong>independently</strong> from all the others.</li>
+          <li>The <strong>probability of sampling a mask value of one</strong> (causing a unit to be included) is a <em>hyperparameter</em> fixed before training begins. It is not a function of the current value of the model parameters or the input example.</li>
+        </ul>
+      </li>
+      <li>Typically, an input unit is included with probability <script type="math/tex">0.8</script>, and a hidden unit is included with probability <script type="math/tex">0.5</script>.</li>
+      <li>We then run forward propagation, back-propagation, and the learning update as usual.</li>
+    </ul>
+
+    <p><strong>Formally,</strong> suppose that a mask vector <script type="math/tex">\mu</script> specifies which units to include, and <script type="math/tex">J(\boldsymbol{\theta}, \boldsymbol{\mu})</script> defines the cost of the model defined by parameters <script type="math/tex">\boldsymbol{\theta}</script> and mask <script type="math/tex">\boldsymbol{\mu}</script> Then dropout training consists of minimizing <script type="math/tex">\mathbb{E}_ {\boldsymbol{\mu}} J(\boldsymbol{\theta}, \boldsymbol{\mu})</script>. The expectation contains exponentially many terms, but we can obtain an unbiased estimate of its gradient by sampling values of <script type="math/tex">\boldsymbol{\mu}</script>.</p>
+
+    <p id="lst-p"><strong>Differences:</strong></p>
+    <ul>
+      <li><strong>Training (compare each number)</strong>:
+        <ul>
+          <li><strong>Bagging:</strong>
+            <ol>
+              <li>The models are all independent.</li>
+              <li>Each model is trained to convergence on its respective training set.</li>
+            </ol>
+          </li>
+          <li><strong>Dropout</strong>:
+            <ol>
+              <li>The models share parameters, with each model inheriting a different subset of parameters from the parent neural network.<br />
+ This parameter sharing makes it possible to represent an exponential number of models with a tractable amount of memory.</li>
+              <li>Most models are not explicitly trained at all—usually, the model is large enough that it would be <em>infeasible to sample all possible subnetworks</em> within the lifetime of the universe. Instead, a tiny fraction of the possible subnetworks are each trained for a single step, and the parameter sharing causes the remaining subnetworks to arrive at good settings of the parameters.</li>
+            </ol>
+          </li>
+        </ul>
+
+        <blockquote>
+          <p>Beyond these difference, dropout follows the bagging algorithm; e.g. training set encountered by each subnetwork is indeed a subset of the original training set sampled with replacement.</p>
+        </blockquote>
+      </li>
+      <li><strong>Inference (Prediction)</strong>:<br />
+  So far, our description of bagging and dropout has not required that the model be explicitly probabilistic. Now, we <em>assume</em> that the model’s role is to <em>output a <strong>probability distribution</strong></em>.
+        <ul>
+          <li><strong>Bagging:</strong> Each model <script type="math/tex">i</script> produces a probability distribution <script type="math/tex">p^{(i)}(y \vert \boldsymbol{x})</script>.<br />
+  The prediction of the ensemble is given by the <strong>arithmetic mean</strong> of all these distributions:
+            <p>$$\frac{1}{k} \sum_{i=1}^{k} p^{(i)}(y \vert \boldsymbol{x})$$</p>
+          </li>
+          <li><strong>Dropout</strong>: Each submodel defined by mask vector <script type="math/tex">\boldsymbol{\mu}</script> defines a probability distribution <script type="math/tex">p(y \vert x, \mu)</script>.<br />
+  The <strong>arithmetic mean</strong> over all masks is given by:
+            <p>$$\sum_{\mu} p(\boldsymbol{\mu}) p(y \vert \boldsymbol{x}, \boldsymbol{\mu})$$</p>
+            <p>where <script type="math/tex">p(\boldsymbol{\mu})</script> is the probability distribution that was used to sample <script type="math/tex">\boldsymbol{\mu}</script> at training time.</p>
+
+            <ul>
+              <li><strong>Issues with direct inference with the arithmetic mean</strong>:<br />
+  Because this sum includes an exponential number of terms, it is intractable to evaluate except when the structure of the model permits some form of simplification.</li>
+              <li><strong>Solution - Geometric Mean + Weight Scaling Inference</strong>:<br />
+  The following approach allows us to obtain a good approximation to the predictions of the entire ensemble, at the cost of only one forward propagation.<br />
+  The <strong>geometric mean</strong> of multiple probability distributions is <em>not guaranteed to be a probability distribution</em>. We guarantee it by imposing the requirement that <em>none of the submodels assigns probability <script type="math/tex">0</script> to any event</em>, and we <em>renormalize the resulting distribution</em>.<br />
+  <strong>The <em>Unnormalized</em> distribution defined by the geometric mean:</strong>
+                <p>$$\tilde{p}_{\text {ensemble }}(y \vert \boldsymbol{x})=2 \sqrt[2 d]{\prod_{\boldsymbol{\mu}} p(y \vert \boldsymbol{x}, \boldsymbol{\mu})}$$</p>
+                <p>where <script type="math/tex">d</script> is the number of units that may be dropped<sup id="fnref:4"><a href="#fn:4" class="footnote">6</a></sup>.<br />
+  <strong>The <em>Normalized</em> distribution:</strong></p>
+                <p>$$p_{\text {ensemble }}(y \vert \boldsymbol{x})=\frac{\tilde{p}_{\text {ensemble }}(y \vert \boldsymbol{x})}{\sum_y \tilde{p}_{\text {ensemble }}\left(y^{\prime} \vert \boldsymbol{x}\right)}$$</p>
+
+                <p><strong>Weight Scaling Inference Rule:</strong> that approximates <script type="math/tex">p_{\text {ensemble}}</script> by evaluating <script type="math/tex">p(y \vert \boldsymbol{x})</script> in one model: the model with all units, but with the weights going out of unit <script type="math/tex">i</script> multiplied by the probability of including unit <script type="math/tex">i</script>.</p>
+
+                <ul>
+                  <li><strong>Analysis and Justification:</strong>
+                    <ul>
+                      <li><em>Warde-Farley et al. (2014)</em> present arguments and empirical evidence that the geometric mean performs comparably to the arithmetic mean in this context.</li>
+                      <li>A key insight <em>(Hinton et al., 2012c)</em> involved in dropout is that we can approximate <script type="math/tex">p_{\text {ensemble}}</script> by evaluating <script type="math/tex">p(y \vert \boldsymbol{x})</script> in one model: the model with all units, but with the weights going out of unit <script type="math/tex">i</script> multiplied by the probability of including unit <script type="math/tex">i</script> - The <strong>Weight Scaling Inference Rule:</strong>. The <strong>motivation</strong> for this modification is to <em><strong>capture the right expected value of the output from that unit</strong></em>. <br />
+  There is not yet any theoretical argument for the accuracy of this approximate inference rule in deep nonlinear networks, but empirically it performs very well.<br />
+  The <strong>goal</strong> is to make sure that <span style="color: goldenrod">the expected total input to a unit at test time is roughly the same as the expected total input to that unit at train time</span>.<br />
+  is a method that aims to make sure that <span style="color: goldenrod">the expected total input to a unit at test time is roughly the same as the expected total input to that unit at train time</span>.<br />
+  For many classes of models that do not have nonlinear hidden units, the weight scaling inference rule is exact; e.g. softmax regression classifier <em>(proof page 260 dlbook)</em>.<br />
+  The weight scaling rule is also exact in other settings, including <strong>regression networks with conditionally normal outputs</strong> as well as <strong>deep networks that have hidden layers without nonlinearities</strong>.<br />
+  However, the weight scaling rule is only <strong>an approximation for deep models that have <em>nonlinearities</em></strong>. Though the approximation has not been theoretically characterized, it often works well, empirically.<br />
+  <em>Goodfellow et al. (2013a)</em> found experimentally that the weight scaling approximation can work better (in terms of classification accuracy) than Monte Carlo approximations to the ensemble predictor. This held true even when the Monte Carlo approximation was allowed to sample up to 1,000 subnetworks. <em>Gal and Ghahramani (2015)</em> found that some models obtain better classification accuracy using twenty samples and the Monte Carlo approximation.<br />
+  It appears that <span style="color: goldenrod">the optimal choice of inference approximation is problem dependent</span>.
+                        <ul>
+                          <li>One other, non-efficient, way to do inference is to approximate it with sampling by averaging together the output from many masks. Even 10–20 masks are often sufficient to obtain good performance.<br />
+  Weight Scaling Rule is far superior.</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Properties and Advantages:</strong></p>
+    <ul>
+      <li>Srivastava et al. (2014) showed that dropout is more effective than other standard computationally inexpensive regularizers, such as weight decay, filter norm constraints, and sparse activity regularization.</li>
+      <li>Dropout may be combined with other forms of regularization to yield a further improvement.</li>
+      <li>Dropout is very computationally cheap.<br />
+  Using it in training requires only <script type="math/tex">\mathcal{O}(n)</script> computation per example per update, to generate <script type="math/tex">n</script> random binary numbers and multiply them by the state.</li>
+      <li>Dropout does not significantly limit the type of model or training procedure that can be used.<br />
+  It works well with nearly any model that uses a distributed representation and can be trained with stochastic gradient descent; e.g. feedforward neural networks, probabilistic models such as restricted Boltzmann machines, and RNNs.</li>
+      <li>Stochasticity is Neither <em>necessary</em> Nor <em>sufficient</em> for the regularization effects of dropout:
+        <ul>
+          <li>The stochasticity used while training with dropout is NOT necessary for the approaches success. It is just a means of approximating the sum over all submodels. <br />
+  <strong>Fast Dropout</strong> is an analytical approximations to this marginalization.</li>
+          <li>Applying the same stochastic masks in a method analogous to <strong>boosting</strong>, where the stochastically sampled ensemble members are not trained independently, show almost no regularization effect compared to when the ensemble members are trained to perform well independently of each other.<br />
+  <strong>Dropout boosting</strong> is one method that trains the entire ensemble to jointly maximize the log-likelihood on the training set; and experiments have shown that it displays no regularization compared to training the entire network as a single model.</li>
+        </ul>
+      </li>
+      <li>The sharing of the weights means that every model is very strongly regularized.<br />
+  This regularization is much better than L2 or L1 penalties since instead of pulling the weights towards zero, we are pulling the weights towards the correct value of the weights.</li>
+      <li><a href="https://www.youtube.com/watch?v=vAVOY8frLlQ&amp;t=0s">Dropout - Hinton</a></li>
+      <li>Running the <strong>stochastic</strong> model several times on the same input (instead of all the weights halved), <span style="color: goldenrod">gives an idea of the uncertainty in the answer</span>.</li>
+      <li>We can use dropout in the <strong>input layer</strong>, but with a higher probability of keeping an input unit:<br />
+  <em><strong>Denoising Autoencoders</strong></em> use this.</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Practical Disadvantages/Issues:</strong></p>
+    <ul>
+      <li>Typically the optimal validation set error is much lower when using dropout, but this comes at the cost of a much larger model and many more iterations of the training algorithm. For very large datasets, regularization confers little reduction in generalization error. In these cases, the computational cost of using dropout and larger models may outweigh the benefit of regularization.</li>
+      <li>When extremely few labeled training examples are available, dropout is less effective. Bayesian neural networks (Neal, 1996) outperform dropout on the Alternative Splicing Dataset (Xiong et al., 2011), where fewer than 5,000 examples are available (Srivastava et al., 2014). When additional unlabeled data is available, unsupervised feature learning can gain an advantage over dropout.</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Dropout as Regularization - Effectiveness of Dropout:</strong></p>
+    <ul>
+      <li>Dropout can be viewed as a means of performing <span style="color: goldenrod">efficient, approximate <strong>bagging</strong></span>.</li>
+      <li>Dropout trains not just a bagged ensemble of models, but an <span style="color: goldenrod">ensemble of models that <strong>share hidden units</strong></span>.<br />
+  This means each hidden unit must be able to perform well regardless of which other hidden units are in the model. Hidden units must be prepared to be swapped and interchanged between models.<br />
+  Dropout, thus, <span style="color: goldenrod">regularizes each hidden unit to be not merely a good feature but a feature that is <strong>good in many contexts</strong></span>.<br />
+  This <span style="color: goldenrod">prevents <em><strong>Co-Adaptation</strong></em> between hidden-units on the Training Data</span>.</li>
+      <li>A large portion of the power of dropout arises from the fact that the <strong>masking noise is applied to the <em>hidden units</em></strong>. This can be seen as a form of <span style="color: goldenrod">highly intelligent, adaptive <strong>destruction of the information content</strong></span> of the input rather than destruction of the raw values of the input.<br />
+  This views dropout as <strong>noise-injection</strong> in the <em>hidden units</em>. Which can be seen as doing <span style="color: goldenrod"><strong>data-augmentation</strong> at <em><strong>multiple levels of abstraction</strong></em></span>.<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Analysis</button>
+  <span hidden="">For example, if the model learns a hidden unit that detects a face by finding the <script type="math/tex">h_i</script> nose, then dropping corresponds to erasing the information that there is a nose <script type="math/tex">h_i</script> in the image. The model must learn another <script type="math/tex">h_i</script>, that either redundantly encodes the presence of a nose or detects the face by another feature, such as the mouth. Traditional noise injection techniques that add unstructured noise at the input are not able to randomly erase the information about a nose from an image of a face unless the magnitude of the noise is so great that nearly all the information in the image is removed. Destroying extracted features rather than original values allows the destruction process to make use of all the knowledge about the input distribution that the model has acquired so far.</span></li>
+      <li>When viewed as <strong>noise-injection</strong>, an important aspect of dropouts success is that it uses <span style="color: goldenrod">multiplicative noise</span>.<br />
+  Multiplicative noise does not allow for <em>pathological solutions</em> to the noise robustness problem: If the noise were additive with fixed scale, then a rectified linear hidden unit <script type="math/tex">h_{i}</script> with added noise <script type="math/tex">\epsilon</script> could simply learn to have <script type="math/tex">h_{i}</script> become very large in order to make the added noise <script type="math/tex">\epsilon</script> insignificant by comparison.</li>
+    </ul>
+
+    <p><strong style="color: red">Dropout and Batch Normalization:</strong><br />
+Another deep learning algorithm, <strong>batch normalization</strong>, reparametrizes the model in a way that introduces both <strong>additive</strong> and <strong>multiplicative noise</strong> on the <em>hidden units</em> at training time. The primary purpose of batch normalization is to improve optimization, but the noise can have a regularizing effect, and sometimes makes dropout unnecessary.</p>
+
+    <p><strong style="color: red">Modifying Dropout and source of Regularization:</strong><br />
+One of the key insights of dropout is that <span style="color: goldenrod">training a network with stochastic behavior and making predictions by averaging over multiple stochastic decisions implements a form of bagging with parameter sharing</span>.<br />
+Earlier, we described dropout as bagging an ensemble of models formed by including or excluding units. Yet this model averaging strategy does not need to be based on inclusion and exclusion. In principle, any kind of random modification is admissible.<br />
+In practice, we must choose modification families that:<br />
+(1) neural networks are able to learn to resist.<br />
+(2) Ideally, we should also use model families that allow a fast approximate inference rule.<br />
+We can think of any form of modification parametrized by a vector <script type="math/tex">\mu</script> as training an ensemble consisting of <script type="math/tex">p(y \vert \boldsymbol{x}, \boldsymbol{\mu})</script> for all possible values of <script type="math/tex">\boldsymbol{\mu}</script> There is no requirement that <script type="math/tex">\boldsymbol{\mu}</script> have a finite number of values. For example, <script type="math/tex">\boldsymbol{\mu}</script> can be real valued. Srivastava et al. <script type="math/tex">(2014)</script> showed that multiplying the weights by <script type="math/tex">\boldsymbol{\mu} \sim \mathcal{N}(\mathbf{1}, I)</script> can outperform dropout based on binary masks. Because <script type="math/tex">\mathbb{E}[\boldsymbol{\mu}]=\mathbf{1}</script>, the standard network automatically implements approximate inference in the ensemble, without needing any weight scaling.</p>
+
+    <p><strong style="color: red">Dropout as Weight Decay in linear models:</strong><br />
+<em>Wager et al. (2013)</em> showed that, when applied to linear regression, dropout is equivalent to <strong>L2 weight decay</strong>, with a <strong>different weight decay coefficient for each input feature</strong>. The <strong>magnitude of each feature’s weight decay coefficient is determined by its variance</strong>. Similar results hold for other linear models.<br />
+For deep models, dropout is NOT equivalent to weight decay.<br />
+<br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents311">Adversarial Training:</strong><br />
+<strong>Adversarial training</strong> refers to training on examples that are adversarially generated and it has been shown to reduce the error rate.</p>
+
+    <p><strong>Adversarial Examples:</strong> are examples that are intentionally constructed by using an optimization procedure to search for an input <script type="math/tex">\boldsymbol{x}^{\prime}</script> near a data point <script type="math/tex">\boldsymbol{x}</script> such that the model output is very different at <script type="math/tex">\boldsymbol{x}^{\prime} .</script> In many cases, <script type="math/tex">\boldsymbol{x}^{\prime}</script> can be so similar to <script type="math/tex">\boldsymbol{x}</script> that a human observer cannot tell the difference between the original example and the adversarial example, but the network can make highly different predictions.<br />
+<em>Szegedy et al. (2014b)</em> found that even neural networks that perform at human level accuracy have a nearly <script type="math/tex">100\%</script> error rate on <strong>adversarial examples</strong>.<br />
+<img src="https://cdn.mathpix.com/snip/images/_TFBraSdZd9ZN5OC9dLMcF4oAZOmY2gY2_hVcnwVM5s.original.fullsize.png" alt="img" width="50%" /></p>
+
+    <p><strong style="color: red">Application in Regularization:</strong><br />
+<strong>Adversarial Examples</strong> are interesting in the context of regularization because one can <em>reduce the error rate on the original test set via <strong>adversarial training</strong></em>—training on adversarially perturbed examples from the training set (Szegedy et al., 2014b; Goodfellow et al., 2014b).<br />
+<em>Goodfellow et al. (2014b)</em> showed that one of the primary causes of these adversarial examples is excessive linearity. Neural networks are built out of primarily linear building blocks. In some experiments the overall function they implement proves to be highly linear as a result. These linear functions are easy to optimize. Unfortunately, the value of a linear function can change very rapidly if it has numerous inputs. If we change each input by <script type="math/tex">\epsilon</script> , then a linear function with weights <script type="math/tex">w</script> can change by as much as <script type="math/tex">\epsilon \|w\|_ 1</script>, which can be a very large amount if <script type="math/tex">w</script> is high-dimensional.<br />
+Adversarial training <span style="color: goldenrod">discourages this highly sensitive locally linear behavior by encouraging the network to be locally constant in the neighborhood of the training data</span>. This can be seen as a way of <strong style="color: goldenrod">explicitly introducing a local constancy prior</strong> into supervised neural nets.</p>
+
+    <p><strong>As Semi-supervised Learning:</strong><br />
+<strong>Virtual Adversarial Examples</strong> are adversarial examples generated using not the true label but a label provided by a trained model <em>(Miyato et al., 2015)</em>.<br />
+Using virtual examples, we can train a classifier to assign the same label to <script type="math/tex">x</script> and <script type="math/tex">x^{\prime}</script>. This encourages the classifier to learn a function that is robust to small changes anywhere along the manifold where the unlabeled data lie. The assumption motivating this approach is that different classes usually lie on disconnected manifolds, and a small perturbation should not be able to jump from one class manifold to another class manifold.</p>
+    <blockquote>
+      <p>At a point <script type="math/tex">\boldsymbol{x}</script> that is not associated with a label in the dataset, the model itself assigns some label <script type="math/tex">\hat{y}</script> . The model’s label <script type="math/tex">\hat{y}</script> may not be the true label, but if the model is high quality, then <script type="math/tex">\hat{y}</script> has a high probability of providing the true label. We can seek an adversarial example <script type="math/tex">\boldsymbol{x}^{\prime}</script> that causes the classifier to output a label <script type="math/tex">y^{\prime}</script> with <script type="math/tex">y^{\prime} \neq \hat{y}</script>.</p>
+    </blockquote>
+
+    <p><strong>Motivation:</strong><br />
+The assumption motivating this approach is that <span style="color: goldenrod">different classes usually lie on disconnected manifolds</span>, and a small perturbation should not be able to jump from one class manifold to another class manifold.<br />
+<br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents312">Tangent Distance, Tangent Prop and Manifold Tangent Classifiers:</strong><br />
+<strong style="color: red">Tangent Distance Algorithm:</strong><br />
+Many ML models assume the data to lie on a low dimensional manifold to overcome the curse of dimensionality. The inherent assumption which follows is that small perturbations that cause the data to move along the manifold (it originally belonged to), shouldn’t lead to different class predictions. The idea of the <strong>tangent distance</strong> algorithm to find the K-nearest neighbors using the distance metric as the distance between manifolds. A manifold <script type="math/tex">M_i</script> is approximated by the tangent plane at <script type="math/tex">x_i</script>, hence, this technique needs tangent vectors to be specified.</p>
+
+    <p><strong style="color: red">Tangent Prop Algorithm:</strong><br />
+The <strong>tangent prop</strong> algorithm proposed to learn a neural network based classifier, <script type="math/tex">f(x)</script>, which is invariant to known transformations causing the input to move along its manifold. Local invariance would require that <script type="math/tex">\bigtriangledown_x f(x)</script> is perpendicular to the tangent vectors <script type="math/tex">V^{(i)}</script>. This can also be achieved by adding a penalty term that minimizes the directional directive of <script type="math/tex">f(x)</script> along each of the <script type="math/tex">V(i)</script>:</p>
+    <p>$$\Omega(f)=\sum_{i}\left(\left(\nabla_{\boldsymbol{x}} f(\boldsymbol{x})\right)^{\top} \boldsymbol{v}^{(i)}\right)^{2}$$</p>
+    <p><strong>Tangent Propagation</strong> is similar to data augmentation in that both of them use prior knowledge of the domain to specify various transformations that the model should be invariant to. However, tangent prop only resists infinitesimal perturbations while data augmentation causes invariance to much larger perturbations.</p>
+
+    <p><strong>Drawbacks:</strong><br />
+While this analytical approach is intellectually elegant, it has two major drawbacks.</p>
+    <ol>
+      <li>It only regularizes the model to resist infinitesimal perturbation.<br />
+ Explicit dataset augmentation confers resistance to larger perturbations.</li>
+      <li>The infinitesimal approach poses difficulties for models based on rectified linear units.<br />
+ These models can only shrink their derivatives by turning units off or shrinking their weights. They are not able to shrink their derivatives by saturating at a high value with large weights, as sigmoid or tanh units can.<br />
+ Dataset augmentation works well with rectified linear units because different subsets of rectified units can activate for different transformed versions of each original input.</li>
+    </ol>
+
+    <p><strong style="color: red">Manifold Tangent Classifier:</strong><br />
+The manifold tangent classifier (Rifai et al., 2011c), eliminates the need to know the tangent vectors a priori. Autoencoders can estimate the manifold tangent vectors.</p>
+
+    <p>Manifold Tangent Classifier works in two parts:</p>
+    <ol>
+      <li>Use Autoencoders to learn the manifold structures using Unsupervised Learning.</li>
+      <li>Use these learned manifolds with tangent prop.</li>
+    </ol>
+
+    <p><img src="https://cdn.mathpix.com/snip/images/ouitJqqotxhESaIP5V6enbeHG7ELd2Ye7u3GfWW9RPg.original.fullsize.png" alt="img" width="65%" /><br />
+<br /></p>
   </li>
 </ol>
-
-<p><br /></p>
 
 <p id="lst-p"><strong style="color: red">Notes:</strong></p>
 <ul>
@@ -512,25 +939,25 @@
   <img src="/main_files/dl_book/regularization/5.png" alt="img" width="100%" /></li>
 </ul>
 
-<!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
-
- -->
 <div class="footnotes">
   <ol>
     <li id="fn:1">
       <p>Where we (Hadamard) define <strong>Well-Posed Problems</strong> as having the properties (1) A Solution Exists (2) It is Unique (3) It’s behavior changes continuously with the initial conditions. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:6">
+      <p>So, you can think of the NFL theorems as providing some kind of theoretical justification for regularization or theoretical understanding that helps us see what the role of regularization is and provides some partial explanation for the empirical observation that it seems to often be effective. <a href="#fnref:6" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:2">
       <p>More generally, we could regularize the parameters to be near any specific point in space and, surprisingly, still get a regularization effect, but better results will be obtained for a value closer to the true one, with zero being a default value that makes sense when we do not know if the correct value should be positive or negative. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:3">
       <p>The approximation is perfect if the objective function is truly quadratic, as in the case of <strong>linear regression w/ MSE</strong>. <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:5">
+      <p>The architectures were constructed such that many of the parameters in the classifier model could be paired to corresponding parameters in the unsupervised model. <a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:4">
+      <p>Here we use a uniform distribution over <script type="math/tex">\mu</script> to simplify the presentation, but nonuniform distributions are also possible. <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>

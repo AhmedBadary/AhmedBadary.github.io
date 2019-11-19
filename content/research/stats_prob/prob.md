@@ -1,7 +1,7 @@
 ---
 layout: NotesPage
 title: Probability Theory <br /> Mathematics of Deep Learning
-permalink: /work_files/research/dl/theory/probability
+permalink: /work_files/research/dl/stat_prob/probability
 prevLink: /work_files/research/dl/theory.html
 ---
 

@@ -73,6 +73,16 @@
 <hr />
 <hr />
 
+<p id="lst-p"><strong style="color: red">Resources:</strong></p>
+<ul>
+  <li><a href="https://deepgenerativemodels.github.io/notes/vae/">VAEs (pdf)</a></li>
+  <li><a href="https://github.com/clinicalml/vae_ssl">Scalable semi-supervised learning with deep variational autoencoders (Code)</a></li>
+  <li><a href="https://blog.evjang.com/2016/11/">Tutorial: Categorical Variational Autoencoders using Gumbel-Softmax (+Code)</a></li>
+  <li><a href="https://arxiv.org/abs/1812.06775">Variational Autoencoders Pursue PCA Directions [by Accident] (paper!)</a></li>
+  <li><a href="https://medium.com/datadriveninvestor/latent-variable-models-and-autoencoders-97c44858caa0">Latent Variable Models and AutoEncoders (Intuition Blog!)</a></li>
+  <li><a href="https://blog.evjang.com/2016/11/">Tutorial: Categorical Variational Autoencoders using Gumbel-Softmax (Kingma)</a></li>
+</ul>
+
 <h2 id="content4">Variational Auto-Encoders</h2>
 
 <p><a href="http://ahmedbadary.ml/work_files/research/dl/aencdrs"><strong>Auto-Encoders</strong></a> (<em>click to read more</em>) are unsupervised learning methods that aim to learn a representation (encoding) for a set of data in a smaller dimension.<br />
@@ -114,125 +124,104 @@ p_\theta(x) = p(x_0) \prod_1^n p(x_i | x_{i<}) %]]></script>
       </dd>
     </dl>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">The Objective Function:</strong></dt>
-      <dd>
-        <script type="math/tex; mode=display">{\displaystyle {\mathcal {L}}(\mathbf {\phi } ,\mathbf {\theta } ,\mathbf {x} )=D_{KL}(q_{\phi }(\mathbf {z} |\mathbf {x} )||p_{\theta }(\mathbf {z} ))-\mathbb {E} _{q_{\phi }(\mathbf {z} |\mathbf {x} )}{\big (}\log p_{\theta }(\mathbf {x} |\mathbf {z} ){\big )}}</script>
-      </dd>
-      <dd>where <script type="math/tex">{\displaystyle D_{KL}}</script> is the <strong>Kullback–Leibler divergence</strong> (KL-Div).</dd>
-    </dl>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">The Objective Function:</strong>
+    <p>$${\displaystyle {\mathcal {L}}(\mathbf {\phi } ,\mathbf {\theta } ,\mathbf {x} )=D_{KL}(q_{\phi }(\mathbf {z} |\mathbf {x} )||p_{\theta }(\mathbf {z} ))-\mathbb {E} _{q_{\phi }(\mathbf {z} |\mathbf {x} )}{\big (}\log p_{\theta }(\mathbf {x} |\mathbf {z} ){\big )}}$$</p>
+    <p>where <script type="math/tex">{\displaystyle D_{KL}}</script> is the <strong>Kullback–Leibler divergence</strong> (KL-Div).</p>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><script type="math/tex">\boldsymbol{z}</script> is some latent vector (representation); where each element is capturing how much of some factor of variation that we have in our training data.<br />
+  e.g. attributes, orientations, position of certain objects, etc.</li>
+    </ul>
   </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">The Generation Process:</strong></dt>
-      <dd></dd>
-      <dd><img src="/main_files/cs231n/13/5.png" alt="img" width="40%" /></dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">The Generation Process:</strong><br />
+ <img src="/main_files/cs231n/13/5.png" alt="img" width="40%" /></p>
   </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents45">The Goal:</strong></dt>
-      <dd>The goal is to estimate the true parameters <script type="math/tex">\theta^\ast</script> of this generative model.</dd>
-    </dl>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents45">The Goal:</strong><br />
+ The goal is to estimate the true parameters <script type="math/tex">\theta^\ast</script> of this generative model.<br />
+ <br /></p>
   </li>
   <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents46">Representing the Model:</strong></dt>
-      <dd>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents46">Representing the Model:</strong><br />
+ - To represent the <strong>prior <script type="math/tex">p(z)</script></strong>, we choose it to be simple, usually <strong>Gaussian</strong><br />
+ - To represent the <strong>conditional <script type="math/tex">p_{\theta^{*}}\left(x | z^{(i)}\right)</script></strong>  (which is very complex), we use a neural-network<br />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents47">Intractability:</strong><br />
+ The <strong>Data Likelihood</strong>:
+    <p>$$p_\theta(x) = \int p_\theta(z) p_\theta(x|z) dz$$</p>
+    <p>is intractable to compute for every <script type="math/tex">z</script>.</p>
+
+    <p>Thus, the <strong>Posterior Density</strong>:</p>
+    <p>$$p_\theta(z|x) = \dfrac{p_\theta(x|z) p_\theta(z)}{p_\theta(x)} = \dfrac{p_\theta(x|z) p_\theta(z)}{\int p_\theta(z) p_\theta(x|z) dz}$$</p>
+    <p>is, also, intractable.
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents48">Dealing with Intractability:</strong><br />
+ In addition to decoder network modeling <script type="math/tex">p_\theta(x\vert z)</script>, define additional encoder network <script type="math/tex">q_\phi(z\vert x)</script> that approximates <script type="math/tex">p_\theta(z\vert x)</script>.<br />
+ This allows us to derive a <strong>lower bound</strong> on the data likelihood that is <em>tractable</em>, which we can optimize.
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents49">The Model:</strong><br />
+ The <strong>Encoder</strong> (recognition/inference) and <strong>Decoder</strong> (generation) networks are probabilistic and output means and variances of each the conditionals respectively:<br />
+ <img src="/main_files/cs231n/13/6.png" alt="img" width="70%" /></p>
+
+    <p>The <strong>generation (forward-pass)</strong> is done via <em><strong>sampling</strong></em> as follows:<br />
+ <img src="/main_files/cs231n/13/7.png" alt="img" width="72%" /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents410">The Log-Likelihood of Data:</strong><br />
+<strong>Deriving the Log-Likelihood:</strong><br />
+<img src="/main_files/cs231n/13/8.png" alt="img" width="100%" /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents411">Training:</strong><br />
+<strong>Computing the bound (forward pass) for a given minibatch of input data:</strong><br />
+<img src="https://cdn.mathpix.com/snip/images/AqnvjBWU8hztHMIccTxpe8mMqP4GTJ6b5Rfv79r8Lzk.original.fullsize.png" alt="img" width="80%" /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents412">Generation:</strong><br />
+<img src="https://cdn.mathpix.com/snip/images/UvH6YyerATQDxb9M3fUbaWhbi9axEdZ5Z-1w_HCR0zM.original.fullsize.png" alt="img" width="40%" /></p>
+
+    <p id="lst-p">- Diagonal prior on <script type="math/tex">\boldsymbol{z} \implies</script> independent latent variables<br />
+- Different dimensions of <script type="math/tex">\boldsymbol{z}</script> encode interpretable factors of variation</p>
+    <ul>
+      <li>Also good feature representation that can be computed using <script type="math/tex">\mathrm{q}_ {\phi}(\mathrm{z} \vert \mathrm{x})</script>!</li>
+    </ul>
+
+    <p id="lst-p"><strong>Examples:</strong></p>
+    <ul>
+      <li><strong>MNIST:</strong><br />
+  <img src="https://cdn.mathpix.com/snip/images/B0FCHMcL0yTM4eJ7si-sE23Z8GEoXDh7XU1XVstRzZ0.original.fullsize.png" alt="img" width="30%" /></li>
+      <li><strong>CelebA</strong>:<br />
+  <img src="/main_files/cs231n/13/9.png" alt="img" width="30%" /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents413">Pros, Cons and Research:</strong>
+    <ul>
+      <li><strong>Pros</strong>:
         <ul>
-          <li>To represent the prior <script type="math/tex">p(z)</script>, we choose it to be simple, usually <strong>Gaussian</strong></li>
-          <li>To represent the conditional (which is very complex), we use a neural-network</li>
+          <li>Principled approach to generative models</li>
+          <li>Allows inference of <script type="math/tex">q(z\vert x)</script>, can be useful feature representation for other tasks</li>
         </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents47">Intractability:</strong></dt>
-      <dd>The <strong>Data Likelihood</strong>:</dd>
-      <dd>
-        <script type="math/tex; mode=display">p_\theta(x) = \int p_\theta(z) p_\theta(x|z) dz</script>
-      </dd>
-      <dd>is intractable to compute for every <script type="math/tex">z</script>.</dd>
-      <dd>Thus, the <strong>Posterior Density</strong>:</dd>
-      <dd>
-        <script type="math/tex; mode=display">p_\theta(z|x) = \dfrac{p_\theta(x|z) p_\theta(z)}{p_\theta(x)} = \dfrac{p_\theta(x|z) p_\theta(z)}{\int p_\theta(z) p_\theta(x|z) dz}</script>
-      </dd>
-      <dd>is, also, intractable</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents48">Dealing with Intractability:</strong></dt>
-      <dd>In addition to decoder network modeling <script type="math/tex">p_\theta(x\vert z)</script>, define additional encoder network <script type="math/tex">q_\phi(z\vert x)</script> that approximates <script type="math/tex">p_\theta(z\vert x)</script></dd>
-      <dd>This allows us to derive a <strong>lower bound</strong> on the data likelihood that is tractable, which we can optimize.</dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents49">The Model:</strong></dt>
-      <dd>
+      </li>
+      <li><strong>Cons</strong>:
         <ul>
-          <li>The <strong>Encoder</strong> (recognition/inference) and <strong>Decoder</strong> (generation) networks are probabilistic and output means and variances of each the conditionals respectively:<br />
-  <img src="/main_files/cs231n/13/6.png" alt="img" width="70%" /></li>
-          <li>The generation (forward-pass) is done via sampling as follows:<br />
-  <img src="/main_files/cs231n/13/7.png" alt="img" width="72%" /></li>
+          <li>Maximizing the lower bound of likelihood is okay, but not as good for evaluation as Auto-regressive models</li>
+          <li>Samples blurrier and lower quality compared to state-of-the-art (GANs)</li>
         </ul>
-      </dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents410">The Log-Likelihood of Data:</strong></dt>
-      <dd>
+      </li>
+      <li><strong>Active areas of research</strong>:
         <ul>
-          <li>Deriving the Log-Likelihood:</li>
+          <li>More flexible approximations, e.g. richer approximate posterior instead of diagonal Gaussian</li>
+          <li>Incorporating structure in latent variables, e.g., Categorical Distributions</li>
         </ul>
-      </dd>
-      <dd><img src="/main_files/cs231n/13/8.png" alt="img" width="100%" /></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents411">Training the Model:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents412">Pros, Cons and Research:</strong></dt>
-      <dd>
-        <ul>
-          <li><strong>Pros</strong>:
-            <ul>
-              <li>Principled approach to generative models</li>
-              <li>Allows inference of <script type="math/tex">q(z\vert x)</script>, can be useful feature representation for other tasks</li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
-      <dd>
-        <ul>
-          <li><strong>Cons</strong>:
-            <ul>
-              <li>Maximizing the lower bound of likelihood is okay, but not as good for evaluation as Auto-regressive models</li>
-              <li>Samples blurrier and lower quality compared to state-of-the-art (GANs)</li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
-      <dd>
-        <ul>
-          <li><strong>Active areas of research</strong>:
-            <ul>
-              <li>More flexible approximations, e.g. richer approximate posterior instead of diagonal Gaussian</li>
-              <li>Incorporating structure in latent variables</li>
-            </ul>
-          </li>
-        </ul>
-      </dd>
-    </dl>
+      </li>
+    </ul>
   </li>
 </ol>
 

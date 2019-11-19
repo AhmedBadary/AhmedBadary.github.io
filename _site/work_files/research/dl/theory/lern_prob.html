@@ -93,6 +93,108 @@
 <a href="https://www.youtube.com/watch?v=tojaGtMPo5U&amp;list=PLA89DCFA6ADACE599&amp;index=9">Learning Theory Andrew NG (CS229 Stanford)</a><br />
 <a href="https://www.youtube.com/watch?v=AkmPv2WEsHw">Empirical Risk Minimization (Cornell)</a></p>
 
+<p><strong style="color: red">Fundamental Problem of Machine Learning: It is <em>Ill-Posed</em>:</strong><br />
+Learning appears <strong>impossible</strong>: Learning a truly “unknown” function is <strong>impossible</strong>.<br />
+<button class="showText" value="show" onclick="showTextPopHide(event);">Show Discussion</button>
+<img src="https://cdn.mathpix.com/snip/images/lgiqZ1ILbIe7TEciHCRsTgXrIfSDdrrpzvT078EloAI.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+<ul>
+  <li><strong style="color: red">Solution: Work with a Restricted Hypothesis Space:</strong><br />
+  Either by <span style="color: purple">applying prior knowledge</span> or by <span style="color: purple">guessing</span>, we choose a space of hypotheses <script type="math/tex">H</script> that is smaller than the space of all possible functions:
+    <ul>
+      <li>
+        <p>simple conjunctive rules, linear functions, multivariate Gaussian joint probability distributions, etc.</p>
+      </li>
+      <li>
+        <p>Lets say you have an unknown target function <script type="math/tex">f: X \rightarrow Y</script> that you are trying to capture by learning. In order to capture the target function you have to come up with (<strong>guess</strong>) some hypotheses <script type="math/tex">h_{1}, \ldots, h_{n}</script> where <script type="math/tex">h \in H</script>, and then <strong>search</strong> through these hypotheses to select the best one that approximates the target function.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p id="lst-p"><strong style="color: red">Two Views of Learning and their corresponding Strategies:</strong></p>
+<ol>
+  <li>Learning is the <em>removal</em> of our remaining <strong>uncertainty</strong><br />
+ – Suppose we knew that the unknown function was an m-of-n boolean function. Then we could use the training examples to deduce which function it is.<br />
+ – Our prior “knowledge” might be wrong
+    <ul>
+      <li><strong>Strategy</strong>: Develop Languages for Expressing Prior Knowledge<br />
+  Rule grammars, stochastic models, Bayesian networks</li>
+    </ul>
+  </li>
+  <li>Learning requires <strong>guessing</strong> a good, small <em>hypothesis class</em>.<br />
+ – We can start with a very small class and enlarge it until it contains an hypothesis that fits the data.<br />
+ – Our guess of the hypothesis class could be wrong: The smaller the class, the more likely we are wrong.
+    <ul>
+      <li><strong>Strategy</strong>: Develop Flexible Hypothesis Spaces<br />
+  Nested collections of hypotheses: decision trees, neural networks, cases, SVMs</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong style="color: red">Key Issues in Machine Learning:</strong><br />
+<button class="showText" value="show" onclick="showText_withParent_PopHide(event);">List</button></p>
+<ul hidden="">
+  <li>What are good hypothesis spaces?
+    <ul>
+      <li>which spaces have been useful in practical applications?</li>
+    </ul>
+  </li>
+  <li>What algorithms can work with these spaces?
+    <ul>
+      <li>Are there general design principles for learning algorithms?</li>
+    </ul>
+  </li>
+  <li>How can we optimize accuracy on future data points?
+    <ul>
+      <li>This is related to the problem of “overfitting”</li>
+    </ul>
+  </li>
+  <li>How can we have confidence in the results? (the <strong>statistical</strong> question)
+    <ul>
+      <li>How much training data is required to find an accurate hypotheses?</li>
+    </ul>
+  </li>
+  <li>Are some learning problems computational intractable? (the <strong>computational</strong> question)</li>
+  <li>How can we formulate application problems as machine learning problems? (the <strong>engineering</strong> question)</li>
+</ul>
+
+<p id="lst-p"><strong style="color: red">A Framework for Hypothesis Spaces:</strong></p>
+<ul>
+  <li><strong>Size</strong>: Does the hypothesis space have a <strong>fixed size</strong> or a <strong>variable size</strong>?
+    <ul>
+      <li><strong>Fixed-sized</strong> spaces are easier to understand, but variable-sized spaces are generally more useful.</li>
+      <li><strong>Variable-sized</strong> spaces introduce the problem of <strong>overfiting</strong>.</li>
+    </ul>
+  </li>
+  <li><strong>Stochasticity:</strong> Is the hypothesis a <strong>classifier</strong>, a <strong>conditional distribution</strong>, or a <strong>joint distribution</strong>?<br />
+  This affects how we evaluate hypotheses.
+    <ul>
+      <li>For a <strong>deterministic</strong> hypothesis, a training example is either consistent (correctly predicted) or inconsistent (incorrectly predicted).</li>
+      <li>For a <strong>stochastic</strong> hypothesis, a training example is more likely or less likely.</li>
+    </ul>
+  </li>
+  <li><strong>Parameterization:</strong> Is each hypothesis described by a set of <strong>symbolic (discrete)</strong> choices or is it described by a set of <strong>continuous</strong> parameters?<br />
+  If both are required, we say the space has a <strong>mixed</strong> parameterization.
+    <ul>
+      <li><strong>Discrete parameters</strong> must be found by combinatorial search methods</li>
+      <li><strong>Continuous parameters</strong> can be found by numerical search methods</li>
+    </ul>
+  </li>
+  <li><button class="showText" value="show" onclick="showTextPopHide(event);">Hypothesis Spaces Diagram</button>
+<img src="https://cdn.mathpix.com/snip/images/VFFJtf0S4AltKowR4d_7VR0v-ztBmt108ogBYAPDa5o.original.fullsize.png" alt="img" width="100%" hidden="" /><br />
+  Note: <strong>LTU</strong> == Linear Threshold Unit.</li>
+</ul>
+
+<p id="lst-p"><strong style="color: red">A Framework for Learning Algorithms:</strong></p>
+<ul>
+  <li><button class="showText" value="show" onclick="showTextPopHide(event);">Show Discussion</button>
+<img src="https://cdn.mathpix.com/snip/images/jww-nPeIv3F0oytJ4PqraBXL49bL30kGCg4JwL1bi70.original.fullsize.png" alt="img" width="100%" hidden="" /></li>
+  <li><button class="showText" value="show" onclick="showTextPopHide(event);">Show Diagram</button>
+<img src="https://cdn.mathpix.com/snip/images/y1wmxHjLNnaAzMg3rojdoNoid06vpgoVp1NMIlt6-sk.original.fullsize.png" alt="img" width="100%" hidden="" /></li>
+  <li><button class="showText" value="show" onclick="showTextPopHide(event);">Three Components of Learning Algorithms</button>
+  <img src="https://cdn.mathpix.com/snip/images/qsm50cMRH8q1Sr5QTJWNWDf4kFrhGIZTZjvjWRlN0aw.original.fullsize.png" alt="img" width="100%" hidden="" /></li>
+</ul>
+
 <h2 id="content1">The Learning Problem</h2>
 
 <ol>
@@ -108,7 +210,7 @@
  The Theory of Learning only depends on the data.</p>
 
     <blockquote>
-      <p>“We have to have data. We are learning from data. So if someone knocks on my door with an interesting machine learning application, and they tell me how exciting it is, and how great the application would be, and how much money they would make, the first question I ask, <strong>‘what data do you have?’</strong>. If you have data, we are in business. If you don’t, you are <em>out of luck</em>.” - Prof. NG</p>
+      <p>“We have to have data. We are learning from data. So if someone knocks on my door with an interesting machine learning application, and they tell me how exciting it is, and how great the application would be, and how much money they would make, the first question I ask, <strong>‘what data do you have?’</strong>. If you have data, we are in business. If you don’t, you are <em>out of luck</em>.” - Prof. Ng</p>
     </blockquote>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">The ML Approach to Problem Solving:</strong><br />
@@ -128,7 +230,8 @@
         <ul>
           <li>Start with the <strong>Ratings</strong> (dataset) that the users assigned to each movie</li>
           <li>Then <em>deduce</em> the “factors/features” that are consistent with those Ratings<br />
-  Note: we usually start with random initial numbers for the factors</li>
+  Note: we usually start with random initial numbers for the factors<br />
+ <br /></li>
         </ul>
       </li>
     </ul>
@@ -137,9 +240,10 @@
     <ul>
       <li><strong>Input</strong>: <script type="math/tex">\vec{x}</script></li>
       <li><strong>Output</strong>: <script type="math/tex">y</script></li>
-      <li><strong>Data</strong>:  <script type="math/tex">{(\vec{x}_1, y_1), (\vec{x}_2, y_2), ..., (\vec{x}_N, y_N)}</script></li>
+      <li><strong>Data</strong>:  <script type="math/tex">{(\vec{x}_ 1, y_ 1), (\vec{x}_ 2, y_ 2), ..., (\vec{x}_ N, y_ N)}</script></li>
       <li><strong>Target Function</strong>: <script type="math/tex">f : \mathcal{X} \rightarrow \mathcal{Y}</script>  (Unknown/Unobserved)</li>
-      <li><strong>Hypothesis</strong>: <script type="math/tex">g : \mathcal{X} \rightarrow \mathcal{Y}</script></li>
+      <li><strong>Hypothesis</strong>: <script type="math/tex">g : \mathcal{X} \rightarrow \mathcal{Y}</script><br />
+ <br /></li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Components of the Solution:</strong>
@@ -164,14 +268,16 @@
     <ul>
       <li><strong>No Downsides</strong>: There is <strong>no loss of generality</strong> by including a hypothesis set, since any restrictions on the elements of the set have no effect on what the learning algorithms<br />
   Basically, there is no downside because from a practical POV thats what you do; by choosing an initial approach, e.g. SVM, Linear Regression, Neural Network, etc., we are already dictating a hypothesis set. If we don’t choose one, then the hypothesis set has no restrictions and is the set of all possible hypothesis without loss of generalization.</li>
-      <li><strong>Upside</strong>: The hypothesis set plays a pivotal role in the <em>theory of learning</em>, by dictating whether we can learn or not.</li>
+      <li><strong>Upside</strong>: The hypothesis set plays a pivotal role in the <em>theory of learning</em>, by dictating whether we can learn or not.<br />
+ <br /></li>
     </ul>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">The Basic Premise/Goal of Learning:</strong><br />
  “Using a set of observations to uncover an underlying process”<br />
  Rephrased mathematically, the <strong>Goal of Learning</strong> is: <br />
- Use the Data to find a hypothesis <script type="math/tex">g \in \mathcal{H}</script>, from the hypothesis set <script type="math/tex">\mathcal{H}=\{h\}</script>, that <em>approximates</em> <script type="math/tex">f</script> well.</p>
+ Use the Data to find a hypothesis <script type="math/tex">g \in \mathcal{H}</script>, from the hypothesis set <script type="math/tex">\mathcal{H}=\{h\}</script>, that <em>approximates</em> <script type="math/tex">f</script> well.<br />
+ <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Types of Learning:</strong>
     <ul>
@@ -184,7 +290,8 @@
         </blockquote>
       </li>
       <li><strong>Reinforcement Leaning</strong>: the task of learning how software agents ought to take actions in an environment so as to maximize some notion of cumulative reward.<br />
-  <img src="/main_files/dl/theory/caltech/6.png" alt="img" width="70%" /></li>
+  <img src="/main_files/dl/theory/caltech/6.png" alt="img" width="70%" /><br />
+ <br /></li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">The Learning Diagram:</strong><br />
@@ -202,104 +309,107 @@
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">The Problem of Learning:</strong><br />
  Learning a truly <strong>Unknown</strong> function is <strong>Impossible</strong>, since outside of the observed values, the function could assume <em>any value</em> it wants.</p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">The Bin Analogy - A Related Experiment::</strong><br />
- <img src="/main_files/dl/theory/caltech/7.png" alt="img" width="70%" /></p>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">The Bin Analogy - A Related Experiment::</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Discussion</button>
+    <ul hidden="">
+      <li>
+        <p><img src="/main_files/dl/theory/caltech/7.png" alt="img" width="70%" /></p>
 
-    <p><script type="math/tex">\mu</script> is a constant that describes the actual/real probability of picking the red marble.<br />
- <script type="math/tex">\nu</script>, however, is random and depends on the frequency of red marbles in the particular sample that you have collected.</p>
+        <p><script type="math/tex">\mu</script> is a constant that describes the actual/real probability of picking the red marble.<br />
+  <script type="math/tex">\nu</script>, however, is random and depends on the frequency of red marbles in the particular sample that you have collected.</p>
 
-    <p>Does <script type="math/tex">\nu</script> approximate <script type="math/tex">\mu</script>?</p>
-    <ul>
-      <li>The short answer is <strong>NO</strong>:<br />
-  The Sample an be mostly green while bin is mostly red.</li>
-      <li>The Long answer is <strong>YES</strong>:<br />
-  The Sample frequency <script type="math/tex">\nu</script> is likely/probably close to bin frequency <script type="math/tex">\mu</script>.
-        <blockquote>
-          <p>Think of a presidential poll of 3000 people that can predict how the larger <script type="math/tex">10^8</script> mil. people will vote</p>
-        </blockquote>
-      </li>
-    </ul>
-
-    <p>The Main distinction between the two answers is in the difference between <em><strong>Possible</strong></em> VS <em><strong>Probable</strong></em>.</p>
-
-    <p>What does <script type="math/tex">\nu</script> say about <script type="math/tex">\mu</script>?<br />
- In a big sample (Large <script type="math/tex">N</script>), <script type="math/tex">\nu</script> is <em>probably</em> close to <script type="math/tex">\mu</script> (within <script type="math/tex">\epsilon</script>). <br />
- Formally, we the <strong>Hoeffding’s Inequality</strong>:</p>
-    <p>$$\mathbb{P}[|\nu-\mu|&gt;\epsilon] \leq 2 e^{-2 \epsilon^{2} N}$$</p>
-    <p>In other words, the probability that <script type="math/tex">\nu</script> does not approximate <script type="math/tex">\mu</script> well (they are not within an <script type="math/tex">\epsilon</script> of each other), is bounded by a negative exponential that dampens fast but depends directly on the tolerance <script type="math/tex">\epsilon</script>.</p>
-    <blockquote>
-      <p>This reduces to the statement that “<script type="math/tex">\mu = \nu</script>” is PAC (PAC: Probably, Approximately Correct).</p>
-    </blockquote>
-
-    <p>Properties:</p>
-    <ul>
-      <li>It is valid for <script type="math/tex">N</script> and <script type="math/tex">\epsilon</script>.</li>
-      <li>The bound does not depend on the value of <script type="math/tex">\mu</script>.</li>
-      <li>There is a <strong>Trade-off</strong> between the number of samples <script type="math/tex">N</script> and the tolerance <script type="math/tex">\epsilon</script>.</li>
-      <li>Saying that <script type="math/tex">\nu \approx \mu \implies \mu \approx \nu</script>, i.e. saying <script type="math/tex">\nu</script> is approximately the same as <script type="math/tex">\mu</script>, implies that <script type="math/tex">\mu</script> is approximately the same as <script type="math/tex">\nu</script> (yes, tautology). <br />
-  The logic here is subtle:
+        <p>Does <script type="math/tex">\nu</script> approximate <script type="math/tex">\mu</script>?</p>
         <ul>
-          <li>Logically, the inequality is making a statement on <script type="math/tex">\nu</script> (the random variable), it is saying that <script type="math/tex">\nu</script> tends to be close to <script type="math/tex">\mu</script> (the constant, real probability).</li>
-          <li>However, since the inequality is symmetric, we are using the inequality to infer <script type="math/tex">\mu</script> from <script type="math/tex">\nu</script>.<br />
-  But that is not the cause and effect that actually takes place. <script type="math/tex">\mu</script>, actually, affects <script type="math/tex">\nu</script>.</li>
+          <li>The short answer is <strong>NO</strong>:<br />
+  The Sample an be mostly green while bin is mostly red.</li>
+          <li>The Long answer is <strong>YES</strong>:<br />
+  The Sample frequency <script type="math/tex">\nu</script> is likely/probably close to bin frequency <script type="math/tex">\mu</script>.
+            <blockquote>
+              <p>Think of a presidential poll of 3000 people that can predict how the larger <script type="math/tex">10^8</script> mil. people will vote</p>
+            </blockquote>
+          </li>
         </ul>
+
+        <p>The Main distinction between the two answers is in the difference between <em><strong>Possible</strong></em> VS <em><strong>Probable</strong></em>.</p>
+
+        <p>What does <script type="math/tex">\nu</script> say about <script type="math/tex">\mu</script>?<br />
+  In a big sample (Large <script type="math/tex">N</script>), <script type="math/tex">\nu</script> is <em>probably</em> close to <script type="math/tex">\mu</script> (within <script type="math/tex">\epsilon</script>). <br />
+  Formally, we the <strong>Hoeffding’s Inequality</strong>:</p>
+        <p>$$\mathbb{P}[|\nu-\mu|&gt;\epsilon] \leq 2 e^{-2 \epsilon^{2} N}$$</p>
+        <p>In other words, the probability that <script type="math/tex">\nu</script> does not approximate <script type="math/tex">\mu</script> well (they are not within an <script type="math/tex">\epsilon</script> of each other), is bounded by a negative exponential that dampens fast but depends directly on the tolerance <script type="math/tex">\epsilon</script>.</p>
+        <blockquote>
+          <p>This reduces to the statement that “<script type="math/tex">\mu = \nu</script>” is PAC (PAC: Probably, Approximately Correct).</p>
+        </blockquote>
+
+        <p>Properties:</p>
+        <ul>
+          <li>It is valid for <script type="math/tex">N</script> and <script type="math/tex">\epsilon</script>.</li>
+          <li>The bound does not depend on the value of <script type="math/tex">\mu</script>.</li>
+          <li>There is a <strong>Trade-off</strong> between the number of samples <script type="math/tex">N</script> and the tolerance <script type="math/tex">\epsilon</script>.</li>
+          <li>Saying that <script type="math/tex">\nu \approx \mu \implies \mu \approx \nu</script>, i.e. saying <script type="math/tex">\nu</script> is approximately the same as <script type="math/tex">\mu</script>, implies that <script type="math/tex">\mu</script> is approximately the same as <script type="math/tex">\nu</script> (yes, tautology). <br />
+  The logic here is subtle:
+            <ul>
+              <li>Logically, the inequality is making a statement on <script type="math/tex">\nu</script> (the random variable), it is saying that <script type="math/tex">\nu</script> tends to be close to <script type="math/tex">\mu</script> (the constant, real probability).</li>
+              <li>However, since the inequality is symmetric, we are using the inequality to infer <script type="math/tex">\mu</script> from <script type="math/tex">\nu</script>.<br />
+  But that is not the cause and effect that actually takes place. <script type="math/tex">\mu</script>, actually, affects <script type="math/tex">\nu</script>.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p>Translating to the Learning Problem:<br />
+  <img src="/main_files/dl/theory/caltech/8.png" alt="img" width="70%" /></p>
+        <blockquote>
+          <p>Notice how the meaning of the accordance between <script type="math/tex">\mu</script> and <script type="math/tex">\nu</script>  is not accuracy of the model, but rather accuracy of the TEST.</p>
+        </blockquote>
+
+        <p>Back to the Learning Diagram:<br />
+  <img src="/main_files/dl/theory/caltech/9.png" alt="img" width="70%" /><br />
+  The marbles in the bin correspond to the input space (datapoints). This adds a NEW COMPONENT to the Learning problem - the probability of generating the input datapoints (up to this point we treated learning in an absolute sense based on some fixed datapoints). <br />
+  To adjust the statement of the learning problem to accommodate the new component:<br />
+  we add a probability distribution <script type="math/tex">P</script>  over the input space <script type="math/tex">\mathcal{X}</script>. This, however, doesn’t restrict the argument at all; we can invoke any probability on the space, and the machinery still holds. We, also, do not, even, need to know what <script type="math/tex">P</script> is (even though <script type="math/tex">P</script> affects <script type="math/tex">\mu</script>), since Hoeffding’s Inequality allows us to bound the LHS with no dependence on <script type="math/tex">\mu</script>.<br />
+  Thus, now we assume that the input datapoints <script type="math/tex">\vec{x}_1, ..., \vec{x}_N</script> are assumed to be generated by <script type="math/tex">P</script>, <strong>independently</strong>.<br />
+  So this is a very benign addition, that would give us high dividends - The Feasibility of Learning.</p>
+
+        <p>However, this is not learning; it is <strong>Verification</strong>. Learning involves using an algorithm to search a space <script type="math/tex">\mathcal{H}</script>  and try different functions <script type="math/tex">h \in \mathcal{H}</script>. Here, we have already picked some specific function and are testing its performance on a sample, using maths to guarantee the accuracy of the test within some threshold we are willing to tolerate.</p>
+
+        <p>Extending Hoeffding’s Inequality to Multiple hypotheses <script type="math/tex">h_i</script>:<br />
+  <img src="/main_files/dl/theory/caltech/10.png" alt="img" width="70%" /><br />
+  <img src="/main_files/dl/theory/caltech/11.png" alt="img" width="70%" /></p>
+
+        <p>Putting the right notation:<br />
+  <img src="/main_files/dl/theory/caltech/12.png" alt="img" width="70%" /><br />
+  <img src="/main_files/dl/theory/caltech/13.png" alt="img" width="70%" /></p>
+
+        <p><button class="showText" value="show" onclick="showTextPopHide(event);">Why Hoeffding Inequality doesn’t apply for multiple bins</button>
+  <img src="/main_files/dl/theory/caltech/14.png" alt="img" hidden="" /></p>
+        <blockquote>
+          <p>i.e. the 10 heads are not a good indication of the real probability</p>
+        </blockquote>
+
+        <p><button class="showText" value="show" onclick="showTextPopHide(event);">From coins to learning</button>
+  <img src="/main_files/dl/theory/caltech/15.png" alt="img" hidden="" /><br />
+  Equivalently, in learning, if the hypothesis set size is 1000, and there are 10 points we test against, the probability that one of those hypothesis performing well on the 10 points, but actually being a bad hypothesis is high, and increases with the hypothesis set size.</p>
+        <blockquote>
+          <p>Hoeffding’s inequality has a guarantee for one experiment, that gets terribly diluted as you increase the number of experiments.</p>
+        </blockquote>
+
+        <p>Solution:<br />
+  We follow the very same reasoning: we want to know the probability of at least one failing. This can be bounded by the union bound, which intuitively says that the maximum probability of at least an event occurring in N is when all the events are independent, in which case you just sum up the probabilities:</p>
+        <p>$$\begin{aligned} \mathbb{P}\left[ | E_{\text {in }}(g)-E_{\text {out }}(g) |&gt;\epsilon\right] \leq \mathbb{P}[ &amp; | E_{\text {in }}\left(h_{1}\right)-E_{\text {out }}\left(h_{1}\right) |&gt;\epsilon \\ &amp; \text {or } | E_{\text {in }}\left(h_{2}\right)-E_{\text {out }}\left(h_{2}\right) |&gt;\epsilon \\ &amp; \cdots \\ &amp; \text {or } | E_{\text {in }}\left(h_{M}\right)-E_{\text {out }}\left(h_{M}\right) |&gt;\epsilon ] \\ \leq &amp; \sum_{m=1}^{M} \mathbb{P}\left[ | E_{\text {in }}\left(h_{m}\right)-E_{\text {out }}\left(h_{m}\right) |&gt;\epsilon\right] \end{aligned}$$</p>
+        <p>Which implies:</p>
+        <p>$$\begin{aligned} \mathbb{P}\left[ | E_{\text {in }}(g)-E_{\text {out }}(g) |&gt;\epsilon\right] &amp; \leq \sum_{m=1}^{M} \mathbb{P}\left[ | E_{\text {in }}\left(h_{m}\right)-E_{\text {out }}\left(h_{m}\right) |&gt;\epsilon\right] \\ &amp; \leq \sum_{m=1}^{M} 2 e^{-2 \epsilon^{2} N} \end{aligned}$$</p>
+        <p>Or,</p>
+        <p>$$\mathbb{P}\left[ | E_{\ln }(g)-E_{\text {out }}(g) |&gt;\epsilon\right] \leq 2 M e^{-2 \epsilon^{2} N}$$</p>
+        <p>The more sophisticated the model you use, the looser that in-sample will track the out-of-sample. Because the probability of them deviating becomes bigger and bigger and bigger.<br />
+  The conclusion may seem both awkward and obvious, but the bigger the hypothesis set, the higher the probability of at least one function being very bad. In the event that we have an infinite hypothesis set, of course this bound goes to infinity and tells us nothing new.</p>
+
+        <p><a href="http://testuggine.ninja/notes/feasibility-of-learning#fnref:limited">References</a></p>
       </li>
     </ul>
-
-    <p>Translating to the Learning Problem:<br />
- <img src="/main_files/dl/theory/caltech/8.png" alt="img" width="70%" /></p>
-    <blockquote>
-      <p>Notice how the meaning of the accordance between <script type="math/tex">\mu</script> and <script type="math/tex">\nu</script>  is not accuracy of the model, but rather accuracy of the TEST.</p>
-    </blockquote>
-
-    <p>Back to the Learning Diagram:<br />
- <img src="/main_files/dl/theory/caltech/9.png" alt="img" width="70%" /><br />
- The marbles in the bin correspond to the input space (datapoints). This adds a NEW COMPONENT to the Learning problem - the probability of generating the input datapoints (up to this point we treated learning in an absolute sense based on some fixed datapoints). <br />
- To adjust the statement of the learning problem to accommodate the new component:<br />
- we add a probability distribution <script type="math/tex">P</script>  over the input space <script type="math/tex">\mathcal{X}</script>. This, however, doesn’t restrict the argument at all; we can invoke any probability on the space, and the machinery still holds. We, also, do not, even, need to know what <script type="math/tex">P</script> is (even though <script type="math/tex">P</script> affects <script type="math/tex">\mu</script>), since Hoeffding’s Inequality allows us to bound the LHS with no dependence on <script type="math/tex">\mu</script>.<br />
- Thus, now we assume that the input datapoints <script type="math/tex">\vec{x}_1, ..., \vec{x}_N</script> are assumed to be generated by <script type="math/tex">P</script>, <strong>independently</strong>.<br />
- So this is a very benign addition, that would give us high dividends - The Feasibility of Learning.</p>
-
-    <p>However, this is not learning; it is <strong>Verification</strong>. Learning involves using an algorithm to search a space <script type="math/tex">\mathcal{H}</script>  and try different functions <script type="math/tex">h \in \mathcal{H}</script>. Here, we have already picked some specific function and are testing its performance on a sample, using maths to guarantee the accuracy of the test within some threshold we are willing to tolerate.</p>
-
-    <p>Extending Hoeffding’s Inequality to Multiple hypotheses <script type="math/tex">h_i</script>:<br />
- <img src="/main_files/dl/theory/caltech/10.png" alt="img" width="70%" /><br />
- <img src="/main_files/dl/theory/caltech/11.png" alt="img" width="70%" /></p>
-
-    <p>Putting the right notation:<br />
- <img src="/main_files/dl/theory/caltech/12.png" alt="img" width="70%" /><br />
- <img src="/main_files/dl/theory/caltech/13.png" alt="img" width="70%" /></p>
-
-    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Why Hoeffding Inequality doesn’t apply for multiple bins</button>
- <img src="/main_files/dl/theory/caltech/14.png" alt="img" hidden="" /></p>
-    <blockquote>
-      <p>i.e. the 10 heads are not a good indication of the real probability</p>
-    </blockquote>
-
-    <p><button class="showText" value="show" onclick="showTextPopHide(event);">From coins to learning</button>
- <img src="/main_files/dl/theory/caltech/15.png" alt="img" hidden="" /><br />
- Equivalently, in learning, if the hypothesis set size is 1000, and there are 10 points we test against, the probability that one of those hypothesis performing well on the 10 points, but actually being a bad hypothesis is high, and increases with the hypothesis set size.</p>
-    <blockquote>
-      <p>Hoeffding’s inequality has a guarantee for one experiment, that gets terribly diluted as you increase the number of experiments.</p>
-    </blockquote>
-
-    <p>Solution:<br />
- We follow the very same reasoning: we want to know the probability of at least one failing. This can be bounded by the union bound, which intuitively says that the maximum probability of at least an event occurring in N is when all the events are independent, in which case you just sum up the probabilities:</p>
-    <p>$$\begin{aligned} \mathbb{P}\left[ | E_{\text {in }}(g)-E_{\text {out }}(g) |&gt;\epsilon\right] \leq \mathbb{P}[ &amp; | E_{\text {in }}\left(h_{1}\right)-E_{\text {out }}\left(h_{1}\right) |&gt;\epsilon \\ &amp; \text {or } | E_{\text {in }}\left(h_{2}\right)-E_{\text {out }}\left(h_{2}\right) |&gt;\epsilon \\ &amp; \cdots \\ &amp; \text {or } | E_{\text {in }}\left(h_{M}\right)-E_{\text {out }}\left(h_{M}\right) |&gt;\epsilon ] \\ \leq &amp; \sum_{m=1}^{M} \mathbb{P}\left[ | E_{\text {in }}\left(h_{m}\right)-E_{\text {out }}\left(h_{m}\right) |&gt;\epsilon\right] \end{aligned}$$</p>
-    <p>Which implies:</p>
-    <p>$$\begin{aligned} \mathbb{P}\left[ | E_{\text {in }}(g)-E_{\text {out }}(g) |&gt;\epsilon\right] &amp; \leq \sum_{m=1}^{M} \mathbb{P}\left[ | E_{\text {in }}\left(h_{m}\right)-E_{\text {out }}\left(h_{m}\right) |&gt;\epsilon\right] \\ &amp; \leq \sum_{m=1}^{M} 2 e^{-2 \epsilon^{2} N} \end{aligned}$$</p>
-    <p>Or,</p>
-    <p>$$\mathbb{P}\left[ | E_{\ln }(g)-E_{\text {out }}(g) |&gt;\epsilon\right] \leq 2 M e^{-2 \epsilon^{2} N}$$</p>
-    <p>The more sophisticated the model you use, the looser that in-sample will track the out-of-sample. Because the probability of them deviating becomes bigger and bigger and bigger.<br />
- The conclusion may seem both awkward and obvious, but the bigger the hypothesis set, the higher the probability of at least one function being very bad. In the event that we have an infinite hypothesis set, of course this bound goes to infinity and tells us nothing new.</p>
-
-    <p><a href="http://testuggine.ninja/notes/feasibility-of-learning#fnref:limited">References</a></p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">The Learning Analogy:</strong><br />
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">The Learning Analogy:</strong><br />
  For an exam, the practice problems are the training set. You’re going to look at the question. You’re going to answer. You’re going to compare it with the real answer. And then you are going to adjust your hypothesis, your understanding of the material, in order to do it better, and go through them and perhaps go through them again, until you get them right or mostly right or figure out the material (this makes you better at taking the exam).
- We don’t give out the actual exams questions because <strong>acing the final is NOT the goal</strong>, the goal is to <strong>learn the material (have a small <script type="math/tex">E_{\text{out}}</script>)</strong>. The final exam is only a way of gauging how well you actually learned. And in order for it to gauge how well you actually learned, I have to give you the final at the point you have already fixed your hypothesis. You prepared. You studied. You discussed with people. You now sit down to take the final exam. So you have one hypothesis. And you go through the exam. hopefully, will reflect what your understanding will be outside.</p>
+ We don’t give out the actual exams questions because <strong>acing the final is NOT the goal</strong>, the goal is to <strong>learn the material (have a small <script type="math/tex">E_{\text{out}}</script>)</strong>. The final exam is only a way of gauging how well you actually learned. And in order for it to gauge how well you actually learned, I have to give you the final at the point you have already fixed your hypothesis. You prepared. You studied. You discussed with people. You now sit down to take the final exam. So you have one hypothesis. And you go through the exam. hopefully, will reflect what your understanding will be outside.
     <blockquote>
       <p>The exam measures <script type="math/tex">E_{\text{in}}</script>, and we know that it tracks <script type="math/tex">E_{\text{out}}</script> (by Hoeffding), so it tracks well how you understand the material proper.</p>
     </blockquote>
@@ -502,6 +612,17 @@
 
 <h2 id="content5">The Linear Model II</h2>
 
+<ul>
+  <li><a href="https://web.stanford.edu/~hastie/Papers/ESLII.pdf#page=146">Logistic Regression vs LDA? (ESL)</a></li>
+  <li><a href="http://www.haija.org/derivation_logistic_regression.pdf">Derivation of Logistic Regression</a></li>
+  <li><a href="http://www.win-vector.com/blog/2011/09/the-simpler-derivation-of-logistic-regression/">The Simpler Derivation of Logistic Regression</a></li>
+  <li><a href="http://www.stat.cmu.edu/~cshalizi/uADA/12/lectures/ch12.pdf">Logistic Regression, Generalized Linear and Additive Models (CMU)</a></li>
+  <li><a href="https://www.quora.com/Why-do-we-use-the-Bernoulli-distribution-in-the-logistic-regression-model">Why do we use the Bernoulli distribution in the logistic regression model? (Quora)</a></li>
+  <li><a href="https://ml-cheatsheet.readthedocs.io/en/latest/logistic_regression.html">Logistic Regression - ML Cheatsheet</a></li>
+  <li><a href="https://cs-cheatsheet.readthedocs.io/en/latest/subjects/machine_learning/logistic_regression.html">Logistic Regression - CS Cheatsheet</a></li>
+  <li><a href="https://www.youtube.com/watch?v=hjrYrynGWGA&amp;list=PLkDaE6sCZn6Ec-XTbcX1uRg2_u4xOEky0&amp;index=9">Logistic Regression (Lec Ng)</a></li>
+</ul>
+
 <ol>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents51">Linear Models - Logistic Regression:</strong><br />
@@ -529,7 +650,24 @@
       <p>In words: So I’m going to call the probability the target function itself. The probability that someone gets heart attack is <script type="math/tex">f(\mathbf{x})</script>. And I’m trying to learn <script type="math/tex">f</script>, notwithstanding the fact that the examples that I am getting are giving me just sample values of <script type="math/tex">y</script>, that happen to be generated by <script type="math/tex">f</script>.</p>
     </blockquote>
 
-    <p><a href="/concepts_#bodyContents66">Further Analysis</a></p>
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Further Analysis</button></p>
+    <ul hidden="">
+      <li>Logistic Regression uses the <strong>sigmoid</strong> function to “squash” the output feature/signal into the <script type="math/tex">[0, 1]</script> space.<br />
+  Although, one could interpret the <em>sigmoid classifier</em> as just a function with <script type="math/tex">[0,1]</script> range, it is actually, a <strong>Genuine Probability</strong>.</li>
+      <li>To see this:
+        <ul>
+          <li>A labeled, classification Data-Set, does <strong>NOT</strong> (explicitly) give you the <em>probability</em> that something is going to happen, rather, just the fact that an event either happened <script type="math/tex">(y=1)</script> or that it did not <script type="math/tex">(y=0)</script>, without the actual probability of that event happening.</li>
+          <li>One can think of this data as being generated by a (the following) noisy target:<br />
+  <script type="math/tex">% <![CDATA[
+{\displaystyle P(y \vert x) ={\begin{cases}f(x)&{\text{for }}y = +1,\\1-f(x)&{\text{for }}y=-1.\\\end{cases}}} %]]></script></li>
+          <li>They have the form that a certain probability that the event occurred and a certain probability that the event did NOT occur, given their input-data.</li>
+          <li>This is generated by the target we want to learn; thus, the function <script type="math/tex">f(x)</script> is the target function to approximate.</li>
+        </ul>
+      </li>
+      <li>In Logistic Regression, we are trying to learn <script type="math/tex">f(x)</script> not withstanding the fact that the data-points we are learning from are giving us just sample values of <script type="math/tex">y</script> that happen to be generated by <script type="math/tex">f</script>.</li>
+      <li>Thus, the <strong>Target</strong> <script type="math/tex">f : \mathbb{R}^d \longrightarrow [0,1]</script> is the probability.<br />
+  <span style="color: purple">The output of Logistic Regression is treated genuinely as a <strong>probability</strong> even <em>during <strong>Learning</strong></em>.</span></li>
+    </ul>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents54">Deriving the Error Measure (Cross-Entropy) from Likelihood:</strong><br />

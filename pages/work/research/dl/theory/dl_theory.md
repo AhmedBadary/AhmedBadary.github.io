@@ -6,11 +6,11 @@ permalink: /work_files/research/dl/theory
 
 # Sections
 
-* ### [Elements of Machine Learning - DL Book - Ch.5](/work_files/research/dl/theory/dl_book_pt1)
+* ### [Elements of Machine Learning - DLBook Ch.5](/work_files/research/dl/theory/dl_book_pt1)
 
-* ### [Basics of Deep Learning - DL Book - Ch.6](/work_files/research/dl/theory/dl_book_pt2)
+* ### [Basics of Deep Learning - DLBook Ch.6](/work_files/research/dl/theory/dl_book_pt2)
 
-* ### [Regularization - DL Book - Ch.7](/work_files/research/dl/theory/dl_book_regularization)
+* ### [Regularization - DLBook Ch.7](/work_files/research/dl/theory/dl_book_regularization)
 
 * ### [Statistical Learning Theory](/work_files/research/dl/theory/stat_lern_thry)
 

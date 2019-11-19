@@ -33,24 +33,19 @@ prevLink: /work_files/research/dl/archits.html
     <br>
 
 3. **Classes of FNNs:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}    
-    There are many variations of FNNs. As long as they utilize a FeedForward control signals and have a layered structure (described above) they are a type of FNN:  
+    There are many variations of FNNs. As long as they utilize FeedForward control signals and have a layered structure (described above) they are a type of FNN:  
     * [__Single-Layer Perceptron__](http://localhost:8889/work_files/research/ml/1_2):  
-        A linear binary classifier, the __single-layer perceptron__ is the simplest feedforward neural network. It consists of a single layer of output nodes; the inputs are multiplied by a series of weights, effectively, being fed directly to the outputs where they values are summed in each node, and if the value is above some threshold (typically 0) the neuron fires and takes the activated value (typically 1); otherwise it takes the deactivated value (typically 0).  
+        A <span>linear binary classifier</span>{: style="color: purple"}, the __single-layer perceptron__ is the simplest feedforward neural network. It consists of a single layer of output nodes; the inputs are multiplied by a series of weights, effectively, being fed directly to the outputs where they values are summed in each node, and if the value is above some threshold (typically 0) the neuron fires and takes the activated value (typically 1); otherwise it takes the deactivated value (typically 0).  
         <p>$$f(\mathbf{x})=\left\{\begin{array}{ll}{1} & {\text { if } \mathbf{w} \cdot \mathbf{x}+b>0} \\ {0} & {\text { otherwise }}\end{array}\right.$$</p>  
-        > In the context of neural networks, a perceptron is an artificial neuron using the [__Heaviside step function__](https://en.wikipedia.org/wiki/Heaviside_step_function) as the activation function.   
-
+        In the context of neural networks, a perceptron is an artificial neuron using the [__Heaviside step function__](https://en.wikipedia.org/wiki/Heaviside_step_function) as the activation function.   
     * [__Multi-Layer Perceptron__](#content2):  
         This class of networks consists of multiple layers of computational units, usually interconnected in a feed-forward way. Each neuron in one layer has directed connections to the neurons of the subsequent layer. In many applications the units of these networks apply a sigmoid function as an activation function.  
         
 
 <!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
-
 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}  
-
 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}  
-
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
-
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18} -->  
 
 ***
@@ -75,7 +70,7 @@ prevLink: /work_files/research/dl/archits.html
     Learning occurs by changing the weights, connecting the layers, based on the amount of error in the output compared to the expected result. Those weights are changed by using _gradient-methods_ to optimize a, given, objective function (called the __loss function__).  
     <br>
 
-4. **Properties:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}    
+4. **Properties:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}  
     * Due to their _non-linearity_, MLPs can distinguish and model non-linearly-separable data    
     * According to [__Cybenko's Theorem__](https://pdfs.semanticscholar.org/05ce/b32839c26c8d2cb38d5529cf7720a68c3fab.pdf), MLPs are *__universal function approximators__*; thus, they can be used for _regression analysis_ and, by extension, _classification_  
     * Without the _non-linear activation functions_, MLPs will be identical to __Perceptrons__, since Linear Algebra shows that the linear transformations in many hidden layers can be collapsed into one linear-transformation  

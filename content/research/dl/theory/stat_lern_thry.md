@@ -14,9 +14,9 @@ prevLink: /work_files/research/dl/theory.html
   {: .TOC2}
   * [The Bias-Variance Decomposition Theory](#content3)
   {: .TOC3}
-<!--  * [FOURTH](#content4)
+  * [Generalization Theory](#content4)
   {: .TOC4}
-  * [FIFTH](#content5)
+<!--  * [FIFTH](#content5)
   {: .TOC5}
   * [SIXTH](#content6)
   {: .TOC6} -->
@@ -33,6 +33,71 @@ prevLink: /work_files/research/dl/theory.html
 * [Generalization Bounds for Hypothesis Spaces](https://courses.cs.washington.edu/courses/cse522/11wi/scribes/lecture4.pdf)  
 * [Generalization Bound Derivation](https://mostafa-samir.github.io/ml-theory-pt2/)  
 * [Overfitting isn’t simple: Overfitting Re-explained with Priors, Biases, and No Free Lunch](http://mlexplained.com/2018/04/24/overfitting-isnt-simple-overfitting-re-explained-with-priors-biases-and-no-free-lunch/)  
+* [9.520/6.860: Statistical Learning Theory and Applications, Fall 2017](http://www.mit.edu/~9.520/fall17/)  
+* [What is a Hypothesis in Machine Learning? (blog)](https://machinelearningmastery.com/what-is-a-hypothesis-in-machine-learning/)  
+* [No Free Lunch Theorem and PAC Learning (Lec Notes!)](http://www.cs.cornell.edu/courses/cs6783/2015fa/lec3.pdf)  
+* [Regularization and Reproducing Kernel Hilbert Spaces (ESL)](https://web.stanford.edu/~hastie/Papers/ESLII.pdf#page=186)  
+
+
+
+__Fundamental Theorem of Statistical Learning (binary classification):__{: style="color: red"}  
+Let $$\mathcal{H}$$ be a hypothesis class of functions from a domain $$X$$ to $$\{0,1\}$$ and let the loss function be the $$0-1$$ loss.  
+The following are equivalent:  
+$$\begin{array}{l}{\text { 1. } \mathcal{H} \text { has uniform convergence. }} \\ {\text { 2. The ERM is a PAC learning algorithm for } \mathcal{H} \text { . }} \\ {\text { 3. } \mathcal{H} \text { is } PAC \text { learnable. }} \\ {\text { 4. } \mathcal{H} \text { has finite } VC \text { dimension. }}\end{array}$$  
+This can be extended to __regression__ and __multiclass classification__.   
+
+<button>Proof.</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+<div hidden="" markdown="1">
+* 1 $$\Rightarrow 2$$ We have seen uniform convergence implies that $$\mathrm{ERM}$$ is $$\mathrm{PAC}$$ learnable
+* 2 $$\Rightarrow 3$$ Obvious.
+* 3 $$\Rightarrow 4$$ We just proved that PAC learnability implies finite $$\mathrm{VC}$$ dimension.
+* 4 $$\Rightarrow 1$$ We proved that finite $$\mathrm{VC}$$ dimension implies uniform convergence.
+</div>
+
+__Notes:__{: style="color: red"}  
+{: #lst-p}
+* VC dimension fully determines <span>learnability</span>{: style="color: goldenrod"} for binary classification.  
+* The VC dimension doesn’t just determine __learnability__, it also gives a <span>bound on the sample complexity</span>{: style="color: goldenrod"} (which can be shown to be __tight__{: style="color: goldenrod"}).  
+* [Lecture Slides (ref)](https://www.cs.toronto.edu/~jlucas/teaching/csc411/lectures/lec23_24_handout.pdf)  
+* <button>Extra Notes (what you should know)</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](https://cdn.mathpix.com/snip/images/9bYxbit2n1mvyrttH3CzgI-2CgdrrDNVkejd1fP5-AU.original.fullsize.png){: width="100%" hidden=""}  
+
+
+
+__Theoretical Concepts:__{: style="color: red"}  
+{: #lst-p}
+* __Kolmogorov Complexity__:  
+    In __Algorithmic Information Theory__, the __Kolmogorov Complexity__ of an object, such as a piece of text, is the <span>__length__ of the *__shortest__* __computer program__</span>{: style="color: purple"} (in a predetermined programming language) that <span>_produces_ the object as __output__</span>{: style="color: purple"}.  
+    It is a measure of the __computational resources__ needed to *__specify__* the object.  
+    It is also known as __algorithmic complexity__, __Solomonoff–Kolmogorov complexity__, __program-size complexity__, __descriptive complexity__, or __algorithmic entropy__.  
+* __Rademacher Complexity__:  
+* __Generalization Bounds__: 
+* __Sample Complexity__: 
+* __PAC-Bayes Bound__:  
+* __Kolmogorov Randomness__:  
+* __Minimum Description Length (MDL)__:   
+    The [__minimum description length (MDL) principle__](https://en.wikipedia.org/wiki/Minimum_description_length) is a formalization of __Occam's razor__ in which the best hypothesis (a model and its parameters) for a given set of data is the one that leads to the <span>best compression of the data</span>{: style="color: purple"}.  
+* __Minimum Message Length (MML)__:  
+    [__MML__](https://en.wikipedia.org/wiki/Minimum_message_length) is a formal Information Theory restatement of __Occam's Razor__: even when models are equal in goodness of fit accuracy to the observed data, the one generating the <span>shortest overall message</span>{: style="color: purple"} is more likely to be correct (where the message consists of a statement of the model, followed by a statement of data encoded concisely using that model).  
+* [Statistical Decision Theory (ESL!)](https://web.stanford.edu/~hastie/Papers/ESLII.pdf#page=37)  
+* __PAC Learnability__:  
+    A hypothesis class $$\mathcal{H}$$ is PAC learnable, if there exists a learning algorithm A, satisfying that for any $$\epsilon>0$$ and $$\delta \in(0,1)$$ there exist $$\mathfrak{M}(\epsilon, \delta)=$$ poly $$\left(\frac{1}{\epsilon}, \frac{1}{\delta}\right)$$ such that for i.i.d samples $$S^{m}=\left\{\left(x_{i}, y_{i}\right)\right\}_ {i=1}^{m}$$ drawn from any distribution $$\mathcal{D}$$ and $$m \geq \mathfrak{M}(\epsilon, \delta)$$ the algorithm returns a hypothesis $$A\left(S^{m}\right) \in \mathcal{H}$$ satisfying  
+    <p>$$P_{S^{m} \sim \mathcal{D}^{m}}\left(L_{\mathcal{D}}(A(S))>\min _{h \in \mathcal{H}} L_{\mathcal{D}}(h)+\epsilon\right)<\delta$$</p>  
+    To show that empirical risk minimization (ERM) is a PAC learning algorithm, we need to show that $$L_{S}(h) \approx L_{\mathcal{D}}(h)$$ for all $$h$$.  
+* __Uniform Convergence__:  
+    A hypothesis class $$\mathcal{H}$$ has the uniform convergence property, if for any $$\epsilon>0$$ and $$\delta \in(0,1)$$ there exist $$\mathfrak{M}(\epsilon, \delta)=$$ $$\text{poly}\left(\frac{1}{\epsilon}, \frac{1}{\delta}\right)$$ such that for any distribution $$\mathcal{D}$$ and $$m \geq \mathfrak{M}(\epsilon, \delta)$$ i.i.d samples $$S^{m}=\left\{\left(x_{i}, y_{i}\right)\right\}_ {i=1}^{m} \sim \mathcal{D}^{m}$$ with probability at least $$1-\delta$$, $$\left\vert L_{S}^{m}(h)-L_{\mathcal{D}}(h)\right\vert <\epsilon$$ for all $$h \in \mathcal{H}$$.  
+
+    * For a single $$h,$$ law of large numbers says $$L_{S}^{m}(h) \stackrel{m \rightarrow \infty}{\rightarrow} L_{\mathcal{D}}(h)$$  
+    * For loss bounded by 1 the Hoeffding inequality states:  
+        <p>$$P\left(\left\vert L_{S}^{m}(h)-L_{\mathcal{D}}(h)\right\vert >\epsilon\right) \leq 2 e^{-2 \epsilon^{2} m}$$</p>  
+    * The difficulty is to bound all the $$h \in \mathcal{H}$$ <span>uniformly</span>{: style="color: purple"}.  
+* __Complexity in ML__:  
+    * __Definitions of the complexity of an object ($$h$$)__:  
+        * __Minimum Description Length (MDL)__: the number of bits for specifying an object.  
+        * __Order of a Polynomial__  
+    * __Definitions of the complexity of a class of objects ($$\mathcal{H}$$)__:  
+        * __Entropy__  
+        * __VC-dim__  
 
 
 
@@ -44,6 +109,7 @@ prevLink: /work_files/research/dl/theory.html
     > __How can we affect performance on the test set when we can only observe the training set?__{: style="color: blue"}  
 
     It is a _statistical_ approach to __Computational Learning Theory__.  
+    <br>
 
 2. **Formal Definition:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
     Let:  
@@ -82,6 +148,7 @@ prevLink: /work_files/research/dl/theory.html
     Is a *__proxy measure__* for the __expected risk__, based on the training set.  
     It is necessary because the probability distribution $$p(\vec{x}, y)$$ is _unknown_.  
     <p>$$I_{S}[f]=\frac{1}{n} \sum_{i=1}^{n} V\left(f\left(\vec{x}_{i}\right), y_{i}\right)$$</p>  
+    <br>
 
 3. **Empirical risk minimization:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
     __Empirical Risk Minimization (ERM)__ is a principle in _statistical learning theory_ that is based on approximating the __Generalization Error (True Risk)__ by measuring the __Training Error (Empirical Risk)__, i.e. the performance on training data.  
@@ -100,7 +167,7 @@ prevLink: /work_files/research/dl/theory.html
         * Employing a __convex approximation__ to the 0-1 loss: _Hinge Loss_, _SVM_  
         * Imposing __Assumptions on the data-generating distribution__ and thus, stop being an __agnostic learning algorithm__.  
     {: hidden=""}  
-
+    <br>
 
 4. **Definitions:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
     * __Generalization Error:__{: style="color: red"}  
@@ -253,7 +320,7 @@ prevLink: /work_files/research/dl/theory.html
     &=\mathbb{E}_{x}{\big [}\operatorname {Bias} [g^{(\mathcal{D})}]^{2}+\sigma ^{2}+\operatorname {Var} {\big [}g^{(\mathcal{D})}{\big ]}{\big ]}\\
 \end{aligned}}}$$</p>  
     where:  
-    $$\overline{g}(\mathbf{x})=\mathbb{E}_{\mathcal{D}}\left[g^{(\mathcal{D})}(\mathbf{x})\right]$$ is the __average hypothesis__ over all realization of $$N$$ data-points $$\mathcal{D}_ i$$.  
+    $$\overline{g}(\mathbf{x})=\mathbb{E}_{\mathcal{D}}\left[g^{(\mathcal{D})}(\mathbf{x})\right]$$ is the __average hypothesis__ over all realization of $$N$$ data-points $$\mathcal{D}_ i$$, and $${\displaystyle \varepsilon }$$ and $${\displaystyle {\hat {f}}} = g^{(\mathcal{D})}$$ are __independent__.    
 
     <button>Derivation with Wikipedia Notation</button>{: .showText value="show"
      onclick="showText_withParent_PopHide(event);"}
@@ -348,13 +415,112 @@ prevLink: /work_files/research/dl/theory.html
         <p>$$R(\hat{f}) - R(f) = \mathrm{E}\left[(f(x)-\hat{f}(x))^{2}\right]$$</p>  
     <p>$$\mathrm{E}\left[(f(x)-\hat{f}(x))^{2}\right] = (\operatorname{Bias}[\hat{f}(x)])^{2}+\operatorname{Var}[\hat{f}(x)]$$</p>  
 
+    * if you dont want to mess with stat-jargon; lemme rephrase:  
+        is the minimizer $${\displaystyle f=\inf_{h \in \mathcal{H}} I[h]}$$ where $$I[h]$$ is the expected-risk/generalization-error (assume MSE);  
+        is it $$\overline{f}(\mathbf{x})=\mathbb{E}_ {\mathcal{D}}\left[f^{(\mathcal{D})}(\mathbf{x})\right]$$ the average hypothesis over all realizations of $$N$$ data-points $$\mathcal{D}_ i$$??  
+
+
+***
+
+## Generalization Theory
+{: #content4}
+
+* [Generalization Bounds: PAC-Bayes, Rademacher, ERM, etc. (Notes!)](https://www.cs.princeton.edu/courses/archive/fall17/cos597A/lecnotes/generalize.pdf)  
+* [Deep Learning Generalization (blog!)](http://www.offconvex.org/2017/12/08/generalization1/)  
+
+1. **Generalization Theory:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}  
+    
+
+    __Approaches to (Notions of) Quantitative Description of Generalization Theory:__{: style="color: red"}  
+    {: #lst-p}
+    * VC Dimension
+    * Rademacher Complexity
+    * PAC-Bayes Bound  
+
+
+
+    __Prescriptive vs Descriptive Theory:__{: style="color: red"}  
+    {: #lst-p}
+    * __Prescriptive__: only attaches a label to the problem, without giving any insight into how to solve the problem.  
+    * __Descriptive__: describes the problem in detail (e.g. by providing cause) and allows you to solve the problem.  
+
+    Generalization Theory Notions consist of attaching a descriptive label to the basic phenomenon of lack of generalization. They are hard to compute for today’s complicated ML models, let alone to use as a guide in designing learning systems.  
+    __Generalization Bounds as Descriptive Labels:__{: style="color: red"}  
+    {: #lst-p}
+    * __Rademacher Complexity__:  
+        <button>Assumptions</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+        * labels and loss are 0,1,  
+        * the badly generalizing $$h$$ predicts perfectly on the training sample $$S$$ and  
+            is completely wrong on the heldout set $$S_2$$, meaning:  
+            <p>$$\Delta_{S}(h)-\Delta_{S_{2}}(h) \approx-1$$</p>  
+        {: hidden=""}
+    <br>
+        
+    <!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}
+        3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43} -->
+
+4. **Overfitting:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44}  
+    One way to summarize __Overfitting__ is:  
+    <span>discovering patterns in data that do not exist in the intended application</span>{: style="color: purple"}.  
+    The typical case of overfitting "<span>decreasing loss only on the training set and increasing the loss on the validation set</span>{: style="color: purple"}" is only one example of this.  
+
+    The question then is how we prevent overfitting from occurring.  
+    The problem is that <span>we cannot know apriori what patterns will generalize from the dataset</span>{: style="color: purple"}.  
+
+
+    __No-Free-Lunch (NFL) Theorem:__{: style="color: red"}  
+    {: #lst-p}
+    * __NFL Theorems for Supervised Machine Learning:__  
+        * In his 1996 paper The Lack of A Priori Distinctions Between Learning Algorithms, David Wolpert examines if it is possible to get useful theoretical results with a training data set and a learning algorithm without making any assumptions about the target variable.  
+        * _Wolpert_ proves that given a noise-free data set (i.e. no random variation, only trend) and a machine learning algorithm where the cost function is the error rate, all machine learning algorithms are equivalent when assessed with a generalization error rate (the model’s error rate on a validation data set).  
+        * Extending this logic he demonstrates that for any two algorithms, A and B, there are as many scenarios where A will perform worse than B as there are where A will outperform B. This even holds true when one of the given algorithms is random guessing.  
+        * This is because nearly all (non-rote) machine learning algorithms make some assumptions (known as inductive or learning bias) about the relationships between the predictor and target variables, introducing bias into the model.  
+            The assumptions made by machine learning algorithms mean that some algorithms will fit certain data sets better than others. It also (by definition) means that there will be as many data sets that a given algorithm will not be able to model effectively.  
+            How effective a model will be is directly dependent on how well the assumptions made by the model fit the true nature of the data.  
+        * Implication: you can’t get good machine learning “for free”.  
+            You must use knowledge about your data and the context of the world we live in (or the world your data lives in) to select an appropriate machine learning model.  
+            There is no such thing as a single, universally-best machine learning algorithm, and there are no context or usage-independent (a priori) reasons to favor one algorithm over all others.  
+    * __NFL Theorem for Search/Optimization:__  
+        * All algorithms that search for an extremum of a cost function perform exactly the same when averaged over all possible cost functions. So, for any search/optimization algorithm, any elevated performance over one class of problems is exactly paid for in performance over another class.  
+        * It state that any two optimization algorithms are equivalent when their performance is averaged across all possible problems.    
+        * Wolpert and McReady essentially say that <span>you need some prior knowledge that is encoded in your algorithm in order to search well</span>{: style="color: purple"}.  
+            They created the theorem to give an easy counter example to researchers that would create a (tweak on an) algorithm and claimed that it would work better on all possible problems. It can’t. There’s a proof. If you have a good algorithm, it must in some way fit on your problem space, and you will have to investigate how.  
+    * <button>__Explanation through a thought experiment:__</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+        * Suppose you see someone toss a coin and get heads. What is the probability distribution over the next result of the coin toss?  
+            Did you think heads 50% and tails 50%?  
+            If so, you’re wrong: the answer is that we don’t know.  
+            For all we know, the coin could have heads on both sides. Or, it might even obey some strange laws of physics and come out as tails every second toss.  
+            The point is, <span>there is no way we can extract only patterns that will __generalize__</span>{: style="color: purple"}: there will always be some scenarios where those patterns will not exist.  
+            This is the essence of what is called the __No Free Lunch Theorem__: <span>any model that you create will always “overfit” and be completely wrong in some scenarios</span>{: style="color: purple"}.  
+        {: hidden=""}  
+    * __Main Concept:__ Generalizing is extrapolating to new data. To do that you need to make assumptions and for problems where the assumptions don’t hold you will be suboptimal.  
+    * __Practical Implications__:  
+        * Bias-free learning is futile because a learner that makes no a priori assumptions will have no rational basis for creating estimates when provided new, unseen input data.  
+            Models are simplifications of a specific component of reality (observed with data). To simplify reality, a machine learning algorithm or statistical model needs to make assumptions and introduce bias (known specifically as inductive or learning bias).  
+            The assumptions of an algorithm will work for some data sets but fail for others.  
+        * This shows that we need some restriction on $$\mathcal{H}$$ even for the realizable PAC setting. We cannot learn arbitrary set of hypothesis, there is no free lunch.  
+        * There is no universal (one that works for all $$\mathcal{H}$$) learning algorithm.  
+            I.e., if the algorithm $$A$$ has no idea about $$\mathcal{H},$$ even the singleton hypothesis class $$\mathcal{H}=\{h\}$$ (as in the statement of the theorem) is not PAC learnable.  
+        * Why do we have to fix a hypothesis class when coming up with a learning algorithm? Can we _"just learn"_?  
+            The NFL theorem formally shows that the answer is __NO__.  
+        * Counter the following claim: "My machine learning algorithm/optimization strategy is the best, always and forever, for all the scenarios".  
+        * Always check your assumptions before relying on a model or search algorithm.  
+        * There is no “super algorithm” that will work perfectly for all datasets.  
+        * Variable length and redundant encodings are not covered by the NFL theorems. Does Genetic Programming get a pass?  
+        * NFL theorems are like a statistician sitting with his head in the fridge, and his feet in the oven. On average, his temperature is okay! NFL theorems prove that the arithmetic mean of performance is constant over all problems, it doesn’t prove that for other statistics this is the case. There has been an interesting ‘counter’ proof, where a researcher proved that for a particular problem space, a hill-climber would outperform a hill-descender on 90% of the problem instances, and did that by virtue of being exponentially worse on the remaining 10% of the problems. Its average performance abided by the NFL theorem and the two algorithms were equal when looking at mean performance, yet the hill-climber was better in 90% of the problems, i.e., it had a much better median performance. So is there maybe a free appetizer?  
+        * While no one model/algorithm works best for every problem, it may be that one model/algorithm works best for all real-world problems, or all problems that we care about, practically speaking.  
+    * [No Free Lunch Theorems Main Site](http://www.no-free-lunch.org/)  
+    * [No Free Lunch Theorem (Lec Notes)](http://www.cs.utah.edu/~bhaskara/courses/theoryml/scribes/lecture3.pdf)  
+    * [Machine Learning Theory - NFL Theorem (Lec Notes)](http://www.cs.cornell.edu/courses/cs6783/2015fa/lec3.pdf)  
+    * [Overfitting isn’t simple: Overfitting Re-explained with Priors, Biases, and No Free Lunch (Blog)](http://mlexplained.com/2018/04/24/overfitting-isnt-simple-overfitting-re-explained-with-priors-biases-and-no-free-lunch/)  
+    * [Learning as Refining the Hypothesis Space (Blog-Paper)](https://artint.info/html/ArtInt_191.html)  
+    * [All Models Are Wrong (Blog)](https://community.alteryx.com/t5/Data-Science-Blog/All-Models-Are-Wrong/ba-p/348080)  
+    * [Does the 'no free lunch' theorem also apply to deep learning? (Quora)](https://www.quora.com/Does-the-no-free-lunch-theorem-also-apply-to-deep-learning)  
+
+    <br>
+
+
 
 [^1]: with respect to a particular problem.  
 [^2]: Note that Abu-Mostafa defines _out-sample error $$E_{\text{out}}$$_ as the _expected error/risk $$I[f]$$_; thus making $$G = E_{\text{out}} - E_{\text{in}}$$.  
 [^3]: can be viewed as a measure of the __average network approximation error__ _over all possible training data sets $$\mathcal{D}$$_   
-
-[  
-if you dont want to mess with stat-jargon; lemme rephrase:  
-is the minimizer $${\displaystyle f=\inf_{h \in \mathcal{H}} I[h]}$$ where $$I[h]$$ is the expected-risk/generalization-error (assume MSE);  
-is it $$\overline{f}(\mathbf{x})=\mathbb{E}_{\mathcal{D}}\left[f^{(\mathcal{D})}(\mathbf{x})\right]$$ the average hypothesis over all realizations of $$N$$ data-points $$\mathcal{D}_i$$??  
-]

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Reinforcement Learning</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/ class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Intro - Reinforcement Learning</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">SECOND</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">THIRD</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<p><a href="https://sites.google.com/view/deep-rl-bootcamp/lectures">Deep RL WS1</a><br />
+<a href="https://sites.google.com/view/deep-rl-workshop-nips-2018/home">Deep RL WS2</a><br />
+<a href="http://rail.eecs.berkeley.edu/deeprlcourse/">Deep RL Lec CS294 Berk</a><br />
+<a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html">Reinforcement Learning Course Lectures UCL</a><br />
+<a href="https://inst.eecs.berkeley.edu/~cs188/fa18/">RL CS188</a><br />
+<a href="https://www.youtube.com/watch?v=lvoHnicueoE">Deep RL (CS231n Lecture)</a><br />
+<a href="http://cs231n.stanford.edu/slides/2019/cs231n_2019_lecture14.pdf">Deep RL (CS231n Slides)</a></p>
+<ul>
+  <li><a href="http://www.argmin.net/2018/06/25/outsider-rl/">An Outsider’s Tour of Reinforcement Learning (Ben Recht!!!)</a></li>
+  <li><a href="https://www.youtube.com/playlist?list=PLZbbT5o_s2xoWNVdDudn51XM8lOuZ_Njv">Reinforcement Learning Series (Tutorial + Code (vids))</a></li>
+  <li><a href="https://www.reddit.com/r/MachineLearning/comments/defiac/p_a_stepbystep_policy_gradient_algorithms_colab/">A step-by-step Policy Gradient algorithms Colab + Pytorch tutorial</a></li>
+  <li><a href="https://pathmind.com/">Pathmind: Reinforcement Learning Simulations (Code)</a></li>
+</ul>
+
+<h2 id="content1">Intro - Reinforcement Learning</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Reinforcement Learning:</strong></p>
+
+    <p><img src="https://cdn.mathpix.com/snip/images/KD106EKeWa3NIEqKiMNXELeZ6beGrRAXTkyVo1Iq2sc.original.fullsize.png" alt="img" width="80%" /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Mathematical Formulation of RL - Markov Decision Processes:</strong><br />
+ <strong>Markov Decision Process</strong></p>
+
+    <p id="lst-p">Defined by <script type="math/tex">(\mathcal{S}, \mathcal{A}, \mathcal{R}, \mathbb{P}, \gamma)</script>:</p>
+    <ul>
+      <li><script type="math/tex">\mathcal{S}</script>: set of possible states</li>
+      <li><script type="math/tex">\mathcal{A}</script>: set of possible actions</li>
+      <li><script type="math/tex">\mathcal{R}</script>: distribution of reward given (state, action) pair</li>
+      <li><script type="math/tex">\mathbb{P}</script>: transition probability i.e. distribution over next state given (state, action) pair</li>
+      <li><script type="math/tex">\gamma</script>: discount factor</li>
+    </ul>
+
+    <p id="lst-p"><strong>MDPs Algorithm/Idea:</strong></p>
+    <ul>
+      <li>At time step <script type="math/tex">\mathrm{t}=0,</script> environment samples initial state <script type="math/tex">\mathrm{s}_ {0} \sim \mathrm{p}\left(\mathrm{s}_ {0}\right)</script></li>
+      <li>Then, for <script type="math/tex">\mathrm{t}=0</script> until done:
+        <ul>
+          <li>Agent selects action <script type="math/tex">a_t</script></li>
+          <li>Environment samples reward <script type="math/tex">\mathrm{r}_ {\mathrm{t}} \sim \mathrm{R}\left( . \vert \mathrm{s}_{\mathrm{t}}, \mathrm{a}_ {\mathrm{t}}\right)</script></li>
+          <li>Environment samples next state <script type="math/tex">\mathrm{s}_ {\mathrm{t}+1} \sim \mathrm{P}\left( . \vert \mathrm{s}_ {\mathrm{t}}, \mathrm{a}_ {\mathrm{t}}\right)</script></li>
+          <li>Agent receives reward <script type="math/tex">\mathrm{r}_ {\mathrm{t}}</script> and next state <script type="math/tex">\mathrm{s}_ {\mathrm{t}+1}</script></li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>- A policy <script type="math/tex">\pi</script> is a <em>function</em> from <script type="math/tex">S</script> to <script type="math/tex">A</script> that specifies what action to take in each state<br />
+ - Objective: find policy <script type="math/tex">\pi^{\ast}</script> that maximizes cumulative discounted reward:</p>
+    <p>$$\sum_{t \geq 0} \gamma^{t} r_{t}$$</p>
+
+    <p><strong style="color: red">Optimal Policy <script type="math/tex">\pi^{\ast}</script>:</strong><br />
+ We want to find optimal policy <script type="math/tex">\mathbf{n}^{\ast}</script> that maximizes the sum of rewards.<br />
+ We handle <strong>randomness</strong>  (initial state, transition probability…) by <strong>Maximizing the <em>expected sum of rewards</em></strong>.<br />
+ <strong>Formally</strong>,</p>
+    <p>$$\pi^{* }=\arg \max _{\pi} \mathbb{E}\left[\sum_{t \geq 0} \gamma^{t} r_{t} | \pi\right] \quad$ \text{ with } $s_{0} \sim p\left(s_{0}\right), a_{t} \sim \pi\left(\cdot | s_{t}\right), s_{t+1} \sim p\left(\cdot | s_{t}, a_{t}\right)$$</p>
+
+    <p><strong style="color: red">The Bellman Equations:</strong><br />
+ Definition of “optimal utility” via expectimax recurrence gives a simple one-step lookahead relationship amongst optimal utility values.<br />
+ The <strong>Bellman Equations</strong> <span style="color: purple"><em>characterize</em> optimal values</span>:</p>
+    <p>$$\begin{aligned} V^{ * }(s) &amp;= \max _{a}\left(s^{*}(s, a)\right. \\
+                  Q^{ * }(s, a) &amp;= \sum_{s^{\prime}} T\left(s, a, s^{\prime}\right)\left[R\left(s, a, s^{\prime}\right)+\gamma V^{ * }\left(s^{\prime}\right)\right] \\
+                  V^{ * }(s) &amp;= \max _{a} \sum_{s^{\prime}} T\left(s, a, s^{\prime}\right)\left[R\left(s, a, s^{\prime}\right)+\gamma V^{ * }\left(s^{\prime}\right)\right] \end{aligned}$$</p>
+
+    <p><strong style="color: red">Value Iteration Algorithm:</strong><br />
+ The <strong>Value Iteration</strong> algorithm <span style="color: purple"><em>computes</em> the optimal values</span>:</p>
+    <p>$$V_{k+1}(s) \leftarrow \max _{a} \sum_{s^{\prime}} T\left(s, a, s^{\prime}\right)\left[R\left(s, a, s^{\prime}\right)+\gamma V_{k}\left(s^{\prime}\right)\right]$$</p>
+    <p>- Value iteration is just a fixed point solution method.<br />
+ - It is repeated bellman equations.</p>
+
+    <p><strong>Convergence:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Convergence</button>
+ <img src="https://cdn.mathpix.com/snip/images/fTeplubG_bAgJuyrStw26Y1K9Tms89dphOrOcNseKzY.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p id="lst-p"><strong>Issues:</strong></p>
+    <ul>
+      <li>Problem 1: It’s slow – <script type="math/tex">O(S^2A)</script> per iteration</li>
+      <li>Problem 2: The “max” at each state rarely changes</li>
+      <li>Problem 3: The policy often converges long before the values</li>
+      <li>Problem 4: Not scalable. Must compute <script type="math/tex">Q(s, a)</script> for every state-action pair. If state is e.g. current game state pixels, computationally infeasible to compute for entire state space</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Policy Iteration:</strong><br />
+ It is an Alternative approach for optimal values:<br />
+ <strong>Policy Iteration algorithm:</strong></p>
+    <ul>
+      <li>Step #1 <strong>Policy evaluation:</strong> calculate utilities for some fixed policy (not) of to
+ utilitiesl until convergence</li>
+      <li>Step #2: <strong>Policy improvement:</strong> update policy using one-step look-ahead with resulting (but not optimall) utilities af future values</li>
+      <li>
+        <p>Repeat steps until policy converges</p>
+      </li>
+      <li><strong>Evaluation:</strong><br />
+  For fixed current policy <script type="math/tex">\pi</script>, find values with policy evaluation:
+        <ul>
+          <li>Iterate until values converge:
+            <p>$$V_{k+1}^{\pi_{i}}(s) \leftarrow \sum_{s^{\prime}} T\left(s, \pi_{i}(s), s^{\prime}\right)\left[R\left(s, \pi_{i}(s), s^{\prime}\right)+\gamma V_{k}^{\pi_{i}}\left(s^{\prime}\right)\right]$$</p>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Improvement:</strong><br />
+  For fixed values, get a better policy using policy extraction:
+        <ul>
+          <li>One-step look-ahead:
+            <p>$$\pi_{i+1}(s)=\arg \max _{a} \sum_{s^{\prime}} T\left(s, a, s^{\prime}\right)\left[R\left(s, a, s^{\prime}\right)+\gamma V^{\pi_{i}}\left(s^{\prime}\right)\right]$$</p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong>Properties:</strong></p>
+    <ul>
+      <li>It’s still <strong>optimal</strong></li>
+      <li>Can can converge (much) faster under some conditions</li>
+    </ul>
+
+    <p><strong>Comparison - Value Iteration vs Policy Iteration:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Comparison</button>
+ <img src="https://cdn.mathpix.com/snip/images/yoH-nwG1Hunddc_DcRunAFYup5Nf6kcspI44gQ7tujw.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p><strong style="color: red">Q-Learning | Solving for Optimal Policy:</strong><br />
+ A problem with <strong>value iteration</strong> was: It is Not scalable. Must compute <script type="math/tex">Q(s, a)</script> for every state-action pair.<br />
+ <strong>Q-Learning</strong> solves this by using a function approximator to estimate the action-value function:</p>
+    <p>$$Q(s, a ; \theta) \approx Q^{* }(s, a)$$</p>
+    <p><strong>Deep Q-learning:</strong> the case where the function approximator is a deep neural net.</p>
+
+    <p><strong>Training:</strong><br />
+ <img src="https://cdn.mathpix.com/snip/images/Ppeh18nh-ofk-A0puhgN4__m90utYwRBYO9KTtpYDwg.original.fullsize.png" alt="img" width="80%" /></p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Example Network - Learning Atari Games</button>
+ <img src="https://cdn.mathpix.com/snip/images/H9XsqlC8tNbJo2VJUdZvjZkFzpCwFjhsXcd4EUgX1I0.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p><strong>Experience Replay</strong><br />
+ <img src="https://cdn.mathpix.com/snip/images/v_zXml9JyIzF83-gfy-07iBEQt65M22vCc5qqVLs95s.original.fullsize.png" alt="img" width="60%" /></p>
+
+    <p><strong>Deep Q-learning with Experience Replay - Algorithm:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Algorithm</button>
+ <img src="https://cdn.mathpix.com/snip/images/uco5J96x_Bnz6KA8VE3XMUF2OM6rRfOsI399USWjDms.original.fullsize.png" alt="img" width="70%" hidden="" /></p>
+
+    <p><br />
+ <strong style="color: red">Policy Gradients:</strong><br />
+ An alternative to learning a Q-function.<br />
+ Q-functions can be very complicated.</p>
+    <blockquote>
+      <p>Example: a robot grasping an object has a very high-dimensional state =&gt; hard to learn exact value of every (state, action) pair.</p>
+    </blockquote>
+
+    <p>- Define a <strong>class of parameterized policies</strong>:</p>
+    <p>$$\Pi=\left\{\pi_{\theta}, \theta \in \mathbb{R}^{m}\right\}$$</p>
+    <p>- For each policy, define its <strong>value</strong>:</p>
+    <p>$$J(\theta)=\mathbb{E}\left[\sum_{t \geq 0} \gamma^{t} r_{t} | \pi_{\theta}\right]$$</p>
+    <p>- Find the <strong>optimal policy</strong> <script type="math/tex">\theta^{ * }=\arg \max _ {\theta} J(\theta)</script> by <strong>gradient ascent on <em>policy parameters</em></strong> (<strong>REINFORCE Algorithm</strong>)</p>
+
+    <p><strong style="color: red">REINFORCE Algorithm:</strong><br />
+ <strong>Expected Reward:</strong></p>
+    <p>$$\begin{aligned} J(\theta) &amp;=\mathbb{E}_{\tau \sim p(\tau ; \theta)}[r(\tau)] \\ &amp;=\int_{\tau} r(\tau) p(\tau ; \theta) \mathrm{d} \tau \end{aligned}$$</p>
+    <p>where <script type="math/tex">r(\tau)</script> is the reward of a trajectory <script type="math/tex">\tau=\left(s_{0}, a_{0}, r_{0}, s_{1}, \dots\right)</script>.<br />
+ <strong>The Gradient:</strong></p>
+    <p>$$\nabla_{\theta} J(\theta)=\int_{\tau} r(\tau) \nabla_{\theta} p(\tau ; \theta) \mathrm{d} \tau$$</p>
+    <p>- The Gradient is <strong>Intractable</strong>. Gradient of an expectation is problematic when <script type="math/tex">p</script> depends on <script type="math/tex">\theta</script>.<br />
+ - <strong>Solution:</strong></p>
+    <ul>
+      <li><strong>Trick:</strong>
+        <p>$$\nabla_{\theta} p(\tau ; \theta)=p(\tau ; \theta) \frac{\nabla_{\theta} p(\tau ; \theta)}{p(\tau ; \theta)}=p(\tau ; \theta) \nabla_{\theta} \log p(\tau ; \theta)$$</p>
+      </li>
+      <li><strong>Injecting Back:</strong>
+        <p>$$\begin{aligned} \nabla_{\theta} J(\theta) &amp;=\int_{\tau}\left(r(\tau) \nabla_{\theta} \log p(\tau ; \theta)\right) p(\tau ; \theta) \mathrm{d} \tau \\ &amp;=\mathbb{E}_{\tau \sim p(\tau ; \theta)}\left[r(\tau) \nabla_{\theta} \log p(\tau ; \theta)\right] \end{aligned}$$</p>
+      </li>
+      <li><strong>Estimating the Gradient:</strong> Can estimate with <em><strong>Monte Carlo sampling</strong></em>.
+        <ul>
+          <li>The gradient does NOT depend on <em>transition probabilities:</em>
+            <ul>
+              <li>
+                <script type="math/tex; mode=display">p(\tau ; \theta)=\prod_{t \geq 0} p\left(s_{t+1} | s_{t}, a_{t}\right) \pi_{\theta}\left(a_{t} | s_{t}\right)</script>
+              </li>
+              <li><script type="math/tex">\log p(\tau ; \theta)=\sum_{t \geq 0} \log p\left(s_{t+1} | s_{t}, a_{t}\right)+\log \pi_{\theta}\left(a_{t} | s_{t}\right)</script><br />
+  <script type="math/tex">\implies</script></li>
+              <li>
+                <script type="math/tex; mode=display">\nabla_{\theta} \log p(\tau ; \theta)=\sum_{t \geq 0} \nabla_{\theta} \log \pi_{\theta}\left(a_{t} | s_{t}\right)</script>
+              </li>
+            </ul>
+          </li>
+          <li>Therefore when sampling a trajectory <script type="math/tex">\tau,</script> we can estimate <script type="math/tex">J(\theta)</script> with:
+            <p>$$\nabla_{\theta} J(\theta) \approx \sum_{t \geq 0} r(\tau) \nabla_{\theta} \log \pi_{\theta}\left(a_{t} | s_{t}\right)$$</p>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Gradient Estimator</strong>:
+        <p>$$\nabla_{\theta} J(\theta) \approx \sum_{t \geq 0} r(\tau) \nabla_{\theta} \log \pi_{\theta}\left(a_{t} | s_{t}\right)$$</p>
+        <ul>
+          <li><strong>Intuition/Interpretation</strong>:
+            <ul>
+              <li>If <script type="math/tex">\mathrm{r}(\tau)</script> is high, push up the probabilities of the actions seen</li>
+              <li>If <script type="math/tex">\mathrm{r}(\tau)</script> is low, push down the probabilities of the actions seen
+  Might seem simplistic to say that if a trajectory is good then all its actions were good. But in expectation, it averages out!</li>
+            </ul>
+          </li>
+          <li><strong>Variance</strong>:
+            <ul>
+              <li><strong>Issue</strong>: This also suffers from <strong>high variance</strong> because credit assignment is really hard.</li>
+              <li><strong>Variance Reduction - Two Ideas</strong>:
+                <ol>
+                  <li>Push up probabilities of an action seen, only by the cumulative future reward from that state:
+                    <p>$$\nabla_{\theta} J(\theta) \approx \sum_{t \geq 0}\left(\sum_{t^{\prime} \geq t} r_{t^{\prime}}\right) \nabla_{\theta} \log \pi_{\theta}\left(a_{t} | s_{t}\right)$$</p>
+                  </li>
+                  <li>Use discount factor <script type="math/tex">\gamma</script> to ignore delayed effects
+                    <p>$$\nabla_{\theta} J(\theta) \approx \sum_{t \geq 0}\left(\sum_{t^{\prime} \geq t} \gamma^{t^{\prime}-t} r_{t^{\prime}}\right) \nabla_{\theta} \log \pi_{\theta}\left(a_{t} | s_{t}\right)$$</p>
+                  </li>
+                </ol>
+
+                <p>- <strong>Problem:</strong> The raw value of a trajectory isn’t necessarily meaningful. For example, if rewards are all positive, you keep pushing up probabilities of actions.<br />
+  - <strong>What is important then:</strong> Whether a reward is better or worse than what you expect to get.<br />
+  - <strong>Solution:</strong> Introduce a <strong>baseline function</strong> dependent on the state.<br />
+  -Concretely, estimator is now:</p>
+                <p>$$\nabla_{\theta} J(\theta) \approx \sum_{t \geq 0}\left(\sum_{t^{\prime} \geq t} \gamma^{t^{\prime}-t} r_{t^{\prime}}-b\left(s_{t}\right)\right) \nabla_{\theta} \log \pi_{\theta}\left(a_{t} | s_{t}\right)$$</p>
+                <ul>
+                  <li><strong>Choosing a Baseline</strong>:
+                    <ul>
+                      <li><strong>Vanilla REINFORCE</strong>:<br />
+  A simple baseline: constant moving average of rewards experienced so far from all trajectories.</li>
+                      <li><strong>Actor-Critic</strong>:<br />
+  We want to push up the probability of an action from a state, if this action was better than the <strong>expected value of what we should get from that state</strong>.<br />
+  Intuitively, we are happy with an action <script type="math/tex">a_{t}</script> in a state <script type="math/tex">s_{t}</script> if <script type="math/tex">Q^{\pi}\left(s_{t}, a_{t}\right)-V^{\pi}\left(s_{t}\right)</script> is large. On the contrary, we are unhappy with an action if it’s small.<br />
+  Now, the estimator:
+                        <p>$$\nabla_{\theta} J(\theta) \approx \sum_{t \geq 0}\left(Q^{\pi_{\theta}}\left(s_{t}, a_{t}\right)-V^{\pi_{\theta}}\left(s_{t}\right)\right) \nabla_{\theta} \log \pi_{\theta}\left(a_{t} | s_{t}\right)$$</p>
+                        <ul>
+                          <li><strong>Learning <script type="math/tex">Q</script> and <script type="math/tex">V</script></strong>:<br />
+  We learn <script type="math/tex">Q, V</script> using the <strong>Actor-Critic Algorithm</strong>.</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Actor-Critic Algorithm:</strong><br />
+ An algorithm to learn <script type="math/tex">Q</script> and <script type="math/tex">V</script>.<br />
+ We can combine Policy Gradients and Q-learning by training both:</p>
+    <ul>
+      <li><strong>Actor:</strong> the policy, and</li>
+      <li><strong>Critic:</strong> the Q-function</li>
+    </ul>
+
+    <p><strong>Details:</strong></p>
+    <ul>
+      <li>The actor decides which action to take, and the critic tells the actor how good its action was and how it should adjust</li>
+      <li>Also alleviates the task of the critic as it only has to learn the values of (state, action) pairs generated by the policy</li>
+      <li>Can also incorporate Q-learning tricks e.g. experience replay</li>
+      <li>Remark: we can define by the advantage function how much an action was better than expected</li>
+    </ul>
+
+    <p><strong>Algorithm:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Algorithm</button>
+ <img src="https://cdn.mathpix.com/snip/images/oRVXry6DNumat6k3h_a3IYPz4Qjb-3_iiCg1ShkjwSk.original.fullsize.png" alt="img" width="80%" hidden="" /></p>
+
+    <p id="lst-p"><br />
+ <strong style="color: red">Summary:</strong></p>
+    <ul>
+      <li><strong>Policy gradients:</strong> very general but suffer from high variance so
+ requires a lot of samples. Challenge: sample-efficiency</li>
+      <li>
+        <p><strong>Q-learning:</strong> does not always work but when it works, usually more
+ sample-efficient. Challenge: exploration</p>
+      </li>
+      <li><strong>Guarantees:</strong>
+        <ul>
+          <li><strong>Policy Gradients:</strong> Converges to a local minima of J(𝜃), often good enough!</li>
+          <li><strong>Q-learning:</strong> Zero guarantees since you are approximating Bellman equation with a complicated function approximator</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18} -->
+
+<hr />
+
+<!-- ## SECOND
+{: #content2}
+
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}
+
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23} -->
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

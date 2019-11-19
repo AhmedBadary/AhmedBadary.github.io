@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Sampling and Monte Carlo Methods</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/concepts.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Sampling</a></li>
+  </ul>
+  <!--   * [SECOND](#content2)
+  {: .TOC2}
+  * [THIRD](#content3)
+  {: .TOC3}
+  * [FOURTH](#content4)
+  {: .TOC4}
+  * [FIFTH](#content5)
+  {: .TOC5}
+  * [SIXTH](#content6)
+  {: .TOC6} -->
+</div>
+
+<hr />
+<hr />
+
+<p id="lst-p"><strong style="color: red">Resources:</strong></p>
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=V8f8ueBc9sY">Importance Sampling (Tut - Ben Lambert)</a></li>
+  <li><a href="https://www.youtube.com/watch?v=U561HGMWjcw">Random Walk Metropolis Sampling Algorithm (Tut. B-Lambert)</a></li>
+  <li><a href="https://www.youtube.com/watch?v=ER3DDBFzH2g">Gibbs Sampling (Tut. B-Lambert)</a></li>
+  <li><a href="https://www.youtube.com/watch?v=a-wydhEuAm0">Hamiltonian Monte Carlo Intuition (Tut. B-Lambert)</a></li>
+  <li><a href="https://www.youtube.com/watch?v=8AJPs3gvNlY">Markov Chains (Stat 110)</a></li>
+  <li><a href="http://bjlkeng.github.io/posts/markov-chain-monte-carlo-mcmc-and-the-metropolis-hastings-algorithm/">Markov Chain Monte Carlo Methods, Rejection Sampling and the Metropolis-Hastings Algorithm!</a></li>
+  <li><a href="https://www.youtube.com/watch?v=12eZWG0Z5gY">MCMC Course Tutorial (Mathematical Monk Vids!)</a></li>
+  <li><a href="https://www.cs.ubc.ca/~arnaud/andrieu_defreitas_doucet_jordan_intromontecarlomachinelearning.pdf">An Introduction to MCMC for Machine Learning (M Jordan!)</a></li>
+  <li><a href="https://towardsdatascience.com/mcmc-intuition-for-everyone-5ae79fff22b1">MCMC Intuition for Everyone (blog)</a></li>
+</ul>
+
+<h2 id="content1">Sampling</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Monte Carlo Sampling:</strong><br />
+ When a sum or an integral cannot be computed exactly we can approximate it using Monte Carlo sampling. 
+ The idea is to <strong>view the sum or integral as if it were an <em>expectation under some distribution</em></strong> and to <span style="color: goldenrod">approximate the expectation by a corresponding average</span>: <br />
+ - <strong>Sum:</strong>
+    <p>$$s=\sum_{\boldsymbol{x}} p(\boldsymbol{x}) f(\boldsymbol{x})=E_{p}[f(\mathbf{x})]$$</p>
+    <p>- <strong>Integral:</strong></p>
+    <p>$$s=\int p(\boldsymbol{x}) f(\boldsymbol{x}) d \boldsymbol{x}=E_{p}[f(\mathbf{x})]$$</p>
+    <p>We can approximate <script type="math/tex">s</script> by drawing <script type="math/tex">n</script> samples <script type="math/tex">\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(n)}</script> from <script type="math/tex">p</script> and then forming the <strong>empirical average</strong>:</p>
+    <p>$$\hat{s}_{n}=\frac{1}{n} \sum_{i=1}^{n} f\left(\boldsymbol{x}^{(i)}\right)$$</p>
+    <p><br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Importance Sampling:</strong><br />
+ There is <strong>no unique decomposition</strong> of the MC approximation because <script type="math/tex">p(\boldsymbol{x}) f(\boldsymbol{x})</script> can always be rewritten as:
+    <p>$$p(\boldsymbol{x}) f(\boldsymbol{x})=q(\boldsymbol{x}) \frac{p(\boldsymbol{x}) f(\boldsymbol{x})}{q(\boldsymbol{x})} $$</p>
+    <p>where we now sample from <script type="math/tex">q</script> and average <script type="math/tex">\frac{p f}{q}</script>.</p>
+
+    <p>Formally, the expectation becomes:</p>
+    <p>$$E_{p}[f(\mathbf{x})] = \sum_{\boldsymbol{x}} p(\boldsymbol{x}) f(\boldsymbol{x}) = \sum_{\boldsymbol{x}} q(\boldsymbol{x}) \dfrac{p(\boldsymbol{x})}{q(\boldsymbol{x})} f(\boldsymbol{x}) = E_q\left[\dfrac{p(\boldsymbol{x})}{q(\boldsymbol{x})} f(\boldsymbol{x})\right]$$</p>
+
+    <p><strong style="color: red">Biased Importance Sampling:</strong><br />
+ Another approach is to use biased importance sampling, which has the advantage of not requiring normalized <script type="math/tex">p</script> or <script type="math/tex">q</script>. In the case of discrete variables, the biased importance sampling estimator is given by</p>
+    <p>$$\begin{aligned} \hat{s}_{B I S} &amp;=\frac{\sum_{i=1}^{n} \frac{p\left(\boldsymbol{x}^{(i)}\right)}{q\left(\boldsymbol{x}^{(i)}\right)} f\left(\boldsymbol{x}^{(i)}\right)}{\sum_{i=1}^{n} \frac{p\left(\boldsymbol{x}^{(i)}\right)}{q\left(\boldsymbol{x}^{(i)}\right)}} \\ &amp;=\frac{\sum_{i=1}^{n} \frac{p\left(\boldsymbol{x}^{(i)}\right)}{\tilde{q}\left(\boldsymbol{x}^{(i)}\right)} f\left(\boldsymbol{x}^{(i)}\right)}{\sum_{i=1}^{n} \frac{p(i)}{\tilde{q}(i)}} \\ &amp;=\frac{\sum_{i=1}^{n} \frac{\tilde{p}\left(\boldsymbol{x}^{(i)}\right)}{\tilde{q}\left(\boldsymbol{x}^{(i)}\right)} f\left(\boldsymbol{x}^{(i)}\right)}{\sum_{i=1}^{n} \frac{\tilde{p}\left(\boldsymbol{x}^{(i)}\right)}{\tilde{q}\left(\boldsymbol{x}^{(i)}\right)}} \end{aligned}$$</p>
+    <p>where <script type="math/tex">\tilde{p}</script> and <script type="math/tex">\tilde{q}</script> are the unnormalized forms of <script type="math/tex">p</script> and <script type="math/tex">q</script>, and the <script type="math/tex">\boldsymbol{x}^{(i)}</script> are the samples from <script type="math/tex">q</script>.<br />
+ <strong>Bias:</strong><br />
+ This estimator is biased because <script type="math/tex">\mathbb{E}[\hat{s}_ {BIS}] \neq s</script>, except <strong>asymptotically when <script type="math/tex">n \rightarrow \infty</script></strong> and the <strong>denominator of the first equation</strong> (above) <strong>converges to <script type="math/tex">1</script></strong>. Hence this estimator is called <em><strong>asymptotically unbiased</strong></em>.</p>
+
+    <p><strong style="color: red">Statistical Efficiency:</strong><br />
+ Although a good choice of <script type="math/tex">q</script> can greatly improve the efficiency of Monte Carlo estimation, a poor choice of <script type="math/tex">q</script> can make the efficiency much worse.<br />
+ - If there are <span style="color: goldenrod">samples of <script type="math/tex">q</script> for which <script type="math/tex">\frac{p(\boldsymbol{x})|f(\boldsymbol{x})|}{q(\boldsymbol{x})}</script> is large, then the variance of the estimator can get very large</span>.<br />
+ This may happen when <script type="math/tex">q(\boldsymbol{x})</script> is tiny while neither <script type="math/tex">p(\boldsymbol{x})</script> nor <script type="math/tex">f(\boldsymbol{x})</script> are small enough to cancel it.<br />
+ The <script type="math/tex">q</script> distribution is usually chosen to be a simple distribution so that it is easy to sample from. When <script type="math/tex">\boldsymbol{x}</script> is high dimensional, this simplicity in <script type="math/tex">q</script> causes it to match <script type="math/tex">p</script> or <script type="math/tex">p\vert f\vert</script> poorly.<br />
+ (1) When <script type="math/tex">q\left(\boldsymbol{x}^{(i)}\right) \gg p\left(\boldsymbol{x}^{(i)}\right)\left|f\left(\boldsymbol{x}^{(i)}\right)\right|</script>, importance sampling collects useless samples (summing tiny numbers or zeros).<br />
+ (2) On the other hand, when <script type="math/tex">q\left(\boldsymbol{x}^{(i)}\right) \ll p\left(\boldsymbol{x}^{(i)}\right)\left|f\left(\boldsymbol{x}^{(i)}\right)\right|</script>, which will happen more rarely, the ratio can be huge.<br />
+ Because these latter events are rare, they may not show up in a typical sample, yielding typical underestimation of <script type="math/tex">s</script>, compensated rarely by gross overestimation.<br />
+ Such very large or very small numbers are typical when <script type="math/tex">\boldsymbol{x}</script> is high dimensional, because in high dimension the dynamic range of joint probabilities can be very large.</p>
+
+    <p><span style="color: goldenrod" class="borderexample"> A good IS sampling distribution <script type="math/tex">q</script> is a <em>low variance</em> distribution.</span></p>
+
+    <p id="lst-p"><strong style="color: red">Applications:</strong><br />
+ In spite of this danger, importance sampling and its variants have been found very useful in many machine learning algorithms, including deep learning algorithms. They have been used to:</p>
+    <ul>
+      <li>Accelerate training in neural language models with a large vocabulary</li>
+      <li>Accelerate other neural nets with a large number of outputs</li>
+      <li>Estimate a partition function (the normalization constant of a probability distribution)</li>
+      <li>Estimate the log-likelihood in deep directed models, e.g. <strong>Variational Autoencoders</strong></li>
+      <li>Improve the estimate of the gradient of the cost function used to train model parameters with stochastic gradient descent<br />
+  Particularly for models, such as <strong>classifiers</strong>, in which most of the total value of the cost function comes from a small number of misclassified examples.<br />
+  Sampling more <em>difficult examples</em> more frequently can <strong>reduce the variance of the gradient</strong> in such cases <em>(Hinton, 2006)</em>.</li>
+    </ul>
+
+    <p><strong style="color: red">Approximating Distributions:</strong><br />
+ To approximate the expectation (mean) of a distribution <script type="math/tex">p</script>:</p>
+    <p>$${\mathbb{E}}_ {p}[x]=\sum_{x} x p(x)$$</p>
+    <p>by sampling from a distribution <script type="math/tex">q</script>.<br />
+ Notice that:<br />
+ (1) <script type="math/tex">{\displaystyle {\mathbb{E}}_ {p}[x]=\sum_{x} x p(x) = \sum_{x} x\frac{p(x)}{q(x)} q(x)}</script><br />
+ (2) <script type="math/tex">{\displaystyle \sum_{x} x\frac{p(x)}{q(x)} q(x)=\mathbb{E}_ {q}\left[x \frac{p(x)}{q(x)}\right]}</script><br />
+ We approximate the expectation over <script type="math/tex">q</script> in (2) with the empirical distribution:</p>
+    <p>$$\mathbb{E}_ {q}\left[x \frac{p(x)}{q(x)}\right] \approx \dfrac{1}{n} \sum_{i=1}^n x_i \dfrac{p(x_i)}{q(x_i)}$$</p>
+
+    <p><strong style="color: red">Approximating UnNormalized Distributions - <em>Biased</em> Importance Sampling:</strong><br />
+ Let <script type="math/tex">p(x)=\frac{h(x)}{Z}</script>, then</p>
+    <p>$$\begin{aligned}\mathbb{E}_{p}[x] &amp;= \sum_{x} x \frac{h(x)}{Z} \\ &amp;= \sum_{x} x \frac{h(x)}{Z q(x)} q(x) \\ &amp;\approx \frac{1}{Z} \frac{1}{n} \sum_{i=1}^{n} x_{i} \frac{h\left(x_{i}\right)}{q\left(x_{i}\right)} \end{aligned}$$</p>
+    <p>where the samples <script type="math/tex">x_i</script> are drawn from <script type="math/tex">q</script>.<br />
+ To get rid of the <script type="math/tex">\dfrac{1}{Z}</script> factor,<br />
+ - First, we define the importance sample <strong><em>weight:</em></strong></p>
+    <p>$$w_i = \frac{h\left(x_{i}\right)}{q\left(x_{i}\right)}$$</p>
+    <p>- then the <strong>sample <em>mean weight:</em></strong></p>
+    <p>$$\bar{w} = \dfrac{1}{n} \sum_{i=1}^n w_i = $$</p>
+    <p>- Now, we decompose <script type="math/tex">Z</script> by noticing that:</p>
+    <p>$$\mathbb{E}_ {p}[1]=1=\sum_{x} \frac{h(x)}{Z}$$</p>
+    <p><script type="math/tex">\implies</script></p>
+    <p>$$Z = \sum_{x} h(x)$$</p>
+    <p>- we approximate the expectation again with IS:</p>
+    <p>$$\begin{aligned} Z 
+ &amp;= \sum_{x} h(x) \\ &amp;= \sum_{x} \frac{h(x)}{q(x)} q(x) \\ &amp;\approx \dfrac{1}{n} \sum_{i=1}^{n} \frac{h\left(x_{i}\right)}{q\left(x_{i}\right)} \\ &amp;= \bar{w} \end{aligned}$$</p>
+    <p>Thus, the sample normalizing constant <script type="math/tex">\hat{Z}</script> is equal to the sample <em>mean weight</em>:</p>
+    <p>$$Z = \bar{w}$$</p>
+
+    <p>Finally,</p>
+    <p>$$\mathbb{E}_ {p}[x] \approx \frac{1}{\bar{w}} \frac{1}{n} \sum_{i=1}^{n} x_{i} w_i  = \dfrac{\overline{xw}}{\bar{w}}$$</p>
+
+    <p><strong style="color: red">Curse of Dimensionality in IS - Variance of the Estimator:</strong><br />
+ A big problem with Importance Sampling is that the <strong>variance</strong> of the IS estimator can be greatly <em>sensitive</em> to the choice of <script type="math/tex">q</script>.<br />
+ The <strong>Variance</strong> is:</p>
+    <p>$$\operatorname{Var}\left[\hat{s}_ {q}\right]=\operatorname{Var}\left[\frac{p(\mathbf{x}) f(\mathbf{x})}{q(\mathbf{x})}\right] / n$$</p>
+    <p>The <strong>Minimum Variance</strong> occurs when <script type="math/tex">q</script> is:</p>
+    <p>$$q^{* }(\boldsymbol{x})=\frac{p(\boldsymbol{x})|f(\boldsymbol{x})|}{Z}$$</p>
+    <p>where <script type="math/tex">Z</script> is the normalization constant, chosen so that <script type="math/tex">q^{* }(\boldsymbol{x})</script> sums or integrates to <script type="math/tex">1</script> as appropriate.<br />
+ - Any choice of sampling distribution <script type="math/tex">q</script> is <strong>valid</strong> (in the sense of yielding the correct expected value), and 
+ - <script type="math/tex">q^{ * }</script> is the <strong>optimal one</strong> (in the sense of yielding minimum variance).<br />
+ - Sampling from <script type="math/tex">q^{ * }</script> is usually infeasible, but other choices of <script type="math/tex">q</script> can be feasible while still reducing the variance somewhat.<br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Markov Chain Monte Carlo (MCMC) Methods:</strong><br />
+ <strong style="color: red">Motivation:</strong><br />
+ In many cases, we wish to use a Monte Carlo technique but there is no tractable method for drawing exact samples from the distribution <script type="math/tex">p_{\text {model}}(\mathbf{x})</script> or from a good (low variance) importance sampling distribution <script type="math/tex">q(\mathbf{x})</script>.<br />
+ In the context of deep learning, this most often happens when <script type="math/tex">p_{\text {model}}(\mathbf{x})</script> is represented by an <em><strong>undirected model</strong></em>.<br />
+ In these cases, we introduce a mathematical tool called a <strong>Markov chain</strong> to <em><strong>approximately sample</strong></em> from <script type="math/tex">p_{\text {model}}(\mathbf{x})</script>. The family of algorithms that use Markov chains to perform Monte Carlo estimates is called <strong>Markov Chain Monte Carlo (MCMC) methods</strong>.</p>
+
+    <p><strong>Idea of MCs:</strong><br />
+ - The core idea of a Markov chain is to have a state <script type="math/tex">\boldsymbol{x}</script> that begins as an arbitrary value.<br />
+ - Over time, we randomly update <script type="math/tex">\boldsymbol{x}</script> repeatedly.<br />
+ - Eventually <script type="math/tex">\boldsymbol{x}</script> becomes (very nearly) a fair sample from <script type="math/tex">p(\boldsymbol{x})</script>.</p>
+
+    <p><strong>Definition:</strong><br />
+ Formally, a <strong>Markov chain</strong> is defined by:</p>
+    <ul>
+      <li>A <strong>random state</strong> <script type="math/tex">x</script> and</li>
+      <li>A <strong>transition distribution</strong> <script type="math/tex">T\left(x^{\prime} \vert x\right)</script><br />
+  specifying the probability that a random update will go to state <script type="math/tex">x^{\prime}</script> if it starts in state <script type="math/tex">x</script>.<br /><br />
+ Running the Markov chain means repeatedly updating the state <script type="math/tex">x</script> to a value <script type="math/tex">x^{\prime}</script> sampled from <script type="math/tex">T\left(\mathbf{x}^{\prime} \vert x\right)</script>.</li>
+    </ul>
+
+    <p><strong>Finite, Countable States:</strong><br />
+ We take the case where the random variable <script type="math/tex">\mathbf{x}</script> has <strong>countably many states</strong>.<br />
+ <strong>Representation:</strong><br />
+ We represent the state as just a positive integer <script type="math/tex">x</script>.<br />
+ Different integer values of <script type="math/tex">x</script> map back to different states <script type="math/tex">\boldsymbol{x}</script> in the original problem.</p>
+
+    <p>Consider what happens when we <strong>run <em>infinitely</em> many Markov chains in <em>parallel</em></strong>.<br />
+ - All the states of the different Markov chains are drawn from some distribution <script type="math/tex">q^{(t)}(x)</script>, where <script type="math/tex">t</script> indicates the number of time steps that have elapsed.<br />
+ - At the beginning, <script type="math/tex">q^{(0)}</script> is some distribution that we used to arbitrarily initialize <script type="math/tex">x</script> for each Markov chain.<br />
+ - Later, <script type="math/tex">q^{(t)}</script> is influenced by all the Markov chain steps that have run so far.<br />
+ - Our <strong>goal</strong> is for <span style="color: purple"><script type="math/tex">q^{(t)}(x)</script> to converge to <script type="math/tex">p(x)</script></span>.</p>
+
+    <ul>
+      <li><strong>Probability of transitioning to a new state</strong>:<br />
+  Let’s update a single Markov chain’s state <script type="math/tex">x</script> to a new state <script type="math/tex">x^{\prime}</script>.<br />
+  The <strong>probability of a single state landing in state <script type="math/tex">x^{\prime}</script></strong> is given by:
+        <p>$$q^{(t+1)}\left(x^{\prime}\right)=\sum_{x} q^{(t)}(x) T\left(x^{\prime} \vert x\right)$$</p>
+        <ul>
+          <li><strong>Describing <script type="math/tex">q</script></strong>:<br />
+  Because we have reparametrized the problem in terms of a positive integer <script type="math/tex">x</script>, we can describe the probability distribution <script type="math/tex">q</script> using a vector <script type="math/tex">\boldsymbol{v}</script> with:
+            <p>$$q(\mathrm{x}=i)=v_{i}$$</p>
+          </li>
+          <li><strong>The Transition Operator <script type="math/tex">T</script> as a Matrix</strong>:<br />
+  Using our integer parametrization, we can represent the effect of the transition operator <script type="math/tex">T</script> using a matrix <script type="math/tex">A</script>.<br />
+  We define <script type="math/tex">A</script> so that:
+            <p>$$A_{i, j}=T\left(\mathbf{x}^{\prime}=i \vert \mathbf{x}=j\right)$$</p>
+          </li>
+        </ul>
+
+        <p>Rather than writing it in terms of <script type="math/tex">q</script> and <script type="math/tex">T</script> to understand how a single state is updated, we may now use <script type="math/tex">v</script> and <script type="math/tex">A</script> to describe how the entire distribution over all the different Markov chains (running in parallel) shifts as we apply an update.<br />
+  Rewriting the <strong>probability of a single state landing in state <script type="math/tex">x^{\prime} = i</script></strong>:</p>
+        <p>$$\boldsymbol{v}^{(t)}=\boldsymbol{A} \boldsymbol{v}^{(t-1)}$$</p>
+        <ul>
+          <li><strong>Matrix Exponentiation:</strong><br />
+  Applying the Markov chain update repeatedly corresponds to multiplying by the matrix <script type="math/tex">A</script> repeatedly.<br />
+  In other words, we can think of the process as exponentiating the matrix <script type="math/tex">\boldsymbol{A}</script>.</li>
+        </ul>
+
+        <p>Thus, <script type="math/tex">\boldsymbol{v}^{(t)}</script> can, finally, be rewritten as</p>
+        <p>$$\boldsymbol{v}^{(t)}=\boldsymbol{A}^{t} \boldsymbol{v}^{(0)}$$</p>
+      </li>
+      <li><strong>Convergence - The Stationary Distribution</strong>:<br />
+  Let’s first examine the matrix <script type="math/tex">A</script>.
+        <ul>
+          <li><strong>Stochastic Matrices</strong>:<br />
+  <strong>Stochastic Matrices</strong> are ones where each of their columns represents a <em>probability distribution</em>.<br />
+  The Matrix <script type="math/tex">A</script> is a stochastic matrix.
+            <ul>
+              <li><strong>Perron-Frobenius Theorem - Largest Eigenvalue</strong>:<br />
+  If there is a nonzero probability of transitioning from any state <script type="math/tex">x</script> to any other state <script type="math/tex">x</script> for some power <script type="math/tex">t</script>, then the <strong>Perron-Frobenius theorem</strong> guarantees that the <span style="color: goldenrod">largest eigenvalue is real and equal to <script type="math/tex">1</script></span>.</li>
+              <li><strong>Unique Largest Eigenvalue</strong>:<br />
+  Under some additional mild conditions, <script type="math/tex">A</script> is guaranteed to have only one eigenvector with eigenvalue <script type="math/tex">1</script>.</li>
+            </ul>
+          </li>
+          <li><strong>Exponentiated Eigenvalues</strong>:<br />
+  Over time, we can see that <strong>all the eigenvalues are exponentiated</strong>:
+            <p>$$\boldsymbol{v}^{(t)}=\left(\boldsymbol{V} \operatorname{diag}(\boldsymbol{\lambda}) \boldsymbol{V}^{-1}\right)^{t} \boldsymbol{v}^{(0)}=\boldsymbol{V} \operatorname{diag}(\boldsymbol{\lambda})^{t} \boldsymbol{V}^{-1} \boldsymbol{v}^{(0)}$$</p>
+
+            <p>This process causes <span style="color: purple">all the eigenvalues that are not equal to <script type="math/tex">1</script> to decay to zero</span>.</p>
+          </li>
+        </ul>
+
+        <p>The process thus <span style="color: goldenrod">converges to a <strong>stationary distribution</strong> (<strong>equilibrium distribution</strong>)</span>.</p>
+        <ul>
+          <li><strong>Convergence Condition - Eigenvector Equation:</strong><br />
+  At <strong>convergence</strong>, the following <strong>eigenvector equation</strong> holds:
+            <p>$$\boldsymbol{v}^{\prime}=\boldsymbol{A} \boldsymbol{v}=\boldsymbol{v}$$</p>
+            <p>and this same condition <em><strong>holds for every additional step</strong></em>.</p>
+            <ul>
+              <li><strong>Stationary Point Condition</strong>:<br />
+  Thus, To be a <strong>stationary point</strong>, <script type="math/tex">\boldsymbol{v}</script> must be an <strong>eigenvector with corresponding eigenvalue <script type="math/tex">1</script></strong>.<br />
+  This condition guarantees that <span style="color: purple">once we have reached the stationary distribution, repeated applications of the transition sampling procedure do not change the <em>distribution</em> over the states of all the various Markov chains</span> (although the transition operator does change each individual state, of course).</li>
+            </ul>
+          </li>
+          <li><strong>Convergence to <script type="math/tex">p</script></strong>:<br />
+  If we have chosen <script type="math/tex">T</script> correctly, then the stationary distribution <script type="math/tex">q</script> will be equal to the distribution <script type="math/tex">p</script> we wish to sample from.<br />
+  <strong>Gibbs Sampling</strong> is one way to choose <script type="math/tex">T</script>.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong>Continuous Variables:</strong></p>
+
+    <p><strong>Convergence:</strong><br />
+ In general, a Markov chain with transition operator $T$ will converge, under mild conditions, to a fixed point described by the equation</p>
+    <p>$$q^{\prime}\left(\mathbf{x}^{\prime}\right)=\mathbb{E}_ {\mathbf{x} \sim q} T\left(\mathbf{x}^{\prime} \vert \mathbf{x}\right)$$</p>
+    <p>which is exactly what we had in the <strong>discrete case</strong> defined as a <em><strong>sum</strong></em>:</p>
+    <p>$$q^{\prime}\left(x^{\prime}\right)=\sum_{x} q^{(t)}(x) T\left(x^{\prime} \vert x\right)$$</p>
+    <p>and in the <strong>continuous case</strong> as an <em><strong>integral</strong></em>:</p>
+    <p>$$q^{\prime}\left(x^{\prime}\right)=\int_{x} q^{\prime}(x) T\left(x^{\prime} \vert x\right)$$</p>
+
+    <p><strong style="color: red">Using the Markov Chain:</strong></p>
+    <div class="borderexample">Regardless of whether the state is continuous or discrete, all Markov chain methods consist of <span style="color: goldenrod">repeatedly applying stochastic updates until eventually the state begins to yield samples from the equilibrium distribution</span>.</div>
+    <p>- <strong style="color: red">Training the Markov Chain:</strong><br />
+ Running the Markov chain until it reaches its equilibrium distribution is called <em><strong>burning in</strong></em> the Markov chain.</p>
+
+    <p id="lst-p">- <strong style="color: red">Sampling from the Markov Chain:</strong><br />
+ After the chain has reached equilibrium, a sequence of infinitely many samples may be drawn from the equilibrium distribution.<br />
+ There are <span style="color: darkred"><strong>difficulties/drawbacks</strong></span> with using Markov Chains for sampling:</p>
+    <ul>
+      <li><strong>Representative Samples - Independence</strong>:<br />
+  The samples are <strong>identically distributed</strong>, but <em>any two successive samples</em> will be <strong>highly correlated</strong> with each other.
+        <ul>
+          <li><strong>Issue</strong>:<br />
+  A <em>finite sequence</em> of samples may thus not be very <em>representative of the equilibrium distribution</em>.</li>
+          <li><strong>Solutions</strong>:
+            <ol>
+              <li>One way to mitigate this problem is to <strong>return only every <script type="math/tex">n</script> successive samples</strong>, so that our estimate of the statistics of the equilibrium distribution is not as <em>biased by the correlation</em> between an MCMC sample and the next several samples.<br />
+ <span style="color: darkred">Markov chains are thus expensive to use because of the time required to <em>burn in</em> to the equilibrium distribution and the time required to transition from one sample to another reasonably decorrelated sample after reaching equilibrium</span>.</li>
+              <li>To get <em><strong>truly independent samples</strong></em>, one can <strong>run multiple Markov chains in parallel</strong>.<br />
+  This approach uses extra parallel computation to <em>eliminate latency</em>.</li>
+            </ol>
+          </li>
+        </ul>
+
+        <p>- The strategy of using only a single Markov chain to generate all samples and the strategy of using one Markov chain for each desired sample are two extremes.<br />
+  - In <strong>deeplearning</strong> we usually <span style="color: goldenrod"><em>use a number of chains that is similar to the number of examples in a minibatch</em> and then draw as many samples as are needed from this fixed set of Markov chains</span>.</p>
+        <blockquote>
+          <p>A commonly used number of Markov chains is <script type="math/tex">100</script>.</p>
+        </blockquote>
+      </li>
+      <li><strong>Convergence to Equilibrium - Halting</strong>:<br />
+  The theory of Markov Chains allows us to <strong><em>guarantee</em> convergence to equilibrium</strong>. However, it does not specify anything about the <strong>convergence <em>criterion</em></strong>:
+        <ul>
+          <li><span style="color: darkred">The theory does not allow us to know the Mixing Time in advance.</span>. <br />
+  The <strong>Mixing Time</strong> is the number of steps the Markov chain must run before reaching its <em>equilibrium distribution</em>.</li>
+          <li><span style="color: darkred">The theory, also, does not guide us on how to test/determine whether an MC has reached equilibrium.</span>.</li>
+        </ul>
+
+        <p><strong>Convergence Criterion Theoretical Analysis:</strong><br />
+  If we analyze the Markov chain from the point of view of a matrix <script type="math/tex">A</script> acting on a vector of probabilities <script type="math/tex">v</script> , then we know that the chain mixes when <script type="math/tex">A^{t}</script> has effectively lost all the eigenvalues from <script type="math/tex">A</script> besides the unique eigenvalue of 1.<br />
+  This means that the <span style="color: purple"><em>magnitude of the second-largest eigenvalue</em> will determine the <strong>mixing time</strong></span>.</p>
+
+        <p><strong>Convergence Criterion In Practice:</strong><br />
+  In practice, though, we <em>cannot actually represent our Markov chain in terms of a matrix</em>.<br />
+  - The <em>number of states</em> that our probabilistic model can visit is <em>exponentially large in the number of variables</em>, so it is infeasible to represent <script type="math/tex">\boldsymbol{v}</script>, <script type="math/tex">A</script>, or the eigenvalues of <script type="math/tex">\boldsymbol{A}</script>.<br />
+  Because of these and other obstacles, we usually <strong>do not know whether a Markov chain has mixed</strong>.<br />
+  Instead, we simply <span style="color: goldenrod">run the Markov chain for an amount of time that we roughly estimate to be sufficient, and use heuristic methods to determine whether the chain has mixed</span>.<br />
+  These heuristic methods include <em><strong>manually inspecting samples</strong></em> or <strong><em>measuring correlations</em> between successive samples</strong>.</p>
+      </li>
+    </ul>
+
+    <div class="borderexample">
+      <p><span style="color: goldenrod">This section described how to <em>draw samples</em> from a distribution <script type="math/tex">q(x)</script> by <em>repeatedly updating</em> <script type="math/tex">\boldsymbol{x} \leftarrow \boldsymbol{x}^{\prime} \sim T\left(\boldsymbol{x}^{\prime} \vert \boldsymbol{x}\right)</script>.</span></p>
+    </div>
+
+    <p id="lst-p"><strong style="color: red">Finding a useful <script type="math/tex">q(x)</script>:</strong><br />
+ There are two basic approaches to ensure that <script type="math/tex">q(x)</script> is a useful distribution:</p>
+    <p>(1) Derive <script type="math/tex">T</script> from a given learned <script type="math/tex">p_{\text {model}}</script>. E.g. <a href="#bodyContents14"><strong>Gibbs Sampling</strong></a>, Metropolis-Hastings, etc.   <br />
+ (2) Directly <em>parameterize</em> <script type="math/tex">T</script> and learn it, so that its stationary distribution implicitly defines the <script type="math/tex">p_{\text {model}}</script> of interest. E.g. Generative Stochastic Networks, Diffusion Inversion, Approximate Bayesian Computation.<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Gibbs Sampling:</strong><br />
+ <strong>Gibbs Sampling</strong> is an MCMC algorithm for obtaining a sequence of observations which are approximated from a specified multivariate probability distribution, when direct sampling is difficult.</p>
+
+    <p>It is a method for finding a useful distribution <script type="math/tex">q(x)</script> by deriving <script type="math/tex">T</script> from a given learned <script type="math/tex">p_{\text {model}}</script>; in the case of sampling from <strong>EBMs</strong>.</p>
+
+    <p>It is a conceptually simple and effective approach to building a Markov Chain that samples from <script type="math/tex">p_{\text {model}}(\boldsymbol{x})</script>, in which sampling from <script type="math/tex">T\left(\mathbf{x}^{\prime} \vert \mathbf{x}\right)</script> is accomplished by selecting one variable <script type="math/tex">\mathbf{x}_ {i}</script> and sampling it from <script type="math/tex">p_{\text {model}}</script> conditioned on its neighbors in the undirected graph <script type="math/tex">\mathcal{G}</script> defining the structure of the energy-based model.</p>
+
+    <p><strong style="color: red">Block Gibbs Sampling:</strong><br />
+ We can, also, sample several variables at the same time as long as they are conditionally independent given all their neighbors.<br />
+ <strong>Block Gibbs Sampling</strong> is a Gibbs sampling approach that updates many variables simultaneously.</p>
+
+    <p><strong>Application - RBMs:</strong><br />
+ All the hidden units of an RBM may be sampled simultaneously because they are conditionally independent from each other given all the visible units.<br />
+ Likewise, all the visible units may be sampled simultaneously because they are conditionally independent from each other given all the hidden units.</p>
+
+    <p><strong style="color: red">In Deep Learning:</strong><br />
+ In the context of the deep learning approach to undirected modeling, it is rare to use any approach other than Gibbs sampling. Improved sampling techniques are one possible research frontier.</p>
+
+    <p id="lst-p"><strong style="color: red">Summary:</strong></p>
+    <ul>
+      <li>A method for sampling from probability distributions of <script type="math/tex">\geq 2</script>-dimensions.</li>
+      <li>It is an <strong>MCMC</strong> method; A <strong><em>dependent</em> sampling</strong> algorithm.</li>
+      <li>It is a special case of the <strong>Metropolis-Hastings</strong> Algorithm.
+        <ul>
+          <li>But, accept all proposals (i.e. no rejections).</li>
+          <li>It is slightly more <strong>efficient</strong> than MH because of no rejections.</li>
+          <li>It requires us to know the <strong>conditional probabilities</strong> <script type="math/tex">p(X_i \vert X_{0}^t, \ldots, X_{i-1}^{t}, X_{i+1}^{t-1}, \ldots, X_{n}^{t-1})</script> and be able to sample from them.</li>
+          <li>It is <strong>slow</strong> for <em><strong>correlated parameters</strong></em>; like MH.<br />
+  Can be alleviated by doing <em><strong>block</strong></em> sampling (blocks of correlated variables).<br />
+  I.E. sample <script type="math/tex">X_j, X_k \sim p(X_j, X_k \vert X_{0}^t, \ldots, X_{n}^{t-1})</script> at the same time.<br />
+  It is <em>more efficient</em> than sampling from uni-dimensional conditional distributions, but generally harder.<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Sampling Paths</button>
+  <img src="https://cdn.mathpix.com/snip/images/L1FMvW_bNnZNbzbulNgszJhCWqAVxFrX0TG1f5aO6yo.original.fullsize.png" alt="img" width="100%" hidden="" />
+            <ul>
+              <li>Gibbs walks in a zig-zag pattern.</li>
+              <li>MH walks in the diagonal direction but frequently goes off in the orthogonal direction (which have to be rejected).</li>
+              <li>Hamiltonian MC, best of both worlds: walks in diagonal direction and accept a high proportion of steps).</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Often used in <strong>Bayesian Inference</strong>.</li>
+      <li>Guaranteed to <strong>Asymptotically Converge</strong> to the true joint distribution.</li>
+      <li>It is an alternative to deterministic algorithms for inference like EM.</li>
+      <li><a href="https://www.youtube.com/watch?v=ER3DDBFzH2g">Gibbs Sampling (Tut. B-Lambert)</a><br />
+ <br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">The Challenge of Mixing between Separated Modes in MCMC Algorithms:</strong><br />
+ The primary difficulty involved with MCMC methods is that they have a tendency to <strong>mix poorly</strong>.</p>
+
+    <p><strong style="color: red">Slow Mixing/Failure to Mix:</strong><br />
+ Ideally, <strong>successive samples</strong> from a Markov chain designed to sample from <script type="math/tex">p(\boldsymbol{x})</script> would be <span style="color: purple">completely <em>independent</em></span> from each other and would <strong>visit many different regions</strong> in <script type="math/tex">\boldsymbol{x}</script> space <strong>proportional to their probability</strong>.<br />
+ Instead, especially in <em><strong>high-dimensional</strong></em> cases, <span style="color: purple">MCMC samples become very <em><strong>correlated</strong></em></span>. We refer to such behavior as <strong>slow mixing</strong> or even <strong>failure to mix</strong>.</p>
+
+    <p><strong>Intuition - Noisy Gradient Descent:</strong><br />
+ MCMC methods with slow mixing can be seen as inadvertently performing something resembling <strong>noisy gradient descent</strong> <em>on the energy function</em>, or equivalently <strong>noisy hill climbing</strong> <em>on the probability</em>, with respect to the state of the chain (the random variables being sampled).<br />
+ - The chain tends to take small steps (in the space of the state of the Markov chain), from a configuration <script type="math/tex">\boldsymbol{x}^{(t-1)}</script> to a configuration <script type="math/tex">\boldsymbol{x}^{(t)}</script>, with the energy <script type="math/tex">E\left(\boldsymbol{x}^{(t)}\right)</script> generally lower or approximately equal to the energy <script type="math/tex">E\left(\boldsymbol{x}^{(t-1)}\right)</script>, with a preference for moves that yield lower energy configurations.<br />
+ - When starting from a rather <em>improbable configuration</em> (higher energy than the typical ones from <script type="math/tex">p(\mathbf{x})</script>), the chain tends to <strong>gradually reduce the energy of the state</strong> and only occasionally move to another mode.<br />
+ - Once the chain has found a region of low energy (for example, if the variables are pixels in an image, a region of low energy might be a connected manifold of images of the same object), which we call a <strong>mode</strong>, the chain will tend to walk around that mode (following a kind of <em><strong>random walk</strong></em>).<br />
+ - Once in a while it will step out of that mode and generally return to it or (if it finds an escape route) move toward another mode.<br />
+ - The problem is that <span style="color: goldenrod">successful escape routes are rare for many interesting distributions</span>, so the Markov chain will continue to sample the same mode longer than it should.</p>
+
+    <p><strong style="color: red">In Gibbs Sampling:</strong><br />
+ The problem is very clear when we consider the Gibbs Sampling algorithm.<br />
+ The probability of going from one mode to a nearby mode within a given number of steps is <em>determined</em> by the <span style="color: purple"><em>shape</em> of the <strong>“energy barrier”</strong></span> between these modes.<br />
+ - Transitions between two modes that are <strong>separated by a high energy barrier</strong> (a region of low probability) are <em>exponentially less likely</em> (in terms of the height of the energy barrier).<br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Gibbs Algorithm Paths</button>
+ <img src="https://cdn.mathpix.com/snip/images/2qEiOUCm6i-VjZCNSi3TqQgOyQXCZIEcMoKdIZmJAOM.original.fullsize.png" alt="img" width="100%" hidden="" /><br />
+ The problem arises when there are <span style="color: purple">multiple modes with high probability that are separated by regions of low probability</span>, especially when each Gibbs sampling step must update only a small subset of variables whose values are largely determined by the other variables.</p>
+
+    <p><strong>Example and Analysis:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Example and Analysis</button>
+ <img src="https://cdn.mathpix.com/snip/images/pIdAEPT0Unuz4oVxenQhB8_WBFtvwU60iA_LD7c4Rn8.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p><strong>Possible Solution - Block Gibbs Sampling:</strong><br />
+ Sometimes this problem can be resolved by finding groups of highly dependent units and updating all of them simultaneously in a block. Unfortunately, when the dependencies are complicated, it can be computationally intractable to draw a sample from the group. After all, the problem that the Markov chain was originally introduced to solve is this problem of sampling from a large group of variables.</p>
+
+    <p><strong style="color: red">In (Generative) Latent Variable Models:</strong><br />
+ In the context of models with <strong>latent variables</strong>, which define a <strong>joint distribution</strong> <script type="math/tex">p_{\text {model}}(\boldsymbol{x}, \boldsymbol{h}),</script> we often <strong>draw samples</strong> of <script type="math/tex">\boldsymbol{x}</script> by <em><strong>alternating</strong></em> between sampling from <script type="math/tex">p_{\text {model}}(\boldsymbol{x} \vert \boldsymbol{h})</script> and sampling from <script type="math/tex">p_{\text {model}}(\boldsymbol{h} \vert \boldsymbol{x})</script>.</p>
+
+    <p><strong>Learning-Mixing Tradeoff:</strong><br />
+ - From the pov of <strong>mixing rapidly</strong>, we would like <script type="math/tex">p_{\text {model}}(\boldsymbol{h} \vert \boldsymbol{x})</script> to have high entropy.<br />
+ - From the pov of learning a useful representation of <script type="math/tex">\boldsymbol{h},</script> we would like <script type="math/tex">\boldsymbol{h}</script> to <span style="color: purple">encode enough information</span> about <script type="math/tex">\boldsymbol{x}</script> <span style="color: purple">to reconstruct it well</span>, which implies that <span style="color: purple"><script type="math/tex">\boldsymbol{h}</script> and <script type="math/tex">\boldsymbol{x}</script> and <script type="math/tex">\boldsymbol{x}</script> should have <em>high</em> <strong>mutual information</strong></span>.<br />
+ These two goals are at odds with each other. We often <span style="color: goldenrod">learn generative models that very precisely <em>encode</em> <script type="math/tex">\boldsymbol{x}</script> into <script type="math/tex">\boldsymbol{h}</script> but are not able to <em>mix</em> very well</span>.</p>
+
+    <p><strong>In Boltzmann Machines:</strong><br />
+ This situation arises frequently with Boltzmann machines-the sharper the distribution a Boltzmann machine learns, the harder it is for a Markov chain sampling from the model distribution to mix well.<br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Slow Mixing in Deep Probabilistic Models - Illustration</button>
+ <img src="https://cdn.mathpix.com/snip/images/JHPt1iCCZnS-q351i2PFJL8aeJd-2iUSU5nXxEbYYaA.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p><strong style="color: red">Summary - Takeaways:</strong><br />
+ All this could make MCMC methods <strong>less useful</strong> when the <span style="color: purple">distribution of interest has a <strong>manifold structure</strong> with a <strong><em>separate</em> manifold for each class</strong></span>: the distribution is <strong>concentrated around many modes</strong>, and these <strong>modes are separated by vast regions of high energy</strong>.<br />
+ This type of distribution is what we expect in many <strong>classification problems</strong>, and it would make MCMC methods <strong>converge very slowly</strong> because of <em><strong>poor mixing between modes</strong></em>.<br />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Solutions for the Slow Mixing Problem:</strong><br />
+ Since, it is difficult to mix between the different modes of a distribution when the distribution has <span style="color: purple">sharp peaks of high probability surrounded by regions of low probability</span>,<br />
+ Several techniques for faster mixing are based on <span style="color: purple">constructing alternative versions of the target distribution in which the <strong>peaks are not as <em>high</em></strong> and the <strong>surrounding valleys are not as <em>low</em></strong></span>.<br />
+ - A particularly simple way to do so, is to use <strong>Energy-based Models</strong>:
+    <p>$$p(\boldsymbol{x}) \propto \exp (-E(\boldsymbol{x}))$$</p>
+    <p>- Energy-based models may be augmented with an extra parameter <script type="math/tex">\beta</script> controlling <strong>how sharply peaked</strong> the distribution is:</p>
+    <p>$$p_{\beta}(\boldsymbol{x}) \propto \exp (-\beta E(\boldsymbol{x}))$$</p>
+    <p>- The <script type="math/tex">\beta</script> parameter is often described as being the <strong>reciprocal of the <em>temperature</em></strong>, reflecting the origin of energy-based models in statistical physics.<br />
+ - - When the <em>temperature falls to <strong>zero</strong></em>, and <em><script type="math/tex">\beta</script> rises to <strong>infinity</strong></em>, the EBM becomes <strong>deterministic</strong>.<br />
+ - - When the <em>temperature rises to <strong>infinity</strong></em>, and <em><script type="math/tex">\beta</script> falls to <strong>zero</strong></em>, the distribution (for discrete <script type="math/tex">\boldsymbol{x}</script>) becomes <strong>uniform</strong>.</p>
+
+    <p>Typically, a model is trained to be evaluated at <script type="math/tex">\beta=1</script>. However, we can make use of other temperatures, particularly those where <script type="math/tex">% <![CDATA[
+\beta<1 %]]></script>.</p>
+
+    <p><strong style="color: red">Tempering:</strong><br />
+ <strong>Tempering</strong> is a general strategy of mixing between modes of <script type="math/tex">p_{1}</script> rapidly by drawing samples with <script type="math/tex">% <![CDATA[
+\beta<1 %]]></script>.<br />
+ Markov chains based on <strong>tempered transitions</strong> <em>(Neal, 1994)</em> temporarily sample from higher-temperature distributions to mix to different modes, then resume sampling from the unit temperature distribution.<br />
+ These techniques have been applied to models such as <strong>RBMs</strong> <em>(Salakhutdinov, 2010)</em>.</p>
+
+    <p><strong>Parallel Tempering:</strong><br />
+ Another approach is to use <strong>parallel tempering</strong> <em>(Iba, 2001)</em>, in which the Markov chain simulates many different states in parallel, at different temperatures.<br />
+ - The highest temperature states mix slowly, while the lowest temperature states, at temperature <script type="math/tex">1</script>, provide accurate samples from the model.<br />
+ - The transition operator includes stochastically swapping states between two different temperature levels, so that a sufficiently high-probability sample from a high-temperature slot can jump into a lower temperature slot. This approach has also been applied to RBMs <em>(Desjardins et al., 2010 ; Cho et al., 2010)</em>.</p>
+
+    <p><strong>Results - In Practice:</strong><br />
+ Although tempering is a promising approach, at this point it has not allowed researchers to make a strong advance in solving the challenge of sampling from complex EBMs.<br />
+ One possible reason is that there are <strong>critical temperatures</strong> around which the temperature transition must be very slow (as the temperature is gradually reduced) for tempering to be effective.</p>
+
+    <p id="lst-p"><strong style="color: red">Depth for Mixing (in Latent-Variable Models):</strong></p>
+    <ul>
+      <li><strong>Problem - Mixing in Latent Variable Models</strong>:<br />
+  When drawing samples from a latent variable model <script type="math/tex">p(\boldsymbol{h}, \boldsymbol{x}),</script> we have seen that if <script type="math/tex">p(\boldsymbol{h} \vert \boldsymbol{x})</script> encodes <script type="math/tex">\boldsymbol{x}</script> too well, then sampling from <script type="math/tex">p(\boldsymbol{x} \vert \boldsymbol{h})</script> will not change <script type="math/tex">\boldsymbol{x}</script> very much, and mixing will be poor.
+        <ul>
+          <li><strong>Example of the problem <script type="math/tex">(\alpha)</script></strong>:<br />
+  Many representation learning algorithms, such as <strong>Autoencoders</strong> and <strong>RBMs</strong>, tend to <span style="color: purple">yield a marginal distribution over <script type="math/tex">\boldsymbol{h}</script> that is more <em><strong>uniform</strong></em> and more <em><strong>unimodal</strong></em> than the original data distribution over <script type="math/tex">\boldsymbol{x}</script></span>.</li>
+          <li><strong>Reason for <script type="math/tex">(\alpha)</script></strong>:<br />
+  It can be argued that this arises from <span style="color: purple">trying to minimize reconstruction error while using all the available representation space</span>, because minimizing reconstruction error over the training examples will be better achieved when different training examples are <strong>easily distinguishable</strong> from each other in <script type="math/tex">\boldsymbol{h}</script>-space, and thus <strong>well separated</strong>.</li>
+        </ul>
+      </li>
+      <li><strong>Solution - Deep Representations</strong>:<br />
+  One way to resolve this problem is to make <script type="math/tex">\boldsymbol{h}</script> a <strong>deep representation</strong>, encoding <script type="math/tex">\boldsymbol{x}</script> into <script type="math/tex">\boldsymbol{h}</script> in such a way that a Markov chain in the space of <script type="math/tex">\boldsymbol{h}</script> can mix more easily.
+        <ul>
+          <li>
+            <p><strong>Solution to the problem <script type="math/tex">(\alpha)</script></strong>:<br />
+  - <em>Bengio et al. (2013 a)</em> observed that deeper stacks of regularized autoencoders or RBMs yield marginal distributions in the top-level <script type="math/tex">\boldsymbol{h}</script>-space that appeared more spread out and more uniform, with less of a gap between the regions corresponding to different modes (categories, in the experiments).<br />
+  - Training an RBM in that higher-level space allowed <strong>Gibbs sampling</strong> to <em><strong>mix faster between modes</strong></em>.</p>
+
+            <blockquote>
+              <p>It remains unclear, however, how to exploit this observation to help better train and sample from deep generative models.</p>
+            </blockquote>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Summary/Takeaway of MCMC methods In-Practice (DL):</strong><br />
+ Despite the difficulty of mixing, Monte Carlo techniques are useful and are often the best tool available.<br />
+ Indeed, they are the primary tool used to confront the <em><strong>intractable partition function</strong></em> of <strong>undirected models</strong>.</p>
+  </li>
+</ol>
+
+<!-- 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18} -->
+
+<hr />
+
+<!-- ## SECOND
+{: #content2}
+
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}
+
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23} -->
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

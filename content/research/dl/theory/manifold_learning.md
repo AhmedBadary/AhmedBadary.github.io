@@ -25,6 +25,10 @@ prevLink: /work_files/research/dl/nlp.html
 ***
 ***
 
+
+* [A BIT ABOUT MANIFOLDS (Blog!)](http://mcneela.github.io/math/2019/01/30/A-Bit-About-Manifolds.html)  
+
+
 ## FIRST
 {: #content1}
 

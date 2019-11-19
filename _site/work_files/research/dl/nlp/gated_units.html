@@ -77,6 +77,11 @@
 <hr />
 <hr />
 
+<ul>
+  <li><a href="http://mlexplained.com/category/fromscratch/">Building an LSTM from Scratch in PyTorch</a></li>
+  <li><a href="https://blog.echen.me/2017/05/30/exploring-lstms/">Exploring LSTMs, their Internals and How they Work (Blog!)</a></li>
+</ul>
+
 <h2 id="content2">GRUs</h2>
 
 <ol>
@@ -145,6 +150,21 @@ We can view the actions of these gates from their respecting equations as:</dd>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">LSTM:</strong></dt>
       <dd>The <strong>Long Short-Term Memory</strong> (LSTM) Network is a special case of the Recurrent Neural Network (RNN) that uses special gated units (a.k.a LSTM units) as building blocks for the layers of the RNN.</dd>
+      <dd><strong>LSTM Equations:</strong>
+        <p>
+$$\begin{align}
+    f_{t}&amp;=\sigma_{g}\left(W_{f} x_{t}+U_{f} h_{t-1}+b_{f}\right) \\
+    i_{t}&amp;=\sigma_{g}\left(W_{i} x_{t}+U_{i} h_{t-1}+b_{i}\right) \\
+    o_{t}&amp;=\sigma_{g}\left(W_{o} x_{t}+U_{o} h_{t-1}+b_{o}\right) \\
+    c_{t}&amp;=f_{t} \circ c_{t-1}+i_{t} \circ \sigma_{c}\left(W_{c} x_{t}+U_{c} h_{t-1}+b_{c}\right) \\
+    h_{t}&amp;=o_{t} \circ \sigma_{h}\left(c_{t}\right)
+\end{align}$$  
+</p>
+        <p>where:<br />
+<script type="math/tex">\sigma_{g}</script>: sigmoid function.<br />
+<script type="math/tex">{\displaystyle \sigma_{c}}</script>: hyperbolic tangent function.<br />
+<script type="math/tex">{\displaystyle \sigma_{h}}</script>: hyperbolic tangent function or, as the peephole LSTM paper suggests, <script type="math/tex">{\displaystyle \sigma_{h}(x)=x}</script>.</p>
+      </dd>
     </dl>
   </li>
   <li>
@@ -153,8 +173,9 @@ We can view the actions of these gates from their respecting equations as:</dd>
       <dd>The LSTM, usually, has four gates:</dd>
       <dd>
         <ul>
-          <li><strong>Input Gate</strong>: 
-  The input gate determines how much does the <em>current input vector (current cell)</em> matters</li>
+          <li><strong>Input Gate</strong>:<br />
+  The input gate determines how much does the <em>current input vector (current cell)</em> matters    <br />
+  It controls the extent to which a new value flows into the cell</li>
         </ul>
       </dd>
       <dd>
@@ -163,20 +184,22 @@ We can view the actions of these gates from their respecting equations as:</dd>
       <dd>
         <ul>
           <li><strong>Forget Gate</strong>: 
-  Determines how much of the <em>past memory</em>, that we have kept, is still needed</li>
+  Determines how much of the <em>past memory</em>, that we have kept, is still needed <br />
+  It controls the extent to which a value remains in the cell</li>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">i_t = \sigma(W^{(i)}x_t + U^{(i)}h_{t-1})</script>
+        <script type="math/tex; mode=display">f_t = \sigma(W^{(f)}x_t + U^{(f)}h_{t-1})</script>
       </dd>
       <dd>
         <ul>
           <li><strong>Output Gate</strong>: 
-  Determines how much of the <em>current cell</em> matters for our <em>current prediction (i.e. passed to the sigmoid)</em></li>
+  Determines how much of the <em>current cell</em> matters for our <em>current prediction (i.e. passed to the sigmoid)</em><br />
+  It controls the extent to which the value in the cell is used to compute the output activation of the LSTM unit</li>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">i_t = \sigma(W^{(i)}x_t + U^{(i)}h_{t-1})</script>
+        <script type="math/tex; mode=display">o_t = \sigma(W^{(o)}x_t + U^{(o)}h_{t-1})</script>
       </dd>
       <dd>
         <ul>

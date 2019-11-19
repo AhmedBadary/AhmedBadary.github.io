@@ -293,32 +293,58 @@ prevLink: /work_files/research/dl/nlp.html
     The model relies completely on __Attention__ and disregards _recurrence/convolutions_ completely.
 
 2. **Motivation:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}  
-    Motivation for dropping:
+    Motivation for __Dropping__:
     * __Recurrent Connections__:  
-        Complex, tricky to train and regularize, capturing long-term dependencies is limited, and hard to parallelize. Sequence-aligned states in RNN are wasteful. Hard to model hierarchical-like domains such as languages.  
+        * <span>Complex</span>{: style="color: purple"} 
+        * Tricky to <span>Train</span>{: style="color: purple"} and <span>Regularize</span>{: style="color: purple"} 
+        * <span>Capturing __long-term dependencies__ is _limited_ and _hard_ to *__parallelize__*</span>{: style="color: purple"}  
+        * __Sequence-aligned states__ in RNN are *wasteful*.  
+        * Hard to model __hierarchical-like domains__ such as languages.  
     * __Convolutional Connections__:  
-        Convolutional approaches are sometimes effective (more on this), but they tend to be memory-intensive. Path length between positions can be logarithmic when using dilated convolutions, left-padding for text. (autoregressive CNNs WaveNet, ByteNET)
+        * Convolutional approaches are sometimes effective (more on this)  
+        * But they tend to be <span>memory-intensive</span>{: style="color: purple"}.  
+        * <span>__Path length__ between _positions_ can be __logarithmic__ when using</span>{: style="color: purple"} __dilated convolutions__; and __Left-padding__ (for text). (autoregressive CNNs WaveNet, ByteNET)  
+            * However, __Long-distance dependencies require many layers__.   
+        * Modeling long-range dependencies with CNNs requires either:  
+            * __Many Layers:__ likely making training harder   
+            * __Large Kernels__: at large parameter/computational cost  
 
-    Motivation for __Transformer__:
-    * It gives us the shortest possible path through the network between any two input-output locations.  
+
+    Motivation for __Transformer__:  
+    It gives us the <span>__shortest possible path__ through the network _between any two **input-output locations**_</span>{: style="color: purple"}.  
 
     Motivation in __NLP__:  
-    * The following quote:  
-        > “You can’t cram the meaning of a whole %&!$# sentence into a single $&!#* vector!” - ACL 2014
+    The following quote:  
+    <span>“You can’t cram the meaning of a whole %&!$# sentence into a single $&!#* vector!”</span>{: style="color: purple"} - ACL 2014
+    <br>
+
+22. **Idea:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents422}  
+    <span>Why not use __Attention__ for *__Representations?__*</span>{: style="color: purple"}  
+
+    * __Self-Attention:__ You try to represent (re-express) yourself (the word_i) as a weighted combination of your entire neighborhood  
+    * __FFN Layers:__ they compute new features for the representations from the attention weighted combination  
+    * __Residual Connections:__ Residuals carry/propagate <span>positional information</span>{: style="color: purple"} about the inputs to higher layers, among other info.   
+    * __Attention-Layer__:  
+        * Think of as a feature detector.  
+    <br>
 
 3. **From Attention to Self-Attention:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}  
     __The Encoder-Decoder Architecture:__{: style="color: red"}  
     For a fixed target output, $$t_j$$, all hidden state source inputs are taken into account to compute the cosine similarity with the source inputs $$s_i$$, to generate the $$\theta_i$$’s (attention weights) for every source input $$s_i$$.  
 
 4. **Strategy:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44}  
-    The idea here is to learn a context vector (say $$U$$), which gives us a global level information on all the inputs and tells us about the most important information.  
+    The idea here is to <span>learn a context vector</span>{: style="color: purple"} (say $$U$$), which gives us <span>__global level information__ on all the inputs</span>{: style="color: purple"} and tells us about the most important information.  
     E.g. This could be done by taking a cosine similarity of this context vector $$U$$  w.r.t the input hidden states from the fully connected layer. We do this for each input $$x_i$$ and thus obtain a $$\theta_i$$ (attention weights).  
 
     __The Goal(s):__{: style="color: red"}  
-    * __Parallelization of Seq2Seq:__ RNN/CNN handle sequences word-by-word sequentially which is an obstacle to parallelize. Transformer achieves parallelization by replacing recurrence with attention and encoding the symbol position in the sequence. This, in turn, leads to a significantly shorter training time.  
-    * __Reduce sequential computation__: Constant $$\mathcal{O}(1)$$ number of operations to learn dependency between two symbols independently of their position distance in sequence.  
+    {: #lst-p}
+    * __Parallelization of Seq2Seq:__ RNN/CNN handle sequences word-by-word sequentially which is an obstacle to parallelize.  
+        Transformer achieves parallelization by replacing recurrence with attention and encoding the symbol position in the sequence.  
+        This, in turn, leads to a significantly shorter training time.  
+    * __Reduce sequential computation__: Constant $$\mathcal{O}(1)$$ number of operations to learn dependency between two symbols independently of their position/distance in sequence.  
 
-    The Transformer reduces the number of sequential operations to relate two symbols from input/output sequences to a constant $$\mathcal{O}(1)$$ number of operations. Transformer achieves this with the multi-head attention mechanism that allows to model dependencies regardless of their distance in input or output sentence (by counteracting reduced effective resolution due to averaging the attention-weighted positions).  
+    The Transformer reduces the number of sequential operations to relate two symbols from input/output sequences to a constant $$\mathcal{O}(1)$$ number of operations.  
+    It achieves this with the __multi-head attention__ mechanism that allows it to <span>model dependencies regardless of their distance in input or output sentence</span>{: style="color: purple"} (by counteracting reduced effective resolution due to averaging the attention-weighted positions).  
 
 6. **Architecture:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}  
     ![img](/main_files/research/1.png){: width="48%"}  \\
@@ -348,16 +374,19 @@ prevLink: /work_files/research/dl/nlp.html
         __Motivation__: We suspect that for large values of $$d_k$$, the dot products grow large in magnitude, pushing the softmax function into regions where it has extremely small gradients. To counteract this effect, we scale the dot products by $$\sqrt{\dfrac{1}{d_k}}$$.  
     * __Multi-Head Attention__:  
         ![img](/main_files/research/2.png){: width="28%"}  \\
-        Instead of performing a single attention function with $$d_{\text{model}}$$-dimensional keys, values and queries; linearly project the queries, keys and values h times with different, learned linear projections to $$d_k, d_k$$ and $$d_v$$ dimensions, respectively. Then, attend (apply $$\text{Attention}$$ function) on each of the projected versions, _in parallel_, yielding $$d_v$$-dimensional output values. The final values are obtained by _concatenating_ and _projecting_ the $$d_v$$-dimensional output values from each of the attention-heads.  
-        <p>$$\begin{aligned} \text { MultiHead }(Q, K, V) &=\text { Concat }\left(\text { head}_{1}, \ldots, \text { head}_{h}\right) W^{O} \\ \text { where head}_{i} &=\text { Attention }\left(Q W_{i}^{Q}, K W_{i}^{K}, V W_{i}^{V}\right) \end{aligned}$$</p>  
-        Where the projections are parameter matrices $$ W_{i}^{Q} \in \mathbb{R}^{d_{\text {model }} \times d_{k}}, W_{i}^{K} \in $$ $$\mathbb{R}^{d_{\text {model }} \times d_{k}},$$ $$W_{i}^{V} \in \mathbb{R}^{d_{\text {model }} \times d_{v}} $$ and $$W^O \in \mathbb{R}^{hd_v \times d_{\text {model }}}$$.  
-        This paper choses $$h = 8$$ parallel attention layers/_heads_. For each, they use $$d_k=d_v=d_{\text{model}}/h = 64$$. The reduced dimensionality of each head, allows the total computation cost to be similar to that of a single head w/ full dimensionality.   
+        Instead of performing a single attention function with $$d_{\text{model}}$$-dimensional keys, values and queries; linearly project the queries, keys and values $$h$$ times with different, learned linear projections to $$d_k, d_k$$ and $$d_v$$ dimensions, respectively. Then, attend (apply $$\text{Attention}$$ function) on each of the projected versions, _in parallel_, yielding $$d_v$$-dimensional output values. The final values are obtained by _concatenating_ and _projecting_ the $$d_v$$-dimensional output values from each of the attention-heads.  
+        <p>$$\begin{aligned} \text {MultiHead}(Q, K, V) &=\text {Concat}\left(\text {head}_ {1}, \ldots, \text {head}_ {h}\right) W^{O} \\ \text { where head}_ {i} &=\text {Attention}\left(Q W_{i}^{Q}, K W_{i}^{K}, V W_{i}^{V}\right) \end{aligned}$$</p>  
+        Where the projections are parameter matrices $$ W_{i}^{Q} \in \mathbb{R}^{d_{\text {model}} \times d_{k}}, W_{i}^{K} \in $$ $$\mathbb{R}^{d_{\text {model}} \times d_{k}},$$ $$W_{i}^{V} \in \mathbb{R}^{d_{\text {model}} \times d_{v}} $$ and $$W^O \in \mathbb{R}^{hd_v \times d_{\text {model}}}$$.  
+        This paper choses $$h = 8$$ parallel attention layers/_heads_.  
+        For each, they use $$d_k=d_v=d_{\text{model}}/h = 64$$.  
+        The reduced dimensionality of each head, allows the total computation cost to be similar to that of a single head w/ full dimensionality.   
 
         __Motivation:__ Multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions. With a single attention head, averaging inhibits this.  
     
 
     __Applications of Attention in the Model:__{: style="color: red"}  
     The Transformer uses multi-head attention in three different ways:  
+    {: #lst-p}
     * __Encode-Decoder Attention Layer__ (standard layer):  
         * The *__queries__* come from: the _previous decoder layer_
         * The memory *__keys__* and *__values__* come from: the _output of the encoder_   
@@ -384,6 +413,7 @@ prevLink: /work_files/research/dl/nlp.html
     > Equivalently, we can describe this as, __two convolutions__ with __kernel-size__ $$= 1$$  
 
     __Dimensional Analysis__:  
+    {: #lst-p}
     * Input/Output: $$\in \mathbb{R}^{d_\text{model} = 512} $$  
     * Inner-Layer: $$\in \mathbb{R}^{d_{ff} = 2048} $$  
 
@@ -396,17 +426,19 @@ prevLink: /work_files/research/dl/nlp.html
     In the embedding layers, multiply those weights by $$\sqrt{d_{\text{model}}}$$.  
 
 10. **The Model - Positional Encoding:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents410}  
-    __Motivation:__ Since the model contains no recurrence and no convolution, in order for the model to make use of the order of the sequence, we must inject some information about the relative or absolute position of the tokens in the sequence.  
+    __Motivation:__  
+    Since the model contains no recurrence and no convolution, in order for the model to make use of the order of the sequence, we must inject some information about the relative or absolute position of the tokens in the sequence.  
 
     __Positional Encoding:__  
     A way to add positional information to an embedding.  
     There are many choices of positional encodings, learned and fixed. _[Gehring et al. 2017]_  
     The positional encodings have the same dimension $$d_{\text{model}}$$ as the embeddings, so that the two can be summed.  
+
     __Approach:__  
     Add "positional encodings" to the input embeddings at the bottoms of the encoder and decoder stacks.  
     Use __sine__ and __cosine__ functions of different frequencies:  
-    <p>$$ \begin{aligned} P E_{(p o s, 2 i)} &=\sin \left(p o s / 10000^{2 i / d_{\mathrm{model}}}\right) \\ P E_{(p o s, 2 i+1)} &=\cos \left(p o s / 10000^{2 i / d_{\mathrm{model}}}\right) \end{aligned} $$</p>  
-    where $$p o s$$ is the position and $$i$$ is the dimension.  
+    <p>$$ \begin{aligned} P E_{(\text{pos}, 2 i)} &=\sin \left(\text{pos} / 10000^{2 i / d_{\mathrm{model}}}\right) \\ P E_{(\text{pos}, 2 i+1)} &=\cos \left(\text{pos}/ 10000^{2 i / d_{\mathrm{model}}}\right) \end{aligned} $$</p>  
+    where $$\text{pos}$$ is the position and $$i$$ is the dimension.  
     That is, each dimension of the positional encoding corresponds to a sinusoid. The wavelengths form a geometric progression from $$2\pi$$ to $$10000 \cdot 2\pi$$.  
 
     __Motivation__:  
@@ -419,8 +451,8 @@ prevLink: /work_files/research/dl/nlp.html
     * __Layer Normalization:__ Help ensure that layers remain in reasonable range  
     * __Specialized Training Schedule:__ Adjust default learning rate of the Adam optimizer  
     * __Label Smoothing:__ Insert some uncertainty in the training process  
-    * __Masking (for decoder attention):__ for Efficient Training using matrix-operations  
-
+    * __Masking (for decoder attention):__ for Efficient Training using matrix-operations
+    <br>
 
 12. **Why Self-Attention? (as opposed to Conv/Recur. layers):**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents412}  
     ![img](/main_files/dl/nlp/speech_research/6.png){: width="80%"}  \\
@@ -432,10 +464,11 @@ prevLink: /work_files/research/dl/nlp.html
         This would increase the maximum path length to $$\mathcal{O}(n/r)$$.  
 
     __Parallelizable Computations:__{: style="color: red"} (measured by the minimum number of sequential ops required)  
-    * Self-Attention layers connect all positions with a constant number of sequentially executed operations, whereas a recurrent layer requires $$\mathcal{O}(n)$$ sequential operations.  
+    Self-Attention layers connect all positions with a constant number of sequentially executed operations, whereas a recurrent layer requires $$\mathcal{O}(n)$$ sequential operations.  
 
 
     __Path Length between Positions:__{: style="color: red"} (Long-Range Dependencies)  
+    {: #lst-p}
     * __Convolutional Layers:__ A single convolutional layer with kernel width $$k < n$$ does not connect all pairs of input and output positions.  
         Doing so requires:  
         * __Contiguous Kernels (valid)__: a stack of $$\mathcal{O}(n/k)$$ convolutional layers
@@ -448,9 +481,10 @@ prevLink: /work_files/research/dl/nlp.html
     * __Self-Attention__:  
         Even with $$k = n$$, the complexity of a separable convolution is equal to the combination of a self-attention layer and a point-wise feed-forward layer, the approach taken in this model.  
 
-    * __Interpretability__:  
-        As side benefit, self-attention could yield more interpretable models.  
-        Not only do individual attention heads clearly learn to perform different tasks, many appear to exhibit behavior related to the syntactic and semantic structure of the sentences.              
+    __Interpretability:__{: style="color: red"}  
+    As side benefit, self-attention could yield more interpretable models.  
+    Not only do individual attention heads clearly learn to perform different tasks, many appear to exhibit behavior related to the syntactic and semantic structure of the sentences.  
+    <br>
 
 19. **Results:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents419}  
     * __Attention Types__:  

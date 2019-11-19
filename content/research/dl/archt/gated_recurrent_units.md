@@ -17,6 +17,11 @@ prevLink: /work_files/research/dl/nlp.html
 ***
 ***
 
+
+* [Building an LSTM from Scratch in PyTorch](http://mlexplained.com/category/fromscratch/)  
+* [Exploring LSTMs, their Internals and How they Work (Blog!)](https://blog.echen.me/2017/05/30/exploring-lstms/)  
+
+
 ## GRUs
 {: #content2}
 
@@ -48,18 +53,35 @@ prevLink: /work_files/research/dl/nlp.html
 
 1. **LSTM:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31} 
     :   The __Long Short-Term Memory__ (LSTM) Network is a special case of the Recurrent Neural Network (RNN) that uses special gated units (a.k.a LSTM units) as building blocks for the layers of the RNN.  
+    :   __LSTM Equations:__  
+        <p>
+        $$\begin{align}
+            f_{t}&=\sigma_{g}\left(W_{f} x_{t}+U_{f} h_{t-1}+b_{f}\right) \\
+            i_{t}&=\sigma_{g}\left(W_{i} x_{t}+U_{i} h_{t-1}+b_{i}\right) \\
+            o_{t}&=\sigma_{g}\left(W_{o} x_{t}+U_{o} h_{t-1}+b_{o}\right) \\
+            c_{t}&=f_{t} \circ c_{t-1}+i_{t} \circ \sigma_{c}\left(W_{c} x_{t}+U_{c} h_{t-1}+b_{c}\right) \\
+            h_{t}&=o_{t} \circ \sigma_{h}\left(c_{t}\right)
+        \end{align}$$  
+        </p>  
+        where:  
+        $$\sigma_{g}$$: sigmoid function.  
+        $${\displaystyle \sigma_{c}}$$: hyperbolic tangent function.  
+        $${\displaystyle \sigma_{h}}$$: hyperbolic tangent function or, as the peephole LSTM paper suggests, $${\displaystyle \sigma_{h}(x)=x}$$.  
 
 2. **Architecture:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32} 
     :   The LSTM, usually, has four gates:  
-    :   * __Input Gate__: 
+    :   * __Input Gate__:  
             The input gate determines how much does the _current input vector (current cell)_ matters      
+            It controls the extent to which a new value flows into the cell  
     :   $$i_t = \sigma(W^{(i)}x_t + U^{(i)}h_{t-1})$$ 
     :   * __Forget Gate__: 
             Determines how much of the _past memory_, that we have kept, is still needed   
-    :   $$i_t = \sigma(W^{(i)}x_t + U^{(i)}h_{t-1})$$ 
+            It controls the extent to which a value remains in the cell  
+    :   $$f_t = \sigma(W^{(f)}x_t + U^{(f)}h_{t-1})$$ 
     :   * __Output Gate__: 
-            Determines how much of the _current cell_ matters for our _current prediction (i.e. passed to the sigmoid)_
-    :   $$i_t = \sigma(W^{(i)}x_t + U^{(i)}h_{t-1})$$  
+            Determines how much of the _current cell_ matters for our _current prediction (i.e. passed to the sigmoid)_  
+            It controls the extent to which the value in the cell is used to compute the output activation of the LSTM unit  
+    :   $$o_t = \sigma(W^{(o)}x_t + U^{(o)}h_{t-1})$$  
     :   * __Memory Cell__: 
             The memory cell is the cell that contains the _short-term memory_ collected from each input
     :   $$\begin{align}

@@ -77,12 +77,18 @@
 <hr />
 <hr />
 
-<p><a href="https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html">Important Blog on Attention</a> <br />
-<a href="https://distill.pub/2016/augmented-rnns/">Attention and Augmented RNNs (Distill)</a><br />
-<a href="https://www.tensorflow.org/alpha/tutorials/text/transformer">Transformer Implementation TF G-Colab</a><br />
-<a href="https://skymind.ai/wiki/attention-mechanism-memory-network">A Guide to Attention Mechanisms and Memory Networks (skymind)</a><br />
-<a href="https://jhui.github.io/2017/03/15/Soft-and-hard-attention/">Soft and Hard Attention</a><br />
-<a href="http://www.wildml.com/2016/01/attention-and-memory-in-deep-learning-and-nlp/">Attention (WildML)</a></p>
+<ul>
+  <li><a href="https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html">Important Blog on Attention</a></li>
+  <li><a href="https://distill.pub/2016/augmented-rnns/">Attention and Augmented RNNs (Distill)</a></li>
+  <li><a href="https://www.tensorflow.org/alpha/tutorials/text/transformer">Transformer Implementation TF G-Colab</a></li>
+  <li><a href="https://skymind.ai/wiki/attention-mechanism-memory-network">A Guide to Attention Mechanisms and Memory Networks (skymind)</a></li>
+  <li><a href="https://jhui.github.io/2017/03/15/Soft-and-hard-attention/">Soft and Hard Attention</a></li>
+  <li><a href="http://www.wildml.com/2016/01/attention-and-memory-in-deep-learning-and-nlp/">Attention (WildML)</a></li>
+  <li><a href="https://arxiv.org/pdf/1902.02181.pdf">A Critical Review of Neural Attention Models in Natural Language Processing</a></li>
+  <li><a href="https://www.d2l.ai/chapter_attention-mechanism/index.html">Attention Mechanism (d2l)</a></li>
+  <li><a href="https://towardsdatascience.com/intuitive-understanding-of-attention-mechanism-in-deep-learning-6c9482aecf4f">Intuitive Understanding of Attention Mechanism in Deep Learning (medium + code)</a></li>
+  <li><a href="https://www.reddit.com/r/MachineLearning/comments/bkw2xp/d_what_is_the_rationale_behind_selfattention/">What is the rationale behind self-attention equation and how did they came up with the concept query, key and value? (Reddit!)</a></li>
+</ul>
 
 <h2 id="content1">Introduction</h2>
 
@@ -91,7 +97,8 @@
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Motivation:</strong><br />
  In <strong>Vanilla Seq2Seq models</strong>, the only representation of the input is the <em>fixed-dimensional vector representation <script type="math/tex">(y)</script></em>, that we need to carry through the entire decoding process.</p>
 
-    <p>This presents a <strong>bottleneck</strong> in condensing all of the information of the <em>entire input sequence</em> into just one <em>fixed-length</em> vector representation.</p>
+    <p>This presents a <strong>bottleneck</strong> in condensing all of the information of the <em>entire input sequence</em> into just one <em>fixed-length</em> vector representation.<br />
+ <br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Attention:</strong><br />
@@ -174,9 +181,15 @@
           <li>Solves the scale problem of the dot-product: the scale of the dot product increases as dimensions get larger</li>
         </ul>
         <p>$$a(q,k) = \dfrac{q^Tk}{\sqrt{\vert k \vert}}$$</p>
-        <p><br /></p>
       </li>
     </ul>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Complete (List)</button>
+ <img src="https://cdn.mathpix.com/snip/images/uapdC_biDofPElWdzYkFsWVdtGAOnTM720Bo8I5Q9Vg.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Aggregation Functions</button>
+ <img src="https://cdn.mathpix.com/snip/images/eCbLZeQ926y2I8BGSaDW9NV5_MIQyYy2XKuhT3IwFBY.original.fullsize.png" alt="img" width="100%" hidden="" /><br />
+ <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">What to Attend to?</strong>
     <ul>

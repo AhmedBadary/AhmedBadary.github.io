@@ -26,8 +26,7 @@ prevLink: /work_files/research/dl/cv.html
 [CNNs in CV](/work_files/research/dl/cnnx)  
 [CNNs in NLP](/work_files/research/dl/nlp/cnnsNnlp)  
 [CNNs Architectures](/work_files/research/dl/arcts)  
-
-[Convnet Ch.9 Summary](https://medium.com/inveterate-learner/deep-learning-book-chapter-9-convolutional-networks-45e43bfc718d)  
+[Convnet Ch.9 Summary (blog)](https://medium.com/inveterate-learner/deep-learning-book-chapter-9-convolutional-networks-45e43bfc718d)  
 
 
 
