@@ -1026,8 +1026,6 @@ onclick="showText_withParent_PopHide(event);"}
 ***
 
 
--->
-
 # Data Processing and Analysis
 1. __What are 3 data preprocessing techniques to handle outliers?__{: style="color: red"}  
     1. Winsorizing/Winsorization (cap at threshold).
@@ -1085,8 +1083,6 @@ onclick="showText_withParent_PopHide(event);"}
     1. __Multicollinearity__ occurs when more than two predictor variables (e.g., $$x_1, x_2, \text{ and } x_3$$) are inter-correlated.  
 1. __What is data normalization and why do we need it?__{: style="color: red"}  
 
-
-<!-- 
 
 ***
 
@@ -1258,6 +1254,8 @@ onclick="showText_withParent_PopHide(event);"}
 ***
 
 
+-->
+
 # K-Means
 1. __What is K-Means?__{: style="color: red"}  
     It is a clustering algorithm. It aims to partition $$n$$ observations into $$k$$ clusters in which each observation belongs to the cluster with the nearest mean. It results in a partitioning of the data space into __Voronoi Cells__.   
@@ -1334,6 +1332,8 @@ onclick="showText_withParent_PopHide(event);"}
     1. and the data points follow nonconvex shapes.    
 
  
+
+<!-- 
 
 ***
 

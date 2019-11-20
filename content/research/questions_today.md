@@ -325,8 +325,6 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
--->
-
 ## Data Processing and Analysis
 1. __What are 3 data preprocessing techniques to handle outliers?__{: style="color: red"}  
 1. __Describe the strategies to dimensionality reduction:__{: style="color: red"}  
@@ -340,8 +338,6 @@ onclick="showText_withParent_PopHide(event);"}
 1. __How to deal with missing features? (Imputation?)__{: style="color: red"}  
 1. __Do you suggest that treating a categorical variable as continuous variable would result in a better predictive model?__{: style="color: red"}  
 1. __What are collinearity and multicollinearity?__{: style="color: red"}  
-
-<!-- 
 
 ***
 
@@ -413,6 +409,8 @@ onclick="showText_withParent_PopHide(event);"}
 ***
 
 
+-->
+
 ## K-Means
 1. __What is K-Means?__{: style="color: red"}  
 1. __What is the idea behind K-Means?__{: style="color: red"}  
@@ -433,6 +431,8 @@ onclick="showText_withParent_PopHide(event);"}
     1. __Optimization Objective:__{: style="color: blue"}  
     1. __Derivation:__{: style="color: blue"}  
 1. __When does K-Means fail to give good results?__{: style="color: red"}  
+
+<!-- 
 
 ***
 
