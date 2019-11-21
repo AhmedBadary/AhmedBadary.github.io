@@ -88,20 +88,21 @@
 <ol>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents10">From PCA to Auto-Encoders:</strong> <br />
- High dimensional data can often be represented using a much lower dimensional code.<br />
- This happens when  the data lies near a linear manifold in the high dimensional space.<br />
- Thus, if we can this <em>linear manifold</em>, we can project the data on the manifold and, then, represent the data by its position on the manifold without losing much information because in the directions orthogonal to the manifold there isn’t much variation in the data.</p>
+ - <span style="color: purple"><strong>High dimensional data</strong> can often be <em>represented</em> using a much <strong>lower dimensional code</strong></span>.<br />
+ - This happens when the <span style="color: purple">data lies near a <strong>linear manifold</strong></span> in the high dimensional space.<br />
+ - Thus, if we can <span style="color: purple">find this <em>linear manifold</em></span>, we can <span style="color: purple"><em><strong>project</strong></em> the data on the manifold</span> and, then, <span style="color: purple"><em><strong>represent</strong></em> the data by its <strong>position on the manifold</strong> without losing much information</span> because <em>in the directions orthogonal to the manifold there isn’t much variation in the data</em>.</p>
 
-    <p>Often, <strong>PCA</strong> is used as a method to determine this <em>linear manifold</em> to reduce the dimensionality of the data from <script type="math/tex">N</script>-dimensions to, say, <script type="math/tex">M</script>-dimensions, where <script type="math/tex">% <![CDATA[
+    <p><strong>Finding/Learning the Manifold:</strong><br />
+ Often, <strong>PCA</strong> is used as a method to determine this <em>linear manifold</em> to reduce the dimensionality of the data from <script type="math/tex">N</script>-dimensions to, say, <script type="math/tex">M</script>-dimensions, where <script type="math/tex">% <![CDATA[
 M < N %]]></script>.<br />
- However, what if the manifold that the data is close to, is non-linear?<br />
+ - However, what if the manifold that the data is close to, is <strong>non-linear</strong>?<br />
  Obviously, we need someway to find this non-linear manifold.</p>
 
     <p>Deep-Learning provides us with Deep <strong>AutoEncoders</strong>.<br />
- <strong>Auto-Encoders</strong> allows us to deal with <em>curved manifolds</em> un the input space by using deep layers, where the <em>code</em> is a <em>non-linear function</em> of the input, and the <em>reconstruction</em> of the data from the code is, also, a <em>non-linear function</em> of the code.</p>
+ <strong>Auto-Encoders</strong> allows us to deal with <em>curved manifolds</em> in the input space by using deep layers, where the <span style="color: purple"><strong>code</strong> is a <em>non-linear function</em> of the <strong>input</strong></span>, and the <span style="color: purple"><strong><em>reconstruction</em> of the data</strong> from the code is, also, a <em>non-linear function</em> of the <strong>code</strong></span>.</p>
 
     <p><strong style="color: red">Using Backpropagation to implement PCA (inefficiently):</strong><br />
- <button class="showText" value="show" onclick="showTextPopHide(event);">Procedure</button></p>
+ <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Procedure</button></p>
     <ul hidden="">
       <li>Try to make the output be the same as the input in a network with a central bottleneck.<br />
   <img src="https://cdn.mathpix.com/snip/images/1mzm8wkDbwLtru-N98SJYffFfFJdjiTv1sl2fczwIGM.original.fullsize.png" alt="img" width="30%" /></li>
@@ -111,7 +112,7 @@ M < N %]]></script>.<br />
           <li>This is exactly what PCA does.</li>
         </ul>
       </li>
-      <li>The M hidden units will span the same space as the first $M$ components found by PCA
+      <li>The <script type="math/tex">M</script> hidden units will span the same space as the first <script type="math/tex">M</script> components found by PCA
         <ul>
           <li>Their weight vectors may not be orthogonal.</li>
           <li>They might be skews or rotations of the PCs.</li>
@@ -120,8 +121,8 @@ M < N %]]></script>.<br />
       </li>
     </ul>
 
-    <p>The reason to use backprop to implement PCA is that it allows us to <span style="color: goldenrod">generalize PCA</span>.<br />
- With non-linear layers before and after the code, it should be possible to efficiently represent data that lies on or near a non- linear manifold.<br />
+    <p>- The reason to use backprop to implement PCA is that it allows us to <span style="color: goldenrod">generalize PCA</span>.<br />
+ - With non-linear layers before and after the code, it should be possible to efficiently represent data that lies on or near a non-linear manifold.<br />
  <br /></p>
   </li>
   <li>
@@ -180,10 +181,10 @@ The success of joint training, however, is mostly attributed (depends heavily) o
 
     <p>We choose the <strong>encoder</strong> and <strong>decoder</strong> to be <span style="color: purple">parametric functions</span> (typically <span style="color: purple">neural networks</span>), and to be <span style="color: purple">differentiable</span> with respect to the distance function, so the parameters of the encoding/decoding functions can be optimized to minimize the reconstruction loss, using Stochastic Gradient Descent.</p>
 
-    <p>The simplest form of an autoencoder is a <strong>feedforward neural network</strong> (similar to the multilayer perceptron (MLP)) – having an input layer, an output layer and one or more hidden layers connecting them – but with the output layer having the same number of nodes as the input layer, and with the purpose of reconstructing its own inputs (instead of predicting the target value <script type="math/tex">{\displaystyle Y}</script> given inputs <script type="math/tex">{\displaystyle X}</script>).</p>
+    <p>The simplest form of an Autoencoder is a <strong>feedforward neural network</strong> (similar to the multilayer perceptron (MLP)) – having an input layer, an output layer and one or more hidden layers connecting them – but with the output layer having the same number of nodes as the input layer, and with the purpose of reconstructing its own inputs (instead of predicting the target value <script type="math/tex">{\displaystyle Y}</script> given inputs <script type="math/tex">{\displaystyle X}</script>).</p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Structure and Mathematics:</strong><br />
- The <em>encoder</em> and the <em>decoder</em> in an auto-encoder can be defined as transitions <script type="math/tex">\phi</script> and <script type="math/tex">{\displaystyle \psi ,}</script> such that:
+ The <em>encoder</em> and the <em>decoder</em> in an auto-encoder can be defined as <a href="https://en.wikipedia.org/wiki/Atlas_(topology)#Transition_maps">transitions</a> <script type="math/tex">\phi</script> and <script type="math/tex">{\displaystyle \psi ,}</script> such that:
     <p>$$ {\displaystyle \phi :{\mathcal {X}}\rightarrow {\mathcal {F}}} \\ 
      {\displaystyle \psi :{\mathcal {F}}\rightarrow {\mathcal {X}}} \\ 
      {\displaystyle \phi ,\psi =\arg \min_{\phi ,\psi }\|X-(\psi \circ \phi )X\|^{2}}$$
@@ -219,18 +220,18 @@ p < d %]]></script>.</p>
     </ul>
 
     <blockquote>
-      <p>With appropriate dimensionality and sparsity constraints, autoencoders can learn data projections that are more interesting than PCA or other basic techniques.</p>
+      <p>With appropriate dimensionality and sparsity constraints, Autoencoders can learn data projections that are more interesting than PCA or other basic techniques.</p>
     </blockquote>
 
     <blockquote>
-      <p>For 2D visualization specifically, t-SNE is probably the best algorithm around, but it typically requires relatively low-dimensional data. So a good strategy for visualizing similarity relationships in high-dimensional data is to start by using an autoencoder to compress your data into a low-dimensional space (e.g. 32 dimensional) (by an auto-encoder), then use t-SNE for mapping the compressed data to a 2D plane.</p>
+      <p>For 2D visualization specifically, t-SNE is probably the best algorithm around, but it typically requires relatively low-dimensional data. So a good strategy for visualizing similarity relationships in high-dimensional data is to start by using an Autoencoder to compress your data into a low-dimensional space (e.g. 32 dimensional) (by an auto-encoder), then use t-SNE for mapping the compressed data to a 2D plane.</p>
     </blockquote>
 
     <ul>
-      <li><a href="https://www.youtube.com/watch?v=ARQ6PZh8vgE&amp;list=PLoRl3Ht4JOcdU872GhiYWf6jwrk_SNhz9&amp;index=71">Deep autoencoders for document retrieval (Hinton)</a></li>
+      <li><a href="https://www.youtube.com/watch?v=ARQ6PZh8vgE&amp;list=PLoRl3Ht4JOcdU872GhiYWf6jwrk_SNhz9&amp;index=71">Deep Autoencoders for document retrieval (Hinton)</a></li>
       <li><a href="https://www.youtube.com/watch?v=swjncYpcLsk&amp;list=PLoRl3Ht4JOcdU872GhiYWf6jwrk_SNhz9&amp;index=72">Semantic Hashing (Hinton)</a></li>
       <li><a href="https://www.youtube.com/watch?v=MSYmyJgYOnU&amp;list=PLoRl3Ht4JOcdU872GhiYWf6jwrk_SNhz9&amp;index=73">Learning binary codes for image retrieval (Hinton)</a></li>
-      <li><a href="https://www.youtube.com/watch?v=e_n2hht9Yc8&amp;list=PLoRl3Ht4JOcdU872GhiYWf6jwrk_SNhz9&amp;index=74">Shallow autoencoders for pre-training (Hinton)</a><br />
+      <li><a href="https://www.youtube.com/watch?v=e_n2hht9Yc8&amp;list=PLoRl3Ht4JOcdU872GhiYWf6jwrk_SNhz9&amp;index=74">Shallow Autoencoders for pre-training (Hinton)</a><br />
  <br /></li>
     </ul>
   </li>
@@ -251,9 +252,9 @@ p < d %]]></script>.</p>
  <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Representational Power, Layer Size and Depth:</strong><br />
- the universal approximator theorem guarantees that a feedforward neural network with at least one hidden layer can represent an approximation of any function (within a broad class) to an arbitrary degree of accuracy, provided that it has enough hidden units. This means that an autoencoder with a single hidden layer is able to represent the identity function along the domain of the data arbitrarily well.<br />
+ the universal approximator theorem guarantees that a feedforward neural network with at least one hidden layer can represent an approximation of any function (within a broad class) to an arbitrary degree of accuracy, provided that it has enough hidden units. This means that an Autoencoder with a single hidden layer is able to represent the identity function along the domain of the data arbitrarily well.<br />
  However, <strong>the mapping from input to code is shallow</strong>. This means that we are not able to enforce arbitrary constraints, such as that the code should be sparse.<br />
- A deep autoencoder, with at least one additional hidden layer inside the encoder itself, can approximate any mapping from input to code arbitrarily well, given enough hidden units.<br />
+ A deep Autoencoder, with at least one additional hidden layer inside the encoder itself, can approximate any mapping from input to code arbitrarily well, given enough hidden units.<br />
  <br /></li>
 </ol>
 
@@ -276,15 +277,15 @@ p < d %]]></script>.</p>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Undercomplete Autoencoders:</strong><br />
  An <strong>Undercomplete Autoencoder</strong> is one whose code dimension is less than the input dimension.<br />
- Learning an undercomplete representation forces the autoencoder to capture the most salient features of the training data.<br />
+ Learning an undercomplete representation forces the Autoencoder to capture the most salient features of the training data.<br />
  <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Challenges:</strong>
     <ul>
-      <li>If an autoencoder succeeds in simply learning to set <script type="math/tex">\psi(\phi (x)) = x</script> everywhere, then it is not especially useful.<br />
-  Instead, autoencoders are designed to be unable to learn to copy perfectly. Usually they are restricted in ways that allow them to copy only approximately, and to copy only input that resembles the training data.</li>
-      <li>In <a href="#bodyContents21"><strong>Undercomplete Autoencoders</strong></a> If the encoder and decoder are allowed too much capacity, the autoencoder can learn to perform the copying task without extracting useful information about the distribution of the data.<br />
-  Theoretically, one could imagine that an autoencoder with a one-dimensional code but a very powerful nonlinear encoder could learn to represent each training example <script type="math/tex">x^{(i)}</script> with the code <script type="math/tex">i</script>. This specific scenario does not occur in practice, but it illustrates clearly that an autoencoder trained to perform the copying task can fail to learn anything useful about the dataset if the capacity of the autoencoder is allowed to become too great.</li>
+      <li>If an Autoencoder succeeds in simply learning to set <script type="math/tex">\psi(\phi (x)) = x</script> everywhere, then it is not especially useful.<br />
+  Instead, Autoencoders are designed to be <span style="color: purple">unable to learn to copy perfectly</span>. Usually they are restricted in ways that allow them to copy only <strong>approximately</strong>, and to copy only <strong>input that resembles the training data</strong>.</li>
+      <li>In <a href="#bodyContents21"><strong>Undercomplete Autoencoders</strong></a> If the <span style="color: purple">Encoder and Decoder are allowed <strong>too much capacity</strong></span>, the Autoencoder can learn to <span style="color: purple">perform the copying task <strong>without extracting useful information about the distribution of the data</strong></span>.<br />
+  Theoretically, one could imagine that an Autoencoder with a one-dimensional code but a very powerful nonlinear encoder could learn to represent each training example <script type="math/tex">x^{(i)}</script> with the code <script type="math/tex">i</script>. This specific scenario does not occur in practice, but it illustrates clearly that an Autoencoder trained to perform the copying task can fail to learn anything useful about the dataset if the capacity of the Autoencoder is allowed to become too great.</li>
       <li>A similar problem occurs in <strong>complete AEs</strong></li>
       <li>As well as in the <strong>overcomplete</strong> case, in which the hidden code has dimension greater than the input.<br />
   In complete and overcomplete cases, even a linear encoder and linear decoder can learn to copy the input to the output without learning anything useful about the data distribution.<br />
@@ -295,20 +296,20 @@ p < d %]]></script>.</p>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Regularized AutoEncoders:</strong><br />
  To address the challenges in learning useful representations; we introduce <strong>Regularized Autoencoders</strong>.</p>
 
-    <p><strong>Regularized Autoencoders</strong> allows us to train any architecture of autoencoder successfully, choosing the code dimension and the capacity of the encoder and decoder based on the complexity of distribution to be modeled.</p>
+    <p><strong>Regularized Autoencoders</strong> allow us to train any architecture of Autoencoder successfully, choosing the code dimension and the capacity of the encoder and decoder based on the complexity of distribution to be modeled.</p>
 
-    <p>Rather than limiting the model capacity by keeping the encoder and decoder shallow and the code size small, regularized autoencoders use a loss function that encourages the model to have other properties besides the ability to copy its input to its output:</p>
+    <p>Rather than limiting the model capacity by keeping the encoder and decoder shallow and the code size small, regularized Autoencoders use a loss function that encourages the model to have other properties besides the ability to copy its input to its output:</p>
     <ul>
       <li>Sparsity of the representation</li>
       <li>Smallness of the derivative of the representation</li>
       <li>Robustness to noise or to missing inputs.</li>
     </ul>
 
-    <p>A regularized autoencoder can be <strong>nonlinear</strong> and <strong>overcomplete</strong> but still learn something useful about the data distribution even if the model capacity is great enough to learn a trivial identity function.<br />
+    <p>A regularized Autoencoder can be <strong>nonlinear</strong> and <strong>overcomplete</strong> but still learn something useful about the data distribution even if the model capacity is great enough to learn a trivial identity function.<br />
  <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Generative Models as (unregularized) Autoencoders:</strong><br />
- In addition to the traditional AEs described here, nearly any <strong>generative model</strong> with <strong>latent variables</strong> and equipped with an <strong>inference procedure</strong> (for computing latent representations given input) may be viewed as a particular form of autoencoder; most notably the descendants of the <strong>Helmholtz machine</strong> <em>(Hinton et al., 1995b)</em>, such as:
+ In addition to the traditional AEs described here, nearly any <strong>generative model</strong> with <strong>latent variables</strong> and equipped with an <strong>inference procedure</strong> (for computing latent representations given input) may be viewed as a particular form of Autoencoder; most notably the descendants of the <strong>Helmholtz machine</strong> <em>(Hinton et al., 1995b)</em>, such as:
     <ul>
       <li>Variational Autoencoders</li>
       <li>Generative Stochastic Networks</li>
@@ -329,7 +330,7 @@ p < d %]]></script>.</p>
 
 <ol>
   <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Sparse Autoencoders:</strong><br />
- <strong>Sparse Autoencoders</strong> are simply autoencoders whose training criterion involves a sparsity penalty <script type="math/tex">\Omega(\boldsymbol{h})</script> on the code layer <script type="math/tex">\boldsymbol{h},</script> in addition to the reconstruction error:
+ <strong>Sparse Autoencoders</strong> are simply Autoencoders whose training criterion involves a sparsity penalty <script type="math/tex">\Omega(\boldsymbol{h})</script> on the code layer <script type="math/tex">\boldsymbol{h},</script> in addition to the reconstruction error:
     <p>$${\displaystyle {\mathcal {L}}(\mathbf {x} ,\psi ( \phi (\mathbf {x} ) ) ) + \Omega(\boldsymbol{h})}$$</p>
     <p>where typically we have <script type="math/tex">\boldsymbol{h}=\phi(\boldsymbol{x})</script>, the encoder output.</p>
 
@@ -338,17 +339,17 @@ p < d %]]></script>.</p>
 
     <p><strong style="color: red">Bayesian Interpretation of Regularization:</strong><br />
  Unlike other regularizers such as weight decay, there is not a straightforward Bayesian interpretation to this regularizer.<br />
- Regularized autoencoders defy such an interpretation because <strong>the regularizer depends on the data</strong> and is therefore by definition not a prior in the formal sense of the word.<br />
+ Regularized Autoencoders defy such an interpretation because <strong>the regularizer depends on the data</strong> and is therefore by definition not a prior in the formal sense of the word.<br />
  We can still think of these regularization terms as <em>implicitly expressing a preference over functions</em>.</p>
 
     <p><strong style="color: red">Latent Variable Interpretation:</strong><br />
- Rather than thinking of the sparsity penalty as a regularizer for the copying task, we can think of the entire sparse autoencoder framework as <span style="color: goldenrod">approximating maximum likelihood training of a generative model that has latent variables</span>.</p>
+ Rather than thinking of the sparsity penalty as a regularizer for the copying task, we can think of the entire sparse Autoencoder framework as <span style="color: goldenrod">approximating maximum likelihood training of a generative model that has latent variables</span>.</p>
 
     <p><strong>Correspondence between Sparsity and a Directed Probabilistic Model:</strong><br />
  Suppose we have a model with visible variables <script type="math/tex">\boldsymbol{x}</script> and latent variables <script type="math/tex">\boldsymbol{h},</script> with an explicit joint distribution <script type="math/tex">p_{\text {model }}(\boldsymbol{x}, \boldsymbol{h})=p_{\text {model }}(\boldsymbol{h}) p_{\text {model }}(\boldsymbol{x} \vert \boldsymbol{h}) .</script> We refer to <script type="math/tex">p_{\text {model }}(\boldsymbol{h})</script> as the model’s prior distribution over the latent variables, representing the model’s beliefs prior to seeing <script type="math/tex">\boldsymbol{x}</script><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>.<br />
  The log-likelihood can be decomposed as:</p>
     <p>$$\log p_{\text {model }}(\boldsymbol{x})=\log \sum_{\boldsymbol{h}} p_{\text {model }}(\boldsymbol{h}, \boldsymbol{x})$$</p>
-    <p>We can think of the autoencoder as approximating this sum with a point estimate for just one highly likely value for <script type="math/tex">\boldsymbol{h}</script>.<br />
+    <p>We can think of the Autoencoder as approximating this sum with a point estimate for just one highly likely value for <script type="math/tex">\boldsymbol{h}</script>.<br />
  This is similar to the <strong>sparse coding generative model</strong> (section 13.4), but with <script type="math/tex">\boldsymbol{h}</script> being the <em>output of the parametric encoder</em> rather than the result of an optimization that infers the most likely <script type="math/tex">\boldsymbol{h}</script>. From this point of view, with this chosen <script type="math/tex">\boldsymbol{h}</script>, we are maximizing:</p>
     <p>$$\log p_{\text {model }}(\boldsymbol{h}, \boldsymbol{x})=\log p_{\text {model }}(\boldsymbol{h})+\log p_{\text {model }}(\boldsymbol{x} \vert \boldsymbol{h})$$</p>
     <p>The <script type="math/tex">\log p_{\text {model }}(\boldsymbol{h})</script> term can be sparsity-inducing. For example, the <strong>Laplace prior</strong>,</p>
@@ -358,16 +359,16 @@ p < d %]]></script>.</p>
     <p>$$\begin{aligned} \Omega(\boldsymbol{h}) &amp;=\lambda \sum_{i}\left|h_{i}\right| \\-\log p_{\text {model }}(\boldsymbol{h}) &amp;=\sum_{i}\left(\lambda\left|h_{i}\right|-\log \frac{\lambda}{2}\right)=\Omega(\boldsymbol{h})+\text { const } \end{aligned}$$</p>
     <p>where the constant term depends only on <script type="math/tex">\lambda</script> and not <script type="math/tex">\boldsymbol{h} .</script> We typically treat <script type="math/tex">\lambda</script> as a hyperparameter and discard the constant term since it does not affect the parameter learning.<br />
  Other priors such as the <strong>Student-t prior</strong> can also induce sparsity.<br />
- From this point of view of <strong>sparsity</strong> as <span style="color: goldenrod">resulting from the effect of <script type="math/tex">p_{\text {model}}(\boldsymbol{h})</script> on approximate maximum likelihood learning</span>, the sparsity penalty is <strong>not a regularization term at all</strong>. It is just a <span style="color: goldenrod">consequence of the model’s distribution over its latent variables</span>. This view provides a <strong>different motivation for training an autoencoder</strong>: <span style="color: goldenrod">it is a way of approximately training a generative model</span>. It also provides a different <strong>reason for why the features learned by the autoencoder are useful</strong>: <span style="color: goldenrod">they describe the latent variables that explain the input</span>.</p>
+ From this point of view of <strong>sparsity</strong> as <span style="color: goldenrod">resulting from the effect of <script type="math/tex">p_{\text {model}}(\boldsymbol{h})</script> on approximate maximum likelihood learning</span>, the sparsity penalty is <strong>not a regularization term at all</strong>. It is just a <span style="color: goldenrod">consequence of the model’s distribution over its latent variables</span>. This view provides a <strong>different motivation for training an Autoencoder</strong>: <span style="color: goldenrod">it is a way of approximately training a generative model</span>. It also provides a different <strong>reason for why the features learned by the Autoencoder are useful</strong>: <span style="color: goldenrod">they describe the latent variables that explain the input</span>.</p>
 
     <p><strong>Correspondence between Sparsity and an Undirected Probabilistic Model:</strong><br />
- Early work on sparse autoencoders <em>(Ranzato et al., 2007a, 2008)</em> explored various forms of sparsity and proposed a connection between the sparsity penalty and the log <script type="math/tex">Z</script> term that arises when applying maximum likelihood to an undirected probabilistic model <script type="math/tex">p(\boldsymbol{x})=\frac{1}{Z} \tilde{p}(\boldsymbol{x})</script>.<br />
- The idea is that <strong>minimizing <script type="math/tex">\log Z</script> prevents a probabilistic model from having high probability everywhere</strong>, and <strong>imposing sparsity on an autoencoder prevents the autoencoder from having low reconstruction error everywhere</strong>. In this case, the connection is on the <em>level of an intuitive understanding of a general mechanism</em> rather than a <em>mathematical correspondence</em>.</p>
+ Early work on sparse Autoencoders <em>(Ranzato et al., 2007a, 2008)</em> explored various forms of sparsity and proposed a connection between the sparsity penalty and the log <script type="math/tex">Z</script> term that arises when applying maximum likelihood to an undirected probabilistic model <script type="math/tex">p(\boldsymbol{x})=\frac{1}{Z} \tilde{p}(\boldsymbol{x})</script>.<br />
+ The idea is that <strong>minimizing <script type="math/tex">\log Z</script> prevents a probabilistic model from having high probability everywhere</strong>, and <strong>imposing sparsity on an Autoencoder prevents the Autoencoder from having low reconstruction error everywhere</strong>. In this case, the connection is on the <em>level of an intuitive understanding of a general mechanism</em> rather than a <em>mathematical correspondence</em>.</p>
 
-    <p>The interpretation of the sparsity penalty as corresponding to <script type="math/tex">\log p_{\text {model }}(\boldsymbol{h})</script> in a <script type="math/tex">\left.\text { directed model } p_{\text {model }}(\boldsymbol{h}) p_{\text {model }} \boldsymbol{x} \vert \boldsymbol{h}\right)</script> is more mathematically straightforward.</p>
+    <p>The interpretation of the sparsity penalty as corresponding to <script type="math/tex">\log p_{\text {model }}(\boldsymbol{h})</script> in a directed model <script type="math/tex">p_{\text {model}}(\boldsymbol{h}) p_{\text {model}} \left(\boldsymbol{x} \vert \boldsymbol{h}\right)</script> is more mathematically straightforward.</p>
 
     <p><strong>Achieving actual zeros in <script type="math/tex">\boldsymbol{h}</script>:</strong><br />
- One way to achieve actual zeros in <script type="math/tex">\boldsymbol{h}</script> for sparse (and denoising) autoencoders was introduced in Glorot et al. (2011b). The idea is to use rectified linear units to produce the code layer. With a prior that actually pushes the representations to zero (like the absolute value penalty), one can thus indirectly control the average number of zeros in the representation.</p>
+ One way to achieve actual zeros in <script type="math/tex">\boldsymbol{h}</script> for sparse (and denoising) Autoencoders was introduced in Glorot et al. (2011b). The idea is to use rectified linear units to produce the code layer. With a prior that actually pushes the representations to zero (like the absolute value penalty), one can thus indirectly control the average number of zeros in the representation.</p>
 
     <p id="lst-p"><strong style="color: red">Notes:</strong></p>
     <ul>
@@ -377,38 +378,37 @@ p < d %]]></script>.</p>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Denoising Autoencoders:</strong><br />
- <strong>Denoising Autoencoders (DAEs)</strong> is an autoencoder that receives a corrupted data point as input and is trained to predict the original, uncorrupted data point as its output.<br />
+ <strong>Denoising Autoencoders (DAEs)</strong> is an Autoencoder that receives a corrupted data point as input and is trained to predict the original, uncorrupted data point as its output.<br />
  It minimizes:
     <p>$$L(\boldsymbol{x}, g(f(\tilde{\boldsymbol{x}})))$$</p>
     <p>where <script type="math/tex">\tilde{\boldsymbol{x}}</script> is a copy of <script type="math/tex">\boldsymbol{x}</script> that has been corrupted by some form of noise.</p>
 
-    <p>Denoising autoencoders must therefore learn to <strong>undo this corruption</strong> rather than simply copying their input.<br />
- Denoising training forces <script type="math/tex">\psi</script> and <script type="math/tex">\phi</script> to implicitly learn the structure of <script type="math/tex">p_{\text {data}}(\boldsymbol{x}),</script> as shown by <em>Alain and Bengio (2013)</em> and <em>Bengio et al. (2013c)</em>.</p>
-    <ul>
-      <li>Provide yet another example of how useful properties can emerge as a byproduct of minimizing reconstruction error.</li>
-      <li>Also an example of, how overcomplete, high-capacity models may be used as autoencoders so long as care is taken to prevent them from learning the identity function.</li>
-    </ul>
+    <p>Denoising Autoencoders must therefore learn to <strong>undo this corruption</strong> rather than simply copying their input.<br />
+ Denoising training forces <script type="math/tex">\psi</script> and <script type="math/tex">\phi</script> to implicitly learn the structure of <script type="math/tex">p_{\text {data}}(\boldsymbol{x}),</script> as shown by <em>Alain and Bengio (2013)</em> and <em>Bengio et al. (2013c)</em>.<br />
+ - Provide yet another example of how <span style="color: purple">useful properties can emerge as a byproduct of <strong>minimizing reconstruction error</strong></span>.<br />
+ - Also an example of, how <span style="color: purple"><strong>overcomplete</strong>, <strong>high-capacity</strong> models may be used as Autoencoders so long as care is taken to prevent them from learning the identity function</span>.</p>
 
     <p id="lst-p">We introduce a <strong>corruption process</strong> <script type="math/tex">C(\tilde{\mathbf{x}} \vert \mathbf{x})</script> which represents a <strong>conditional distribution over corrupted samples <script type="math/tex">\tilde{\boldsymbol{x}}</script></strong>, given a data sample <script type="math/tex">\boldsymbol{x}</script>.<br />
- The autoencoder then learns a <strong>reconstruction distribution</strong> <script type="math/tex">p_{\text {reconstruct }}(\mathrm{x} \vert \tilde{\mathrm{x}})</script> estimated from training pairs <script type="math/tex">(\boldsymbol{x}, \tilde{\boldsymbol{x}}),</script> as follows:</p>
+ The Autoencoder then learns a <strong>reconstruction distribution</strong> <script type="math/tex">p_{\text {reconstruct}}(\mathrm{x} \vert \tilde{\mathrm{x}})</script> estimated from training pairs <script type="math/tex">(\boldsymbol{x}, \tilde{\boldsymbol{x}}),</script> as follows:</p>
     <ul>
       <li>Sample a training example <script type="math/tex">\boldsymbol{x}</script> from the training data.</li>
       <li>Sample a corrupted version <script type="math/tex">\tilde{\boldsymbol{x}}</script> from <script type="math/tex">C(\tilde{\mathbf{x}} \vert \mathbf{x}=\boldsymbol{x})</script></li>
-      <li>Use <script type="math/tex">(\boldsymbol{x}, \tilde{\boldsymbol{x}})</script> as a training example for estimating the autoencoder reconstruction distribution <script type="math/tex">p_{\text {reconstruct }}(\boldsymbol{x} \vert \tilde{\boldsymbol{x}})=p_{\text {decoder }}(\boldsymbol{x} \vert \boldsymbol{h})</script> with <script type="math/tex">\boldsymbol{h}</script> the output of encoder <script type="math/tex">f(\tilde{\boldsymbol{x}})</script> and <script type="math/tex">p_{\text {decoder}}</script> typically defined by a decoder <script type="math/tex">g(\boldsymbol{h})</script>.</li>
+      <li>Use <script type="math/tex">(\boldsymbol{x}, \tilde{\boldsymbol{x}})</script> as a training example for estimating the Autoencoder reconstruction distribution <script type="math/tex">p_{\text {reconstruct}}(\boldsymbol{x} \vert \tilde{\boldsymbol{x}})=p_{\text {decoder}}(\boldsymbol{x} \vert \boldsymbol{h})</script> with <script type="math/tex">\boldsymbol{h}</script> the output of encoder <script type="math/tex">f(\tilde{\boldsymbol{x}})</script> and <script type="math/tex">p_{\text {decoder}}</script> typically defined by a decoder <script type="math/tex">g(\boldsymbol{h})</script>.</li>
     </ul>
 
     <p><strong>Learning:</strong><br />
- Typically we can simply perform gradient-based approximate minimization (such as minibatch gradient descent) on the negative log-likelihood <script type="math/tex">-\log p_{\text {decoder }}(\boldsymbol{x} \vert \boldsymbol{h})</script> So long as the encoder is deterministic, the denoising autoencoder is a feedforward network and may be trained with exactly the same techniques as any other FFN.<br />
+ Typically we can simply perform gradient-based approximate minimization (such as minibatch gradient descent) on the negative log-likelihood <script type="math/tex">-\log p_{\text {decoder}}(\boldsymbol{x} \vert \boldsymbol{h})</script>.<br />
+ So long as the encoder is deterministic, the denoising Autoencoder is a feedforward network and may be trained with exactly the same techniques as any other FFN.<br />
  We can therefore view the DAE as <strong>performing stochastic gradient descent on the following expectation</strong>:</p>
-    <p>$$-\mathbb{E}_{\mathbf{x} \sim \hat{p}_{\text {data }}(\mathbf{x})} \mathbb{E}_{\tilde{\mathbf{x}} \sim C(\tilde{\mathbf{x}} \vert \boldsymbol{x})} \log p_{\text {decoder }}(\boldsymbol{x} \vert \boldsymbol{h}=f(\tilde{\boldsymbol{x}}))$$</p>
+    <p>$$-\mathbb{E}_{\mathbf{x} \sim \hat{p}_{\text {data }}(\mathbf{x})} \mathbb{E}_{\tilde{\mathbf{x}} \sim C(\tilde{\mathbf{x}} \vert \boldsymbol{x})} \log p_{\text {decoder}}(\boldsymbol{x} \vert \boldsymbol{h}=f(\tilde{\boldsymbol{x}}))$$</p>
     <p>where <script type="math/tex">\hat{p}_ {\text {data}}(\mathrm{x})</script> is the training distribution.</p>
 
     <p><strong style="color: red" id="bodyContents32sm">Score Matching - Estimating the Score:</strong><br />
  <strong>Score Matching</strong> <em>(Hyvärinen, 2005)</em> is an alternative to maximum likelihood. It provides a <strong>consistent estimator of probability distributions</strong> based on <em>encouraging the model to have the same score as the data distribution at every training point <script type="math/tex">\boldsymbol{x}</script></em>. In this context, the score is a particular <strong>gradient field</strong></p>
     <p>$$\nabla_{\boldsymbol{x}} \log p(\boldsymbol{x})$$</p>
-    <p>For autoencoders, it is sufficient to understand that <span style="color: goldenrod">learning the gradient field of <script type="math/tex">\log p_{\text {data}}</script> is one way to learn the structure of <script type="math/tex">p_{\text {data itself}}</script></span>.</p>
+    <p>For Autoencoders, it is sufficient to understand that <span style="color: goldenrod">learning the gradient field of <script type="math/tex">\log p_{\text {data}}</script> is one way to learn the structure of <script type="math/tex">p_{\text {data itself}}</script></span>.</p>
 
-    <p>A very important property of DAEs is that <span style="color: goldenrod">their training criterion (with <script type="math/tex">\text { conditionally Gaussian } p(\boldsymbol{x} \vert \boldsymbol{h}))</script> makes the autoencoder learn a <strong>vector field</strong> <script type="math/tex">(f(\boldsymbol{x}))-\boldsymbol{x}</script>) that estimates the <strong>score of the data distribution</strong></span>.<br />
+    <p>A very important property of DAEs is that <span style="color: goldenrod">their training criterion (with <script type="math/tex">\text { conditionally Gaussian } p(\boldsymbol{x} \vert \boldsymbol{h}))</script> makes the Autoencoder learn a <strong>vector field</strong> <script type="math/tex">(f(\boldsymbol{x}))-\boldsymbol{x}</script>) that estimates the <strong>score of the data distribution</strong></span>.<br />
  <button class="showText" value="show" onclick="showTextPopHide(event);">Vector Field Learning and the Score of <script type="math/tex">p_{\text{data}}</script></button>
  <img src="https://cdn.mathpix.com/snip/images/QSRS3G3sT_oO--ZqNJMU8Oub6_etW0n4gHg-0EPSRd8.original.fullsize.png" alt="img" width="100%" hidden="" /> <br />
  <strong>Continuous Valued <script type="math/tex">\boldsymbol{x}</script>:</strong><br />
@@ -421,14 +421,14 @@ p < d %]]></script>.</p>
  <button class="showText" value="show" onclick="showTextPopHide(event);">Illustration for continuous <script type="math/tex">\boldsymbol{x}</script></button>
  <img src="https://cdn.mathpix.com/snip/images/nboAnloEXDY7mMvx9vXkkm5Zt-jf46fRNPieG_mAh78.original.fullsize.png" alt="img" width="100%" hidden="" /> <br />
  <strong>Guarantees:</strong><br />
- In general, there is no guarantee that the reconstruction <script type="math/tex">g(f(\boldsymbol{x}))</script> minus the input <script type="math/tex">\boldsymbol{x}</script> corresponds to the gradient of any function, let alone to the score. That is why the early results (Vincent, 2011) are specialized to particular parametrizations where <script type="math/tex">g(f(\boldsymbol{x}))-\boldsymbol{x}</script> may be obtained by taking the derivative of another function. Kamyshanska and Memisevic <script type="math/tex">(2015)</script> generalized the results of Vincent <script type="math/tex">(2011)</script> by identifying a family of shallow autoencoders such that <script type="math/tex">g(f(\boldsymbol{x}))-\boldsymbol{x}</script> corresponds to a score for all members of the family.</p>
+ In general, there is no guarantee that the reconstruction <script type="math/tex">g(f(\boldsymbol{x}))</script> minus the input <script type="math/tex">\boldsymbol{x}</script> corresponds to the gradient of any function, let alone to the score. That is why the early results (Vincent, 2011) are specialized to particular parametrizations where <script type="math/tex">g(f(\boldsymbol{x}))-\boldsymbol{x}</script> may be obtained by taking the derivative of another function. Kamyshanska and Memisevic <script type="math/tex">(2015)</script> generalized the results of Vincent <script type="math/tex">(2011)</script> by identifying a family of shallow Autoencoders such that <script type="math/tex">g(f(\boldsymbol{x}))-\boldsymbol{x}</script> corresponds to a score for all members of the family.</p>
 
     <p><strong style="color: red">DAEs as representing Probability Distributions and Variational AEs:</strong><br />
- So far we have described only how the DAE learns to represent a probability distribution. More generally, one may want to use the autoencoder as a generative model and draw samples from this distribution. This is knows as the <strong>Variational Autoencoder</strong>.</p>
+ So far we have described only how the DAE learns to represent a probability distribution. More generally, one may want to use the Autoencoder as a generative model and draw samples from this distribution. This is knows as the <strong>Variational Autoencoder</strong>.</p>
 
     <p><strong style="color: red">Denoising AutoEncoders and RBMs:</strong><br />
- Denoising training of a specific kind of autoencoder (sigmoidal hidden units, linear reconstruction units) using Gaussian noise and mean squared error as the reconstruction cost is equivalent (Vincent, 2011) to training a specific kind of undirected probabilistic model called an RBM with Gaussian visible units. This kind of model will be described in detail in section 20.5.1; for the present discussion it suffices to know that it is a model that provides an explicit <script type="math/tex">p_{\text {model }}(\boldsymbol{x} ; \boldsymbol{\theta})</script>. When the RBM is trained using <strong>denoising score matching</strong> <em>(Kingma and LeCun, 2010)</em>, its learning algorithm is equivalent to denoising training in the corresponding autoencoder. With a fixed noise level, regularized score matching is not a consistent estimator; it instead recovers a blurred version of the distribution. However, if the noise level is chosen to approach <script type="math/tex">0</script> when the number of examples approaches infinity, then consistency is recovered. Denoising score matching is discussed in more detail in section 18.5.<br />
- Other connections between autoencoders and RBMs exist. Score matching applied to RBMs yields a cost function that is identical to reconstruction error combined with a regularization term similar to the contractive penalty of the CAE (Swersky et al., 2011). Bengio and Delalleau (2009) showed that an autoencoder gradient provides an approximation to contrastive divergence training of RBMs.</p>
+ Denoising training of a specific kind of Autoencoder (sigmoidal hidden units, linear reconstruction units) using Gaussian noise and mean squared error as the reconstruction cost is equivalent (Vincent, 2011) to training a specific kind of undirected probabilistic model called an RBM with Gaussian visible units. This kind of model will be described in detail in section 20.5.1; for the present discussion it suffices to know that it is a model that provides an explicit <script type="math/tex">p_{\text {model }}(\boldsymbol{x} ; \boldsymbol{\theta})</script>. When the RBM is trained using <strong>denoising score matching</strong> <em>(Kingma and LeCun, 2010)</em>, its learning algorithm is equivalent to denoising training in the corresponding Autoencoder. With a fixed noise level, regularized score matching is not a consistent estimator; it instead recovers a blurred version of the distribution. However, if the noise level is chosen to approach <script type="math/tex">0</script> when the number of examples approaches infinity, then consistency is recovered. Denoising score matching is discussed in more detail in section 18.5.<br />
+ Other connections between Autoencoders and RBMs exist. Score matching applied to RBMs yields a cost function that is identical to reconstruction error combined with a regularization term similar to the contractive penalty of the CAE (Swersky et al., 2011). Bengio and Delalleau (2009) showed that an Autoencoder gradient provides an approximation to contrastive divergence training of RBMs.</p>
 
     <p><strong style="color: red">Historical Perspective:</strong><br />
  <button class="showText" value="show" onclick="showTextPopHide(event);">Discussion</button>
@@ -436,13 +436,13 @@ p < d %]]></script>.</p>
  <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Regularizing by Penalizing Derivatives:</strong><br />
- Another strategy for regularizing an autoencoder is to use a penalty <script type="math/tex">\Omega</script> as in sparse autoencoders,
+ Another strategy for regularizing an Autoencoder is to use a penalty <script type="math/tex">\Omega</script> as in sparse Autoencoders,
     <p>$$L(\boldsymbol{x}, g(f(\boldsymbol{x})))+\Omega(\boldsymbol{h}, \boldsymbol{x})$$</p>
     <p>but with a different form of <script type="math/tex">\Omega</script>:</p>
     <p>$$\Omega(\boldsymbol{h}, \boldsymbol{x})=\lambda \sum_{i}\left\|\nabla_{\boldsymbol{x}} h_{i}\right\|^{2}$$</p>
 
-    <p>This forces the model to learn a function that does not change much when <script type="math/tex">\boldsymbol{x}</script> changes slightly. Because this penalty is applied only at training examples, it forces the autoencoder to learn features that capture information about the training distribution.<br />
- An autoencoder regularized in this way is called a <a href="#bodyContents34"><strong>contractive autoencoder (CAE)</strong></a>. This approach has theoretical connections to denoising autoencoders, manifold learning and probabilistic modeling.<br />
+    <p>This forces the model to learn a function that does not change much when <script type="math/tex">\boldsymbol{x}</script> changes slightly. Because this penalty is applied only at training examples, it forces the Autoencoder to learn features that capture information about the training distribution.<br />
+ An Autoencoder regularized in this way is called a <a href="#bodyContents34"><strong>contractive Autoencoder (CAE)</strong></a>. This approach has theoretical connections to denoising Autoencoders, manifold learning and probabilistic modeling.<br />
  <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Contractive Autoencoders:</strong><br />
@@ -451,7 +451,7 @@ p < d %]]></script>.</p>
     <p>The <strong>penalty</strong> <script type="math/tex">\Omega(\boldsymbol{h})</script> is the <em><strong>squared Frobenius norm</strong></em>  (sum of squared elements) of <strong>the Jacobian matrix</strong> of partial derivatives associated with the encoder function.</p>
 
     <p><strong style="color: red">Connection to Denoising Autoencoders:</strong><br />
- There is a connection between the denoising autoencoder and the contractive autoencoder: Alain and Bengio <em>(2013)</em> showed that in the limit of small Gaussian input noise, the denoising reconstruction error is equivalent to a contractive penalty on the reconstruction function that maps <script type="math/tex">\boldsymbol{x}</script> to <script type="math/tex">\boldsymbol{r}=\psi(\phi(\boldsymbol{x}))</script>.<br />
+ There is a connection between the denoising Autoencoder and the contractive Autoencoder: Alain and Bengio <em>(2013)</em> showed that in the limit of small Gaussian input noise, the denoising reconstruction error is equivalent to a contractive penalty on the reconstruction function that maps <script type="math/tex">\boldsymbol{x}</script> to <script type="math/tex">\boldsymbol{r}=\psi(\phi(\boldsymbol{x}))</script>.<br />
  In other words:<br />
  - Denoising Autoencoders: make the reconstruction function resist small but finite-sized perturbations of the input<br />
  - Contractive Autoencoders: make the feature extraction function resist infinitesimal perturbations of the input.<br />
@@ -469,9 +469,9 @@ p < d %]]></script>.</p>
  We can think of the CAE as <em>penalizing the Frobenius norm of the local linear approximation of <script type="math/tex">\phi(x)</script> at every training point <script type="math/tex">x</script></em> in order <em>to encourage each of these local linear operator to become a <strong>contraction</strong></em>.</p>
 
     <p><strong style="color: red">Manifold Learning:</strong><br />
- Regularized autoencoders learn manifolds by balancing two opposing forces.<br />
+ Regularized Autoencoders learn manifolds by balancing two opposing forces.<br />
  In the case of the CAE, these two forces are reconstruction error and the contractive penalty <script type="math/tex">\Omega(\boldsymbol{h}) .</script> Reconstruction error alone would encourage the CAE to learn an identity function. The contractive penalty alone would encourage the CAE to learn features that are constant with respect to <script type="math/tex">\boldsymbol{x}</script>.<br />
- The compromise between these two forces yields an autoencoder whose derivatives <script type="math/tex">\frac{\partial f(\boldsymbol{x})}{\partial \boldsymbol{x}}</script> are mostly tiny. Only a small number of hidden units, corresponding to a small number of directions in the input, may have significant derivatives.</p>
+ The compromise between these two forces yields an Autoencoder whose derivatives <script type="math/tex">\frac{\partial f(\boldsymbol{x})}{\partial \boldsymbol{x}}</script> are mostly tiny. Only a small number of hidden units, corresponding to a small number of directions in the input, may have significant derivatives.</p>
 
     <p id="lst-p">The <strong>goal</strong> of the CAE is to <em>learn the manifold structure of the data</em>.<br />
  Directions <script type="math/tex">x</script> with large <script type="math/tex">J x</script> rapidly change <script type="math/tex">h,</script> so these are likely to be directions which approximate the tangent planes of the manifold.<br />
@@ -482,7 +482,7 @@ p < d %]]></script>.</p>
     </ol>
 
     <ul>
-      <li>The directions corresponding to the largest singular values are interpreted as the tangent directions that the contractive autoencoder has learned.</li>
+      <li>The directions corresponding to the largest singular values are interpreted as the tangent directions that the contractive Autoencoder has learned.</li>
       <li>Visualizations of the experimentally obtained singular vectors do seem to correspond to meaningful transformations of the input image.<br />
   Since, Ideally, these tangent directions should correspond to real variations in the data.<br />
   For example, a CAE applied to images should learn tangent vectors that show how the image changes as objects in the image gradually change pose.<br />
@@ -491,12 +491,12 @@ p < d %]]></script>.</p>
     </ul>
 
     <p><strong style="color: red">Issues with Contractive Penalties:</strong><br />
- Although it is cheap to compute the CAE regularization criterion, in the case of a single hidden layer autoencoder, it becomes much <em>more expensive</em> in the case of <em>deeper</em> autoencoders.<br />
+ Although it is cheap to compute the CAE regularization criterion, in the case of a single hidden layer Autoencoder, it becomes much <em>more expensive</em> in the case of <em>deeper</em> Autoencoders.<br />
  The strategy followed by <em>Rifai et al. (2011a)</em> is to:<br />
- - Separately train a series of single-layer autoencoders, each trained to reconstruct the previous autoencoder’s hidden layer.<br />
- - The composition of these autoencoders then forms a deep autoencoder.</p>
+ - Separately train a series of single-layer Autoencoders, each trained to reconstruct the previous Autoencoder’s hidden layer.<br />
+ - The composition of these Autoencoders then forms a deep Autoencoder.</p>
     <ul>
-      <li>Because each layer was separately trained to be locally contractive, the deep autoencoder is contractive as well.</li>
+      <li>Because each layer was separately trained to be locally contractive, the deep Autoencoder is contractive as well.</li>
       <li>The result is not the same as what would be obtained by <em>jointly training</em> the entire architecture with a penalty on the Jacobian of the deep model, but it captures many of the desirable qualitative characteristics.</li>
     </ul>
 

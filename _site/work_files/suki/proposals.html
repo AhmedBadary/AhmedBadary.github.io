@@ -67,133 +67,160 @@
   <h1 id="table-of-contents">Table of Contents</h1>
 
   <ul class="TOC1">
-    <li><a href="#content1">Neural Architectures</a></li>
+    <li><a href="#content1">FIRST</a></li>
   </ul>
-  <p><!-- * [SECOND](#content2)
-  {: .TOC2} --></p>
+  <ul class="TOC2">
+    <li><a href="#content2">SECOND</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">THIRD</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">FOURTH</a></li>
+  </ul>
+  <ul class="TOC5">
+    <li><a href="#content5">FIFTH</a></li>
+  </ul>
+  <ul class="TOC6">
+    <li><a href="#content6">SIXTH</a></li>
+  </ul>
 </div>
 
 <hr />
 <hr />
 
-<h2 id="content1">Neural Architectures</h2>
+<ul>
+  <li>Graph slices (holding one var constant) is important for understanding <strong>partial derivatives</strong></li>
+  <li><a href="https://www.youtube.com/watch?v=WsZj5Rb6do8&amp;list=PLSQl0a2vh4HC5feHa6Rc5c0wbRTx56nF7&amp;index=5">Contour plots</a></li>
+  <li>
+    <p><strong>Vector Field</strong>: basically a way of visualizing functions that have the same number of inputs as outputs (outputs are vectors).</p>
+  </li>
+  <li><strong>Partial Derivative</strong>:
+    <ul>
+      <li>Interpret as: how does a <em>tiny change in the input in the <script type="math/tex">x</script>OR<script type="math/tex">y</script> direction</em> <strong>influence</strong> <em>the output <script type="math/tex">f</script></em>; keeping the other variable <strong>constant</strong>. (technically, you then take the ratio of the nudges)</li>
+      <li>On a graph, interpret as <em>slicing the graph at the constant variable</em> and then looking at the slope on the projected/sliced graph.</li>
+      <li><strong>Properties</strong>:
+        <ul>
+          <li>
+            <script type="math/tex; mode=display">f_{x y} = f_{y x}</script>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Tangent Hyperplanes</strong>:<br />
+The tangent hyperplane to a curve at a given point <script type="math/tex">\mathbf{x}</script> is the <strong>best linear approximation</strong> of the curve at that point.
+    <ul>
+      <li><strong>Tangent Line</strong>:
+        <p>$$y-y_{0}=f^{\prime}\left(x_{0}\right)\left(x-x_{0}\right)$$</p>
+      </li>
+      <li><strong>Tangent Plane</strong>:
+        <p>$$y-y_{0}=f^{\prime}\left(x_{0}\right)\left(x-x_{0}\right)$$</p>
+        <p>of the surface <script type="math/tex">z=f(x, y)</script>  at the point <script type="math/tex">P\left(x_{0}, y_{0}, z_{0}\right)</script></p>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Gradients</strong>:
+    <ul>
+      <li><strong>Properties</strong>:
+        <ul>
+          <li>Always <strong>normal</strong> to <em>contour lines</em></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="content1">FIRST</h2>
 
 <ol>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Asynchronous:</strong></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Neural Architectures - Graphical and Probabilistic Properties:</strong></p>
-
-    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Properties</button></p>
-    <ul hidden="">
-      <li><strong>FFN</strong>
-        <ul>
-          <li>Directed</li>
-          <li>Acyclic</li>
-          <li>?</li>
-        </ul>
-      </li>
-      <li><strong>MLP</strong>
-        <ul>
-          <li>Directed</li>
-          <li>Acyclic</li>
-          <li>Fully Connected (Complete?)</li>
-        </ul>
-      </li>
-      <li><strong>CNN</strong>
-        <ul>
-          <li>Directed</li>
-          <li>Acyclic</li>
-          <li>?</li>
-        </ul>
-      </li>
-      <li><strong>RNN</strong>
-        <ul>
-          <li>Directed</li>
-          <li>Cyclic</li>
-          <li>?</li>
-        </ul>
-      </li>
-      <li><strong>Hopfield</strong>
-        <ul>
-          <li>Undirected</li>
-          <li>Cyclic</li>
-          <li>Complete</li>
-        </ul>
-      </li>
-      <li><strong>Boltzmann Machine</strong>
-        <ul>
-          <li>Undirected</li>
-          <li>Cyclic</li>
-          <li>Complete</li>
-        </ul>
-      </li>
-      <li><strong>RBM</strong>
-        <ul>
-          <li>Undirected</li>
-          <li>Cyclic</li>
-          <li>Bipartite</li>
-        </ul>
-      </li>
-      <li><strong>Bayesian Networks</strong>
-        <ul>
-          <li>Directed</li>
-          <li>Acyclic</li>
-          <li>?</li>
-        </ul>
-      </li>
-      <li><strong>HMMs</strong>
-        <ul>
-          <li>Directed</li>
-          <li>Acyclic</li>
-          <li>?</li>
-        </ul>
-      </li>
-      <li><strong>MRF</strong>
-        <ul>
-          <li>Undirected</li>
-          <li>Cyclic</li>
-          <li>?</li>
-        </ul>
-      </li>
-      <li><strong>CRF</strong>
-        <ul>
-          <li>Undirected</li>
-          <li>Cyclic</li>
-          <li>?</li>
-        </ul>
-      </li>
-      <li><strong>DBN</strong>
-        <ul>
-          <li>Directed</li>
-          <li>Acyclic</li>
-          <li>?</li>
-        </ul>
-      </li>
-      <li><strong>GAN</strong>
-        <ul>
-          <li>?</li>
-          <li>?</li>
-          <li>Bipartite-Complete</li>
-        </ul>
-      </li>
-    </ul>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Asynchronous:</strong></p>
   </li>
 </ol>
 
-<!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}
+<hr />
 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}
+<h2 id="content2">SECOND</h2>
 
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Asynchronous:</strong></p>
+  </li>
+</ol>
 
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}
+<hr />
 
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}
+<h2 id="content3">THIRD</h2>
 
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}
- -->
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Asynchronous:</strong></p>
+  </li>
+</ol>
 
 
 

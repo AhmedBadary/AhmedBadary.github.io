@@ -6,7 +6,7 @@ prevLink: /work_files/research.html
 ---
 
 
-
+<!-- 
 
 ## Gradient-Based Optimization
 * __Define Gradient Methods:__{: style="color: red"}  
@@ -1218,3 +1218,86 @@ __INTERVIEWS__
     {: hidden=""}
 1. __Interpretation of Neural Networks__{: style="color: red"}
 
+ -->
+
+***
+
+## AutoEncoders
+1. __What is an AutoEncoder? What is its goal? (draw a diagram)__{: style="color: red"}  
+1. __Give Motivation for AutoEncoders:__{: style="color: red"}  
+1. __Why Deep AutoEncoders? What do they allow us to do?__{: style="color: red"}  
+1. __List the Advantages of Deep AutoEncoders:__{: style="color: red"}  
+1. __List the Applications of AutoEncoders:__{: style="color: red"}  
+1. __Describe the Training of Deep AutoEncoders:__{: style="color: red"}  
+    <button>Extra</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    1. __What are the challenges if any?__{: style="color: blue"}  
+    1. __What are the main methods for training Deep AutoEncoders?__{: style="color: blue"}  
+    1. __Which one is the most superior method?__{: style="color: blue"}  
+    {: hidden=""}
+
+    <button>Extra Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __How is Joint Training better:__{: style="color: blue"}  
+    1. __Why is Joint Training better:__{: style="color: blue"}  
+    {: hidden=""}
+1. __Describe the Architecture of AutoEncoders:__{: style="color: red"}  
+    1. __What is the simplest form of an AE:__{: style="color: blue"}  
+    1. __What realm of "Learning" is employed for AEs?__{: style="color: blue"}  
+1. __Mathematical Description of the Structure of AutoEncoders:__{: style="color: red"}  
+    
+    <button>Extra Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __How do we define the "Encoder" and "Decoder"?__{: style="color: blue"}  
+    1. __The Encoder maps what to what?__{: style="color: blue"}  
+    1. __The Decoder maps what to what?__{: style="color: blue"}  
+    1. __What is the type of loss?__{: style="color: blue"}  
+    1. __What is the objective function?__{: style="color: blue"}  
+
+    <button>Extra Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __What are "Transition Functions"?__{: style="color: blue"}  
+    {: hidden=""}
+1. __Compare AutoEncoders and PCA (wrt what they learn):__{: style="color: red"}  
+1. __List the different Types of AEs__{: style="color: red"}  
+1. __How can we use AEs for Initialization?__{: style="color: red"}  
+1. __Describe the Representational Power of AEs:__{: style="color: red"}  
+    <button>Extra</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    1. __(wrt Layer Size and Depth):__{: style="color: red"}  
+    1. __Why is Depth Important?__{: style="color: blue"}    
+    {: hidden=""}
+1. __Describe the progression (stages) of AE Architectures in CV:__{: style="color: red"}  
+
+1. __What are *Undercomplete* AutoEncoders?__{: style="color: red"}  
+1. __What's the motivation behind *Undercomplete* AEs?__{: style="color: red"}  
+1. __List the Challenges of Utilizing Undercomplete AEs:__{: style="color: red"}  
+1. __What is the Main Method/Approach of addressing the Challenges above (Training AEs)?__{: style="color: red"}  
+
+
+<button>Further Questions</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+1. __Define Regularized Autoencoders:__{: style="color: red"}  
+    1. __What does it allow us to do?__{: style="color: blue"}  
+    1. __How does it address the Challenges?__{: style="color: blue"}  
+
+    <button>Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __What other Properties does it encourage to be learned?__{: style="color: blue"}    
+    1. __What kind of technique (also type) of AEs can be "non-linear" and still learn useful codes?__{: style="color: blue"}  
+    1. __What kind of technique-needed for (also type-of) AEs can be "overcomplete" and still learn useful codes?__{: style="color: blue"}  
+    1. __What kind of technique-needed for (also type-of) AEs can be "nonlinear" AND "overcomplete" and still learn useful codes?__{: style="color: blue"}  
+    1. __What are the ways to learn useful encodings/representations?__{: style="color: red"}  
+        Defining an appropriate <span>__Objective and Objective Function__</span>{: style="color: purple"}.  
+        1. __What types of objectives help learn useful encodings/representations?__{: style="color: red"}  
+            __(regularized/approximate) Auto-Encoding__ - __Maximizing the Probability of training Data (NLL)__  
+            [Further Info](/work_files/research/dl/archits/aencdrs#bodyContents24)  
+    {: hidden=""}
+
+1. __Describe the Relationship between Generative Models and AEs:__{: style="color: red"}  
+    <button>Extra</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    1. __What are the components needed for the Generative Model?:__{: style="color: blue"}  
+    1. __What notable types? List:__{: style="color: blue"}. 
+    1. __Compare Generative Models & AEs in how they learn codings/representations:__{: style="color: blue"}  
+    {: hidden=""}
+    
+    <button>Extra Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __Why are their representations "naturally" useful?__{: style="color: blue"}  
+    {: hidden=""}
+
+1. __List the Different Types of Regularized Autoencoders:__{: style="color: red"}  
+
+{: hidden=""}
