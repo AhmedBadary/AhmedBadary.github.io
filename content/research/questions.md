@@ -1299,5 +1299,59 @@ __INTERVIEWS__
     {: hidden=""}
 
 1. __List the Different Types of Regularized Autoencoders:__{: style="color: red"}  
-
 {: hidden=""}
+
+<button>Further Further Questions (Regularized AEs)</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}  
+1. __Define Sparse Autoencoders (w/ equation):__{: style="color: red"}  
+1. __How can we interpret Sparse AEs? (Hint: 3 interpretations)__{: style="color: red"}  
+    <button>Extra</button>{: .showText value="show" onclick="showTextPopHide(event);"}  
+    1. __Give the "Regularization" Interpretation of Sparse AEs:__{: style="color: red"}  
+    1. __Give the "Bayesian" Interpretation of Regularized AEs:__{: style="color: red"}  
+    1. __Give the "Latent Variable" Interpretation of Sparse AEs:__{: style="color: red"}  
+        <button>Extra Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}  
+        1. __What do Sparse AEs approximate?__{: style="color: blue"}  
+        1. __How do they (does that) relate to MLE?__{: style="color: blue"}  
+        {: hidden=""}  
+    {: hidden=""}  
+1. __Define Denoising Autoencoders:__{: style="color: red"}  
+1. __What do they minimize? (canonical loss)__{: style="color: red"}  
+1. __What do they learn? How? (compare)__{: style="color: red"}  
+1. __How do we generate the inputs?__{: style="color: red"}  
+    <button>Extra</button>{: .showText value="show" onclick="showTextPopHide(event);"}  
+    1. __What does the "Corruption Process" represent/define?__{: style="color: blue"}  
+    {: hidden=""}  
+1. __How do we generate the training examples (input-output pair)? (process)__{: style="color: red"}  
+1. __What does the Denoising AE learn specifically? (mathematically)__{: style="color: red"}  
+    <button>Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}  
+    1. __What do we use as an estimate for the "Reconstruction Distribution"?__{: style="color: blue"}  
+    1. __What is the output of the encoder $$f$$?__{: style="color: blue"}  
+    1. __What is the output of the decoder $$g$$?__{: style="color: blue"}  
+    1. __What is the "Reconstruction Distribution" equal to?__{: style="color: blue"}  
+    {: hidden=""}  
+1. __How do we Train the Denoising AE?__{: style="color: red"}  
+    1. __What is the Loss?__{: style="color: blue"}  
+    1. __What is the Optimization Method?__{: style="color: blue"}  
+    1. __What is the Training similar to?__{: style="color: blue"}  
+    1. __Is the Encoder Deterministic?__{: style="color: blue"}  
+        1. __Would change if it was one or the other?__{: style="color: blue"}  
+1. __How can we view the function of DAEs (wrt learning/training) from a Probabilistic pov?__{: style="color: red"}  
+    <button>Extra</button>{: .showText value="show" onclick="showTextPopHide(event);"}  
+    1. __What Expectation is it minimizing? Over what?__{: style="color: blue"}  
+    1. __Can we re-write the Objective/Loss wrt the Empirical Distribution?__{: style="color: blue"}  
+    {: hidden=""}  
+1. __What other ways exist for learning/training DAEs?__{: style="color: red"}  
+1. __How do DAEs and VAEs relate to each other?__{: style="color: red"}  
+
+1. __Define Contractive Autoencoders__{: style="color: red"}  
+    <button>Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __What is the regularizer/penalty used?__{: style="color: blue"}    
+    1. __What does it encourage the system to do?__{: style="color: blue"}  
+    {: hidden=""}
+1. __How is the Contractive AE connected to the DAE:__{: style="color: red"}  
+1. __Why is the CAE called "Contractive"?__{: style="color: red"}  
+    <button>Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __Is it contractive locally or globally or both?__{: style="color: blue"}  
+    1. __Give the Interpretation of the CAE as a Linear Operator:__{: style="color: blue"}  
+    {: hidden=""}
+1. __List the Issues associated with using a "Contractive Penalty":__{: style="color: red"}  
+{: hidden=""}  

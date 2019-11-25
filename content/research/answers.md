@@ -3280,102 +3280,129 @@ onclick="showText_withParent_PopHide(event);"}
     * Regularizing by __Penalizing Derivatives__
     * __Contractive__ Autoencoders
     * __Predictive Sparse Decomposition__
+{: hidden=""}
 
 <button>Further Further Questions (Regularized AEs)</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
-* __Define Sparse Autoencoders (w/ equation):__{: style="color: red"}  
+1. __Define Sparse Autoencoders (w/ equation):__{: style="color: red"}  
     __Sparse Autoencoders__ are simply Autoencoders whose training criterion involves a sparsity penalty $$\Omega(\boldsymbol{h})$$ on the code layer $$\boldsymbol{h},$$ in addition to the reconstruction error:  
     <p>$${\displaystyle {\mathcal {L}}(\mathbf {x} ,\psi ( \phi (\mathbf {x} ) ) ) + \Omega(\boldsymbol{h})}$$</p>  
     where typically we have $$\boldsymbol{h}=\phi(\boldsymbol{x})$$, the encoder output.   
-* __How can we interpret Sparse AEs? (Hint: 3 interpretations)__{: style="color: red"}  
+1. __How can we interpret Sparse AEs? (Hint: 3 interpretations)__{: style="color: red"}  
     * __Regularization Interpretation__ 
     * __Bayesian Interpretation__  
     * __Latent-Variable Interpretation__  
     <button>Extra</button>{: .showText value="show" onclick="showTextPopHide(event);"}
-    * __Give the "Regularization" Interpretation of Sparse AEs:__{: style="color: red"}  
+    1. __Give the "Regularization" Interpretation of Sparse AEs:__{: style="color: red"}  
         We can think of the <span>penalty $$\Omega(\boldsymbol{h})$$ simply as a regularizer term added to a feedforward network</span>{: style="color: purple"} whose primary task is to copy the input to the output (unsupervised learning objective) and possibly also perform some supervised task (with a supervised learning objective) that depends on these sparse features.  
-    * __Give the "Bayesian" Interpretation of Regularized AEs:__{: style="color: red"}  
+    1. __Give the "Bayesian" Interpretation of Regularized AEs:__{: style="color: red"}  
         Unlike other regularizers such as weight decay, there is not a straightforward Bayesian interpretation to this regularizer.  
         Regularized Autoencoders defy such an interpretation because __the regularizer depends on the data__ and is therefore by definition not a prior in the formal sense of the word.  
         We can still think of these regularization terms as <span>_implicitly_ expressing a preference over functions</span>{: style="color: purple"}.   
-    * __Give the "Latent Variable" Interpretation of Sparse AEs:__{: style="color: red"}  
+    1. __Give the "Latent Variable" Interpretation of Sparse AEs:__{: style="color: red"}  
         Rather than thinking of the sparsity penalty as a regularizer for the copying task, we can think of the entire sparse Autoencoder framework as <span>approximating maximum likelihood training of a generative model that has latent variables</span>{: style="color: goldenrod"}.  
         <button>Extra Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
-        * __What do Sparse AEs approximate?__{: style="color: blue"}  
+        1. __What do Sparse AEs approximate?__{: style="color: blue"}  
             They approximate __Latent Variable Models__.  
             Specifically, __Generative Models__ with __Latent Variables__ <span>Trained with __Maximum Likelihood__</span>{: style="color: purple"}.  
-        * __How do they (does that) relate to MLE?__{: style="color: blue"}  
+        1. __How do they (does that) relate to MLE?__{: style="color: blue"}  
             They approximate __Generative Models__ with __Latent Variables__ <span>Trained with __Maximum Likelihood__</span>{: style="color: purple"}.  
         {: hidden=""}
     {: hidden=""}
 
-* __Define Denoising Autoencoders:__{: style="color: red"}  
+1. __Define Denoising Autoencoders:__{: style="color: red"}  
     __Denoising Autoencoders (DAEs)__ is an Autoencoder that receives a corrupted data point as input and is trained to predict the original, uncorrupted data point as its output.  
-* __What do they minimize? (canonical loss)__{: style="color: red"}  
+1. __What do they minimize? (canonical loss)__{: style="color: red"}  
     <p>$$L(\boldsymbol{x}, g(f(\tilde{\boldsymbol{x}})))$$</p>  
     where $$\tilde{\boldsymbol{x}}$$ is a copy of $$\boldsymbol{x}$$ that has been corrupted by some form of noise.  
-* __What do they learn? How? (compare)__{: style="color: red"}  
+1. __What do they learn? How? (compare)__{: style="color: red"}  
     They learn to __undo the corruption__ rather than simply copying their input.  
     The __denoising training__ forces $$\psi$$ and $$\phi$$ to implicitly learn the structure of $$p_{\text {data}}(\boldsymbol{x})$$.  
-* __How do we generate the inputs?__{: style="color: red"}  
+1. __How do we generate the inputs?__{: style="color: red"}  
     We introduce a __Corruption Process__ $$C(\tilde{\mathbf{x}} \vert \mathbf{x})$$ which represents a __conditional distribution over corrupted samples $$\tilde{\boldsymbol{x}}$$__, given a data sample $$\boldsymbol{x}$$.  
     <button>Extra</button>{: .showText value="show" onclick="showTextPopHide(event);"}
-    * __What does the "Corruption Process" represent/define?__{: style="color: blue"}  
+    1. __What does the "Corruption Process" represent/define?__{: style="color: blue"}  
         It represents a <span>__Conditional Distribution__</span>{: style="color: purple"} __over corrupted samples $$\tilde{\boldsymbol{x}}$$__, given a data sample $$\boldsymbol{x}$$.  
     {: hidden=""}
-* __How do we generate the training examples (input-output pair)? (process)__{: style="color: red"}  
+1. __How do we generate the training examples (input-output pair)? (process)__{: style="color: red"}  
     * Sample a training example $$\boldsymbol{x}$$ from the training data.
     * Sample a corrupted version $$\tilde{\boldsymbol{x}}$$ from $$C(\tilde{\mathbf{x}} \vert \mathbf{x}=\boldsymbol{x})$$
     * Use $$(\boldsymbol{x}, \tilde{\boldsymbol{x}})$$ as a training example for estimating the Autoencoder reconstruction distribution $$p_{\text {reconstruct }}(\boldsymbol{x} \vert \tilde{\boldsymbol{x}})=p_{\text {decoder }}(\boldsymbol{x} \vert \boldsymbol{h})$$ with $$\boldsymbol{h}$$ the output of encoder $$f(\tilde{\boldsymbol{x}})$$ and $$p_{\text {decoder}}$$ typically defined by a decoder $$g(\boldsymbol{h})$$.  
-* __What does the Denoising AE learn specifically? (mathematically)__{: style="color: red"}  
+1. __What does the Denoising AE learn specifically? (mathematically)__{: style="color: red"}  
     The DAE learns a __Reconstruction Distribution__ $$p_{\text {reconstruct }}(\boldsymbol{x} \vert \tilde{\boldsymbol{x}})=p_{\text {decoder }}(\boldsymbol{x} \vert \boldsymbol{h})$$ with $$\boldsymbol{h}$$ the output of encoder $$f(\tilde{\boldsymbol{x}})$$ and $$p_{\text {decoder}}$$ typically defined by a decoder $$g(\boldsymbol{h})$$.  
     <button>Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
-    * __What do we use as an estimate for the "Reconstruction Distribution"?__{: style="color: blue"}  
+    1. __What do we use as an estimate for the "Reconstruction Distribution"?__{: style="color: blue"}  
         We use $$(\boldsymbol{x}_ i, \tilde{\boldsymbol{x}}_ i)$$ as Training Data for estimating the Autoencoder reconstruction distribution $$p_{\text {reconstruct }}(\boldsymbol{x} \vert \tilde{\boldsymbol{x}})$$.  
-    * __What is the output of the encoder $$f$$?__{: style="color: blue"}  
+    1. __What is the output of the encoder $$f$$?__{: style="color: blue"}  
         $$f(\tilde{\boldsymbol{x}}) = \boldsymbol{h}$$.  
-    * __What is the output of the decoder $$g$$?__{: style="color: blue"}  
+    1. __What is the output of the decoder $$g$$?__{: style="color: blue"}  
         $$g(\boldsymbol{h})=p_{\text {decoder}}(\boldsymbol{x} \vert \boldsymbol{h})=\boldsymbol{x}$$.  
-    * __What is the "Reconstruction Distribution" equal to?__{: style="color: blue"}  
+    1. __What is the "Reconstruction Distribution" equal to?__{: style="color: blue"}  
         $$p_{\text {reconstruct}}(\boldsymbol{x} \vert \tilde{\boldsymbol{x}})=p_{\text {decoder}}(\boldsymbol{x} \vert \boldsymbol{h})$$.  
     {: hidden=""}
-* __How do we Train the Denoising AE?__{: style="color: red"}  
+1. __How do we Train the Denoising AE?__{: style="color: red"}  
     Typically we can simply perform gradient-based approximate minimization (such as minibatch gradient descent) on the negative log-likelihood $$-\log p_{\text {decoder}}(\boldsymbol{x} \vert \boldsymbol{h})$$.  
     So long as the encoder is deterministic, the denoising Autoencoder is a feedforward network and may be trained with exactly the same techniques as any other FFN.  
-    * __What is the Loss?__{: style="color: blue"}  
+    1. __What is the Loss?__{: style="color: blue"}  
         Negative Log-Likelihood (NLL): $$-\log p_{\text {decoder}}(\boldsymbol{x} \vert \boldsymbol{h})$$.  
-    * __What is the Optimization Method?__{: style="color: blue"}  
+    1. __What is the Optimization Method?__{: style="color: blue"}  
         __SGD__.  
-    * __What is the Training similar to?__{: style="color: blue"}  
+    1. __What is the Training similar to?__{: style="color: blue"}  
         So long as the encoder is deterministic, the DAE is a __feedforward network (FFN)__ and may be trained with exactly the same techniques as any other FFN.  
-    * __Is the Encoder Deterministic?__{: style="color: blue"}  
+    1. __Is the Encoder Deterministic?__{: style="color: blue"}  
         Yes.  
-        * __Would change if it was one or the other?__{: style="color: blue"}  
+        1. __Would change if it was one or the other?__{: style="color: blue"}  
             If it were __"stochastic"__ then it can't be learned w/ max-likelihood training.  
-* __How can we view the function of DAEs (wrt learning/training) from a Probabilistic pov?__{: style="color: red"}  
+1. __How can we view the function of DAEs (wrt learning/training) from a Probabilistic pov?__{: style="color: red"}  
     Given above, we can therefore view the DAE as __performing stochastic gradient descent on the following expectation__:  
     <p>$$-\mathbb{E}_{\mathbf{x} \sim \hat{p}_{\text {data }}(\mathbf{x})} \mathbb{E}_{\tilde{\mathbf{x}} \sim C(\tilde{\mathbf{x}} \vert \boldsymbol{x})} \log p_{\text {decoder}}(\boldsymbol{x} \vert \boldsymbol{h}=f(\tilde{\boldsymbol{x}}))$$</p>  
     where $$\hat{p}_ {\text {data}}(\mathrm{x})$$ is the training distribution.  
     <button>Extra</button>{: .showText value="show" onclick="showTextPopHide(event);"}
-    * __What Expectation is it minimizing? Over what?__{: style="color: blue"}  
+    1. __What Expectation is it minimizing? Over what?__{: style="color: blue"}  
         <p>$$-\mathbb{E}_{\mathbf{x} \sim \hat{p}_{\text {data }}(\mathbf{x})} \mathbb{E}_{\tilde{\mathbf{x}} \sim C(\tilde{\mathbf{x}} \vert \boldsymbol{x})} \log p_{\text {decoder}}(\boldsymbol{x} \vert \boldsymbol{h}=f(\tilde{\boldsymbol{x}}))$$</p>  
         where $$\hat{p}_ {\text {data}}(\mathrm{x})$$ is the training distribution.  
-    * __Can we re-write the Objective/Loss wrt the Empirical Distribution?__{: style="color: blue"}  
+    1. __Can we re-write the Objective/Loss wrt the Empirical Distribution?__{: style="color: blue"}  
         <p>$$-\mathbb{E}_{\mathbf{x} \sim \hat{p}_{\text {data }}(\mathbf{x})} \mathbb{E}_{\tilde{\mathbf{x}} \sim C(\tilde{\mathbf{x}} \vert \boldsymbol{x})} \log p_{\text {decoder}}(\boldsymbol{x} \vert \boldsymbol{h}=f(\tilde{\boldsymbol{x}}))$$</p>  
         where $$\hat{p}_ {\text {data}}(\mathrm{x})$$ is the training distribution.  
     {: hidden=""}
-* __What other ways exist for learning/training DAEs?__{: style="color: red"}  
+1. __What other ways exist for learning/training DAEs?__{: style="color: red"}  
     __Score Matching__.  
-* __How do DAEs and VAEs relate to each other?__{: style="color: red"}  
+1. __How do DAEs and VAEs relate to each other?__{: style="color: red"}  
     DAEs learn to represent a __probability distribution__.  
     To use the AE as a __generative model__ to *__draw samples__* from this distribution, we need to make the <span>__Encoder__ *__Stochastic__*</span>{: style="color: purple"}: this is known as the __Variational Autoencoder__.  
-* __topic__{: style="color: red"}  
+
+1. __Define Contractive Autoencoders__{: style="color: red"}  
+    __Contractive Autoencoders (CAEs)__ _(Rifai et al., 2011a,b)_ introduces an explicit regularizer on the code $$\boldsymbol{h}=\phi(\boldsymbol{x}),$$ encouraging the derivatives of $$\phi$$ to be as small as possible:  
+    <p>$$\Omega(\boldsymbol{h})=\lambda\left\|\frac{\partial \phi(\boldsymbol{x})}{\partial \boldsymbol{x}}\right\|_ {F}^{2}$$</p>  
+    The __penalty__ $$\Omega(\boldsymbol{h})$$ is the *__squared Frobenius norm__*  (sum of squared elements) of __the Jacobian matrix__ of partial derivatives associated with the encoder function.  
+    <button>Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __What is the regularizer/penalty used?__{: style="color: blue"}    
+        The __penalty__ $$\Omega(\boldsymbol{h})$$ is the *__squared Frobenius norm__*  (sum of squared elements) of __the Jacobian matrix__ of partial derivatives associated with the encoder function.  
+    1. __What does it encourage the system to do?__{: style="color: blue"}  
+        It encouraging the <span>__derivatives__</span>{: style="color: purple"} of the __Encoder__ $$\phi$$ to be <span>as small as possible</span>{: style="color: purple"}.  
+    {: hidden=""}
+1. __How is the Contractive AE connected to the DAE:__{: style="color: red"}  
+    * In the limit of small Gaussian input noise, the denoising reconstruction error is equivalent to a contractive penalty on the reconstruction function that maps $$\boldsymbol{x}$$ to $$\boldsymbol{r}=\psi(\phi(\boldsymbol{x}))$$. I.e.:  
+        \- __Denoising Autoencoders:__ make the reconstruction function resist small but finite-sized perturbations of the input  
+        \- __Contractive Autoencoders:__ make the feature extraction function resist infinitesimal perturbations of the input.  
+    * When using the Jacobian-based contractive penalty to pretrain features $$\phi(\boldsymbol{x})$$ for use with a classifier, the best classification accuracy usually results from applying the contractive penalty to $$\phi(\boldsymbol{x})$$ rather than to $$\psi(\phi(\boldsymbol{x}))$$.  
+    * A contractive penalty on $$\phi(\boldsymbol{x})$$ also has close [connections to __score matching__](#bodyContents32sm).  
+1. __Why is the CAE called "Contractive"?__{: style="color: red"}  
+    The name __contractive__ arises from the way that the CAE _warps space_.  
+    Specifically, because the CAE is trained to resist perturbations of its input, it is encouraged to map a neighborhood of input points to a smaller neighborhood of output points. We can think of this as contracting the input neighborhood to a smaller output neighborhood.  
+    <button>Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __Is it contractive locally or globally or both?__{: style="color: blue"}  
+        The CAE is contractive only *__locally__*-all perturbations of a training point $$\boldsymbol{x}$$ are mapped near to $$\phi(\boldsymbol{x})$$. *__Globally__*, two different points $$\boldsymbol{x}$$ and $$\boldsymbol{x}^{\prime}$$ may be mapped to $$\phi(\boldsymbol{x})$$ and $$\psi\left(\boldsymbol{x}^{\prime}\right)$$ points that are farther apart than the original points.  
+    1. __Give the Interpretation of the CAE as a Linear Operator:__{: style="color: blue"}  
+        We can think of the _Jacobian matrix_ $$J$$ at a point $$x$$ as <span>_approximating_ the __nonlinear encoder $$\phi(x)$$__ as being a __linear operator__</span>{: style="color: goldenrod"}. This allows us to use the word _"contractive"_ more formally.  
+        In the theory of linear operators, a linear operator is said to be _contractive_ if the norm of $$J x$$ remains less than or equal to 1 for all unit-norm $$x$$. In other words, __$$J$$ is contractive if it shrinks the unit sphere__.  
+        We can think of the CAE as _penalizing the Frobenius norm of the local linear approximation of $$\phi(x)$$ at every training point $$x$$_ in order _to encourage each of these local linear operator to become a **contraction**_.  
+    {: hidden=""}
+1. __List the Issues associated with using a "Contractive Penalty":__{: style="color: red"}  
+    * [Answer](/work_files/research/dl/archits/aencdrs#bodyContents35issues_ctrctv_pnlt)  
 {: hidden=""}
 
-
-
-{: hidden=""}
-
-
+---
+***
 
 
 
@@ -3390,3 +3417,6 @@ onclick="showText_withParent_PopHide(event);"}
         A regularized Autoencoder can be nonlinear and overcomplete but still learn something useful about the data distribution even if the model capacity is great enough to learn a trivial identity function.  
 * __What do DAEs learn to represent?__{: style="color: red"}  
     They learn to represent a __probability distribution__.  
+* __How do Regularized AEs learn Manifolds?__{: style="color: red"}  
+    Regularized Autoencoders learn manifolds by balancing two opposing forces.  
+* __How can we Learn Manifolds w/ AEs?__{: style="color: red"}  

@@ -358,8 +358,8 @@ __Notes:__{: style="color: red"}
     __Connection to Denoising Autoencoders:__{: style="color: red"}  
     There is a connection between the denoising Autoencoder and the contractive Autoencoder: Alain and Bengio _(2013)_ showed that in the limit of small Gaussian input noise, the denoising reconstruction error is equivalent to a contractive penalty on the reconstruction function that maps $$\boldsymbol{x}$$ to $$\boldsymbol{r}=\psi(\phi(\boldsymbol{x}))$$.  
     In other words:  
-    \- Denoising Autoencoders: make the reconstruction function resist small but finite-sized perturbations of the input  
-    \- Contractive Autoencoders: make the feature extraction function resist infinitesimal perturbations of the input.  
+    \- __Denoising Autoencoders:__ make the reconstruction function resist small but finite-sized perturbations of the input  
+    \- __Contractive Autoencoders:__ make the feature extraction function resist infinitesimal perturbations of the input.  
     When using the Jacobian-based contractive penalty to pretrain features $$\phi(\boldsymbol{x})$$ for use with a classifier, the best classification accuracy usually results from applying the contractive penalty to $$\phi(\boldsymbol{x})$$ rather than to $$\psi(\phi(\boldsymbol{x}))$$.  
     A contractive penalty on $$\phi(\boldsymbol{x})$$ also has close [connections to __score matching__](#bodyContents32sm).  
 
@@ -394,7 +394,7 @@ __Notes:__{: style="color: red"}
         ![img](https://cdn.mathpix.com/snip/images/2KaOUhQBjXy2N_cP2DgVDA5PI1ggqOK1StFn2NR8t0c.original.fullsize.png){: width="100%" hidden=""}  
 
 
-    __Issues with Contractive Penalties:__{: style="color: red"}  
+    __Issues with Contractive Penalties:__{: style="color: red"}{: #bodyContents35issues_ctrctv_pnlt}  
     Although it is cheap to compute the CAE regularization criterion, in the case of a single hidden layer Autoencoder, it becomes much _more expensive_ in the case of _deeper_ Autoencoders.  
     The strategy followed by _Rifai et al. (2011a)_ is to:  
     \- Separately train a series of single-layer Autoencoders, each trained to reconstruct the previous Autoencoder’s hidden layer.  
