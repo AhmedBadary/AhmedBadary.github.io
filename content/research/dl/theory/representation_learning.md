@@ -38,6 +38,7 @@ prevLink: /work_files/research/dl/theory.html
 
 
 __Notes (Move Inside):__{: style="color: red"}  
+{: #lst-p}
 * Representation Learning (Feature Learning) is a set of techniques that allows a system to automatically discover the representations needed for feature detection or classification from raw data.  
     This replaces manual feature engineering and allows a machine to both learn the features and use them to perform a specific task.  
 * Hypothesis - Main Idea:  
@@ -123,7 +124,7 @@ __Notes (Move Inside):__{: style="color: red"}
 
 
 
-    <button>__Representation Quality__</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    <button>__Representation Quality__</button>{: .showText value="show" onclick="showTextPopHide(event);"}
     * <span>__“What is a *good* representation?”__</span>{: style="color: purple"}   
         * Generally speaking, a __good representation__ is one that makes a subsequent learning task easier.  
             The choice of representation will usually depend on the choice of the subsequent learning task.  
@@ -538,7 +539,7 @@ __Notes (Move Inside):__{: style="color: red"}
 
     It can be viewed as a form of __transfer learning__ due to <span>gradual changes in the data distribution</span>{: style="color: purple"} over time.  
 
-    <button>Concept Drift in __RL__</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    <button>Concept Drift in __RL__</button>{: .showText value="show" onclick="showTextPopHide(event);"}
     <div hidden="" markdown="1">
     Another example is in reinforcement learning. Since the agent's policy affects the environment, the agent learning and updating its policy directly results in a changing environment with shifting data distribution.  
     </div>

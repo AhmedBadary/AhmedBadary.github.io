@@ -8,7 +8,7 @@ prevLink: /work_files/research.html
 
 <!-- 
 
-
+<!-- 
 # Gradient-Based Optimization
 1. __Define Gradient Methods:__{: style="color: red"}  
     Gradient Methods are algorithms for solving (optimization) minimization problems of the form:  
@@ -1254,8 +1254,6 @@ onclick="showText_withParent_PopHide(event);"}
 ***
 
 
--->
-
 # K-Means
 1. __What is K-Means?__{: style="color: red"}  
     It is a clustering algorithm. It aims to partition $$n$$ observations into $$k$$ clusters in which each observation belongs to the cluster with the nearest mean. It results in a partitioning of the data space into __Voronoi Cells__.   
@@ -1332,8 +1330,6 @@ onclick="showText_withParent_PopHide(event);"}
     1. and the data points follow nonconvex shapes.    
 
  
-
-<!-- 
 
 ***
 
@@ -2058,6 +2054,8 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
+-->
+
 # Activation Functions
 1. __Describe the Desirable Properties for activation functions:__{: style="color: red"}  
     1. __Non-Linearity__:  
@@ -2201,6 +2199,8 @@ onclick="showText_withParent_PopHide(event);"}
 {: hidden=""}
 
 
+
+<!-- 
 
 ***
 
@@ -3145,8 +3145,287 @@ onclick="showText_withParent_PopHide(event);"}
     {: hidden=""}
 * __Interpretation of Neural Networks__{: style="color: red"}  
     It is best to think of feedforward networks as __function approximation machines__ that are designed to achieve <span>_statistical generalization_</span>{: style="color: purple"}, occasionally drawing some insights from what we know about the brain, rather than as models of brain function.  
+ -->
+
+***
+
+## AutoEncoders
+1. __What is an AutoEncoder? What is its goal? (draw a diagram)__{: style="color: red"}  
+1. __Give Motivation for AutoEncoders:__{: style="color: red"}  
+1. __Why Deep AutoEncoders? What do they allow us to do?__{: style="color: red"}  
+1. __List the Advantages of Deep AutoEncoders:__{: style="color: red"}  
+1. __List the Applications of AutoEncoders (and historical information):__{: style="color: red"}  
+    The applications of auto-encoders have changed overtime.  
+    This is due to the advances in the fields that auto-encoders were applied in, or to the incompetency of the auto-encoders.  
+    * Historically:  
+        * Information Retrieval
+        * Anomaly Detection
+    * Recently, auto-encoders are applied to:  
+        * __Data-Denoising__  
+        * __Dimensionality Reduction__ (for data visualization)  
+        * Drug discovery   
+1. __Describe the Training of Deep AutoEncoders:__{: style="color: red"}  
+    <button>Extra</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    1. __What are the challenges if any?__{: style="color: blue"}  
+    1. __What are the main methods for training Deep AutoEncoders?__{: style="color: blue"}  
+    1. __Which one is the most superior method?__{: style="color: blue"}  
+    {: hidden=""}
+
+    <button>Extra Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __How is Joint Training better:__{: style="color: blue"}  
+    1. __Why is Joint Training better:__{: style="color: blue"}  
+    {: hidden=""}
+1. __Describe the Architecture of AutoEncoders:__{: style="color: red"}  
+    1. __What is the simplest form of an AE:__{: style="color: blue"}  
+    1. __What realm of "Learning" is employed for AEs?__{: style="color: blue"}  
+1. __Mathematical Description of the Structure of AutoEncoders:__{: style="color: red"}  
+    
+    <button>Extra Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __How do we define the "Encoder" and "Decoder"?__{: style="color: blue"}  
+    1. __The Encoder maps what to what?__{: style="color: blue"}  
+    1. __The Decoder maps what to what?__{: style="color: blue"}  
+    1. __What is the type of loss?__{: style="color: blue"}  
+    1. __What is the objective function?__{: style="color: blue"}  
+
+    <button>Extra Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __What are "Transition Functions"?__{: style="color: blue"}  
+    {: hidden=""}
+1. __Compare AutoEncoders and PCA (wrt what they learn):__{: style="color: red"}  
+1. __List the different Types of AEs__{: style="color: red"}  
+    * Vanilla Auto-Encoder  
+    * Sparse Auto-Encoder  
+    * Denoising Auto-Encoder  
+    * Variational Auto-Encoder (VAE)  
+    * Contractive Auto-Encoder.  
+1. __How can we use AEs for Initialization?__{: style="color: red"}  
+1. __Describe the Representational Power of AEs:__{: style="color: red"}  
+    <button>Extra</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    1. __(wrt Layer Size and Depth):__{: style="color: red"}  
+    1. __Why is Depth Important?__{: style="color: blue"}   
+    {: hidden=""}
+1. __Describe the progression (stages) of AE Architectures in CV:__{: style="color: red"}  
+    * Originally: Linear + nonlinearity (sigmoid).  
+    * Later: Deep, fully-connected.  
+    * Later: ReLU CNN (UpConv).  
+1. __List the Types of AEs wrt the Bottleneck/Code-Length:__{: style="color: red"}  
+    * __Undercomplete__:   
+    * __Overcomplete__: 
+    * __Complete__:  
+
+1. __What are *Undercomplete* AutoEncoders?__{: style="color: red"}  
+    An __Undercomplete Autoencoder__ is one whose code dimension is less than the input dimension.  
+1. __What's the motivation behind *Undercomplete* AEs?__{: style="color: red"}  
+    Learning an undercomplete representation forces the autoencoder to capture the most salient features of the training data.  
+1. __List the Challenges of Training AEs using the Auto-Encoding Objective (case-by-case):__{: style="color: red"}  
+    * If an Autoencoder succeeds in simply learning to set $$\psi(\phi (x)) = x$$ everywhere, then it is not especially useful.  
+        Instead, Autoencoders are designed to be unable to learn to copy perfectly. Usually they are restricted in ways that allow them to copy only approximately, and to copy only input that resembles the training data.  
+    * In [__Undercomplete Autoencoders__](#bodyContents21) If the encoder and decoder are allowed too much capacity, the Autoencoder can learn to perform the copying task without extracting useful information about the distribution of the data.  
+        Theoretically, one could imagine that an Autoencoder with a one-dimensional code but a very powerful nonlinear encoder could learn to represent each training example $$x^{(i)}$$ with the code $$i$$. This specific scenario does not occur in practice, but it illustrates clearly that an Autoencoder trained to perform the copying task can fail to learn anything useful about the dataset if the capacity of the Autoencoder is allowed to become too great.  
+    * A similar problem occurs in __Complete AEs__  
+    * As well as in the __Overcomplete__ case, in which the hidden code has dimension greater than the input.  
+        In complete and overcomplete cases, even a linear encoder and linear decoder can learn to copy the input to the output without learning anything useful about the data distribution.  
+1. __What is the Main Method/Approach of addressing the Challenges above (Training AEs)?__{: style="color: red"}  
+    __Regularized__ Autoencoders.  
 
 
+<button>Further Questions</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+1. __Define Regularized Autoencoders:__{: style="color: red"}  
+    Regularized Autoencoders are a variant of Autoencoders that modifies the loss function with regularization techniques to allow us to train any architecture of AEs successfully.  
+
+    1. __What's the Big-Idea/Main-Point behind R-AEs and AEs in general?__{: style="color: red"}  
+        A regularized Autoencoder can be nonlinear and overcomplete but still learn something useful about the data distribution even if the model capacity is great enough to learn a trivial identity function.  
+
+    1. __What does it allow us to do? How\*?__{: style="color: blue"}  
+        It allows us to train any architecture of Autoencoder successfully, choosing the code dimension and the capacity of the encoder and decoder based on the complexity of distribution to be modeled.  
+    1. __How does it address the Challenges? (Compare)__{: style="color: blue"}  
+        Rather than limiting the model capacity by keeping the Encoder and Decoder _shallow_ and the Code-Size _small_, they use a __loss function__ that _encourages_ the model to have other (useful) properties besides the ability to copy its input to it output:  
+
+
+    <button>Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __List if any the restrictions/guidelines for setting the capacity of the R-AEs:__{: style="color: blue"}  
+        We should choose the code dimension and the capacity of the encoder and decoder based on the complexity of distribution to be modeled.  
+    1. __What other Properties does it encourage to be learned?__{: style="color: blue"}    
+        * __Sparsity__ of the Representation
+        * __Smallness__ of the __Derivative__ of the Representation
+        * __Robustness__ to __Noise__ or to __Missing Inputs__  
+    1. __What kind of technique (also type) of AEs can be "non-linear" and still learn useful codes?__{: style="color: blue"}  
+        Regularized AEs.  
+    1. __What kind of technique-needed for (also type-of) AEs can be "overcomplete" and still learn useful codes?__{: style="color: blue"}  
+        Regularized AEs.  
+    1. __What kind of technique-needed for (also type-of) AEs can be "nonlinear" AND "overcomplete" and still learn useful codes?__{: style="color: blue"}  
+        Regularized AEs.  
+    1. __What are the ways to learn useful encodings/representations?__{: style="color: red"}  
+        Defining an appropriate <span>__Objective and Objective Function__</span>{: style="color: purple"}.  
+        1. __What types of objectives help learn useful encodings/representations?__{: style="color: red"}  
+            __(regularized/approximate) Auto-Encoding__ - __Maximizing the Probability of training Data (NLL)__  
+            [Further Info](/work_files/research/dl/archits/aencdrs#bodyContents24)  
+    {: hidden=""}
+1. __Describe the Relationship between Generative Models and AEs:__{: style="color: red"}  
+    In addition to the traditional AEs described here, nearly any __generative model__ with __latent variables__ and equipped with an __inference procedure__ (for computing latent representations given input) may be viewed as a particular form of Autoencoder.  
+    
+    <button>Extra</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    1. __What are the components needed for the Generative Model?:__{: style="color: blue"}  
+        * __generative model__ 
+        * __latent variables__  
+        * __inference procedure__ (for computing latent representations given input)  
+    1. __What notable types? List:__{: style="color: blue"}. 
+        The descendants of the __Helmholtz machine__ _(Hinton et al., 1995b)_, such as:  
+        * Variational Autoencoders  
+        * Generative Stochastic Networks    
+    1. __Compare Generative Models & AEs in how they learn codings/representations:__{: style="color: blue"}  
+        These models naturally learn _high-capacity_, _overcomplete encodings_ of the input and do NOT require regularization for these encodings to be useful.  
+    {: hidden=""}
+
+    <button>Extra Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __Why are their representations "naturally" useful?__{: style="color: blue"}  
+        Their <span>encodings are naturally useful</span>{: style="color: goldenrod"} because the models were <span>trained to _approximately maximize the probability of the training data_ rather than to _copy the input to the output_</span>{: style="color: goldenrod"}.  
+    {: hidden=""}
+1. __List the Different Types of Regularized Autoencoders:__{: style="color: red"}  
+    * __Sparse__ Autoencoders
+    * __Denoising__ Autoencoders
+    * Regularizing by __Penalizing Derivatives__
+    * __Contractive__ Autoencoders
+    * __Predictive Sparse Decomposition__
+{: hidden=""}
+
+<button>Further Further Questions (Regularized AEs)</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+1. __Define Sparse Autoencoders (w/ equation):__{: style="color: red"}  
+    __Sparse Autoencoders__ are simply Autoencoders whose training criterion involves a sparsity penalty $$\Omega(\boldsymbol{h})$$ on the code layer $$\boldsymbol{h},$$ in addition to the reconstruction error:  
+    <p>$${\displaystyle {\mathcal {L}}(\mathbf {x} ,\psi ( \phi (\mathbf {x} ) ) ) + \Omega(\boldsymbol{h})}$$</p>  
+    where typically we have $$\boldsymbol{h}=\phi(\boldsymbol{x})$$, the encoder output.   
+1. __How can we interpret Sparse AEs? (Hint: 3 interpretations)__{: style="color: red"}  
+    * __Regularization Interpretation__ 
+    * __Bayesian Interpretation__  
+    * __Latent-Variable Interpretation__  
+    <button>Extra</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    1. __Give the "Regularization" Interpretation of Sparse AEs:__{: style="color: red"}  
+        We can think of the <span>penalty $$\Omega(\boldsymbol{h})$$ simply as a regularizer term added to a feedforward network</span>{: style="color: purple"} whose primary task is to copy the input to the output (unsupervised learning objective) and possibly also perform some supervised task (with a supervised learning objective) that depends on these sparse features.  
+    1. __Give the "Bayesian" Interpretation of Regularized AEs:__{: style="color: red"}  
+        Unlike other regularizers such as weight decay, there is not a straightforward Bayesian interpretation to this regularizer.  
+        Regularized Autoencoders defy such an interpretation because __the regularizer depends on the data__ and is therefore by definition not a prior in the formal sense of the word.  
+        We can still think of these regularization terms as <span>_implicitly_ expressing a preference over functions</span>{: style="color: purple"}.   
+    1. __Give the "Latent Variable" Interpretation of Sparse AEs:__{: style="color: red"}  
+        Rather than thinking of the sparsity penalty as a regularizer for the copying task, we can think of the entire sparse Autoencoder framework as <span>approximating maximum likelihood training of a generative model that has latent variables</span>{: style="color: goldenrod"}.  
+        <button>Extra Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+        1. __What do Sparse AEs approximate?__{: style="color: blue"}  
+            They approximate __Latent Variable Models__.  
+            Specifically, __Generative Models__ with __Latent Variables__ <span>Trained with __Maximum Likelihood__</span>{: style="color: purple"}.  
+        1. __How do they (does that) relate to MLE?__{: style="color: blue"}  
+            They approximate __Generative Models__ with __Latent Variables__ <span>Trained with __Maximum Likelihood__</span>{: style="color: purple"}.  
+        {: hidden=""}
+    {: hidden=""}
+
+1. __Define Denoising Autoencoders:__{: style="color: red"}  
+    __Denoising Autoencoders (DAEs)__ is an Autoencoder that receives a corrupted data point as input and is trained to predict the original, uncorrupted data point as its output.  
+1. __What do they minimize? (canonical loss)__{: style="color: red"}  
+    <p>$$L(\boldsymbol{x}, g(f(\tilde{\boldsymbol{x}})))$$</p>  
+    where $$\tilde{\boldsymbol{x}}$$ is a copy of $$\boldsymbol{x}$$ that has been corrupted by some form of noise.  
+1. __What do they learn? How? (compare)__{: style="color: red"}  
+    They learn to __undo the corruption__ rather than simply copying their input.  
+    The __denoising training__ forces $$\psi$$ and $$\phi$$ to implicitly learn the structure of $$p_{\text {data}}(\boldsymbol{x})$$.  
+1. __How do we generate the inputs?__{: style="color: red"}  
+    We introduce a __Corruption Process__ $$C(\tilde{\mathbf{x}} \vert \mathbf{x})$$ which represents a __conditional distribution over corrupted samples $$\tilde{\boldsymbol{x}}$$__, given a data sample $$\boldsymbol{x}$$.  
+    <button>Extra</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    1. __What does the "Corruption Process" represent/define?__{: style="color: blue"}  
+        It represents a <span>__Conditional Distribution__</span>{: style="color: purple"} __over corrupted samples $$\tilde{\boldsymbol{x}}$$__, given a data sample $$\boldsymbol{x}$$.  
+    {: hidden=""}
+1. __How do we generate the training examples (input-output pair)? (process)__{: style="color: red"}  
+    * Sample a training example $$\boldsymbol{x}$$ from the training data.
+    * Sample a corrupted version $$\tilde{\boldsymbol{x}}$$ from $$C(\tilde{\mathbf{x}} \vert \mathbf{x}=\boldsymbol{x})$$
+    * Use $$(\boldsymbol{x}, \tilde{\boldsymbol{x}})$$ as a training example for estimating the Autoencoder reconstruction distribution $$p_{\text {reconstruct }}(\boldsymbol{x} \vert \tilde{\boldsymbol{x}})=p_{\text {decoder }}(\boldsymbol{x} \vert \boldsymbol{h})$$ with $$\boldsymbol{h}$$ the output of encoder $$f(\tilde{\boldsymbol{x}})$$ and $$p_{\text {decoder}}$$ typically defined by a decoder $$g(\boldsymbol{h})$$.  
+1. __What does the Denoising AE learn specifically? (mathematically)__{: style="color: red"}  
+    The DAE learns a __Reconstruction Distribution__ $$p_{\text {reconstruct }}(\boldsymbol{x} \vert \tilde{\boldsymbol{x}})=p_{\text {decoder }}(\boldsymbol{x} \vert \boldsymbol{h})$$ with $$\boldsymbol{h}$$ the output of encoder $$f(\tilde{\boldsymbol{x}})$$ and $$p_{\text {decoder}}$$ typically defined by a decoder $$g(\boldsymbol{h})$$.  
+    <button>Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __What do we use as an estimate for the "Reconstruction Distribution"?__{: style="color: blue"}  
+        We use $$(\boldsymbol{x}_ i, \tilde{\boldsymbol{x}}_ i)$$ as Training Data for estimating the Autoencoder reconstruction distribution $$p_{\text {reconstruct }}(\boldsymbol{x} \vert \tilde{\boldsymbol{x}})$$.  
+    1. __What is the output of the encoder $$f$$?__{: style="color: blue"}  
+        $$f(\tilde{\boldsymbol{x}}) = \boldsymbol{h}$$.  
+    1. __What is the output of the decoder $$g$$?__{: style="color: blue"}  
+        $$g(\boldsymbol{h})=p_{\text {decoder}}(\boldsymbol{x} \vert \boldsymbol{h})=\boldsymbol{x}$$.  
+    1. __What is the "Reconstruction Distribution" equal to?__{: style="color: blue"}  
+        $$p_{\text {reconstruct}}(\boldsymbol{x} \vert \tilde{\boldsymbol{x}})=p_{\text {decoder}}(\boldsymbol{x} \vert \boldsymbol{h})$$.  
+    {: hidden=""}
+1. __How do we Train the Denoising AE?__{: style="color: red"}  
+    Typically we can simply perform gradient-based approximate minimization (such as minibatch gradient descent) on the negative log-likelihood $$-\log p_{\text {decoder}}(\boldsymbol{x} \vert \boldsymbol{h})$$.  
+    So long as the encoder is deterministic, the denoising Autoencoder is a feedforward network and may be trained with exactly the same techniques as any other FFN.  
+    1. __What is the Loss?__{: style="color: blue"}  
+        Negative Log-Likelihood (NLL): $$-\log p_{\text {decoder}}(\boldsymbol{x} \vert \boldsymbol{h})$$.  
+    1. __What is the Optimization Method?__{: style="color: blue"}  
+        __SGD__.  
+    1. __What is the Training similar to?__{: style="color: blue"}  
+        So long as the encoder is deterministic, the DAE is a __feedforward network (FFN)__ and may be trained with exactly the same techniques as any other FFN.  
+    1. __Is the Encoder Deterministic?__{: style="color: blue"}  
+        Yes.  
+        1. __Would change if it was one or the other?__{: style="color: blue"}  
+            If it were __"stochastic"__ then it can't be learned w/ max-likelihood training.  
+1. __How can we view the function of DAEs (wrt learning/training) from a Probabilistic pov?__{: style="color: red"}  
+    Given above, we can therefore view the DAE as __performing stochastic gradient descent on the following expectation__:  
+    <p>$$-\mathbb{E}_{\mathbf{x} \sim \hat{p}_{\text {data }}(\mathbf{x})} \mathbb{E}_{\tilde{\mathbf{x}} \sim C(\tilde{\mathbf{x}} \vert \boldsymbol{x})} \log p_{\text {decoder}}(\boldsymbol{x} \vert \boldsymbol{h}=f(\tilde{\boldsymbol{x}}))$$</p>  
+    where $$\hat{p}_ {\text {data}}(\mathrm{x})$$ is the training distribution.  
+    <button>Extra</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    1. __What Expectation is it minimizing? Over what?__{: style="color: blue"}  
+        <p>$$-\mathbb{E}_{\mathbf{x} \sim \hat{p}_{\text {data }}(\mathbf{x})} \mathbb{E}_{\tilde{\mathbf{x}} \sim C(\tilde{\mathbf{x}} \vert \boldsymbol{x})} \log p_{\text {decoder}}(\boldsymbol{x} \vert \boldsymbol{h}=f(\tilde{\boldsymbol{x}}))$$</p>  
+        where $$\hat{p}_ {\text {data}}(\mathrm{x})$$ is the training distribution.  
+    1. __Can we re-write the Objective/Loss wrt the Empirical Distribution?__{: style="color: blue"}  
+        <p>$$-\mathbb{E}_{\mathbf{x} \sim \hat{p}_{\text {data }}(\mathbf{x})} \mathbb{E}_{\tilde{\mathbf{x}} \sim C(\tilde{\mathbf{x}} \vert \boldsymbol{x})} \log p_{\text {decoder}}(\boldsymbol{x} \vert \boldsymbol{h}=f(\tilde{\boldsymbol{x}}))$$</p>  
+        where $$\hat{p}_ {\text {data}}(\mathrm{x})$$ is the training distribution.  
+    {: hidden=""}
+1. __What other ways exist for learning/training DAEs?__{: style="color: red"}  
+    __Score Matching__.  
+1. __How do DAEs and VAEs relate to each other?__{: style="color: red"}  
+    DAEs learn to represent a __probability distribution__.  
+    To use the AE as a __generative model__ to *__draw samples__* from this distribution, we need to make the <span>__Encoder__ *__Stochastic__*</span>{: style="color: purple"}: this is known as the __Variational Autoencoder__.  
+
+1. __Define Contractive Autoencoders__{: style="color: red"}  
+    __Contractive Autoencoders (CAEs)__ _(Rifai et al., 2011a,b)_ introduces an explicit regularizer on the code $$\boldsymbol{h}=\phi(\boldsymbol{x}),$$ encouraging the derivatives of $$\phi$$ to be as small as possible:  
+    <p>$$\Omega(\boldsymbol{h})=\lambda\left\|\frac{\partial \phi(\boldsymbol{x})}{\partial \boldsymbol{x}}\right\|_ {F}^{2}$$</p>  
+    The __penalty__ $$\Omega(\boldsymbol{h})$$ is the *__squared Frobenius norm__*  (sum of squared elements) of __the Jacobian matrix__ of partial derivatives associated with the encoder function.  
+    <button>Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __What is the regularizer/penalty used?__{: style="color: blue"}    
+        The __penalty__ $$\Omega(\boldsymbol{h})$$ is the *__squared Frobenius norm__*  (sum of squared elements) of __the Jacobian matrix__ of partial derivatives associated with the encoder function.  
+    1. __What does it encourage the system to do?__{: style="color: blue"}  
+        It encouraging the <span>__derivatives__</span>{: style="color: purple"} of the __Encoder__ $$\phi$$ to be <span>as small as possible</span>{: style="color: purple"}.  
+    {: hidden=""}
+1. __How is the Contractive AE connected to the DAE:__{: style="color: red"}  
+    * In the limit of small Gaussian input noise, the denoising reconstruction error is equivalent to a contractive penalty on the reconstruction function that maps $$\boldsymbol{x}$$ to $$\boldsymbol{r}=\psi(\phi(\boldsymbol{x}))$$. I.e.:  
+        \- __Denoising Autoencoders:__ make the reconstruction function resist small but finite-sized perturbations of the input  
+        \- __Contractive Autoencoders:__ make the feature extraction function resist infinitesimal perturbations of the input.  
+    * When using the Jacobian-based contractive penalty to pretrain features $$\phi(\boldsymbol{x})$$ for use with a classifier, the best classification accuracy usually results from applying the contractive penalty to $$\phi(\boldsymbol{x})$$ rather than to $$\psi(\phi(\boldsymbol{x}))$$.  
+    * A contractive penalty on $$\phi(\boldsymbol{x})$$ also has close [connections to __score matching__](#bodyContents32sm).  
+1. __Why is the CAE called "Contractive"?__{: style="color: red"}  
+    The name __contractive__ arises from the way that the CAE _warps space_.  
+    Specifically, because the CAE is trained to resist perturbations of its input, it is encouraged to map a neighborhood of input points to a smaller neighborhood of output points. We can think of this as contracting the input neighborhood to a smaller output neighborhood.  
+    <button>Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    1. __Is it contractive locally or globally or both?__{: style="color: blue"}  
+        The CAE is contractive only *__locally__*-all perturbations of a training point $$\boldsymbol{x}$$ are mapped near to $$\phi(\boldsymbol{x})$$. *__Globally__*, two different points $$\boldsymbol{x}$$ and $$\boldsymbol{x}^{\prime}$$ may be mapped to $$\phi(\boldsymbol{x})$$ and $$\psi\left(\boldsymbol{x}^{\prime}\right)$$ points that are farther apart than the original points.  
+    1. __Give the Interpretation of the CAE as a Linear Operator:__{: style="color: blue"}  
+        We can think of the _Jacobian matrix_ $$J$$ at a point $$x$$ as <span>_approximating_ the __nonlinear encoder $$\phi(x)$$__ as being a __linear operator__</span>{: style="color: goldenrod"}. This allows us to use the word _"contractive"_ more formally.  
+        In the theory of linear operators, a linear operator is said to be _contractive_ if the norm of $$J x$$ remains less than or equal to 1 for all unit-norm $$x$$. In other words, __$$J$$ is contractive if it shrinks the unit sphere__.  
+        We can think of the CAE as _penalizing the Frobenius norm of the local linear approximation of $$\phi(x)$$ at every training point $$x$$_ in order _to encourage each of these local linear operator to become a **contraction**_.  
+    {: hidden=""}
+1. __List the Issues associated with using a "Contractive Penalty":__{: style="color: red"}  
+    * [Answer](/work_files/research/dl/archits/aencdrs#bodyContents35issues_ctrctv_pnlt)  
+{: hidden=""}
+
+---
+***
+
+
+
+1. __What is an AutoEncoder? Why do we "Auto-Encode"? (Hint: it's really a misnomer) Why is "AutoEncoder" a misnomer?__{: style="color: red"}  
+    AutoEncoders are FFNs with a narrow, low-dimensional bottleneck layer in the middle that learn are used to learn efficient data codings/representations.  
+    The objective for an AE is to learn to copy its input to its output. 
+    However, performing the copying task per se would be meaningless, and this is why usually autoencoders are restricted in ways that force them to reconstruct the input only approximately, prioritizing the most relevant aspects of the data to be copied.  
+    i.e. It's not really a misnomer since the general objective is in the form of _"auto-encoding"_ however, the main goal is not just to learn to reconstruct the data from the code but to learn useful information about the distribution of the data.  
+    The goal is not perform the copying task, but to <span>perform the copying task for the purpose of __ extracting useful information about the distribution of the data__.</span>{: style="color: purple"}  
+    The Goal: <span>capture important information and learn richer representations.</span>{: style="color: purple"}. 
+1. __What's the Big-Idea/Main-Point behind R-AEs and AEs in general?__{: style="color: red"}  
+        A regularized Autoencoder can be nonlinear and overcomplete but still learn something useful about the data distribution even if the model capacity is great enough to learn a trivial identity function.  
+* __What do DAEs learn to represent?__{: style="color: red"}  
+    They learn to represent a __probability distribution__.  
+* __How do Regularized AEs learn Manifolds?__{: style="color: red"}  
+    Regularized Autoencoders learn manifolds by balancing two opposing forces.  
+* __How can we Learn Manifolds w/ AEs?__{: style="color: red"}  
 
 --> 
 
