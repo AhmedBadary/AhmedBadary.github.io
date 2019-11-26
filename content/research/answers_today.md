@@ -2054,8 +2054,6 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
--->
-
 # Activation Functions
 1. __Describe the Desirable Properties for activation functions:__{: style="color: red"}  
     1. __Non-Linearity__:  
@@ -2199,8 +2197,6 @@ onclick="showText_withParent_PopHide(event);"}
 {: hidden=""}
 
 
-
-<!-- 
 
 ***
 
@@ -2581,6 +2577,8 @@ onclick="showText_withParent_PopHide(event);"}
 ***
 
 
+-->
+
 # Regularization
 1. __Define Regularization both intuitively and formally:__{: style="color: red"}  
     __Regularization__ can be, loosely, defined as: any modification we make to a learning algorithm that is intended to _reduce_ its _generalization error_ but not its _training error_.  
@@ -2960,6 +2958,8 @@ onclick="showText_withParent_PopHide(event);"}
 
     If features are correlated, it is so hard to determine which variables to drop, it is often better not to drop variables. Thus, use __ridge__ over __lasso__ since the latter produces non-unique solutions and might drop random features; while former, spreads weight more evenly.  
 
+
+<!-- 
 
 ***
 
@@ -3428,7 +3428,6 @@ onclick="showText_withParent_PopHide(event);"}
 * __How can we Learn Manifolds w/ AEs?__{: style="color: red"}  
 
 --> 
-
 
 
 

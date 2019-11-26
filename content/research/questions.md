@@ -1224,6 +1224,7 @@ __INTERVIEWS__
 
 ## AutoEncoders
 1. __What is an AutoEncoder? What is its goal? (draw a diagram)__{: style="color: red"}  
+1. __What type of NN is the Autoencoder?__{: style="color: red"}  
 1. __Give Motivation for AutoEncoders:__{: style="color: red"}  
 1. __Why Deep AutoEncoders? What do they allow us to do?__{: style="color: red"}  
 1. __List the Advantages of Deep AutoEncoders:__{: style="color: red"}  
@@ -1249,7 +1250,7 @@ __INTERVIEWS__
     1. __The Encoder maps what to what?__{: style="color: blue"}  
     1. __The Decoder maps what to what?__{: style="color: blue"}  
     1. __What is the type of loss?__{: style="color: blue"}  
-    1. __What is the objective function?__{: style="color: blue"}  
+    {: hidden=""}
 
     <button>Extra Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
     1. __What are "Transition Functions"?__{: style="color: blue"}  

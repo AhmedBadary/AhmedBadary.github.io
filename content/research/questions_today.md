@@ -767,8 +767,6 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
--->
-
 ## Activation Functions
 1. __Describe the Desirable Properties for activation functions:__{: style="color: red"}  
     <button>Explain the specifics of the desirability of each of the following</button>{: .showText value="show"
@@ -802,8 +800,6 @@ onclick="showText_withParent_PopHide(event);"}
 1. __Compute the derivatives of all activation functions:__{: style="color: red"}  
 1. __Graph all activation functions and their derivatives:__{: style="color: red"}  
 {: hidden=""}
-
-<!-- 
 
 ***
 
@@ -986,6 +982,8 @@ onclick="showText_withParent_PopHide(event);"}
 
 ***
 
+-->
+
 ## Regularization
 1. __Define Regularization both intuitively and formally:__{: style="color: red"}  
 1. __Define "well-posedness":__{: style="color: red"}  
@@ -1122,6 +1120,8 @@ onclick="showText_withParent_PopHide(event);"}
 {: hidden=""}
 
 1. __When is Ridge regression favorable over Lasso regression? for correlated features?__{: style="color: red"}  
+
+<!-- 
 
 ***
 
@@ -1364,7 +1364,6 @@ __INTERVIEWS__
 
 
 --> 
-
 
 
 

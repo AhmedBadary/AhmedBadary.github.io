@@ -3145,9 +3145,23 @@ onclick="showText_withParent_PopHide(event);"}
 
 ## AutoEncoders
 1. __What is an AutoEncoder? What is its goal? (draw a diagram)__{: style="color: red"}  
+    An __Autoencoder__ is an ANN used for unsupervised learning of efficient codings/representations.  
+    It aims to learn a _good_ representation (encoding) for a set of data, typically lower-dimensional.  
+    ![img](/main_files/cs231n/aencdrs/1.png){: width="25%"}  
+1. __What type of NN is the Autoencoder?__{: style="color: red"}  
+    A Feedforward NN.  
 1. __Give Motivation for AutoEncoders:__{: style="color: red"}  
+    [Autoencoder are a generalization of __PCA__ to non-linear projections](/work_files/research/dl/archits/aencdrs#bodyContents10).  
+    __Auto-Encoders__ allows us to deal with _curved manifolds_ in the input space by using deep layers, where the <span>__code__ is a _non-linear function_ of the __input__</span>{: style="color: purple"}, and the <span>**_reconstruction_ of the data** from the code is, also, a _non-linear function_ of the __code__</span>{: style="color: purple"}.  
 1. __Why Deep AutoEncoders? What do they allow us to do?__{: style="color: red"}  
-1. __List the Advantages of Deep AutoEncoders:__{: style="color: red"}  
+    They provide a really nice way to do <span>**_non-linear_ dimensionality reduction**</span>{: style="color: goldenrod"}:  
+    * They provide __flexible mappings__ **_both_** ways  
+    * The <span>learning time is linear</span>{: style="color: goldenrod"} (or better) in the number of training examples  
+    * The final encoding model/__Encoder__ is fairly *__compact__* and *__fast__*  
+1. __List the Advantages of Depth in AutoEncoders:__{: style="color: red"}  
+    * __Computational Efficiency:__ Depth can __exponentially reduce the computational cost__ of representing some functions
+    * __Statistical Efficiency:__ Depth can __exponentially decrease the amount of training data__ needed to learn some functions
+    * __Representational Efficiency:__ Experimentally, deep Autoencoders yield __better compression__ compared to shallow or linear Autoencoders  
 1. __List the Applications of AutoEncoders (and historical information):__{: style="color: red"}  
     The applications of auto-encoders have changed overtime.  
     This is due to the advances in the fields that auto-encoders were applied in, or to the incompetency of the auto-encoders.  
@@ -3161,25 +3175,75 @@ onclick="showText_withParent_PopHide(event);"}
 1. __Describe the Training of Deep AutoEncoders:__{: style="color: red"}  
     <button>Extra</button>{: .showText value="show" onclick="showTextPopHide(event);"}
     1. __What are the challenges if any?__{: style="color: blue"}  
+        Training Deep Autoencoders is very challenging:  
+        * It is difficult to optimize deep Autoencoders using backpropagation  
+        * With small initial weights the backpropagated gradient dies  
     1. __What are the main methods for training Deep AutoEncoders?__{: style="color: blue"}  
-    1. __Which one is the most superior method?__{: style="color: blue"}  
+        * Just initialize the weights carefully as in Echo-State Nets. (No longer used)  
+        * Use unsupervised layer-by-layer pre-training. (_Hinton_)  
+            This method involves treating each neighbouring set of two layers as a restricted Boltzmann machine so that the pretraining approximates a good solution, then using a backpropagation technique to fine-tune the results. This model takes the name of __deep belief network__.  
+        * Joint Training (most common)  
+            This method involves training the whole architecture together with a single global reconstruction objective to optimize.  
+    1. __Which one is the superior method?__{: style="color: blue"}  
+        A study published in 2015 empirically showed that the joint training method not only learns better data models, but also learned more representative features for classification as compared to the layerwise method.  
+        The success of joint training, however, is mostly attributed (depends heavily) on the __regularization strategies__ adopted in the modern variants of the model.  
     {: hidden=""}
 
     <button>Extra Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
     1. __How is Joint Training better:__{: style="color: blue"}  
+        It not only learns better data models, but also learned more representative features for classification as compared to the layerwise method.  
     1. __Why is Joint Training better:__{: style="color: blue"}  
+        The success of joint training is mostly attributed (depends heavily) on the __regularization strategies__ adopted in the modern variants of the model.  
     {: hidden=""}
 1. __Describe the Architecture of AutoEncoders:__{: style="color: red"}  
+    * An auto-encoder consists of:  
+        * An Encoding Function 
+        * A Decoding Function 
+        * A Distance Function   
+    * We choose the __encoder__ and __decoder__ to be <span>parametric functions</span>{: style="color: purple"} (typically <span>neural networks</span>{: style="color: purple"}), and to be <span>differentiable</span>{: style="color: purple"} with respect to the distance function, so the parameters of the encoding/decoding functions can be optimized to minimize the reconstruction loss, using Stochastic Gradient Descent.  
+
     1. __What is the simplest form of an AE:__{: style="color: blue"}  
+        The simplest form of an Autoencoder is a __feedforward neural network__ (similar to the multilayer perceptron (MLP)) – having an input layer, an output layer and one or more hidden layers connecting them – but with the output layer having the same number of nodes as the input layer, and with the purpose of reconstructing its own inputs (instead of predicting the target value $${\displaystyle Y}$$ given inputs $${\displaystyle X}$$).  
     1. __What realm of "Learning" is employed for AEs?__{: style="color: blue"}  
+        Self-Supervised Learning.  
 1. __Mathematical Description of the Structure of AutoEncoders:__{: style="color: red"}  
+    The _encoder_ and the _decoder_ in an auto-encoder can be defined as [transitions](https://en.wikipedia.org/wiki/Atlas_(topology)#Transition_maps) $$\phi$$ and $$ {\displaystyle \psi ,}$$ such that:  
+    <p>$$ {\displaystyle \phi :{\mathcal {X}}\rightarrow {\mathcal {F}}} \\ 
+        {\displaystyle \psi :{\mathcal {F}}\rightarrow {\mathcal {X}}} \\ 
+        {\displaystyle \phi ,\psi =\arg \min_{\phi ,\psi }\|X-(\psi \circ \phi )X\|^{2}}$$
+    </p>
+    where $${\mathcal {X} = \mathbf{R}^d}$$ is the input space, and $${\mathcal {F} = \mathbf{R}^p}$$ is the latent (feature) space, and $$ p < d$$.   
+
+    The encoder takes the input $${\displaystyle \mathbf {x} \in \mathbb {R} ^{d}={\mathcal {X}}}$$ and maps it to $${\displaystyle \mathbf {z} \in \mathbb {R} ^{p}={\mathcal {F}}} $$:  
+    <p>$${\displaystyle \mathbf {z} =\sigma (\mathbf {Wx} +\mathbf {b} )}$$</p>  
+    * The image $$\mathbf{z}$$ is referred to as _code_, _latent variables_, or _latent representation_.  
+    *  $${\displaystyle \sigma }$$ is an element-wise activation function such as a sigmoid function or a rectified linear unit.
+    * $${\displaystyle \mathbf {W} }$$ is a weight matrix
+    * $${\displaystyle \mathbf {b} }$$ is the bias.  
+
+    The Decoder maps $${\displaystyle \mathbf {z} }$$ to the reconstruction $${\displaystyle \mathbf {x'} } $$  of the same shape as $${\displaystyle \mathbf {x} }$$:  
+    <p>$${\displaystyle \mathbf {x'} =\sigma '(\mathbf {W'z} +\mathbf {b'} )}$$</p>  
+    where $${\displaystyle \mathbf {\sigma '} ,\mathbf {W'} ,{\text{ and }}\mathbf {b'} } $$ for the decoder may differ in general from those of the encoder.  
     
+    Autoencoders minimize  reconstruction errors, such as the L-2 loss:  
+    <p>$${\displaystyle {\mathcal {L}}(\mathbf {x} ,\psi ( \phi (\mathbf {x} ) ) ) =  {\mathcal {L}}(\mathbf {x} ,\mathbf {x'} )=\|\mathbf {x} -\mathbf {x'} \|^{2}=\|\mathbf {x} -\sigma '(\mathbf {W'} (\sigma (\mathbf {Wx} +\mathbf {b} ))+\mathbf {b'} )\|^{2}}$$</p>  
+    where $${\displaystyle \mathbf {x} }$$ is usually averaged over some input training set.  
+
     <button>Extra Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
     1. __How do we define the "Encoder" and "Decoder"?__{: style="color: blue"}  
+        Transition Maps.  
     1. __The Encoder maps what to what?__{: style="color: blue"}  
+        The encoder takes the input $${\displaystyle \mathbf {x} \in \mathbb {R} ^{d}={\mathcal {X}}}$$ and maps it to $${\displaystyle \mathbf {z} \in \mathbb {R} ^{p}={\mathcal {F}}} $$:  
+        <p>$${\displaystyle \mathbf {z} =\sigma (\mathbf {Wx} +\mathbf {b} )}$$</p>  
     1. __The Decoder maps what to what?__{: style="color: blue"}  
+        The Decoder maps $${\displaystyle \mathbf {z} }$$ to the reconstruction $${\displaystyle \mathbf {x'} } $$  of the same shape as $${\displaystyle \mathbf {x} }$$:  
+        <p>$${\displaystyle \mathbf {x'} =\sigma '(\mathbf {W'z} +\mathbf {b'} )}$$</p>  
+        where $${\displaystyle \mathbf {\sigma '} ,\mathbf {W'} ,{\text{ and }}\mathbf {b'} } $$ for the decoder may differ in general from those of the encoder.  
     1. __What is the type of loss?__{: style="color: blue"}  
-    1. __What is the objective function?__{: style="color: blue"}  
+        Autoencoders minimize __reconstruction errors__, such as the __L2 loss__:  
+        <p>$${\displaystyle {\mathcal {L}}(\mathbf {x} ,\psi ( \phi (\mathbf {x} ) ) ) =  {\mathcal {L}}(\mathbf {x} ,\mathbf {x'} )=\|\mathbf {x} -\mathbf {x'} \|^{2}=\|\mathbf {x} -\sigma '(\mathbf {W'} (\sigma (\mathbf {Wx} +\mathbf {b} ))+\mathbf {b'} )\|^{2}}$$</p>  
+        where $${\displaystyle \mathbf {x} }$$ is usually averaged over some input training set.  
+    {: hidden=""}
 
     <button>Extra Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
     1. __What are "Transition Functions"?__{: style="color: blue"}  
@@ -3192,8 +3256,14 @@ onclick="showText_withParent_PopHide(event);"}
     * Variational Auto-Encoder (VAE)  
     * Contractive Auto-Encoder.  
 1. __How can we use AEs for Initialization?__{: style="color: red"}  
+    After training an auto-encoder, we can use the _encoder_ to compress the input data into it's latent representation (which we can view as _features_) and input those to the neural-net (e.g. a classifier) for prediction.  
+    ![img](/main_files/cs231n/aencdrs/2.png){: width="40%"}  
 1. __Describe the Representational Power of AEs:__{: style="color: red"}  
-    <button>Extra</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    * The universal approximator theorem guarantees that a feedforward neural network with at least one hidden layer can represent an approximation of any function (within a broad class) to an arbitrary degree of accuracy, provided that it has enough hidden units. This means that an Autoencoder with a single hidden layer is able to represent the identity function along the domain of the data arbitrarily well.  
+    * However, __the mapping from input to code is shallow__. This means that we are not able to enforce arbitrary constraints, such as that the code should be sparse.  
+    * A deep Autoencoder, with at least one additional hidden layer inside the encoder itself, can approximate any mapping from input to code arbitrarily well, given enough hidden units.  
+
+    <button>Extra</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
     1. __(wrt Layer Size and Depth):__{: style="color: red"}  
     1. __Why is Depth Important?__{: style="color: blue"}   
     {: hidden=""}

@@ -82,7 +82,7 @@ prevLink: /work_files/research/dl.html
     There are two main methods for training:  
     {: #lst-p}
     * Just initialize the weights carefully as in Echo-State Nets. (No longer used)  
-    * Use unsupervised layer-by- layer pre-training. (_Hinton_)  
+    * Use unsupervised layer-by-layer pre-training. (_Hinton_)  
         This method involves treating each neighbouring set of two layers as a restricted Boltzmann machine so that the pretraining approximates a good solution, then using a backpropagation technique to fine-tune the results. This model takes the name of __deep belief network__.  
     * Joint Training (most common)  
         This method involves training the whole architecture together with a single global reconstruction objective to optimize.  
@@ -122,7 +122,7 @@ prevLink: /work_files/research/dl.html
     <p>$${\displaystyle \mathbf {x'} =\sigma '(\mathbf {W'z} +\mathbf {b'} )}$$</p>  
     where $${\displaystyle \mathbf {\sigma '} ,\mathbf {W'} ,{\text{ and }}\mathbf {b'} } $$ for the decoder may differ in general from those of the encoder.  
     
-    Autoencoders minimize  reconstruction errors, such as the L-2 loss:  
+    Autoencoders minimize reconstruction errors, such as the L-2 loss:  
     <p>$${\displaystyle {\mathcal {L}}(\mathbf {x} ,\psi ( \phi (\mathbf {x} ) ) ) =  {\mathcal {L}}(\mathbf {x} ,\mathbf {x'} )=\|\mathbf {x} -\mathbf {x'} \|^{2}=\|\mathbf {x} -\sigma '(\mathbf {W'} (\sigma (\mathbf {Wx} +\mathbf {b} ))+\mathbf {b'} )\|^{2}}$$</p>  
     where $${\displaystyle \mathbf {x} }$$ is usually averaged over some input training set.  
     <br>
@@ -158,7 +158,7 @@ prevLink: /work_files/research/dl.html
     <br>
 
 7. **Representational Power, Layer Size and Depth:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
-    the universal approximator theorem guarantees that a feedforward neural network with at least one hidden layer can represent an approximation of any function (within a broad class) to an arbitrary degree of accuracy, provided that it has enough hidden units. This means that an Autoencoder with a single hidden layer is able to represent the identity function along the domain of the data arbitrarily well.  
+    The universal approximator theorem guarantees that a feedforward neural network with at least one hidden layer can represent an approximation of any function (within a broad class) to an arbitrary degree of accuracy, provided that it has enough hidden units. This means that an Autoencoder with a single hidden layer is able to represent the identity function along the domain of the data arbitrarily well.  
     However, __the mapping from input to code is shallow__. This means that we are not able to enforce arbitrary constraints, such as that the code should be sparse.  
     A deep Autoencoder, with at least one additional hidden layer inside the encoder itself, can approximate any mapping from input to code arbitrarily well, given enough hidden units.  
     <br>

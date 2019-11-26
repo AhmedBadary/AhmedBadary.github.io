@@ -25,6 +25,11 @@ prevLink: /work_files/
 ***
 ***
 
+
+* __Algorithmic Trading Strategies__:  
+    * [Algorithmic Trading Strategies (youtube)](https://www.youtube.com/watch?v=4Ae2_i5nMxs)  
+
+
 ## Definitions and Fundamentals
 {: #content1}
 
