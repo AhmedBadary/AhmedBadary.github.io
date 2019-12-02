@@ -27,6 +27,8 @@ prevLink: /work_files/research/
 ***
 ***
 
+* [Deep Learning Lecture Notes and Experiments (github)](https://github.com/roatienza/Deep-Learning-Experiments)  
+
 
 
 ## Deep Learning Generalization

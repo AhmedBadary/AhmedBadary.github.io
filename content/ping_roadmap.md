@@ -95,4 +95,76 @@ __Notes:__{: style="color: red"}
     Is the description adequate? Was the time reasonable? Was authorization actually given?  
     In other words, humans are required to evaluate and analyze what the software has flagged, and then to make a judgement about whether to adjust the line item or leave it alone.  
 * litigation code classification - [Bert for lcc](https://www.mishcon.com/upload/files/Pre-trained_Contextual_Embeddings_for_Litigation_Code_Classification.Bartolo_etal.pdf)  
-* 
+
+
+***
+***
+***
+
+## Resources  
+
+* __Entity Extraction:__  
+    * [Accuracy Metrics For Entity Extraction](https://www.rosoka.com/sites/default/files/accuracyMetricsForEntityExtraction.pdf)  
+    * [sberbank-ai/ner-bert: BERT-NER (nert-bert) with google bert https://github.com/google-research.](https://github.com/sberbank-ai/ner-bert)
+    * [Joint NER and Classification (Papers With Code)](https://paperswithcode.com/task/joint-ner-and-classification)  
+    * [Multitask learning for biomedical named entity recognition with cross-sharing structure | BMC Bioinformatics | Full Text](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-019-3000-5)
+
+* __Text Classification (few-shot)__:  
+    * [When Low Resource NLP Meets Unsupervised Language Model: Meta-pretraining Then Meta-learning for Few-shot Text Classification](https://arxiv.org/abs/1908.08788)
+    * [ATTENTIVE TASK-AGNOSTIC META-LEARNING FOR FEW-SHOT TEXT CLASSIFICATION](https://openreview.net/pdf?id=SyxMWh09KX)
+
+* __Transfer Learning__:  
+    * [A Tutorial to Fine-Tuning BERT with Fast AI | Machine Learning Explained](http://mlexplained.com/2019/05/13/a-tutorial-to-fine-tuning-bert-with-fast-ai/)  
+    * [Multi-label Text Classification using BERT – The Mighty Transformer](https://medium.com/huggingface/multi-label-text-classification-using-bert-the-mighty-transformer-69714fa3fb3d)  
+
+* __Text/Document Clustering__:   
+    * [Text Clustering (Papers With Code)](https://paperswithcode.com/task/text-clustering)
+    * [(14) StatQuest: Hierarchical Clustering - YouTube](https://www.youtube.com/watch?v=7xHsRkOdVwo&t=0s)
+
+* __Topic Modeling__:   
+    * [echen/sarah-palin-lda: Topic Modeling the Sarah Palin emails.](https://github.com/echen/sarah-palin-lda) 
+
+* __Summarization__:  
+    * [Abstractive Sentence Compression: Differentiable Sequence-to-Sequence-to-Sequence Autoencoder for Unsupervised Abstractive Sentence Compression"](https://github.com/cbaziotis/seq3)
+    * [Unsupervised Sentence Compression (Papers With Code)](https://paperswithcode.com/task/unsupervised-abstractive-sentence-compression)
+
+* __Time-Series Clustering & Processing__:  
+    * [Time Series Clustering (Papers with Code)](https://paperswithcode.com/task/time-series-clustering)  
+    * [Temporal Processing | NLP-progress](https://nlpprogress.com/english/temporal_processing.html)
+
+* __Knowledge Graphs & Graph Theory__:  
+    * [Salesforce Research: Knowledge graphs and machine learning to power Einstein | ZDNet](https://www.zdnet.com/article/*alesforce-research-knowledge-graphs-and-machine-learning-to-power-einstein/)
+    * [Populating a GRAKN.AI Knowledge Graph with the World](https://www.kdnuggets.com/2017/07/populating-grakn-ai-knowledge-graph.html)
+    * [GRAKN.AI - Wikipedia](https://en.wikipedia.org/wiki/GRAKN.AI)
+    * [echen/information-propagation: Information Propagation in a Social Network](https://github.com/echen/information-propagation)
+
+* __Calendar Modeling & Event Extraction & Time Tracking__: 
+    * [Natural Language Processing — Event Extraction - Towards Data Science](https://towardsdatascience.com/*atural-language-processing-event-extraction-f20d634661d3)
+    * [Understanding Events with Artificial Intelligence - Towards Data Science](https://towardsdatascience.com/*nderstanding-events-with-artificial-intelligence-12e1ec3c5c9)
+    * [Learning User Preferences and Understanding Calendar Contexts for Event Scheduling](https://arxiv.org/pdf/1809.01316.pdf)
+    * [Supercharging Scoro with Machine Learning | Scoro](https://www.scoro.com/blog/supercharging-scoro-with-machine-learning)
+    * [Using Machine Learning to Predict and Explain Employee Attrition](https://www.kdnuggets.com/2017/10/*achine-learning-predict-employee-attrition.html)
+    * [Smart task logging : Prediction of tasks for timesheets with machine learning](http://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1220634&dswid=8525)
+    * [Smart task logging (Thesis)](http://www.diva-portal.org/smash/get/diva2:1220634/FULLTEXT01.pdf)
+    * [Leverage AI to transform time tracking into time intelligence - YouTube](https://www.youtube.com/watch?v=GylT44CUOBI&t=1553s)
+    * [Memory AI - Fully automatic time tracking powered by deep learning | Product Hunt](https://www.producthunt.com/posts/memory-ai)
+    * [6 Features Any Smart Timesheet App Needs. Does Yours Have Them?](https://zistemo.com/blog/6-features-smart-timesheet-app-needs/)
+    * [Using employee time series data to predict employee turnover (Binary Prediction using Time Series Data) : MLQuestions](https://www.reddit.com/r/MLQuestions/comments/a1qsnz/using_employee_time_series_data_to_predict/). 
+
+* __Data Labeling:__  
+    * [Data Turks](https://dataturks.com/)
+    * [Prodigy · An annotation tool for AI, Machine Learning & NLP](https://prodi.gy/)
+
+* __Security and Data Privacy__:  
+    * [Deep Learning with Differential Privacy (paper)](https://arxiv.org/pdf/1607.00133.pdf)  
+
+* __Resources__:  
+    * [Text Matching: (NTMC-Community/MatchZoo: Facilitating the design, comparison and sharing of deep text matching models)](https://github.com/NTMC-Community/MatchZoo)
+    * [lda2vec](https://github.com/cemoody/lda2vec)  
+    * [Anomaly Detection in Keras with AutoEncoders (14.3) - YouTube](https://www.youtube.com/watch?v=1ySn6h2A68I&t=0s)  
+    * [Relationship Extraction (Distant Supervised) (Papers With Code)](https://paperswithcode.com/task/relationship-extraction-distant-supervised)
+    * [5hirish/adam\_qas: ADAM - A Question Answering System. Inspired from IBM Watson](https://github.com/5hirish/adam_qas)
+    * [machine learning smart timesheet - Google Search](https://www.google.com/search?q=machine+learning+smart+timesheet&rlz=1C5CHFA_enUS78*US785&sxsrf=ACYBGNTEWbybI3F0iFyNSqX67r6qltb2Fg:1572128131533&ei=g8W0XfufII-0swXK87_4AQ&start=30&sa=N&ved=0ahUKEwi77cjW-brlAhUP2qwKHcr5Dx84FBDy0wMIdg&biw=1920&bih=969)
+    * [Memory AI: About | LinkedIn](https://www.linkedin.com/company/memory-ai/about/)
+    * [Semi-supervised Sequence Learning](https://arxiv.org/abs/1511.01432)
+    * [EMNLP-2019-Papers: Statistics and Accepted paper list with arXiv link of EMNLP-IJCNLP 2019](https://github.com/roomylee/EMNLP-2019-Papers)
