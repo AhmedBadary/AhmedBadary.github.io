@@ -8,14 +8,17 @@ prevLink: /work_files/
 <div markdown="1" class = "TOC">
 # Table of Contents
 
-  * [FIRST](#content1)
+  * [Definitions and Fundamentals](#content1)
   {: .TOC1}
+  * [Resources](#content4)
+  {: .TOC4}
+  * [Applied](#content5)
+  {: .TOC5}
+<!--   
   * [SECOND](#content2)
   {: .TOC2}
-<!--   * [THIRD](#content3)
+  * [THIRD](#content3)
   {: .TOC3}
-  * [FOURTH](#content4)
-  {: .TOC4}
   * [FIFTH](#content5)
   {: .TOC5}
   * [SIXTH](#content6)
@@ -54,7 +57,7 @@ prevLink: /work_files/
         * __Index Mutual Funds__  
         * __ETFs__  
             <button>ETFs of Popular Indexes</button>{: .showText value="show" onclick="showTextPopHide(event);"}
-            ![img](https://cdn.mathpix.com/snip/images/E_W3u_AvMZaAtfG9N5rUsPOkAqLx9ProptfUaWskeE0.original.fullsize.png){: width="100%" hidden=""}  
+            ![img](https://cdn.mathpix.com/snip/images/E_W3u_AvMZaAtfG9N5rUsPOkAqLx9ProptfUaWskeE0.original.fullsize.png){: width="40%" hidden=""}  
 
         TLDR; To invest in an index, all you have to do is buy its associated ETF.  
         [LINK (Why we Can't Trade an Index?) (Blog)](https://www.investopedia.com/simulator/help/index.aspx)  
@@ -68,12 +71,15 @@ prevLink: /work_files/
 
 2. **Markets:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
     
+    __Types:__{: style="color: red"}  
+    {: #lst-p}
     * __Stock market:__  
     * __Commodity market:__  
     * __Foreign exchange market:__  
     * __Futures exchange:__  
     * __Over-the-counter market (OTC):__  
     * __Spot market:__  
+    <br>
 
 3. **Securities:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
     A __security__ is a <span>__tradable__</span>{: style="color: purple"} <span>financial asset</span>{: style="color: purple"}.  
@@ -86,16 +92,20 @@ prevLink: /work_files/
     * __Derivatives__ (e.g., forwards, futures, options, and swaps)  
 
 
+    Fill in:  
+    {: #lst-p}
     * __Stocks__: (AKA __Equities__) 
     * __Bonds__: 
     * __(Stock) Options__: 
     * __(other) Options__: 
-    * __Mutual Funds__: 
+    * __Mutual Funds__:  
+    <br>
 
 4. **Funds:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
     * __Index Fund__:  
     * __Exchange-Traded Fund (ETF)__: 
-    * __Mutual Fund__: 
+    * __Mutual Fund__:  
+    <br>
 
 5. **Portfolio:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}  
 
@@ -103,10 +113,12 @@ prevLink: /work_files/
 
 7. **Trading/Trader:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
     
-    * __Day Trading__: 
+    __Types:__{: style="color: red"}  
+    {: #lst-p}
+    * __Day Trading__:  
+    <br>
 
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}
+<!-- 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18} -->
 
 
 __Notes:__{: style="color: red"}  
@@ -114,28 +126,70 @@ __Notes:__{: style="color: red"}
 * __Stocks VS Shares:__  
     TLDR; same thing, _stocks_ is a generic term, _shares_ pertains to one specific company.  
     * <button>Table</button>{: .showText value="show" onclick="showTextPopHide(event);"}
-        ![img](https://cdn.mathpix.com/snip/images/4kOI-FR3TFXA8v2pIyeFy8e7cozNV9ZyrYU54KrhF0U.original.fullsize.png){: width="100%" hidden=""}  
+        ![img](https://cdn.mathpix.com/snip/images/4kOI-FR3TFXA8v2pIyeFy8e7cozNV9ZyrYU54KrhF0U.original.fullsize.png){: width="40%" hidden=""}  
     * [Link (Quora)](https://www.quora.com/What-is-difference-between-stock-and-shares)  
     * [Investopedia](https://www.investopedia.com/ask/answers/difference-between-shares-and-stocks/)  
-* __Options Trading (vs stock)__:  
-    * <button>Options VS Stocks Table</button>{: .showText value="show" onclick="showTextPopHide(event);"}
-        ![img](/main_content/investing/Stock-Purchase-vs-Stock-Options.jpg){: width="100%" hidden=""}  
-    * [Options Trading 101: Why Options Are Better Than Stocks (youtube)](https://www.youtube.com/watch?v=Rf1vli10F2E)  
-    * [Options Trading: Understanding Option Prices (youtube)](https://www.youtube.com/watch?v=MiybniIIvx0)  
-    * [Getting Acquainted With Options Trading (Investopedia)](https://www.investopedia.com/articles/optioninvestor/03/073003.asp)  
 * __AI in Trading__:  
     * <button>Show Diagram</button>{: .showText value="show" onclick="showTextPopHide(event);"}
-        ![img](https://cdn.mathpix.com/snip/images/DK2d7Evr3HGZlkm5vJ5MVW7qfzTygU_yhUlIWotGo5U.original.fullsize.png){: width="100%" hidden=""}  
+        ![img](https://cdn.mathpix.com/snip/images/DK2d7Evr3HGZlkm5vJ5MVW7qfzTygU_yhUlIWotGo5U.original.fullsize.png){: width="40%" hidden=""}  
     * <button>Conceptual Model for Algorithmic Trading</button>{: .showText value="show" onclick="showTextPopHide(event);"}
-        ![img](https://cdn.mathpix.com/snip/images/iZxUSrV19HI0eYP7MY-kLEByOreEw_V346Td6MS8CyM.original.fullsize.png){: width="100%" hidden=""}  
+        ![img](https://cdn.mathpix.com/snip/images/iZxUSrV19HI0eYP7MY-kLEByOreEw_V346Td6MS8CyM.original.fullsize.png){: width="40%" hidden=""}  
     * [AI Technologies used for Trading (Blog)](https://builtin.com/artificial-intelligence/ai-trading-stock-market-tech)  
 * __Data Sources/Sets__:  
     news articles, social media postings, financial statements, 
+* __Options Trading (vs stock)__:  
+    * <button>Options VS Stocks Table</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+        ![img](/main_files/investing/Stock-Purchase-vs-Stock-Options.jpg){: width="40%" hidden=""}  
+    * [Options Trading 101: Why Options Are Better Than Stocks (youtube)](https://www.youtube.com/watch?v=Rf1vli10F2E)  
+    * [Options Trading: Understanding Option Prices (youtube)](https://www.youtube.com/watch?v=MiybniIIvx0)  
+    * [Getting Acquainted With Options Trading (Investopedia)](https://www.investopedia.com/articles/optioninvestor/03/073003.asp)  
+
+
+* [Coachella 2015 Twitter sentiment](https://www.figure-eight.com/data-for-everyone/)  
+* [Airline Twitter sentiment](https://www.figure-eight.com/data-for-everyone/)  
+* [McDonald’s review sentiment](https://www.figure-eight.com/data-for-everyone/)  
+* [Image sentiment polarity classification](https://www.figure-eight.com/data-for-everyone/)  
+* [News article / Wikipedia page pairings](https://www.figure-eight.com/data-for-everyone/)  
+* [Twitter sentiment analysis: Self-driving cars](https://www.figure-eight.com/data-for-everyone/)  
+* [U.S. economic performance based on news articles](https://www.figure-eight.com/data-for-everyone/)  
+* [URL categorization](https://www.figure-eight.com/data-for-everyone/)  
+* [Sentiment analyses of single words or short phrases](https://www.figure-eight.com/data-for-everyone/)  
+* [Economic News Article Tone and Relevance](https://www.figure-eight.com/data-for-everyone/)  
+* [Sentiment Analysis: Emotion in Text](https://www.figure-eight.com/data-for-everyone/)  
+* [Judge emotions about nuclear energy from Twitter](https://www.figure-eight.com/data-for-everyone/)  
+* [Sentiment Analysis – Global Warming/Climate Change](https://www.figure-eight.com/data-for-everyone/)  
+* [Judge Emotion About Brands & Products](https://www.figure-eight.com/data-for-everyone/)  
+* [Company categorizations (with URLs)](https://www.figure-eight.com/data-for-everyone/)  
+* [Apple Computers Twitter sentiment](https://www.figure-eight.com/data-for-everyone/)  
+* [DBpedia](https://wiki.dbpedia.org/develop/datasets/dbpedia-version-2016-10)  
+* [Satellite photos of the entire Earth's surface, updated every few weeks](https://www.usgs.gov/land-resources/nli/landsat)  
+
+
+* [Market Data](http://cfe.cboe.com/market-data/)  
+* [Google Finance](https://www.google.com/finance)  
+* [Google Trends](http://www.google.com/trends?q=google&ctab=0&geo=all&date=all&sort=0)  
+* [NASDAQ](https://data.nasdaq.com/)  
+* [NYSE Market Data](ftp://ftp.nyxdata.com/)  
+* [OANDA](http://www.oanda.com/)  
+* [OSU Financial data](http://fisher.osu.edu/fin/fdf/osudata.html)  
+* [Quandl](https://www.quandl.com/)  
+* [Quandl - Search/List](https://www.quandl.com/search?query=)  
+* [St Louis Federal](https://research.stlouisfed.org/fred2/)  
+* [Yahoo Finance](http://finance.yahoo.com/)  
+
+
+
+
+* [Police-involved fatalities since May 2013](https://www.figure-eight.com/data-for-everyone/)  
+* [The data behind data scientists](https://www.figure-eight.com/data-for-everyone/)  
+* [Awesome Datasets (github)](https://github.com/awesomedata/awesome-public-datasets)  
+
+
 
 <br>
 
 
-***
+<!-- ***
 
 ## SECOND
 {: #content2}
@@ -145,6 +199,7 @@ __Notes:__{: style="color: red"}
 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}
 
 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}
+ -->
 
 <!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}
 
@@ -158,6 +213,7 @@ __Notes:__{: style="color: red"}
 
 ***
 
+<!-- 
 ## Three
 {: #content3}
 
@@ -165,7 +221,7 @@ __Notes:__{: style="color: red"}
 
 2. **Short-Selling:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33} -->
 
 <!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}
 
@@ -188,22 +244,16 @@ __Notes:__{: style="color: red"}
 
 2. **Data Sets/Sources:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}  
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}  
-
-<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44}
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}  
-    __Risk and Risk Modeling:__  
+3. **Fundamental Knowledge Articles:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}  
+    __Risk and Risk Modeling:__{: style="color: red"}  
+    {: #lst-p}
     * [Systematic risk (wiki)](https://en.wikipedia.org/wiki/Systematic_risk)  
     * [Risk Metrics (Investopedia)](https://www.investopedia.com/ask/answers/041615/what-riskmetrics-value-risk-var.asp)  
     * [Value-At-Risk (VAR) (Investopedia)](https://www.investopedia.com/articles/04/092904.asp)  
     * [Volatility as a measure for Risk (Investopedia)](https://www.investopedia.com/terms/v/volatility.asp)  
 
     __Portfolio Theory:__{: style="color: red"}  
+    {: #lst-p}
     * __Modern Portfolio Theory__:  
         * [Markowitz Modern Portfolio Theory (wiki)](https://en.wikipedia.org/wiki/Modern_portfolio_theory)  
         * [MPT (Investopedia)](https://www.investopedia.com/terms/m/modernportfoliotheory.asp)  
@@ -218,12 +268,21 @@ __Notes:__{: style="color: red"}
     * [Mutual fund separation theorem (wiki)](https://en.wikipedia.org/wiki/Mutual_fund_separation_theorem)  
     * [Expected Return (wiki)](https://en.wikipedia.org/wiki/Expected_return)  
     * [Portfolio Variance and Measuring it (Investopedia)](https://www.investopedia.com/ask/answers/071515/how-can-i-measure-portfolio-variance.asp)  
+    <br>
+
+<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44}
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}  
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents48} -->
 
 ***
 
-## Fifth
+## Applied
 {: #content5}
 
 1. **Strategies:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents51}  
@@ -231,25 +290,26 @@ __Notes:__{: style="color: red"}
     * Correlation between companies: buy one and short the other
     * Check how companies came out of the recession (2009) and how people who made money invested
     * Calculate the *__"Intrinsic Value"__* of a company and arbitrage on Over/Under-pricing:  
-        <button>Graph - Share Intrinsic Value</button>{: .showText value="show" onclick="showTextPopHide(event);"}
-        ![img](https://cdn.mathpix.com/snip/images/LtZUmP3xN2IVRkxvVP4Za1S5YpSm4nVSWYj0BiYUNQc.original.fullsize.png){: width="100%" hidden=""}  
-        [Warren Buffett Explains How To Calculate The Intrinsic Value Of A Stock (youtube-Buffet)](https://www.youtube.com/watch?v=TmWW7tsCuGQ) 
-    * 
+        * <button>Graph - Share Intrinsic Value</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+            ![img](https://cdn.mathpix.com/snip/images/LtZUmP3xN2IVRkxvVP4Za1S5YpSm4nVSWYj0BiYUNQc.original.fullsize.png){: width="40%" hidden=""}  
+        * [Warren Buffett Explains How To Calculate The Intrinsic Value Of A Stock (youtube-Buffet)](https://www.youtube.com/watch?v=TmWW7tsCuGQ) 
+
 
     * [Possible Strategy:](https://www.youtube.com/watch?v=eEto5nEkf1Y&t=180)  
         1. Choose an Area you know/understand well
         2. Look at all the stocks in that industry
 
 
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents52}
+    <!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents52} -->
 
 
 8. **Tips:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents58}  
-    * Invest in smaller (small cap) stocks (bigger companies --> more scrutiny)
+    * Invest in smaller (small cap) stocks (bigger companies $$\implies$$ more scrutiny)
     * Be greedy when everyone is afraid
     * Sentiment Affects the Stock Prices significantly
     * Search over more companies to get a better chance
-    * Diversify your "risk"
+    * Diversify your "risk"  
+    <br>
 
 9. **Questions:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents59}  
     * What are the biggest determining factors for the value (intrinsic value?) of a company (e.g. cash in/out-flows...)  
@@ -264,7 +324,7 @@ __Notes:__{: style="color: red"}
  -->
 
 
-Call VS Put (option?)
+<!-- Call VS Put (option?)
 Bullish VS Bearish
 diversification
 [Modern portfolio theory (wiki)](https://en.wikipedia.org/wiki/Modern_portfolio_theory) 
@@ -273,4 +333,4 @@ Short VS Long Position
 Asset Pricing?
 Talk to Cobos
 [Jane Street Jobs](https://www.janestreet.com/join-jane-street/)  
-[quantitative research insights/questions (blog)](https://www.janestreet.com/quantitative-research/) 
+[quantitative research insights/questions (blog)](https://www.janestreet.com/quantitative-research/)  -->
