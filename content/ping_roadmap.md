@@ -111,7 +111,7 @@ __Notes:__{: style="color: red"}
 
 * __Text Classification (few-shot)__:  
     * [When Low Resource NLP Meets Unsupervised Language Model: Meta-pretraining Then Meta-learning for Few-shot Text Classification](https://arxiv.org/abs/1908.08788)
-    * [ATTENTIVE TASK-AGNOSTIC META-LEARNING FOR FEW-SHOT TEXT CLASSIFICATION](https://openreview.net/pdf?id=SyxMWh09KX)
+    * [ATTENTIVE TASK-AGNOSTIC META-LEARNING FOR FEW-SHOT TEXT CLASSIFICATION](https://openreview.net/pdf?id=SyxMWh09KX)  
 
 * __Transfer Learning__:  
     * [A Tutorial to Fine-Tuning BERT with Fast AI | Machine Learning Explained](http://mlexplained.com/2019/05/13/a-tutorial-to-fine-tuning-bert-with-fast-ai/)  

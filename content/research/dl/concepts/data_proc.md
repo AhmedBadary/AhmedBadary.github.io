@@ -138,13 +138,14 @@ __Issues/Weaknesses/Drawbacks:__{: style="color: red"}
 <br>
 
 __t-SNE Optimization:__{: style="color: red"}  
+{: #lst-p}
 * [Accelerating t-SNE using Tree-Based Algorithms](https://lvdmaaten.github.io/publications/papers/JMLR_2014.pdf)  
 * [Barnes-Hut-SNE Optimization](https://arxiv.org/pdf/1301.3342.pdf)  
-
 
 <br>
 
 __Discussion and Information:__{: style="color: red"}  
+{: #lst-p}
 * __What is perplexity?__  
     Perplexity is a measure for information that is defined as 2 to the power of the Shannon entropy. The perplexity of a fair die with k sides is equal to k. In t-SNE, the perplexity may be viewed as a knob that sets the number of effective nearest neighbors. It is comparable with the number of nearest neighbors k that is employed in many manifold learners.  
 * __Choosing the perplexity hp:__   

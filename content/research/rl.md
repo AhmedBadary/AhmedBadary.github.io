@@ -31,6 +31,7 @@ prevLink: /work_files/research/
 * [Reinforcement Learning Series (Tutorial + Code (vids))](https://www.youtube.com/playlist?list=PLZbbT5o_s2xoWNVdDudn51XM8lOuZ_Njv)  
 * [A step-by-step Policy Gradient algorithms Colab + Pytorch tutorial](https://www.reddit.com/r/MachineLearning/comments/defiac/p_a_stepbystep_policy_gradient_algorithms_colab/)  
 * [Pathmind: Reinforcement Learning Simulations (Code)](https://pathmind.com/)  
+* [Reinforcement Learning Tutorial (Sentdex)](https://pythonprogramming.net/q-learning-reinforcement-learning-python-tutorial/)  
 
 
 

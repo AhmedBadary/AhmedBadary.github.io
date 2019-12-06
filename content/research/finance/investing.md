@@ -144,7 +144,8 @@ __Notes:__{: style="color: red"}
     * [Options Trading: Understanding Option Prices (youtube)](https://www.youtube.com/watch?v=MiybniIIvx0)  
     * [Getting Acquainted With Options Trading (Investopedia)](https://www.investopedia.com/articles/optioninvestor/03/073003.asp)  
 
-
+__Datasets:__{: style="color: red"}  
+{: #lst-p}
 * [Coachella 2015 Twitter sentiment](https://www.figure-eight.com/data-for-everyone/)  
 * [Airline Twitter sentiment](https://www.figure-eight.com/data-for-everyone/)  
 * [McDonald’s review sentiment](https://www.figure-eight.com/data-for-everyone/)  
@@ -195,20 +196,14 @@ __Notes:__{: style="color: red"}
 {: #content2}
 
 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}
-
 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}
-
 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}
  -->
 
 <!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}
-
 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}
-
 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}
-
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}
-
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28} -->
 
 ***
@@ -218,24 +213,18 @@ __Notes:__{: style="color: red"}
 {: #content3}
 
 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}
-
 2. **Short-Selling:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}
 
 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33} -->
-
 <!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}
-
 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}
-
 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}
-
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}
-
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}
-
 -->
 
 ***
+
 
 ## Resources
 {: #content4}
@@ -271,13 +260,9 @@ __Notes:__{: style="color: red"}
     <br>
 
 <!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44}
-
 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}
-
 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}
-
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}  
-
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents48} -->
 
 ***
@@ -300,7 +285,10 @@ __Notes:__{: style="color: red"}
         2. Look at all the stocks in that industry
 
 
-    <!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents52} -->
+2. **Features:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents52}  
+    * Correlations between companies
+    * Target Audience of companies + Field/Industry/Product of companies
+    * 
 
 
 8. **Tips:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents58}  
@@ -322,6 +310,45 @@ __Notes:__{: style="color: red"}
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents57}
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents58}
  -->
+
+
+__Notes:__{: style="color: red"}  
+{: #lst-p}
+* [Network Memory (& shuffling) (StackOF):](https://stackoverflow.com/questions/44788946/shuffling-training-data-with-lstm-rnn)  
+    * __Stateless Case:__  
+        The network's memory only persists for the duration of a sequence. Training on sequence B before sequence A doesn't matter because the network's memory state does not persist across sequences.
+    * __Stateful Case:__  
+        The network's memory persists across sequences. Here, you cannot blindly shuffle your data and expect optimal results. Sequence A should be fed to the network before sequence B because A comes before B, and we want the network to evaluate sequence B with memory of what was in sequence A.  
+* [Shuffling in Keras (StackOF)](https://stackoverflow.com/questions/57041305/keras-shuffling-dataset-while-using-lstm)  
+    * [Extra Resource on Shuffling and Statefulness (StackOF)](https://datascience.stackexchange.com/questions/54237/is-it-valid-to-shuffle-time-series-data-for-a-prediction-task)  
+* [TimeSeries Models *Performance Estimation* (github+paper)](https://github.com/vcerqueira/performance_estimation)  
+* __Reverse Order Inputs__:  
+    Bad idea. The relationship is between $$x_{i, d}$$ and $$x_{i, d+1}=y_i$$; not $$x_{i, 0}$$ and $$x_{i, d+1}$$.  
+    [NMT (youtube)](https://www.youtube.com/watch?v=QuELiw8tbx8&list=PLU40WL8Ol94IJzQtileLTqGZuXtGlLMP_&index=10&t=2000s)  
+* __Core Idea__: Every time there is a <span>_price change_</span>{: style="color: purple"} there is an opportunity to <span>make money</span>{: style="color: purple"}.  
+    "in theory every price change is an opportunity to profit – if you can predict it".  
+* __Strategy and Data__:  
+    TLDR: Intraday trading provides more opportunities to profit from more data.  
+    * Trading on low-frequency, say, daily data, you have ~ 250 prices per year going back perhaps tens of years. That’s thousands of data points, not really enough to train “serious” models without overfitting.  
+    * By contrast, there are 23,400 one-second bars in a regular market day (ie millions of data points).  
+* __Backtesting Drawbacks - Performance Evaluation__:  
+    Backtesting is [notorious](https://www.quora.com/I-developed-an-algorithm-that-makes-13-per-day-Whats-next-Would-this-sell-to-a-hedge-fund/answer/Justin-Medlin-1) for green-lighting strategies that crash and burn in real trading. Not only that, the rare strategy that does work out-of-sample often peters out before long due to changing market conditions.  
+* __Testing/Optimization/Evaluation__:  
+    * [Walk forward optimization (wiki!)](https://en.wikipedia.org/wiki/Walk_forward_optimization)  
+    * [Backtesting (wiki)](https://en.wikipedia.org/wiki/Backtesting)  
+* __Our *"Edge"*__: Feature Engineering and Combining Data.  
+
+<br>
+
+
+
+__TODOs:__{: style="color: red"}  
+{: #lst-p}
+* Compare against random strategy
+* Create Baseline Strategy
+* Figure out all the possible _"moves"_ that can be made as part of a Strategy:  
+    Buy-Low+Sell-High, Shorting, etc.
+
 
 
 <!-- Call VS Put (option?)

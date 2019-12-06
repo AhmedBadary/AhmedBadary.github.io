@@ -153,12 +153,12 @@ prevLink: /work_files/research/dl/practical.html
     <br>
 
 7. **Debugging Strategies for Deep ML Models:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
-    <button>Strategies</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
-    1. Visualize the model in action:  
+    <button>Strategies</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    1. __Visualize the model in action:__  
         Directly observing qualitative results of a model (e.g. located objects, generated speech) can help avoid __evaluation bugs__ or __mis-leading evaluation results__. It can also help guide the expected quantitative performance of the model.  
-    2. Visualize the worst mistakes:  
+    2. __Visualize the worst mistakes:__  
         By viewing the training set examples that are the hardest to model correctly by using a confidence measure (e.g. softmax probabilities), one can often discover problems with the way the data have been __preprocessed__ or __labeled__.  
-    3. Reason about software using training and test error:  
+    3. __Reason about Software using Training and Test *Error*:__  
         It is hard to determine whether the underlying software is correctly implemented.  
         We can use the training/test errors to help guide us:  
         * If training error is low but test error is high, then:  
@@ -167,11 +167,11 @@ prevLink: /work_files/research/dl/practical.html
         * If both training and test errors are high, then:  
             it is difficult to determine whether there is a software defect or whether the model is underfitting due to fundamental algorithmic reasons.  
             This scenario requires further tests, described next.  
-    3. Fit a tiny dataset:  
+    3. __Fit a *Tiny Dataset:*__  
         If you have high error on the training set, determine whether it is due to genuine underfitting or due to a software defect.  
         Usually even small models can be guaranteed to be able fit a suﬃciently small dataset. For example, a classification dataset with only one example can be fit just by setting the biase sof the output layer correctly.  
         This test can be extended to a small dataset with few examples.  
-    4. Monitor histograms of activations and gradients:  
+    4. __Monitor histograms of *Activations* and *Gradients:*__  
         It is often useful to visualize statistics of neural network activations and gradients, collected over a large amount of training iterations (maybe one epoch).  
         The __preactivation value__ of __hidden units__ can tell us if the units <span>__saturate__</span>{: style="color: purple"}, or how often they do.  
         For example, for rectifiers,how often are they off? Are there units that are always off?  
@@ -186,7 +186,6 @@ prevLink: /work_files/research/dl/practical.html
 
 8. **The Machine Learning Algorithm Recipe:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}  
     Nearly all deep learning algorithms can be described as particular instances of a fairly simple recipe in both Supervised and Unsupervised settings:  
-    {: #lst-p}
     * A combination of:  
         * A specification of a dataset
         * A cost function
