@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Information Extraction <br \> Named Entity Recognition</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/nlp.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Introduction to Information Extraction</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Named Entity Recognition (NER)</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Sequence Models for Named Entity Recognition</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">Maximum Entropy Sequence Models</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">Introduction to Information Extraction</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Information Extraction (IE):</strong></dt>
+      <dd>is the task of automatically extracting structured information from a (non/semi)-structured piece of text.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Structured Representations of Inforamtion:</strong></dt>
+      <dd>Usually, the extracted information is represented as:
+        <ul>
+          <li>Relations (in the DataBase sense)</li>
+          <li>A Knowledge Base</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Goals:</strong></dt>
+      <dd>
+        <ol>
+          <li>Organize information in a way that is useful to humans.</li>
+          <li>Put information in a semantically precise form that allows further inference to be made by other computer algorithms.</li>
+        </ol>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Common Applications:</strong></dt>
+      <dd>
+        <ul>
+          <li>Gathering information (earning, profits, HQs, etc.) from reports</li>
+          <li>Learning drug-gene product interactions from medical research literature</li>
+          <li>Low-Level Information Extraction:
+            <ul>
+              <li>Information about possible dates, schedules, activites gathered by companys (e.g. google, facebook)</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Tasks and Sub-tasks:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Named entity extraction</strong>:
+            <ul>
+              <li><strong>Named Entity Recognition</strong>: recognition of known entity names (for people and organizations), place names, temporal expressions, and certain types of numerical expressions.</li>
+              <li><strong>Coreference Resolution</strong>:  detection of coreference and anaphoric links between text entities.</li>
+              <li><strong>Relationship Extraction</strong>: identification of relations between entities.</li>
+            </ul>
+          </li>
+          <li><strong>Semi-structured information extraction</strong>:
+            <ul>
+              <li><em><strong>Table Extraction</strong></em>: finding and extracting tables from documents.</li>
+              <li><em><strong>Comments extraction</strong></em>: extracting comments from actual content of article in order to restore the link between author of each sentence.</li>
+            </ul>
+          </li>
+          <li><strong>Language and Vocabulary Analysis</strong>:
+            <ul>
+              <li><em><strong>Terminology extraction</strong></em>: finding the relevant terms for a given corpus.</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Methods:</strong></dt>
+      <dd>There are three standard approaches for tackling the problem of IE:
+        <ul>
+          <li><strong>Hand-written Regular Expressions</strong>: usually stacked.</li>
+          <li><strong>Classifiers</strong>:
+            <ul>
+              <li><em><strong>Generative</strong></em>:
+                <ul>
+                  <li>Naive Bayes Classifier</li>
+                </ul>
+              </li>
+              <li><em><strong>Discriminative</strong></em>:
+                <ul>
+                  <li>MaxEnt Models (Multinomial Logistic Regr.)</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><strong>Sequence Models</strong>:
+            <ul>
+              <li>Hidden Markov Models</li>
+              <li>Conditional Markov model (CMM) / Maximum-entropy Markov model (MEMM)</li>
+              <li>Conditional random fields (CRF)</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Named Entity Recognition (NER)</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Named Entity Recognition:</strong></dt>
+      <dd>is the recognition of known entity names (for people and organizations), place names, temporal expressions, and certain types of numerical expressions;<br />
+ this is usually done by employing existing knowledge of the domain or information extracted from other sentences.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Applications:</strong></dt>
+      <dd>
+        <ul>
+          <li>Named entities can be indexed, linked off, etc.</li>
+          <li>Sentiment can be attributed to companies or products</li>
+          <li>They define a lot of the IE relations, as associations between the named entities</li>
+          <li>In QA, answers are often named entities</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Evaluation of NER Tasks:</strong></dt>
+      <dd>Evaluation is usually done at the level of <strong>Entities</strong> and not of <strong>Tokens</strong>.</dd>
+      <dd>One common issue with the metrics defined for text classification, namely, (Precision/Recall/F1) is that they penalize the system based on a binary evaluation on how the system did; however, let’s demonstrate why that would be problamitic.</dd>
+      <dd>
+        <ul>
+          <li>Consider the following text:<br />
+  “The <em>First <strong>Bank of Chicago</strong></em> announced earnings…”<br />
+  Let the italic part of the text be the enitity we want to recognize and let the bolded part of the text, be the entitiy that our model identified.<br />
+  The (Precision/Recall/F1) metrics would penalize the model twice, once as a false-positive (for having picked an incorrect entitiy name), and again as a false-negative (for not having picked the actual entitiy name). <br />
+  However, we notice that our system actually picked \(3/4\)ths of the actual entity name to be recognized.</li>
+          <li>This leads us seeking an evaluation metric that awards partial credit for this task.</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>The <strong>MUC Scorer</strong> is one, such, metric for giving partial credit.</li>
+        </ul>
+      </dd>
+      <dd>Albeit such complications and issues with the metrics described above, the field has, unfortunately, continued using the F1-Score as a metric for NER systems due to the complexity of formulating a metric that  gives partial credit.</dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Sequence Models for Named Entity Recognition</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Approach:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Training</strong>:
+            <ol>
+              <li>Collect a set of representative training documents</li>
+              <li>Label each token for its entity class or other (O)</li>
+              <li>Design feature extractors appropriate to the text and classes</li>
+              <li>Train a sequence classifier to predict the labels from the data</li>
+            </ol>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Testing</strong>:
+            <ol>
+              <li>Receive a set of testing documents</li>
+              <li>Run sequence model inference to label each token</li>
+              <li>Appropriately output the recognized entities</li>
+            </ol>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Encoding Classes for Sequence Labeling:</strong></dt>
+      <dd>There are two common ways to encode the classes:
+        <ul>
+          <li><strong>IO Encoding</strong>: this encoding will only encode only the entitiy of the token disregarding its order/position in the text (PER).
+            <ul>
+              <li>For \(C\) classes, IO produces (\(C+1\) ) labels.</li>
+            </ul>
+          </li>
+          <li><strong>IOB Encoding</strong>: this encoding is similar to IO encoding, however, it, also, keeps track to whether the token is the beginning of an entitiy-name (B-PER) or a continuation of such an entity-name (I-PER).
+            <ul>
+              <li>For \(C\) classes, IO produces (\(2C+1\) ) labels.</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>The <strong>IO</strong> encoding, thus, is much lighter, and thus, allows the algorithm to run much faster than the <strong>IOB</strong> encoding.<br />
+Moreover, in practice, the issue presented for IO encoding rarely occurs and is only limited to instances where the entities that occur next to each other, are the same entity. <br />
+<strong>IOB</strong> encoded systems, also, tend to not learn quite as well due to the huge number of labels and are usually still prone to the same issues</dd>
+      <dd>Thus, due to the reasons mentioned above, the <strong>IO Encoding</strong> scheme is the one most commonly used.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Features for Sequence Labeling:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Words</strong>:
+            <ul>
+              <li>Current word (like a learned dictionary)</li>
+              <li>Previous/Next word (context)</li>
+            </ul>
+          </li>
+          <li><strong>Other kinds of Inferred Linguistic Classification</strong>:
+            <ul>
+              <li>Part-of-Speech Tags (POS-Tags)</li>
+            </ul>
+          </li>
+          <li><strong>Label-Context</strong>:
+            <ul>
+              <li>Previous (and perhaps next) label
+                <blockquote>
+                  <p>This is usually what allows for sequence modeling</p>
+                </blockquote>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>Other useful features:
+        <ul>
+          <li><strong>Word Substrings</strong>: usually there are substrings in words that are <em>categorical</em> in nature
+            <ul>
+              <li>Examples:<br />
+  “oxa” -&gt; Drug<br />
+  “(noun): (noun)” -&gt; Movie<br />
+  “(noun)-field” -&gt; (usually) place</li>
+            </ul>
+          </li>
+          <li><strong>Word Shapes</strong>: the idea is to map words to simplified representations that encode attributes such as:<br />
+ length, capitalization, numerals, Greek-Letters, internal punctuation, etc.
+            <ul>
+              <li>
+                <p>Example:<br />
+   The representation below shows only the first two letters and the last two letters; for everything else, it will add the capitalization and the special characters, and for longer words, it will represent them in set notation.</p>
+
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>Varicella-zoster</td>
+                      <td>Xx-xxx</td>
+                    </tr>
+                    <tr>
+                      <td>mRNA</td>
+                      <td>xXXX</td>
+                    </tr>
+                    <tr>
+                      <td>CPA1</td>
+                      <td>XXXd</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content4">Maximum Entropy Sequence Models</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">Maximum-Entropy (Conditional) Markov Model:</strong></dt>
+      <dd>is a discriminative graphical model for sequence labeling that combines features of hidden Markov models (HMMs) and maximum entropy (MaxEnt) models.</dd>
+      <dd>It is a discriminative model that extends a standard maximum entropy classifier by assuming that the unknown values to be learned are connected in a Markov chain rather than being conditionally independent of each other.</dd>
+      <dd>It makes a single decision at a time, conditioned on evidence from observations and previous decisions.</dd>
+      <dd>
+        <blockquote>
+          <p>A larger space of sequences is usually explored via search.</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Inference:</strong><br />
+ <img src="/main_files/nlp/1.png" alt="img" width="100%" /></p>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">Exploring the Sequence Space (Search Methods):</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Beam Inference</strong>:
+            <ul>
+              <li><em><strong>Algorithm</strong></em>:
+                <ul>
+                  <li>At each position keep the top \(k\) complete sequences.</li>
+                  <li>Extend each sequence in each local way.</li>
+                  <li>The extensions compete for the \(k\) slots at the next position.</li>
+                </ul>
+              </li>
+              <li><em><strong>Advantages</strong></em>:
+                <ul>
+                  <li>Fast. Beam sizes of 3-5 are almost as good as exact inference in many cases.</li>
+                  <li>Easy. Implementation does not require dynamic programming.</li>
+                </ul>
+              </li>
+              <li><em><strong>Disadvantages</strong></em>:
+                <ul>
+                  <li>Inexact. The globally best sequence can fall off the beam.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Viterbi Inference</strong>:
+            <ul>
+              <li><em><strong>Algorithm</strong></em>:
+                <ul>
+                  <li>Dynamic Programming or Memoization.</li>
+                  <li>Requires small window of state influence (eg. past two states are relevant)</li>
+                </ul>
+              </li>
+              <li><em><strong>Advantages</strong></em>:
+                <ul>
+                  <li>Exact. the global best sequence is returned.</li>
+                </ul>
+              </li>
+              <li><em><strong>Disadvantages</strong></em>:
+                <ul>
+                  <li>Hard. Harder to implement long-distance state-state interactions.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Conditional Random Fields (CRFs):</strong></dt>
+      <dd>are a type of discriminative undirected probabilistic graphical model.</dd>
+      <dd>They can take context into account; and are commonly used to encode known relationships between observations and construct consistent interpretations.</dd>
+    </dl>
+  </li>
+</ol>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

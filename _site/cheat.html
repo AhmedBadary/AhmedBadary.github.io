@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Optimization <br > Cheat Sheet</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/conv_opt.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Mathematical Background</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Mathematical Formulation [Standard Forms]</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">FIRST</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Functions:</strong>
+    <ul>
+      <li><strong><em>Graph</em> of a function \(f : \mathbf{R}^n \rightarrow \mathbf{R}\)</strong>: is the set of input-output pairs that \(f\) can attain, that is:<br />
+ \(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ G(f) := \left \{ (x,f(x)) \in \mathbf{R}^{n+1} : x \in \mathbf{R}^n \right \}.\) <br />
+        <blockquote>
+          <p>It is a subset of \(\mathbf{R}^{n+1}\).</p>
+        </blockquote>
+      </li>
+      <li><strong><em>Epigraph</em> of a function \(f\)</strong>: describes the set of input-output pairs that \(f\) can achieve, as well as “anything above”:<br />
+ \(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mathop{\bf epi} f := \left \{ (x,t) \in \mathbf{R}^{n+1} ~:~ x \in \mathbf{R}^n, \ \  t \ge f(x) \right \}.\)</li>
+      <li><strong>Level sets</strong>:  is the set of points that achieve exactly some value for the function \(f\).<br />
+ For \(t \in \mathbf{R}\), the \(t-\)level set of the function \(f\) is defined as:<br />
+ \(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mathbf{L}_t(f) := \left\{ x \in \mathbf{R}^{n} ~:~ x \in \mathbf{R}^n, \ \  t = f(x) \right \}.\)</li>
+      <li><strong>Sub-level sets</strong>: is the set of points that achieve at most a certain value for  \(f\), or below:<br />
+ \(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \mathbf{S}_t(f) := \left\{ x \in \mathbf{R}^{n} ~:~ x \in \mathbf{R}^n, \ \  t \ge f(x) \right\}.\)</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Optimization Problems:</strong>
+    <ul>
+      <li><strong>Functional Form</strong>:  An optimization problem is a problem of the form
+ \(\:\:\:\:\:\:\:\) \(p^\ast := \displaystyle\min_x f_0(x) :  f_i(x) \le 0, \ \  i=1,\ldots, m\)<br />
+ where: \(x \in \mathbf{R}^n\) is the decision variable;  \(f_0 : \mathbf{R}^n \rightarrow \mathbf{R}\) is the objective function, or cost;  \(f_i : \mathbf{R}^n \rightarrow \mathbf{R}, \ \  i=1, \ldots, m\) represent the constraints;  \(p^\ast\) is the optimal value.</li>
+      <li><strong>Feasibility Problems</strong>:  Sometimes an objective function is not provided. This means that we are just <em>interested</em> in <em>finding</em> a <em>feasible point</em>, or determine that the problem is <em>infeasible</em>.
+        <blockquote>
+          <p>By convention, we set \(f_0\) to be a constant in that case, to reflect the fact that we are indifferent to the choice of a point x as long as it is feasible.</p>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Optimality:</strong>
+    <ul>
+      <li><strong>Feasible Set</strong>:<br />
+ \(\:\:\:\:\:\:\:\) \(\mathbf{X} :=  \left\{ x \in \mathbf{R}^n ~:~  f_i(x) \le 0, \ \  i=1, \ldots, m \right\}.\)</li>
+      <li><strong>Optimal Value</strong>:<br />
+ \(\:\:\:\:\:\:\:\)\(\:\:\:\:\:\:\:\)  \(p^\ast := \min_x : f_0(x) ~:~ f_i(x) \le 0, \ \  i=1, \ldots, m.\)</li>
+      <li><strong>Optimal Set</strong>:  The set of feasible points for which the objective function achieves the optimal value:<br />
+ \(\:\:\:\:\:\:\:\)\(\:\:\:\:\:\:\:\)  \(\mathbf{X}^{\rm opt} :=  \left\{ x \in \mathbf{R}^n ~:~  f_0(x) = p^\ast, \ \ f_i(x) \le 0, \ \  i=1,\ldots, m \right\} = \mathrm{arg min}_{x \in \mathbf{X}}  f_0(x)\)
+        <blockquote>
+          <p>By convention, the optimal set is empty if the problem is not feasible.<br />
+A <em>point</em> \(x\) is said to be <strong>optimal</strong> if it belongs to the optimal set.<br />
+If the optimal value is <strong>ONLY</strong> attained in the <strong>limit</strong>, then it is <strong>NOT</strong> in the optimal set.</p>
+        </blockquote>
+      </li>
+      <li><strong>Suboptimality</strong>:  the \(\epsilon\)-suboptimal set is defined as:<br />
+ \(\:\:\:\:\:\:\:\)\(\:\:\:\:\:\:\:\)  \(\mathbf{X}_\epsilon := \left\{ x \in \mathbf{R}^n ~:~ f_i(x) \le 0, \ \  i=1, \ldots, m, \ \  f_0(x) \le p^\ast + \epsilon \right\}.\)
+        <blockquote>
+          <p>\(\implies \  \mathbf{X}_0 = \mathbf{X}_{\rm opt}\).</p>
+        </blockquote>
+      </li>
+      <li><strong>Local Optimality</strong>:<br />
+  A point \(z\) is <strong>Locally Optimal</strong>: if there is a value \(R&gt;0\) such that \(z\) is optimal for the following problem:<br />
+ \(\:\:\:\:\:\:\:\) \(\:\:\:\:\:\:\:\) \(min_x : f_0(x) ~:~ f_i(x) \le 0, \ \ i=1, \ldots, m,  \ \ \|z-x\|_2 \le R\).
+        <blockquote>
+          <p>i.e. a <em>local minimizer</em> \(x\) <em>minimizes</em> \(f_0\), but <strong>only</strong> for <em>nearby points</em> on the feasible set.</p>
+        </blockquote>
+      </li>
+      <li><strong>Global Optimality</strong>:<br />
+  A point \(z\) is <strong>Globally Optimal</strong>: if it is the <em>optimal value</em> of the original problem on all of the feasible region.</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Problem Classes:</strong>
+    <ul>
+      <li>
+        <dl>
+          <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Least-squares:</strong></dt>
+          <dd>
+\[\min_x \;\;\;\; \sum_{i=1}^m \left( \sum_{j=1}^n A_{ij} . x_j - b_i \right)^2\]
+          </dd>
+          <dd>where \(A_{ij}, \  b_i, \  1 \le i \le m,  \ 1 \le j \le n\), are given numbers, and \(x \in \mathbf{R}^n\) is the variable.</dd>
+        </dl>
+      </li>
+      <li>
+        <dl>
+          <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Linear Programming:</strong></dt>
+          <dd>
+\[\min \sum_{j=1}^n c_jx_j ~:~ \sum_{j=1}^n A_{ij} . x_j  \le b_i , \;\; i=1, \ldots, m,\]
+          </dd>
+          <dd>where \(c_j, b_i\) and \(A_{ij}, \  1 \le i \le m, \  1 \le j \le n\), are given real numbers.</dd>
+        </dl>
+      </li>
+      <li>
+        <dl>
+          <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Quadratic Programming:</strong></dt>
+          <dd>\(\min_x \;\;\;\; \displaystyle\sum_{i=1}^m \left(\sum_{j=1}^n C_{ij} . x_j+d_i\right)^2 + \sum_{i=1}^n c_ix_i \;:\;\;\;\; \sum_{j=1}^m A_{ij} . x_j \le b_i, \;\;\;\; i=1,\ldots,m.\)
+            <blockquote>
+              <p>Includes a <strong>sum of squared linear functions</strong>, in addition to a <strong>linear term</strong>, in the <em>objective</em>.</p>
+            </blockquote>
+          </dd>
+        </dl>
+      </li>
+      <li>
+        <dl>
+          <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Nonlinear optimization:</strong></dt>
+          <dd>A broad class that includes <em>Combinatorial Optimization</em>.</dd>
+        </dl>
+
+        <blockquote>
+          <p>One of the reasons for which non-linear problems are hard to solve is the issue of <em>local minima</em>.</p>
+        </blockquote>
+      </li>
+      <li>
+        <dl>
+          <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents45">Convex optimization:</strong></dt>
+          <dd>A generalization of QP, where the objective and constraints involve “bowl-shaped”, or convex, functions.</dd>
+        </dl>
+
+        <blockquote>
+          <p>They are <em>easy</em> to solve because they <em>do not suffer</em> from the “curse” of <em>local minima</em>.</p>
+        </blockquote>
+      </li>
+      <li>
+        <dl>
+          <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents46">Combinatorial optimization:</strong></dt>
+          <dd>In combinatorial optimization, some (or all) the variables are boolean (or integers), reflecting discrete choices to be made.</dd>
+        </dl>
+
+        <blockquote>
+          <p>Combinatorial optimization problems are in general extremely hard to solve. Often, they can be approximately solved with linear or convex programming.</p>
+        </blockquote>
+      </li>
+      <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents47">NON-Convex Optimization Problems [Examples]:</strong> <br />
+        <ul>
+          <li><strong>Boolean/integer optimization:</strong> some variables are constrained to be Boolean or integers.
+            <blockquote>
+              <p>Convex optimization can be used for getting (sometimes) good approximations.</p>
+            </blockquote>
+          </li>
+          <li><strong>Cardinality-constrained problems:</strong> we seek to bound the number of non-zero elements in a vector variable.
+            <blockquote>
+              <p>Convex optimization can be used for getting good approximations.</p>
+            </blockquote>
+          </li>
+          <li><strong>Non-linear programming:</strong> usually non-convex problems with differentiable objective and functions.
+            <blockquote>
+              <p>Algorithms provide only local minima.</p>
+            </blockquote>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Linear Algebra</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Basics:</strong>
+    <ul>
+      <li>
+        <dl>
+          <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Linear Independence:</strong></dt>
+          <dd>A set of vectors \(\{x_1, ... , x_m\} \in {\mathbf{R}}^n, i=1, \ldots, m\) is said to be independent if and only if the following condition on a vector \(\lambda \in {\mathbf{R}}^m\):</dd>
+          <dd>
+\[\sum_{i=1}^m \lambda_i x_i = 0 \ \ \ \implies  \lambda = 0.\]
+
+            <blockquote>
+              <p>i.e. no vector in the set can be expressed as a linear combination of the others.</p>
+            </blockquote>
+          </dd>
+        </dl>
+      </li>
+      <li>
+        <dl>
+          <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Subspace:</strong></dt>
+          <dd>A subspace of \({\mathbf{R}}^n\) is a subset that is closed under addition and scalar multiplication. Geometrically, subspaces are “flat” (like a line or plane in 3D) and pass through the origin.</dd>
+        </dl>
+
+        <ul>
+          <li>A <strong>Subspace</strong> \(\mathbf{S}\) can always be represented as the span of a set of vectors \(x_i \in {\mathbf{R}}^n, i=1, \ldots, m\), that is, as a set of the form:<br />
+  \(\mathbf{S} = \mbox{ span}(x_1, \ldots, x_m) := \left\{ \sum_{i=1}^m \lambda_i x_i ~:~ \lambda \in {\mathbf{R}}^m \right\}.\)
+  \(\\\)</li>
+        </ul>
+      </li>
+      <li>
+        <dl>
+          <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Affine Sets (Cosets | Abstract Algebra):</strong></dt>
+          <dd>An affine set is a translation of a subspace — it is “flat” but does not necessarily pass through 0, as a subspace would.</dd>
+          <dd>An affine set \(\mathbf{A}\) can always be represented as the translation of the subspace spanned by some vectors:</dd>
+          <dd>\(\:\:\:\:\:\:\:\) \(\mathbf{A} = \left\{ x_0 + \sum_{i=1}^m \lambda_i x_i ~:~ \lambda \in {\mathbf{R}}^m \right\}\ \ \\)<br />
+  for some vectors \(x_0, x_1, \ldots, x_m.\)<br />
+  \(\implies \mathbf{A} = x_0 + \mathbf{S}.\)</dd>
+        </dl>
+
+        <ul>
+          <li><strong>(Special case)</strong> <strong>lines</strong>: When \(\mathbf{S}\) is the span of a single non-zero vector, the set \(\mathbf{A}\) is called a line passing through the point \(x_0\). Thus, lines have the form
+  \(\left\{ x_0 + tu ~:~ t \in \mathbf{R} \right\}\),  <br />
+  where \(u\) determines the direction of the line, and \(x_0\) is a point through which it passes.</li>
+        </ul>
+      </li>
+      <li>
+        <dl>
+          <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Basis:</strong></dt>
+          <dd>A <strong>basis</strong> of \({\mathbf{R}}^n\) is a set of \(n\) independent vectors. If the vectors \(u_1, \ldots, u_n\) form a basis, we can express any vector as a linear combination of the \(u_i\)’s:</dd>
+          <dd>\(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x = \sum_{i=1}^n \lambda_i u_i, \ \ \ \text{for appropriate numbers } \lambda_1, \ldots, \lambda_n\).</dd>
+        </dl>
+      </li>
+      <li>
+        <dl>
+          <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Dimension:</strong></dt>
+          <dd>The number of vectors in the span of the (sub-)space.</dd>
+        </dl>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Norms and Scalar Products:</strong>
+    <ul>
+      <li>
+        <dl>
+          <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Scalar Product:</strong></dt>
+          <dd>The scalar product (or, inner product, or dot product) between two vectors \(x,y \in \mathbf{R}^n\) is the scalar denoted \(x^Ty\), and defined as:</dd>
+          <dd>
+\[x^Ty = \sum_{i=1}^n x_i y_i.\]
+          </dd>
+        </dl>
+      </li>
+      <li>
+        <dl>
+          <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Norms:</strong></dt>
+          <dd>A measure of the “length” of a vector in a given space.</dd>
+          <dd><strong>Theorem.</strong> A function from \(\chi\) to \(\mathbf{R}\) is a norm, if:</dd>
+        </dl>
+        <ol>
+          <li>\(\|x\| \geq 0, \: \forall x \in \chi\), and \(\|x\| = 0 \iff x = 0\).</li>
+          <li>\(\|x+y\| \leq \|x\| + \|y\|,\) for any \(x, y \in \chi\) (triangle inequality).</li>
+          <li>\(\|\alpha x\| = \|\alpha\| \|x\|\), for any scalar \(\alpha\) and any \(x\in \chi\).</li>
+        </ol>
+      </li>
+      <li>
+        <dl>
+          <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents200">\(l_p\) Norms:</strong></dt>
+          <dd>\(\ \ \ \ \ \ \ \ \ \ \ \ \ \\)  \(\ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \\)  \(\|x\|_p = \left( \sum_{k=1}^n \|x_k\|_p \right)^{1/p}, \ 1 \leq p &lt; \infty\).</dd>
+        </dl>
+      </li>
+      <li>
+        <dl>
+          <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">The \(l_1-norm\):</strong></dt>
+          <dd>
+\[\|x\|_1 := \sum_{i=1}^n \| x_i \|\]
+          </dd>
+          <dd>Corresponds to the distance travelled on a rectangular grid to go from one point to another.  <br />
+            <blockquote>
+              <p>Induces a diamond shape</p>
+            </blockquote>
+          </dd>
+        </dl>
+      </li>
+      <li>
+        <dl>
+          <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">The \(l_2-norm\) (Euclidean Norm):</strong></dt>
+          <dd>\(\ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \| x \|_2 := \sqrt{ \sum_{i=1}^n x_i^2 } = \sqrt{x^Tx}\).</dd>
+          <dd>Corresponds to the usual notion of distance in two or three dimensions.</dd>
+          <dd>
+            <blockquote>
+              <p>The \(l_2-norm\) is invariant under orthogonal transformations,   <br />
+i.e., \(\|x\|_2 = \|Vz\|_2 = \|z\|_2,\) where \(V\) is an orthogonal matrix.</p>
+            </blockquote>
+          </dd>
+          <dd>
+            <blockquote>
+              <p>The set of points with equal l_2-norm is a circle (in 2D), a sphere (in 3D), or a hyper-sphere in higher dimensions.</p>
+            </blockquote>
+          </dd>
+        </dl>
+      </li>
+      <li>
+        <dl>
+          <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">The \(l_\infty-norm\):</strong></dt>
+          <dd>
+\[\| x \|_\infty := \displaystyle\max_{1 \le i \le n} \| x_i \|\]
+          </dd>
+          <dd>
+            <blockquote>
+              <p>useful in measuring peak values.<br />
+Induces a square</p>
+            </blockquote>
+          </dd>
+        </dl>
+      </li>
+      <li>
+        <dl>
+          <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents20">The Cardinality:</strong></dt>
+          <dd>The <strong>Cardinality</strong> of a vector \(\vec{x}\) is often called the \(l_0\) (pseudo) norm and denoted with,</dd>
+          <dd>\(\|\vec{x}\|_0\).</dd>
+          <dd>
+            <blockquote>
+              <p>Defined as the number of non-zero entries in the vector.</p>
+            </blockquote>
+          </dd>
+        </dl>
+      </li>
+      <li>
+        <dl>
+          <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Cauchy-Schwartz inequality:</strong></dt>
+          <dd>For any two vectors \(x, y \in \mathbf{R}^n\), we have</dd>
+          <dd>\(\ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \\) \(\ \ \ \ \ \ \ \ \ \ \ \ \\)  \(x^Ty \le \|x\|_2 \cdot \|y\|_2\).</dd>
+          <dd>
+            <blockquote>
+              <dl>
+                <dt>The above inequality is an equality if and only if \(x, y\) are collinear:</dt>
+                <dd>\({\displaystyle \max_{x : \: \|x\|_2 \le 1} \: x^Ty = \|y\|_2,}\) 
+with optimal \(x\) given by<br />
+\(x^\ast = \dfrac{y}{\|y\|_2}, \\) if \(y\) is non-zero.</dd>
+              </dl>
+            </blockquote>
+          </dd>
+        </dl>
+      </li>
+      <li>
+        <dl>
+          <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Angles between vectors:</strong></dt>
+          <dd>When none of the vectors x,y is zero, we can define the corresponding angle as theta such that,</dd>
+          <dd>
+\[\cos\  \theta = \dfrac{x^Ty}{\|x\|_2 \|y\|_2} .\]
+          </dd>
+        </dl>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Notes:</strong>
+    <ul>
+      <li><strong>Norms and Metrics</strong>:<br />
+ Norms induce metrics on topological spaces but not the other way around.<br />
+ Technically, a norm is a metric with two additional properties: (1) Translation Invariance (2) Absolute homogeneouity/scalability<br />
+ We can always define a metric from a norm: \(d(x,y) = \|x - y \|\)<br />
+ A metric is a function of two variables and a norm is a function of one variable.</li>
+      <li><strong>Collinearity</strong>:  In geometry, collinearity of a set of points is the property of their lying on a single line</li>
+    </ul>
+  </li>
+</ol>
+
+<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24} -->
+
+<!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}
+ -->
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Articulated Body Pose Estimation <br /> (Human Pose Estimation)</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/cv.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Introduction</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">SECOND</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">THIRD</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">FOURTH</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">Introduction</h2>
+
+<hr />
+
+<h2 id="content2">DeepPose</h2>
+
+<p><a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/42237.pdf">Further Reading</a></p>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Main Idea:</strong></dt>
+      <dd>Pose Estimation is formulated as a <strong>DNN-based regression problem</strong> towards <strong>body joints</strong>.<br />
+The <strong>DNN regressors</strong> are presented as a cascade for higher precision in pose estimates.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Structure:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Input</strong>:
+            <ul>
+              <li>Full Image</li>
+              <li>7-layered generic Convolutional DNN
+                <blockquote>
+                  <p>Each Joint Regressor uses the full image as a signal.</p>
+                </blockquote>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Key Insights:</strong></dt>
+      <dd>
+        <ul>
+          <li>Replace the <strong>explicitly designed feature representations and detectors for the parts, the model topology, and the interactions between joints</strong> by a <em><strong>learned representation through a ConvNet</strong></em></li>
+          <li>The (DNN-based) Pose Predictors are presented as a <strong>cascade</strong> to increase the precision of <em>joint localization</em></li>
+          <li>Although the regression loss does not model explicit interactions between joints, such are implicitly captured by all of the 7 hidden layers – all the internal features are shared by all joint regressors</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Method:</strong></dt>
+      <dd>
+        <ul>
+          <li>Start with an initial pose estimation (based on the full image)</li>
+          <li>Learn DNN-based regressors which refine the joint predictions by using higher resolution sub-images</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Notation:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Pose Vector</strong> = \(\mathbf{y} = \left(\ldots, \mathbf{y}_i^T, \ldots\right)^T, \: i \in \{1, \ldots, k\}\)</li>
+          <li><strong>Joint Co-ordinates</strong> = \(\mathbf{y}_i^T = (x_i, y_i)\) of the \(i\)-th joint</li>
+          <li><strong>Labeled Image</strong> = \((x, \mathbf{y})\)
+            <ul>
+              <li>\(x =\) Image Data</li>
+              <li>\(\mathbf{y} =\) Ground-Truth Pose Vector</li>
+            </ul>
+          </li>
+          <li><strong>Bounding Box</strong> = \(b\): a box bounding the human body or parts of it</li>
+          <li><strong>Normalization Function</strong> \(= N(\mathbf{y}_i; b)\): normalizes the <em>joint coordinates</em> w.r.t a bounding box \(b\)
+            <blockquote>
+              <p>Since the joint coordinates are in absolute image coordinates, and poses vary in size from image to image</p>
+            </blockquote>
+
+            <p><img src="/main_files/cv/pose_est/3.png" alt="img" width="60%" /></p>
+            <ul>
+              <li><em>Translate</em> by <em>box center</em></li>
+              <li><em>Scale</em> by <em>box size</em></li>
+            </ul>
+          </li>
+          <li><strong>Normalized pose vector</strong> = \(N(\mathbf{y}; b) = \left(\ldots, N(\mathbf{y}_i; b)^T, \ldots\right)^T\)</li>
+          <li><strong>A crop of image \(x\) by bounding box \(b\)</strong> = \(N(x; b)\)</li>
+          <li><em><strong>Learned Function</strong></em> = \(\psi(x;\theta) \in \mathbb{R}^2k\) is a functions that regresses to normalized pose vector, given an image:
+            <ul>
+              <li><strong>Input</strong>: image \(x\)</li>
+              <li><strong>Output</strong>: Normalized pose vector \(N(\mathbf{y})\)</li>
+            </ul>
+          </li>
+          <li>
+            <dl>
+              <dt><em><strong>Pose Prediction</strong></em>:</dt>
+              <dd>
+\[y^\ast = N^{-1}(\psi(N(x);\theta))\]
+              </dd>
+            </dl>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Architecture:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Problem</strong>: Regression Problem</li>
+          <li><strong>Goal</strong>: Learn a function \(\psi(x;\theta)\) that is trained and used to regress to a pose vector.</li>
+          <li><strong>Estimation</strong>: \(\psi\) is based on (learned through) Deep Neural Net</li>
+          <li><strong>Deep Neural Net</strong>: is a Convolutional Neural Network; namely, <strong>AlexNet</strong>
+            <ul>
+              <li><em><strong>Input</strong></em>: image with pre-defined size \(= \:\) #-pixels \(\times 3\)-color channels
+                <blockquote>
+                  <p>\((220 \times 220)\) with a stride of \(4\)</p>
+                </blockquote>
+              </li>
+              <li><em><strong>Output</strong></em>: target value of the regression\(= 2k\) joint coordinates</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>Denote by \(\mathbf{C}\) a convolutional layer, by \(\mathbf{LRN}\) a local response normalization layer, \(\mathbf{P}\) a pooling layer and by \(\mathbf{F}\) a fully connected layer</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>For \(\mathbf{C}\) layers, the size is defined as width \(\times\) height \(\times\) depth, where the first two dimensions have a spatial meaning while the depth defines the number of filters.</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Alex-Net</strong>:
+            <ul>
+              <li><em><strong>Architecture</strong></em>:     \(\mathbf{C}(55 \times 55 \times 96) − \mathbf{LRN} − \mathbf{P} − \mathbf{C}(27 \times 27 \times 256) − \mathbf{LRN} − \mathbf{P} − \\\mathbf{C}(13 \times 13 \times 384) − \mathbf{C}(13 \times 13 \times 384) − \mathbf{C}(13 \times 13 \times 256) − \mathbf{P} − \mathbf{F}(4096) − \mathbf{F}(4096)\)</li>
+              <li><em><strong>Filters</strong></em>:
+                <ul>
+                  <li>\(\mathbf{C}_{1} = 11 \times 11\),</li>
+                  <li>\(\mathbf{C}_{2} = 5 \times 5\),</li>
+                  <li>\(\mathbf{C}_{3-5} = 3 \times 3\).</li>
+                </ul>
+              </li>
+              <li><em><strong>Total Number of Parameters</strong></em> \(= 40\)M</li>
+              <li><em><strong>Training Dataset</strong></em>:<br />
+  Denote by \(D\) the training set and \(D_N\) the normalized training set: <br />
+  \(\ \ \ \ \ \ \ \ \ \ \ \ \ \\) \(\ \ \ \ \ \ \ \ \ \ \ \ \ \\)  \(D_N = \{(N(x),N(\mathbf{y}))\vert (x,\mathbf{y}) \in D\}\)</li>
+              <li><em><strong>Loss</strong></em>: the Loss is modified; instead of a <em>classification loss</em>, we train a linear regression on top of the last network layer to predict a pose vector by minimizing \(L_2\) distance between the prediction and the true pose vector,</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+\[\arg \min_\theta \sum_{(x,y) \in D_N} \sum_{i=1}^k \|\mathbf{y}_i - \psi_i(x;\theta)\|_2^2\]
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Optimization</strong>:
+            <ul>
+              <li><em><strong>BackPropagation</strong></em> in a distributed online implementation</li>
+              <li><em><strong>Adaptive Gradient Updates</strong></em></li>
+              <li><em><strong>Learning Rate</strong></em> \(= 0.0005 = 5\times 10^{-4}\)</li>
+              <li><em><strong>Data Augmentation</strong></em>: randomly translated image crops, left/right flips</li>
+              <li><em><strong>DropOut Regularization</strong></em> for the \(\mathbf{F}\) layers \(= 0.6\)</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents29">Architecture:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Motivation</strong>: <br />
+  Although, the pose formulation of the DNN has the advantage that the joint estimation is based on the full image and thus relies on context, due its fixed input size of \(220 \times 220\), the network has <em>limited capacity to look at detail</em> - it <em>learns filters capturing pose properties at coarse scale</em>.<br />
+  The <em>pose properties</em> are necessary to <em>estimate rough pose</em> but <strong>insufficient</strong> to always <em>precisely localize the body joints</em>.<br />
+  Increasing the input size is infeasible since it will increase the already large number of parameters.<br />
+  Thus, a <em>cascade of pose regressors</em> is used to achieve better precision.</li>
+          <li><strong>Structure and Training</strong>: <br />
+  At the first stage:
+            <ul>
+              <li>The cascade starts off by estimating an initial pose as outlined in the previous section.<br />
+  At subsequent stages:</li>
+              <li>Additional DNN regressors are trained to predict a displacement of the joint locations from previous stage to the true location.
+                <blockquote>
+                  <p>Thus, each subsequent stage can be thought of as a refinement of the currently predicted pose.</p>
+                </blockquote>
+              </li>
+              <li>Each subsequent stage uses the predicted joint locations to focus on the relevant parts of the image – subimages are cropped around the predicted joint location from previous stage and the pose displacement regressor for this joint is applied on this sub-image.
+                <blockquote>
+                  <p>Thus, subsequent pose regressors see higher resolution images and thus learn features for finer scales which ultimately leads to higher precision</p>
+                </blockquote>
+              </li>
+            </ul>
+          </li>
+          <li><strong>Method and Architecture</strong>:
+            <ul>
+              <li>The same network architecture is used for all stages of the cascade but learn different parameters.</li>
+              <li>Start with a bounding box \(b^0\): which either encloses the full image or is obtained by a person detector</li>
+              <li>Obtain an initial pose:<br />
+  Stage 1: \(\mathbf{y}^1 \leftarrow N^{-1}(\psi(N(x;b^0);\theta_1);b^0)\)</li>
+              <li>At stages \(s \geq 2\), for all joints:
+                <ul>
+                  <li>Regress first towards a refinement displacement \(\mathbf{y}_i^s - \mathbf{y}_i^{(s-1)}\) by applying a regressor on the sub image defined by \(b_i^{(s-1)}\)</li>
+                  <li>Estimate new joint boxes \(b_i^s\):<br />
+  Stage \(s\): \(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mathbf{y}_i^s \leftarrow \mathbf{y}_i^{(2-1)} + N^{-1}(\psi(N(x;b^0);\theta_s);b)  \:\: (6)  \\
+ \ \ \ \ \ \ \ \ \ \ \ \ \ \                  \:\:\:\: \text{for } b = b_i^(s-1) \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ 
+  b_i^s \leftarrow (\mathbf{y}_i^s, \sigma diam(\mathbf{y}^s), \sigma diam(\mathbf{y}^s))) \:\: (7)\)<br />
+  where we considered a joint bounding box \(b_i\) capturing the sub-image around \(\mathbf{y}_i: b_i(\mathbf{y}; \sigma) = (\mathbf{y}_i, \sigma diam(\mathbf{y}), \sigma diam(\mathbf{y}))\) having as center the i-th joint and as dimension the pose diameter scaled by \(\sigma\), to refine a given joint location \(\mathbf{y}_i\).</li>
+                </ul>
+              </li>
+              <li>Apply the cascade for a fixed number of stages \(= S\)</li>
+            </ul>
+          </li>
+          <li><strong>Loss</strong>: (at each stage \(s\))</li>
+        </ul>
+      </dd>
+      <dd>
+\[\theta_s = \arg \min_\theta \sum_{(x,\mathbf{y}_i) \in D_A^s} \|\mathbf{y}_i - \psi_i(x;\theta)\|_2^2 \:\:\:\:\: (8)\]
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Advantages:</strong></dt>
+      <dd>
+        <ul>
+          <li>The DNN is capable of capturing the full context of each body joint</li>
+          <li>The approach is simpler to formulate than graphical-models methods - no need to explicitly design feature representations and detectors for parts or to explicitly design a model topology and interactions between joints.
+            <blockquote>
+              <p>Instead a generic ConvNet learns these representations</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Notes:</strong></dt>
+      <dd>
+        <ul>
+          <li>The use of a generic DNN architecture is motivated by its outstanding results on both classification and localization problems and translates well to pose estimation</li>
+          <li>Such a model is a truly holistic one — the final joint location estimate is based on a complex nonlinear transformation of the full image</li>
+          <li>The use of a DNN obviates the need to design a domain specific pose model</li>
+          <li>Although the regression loss does not model explicit interactions between joints, such are implicitly captured by all of the 7 hidden layers – all the internal features are shared by all joint regressors</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<p id="content3">##</p>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content4">FOURTH</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents45">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents46">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

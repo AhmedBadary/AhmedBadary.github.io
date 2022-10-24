@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Topology and Smooth Manifolds</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/cv.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Introduction and Definitions</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Point-Set Topology</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Manifolds</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">Introduction and Definitions</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Topology:</strong></dt>
+      <dd>is a mathematical field concerned with the properties of space that are preserved under continuous deformations, such as stretching, crumpling and bending, but not tearing or gluing</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Topological Space:</strong></dt>
+      <dd>is defined as a set of points \(\mathbf{X}\), along with a set of neighbourhoods (sub-sets) \(\mathbf{T}\) for each point, satisfying the following set of axioms relating points and neighbourhoods:
+        <ul>
+          <li><strong>\(\mathbf{T}\) is the Open Sets</strong>:
+            <ol>
+              <li>The <strong>Empty Set</strong> \(\emptyset\) is in \(\mathbf{T}\)</li>
+              <li>\(\mathbf{X}\) is in \(\mathbf{T}\)</li>
+              <li>The <strong>Intersection of a finite number of Sets</strong> in \(\mathbf{T}\) is, also, in \(\mathbf{T}\)</li>
+              <li>The <strong>Union of an arbitrary number of Sets</strong> in \(\mathbf{T}\) is, also, in \(\mathbf{T}\)</li>
+            </ol>
+          </li>
+          <li><strong>\(\mathbf{T}\) is the Closed Sets</strong>:
+            <ol>
+              <li>The <strong>Empty Set</strong> \(\emptyset\) is in \(\mathbf{T}\)</li>
+              <li>\(\mathbf{X}\) is in \(\mathbf{T}\)</li>
+              <li>The <strong>Intersection of an arbitrary number of Sets</strong> in \(\mathbf{T}\) is, also, in \(\mathbf{T}\)</li>
+              <li>The <strong>Union of a finite number of Sets</strong> in \(\mathbf{T}\) is, also, in \(\mathbf{T}\)</li>
+            </ol>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Homeomorphism:</strong></dt>
+      <dd>Intuitively, a <strong>Homeomorphism</strong> or <strong>Topological Isomorphism</strong> or <strong>bi-continuous Function</strong> is a continuous function between topological spaces that has a continuous inverse function.</dd>
+      <dd>Mathematically, a function \({\displaystyle f:X\to Y}\) between two topological spaces \({\displaystyle (X,{\mathcal {T}}_{X})}\) and \({\displaystyle (Y,{\mathcal {T}}_{Y})}\) is called a <strong>Homeomorphism</strong> if it has the following properties:
+        <ul>
+          <li>\(f\) is a bijection (one-to-one and onto)</li>
+          <li>\(f\) is continuous</li>
+          <li>the inverse function \({\displaystyle f^{-1}}\) is continuous (\({\displaystyle f}\) is an open mapping).</li>
+        </ul>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>i.e. There exists a <strong>continuous map</strong> with a <strong>continuous inverse</strong></p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Maps and Spaces:</strong></dt>
+      <dd>
+        <table>
+          <tbody>
+            <tr>
+              <td><strong>Map</strong></td>
+              <td><strong>Space</strong></td>
+              <td><strong>Preserved Property</strong></td>
+            </tr>
+            <tr>
+              <td>Linear Map</td>
+              <td>Vector Space</td>
+              <td>Linear Structure: \(f(aw+v) = af(w)+f(v)\)</td>
+            </tr>
+            <tr>
+              <td>Group Homomorphism</td>
+              <td>Group</td>
+              <td>Group Structure: \(f(x \ast y) = f(x) \ast f(y)\)</td>
+            </tr>
+            <tr>
+              <td>Continuous Map</td>
+              <td>Topological Space</td>
+              <td>Openness/Closeness: \(f^{-1}(\{\text{open}\}) \text{ is open}\)</td>
+            </tr>
+            <tr>
+              <td><em>Smooth Map</em></td>
+              <td><em>Topological Space</em></td>
+              <td> </td>
+            </tr>
+          </tbody>
+        </table>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Smooth Maps:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Continuous</strong>:</li>
+          <li><strong>Unique Limits</strong>:</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Hausdorff:</strong></li>
+</ol>
+
+<!-- 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
+    :   
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}  
+    :   
+ -->
+
+<hr />
+
+<h2 id="content2">Point-Set Topology</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Open Set:</strong></dt>
+      <dd>A set \(\chi \subseteq \mathbf{R}^n\) is said to be open if for any point \(x \in \chi\) there exist a ball centered in \(x\) which is contained in \(\chi\).</dd>
+      <dd>Precisely, for any \(x \in \mathbf{R}^n\) and \(\epsilon &gt; 0\) define the Euclidean ball of radius \(r\) centered at \(x\):</dd>
+      <dd>
+\[B_\epsilon(x) = {z : \|z − x\|_2 &lt; \epsilon}\]
+      </dd>
+      <dd>Then, \(\chi \subseteq \mathbf{R}^n\) is open if</dd>
+      <dd>
+\[\forall x \: \epsilon \: \chi, \:\: \exists \epsilon &gt; 0 : B_\epsilon(x) \subset \chi .\]
+      </dd>
+      <dd><strong>Equivalently</strong>,</dd>
+      <dd>
+        <ul>
+          <li>A set \(\chi \subseteq \mathbf{R}^n\) is open if and only if \(\chi = int\; \chi\).</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>An open set does not contain any of its boundary points.</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>A closed set contains all of its boundary points.</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>Unions and intersections of open (resp. closed) sets are open (resp. closed).</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Closed Set:</strong></dt>
+      <dd>A set \(\chi \subseteq \mathbf{R}^n\) is said to be closed if its complement \(\mathbf{R}^n \text{ \ } \chi\) is open.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Interior of a Set:</strong></dt>
+      <dd>The interior of a set \(\chi \subseteq \mathbf{R}^n\) is defined as</dd>
+      <dd>
+\[int\: \chi = \{z \in \chi : B_\epsilon(z) \subseteq \chi, \:\: \text{for some } \epsilon &gt; 0 \}\]
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Closure of a Set:</strong></dt>
+      <dd>The closure of a set \(\chi \subseteq \mathbf{R}^n\) is defined as</dd>
+      <dd>
+\[\bar{\chi} = \{z ∈ \mathbf{R}^n : \: z = \lim_{k\to\infty} x_k, \: x_k \in \chi , \: \forall k\},\]
+      </dd>
+      <dd>
+        <blockquote>
+          <p>i.e., the closure of \(\chi\) is the set of limits of sequences in \(\chi\).</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Boundary of a Set:</strong></dt>
+      <dd>The boundary of X is defined as</dd>
+      <dd>
+\[\partial \chi = \bar{\chi} \text{ \ }  int\: \chi\]
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Bounded Set:</strong></dt>
+      <dd>A set \(\chi \subseteq \mathbf{R}^n\) is said to be bounded if it is contained in a ball of finite radius, that is if there exist \(x \in \mathbf{R}^n\) and \(r &gt; 0\) such that \(\chi \subseteq B_r(x)\).</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Compact Set:</strong></dt>
+      <dd>A set \(\chi \subseteq \mathbf{R}^n\) is compact \(\iff\) it is <strong>Closed</strong> and <strong>Bounded</strong>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents28">Relative Interior [\(\operatorname{relint}\)]:</strong></dt>
+      <dd>We define the relative interior of the set \(\chi\), denoted \(\operatorname{relint} \chi\), as its interior relative to \(\operatorname{aff} C\):</dd>
+      <dd>
+\[\operatorname{relint} \chi = \{x \in \chi : \: B(x, r) \cap \operatorname{aff} \chi \subseteq \chi \text{ for some } r &gt; 0\},\]
+      </dd>
+      <dd>where \(B(x, r) = \{y : ky − xk \leq r\}\), the ball of radius \(r\) and center \(x\) in the norm \(\| · \|\).</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents29">Relative Boundary:</strong></dt>
+      <dd>We can then define the relative boundary of a set \(\chi\) as \(\mathbf{cl}  \chi \text{ \ } \operatorname{relint} \chi,\) where \(\mathbf{cl} \chi\) is the closure of \(\chi\).</dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Manifolds</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Manifold:</strong></dt>
+      <dd>is a topological space that locally resembles Euclidean space near each point
+        <blockquote>
+          <p>i.e. around every point, there is a neighborhood that is topologically the same as the open unit ball in \(\mathbb{R}^n\)</p>
+        </blockquote>
+      </dd>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Smooth Manifold:</strong></dt>
+      <dd>A topological space \(M\) is called a <strong>\(n\)-dimensional smooth manifold</strong> if:
+        <ul>
+          <li>Is is <strong>Hausdorff</strong></li>
+          <li>It is <strong>Second-Countable</strong></li>
+          <li>It comes with a family \(\{(U_\alpha, \phi_\alpha)\}\) with:
+            <ul>
+              <li><strong>Open sets</strong> \(U_\alpha \subset_\text{open} M\)</li>
+              <li><strong>Homeomorphisms</strong> \(\phi_\alpha : U_\alpha \rightarrow \mathbb{R}^n\) <br />
+ such that \({\displaystyle M = \bigcup_\alpha U_\alpha}\)<br />
+ and given \({\displaystyle U_\alpha \cap U_\beta \neq \emptyset}\) the map \(\phi_\beta \circ \phi_\alpha^{-1}\) is smooth</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
+    :   
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
+    :   
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
+    :   
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
+    :   
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
+    :   
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
+    :   
+ -->
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name"></h1>
+  <h2 class="project-tagline"></h2>
+  <a href="https://github.com/AhmedBadary/" class="btn">GitHub</a>
+  <a href="https://www.linkedin.com/in/ahmad-badary-656098121/" class="btn">LinkedIn</a>
+  <a href=https://www.facebook.com/ahmed.thabet.94 class="btn">Facebook</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <!-- <div class="page">
+  <h1 class="page-title"></h1>
+  <p>(</p>
+<ul>
+  <li>It is extremely hard to learn a model of the world without experiencing “enough examples”, so the data is still extremely necessary.</li>
+  <li>
+    <p>To capture an entire distribution over some data that should GENERALIZE well; is limited by how actually representative that data is of the true “data-generating” distribution, so “good” data is necessary
+)</p>
+  </li>
+  <li>Hypothesis: Deep CNNs have a tendency to learn superficial statistical regularities in the dataset rather than high level abstract concepts.</li>
+  <li>From the perspective of learning high level abstractions, Fourier image statistics can be superficial regularities, not changing object category.</li>
+  <li>So long as our machine learning models cheat, by relying only on superfcial statistical regularities, they remain vulnerable to out-of-distribution examples.</li>
+  <li>Humans generalize better than other animals thanks to a more accurate internal model of the <strong>underlying causal relationships</strong>.</li>
+  <li></li>
+</ul>
+
+<p><strong>The need for predictive causal modeling: rare &amp; dangerous states:</strong></p>
+<ul>
+  <li>Autonomous vehicles in near- accident situations.</li>
+  <li>Current supervised learning fails these cases because they are too rare.</li>
+  <li>Worse with RL (statistical inefficiency)</li>
+  <li><strong>Goal</strong>: develop better predictive models of the world able to <strong>generalize in completely unseen scenarios</strong>, but it does not seem reasonable to model the sequence of future states in all their details.
+    <ul>
+      <li>(Without) No need to die a thousand deaths</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Motivation:</strong></p>
+<ul>
+  <li>As we are deploying Machine Learning in the real world, what happens is that, the kind of data on which those systems will be used, is almost for sure are going to be statistically different from the kind of data on which it was trained.
+    <ul>
+      <li>And as an example of this consider self driving cars or vehicles, for which would like them to behave well in these rare but dangerous states.</li>
+    </ul>
+  </li>
+</ul>
+
+<p id="lst-p"><strong style="color: red">Invariance vs Disentangling:</strong></p>
+<ul>
+  <li>They are different concepts.</li>
+  <li><strong>Invariance</strong>: is a property of an object/system being equal wrt. a certain change.<br />
+  We seek to have invariant detectors, features, etc. to certain things we care about; but sensitive to other things (based on the domain).</li>
+  <li><strong>Disentangling</strong>:
+    <ul>
+      <li><strong>Motivation</strong>:
+        <ul>
+          <li>But if we’re trying to explain the world around us, if we’re trying to build machines that explain the world around them that understand their environment, we should be prudent about what aspects of the world we would like our systems to be invariant about. Maybe we want to capture everything.<br />
+  And the most important aspect isn’t what we get rid of or not, but rather how we can separate the different factors from each other.</li>
+          <li>It helps us deal with <strong>curse of dimensionality</strong>.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: red">Good Representations (Bengio)</strong><br />
+  The idea is when we transform the data in the space, machine learning becomes easier.<br />
+  So, in particular, the kind of complex dependencies that we see in them, say, the pixel space will become easy to model maybe with linear models or factorize models in that space.</p>
+  </li>
+  <li><strong style="color: red">Latent Variables and Abstract Representations</strong><br />
+  <img src="https://cdn.mathpix.com/snip/images/U0kEzjna1M_8C9ghlUyWNx7gHhJ0MsSdTljBuGio8uA.original.fullsize.png" alt="img" width="60%" />
+    <ul>
+      <li><strong>Encoder/decoder view</strong>: maps between low \(\&amp;\) high-levels</li>
+      <li><strong>Encoder does inference</strong>: interpret the data at the abstract level</li>
+      <li><strong>Decoder can generate new configurations</strong></li>
+      <li>Encoder <em><strong>flattens</strong></em> and <strong>disentangles</strong> the data <strong>manifold</strong><br />
+  Go from a <em>“spaghetti”</em> of manifolds to, flat and separate manifolds.
+        <ul>
+          <li>A big goal is: transform the <em>“curved”</em> (data) manifold, into a <em><strong>flat</strong></em> manifold.<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Illustration</button>
+  <img src="https://cdn.mathpix.com/snip/images/5Vkr6YgW9bq1o0ZSp1nEGuD5U7iUDtyJFEIa5PLLHuQ.original.fullsize.png" alt="img" width="60%" hidden="" /></li>
+          <li><strong>Checking that a manifold is <em>flat</em></strong>:<br />
+  Simple Idea: Interpolate between two points on the manifold (average), if the middle point comes from the data distribution (e.g. image), then it is flat.
+            <ul>
+              <li>Interpolating in h-space should give you e.g. either one image or the other, but not a blend (preserve identity).</li>
+              <li>Interpolating in X-space will give you e.g. a combination of the two images.</li>
+              <li><button class="showText" value="show" onclick="showTextPopHide(event);">Illustration: from paper</button>
+  <img src="https://cdn.mathpix.com/snip/images/N0G8rIK-_pHhko9zKNfALbaaBQj6oLQkJf9F1XsH4V8.original.fullsize.png" alt="img" width="100%" hidden="" /></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Marginal independence in h-space</li>
+    </ul>
+  </li>
+  <li><strong style="color: red">What’s missing in DL:</strong><br />
+  <span style="color: goldenrod">Deep Understanding</span>.</li>
+  <li><strong style="color: red">What is needed:</strong>
+    <ul>
+      <li><strong>Generalizing Beyond i.i.d. Data</strong>:
+        <ul>
+          <li>The Learning <em>Theories</em> need to be modified.</li>
+          <li>Current ML theory is strongly dependent on the iid assumption</li>
+          <li>Real-life applications often require generalizations in regimes not seen during training</li>
+          <li>Humans can project themselves in situations they have never been (e.g. imagine being on another planet, or going through exceptional events like in many movies)</li>
+          <li><strong>Solution</strong>: <span style="color: goldenrod">understanding explanatory/causal factors and mechanisms</span>.
+            <ul>
+              <li><strong>How:</strong> <span style="color: goldenrod"><em>Clues</em> to help <strong>disentangle</strong> the underlaying causal factors (w/ regularization)</span>.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: red">Humans Outperform Machines at <em>Autonomous Learning</em>:</strong>
+    <ul>
+      <li>Humans are very good at unsupervised learning, e.g. a 2 year old knows intuitive physics</li>
+      <li>Babies construct an approximate but sufficiently reliable model of physics.
+        <ul>
+          <li>How do they manage that?<br />
+  Note that they <strong>interact with the world</strong>, not just observe it.
+            <ul>
+              <li>It is important to <em>act in the world</em> to <em>acquire information</em>.<br />
+  The basic tools for that come from <strong>RL</strong>.<br />
+  It is not developed enough, as of now.
+                <blockquote>
+                  <p>Note: <span style="color: goldenrod">the information gained/learned by an acting agent is <em><strong>subjective</strong></em> to his own capabilities/affordences</span>.<br />
+      E.g. Adult vs Baby (bodies) interacting with the world.</p>
+                </blockquote>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+</div> -->
+
+<p>(</p>
+<ul>
+  <li>It is extremely hard to learn a model of the world without experiencing “enough examples”, so the data is still extremely necessary.</li>
+  <li>
+    <p>To capture an entire distribution over some data that should GENERALIZE well; is limited by how actually representative that data is of the true “data-generating” distribution, so “good” data is necessary
+)</p>
+  </li>
+  <li>Hypothesis: Deep CNNs have a tendency to learn superficial statistical regularities in the dataset rather than high level abstract concepts.</li>
+  <li>From the perspective of learning high level abstractions, Fourier image statistics can be superficial regularities, not changing object category.</li>
+  <li>So long as our machine learning models cheat, by relying only on superfcial statistical regularities, they remain vulnerable to out-of-distribution examples.</li>
+  <li>Humans generalize better than other animals thanks to a more accurate internal model of the <strong>underlying causal relationships</strong>.</li>
+  <li></li>
+</ul>
+
+<p><strong>The need for predictive causal modeling: rare &amp; dangerous states:</strong></p>
+<ul>
+  <li>Autonomous vehicles in near- accident situations.</li>
+  <li>Current supervised learning fails these cases because they are too rare.</li>
+  <li>Worse with RL (statistical inefficiency)</li>
+  <li><strong>Goal</strong>: develop better predictive models of the world able to <strong>generalize in completely unseen scenarios</strong>, but it does not seem reasonable to model the sequence of future states in all their details.
+    <ul>
+      <li>(Without) No need to die a thousand deaths</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Motivation:</strong></p>
+<ul>
+  <li>As we are deploying Machine Learning in the real world, what happens is that, the kind of data on which those systems will be used, is almost for sure are going to be statistically different from the kind of data on which it was trained.
+    <ul>
+      <li>And as an example of this consider self driving cars or vehicles, for which would like them to behave well in these rare but dangerous states.</li>
+    </ul>
+  </li>
+</ul>
+
+<p id="lst-p"><strong style="color: red">Invariance vs Disentangling:</strong></p>
+<ul>
+  <li>They are different concepts.</li>
+  <li><strong>Invariance</strong>: is a property of an object/system being equal wrt. a certain change.<br />
+  We seek to have invariant detectors, features, etc. to certain things we care about; but sensitive to other things (based on the domain).</li>
+  <li><strong>Disentangling</strong>:
+    <ul>
+      <li><strong>Motivation</strong>:
+        <ul>
+          <li>But if we’re trying to explain the world around us, if we’re trying to build machines that explain the world around them that understand their environment, we should be prudent about what aspects of the world we would like our systems to be invariant about. Maybe we want to capture everything.<br />
+  And the most important aspect isn’t what we get rid of or not, but rather how we can separate the different factors from each other.</li>
+          <li>It helps us deal with <strong>curse of dimensionality</strong>.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: red">Good Representations (Bengio)</strong><br />
+  The idea is when we transform the data in the space, machine learning becomes easier.<br />
+  So, in particular, the kind of complex dependencies that we see in them, say, the pixel space will become easy to model maybe with linear models or factorize models in that space.</p>
+  </li>
+  <li><strong style="color: red">Latent Variables and Abstract Representations</strong><br />
+  <img src="https://cdn.mathpix.com/snip/images/U0kEzjna1M_8C9ghlUyWNx7gHhJ0MsSdTljBuGio8uA.original.fullsize.png" alt="img" width="60%" />
+    <ul>
+      <li><strong>Encoder/decoder view</strong>: maps between low \(\&amp;\) high-levels</li>
+      <li><strong>Encoder does inference</strong>: interpret the data at the abstract level</li>
+      <li><strong>Decoder can generate new configurations</strong></li>
+      <li>Encoder <em><strong>flattens</strong></em> and <strong>disentangles</strong> the data <strong>manifold</strong><br />
+  Go from a <em>“spaghetti”</em> of manifolds to, flat and separate manifolds.
+        <ul>
+          <li>A big goal is: transform the <em>“curved”</em> (data) manifold, into a <em><strong>flat</strong></em> manifold.<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Illustration</button>
+  <img src="https://cdn.mathpix.com/snip/images/5Vkr6YgW9bq1o0ZSp1nEGuD5U7iUDtyJFEIa5PLLHuQ.original.fullsize.png" alt="img" width="60%" hidden="" /></li>
+          <li><strong>Checking that a manifold is <em>flat</em></strong>:<br />
+  Simple Idea: Interpolate between two points on the manifold (average), if the middle point comes from the data distribution (e.g. image), then it is flat.
+            <ul>
+              <li>Interpolating in h-space should give you e.g. either one image or the other, but not a blend (preserve identity).</li>
+              <li>Interpolating in X-space will give you e.g. a combination of the two images.</li>
+              <li><button class="showText" value="show" onclick="showTextPopHide(event);">Illustration: from paper</button>
+  <img src="https://cdn.mathpix.com/snip/images/N0G8rIK-_pHhko9zKNfALbaaBQj6oLQkJf9F1XsH4V8.original.fullsize.png" alt="img" width="100%" hidden="" /></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Marginal independence in h-space</li>
+    </ul>
+  </li>
+  <li><strong style="color: red">What’s missing in DL:</strong><br />
+  <span style="color: goldenrod">Deep Understanding</span>.</li>
+  <li><strong style="color: red">What is needed:</strong>
+    <ul>
+      <li><strong>Generalizing Beyond i.i.d. Data</strong>:
+        <ul>
+          <li>The Learning <em>Theories</em> need to be modified.</li>
+          <li>Current ML theory is strongly dependent on the iid assumption</li>
+          <li>Real-life applications often require generalizations in regimes not seen during training</li>
+          <li>Humans can project themselves in situations they have never been (e.g. imagine being on another planet, or going through exceptional events like in many movies)</li>
+          <li><strong>Solution</strong>: <span style="color: goldenrod">understanding explanatory/causal factors and mechanisms</span>.
+            <ul>
+              <li><strong>How:</strong> <span style="color: goldenrod"><em>Clues</em> to help <strong>disentangle</strong> the underlaying causal factors (w/ regularization)</span>.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: red">Humans Outperform Machines at <em>Autonomous Learning</em>:</strong>
+    <ul>
+      <li>Humans are very good at unsupervised learning, e.g. a 2 year old knows intuitive physics</li>
+      <li>Babies construct an approximate but sufficiently reliable model of physics.
+        <ul>
+          <li>How do they manage that?<br />
+  Note that they <strong>interact with the world</strong>, not just observe it.
+            <ul>
+              <li>It is important to <em>act in the world</em> to <em>acquire information</em>.<br />
+  The basic tools for that come from <strong>RL</strong>.<br />
+  It is not developed enough, as of now.
+                <blockquote>
+                  <p>Note: <span style="color: goldenrod">the information gained/learned by an acting agent is <em><strong>subjective</strong></em> to his own capabilities/affordences</span>.<br />
+      E.g. Adult vs Baby (bodies) interacting with the world.</p>
+                </blockquote>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+</html>

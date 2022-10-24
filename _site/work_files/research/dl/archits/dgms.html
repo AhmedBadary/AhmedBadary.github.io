@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Deep Generative Models</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC9">
+    <li><a href="#content9">Introduction and Preliminaries</a></li>
+  </ul>
+  <ul class="TOC1">
+    <li><a href="#content1">Deep Generative Models</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Likelihood-based Models</a></li>
+  </ul>
+  <!--   
+  * [THIRD](#content3)
+  {: .TOC3}
+  * [FOURTH](#content4)
+  {: .TOC4}
+  * [FIFTH](#content5)
+  {: .TOC5}
+  * [SIXTH](#content6)
+  {: .TOC6} -->
+</div>
+
+<hr />
+<hr />
+
+<ul>
+  <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4943066/">Probabilistic Models and Generative Neural Networks (paper)</a></li>
+  <li><a href="http://mlvis2016.hiit.fi/latentVariableGenerativeModels.pdf">Latent Variable Model Intuition (slides!)</a></li>
+  <li><a href="https://openai.com/blog/generative-models/">Generative Models (OpenAI Blog!)</a></li>
+</ul>
+
+<p id="lst-p"><strong style="color: red">In situations respecting the following assumptions, Semi-Supervised Learning should <em>improve performance</em>:</strong>  :</p>
+<ul>
+  <li>Semi-supervised learning works <span style="color: goldenrod">when \(p(\mathbf{y} \vert \mathbf{x})\) and \(p(\mathbf{x})\) are <strong>tied</strong> together</span>.
+    <ul>
+      <li>This happens when \(\mathbf{y}\) is closely associated with one of the causal factors of \(\mathbf{x}\).</li>
+    </ul>
+  </li>
+  <li>The <span style="color: goldenrod"><strong>best possible model</strong> of \(\mathbf{x}\) (wrt. <strong>generalization</strong>)</span> is the one that <span style="color: goldenrod"><em><strong>uncovers</strong></em> the above <strong>“true” structure</strong></span>, with <span style="color: goldenrod">\(\boldsymbol{h}\) as a <strong>latent variable</strong> that <em><strong>explains</strong></em> the <strong>observed variations</strong> in \(\boldsymbol{x}\)</span>.
+    <ul>
+      <li>Since we can write the <strong>Marginal Probability of Data</strong> as:
+        <p>$$p(\boldsymbol{x})=\mathbb{E}_ {\mathbf{h}} p(\boldsymbol{x} \vert \boldsymbol{h})$$</p>
+        <ul>
+          <li>Because the <strong>“true” generative process</strong> can be conceived as <span style="color: purple"><em><strong>structured</strong></em> according to this <strong>directed graphical model</strong></span>, with \(\mathbf{h}\) as the <strong>parent</strong> of \(\mathbf{x}\):
+            <p>$$p(\mathbf{h}, \mathbf{x})=p(\mathbf{x} \vert \mathbf{h}) p(\mathbf{h})$$</p>
+          </li>
+        </ul>
+      </li>
+      <li>Thus, <strong>The “ideal” representation learning discussed above should recover these latent factors</strong>.</li>
+    </ul>
+  </li>
+  <li>The <span style="color: purple"><strong>marginal</strong> \(p(\mathbf{x})\) is <em><strong>intimately tied</strong></em> to the <strong>conditional</strong> \(p(\mathbf{y} \vert \mathbf{x})\), and knowledge of the structure of the former should be helpful to learn the latter</span>.
+    <ul>
+      <li>Since the <strong>conditional distribution</strong> of \(\mathbf{y}\) given \(\mathbf{x}\) is <span style="color: purple">tied by <em>Bayes’ rule</em> to the <strong>components in the above equation</strong></span>:
+        <p>$$p(\mathbf{y} \vert \mathbf{x})=\frac{p(\mathbf{x} \vert \mathbf{y}) p(\mathbf{y})}{p(\mathbf{x})}$$</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="content9">Introduction and Preliminaries</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents91">Unsupervised Learning:</strong><br />
+ <strong>Unsupervised Learning</strong> is the task of making inferences, by learning a better representation from some datapoints that do not have any labels associated with them.<br />
+ It intends to learn/infer an <strong><em>a priori</em> probability distribution</strong> \(p_{X}(x)\); I.E. it solves a <strong>density estimation problem</strong>.<br />
+ It is a type of <em><strong>self-organized</strong></em> <strong>Hebbian learning</strong> that helps find previously unknown patterns in data set without pre-existing labels. <br />
+ <img src="/main_files/dl/archits/dgms/1.png" alt="img" width="100%" /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents92">Density Estimation:</strong><br />
+ <strong>Density Estimation</strong> is a problem in Machine Learning that requires learning a function \(p_{\text {model}} : \mathbb{R}^{n} \rightarrow \mathbb{R}\), where \(p_{\text {model}}(x)\) can be interpreted as a <strong>probability  density function</strong> (if \(x\) is continuous) or a <strong>probability mass function</strong> (if \(x\) is discrete) on the space that the examples were drawn from.</p>
+
+    <p>To perform such a task well, an algorithm needs to <span style="color: purple">learn the <strong>structure of the data</strong></span> it has seen. It must know where examples cluster tightly and where they are unlikely to occur.</p>
+
+    <ul>
+      <li><strong>Types</strong> of Density Estimation:
+        <ul>
+          <li><em><strong>Explicit</strong></em>: Explicitly define and solve for \(p_\text{model}(x)\)</li>
+          <li><em><strong>Implicit</strong></em>: Learn model that can sample from \(p_\text{model}(x)\) without explicitly defining it</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents93">Generative Models (GMs):</strong><br />
+ A <strong>Generative Model</strong> is a <em>statistical model</em> of the <span style="color: purple"><strong>joint</strong> probability distribution</span> on \(X \times Y\):</p>
+    <p>$${\displaystyle P(X,Y)}$$</p>
+    <p>where \(X\) is an <em>observable</em> variable and \(Y\) is a <em>target</em> variable.</p>
+
+    <p>In <strong>supervised settings</strong>, a <strong>Generative Model</strong> is a model of the <span style="color: purple"><strong>conditional</strong> probability</span> of the observable \(X,\) given a target \(y,\):</p>
+    <p>$$P(X | Y=y)$$</p>
+
+    <p><strong style="color: red">Application - Density Estimation:</strong><br />
+ Generative Models address the <strong>Density Estimation</strong> problem, a core problem in unsupervised learning, since they model <br />
+ Given training data, GMs will generate new samples from the same distribution.</p>
+    <ul>
+      <li><strong>Types</strong> of Density Estimation:
+        <ul>
+          <li><em><strong>Explicit</strong></em>: Explicitly define and solve for \(p_\text{model}(x)\)</li>
+          <li><em><strong>Implicit</strong></em>: Learn model that can sample from \(p_\text{model}(x)\) without explicitly defining it</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Examples of Generative Models:</strong></p>
+    <ul>
+      <li>Gaussian Mixture Model (and other types of mixture model)</li>
+      <li>Hidden Markov Model</li>
+      <li>Probabilistic context-free grammar</li>
+      <li>Bayesian network (e.g. Naive Bayes, Autoregressive Model)</li>
+      <li>Averaged one-dependence estimators</li>
+      <li>Latent Dirichlet allocation (LDA)</li>
+      <li>Boltzmann machine (e.g. Restricted Boltzmann machine, Deep belief network)</li>
+      <li>Variational autoencoder</li>
+      <li>Generative Adversarial Networks</li>
+      <li>Flow-based Generative Model</li>
+    </ul>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">A generative model for generative (graphical) models - Diagram</button>
+ <img src="https://cdn.mathpix.com/snip/images/ZIHj9KE3aa7i-o5jSaxLD8fP-tDPzFtBf7ymVT8g2JQ.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li>Generative Models are <strong>Joint Models</strong>.</li>
+      <li>Latent Variables are <strong style="color: goldenrod">Random Variables</strong>.<br />
+ <br /></li>
+    </ul>
+  </li>
+</ol>
+
+<!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents93}
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents94} -->
+
+<hr />
+
+<h2 id="content1">Deep Generative Models</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Generative Models (GMs):</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Deep Generative Models (DGMs):</strong></p>
+
+    <ul>
+      <li>DGMs <strong>represent <em>probability distributions</em> over multiple variables</strong> in some way:
+        <ul>
+          <li>Some allow the probability distribution function to be evaluated explicitly.</li>
+          <li>Others do not allow the evaluation of the probability distribution function but support operations that implicitly require knowledge of it, such as drawing samples from the distribution.</li>
+        </ul>
+      </li>
+      <li><strong>Structure/Representation:</strong>
+        <ul>
+          <li>Some of these models are structured probabilistic models described in terms of graphs and factors, using the language of (probabilistic) graphical models.</li>
+          <li>Others cannot be easily described in terms of factors but represent probability distributions nonetheless.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13} -->
+<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14} -->
+
+<!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}
+ -->
+
+<hr />
+
+<h2 id="content2">Likelihood-based Models</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Likelihood-based Models:</strong><br />
+ <strong>Likelihood-based Model</strong>: is a statistical model of a <span style="color: purple">joint distribution over data</span>.<br />
+ It estimates \(\mathbf{p}_ {\text {data}}\) from samples \(\mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)} \sim \mathbf{p}_ {\text {data}}(\mathbf{x})\).<br />
+ It Learns a distribution \(p\) that allows:
+    <ul>
+      <li><span style="color: purple">Computing probability of a sample</span> \(p(x)\) for arbitrary \(x\)</li>
+      <li><span style="color: purple">Sampling</span> \(x \sim p(x)\)<br />
+  Sampling is a computable efficient process that generates an RV \(x\) that has the same distribution as a \(p_{\text{data}}\).<br />
+ The distribution \(\mathbf{p}_ {\text {data}}\) is just a <span style="color: purple"><strong>function</strong></span> that takes as an <span style="color: purple">input a sample \(x\)</span> and <span style="color: purple">outputs the probability of \(x\)</span> under the learned distribution.</li>
+    </ul>
+
+    <p><strong style="color: red">The Goal for Learning Likelihood-based Models:</strong><br />
+ <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show Goal</button></p>
+    <ul hidden="">
+      <li><strong>Original Goal</strong>: estimate \(\mathbf{p}_{\text {data}}\) from samples \(\mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)} \sim \mathbf{p}_{\text {data}}(\mathbf{x})\).</li>
+      <li><strong>Revised Goal - Function Approximation</strong>: Find \(\theta\) (the parameter vector indexing into the distribution space) so that you approximately get the data distribution.<br />
+  I.E. Learn \(\theta\) so that \(p_{\theta}(x) \approx p_{\text {data}}(x)\).</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Motivation:</strong></p>
+    <ul>
+      <li><strong>Solving Hard Problems</strong>:
+        <ul>
+          <li><strong>Generating Data</strong>: synthesizing images, videos, speech, text</li>
+          <li><strong>Compressing Data</strong>: constructing efficient codes</li>
+          <li><strong>Anomaly Detection</strong><br />
+ <br /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">The Histogram Model:</strong><br />
+ The <strong>Histogram</strong> Model is a very simple <strong>likelihood-based</strong> model.<br />
+ It is a model of <strong>discrete data</strong> where the samples can take on values in a finite set \(\{1, \ldots, \mathrm{k}\}\).</p>
+
+    <p>The <strong>Goal:</strong> estimate \(\mathbf{p}_{\text {data}}\) from samples \(\mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)} \sim \mathbf{p}_{\text {data}}(\mathbf{x})\).</p>
+
+    <p id="lst-p">The <strong>Model</strong>: a <span style="color: purple"><strong>Histogram</strong></span></p>
+    <ul>
+      <li><strong>Described</strong> by \(k\) nonnegative numbers: \(\mathrm{p}_{1}, \ldots, \mathrm{p}_{\mathrm{k}}\)</li>
+      <li><strong>Trained</strong> by <span style="color: purple">counting frequencies</span>
+        <p>$$\mathrm{p}_ {\mathrm{i}}=(\# \text { times } i \text { appears in the dataset) } /(\#\text { points in the dataset) }$$</p>
+      </li>
+      <li><strong>At Runtime</strong>:
+        <ul>
+          <li><strong>Inference</strong> (querying \(p_i\) for arbitrary \(i\)): simply a lookup into the array \(\mathrm{p}_{1}, \ldots, \mathrm{p}_{\mathrm{k}}\)</li>
+          <li><strong>Sampling</strong> (lookup into the inverse cumulative distribution function):
+            <ol>
+              <li>From the model probabilities \(p_{1}, \ldots, p_{k},\) compute the cumulative distribution:
+                <p>$$\mathrm{F}_{\mathrm{i}}=\mathrm{p}_ {1}+\cdots+\mathrm{p}_ {\mathrm{i}} \quad$ for all $\mathrm{i} \in\{1, \ldots, \mathrm{k}\}$$</p>
+              </li>
+              <li>Draw a uniform random number  \(u \sim[0,1]\)</li>
+              <li>Return the smallest \(i\) such that \(u \leq F_{i}\)</li>
+            </ol>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Generalization Problem:</strong></p>
+    <ul>
+      <li><strong>The Curse of Dimensionality</strong>: Counting fails when there are too many bins and <strong>generalization</strong> is not achieved.<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Analysis</button>
+        <ul hidden="">
+          <li>(Binary) MNIST: \(28 \times 28\) images, each pixel in \(\{0,1\}\)</li>
+          <li>There are \(2^{784} \approx 10^{236} \approx 10^{236}\) probabilities to estimate</li>
+          <li>Any reasonable training set covers only a tiny fraction of this</li>
+          <li>Each image influences only one parameter and there is only \(60,000\) MNIST images:<br />
+  <span style="color: purple"><strong>No generalization</strong> whatsoever!</span></li>
+        </ul>
+      </li>
+      <li><strong>Solution</strong>: <span style="color: goldenrod"><strong>Function Approximation</strong></span><br />
+  Instead of storing each probability store a <span style="color: purple"><strong><em>parameterized</em> function</strong></span> \(p_{\theta}(x)\).<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Achieving Generalization via Function Approximation:</strong><br />
+ <strong>Function Approximation</strong>: Defines a <em><strong>mapping \(p_{\theta}\)</strong></em> from a <strong>parameter space</strong> to a <strong>space</strong> of <strong>probability distributions</strong>.<br />
+ E.g. \(\theta\) are the weights of a NN, \(p_{\theta}\) some NN architecture with those weights set.</p>
+
+    <p>Instead of storing each probability store a <span style="color: purple"><strong><em>parameterized</em> function</strong></span> \(p_{\theta}(x)\).<br />
+ i.e. Instead of treating the probabilities \(p_1, ..., p_k\) themselves as <strong>parameters</strong>, we define them to be <span style="color: purple"><strong>functions</strong> of other parameters \(\theta\)</span>.<br />
+ The probability of every data point \(p_i = p_{\theta}(x_i)\) will be a function of \(\theta\).<br />
+ The mapping is defined such that whenever we update \(\theta\) for any one particular data point, its likely to influence \(p_i\) for other data points that are similar to it.<br />
+ We <strong>constraint</strong> the <span style="color: purple"><strong>dimension</strong> \(d\) of \(\theta \in \mathbb{R}^d\) to be <em><strong>much less</strong></em> than the <strong>number of possible images</strong></span>.<br />
+ Such that the <strong>parameter space \(\Theta\)</strong> is <span style="color: purple"><em><strong>indexing</strong></em> into the low-dimensional space inside the <strong>set of all probability distributions</strong></span>.<br />
+ This is how we achieve <strong style="color: goldenrod">Generalization</strong> through <span style="color: goldenrod">function approximation</span>.</p>
+
+    <p id="lst-p"><strong style="color: red">The Revised Goal for Learning Likelihood-based Models - Function Approximation:</strong></p>
+    <ul>
+      <li><strong>Original Goal</strong>: estimate \(\mathbf{p}_{\text {data}}\) from samples \(\mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)} \sim \mathbf{p}_{\text {data}}(\mathbf{x})\).</li>
+      <li><strong>Revised Goal - Function Approximation</strong>: Find \(\theta\) (the parameter vector indexing into the distribution space) so that you approximately get the data distribution.<br />
+  I.E. Learn \(\theta\) so that \(p_{\theta}(x) \approx p_{\text {data}}(x)\).</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">New Challenges:</strong></p>
+    <ul>
+      <li>How do we design function approximators to effectively represent complex joint distributions over \(x\), yet remain easy to train?</li>
+      <li>There will be many choices for model design, each with different tradeoffs and different compatibility criteria.
+        <ul>
+          <li>Define “what does it mean for one probability distribution to be <em>approximately</em> equal to another”?<br />
+  A <span style="color: purple">measure of distance between distributions: <strong>distance function</strong></span>.<br />
+  It needs to be <strong>differentiable</strong> wrt \(\theta\), works on <strong>finite-datasets</strong>, etc.</li>
+          <li>How to “define \(p_{\theta}\)”?</li>
+          <li>How to “learn/optimize \(\theta\)”?</li>
+          <li>How to ensure software-hardware compatibility?</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><span style="color: purple">Designing the <strong>model</strong> and the <strong>training procedure (optimization)</strong> go hand-in-hand</span>.
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Architecture and Learning in Likelihood-based Models:</strong><br />
+ <strong style="color: red">Fitting Distributions:</strong>
+    <ul>
+      <li>Given data \(\mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)}\) sampled from a “true” distribution \(\mathbf{p}_ {\text {data}}\)</li>
+      <li>Set up a <strong>model class</strong>: a set of parameterized distributions \(\mathrm{p}_ {\theta}\)</li>
+      <li>Pose a <strong>search problem over parameters</strong>:
+        <p>$$\arg \min_ {\theta} \operatorname{loss}\left(\theta, \mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)}\right)$$</p>
+      </li>
+      <li><strong>Desiderata</strong> - Want the loss function + search procedure to:
+        <ul>
+          <li>Work with large datasets (\(n\) is large, say millions of training examples)</li>
+          <li>Yield $\theta$ such that \(p_ {\theta}\) matches \(p_{\text {data}}\) — i.e. the training algorithm <em>“works”</em>.<br />
+  Think of the <strong>loss</strong> as a <span style="color: purple"><strong><em>distance</em> between distributions</strong></span>.</li>
+          <li>Note that the training procedure can only see the empirical data distribution, not the true data distribution: we want the model to <strong>generalize</strong>.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Objective - Maximum Likelihood:</strong></p>
+    <ul>
+      <li><strong>Maximum Likelihood</strong>: given a dataset \(\mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)},\) find \(\theta\) by solving the optimization problem
+        <p>$$\arg \min _{\theta} \operatorname{loss}\left(\theta, \mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)}\right)=\frac{1}{n} \sum_{i=1}^{n}-\log p_{\theta}\left(\mathbf{x}^{(i)}\right)$$</p>
+      </li>
+      <li>Statistics tells us that if the <span style="color: purple">model family is expressive enough</span> and if <span style="color: purple">enough data is given</span>, then <span style="color: goldenrod">solving the maximum likelihood problem will yield parameters that generate the data</span>.<br />
+  This is <strong>IMPORTANT</strong> since one of the main reasons for introducing and using these methods (e.g. <strong>MLE</strong>) is that <span style="color: purple"><strong>they <em>work</em> in practice</strong></span> i.e. leads to an algorithm we can run in practice that actually produces good models.</li>
+      <li>Equivalent to minimizing KL divergence between the empirical data distribution and the model:
+        <p>$$\hat{p}_{\text {data }}(\mathbf{x})=\frac{1}{n} \sum_{i=1}^{n} \mathbf{1}\left[\mathbf{x}=\mathbf{x}^{(i)}\right]$$</p>
+        <p>$$\mathrm{KL}\left(\hat{p}_{\mathrm{data}} \| p_{\theta}\right)=\mathbb{E}_{\mathbf{x} \sim \hat{p}_{\mathrm{data}}}\left[-\log p_{\theta}(\mathbf{x})\right]-H\left(\hat{p}_ {\mathrm{data}}\right)$$</p>
+        <p>I.E. the <strong>maximum likelihood objective</strong> exactly <span style="color: purple"><em><strong>measures</strong></em> how good of a <strong>compressor</strong> the model is</span>.</p>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Optimization - Stochastic Gradient Descent:</strong><br />
+ <strong>Maximum likelihood</strong> is an <strong>optimization problem</strong>. We use <strong>SGD</strong> to solve it.</p>
+    <ul>
+      <li>SGD minimizes expectations: for \({f}\) a differentiable function of \(\theta,\) it solves
+        <p>$$\arg \min_ {\theta} \mathbb{E}[f(\theta)]$$</p>
+      </li>
+      <li>With maximum likelihood (which is an expectation in-of-itself), the optimization problem is
+        <p>$$\arg \min _{\theta} \mathbb{E}_{\mathbf{x} \sim \hat{p}_{\text {data }}}\left[-\log p_{\theta}(\mathbf{x})\right]$$</p>
+      </li>
+      <li><strong>Why maximum likelihood + SGD?</strong><br />
+  <strong>Same Theme</strong>: It <span style="color: purple"><em><strong>works</strong></em></span> with large datasets and is compatible with neural networks.</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Designing the Model:</strong><br />
+ Our goal is to design <strong>Neural Network models</strong> that <span style="color: purple"><em><strong>fit</strong></em> into the <strong>maximum likelihood + sgd framework</strong></span>.</p>
+    <ul>
+      <li><strong>Key requirement for maximum likelihood + SGD</strong>: <span style="color: purple">efficiently compute \(\log p(x)\) and its</span> <strong style="color: goldenrod">gradient</strong>.</li>
+      <li><strong>The Model \(p_{\theta}\):</strong> is chosen to be <strong style="color: goldenrod">Deep Neural Networks</strong><br />
+  They work in the regime of high expressiveness and efficient computation (assuming specialized hardware).</li>
+      <li><strong>Designing the Networks</strong>:
+        <ul>
+          <li>Any setting of \(\theta\) must define a <strong>valid probability distribution</strong> over \(x\):
+            <p>$$\forall \theta, \quad \sum_{\mathbf{x}} p_{\theta}(\mathbf{x})=1 \quad \text{ and } \quad p_{\theta}(\mathbf{x}) \geq 0 \quad \forall \mathbf{x}$$</p>
+            <ul>
+              <li><strong>Difficulty:</strong> The number of terms in the sum is the number of <strong>possible data points</strong>, thus, it is <strong>exponential in the dimension</strong>.<br />
+  Thus, a naive implementation would have a forward pass w/ exponential time.</li>
+              <li><strong>Energy-based Models</strong> do not have this constraint in the model definition, but then have to deal with that constraint in the training algorithm making it very hard to deal with/optimize.</li>
+            </ul>
+          </li>
+          <li>\(\log p_{\theta}(x)\) should be <strong>easy to evaluate and differentiate</strong> with respect to \(\theta\)</li>
+          <li>This can be <strong>tricky</strong> to set up!</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Bayes Nets and Neural Nets:</strong><br />
+ One way to <strong>satisfy the condition</strong> of <span style="color: purple">defining a valid probability distribution over \(x\)</span> is to <strong>model the variables with a Bayes Net</strong>.</p>
+
+    <p><strong>Main Idea:</strong><br />
+ <span style="color: goldenrod">place a <strong>Bayes Net</strong> structure (a directed acyclic graph) over the variables in the data, and model the <strong>conditional distributions</strong> with Neural Networks</span>.</p>
+
+    <p>This <span style="color: purple">Reduces the problem to <strong>designing conditional likelihood-based models for single variables</strong></span>.</p>
+
+    <p>We know how to do this: the neural net takes variables being conditioned on as input, and outputs the distribution for the variable being predicted; NNs usually condition on a lot of stuff (features) and predict a single small variable (target \(y\)) this is done in practice all the time in supervised settings (e.g. classification).</p>
+
+    <p>This (the BN representation) yields <strong>massive savings in the number of parameters to represent a joint distribution</strong>.<br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">A Bayes Net over five variables</button>
+ <img src="https://cdn.mathpix.com/snip/images/bkKsJ-vXI0OZXqG7-e5wqAW28DsUGsNKhz9VllwBvaE.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p id="lst-p"><strong style="color: red">Does this work in practice?</strong></p>
+    <ul>
+      <li>Given a Bayes net structure, <span style="color: purple">setting the <strong>conditional distributions</strong> to <strong>neural networks</strong></span> will yield a <span style="color: purple"><em><strong>tractable</strong></em> <strong>log likelihood</strong> and <strong>gradient</strong></span>.<br />
+  Great for <strong>maximum likelihood training</strong>:
+        <p>$$\log p_{\theta}(\mathbf{x})=\sum_{i=1}^{d} \log p_{\theta}\left(x_{i} | \text { parents }\left(x_{i}\right)\right)$$</p>
+      </li>
+      <li><strong>Expressiveness:</strong> it is completely expressive.<br />
+  Assuming a <strong>fully expressive Bayes Net structure</strong>: <span style="color: purple">any <strong>joint distribution</strong> can be written as a <strong>product of conditionals</strong></span>
+        <p>$$\log p(\mathbf{x})=\sum_{i=1}^{d} \log p\left(x_{i} | \mathbf{x}_ {1: i-1}\right)$$</p>
+      </li>
+      <li>This is known as an <strong>Autoregressive Model</strong>.</li>
+    </ul>
+
+    <div class="borderexample">
+      <p><span>
+ <strong>Conclusion:</strong><br />
+ <span style="color: goldenrod">An <em><strong>expressive</strong></em> <strong>Bayes Net structure</strong> with <strong>Neural Network conditional distributions</strong> yields an <em><strong>expressive</strong></em> model for \(p(x)\) with <em><strong>tractable</strong></em> <strong>maximum likelihood training</strong></span>. <br />
+ </span></p>
+    </div>
+    <p><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Autoregressive Models:</strong></p>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li>Very useful if the problem we are modeling requires a fixed size output (e.g. auto-regressive models).</li>
+      <li>Autoregressive models such as PixelRNN instead train a network that models the conditional distribution of every individual pixel given previous pixels (to the left and to the top). This is similar to plugging the pixels of the image into a char-rnn, but the RNNs run both horizontally and vertically over the image instead of just a 1D sequence of characters.<br />
+ <br /></li>
+    </ul>
+  </li>
+</ol>
+
+<!-- 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}
+
+***
+
+## THIRD
+{: #content3}
+
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}
+
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}
+
+ -->
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

@@ -1,0 +1,2134 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Prep Questions (Learning)</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <h2 id="gradient-based-optimization">Gradient-Based Optimization</h2>
+<ol>
+  <li>
+    <p><strong style="color: red">Define Gradient Methods:</strong></p>
+  </li>
+  <li><strong style="color: red">Give examples of Gradient-Based Algorithms:</strong></li>
+  <li><strong style="color: red">What is Gradient Descent:</strong></li>
+  <li><strong style="color: red">Explain it intuitively:</strong></li>
+  <li><strong style="color: red">Give its derivation:</strong></li>
+  <li><strong style="color: red">What is the learning rate?</strong>
+    <ol>
+      <li><strong style="color: blue">Where does it come from?</strong></li>
+    </ol>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show</button></p>
+    <ol hidden="">
+      <li><strong style="color: blue">How does it relate to the step-size?</strong></li>
+      <li><strong style="color: blue">We go from having a fixed step-size to [blank]:</strong></li>
+    </ol>
+
+    <ol>
+      <li><strong style="color: blue">How do we choose the learning rate?</strong></li>
+    </ol>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show</button></p>
+    <ol hidden="">
+      <li><strong style="color: blue">Compare Line Search vs Trust Region:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Describe the convergence of the algorithm:</strong></li>
+  <li>
+    <p><strong style="color: red">How does GD relate to Euler?</strong></p>
+  </li>
+  <li><strong style="color: red">List the variants of GD:</strong>
+    <ol>
+      <li><strong style="color: blue">How do they differ?:</strong></li>
+    </ol>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Define the Following w/ parameter updates:</button></p>
+    <ol hidden="">
+      <li><strong style="color: blue">BGD:</strong></li>
+      <li><strong style="color: blue">SGD:</strong>
+        <ol>
+          <li><strong style="color: blue">How should we handle the lr in this case? Why?</strong></li>
+          <li><strong style="color: blue">What conditions guarantee convergence of SGD?</strong></li>
+        </ol>
+      </li>
+      <li><strong style="color: blue">M-BGD:</strong>
+        <ol>
+          <li><strong style="color: blue">What advantages does it have?</strong></li>
+        </ol>
+      </li>
+      <li><strong style="color: blue">Explain the different kinds of gradient-descent optimization procedures:</strong>
+        <ol>
+          <li><strong>Batch Gradient Descent</strong> AKA <strong>Vanilla Gradient Descent</strong>, computes the gradient of the objective wrt. the parameters \(\theta\) for the entire dataset:
+            <p>$$\theta=\theta-\epsilon \cdot \nabla_{\theta} J(\theta)$$</p>
+          </li>
+          <li><strong>SGD</strong> performs a parameter update for each data-point:
+            <p>$$\theta=\theta-\epsilon \cdot \nabla_{\theta} J\left(\theta ; x^{(i)} ; y^{(i)}\right)$$</p>
+          </li>
+          <li><strong>Mini-batch Gradient Descent</strong> a hybrid approach that perform updates for a, pre-specified, mini-batch of \(n\) training examples:
+            <p>$$\theta=\theta-\epsilon \cdot \nabla_{\theta} J\left(\theta ; x^{(i : i+n)} ; y^{(i : i+n)}\right)$$</p>
+          </li>
+        </ol>
+      </li>
+      <li><strong style="color: blue">State the difference between SGD and GD?</strong><br />
+ <strong>Gradient Descent</strong>’s cost-function iterates over ALL training samples.<br />
+ <strong>Stochastic Gradient Descent</strong>’s cost-function only accounts for ONE training sample, chosen at random.</li>
+      <li><strong style="color: blue">When would you use GD over SDG, and vice-versa?</strong><br />
+ GD theoretically minimizes the error function better than SGD. However, SGD converges much faster once the dataset becomes large.<br />
+ That means GD is preferable for small datasets while SGD is preferable for larger ones.</li>
+    </ol>
+  </li>
+  <li><strong style="color: red">What is the problem of vanilla approaches to GD?</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show</button>
+    <ol hidden="">
+      <li><strong style="color: blue">List the challenges that account for the problem above:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">List the different strategies for optimizing GD:</strong></li>
+  <li><strong style="color: red">List the different variants for optimizing GD:</strong></li>
+</ol>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show</button></p>
+<ol hidden="">
+  <li><strong style="color: red">Momentum:</strong>
+    <ol>
+      <li><strong style="color: blue">Motivation:</strong></li>
+      <li><strong style="color: blue">Definitions/Algorithm:</strong></li>
+      <li><strong style="color: blue">Intuition:</strong></li>
+      <li><strong style="color: blue">Parameter Settings:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Nesterov Accelerated Gradient (Momentum):</strong>
+    <ol>
+      <li><strong style="color: blue">Motivation:</strong></li>
+      <li><strong style="color: blue">Definitions/Algorithm:</strong></li>
+      <li><strong style="color: blue">Intuition:</strong></li>
+      <li><strong style="color: blue">Parameter Settings:</strong></li>
+      <li><strong style="color: blue">Successful Applications:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Adagrad</strong>
+    <ol>
+      <li><strong style="color: blue">Motivation:</strong></li>
+      <li><strong style="color: blue">Definitions/Algorithm:</strong></li>
+      <li><strong style="color: blue">Intuition:</strong></li>
+      <li><strong style="color: blue">Parameter Settings:</strong></li>
+      <li><strong style="color: blue">Successful Application:</strong></li>
+      <li><strong style="color: blue">Properties:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Adadelta</strong>
+    <ol>
+      <li><strong style="color: blue">Motivation:</strong></li>
+      <li><strong style="color: blue">Definitions/Algorithm:</strong></li>
+      <li><strong style="color: blue">Intuition:</strong></li>
+      <li><strong style="color: blue">Parameter Settings:</strong></li>
+      <li><strong style="color: blue">Properties:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">RMSprop</strong>
+    <ol>
+      <li><strong style="color: blue">Motivation:</strong></li>
+      <li><strong style="color: blue">Definitions/Algorithm:</strong></li>
+      <li><strong style="color: blue">Intuition:</strong></li>
+      <li><strong style="color: blue">Parameter Settings:</strong></li>
+      <li><strong style="color: blue">Properties:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Adam</strong>
+    <ol>
+      <li><strong style="color: blue">Motivation:</strong></li>
+      <li><strong style="color: blue">Definitions/Algorithm:</strong></li>
+      <li><strong style="color: blue">Intuition:</strong></li>
+      <li><strong style="color: blue">Parameter Settings:</strong></li>
+      <li><strong style="color: blue">Properties:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Which methods have trouble with saddle points?</strong></li>
+  <li><strong style="color: red">How should you choose your optimizer?</strong></li>
+  <li><strong style="color: red">Summarize the different variants listed above. How do they compare to each other?</strong></li>
+  <li>
+    <p><strong style="color: red">What’s a common choice in many research papers?</strong></p>
+  </li>
+  <li><strong style="color: red">List additional strategies for optimizing SGD:</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="maximum-margin-classifiers">Maximum Margin Classifiers</h2>
+<ol>
+  <li><strong style="color: red">Define Margin Classifiers:</strong></li>
+  <li><strong style="color: red">What is a Margin for a linear classifier?</strong></li>
+  <li><strong style="color: red">Give the motivation for margin classifiers:</strong></li>
+  <li><strong style="color: red">Define the notion of the “best” possible classifier</strong></li>
+  <li><strong style="color: red">How can we achieve the “best” classifier?</strong></li>
+  <li><strong style="color: red">What unique vector is orthogonal to the hp? Prove it:</strong></li>
+  <li><strong style="color: red">What do we mean by “signed distance”? Derive its formula:</strong></li>
+  <li><strong style="color: red">Given the formula for signed distance, calculate the “distance of the point closest to the hyperplane”:</strong></li>
+  <li><strong style="color: red">Use geometric properties of the hp to Simplify the expression for the distance of the closest point to the hp, above</strong></li>
+  <li><strong style="color: red">Characterize the margin, mathematically:</strong></li>
+  <li><strong style="color: red">Characterize the “Slab Existence”:</strong></li>
+  <li><strong style="color: red">Formulate the optimization problem of <em>maximizing the margin</em> wrt analysis above:</strong></li>
+  <li><strong style="color: red">Reformulate the optimization problem above to a more “friendly” version (wrt optimization -&gt; put in standard form):</strong>
+    <ol>
+      <li><strong style="color: blue">Give the final (standard) formulation of the “Optimization problem for maximum margin classifiers”:</strong></li>
+      <li><strong style="color: blue">What kind of formulation is it (wrt optimization)? What are the parameters?</strong></li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="hard-margin-svms">Hard-Margin SVMs</h2>
+<ol>
+  <li><strong style="color: red">Define:</strong>
+    <ol>
+      <li><strong style="color: blue">SVMs:</strong></li>
+      <li><strong style="color: blue">Support Vectors:</strong></li>
+      <li><strong style="color: blue">Hard-Margin SVM:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Define the following wrt hard-margin SVM:</strong>
+    <ol>
+      <li><strong style="color: blue">Goal:</strong></li>
+      <li><strong style="color: blue">Procedure:</strong></li>
+      <li><strong style="color: blue">Decision Function:</strong></li>
+      <li><strong style="color: blue">Constraints:</strong></li>
+      <li><strong style="color: blue">The Optimization Problem:</strong></li>
+      <li><strong style="color: blue">The Optimization Method:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Elaborate on the generalization analysis:</strong></li>
+  <li><strong style="color: red">List the properties:</strong></li>
+  <li><strong style="color: red">Give the solution to the optimization problem for H-M SVM:</strong>
+    <ol>
+      <li><strong style="color: blue">What method does it require to be solved:</strong></li>
+      <li><strong style="color: blue">Formulate the Lagrangian:</strong></li>
+      <li><strong style="color: blue">Optimize the objective for each variable:</strong></li>
+      <li><strong style="color: blue">Get the <em>Dual Formulation</em> w.r.t. the (<em>tricky</em>) constrained variable \(\alpha_n\):</strong></li>
+      <li><strong style="color: blue">Set the problem as a <em>Quadratic Programming</em> problem:</strong></li>
+      <li><strong style="color: blue">What are the inputs and outputs to the Quadratic Program Package?</strong></li>
+      <li><strong style="color: blue">Give the final form of the optimization problem in standard form:</strong></li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="soft-margin-svm">Soft-Margin SVM</h2>
+<ol>
+  <li><strong style="color: red">Motivate the soft-margin SVM:</strong></li>
+  <li><strong style="color: red">What is the main idea behind it?</strong></li>
+  <li><strong style="color: red">Define the following wrt soft-margin SVM:</strong>
+    <ol>
+      <li><strong style="color: blue">Goal:</strong></li>
+      <li><strong style="color: blue">Procedure:</strong></li>
+      <li><strong style="color: blue">Decision Function:</strong></li>
+      <li><strong style="color: blue">Constraints:</strong>
+        <ol>
+          <li><strong style="color: blue">Why is there a non-negativity constraint?</strong></li>
+        </ol>
+      </li>
+      <li><strong style="color: blue">Objective/Cost Function:</strong></li>
+      <li><strong style="color: blue">The Optimization Problem:</strong></li>
+      <li><strong style="color: blue">The Optimization Method:</strong></li>
+      <li><strong style="color: blue">Properties:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Specify the effects of the regularization hyperparameter \(C\):</strong>
+    <ol>
+      <li><strong style="color: blue">Describe the effect wrt over/under fitting:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">How do we choose \(C\)?</strong></li>
+  <li><strong style="color: red">Give an equivalent formulation in the standard form objective for function estimation (what should it minimize?)</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="loss-functions">Loss Functions</h2>
+<ol>
+  <li><strong style="color: red">Define:</strong>
+    <ol>
+      <li><strong style="color: blue">Loss Functions:</strong></li>
+      <li><strong style="color: blue">Distance-Based Loss Functions:</strong>
+        <ol>
+          <li><strong style="color: blue">Describe an important property of dist-based losses:</strong></li>
+          <li><strong style="color: blue">What are they used for?</strong></li>
+        </ol>
+      </li>
+      <li><strong style="color: blue">Relative Error - What does it lack?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">List 3 Regression Loss Functions</strong></li>
+</ol>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show the rest of the questions</button></p>
+<ol hidden="">
+  <li><strong style="color: red">MSE</strong>
+    <ol>
+      <li><strong style="color: blue">What does it minimize:</strong></li>
+      <li><strong style="color: blue">Formula:</strong></li>
+      <li><strong style="color: blue">Graph:</strong></li>
+      <li><strong style="color: blue">Derivation:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">MAE</strong>
+    <ol>
+      <li><strong style="color: blue">What does it minimize:</strong></li>
+      <li><strong style="color: blue">Formula:</strong></li>
+      <li><strong style="color: blue">Graph:</strong></li>
+      <li><strong style="color: blue">Derivation:</strong></li>
+      <li><strong style="color: blue">List properties:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Huber Loss</strong>
+    <ol>
+      <li><strong style="color: blue">AKA:</strong></li>
+      <li><strong style="color: blue">Formula:</strong></li>
+      <li><strong style="color: blue">Graph:</strong></li>
+      <li><strong style="color: blue">Derivation:</strong></li>
+      <li><strong style="color: blue">List properties:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Analyze MSE vs MAE:</strong></li>
+</ol>
+
+<ol>
+  <li><strong style="color: red">List 7 Classification Loss Functions</strong></li>
+</ol>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show the rest of the questions</button></p>
+<ol hidden="">
+  <li><strong style="color: red">\(0-1\) loss</strong>
+    <ol>
+      <li><strong style="color: blue">What does it minimize:</strong></li>
+      <li><strong style="color: blue">Formula:</strong></li>
+      <li><strong style="color: blue">Graph:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">MSE</strong>
+    <ol>
+      <li><strong style="color: blue">Formula:</strong></li>
+      <li><strong style="color: blue">Graph:</strong></li>
+      <li><strong style="color: blue">Derivation (for classification) - give assumptions:</strong></li>
+      <li><strong style="color: blue">Properties:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Hinge Loss</strong>
+    <ol>
+      <li><strong style="color: blue">What does it minimize:</strong></li>
+      <li><strong style="color: blue">Formula:</strong></li>
+      <li><strong style="color: blue">Graph:</strong></li>
+      <li><strong style="color: blue">Describe the Properties of the Hinge loss and why it is used?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Logistic Loss</strong>
+    <ol>
+      <li><strong style="color: blue">AKA:</strong></li>
+      <li><strong style="color: blue">What does it minimize:</strong></li>
+      <li><strong style="color: blue">Formula:</strong></li>
+      <li><strong style="color: blue">Graph:</strong></li>
+      <li><strong style="color: blue">Derivation:</strong></li>
+      <li><strong style="color: blue">Properties:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Cross-Entropy</strong>
+    <ol>
+      <li><strong style="color: blue">What does it minimize:</strong></li>
+      <li><strong style="color: blue">Formula:</strong></li>
+      <li><strong style="color: blue">Binary Cross-Entropy:</strong></li>
+      <li><strong style="color: blue">Graph:</strong></li>
+      <li><strong style="color: blue">CE and Negative-Log-Probability:</strong></li>
+      <li><strong style="color: blue">CE and Log-Loss:</strong>
+        <ol>
+          <li><strong style="color: blue">Derivation:</strong></li>
+        </ol>
+      </li>
+      <li><strong style="color: blue">CE and KL-Div:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Exponential Loss</strong>
+    <ol>
+      <li><strong style="color: blue">Formula:</strong></li>
+      <li><strong style="color: blue">Properties:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Perceptron Loss</strong>
+    <ol>
+      <li><strong style="color: blue">Formula:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Analysis</strong>
+    <ol>
+      <li><strong style="color: blue">Logistic vs Hinge Loss:</strong></li>
+      <li><strong style="color: blue">Cross-Entropy vs MSE:</strong></li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="information-theory">Information Theory</h2>
+<ol>
+  <li><strong style="color: red">What is Information Theory? In the context of ML?</strong></li>
+  <li><strong style="color: red">Describe the Intuition for Information Theory. Intuitively, how does the theory quantify information (list)?</strong></li>
+  <li><strong style="color: red">Measuring Information - Definitions and Formulas:</strong>
+    <ol>
+      <li><strong style="color: blue">In Shannons Theory, how do we quantify <em>“transmitting 1 bit of information”</em>?</strong></li>
+      <li><strong style="color: blue">What is <em>the amount of information transmitted</em>?</strong></li>
+      <li><strong style="color: blue">What is the <em>uncertainty reduction factor</em>?</strong></li>
+      <li><strong style="color: blue">What is the <em>amount of information in an event \(x\)</em>?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Define the <em>Self-Information</em>:</strong>
+    <ol>
+      <li><strong style="color: blue">What is it defined with respect to?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Define <em>Shannon Entropy</em> - what is it used for?</strong>
+    <ol>
+      <li><strong style="color: blue">Describe how Shannon Entropy relate to distributions with a graph:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Define <em>Differential Entropy</em>:</strong></li>
+  <li><strong style="color: red">How does entropy characterize distributions?</strong></li>
+  <li><strong style="color: red">Define <em>Relative Entropy</em>:</strong>
+    <ol>
+      <li><strong style="color: blue">Give an interpretation:</strong></li>
+      <li><strong style="color: blue">List the properties:</strong></li>
+      <li><strong style="color: blue">Describe it as a distance:</strong></li>
+      <li><strong style="color: blue">List the applications of relative entropy:</strong></li>
+    </ol>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show</button></p>
+    <ol hidden="">
+      <li><strong style="color: blue">How does the direction of minimization affect the optimization:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Define <em>Cross Entropy</em>:</strong>
+    <ol>
+      <li><strong style="color: blue">What does it measure?</strong></li>
+      <li><strong style="color: blue">How does it relate to <em>relative entropy</em>?</strong></li>
+      <li><strong style="color: blue">When are they equivalent (wrt. optimization)?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Mutual Information:</strong>
+    <ol>
+      <li><strong style="color: blue">Definition:</strong></li>
+      <li><strong style="color: blue">What does it measure?</strong></li>
+      <li><strong style="color: blue">Intuitive Definitions:</strong></li>
+      <li><strong style="color: blue">Interpretations XXX:</strong></li>
+      <li><strong style="color: blue">Properties:</strong></li>
+      <li><strong style="color: blue">Applications:</strong></li>
+    </ol>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show</button></p>
+    <ol hidden="">
+      <li><strong style="color: blue">As KL-Divergence:</strong></li>
+      <li><strong style="color: blue">In-terms of PMFs for discrete distributions:</strong></li>
+      <li><strong style="color: blue">In terms of PDFs for continuous distributions:</strong></li>
+      <li><strong style="color: blue">Relation to PMI:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Pointwise Mutual Information (PMI):</strong>
+    <ol>
+      <li><strong style="color: blue">Definition:</strong></li>
+      <li><strong style="color: blue">Relation to MI:</strong></li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="recommendation-systems">Recommendation Systems</h2>
+<ol>
+  <li><strong style="color: red">Describe the different algorithms for recommendation systems:</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="ensemble-learning">Ensemble Learning</h2>
+<ol>
+  <li><strong style="color: red">What are the two paradigms of ensemble methods?</strong></li>
+  <li><strong style="color: red">Random Forest VS GBM?</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="data-processing-and-analysis">Data Processing and Analysis</h2>
+<ol>
+  <li><strong style="color: red">What are 3 data preprocessing techniques to handle outliers?</strong></li>
+  <li><strong style="color: red">Describe the strategies to dimensionality reduction:</strong></li>
+  <li><strong style="color: red">What are 3 ways of reducing dimensionality?</strong></li>
+  <li><strong style="color: red">List methods for Feature Selection</strong></li>
+  <li><strong style="color: red">List methods for Feature Extraction</strong></li>
+  <li><strong style="color: red">How to detect correlation of “categorical variables”?</strong></li>
+  <li><strong style="color: red">Feature Importance</strong></li>
+  <li><strong style="color: red">Capturing the correlation between continuous and categorical variable? If yes, how?</strong></li>
+  <li><strong style="color: red">What cross validation technique would you use on time series data set?</strong></li>
+  <li><strong style="color: red">How to deal with missing features? (Imputation?)</strong></li>
+  <li><strong style="color: red">Do you suggest that treating a categorical variable as continuous variable would result in a better predictive model?</strong></li>
+  <li><strong style="color: red">What are collinearity and multicollinearity?</strong></li>
+  <li><strong style="color: red">What is data normalization and why do we need it?</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="mlstatistical-models">ML/Statistical Models</h2>
+<ol>
+  <li><strong style="color: red">What are parametric models?</strong></li>
+  <li><strong style="color: red">What is a classifier?</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="k-nn">K-NN</h2>
+
+<hr />
+
+<h2 id="pca">PCA</h2>
+<ol>
+  <li><strong style="color: red">What is PCA?</strong></li>
+  <li><strong style="color: red">What is the Goal of PCA?</strong></li>
+  <li><strong style="color: red">List the applications of PCA:</strong></li>
+  <li><strong style="color: red">Give formulas for the following:</strong>
+    <ol>
+      <li><strong style="color: blue">Assumptions on \(X\):</strong></li>
+      <li><strong style="color: blue">SVD of \(X\):</strong></li>
+      <li><strong style="color: blue">Principal Directions/Axes:</strong></li>
+      <li><strong style="color: blue">Principal Components (scores):</strong></li>
+      <li><strong style="color: blue">The \(j\)-th principal component:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Describe how to find the principal components:</strong></li>
+  <li><strong style="color: red">Define the transformation, mathematically:</strong></li>
+  <li><strong style="color: red">What does PCA produce/result in?</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show</button>
+    <ol hidden="">
+      <li><strong style="color: blue">Finds a lower dimensional subspace spanned by what?:</strong></li>
+      <li><strong style="color: blue">Finds a lower dimensional subspace that minimizes what?:</strong></li>
+      <li><strong style="color: blue">What does each PC have (properties)?</strong></li>
+      <li><strong style="color: blue">What does the procedure find in terms of a “basis”?</strong></li>
+      <li><strong style="color: blue">What does the procedure find in terms of axes? (where do they point?):</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Describe the PCA algorithm:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show specifics</button>
+    <ol hidden="">
+      <li><strong style="color: blue">What Data Processing needs to be done?</strong></li>
+      <li><strong style="color: blue">How to compute the Principal Components?</strong></li>
+      <li><strong style="color: blue">How do you compute the Low-Rank Approximation Matrix \(X_k\)?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Describe the Optimality of PCA:</strong></li>
+  <li><strong style="color: red">List limitations of PCA:</strong></li>
+  <li><strong style="color: red">Intuition:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show specifics</button>
+    <ol hidden="">
+      <li><strong style="color: blue">What property of the internal structure of the data does PCA reveal/explain?</strong></li>
+      <li><strong style="color: blue">What object does it fit to the data?:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">How does PCA relate to CCA?</strong></li>
+  <li><strong style="color: red">How does PCA relate to ICA?</strong></li>
+  <li><strong style="color: red">Should you remove correlated features b4 PCA?</strong></li>
+  <li><strong style="color: red">How can we measure the “Total Variance” of the data?</strong></li>
+  <li><strong style="color: red">How can we measure the “Total Variance” of the <em>projected data</em>?</strong></li>
+  <li><strong style="color: red">How can we measure the <em>“Error in the Projection”</em>?</strong>
+    <ol>
+      <li><strong style="color: blue">What does it mean when this ratio is high?</strong></li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="the-centroid-method">The Centroid Method</h2>
+<ul>
+  <li><strong style="color: red">Define “The Centroid”:</strong></li>
+  <li><strong style="color: red">Describe the Procedure:</strong></li>
+  <li><strong style="color: red">What is the Decision Function:</strong></li>
+  <li><strong style="color: red">Describe the Decision Boundary:</strong></li>
+</ul>
+
+<hr />
+
+<h2 id="k-means">K-Means</h2>
+<ol>
+  <li><strong style="color: red">What is K-Means?</strong></li>
+  <li><strong style="color: red">What is the idea behind K-Means?</strong></li>
+  <li><strong style="color: red">What does K-Mean find?</strong></li>
+  <li><strong style="color: red">Formal Description of the Model:</strong>
+    <ol>
+      <li><strong style="color: blue">What is the Objective?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Description of the Algorithm:</strong></li>
+  <li><strong style="color: red">What is the Optimization method used? What class does it belong to?</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show</button>
+    <ol hidden="">
+      <li><strong style="color: blue">How does the optimization method relate to EM?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">What is the Complexity of the algorithm?</strong></li>
+  <li><strong style="color: red">Describe the convergence and prove it:</strong></li>
+  <li><strong style="color: red">Describe the Optimality of the Algorithm:</strong></li>
+  <li><strong style="color: red">Derive the estimated parameters of the algorithm:</strong>
+    <ol>
+      <li><strong style="color: blue">Objective Function:</strong></li>
+      <li><strong style="color: blue">Optimization Objective:</strong></li>
+      <li><strong style="color: blue">Derivation:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">When does K-Means fail to give good results?</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="naive-bayes">Naive Bayes</h2>
+<ol>
+  <li><strong style="color: red">Define:</strong>
+    <ol>
+      <li><strong style="color: blue">Naive Bayes:</strong></li>
+      <li><strong style="color: blue">Naive Bayes Classifiers:</strong></li>
+      <li><strong style="color: blue">Bayes Theorem:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">List the assumptions of Naive Bayes:</strong></li>
+  <li><strong style="color: red">List some properties of Naive Bayes:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show</button>
+    <ol hidden="">
+      <li><strong style="color: blue">Is it a Bayesian Method or Frequentest Method?</strong></li>
+      <li><strong style="color: blue">Is it a Bayes Classifier? What does that mean?:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Define the Probabilistic Model for the method:</strong>  <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show</button>
+    <ol hidden="">
+      <li><strong style="color: blue">What kind of model is it?</strong></li>
+      <li><strong style="color: blue">What is a conditional probability model?</strong></li>
+      <li><strong style="color: blue">Decompose the conditional probability w/ Bayes Theorem:</strong></li>
+      <li><strong style="color: blue">How does the new expression incorporate the joint probability model?</strong></li>
+      <li><strong style="color: blue">Use the chain rule to re-write the joint probability model:</strong></li>
+      <li><strong style="color: blue">Use the Naive Conditional Independence assumption to rewrite the joint model:</strong></li>
+      <li><strong style="color: blue">What is the conditional distribution over the class variable \(C_k\):</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Construct the classifier. What are its components? Formally define it.</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show</button>
+    <ol hidden="">
+      <li><strong style="color: blue">What’s the decision rule used?</strong></li>
+      <li><strong style="color: blue">List the difference between the Naive Bayes Estimate and the MAP Estimate:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">What are the parameters to be estimated for the classifier?:</strong></li>
+  <li><strong style="color: red">What method do we use to estimate the parameters?:</strong></li>
+  <li><strong style="color: red">What are the estimates for each of the following parameters?:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show</button>
+    <ol hidden="">
+      <li><strong style="color: blue">The prior probability of each class:</strong></li>
+      <li><strong style="color: blue">The conditional probability of each feature (word) given a class:</strong></li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="cnns">CNNs</h2>
+<ol>
+  <li><strong style="color: red">What is a CNN?</strong></li>
+  <li><strong style="color: red">What are the layers of a CNN?</strong></li>
+  <li><strong style="color: red">What are the four important ideas and their benefits that the convolution affords CNNs:</strong></li>
+  <li><strong style="color: red">What is the inspirational model for CNNs:</strong></li>
+  <li><strong style="color: red">Describe the connectivity pattern of the neurons in a layer of a CNN:</strong></li>
+  <li><strong style="color: red">Describe the process of a ConvNet:</strong></li>
+  <li><strong style="color: red">Convolution Operation:</strong>
+    <ol>
+      <li><strong style="color: blue">Define:</strong></li>
+      <li><strong style="color: blue">Formula (continuous):</strong></li>
+      <li><strong style="color: blue">Formula (discrete):</strong></li>
+      <li><strong style="color: blue">Define the following:</strong>
+        <ol>
+          <li><strong style="color: blue">Feature Map:</strong></li>
+        </ol>
+      </li>
+      <li><strong style="color: blue">Does the operation commute?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Cross Correlation:</strong>
+    <ol>
+      <li><strong style="color: blue">Define:</strong></li>
+      <li><strong style="color: blue">Formulae:</strong></li>
+      <li><strong style="color: blue">What are the differences/similarities between convolution and cross-correlation:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Write down the Convolution operation and the cross-correlation over two axes and:</strong>
+    <ol>
+      <li><strong style="color: blue">Convolution:</strong></li>
+      <li><strong style="color: blue">Convolution (commutative):</strong></li>
+      <li><strong style="color: blue">Cross-Correlation:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">The Convolutional Layer:</strong>
+    <ol>
+      <li><strong style="color: blue">What are the parameters and how do we choose them?</strong></li>
+      <li><strong style="color: blue">Describe what happens in the forward pass:</strong></li>
+      <li><strong style="color: blue">What is the output of the forward pass:</strong></li>
+      <li><strong style="color: blue">How is the output configured?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Spatial Arrangements:</strong>
+    <ol>
+      <li><strong style="color: blue">List the Three Hyperparameters that control the output volume:</strong></li>
+      <li><strong style="color: blue">How to compute the spatial size of the output volume?</strong></li>
+      <li><strong style="color: blue">How can you ensure that the input &amp; output volume are the same?</strong></li>
+      <li><strong style="color: blue">In the output volume, how do you compute the \(d\)-th depth slice:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Calculate the number of parameters for the following config:</strong>
+    <blockquote>
+      <p>Given:<br />
+     1. <strong>Input Volume</strong>:  \(64\times64\times3\)<br />
+     1. <strong>Filters</strong>:  \(15 7\times7\)<br />
+     1. <strong>Stride</strong>:  \(2\)<br />
+     1. <strong>Pad</strong>:  \(3\)</p>
+    </blockquote>
+  </li>
+  <li><strong style="color: red">Definitions:</strong>
+    <ol>
+      <li><strong style="color: blue">Receptive Field:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Suppose the input volume has size  \([ 32 × 32 × 3 ]\)  and the receptive field (or the filter size) is  \(5 × 5\) , then each neuron in the Conv Layer will have weights to a <em>__Blank__</em> region in the input volume, for a total of  <em>__Blank__</em> weights:</strong></li>
+  <li><strong style="color: red">How can we achieve the greatest reduction in the spatial dims of the network (for classification):</strong></li>
+  <li><strong style="color: red">Pooling Layer:</strong>
+    <ol>
+      <li><strong style="color: blue">Define:</strong></li>
+      <li><strong style="color: blue">List key ideas/properties and benefits:</strong></li>
+      <li><strong style="color: blue">List the different types of Pooling:</strong><br />
+ <a href="http://localhost:8889/work_files/research/dl/nlp/cnnsNnlp#bodyContents12">Answer</a></li>
+      <li><strong style="color: blue">List variations of pooling and their definitions:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Questions</button>
+        <ol hidden="">
+          <li><strong style="color: blue">What is “Learned Pooling”:</strong></li>
+          <li><strong style="color: blue">What is “Dynamical Pooling”:</strong></li>
+        </ol>
+      </li>
+      <li><strong style="color: blue">List the hyperparams of Pooling Layer:</strong></li>
+      <li><strong style="color: blue">How to calculate the size of the output volume:</strong></li>
+      <li><strong style="color: blue">How many parameters does the pooling layer have:</strong></li>
+      <li><strong style="color: blue">What are other ways to perform downsampling:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Weight Priors:</strong>
+    <ol>
+      <li><strong style="color: blue">Define “Prior Prob Distribution on the parameters”:</strong></li>
+      <li><strong style="color: blue">Define “Weight Prior” and its types/classes:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Questions</button>
+        <ol hidden="">
+          <li><strong style="color: blue">Weak Prior:</strong></li>
+          <li><strong style="color: blue">Strong Prior:</strong></li>
+          <li><strong style="color: blue">Infinitely Strong Prior:</strong></li>
+        </ol>
+      </li>
+      <li><strong style="color: blue">Describe the Conv Layer as a FC Layer using priors:</strong></li>
+      <li><strong style="color: blue">What are the key insights of using this view:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Questions</button>
+        <ol hidden="">
+          <li><strong style="color: blue">When is the prior imposed by convolution INAPPROPRIATE:</strong></li>
+          <li><strong style="color: blue">What happens when the priors imposed by convolution and pooling are not suitable for the task?</strong></li>
+          <li><strong style="color: blue">What kind of other models should Convolutional models be compared to? Why?:</strong></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li><strong style="color: red">When do multi-channel convolutions commute?</strong><br />
+<a href="/work_files/research/dl/archits/convnets#bodyContents61">Answer</a></li>
+  <li><strong style="color: red">Why do we use several different kernels in a given conv-layer?</strong></li>
+  <li><strong style="color: red">Strided Convolutions</strong>
+    <ol>
+      <li><strong style="color: blue">Define:</strong></li>
+      <li><strong style="color: blue">What are they used for?</strong></li>
+      <li><strong style="color: blue">What are they equivalent to?</strong></li>
+      <li><strong style="color: blue">Formula:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Zero-Padding:</strong>
+    <ol>
+      <li><strong style="color: blue">Definition/Usage:</strong></li>
+      <li><strong style="color: blue">List the types of padding:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Locally Connected Layers/Unshared Convolutions:</strong></li>
+  <li><strong style="color: red">Bias Parameter:</strong>
+    <ol>
+      <li><strong style="color: blue">How many bias terms are used per output channel in the tradional convolution:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Dilated Convolutions</strong>
+    <ol>
+      <li><strong style="color: blue">Define:</strong></li>
+      <li><strong style="color: blue">What are they used for?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Stacked Convolutions</strong>
+    <ol>
+      <li><strong style="color: blue">Define:</strong></li>
+      <li><strong style="color: blue">What are they used for?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">What is the rule of Bias(es) in CNNs:</strong>
+    <ul>
+      <li><a href="http://localhost:8889/work_files/research/dl/arcts">Archits</a></li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="theory">Theory</h2>
+
+<h2 id="rnns">RNNs</h2>
+<ol>
+  <li><strong style="color: red">What is an RNN?</strong>
+    <ol>
+      <li><strong style="color: blue">Definition:</strong></li>
+      <li><strong style="color: blue">What machine-type is the standard RNN:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">What is the big idea behind RNNs?</strong></li>
+  <li><strong style="color: red">Dynamical Systems:</strong>
+    <ol>
+      <li><strong style="color: blue">Standard Form:</strong></li>
+      <li><strong style="color: blue">RNN as a Dynamical System:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Unfolding Computational Graphs</strong>
+    <ol>
+      <li><strong style="color: blue">Definition:</strong></li>
+      <li><strong style="color: blue">List the Advantages introduced by unfolding and the benefits:</strong></li>
+      <li><strong style="color: blue">Graph and write the equations of Unfolding hidden recurrence:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Describe the State of the RNN, its usage, and extreme cases of the usage:</strong></li>
+  <li><strong style="color: red">RNN Architectures:</strong>
+    <ol>
+      <li><strong style="color: blue">List the three standard architectures of RNNs:</strong>
+        <ol>
+          <li><strong style="color: blue">Graph:</strong></li>
+          <li><strong style="color: blue">Architecture:</strong></li>
+          <li><strong style="color: blue">Equations:</strong></li>
+          <li><strong style="color: blue">Total Loss:</strong></li>
+          <li><strong style="color: blue">Complexity:</strong></li>
+          <li><strong style="color: blue">Properties:</strong></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Teacher Forcing:</strong>
+    <ol>
+      <li><strong style="color: blue">Definition:</strong></li>
+      <li><strong style="color: blue">Application:</strong></li>
+      <li><strong style="color: blue">Disadvantages:</strong></li>
+      <li><strong style="color: blue">Possible Solutions for Mitigation:</strong></li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="optimization">Optimization</h2>
+<ol>
+  <li><strong style="color: red">Define the <em>sigmoid</em> function and some of its properties:</strong></li>
+  <li><strong style="color: red">Backpropagation:</strong>
+    <ol>
+      <li><strong style="color: blue">Definition:</strong></li>
+      <li><strong style="color: blue">Derive Gradient Descent Update:</strong></li>
+      <li><strong style="color: blue">Explain the difference kinds of gradient-descent optimization procedures:</strong></li>
+      <li><strong style="color: blue">List the different optimizers and their properties:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Error-Measures:</strong>
+    <ol>
+      <li><strong style="color: blue">Define what an error measure is:</strong></li>
+      <li><strong style="color: blue">List the 5 most common error measures and where they are used:</strong></li>
+      <li><strong style="color: blue">Specific Questions:</strong><br />
+ <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show Questions</button>
+        <ol hidden="">
+          <li><strong style="color: blue">Derive MSE carefully:</strong></li>
+          <li><strong style="color: blue">Derive the Binary Cross-Entropy Loss function:</strong></li>
+          <li><strong style="color: blue">Explain the difference between Cross-Entropy and MSE and which is better (for what task)?</strong></li>
+          <li><strong style="color: blue">Describe the properties of the Hinge loss and why it is used?</strong></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Show that the weight vector of a linear signal is orthogonal to the decision boundary?</strong></li>
+  <li><strong style="color: red">What does it mean for a function to be <em>well-behaved</em> from an optimization pov?</strong></li>
+  <li><strong style="color: red">Write \(\|\mathrm{Xw}-\mathrm{y}\|^{2}\) as a summation</strong></li>
+  <li><strong style="color: red">Compute:</strong>
+    <ol>
+      <li><strong style="color: blue">\(\dfrac{\partial}{\partial y}\vert{x-y}\vert=\)</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">State the difference between SGD and GD?</strong></li>
+  <li><strong style="color: red">When would you use GD over SDG, and vice-versa?</strong></li>
+  <li><strong style="color: red">What is convex hull ?</strong></li>
+  <li><strong style="color: red">OLS vs MLE</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="ml-theory">ML Theory</h2>
+<ol>
+  <li><strong style="color: red">Explain intuitively why Deep Learning works?</strong></li>
+  <li><strong style="color: red">List the different types of Learning Tasks and their definitions:</strong><br />
+<a href="/concepts_#bodyContents64">answer</a></li>
+  <li><strong style="color: red">Describe the relationship between supervised and unsupervised learning?</strong><br />
+<a href="/concepts_#bodyContents64">answer</a></li>
+  <li><strong style="color: red">Describe the differences between Discriminative and Generative Models?</strong></li>
+  <li><strong style="color: red">Describe the curse of dimensionality and its effects on problem solving:</strong></li>
+  <li><strong style="color: red">How to deal with curse of dimensionality</strong></li>
+  <li><strong style="color: red">Describe how to initialize a NN and any concerns w/ reasons:</strong></li>
+  <li><strong style="color: red">Describe the difference between Learning and Optimization in ML:</strong></li>
+  <li><strong style="color: red">List the 12 Standard Tasks in ML:</strong></li>
+  <li><strong style="color: red">What is the difference between inductive and deductive learning?</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="statistical-learning-theory">Statistical Learning Theory</h2>
+<ol>
+  <li><strong style="color: red">Define Statistical Learning Theory:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show</button>
+    <ol hidden="">
+      <li><strong>What field is it the theory for?</strong>:</li>
+      <li><strong>What fields does it draw from?</strong>:</li>
+      <li><strong>What does it allow us to do?</strong>:</li>
+      <li><strong>What question does it answer?</strong>:</li>
+      <li><strong>What is it a subfield-of/approach-to?</strong>:</li>
+    </ol>
+  </li>
+  <li><strong style="color: red">What assumptions are made by the theory?</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show</button>
+    <ol hidden="">
+      <li><strong style="color: blue">Define the i.i.d assumptions?</strong></li>
+      <li><strong style="color: blue">Why assume a <em>joint</em> probability distribution \(p(x,y)\)?</strong></li>
+      <li><strong style="color: red">Why do we need to model \(y\) as a target-distribution and not a target-function?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Give the Formal Definition of SLT:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show</button>
+    <ol hidden="">
+      <li><strong style="color: blue">The Definitions:</strong></li>
+      <li><strong style="color: blue">The Assumptions:</strong></li>
+      <li><strong style="color: blue">The Inference Problem:</strong></li>
+      <li><strong style="color: blue">The Expected Risk:</strong></li>
+      <li><strong style="color: blue">The Target Function:</strong></li>
+      <li><strong style="color: blue">The Empirical Risk:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Define Empirical Risk Minimization:</strong></li>
+  <li><strong style="color: red">What is the Complexity of ERM?</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show</button>
+    <ol hidden="">
+      <li><strong style="color: blue">How do you Cope with the Complexity?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Definitions:</strong>
+    <ol>
+      <li><strong style="color: blue">Generalization:</strong></li>
+      <li><strong style="color: blue">Generalization Error:</strong></li>
+      <li><strong style="color: blue">Generalization Gap:</strong>
+        <ol>
+          <li><strong style="color: blue">Computing the Generalization Gap:</strong></li>
+          <li><strong style="color: blue">What is the goal of SLT in the context of the Generalization Gap given that it can’t be computed?</strong></li>
+        </ol>
+      </li>
+      <li><strong style="color: blue">Achieving (“good”) Generalization:</strong><br />
+ An <em>algorithm</em> is said to <strong>generalize</strong> when</li>
+      <li><strong style="color: blue">Empirical Distribution:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Describe the difference between Learning and Optimization in ML:</strong></li>
+  <li><strong style="color: red">Describe the difference between Generalization and Learning in ML:</strong></li>
+  <li><strong style="color: red">How to achieve Learning?</strong></li>
+  <li><strong style="color: red">What does the (VC) Learning Theory Achieve?</strong></li>
+  <li><strong style="color: red">Why do we need the probabilistic framework?</strong></li>
+  <li><strong style="color: red">Give the Formal Definition of SLT:</strong></li>
+  <li><strong style="color: red">What is the <em>Approximation-Generalization Tradeoff</em>? How is it characterized?:</strong></li>
+  <li><strong style="color: red">What are the factors determining how well an ML-algo will perform?</strong></li>
+  <li><strong style="color: red">Define the following and their usage/application &amp; how they relate to each other:</strong>
+    <ol>
+      <li><strong style="color: blue">Underfitting:</strong></li>
+      <li><strong style="color: blue">Overfitting:</strong></li>
+      <li><strong style="color: blue">Capacity:</strong>
+        <ul>
+          <li>Models with <strong style="color: blue">Low-Capacity:</strong></li>
+          <li>Models with <strong style="color: blue">High-Capacity:</strong></li>
+        </ul>
+      </li>
+      <li><strong style="color: blue">Hypothesis Space:</strong></li>
+      <li><strong style="color: red">VC-Dimension:</strong>
+        <ol>
+          <li><strong style="color: blue">What does it measure?</strong></li>
+        </ol>
+      </li>
+      <li><strong style="color: blue">Graph the relation between Error, and Capacity in the ctxt of (Underfitting, Overfitting, Training Error, Generalization Err, and Generalization Gap):</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">What is the most important result in SLT that show that learning is feasible?</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="bias-variance-decomposition-theory">Bias-Variance Decomposition Theory</h2>
+<ol>
+  <li><strong style="color: red">What is the Bias-Variance Decomposition Theory:</strong></li>
+  <li><strong style="color: red">What are the Assumptions made by the theory?</strong></li>
+  <li><strong style="color: red">What is the question that the theory tries to answer? How do you achieve the answer to this question? What assumption is important?</strong></li>
+  <li><strong style="color: red">What is the Bias-Variance Decomposition:</strong></li>
+  <li><strong style="color: red">Define each term w.r.t. source of the error (error from):</strong>
+    <ol>
+      <li><strong style="color: blue">Bias:</strong></li>
+      <li><strong style="color: blue">Variance:</strong></li>
+      <li><strong style="color: blue">Irreducible Error:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">What does each of the following measure (error in)? Describe this measured quantity in words, mathematically. Describe Bias&amp;Variance in Words as a question statement. Give their AKA in statistics.</strong>
+    <ol>
+      <li><strong style="color: blue">Bias:</strong></li>
+      <li><strong style="color: blue">Variance:</strong></li>
+      <li><strong style="color: blue">Irreducible Error:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Give the Formal Definition of the Decomposition (Formula):</strong>
+    <ol>
+      <li><strong style="color: blue">What is the Expectation over?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Define the <em>Bias-Variance Tradeoff</em>:</strong>
+    <ol>
+      <li><strong style="color: blue">Effects of Bias:</strong>
+        <ol>
+          <li><strong>High Bias</strong>:</li>
+          <li><strong>Low Bias</strong>:</li>
+        </ol>
+      </li>
+      <li><strong style="color: blue">Effects of Variance:</strong>
+        <ol>
+          <li><strong>High Variance</strong>:</li>
+          <li><strong>Low Variance</strong>:</li>
+        </ol>
+      </li>
+      <li><strong style="color: blue">Draw the Graph of the Tradeoff (wrt model capacity):</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Derive the Bias-Variance Decomposition with explanations:</strong></li>
+  <li><strong style="color: red">What are the key Takeaways from the Tradeoff?</strong></li>
+  <li><strong style="color: red">What are the most common ways to negotiate the Tradeoff? (i.e. selecting/comparing models)</strong></li>
+  <li><strong style="color: red">How does the decomposition relate to Classification?</strong></li>
+  <li><strong style="color: red">Increasing/Decreasing Bias&amp;Variance:</strong>
+    <ol>
+      <li><strong>Adding Good Feature</strong>:</li>
+      <li><strong>Adding Bad Feature</strong>:</li>
+      <li><strong>Adding ANY Feature</strong>:</li>
+      <li><strong>Adding more Data</strong>:</li>
+      <li><strong>Noise in Test Set</strong>:</li>
+      <li><strong>Noise in Training Set</strong>:</li>
+      <li><strong>Dimensionality Reduction</strong>:</li>
+      <li><strong>Feature Selection</strong>:</li>
+      <li><strong>Regularization</strong>:</li>
+      <li><strong>Increasing # of Hidden Units in ANNs</strong>:</li>
+      <li><strong>Increasing # of Hidden Layers in ANNs</strong>:</li>
+      <li><strong>Increasing \(k\) in K-NN</strong>:</li>
+      <li><strong>Increasing Depth in Decision-Trees</strong>:</li>
+      <li><strong>Boosting</strong>:</li>
+      <li><strong>Bagging</strong>:</li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="activation-functions">Activation Functions</h2>
+<ol>
+  <li><strong style="color: red">Describe the Desirable Properties for activation functions:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Explain the specifics of the desirability of each of the following</button>
+    <ol hidden="">
+      <li><strong style="color: blue">Non-Linearity:</strong></li>
+      <li><strong style="color: blue">Range:</strong></li>
+      <li><strong style="color: blue">Continuously Differentiable:</strong></li>
+      <li><strong style="color: blue">Monotonicity:</strong></li>
+      <li><strong style="color: blue">Smoothness with Monotonic Derivatives:</strong></li>
+      <li><strong style="color: blue">Approximating Identity near Origin:</strong></li>
+      <li><strong style="color: blue">Zero-Centered Range:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Describe the NON-Desirable Properties for activation functions:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Explain the specifics of the non-desirability of each of the following</button>
+    <ol hidden="">
+      <li><strong style="color: blue">Saturation:</strong></li>
+      <li><strong style="color: blue">Vanishing Gradients:</strong></li>
+      <li><strong style="color: blue">Range Not Zero-Centered:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">List the different activation functions used in ML?</strong><br />
+ <strong style="color: blue">Names, Definitions, Properties (pros&amp;cons), Derivatives, Applications, pros/cons:</strong></li>
+</ol>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show Questions</button></p>
+<ol hidden="">
+  <li><strong style="color: red">Fill in the following table:</strong><br />
+ <img src="/main_files/dl/concepts/act_funcs/0.png" alt="img" width="100%" /></li>
+  <li><strong style="color: red">Tanh VS Sigmoid for activation?</strong></li>
+  <li><strong style="color: red">ReLU:</strong>
+    <ol>
+      <li><strong style="color: red">What makes it superior/advantageous?</strong></li>
+      <li><strong style="color: red">What problems does it have?</strong>
+        <ol>
+          <li><strong style="color: red">What solution do we have to mitigate the problem?</strong></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Compute the derivatives of all activation functions:</strong></li>
+  <li><strong style="color: red">Graph all activation functions and their derivatives:</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="kernels">Kernels</h2>
+<ol>
+  <li><strong style="color: red">Define “Local Kernel” and give an analogy to describe it:</strong></li>
+  <li><strong style="color: red">Write the following kernels:</strong>
+    <ol>
+      <li><strong style="color: blue">Polynomial Kernel of degree, up to, \(d\):</strong></li>
+      <li><strong style="color: blue">Gaussian Kernel:</strong></li>
+      <li><strong style="color: blue">Sigmoid Kernel:</strong></li>
+      <li><strong style="color: blue">Polynomial Kernel of degree, exactly, \(d\):</strong></li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="math">Math</h2>
+<ol>
+  <li>
+    <p><strong style="color: red">What is a metric?</strong><br />
+<a href="http://localhost:8889/concepts_#bodyContents31">Metric</a></p>
+  </li>
+  <li>
+    <p><strong style="color: red">Describe Binary Relations and their Properties?</strong><br />
+<a href="/concepts_#bodyContents32">answer</a></p>
+  </li>
+  <li><strong style="color: red">Formulas:</strong>
+    <ol>
+      <li><strong style="color: blue">Set theory:</strong>
+        <ol>
+          <li><strong style="color: blue">Number of subsets of a set of \(N\) elements:</strong></li>
+          <li><strong style="color: blue">Number of pairs \((a,b)\) of a set of N elements:</strong></li>
+        </ol>
+      </li>
+      <li><strong style="color: blue">Binomial Theorem:</strong></li>
+      <li><strong style="color: blue">Binomial Coefficient:</strong></li>
+      <li><strong style="color: blue">Expansion of \(x^n - y^n =\)</strong></li>
+      <li><strong style="color: blue">Number of ways to partition \(N\) data points into \(k\) clusters:</strong></li>
+      <li><strong style="color: blue">\(\log_x(y) =\)</strong></li>
+      <li><strong style="color: blue">The length of a vector \(\mathbf{x}\)  along a direction (projection):</strong>
+        <ol>
+          <li>Along a unit-length vector \(\hat{\mathbf{w}}\):</li>
+          <li>Along an unnormalized vector \(\mathbf{w}\):</li>
+        </ol>
+      </li>
+      <li><strong style="color: blue">\(\sum_{i=1}^{n} 2^{i}=\)</strong></li>
+    </ol>
+  </li>
+  <li>
+    <p><strong style="color: red">List 6 proof methods:</strong><br />
+<a href="/concepts_#bodyContents34">answer</a></p>
+  </li>
+  <li><strong style="color: red">Something</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="statistics">Statistics</h2>
+<ol>
+  <li><strong style="color: red">ROC curve:</strong>
+    <ol>
+      <li><strong style="color: blue">Definition:</strong></li>
+      <li><strong style="color: blue">Purpose:</strong></li>
+      <li><strong style="color: blue">How do you create the plot?</strong></li>
+      <li><strong style="color: blue">How to identify a good classifier:</strong></li>
+      <li><strong style="color: blue">How to identify a bad classifier:</strong></li>
+      <li><strong style="color: blue">What is its application in tuning the model?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">AUC - AUROC:</strong>
+    <ol>
+      <li><strong style="color: blue">Definition:</strong></li>
+      <li><strong style="color: blue">Range:</strong></li>
+      <li><strong style="color: blue">What does it measure:</strong></li>
+      <li><strong style="color: blue">Usage in ML:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Define Statistical Efficiency (of an estimator)?</strong>
+    <ol>
+      <li><strong style="color: blue">Intuitive Difference:</strong></li>
+      <li><strong style="color: blue">How do we define Efficiency?</strong></li>
+      <li><strong style="color: blue">What’s the difference between an efficient and inefficient estimators?</strong></li>
+      <li><strong style="color: blue">How’s the use of an inefficient estimator bad compared to an efficient one?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Whats the difference between <em>Errors</em> and <em>Residuals</em>:</strong>
+    <ol>
+      <li><strong style="color: blue">Compute the statistical errors and residuals of the univariate, normal distribution defined as \(X_{1}, \ldots, X_{n} \sim N\left(\mu, \sigma^{2}\right)\):</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">What is a biased estimator?</strong>
+    <ol>
+      <li><strong style="color: blue">Why would we prefer biased estimators in some cases?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">What is the difference between “Probability” and “Likelihood”:</strong></li>
+  <li><strong style="color: red">Estimators:</strong>
+    <ol>
+      <li><strong style="color: blue">Define:</strong></li>
+      <li><strong style="color: blue">Formula:</strong></li>
+      <li><strong style="color: blue">Whats a good estimator?</strong></li>
+      <li><strong style="color: blue">What are the Assumptions made regarding the estimated parameter:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">What is Function Estimation:</strong>
+    <ol>
+      <li><strong style="color: blue">Whats the relation between the Function Estimator \(\hat{f}\) and Point Estimator:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Define “marginal likelihood” (wrt naive bayes):</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="statistics---mle">(Statistics) - MLE</h2>
+<ol>
+  <li><strong style="color: red">Clearly Define MLE and derive the final formula:</strong>
+    <ol>
+      <li><strong style="color: blue">Write MLE as an expectation wrt the Empirical Distribution:</strong></li>
+      <li><strong style="color: blue">Describe formally the relationship between MLE and the KL-divergence:</strong></li>
+      <li><strong style="color: blue">Extend the argument to show the link between MLE and Cross-Entropy. Give an example of a well-known loss function:</strong></li>
+      <li><strong style="color: blue">How does the form of the model (model family) affect the MLE Estimate?</strong></li>
+      <li><strong style="color: blue">How does MLE relate to the model distribution and the empirical distribution?</strong></li>
+      <li><strong style="color: blue">What is the intuition behind using MLE?</strong></li>
+      <li><strong style="color: blue">What does MLE find/result in?</strong></li>
+      <li><strong style="color: blue">What kind of problem is MLE and how to solve for it?</strong></li>
+      <li><strong style="color: blue">How does it relate to SLT:</strong></li>
+      <li><strong style="color: blue">Explain clearly why we maximize the natural log of the likelihood</strong></li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="text-classification--classical">Text-Classification | Classical</h2>
+<ol>
+  <li><strong style="color: red">List some Classification Methods:</strong></li>
+  <li><strong style="color: red">List some Applications of Txt Classification:</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="nlp">NLP</h2>
+<ol>
+  <li><strong style="color: red">List some problems in NLP:</strong></li>
+  <li><strong style="color: red">List the Solved Problems in NLP:</strong></li>
+  <li><strong style="color: red">List the “within reach” problems in NLP:</strong></li>
+  <li><strong style="color: red">List the Open Problems in NLP:</strong></li>
+  <li><strong style="color: red">Why is NLP hard? List Issues:</strong></li>
+  <li><strong style="color: red">Define:</strong>
+    <ol>
+      <li><strong style="color: blue">Morphology:</strong></li>
+      <li><strong style="color: blue">Morphemes:</strong></li>
+      <li><strong style="color: blue">Stems:</strong></li>
+      <li><strong style="color: blue">Affixes:</strong></li>
+      <li><strong style="color: blue">Stemming:</strong></li>
+      <li><strong style="color: blue">Lemmatization:</strong></li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="language-modeling">Language Modeling</h2>
+<ol>
+  <li><strong style="color: red">What is a Language Model?</strong></li>
+  <li><strong style="color: red">List some Applications of LMs:</strong></li>
+  <li><strong style="color: red">Traditional LMs:</strong>
+    <ol>
+      <li><strong style="color: blue">How are they setup?</strong></li>
+      <li><strong style="color: blue">What do they depend on?</strong></li>
+      <li><strong style="color: blue">What is the Goal of the LM task? (in the ctxt of the problem setup)</strong></li>
+      <li><strong style="color: blue">What assumptions are made by the problem setup? Why?</strong></li>
+      <li><strong style="color: blue">What are the MLE Estimates for probabilities of the following:</strong>
+        <ol>
+          <li><strong style="color: blue">Bi-Grams:</strong>
+            <p>$$p(w_2\vert w_1) = $$</p>
+          </li>
+          <li><strong style="color: blue">Tri-Grams:</strong>
+            <p>$$p(w_3\vert w_1, w_2) = $$</p>
+          </li>
+        </ol>
+      </li>
+      <li><strong style="color: red">What are the issues w/ Traditional Approaches?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">What+How can we setup some NLP tasks as LM tasks:</strong></li>
+  <li><strong style="color: red">How does the LM task relate to Reasoning/AGI:</strong></li>
+  <li><strong style="color: red">Evaluating LM models:</strong>
+    <ol hidden="">
+      <li><strong style="color: blue">List the Loss Functions (+formula) used to evaluate LM models? Motivate each:</strong></li>
+      <li><strong style="color: blue">Which application of LM modeling does each loss work best for?</strong><br />
+ <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show Questions</button></li>
+      <li><strong style="color: blue">Why Cross-Entropy:</strong></li>
+      <li><strong style="color: blue">Which setting it used for?</strong></li>
+      <li><strong style="color: blue">Why Perplexity:</strong></li>
+      <li><strong style="color: blue">Which setting used for?</strong></li>
+      <li><strong style="color: blue">If no surprise, what is the perplexity?</strong></li>
+      <li><strong style="color: blue">How does having a good LM relate to Information Theory?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">LM DATA:</strong>
+    <ol>
+      <li><strong style="color: blue">How does the fact that LM is a time-series prediction problem affect the way we need to train/test:</strong></li>
+      <li><strong style="color: blue">How should we choose a subset of articles for testing:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">List three approaches to Parametrizing LMs:</strong><br />
+ <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show Questions</button>
+    <ol hidden="">
+      <li><strong style="color: blue">Describe “Count-Based N-gram Models”:</strong></li>
+      <li><strong style="color: blue">What distributions do they capture?:</strong></li>
+      <li><strong style="color: blue">Describe “Neural N-gram Models”:</strong></li>
+      <li><strong style="color: blue">What do they replace the captured distribution with?</strong></li>
+      <li><strong style="color: blue">What are they better at capturing:</strong></li>
+      <li><strong style="color: blue">Describe “RNNs”:</strong></li>
+      <li><strong style="color: blue">What do they replace/capture?</strong></li>
+      <li><strong style="color: blue">How do they capture it?</strong></li>
+      <li><strong style="color: blue">What are they best at capturing:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">What’s the main issue in LM modeling?</strong><br />
+ <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show Questions</button>
+    <ol hidden="">
+      <li><strong style="color: blue">How do N-gram models capture/approximate the history?:</strong></li>
+      <li><strong style="color: blue">How do RNNs models capture/approximate the history?:</strong></li>
+    </ol>
+    <ol>
+      <li><strong style="color: blue">The Bias-Variance Tradeoff of the following:</strong>
+        <ol>
+          <li><strong style="color: blue">N-Gram Models:</strong></li>
+          <li><strong style="color: blue">RNNs:</strong></li>
+          <li><strong style="color: blue">An Estimate s.t. it predicts the probability of a sentence by how many times it has seen it before:</strong>
+            <ol>
+              <li><strong style="color: blue">What happens in the limit of infinite data?</strong></li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li><strong style="color: red">What are the advantages of sub-word level LMs:</strong></li>
+  <li><strong style="color: red">What are the disadvantages of sub-word level LMs:</strong></li>
+  <li><strong style="color: red">What is a “Conditional LM”?</strong></li>
+  <li><strong style="color: red">Write the decomposition of the probability for the Conditional LM:</strong></li>
+  <li><strong style="color: red">Describe the Computational Bottleneck for Language Models:</strong></li>
+  <li><strong style="color: red">Describe/List some solutions to the Bottleneck:</strong></li>
+  <li><strong style="color: red">Complexity Comparison of the different solutions:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Questions</button>
+ <img src="/main_files/qs/1.png" alt="img" width="100%" hidden="" /></li>
+</ol>
+
+<hr />
+
+<h2 id="regularization">Regularization</h2>
+<ol>
+  <li><strong style="color: red">Define Regularization both intuitively and formally:</strong></li>
+  <li><strong style="color: red">Define “well-posedness”:</strong></li>
+  <li><strong style="color: red">Give four aspects of justification for regularization (theoretical):</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show</button>
+    <ol hidden="">
+      <li><strong style="color: blue">From a philosophical pov:</strong></li>
+      <li><strong style="color: blue">From a probabilistic pov:</strong></li>
+      <li><strong style="color: blue">From an SLT pov:</strong></li>
+      <li><strong style="color: blue">From a practical pov (relating to the real-world):</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Describe an overview of regularization in DL. How does it usually work?</strong>
+    <ol>
+      <li><strong style="color: blue">Intuitively, how can a regularizer be effective?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Describe the relationship between regularization and capacity. How does regularization work in this case?</strong></li>
+  <li><strong style="color: red">Describe the different approaches to regularization:</strong></li>
+  <li><strong style="color: red">List 9 regularization techniques:</strong></li>
+</ol>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show</button></p>
+<ol hidden="">
+  <li><strong style="color: red">Describe Parameter Norm Penalties (PNPs):</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show</button>
+    <ol hidden="">
+      <li><strong style="color: blue">Describe the parameter \(\alpha\):</strong></li>
+      <li><strong style="color: blue">How does it influence the regularization:</strong></li>
+      <li><strong style="color: blue">What is the effect of minimizing the regularized objective?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">How do we deal with the Bias parameter in PNPs? Explain.</strong></li>
+  <li><strong style="color: red">Describe the tuning of the \(\alpha\) HP in NNs for different hidden layers:</strong></li>
+  <li><strong style="color: red">Formally describe the \(L^2\) parameter regularization:</strong>
+    <ol>
+      <li><strong style="color: blue">AKA:</strong></li>
+      <li><strong style="color: blue">Describe the regularization contribution to the gradient in a single step.</strong></li>
+      <li><strong style="color: blue">Describe the regularization contribution to the gradient. How does it scale?</strong></li>
+      <li><strong style="color: blue">How does weight decay relate to shrinking the individual weight wrt their size? What is the measure/comparison used?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Draw a graph describing the effects of \(L^2\) regularization on the weights:</strong></li>
+  <li><strong style="color: red">Describe the effects of applying weight decay to linear regression</strong></li>
+  <li><strong style="color: red">Derivation:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show</button>
+    <ol hidden="">
+      <li><strong style="color: blue">What is \(L^2\) regularization equivalent to?</strong></li>
+      <li><strong style="color: blue">What are we maximizing?</strong></li>
+      <li><strong style="color: blue">Derive the MAP Estimate:</strong></li>
+      <li><strong style="color: blue">What kind of prior do we place on the weights? What are its parameters?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">List the properties of \(L^2\) regularization:</strong></li>
+  <li><strong style="color: red">Formally describe the \(L^1\) parameter regularization:</strong>
+    <ol>
+      <li><strong style="color: blue">AKA:</strong></li>
+      <li><strong style="color: blue">Whats the regularized objective function?</strong></li>
+      <li><strong style="color: blue">What is its gradient?</strong></li>
+      <li><strong style="color: blue">Describe the regularization contribution to the gradient compared to L2. How does it scale?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">List the properties and applications of \(L^1\) regularization:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show</button>
+    <ol hidden="">
+      <li><strong style="color: blue">How is used as a feature selection mechanism?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Derivation:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show</button>
+    <ol hidden="">
+      <li><strong style="color: blue">What is \(L^1\) regularization equivalent to?</strong></li>
+      <li><strong style="color: blue">What kind of prior do we place on the weights? What are its parameters?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Analyze \(L^1\) vs \(L^2\) regularization:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show</button>
+    <ol hidden="">
+      <li><strong style="color: blue">For Sparsity:</strong></li>
+      <li><strong style="color: blue">For correlated features:</strong></li>
+      <li><strong style="color: blue">For optimization:</strong></li>
+      <li><strong style="color: blue">Give an example that shows the difference wrt sparsity:</strong></li>
+      <li><strong style="color: blue">For sensitivity:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Describe Elastic Net Regularization. Why was it devised?</strong></li>
+  <li><strong style="color: red">Motivate Regularization for ill-posed problems:</strong>
+    <ol>
+      <li><strong style="color: blue">What is the property that needs attention?</strong></li>
+      <li><strong style="color: blue">What would the regularized solution correspond to in this case?</strong></li>
+      <li><strong style="color: blue">Are there any guarantees for the solution to be well-posed? How/Why?</strong></li>
+    </ol>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show</button></p>
+    <ol hidden="">
+      <li><strong style="color: blue">What is the Linear Algebraic property that needs attention?</strong></li>
+      <li><strong style="color: blue">What models are affected by this?</strong></li>
+      <li><strong style="color: blue">What would the sol correspond to in terms of inverting \(X^TX\):</strong></li>
+      <li><strong style="color: blue">When would \(X^TX\) be singular?</strong></li>
+      <li><strong style="color: blue">Describe the Linear Algebraic Perspective. What does it correspond to? [LAP]</strong></li>
+      <li><strong style="color: blue">Can models with no closed-form solution be underdetermined? Explain. [CFS]</strong></li>
+      <li><strong style="color: blue">What models are affected by this? [CFS]</strong></li>
+    </ol>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show [LAP] Problems</button></p>
+    <ol hidden="">
+      <li><strong style="color: blue">Define the Moore-Penrose Pseudoinverse:</strong></li>
+      <li><strong style="color: blue">What can it solve?</strong></li>
+      <li><strong style="color: blue">What does it correspond to in terms of regularization?</strong></li>
+      <li><strong style="color: blue">What is the limit wrt?</strong></li>
+      <li><strong style="color: blue">How can we interpret the pseudoinverse wrt regularization?</strong></li>
+    </ol>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show [CFS] Problems</button></p>
+    <ol hidden="">
+      <li><strong style="color: blue">Explain the problem with Logistic Regression:</strong></li>
+      <li><strong style="color: blue">What are the possible solutions?</strong></li>
+      <li><strong style="color: blue">Are there any guarantees that we achieve with regularization?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Describe dataset augmentation and its techniques:</strong></li>
+  <li><strong style="color: red">When is dataset augmentation applicable?</strong></li>
+  <li><strong style="color: red">When is it not?</strong></li>
+  <li><strong style="color: red">Motivate Noise Robustness property:</strong></li>
+  <li><strong style="color: red">How can Noise Robustness motivate a regularization technique?</strong></li>
+  <li><strong style="color: red">How can we enhance noise robustness in NN?</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show</button>
+    <ol hidden="">
+      <li><strong style="color: blue">Where can noise be injected?</strong></li>
+      <li><strong style="color: blue">Give Motivation, Interpretation and Applications of injecting noise in the different components (from above):</strong></li>
+    </ol>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show further questions</button></p>
+    <ol hidden="">
+      <li><strong style="color: blue">Motivate the injecting of noise:</strong></li>
+      <li><strong style="color: blue">Give an interpretation for injecting noise in the Input layer:</strong></li>
+      <li><strong style="color: blue">Give an interpretation for injecting noise in the Hidden layers:</strong></li>
+      <li><strong style="color: blue">What is the most successful application of this technique:</strong></li>
+      <li><strong style="color: blue">Describe the Bayesian View of learning:</strong></li>
+      <li><strong style="color: blue">How does it motivate injecting noise in the weight matrices?</strong></li>
+      <li><strong style="color: blue">Describe a different interpretation of injecting noise to matrices. What are its effects on the function to be learned?</strong></li>
+      <li><strong style="color: blue">Whats the biggest application for this kind of regularization?</strong></li>
+      <li><strong style="color: blue">Motivate injecting noise in the Output layer:</strong></li>
+      <li><strong style="color: blue">What is the biggest application of this technique?</strong></li>
+      <li><strong style="color: blue">How does it compare to weight-decay when applied to MLE problems?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Define “Semi-Supervised Learning”:</strong>
+    <ol>
+      <li><strong style="color: blue">What does it refer to in the context of DL:</strong></li>
+      <li><strong style="color: blue">What is its goal?</strong></li>
+      <li><strong style="color: blue">Give an example in classical ML:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Describe an approach to applying semi-supervised learning:</strong></li>
+  <li><strong style="color: red">How can we interpret dropout wrt data augmentation?</strong></li>
+</ol>
+
+<ol>
+  <li><strong style="color: red">When is Ridge regression favorable over Lasso regression? for correlated features?</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="misc">Misc.</h2>
+<ol>
+  <li><strong style="color: red">Explain Latent Dirichlet Allocation (LDA)</strong></li>
+  <li><strong style="color: red">How to deal with curse of dimensionality</strong></li>
+  <li><strong style="color: red">How to detect correlation of “categorical variables”?</strong></li>
+  <li><strong style="color: red">Define “marginal likelihood” (wrt naive bayes):</strong></li>
+  <li><strong style="color: red">KNN VS K-Means</strong></li>
+  <li><strong style="color: red">When is Ridge regression favorable over Lasso regression for correlated features?</strong></li>
+  <li><strong style="color: red">Capturing the correlation between continuous and categorical variable? If yes, how?</strong></li>
+  <li><strong style="color: red">Random Forest VS GBM?</strong></li>
+  <li><strong style="color: red">What is convex hull ?</strong></li>
+  <li><strong style="color: red">What cross validation technique would you use on time series data set?</strong></li>
+  <li><strong style="color: red">How to deal with missing features? (Imputation?)</strong></li>
+  <li><strong style="color: red">Describe the different algorithms for recommendation systems:</strong></li>
+  <li><strong style="color: red">Do you suggest that treating a categorical variable as continuous variable would result in a better predictive model?</strong></li>
+  <li><strong style="color: red">OLS vs MLE</strong></li>
+  <li><strong style="color: red">What is the difference between inductive and deductive learning?</strong></li>
+  <li><strong style="color: red">What are collinearity and multicollinearity?</strong></li>
+  <li><strong style="color: red">What are the two paradigms of ensemble methods?</strong></li>
+  <li><strong style="color: red">Describe Label Smoothing as a regularization technique:</strong>
+    <ol>
+      <li><strong style="color: blue">Give its motivation:</strong>
+        <ul>
+          <li><strong style="color: blue">What is data normalization and why do we need it?:</strong></li>
+          <li><strong style="color: blue">Weight initialization in neural networks?:</strong></li>
+          <li><strong style="color: red">How to improve Generalization</strong></li>
+          <li><strong style="color: red">How to prevent Overfitting</strong></li>
+          <li><strong style="color: red">How to control the capacity</strong></li>
+          <li><strong style="color: red">Why small weights in NN lead to lower capacity:</strong></li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<p><strong>INTERVIEWS</strong></p>
+<ul>
+  <li><strong style="color: blue">Can they derive the back-propagation and weights update?:</strong></li>
+  <li><strong style="color: blue">Extend the above question to non-trivial layers such as convolutional layers, pooling layers, etc.:</strong></li>
+  <li><strong style="color: blue">How to implement dropout:</strong></li>
+  <li><strong style="color: blue">Their intuition when and why some tricks such as max pooling, ReLU, maxout, etc. work. There are no right answers but it helps to understand their thoughts and research experience.:</strong></li>
+  <li><strong style="color: blue">Can they abstract the forward, backward, update operations as matrix operations, to leverage BLAS and GPU?:</strong></li>
+  <li><strong style="color: blue">What is an auto-encoder? Why do we “auto-encode”? Hint: it’s really a misnomer.:</strong></li>
+  <li><strong style="color: blue">What is a Boltzmann Machine? Why a Boltzmann Machine?:</strong></li>
+  <li><strong style="color: blue">Why do we use sigmoid for an output function? Why tanh? Why not cosine? Why any function in particular?:</strong></li>
+  <li><strong style="color: blue">Why are CNNs used primarily in imaging and not so much other tasks?:</strong></li>
+  <li><strong style="color: blue">Explain backpropagation. Seriously. To the target audience described above.:</strong></li>
+  <li><strong style="color: blue">Is it OK to connect from a Layer 4 output back to a Layer 2 input?:</strong></li>
+  <li><strong style="color: blue">A data-scientist person recently put up a YouTube video explaining that the essential difference between a Neural Network and a Deep Learning network is that the former is trained from output back to input, while the latter is trained from input toward output. Do you agree? Explain.:</strong></li>
+  <li><a href="https://www.quora.com/What-are-the-toughest-neural-networks-and-deep-learning-interview-questions">Interview Qs (Quora)</a></li>
+  <li><a href="https://docs.google.com/document/d/1eYcKSc5NcaWL0TdQD1l5iypfW27S1d9SDrvaUnGEENE/edit">NLP-Interview</a></li>
+  <li><a href="https://docs.google.com/document/d/1ORo2m8cCr5ZnwAH_VHHOpj6jxL6-xuxeIXu2QJA0LbA/edit">Robin-Interview</a></li>
+  <li><a href="https://docs.google.com/document/d/1WqSkunRb0Bue1LX3nZYUXEJMQt7-sHikVtZ96qwE6zs/edit">Robin</a></li>
+  <li><a href="https://docs.google.com/document/d/1-F52-xt4O57Ut75DfF6bx-XYcWWZtRhQKVAMcZrMAes/edit">CV-Inter</a></li>
+  <li><a href="https://docs.google.com/document/d/1Yipw1BsW9-BO4FuBKG2SvtH-PIiZN_MQ78P1n9QT3_s/edit">Polarr-Inter</a></li>
+</ul>
+
+<hr />
+
+<h2 id="feedforward-neural-network">FeedForward Neural Network</h2>
+<ol>
+  <li><strong style="color: red">What is a <em>“FeedForward”</em> Neural Network:</strong></li>
+  <li><strong style="color: red">What is the Architecture of an FFN (components and how they work together):</strong></li>
+  <li><strong style="color: red">List two examples of FFNs:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Further Questions</button>
+    <ol hidden="">
+      <li><strong style="color: blue">Describe the “Single-Layer Perceptron”:</strong></li>
+      <li><strong style="color: blue">Describe the “Multi-Layer Perceptron” (vaguely describe the components of the architecture and how they fit together):</strong></li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="multilayer-perceptron">Multilayer Perceptron</h2>
+<ol>
+  <li><strong style="color: red">What model class does the “Multi-Layer Perceptron” belong to:</strong></li>
+  <li><strong style="color: red">What is the Architecture of an MLP:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Further Questions</button>
+    <ol hidden="">
+      <li><strong style="color: blue">What are the Layers names/types:</strong></li>
+      <li><strong style="color: blue">What do the Connections between the nodes represent:</strong></li>
+      <li><strong style="color: blue">What else is important to make it multi-layer? why/motivation (biologically and mathematically)?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Describe “Learning” of an MLP (Learning Algorithm and brief description of the procedure and optimization):</strong></li>
+  <li><strong style="color: red">List the properties of the MLP:</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="deep-feedforward-neural-networks">Deep Feedforward Neural Networks</h2>
+<ol>
+  <li><strong style="color: red">Describe the Deep Feedforward Neural Networks:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Further Questions</button>
+    <ol hidden="">
+      <li><strong style="color: blue">As a “Classifier” (from what does it learn and what does it define?):</strong></li>
+      <li><strong style="color: blue">What is its function?</strong>
+        <ol>
+          <li><strong style="color: blue">How does it model the targets? (describe the underlying model and what it learns)</strong></li>
+          <li><strong style="color: blue">What does it learn?</strong></li>
+        </ol>
+      </li>
+      <li><strong style="color: blue">What is its goal (besides trying to approximate the function on the training data)?</strong></li>
+      <li><strong style="color: blue">Why are they called “networks”/how are they represented?:</strong></li>
+    </ol>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Further Further Questions</button></p>
+    <ol hidden="">
+      <li><strong style="color: blue">How are the Functions composed together?</strong></li>
+      <li><strong style="color: blue">How is this composition described?</strong></li>
+      <li><strong style="color: blue">What is the common structure for connecting the functions (from layer to layer)?</strong></li>
+      <li><strong style="color: blue">How do we define Depth:</strong></li>
+      <li><strong style="color: blue">What does the Training Data provide? and how do we learn from it?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Describe the Motivation for Deep FFNs:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Further Questions</button>
+    <ol hidden="">
+      <li><strong style="color: blue">topic:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">How can we interpret Deep Neural Networks (in SLT):</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="autoencoders">AutoEncoders</h2>
+<ol>
+  <li><strong style="color: red">What is an AutoEncoder? What is its goal? (draw a diagram)</strong></li>
+  <li><strong style="color: red">What type of NN is the Autoencoder?</strong></li>
+  <li><strong style="color: red">Give Motivation for AutoEncoders:</strong></li>
+  <li><strong style="color: red">Why Deep AutoEncoders? What do they allow us to do?</strong></li>
+  <li><strong style="color: red">List the Advantages of Deep AutoEncoders:</strong></li>
+  <li><strong style="color: red">List the Applications of AutoEncoders:</strong></li>
+  <li><strong style="color: red">Describe the Training of Deep AutoEncoders:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Extra</button>
+    <ol hidden="">
+      <li><strong style="color: blue">What are the challenges if any?</strong></li>
+      <li><strong style="color: blue">What are the main methods for training Deep AutoEncoders?</strong></li>
+      <li><strong style="color: blue">Which one is the most superior method?</strong></li>
+    </ol>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Extra Extra</button></p>
+    <ol hidden="">
+      <li><strong style="color: blue">How is Joint Training better:</strong></li>
+      <li><strong style="color: blue">Why is Joint Training better:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Describe the Architecture of AutoEncoders:</strong>
+    <ol>
+      <li><strong style="color: blue">What is the simplest form of an AE:</strong></li>
+      <li><strong style="color: blue">What realm of “Learning” is employed for AEs?</strong></li>
+    </ol>
+  </li>
+  <li>
+    <p><strong style="color: red">Mathematical Description of the Structure of AutoEncoders:</strong></p>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Extra Extra</button></p>
+    <ol hidden="">
+      <li><strong style="color: blue">How do we define the “Encoder” and “Decoder”?</strong></li>
+      <li><strong style="color: blue">The Encoder maps what to what?</strong></li>
+      <li><strong style="color: blue">The Decoder maps what to what?</strong></li>
+      <li><strong style="color: blue">What is the type of loss?</strong></li>
+    </ol>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Extra Extra</button></p>
+    <ol hidden="">
+      <li><strong style="color: blue">What are “Transition Functions”?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Compare AutoEncoders and PCA (wrt what they learn):</strong></li>
+  <li><strong style="color: red">List the different Types of AEs</strong></li>
+  <li><strong style="color: red">How can we use AEs for Initialization?</strong></li>
+  <li><strong style="color: red">Describe the Representational Power of AEs:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Extra</button>
+    <ol hidden="">
+      <li><strong style="color: red">(wrt Layer Size and Depth):</strong></li>
+      <li><strong style="color: blue">Why is Depth Important?</strong></li>
+    </ol>
+  </li>
+  <li>
+    <p><strong style="color: red">Describe the progression (stages) of AE Architectures in CV:</strong></p>
+  </li>
+  <li><strong style="color: red">What are <em>Undercomplete</em> AutoEncoders?</strong></li>
+  <li><strong style="color: red">What’s the motivation behind <em>Undercomplete</em> AEs?</strong></li>
+  <li><strong style="color: red">List the Challenges of Utilizing Undercomplete AEs:</strong></li>
+  <li><strong style="color: red">What is the Main Method/Approach of addressing the Challenges above (Training AEs)?</strong></li>
+</ol>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Further Questions</button></p>
+<ol hidden="">
+  <li><strong style="color: red">Define Regularized Autoencoders:</strong>
+    <ol>
+      <li><strong style="color: blue">What does it allow us to do?</strong></li>
+      <li><strong style="color: blue">How does it address the Challenges?</strong></li>
+    </ol>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Extra</button></p>
+    <ol hidden="">
+      <li><strong style="color: blue">What other Properties does it encourage to be learned?</strong></li>
+      <li><strong style="color: blue">What kind of technique (also type) of AEs can be “non-linear” and still learn useful codes?</strong></li>
+      <li><strong style="color: blue">What kind of technique-needed for (also type-of) AEs can be “overcomplete” and still learn useful codes?</strong></li>
+      <li><strong style="color: blue">What kind of technique-needed for (also type-of) AEs can be “nonlinear” AND “overcomplete” and still learn useful codes?</strong></li>
+      <li><strong style="color: red">What are the ways to learn useful encodings/representations?</strong><br />
+ Defining an appropriate <span style="color: purple"><strong>Objective and Objective Function</strong></span>.
+        <ol>
+          <li><strong style="color: red">What types of objectives help learn useful encodings/representations?</strong><br />
+ <strong>(regularized/approximate) Auto-Encoding</strong> - <strong>Maximizing the Probability of training Data (NLL)</strong><br />
+ <a href="/work_files/research/dl/archits/aencdrs#bodyContents24">Further Info</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Describe the Relationship between Generative Models and AEs:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Extra</button>
+    <ol hidden="">
+      <li><strong style="color: blue">What are the components needed for the Generative Model?:</strong></li>
+      <li><strong style="color: blue">What notable types? List:</strong>.</li>
+      <li><strong style="color: blue">Compare Generative Models &amp; AEs in how they learn codings/representations:</strong></li>
+    </ol>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Extra Extra</button></p>
+    <ol hidden="">
+      <li><strong style="color: blue">Why are their representations “naturally” useful?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">List the Different Types of Regularized Autoencoders:</strong></li>
+</ol>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Further Further Questions (Regularized AEs)</button></p>
+<ol hidden="">
+  <li><strong style="color: red">Define Sparse Autoencoders (w/ equation):</strong></li>
+  <li><strong style="color: red">How can we interpret Sparse AEs? (Hint: 3 interpretations)</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Extra</button>
+    <ol hidden="">
+      <li><strong style="color: red">Give the “Regularization” Interpretation of Sparse AEs:</strong></li>
+      <li><strong style="color: red">Give the “Bayesian” Interpretation of Regularized AEs:</strong></li>
+      <li><strong style="color: red">Give the “Latent Variable” Interpretation of Sparse AEs:</strong><br />
+ <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Extra Extra</button>
+        <ol hidden="">
+          <li><strong style="color: blue">What do Sparse AEs approximate?</strong></li>
+          <li><strong style="color: blue">How do they (does that) relate to MLE?</strong></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li><strong style="color: red">Define Denoising Autoencoders:</strong></li>
+  <li><strong style="color: red">What do they minimize? (canonical loss)</strong></li>
+  <li><strong style="color: red">What do they learn? How? (compare)</strong></li>
+  <li><strong style="color: red">How do we generate the inputs?</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Extra</button>
+    <ol hidden="">
+      <li><strong style="color: blue">What does the “Corruption Process” represent/define?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">How do we generate the training examples (input-output pair)? (process)</strong></li>
+  <li><strong style="color: red">What does the Denoising AE learn specifically? (mathematically)</strong><br />
+ <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Extra</button>
+    <ol hidden="">
+      <li><strong style="color: blue">What do we use as an estimate for the “Reconstruction Distribution”?</strong></li>
+      <li><strong style="color: blue">What is the output of the encoder \(f\)?</strong></li>
+      <li><strong style="color: blue">What is the output of the decoder \(g\)?</strong></li>
+      <li><strong style="color: blue">What is the “Reconstruction Distribution” equal to?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">How do we Train the Denoising AE?</strong>
+    <ol>
+      <li><strong style="color: blue">What is the Loss?</strong></li>
+      <li><strong style="color: blue">What is the Optimization Method?</strong></li>
+      <li><strong style="color: blue">What is the Training similar to?</strong></li>
+      <li><strong style="color: blue">Is the Encoder Deterministic?</strong>
+        <ol>
+          <li><strong style="color: blue">Would change if it was one or the other?</strong></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li><strong style="color: red">How can we view the function of DAEs (wrt learning/training) from a Probabilistic pov?</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Extra</button>
+    <ol hidden="">
+      <li><strong style="color: blue">What Expectation is it minimizing? Over what?</strong></li>
+      <li><strong style="color: blue">Can we re-write the Objective/Loss wrt the Empirical Distribution?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">What other ways exist for learning/training DAEs?</strong></li>
+  <li>
+    <p><strong style="color: red">How do DAEs and VAEs relate to each other?</strong></p>
+  </li>
+  <li><strong style="color: red">Define Contractive Autoencoders</strong><br />
+ <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Extra</button>
+    <ol hidden="">
+      <li><strong style="color: blue">What is the regularizer/penalty used?</strong></li>
+      <li><strong style="color: blue">What does it encourage the system to do?</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">How is the Contractive AE connected to the DAE:</strong></li>
+  <li><strong style="color: red">Why is the CAE called “Contractive”?</strong><br />
+ <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Extra</button>
+    <ol hidden="">
+      <li><strong style="color: blue">Is it contractive locally or globally or both?</strong></li>
+      <li><strong style="color: blue">Give the Interpretation of the CAE as a Linear Operator:</strong></li>
+    </ol>
+  </li>
+  <li><strong style="color: red">List the Issues associated with using a “Contractive Penalty”:</strong></li>
+</ol>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

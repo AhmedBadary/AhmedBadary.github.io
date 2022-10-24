@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Practical Concepts in Machine Learning</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/practical.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">FIRST</a></li>
+  </ul>
+  <!--   * [SECOND](#content2)
+  {: .TOC2}
+  * [THIRD](#content3)
+  {: .TOC3} -->
+</div>
+
+<hr />
+<hr />
+
+<ul>
+  <li><a href="https://www.inference.vc/design-patterns/">A Cookbook for Machine Learning: Vol 1 (Blog!)</a>
+    <ul>
+      <li><a href="https://www.reddit.com/r/MachineLearning/comments/7dd45h/d_a_cookbook_for_machine_learning_a_list_of_ml/">Reddit Blog</a></li>
+    </ul>
+  </li>
+  <li><a href="http://noracook.io/Books/MachineLearning/deeplearningcookbook.pdf">Deep Learning Cookbook (book)</a></li>
+</ul>
+
+<!-- ## FIRST
+{: #content1} -->
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Data Snooping:</strong></p>
+
+    <p><strong>The Principle:</strong><br />
+ If a data set has <strong><em>affected</em></strong> any step in the <strong>learning process</strong>, its <strong>ability to <em>assess the outcome</em></strong> has been compromised.</p>
+
+    <p id="lst-p"><strong>Analysis:</strong></p>
+    <ul>
+      <li>Making decision by <strong>examining the dataset</strong> makes <em><strong>you</strong></em> a part of the learning algorithm.<br />
+  However, you didn’t consider your contribution to the learning algorithm when making e.g. VC-Analysis for Generalization.</li>
+      <li>Thus, you are <strong>vulnerable</strong> to designing the model (or choices of learning) according to the <em><strong>idiosyncrasies</strong></em> of the <strong>dataset</strong>.</li>
+      <li>The real problem is that you are not <em>“charging” for the decision you made by examining the dataset</em>.</li>
+    </ul>
+
+    <p id="lst-p"><strong>What’s allowed?</strong></p>
+    <ul>
+      <li>You are allowed (even encouraged) to look at all other information related to the <strong>target function</strong> and <strong>input space</strong>.<br />
+  e.g. number/range/dimension/scale/etc. of the inputs, correlations, properties (monotonicity), etc.</li>
+      <li>EXCEPT, for the <strong><em>specific</em> realization of the training dataset</strong>.</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Manifestations of Data Snooping with Examples (one/manifestation):</strong></p>
+    <ul>
+      <li><strong>Changing the Parameters of the model (Tricky)</strong>:
+        <ul>
+          <li><strong>Complexity</strong>:<br />
+  Decreasing the order of the fitting polynomial by observing geometric properties of the <strong>training set</strong>.</li>
+        </ul>
+      </li>
+      <li><strong>Using statistics of the Entire Dataset (Tricky)</strong>:
+        <ul>
+          <li><strong>Normalization</strong>:<br />
+  Normalizing the data with the mean and variance of the <strong>entire dataset (training+testing)</strong>.
+            <ul>
+              <li>E.g. In Financial Forecasting; the average affects the outcome by exposing the trend.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Reuse of a Dataset</strong>:<br />
+  If you keep Trying one model after the other <em>on the</em> <strong>same data set</strong>, you will eventually ‘succeed’.<br />
+  <em>“If you torture the data long enough, it will confess”</em>.<br />
+  This bad because the final model you selected, is the <strong><em>union</em> of all previous models</strong>: since some of those models were <em><strong>rejected</strong></em> by <strong>you</strong> (a <em><strong>learning algorithm</strong></em>).
+        <ul>
+          <li><strong>Fixed (deterministic) training set for Model Selection</strong>:<br />
+  Selecting a model by trying many models on the <strong>same <em>fixed (deterministic)</em> Training dataset</strong>.</li>
+        </ul>
+      </li>
+      <li><strong>Bias via Snooping</strong>:<br />
+  By looking at the data in the future when you are not allowed to have the data (it wouldn’t have been possible); you are creating <strong>sampling bias</strong> caused by <em>“snooping”</em>.
+        <ul>
+          <li>E.g. Testing a <strong>Trading</strong> algorithm using the <em><strong>currently</strong></em> <strong>traded companies</strong> (in S&amp;P500).<br />
+  You shouldn’t have been able to know which companies are being <em><strong>currently</strong></em> traded (future).</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Remedies/Solutions to Data Snooping:</strong></p>
+    <ol>
+      <li><strong>Avoid</strong> Data Snooping:<br />
+ A strict discipline (very hard).</li>
+      <li><strong>Account for</strong> Data Snooping:<br />
+ By quantifying “How much <strong>data contamination</strong>”.</li>
+    </ol>
+
+    <p><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Mismatched Data:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Mismatched Classes:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Sampling Bias:</strong><br />
+ <strong>Sampling Bias</strong> occurs when: \(\exists\) Region with zero-probability \(P=0\) in training, but with positive-probability \(P&gt;0\) in testing.</p>
+
+    <p><strong>The Principle:</strong><br />
+ If the data is sampled in a biased way, learning will produce a similarly biased outcome.</p>
+
+    <p id="lst-p"><strong>Example: 1948 Presidential Elections</strong></p>
+    <ul>
+      <li>Newspaper conducted a <em><strong>Telephone</strong></em> poll between: <strong>Jackson</strong> and <strong>Truman</strong></li>
+      <li><strong>Jackson</strong> won the poll <strong>decisively</strong>.</li>
+      <li>The result was NOT <strong>unlucky</strong>:<br />
+  No matter how many times the poll was re-conducted, and no matter how many times the sample sized is increased; the outcome will be fixed.</li>
+      <li>The reason is the <em><strong>Telephone</strong></em>:<br />
+  (1) Telephones were <strong>expensive</strong> and only <strong>rich people</strong> had Telephones.<br />
+  (2) Rich people favored <strong>Jackson</strong>.<br />
+  Thus, the result was <strong>well reflective</strong> of the (mini) population being sampled.</li>
+    </ul>
+
+    <p><strong style="color: red">How to sample:</strong><br />
+ Sample in a way that <span style="color: purple">matches the <strong>distributions</strong> of <strong>train</strong> and <strong>test</strong></span> samples.</p>
+
+    <p>The solution <strong>Fails</strong> (doesn’t work) if:<br />
+ \(\exists\) Region with zero-probability \(P=0\) in training, but with positive-probability \(P&gt;0\) in testing.</p>
+    <blockquote>
+      <p>This is when sampling bias exists.</p>
+    </blockquote>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li>Medical sources sometimes refer to sampling bias as <strong>ascertainment bias</strong>.</li>
+      <li>Sampling bias could be viewed as a subtype of <strong>selection bias</strong>.<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Model Uncertainty:</strong></p>
+
+    <p><strong style="color: red">Interpreting Softmax Output Probabilities:</strong><br />
+ Softmax outputs only measure <a href="https://en.wikipedia.org/wiki/Uncertainty_quantification#Aleatoric_and_epistemic_uncertainty"><strong>Aleatoric Uncertainty</strong></a>.<br />
+ In the same way that in regression, a NN with two outputs, one representing mean and one variance, that parameterise a Gaussian, can capture aleatoric uncertainty, even though the model is deterministic.<br />
+ Bayesian NNs (dropout included), aim to capture epistemic (aka model) uncertainty.</p>
+
+    <p><strong style="color: red">Dropout for Measuring Model (epistemic) Uncertainty:</strong><br />
+ Dropout can give us principled uncertainty estimates.<br />
+ Principled in the sense that the uncertainty estimates basically approximate those of our <a href="/work_files/research/dl/archits/nns#bodyContents13">Gaussian process</a>.</p>
+
+    <p id="lst-p"><strong>Theoretical Motivation:</strong> dropout neural networks are identical to <span style="color: purple">variational inference in Gaussian processes</span>.<br />
+ <strong>Interpretations of Dropout:</strong></p>
+    <ul>
+      <li>Dropout is just a diagonal noise matrix with the diagonal elements set to either 0 or 1.</li>
+      <li><a href="http://mlg.eng.cam.ac.uk/yarin/blog_3d801aa532c1ce.html">What My Deep Model Doesn’t Know (Blog! - Yarin Gal)</a><br />
+ <br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Probability Calibration:</strong><br />
+ Modern NN are <strong>miscalibrated</strong>: not well-calibrated. They tend to be very confident. We cannot interpret the softmax probabilities as reflecting the true probability distribution or as a measure of confidence.</p>
+
+    <p><strong>Miscalibration:</strong> is the discrepancy between model confidence and model accuracy.<br />
+ You assume that if a model gives \(80\%\) confidence for 100 images, then \(80\) of them will be accurate and the other \(20\) will be inaccurate.<br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Miscalibration in Modern Neural Networks</button>
+ <img src="https://cdn.mathpix.com/snip/images/boMaW8Wx2tXfUYTJpd-rhcVGWnrtpC4_2AGbXPxtocc.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p><strong>Model Confidence:</strong> probability of correctness.<br />
+ <strong>Calibrated Confidence (softmax scores) \(\hat{p}\):</strong> \(\hat{p}\) represents a true probability.</p>
+
+    <ul>
+      <li><a href="https://arxiv.org/pdf/1706.04599.pdf">On Calibration of Modern Neural Networks</a>  <br />
+  Paper that defines the problem and gives multiple effective solution for calibrating Neural Networks.</li>
+      <li><a href="file:///Users/ahmadbadary/Downloads/Kängsepp_ComputerScience_2018.pdf">Calibration of Convolutional Neural Networks (Thesis!)</a></li>
+      <li>For calibrating output probabilities in Deep Nets; Temperature scaling outperforms Platt scaling. <a href="https://arxiv.org/pdf/1706.04599.pdf">paper</a></li>
+      <li><a href="https://scikit-learn.org/stable/modules/calibration.html">Plot and Explanation</a></li>
+      <li><a href="http://alondaks.com/2017/12/31/the-importance-of-calibrating-your-deep-model/">Blog on How to do it</a><br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Debugging Strategies for Deep ML Models:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Strategies</button>
+    <ol hidden="">
+      <li><strong>Visualize the model in action:</strong><br />
+ Directly observing qualitative results of a model (e.g. located objects, generated speech) can help avoid <strong>evaluation bugs</strong> or <strong>mis-leading evaluation results</strong>. It can also help guide the expected quantitative performance of the model.</li>
+      <li><strong>Visualize the worst mistakes:</strong><br />
+ By viewing the training set examples that are the hardest to model correctly by using a confidence measure (e.g. softmax probabilities), one can often discover problems with the way the data have been <strong>preprocessed</strong> or <strong>labeled</strong>.</li>
+      <li><strong>Reason about Software using Training and Test <em>Error</em>:</strong><br />
+ It is hard to determine whether the underlying software is correctly implemented.<br />
+ We can use the training/test errors to help guide us:
+        <ul>
+          <li>If training error is low but test error is high, then:
+            <ul>
+              <li>it is likely that that the training procedure works correctly,and the model is overfitting for fundamental algorithmic reasons.</li>
+              <li>or that the test error is measured incorrectly because of a problem with saving the model after training then reloading it for test set evaluation, or because the test data was prepared differently from the training data.</li>
+            </ul>
+          </li>
+          <li>If both training and test errors are high, then:<br />
+  it is difficult to determine whether there is a software defect or whether the model is underfitting due to fundamental algorithmic reasons.<br />
+  This scenario requires further tests, described next.</li>
+        </ul>
+      </li>
+      <li><strong>Fit a <em>Tiny Dataset:</em></strong><br />
+ If you have high error on the training set, determine whether it is due to genuine underfitting or due to a software defect.<br />
+ Usually even small models can be guaranteed to be able fit a suﬃciently small dataset. For example, a classification dataset with only one example can be fit just by setting the biase sof the output layer correctly.<br />
+ This test can be extended to a small dataset with few examples.</li>
+      <li><strong>Monitor histograms of <em>Activations</em> and <em>Gradients:</em></strong><br />
+ It is often useful to visualize statistics of neural network activations and gradients, collected over a large amount of training iterations (maybe one epoch).<br />
+ The <strong>preactivation value</strong> of <strong>hidden units</strong> can tell us if the units <span style="color: purple"><strong>saturate</strong></span>, or how often they do.<br />
+ For example, for rectifiers,how often are they off? Are there units that are always off?<br />
+ For tanh units,the average of the absolute value of the preactivations tells us how saturated the unit is.<br />
+ In a deep network where the propagated gradients quickly grow or quickly vanish, optimization may be hampered.<br />
+ Finally, it is useful to compare the magnitude of parameter gradients to the magnitude of the parameters themselves. As suggested by Bottou (2015), we would like the magnitude of parameter updates over a minibatch to represent something like 1 percent of the magnitude of the parameter, not 50 percent or 0.001 percent (which would make the parametersmove too slowly). It may be that some groups of parameters are moving at a good pace while others are stalled. When the data is sparse (like in natural language) some parameters may be very rarely updated, and this should be kept in mind when monitoring their evolution.</li>
+      <li>Finally, many deep learning algorithms provide some sort of guarantee about the results produced at each step.<br />
+ For example, in part III, we will see some approximate inference algorithms that work by using algebraic solutions to optimization problems.<br />
+ Typically these can be debugged by testing each of their guarantees.Some guarantees that some optimization algorithms offer include that the objective function will never increase after one step of the algorithm, that the gradient with respect to some subset of variables will be zero after each step of the algorithm,and that the gradient with respect to all variables will be zero at convergence.Usually due to rounding error, these conditions will not hold exactly in a digital computer, so the debugging test should include some tolerance parameter.</li>
+    </ol>
+    <p><br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">The Machine Learning Algorithm Recipe:</strong><br />
+ Nearly all deep learning algorithms can be described as particular instances of a fairly simple recipe in both Supervised and Unsupervised settings:
+    <ul>
+      <li>A combination of:
+        <ul>
+          <li>A specification of a dataset</li>
+          <li>A cost function</li>
+          <li>An optimization procedure</li>
+          <li>A model</li>
+        </ul>
+      </li>
+      <li><strong>Ex: Linear Regression</strong><br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Example</button>
+        <ul hidden="">
+          <li>A specification of a dataset:<br />
+  The Dataset consists of \(X\) and \(y\).</li>
+          <li>A cost function:<br />
+  \(J(\boldsymbol{w}, b)=-\mathbb{E}_{\mathbf{x}, \mathbf{y} \sim \hat{p}_{\text {data }}} \log p_{\text {model }}(y | \boldsymbol{x})\)</li>
+          <li>An optimization procedure:<br />
+  in most cases, the optimization algorithm is defined by solving for where the gradient of the cost is zero using the normal equation.</li>
+          <li>A model:<br />
+  The Model Specification is:<br />
+  \(p_{\text {model}}(y \vert \boldsymbol{x})=\mathcal{N}\left(y ; \boldsymbol{x}^{\top} \boldsymbol{w}+b, 1\right)\)</li>
+        </ul>
+      </li>
+      <li><strong>Ex: PCA</strong><br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Example</button>
+        <ul hidden="">
+          <li>A specification of a dataset:<br />
+  \(X\)</li>
+          <li>A cost function:<br />
+  \(J(\boldsymbol{w})=\mathbb{E}_{\mathbf{x} \sim \hat{p}_{\text {data }}}\|\boldsymbol{x}-r(\boldsymbol{x} ; \boldsymbol{w})\|_ {2}^{2}\)</li>
+          <li>An optimization procedure:<br />
+  Constrained Convex optimization or Gradient Descent.</li>
+          <li>A model:<br />
+  Defined to have \(\boldsymbol{w}\) with <strong>norm</strong> \(1\) and <strong>reconstruction function</strong> \(r(\boldsymbol{x})=\boldsymbol{w}^{\top} \boldsymbol{x} \boldsymbol{w}\).</li>
+        </ul>
+      </li>
+      <li><strong>Specification of a Dataset</strong>:<br />
+  Could be <strong>labeled (supervised)</strong> or <strong>unlabeled (unsupervised)</strong>.</li>
+      <li><strong>Cost Function</strong>:<br />
+  The cost function typically includes at least one term that causes the learning process to perform <strong>statistical estimation</strong>. The most common cost function is the negative log-likelihood, so that minimizing the cost function causes maximum likelihood estimation.</li>
+      <li><strong>Optimization Procedure</strong>:<br />
+  Could be <strong>closed-form</strong> or <strong>iterative</strong> or <strong>special-case</strong>.<br />
+  If the cost function does not allow for <strong>closed-form</strong> solution (e.g. if the model is specified as <strong>non-linear</strong>), then we usually need <strong>iterative</strong> optimization algorithms e.g. <strong>gradient descent</strong>.<br />
+  If the cost can’t be computed for <strong>computational problems</strong> then we can approximate it with an iterative numerical optimization as long as we have some way to <span style="color: purple">approximating its <strong>gradients</strong></span>.</li>
+      <li><strong>Model</strong>:<br />
+  Could be <strong>linear</strong> or <strong>non-linear</strong>.</li>
+    </ul>
+
+    <p>If a machine learning algorithm seems especially unique or hand designed, it can usually be understood as using a <strong>special-case optimizer</strong>.<br />
+ Some models, such as <strong>decision trees</strong> and <strong>k-means</strong>, require <em><strong>special-case optimizers</strong></em> because their <strong>cost functions</strong> have <em><strong>flat regions</strong></em> that make them inappropriate for minimization by gradient-based optimizers.</p>
+
+    <p>Recognizing that most machine learning algorithms can be described using this recipe helps to see the different algorithms as part of a taxonomy of methods for doing related tasks that work for similar reasons, rather than as a long list of algorithms that each have separate justifications.</p>
+
+    <p><br /></p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">SECOND</h2>
+
+<!-- 
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}
+ -->
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

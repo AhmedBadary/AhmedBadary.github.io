@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Machine Learning Research</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/ class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Deep Learning Generalization</a></li>
+  </ul>
+  <ul class="TOC8">
+    <li><a href="#content8">Papers</a></li>
+  </ul>
+  <ul class="TOC9">
+    <li><a href="#content9">Observations, Ideas, Questions, etc.</a></li>
+  </ul>
+  <p><!-- * [THIRD](#content3)
+  {: .TOC3} -->
+  <!-- * [FOURTH](#content4)
+  {: .TOC4} -->
+  <!-- * [FIFTH](#content5)
+  {: .TOC5} -->
+  <!-- * [SECOND](#content2)
+  {: .TOC2} --></p>
+</div>
+
+<hr />
+<hr />
+
+<ul>
+  <li><a href="https://github.com/roatienza/Deep-Learning-Experiments">Deep Learning Lecture Notes and Experiments (github)</a></li>
+</ul>
+
+<h2 id="content1">Deep Learning Generalization</h2>
+
+<ul>
+  <li><a href="https://authors.library.caltech.edu/13793/1/MACnc92b.pdf">A Practical Bayesian Framework for Backpropagation Networks</a></li>
+  <li><a href="https://www.inference.vc/everything-that-works-works-because-its-bayesian-2/">Everything that Works Works Because it’s Bayesian: Why Deep Nets Generalize?</a></li>
+  <li><a href="https://arxiv.org/pdf/1812.11118.pdf">Reconciling modern machine learning practice and the bias-variance trade-of (paper!)</a></li>
+</ul>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Casting ML Algorithms as Bayesian Approximations:</strong>
+    <ul>
+      <li><strong>Classical ML</strong>:
+        <ul>
+          <li>L1 regularization is just MAP estimation with sparsity inducing priors</li>
+          <li>SVMS, support vector machines, are just the wrong way to train Gaussian processes</li>
+          <li><a href="https://arxiv.org/abs/1204.1664">Herding is just Bayesian quadrature done slightly wrong</a></li>
+        </ul>
+      </li>
+      <li><strong>DL</strong>:
+        <ul>
+          <li><a href="https://www.facebook.com/yann.lecun/posts/10154058859142143">LeCun Post on Uncertainty in Neural Networks</a></li>
+          <li>Dropout is just variational inference done wrong: <a href="https://arxiv.org/abs/1506.02142">Dropout as a Bayesian Approximation</a></li>
+          <li></li>
+        </ul>
+      </li>
+      <li>Deep Nets memorize 
+ <br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Why do Deep Nets Generalize?:</strong><br />
+ One possibility is: “because they are really just an approximation to Bayesian machine learning.” - Ferenc</p>
+
+    <ul>
+      <li><strong>SGD</strong>:<br />
+  SGD could be responsible for the good generalization capabilities of Deep Nets.
+        <ul>
+          <li>SGD finds Flat Minima.
+            <ul>
+              <li>A <strong>Flat Minima</strong> is a minima where the Hessian - and consequently the inverse Fisher information matrix - has small eigenvalues.</li>
+              <li>Flat might be better than sharp minima:<br />
+  If you are in a flat minimum, there is a relatively large region of parameter space where many parameters are almost equivalent inasmuch as they result in almost equally low error. Therefore, given an error tolerance level, one can describe the parameters at the flat minimum with limited precision, using fewer bits while keeping the error within tolerance. In a sharp minimum, you have to describe the location of your minimum very precisely, otherwise your error may increase by a lot.</li>
+            </ul>
+          </li>
+          <li><a href="https://arxiv.org/abs/1609.04836">(Keskar et al, 2017)</a> show that deep nets generalize better with smaller batch-size when no other form of regularisation is used.
+            <ul>
+              <li>And it may be because SGD biases learning towards flat minima, rather than sharp minima.</li>
+            </ul>
+          </li>
+          <li><a href="https://arxiv.org/abs/1705.08292">(Wilson et al, 2017)</a> show that these good generalization properties afforded by SGD diminish somewhat when using popular adaptive SGD methods such as Adam or rmsprop.</li>
+          <li>Though, there is contradictory work by <a href="https://arxiv.org/abs/1703.04933">(Dinh et al, (2017)</a> who claim sharp minima can generalize well, too.<br />
+  Also, <a href="https://cbmm.mit.edu/sites/default/files/publications/CBMM-Memo-067.pdf">(Zhang et al, 2017)</a></li>
+          <li>One conclusion is: The reason deep networks work so well (and generalize at all) is not just because they are some brilliant model, but because of the specific details of how we optimize them.<br />
+  Stochastic gradient descent does more than just converge to a local optimum, it is biased to favor local optima with certain desirable properties, resulting in better generalization.</li>
+          <li>Is SGD Bayesian?
+            <ul>
+              <li>Some work:
+                <ul>
+                  <li><a href="https://arxiv.org/pdf/1704.04289.pdf">Stochastic Gradient Descent as Approximate Bayesian Inference</a></li>
+                </ul>
+              </li>
+              <li>Flat Minima is Bayesian:<br />
+  It turns out, <a href="http://www.bioinf.jku.at/publications/older/3304.pdf">(Hochreiter and Schmidhuber, 1997)</a> motivated their work on seeking flat minima from a Bayesian, minimum description length perspective.<br />
+  Even before them, <a href="http://www.cs.toronto.edu/~fritz/absps/colt93.pdf">(Hinton and van Camp, 1993)</a> presented the same argument in the context of Bayesian neural networks.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Abu-Mostafa on Neural Network Generalization</button></p>
+    <div hidden="">
+      <p>Indeed, the empirical evidence about generalization in deep neural networks with a huge number of weights is that they generalize better than the theory would predict. This is not just in terms of the loose bounds that the theory provides. The performance is better than even the “tight” rules of thumb that were based on the theory and worked in practice.</p>
+
+      <p>This is not the first time this happens in ML. When boosting was the method of choice, generalization was better than it should be. Specifically, there was no overfitting in cases where the model complexity was going up and overfitting would be expected. In that case, a theoretical approach to explain the phenomenon based on a cost function other than 𝐸𝑖𝑛 [in-sample error] was advanced. It made sense but it didn’t stand up to scrutiny, as minimizing that cost function directly (instead of letting it be minimized through the specific structure of the AdaBoost algorithm for instance) suffered from the usual overfitting. There was no conclusive verdict about how AdaBoost avoids overfitting. There were bits and pieces of intuition, but it is difficult to tell whether that was explanation or rationalization.</p>
+
+      <p>In the case of neural networks, there have also been efforts to explain why the performance is better. There are other approaches to generalization, e.g., based on “stability” of learning, that were invoked. However, the theoretical work on stability was based on perturbation of the training set that does not lead to a significant change in the final hypothesis. The way stability is discussed in the results I have seen in neural networks is based on perturbation of the weights that does not lead to a significant change. It thus uses the concept of stability rather than the established theoretical results to explain why generalization is good. In fact, there are algorithms that deliberately look for a solution that has this type of stability as a way to get good generalization, a regularization of sorts.</p>
+
+      <p>It is conceivable that the structure of deep neural networks, similar to the case of AdaBoost, tends to result in better generalization than the general theory would indicate. To establish that, we need to identify what is it about the structure that makes this happen. In comparison, if you study SVM as a model without getting into the notion of support vectors, you will encounter “inexplicable” good generalization. Once you know about how the number of support vectors affects generalization, the mystery is gone.</p>
+
+      <p>Let me conclude by emphasizing that the VC theory is not violated in any of these instances, since the theory only provides an upper bound. Those cases show a much better performance for particular models, but the performance is still within the theoretical bound. What would be a breakthrough is another, better bound that is applicable to an important class of models. For example, the number of parameters in deep neural networks is far bigger than previous models. If better generalization bounds can be proven for models with huge number of parameters, for instance, that would be quite a coup.</p>
+    </div>
+
+    <p id="lst-p"><strong style="color: red">Ways to Explain Generalization:</strong></p>
+    <ul>
+      <li>The bigger (deeper) the network the easier it is to train (because the optimization landscape becomes simpler); so this + <strong>early-stopping</strong> can lead to good solutions that wouldn’t utilize the more funky functions we can represent with the bigger network.<br />
+  Intuition:
+        <ul>
+          <li>Optimizing/Searching over a huge function space (e.g. all possible functions), it is easier to <em>“steer”</em> into the correct one, whereas if you’re restricted and you can only have certain types of functions, then you need to find your path from one to the other which is generally harder to do.</li>
+          <li>Another view of the same is that, if you have a really large network w/ random initialization (e.g. infinitely big) such that a subnetwork exists that solves the problem (i.e. what you are searching for), so if it’s already present, backprop can choose the direction of the parameters leading to that subnetwork cuz that’ll make the biggest improvement, and you will learn very quickly.</li>
+          <li>On the other hand, having a huge number of parameters can lead many of the parameter settings to be equally good/leading to the same solution (since the NN is never unique), so finding any local minima yields a good solution.<br />
+  Moreover, perhaps some of these local minimas are actually bad if they were to be optimized fully however, w/ <strong>early-stopping</strong> you can stop at the configuration of the parameters that would yield a good result w/o overtraining into that local minima that would lead to overlearning.<br />
+  While even when early-stopping in a small network, the parameters setting we learn is already at such a low/deep point in the local minima that it already “overlearned”? (or that most of these local minimas are not great)</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li>“We can connect this finding to recent work examining the generalization of large neural networks. Zhang et al. (2017) observe that deep neural networks seemingly violate the common understanding of learning theory that large models with little regularization will not generalize well. The observed disconnect between NLL and 0/1 loss suggests that these high capacity models are not necessarily immune from overfitting, but rather, overfitting manifests in probabilistic error rather than classification error.” - <a href="https://arxiv.org/pdf/1706.04599.pdf">On Calibration of Modern Neural Networks</a></li>
+      <li>Another w
+ <br /></li>
+    </ul>
+  </li>
+</ol>
+
+<!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}
+ -->
+
+<hr />
+
+<h2 id="content2">Misc.</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">NLP Research and What’s Next:</strong><br />
+ <strong style="color: red">Progress in NLP/AI:</strong>
+    <ul>
+      <li>Machine learning with feature engineering:<br />
+  Learning weights for engineered featured.</li>
+      <li>Deep learning for feature learning:<br />
+  Using DL to automatically learn features (e.g. embeddings).</li>
+      <li>Deep architecture engineering for single tasks:<br />
+  Each sub-field in NLP converged to a particular Network Architecture.</li>
+      <li><span style="color: green"><strong>(NOW)</strong></span> <strong>Deep Single MultiTask Model</strong></li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Limits of Single-Task Learning:</strong></p>
+    <ul>
+      <li>Great performance improvements in recent years given {dataset, task, model, metric}</li>
+      <li>We can hill-climb to local optima as long as \(\vert \text{dataset} \vert &gt; 1000 \times C\)</li>
+      <li>For more general AI, we need continuous learning in a single model instead</li>
+      <li>Models typically start from random or are only partly pre-trained</li>
+    </ul>
+
+    <p><span style="color: purple">There is no single blocking task in Natural Language.</span> (compared to Classification in Vision)<br />
+ HOWEVER, <span style="color: goldenrod"><strong>MultiTask Learning</strong> is a <em>blocker</em> for general NLP systems</span>.</p>
+
+    <p id="lst-p"><strong style="color: red">Why has weight and model sharing not happened as much in NLP?:</strong></p>
+    <ul>
+      <li>NLP requires <span style="color: purple">many types of <strong>reasoning</strong></span>:<br />
+  Logical, Linguistic, Emotional, Visual, etc.</li>
+      <li>Requires <span style="color: purple"><strong>Short</strong> and <strong>Long</strong>-term <strong>Memory</strong></span></li>
+      <li>NLP had been divided into intermediate and separate tasks to make progress:<br />
+  \(\rightarrow\) Benchmark chasing in each community</li>
+      <li>Can a single unsupervised task solve it all? No.
+        <ul>
+          <li>Language clearly requires supervision in nature (kid in jungle -&gt; easy to develop vision not language).</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">How to express many NLP tasks in the same framework?:</strong></p>
+    <ul>
+      <li><strong style="color: DarkRed">NLP Frameworks:</strong>
+        <ul>
+          <li><strong>Sequence Tagging</strong>: named entity recognition, aspect specific sentiment</li>
+          <li><strong>Text Classification</strong>: dialogue state tracking, sentiment classification</li>
+          <li><strong>Seq2seq</strong>: machine translation, summarization, question answering</li>
+        </ul>
+      </li>
+      <li><strong style="color: DarkRed">NLP SuperTasks:</strong><br />
+  <strong>Hypothesis:</strong> The following are <span style="color: purple">Three Equivalent SuperTasks of NLP</span> where we can pose all possible NLP tasks as either one of them:
+        <ul>
+          <li><strong>Language Modeling:</strong> condition on Question+Context, then generate</li>
+          <li><strong>Question Answering:</strong> Question=Task</li>
+          <li><strong>Dialogue</strong>: open-ended, limited datasets</li>
+        </ul>
+
+        <p>Thus, <strong>Question Answering</strong> is the most appropriate SuperTask to choose to cast NLP problems in.</p>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">The Natural Language Decathlon (decaNLP):</strong></p>
+    <ul>
+      <li><strong style="color: DarkRed">Multitask Learning as Question Answering:</strong><br />
+  Casts all NLP tasks as <span style="color: purple">Question Answering</span> problems.</li>
+      <li><strong style="color: DarkRed">decaNLP Tasks:</strong>
+        <ol>
+          <li>Question Answering</li>
+          <li>Machine Translation</li>
+          <li>Summarization</li>
+          <li>Natural Language Inference</li>
+          <li>Sentiment Classification</li>
+          <li>Semantic Role Labeling</li>
+          <li>Relation Extraction</li>
+          <li>Dialogue</li>
+          <li>Semantic Parsing</li>
+          <li>Commonsense Reasoning</li>
+        </ol>
+      </li>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);">Q/A Examples</button>
+  <img src="https://cdn.mathpix.com/snip/images/dOTMhfoYBQNQ3s3vIF3dwh6HMhEqOg1F5ymAF39k1V4.original.fullsize.png" alt="img" width="100%" hidden="" /></li>
+      <li><strong>Meta-Supervised Learning</strong>: From \(\{x, y\}\) to \(\{x, t, y\}\) (\(t\) is the task)</li>
+      <li>Use a question, \(q\), as a natural description of the task, \(t\), to allow the model to use linguistic information to connect tasks</li>
+      <li>\(y\) is the answer to \(q\) and \(x\) is the context necessary to answer \(q\)</li>
+      <li><strong style="color: DarkRed">Model Specifications for decaNLP:</strong>
+        <ul>
+          <li>No task-specific modules or parameters because we assume the task ID is not available</li>
+          <li>Must be able to adjust internally to perform disparate tasks</li>
+          <li>Should leave open the possibility of zero-shot inference for unseen tasks</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<!-- 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28} -->
+
+<hr />
+
+<!-- ## THIRD
+{: #content3} -->
+
+<!-- 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38} -->
+
+<hr />
+
+<h2 id="content8">Papers</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents81">Fast Weights:</strong><br />
+ <strong style="color: red">Fast-Weights:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Discussion/Analysis</button>
+    <ul hidden="">
+      <li><strong>FAST-WEIGHTS:</strong>
+        <ul>
+          <li><strong>Basic Idea:</strong>
+            <ul>
+              <li>on each connection: Total weight = Sum of:
+                <ul>
+                  <li><strong>Standard Slow Weights</strong>. This learns slowly &amp; (may also) decay slowly. Holds long term Knowledge.</li>
+                  <li><strong>The Fast Weights</strong>: Learns quickly, decays quickly, Holds Temp. info.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><strong>Motivation:</strong>
+            <ul>
+              <li><strong>Priming:</strong> listen to a word \(\rightarrow\) recognize many minutes later in Noisy Env.
+                <ul>
+                  <li>If we had <strong>localist Representation</strong> could just temporarily lower the threshold of the “cucumber” weight</li>
+                  <li>If we use <strong>point Attractors</strong> instead of “localist units” we con temporarily increase the “attractiveness” of the words unit (by changing the weights between the neurons in that pattern of activity)</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p><strong>Weight Matrices VS Activity Vectors:</strong><br />
+  Weight Matrices are better:<br />
+  (1) More capacity \(N^2\) vs \(N\) (2) A fast weight matrix of \(1000 x 1000\) can easily make 100 attractors more “attractive”</p>
+          </li>
+          <li><strong>Three ways to store Temp. knowledge:</strong>
+            <ul>
+              <li><strong>LSTM</strong>, Stores it in its activity vectors [hidden weights] \(\implies\) Irrelevant temp Memory <strong>interferes</strong> with on-going process</li>
+              <li><strong>An additional External memory to LSTM</strong>, can store without interference but need to - learn when to read/white.</li>
+              <li><strong>Fast-Weights:</strong> Allow the temporal Knowledge to be stored without having any extra neurons.<br />
+  They just make some attractors easier to fall into; and they also “flavor” the attractor by slightly changing the activity vector you end up with.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <p><br /></p>
+  </li>
+</ol>
+
+<!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents82} 
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents83} 
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents84} 
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents85} 
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents86} 
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents87} 
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents88}  
+ -->
+
+<hr />
+
+<h2 id="content9">Observations, Ideas, Questions, etc.</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents91">Observations from Papers/Blogs/etc.:</strong>
+    <ul>
+      <li>deep neural networks seemingly violate the common understanding of learning theory that large models with little regularization will not generalize well. The observed disconnect between NLL and 0/1 loss suggests that these high capacity models are not necessarily immune from overfitting, but rather, overfitting manifests in probabilistic error rather than classification error. <a href="https://arxiv.org/pdf/1706.04599.pdf">paper</a></li>
+      <li>It is also interesting to see that the global average pooling operation can significantly increase the classification accuracy for both CNNs and CNTKs. From this observation, we suspect that <span style="color: purple">many techniques that improve the performance of neural networks are in some sense <strong>universal</strong></span>, i.e., these techniques might benefit kernel methods as well <a href="http://www.offconvex.org/2019/10/03/NTK/">lnk</a>.</li>
+      <li><a href="http://www.offconvex.org/2019/06/03/trajectories/"><strong>Is Optimization a Sufficient Language for Understanding Deep Learning?</strong></a>
+        <ul>
+          <li><strong>Conventional View (CV) of Optimization</strong>:<br />
+  Find a solution of minimum possible value of the objective, as fast as possible.</li>
+          <li>If our goal is mathematical understanding of deep learning, then the CV of Opt is potentially <strong>insufficient</strong>.</li>
+        </ul>
+      </li>
+      <li>Representable Does Not Imply Learnable.</li>
+      <li><a href="http://www.offconvex.org/2018/07/27/approximating-recurrent/"><strong>Recurrent Models in-practice can be approximated with FeedForward Models</strong></a>:<br />
+  FF models seem to match or exceed the performance of Recurrent models on almost all tasks.<br />
+  Suggesting that Recurrent models extra expressiveness might not be needed/used.<br />
+  The following is conjectured: <span style="color: purple">“Recurrent models trained in practice are effectively feed-forward”</span>.
+        <ul>
+          <li><a href="https://arxiv.org/pdf/1805.10369.pdf">This paper (Stable Recurrent Models)</a> proves that stable recurrent neural networks are well approximated by feed-forward networks for the purpose of both inference and training by gradient descent.</li>
+        </ul>
+      </li>
+      <li>The unlimited context offered by recurrent models is not strictly necessary for language modeling.<br />
+  i.e. it’s possible you don’t need a large amount of context to do well on the prediction task on average. <a href="https://arxiv.org/abs/1612.02526">Recent theoretical work</a> offers some evidence in favor of this view.</li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents92">Ideas:</strong><br />
+ <strong style="color: red">Project Ideas:</strong>
+    <ul>
+      <li><strong>NMF</strong> on Text Data</li>
+      <li>read old Schmidhuber/Hinton Papers and reapply them on current hardware/datasets</li>
+      <li>word-embeddings and topic-modeling and NMF, on ARXIV ML Papers</li>
+      <li>Generative Adversarial Framework for Speech Recognition</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Research Ideas:</strong></p>
+    <ul>
+      <li>Overfitting on NLL to explain Deep-NN generalization</li>
+      <li>DeepSets and Attention theoretical guarantees</li>
+      <li>Experimenting w/ Mutual Info (IB) w/ knowledge distillation</li>
+      <li>Language Modeling Decoding using <strong>Attention</strong> (main problem is beam size = greedy)</li>
+      <li>Experiment with Lots of data w/ simpler models VS Less data w/ advanced models<br />
+  (“A dumb algorithm with lots and lots of data beats a clever one with modest amounts of it.”)</li>
+      <li>To measure the effect of depth: construct a dataset that <em><strong>requires</strong></em> a deep network to model efficiently</li>
+      <li>Weights that generalize the most have the least gradient when training on a new dataset (remember: cats vs dogs -&gt; foxes)</li>
+      <li>K-Separable learning instead of linearly (2-)separable learning; the output layer dictates the configuration of the transformed input data to be “classified”</li>
+      <li>wrt. <a href="https://karpathy.github.io/2015/05/21/rnn-effectiveness/">Karpathys “Unreasonable Effectiveness of RNNs” post</a> and <a href="https://nbviewer.jupyter.org/gist/yoavg/d76121dfde2618422139">Y.Goldbergs “Unreasonable Effectiveness of (Char-Level) n-grams” post</a>: Do the complex rules learned by an LSTM architecture (considering its inductive biases) <em>e.g. neuron that counts, tracks indentation, etc.</em> have better generalization than n-gram probabilities? Do these rules imply learning a better method, algorithm, mechanism, etc.?
+        <ul>
+          <li><em>Golberg</em> claims that RNNs are impressive because of <span style="color: purple"><em><strong>“context awareness”</strong></em></span> (in C-code generation syntax).</li>
+          <li>(compare the number \(n\) of n-tuples VS dimension size of \(h\))<br />
+  (hint: google seems to think it’s \(n=13\) beats infinite \(h\))</li>
+          <li>Is this why/how NNs generalize?</li>
+        </ul>
+      </li>
+      <li>wrt. <a href="https://bair.berkeley.edu/blog/2019/08/13/memorization/">Unintended Memorization in Neural Networks (Blog+Paper)</a>: it proposes an attack to extract sensitive info from a model trained on private data (using a <em>“canary”</em>). I can refine the attack much further by exploiting the fact that the model is trained to maximize NLL and it will give the training data higher probability.</li>
+      <li>Can we use the ideas in the <a href="https://arxiv.org/pdf/1607.00133.pdf">paper on differential privacy and unintended memorization in NNs</a> to help learn more generalizable models/weights/patterns?<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents93">Questions:</strong>
+    <ul>
+      <li>Does Hinge Loss Maximize a margin when used with any classifier?</li>
+      <li>How does LDA do feature extraction / dim-red?</li>
+      <li>Time series data is known to posses linearity?</li>
+      <li>How can we frame the <strong>Abstract Modeling Problem</strong>?</li>
+      <li>How do humans speak (generate sentences)? They definitely do not just randomly sample from the distribution of natural language. Then, how should we teach models to speak, respond, think, etc.?</li>
+      <li>Is it true that <em>research “should” be hypothesis -&gt; experiments</em> and not the other way like in AI?</li>
+      <li>Where does “Game Theory” fit into AI, really?<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents94">General Notes &amp; Observations:</strong>
+    <ul>
+      <li>Three Schools of Learning: (1) <strong>Bayesians</strong>   (2) <strong>Kernel People</strong>    (3) <strong>Frequentists</strong></li>
+      <li>Bayesians’, INCORRECTLY, claimed that:
+        <ul>
+          <li>Highly over-parametrised models fitted via maximum likelihood can’t possibly work, they will overfit, won’t generalise, etc.</li>
+          <li>Any model with infinite parameters should be strictly better than any large, but finite parametric model.<br />
+  (e.g. nonparametric models like kernel machines are a principled way to build models with effectively infinite number of parameters)</li>
+        </ul>
+      </li>
+      <li>Don’t try averaging if you want to synchronize a bunch of clocks! (Ensemble Averaging/Interview Q) <br />
+  The noise is <strong>not Gaussian</strong>.<br />
+  Instead, you expect that many of them would be slightly wrong, and a few of them would have stopped or would be wildly wrong and by averaging you end making them all significantly wrong.</li>
+      <li><strong>Generalization:</strong>
+        <ul>
+          <li>It seems that Occams Razor is equivalent to saying that a “non-economical” model is not a good model. So, can we use Inf-Th to quantify the information in these models?<br />
+  The idea that a simple model e.g. “birds fly”, is much better than a much more complicated and hard to encode model e.g. “birds fly except chicken, penguins, etc.”</li>
+        </ul>
+      </li>
+      <li><strong>Width vs Depth in NN Architectures</strong>:<br />
+  Thinking of the NN as running a computer program that performs a calculation, you can think of <strong>width</strong> as a measure of how much <em><strong>parallelization</strong></em> you can have in your computation, and <strong>depth</strong> as a measure of <em><strong>serialization</strong></em>.</li>
+      <li>A Hopfield net the size of a brain (connectivity patterns are quite diff, of course) could store a memory per second for 450 years.</li>
+      <li><strong>Overfitting in the Brain:</strong> You can call it superstition or bad habits. Even teach some to animals.</li>
+      <li>Real world data prefers lower Kolmogorov complexity (and hence enables the ability to learn) is a very strange fundamental asymmetry in nature?? <br />
+  It’s as puzzling as having so much matter than antimatter.</li>
+      <li>An SVM is, in a way, a type of neural network (you can learn a SVM solution through backpropagation)</li>
+      <li>In CNNs there are no FC layers, they are equivalent to \(1 \times 1\) convolutions <a href="https://www.facebook.com/yann.lecun/posts/10152820758292143">link</a></li>
+      <li>In support of IB (Information Bottleneck) Theory: <a href="https://arxiv.org/abs/1802.08232">this paper</a> suggests that <span style="color: purple">Memorization happens <strong>early</strong> in training</span>.<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents95">Insights:</strong>
+    <ul>
+      <li>Utkarsh idea of co-adaptation is similar to DROPOUT Motivation: hidden units co-adapting to each other on training data</li>
+      <li>Attention Functions Properties: monotonicity, sparsity etc.</li>
+      <li>Think about <strong>Learning</strong>, <strong>Overfitting</strong>, and <strong>Regularization</strong> in terms of <span style="color: purple">accidental regularities/patterns due to the particular sample</span>
+        <ul>
+          <li><strong>Process of Learning</strong>:
+            <ol>
+              <li>Fit Most Common Pattern vs Fit Easiest Patterns?</li>
+              <li>Fit Most Common Pattern vs Fit Easiest Patterns?</li>
+              <li>Fit next Most Common Pattern vs Fit next Easiest Patterns? ..</li>
+              <li>…</li>
+              <li>Fit patterns that exist per/sample (e.g. Noise)</li>
+            </ol>
+          </li>
+          <li><strong>Overfitting:</strong><br />
+  Happens when there are patterns that manifest in the particular sample that might not have been that <em><strong>common</strong></em> when looking at a larger/different sample.</li>
+          <li><strong>Regularization:</strong><br />
+  Stops the model from learning the <strong>least-common</strong>/<strong>hardest</strong> patterns by putting some sort of threshold.</li>
+          <li>When we fit the model, it cannot tell which regularities are real and which are caused by sampling error.<br />
+  The higher the capacity, the better it fits the <strong>sampling error</strong>.</li>
+          <li>This ties in nicely with the idea of <span style="color: purple">“match your model capacity to the <strong>amount of data</strong> that you have and NOT to the <em>target capacity</em>”</span>.</li>
+          <li><button class="showText" value="show" onclick="showTextPopHide(event);">Bias &amp; Variance wrt this framework of thinking:</button>
+            <ul hidden="">
+              <li>The bias term is big if the model has too little capacity to fit the data.</li>
+              <li>The variance term is big if the model has so much capacity that it is good at fitting the sampling error in each particular training set.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Although Recurrent models do not have an <a href="https://youtu.be/5vcj8kSwBCY?t=275">“explicit way to model long and short range dependencies”</a>, FastWeights does. <Turn that="" into="" a="" Research="" Idea.=""></Turn></li>
+      <li>Although Recurrent models do not have an <a href="https://youtu.be/5vcj8kSwBCY?t=275">“explicit way to model long and short range dependencies”</a>, FastWeights does. <Turn that="" into="" a="" Research="" Idea.=""></Turn></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents96">Experiments &amp; Results:</strong></li>
+</ol>
+
+<!-- 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents97}
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents98} -->
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

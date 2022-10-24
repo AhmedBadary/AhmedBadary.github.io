@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Attention Mechanism for DNNs</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/nlp.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Introduction</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Specialized Attention Varieties</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<ul>
+  <li><a href="https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html">Important Blog on Attention</a></li>
+  <li><a href="https://distill.pub/2016/augmented-rnns/">Attention and Augmented RNNs (Distill)</a></li>
+  <li><a href="https://www.tensorflow.org/alpha/tutorials/text/transformer">Transformer Implementation TF G-Colab</a></li>
+  <li><a href="https://wiki.pathmind.com/attention-mechanism-memory-network">A Guide to Attention Mechanisms and Memory Networks (skymind)</a></li>
+  <li><a href="https://jhui.github.io/2017/03/15/Soft-and-hard-attention/">Soft and Hard Attention</a></li>
+  <li><a href="http://www.wildml.com/2016/01/attention-and-memory-in-deep-learning-and-nlp/">Attention (WildML)</a></li>
+  <li><a href="https://arxiv.org/pdf/1902.02181.pdf">A Critical Review of Neural Attention Models in Natural Language Processing</a></li>
+  <li><a href="https://www.d2l.ai/chapter_attention-mechanisms/index.html">Attention Mechanism(s) (d2l)</a></li>
+  <li><a href="https://towardsdatascience.com/intuitive-understanding-of-attention-mechanism-in-deep-learning-6c9482aecf4f">Intuitive Understanding of Attention Mechanism in Deep Learning (medium + code)</a></li>
+  <li><a href="https://www.reddit.com/r/MachineLearning/comments/bkw2xp/d_what_is_the_rationale_behind_selfattention/">What is the rationale behind self-attention equation and how did they came up with the concept query, key and value? (Reddit!)</a></li>
+  <li><a href="https://www.youtube.com/watch?v=knTc-NQSjKA">Stanford CS224N: NLP with Deep Learning | Winter 2020 | BERT and Other Pre-trained Language Models - by <strong><em>Jacob Devlin</em></strong> (Lec!)</a></li>
+  <li>
+    <p><a href="https://www.youtube.com/watch?v=-9vVhYEXeyQ">How to get meaning from text with language model BERT | AI Explained (Vid!!)</a></p>
+  </li>
+  <li><a href="https://github.com/zaidalyafeai/AttentioNN">All about attention in neural networks described as colab notebooks (Code!)</a></li>
+</ul>
+
+<p><button class="showText" value="show" onclick="showTextPopHide(event);">Empirical advantages of Transformers vs LSTMs</button>
+<img src="https://cdn.mathpix.com/snip/images/beNMTU7r-w9Ej6gq5CUCmqseSNm5xio4zubEIbkeuuc.original.fullsize.png" alt="img" width="80%" hidden="" /></p>
+
+<h2 id="content1">Introduction</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Motivation:</strong><br />
+ In <strong>Vanilla Seq2Seq models</strong>, the only representation of the input is the <em>fixed-dimensional vector representation \((y)\)</em>, that we need to carry through the entire decoding process.</p>
+
+    <p>This presents a <strong>bottleneck</strong> in condensing all of the information of the <em>entire input sequence</em> into just one <em>fixed-length</em> vector representation.<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Attention:</strong><br />
+ Attention is a mechanism that allows DNNs to focus on (view) certain local or global features of the input sequence as a whole or in part.</p>
+
+    <p>Attention involves focus on <em>certain parts</em> of the input, while having a <em>low-resolution</em> view of the rest of the input – similar to human attention in vision/audio.</p>
+
+    <p>An <strong>Attention Unit</strong> considers all sub regions and contexts as its input and it outputs the weighted arithmetic mean of these regions.</p>
+    <blockquote>
+      <p>The <strong>arithmetic mean</strong> is the inner product of actual values and their probabilities.</p>
+    </blockquote>
+    <p>$$m_i = \tanh (x_iW_{x_i} + CW_C)$$</p>
+    <p>These <strong>probabilities</strong> are calculated using the <em><strong>context</strong></em>.<br />
+ The <strong>Context</strong> \(C\) represents everything the RNN has outputted until now.</p>
+
+    <p>The difference between using the <em>hyperbolic tanh</em> and a <em>dot product</em> is the <strong>granularity</strong> of the output regions of interest - <strong>tanh</strong> is more fine-grained with less choppy and smoother sub-regions chosen.</p>
+
+    <p>The probabilities are interpreted as corresponding to the relevance of the sub-region \(x_i\) given context \(C\).<br />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Types of Attention:</strong>
+    <ul>
+      <li><strong>Soft Attention</strong>: we consider different parts of <em>different subregions</em>
+        <ul>
+          <li>Soft Attention is <strong>deterministic</strong></li>
+        </ul>
+      </li>
+      <li><strong>Hard Attention</strong>: we consider only <em>one subregion</em>
+        <ul>
+          <li>Hard Attention is a <strong>stochastic</strong> process 
+ <br /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Strategy:</strong>
+    <ul>
+      <li>Encode each word in the sentence into a vector (representation)</li>
+      <li>When decoding, perform a linear combination of these vectors, weighted by <em>attention weights</em></li>
+      <li>Use this combination in picking the next word (subregion)<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Calculating Attention:</strong><br />
+ An attention function can be described as mapping a query and a set of key-value pairs to an output, where the query, keys, values, and output are all vectors. The output is computed as a weighted sum of the values, where the weight assigned to each value is computed by a compatibility function of the query with the corresponding key.
+    <ul>
+      <li>Use <strong>query</strong> vector (decoder state) and <strong>key</strong> vectors (all encoder states)</li>
+      <li>For each query-key pair, calculate weight</li>
+      <li>Normalize to add to one using softmax</li>
+      <li>Combine together value vectors (usually encoder states, like key vectors) by taking the weighted sum</li>
+      <li>Use this in any part of the model<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Attention Score Functions:</strong><br />
+ \(q\) is the query, \(k\) is the key:
+    <ul>
+      <li><strong>Multi-Layer Perceptron</strong> <em>(Bahdanau et al. 2015)</em>:
+        <ul>
+          <li>Flexible, often very good with large data</li>
+        </ul>
+        <p>$$a(q,k) = w_2^T \tanh (W_1[q;k])$$</p>
+      </li>
+      <li><strong>Bilinear</strong> <em>(luong et al. 2015)</em>:
+        <ul>
+          <li>Not used widely in Seq2Seq models</li>
+          <li>Results are inconsistent</li>
+        </ul>
+        <p>$$a(q,k) = q^TWk$$</p>
+      </li>
+      <li><strong>Dot Product</strong> <em>(luong et al. 2015)</em>:
+        <ul>
+          <li>No parameters</li>
+          <li>Requires the sizes to be the same</li>
+        </ul>
+        <p>$$a(q,k) = q^Tk$$</p>
+      </li>
+      <li><strong>Scaled Dot Product</strong> <em>(Vaswani et al. 2017)</em>:
+        <ul>
+          <li>Solves the scale problem of the dot-product: the scale of the dot product increases as dimensions get larger</li>
+        </ul>
+        <p>$$a(q,k) = \dfrac{q^Tk}{\sqrt{\vert k \vert}}$$</p>
+      </li>
+    </ul>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Complete (List)</button>
+ <img src="https://cdn.mathpix.com/snip/images/uapdC_biDofPElWdzYkFsWVdtGAOnTM720Bo8I5Q9Vg.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Aggregation Functions</button>
+ <img src="https://cdn.mathpix.com/snip/images/eCbLZeQ926y2I8BGSaDW9NV5_MIQyYy2XKuhT3IwFBY.original.fullsize.png" alt="img" width="100%" hidden="" /><br />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">What to Attend to?</strong>
+    <ul>
+      <li><strong>Input Sentence</strong>:
+        <ul>
+          <li>A previous word for translation - <a href="/">Neural Machine Translation</a></li>
+          <li>Copying Mechanism - <a href="/">Gu et al. 2016</a></li>
+          <li>Lexicon bias <a href="/">Arthur et al. 2016</a></li>
+        </ul>
+      </li>
+      <li><strong>Previously Generated Things</strong>:
+        <ul>
+          <li>In <em><strong>language modeling</strong></em>: attend to the previous words - <a href="/">Merity et al. 2016</a>
+            <blockquote>
+              <p>Attend to the previous words that you generated and decide whether to use them again (copy)</p>
+            </blockquote>
+          </li>
+          <li>In <strong><em>translation</em></strong>: attend to either input or previous output - <a href="/">Vaswani et al. 2017</a><br />
+ <br /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents19">Modalities:</strong>
+    <ul>
+      <li><strong>Images</strong> (Xu et al. 2015)</li>
+      <li><strong>Speech</strong> (Chan et al. 2015)</li>
+      <li><strong>Hierarchical Structures</strong> (Yang et al. 2016):
+        <ul>
+          <li>Encode with attention over each sentence then attention over each sentence in the document</li>
+        </ul>
+      </li>
+      <li><strong>Multiple Sources</strong>:
+        <ul>
+          <li>Attend to multiple sentences in different languages to be translated to one target language (Zoph et al. 2015)</li>
+          <li>Attend to a sentence and an image (Huang et al. 2016)<br />
+ <br /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents110">Intra-Attention/Self-Attention:</strong>    <br />
+Each element in the sentence attends to other elements – context sensitive encodings.</p>
+
+    <p>It behaves similar to a <strong>Bi-LSTM</strong> in that it tries to encode information about the context (words around the current input) into the representation of the word.<br />
+It differs however:</p>
+    <ol>
+      <li>Intra-Attention is much more direct, as it takes the context directly without being influenced by many steps inside the RNN</li>
+      <li>It is much faster as it is only a dot/matrix product<br />
+<br /></li>
+    </ol>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents111">Improvement to Attention:</strong>
+    <ul>
+      <li><strong style="color: red">The Coverage Problem:</strong>  Neural models tend to drop or repeat content when tested on data not very similar to the training set</li>
+      <li><strong style="color: red">Solution:</strong> Model how many times words have been covered
+        <ul>
+          <li><strong>Impose a penalty</strong> if attention is not \(\approx 1\) for each word (Cohn et al. 2015) <br />
+  It forces the system to translate each word at least once.</li>
+          <li><strong>Add embeddings indicating coverage</strong> (Mi.. et al. 2016)</li>
+          <li>Incorporating Markov Properties (Cohn et al. 2015)
+            <ul>
+              <li>Intuition: attention from last time tends to be correlated with attention this time</li>
+              <li>Strategy: Add information about the last attention when making the next decision</li>
+            </ul>
+          </li>
+          <li><strong>Bidirectional Training</strong> (Cohn et al. 2015):
+            <ul>
+              <li>Intuition: Our attention should be roughly similar in forward and backward directions</li>
+              <li>Method: Train so that we get a bonus based on the trace of the matrix product for training in both directions<br />
+  \(\mathrm{Tr} (A_{X \rightarrow Y}A^T_{Y \rightarrow X})\)</li>
+            </ul>
+          </li>
+          <li><strong>Supervised Training</strong> (Mi et al. 2016):
+            <ul>
+              <li>Sometimes we can get “gold standard” alignments a-priori:
+                <ul>
+                  <li>Manual alignments</li>
+                  <li>Pre-trained with strong alignment model</li>
+                </ul>
+              </li>
+              <li>Train the model to match these strong alignments (bias the model)<br />
+<br /></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents121">Attention is not Alignment <em>(Koehn and Knowles 2017)</em>:</strong>
+    <ul>
+      <li>Attention is often blurred</li>
+      <li>Attention is often off by one:<br />
+  Since the DNN has already seen parts of the information required to generate previous outputs, it might not need all of the information from the word that is actually matched with its current output.</li>
+    </ul>
+
+    <p>Thus, even if <em>Supervised training</em> is used to increase alignment accuracy, the overall error rate of the task might not actually decrease.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Specialized Attention Varieties</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Hard Attention <em>(Xu et al. 2015)</em>:</strong>
+    <ul>
+      <li>Instead of a <em>soft interpolation</em>, make a <strong>Zero-One decision</strong> about where to attend (Xu et al. 2015)
+        <ul>
+          <li>Harder to train - requires reinforcement learning methods</li>
+        </ul>
+      </li>
+      <li>It helps interpretability (Lei et al. 2016) <br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Monotonic Attention <em>(Yu et al. 2016)</em>:</strong>
+    <ul>
+      <li>In some cases, we might know the output will be the same order as the input:
+        <ul>
+          <li>Speech Recognition</li>
+          <li>Incremental Translation</li>
+          <li>Morphological Inflection - sometimes</li>
+          <li>Summarization - sometimes</li>
+        </ul>
+      </li>
+      <li>Hard decisions about whether to read more
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Convolutional Attention <em>(Allamanis et al. 2016)</em>:</strong>
+    <ul>
+      <li><strong>Intuition</strong>: we might want to be able to attend to “the word after ‘Mr.’”<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Multi-headed Attention:</strong>
+    <ul>
+      <li><strong>Idea</strong>: multiple <em>attention heads</em> focus on different parts of the sentence</li>
+      <li>Different heads for “copy” vs regular (Allamanis et al. 2016)</li>
+      <li>Multiple independently learned heads (Vaswani et al. 2017)
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Tips:</strong>
+    <ul>
+      <li>Don’t use attention with very long sequences - especially those you want to summarize and process efficiently</li>
+      <li><strong>Fertility</strong>: we impose the following heuristic “It is bad to pay attention to the same subregion many times” 
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Notes:</strong>
+    <ul>
+      <li>Attention is a mean field approximation of sampling from a categorical distribution over source word embeddings (or the rnn state aligned with a source word, etc)</li>
+      <li><strong>Additive VS Multiplicative Attention</strong>:<br />
+  Additive attention computes the compatibility function using a feed-forward network with a single hidden layer.<br />
+  Multiplicative attention uses the dot-product.<br />
+  While the two are similar in theoretical complexity, dot-product attention is much faster and more space-efficient in practice, since it can be implemented using highly optimized matrix multiplication code.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Representing Sentences: Solving the Vector Problem</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">The Problem: Conditioning with Vectors:</strong>  <br />
+ The Problem: We are compressing a lot of information into a <strong>finite-sized</strong> vector.<br />
+ Moreover, gradients flow a very long time/distance; making, even, LSTMs forget.</p>
+
+    <p>Sentences are of different sizes but vectors are of the same size; making the compression inherently, very lossy.<br />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">The Solution: Representing Sentences as Matrices:</strong><br />
+ We represent a <strong>source sentence</strong> as a matrix, and generate the <strong>target sentence</strong> from a matrix:
+    <ul>
+      <li>Fixed number of rows, but number of columns depends on the number of words.</li>
+    </ul>
+
+    <p>This will:</p>
+    <ul>
+      <li>Solve the <strong>capacity problem</strong></li>
+      <li>Solve the <strong>gradient flow problem</strong> 
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">How to build the Matrices?</strong>
+    <ol>
+      <li><strong>Concatenation:</strong>
+        <ul>
+          <li>Each word type is represented by an n-dimensional vector.</li>
+          <li>Take all the vectors for the sentence and concatenate them into a matrix</li>
+          <li>This is the simplest possible model: that there are no published results on it…</li>
+        </ul>
+      </li>
+      <li><strong>Convolutional Networks:</strong>
+        <ul>
+          <li>Apply CNNs to transform the naive concatenated matrix to obtain a context-dependent matrix</li>
+          <li>Remove the pooling layer at the end to ensure variable sized output</li>
+        </ul>
+      </li>
+      <li><strong>BiRNNs:</strong>
+        <ul>
+          <li>Most widely used in NMT <em>(Bahdanau et al 2015)</em></li>
+          <li>One column per word</li>
+          <li>Each column (word) has two halves concatenated together:
+            <ul>
+              <li>A “forward representation” (word and its LEFT context)</li>
+              <li>A “reverse representation” (word and its RIGHT context)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

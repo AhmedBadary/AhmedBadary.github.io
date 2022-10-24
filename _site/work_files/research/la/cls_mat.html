@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Classes of Matrices</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/la.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Diagonal Matrices</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Symmetric Matrices</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Skew-Symmetric Matrices</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">Covariance Matrices</a></li>
+  </ul>
+  <ul class="TOC5">
+    <li><a href="#content5">Positive Semi-Definite Matrices</a></li>
+  </ul>
+  <ul class="TOC6">
+    <li><a href="#content6">Positive Definite Matrices</a></li>
+  </ul>
+  <ul class="TOC7">
+    <li><a href="#content7">Orthogonal Matrices</a></li>
+  </ul>
+  <ul class="TOC8">
+    <li><a href="#content8">Dyads</a></li>
+  </ul>
+  <ul class="TOC9">
+    <li><a href="#content9">Correlation Matrices</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<p><a href="https://medium.com/@jonathan_hui/machine-learning-linear-algebra-special-matrices-c750cd742dfe">Special Matrices in ML</a> <br />
+<a href="https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf">Matrix Cookbook</a></p>
+
+<h2 id="content1">Diagonal Matrices</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Definition.</strong><br />
+ <strong>Diagonal matrices</strong> are square matrices \(A\) with \(A_{ij} = 0 \text{, when } i \ne j.\)<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Properties:</strong></p>
+    <ol>
+      <li>Diagonal matrices correspond to quadratic functions that are simple sums of squares, of the form:
+        <p>$$q(x) = \sum_{i=1}^n \lambda_i x_i^2 = x^T \mathbf{diag}(\lambda) x.$$</p>
+      </li>
+      <li>They are easy to invert \(A^{-1}_ {ii} = 1/A_ {ii} \: \forall i \in [1, n]\)</li>
+      <li>The <strong>pseudo-inverse</strong> is easy to compute: keep zero diagonal elements as zero</li>
+      <li>Allow easier matrix multiplication and powers<br />
+ <br /></li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Symmetric Matrices</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Definition:</strong>  <br />
+ <strong>Symmetric matrices</strong> are square matrices that satisfy \(A_{ij} = A_{ji}\) for every pair \((i,j).\)</p>
+
+    <p><strong>The set of symmetric</strong> \((n \times n)\) matrices is denoted \(\mathbf{S}^n\). This set is a subspace of \(\mathbf{R}^{n \times n}\).<br />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Properties:</strong>
+    <ul>
+      <li>Has <strong>orthonormal</strong> eigenvectors (even with repeated eigenvalues)</li>
+      <li>Its inverse is also symmetric</li>
+      <li>All eigenvalues of a symmetric matrix are <strong>real</strong></li>
+      <li>\(A^TA\) is <strong>invertible</strong> iff columns of \(A\) are linearly independent</li>
+      <li>Every symmetric matrix \(S\) can be diagonalized (factorized) with \(Q\) formed by the orthonormal eigenvectors \(v_i\) of \(S\) and \(\Lambda\) is a diagonal matrix holding all the eigenvalues:
+        <p>$$\begin{aligned} S&amp;=Q \Lambda Q^{T} \\
+      &amp;= \lambda_{1} v_{1} v_{1}^{T}+\ldots+\lambda_{n} v_{n} v_{h}^{T} = \sum_{i=1}^n \lambda_i v_i v_i^T
+      \end{aligned}$$</p>
+      </li>
+      <li>One can create a symmetric matrix from any matrix by:
+        <p>$$M = {\displaystyle {\tfrac {1}{2}}\left(A+A^{\textsf {T}}\right)}$$</p>
+        <p><br /></p>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Examples:</strong>
+    <ol>
+      <li><a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/3c5245ebb8a556da" value="show" onclick="iframePopA(event)"><strong>Representation of a weighted, undirected graph.</strong></a>
+ <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/73a4ae787085d554"><code class="language-plaintext highlighter-rouge"> Visit the Book</code></a>
+        <div></div>
+      </li>
+      <li><a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/0e696ef8a78e090c" value="show" onclick="iframePopA(event)"><strong>Laplacian matrix of a graph.</strong></a>
+ <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/73a4ae787085d554"><code class="language-plaintext highlighter-rouge"> Visit the Book</code></a>
+        <div></div>
+      </li>
+      <li><a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/6c0afdfbf11892c6" value="show" onclick="iframePopA(event)"><strong>Hessian of a function.</strong></a>
+ <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/73a4ae787085d554"><code class="language-plaintext highlighter-rouge"> Visit the Book</code></a>
+        <div></div>
+      </li>
+      <li><a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/e236418f4e2d6b3b" value="show" onclick="iframePopA(event)"><strong>Gram matrix of data points.</strong></a>
+ <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/73a4ae787085d554"><code class="language-plaintext highlighter-rouge"> Visit the Book</code></a>
+        <div></div>
+        <p><br /></p>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Skew-Symmetric Matrices</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Definition.</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Properties:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Asynchronous:</strong></p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content4">Covariance Matrices</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">Definition.</strong> <br />
+ <strong>Standard Form:</strong>
+    <p>$$\Sigma :=\mathrm {E} \left[\left(\mathbf {X} -\mathrm {E} [\mathbf {X} ]\right)\left(\mathbf {X} -\mathrm {E} [\mathbf {X} ]\right)^{\rm {T}}\right]$$</p>
+    <p>$$ \Sigma := \dfrac{1}{m} \sum_{k=1}^m (x_k - \hat{x})(x_k - \hat{x})^T. $$</p>
+
+    <p><strong>Matrix Form:</strong></p>
+    <p>$$ \Sigma := \dfrac{X^TX}{n} $$</p>
+
+    <blockquote>
+      <p>valid only for (1) \(X\) w/ samples in rows and variables in columns  (2) \(X\) is centered (mean=0)</p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Properties:</strong>
+    <ol>
+      <li>
+        <p>The sample covariance matrix allows to find the variance along any direction in data space.</p>
+      </li>
+      <li>
+        <p>The diagonal elements of \(\Sigma\) give the variances of each vector in the data.</p>
+      </li>
+      <li>
+        <p>The trace of \(\Sigma\) gives the sum of all the variances.</p>
+      </li>
+      <li>
+        <p>The matrix \(\Sigma\) is positive semi-definite, since the associated quadratic form \(u \rightarrow u^T \Sigma u\) is non-negative everywhere.</p>
+      </li>
+      <li>
+        <p>It is Symmetric.</p>
+      </li>
+      <li>Every symmetric positive semi-definite matrix is a covariance matrix.<br />
+ <a href="http://ahmedbadary.ml/work_files/research/opt_probs#bodyContents12" value="show" onclick="iframePopA(event)"><strong>Proof.</strong></a><br />
+ <a href="http://ahmedbadary.ml/work_files/research/opt_probs#bodyContents12"><code class="language-plaintext highlighter-rouge"> OR, Visit the website</code></a>
+        <div></div>
+      </li>
+      <li>The sample variance along direction \(u\) can be expressed as a quadratic form in \(u\):<br />
+ \(\sigma^2(u) = \dfrac{1}{n} \sum_{k=1}^n [u^T(x_k-\hat{x})]^2 = u^T \Sigma u,\)</li>
+      <li>
+        <p>The diminsion of the matrix is \((n \times n)\), where \(n\) is the number of variables/features/columns.</p>
+      </li>
+      <li>
+        <p>The inverse of this matrix, \({\displaystyle \Sigma ^{-1},}\) if it exists, is the inverse covariance matrix, also known as the <em>concentration matrix</em> or <em>precision matrix</em>.</p>
+      </li>
+      <li>
+        <p>If a vector of \(n\) possibly correlated random variables is jointly normally distributed, or more generally elliptically distributed, then its probability density function can be expressed in terms of the covariance matrix.</p>
+      </li>
+      <li>
+        <p>\(\Sigma =\mathrm {E} (\mathbf {XX^{\rm {T}}} )-{\boldsymbol {\mu }}{\boldsymbol {\mu }}^{\rm {T}}\).</p>
+      </li>
+      <li>
+        <p>\({\displaystyle \operatorname {var} (\mathbf {AX} +\mathbf {a} )=\mathbf {A} \,\operatorname {var} (\mathbf {X} )\,\mathbf {A^{\rm {T}}} }\).</p>
+      </li>
+      <li>
+        <p>\(\operatorname {cov} (\mathbf {X} ,\mathbf {Y} )=\operatorname {cov} (\mathbf {Y} ,\mathbf {X} )^{\rm {T}}\).</p>
+      </li>
+      <li>
+        <p>\(\operatorname {cov} (\mathbf {X}_ {1}+\mathbf {X}_ {2},\mathbf {Y} )=\operatorname {cov} (\mathbf {X}_ {1},\mathbf {Y} )+\operatorname {cov} (\mathbf {X}_ {2},\mathbf {Y} )\).</p>
+      </li>
+      <li>
+        <p>If \((p = q)\), then \(\operatorname {var} (\mathbf {X} +\mathbf {Y} )=\operatorname {var} (\mathbf {X} )+\operatorname {cov} (\mathbf {X} ,\mathbf {Y} )+\operatorname {cov} (\mathbf {Y} ,\mathbf {X} )+\operatorname {var} (\mathbf {Y} )\).</p>
+      </li>
+      <li>
+        <p>\(\operatorname {cov} (\mathbf {AX} +\mathbf {a} ,\mathbf {B} ^{\rm {T}}\mathbf {Y} +\mathbf {b} )=\mathbf {A} \,\operatorname {cov} (\mathbf {X} ,\mathbf {Y} )\,\mathbf {B}\).</p>
+      </li>
+      <li>
+        <p>If \({\displaystyle \mathbf {X} }\)  and \({\displaystyle \mathbf {Y} }\)  are independent (or somewhat less restrictedly, if every random variable in \({\displaystyle \mathbf {X} }\) is uncorrelated with every random variable in \({\displaystyle \mathbf {Y} }\)), then \({\displaystyle \operatorname {cov} (\mathbf {X} ,\mathbf {Y} )=\mathbf {0} }\).</p>
+      </li>
+      <li>\(\operatorname {var} (\mathbf {b} ^{\rm {T}}\mathbf {X} )= \mathbf {b} ^{\rm {T}}\operatorname {cov} (\mathbf {X} )\mathbf {b} = \operatorname {cov} (\mathbf{b}^T\mathbf {X}, \mathbf{b}^T\mathbf {X} ) \geq 0,\,\).
+        <blockquote>
+          <p>This quantity is NON-Negative because it’s variance.<br />
+Maybe \(= \mathbf {b} ^{\rm {T}}\operatorname {var} (\mathbf {X} )\mathbf {b}\)??</p>
+        </blockquote>
+      </li>
+      <li>
+        <p>An identity covariance matrix, \(\Sigma = I\) has variance \(= 1\) for all variables.</p>
+      </li>
+      <li>
+        <p>A covariance matrix of the form, \(\Sigma=\sigma^2I\) has variance \(= \sigma^2\) for all variables.</p>
+      </li>
+      <li>
+        <p>A diagonal covariance matrix has variance \(\sigma_i^2\) for the \(i-th\)  variable.</p>
+      </li>
+      <li>When the mean \(\hat{x}\) is not known the denominator of the “SAMPLE COVARIANCE MATRIX” should be \((n-1)\) and not \(n\).</li>
+    </ol>
+
+    <blockquote>
+      <p>where,
+  \({\displaystyle \mathbf {X} ,\mathbf {X} _{1}},\) and \({\displaystyle \mathbf {X} _{2}}\) are random \((p\times 1)\) vectors, \({\displaystyle \mathbf {Y} }\)  is a random \((q\times 1)\) vector, \({\displaystyle \mathbf {a} }\)  is a \((q\times 1)\) vector, \({\displaystyle \mathbf {b} }\) is a \((p\times 1)\) vector, and \({\displaystyle \mathbf {A} }\) and \({\displaystyle \mathbf {B} }\)  are \((q\times p)\) matrices of constants.</p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">\(\Sigma\) as a Linear Operator:</strong>
+    <ul>
+      <li><strong>Applied to one vector</strong>, the covariance matrix <em>maps a linear combination</em>, \(c\), of the random variables, \(X\), onto a vector of covariances with those variables:</li>
+    </ul>
+
+\[{\displaystyle \mathbf {c} ^{\rm {T}}\Sigma =\operatorname {cov} (\mathbf {c} ^{\rm {T}}\mathbf {X} ,\mathbf {X} )}\]
+
+    <ul>
+      <li><strong>Treated as a bilinear form</strong>, it yields the covariance between the two linear combinations:</li>
+    </ul>
+
+\[{\displaystyle \mathbf {d} ^{\rm {T}}\Sigma \mathbf {c} =\operatorname {cov} (\mathbf {d} ^{\rm {T}}\mathbf {X} ,\mathbf {c} ^{\rm {T}}\mathbf {X} )}\]
+
+    <ul>
+      <li><strong>The variance of a linear combination</strong> is then (its covariance with itself)</li>
+    </ul>
+
+\[{\displaystyle \mathbf {c} ^{\rm {T}}\Sigma \mathbf {c} }\]
+
+    <ul>
+      <li><strong>The (pseudo-)inverse covariance matrix</strong> provides an <em>inner product</em>,  \({\displaystyle \langle c-\mu \|\Sigma ^{+}\| c-\mu \rangle }\)  which induces the <em>Mahalanobis distance</em>, a measure of the “unlikelihood” of \(c\).</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Applications [Examples]:</strong>
+    <ol>
+      <li>
+        <p><a href="https://en.wikipedia.org/wiki/Whitening_transformation"><strong>The Whitening Transformation:</strong></a> allows one to completely decorrelate the data,  Equivalently,<br />
+ allows one to find an optimal basis for representing the data in a compact way.</p>
+      </li>
+      <li>
+        <p><a href="https://en.wikipedia.org/wiki/Rayleigh_quotient"><strong>Rayleigh Quotient:</strong></a></p>
+      </li>
+      <li>
+        <p><a href="https://en.wikipedia.org/wiki/Principal_components_analysis"><strong>Principle Component Analysis [PCA]</strong></a></p>
+      </li>
+      <li>
+        <p><a href="https://en.wikipedia.org/wiki/Karhunen-Lo%C3%A8ve_transform"><strong>The Karhunen-Loève transform (KL-transform)</strong></a></p>
+      </li>
+      <li>
+        <p><a href="https://en.wikipedia.org/wiki/Mutual_fund_separation_theorem"><strong>Mutual fund separation theorem</strong></a></p>
+      </li>
+      <li>
+        <p><a href="https://en.wikipedia.org/wiki/Capital_asset_pricing_model"><strong>Capital asset pricing model</strong></a></p>
+      </li>
+      <li>
+        <p><a href="https://en.wikipedia.org/wiki/Modern_portfolio_theory"><strong>Portfolio Theory:</strong></a> The matrix of covariances among various assets’ returns is used to determine, under certain assumptions, the relative amounts of different assets that investors should (in a normative analysis) or are predicted to (in a positive analysis) choose to hold in a context of diversification.
+ <br /></p>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content5">Positive Semi-Definite Matrices</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents51">Definition:</strong><br />
+ A <em><strong>symmetric</strong></em> \({\displaystyle n\times n}\) <em><strong>real</strong></em> matrix \({\displaystyle M}\) is said to be <strong>positive semi-definite</strong> if the scalar \({\displaystyle z^{\textsf {T}}Mz}\) is <em><strong>non-negative</strong></em> for <em><strong>every non-zero</strong></em> column vector \({\displaystyle z}\)  of \(n\) real numbers.</p>
+
+    <p><strong>Mathematically:</strong></p>
+    <p>$$M \text { positive semi-definite } \Longleftrightarrow \quad x^{\top} M x \geq 0 \text { for all } x \in \mathbb{R}^{n}$$</p>
+    <p><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents52">Properties:</strong></p>
+    <ul>
+      <li>\(AA^T\) and \(A^TA\) are PSD</li>
+      <li>\(M\) is positive definite if All pivots &gt; 0</li>
+      <li>\(M\) is positive definite if and only if <strong>all of its eigenvalues are non-negative</strong>.</li>
+      <li><strong>Covariance Matrices \(\Sigma\)</strong> are PSD<br />
+ <br /></li>
+    </ul>
+  </li>
+</ol>
+
+<!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents53}    -->
+
+<hr />
+
+<h2 id="content6">Positive Definite Matrices</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents61">Definition:</strong>  <br />
+ A <em><strong>symmetric</strong></em> \({\displaystyle n\times n}\) <em><strong>real</strong></em> matrix \({\displaystyle M}\) is said to be <strong>positive definite</strong> if the scalar \({\displaystyle z^{\textsf {T}}Mz}\) is strictly <em><strong>positive</strong></em> for <em><strong>every non-zero</strong></em> column vector \({\displaystyle z}\)  of \(n\) real numbers.</p>
+
+    <p><strong>Mathematically:</strong></p>
+    <p>$$M \text { positive definite } \Longleftrightarrow x^{\top} M x&gt;0 \text { for all } x \in \mathbb{R}^{n} \backslash \mathbf{0}$$</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents62">Properties:</strong></p>
+    <ul>
+      <li>\(M\) is positive definite if and only if <strong>all of its eigenvalues are positive</strong></li>
+      <li>The matrix \({\displaystyle M}\) is positive definite if and only if the bilinear form \({\displaystyle \langle z,w\rangle =z^{\textsf {T}}Mw}\) is positive definite</li>
+      <li>A symmetric matrix \({\displaystyle M}\) is positive definite if and only if its <strong>quadratic form is a strictly convex function</strong></li>
+      <li>Every positive definite matrix is <strong>invertible</strong> and its inverse is also positive definite.</li>
+      <li>\(M\) is positive definite if All pivots &gt; 0</li>
+      <li><strong>Covariance Matrices \(\Sigma\)</strong> are positive definite unless one variable is an exact linear function of the others. Conversely, every positive semi-definite matrix is the covariance matrix of some multivariate distribution</li>
+      <li>Any quadratic function from \({\displaystyle \mathbb {R} ^{n}}\) to \({\displaystyle \mathbb {R} }\) can be written as \({\displaystyle x^{\textsf {T}}Mx+x^{\textsf {T}}b+c}\) where \({\displaystyle M}\) is a symmetric \({\displaystyle n\times n}\) matrix, \(b\) is a real \(n\)-vector, and \(c\) a real constant. This quadratic function is strictly convex, and hence has a unique finite global minimum, if and only if \({\displaystyle M}\) is positive definite.<br />
+ <br /></li>
+    </ul>
+  </li>
+</ol>
+
+<!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents63}  
+ -->
+
+<hr />
+
+<h2 id="content7">Orthogonal Matrices</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents71">Definition.</strong><br />
+ Orthogonal (or, unitary (complex)) matrices are square matrices, such that the columns form an orthonormal basis.<br />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents72">Properties:</strong>
+    <ol>
+      <li>If \(U = [u_1, \ldots, u_n]\) is an orthogonal matrix, then
+        <p>$$u_i^Tu_j = \left\{ \begin{array}{ll} 1 &amp; \mbox{if } i=j, \\  0 &amp; \mbox{otherwise.} \end{array} \right. $$</p>
+      </li>
+      <li>
+        <p>\(U^TU = UU^T = I_n\).</p>
+      </li>
+      <li>Easy inverse:
+        <p>$$U^{-1} = U^T$$</p>
+      </li>
+      <li>Geometrically, orthogonal matrices correspond to rotations (around a point) or reflections (around a line passing through the origin).
+        <blockquote>
+          <p>i.e. they preserve length and angles!<br />
+Proof. Part 5 and 6.</p>
+        </blockquote>
+      </li>
+      <li>For all vectors \(\vec{x}\),<br />
+ \(\|Ux\|_2^2 = (Ux)^T(Ux) = x^TU^TUx = x^Tx = \|x\|_2^2 .\)
+        <blockquote>
+          <p>Known as, <em>the rotational invariance</em> of the Euclidean norm.<br />
+Thus, If we multiply x with an orthogonal matrix, the errors present in x will not be magnified. This behavior is very desirable for maintaining numerical stability.</p>
+        </blockquote>
+      </li>
+      <li>If \(x, y\) are two vectors with unit norm, then the angle \(\theta\) between them satisfies \(\cos \theta = x^Ty\)<br />
+ while the angle \(\theta'\) between the rotated vectors \(x' = Ux, y' = Uy\) satisfies \(\cos \theta' = (x')^Ty'\).<br />
+ Since, \((Ux)^T(Uy) = x^T U^TU y = x^Ty,\) we obtain that the angles are the same.<br />
+ <br /></li>
+    </ol>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents7" id="bodyContents73">Examples:</strong>
+    <ul>
+      <li><a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/72793237f1b79da9" value="show" onclick="iframePopA(event)"><strong>Permutation Matrices</strong></a>
+  <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/72793237f1b79da9"><code class="language-plaintext highlighter-rouge"> Visit the Book</code></a>
+        <div></div>
+        <p><br /></p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content8">Dyads</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents81">Definition.</strong><br />
+ A matrix \(A \in \mathbf{R}^{m \times n}\) is a dyad if it is of the form \(A = uv^T\) for some vectors \(u \in \mathbf{R}^m, v \in \mathbf{R}^n\).</p>
+
+    <p>The dyad acts on an input vector \(x \in \mathbf{R}^n\) as follows:</p>
+    <p>$$ Ax = (uv^T) x = (v^Tx) u.$$</p>
+    <p><br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents82">Properties:</strong>
+    <ol>
+      <li>
+        <p>The output always points in the same direction \(u\) in output space (\(\mathbf{R}^m\)), no matter what the input \(x\) is.</p>
+      </li>
+      <li>
+        <p>The output is always a simple scaled version of \(u\).</p>
+      </li>
+      <li>
+        <p>The amount of scaling depends on the vector \(v\), via the linear function \(x \rightarrow v^Tx\).<br />
+ <br /></p>
+      </li>
+    </ol>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents83">Examples:</strong>
+    <ul>
+      <li><a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/438c7a0d0fc50d09" value="show" onclick="iframePopA(event)"><strong>Single factor model of financial price data</strong></a>
+  <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/438c7a0d0fc50d09"><code class="language-plaintext highlighter-rouge"> Visit the Book</code></a>
+        <div></div>
+      </li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents84">Normalized dyads:</strong></dt>
+      <dd>We can always normalize the dyad, by assuming that both u,v are of unit (Euclidean) norm, and using a factor to capture their scale.</dd>
+      <dd>That is, any dyad can be written in normalized form:</dd>
+      <dd>
+\[A = uv^T = (\|u\|_2 \cdot |v|_2 ) \cdot (\dfrac{u}{\|u\|_2}) ( \dfrac{v}{\|v\|_2}) ^T = \sigma \tilde{u}\tilde{v}^T,\]
+      </dd>
+      <dd>where \(\sigma &gt; 0\), and \(\|\tilde{u}\|_2 = \|\tilde{v}\|_2 = 1.\)</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents85">Symmetric dyads:</strong></dt>
+      <dd>Another important class of symmetric matrices is that of the form \(uu^T\), where \(u \in \mathbf{R}^n\).
+ The matrix has elements \(u_iu_j\), and is symmetric.
+        <blockquote>
+          <p>If \(\|u\|_2 = 1\), then the dyad is said to be normalized.</p>
+        </blockquote>
+      </dd>
+      <dd>
+\[uu^T = \left(\begin{array}{ccc} u_1^2  &amp; u_1u_2  &amp; u_1u_3  \\
+u_1u_2 &amp; u_2^2   &amp; u_2u_3  \\
+u_1u_3 &amp; u_2u_3  &amp; u_3^2  \end{array} \right)\]
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Properties:</strong>
+            <ol>
+              <li>Symmetric dyads corresponds to quadratic functions that are simply squared linear forms:<br />
+  \(q(x) = (u^Tx)^2\)</li>
+              <li>When the vector \(u\) is normalized (unit), then:<br />
+  \(\mathbf{Tr}(uu^T) = \|u\|_2^2 = 1^2 = 1\)
+                <blockquote>
+                  <p>This follows from the fact that the diagonal entries of a symmetric dyad are just \(u_i^2, \forall i \in [1, n]\)</p>
+                </blockquote>
+              </li>
+              <li></li>
+            </ol>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content9">Correlation matrix</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents91">Definition.</strong></dt>
+      <dd>
+\[{\text{corr}}(\mathbf {X} )=\left({\text{diag}}(\Sigma )\right)^{-{\frac {1}{2}}}\,\Sigma \,\left({\text{diag}}(\Sigma )\right)^{-{\frac {1}{2}}}\]
+      </dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents92">Properties:</strong>
+    <ol>
+      <li>
+        <p>It is the matrix of “Pearson product-moment correlation coefficients” between each of the random variables in the random vector \({\displaystyle \mathbf {X} }\).</p>
+      </li>
+      <li>
+        <p>The correlation matrix can be seen as the covariance matrix of the standardized random variables \({\displaystyle X_{i}/\sigma (X_{i})}\) for \({\displaystyle i=1,\dots ,n}\).</p>
+      </li>
+      <li>
+        <p>Each element on the principal diagonal of a correlation matrix is the correlation of a random variable with itself, which always equals 1.</p>
+      </li>
+      <li>
+        <p>Each off-diagonal element is between 1 and –1 inclusive.</p>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<!-- 3. **Examples:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents93}  
+
+***
+
+## Ten
+{: #content10}
+
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents101}  
+
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents102}  
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents103}  
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents104}  
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents105}  
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents106}  
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents107}  
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents108}  
+ -->
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

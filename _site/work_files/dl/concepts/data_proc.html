@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Data Processing</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/concepts class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Dimensionality Reduction</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Feature Selection</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Feature Extraction</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">Feature Importance</a></li>
+  </ul>
+  <ul class="TOC5">
+    <li><a href="#content5">Imputation</a></li>
+  </ul>
+  <ul class="TOC6">
+    <li><a href="#content6">Normalization</a></li>
+  </ul>
+  <ul class="TOC7">
+    <li><a href="#content7">Outliers Handling</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<ul>
+  <li>
+    <p><a href="https://theprofessionalspoint.blogspot.com/2019/03/data-wrangling-techniques-steps.html">Data Wrangling Techniques (Blog!)</a></p>
+  </li>
+  <li><a href="http://mlexplained.com/2017/12/28/a-practical-introduction-to-nmf-nonnegative-matrix-factorization/">Non-Negative Matrix Factorization NMF Tutorial</a></li>
+  <li>
+    <p><a href="https://distill.pub/2016/misread-tsne/">How to Use t-SNE Effectively (distill blog!)</a></p>
+  </li>
+  <li><a href="https://umap-learn.readthedocs.io/en/latest/">UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction [better than t-sne?] (Library Code!)</a></li>
+</ul>
+
+<h2 style="font-size: 1.60em" id="content1">Dimensionality Reduction</h2>
+
+<h3 id="dimensionality-reduction"><strong style="color: SteelBlue; font-size: 1.15em" class="bodyContents1" id="bodyContents11">Dimensionality Reduction</strong></h3>
+<p><strong>Dimensionality Reduction</strong> is the process of reducing the number of random variables under consideration by obtaining a set of principal variables. It can be divided into <strong style="color: goldenrod">feature selection</strong> and <strong style="color: goldenrod">feature extraction</strong>.<br />
+<br /></p>
+
+<p id="lst-p"><strong>Dimensionality Reduction Methods:</strong></p>
+<ul>
+  <li>PCA</li>
+  <li>Heatmaps</li>
+  <li>t-SNE</li>
+  <li>Multi-Dimensional Scaling (MDS)</li>
+</ul>
+
+<h3 id="t-sne--t-distributed-stochastic-neighbor-embeddings"><strong style="color: SteelBlue; font-size: 1.15em" class="bodyContents1" id="bodyContents12">t-SNE | T-distributed Stochastic Neighbor Embeddings</strong></h3>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Paper</button></p>
+<iframe hidden="" src="https://docs.google.com/viewer?url=http://jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf&amp;embedded=true" frameborder="0" height="840" width="646" title="Layer Normalization" scrolling="auto"></iframe>
+
+<p><a href="https://medium.com/@layog/i-dont-understand-t-sne-part-1-50f507acd4f9">Understanding t-SNE Part 1: SNE algorithm and its drawbacks</a><br />
+<a href="https://medium.com/@layog/i-do-not-understand-t-sne-part-2-b2f997d177e3">Understanding t-SNE Part 2: t-SNE improvements over SNE</a><br />
+<a href="https://wiki.math.uwaterloo.ca/statwiki/index.php?title=visualizing_Data_using_t-SNE">t-SNE (statwiki)</a><br />
+<a href="https://www.youtube.com/watch?v=W-9L6v_rFIE">t-SNE tutorial (video)</a><br />
+<a href="https://www.youtube.com/watch?v=FQmCzpKWD48&amp;list=PLupD_xFct8mHqCkuaXmeXhe0ajNDu0mhZ">series (deleteme)</a></p>
+
+<p><strong style="color: red">SNE - Stochastic Neighbor Embeddings:</strong><br />
+<strong>SNE</strong> is a method that aims to <em>match</em> <strong>distributions of distances</strong> between points in high and low dimensional space via <strong>conditional probabilities</strong>.<br />
+It Assumes distances in both high and low dimensional space are <strong>Gaussian-distributed</strong>.</p>
+<ul>
+  <li><a href="https://www.youtube.com/embed/ohQXphVSEQM?start=130" value="show" onclick="iframePopA(event)"><strong>Algorithm</strong></a>
+<a href="https://www.youtube.com/embed/ohQXphVSEQM?start=130"></a>
+    <div></div>
+    <p><img src="/main_files/dl/concepts/data_proc/2.png" alt="img" width="65%" /><br />
+<br /></p>
+  </li>
+</ul>
+
+<p><strong style="color: red">t-SNE:</strong><br />
+<strong>t-SNE</strong> is a machine learning algorithm for visualization developed by Laurens van der Maaten and Geoffrey Hinton.<br />
+It is a <em><strong>nonlinear</strong></em> <em><strong>dimensionality reduction</strong></em> technique well-suited for <em>embedding high-dimensional data for visualization in a low-dimensional space</em> of <em>two or three dimensions</em>.<br />
+Specifically, it models each high-dimensional object by a two- or three-dimensional point in such a way that <span style="color: goldenrod">similar objects are modeled by nearby points</span> and <span style="color: goldenrod">dissimilar objects are modeled by distant points</span>  <strong>with high probability</strong>.</p>
+<blockquote>
+  <p>It tends to <em>preserve <strong>local structure</strong></em>, while at the same time, <em>preserving the <strong>global structure</strong></em> as much as possible.</p>
+</blockquote>
+
+<p><br /></p>
+
+<p id="lst-p"><strong style="color: red">Stages:</strong></p>
+<ol>
+  <li>It Constructs a probability distribution over pairs of high-dimensional objects in such a way that similar objects have a high probability of being picked while dissimilar points have an extremely small probability of being picked.</li>
+  <li>It Defines a similar probability distribution over the points in the low-dimensional map, and it minimizes the <strong>Kullback–Leibler divergence</strong> between the two distributions with respect to the locations of the points in the map.<br />
+<br /></li>
+</ol>
+
+<p id="lst-p"><strong style="color: red">Key Ideas:</strong><br />
+It solves two big problems that <strong>SNE</strong> faces:</p>
+<ol>
+  <li><strong>The Crowding Problem:</strong><br />
+ The “crowding problem” that are addressed in the paper is defined as: “the area of the two-dimensional map that is available to accommodate moderately distant datapoints will not be nearly large enough compared with the area available to accommodate nearby datepoints”. This happens when the datapoints are distributed in a region on a high-dimensional manifold around i, and we try to model the pairwise distances from i to the datapoints in a two-dimensional map. For example, it is possible to have 11 datapoints that are mutually equidistant in a ten-dimensional manifold but it is not possible to model this faithfully in a two-dimensional map. Therefore, if the small distances can be modeled accurately in a map, most of the moderately distant datapoints will be too far away in the two-dimensional map. In SNE, this will result in very small attractive force from datapoint i to these too-distant map points. The very large number of such forces collapses together the points in the center of the map and prevents gaps from forming between the natural clusters. This phenomena, crowding problem, is not specific to SNE and can be observed in other local techniques such as Sammon mapping as well.
+    <ul>
+      <li><strong>Solution - Student t-distribution for \(q\)</strong>:<br />
+  Student t-distribution is used to compute the similarities between data points in the low dimensional space \(q\).</li>
+    </ul>
+  </li>
+  <li><strong>Optimization Difficulty of KL-div:</strong><br />
+ The KL Divergence is used over the conditional probability to calculate the error in the low-dimensional representation. So, the algorithm will be trying to minimize this loss and will calculate its gradient:
+    <p>$$\frac{\delta C}{\delta y_{i}}=2 \sum_{j}\left(p_{j | i}-q_{j | i}+p_{i | j}-q_{i | j}\right)\left(y_{i}-y_{j}\right)$$</p>
+    <p>This gradient involves all the probabilities for point \(i\) and \(j\). But, these probabilities were composed of the exponentials. The problem is that: We have all these exponentials in our gradient, which can explode (or display other unusual behavior) very quickly and hence the algorithm will take a long time to converge.</p>
+    <ul>
+      <li><strong>Solution - Symmetric SNE</strong>:<br />
+  The Cost Function is a <strong>symmetrized</strong> version of that in SNE. i.e. \(p_{i\vert j} = p_{j\vert i}\) and \(q_{i\vert j} = q_{j\vert i}\).<br />
+<br /></li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong style="color: red">Application:</strong><br />
+It is often used to visualize high-level representations learned by an <strong>artificial neural network</strong>.<br />
+<br /></p>
+
+<p><strong style="color: red">Motivation:</strong><br />
+There are a lot of problems with traditional dimensionality reduction techniques that employ <em>feature projection</em>; e.g. <strong>PCA</strong>. These techniques attempt to <em><strong>preserve the global structure</strong></em>, and in that process they <em><strong>lose the local structure</strong></em>. Mainly, projecting the data on one axis or another, may (most likely) not preserve the <em>neighborhood structure</em> of the data; e.g. the clusters in the data:<br />
+<img src="/main_files/dl/concepts/data_proc/1.png" alt="img" width="70%" /><br />
+t-SNE finds a way to project data into a low dimensional space (1-d, in this case) such that the clustering (“local structure”) in the high dimensional space is preserved.<br />
+<br /></p>
+
+<p><strong style="color: red">t-SNE Clusters:</strong><br />
+While t-SNE plots often seem to display clusters, the visual clusters can be influenced strongly by the chosen parameterization and therefore a good understanding of the parameters for t-SNE is necessary. Such “clusters” can be shown to even appear in non-clustered data, and thus may be false findings.<br />
+It has been demonstrated that t-SNE is often able to <em>recover well-separated clusters</em>, and with special parameter choices, <a href="https://arxiv.org/abs/1706.02582">approximates a simple form of <strong>spectral clustering</strong></a>.<br />
+<br /></p>
+
+<p id="lst-p"><strong style="color: red">Properties:</strong></p>
+<ul>
+  <li>It preserves the <em>neighborhood structure</em> of the data</li>
+  <li>Does NOT preserve <em>distances</em> nor <em>density</em></li>
+  <li>Only to some extent preserves <em>nearest-neighbors</em>?<br />
+  <a href="https://stats.stackexchange.com/questions/263539/clustering-on-the-output-of-t-sne/264647#264647">discussion</a></li>
+  <li>It learns a <strong>non-parametric mapping</strong>, which means that it does NOT learn an <em>explicit function</em> that maps data from the input space to the map<br />
+<br /></li>
+</ul>
+
+<p><strong style="color: red">Algorithm:</strong><br />
+<button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Algorithm Details (wikipedia)</button></p>
+<iframe hidden="" src="https://www.wikiwand.com/en/T-distributed_stochastic_neighbor_embedding#/Details" frameborder="0" height="840" width="646" title="Layer Normalization"></iframe>
+
+<p><br /></p>
+
+<p id="lst-p"><strong style="color: red">Issues/Weaknesses/Drawbacks:</strong></p>
+<ol>
+  <li>The paper only focuses on the date visualization using t-SNE, that is, embedding high-dimensional date into a two- or three-dimensional space. However, this behavior of t-SNE presented in the paper cannot readily be extrapolated to \(d&gt;3\) dimensions due to the heavy tails of the Student t-distribution.</li>
+  <li>It might be less successful when applied to data sets with a high intrinsic dimensionality. This is a result of the <em><strong>local linearity assumption</strong> on the manifold</em> that t-SNE makes by employing Euclidean distance to present the similarity between the datapoints.</li>
+  <li>The cost function is <strong>not convex</strong>. This leads to the problem that several optimization parameters (hyperparameters) need to be chosen (and tuned) and the constructed solutions depending on these parameters may be different each time t-SNE is run from an initial random configuration of the map points.</li>
+  <li>It cannot work <strong>“online”</strong>. Since it learns a non-parametric mapping, which means that it does not learn an explicit function that maps data from the input space to the map. Therefore, it is not possible to embed test points in an existing map. You have to re-run t-SNE on the full dataset.<br />
+ A potential approach to deal with this would be to train a multivariate regressor to predict the map location from the input data.<br />
+ Alternatively, you could also <a href="https://lvdmaaten.github.io/publications/papers/AISTATS_2009.pdf">make such a regressor minimize the t-SNE loss directly (parametric t-SNE)</a>.</li>
+</ol>
+
+<p><br /></p>
+
+<p id="lst-p"><strong style="color: red">t-SNE Optimization:</strong></p>
+<ul>
+  <li><a href="https://lvdmaaten.github.io/publications/papers/JMLR_2014.pdf">Accelerating t-SNE using Tree-Based Algorithms</a></li>
+  <li><a href="https://arxiv.org/pdf/1301.3342.pdf">Barnes-Hut-SNE Optimization</a></li>
+</ul>
+
+<p><br /></p>
+
+<p id="lst-p"><strong style="color: red">Discussion and Information:</strong></p>
+<ul>
+  <li><strong>What is perplexity?</strong><br />
+  Perplexity is a measure for information that is defined as 2 to the power of the Shannon entropy. The perplexity of a fair die with k sides is equal to k. In t-SNE, the perplexity may be viewed as a knob that sets the number of effective nearest neighbors. It is comparable with the number of nearest neighbors k that is employed in many manifold learners.</li>
+  <li><strong>Choosing the perplexity hp:</strong> <br />
+  The performance of t-SNE is fairly robust under different settings of the perplexity. The most appropriate value depends on the density of your data. Loosely speaking, one could say that a larger / denser dataset requires a larger perplexity. Typical values for the perplexity range between \(5\) and \(50\).</li>
+  <li><strong>Every time I run t-SNE, I get a (slightly) different result?</strong><br />
+  In contrast to, e.g., PCA, t-SNE has a non-convex objective function. The objective function is minimized using a gradient descent optimization that is initiated randomly. As a result, it is possible that different runs give you different solutions. Notice that it is perfectly fine to run t-SNE a number of times (with the same data and parameters), and to select the visualization with the lowest value of the objective function as your final visualization.</li>
+  <li><strong>Assessing the “Quality of Embeddings/visualizations”:</strong><br />
+  Preferably, just look at them! Notice that t-SNE does not retain distances but probabilities, so measuring some error between the Euclidean distances in high-D and low-D is useless. However, if you use the same data and perplexity, you can compare the Kullback-Leibler divergences that t-SNE reports. It is perfectly fine to run t-SNE ten times, and select the solution with the lowest KL divergence.</li>
+</ul>
+
+<!-- __Advantages:__{: style="color: red"}  
+{: #lst-p}
+1. Reduces time and 
+
+### **Feature Selection**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents1 #bodyContents12}   -->
+<p><br /></p>
+
+<!--  
+### **Asynchronous**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents1 #bodyContents13}  
+<br>
+### **Asynchronous**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents1 #bodyContents14}  
+<br>
+### **Asynchronous**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents1 #bodyContents15}  
+<br>
+### **Asynchronous**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents1 #bodyContents16}  
+<br>
+### **Asynchronous**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents1 #bodyContents17}  
+<br>
+### **Asynchronous**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents1 #bodyContents18}  
+ -->
+
+<hr />
+<hr />
+
+<h2 style="font-size: 1.60em" id="content2">Feature Selection</h2>
+
+<h3 id="feature-selection"><strong style="color: SteelBlue; font-size: 1.15em" class="bodyContents2" id="bodyContents21">Feature Selection</strong></h3>
+<p><strong>Feature Selection</strong> is the process of selecting a subset of relevant features (variables, predictors) for use in model construction.</p>
+
+<p id="lst-p"><strong style="color: red">Applications:</strong></p>
+<ul>
+  <li>Simplification of models to make them easier to interpret by researchers/users</li>
+  <li>Shorter training time</li>
+  <li>A way to handle <em>curse of dimensionality</em></li>
+  <li>Reduction of Variance \(\rightarrow\) Reduce Overfitting \(\rightarrow\) Enhanced Generalization</li>
+</ul>
+
+<p id="lst-p"><strong style="color: red">Strategies/Approaches:</strong></p>
+<ul>
+  <li><strong>Wrapper Strategy</strong>:<br />
+  Wrapper methods use a predictive model to score feature subsets. Each new subset is used to train a model, which is tested on a hold-out set. Counting the number of mistakes made on that hold-out set (the error rate of the model) gives the score for that subset. As wrapper methods train a new model for each subset, they are very computationally intensive, but usually provide the best performing feature set for that particular type of model.<br />
+  <strong>e.g.</strong> <strong style="color: goldenrod">Search Guided by Accuracy</strong>, <strong style="color: goldenrod">Stepwise Selection</strong></li>
+  <li><strong>Filter Strategy</strong>:<br />
+  Filter methods use a <em>proxy measure</em> instead of the error rate <em>to score a feature subset</em>. This measure is chosen to be fast to compute, while still capturing the usefulness of the feature set.<br />
+  Filter methods produce a feature set which is <em>not tuned to a specific model</em>, usually giving lower prediction performance than a wrapper, but are more general and more useful for exposing the relationships between features.<br />
+  <strong>e.g.</strong> <strong style="color: goldenrod">Information Gain</strong>, <strong style="color: goldenrod">pointwise-mutual/mutual information</strong>, <strong style="color: goldenrod">Pearson Correlation</strong></li>
+  <li><strong>Embedded Strategy:</strong><br />
+  Embedded methods are a catch-all group of techniques which perform feature selection as part of the model construction process.<br />
+  <strong>e.g.</strong> <strong style="color: goldenrod">LASSO</strong></li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="correlation-feature-selection"><strong style="color: SteelBlue; font-size: 1.15em" class="bodyContents2" id="bodyContents22">Correlation Feature Selection</strong></h3>
+<p>The <strong>Correlation Feature Selection (CFS)</strong> measure evaluates subsets of features on the basis of the following hypothesis:<br />
+“<strong style="color: goldenrod">Good feature subsets contain features highly correlated with the classification, yet uncorrelated to each other</strong>”.</p>
+
+<p>The following equation gives the <strong>merit of a feature subset</strong> \(S\) consisting of \(k\) features:</p>
+<p>$${\displaystyle \mathrm {Merit} _{S_{k}}={\frac {k{\overline {r_{cf}}}}{\sqrt {k+k(k-1){\overline {r_{ff}}}}}}.}$$</p>
+<p>where, \({\displaystyle {\overline {r_{cf}}}}\) is the average value of all feature-classification correlations, and \({\displaystyle {\overline {r_{ff}}}}\) is the average value of all feature-feature correlations.</p>
+
+<p>The <strong>CFS criterion</strong> is defined as follows:</p>
+<p>$$\mathrm {CFS} =\max _{S_{k}}\left[{\frac {r_{cf_{1}}+r_{cf_{2}}+\cdots +r_{cf_{k}}}{\sqrt {k+2(r_{f_{1}f_{2}}+\cdots +r_{f_{i}f_{j}}+\cdots +r_{f_{k}f_{1}})}}}\right]$$</p>
+
+<p><br /></p>
+
+<h3 id="feature-selection-embedded-in-learning-algorithms"><strong style="color: SteelBlue; font-size: 1.15em" class="bodyContents2" id="bodyContents23">Feature Selection Embedded in Learning Algorithms</strong></h3>
+<ul>
+  <li>\(l_{1}\)-regularization techniques, such as sparse regression, LASSO, and \({\displaystyle l_{1}}\)-SVM</li>
+  <li>Regularized trees, e.g. regularized random forest implemented in the RRF package</li>
+  <li>Decision tree</li>
+  <li>Memetic algorithm</li>
+  <li>Random multinomial logit (RMNL)</li>
+  <li>Auto-encoding networks with a bottleneck-layer</li>
+  <li>Submodular feature selection</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="information-theory-based-feature-selection-mechanisms"><strong style="color: SteelBlue; font-size: 1.15em" class="bodyContents2" id="bodyContents24">Information Theory Based Feature Selection Mechanisms</strong></h3>
+<p>There are different Feature Selection mechanisms around that <strong>utilize mutual information for scoring the different features</strong>.<br />
+They all usually use the same algorithm:</p>
+<ol>
+  <li>Calculate the mutual information as score for between all features (\({\displaystyle f_{i}\in F}\)) and the target class (\(c\))</li>
+  <li>Select the feature with the largest score (e.g. \({\displaystyle argmax_{f_{i}\in F}(I(f_{i},c))}\)) and add it to the set of selected features (\(S\))</li>
+  <li>Calculate the score which might be derived form the mutual information</li>
+  <li>Select the feature with the largest score and add it to the set of select features (e.g. \({\displaystyle {\arg \max }_{f_{i}\in F}(I_{derived}(f_{i},c))}\))</li>
+  <li>Repeat 3. and 4. until a certain number of features is selected (e.g. \({\displaystyle \vert S\vert =l}\))</li>
+</ol>
+
+<!-- <br> ### **Asynchronous**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents2 #bodyContents25}  
+### **Asynchronous**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents2 #bodyContents26}   -->
+
+<hr />
+<hr />
+
+<h2 style="font-size: 1.60em" id="content3">Feature Extraction</h2>
+
+<h3 id="feature-extraction"><strong style="color: SteelBlue; font-size: 1.15em" class="bodyContents3" id="bodyContents31">Feature Extraction</strong></h3>
+<p><strong>Feature Extraction</strong> starts from an initial set of measured data and builds derived values (features) intended to be informative and non-redundant, facilitating the subsequent learning and generalization steps, and in some cases leading to better human interpretations.</p>
+
+<p>In <strong>dimensionality reduction</strong>, feature extraction is also called <strong>Feature Projection</strong>, which is a method that transforms the data in the high-dimensional space to a space of fewer dimensions. The data transformation may be linear, as in principal component analysis (PCA), but many nonlinear dimensionality reduction techniques also exist.</p>
+
+<p id="lst-p"><strong style="color: red">Methods/Algorithms:</strong></p>
+<ul>
+  <li>Independent component analysis</li>
+  <li>Isomap</li>
+  <li>Kernel PCA</li>
+  <li>Latent semantic analysis</li>
+  <li>Partial least squares</li>
+  <li>Principal component analysis</li>
+  <li>Autoencoder</li>
+  <li>Linear Discriminant Analysis (LDA)</li>
+  <li>Non-negative matrix factorization (NMF)</li>
+</ul>
+
+<p><br /></p>
+
+<!-- ### ****{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents3 #bodyContents32}  
+### ****{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents3 #bodyContents33}   -->
+
+<ul>
+  <li><a href="https://heartbeat.fritz.ai/how-to-make-your-machine-learning-models-robust-to-outliers-44d404067d07">How to Make Your Machine Learning Models Robust to Outliers (Blog!)</a></li>
+</ul>
+
+<p><a href="https://en.wikipedia.org/wiki/Outlier#Working_with_outliers">Outliers</a><br />
+<a href="https://en.wikipedia.org/wiki/Robust_statistics#Replacing_outliers_and_missing_values">Replacing Outliers</a><br />
+<a href="https://en.wikipedia.org/wiki/Data_transformation_(statistics)">Data Transformation - Outliers - Standardization</a><br />
+<a href="https://hadrienj.github.io/posts/Preprocessing-for-deep-learning/">PreProcessing in DL - Data Normalization</a><br />
+<a href="https://towardsdatascience.com/the-complete-beginners-guide-to-data-cleaning-and-preprocessing-2070b7d4c6d">Imputation and Feature Scaling</a><br />
+<a href="https://en.wikipedia.org/wiki/Missing_data#Techniques_of_dealing_with_missing_data">Missing Data - Imputation</a><br />
+<a href="https://en.wikipedia.org/wiki/Random_projection">Dim-Red - Random Projections</a><br />
+<a href="https://en.wikipedia.org/wiki/Relief_(feature_selection)">F-Selection - Relief</a><br />
+<a href="https://www.statisticshowto.datasciencecentral.com/box-cox-transformation/">Box-Cox Transf - outliers</a><br />
+<a href="https://en.wikipedia.org/wiki/Analysis_of_covariance">ANCOVA</a><br />
+<a href="https://www.analyticsvidhya.com/blog/2016/12/introduction-to-feature-selection-methods-with-an-example-or-how-to-select-the-right-variables/">Feature Selection Methods</a></p>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

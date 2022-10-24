@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">4.2 <br /> Richardson's Extrapolation</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/school/4 class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Extrapolation</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Deriving n-point Formulas with Extrapolation</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">Extrapolation</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?</strong> <br />
+    <ul>
+      <li>Extrapolation that is used to generate high-accuracy results while using low-order
+ formulas.</li>
+      <li>Extrapolation can be applied whenever it is known that an approximation technique
+ has an error term with a predictable form, one that depends on a parameter, usually the step
+ size \(h\).</li>
+      <li>Suppose that for each number \(h \neq 0\) we have a formula \(N_1(h)\) that approximates an
+ unknown constant \(M\), and that the truncation error involved with the approximation has the
+ form,<br />
+ \(M − N_1(h) = K_1h + K_2h^2 + K_3h^3 +··· ,\)<br />
+ for some collection of (unknown) constants \(K_1, K_2, K_3, ...\) .</li>
+      <li>The <strong>truncation error</strong> is <em>\(O(h)\)</em>, so unless there was a large variation in magnitude among the constants \(K_1, K_2, K_3, ... ,\)<br />
+ \(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ M − N_1(0.1) \approx 0.1K_1,\ \ \ \ \ \ \ \ M − N_1(0.01) \approx 0.01K_1,\)<br />
+ and, in general,<br />
+ \(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ M − N_1(h) \approx K_1h\) .</li>
+      <li>The object of extrapolation is to find an easy way to combine these rather inaccurate
+ \(O(h)\) approximations in an appropriate way to produce formulas with a higher-order
+ truncation error.</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Why?</strong> <br />
+    <ul>
+      <li><strong>We can</strong> combine the \(N_1(h)\) formulas to <strong>produce an \(\mathcal{O}(h^2)\)
+ approximation formula, \(N_2(h)\), for \(M\)</strong> with<br />
+ \(M − N_2(h) = \hat{K}_2h^2 + \hat{K}_3h^3 +···\) ,<br />
+ for some, again unknown, collection of constants \(\hat{K}_2, \hat{K}_3, ...\).<br />
+ Then we would have<br />
+ \(M − N_2(0.1) \approx 0.01\hat{K}_2, M − N_2(0.01) \approx 0.0001\hat{K}_2,\)</li>
+      <li>If the constants \(K_1\) and \(\hat{K}_2\) are roughly of the same magnitude, then the \(N_2(h)\) approximations would be much better than the corresponding \(N_1(h)\) approximations.</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">The \(\mathcal{O}(h)\) formula for approximating \(M\):</strong> <br />
+    <blockquote>
+      <p><strong>The First Formula:</strong><br />
+ <img src="/main_files/128a/4/4.2/1.png" alt="formula" width="70%" /></p>
+    </blockquote>
+
+    <blockquote>
+      <p><strong>The Second Formula:</strong><br />
+ <img src="/main_files/128a/4/4.2/2.png" alt="formula" width="70%" /></p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">The \(\mathcal{O}(h^2)\) approximation formula for M:</strong> <br />
+ <img src="/main_files/128a/4/4.2/3.png" alt="formula" width="70%" /><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/4/4.2/derivation.png" alt="formula" width="80%" hidden="" /></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">When to apply Extrapolation?</strong> <br />
+    <blockquote>
+      <p>Extrapolation can be applied whenever the truncation error for a formula has the form:<br />
+ <img src="/main_files/128a/4/4.2/4.png" alt="formula" width="26%" /></p>
+    </blockquote>
+
+    <blockquote>
+      <p>for a collection of constants \(K_j\) and when \(\alpha_1 &lt; \alpha_2 &lt; \alpha_3 &lt; ··· &lt; \alpha_m\).</p>
+    </blockquote>
+
+    <blockquote>
+      <p>The extrapolation is much more effective than when all powers of \(h\) are present because the averaging process produces results with errors \(\mathcal{O}(h^2), \mathcal{O}(h^4), \mathcal{O}(h^6), ...\), with essentially no increase in computation, over the results with errors, \(\mathcal{O}(h), \mathcal{O}(h^2), \mathcal{O}(h^3), ...\) .</p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">The \(\mathcal{O}(h^4)\) formula for approximating \(M\):</strong> <br />
+ <img src="/main_files/128a/4/4.2/5.png" alt="formula" width="60%" />
+    <blockquote>
+      <p><a href="#bodyContents18">Derivation below</a></p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">The \(\mathcal{O}(h^6)\) formula for approximating \(M\):</strong> <br />
+ <img src="/main_files/128a/4/4.2/6.png" alt="formula" width="58%" />
+    <blockquote>
+      <p><a href="#bodyContents18">Derivation below</a></p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">The \(\mathcal{O}(h^{2j})\) formula for approximating \(M\):</strong> <br />
+ <img src="/main_files/128a/4/4.2/7.png" alt="formula" width="50%" /><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/4/4.2/derivation2.jpg" alt="formula" width="80%" hidden="" /></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents19">The Order the Approximations Generated:</strong> <br />
+ <img src="/main_files/128a/4/4.2/8.png" alt="formula" width="58%" />
+    <blockquote>
+      <p>It is conservatively assumed that the true result is accurate at least to within the agreement of the bottom two results in the diagonal, in this case, to within<br />
+ \(|N_3(h) − N_4(h)|\).</p>
+    </blockquote>
+
+    <p><img src="/main_files/128a/4/4.2/9.png" alt="formula" width="50%" /></p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Deriving n-point Formulas with Extrapolation</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Deriving Five-point Formula:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/128a/4/4.2/derivation3.jpg" alt="formula" width="80%" hidden="" /></li>
+</ol>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

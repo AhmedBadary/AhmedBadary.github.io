@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Soft-Margin Support Vector Machines <br /> The SVM</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/ml.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Introduction</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">The Soft-Margin SVM</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">An Equivalent Formulation</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">Further Analysis</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<p id="lst-p"><strong style="color: red">Notes:</strong></p>
+<ul>
+  <li>There’s a “sweet spot” for an RBF SVM:
+    <ul>
+      <li>500-10k samples</li>
+      <li>300–10k features</li>
+      <li>all features are expected to have similar information content / scale
+<br /></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="content1">Introduction</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Why another SVM? (i.e. The Problem)</strong></dt>
+      <dd>The Hard-Margin SVM faces a few issues:
+        <ol>
+          <li>The Hard-Margin SVM fails if the data is not linearly separable.</li>
+          <li>The Hard-Margin SVM is quite sensetive to outliers</li>
+        </ol>
+      </dd>
+      <dd>The Soft-Margin SVM aims to fix/reconcile these problems.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">The solution:</strong></dt>
+      <dd>Allow some points to violate the margin, by introducing slack variables.</dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">The Soft-Margin SVM</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Procedure:</strong><br />
+ (1) Use a linear classifier<br />
+ (2) But, Maximize the Margin<br />
+ (3) Do so by Minimizing \(\|w\|\)<br />
+ (4) But allow some points to penetrate the margin</p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25"><em>Modified</em> Constraints:</strong>
+    <p>$$y_i(wX_i + b) \geq 1 - \zeta_i, \forall i \in [1,n]$$</p>
+    <p>where the \(\zeta_i\)s are slack variables.<br />
+ We, also, enforce the non-negativity constraint on the slack variables:</p>
+    <p>$$\zeta_i \geq 0, \:\:\: \forall i \in [1, n]$$</p>
+
+    <blockquote>
+      <p>The non-negativity constraint forces the slack variables to be zero for all points that do not violate the original constraint:</p>
+      <blockquote>
+        <p>i.e. are not inside the slab.</p>
+      </blockquote>
+    </blockquote>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24"><em>Modified</em> Objective (cost) Function:</strong></dt>
+      <dd>
+\[R(w) = \dfrac{1}{2} w^Tw + C \sum_{i=1}^n \zeta_i\]
+      </dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">The Optimization Problem:</strong><br />
+ Find weights ‘\(w\)’, scalar ‘\(b\)’, and \(\zeta_i\)s that minimize
+    <p>$$ \dfrac{1}{2} w^Tw + C \sum_{i=1}^n \zeta_i$$</p>
+    <p>Subject to</p>
+    <p>$$y_i(wX_i + b) \geq 1 - \zeta_i, \zeta_i \geq 0, \forall i \in [1,n]$$</p>
+    <p>Formally,</p>
+    <p>$$\min_w \dfrac{1}{2}w^Tw \:\:\: : \:\: y_i(wX_i + b) \geq 1 - \zeta_i, \zeta_i \geq 0, \forall i \in [1,n]$$</p>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Optimization Methods:</strong></dt>
+      <dd>The SVM optimization problem reduces to a <a href="work_files/research/conv_opt/3_3">Quadratic Program</a> in \(d + n + 1\)-dimensions and \(2n\)-constraints.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Effects of the <em>Regularization Hyperparameter</em> (\(C\)):</strong></dt>
+      <dd>
+        <table>
+          <tbody>
+            <tr>
+              <td> </td>
+              <td><strong>Small C</strong></td>
+              <td><strong>Large C</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Desire</strong></td>
+              <td>Maximizing Margin = \(\dfrac{1}{|w|}\)</td>
+              <td>keep most slack variables zero or small</td>
+            </tr>
+            <tr>
+              <td><strong>Danger</strong></td>
+              <td>underfitting (High Misclassification)</td>
+              <td>overfitting (awesome training, awful test)</td>
+            </tr>
+            <tr>
+              <td><strong>outliers</strong></td>
+              <td>less sensitive</td>
+              <td>very sensitive</td>
+            </tr>
+            <tr>
+              <td><strong>boundary</strong></td>
+              <td>more “flat”</td>
+              <td>more sinuous</td>
+            </tr>
+          </tbody>
+        </table>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>The last row only applies to nonlinear decision boundaries.</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <ul>
+          <li>We choose ‘\(C\)’ with cross-validation.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<h2 id="content3">An Equivalent Formulation</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Introduction:</strong></dt>
+      <dd>In the current SVM model, we are optimizing the objective \(R(w) = \dfrac{1}{2} w^Tw + C \sum_{i=1}^n \zeta_i\), which looks like an \(l_2\) regularization on the weights and an \(l_1\) regularization on the slack variables.</dd>
+      <dd>However, usually in function estimation we prefer the standard-form objective  to minimize (and trade-off); the loss + penalty form.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Modified Loss Function:</strong></dt>
+      <dd>We introduce a loss function to moderate the use of the slack variables (i.e. to avoid abusing the slack variables).</dd>
+      <dd>But first we motivate it by comparing it to the traditional \(0-1\) Loss function.<br />
+Notice that the \(0-1\) loss is actually non-convex. It has an infinite slope at \(0\).<br />
+On the other hand, the hinge loss is actually convex.</dd>
+      <dd>The hinge loss:</dd>
+      <dd>
+\[{\displaystyle \max \left(0, 1-y_{i}({\vec {w}}\cdot {\vec {x}}_{i}-b)\right).}\]
+      </dd>
+      <dd>This function is zero if the constraint, \(y_{i}({\vec {w}}\cdot {\vec {x}}_{i}-b)\geq 1\), is satisfied, in other words, if \({\displaystyle {\vec {x}}_{i}} {\vec {x}} _ {i}\) lies on the correct side of the margin.<br />
+For data on the wrong side of the margin, the function’s value is proportional to the distance from the margin.</dd>
+      <dd>All of the above suggests that this loss function is ideal for binary classification as it doesn’t penalize correct classification at all.
+        <blockquote>
+          <p>which is something we are seeking for classification as opposed to regression.</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Modified Objective Function:</strong></dt>
+      <dd>
+\[R(w) = \dfrac{\lambda}{2} w^Tw +  \sum_{i=1}^n {\displaystyle \max \left(0, 1-y _ {i}({\vec {w}}\cdot {\vec {x}} _ {i}-b)\right)}\]
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Proof of Equivalence:</strong></dt>
+      <dd>Here we show that the two objectives to optimize for the SVM are actually equivalent.</dd>
+      <dd>
+\[\begin{align}
+    y_if\left(x_i\right) &amp; \ \geq 1-\zeta_i, &amp; \text{from 1st constraint } \\
+    \implies \zeta_i &amp; \ \geq 1-y_if\left(x_i\right) \\
+    \zeta_i &amp; \ \geq 1-y_if\left(x_i\right) \geq 0, &amp; \text{from 2nd positivity constraint on} \zeta_i \\
+    \iff \zeta_i &amp; \ \geq \max \{0, 1-y_if\left(x_i\right)\} \\
+    \zeta_i &amp; \ = \max \{0, 1-y_if\left(x_i\right)\}, &amp; \text{minimizing means } \zeta_i \text{reach lower bound}\\
+    \implies R(w) &amp; \ = \dfrac{\lambda}{2} w^Tw +  \sum_{i=1}^n {\displaystyle \max \left(0, 1-y _ {i}({\vec {w}}\cdot {\vec {x}} _ {i}-b)\right)}, &amp; \text{plugging in and multplying } \lambda = \dfrac{1}{C}
+    \end{align}\]
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">The Optimization Problem:</strong></dt>
+      <dd>Find weights ‘\(w\)’ and scalar ‘\(b\)’ that minimize</dd>
+      <dd>
+\[\dfrac{\lambda}{2} w^Tw +  \sum_{i=1}^n {\displaystyle \max \left(0, 1-y _ {i}({\vec {w}}\cdot {\vec {x}} _ {i}-b)\right)}\]
+      </dd>
+      <dd>Subject to</dd>
+      <dd>
+\[y_i(wX_i + b) \geq 1 - \zeta_i, \zeta_i \geq 0, \forall i \in [1,n]\]
+      </dd>
+      <dd>Formally,</dd>
+      <dd>
+\[\min_{w, b}\dfrac{\lambda}{2} w^Tw +  \sum_{i=1}^n {\displaystyle \max \left(0, 1-y _ {i}({\vec {w}}\cdot {\vec {x}} _ {i}-b)\right)}, \:\: \forall i \in [1,n]\]
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<h2 id="content4">Further Analysis</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Generalization:</strong></dt>
+      <dd>We notice that, geometrically, the hyperplane (the maximum margin classifier) is completely characterized by the <em>support vectors</em> (the vectors that lie on the margin).</dd>
+      <dd>A very important conclusion arises.<br />
+The maximum margin classifier (SVM) depends <strong>only</strong> on the number of support vectors and <strong><em>not</em></strong> on the dimension of the problem.<br />
+This implies that the computation doesn’t scale up with the dimension and, also implies, that <strong>the <em>kernel trick</em> works very well</strong>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Properties:</strong></dt>
+      <dd>
+        <ol>
+          <li>In addition to performing linear classification, SVMs can efficiently perform a non-linear classification using what is called the kernel trick, implicitly mapping their inputs into high-dimensional feature spaces.</li>
+          <li>The hyperplane is determined solely by its support vectors.</li>
+          <li>The SVM always converges on linearly separable data.</li>
+          <li>The Soft-Margin SVM will converge on non-linearly separable data.</li>
+        </ol>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+<hr />
+<hr />
+
+<p><strong style="color: red">Extra info to be added:</strong><br />
+Requiring the Margin to be bigger, puts a restriction on the growth function (i.e. the number of possible dichotomies). So, fewer VC dimension.</p>
+
+<ul>
+  <li><a href="https://arxiv.org/pdf/1306.0239.pdf">Deep Learning with SVM</a></li>
+</ul>
+
+<p><strong>Why \(w\) is Orthogonal to the plane:</strong> <br />
+    img</p>
+
+<p>The number of non-zero paramters in a model correspond to the VC dimension</p>
+
+<p>Normalizing \(w\),</p>
+
+<p>Observations:</p>
+<ol>
+  <li>Normalize \(w\):<br />
+ The Hyperplane, \(\mathbf{w}^{\top} \mathbf{x}=0\) (which is, incidentally, the <em>signal</em>), defined by \(w\) is scale invariant to \(w\); since you can multiply \(w\) by any scalar and the equation of the plane will still hold. Thus, you can normalize it by dividing by a scalar.<br />
+ So, we choose \(w\) (by normalizing/scaling it) such that the following equation holds for the variable \(\mathbf{x}_ n\):
+    <p>$$\left|\mathbf{w}^{\top} \mathbf{x}_ {n}\right|=1$$</p>
+  </li>
+</ol>
+
+<p>Effect of the gamma hyperparam in RBF kernel:
+    The gamma parameter in SVM tuning signifies the influence of points either near or far away from the hyperplane.
+    For a low gamma, the model will be too constrained and include all points of the training dataset, without really capturing the shape.
+    For a higher gamma, the model will capture the shape of the dataset well.</p>
+
+<p>Bias = Underfit = low complexity (model)
+Variance = Overfit = high complexity</p>
+
+<p>Regularization reduce overfitting = reduce variance = simplify model = increase bias</p>
+
+<p>Increase C hparam in SVM = reduce underfitting</p>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

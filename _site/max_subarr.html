@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+<nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">The Generalized Max Sub-Array Problem</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/work_files/school.html" class="btn">12/06/2017</a>
+  <a href="/work_files/school/128a.html" class="btn">AiFi</a>
+  <a href=/work_files/research/conv_opt.html class="btn">Steve Gu</a>
+</section>
+
+<!--  -->
+
+
+    <section class="main-content">
+      
+      <h1 id="max-sum-sub-array-1-d">Max sum sub-array (1-D)</h1>
+
+<h2 style="color: SteelBlue" id="brute-force"><strong>Brute Force</strong></h2>
+
+<p>Simply, we have to check all the possible combinations of (contiguous) subarrays.<br />
+We achieve that by a double for loop that grows the size of the subarray and moves it along while keeping track of the max sum and the respective indices that achieved the maximum value.</p>
+
+<p><strong><em>Runtime:</em></strong> \(\mathcal{O}(n^2)\)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_subarr</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">max_sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ind_i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ind_j</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+            <span class="n">total</span> <span class="o">+=</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">total</span> <span class="o">&gt;</span> <span class="n">max_sum</span><span class="p">:</span>
+                <span class="n">max_sum</span> <span class="o">=</span> <span class="n">total</span>
+                <span class="n">ind_i</span> <span class="o">=</span> <span class="n">i</span>
+                <span class="n">ind_j</span> <span class="o">=</span> <span class="n">j</span>
+</code></pre></div></div>
+
+<h2 style="color: SteelBlue" id="recursion"><strong>Recursion</strong></h2>
+
+<p>We could approach this problem from a recrusive perspective by dividing the problem into sub-problems.<br />
+We utilize an idea from “MergeSort” and break the array into sub-arrays of which we compute and compare their sums. then we save the sub-array that has the max sum.<br />
+We finally compare that to the sub-array that includes both halves overlapping in the middle.</p>
+
+<p><strong><em>Runtime:</em></strong> \(\mathcal{O}(n)\)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_subarr</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">start_ind</span><span class="p">,</span> <span class="n">end_ind</span><span class="p">):</span>
+    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">start_ind</span> <span class="o">+</span> <span class="n">end_ind</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">l_sum</span><span class="p">,</span> <span class="n">l_i</span><span class="p">,</span> <span class="n">l_j</span> <span class="o">=</span> <span class="n">max_subarr</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">start_ind</span><span class="p">,</span> <span class="n">mid</span><span class="p">)</span>
+    <span class="n">r_sum</span><span class="p">,</span> <span class="n">l_i</span><span class="p">,</span> <span class="n">r_j</span> <span class="o">=</span> <span class="n">max_subarr</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">end_ind</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">minPLeft</span><span class="p">,</span> <span class="n">minPRight</span><span class="p">)</span> <span class="c1"># Min of the sums in [start−1, ..., end−1]
+</span>    <span class="n">j</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">maxPLeft</span><span class="p">,</span> <span class="n">maxPRight</span><span class="p">)</span> <span class="c1"># Max of the sums in [start, ..., end]
+</span>    <span class="n">c_sum</span> <span class="o">=</span> <span class="n">r_j</span> <span class="o">-</span> <span class="n">l_i</span> <span class="c1"># Considering the center and overlap
+</span>    <span class="n">M</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">l_sum</span><span class="p">,</span> <span class="n">r_sum</span><span class="p">,</span> <span class="n">c_sum</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">M</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
+</code></pre></div></div>
+
+<h2 style="color: SteelBlue" id="dynamic-programming"><strong>Dynamic Programming</strong></h2>
+
+<p>We smartly look at all the sets of subarrays that end with a given index “\(i\)”. If we can do that effeciently enough then we will be able to replicate the performance of the recursive algorithm.</p>
+
+<p>Let \(A_i\) be  the maximum subarray sum ending at position \(i\).<br />
+Now, we consider the sub-problem, what does \(A_{i+1}\) equal to? what if I already have the solution to \(A_i\)?<br />
+Simply,</p>
+<p> $${\displaystyle A_{i+1}=max(A[i+1] + A_{i}, A[i+1])} {\displaystyle=max(A_{i+1},A_{i+1}+B_{i})}$$</p>
+<blockquote>
+  <p>i.e. The maximum subarray sum ending at position \(i+1\) either will be the singlton element at the \(i+1\)-st position or will be that added to the maximum subarray sum ending at position \(i\), \(A_i\).</p>
+</blockquote>
+
+<p>Now, if we realize that all we need is to consider the ending indices is just to go over the whole array and grow as needed, we realize that we can do it all in one pass!<br />
+\(\implies\)</p>
+
+<p><strong><em>Runtime:</em></strong> \(\mathcal{O}(n)\)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_subarr</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">grow_el</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">max_sum</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">j</span> <span class="o">=</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">c</span> <span class="k">if</span> <span class="n">max_sum</span> <span class="o">&lt;</span> <span class="n">grow_el</span> <span class="k">else</span> <span class="k">pass</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="k">if</span> <span class="n">max_sum</span> <span class="o">&lt;</span> <span class="n">grow_el</span> <span class="k">else</span> <span class="k">pass</span>
+        <span class="n">grow_el</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span> <span class="n">grow_el</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">ind</span><span class="p">])</span>
+        <span class="n">max_sum</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_sum</span><span class="p">,</span> <span class="n">grow_el</span><span class="p">)</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="k">if</span> <span class="n">grow_el</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="k">pass</span>
+    <span class="k">return</span> <span class="n">max_sum</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="max-sum-sub-matrix-2-d">Max sum sub-matrix (2-D)</h1>
+
+<h2 style="color: SteelBlue" id="brute-force-1"><strong>Brute Force</strong></h2>
+
+<p>In the 2D case, we could still use a naive approach and try all the possible kernel sizes and just compute a convolution amongst all these kernels.<br />
+We will need to make all the possible kernel sizes, there are \(n^4\) of them. For each one of those we need to compute a convolution over the whole matrix, which in turn takes \(\mathcal{O}(n^2)\), <br />
+\(\implies\)</p>
+
+<p><strong><em>Runtime:</em></strong> \(\mathcal{O}(n^6)\)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_submat</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">max_sum</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="n">MIN_VALUE</span><span class="p">;</span>
+    <span class="n">max_ri</span> <span class="o">=</span> <span class="n">max_ci</span> <span class="o">=</span> <span class="n">max_rj</span> <span class="o">=</span> <span class="n">max_cj</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">for</span> <span class="n">ri</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">ci</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+            <span class="k">for</span> <span class="n">rj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+                <span class="k">for</span> <span class="n">cj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+                    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rj</span><span class="p">):</span>
+                        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cj</span><span class="p">):</span>
+                            <span class="nb">sum</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">max_sum</span> <span class="o">&lt;</span> <span class="nb">sum</span><span class="p">:</span>
+                        <span class="n">max_sum</span> <span class="o">=</span> <span class="nb">sum</span>
+                        <span class="n">max_ri</span> <span class="o">=</span> <span class="n">ri</span>
+                        <span class="n">max_ci</span> <span class="o">=</span> <span class="n">ci</span>
+                        <span class="n">max_rj</span> <span class="o">=</span> <span class="n">rj</span>
+                        <span class="n">max_cj</span> <span class="o">=</span> <span class="n">cj</span>
+    <span class="k">return</span> <span class="n">max_sum</span>
+</code></pre></div></div>
+
+<h2 style="color: SteelBlue" id="dynamic-programming-1"><strong>Dynamic Programming</strong></h2>
+
+<p>If we wanted to exploit the optimal substructure approach, then we could utilize a dynamic programming solution that checks every sub-matrix starting at row \(r1\) to \(r2\) and cols \(c1\) to \(c2\), calculates the sums for each sub-matrix, and updating the parameters as needed.</p>
+
+<p>The summation operation on “\(n\)” numbers is actually a linear time operation, and not constant as opposed to what a lot of people actually think. To avoid the problem of summing a huge matrix, we need to compute something called a <em>sum_Matrix</em>, also known as <em>Prefix Sums</em>.<br />
+The sum-Matrix will include all the sums in the matrix in such a way that computing the sum of any arbitrary subset in the matrix is still only one operation, reducing it to constant time.
+Namely, for this matrix,</p>
+<p> $$
+    \left[ \begin{array}{ccc}   a &amp; d &amp; g \\ b &amp; e &amp; h \\ c &amp; f &amp; i
+     \end{array} \right] \rightarrow \left[ \begin{array}{ccc}   a &amp; d &amp; g \\ a+b &amp; d+e &amp; g+h \\ a+b+c &amp; d+e+f &amp; g+h+i
+     \end{array} \right]
+     $$
+</p>
+<p>\(\implies\)</p>
+
+<p><strong><em>Runtime:</em></strong> \(\mathcal{O}(n^4)\) <br />
+<strong><em>Space-Complexity:</em></strong> \(\mathcal{O}(n^2)\)</p>
+
+<blockquote>
+  <p>Let us assume that we precomputed the sum-matrix and called it <code class="language-plaintext highlighter-rouge">sum_Matrix</code>.</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_submat</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">max_sum</span> <span class="o">=</span> <span class="n">MIN_VALUE</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="mi">0</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">))]</span>
+
+
+    <span class="k">for</span> <span class="n">r1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">r2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">A</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="k">for</span> <span class="n">c1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="k">for</span> <span class="n">c2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">c2</span><span class="p">,</span> <span class="n">A</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                    <span class="n">max_sum</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_sum</span><span class="p">,</span> <span class="n">max_sum_subarr</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">max_sum</span>
+
+<span class="k">def</span> <span class="nf">sum_mat</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">r1</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">c1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">sum_Matrix</span><span class="p">[</span><span class="n">r2</span><span class="p">][</span><span class="n">c2</span><span class="p">]</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="n">r1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">sum_Matrix</span><span class="p">[</span><span class="n">r2</span><span class="p">][</span><span class="n">c2</span><span class="p">]</span> <span class="o">-</span> <span class="n">sum_Matrix</span><span class="p">[</span><span class="n">r2</span><span class="p">][</span><span class="n">c1</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="n">c1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">sum_Matrix</span><span class="p">[</span><span class="n">r2</span><span class="p">][</span><span class="n">c2</span><span class="p">]</span> <span class="o">-</span> <span class="n">sum_Matrix</span><span class="p">[</span><span class="n">r1</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">c2</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">sum_Matrix</span><span class="p">[</span><span class="n">r2</span><span class="p">][</span><span class="n">c2</span><span class="p">]</span> <span class="o">-</span> <span class="n">sum_Matrix</span><span class="p">[</span><span class="n">r2</span><span class="p">][</span><span class="n">c1</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span> <span class="n">sum_Matrix</span><span class="p">[</span><span class="n">r1</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">c2</span><span class="p">]</span> <span class="o">+</span> <span class="n">sum_Matrix</span><span class="p">[</span><span class="n">r1</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">c1</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h2 style="color: SteelBlue" id="dynamic-programming-with-max-subarray-solution"><strong>Dynamic Programming with max subarray solution</strong></h2>
+
+<p>We could, also, utilize the solution to the “<em>Max Sub-Array Problem (1D)</em>”, known as <em>kadanes’ algorithm</em>, by finding sub-solutions to each column and then growing the matrix and keeping track of the paramteres that allows the overall sum to grow.<br />
+If we pre-compute the matrix sums (for matrices with size \(&gt; 10^4\)) then we will only need to perform the kadanes algorithm once for every iteration over the columns, where we repeat the operation for each column, assuming we start at the subsequent one everytime.<br />
+Now, since the sub-algorithm is only \(\mathcal{O}(n)\) and we only have to run it \(n^2\) times,    <br />
+\(\implies\)</p>
+
+<p><strong><em>Runtime:</em></strong> \(\mathcal{O}(n^3)\)<br />
+<strong><em>Space-Complexity:</em></strong> \(\mathcal{O}(n^2)\)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_submat</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">max_sum</span> <span class="o">=</span> <span class="n">MIN_VALUE</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="mi">0</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">))]</span>
+
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">A</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">c</span><span class="p">]</span>
+        <span class="n">max_sum</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_sum</span><span class="p">,</span> <span class="n">max_sum_subarr</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">max_sum</span>
+</code></pre></div></div>
+
+<h2 style="color: SteelBlue" id="branch-and-bound-method"><strong>Branch and Bound Method</strong></h2>
+
+<p>Here I will explore the unique approach of replacing the sliding-window search with a different search method, namely, <em>Branch and Bound</em> search.<br />
+The default quality function is to use a spatial pyramid kernel with levels of size 1x1, 2x2 … NxN where N can be chosen at 
+runtime. Default is N=1, i.e. bag-of-visual-words model.<br />
+\(\implies\)</p>
+
+<p><strong><em>Runtime:</em></strong> \(\mathcal{O}(n^3) \:\:\:,\:\:\: \mathcal{\Omega}(n^2)\)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="n">Structure</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="n">c_double</span>
+<span class="kn">from</span> <span class="nn">numpy.ctypeslib</span> <span class="kn">import</span> <span class="n">load_library</span><span class="p">,</span> <span class="n">ndpointer</span>
+
+<span class="c1"># Box_struct courtesy:
+# https://github.com/npinto
+</span><span class="k">class</span> <span class="nc">Box_struct</span><span class="p">(</span><span class="n">Structure</span><span class="p">):</span>
+        <span class="s">"""Structure to hold left,top,right,bottom and score of a box instance.
+           The fields have to coincide with the C-version in pyramid_search.h
+        """</span>
+        <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[(</span><span class="s">"left"</span><span class="p">,</span> <span class="n">c_int</span><span class="p">),</span> 
+                    <span class="p">(</span><span class="s">"top"</span><span class="p">,</span> <span class="n">c_int</span><span class="p">),</span> 
+                    <span class="p">(</span><span class="s">"right"</span><span class="p">,</span> <span class="n">c_int</span><span class="p">),</span> 
+                    <span class="p">(</span><span class="s">"bottom"</span><span class="p">,</span> <span class="n">c_int</span><span class="p">),</span> 
+                    <span class="p">(</span><span class="s">"score"</span><span class="p">,</span> <span class="n">c_double</span><span class="p">)</span> <span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">pyramid</span><span class="p">(</span><span class="n">n_pts</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">,</span> <span class="n">cluster</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">lvls</span><span class="p">,</span> <span class="n">weights</span><span class="p">):):</span>
+    <span class="n">pyramidlib</span> <span class="o">=</span> <span class="n">load_library</span><span class="p">(</span><span class="s">"libess.so"</span><span class="p">,</span><span class="s">"."</span><span class="p">)</span>
+    <span class="n">pyramidlib</span><span class="p">.</span><span class="n">pyramid_search</span><span class="p">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">Box_struct</span>
+    <span class="n">pyramidlib</span><span class="p">.</span><span class="n">pyramid_search</span><span class="p">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">c_int</span><span class="p">,</span><span class="n">c_int</span><span class="p">,</span><span class="n">c_int</span><span class="p">,</span>        
+            <span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">c_double</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s">'C_CONTIGUOUS'</span><span class="p">),</span>
+            <span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">c_double</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s">'C_CONTIGUOUS'</span><span class="p">),</span>
+            <span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">c_double</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s">'C_CONTIGUOUS'</span><span class="p">),</span>
+            <span class="n">c_int</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span>                                           
+            <span class="n">ndpointer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">c_double</span><span class="p">,</span> <span class="n">ndim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s">'C_CONTIGUOUS'</span><span class="p">)]</span>
+
+    <span class="n">box</span> <span class="o">=</span> <span class="n">pyramidlib</span><span class="p">.</span><span class="n">pyramid_search</span><span class="p">(</span><span class="n">n_pts</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> 
+                      <span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">,</span> <span class="n">cluster</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">lvls</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">box</span>
+
+<span class="k">def</span> <span class="nf">subwindow_search</span><span class="p">(</span><span class="n">n_pts</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">,</span> <span class="n">cluster</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">pyramid</span><span class="p">(</span><span class="n">n_pts</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">,</span> <span class="n">cluster</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<hr />
+<hr />
+
+<h1 id="final-thought-and-conclusions">Final Thought and Conclusions</h1>
+
+<h2 style="color: SteelBlue" id="regarding-my-answers-during-the-interview"><strong>Regarding my answers during the Interview</strong></h2>
+
+<ul>
+  <li>During the interview I was thinking of the dynamic programming approach of trying out the matrices and growing them in sizes after having precomputed their sum values.</li>
+  <li>I, also, tried exlporing the \(\mathcal{O}(n^3)\) after you discusses the 1D approach.</li>
+  <li>The branch and bound method is interesting but solves the problem from a different perspective.</li>
+</ul>
+
+<h2 style="color: SteelBlue" id="further-development"><strong>Further Development</strong></h2>
+
+<ul>
+  <li>
+    <p>I believe that the \(\mathcal{O}(n^3)\) utilizing Kadane algorithm could be improved by calling the algorithm only in the first loop (not the second) by smartly computing the overlapping values and going across cols then rows instead (two runs, i.e. constant).<br />
+  This will lead the algorithm to be \(\mathcal{O}(n^2)\) instead but the idea needs further exploration.</p>
+  </li>
+  <li>
+    <p>Another approach would be to rely on looking at the distribution of the numbers in the matrix (linear), then to sample smartly using an ML approach, perhaps by fitting a hough transform that detects large sum “chunks”.</p>
+  </li>
+</ul>
+
+<h2 style="color: SteelBlue" id="final-comments"><strong>Final Comments</strong></h2>
+
+<ul>
+  <li>I will be updating this post whenever I have time.</li>
+  <li>Code has been Unit-Tested and <em>most but not all</em> has been stress-tested with edge-cases.</li>
+</ul>
+
+<p class="message">Please note that all code and descriptions here were completely written by me. <br /> However, credit was given for the "C++" implementation of the "Box-Struct". <br /> All code, descriptions and explanations are under a public license <br /> Copyright (C) 2017 MIT</p>
+
+
+
+    </section>
+
+  </body>
+ 
+</html>
+

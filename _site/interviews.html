@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Interviews</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Algorithms</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Quantitative Analysis</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Strings</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">Algorithms</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Array Duplicates:</strong><br />
+ Given an array of n elements which contains elements from 0 to n-1, with any of these numbers appearing any number of times. Find these repeating numbers in O(n) and using only constant memory space.</p>
+
+    <ol>
+      <li>Mathematical Solution: \(O(n), O(1)\)
+        <ul>
+          <li>Traverse the given array from i= 0 to n-1 elements
+            <ul>
+              <li>Go to index arr[i]%n and increment its value by n.</li>
+            </ul>
+          </li>
+          <li>Now traverse the array again and print all those
+            <ul>
+              <li>indexes i for which arr[i]/n is greater than 1.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Indexes Solution: \(O(n), O(1)\)
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> traverse the list for i= 0 to n-1 elements
+ {
+   check for sign of A[abs(A[i])] ;
+   if positive then
+      make it negative by   A[abs(A[i])]=-A[abs(A[i])];
+   else  // i.e., A[abs(A[i])] is negative
+      this   element (ith element of list) is a repetition
+ }
+</code></pre></div>        </div>
+      </li>
+    </ol>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Re-Arranging Array Indexes:</strong><br />
+ Rearrange an array so that arr[i] becomes arr[arr[i]] with O(1) extra space
+    <ol>
+      <li>Mathematical Solution: \(O(n), O(1)\)
+        <ul>
+          <li>Increase every array element arr[i] by \((\text{arr}[\text{arr}[i]] % n) * n\).</li>
+          <li>Divide every element by \(n\).</li>
+        </ul>
+      </li>
+    </ol>
+
+    <blockquote>
+      <p>The idea is to store both numbers as the quotient and the remainder inside the array element</p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Two Sum Problem:</strong><br />
+ Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+    <ol>
+      <li><strong>HashTable:</strong> \(O(n), O(1)\) <br />
+ Iterate and inserting elements into the table, we also look back to check if current element’s complement already exists in the table. If it exists, we have found a solution and return immediately.</li>
+    </ol>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Permutations of an Array:</strong><br />
+ <strong>Key Idea:</strong></p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">_permute</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span> 
+     <span class="k">if</span> <span class="n">l</span><span class="o">==</span><span class="n">r</span><span class="p">:</span> 
+         <span class="n">results</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">copy</span><span class="p">())</span>
+     <span class="k">else</span><span class="p">:</span> 
+         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span> 
+             <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> 
+             <span class="n">_permute</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span> 
+             <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>
+            
+ <span class="k">def</span> <span class="nf">permute</span><span class="p">(</span><span class="n">arr</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+     <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+     <span class="n">_permute</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span>
+     <span class="k">return</span> <span class="n">results</span>
+</code></pre></div>    </div>
+
+    <p><strong>For strings:</strong></p>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">_permute</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">chosen</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span> 
+ <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span> 
+     <span class="c1"># results.append(a.copy())
+</span>     <span class="k">print</span><span class="p">(</span><span class="n">chosen</span><span class="p">)</span>
+ <span class="k">else</span><span class="p">:</span> 
+     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span>
+         <span class="c1"># Choose
+</span>         <span class="n">c</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+         <span class="n">chosen</span> <span class="o">+=</span> <span class="n">c</span>
+         <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+         <span class="c1"># Explore
+</span>         <span class="n">_permute</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">chosen</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span> 
+         <span class="c1"># UnChoose
+</span>         <span class="n">chosen</span> <span class="o">=</span> <span class="n">chosen</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+         <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">:]</span>
+            
+ <span class="k">def</span> <span class="nf">permute</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+     <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+     <span class="n">_permute</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span>
+     <span class="k">return</span> <span class="n">results</span>
+
+ <span class="n">permute</span><span class="p">(</span><span class="s">'abc'</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+    <p><strong>Generate permutation at index \(k\):</strong></p>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">getPermutation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+     <span class="s">"""
+     :type n: int
+     :type k: int
+     :rtype: str 
+     """</span>
+     <span class="n">k</span><span class="o">-=</span><span class="mi">1</span>
+     <span class="n">nl</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+     <span class="n">out</span> <span class="o">=</span> <span class="s">''</span>
+     <span class="k">while</span> <span class="n">n</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+         <span class="n">temp</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+         <span class="n">out</span><span class="o">+=</span><span class="nb">str</span><span class="p">(</span><span class="n">nl</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">k</span><span class="o">//</span><span class="n">temp</span><span class="p">))</span>
+         <span class="n">k</span> <span class="o">%=</span> <span class="n">temp</span>
+         <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+     <span class="k">return</span> <span class="n">out</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Hight/Depth of Tree:</strong><br />
+ Use DFS:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">visited</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">depth</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+     <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">.</span><span class="n">children</span><span class="p">:</span>
+         <span class="k">return</span> <span class="n">depth</span>
+     <span class="c1"># visited.append(root)
+</span>     <span class="n">max_depth</span> <span class="o">=</span> <span class="n">depth</span>
+     <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">root</span><span class="p">.</span><span class="n">children</span><span class="p">:</span>
+         <span class="c1"># 2 Lines below: only needed if graph is not a tree
+</span>         <span class="c1"># if node not in visited:
+</span>             <span class="c1"># max_depth = max(self.dfs(node, visited, depth+1), max_depth)
+</span>         <span class="n">max_depth</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">depth</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">max_depth</span><span class="p">)</span>
+     <span class="k">return</span> <span class="n">max_depth</span>
+        
+    
+ <span class="k">def</span> <span class="nf">maxDepth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="s">'Node'</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+     <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+         <span class="k">return</span> <span class="mi">0</span>
+     <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Pre-Order Traversal:</strong>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">preorderTraversal_iterative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+     <span class="n">arr</span> <span class="o">=</span> <span class="p">[]</span>
+     <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
+     <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+         <span class="k">while</span> <span class="n">root</span><span class="p">:</span>
+             <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+             <span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+             <span class="n">root</span> <span class="o">=</span> <span class="n">root</span><span class="p">.</span><span class="n">left</span>
+         <span class="k">if</span> <span class="ow">not</span> <span class="n">stack</span><span class="p">:</span>
+             <span class="k">break</span>
+         <span class="n">root</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">right</span>
+         <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+     <span class="k">return</span> <span class="n">arr</span>
+    
+    
+ <span class="k">def</span> <span class="nf">preorderTraversal_recursive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+     <span class="bp">self</span><span class="p">.</span><span class="n">arr</span> <span class="o">=</span> <span class="p">[]</span>
+     <span class="k">def</span> <span class="nf">helper</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+         <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+             <span class="k">return</span>
+         <span class="bp">self</span><span class="p">.</span><span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+         <span class="n">helper</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">left</span><span class="p">)</span>
+         <span class="n">helper</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">right</span><span class="p">)</span>
+     <span class="n">helper</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+     <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">arr</span>
+</code></pre></div>    </div>
+
+    <p><strong>In-order</strong>:</p>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">inOrderT</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>    
+     <span class="bp">self</span><span class="p">.</span><span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+     <span class="k">def</span> <span class="nf">helper</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+         <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+             <span class="k">return</span>
+         <span class="n">helper</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">left</span><span class="p">)</span>
+         <span class="bp">self</span><span class="p">.</span><span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+         <span class="n">helper</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">right</span><span class="p">)</span>
+     <span class="n">helper</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+     <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">ans</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<!-- 7. **:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}   -->
+
+<hr />
+<hr />
+
+<h2 id="content3">Strings</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Uniqueness of characters:</strong>
+    <ol>
+      <li>Array of indices / Hashmap: O(n=len(string)), O(256)</li>
+    </ol>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Permutations (str a is perm of str b):</strong>
+    <ol>
+      <li>Sort both -&gt; equality: O(n log n)</li>
+      <li>(fixed) array of character counts</li>
+    </ol>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Replace a char in str w/ more than one char (e.g. all ‘a’ in str -&gt; ‘bb’):</strong>
+    <ol>
+      <li>count number of ‘a’ in str -&gt; multiply by (len(‘bb’) - 1) -&gt; start modifying from back of string (backwards)</li>
+    </ol>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Palindrome:</strong><br />
+ To check for if a string is a Palindrome, count the number of characters:
+    <ul>
+      <li>even len(s): all char-counts must be even</li>
+      <li>odd len(s): only one char-count can be odd</li>
+    </ul>
+
+    <p>Best sol (Still O(N)):</p>
+    <ol>
+      <li>Use a bit vector -&gt; map chars to 26 bit-vector -&gt; toggle everytime you see char -&gt; check bit vector == 0 (has at most 1 “on” bit)</li>
+    </ol>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Q1.5:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">Rotate Matrix (implement it):</strong></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Check str a is ROTATION of str b:</strong><br />
+ By making one call to isSubstring:
+    <ul>
+      <li>Note: str b always substring of str a+a (e.g. “waterbottle”, “erbottlewat”: “erbottlewat” isSubstr of “waterbottle”+”waterbottle”=”wat_erbottlewat_erbottle”)</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Notes:</strong>
+    <ul>
+      <li>Ask ASCII or UTF8</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+<hr />
+
+<h2 id="notes">NOTES</h2>
+
+<ul>
+  <li>Learn about how to handle cycles in arrays in O(1) space</li>
+  <li>For Recursion: Ask the size of the input (i.e. would it fit in the stack?) else iterative solution</li>
+  <li>
+    <p>Interviewing at GOOGLE:<br />
+  Prove the Resume<br />
+  White board<br />
+  Make sure the interviewer <strong>Feels <em>comfortable</em> working with you on the team</strong><br />
+  Ask a lot of questions; the interviewer is vague on purpose: what are the time&amp;space constraints? <br />
+  Keep Thinking<br />
+  Keep the interviewer happy and attentive<br />
+  Have a very positive/approachable attitude</p>
+
+    <p>Data Structures, Algorithms, Space&amp;Time Complexity<br />
+  System Design, OOP,</p>
+
+    <p>Dijkstra, A*, DFS, BFS, Tree, traversal, <br />
+  NP-Complete, NapSack, Traveling Salesman, NP-Completeness, Discrete Math, Counting (n choose k problems), <br />
+  Recursion: iterative to recursive, complexity<br />
+  OS: processes, threads, concurrency issues, locks etc., resource allocation, context switching, scheduling<br />
+  System Design: feature sets, interfaces, class hierarchies, distributed systems, constrained system design<br />
+  The Internet: routers, servers, search, DNS, firewalls</p>
+
+    <p>Testing Experience, Unit Tests, Interesting Test-cases, integration Tests for Gmail?</p>
+
+    <p>C++, Java, Python, GoLang</p>
+  </li>
+  <li><a href="https://blog.usejournal.com/what-i-learned-from-interviewing-at-multiple-ai-companies-and-start-ups-a9620415e4cc">GOOD LINK</a></li>
+  <li><a href="https://fellowship.ai/">Fellowship Program in ML</a></li>
+</ul>
+
+<ol>
+  <li>Listen Carefully</li>
+  <li>Draw an example</li>
+  <li>Find Bruteforce</li>
+  <li>Optimize:
+    <ul>
+      <li>look for unused info - more examples - start with “incorrect” sol - timeVSspace - precompute - BCR</li>
+    </ul>
+  </li>
+  <li>Walk through the algorithm</li>
+  <li>Implement</li>
+  <li>Test</li>
+</ol>
+
+<ul>
+  <li>Arrays and Strings questions are interchangeable</li>
+</ul>
+
+<p><strong style="color: red">Face-up/Face-down Cards:</strong><br />
+<a href="https://www.youtube.com/watch?v=HCp_eN6JSac">Video</a></p>
+
+<ol>
+  <li>A card deck of 52 cards, 13 face-up.</li>
+  <li>The Face-up cards are distributed randomly throughout the deck.</li>
+  <li>You are blindfolded and you don’t know anything about the cards.</li>
+  <li>How can you create two piles with the same amount of face-up cards?</li>
+</ol>
+
+<blockquote>
+  <p><span style="color: goldenrod">Let \(x\) be the number of face-up cards in pile #1</span></p>
+</blockquote>
+
+<table>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td><strong style="color: blue">\(\uparrow\)</strong></td>
+      <td><strong style="color: blue">\(\downarrow\)</strong></td>
+    </tr>
+    <tr>
+      <td><strong style="color: blue">pile #1 \(= 13\)</strong></td>
+      <td>\(x\)</td>
+      <td>\(13 - x\)</td>
+    </tr>
+    <tr>
+      <td><strong style="color: blue">pile #2 \(= 39\)</strong></td>
+      <td>\(13 - x\)</td>
+      <td>\(26 + x\)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong style="color: red">Face-up/Face-down Cards Generic Version:</strong></p>
+<ol>
+  <li>A card deck of 52 cards, \(k\) face-up.</li>
+</ol>
+
+<blockquote>
+  <p><span style="color: goldenrod">Let \(x\) be the number of face-up cards in pile #1</span></p>
+</blockquote>
+
+<table>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td><strong style="color: blue">\(\uparrow\)</strong></td>
+      <td><strong style="color: blue">\(\downarrow\)</strong></td>
+    </tr>
+    <tr>
+      <td><strong style="color: blue">pile #1 \(= k\)</strong></td>
+      <td>\(x\)</td>
+      <td>\(k - x\)</td>
+    </tr>
+    <tr>
+      <td><strong style="color: blue">pile #2 \(= 52-k\)</strong></td>
+      <td>\(k - x\)</td>
+      <td>\((52-k) - (k-x)\)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong style="color: red">Face-up/Face-down Cards Generic Version (flipped):</strong></p>
+<ol>
+  <li>A card deck of 52 cards, \(k\) face-down.</li>
+  <li>How can you create two piles with the same amount of face-down cards?</li>
+</ol>
+
+<blockquote>
+  <p><span style="color: goldenrod">Let \(x\) be the number of face-down cards in pile #1</span></p>
+</blockquote>
+
+<table>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td><strong style="color: blue">\(\uparrow\)</strong></td>
+      <td><strong style="color: blue">\(\downarrow\)</strong></td>
+    </tr>
+    <tr>
+      <td><strong style="color: blue">pile #1 \(= k\)</strong></td>
+      <td>\(k-x\)</td>
+      <td>\(x\)</td>
+    </tr>
+    <tr>
+      <td><strong style="color: blue">pile #2 \(= 52-k\)</strong></td>
+      <td>\((52-k)-(k-x)\)</td>
+      <td>\(k - x\)</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ## Quantitative Analysis
+{: #content2}
+
+1. **Basketball Hoops:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
+    Basketball player makes first free throw and misses the  second. Thereon after, the probability of making the next free throw is the proportion of previous shots he has made. What is the probability he makes 50 of the first 100 shots?
+
+    The probability is 1/99. In fact, we show by induction on n that after n shots, the probability of having made any number of shots from $$1$$ to $$n−1$$ is equal to $$1/(n− 1)$$. This is evident for $$n = 2$$. Given the result for n, we see that the probability of Shanille making i shots after $$n + 1$$ attempts is the probability of her making i out of n and then missing plus the probability of her making $$i − 1$$ out of n and then hitting:
+    $$ P(m + 1, k) = P(m, k) \dfrac{m − k}{m} + P(m, k − 1)\dfrac{k − 1}{m} = \dfrac{1}{m − 1} \dfrac{m − k}{m}  + \dfrac{1}{m − 1}  \dfrac{k − 1}{m}  = \dfrac{1}{m − 1}  \dfrac{m − k + k − 1}{m}  = \dfrac{1}{m}$$
+
+    $$ P(n + 1, i) = P(n, i) \dfrac{n − i}{n} + P(n, i − 1)\dfrac{i − 1}{n} \\ \\ = \dfrac{1}{n − 1} \dfrac{n − i}{n}  + \dfrac{1}{n − 1}  \dfrac{i − 1}{n}  = \dfrac{1}{n − 1}  \dfrac{n − i + i − 1}{n}  = \dfrac{1}{n}$$
+
+
+ -->
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

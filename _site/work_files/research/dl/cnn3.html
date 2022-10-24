@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">CNNs <br /> Convolutional Neural Networks</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/cv.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Introduction</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Architecture and Design</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">THIRD</a></li>
+  </ul>
+
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">Introduction</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">CNNs:</strong></dt>
+      <dd>In machine learning, a convolutional neural network (CNN, or ConvNet) is a class of deep, feed-forward artificial neural networks that has successfully been applied to analyzing visual imagery.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">The Big Idea:</strong></dt>
+      <dd>CNNs use a variation of multilayer perceptrons designed to require minimal preprocessing.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Inspiration Model:</strong></dt>
+      <dd>Convolutional networks were inspired by biological processes in which the connectivity pattern between neurons is inspired by the organization of the animal visual cortex.<br />
+ Individual cortical neurons respond to stimuli only in a restricted region of the visual field known as the receptive field. The receptive fields of different neurons partially overlap such that they cover the entire visual field.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Design:</strong></dt>
+      <dd>A CNN consists of an input and an output layer, as well as multiple hidden layers.<br />
+The hidden layers of a CNN typically consist of convolutional layers, pooling layers, fully connected layers and normalization layers.</dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Architecture and Design</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Volumes of Neurons:</strong></dt>
+      <dd>Unlike neurons in traditional Feed-Forward networks, the layers of a ConvNet have neurons arranged in 3-dimensions: <strong>width, height, depth</strong>.
+        <blockquote>
+          <p>Note: <strong>Depth</strong> here refers to the third dimension of an activation volume, not to the depth of a full Neural Network, which can refer to the total number of layers in a network.</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Connectivity:</strong></dt>
+      <dd>The neurons in a layer will only be connected to a small region of the layer before it, instead of all of the neurons in a fully-connected manner.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Functionality:</strong></dt>
+      <dd>A ConvNet is made up of Layers. 
+ Every Layer has a simple API: It transforms an input 3D volume to an output 3D volume with some differentiable function that may or may not have parameters.</dd>
+    </dl>
+
+    <p><img src="/main_files/dl/cnn/1.png" alt="img" width="100%" /></p>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Layers:</strong></dt>
+      <dd>We use three main types of layers to build ConvNet architectures:</dd>
+      <dd>
+        <ul>
+          <li>Convolutional Layer</li>
+          <li>Pooling Layer</li>
+          <li>Fully-Connected Layer</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents241">Process:</strong></dt>
+      <dd>ConvNets transform the original image layer by layer from the original pixel values to the final class scores.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Example Architecture (CIFAR-10):</strong></dt>
+      <dd>Model: [INPUT - CONV - RELU - POOL - FC]</dd>
+      <dd>
+        <ul>
+          <li><strong>INPUT:</strong> [32x32x3] will hold the raw pixel values of the image, in this case an image of width 32, height 32, and with three color channels R,G,B.</li>
+          <li><strong>CONV-Layer</strong> will compute the output of neurons that are connected to local regions in the input, each computing a dot product between their weights and a small region they are connected to in the input volume.  <br />
+This may result in volume such as [32x32x12] if we decided to use 12 filters.</li>
+          <li><strong>RELU-Layer:</strong>  will apply an elementwise activation function, thresholding at zero. This leaves the size of the volume unchanged ([32x32x12]).</li>
+          <li><strong>POOL-Layer:</strong> will perform a downsampling operation along the spatial dimensions (width, height), resulting in volume such as [16x16x12].</li>
+          <li><strong>Fully-Connected:</strong> will compute the class scores, resulting in volume of size [1x1x10], where each of the 10 numbers correspond to a class score, such as among the 10 categories of CIFAR-10.<br />
+As with ordinary Neural Networks and as the name implies, each neuron in this layer will be connected to all the numbers in the previous volume.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Fixed Functions VS Hyper-Parameters:</strong></dt>
+      <dd>Some layers contain parameters and other don’t.</dd>
+      <dd>
+        <ul>
+          <li><strong>CONV/FC layers</strong> perform transformations that are a function of not only the activations in the input volume, but also of the parameters (the weights and biases of the neurons).</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>RELU/POOL</strong> layers will implement a fixed function.</li>
+        </ul>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>The parameters in the CONV/FC layers will be trained with gradient descent so that the class scores that the ConvNet computes are consistent with the labels in the training set for each image.</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27"><a href="http://cs231n.github.io/convolutional-networks/">Summary</a>:</strong>
+    <ul>
+      <li>A ConvNet architecture is in the simplest case a list of Layers that transform the image volume into an output volume (e.g. holding the class scores)</li>
+      <li>There are a few distinct types of Layers (e.g. CONV/FC/RELU/POOL are by far the most popular)</li>
+      <li>Each Layer accepts an input 3D volume and transforms it to an output 3D volume through a differentiable function</li>
+      <li>Each Layer may or may not have parameters (e.g. CONV/FC do, RELU/POOL don’t)</li>
+      <li>Each Layer may or may not have additional hyperparameters (e.g. CONV/FC/POOL do, RELU doesn’t)
+        <blockquote>
+          <p><a href="http://cs231n.github.io/convolutional-networks/">Click this for Credits</a></p>
+        </blockquote>
+      </li>
+    </ul>
+
+    <p><img src="/main_files/dl/cnn/2.png" alt="img" width="100%" /></p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Convolutional Layers</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Convolutions:</strong></dt>
+      <dd>A Convolution is a mathematical operation on two functions (f and g) to produce a third function, that is typically viewed as a modified version of one of the original functions, giving the integral of the pointwise multiplication of the two functions as a function of the amount that one of the original functions is translated.</dd>
+      <dd>The convolution of the <strong>continous</strong> functions f and g:</dd>
+      <dd>
+\[{\displaystyle {\begin{aligned}(f*g)(t)&amp;\,{\stackrel {\mathrm {def} }{=}}\ \int _{-\infty }^{\infty }f(\tau )g(t-\tau )\,d\tau \\&amp;=\int _{-\infty }^{\infty }f(t-\tau )g(\tau )\,d\tau .\end{aligned}}}\]
+      </dd>
+      <dd>The convolution of the <strong>discreet</strong> functions f and g:</dd>
+      <dd>
+\[{\displaystyle {\begin{aligned}(f*g)[n]&amp;=\sum _{m=-\infty }^{\infty }f[m]g[n-m]\\&amp;=\sum _{m=-\infty }^{\infty }f[n-m]g[m].\end{aligned}}} (commutativity)\]
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Cross-Correlation:</strong></dt>
+      <dd>Cross-Correlation is a measure of similarity of two series as a function of the displacement of one relative to the other.</dd>
+      <dd>The <strong>continuous</strong> cross-correlation on continous functions f and g:</dd>
+      <dd>
+\[(f\star g)(\tau )\ {\stackrel {\mathrm {def} }{=}}\int _{-\infty }^{\infty }f^{*}(t)\ g(t+\tau )\,dt,\]
+      </dd>
+      <dd>The <strong>discrete</strong> cross-correlation on discreet functions f and g:</dd>
+      <dd>
+\[(f\star g)[n]\ {\stackrel {\mathrm {def} }{=}}\sum _{m=-\infty }^{\infty }f^{*}[m]\ g[m+n].\]
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Convolutions and Cross-Correlation:</strong></dt>
+      <dd>
+        <ul>
+          <li>Convolution is similar to cross-correlation.</li>
+          <li><em>For discrete real valued signals</em>, they differ only in a time reversal in one of the signals.</li>
+          <li><em>For continuous signals</em>, the cross-correlation operator is the <strong>adjoint operator</strong> of the convolution operator.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">CNNs, Convolutions, and Cross-Correlation:</strong></dt>
+      <dd>The term Convolution in the name “Convolution Neural Network” is unfortunately a <strong>misnomer</strong>.<br />
+CNNs actually <strong>use Cross-Correlation</strong> instead as their similarity operator.<br />
+The term ‘convolution’ has stuck in the name by convention.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">The Mathematics:</strong></dt>
+      <dd>
+        <ul>
+          <li>The CONV layer’s <strong>parameters</strong> consist of <strong>a set of learnable filters</strong>.
+            <ul>
+              <li>Every filter is small spatially (along width and height), but extends through the full depth of the input volume.
+                <blockquote>
+                  <p>For example, a typical filter on a first layer of a ConvNet might have size 5x5x3 (i.e. 5 pixels width and height, and 3 because images have depth 3, the color channels).</p>
+                </blockquote>
+              </li>
+            </ul>
+          </li>
+          <li>In the <strong>forward pass</strong>, we slide (convolve) each filter across the width and height of the input volume and compute dot products between the entries of the filter and the input at any position.
+            <ul>
+              <li>As we slide the filter over the width and height of the input volume we will produce a 2-dimensional activation map that gives the responses of that filter at every spatial position.
+                <blockquote>
+                  <p>Intuitively, the network will learn filters that activate when they see some type of visual feature such as an edge of some orientation or a blotch of some color on the first layer, or eventually entire honeycomb or wheel-like patterns on higher layers of the network.</p>
+                </blockquote>
+              </li>
+              <li>Now, we will have an entire set of filters in each CONV layer (e.g. 12 filters), and each of them will produce a separate 2-dimensional activation map.</li>
+            </ul>
+          </li>
+          <li>We will <strong>stack</strong> these activation maps along the depth dimension and produce the output volume.</li>
+        </ul>
+      </dd>
+    </dl>
+    <p style="color: red">As a result, the network learns filters that activate when it detects some specific type of feature at some spatial position in the input. </p>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">The Brain Perspective:</strong></dt>
+      <dd>Every entry in the 3D output volume can also be interpreted as an output of a neuron that looks at only a small region in the input and shares parameters with all neurons to the left and right spatially.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Local Connectivity:</strong></dt>
+      <dd>
+        <ul>
+          <li>Convolutional networks exploit spatially local correlation by enforcing a local connectivity pattern between neurons of adjacent layers:
+            <ul>
+              <li>Each neuron is connected to only a small region of the input volume.</li>
+            </ul>
+          </li>
+          <li>The <strong>Receptive Field</strong> of the neuron defines the extent of this connectivity as a hyperparameter.
+            <blockquote>
+              <p>For example, suppose the input volume has size \([32x32x3]\) and the receptive field (or the filter size) is \(5x5\), then each neuron in the Conv Layer will have weights to a \([5x5x3]\) region in the input volume, for a total of \(5*5*3 = 75\) weights (and \(+1\) bias parameter).</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+    <p style="color: red">Such an architecture ensures that the learnt filters produce the strongest response to a spatially local input pattern.</p>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Spatial Arrangement:</strong></dt>
+      <dd>There are <strong>three</strong> hyperparameters control the size of the output volume:</dd>
+      <dd>
+        <ol>
+          <li><strong>The Depth</strong> of the output volume is a hyperparameter that corresponds to the number of filters we would like to use (each learning to look for something different in the input).</li>
+          <li><strong>The Stride</strong> controls how depth columns around the spatial dimensions (width and height) are allocated.
+            <blockquote>
+              <p>e.g. When the stride is 1 then we move the filters one pixel at a time.</p>
+            </blockquote>
+
+            <blockquote>
+              <p>The <strong>Smaller</strong> the stride, the <strong>more overlapping regions</strong> exist and the <strong>bigger the volume</strong>.<br />
+The <strong>bigger</strong> the stride, the <strong>less overlapping regions</strong> exist and the <strong>smaller the volume</strong>.</p>
+            </blockquote>
+          </li>
+          <li>The <strong>Padding</strong> is a hyperparameter whereby we pad the input the input volume with zeros around the border.
+            <blockquote>
+              <p>This allows to <em>control the spatial size</em> of <em>the output</em> volumes.</p>
+            </blockquote>
+          </li>
+        </ol>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents29">The Spatial Size of the Output Volume:</strong></dt>
+      <dd>We compute the spatial size of the output volume as a function of:</dd>
+      <dd>
+        <ul>
+          <li><strong>\(W\)</strong>: The input volume size.</li>
+          <li><strong>\(F\)</strong>: \(\:\:\)The receptive field size of the Conv Layer neurons.</li>
+          <li><strong>\(S\)</strong>: The stride with which they are applied.</li>
+          <li><strong>\(P\)</strong>: The amount of zero padding used on the border.</li>
+        </ul>
+      </dd>
+      <dd>Thus, the <strong>Total Size of the Output</strong>:</dd>
+      <dd>
+\[\dfrac{W−F+2P}{S} + 1\]
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Potential Issue</strong>: If this number is not an integer, then the strides are set incorrectly and the neurons cannot be tiled to fit across the input volume in a symmetric way.</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Fix</strong>: In general, setting zero padding to be \({\displaystyle P = \dfrac{K-1}{2}}\) when the stride is \({\displaystyle S = 1}\) ensures that the input volume and output volume will have the same size spatially.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents30">The Convolution Layer:</strong></dt>
+      <dd></dd>
+    </dl>
+
+    <p><img src="/main_files/dl/cnn/3.png" alt="img" width="100%" /></p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Layers</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Convolution Layer:</strong></dt>
+      <dd>One image becomes a stack of filtered images.</dd>
+    </dl>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Asynchronous:</strong></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Asynchronous:</strong></li>
+</ol>
+
+<h2 id="content4">Distinguishing features</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents91">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents92">Image Features:</strong></dt>
+      <dd>are certain quantities that are calculated from the image to <em>better describe the information in the image</em>, and to <em>reduce the size of the input vectors</em>.</dd>
+      <dd>
+        <ul>
+          <li>Examples:
+            <ul>
+              <li><strong>Color Histogram</strong>: Compute a (bucked-based) vector of colors with their respective amounts in the image.</li>
+              <li><strong>Histogram of Oriented Gradients (HOG)</strong>: we count the occurrences of gradient orientation in localized portions of the image.</li>
+              <li><strong>Bag of Words</strong>: a <em>bag of visual words</em> is a vector of occurrence counts of a vocabulary of local image features.
+                <blockquote>
+                  <p>The <strong>visual words</strong> can be extracted using a clustering algorithm; K-Means.</p>
+                </blockquote>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents93">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents94">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents95">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents96">Asynchronous:</strong></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents97">Asynchronous:</strong></li>
+</ol>
+
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

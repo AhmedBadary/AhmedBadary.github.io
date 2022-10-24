@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Recurrent Neural Networks <br /> Deep Learning Book Ch.10</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/archits.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Introduction</a></li>
+  </ul>
+  <!--   * [SECOND](#content2)
+  {: .TOC2}
+  * [THIRD](#content3)
+  {: .TOC3}
+  * [FOURTH](#content4)
+  {: .TOC4}
+  * [FIFTH](#content5)
+  {: .TOC5}
+  * [SIXTH](#content6)
+  {: .TOC6} -->
+</div>
+
+<hr />
+<hr />
+
+<ul>
+  <li><a href="/work_files/research/dl/nlp/rnns">RNNs in NLP</a></li>
+  <li><a href="/work_files/research/dl/rnns_cv">RNNs in CV</a></li>
+  <li><a href="https://www.youtube.com/watch?v=LHXXI4-IEns">Illustrated Guide to Recurrent Neural Networks: Understanding the Intuition (Vid!)</a></li>
+  <li><a href="https://medium.com/@jianqiangma/all-about-recurrent-neural-networks-9e5ae2936f6e">All of RNNs (ch.10 summary)</a></li>
+  <li><a href="http://www.cs.utoronto.ca/~ilya/pubs/ilya_sutskever_phd_thesis.pdf">TRAINING RECURRENT NEURAL NETWORKS (Illya Stutskever PhD)</a></li>
+  <li><a href="https://skymind.ai/wiki/lstm#a-beginners-guide-to-recurrent-networks-and-lstms">Guide to RNNs and LSTMs</a></li>
+  <li><a href="https://blog.echen.me/2017/05/30/exploring-lstms/">Exploring LSTMs, their Internals and How they Work (Blog!)</a></li>
+  <li><a href="https://arxiv.org/pdf/1506.00019.pdf">A Critical Review of RNNs for Sequence Learning: Complete Overview and Motivation/Interpretations of RNNs (Paper!)</a></li>
+  <li><a href="https://arxiv.org/abs/1211.5063">On the difficulty of training Recurrent Neural Networks: Analytical, Geometric, &amp; Dynamical-Systems Perspectives (Paper!)</a></li>
+  <li><a href="https://www.reddit.com/r/MachineLearning/comments/8ca36k/d_the_fall_of_rnn_lstm_eugenio_culurciello_medium/">The fall of RNN / LSTM for Transformers (Reddit!)</a></li>
+  <li><a href="https://arxiv.org/pdf/1803.02839.pdf">The emergent algebraic structure of RNNs and embeddings in NLP (Paper!)</a></li>
+</ul>
+
+<h2 id="content1">Introduction</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Recurrent Neural Networks:</strong><br />
+ <strong>Recurrent Neural Networks (RNNs)</strong> are a family of neural networks for processing <strong>sequential data</strong>.</p>
+
+    <p>In an RNN, the connections between units form a <em>directed cycle</em>, allowing it to exhibit dynamic temporal behavior.</p>
+
+    <p>The standard RNN is a <strong>nonlinear dynamical system</strong> that maps sequences to sequences.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Big Idea:</strong><br />
+ RNNs <strong>share parameters across different positions</strong>/index of time/time-steps of the sequence, which allows it to <em>generalize well to examples of different sequence length</em>.
+    <ul>
+      <li>Such sharing is particularly important when a specific piece of information can occur at multiple positions within the sequence.</li>
+    </ul>
+
+    <blockquote>
+      <p>A related idea, is the use of convolution across a 1-D temporal sequence (<em>time-delay NNs</em>). This convolution operation allows the network to share parameters across time but is <em>shallow</em>.<br />
+ The output of convolution is a sequence where each member of the output is a function of a small number of neighboring members of the input.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Dynamical Systems:</strong><br />
+ A <strong>Dynamical System</strong> is a system in which a <span style="color: purple">function</span> describes the <span style="color: purple">time dependence</span> of a <span style="color: purple">point</span> in a <span style="color: purple">geometrical space</span>.</p>
+
+    <p><strong style="color: red">Classical Form of a Dynamical System:</strong></p>
+    <p>$$\boldsymbol{s}^{(t)}=f\left(\boldsymbol{s}^{(t-1)} ; \boldsymbol{\theta}\right) \tag{10.1}$$</p>
+    <p>where \(\boldsymbol{s}^{(t)}\)  is called the state of the system.</p>
+
+    <p><img src="/main_files/dl/archits/rnns/1.png" alt="img" width="100%" /></p>
+
+    <p><strong>A Dynamical System driven by an external signal \(\boldsymbol{x}^{(t)}\)</strong>:</p>
+    <p>$$\boldsymbol{s}^{(t)}=f\left(\boldsymbol{s}^{(t-1)}, \boldsymbol{x}^{(t)} ; \boldsymbol{\theta}\right) \tag{10.4}$$</p>
+    <p>the state now contains information about the whole past sequence.</p>
+
+    <p>Basically, any function containing <strong>recurrence</strong> can be considered an RNN.</p>
+
+    <p><strong style="color: red">The RNN Equation (as a Dynamical System):</strong></p>
+    <p>$$\boldsymbol{h}^{(t)}=f\left(\boldsymbol{h}^{(t-1)}, \boldsymbol{x}^{(t)} ; \boldsymbol{\theta}\right) \tag{10.5}$$</p>
+    <p>where the variable \(\mathbf{h}\) represents the <strong>state</strong>.</p>
+
+    <p><img src="/main_files/dl/archits/rnns/2.png" alt="img" width="100%" /></p>
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Dynamical_system">Dynamical Systems (wiki!)</a></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Unfolding the Computation Graph:</strong><br />
+ <strong>Unfolding</strong> maps the left to the right in the figure below (from <em>figure 10.2</em>) (both are computational graphs of a RNN without output \(\mathbf{o}\)):<br />
+ <img src="/main_files/dl/archits/rnns/3.png" alt="img" width="100%" /><br />
+ where the black square indicates that an interaction takes place with a delay of \(1\) time step, from the state at time \(t\)  to the state at time \(t + 1\).</p>
+
+    <p>We can represent the unfolded recurrence after \(t\) steps with a function \(g^{(t)}\):</p>
+    <p>$$\begin{aligned} \boldsymbol{h}^{(t)} &amp;=g^{(t)}\left(\boldsymbol{x}^{(t)}, \boldsymbol{x}^{(t-1)}, \boldsymbol{x}^{(t-2)}, \ldots, \boldsymbol{x}^{(2)}, \boldsymbol{x}^{(1)}\right) \\ &amp;=f\left(\boldsymbol{h}^{(t-1)}, \boldsymbol{x}^{(t)} ; \boldsymbol{\theta}\right) \end{aligned}$$</p>
+    <p>The function \(g^{(t)}\) takes the whole past sequence \(\left(\boldsymbol{x}^{(t)}, \boldsymbol{x}^{(t-1)}, \boldsymbol{x}^{(t-2)}, \ldots, \boldsymbol{x}^{(2)}, \boldsymbol{x}^{(1)}\right)\) as input and produces the current state, but the unfolded recurrent structure allows us to factorize \(g^{(t)}\) into <em>repeated applications of a function \(f\)</em>.</p>
+
+    <p id="lst-p">The unfolding process, thus, introduces two major advantages:</p>
+    <ol>
+      <li>Regardless of the sequence length, the learned model always has the same input size.<br />
+ Because it is specified in terms of transition from one state to another state, rather than specified in terms of a variable-length history of states.</li>
+      <li>It is possible to use the <em>same</em> transition function \(f\) with the same parameters at every time step.<br />
+ Thus, we can learn a single shared model \(f\) that operates on all time steps and all sequence lengths, rather than needing to learn a separate model \(g^{(t)}\) for all possible time steps</li>
+    </ol>
+
+    <p id="lst-p"><strong>Benefits:</strong></p>
+    <ul>
+      <li>Allows generalization to sequence lengths that did <em>not</em> appear in the training set</li>
+      <li>Enables the model to be estimated to be estimated with far fewer training examples than would be required without parameter sharing.<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">The State of the RNN \(\mathbf{h}^{(t)}\):</strong><br />
+ The network typically learns to use \(\mathbf{h}^{(t)}\) as a kind of <em>lossy summary</em> of the task-relevant aspects of the past sequence of inputs up to \(t\).<br />
+ This summary is, in general, <em>necessarily lossy</em>, since it maps an arbitrary length sequence \(\left(\boldsymbol{x}^{(t)}, \boldsymbol{x}^{(t-1)}, \boldsymbol{x}^{(t-2)}, \ldots, \boldsymbol{x}^{(2)}, \boldsymbol{x}^{(1)}\right)\)  to a fixed length vector \(h^{(t)}\).</p>
+
+    <p>The most demanding situation (the extreme) is when we ask \(h^{(t)}\) to be rich enough to allow one to approximately recover/reconstruct the input sequence, as in <strong>AutoEncoders</strong>.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">RNN Architectures/Design Patterns:</strong><br />
+ We will be introducing three variations of the RNN, and will be analyzing <em>variation 1</em>, the basic form of the RNN.
+    <ol>
+      <li><strong id="bodyContents161">Variation 1; The Standard RNN (basic form):</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Architecture</button>
+ <img src="/main_files/dl/archits/rnns/4.png" alt="img" width="100%" hidden="" />
+        <ul>
+          <li><strong>Architecture</strong>:
+            <ul>
+              <li>Produces an output at each time-step</li>
+              <li>Recurrent connections between hidden units</li>
+            </ul>
+          </li>
+          <li><strong>Equations</strong>:<br />
+  The standard RNN is <strong>parametrized</strong> with three weight matrices and three bias vectors:
+            <p>$$\theta=\left[W_{h x} = U, W_{h h} = W, W_{o h} = V, b_{h}, b_{o}, h_{0}\right]$$</p>
+            <p>Then given an input sequence \(\left(\boldsymbol{x}^{(t)}, \boldsymbol{x}^{(t-1)}, \boldsymbol{x}^{(t-2)}, \ldots, \boldsymbol{x}^{(2)}, \boldsymbol{x}^{(1)}\right)\) the RNN performs the following computations for every time step:</p>
+            <p>$$\begin{aligned} \boldsymbol{a}^{(t)} &amp;=\boldsymbol{b}+\boldsymbol{W h}^{(t-1)}+\boldsymbol{U} \boldsymbol{x}^{(t)} \\ \boldsymbol{h}^{(t)} &amp;=\tanh \left(\boldsymbol{a}^{(t)}\right) \\ \boldsymbol{o}^{(t)} &amp;=\boldsymbol{c}+\boldsymbol{V} \boldsymbol{h}^{(t)} \\ \hat{\boldsymbol{y}}^{(t)} &amp;=\operatorname{softmax}\left(\boldsymbol{o}^{(t)}\right) \end{aligned}$$</p>
+            <p>where the parameters are the bias vectors \(\mathbf{b}\) and \(\mathbf{c}\) along with the weight matrices \(\boldsymbol{U}\), \(\boldsymbol{V}\) and \(\boldsymbol{W}\), respectively, for input-to-hidden, hidden-to-output and hidden-to-hidden connections.<br />
+  We, also, Assume the hyperbolic tangent activation function, and that the output is discrete<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>.</p>
+          </li>
+          <li><strong>The (Total) Loss</strong>:<br />
+  The <strong>Total Loss</strong> for a given sequence of \(\mathbf{x}\) values paired with a sequence of \(\mathbf{y}\) values is the <em>sum of the losses over all the time steps</em>. Assuming \(L^{(t)}\) is the <strong>negative log-likelihood</strong> of \(y^{(t)}\) given \(\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}\), then:
+            <p>$$\begin{aligned} &amp; L\left(\left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(\tau)}\right\},\left\{\boldsymbol{y}^{(1)}, \ldots, \boldsymbol{y}^{(\tau)}\right\}\right) \\=&amp; \sum_{t} L^{(t)} \\=&amp; -\sum_{t} \log p_{\text { model }}\left(y^{(t)} |\left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}\right\}\right) \end{aligned}$$</p>
+            <p>where \(p_{\text { model }}\left(y^{(t)} |\left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}\right\}\right)\) is given by reading the entry for \(y^{(t)}\) from the model’s output vector \(\hat{\boldsymbol{y}}^{(t)}\).</p>
+          </li>
+          <li><strong>Complexity</strong>:
+            <ul>
+              <li><strong>Forward Pass</strong>:<br />
+  The runtime is \(\mathcal{O}(\tau)\) and cannot be reduced by parallelization because the forward propagation graph is inherently sequential; each time step may only be computed after the previous one.</li>
+              <li><strong>Backward Pass</strong>:<br />
+  The standard algorithm used is called <strong>Back-Propagation Through Time (BPTT)</strong>, with a runtime of \(\mathcal{O}(\tau)\)</li>
+            </ul>
+          </li>
+          <li><strong>Properties</strong>:
+            <ul>
+              <li>The Standard RNN is <strong>Universal</strong>, in the sense that any function computable by a <strong>Turing Machine</strong> can be computed by such an RNN of a <em>finite size</em>.
+                <blockquote>
+                  <p>The functions computable by a Turing machine are discrete, so these results regard exact implementation of the function, not approximations.<br />
+  The RNN, when used as a Turing machine, takes a binary sequence as input, and its outputs must be discretized to provide a binary output.</p>
+                </blockquote>
+              </li>
+              <li>The output can be read from the RNN after a number of time steps that is asymptotically linear in the number of time steps used by the Turing machine and asymptotically linear in the length of the input (<em>Siegelmann and Sontag, 1991; Siegelmann, 1995; Siegelmann and Sontag, 1995; Hyotyniemi, 1996</em>).</li>
+              <li>The theoretical RNN used for the proof can simulate an <strong>unbounded stack</strong> by representing its activations and weights with rational numbers of unbounded precision.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong id="bodyContents162">Variation 2:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Architecture</button>
+ <img src="/main_files/dl/archits/rnns/5.png" alt="img" width="100%" hidden="" />
+        <ul>
+          <li><strong>Architecture</strong>:
+            <ul>
+              <li>Produces an output at each time-step</li>
+              <li>Recurrent connections <em>only</em> from the output at one time step to the hidden units at the next time step</li>
+            </ul>
+          </li>
+          <li><strong>Equations</strong>:
+            <p>$$\begin{aligned} \boldsymbol{a}^{(t)} &amp;=\boldsymbol{b}+\boldsymbol{W o}^{(t-1)}+\boldsymbol{U} \boldsymbol{x}^{(t)} \\
+  \boldsymbol{h}^{(t)} &amp;=\tanh \left(\boldsymbol{a}^{(t)}\right) \\
+  \boldsymbol{o}^{(t)} &amp;=\boldsymbol{c}+\boldsymbol{V} \boldsymbol{h}^{(t)} \\
+  \hat{\boldsymbol{y}}^{(t)} &amp;=\operatorname{softmax}\left(\boldsymbol{o}^{(t)}\right) \end{aligned}$$</p>
+          </li>
+          <li><strong>Properties</strong>:
+            <ul>
+              <li>Strictly <strong>less powerful</strong> because it <em>lacks hidden-to-hidden recurrent connections</em>.<br />
+  It <strong>cannot</strong> simulate a <em>universal Turing Machine</em>.</li>
+              <li>It requires that the output units capture all the information about the past that the network will use to predict the future; due to the lack of hidden-to-hidden recurrence.<br />
+  But, since the outputs are trained to match the training set targets, they are unlikely to capture the necessary information about the past history.</li>
+              <li>The <strong>Advantage</strong> of eliminating hidden-to-hidden recurrence is that all the time steps are <strong>de-coupled</strong><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>. Training can thus be parallelized, with the gradient for each step \(t\) computed in isolation.<br />
+  Thus, the model can be trained with <a href="#bodyContents17"><strong>Teacher Forcing</strong></a>.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong id="bodyContents163">Variation 3:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Architecture</button>
+ <img src="/main_files/dl/archits/rnns/6.png" alt="img" width="100%" hidden="" />
+        <ul>
+          <li><strong>Architecture</strong>:
+            <ul>
+              <li>Produces a <em>single</em> output, after reading entire sequence</li>
+              <li>Recurrent connections between hidden units</li>
+            </ul>
+          </li>
+          <li><strong>Equations</strong>:
+            <p>$$\begin{aligned} \boldsymbol{a}^{(t)} &amp;=\boldsymbol{b}+\boldsymbol{W h}^{(t-1)}+\boldsymbol{U} \boldsymbol{x}^{(t)} \\
+  \boldsymbol{h}^{(t)} &amp;=\tanh \left(\boldsymbol{a}^{(t)}\right) \\
+  \boldsymbol{o} = \boldsymbol{o}^{(T)} &amp;=\boldsymbol{c}+\boldsymbol{V} \boldsymbol{h}^{(T)} \\
+  \hat{\boldsymbol{y}} = \hat{\boldsymbol{y}}^{(T)} &amp;=\operatorname{softmax}\left(\boldsymbol{o}^{(T)}\right) \end{aligned}$$</p>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Teacher Forcing:</strong><br />
+ Teacher forcing is a procedure that emerges from the maximum likelihood criterion, in which during training the model receives the ground truth output \(y^{(t)}\) as input at time \(t + 1\).</p>
+
+    <p>Models that have recurrent connections from their <em>outputs</em> leading <em>back into the model</em> may be trained with teacher forcing.</p>
+
+    <p>Teacher forcing may still be applied to models that have hidden-to-hidden connections as long as they have connections from the output at one time step to values computed in the next time step. As soon as the hidden units become a function of earlier time steps, however, the BPTT algorithm is necessary. Some models may thus be trained with both teacher forcing and BPTT.</p>
+
+    <p>The <strong>disadvantage</strong> of strict teacher forcing arises if the network is going to be later used in an <strong>closed-loop</strong> mode, with the network outputs (or samples from the output distribution) fed back as input. In this case, the fed-back inputs that the network sees during training could be quite different from the kind of inputs that it will see at test time.</p>
+
+    <p id="lst-p"><strong>Methods for Mitigation:</strong></p>
+    <ol>
+      <li>Train with both teacher-forced inputs and free-running inputs, for example by predicting the correct target a number of steps in the future through the unfolded recurrent output-to-input paths<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup>.</li>
+      <li>Another approach (<em>Bengio et al., 2015b</em>) to mitigate the gap between the inputs seen at training time and the inputs seen at test time randomly chooses to use generated values or actual data values as input. This approach exploits a curriculum learning strategy to gradually use more of the generated values as input.</li>
+    </ol>
+
+    <blockquote>
+      <p>proof: p.377, 378</p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents19">Computing the Gradient in an RNN:</strong>
+    <blockquote>
+      <p>Note: The computation is, as noted before, w.r.t. the <a href="#bodyContents161"><strong>standard RNN (variation 1)</strong></a></p>
+    </blockquote>
+
+    <p>Computing the gradient through a recurrent neural network is straightforward. One simply applies the generalized back-propagation algorithm of <em>section 6.5.6</em> to the unrolled computational graph. No specialized algorithms are necessary.</p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Derivation</button>
+ <img src="/main_files/dl/archits/rnns/7.png" alt="img" width="100%" hidden="" /><br />
+ Once the gradients on the internal nodes of the computational graph are obtained, we can obtain the gradients on the parameter nodes, which have descendents at all the time steps:<br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Derivation Cont’d</button>
+ <img src="/main_files/dl/archits/rnns/8.png" alt="img" width="100%" hidden="" /></p>
+
+    <p id="lst-p"><strong>Notes:</strong></p>
+    <ul>
+      <li>We do not need to compute the gradient with respect to \(\mathbf{x}^{(t)}\) for training because it does not have any parameters as ancestors in the computational graph defining the loss.<br />
+ <br /></li>
+    </ul>
+
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents110">Recurrent Networks as Directed Graphical Models:</strong><br />
+Since we wish to interpret the <em>output</em> of an RNN as a <em>probability distribution</em>, we usually use the <strong>cross-entropy</strong> associated with that distribution to define the <em>loss</em>.
+    <blockquote>
+      <p>E.g. Mean squared error is the cross-entropy loss associated with an output distribution that is a unit Gaussian.</p>
+    </blockquote>
+
+    <p>When we use a <em>predictive log-likelihood training objective</em>, such as equation 10.12, we train the RNN to <em>estimate the conditional distribution</em> of the next sequence element \(\boldsymbol{y}^{(t)}\) given the past inputs. This may mean that we maximize the log-likelihood:</p>
+    <p>$$\log p\left(\boldsymbol{y}^{(t)} | \boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}\right) \tag{10.29}$$</p>
+    <p>or, if the model includes connections from the output at one time step to the nexttime step,</p>
+    <p>$$\log p\left(\boldsymbol{y}^{(t)} | \boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}, \boldsymbol{y}^{(1)}, \ldots, \boldsymbol{y}^{(t-1)}\right) \tag{10.30}$$</p>
+    <p>Decomposing the joint probability over the sequence of \(\mathbf{y}\) values as a series of one-step probabilistic predictions is one way to capture the <em>full joint distribution</em> across the whole sequence. When we do not feed past \(\mathbf{y}\) values as inputs that condition the next step prediction, the outputs \(\mathbf{y}\) are <strong>conditionally independent</strong> given the sequence of \(\mathbf{x}\) values.</p>
+
+    <p><strong style="color: red">Summary:</strong><br />
+This section is useful for understanding RNN from a <em>probabilistic graphical model</em> perspective. The main point is to show that <strong>RNN provides a very efficient parametrization of the <em>joint distribution</em> over the observations \(y^{(t)}\).</strong><br />
+The introduction of <em>hidden state</em> and <em>hidden-to-hidden</em> connections can be motivated as reducing <a href="">fig 10.7</a> to <a href="">fig 10.8</a>; which have \(\mathcal{O}(k^{\tau})\) and \(\mathcal{O}(1)\times \tau\) parameters, respectively (where \(\tau\) is the length of the sequence).<br />
+<br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents118">Backpropagation Through Time:</strong>
+    <ul>
+      <li>We can think of the recurrent net as a layered, feed-forward net with shared weights and then train the feed-forward net with (linear) weight constraints.</li>
+      <li>We can also think of this training algorithm in the time domain:
+        <ul>
+          <li>The forward pass builds up a stack of the activities of all the units at each time step</li>
+          <li>The backward pass peels activities off the stack to compute the error derivatives at each time step</li>
+          <li>After the backward pass we add together the derivatives at all the different times for each weight.<br />
+<br /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents119">Downsides of RNNs:</strong>
+    <ul>
+      <li>RNNs are not <strong>Inductive</strong>: They memorize sequences extremely well, but they don’t necessarily always show convincing signs of generalizing in the correct way.</li>
+      <li>They unnecessarily <strong>couple their representation size to the amount of computation per step</strong>: if you double the size of the hidden state vector you’d quadruple the amount of FLOPS at each step due to the matrix multiplication.
+        <blockquote>
+          <p>Ideally, we’d like to maintain a huge representation/memory (e.g. containing all of Wikipedia or many intermediate state variables), while maintaining the ability to keep computation per time step fixed.<br />
+<br /></p>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents120">RNNs as a model with Memory | Comparison with other Memory models:</strong><br />
+<a href="/concepts_#bodyContents23">Modeling Sequences</a></li>
+</ol>
+
+<p id="lst-p"><strong>NOTES:</strong></p>
+<ul>
+  <li>RNNs may also be applied in two dimensions across spatial data such as images</li>
+  <li>A <strong>Deep RNN in vertical dim (stacking up hidden layers)</strong> increases the memory representational ability with <em>linear scaling in computation</em> (as opposed to increasing the size of the hidden layer -&gt; quadratic computation).</li>
+  <li>A <strong>Deep RNN in time-dim (add extra pseudo-steps for each real step)</strong> increase ONLY the representational ability (efficiency) and NOT memory.</li>
+  <li><strong>Dropout in Recurrent Connections</strong>: dropout is ineffective when applied to recurrent connections as repeated random masks zero all hidden units in the limit. The most common solution is to only apply dropout to non-recurrent connections.</li>
+  <li><strong>Different Connections in RNN Architectures:</strong>
+    <ol>
+      <li><strong>PeepHole Connection:</strong><br />
+ is an addition on the equations of the <strong>LSTM</strong> as follows:
+        <p>$$ \Gamma_o = \sigma(W_o[a^{(t-1)}, x^{(t)}] + b_o) \\
+ \implies 
+ \sigma(W_o[a^{(t-1)}, x^{(t)}, c^{(t-1)}] + b_o)$$</p>
+        <p>Thus, we add the term \(c^{(t-1)}\) to the output gate.</p>
+      </li>
+    </ol>
+  </li>
+  <li><strong>Learning Long-Range Dependencies in RNNs/sequence-models</strong>:<br />
+  One key factor affecting the ability to learn such dependencies is the length of the paths forward and backward signals have to traverse in the network. The shorter these paths between any combination of positions in the input and output sequences, the easier it is to learn long-range dependencies.</li>
+  <li><strong>LSTM (simple) Implementation</strong>: <a href="https://github.com/nicodjimenez/lstm">github</a>, <a href="http://nicodjimenez.github.io/2014/08/08/lstm.html">blog</a></li>
+  <li><a href="https://medium.com/machine-learning-at-petiteprogrammer/sampling-strategies-for-recurrent-neural-networks-9aea02a6616f" value="show" onclick="iframePopA(event)"><strong>Sampling from RNNs</strong></a>
+<a href="https://medium.com/machine-learning-at-petiteprogrammer/sampling-strategies-for-recurrent-neural-networks-9aea02a6616f"></a>
+    <div></div>
+  </li>
+  <li><strong>Gradient Clipping Intuition</strong>:<br />
+  <img src="/main_files/concepts/1.png" alt="img" width="55%" />
+    <ul>
+      <li>The image above is that of the <strong>Error Surface</strong> of a <em>single hidden unit RNN</em></li>
+      <li>The observation here is that there exists <strong>High Curvature Walls</strong>. <br />
+  This Curvature Wall will move the gradient to a very different/far, probably less useful area. 
+  Thus, if we clip the gradients we will avoid the walls and will remain in the more useful area that we were exploring already. <br />
+  Draw a line between the original point on the Error graph and the End (optimized) point then evaluate the Error on points on that line and look at the changes \(\rightarrow\) this shows changes in the curvature.</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- ***
+
+## SECOND
+{: #content2}
+
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}
+
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}
+
+***
+
+## THIRD
+{: #content3}
+
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}
+
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}
+
+ -->
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>A natural way to represent discrete variables is to regard the output \(\mathbf{o}\) as giving the unnormalized log probabilities of each possible value of the discrete variable. We can then apply the softmax operation as a post-processing step to obtain a vector \(\hat{\boldsymbol{y}}\) of normalized probabilities over the output. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>for any loss function based on comparing the prediction at time \(t\) to the training target at time \(t\). <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p>In this way, the network can learn to take into account input conditions (such as those it generates itself in the free-running mode) not seen during training and how to map the state back toward one that will make the network generate proper outputs after a few steps. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

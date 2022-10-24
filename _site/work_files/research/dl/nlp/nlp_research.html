@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Deep Learning <br /> Research Papers</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/nlp.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Sequence to Sequence Learning with Neural Network</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Towards End-to-End Speech Recognition with Recurrent Neural Networks</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Attention-Based Models for Speech Recognition</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">Attention Is All You Need</a></li>
+  </ul>
+  <!--   * [5](#content5)
+  {: .TOC5}
+  * [6](#content6)
+  {: .TOC6}
+  * [7](#content7)
+  {: .TOC7}
+  * [8](#content8)
+  {: .TOC8} -->
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">Sequence to Sequence Learning with Neural Network</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Introduction:</strong><br />
+ This paper presents a general end-to-end approach to sequence learning that makes minimal assumptions (Domain-Independent) on the sequence structure.<br />
+ It introduces <strong>Seq2Seq</strong>.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Structure:</strong>
+    <ul>
+      <li><strong>Input</strong>: sequence of input vectors</li>
+      <li><strong>Output</strong>: sequence of output labels</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Strategy:</strong><br />
+ The idea is to use one LSTM to read the input sequence, one time step at a time, to obtain large fixed dimensional vector representation, and then to use another LSTM to extract the output sequence from that vector.<br />
+ The second LSTM is essentially a recurrent neural network language model except that it is <strong>conditioned</strong> on the <strong>input sequence</strong>.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Solves:</strong>
+    <ul>
+      <li>Despite their flexibility and power, DNNs can only be applied to problems whose inputs and targets can be sensibly encoded with vectors of fixed dimensionality. It is a significant limitation, since many important problems are best expressed with sequences whose lengths are not known a-priori.<br />
+  The RNN can easily map sequences to sequences whenever the alignment between the inputs the outputs is known ahead of time. However, it is not clear how to apply an RNN to problems whose input and the output sequences have different lengths with complicated and non-monotonic relationship.</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Key Insights:</strong>
+    <ul>
+      <li>Uses LSTMs to capture the information present in a sequence of inputs into one vector of features that can then be used to decode a sequence of output features</li>
+      <li>Uses two different LSTM, for the encoder and the decoder respectively</li>
+      <li>Reverses the words in the source sentence to make use of short-term dependencies (in translation) that led to better training and convergence</li>
+    </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Preparing Data (Pre-Processing):</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Architecture:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Encoder</strong>:
+            <ul>
+              <li><em><strong>LSTM:</strong></em>
+                <ul>
+                  <li>4 Layers:
+                    <ul>
+                      <li>1000 Dimensions per layer</li>
+                      <li>1000-dimensional word embeddings</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><strong>Decoder</strong>:
+            <ul>
+              <li><em><strong>LSTM:</strong></em>
+                <ul>
+                  <li>4 Layers:
+                    <ul>
+                      <li>1000 Dimensions per layer</li>
+                      <li>1000-dimensional word embeddings</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>An <strong>Output</strong> layer made of a standard <strong>softmax function</strong>
+            <blockquote>
+              <p>over 80,000 words</p>
+            </blockquote>
+          </li>
+          <li><strong>Objective Function</strong>:
+            <p>$$\dfrac{1}{\vert \mathbb{S} \vert} \sum_{(T,S) \in \mathbb{S}} \log p(T \vert S)
+  $$</p>
+            <p>where \(\mathbb{S}\) is the training set.</p>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Algorithm:</strong></dt>
+      <dd>
+        <ul>
+          <li>Train a large deep LSTM</li>
+        </ul>
+      </dd>
+    </dl>
+    <ul>
+      <li>Train by maximizing the log probability of a correct translation \(T\)  given the source sentence \(S\)</li>
+      <li>Produce translations by finding the most likely translation according to the LSTM:
+        <p>$$\hat{T} = \mathrm{arg } \max_{T} p(T \vert S)$$</p>
+      </li>
+      <li>Search for the most likely translation using a simple left-to-right beam search decoder which maintains a small number B of partial hypotheses
+        <blockquote>
+          <p>A <strong>partial hypothesis</strong> is a prefix of some translation</p>
+        </blockquote>
+      </li>
+      <li>At each time-step we extend each partial hypothesis in the beam with every possible word in the vocabulary
+        <blockquote>
+          <p>This greatly increases the number of the hypotheses so we discard all but the \(B\)  most likely hypotheses according to the model’s log probability</p>
+        </blockquote>
+      </li>
+      <li>As soon as the “<EOS>” symbol is appended to a hypothesis, it is removed from the beam and is added to the set of complete hypotheses  
+ *</EOS></li>
+    </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents19">Training:</strong></dt>
+      <dd>
+        <ul>
+          <li>SGD</li>
+          <li>Momentum</li>
+          <li>Half the learning rate every half epoch after the 5th epoch</li>
+          <li>Gradient Clipping
+            <blockquote>
+              <p>enforce a hard constraint on the norm of the gradient</p>
+            </blockquote>
+          </li>
+          <li>Sorting input</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents110">Parameters:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Initialization</strong> of all the LSTM params with <strong>uniform distribution</strong> \(\in [-0.08, 0.08]\)</li>
+          <li><strong>Learning Rate</strong>: \(0.7\)</li>
+          <li><strong>Batches</strong>: \(28\) sequences</li>
+          <li><strong>Clipping</strong>:</li>
+        </ul>
+      </dd>
+      <dd>
+\[g = 5g/\|g\|_2 \text{ if } \|g\|_2 &gt; 5 \text{ else } g\]
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents111">Issues/The Bottleneck:</strong></dt>
+      <dd>
+        <ul>
+          <li>The decoder is <strong>approximate</strong></li>
+          <li>The system puts too much pressure on the last encoded vector to capture all the (long-term) dependencies</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents112">Results:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents113">Discussion:</strong></dt>
+      <dd>
+        <ul>
+          <li>Sequence to sequence learning is a framework that attempts to address the problem of learning variable-length input and output sequences. It uses an encoder RNN to map the sequential variable-length input into a fixed-length vector. A decoder RNN then uses this vector to produce the variable-length output sequence, one token at a time. During training, the model feeds the groundtruth labels as inputs to the decoder. During inference, the model performs a beam search to generate suitable candidates for next step predictions.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents114">Further Development:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Towards End-to-End Speech Recognition with Recurrent Neural Networks</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Introduction:</strong></dt>
+      <dd>This paper presents an ASR system that directly transcribes audio data with text, <strong>without</strong> requiring an <em>intermediate phonetic representation</em>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Structure:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Input</strong>:</li>
+          <li><strong>Output</strong>:</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Strategy:</strong></dt>
+      <dd>The goal of this paper is a system where as much of the speech pipeline as possible is replaced by a single recurrent neural network (RNN) architecture.<br />
+The language model, however, will be lacking due to the limitation of the audio data to learn a strong LM.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Solves:</strong></dt>
+      <dd>
+        <ul>
+          <li>First attempts used <strong>RNNs</strong> or standard <strong>LSTMs</strong>. These models lacked the complexity that was needed to capture all the models required for ASR.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Key Insights:</strong></dt>
+      <dd>
+        <ul>
+          <li>The model uses Bidirectional LSTMs to capture the nuances of the problem.</li>
+          <li>The system uses a new <strong>objective function</strong> that trains the network to directly optimize the <strong>WER</strong>.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Preparing the Data (Pre-Processing):</strong></dt>
+      <dd>The paper uses <strong>spectrograms</strong> as a minimal preprocessing scheme.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Architecture:</strong></dt>
+      <dd>The system is composed of:
+        <ul>
+          <li>A <strong>Bi-LSTM</strong></li>
+          <li>A <strong>CTC output layer</strong></li>
+          <li>A <strong>combined objective function</strong>:<br />
+  The new objective function at allows an RNN to be trained to optimize the expected value of an arbitrary loss function defined over output transcriptions (such as <strong>WER</strong>).<br />
+  Given input sequence \(x\), the distribution \(P(y\vert x)\) over transcriptions sequences \(y\) defined by CTC, and a real-valued transcription loss function \(\mathcal{L}(x, y)\), the expected transcription loss \(\mathcal{L}(x)\) is defined:
+            <p>$$\begin{align}
+      \mathcal{L}(x) &amp;= \sum_y P(y \vert x)\mathcal{L}(x,y) \\ 
+      &amp;= \sum_y \sum_{a \in \mathcal{B}^{-1}(y)} P(a \vert x)\mathcal{L}(x,y) \\
+      &amp;= \sum_a P(a \vert x)\mathcal{L}(x,\mathcal{B}(a))
+      \end{align}$$</p>
+            <p><button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+ <img src="/main_files/dl/nlp/speech_research/3.png" alt="Approximation and Differentiation" hidden="" width="80%" /></p>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Algorithm:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents29">Issues/The Bottleneck:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents210">Results:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>WSJC</strong> (
+WER):
+            <ul>
+              <li>Standard: \(27.3\%\)</li>
+              <li>w/Lexicon of allowed words: \(21.9\%\)</li>
+              <li>Trigram LM: \(8.2\%\)</li>
+              <li>w/Baseline system: \(6.7\%\)</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Attention-Based Models for Speech Recognition</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Introduction:</strong></dt>
+      <dd>This paper introduces and extends the attention mechanism with features needed for ASR. It adds location-awareness to the attention mechanism to add robustness against different lengths of utterances.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Motivation:</strong></dt>
+      <dd>Learning to recognize speech can be viewed as learning to generate a sequence (transcription) given another sequence (speech).<br />
+From this perspective it is similar to machine translation and handwriting synthesis tasks, for which attention-based methods have been found suitable.</dd>
+      <dd><strong>How ASR differs:</strong><br />
+Compared to <em>Machine Translation</em>, speech recognition differs by requesting much longer input sequences which introduces a challenge of distinguishing similar speech fragments in a single utterance.
+        <blockquote>
+          <p>thousands of frames instead of dozens of words</p>
+        </blockquote>
+      </dd>
+      <dd>It is different from <em>Handwriting Synthesis</em>, since the input sequence is much noisier and does not have a clear structure.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Structure:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Input</strong>: \(x=(x_1, \ldots, x_{L'})\) is a sequence of feature vectors
+            <ul>
+              <li>Each feature vector is extracted from a small overlapping window of audio frames</li>
+            </ul>
+          </li>
+          <li><strong>Output</strong>: \(y\) a sequence of <strong>phonemes</strong></li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Strategy:</strong></dt>
+      <dd>The goal of this paper is a system, that uses attention-mechanism with location awareness, whose performance is comparable to that of the conventional approaches.</dd>
+      <dd>
+        <ul>
+          <li>For each generated phoneme, an attention mechanism selects or weighs the signals produced by a trained feature extraction mechanism at potentially all of the time steps in the input sequence (speech frames).</li>
+          <li>The weighted feature vector then helps to condition the generation of the next element of the output sequence.</li>
+          <li>Since the utterances in this dataset are rather short (mostly under 5 seconds), we measure the ability of the considered models in recognizing much longer utterances which were created by artificially concatenating the existing utterances.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Solves:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Problem</strong>:<br />
+  The <a href="https://arxiv.org/abs/1409.0473">attention-based model proposed for NMT</a> demonstrates vulnerability to the issue of similar speech fragments with <strong>longer, concatenated utterances</strong>.<br />
+  The paper argues that  this model adapted to track the absolute location in the input sequence of the content it is recognizing, a strategy feasible for short utterances from the original test set but inherently unscalable.</li>
+          <li><strong>Solution</strong>:<br />
+  The attention-mechanism is modified to take into account the location of the focus from the previous step and the features of the input sequence by adding as inputs to the attention mechanism auxiliary <em><strong>Convolutional Features</strong></em> which are extracted by convolving the attention weights from the previous step with trainable filters.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Key Insights:</strong></dt>
+      <dd>
+        <ul>
+          <li>Introduces attention-mechanism to ASR</li>
+          <li>The attention-mechanism is modified to take into account:
+            <ul>
+              <li>location of the focus from the previous step</li>
+              <li>features of the input sequence</li>
+            </ul>
+          </li>
+          <li>Proposes a generic method of adding location awareness to the attention mechanism</li>
+          <li>Introduce a modification of the attention mechanism to avoid concentrating the attention on a single frame</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Attention-based Recurrent Sequence Generator (ARSG):</strong></dt>
+      <dd>is a recurrent neural network that stochastically generates an output sequence \((y_1, \ldots, y_T)\) from an input \(x\).<br />
+ In practice, \(x\) is often processed by an <strong>encoder</strong> which outputs a sequential input representation \(h = (h_1, \ldots, h_L)\) more suitable for the attention mechanism to work with.</dd>
+      <dd>The <strong>Encoder</strong>: a deep bidirectional recurrent network.<br />
+It forms a sequential representation h of length \(L = L'\).</dd>
+      <dd><strong style="color: red">Structure:</strong>
+        <ul>
+          <li><em><strong>Input</strong></em>: \(x = (x_1, \ldots, x_{L'})\) is a sequence of feature vectors
+            <blockquote>
+              <p>Each feature vector is extracted from a small overlapping window of audio frames.</p>
+            </blockquote>
+          </li>
+          <li><em><strong>Output</strong></em>: \(y\) is a sequence of phonemes</li>
+        </ul>
+      </dd>
+      <dd><strong style="color: red">Strategy:</strong>  <br />
+At the \(i\)-th step an ARSG generates an output \(y_i\) by focusing on the relevant elements of \(h\):</dd>
+      <dd>
+\[\begin{align}
+\alpha_i &amp;= \text{Attend}(s_{i-1}, \alpha _{i-1}), h) &amp; (1) \\
+g_i &amp;= \sum_{j=1}^L \alpha_{i,j} h_j &amp; (2) //
+y_i &amp;\sim \text{Generate}(s_{i-1}, g_i) &amp; (3)  
+\end{align}\]
+      </dd>
+      <dd>where \(s_{i−1}\) is the \((i − 1)\)-th state of the recurrent neural network to which we refer as the <strong>generator</strong>, \(\alpha_i \in \mathbb{R}^L\) is a vector of the <em>attention weights</em>, also often called the <strong>alignment</strong>; and \(g_i\) is the <strong>glimpse</strong>.<br />
+The step is completed by computing a <em><strong>new generator state</strong></em>:</dd>
+      <dd>
+\[s_i = \text{Recurrency}(s_{i-1}, g_i, y_i)\]
+      </dd>
+      <dd>where the <em>Recurrency</em> is an RNN.</dd>
+      <dd><img src="/main_files/dl/nlp/speech_research/4.png" alt="img" width="100%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents312">Attention-mechanism Types and Speech Recognition:</strong></dt>
+      <dd><strong style="color: red">Types of Attention:</strong>
+        <ul>
+          <li>(Generic) Hybrid Attention: \(\alpha_i = \text{Attend}(s_{i-1}, \alpha_{i-1}, h)\)</li>
+          <li>Content-based Attention: \(\alpha_i = \text{Attend}(s_{i-1}, h)\) <br />
+  In this case, Attend is often implemented by scoring each element in h separately and normalizing the scores:<br />
+  \(e_{i,j} = \text{Score}(s_{i-1}, h_j) \\\) 
+    \(\alpha_{i,j} = \dfrac{\text{exp} (e_{i,j}) }{\sum_{j=1}^L \text{exp}(e_{i,j})}\)
+            <ul>
+              <li><strong>Limitations</strong>:<br />
+  The main limitation of such scheme is that identical or very similar elements of \(h\) are scored equally regardless of their position in the sequence.<br />
+  Often this issue is partially alleviated by an encoder such as e.g. a BiRNN or a deep convolutional network that encode contextual information into every element of h . However, capacity of h elements is always limited, and thus disambiguation by context is only possible to a limited extent.</li>
+            </ul>
+          </li>
+          <li>Location-based Attention: \(\alpha_i = \text{Attend}(s_{i-1}, \alpha_{i-1})\) <br />
+  a location-based attention mechanism computes the alignment from the generator state and the previous alignment only.
+            <ul>
+              <li><strong>Limitations</strong>:<br />
+  the model would have to predict the distance between consequent phonemes using \(s_{i−1}\) only, which we expect to be hard due to large variance of this quantity.</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>Thus, we conclude that the <strong><em>Hybrid Attention</em></strong> mechanism is a suitable candidate.<br />
+Ideally, we need an attention model that uses the previous alignment \(\alpha_{i-1}\) to select a short list of elements from \(h\), from which the content-based attention, will select the relevant ones without confusion.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">Preparing the Data (Pre-Processing):</strong></dt>
+      <dd>The paper uses <strong>spectrograms</strong> as a minimal preprocessing scheme.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Architecture:</strong></dt>
+      <dd>Start with the <strong>ARSG</strong>-based model:
+        <ul>
+          <li><strong>Encoder</strong>: is a <strong>Bi-RNN</strong></li>
+        </ul>
+        <p>$$e_{i,j} = w^T \tanh (Ws_{i-1} + Vh_j + b)$$</p>
+        <ul>
+          <li><strong>Attention</strong>: Content-Based Attention extended for <em>location awareness</em>
+            <p>$$e_{i,j} = w^T \tanh (Ws_{i-1} + Vh_j + Uf_{i,j} + b)$$</p>
+          </li>
+        </ul>
+      </dd>
+      <dd><strong>Extending the Attention Mechanism:</strong><br />
+Content-Based Attention extended for <em>location awareness</em> by making it take into account the alignment produced at the previous step.
+        <ul>
+          <li>First, we extract \(k\) vectors \(f_{i,j} \in \mathbb{R}^k\) for every position \(j\) of the previous alignment \(\alpha_{i−1}\) by convolving it with a matrix \(F \in \mathbb{R}^{k\times r}\):
+            <p>$$f_i = F * \alpha_{i-1}$$</p>
+          </li>
+          <li>These additional vectors \(f_{i,j} are then used by the scoring mechanism\)e_{i,j}$$:
+            <p>$$e_{i,j} = w^T \tanh (Ws_{i-1} + Vh_j + Uf_{i,j} + b)$$</p>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Algorithm:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents39">Issues/The Bottleneck:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents310">Asynchronous:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content4">Attention Is All You Need</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">Introduction:</strong><br />
+ This paper introduces the <strong>Transformer</strong> network architecture.<br />
+ The model relies completely on <strong>Attention</strong> and disregards <em>recurrence/convolutions</em> completely.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Motivation:</strong><br />
+ Motivation for <strong>Dropping</strong>:
+    <ul>
+      <li><strong>Recurrent Connections</strong>:
+        <ul>
+          <li><span style="color: purple">Complex</span></li>
+          <li>Tricky to <span style="color: purple">Train</span> and <span style="color: purple">Regularize</span></li>
+          <li><span style="color: purple">Capturing <strong>long-term dependencies</strong> is <em>limited</em> and <em>hard</em> to <em><strong>parallelize</strong></em></span></li>
+          <li><strong>Sequence-aligned states</strong> in RNN are <em>wasteful</em>.</li>
+          <li>Hard to model <strong>hierarchical-like domains</strong> such as languages.</li>
+        </ul>
+      </li>
+      <li><strong>Convolutional Connections</strong>:
+        <ul>
+          <li>Convolutional approaches are sometimes effective (more on this)</li>
+          <li>But they tend to be <span style="color: purple">memory-intensive</span>.</li>
+          <li><span style="color: purple"><strong>Path length</strong> between <em>positions</em> can be <strong>logarithmic</strong> when using</span> <strong>dilated convolutions</strong>; and <strong>Left-padding</strong> (for text). (autoregressive CNNs WaveNet, ByteNET)
+            <ul>
+              <li>However, <strong>Long-distance dependencies require many layers</strong>.</li>
+            </ul>
+          </li>
+          <li>Modeling long-range dependencies with CNNs requires either:
+            <ul>
+              <li><strong>Many Layers:</strong> likely making training harder</li>
+              <li><strong>Large Kernels</strong>: at large parameter/computational cost</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>Motivation for <strong>Transformer</strong>:<br />
+ It gives us the <span style="color: purple"><strong>shortest possible path</strong> through the network <em>between any two <strong>input-output locations</strong></em></span>.</p>
+
+    <p>Motivation in <strong>NLP</strong>:<br />
+ The following quote:<br />
+ <span style="color: purple">“You can’t cram the meaning of a whole %&amp;!$# sentence into a single $&amp;!#* vector!”</span> - ACL 2014
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents422">Idea:</strong><br />
+<span style="color: purple">Why not use <strong>Attention</strong> for <em><strong>Representations?</strong></em></span></p>
+
+    <ul>
+      <li><strong>Self-Attention:</strong> You try to represent (re-express) yourself (the word_i) as a weighted combination of your entire neighborhood</li>
+      <li><strong>FFN Layers:</strong> they compute new features for the representations from the attention weighted combination</li>
+      <li><strong>Residual Connections:</strong> Residuals carry/propagate <span style="color: purple">positional information</span> about the inputs to higher layers, among other info.</li>
+      <li><strong>Attention-Layer</strong>:
+        <ul>
+          <li>Think of as a feature detector.<br />
+<br /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">From Attention to Self-Attention:</strong><br />
+ <strong style="color: red">The Encoder-Decoder Architecture:</strong><br />
+ For a fixed target output, \(t_j\), all hidden state source inputs are taken into account to compute the cosine similarity with the source inputs \(s_i\), to generate the \(\theta_i\)’s (attention weights) for every source input \(s_i\).</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Strategy:</strong><br />
+ The idea here is to <span style="color: purple">learn a context vector</span> (say \(U\)), which gives us <span style="color: purple"><strong>global level information</strong> on all the inputs</span> and tells us about the most important information.<br />
+ E.g. This could be done by taking a cosine similarity of this context vector \(U\)  w.r.t the input hidden states from the fully connected layer. We do this for each input \(x_i\) and thus obtain a \(\theta_i\) (attention weights).</p>
+
+    <p id="lst-p"><strong style="color: red">The Goal(s):</strong></p>
+    <ul>
+      <li><strong>Parallelization of Seq2Seq:</strong> RNN/CNN handle sequences word-by-word sequentially which is an obstacle to parallelize.<br />
+  Transformer achieves parallelization by replacing recurrence with attention and encoding the symbol position in the sequence.<br />
+  This, in turn, leads to a significantly shorter training time.</li>
+      <li><strong>Reduce sequential computation</strong>: Constant \(\mathcal{O}(1)\) number of operations to learn dependency between two symbols independently of their position/distance in sequence.</li>
+    </ul>
+
+    <p>The Transformer reduces the number of sequential operations to relate two symbols from input/output sequences to a constant \(\mathcal{O}(1)\) number of operations.<br />
+ It achieves this with the <strong>multi-head attention</strong> mechanism that allows it to <span style="color: purple">model dependencies regardless of their distance in input or output sentence</span> (by counteracting reduced effective resolution due to averaging the attention-weighted positions).</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents46">Architecture:</strong><br />
+ <img src="/main_files/research/1.png" alt="img" width="48%" />  <br />
+ The Transformer follows a <strong>Encoder-Decoder</strong> architecture using <strong>stacked self-attention</strong> and <strong>point-wise, fully connected layers</strong> for both the encoder and decoder, shown in the left and right halves of Figure 1, respectively:</p>
+
+    <p><strong>Encoder:</strong><br />
+ The encoder is composed of a stack of \(N = 6\) identical layers. Each layer has two sub-layers. The first is a <strong>multi-head self-attention mechanism</strong>, and the second is a simple, <strong>positionwise fully connected feed-forward network</strong>. We employ a residual connection around each of the two sub-layers, followed by layer normalization. That is, the output of each sub-layer is \(\text{LayerNorm}(x + \text{Sublayer}(x))\), where \(\text{Sublayer}(x)\) is the function implemented by the sub-layer itself. To facilitate these residual connections, all sub-layers in the model, as well as the embedding layers, produce outputs of dimension \(d_{\text{model}} = 512\).</p>
+
+    <p><strong>Decoder:</strong><br />
+ The decoder is also composed of a stack of \(N = 6\) identical layers. In addition to the two sub-layers in each encoder layer, the decoder inserts a third sub-layer, which performs <strong>multi-head attention over the output of the encoder stack</strong>. Similar to the encoder, we employ residual connections around each of the sub-layers, followed by layer normalization. We also modify the self-attention sub-layer in the decoder stack to prevent positions from attending to subsequent positions. This masking, combined with fact that the output embeddings are offset by one position, ensures that the predictions for position \(i\) can depend only on the known outputs at positions less than \(i\).<br />
+ <br />
+ The <strong>Encoder</strong> maps an input sequence of symbol representations \((x_1, \ldots, x_n)\) to a sequence of continuous representations \(z = (z_1, ..., z_n)\).<br />
+ Given \(z\), the decoder then generates an output sequence \((y_1, ..., y_m)\) of symbols one element at a time. At each step the model is auto-regressive, consuming the previously generated symbols as additional input when generating the next.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents47">The Model - Attention:</strong><br />
+ <strong style="color: red">Formulation:</strong>
+ Standard attention with <em>queries</em> and <em>key</em>, <em>value</em> pairs.
+    <ul>
+      <li><strong>Scaled Dot-Product Attention</strong>:<br />
+  <img src="/main_files/research/3.png" alt="img" width="28%" />  <br />
+  Given: (1) Queries \(\vec{q} \in \mathbb{R}^{d_k}\)  (2) Keys \(\vec{k} \in \mathbb{R}^{d_k}\)  (3) Values \(\vec{v} \in \mathbb{R}^{d_v}\)<br />
+  Computes the dot products of the queries with all keys; scales each by \(\sqrt{d_k}\); and normalizes with a <em>softmax</em> to obtain the weights \(\theta_i\)s on the values.<br />
+  For a given query vector \(\vec{q} = \vec{q}_j\) for some \(j\):
+        <p>$${\displaystyle \vec{o} = \sum_{i=0}^{d_k} \text{softmax} (\dfrac{\vec{q}^T \: \vec{k}_i}{\sqrt{d_k}}) \vec{v}_i
+  = \sum_{i=0}^{d_k} \theta_i \vec{v}_i}$$</p>
+        <p>In practice, we compute the attention function on a set of queries simultaneously, in matrix form (stacked row-wise):</p>
+        <p>$${\displaystyle \text{Attention}(Q, K, V) = O = \text{softmax} (\dfrac{QK^T}{\sqrt{d_k}}) V } \tag{1}$$</p>
+        <p><strong>Motivation</strong>: We suspect that for large values of \(d_k\), the dot products grow large in magnitude, pushing the softmax function into regions where it has extremely small gradients. To counteract this effect, we scale the dot products by \(\sqrt{\dfrac{1}{d_k}}\).</p>
+      </li>
+      <li><strong>Multi-Head Attention</strong>:<br />
+  <img src="/main_files/research/2.png" alt="img" width="28%" />  <br />
+  Instead of performing a single attention function with \(d_{\text{model}}\)-dimensional keys, values and queries; linearly project the queries, keys and values \(h\) times with different, learned linear projections to \(d_k, d_k\) and \(d_v\) dimensions, respectively. Then, attend (apply \(\text{Attention}\) function) on each of the projected versions, <em>in parallel</em>, yielding \(d_v\)-dimensional output values. The final values are obtained by <em>concatenating</em> and <em>projecting</em> the \(d_v\)-dimensional output values from each of the attention-heads.
+        <p>$$\begin{aligned} \text {MultiHead}(Q, K, V) &amp;=\text {Concat}\left(\text {head}_ {1}, \ldots, \text {head}_ {h}\right) W^{O} \\ \text { where head}_ {i} &amp;=\text {Attention}\left(Q W_{i}^{Q}, K W_{i}^{K}, V W_{i}^{V}\right) \end{aligned}$$</p>
+        <p>Where the projections are parameter matrices \(W_{i}^{Q} \in \mathbb{R}^{d_{\text {model}} \times d_{k}}, W_{i}^{K} \in\) \(\mathbb{R}^{d_{\text {model}} \times d_{k}},\) \(W_{i}^{V} \in \mathbb{R}^{d_{\text {model}} \times d_{v}}\) and \(W^O \in \mathbb{R}^{hd_v \times d_{\text {model}}}\).<br />
+  This paper choses \(h = 8\) parallel attention layers/<em>heads</em>.<br />
+  For each, they use \(d_k=d_v=d_{\text{model}}/h = 64\).<br />
+  The reduced dimensionality of each head, allows the total computation cost to be similar to that of a single head w/ full dimensionality.</p>
+
+        <p><strong>Motivation:</strong> Multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions. With a single attention head, averaging inhibits this.</p>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Applications of Attention in the Model:</strong><br />
+ The Transformer uses multi-head attention in three different ways:</p>
+    <ul>
+      <li><strong>Encode-Decoder Attention Layer</strong> (standard layer):
+        <ul>
+          <li>The <em><strong>queries</strong></em> come from: the <em>previous decoder layer</em></li>
+          <li>The memory <em><strong>keys</strong></em> and <em><strong>values</strong></em> come from: the <em>output of the encoder</em></li>
+        </ul>
+
+        <p>This allows every position in the decoder to attend over all positions in the input sequence.</p>
+      </li>
+      <li><strong>Encoder Self-Attention</strong>:<br />
+  The encoder contains self-attention layers.
+        <ul>
+          <li>Both, The <em><strong>queries</strong></em>, and <em><strong>keys</strong></em> and <em><strong>values</strong></em>, come from: the <em>encoders output of previous layer</em></li>
+        </ul>
+
+        <p>Each position in the encoder can attend to all positions in the previous layer of the encoder.</p>
+      </li>
+      <li><strong>Decoder Self-Attention</strong>:<br />
+  The decoder, also, contains self-attention layers.
+        <ul>
+          <li>Both, The <em><strong>queries</strong></em>, and <em><strong>keys</strong></em> and <em><strong>values</strong></em>, come from: the <em>decoders output of previous layer</em></li>
+        </ul>
+
+        <p>However, self-attention layers in the decoder allow each position in the decoder to attend to all positions in the decoder <em>up to</em>, and including, that <em>position</em>. Since, we need to prevent <em><strong>leftward information flow</strong></em> in the decoder to preserve the <em><strong>auto-regressive</strong></em> property.<br />
+  This is implemented inside of scaled dot-product attention by masking out (setting to \(-\infty\) ) all values in the input of the softmax which correspond to illegal connections.</p>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents48">The Model - Position-wise Feed-Forward Network (FFN):</strong><br />
+ In addition to attention sub-layers, each of the layers in our encoder and decoder contains a fully connected feed-forward network, which is applied to each position separately and identically.<br />
+ It consists of <em><strong>two linear transformations</strong></em> with a <em><strong>ReLU</strong></em> activation in between:
+    <p>$$\text{FFN}(x) = \max(0, xW_1 + b_1)W_2 + b_2 \tag{2}$$</p>
+    <p>While the <strong>linear transformations</strong> are the <em>same</em> across different positions, they use <em>different parameters</em> from layer to layer.</p>
+    <blockquote>
+      <p>Equivalently, we can describe this as, <strong>two convolutions</strong> with <strong>kernel-size</strong> \(= 1\)</p>
+    </blockquote>
+
+    <p id="lst-p"><strong>Dimensional Analysis</strong>:</p>
+    <ul>
+      <li>Input/Output: \(\in \mathbb{R}^{d_\text{model} = 512}\)</li>
+      <li>Inner-Layer: \(\in \mathbb{R}^{d_{ff} = 2048}\)</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents49">The Model - Embeddings and Softmax:</strong><br />
+ Use <em>learned embeddings</em> to convert the <strong>input tokens</strong> and <strong>output tokens</strong> to <strong>vectors</strong> \(\in \mathbb{R}^d_{\text{model}}\).<br />
+ Use the usual <em>learned linear transformation</em> and <em>softmax</em> to convert <strong>decoder output</strong> to <strong>predicted next-token probabilities</strong>.</p>
+
+    <p>The model <em><strong>shares</strong></em> the same <strong>weight matrix</strong> between the two embedding layers and the pre-softmax linear transformation.<br />
+ In the embedding layers, multiply those weights by \(\sqrt{d_{\text{model}}}\).</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents410">The Model - Positional Encoding:</strong><br />
+<strong>Motivation:</strong><br />
+Since the model contains no recurrence and no convolution, in order for the model to make use of the order of the sequence, we must inject some information about the relative or absolute position of the tokens in the sequence.</p>
+
+    <p><strong>Positional Encoding:</strong><br />
+A way to add positional information to an embedding.<br />
+There are many choices of positional encodings, learned and fixed. <em>[Gehring et al. 2017]</em><br />
+The positional encodings have the same dimension \(d_{\text{model}}\) as the embeddings, so that the two can be summed.</p>
+
+    <p><strong>Approach:</strong><br />
+Add “positional encodings” to the input embeddings at the bottoms of the encoder and decoder stacks.<br />
+Use <strong>sine</strong> and <strong>cosine</strong> functions of different frequencies:</p>
+    <p>$$ \begin{aligned} P E_{(\text{pos}, 2 i)} &amp;=\sin \left(\text{pos} / 10000^{2 i / d_{\mathrm{model}}}\right) \\ P E_{(\text{pos}, 2 i+1)} &amp;=\cos \left(\text{pos}/ 10000^{2 i / d_{\mathrm{model}}}\right) \end{aligned} $$</p>
+    <p>where \(\text{pos}\) is the position and \(i\) is the dimension.<br />
+That is, each dimension of the positional encoding corresponds to a sinusoid. The wavelengths form a geometric progression from \(2\pi\) to \(10000 \cdot 2\pi\).</p>
+
+    <p><strong>Motivation</strong>:<br />
+We chose this function because we hypothesized it would allow the model to easily learn to attend by relative positions, since for any fixed offset \(k\), \(PE_{pos + k}\) can be represented as a linear function of \(P E_{pos}\).</p>
+
+    <p><strong>Sinusoidal VS Learned:</strong> We chose the sinusoidal version (instead of <em>learned positional embeddings</em>, with similar results) because it may allow the model to extrapolate to sequence lengths longer than the ones encountered during training.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents411">Training Tips &amp; Tricks:</strong>
+    <ul>
+      <li><strong>Layer Normalization:</strong> Help ensure that layers remain in reasonable range</li>
+      <li><strong>Specialized Training Schedule:</strong> Adjust default learning rate of the Adam optimizer</li>
+      <li><strong>Label Smoothing:</strong> Insert some uncertainty in the training process</li>
+      <li><strong>Masking (for decoder attention):</strong> for Efficient Training using matrix-operations
+<br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents412">Why Self-Attention? (as opposed to Conv/Recur. layers):</strong><br />
+<img src="/main_files/dl/nlp/speech_research/6.png" alt="img" width="80%" />  <br />
+<strong style="color: red">Total Computational Complexity per Layer:</strong>
+    <ul>
+      <li>Self-Attention layers are faster than recurrent layers when the sequence length \(n\) is smaller than the representation dimensionality \(d\).
+        <blockquote>
+          <p>Which is most often the case with sentence representations used by state-of-the-art models in machine translations, such as word-piece and byte-pair representations.</p>
+        </blockquote>
+      </li>
+      <li>To improve computational performance for tasks involving very long sequences, self-attention could be restricted to considering only a neighborhood of size \(r\) in the input sequence centered around the respective output position.<br />
+  This would increase the maximum path length to \(\mathcal{O}(n/r)\).</li>
+    </ul>
+
+    <p><strong style="color: red">Parallelizable Computations:</strong> (measured by the minimum number of sequential ops required)<br />
+Self-Attention layers connect all positions with a constant number of sequentially executed operations, whereas a recurrent layer requires \(\mathcal{O}(n)\) sequential operations.</p>
+
+    <p id="lst-p"><strong style="color: red">Path Length between Positions:</strong> (Long-Range Dependencies)</p>
+    <ul>
+      <li><strong>Convolutional Layers:</strong> A single convolutional layer with kernel width \(k &lt; n\) does not connect all pairs of input and output positions.<br />
+  Doing so requires:
+        <ul>
+          <li><strong>Contiguous Kernels (valid)</strong>: a stack of \(\mathcal{O}(n/k)\) convolutional layers</li>
+          <li><strong>Dilated Kernels</strong>: \(\mathcal{O}(\log_k(n))\)<br />
+  increasing the length of the longest paths between any two positions in the network.</li>
+          <li><strong>Separable Kernels</strong>: decrease the complexity considerably, to \(\mathcal{O}\left(k \cdot n \cdot d+n \cdot d^{2}\right)\)</li>
+        </ul>
+
+        <blockquote>
+          <p>Convolutional layers are generally more expensive than recurrent layers, by a factor of \(k\).</p>
+        </blockquote>
+      </li>
+      <li><strong>Self-Attention</strong>:<br />
+  Even with \(k = n\), the complexity of a separable convolution is equal to the combination of a self-attention layer and a point-wise feed-forward layer, the approach taken in this model.</li>
+    </ul>
+
+    <p><strong style="color: red">Interpretability:</strong><br />
+As side benefit, self-attention could yield more interpretable models.<br />
+Not only do individual attention heads clearly learn to perform different tasks, many appear to exhibit behavior related to the syntactic and semantic structure of the sentences.<br />
+<br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents419">Results:</strong>
+    <ul>
+      <li><strong>Attention Types</strong>:<br />
+  For small values of \(d_k\) the two mechanisms perform similarly, additive attention outperforms dot product attention without scaling for larger values of \(d_k\).</li>
+      <li><strong>Positional Encodings</strong>:<br />
+  We also experimented with using learned positional embeddings instead, and found that the two versions produced nearly identical results.</li>
+    </ul>
+  </li>
+</ol>
+
+<!-- 5. **Key Insights:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}  
+    :    -->
+
+<hr />
+
+<!-- ## FIFTH
+{: #content5}
+
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents51}  
+    :   
+
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents52}  
+    :   
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents53}  
+    :   
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents54}  
+    :   
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents55}  
+    :   
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents56}  
+    :   
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents57}  
+    :   
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents58}  
+    :   -->
+
+<hr />
+
+<!-- ## FastText
+{: #content6}
+
+1. **Introduction:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents61}  
+    This paper proposes a new approach to form word-embeddings based on the skip-gram model, where each word is represented as a bag of character n-grams.
+
+2. **Structure:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents62}    
+    * __Input__: sequence of input vectors  
+    * __Output__: sequence of output labels
+                
+3. **Strategy:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents63}  
+    The idea is to use one LSTM to read the input sequence, one time step at a time, to obtain large fixed dimensional vector representation, and then to use another LSTM to extract the output sequence from that vector.  
+    The second LSTM is essentially a recurrent neural network language model except that it is __conditioned__ on the __input sequence__.
+
+4. **Solves:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents64}  
+    * Despite their flexibility and power, DNNs can only be applied to problems whose inputs and targets can be sensibly encoded with vectors of fixed dimensionality. It is a significant limitation, since many important problems are best expressed with sequences whose lengths are not known a-priori.  
+        The RNN can easily map sequences to sequences whenever the alignment between the inputs the outputs is known ahead of time. However, it is not clear how to apply an RNN to problems whose input and the output sequences have different lengths with complicated and non-monotonic relationship.  
+
+
+5. **Key Insights:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents65}  
+    * Uses LSTMs to capture the information present in a sequence of inputs into one vector of features that can then be used to decode a sequence of output features  
+    * Uses two different LSTM, for the encoder and the decoder respectively  
+    * Reverses the words in the source sentence to make use of short-term dependencies (in translation) that led to better training and convergence 
+
+6. **Preparing Data (Pre-Processing):**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents66}  
+    :   
+                    
+
+7. **Architecture:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents67}  
+    :   * __Encoder__:  
+            * *__LSTM:__* 
+                * 4 Layers:    
+                    * 1000 Dimensions per layer
+                    * 1000-dimensional word embeddings
+        * __Decoder__:  
+            * *__LSTM:__* 
+                * 4 Layers:    
+                    * 1000 Dimensions per layer
+                    * 1000-dimensional word embeddings
+        * An __Output__ layer made of a standard __softmax function__  
+            > over 80,000 words  
+        * __Objective Function__:  
+            <p>$$\dfrac{1}{\vert \mathbb{S} \vert} \sum_{(T,S) \in \mathbb{S}} \log p(T \vert S)
+            $$</p>  
+            where $$\mathbb{S}$$ is the training set.  
+                
+8. **Algorithm:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents68}  
+:   * Train a large deep LSTM 
+    * Train by maximizing the log probability of a correct translation $$T$$  given the source sentence $$S$$  
+    * Produce translations by finding the most likely translation according to the LSTM:   
+        <p>$$\hat{T} = \mathrm{arg } \max_{T} p(T \vert S)$$</p>
+    * Search for the most likely translation using a simple left-to-right beam search decoder which maintains a small number B of partial hypotheses  
+        > A __partial hypothesis__ is a prefix of some translation  
+    * At each time-step we extend each partial hypothesis in the beam with every possible word in the vocabulary  
+        > This greatly increases the number of the hypotheses so we discard all but the $$B$$  most likely hypotheses according to the model’s log probability  
+    * As soon as the “<EOS>” symbol is appended to a hypothesis, it is removed from the beam and is added to the set of complete hypotheses  
+    *
+
+9. **Training:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents69}  
+    :   * SGD
+        * Momentum 
+        * Half the learning rate every half epoch after the 5th epoch
+        * Gradient Clipping  
+            > enforce a hard constraint on the norm of the gradient
+        * Sorting input
+
+10. **Parameters:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents610}  
+    :   * __Initialization__ of all the LSTM params with __uniform distribution__ $$\in [-0.08, 0.08]$$  
+        * __Learning Rate__: $$0.7$$ 
+        * __Batches__: $$28$$ sequences
+        * __Clipping__: 
+                  
+
+11. **Issues/The Bottleneck:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents611}  
+    :   * 
+
+12. **Results:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents612}  
+    :   
+
+13. **Discussion:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents613}  
+    :   *   -->
+
+<!-- 
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents65}  
+    :   
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents66}  
+    :   
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents67}  
+    :   
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents68}  
+    :    -->
+
+<!-- ## Seven
+{: #content7}
+
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents71}  
+    :   
+
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents72}  
+    :   
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents73}  
+    :   
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents74}  
+    :   
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents75}  
+    :   
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents76}  
+    :   
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents77}  
+    :   
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents7 #bodyContents78}  
+    :    -->
+
+<!-- ## Eight
+{: #content8}
+
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents81}  
+    :   
+
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents82}  
+    :   
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents83}  
+    :   
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents84}  
+    :   
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents85}  
+    :   
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents86}  
+    :   
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents87}  
+    :   
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents8 #bodyContents88}  
+    :   
+
+## Nine
+{: #content9}
+
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents91}  
+    :   
+
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents92}  
+    :   
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents93}  
+    :   
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents94}  
+    :   
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents95}  
+    :   
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents96}  
+    :   
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents97}  
+    :   
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents98}  
+    :   
+
+## Ten
+{: #content10}
+
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents101}  
+    :   
+
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents102}  
+    :   
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents103}  
+    :   
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents104}  
+    :   
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents105}  
+    :   
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents106}  
+    :   
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents107}  
+    :   
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents10 #bodyContents108}  
+    :   
+ -->
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

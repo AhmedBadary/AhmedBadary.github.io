@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">2.1 <br /> Basics and Definitions</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/conv_opt.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Definitions</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Norms and Scalar Products</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Orthogonality</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">Projections</a></li>
+  </ul>
+  <ul class="TOC5">
+    <li><a href="#content5">Hyper-Planes</a></li>
+  </ul>
+  <ul class="TOC6">
+    <li><a href="#content6">Half-Spaces</a></li>
+  </ul>
+  <ul class="TOC7">
+    <li><a href="#content7">Linear Functions and Transformations, and Maps</a></li>
+  </ul>
+  <ul class="TOC8">
+    <li><a href="#content8">Matrices</a></li>
+  </ul>
+  <ul class="TOC9">
+    <li><a href="#content9">Matrix Decomposition</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">Definitions</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Linear Independence:</strong></dt>
+      <dd>A set of vectors \(\{x_1, ... , x_m\} \in {\mathbf{R}}^n, i=1, \ldots, m\) is said to be independent if and only if the following condition on a vector \(\lambda \in {\mathbf{R}}^m\):</dd>
+      <dd>
+\[\sum_{i=1}^m \lambda_i x_i = 0 \ \ \ \implies  \lambda = 0.\]
+
+        <blockquote>
+          <p>i.e. no vector in the set can be expressed as a linear combination of the others.</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Subspace:</strong></dt>
+      <dd>A subspace of \({\mathbf{R}}^n\) is a subset that is closed under addition and scalar multiplication. Geometrically, subspaces are “flat” (like a line or plane in 3D) and pass through the origin.</dd>
+    </dl>
+
+    <ul>
+      <li>A <strong>Subspace</strong> \(\mathbf{S}\) can always be represented as the span of a set of vectors \(x_i \in {\mathbf{R}}^n, i=1, \ldots, m\), that is, as a set of the form:<br />
+ \(\mathbf{S} = \mbox{ span}(x_1, \ldots, x_m) := \left\{ \sum_{i=1}^m \lambda_i x_i ~:~ \lambda \in {\mathbf{R}}^m \right\}.\)</li>
+    </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Affine Sets (Cosets | Abstract Algebra):</strong></dt>
+      <dd>An affine set is a translation of a subspace — it is “flat” but does not necessarily pass through 0, as a subspace would.
+        <blockquote>
+          <p>(Think for example of a line, or a plane, that does not go through the origin.)</p>
+        </blockquote>
+      </dd>
+      <dd>An affine set \(\mathbf{A}\) can always be represented as the translation of the subspace spanned by some vectors:</dd>
+      <dd>\(\mathbf{A} = \left\{ x_0 + \sum_{i=1}^m \lambda_i x_i ~:~ \lambda \in {\mathbf{R}}^m \right\}\ \ \\), for some vectors \(x_0, x_1, \ldots, x_m.\)</dd>
+    </dl>
+
+\[\implies \mathbf{A} = x_0 + \mathbf{S}.\]
+
+    <ul>
+      <li>
+        <p><strong>(Special case)</strong> <strong>lines</strong>: When \(\mathbf{S}\) is the span of a single non-zero vector, the set \(\mathbf{A}\) is called a line passing through the point \(x_0\). Thus, lines have the form
+ \(\left\{ x_0 + tu ~:~ t \in \mathbf{R} \right\}\),  <br />
+ where \(u\) determines the direction of the line, and \(x_0\) is a point through which it passes.</p>
+      </li>
+      <li>
+        <p><button class="showText" value="show" onclick="showTextPopHide(event);">Example: Diminsion of Affine Subspaces</button>
+ <img src="/main_files/conv_opt/2/2.1/affine_sub.png" alt="img" hidden="" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Basis:</strong></dt>
+      <dd>A <strong>basis</strong> of \({\mathbf{R}}^n\) is a set of \(n\) independent vectors. If the vectors \(u_1, \ldots, u_n\) form a basis, we can express any vector as a linear combination of the \(u_i\)’s:</dd>
+      <dd>\(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x = \sum_{i=1}^n \lambda_i u_i, \ \ \ \text{for appropriate numbers } \lambda_1, \ldots, \lambda_n\).</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Dimension:</strong></dt>
+      <dd>The number of vectors in the span of the (sub-)space.</dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Norms and Scalar Products</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Scalar Product:</strong></dt>
+      <dd>The scalar product (or, inner product, or dot product) between two vectors \(x,y \in \mathbf{R}^n\) is the scalar denoted \(x^Ty\), and defined as:</dd>
+      <dd>
+\[x^Ty = \sum_{i=1}^n x_i y_i.\]
+      </dd>
+    </dl>
+
+    <ul>
+      <li><a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/73a4ae787085d554" value="show" onclick="iframePopA(event)"><strong>Example.</strong></a>
+  <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/73a4ae787085d554"><code class="language-plaintext highlighter-rouge"> Visit the Book</code></a>
+        <div></div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Norms:</strong></dt>
+      <dd>A measure of the “length” of a vector in a given space.</dd>
+      <dd><strong>Theorem.</strong> A function from \(\chi\) to \(\mathbf{R}\) is a norm, if:
+        <ol>
+          <li>\(\|x\| \geq 0, \: \forall x \in \chi\), and \(\|x\| = 0 \iff x = 0\).</li>
+          <li>\(\|x+y\| \leq \|x\| + \|y\|,\) for any \(x, y \in \chi\) (triangle inequality).</li>
+          <li>\(\|\alpha x\| = \|\alpha\| \|x\|\), for any scalar \(\alpha\) and any \(x\in \chi\).</li>
+        </ol>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents200">\(l_p\) Norms:</strong> 
+\(\|x\|_p = \left( \sum_{k=1}^n \|x_k\|^p \right)^{1/p}, \ 1 \leq p &lt; \infty\)</p>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">The \(l_1-norm\):</strong></dt>
+      <dd>
+\[\|x\|_1 := \sum_{i=1}^n \| x_i \|\]
+      </dd>
+      <dd>Corresponds to the distance travelled on a rectangular grid to go from one point to another.  <br />
+ <img src="/main_files/conv_opt/2/2.1/2.png" alt="image" width="32%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">The \(l_2-norm\) (Euclidean Norm):</strong></dt>
+      <dd>\(\ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \| x \|_2 := \sqrt{ \sum_{i=1}^n x_i^2 } = \sqrt{x^Tx}\).</dd>
+      <dd>Corresponds to the usual notion of distance in two or three dimensions.</dd>
+      <dd>
+        <blockquote>
+          <p>The \(l_2-norm\) is invariant under orthogonal transformations,   <br />
+i.e., \(\|x\|_2 = \|Vz\|_2 = \|z\|_2,\) where \(V\) is an orthogonal matrix.</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>The set of points with equal l_2-norm is a circle (in 2D), a sphere (in 3D), or a hyper-sphere in higher dimensions.  <br />
+ <img src="/main_files/conv_opt/2/2.1/1.png" alt="image" width="32%" /></p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">The \(l_\infty-norm\):</strong></dt>
+      <dd>
+\[\| x \|_\infty := \displaystyle\max_{1 \le i \le n} \| x_i \|\]
+      </dd>
+      <dd>
+        <blockquote>
+          <p>useful in measuring peak values.  <br />
+ <img src="/main_files/conv_opt/2/2.1/3.png" alt="image" width="32%" /></p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents20">The Cardinality:</strong></dt>
+      <dd>The <strong>Cardinality</strong> of a vector \(\vec{x}\) is often called the \(l_0\) (pseudo) norm and denoted with,</dd>
+      <dd>\(\|\vec{x}\|_0\).</dd>
+      <dd>
+        <blockquote>
+          <p>Defined as the number of non-zero entries in the vector.</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Cauchy-Schwartz inequality:</strong></dt>
+      <dd>For any two vectors \(x, y \in \mathbf{R}^n\), we have</dd>
+      <dd>\(\ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \\) \(\ \ \ \ \ \ \ \ \ \ \ \ \\)  \(x^Ty \le \|x\|_2 \cdot \|y\|_2\).
+        <blockquote>
+          <dl>
+            <dt>The above inequality is an equality if and only if \(x, y\) are collinear:</dt>
+            <dd>\({\displaystyle \max_{x : \: \|x\|_2 \le 1} \: x^Ty = \|y\|_2,}\) 
+with optimal \(x\) given by<br />
+\(x^\ast = \dfrac{y}{\|y\|_ 2}, \\) if \(y\) is non-zero.</dd>
+          </dl>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Angles between vectors:</strong></dt>
+      <dd>When none of the vectors x,y is zero, we can define the corresponding angle as theta such that,</dd>
+      <dd>
+\[\cos\  \theta = \dfrac{x^Ty}{\|x\|_ 2 \|y\|_ 2} .\]
+      </dd>
+    </dl>
+
+    <ul>
+      <li><a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/7137876aadf5fb5b" value="show" onclick="iframePopA(event)"><strong>Example Usage. (Document Similarity | Bag of Words)</strong></a> or
+  <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/7137876aadf5fb5b"><code class="language-plaintext highlighter-rouge"> Visit the Book</code></a>
+        <div></div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>\(L^q\) for \(q \in (0,1)\) are no longer <strong>Norms</strong>.
+    <ul>
+      <li>They have <strong>non-convex</strong> contours; thus, using them makes the optimization much harder</li>
+      <li>They, however, induce <em>more</em> <strong>sparsity</strong> than \(L^1\)</li>
+      <li>\(L^1\) is the best, <em>sparse norm</em>, convex approximation to the \(L^q\) for \(q \in (0,1)\)<br />
+  <img src="/main_files/conv_opt/2/2.1/16.png" alt="img" width="50%" /></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="content3">Orthogonality</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Orthogonal Vectors:</strong></dt>
+      <dd>We say that two vectors \(x, y \in \mathbf{R}^n\) are orthogonal if \(x^Ty = 0.\)</dd>
+    </dl>
+  </li>
+</ol>
+
+<!-- 2. **Orthogonal Matrix:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents32}  
+
+3. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents33} \\
+
+4. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents34} \\
+
+5. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents35} \\
+
+6. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents36} \\
+
+7. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents37} \\
+
+8. **Asynchronous:**{: style="color: SteelBlue  "}{: .bodyContents3 #bodyContents38} \\ -->
+
+<hr />
+
+<h2 id="content4">Projections</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Line:</strong></dt>
+      <dd>A line in \(\mathbf{R}^n\) passing through \(x_0 \in \mathbf{R}^n\) and with direction \(u \in \mathbf{R}^n\):</dd>
+      <dd>\(\left\{ x_0 + tu ~:~ t \in \mathbf{R} \right\}\),</dd>
+    </dl>
+
+    <p><strong style="color: red">Re-Written:</strong><br />
+ A line in \(\mathbf{R}^n\) passing through the point \(x_0 \in \mathbf{R}^n\) and with direction \(\mathbf{u} \in \mathbb{R}^n\):</p>
+    <p>$$\left\{ x_0 + c \mathbf{u} ~:~ c \in \mathbb{R} \right\}$$</p>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Projection on a line:</strong></dt>
+      <dd>The projection of a given point \(\vec{x}\) on the line is a vector \(\vec{z}\) located on the line, that is closest to \(\vec{x}\) (in Euclidean norm). This corresponds to a simple optimization problem:</dd>
+      <dd>\(\min_t \: \|x - x_0 - tu\|_ 2^2\).</dd>
+      <dd>
+        <blockquote>
+          <p>This particular problem is part of a general class of optimization problems known as least-squares.</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>It is also a special case of a Euclidean projection on a general set.</p>
+        </blockquote>
+      </dd>
+    </dl>
+
+    <p><strong style="color: red">Re-Written:</strong><br />
+ The projection of a given point \(\mathbf{v}\) on the line is a vector \(\tilde{\mathbf{v}}\) located on the line, that is closest (distance-wise) to \(\mathbf{v}\) (in Euclidean norm). This corresponds to a simple optimization problem:</p>
+    <p>$$\min_c \: \|\mathbf{v} - x_0 - c \mathbf{u}\|_ 2^2$$</p>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">The Projection:</strong></dt>
+      <dd>Assuming that \(\vec{u}\) is normalized, so that \(\|\vec{u}\|_2 = 1\), the objecive function of the projection problem reads, after squaring:</dd>
+      <dd>
+\[\|x - x_0 - tu\|_2^2 = t^2 - 2t u^T(x-x_0) + \|x-x_0\|_2^2 = (t - u^T(x-x_0))^2 + \mbox{constant}.\]
+      </dd>
+      <dd>\(\implies \\\) [the optimal solution to the projection problem is]</dd>
+      <dd>
+\[t^\ast = u^T(x-x_0),\]
+      </dd>
+      <dd>and the expression for the projected vector is</dd>
+      <dd>
+\[z^\ast = x_0 + t^\ast u = x_0 + u^T(x-x_0) u.\]
+      </dd>
+      <dd>
+        <blockquote>
+          <p>The scalar product \(u^T(x-x_0)\) is the component of \(x-x_0\) along \(\vec{u}\).</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>In the case when u is not normalized, the expression is obtained by replacing \(\vec{u}\) with its scaled version \(\dfrac{\vec{u}}{\|\vec{u}\|_2}\).</p>
+        </blockquote>
+      </dd>
+      <dd>The General Solution:</dd>
+      <dd>
+\[\vec{z}^\ast = \vec{x_0} + \dfrac{\vec{u}^T(\vec{x}-\vec{x_0})}{\vec{u}^T\vec{u}} \vec{u} .\]
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Interpreting the scalar product:</strong></dt>
+      <dd>In general, the scalar product, \(u^Tx\), is simply,<br />
+  <strong>the component of \(x\)</strong> <strong>along</strong> the <strong>normalized direction</strong> \(\dfrac{\vec{u}}{\|\vec{u}\|_2}\) defined by \(\vec{u}\).</dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents45">Projection:</strong><br />
+ A <strong>Projection</strong> is a <em>linear transformation</em> \(P\) from a vector-space to itself such that the matrix \(P\) is <em><strong>idempotent</strong></em>:
+    <p>$$P^2 = P$$</p>
+    <p>It leaves its image unchanged.</p>
+
+    <p><strong style="color: red">Mathematically:</strong><br />
+ A <strong>Projection</strong> on a vector space \({\displaystyle V}\) is a linear operator \({\displaystyle P:V\mapsto V}\) such that \({\displaystyle P^{2}=P}\)</p>
+
+    <p><strong style="color: red">Properties:</strong></p>
+    <ul>
+      <li>The <strong>Eigenvalues</strong> of a <em>projection matrix</em> must be \(0\) or \(1\)
+        <blockquote>
+          <p>From the equation \(P^2 = P \iff x^2 = x = x(x-1)\) has roots \(0, 1\)</p>
+        </blockquote>
+      </li>
+      <li>\({\displaystyle P}\) is always a <strong>positive semi-definite</strong> matrix
+        <blockquote>
+          <p>Follows from the fact that the <em>eigenvalues</em> are either \(0\) or \(1\)</p>
+        </blockquote>
+      </li>
+      <li>The corresponding <strong>eigenspaces</strong> are (respectively) the <strong>kernel</strong> and <strong>range</strong> of the projection</li>
+      <li>If a projection is <em>nontrivial</em> it has <strong>minimal polynomial</strong> \({\displaystyle x^{2}-x=x(x-1)}\), which factors into <strong>distinct roots</strong>, and thus \({\displaystyle P}\) is <em><strong>diagonalizable</strong></em></li>
+      <li>The product of projections is <strong>not</strong>, in general, a projection, even if they are orthogonal.
+        <ul>
+          <li>If projections <strong>commute</strong>, then their <strong>product is a projection</strong>.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Centering_matrix"><strong>The Centering Matrix</strong></a>: is an example of a projection matrix</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents46">Orthogonal Projections:</strong><br />
+ An <strong>Orthogonal Projection</strong> is a projection \(P\) from a vector-space to itself such that the matrix \(P\) is <em><strong>symmetric</strong></em>:
+    <p>$$P = P^T$$</p>
+
+    <p><strong style="color: red">Mathematically:</strong></p>
+    <ul>
+      <li>When \({\displaystyle V}\) has an inner product and is complete (i.e. when \({\displaystyle V}\) is a Hilbert space) the concept of <strong>orthogonality</strong> can be used.<br />
+ Then \({\displaystyle P}\) is called an orthogonal projection if it satisfies \({\displaystyle \langle Px,y\rangle =\langle x,Py\rangle }\) for all \({\displaystyle x,y\in V}\)</li>
+      <li>A projection on a Hilbert space that is not orthogonal is called an <strong>oblique projection</strong>.</li>
+      <li>A <strong>square</strong> matrix \({\displaystyle P}\) is called an orthogonal projection matrix if \({\displaystyle P^{2}=P=P^{\mathrm {T} }}\)</li>
+      <li>The range \({\displaystyle U}\) and the null space \({\displaystyle V}\) are <strong>orthogonal subspaces</strong>:
+        <p>$$\langle x,Py\rangle =\langle Px,Py\rangle =\langle Px,y\rangle$$</p>
+      </li>
+      <li>An orthogonal projection is a <strong>bounded operator</strong>.<br />
+  By Cauchy Schwartz:
+        <p>$${\displaystyle \|Pv\|^{2}=\langle Pv,Pv\rangle =\langle Pv,v\rangle \leq \|Pv\|\cdot \|v\|} \\ \iff \\ {\displaystyle \|Pv\|\leq \|v\|}$$</p>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Orthogonal Projection onto a Line:</strong><br />
+ If \(\hat{u}\) is a <strong>unit vector</strong> on the line, then the projection is given by the <strong>outer-product</strong>:</p>
+    <p>$$P_{\hat{u}} = \hat{u}\hat{u}^T$$</p>
+    <p><strong style="color: red">Orthogonal Projection onto Subspaces:</strong><br />
+ Generalize the above definition, if \({\displaystyle \hat{u}_{1},\ldots ,\hat{u}_{k}}\) are an <strong>orthonormal basis</strong> of the subspace \(U\), and \(A\) is the \(n \times k\) matrix with columns \({\displaystyle \hat{u}_{1},\ldots ,\hat{u}_{k}}\), then the projection is given by:</p>
+    <p>$$P_A = AA^T$$</p>
+    <p>Equivalently:</p>
+    <p>$$P_{A}=\sum _{i}\langle u_{i},\cdot \rangle u_{i}$$</p>
+    <p>Dropping the <strong>Orthonormality</strong> condition on the basis, we get:</p>
+    <p>$$P_{A}=A(A^{\mathrm {T} }A)^{-1}A^{\mathrm {T} }$$</p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content5">Hyperplanes</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents51">Hyperplanes:</strong></dt>
+      <dd>A hyperplane is a set described by a single scalar product equality. Precisely, a hyperplane \(\in \mathbf{R}^n\) is a set of the form:</dd>
+      <dd>
+\[\mathbf{H} = \left\{ x ~:~ a^Tx = b \right\},\]
+      </dd>
+      <dd>where a \(\in \mathbf{R}^n, 
+ a \ne 0\), and \(b \in \mathbf{R}\) are given.</dd>
+      <dd>
+        <blockquote>
+          <p>When \(b=0\), the hyperplane is simply the set of points that are orthogonal to \(a\).</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>when \(b \ne 0\), the hyperplane is a translation, along direction \(a\), of that set.</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>If \(x_0 \in \mathbf{H}\), then for any other element \(x \in \mathbf{H}\), we have</p>
+        </blockquote>
+      </dd>
+      <dd>
+\[b = a^Tx_0 = a^Tx.\]
+      </dd>
+      <dd>Hence, the hyperplane can be characterized as the set of vectors \(x\) such that \(x-x_0\) is orthogonal to \(a\):</dd>
+      <dd>\(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mathbf{H} = \left\{ x ~:~ a^T(x-x_0)=0 \right\}\).</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents52">Hyper-Planes as Affine Sets:</strong></dt>
+      <dd>Hyper-planes are <strong>affine sets</strong> of degree \(n-1\).
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Proof.</button>
+ <img src="/main_files/conv_opt/2/2.1/4.png" alt="img" hidden="" /></dd>
+      <dd>
+        <blockquote>
+          <p>Thus, they generalize the usual notion of a plane \(\in \mathbf{R}^3\).</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>Hyperplanes are very useful because they allows to <strong>separate</strong> the whole <strong>space</strong> in <strong>two</strong> regions.</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents5" id="bodyContents53">Geometry of Hyperplanes:</strong></dt>
+      <dd>Geometrically, an hyperplane \(\mathbf{H} =  \left\{ x ~:~ a^Tx = b \right\}\), with \(\|a\|_2 = 1\), is a:</dd>
+      <dd>
+        <ul>
+          <li><strong>Translation</strong> of the set of vectors orthogonal to a.</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>The Direction</strong> of the translation is determined by a, and the amount by b.</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>\(abs(b)\) is, Precisely, the <em>length</em> of the <em>closest point</em> \(x_0\) on \(\mathbf{H}\) from the origin.</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>The sign of \(b\)</strong> determines if \(\mathbf{H}\) is away from the origin along the direction \(a\) or \(-a\).</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>The magnitude of \(b\)</strong>, determines the shifting of the hyperplane, as follows:
+            <ul>
+              <li><strong>Increasing the magnitude:</strong> shifts the hyperplane further away along \(\pm a\), depending on the sign of \(b\).</li>
+              <li><strong>Decreasing the magnitude:</strong> shifts the hyperplane closer along \(\pm a\), depending on the sign of \(b\).</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>In the image below, the scalar b is positive, as \(x_0\) and a point to the same direction.<br />
+ <img src="/main_files/conv_opt/2/2.1/5.png" alt="image" width="32%" /></p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content6">Half-Spaces</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents6" id="bodyContents61">Half-Space:</strong></dt>
+      <dd>A half-space is a subset of \(\mathbf{R}^n\) defined by a single inequality involving a scalar product. Precisely, a half-space \(\in \mathbf{R}^n\) is a set of the form:</dd>
+      <dd>
+\[\mathbf{H} = \left\{ x ~:~ a^Tx \ge b \right\},\]
+      </dd>
+      <dd>where \(a \in \mathbf{R}^n, a \ne 0,\) and \(b \in \mathbf{R}\) are given.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents6" id="bodyContents62">Geometric Interptation:</strong></dt>
+      <dd>Geometrically, the half-space above is:</dd>
+      <dd>
+        <ul>
+          <li><strong>The set of points</strong> such that \(a^T(x-x_0) \ge 0\).</li>
+        </ul>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>i.e. The angle between \(x-x_0\) and \(a\) is acute \((\in [-90^\circ, +90^\circ])\).</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>\(x_0\)</strong>: is the point <em>closest</em> to the <em>origin</em> on the hyperplane defined by the equality \(a^Tx = b\).</li>
+        </ul>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>When \(a\) is normalized, as in the picture, \(x_0 = ba\).<br />
+ <img src="/main_files/conv_opt/2/2.1/6.png" alt="image" width="32%" /></p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content7">Linear Functions and Transformations, and Maps</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents71">Linear Functions:</strong></dt>
+      <dd><strong>Linear functions</strong> are functions which preserve <em>scaling</em> and <em>addition of the input</em> argument.</dd>
+      <dd>
+        <blockquote>
+          <p><strong>Formally</strong>,</p>
+        </blockquote>
+      </dd>
+      <dd>A function \(f: \mathbf{R}^n \rightarrow \mathbf{R}\) is linear if and only if \(f\) preserves scaling and addition of its arguments:</dd>
+      <dd>
+        <ul>
+          <li>for every \(x \in \mathbf{R}^n\), and \(\alpha \in \mathbf{R}, \ f(\alpha x) = \alpha f(x)\); and</li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>for every \(x_1, x_2 \in \mathbf{R}^n, f(x_1+x_2) = f(x_1)+f(x_2)\).</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents72">Affine Functions:</strong></dt>
+      <dd><strong>Affine functions</strong> are linear functions plus constant functions.</dd>
+      <dd><strong>Formally,</strong></dd>
+      <dd>A function f is affine if and only if the function \(\tilde{f}: \mathbf{R}^n \rightarrow \mathbf{R}\) with values \(\tilde{f}(x) = f(x)-f(0)\) is linear. \(\diamondsuit\)</dd>
+      <dd>
+        <blockquote>
+          <p><strong>Equivalently</strong>,</p>
+        </blockquote>
+      </dd>
+      <dd>A map \(f : \mathbf{R}^n \rightarrow \mathbf{R}^m\) is affine if and only if the map \(g : \mathbf{R}^n \rightarrow \mathbf{R}^m\) with values \(g(x) = f(x) - f(0)\) is linear.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents73">Equivalent Definitions of Linear Functions [Theorem]:</strong></dt>
+      <dd>A map \(f : \mathbf{R}^n \rightarrow \mathbf{R}^m\) is linear if and only if either one of the following conditions hold:</dd>
+      <dd>
+        <ul>
+          <li>\(f\) preserves scaling and addition of its arguments:
+            <ul>
+              <li>for every \(x \in \mathbf{R}^n\), and \(\alpha \in \mathbf{R},  f(\alpha x) = \alpha f(x)\); and</li>
+              <li>for every \(x_1, x_2 \in \mathbf{R}^n, f(x_1+x_2) =  f(x_1)+f(x_2).\)</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>\(f\) vanishes at the origin:
+            <ul>
+              <li>\(f(0) = 0\), and</li>
+              <li>It transforms any line segment \(\in \mathbf{R}^n\) into another segment \(\in \mathbf{R}^m\):
+  \(\forall \: x, y \in \mathbf{R}^n, \; \forall \: \lambda \in [0,1] ~:~ f(\lambda x + (1-\lambda) y) = \lambda f(x) + (1-\lambda) f(y)\).
+                <ul>
+                  <li>\(f\) is differentiable, vanishes at the origin, and the matrix of its derivatives is constant.</li>
+                  <li>There exist \(A \in \mathbf{R}^{m \times n}\) such that, \(\ \forall  x \in \mathbf{R}^n ~:~ f(x) = Ax\). 
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Example</button>
+ <img src="/main_files/conv_opt/2/2.1/7.png" alt="img" hidden="" /></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents74">Vector Form (and the scalar product):</strong>  <br />
+ <strong>Theorem</strong>: <em>Representation of affine function via the scalar product.</em><br />
+ \(\ \ \ \ \ \ \ \\)    A function \(f: \mathbf{R}^n \rightarrow \mathbf{R}\) is affine if and only if it can be expressed via a scalar product:<br />
+     \(\ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \\) \(\ \ \ \ \ \ \ \ \ \\)  \(f(x) = a^Tx + b\) ,<br />
+     \(\ \ \ \ \ \ \ \\) for some unique pair \((a,b)\), with \(a \in \mathbf{R}^{n}\) and \(b \in \mathbf{R}\), given by \(a_i = f(e_i)-f(0)\), with \(e_i\) \(\ \ \ \ \ \ \ \ \\)the \(i-th\) unit vector \(\in \mathbf{R}^n, i=1, \ldots, n,\) and \(\ b = f(0)\).  <br />
+    <blockquote>
+      <p>The function is linear \(\iff b = 0\).</p>
+    </blockquote>
+
+    <blockquote>
+      <p>The theorem shows that a vector can be seen as a (linear) function from the “input” space \(\mathbf{R}^n\) to the “output” space \(\mathbf{R}\).</p>
+    </blockquote>
+
+    <blockquote>
+      <p>Both points of view (matrices as simple collections of numbers, or as linear functions) are useful.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents70">Gradient of a Linear Function:</strong> <br />
+ <img src="/main_files/conv_opt/2/2.1/8.png" alt="img" width="60%" /></p>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents75">Gradient of an Affine Function:</strong></dt>
+      <dd>The <strong>gradient</strong> of a function \(f : \mathbf{R}^n \rightarrow \mathbf{R}\) at a point \(x\), denoted \(\nabla f(x)\), is the vector of first derivatives with respect to \(x_1, \ldots, x_n\).</dd>
+      <dd>
+        <blockquote>
+          <p>When \(n=1\) (there is only one input variable), the gradient is simply the derivative.</p>
+        </blockquote>
+      </dd>
+      <dd>An affine function \(f : \mathbf{R}^n \rightarrow \mathbf{R}\), with values \(f(x) = a^Tx+b\) has the gradient:</dd>
+      <dd>\(\nabla f(x) = a\).</dd>
+      <dd>
+        <blockquote>
+          <p>i.e. For all Affine Functions, the gradient is the constant vector \(a\).</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents76">Interpreting \(a\) and \(b\):</strong></dt>
+      <dd>
+        <ul>
+          <li>The \(b=f(0)\) is the constant term. For this reason, it is sometimes referred to as the bias, or intercept.
+            <blockquote>
+              <p>as it is the point where \(f\) intercepts the vertical axis if we were to plot the graph of the function.</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>The terms \(a_j, j=1, \ldots, n,\) which correspond to the gradient of \(f\), give the coefficients of influence of \(x_j\) on \(f\).
+            <blockquote>
+              <p><strong>For example</strong>, if \(a_1 &gt;&gt; a_3\), then the first component of \(x\) has much greater influence on the value of \(f(x)\) than the third.</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents77">First-order approximation of non-linear functions:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>One-dimensional case</strong>:<br />
+Consider a function of one variable \(f : \mathbf{R} \rightarrow \mathbf{R}\), and assume it is differentiable everywhere.<br />
+Then we can approximate the values function at a point \(x\) near a point \(x_0\) as follows:</li>
+        </ul>
+      </dd>
+      <dd>
+\[f(x) \simeq l(x) := f(x_0) + f'(x_0) (x-x_0) ,\]
+      </dd>
+      <dd>\(\ \ \ \ \  \ \ \\) where \(f'(x)\) denotes the derivative of \(f\) at \(x\).</dd>
+      <dd>
+        <ul>
+          <li><strong>Multi-dimensional:</strong><br />
+Let us approximate a differentiable function \(f : \mathbf{R}^n \rightarrow \mathbf{R}\) by a linear function \(l\), so that \(f\) and \(l\) coincide up and including to the first derivatives.<br />
+The approximate function l must be of the form:</li>
+        </ul>
+      </dd>
+      <dd>
+\[l(x) = a^Tx + b,\]
+      </dd>
+      <dd>\(\ \ \ \ \  \ \ \\) where \(a \in \mathbf{R}^n\) and \(b \in \mathbf{R}\).</dd>
+      <dd>
+        <blockquote>
+          <p>The corresponding approximation \(l\) is called the first-order approximation to \(f\) at \(x_0\).</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <ul>
+          <li>Our condition that \(l\) coincides with \(f\) up and including to the first derivatives shows that we must have:</li>
+        </ul>
+      </dd>
+      <dd>
+\[\nabla l(x) = a = \nabla f(x_0), \;\; a^Tx_0 + b = f(x_0),\]
+      </dd>
+      <dd>\(\ \ \ \ \  \ \ \\)   where \(\nabla f(x_0)\) is the gradient, of \(f\) at \(x_0\).</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents7" id="bodyContents78">First-order Expansion of a function [Theorem]:</strong></dt>
+      <dd>The first-order approximation of a differentiable function \(f\) at a point \(x_0\) is of the form:</dd>
+      <dd>
+\[f(x) \approx l(x) = f(x_0) + \nabla f(x_0)^T (x-x_0)\]
+      </dd>
+      <dd>where \(\nabla f(x_0) \in \mathbf{R}^n\) is the gradient of \(f\) at \(x_0\).
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Example: a linear approximation to a non-linear function.</button>
+ <img src="/main_files/conv_opt/2/2.1/9.png" alt="img" hidden="" width="70%" /></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content8">Matrices</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents80">Matrix Transpose:</strong></dt>
+      <dd>
+\[A_{ij} =  A_{ji}^T, \; \forall i, j \in \mathbf{F}\]
+      </dd>
+    </dl>
+    <ul>
+      <li><strong>Properties:</strong>
+        <ul>
+          <li>
+\[(AB)^T = B^TA^T.\]
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents81">Matrix-vector product:</strong></dt>
+      <dd>
+\[(Ax)_i = \sum_{j=1}^n A_{ij}x_j , \;\; i=1, \ldots, m.\]
+      </dd>
+      <dd>Where the Matrix is \(\in {\mathbf{R}}^{m \times n}\) and the vector is \(\in {\mathbf{R}}^m\).</dd>
+      <dd><strong>Interpretations:</strong></dd>
+      <dd>
+        <ol>
+          <li>
+            <p><strong>A <em>linear combination</em> of the <em>columns</em> of \(A\):</strong>  <br />
+\(\ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \   Ax = \left( \begin{array}{c} a_1^Tx  \ldots  a_m^Tx \end{array} \right)^T\) . <br />
+where the columns of \(A\) are given by the vectors \(a_i, i=1, \ldots, n\), so that \(A = (a_1 , \ldots, a_n)\).</p>
+          </li>
+          <li>
+            <p><strong><em>Scalar Products</em> of <em>Rows</em> of \(A\) with \(x\):</strong>  <br />
+\(\ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  Ax = \sum_{i=1}^n x_i a_i\) . <br />
+where the rows of \(A\) are given by the vectors \(a_i^T, i=1, \ldots, m\):
+\(A = \left( \begin{array}{c} a_1^T  \ldots  a_m^T \end{array} \right)^T\).</p>
+          </li>
+        </ol>
+      </dd>
+    </dl>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Example: Network Flows</button>
+ <img src="/main_files/conv_opt/2/2.1/10_11.png" alt="img" hidden="" /></p>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents82">Left Product:</strong></dt>
+      <dd>If \(z \in \mathbf{R}^m\), then the notation \(z^TA\) is the row vector of size \(n\) equal to the transpose of the column vector \(A^Tz \in \mathbf{R}^n\):</dd>
+      <dd>\((z^TA)_j = \sum_{i=1}^m A_{ij}z_i , \;\; j=1, \ldots, n.\)
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Example: Representing the constraint that the columns of a matrix sum to zero.</button>
+ <img src="/main_files/conv_opt/2/2.1/12.png" alt="img" hidden="" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents83">Matrix-matrix product:</strong></dt>
+      <dd>\((AB)_{ij} = \sum_{k=1}^n A_{ik} B_{kj}\).</dd>
+      <dd>where \(A \in \mathbf{R}^{m \times n}\) and \(B \in \mathbf{R}^{n \times p}\), and the notation \(AB\) denotes the \(m \times p\) matrix given above.</dd>
+      <dd><strong>Interpretations:</strong></dd>
+      <dd>
+        <ol>
+          <li><strong><em>Transforming</em> the <em>columns</em> of \(B\) into \(Ab_i\):</strong>  <br />
+\(\ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    AB = A \left( \begin{array}{ccc} b_1 &amp; \ldots &amp; b_n \end{array} \right) =  \left( \begin{array}{ccc} Ab_1 &amp; \ldots &amp; Ab_n \end{array} \right)\) . <br />
+where the columns of \(B\) are given by the vectors \(b_i, i=1, \ldots, n\), so that \(B = (b_1 , \ldots, b_n)\).</li>
+          <li><strong><em>Transforming</em> the <em>Rows</em> of \(A\) into \(a_i^TB\):</strong>    <br />
+\(\ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  AB = \left(\begin{array}{c} a_1^T \\ \vdots \\ a_m^T \end{array}\right) B = \left(\begin{array}{c} a_1^TB \\ \vdots \\ a_m^TB \end{array}\right)\). <br />
+where the rows of \(A\) are given by the vectors \(a_i^T, i=1, \ldots, m\):
+\(A = \left( \begin{array}{c} a_1^T  \ldots  a_m^T \end{array} \right)^T\).</li>
+        </ol>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents84">Block Matrix Products:</strong>  <br />
+ <img src="/main_files/conv_opt/2/2.1/block.png" alt="img" width="100%" /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents85">Outer Products:</strong>
+ <img src="/main_files/conv_opt/2/2.1/outer_products.png" alt="img" width="100%" /></p>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents86">Trace:</strong></dt>
+      <dd>The trace of a square \(n \times n\) matrix \(A\), denoted by \(\mathbf{Tr} A\), is the sum of its diagonal elements:</dd>
+      <dd>\(\mathbf{Tr} A = \sum_{i=1}^n A_{ii}\).</dd>
+    </dl>
+    <ul>
+      <li><strong>Properties:</strong>
+        <ul>
+          <li>\(\mathbf{Tr} A = \mathbf{Tr} A^T\).</li>
+          <li>\(\mathbf{Tr} (AB) = \mathbf{Tr} (BA)\).</li>
+          <li>\(\mathbf{Tr}(XYZ) = \mathbf{Tr}(ZXY) = \mathbf{Tr}(YZX)\).</li>
+          <li>\({\displaystyle \operatorname{tr} (A+B) = \operatorname{tr} (A)+\operatorname{tr} (B)}\).</li>
+          <li>\({\displaystyle \operatorname{tr} (cA) = c\operatorname{tr} (A)}\).</li>
+          <li>\({\displaystyle \operatorname{tr} \left(X^{\mathrm {T} }Y\right)=\operatorname{tr} \left(XY^{\mathrm {T} }\right)=\operatorname{tr} \left(Y^{\mathrm {T} }X\right)=\operatorname{tr} \left(YX^{\mathrm {T} }\right)=\sum _{i,j}X_{ij}Y_{ij}}\).</li>
+          <li>\({\displaystyle \operatorname{tr} \left(X^{\mathrm {T} }Y\right)=\sum _{ij}(X\circ Y)_{ij}}\ \ \ \\) (The <em>Hadamard</em> product).</li>
+          <li>Arbitrary permutations of the product of matrices is not allowed. Only, <strong>cyclic permutations</strong> are.
+            <blockquote>
+              <p>However, if products of three symmetric matrices are considered, any permutation is allowed.</p>
+            </blockquote>
+          </li>
+          <li>The trace of an idempotent matrix \(A\), is the dimension of A.</li>
+          <li>The trace of a nilpotent matrix is zero.</li>
+          <li>If \(f(x) = (x − \lambda_1)^{d_1} \cdots (x − \lambda_k)^{d_k}\) is the characteristic polynomial of a matrix \(A\), then \({\displaystyle \operatorname{tr} (A)=d_{1}\lambda_{1} + \cdots + d_{k} \lambda_{k}}\).</li>
+          <li>When both \(A\) and \(B\) are \(n \times n\), the trace of the (ring-theoretic) commutator of \(A\) and \(B\) vanishes: \(\mathbf{tr}([A, B]) = 0\); one can state this as “the trace is a map of Lie algebras \({\displaystyle \mathbf{GL_{n}} \to k}\) from operators to scalars”, as the commutator of scalars is trivial (it is an abelian Lie algebra).</li>
+          <li>The trace of a projection matrix is the dimension of the target space.
+  \({\displaystyle 
+  P_{X} = X\left(X^{\mathrm {T} }X\right)^{-1}X^{\mathrm {T} } \\
+  \Rightarrow \\
+  \operatorname {tr} \left(P_{X}\right) = \operatorname {rank} \left(X\right)}\)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents87">Scalar Product:</strong></dt>
+      <dd>
+\[\langle A, B \rangle := \mathbf{Tr}(A^TB) = \displaystyle\sum_{i=1}^m\sum_{j=1}^n A_{ij}B_{ij}.\]
+      </dd>
+      <dd>
+        <blockquote>
+          <p>The above definition is <strong>Symmetric</strong>:</p>
+        </blockquote>
+      </dd>
+      <dd>
+\[\implies \langle A,B \rangle =  \mathbf{Tr} (A^TB) = \mathbf{Tr} (A^TB)^T =  \mathbf{Tr} (B^TA) = \langle B,A \rangle .\]
+      </dd>
+      <dd>
+        <blockquote>
+          <p>We can <strong>interpret</strong> the matrix scalar product as the <em>vector scalar product between two long vectors</em> of length \(mn\) each, obtained by stacking all the columns of \(A, B\) on top of each other.</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents8" id="bodyContents88">Special Matrices:</strong> <br />
+    <ul>
+      <li><a href="/work_files/research/la/sym_mat"><strong>Diagonal matrices:</strong></a> are square matrices \(A\) with \(A_{ij} = 0\) when \(i \ne j\).</li>
+      <li><strong>Symmetric matrices:</strong> are square matrices that satisfy \(A_{ij} = A_{ji}\)for every pair \((i,j)\).</li>
+      <li><strong>Triangular matrices:</strong> are square matrices that satisfy \(A_{ij} = A_{ji}\)for every pair \((i,j)\).</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content9">Matrix Norms</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents91">Norm:</strong></dt>
+      <dd>A matrix norm is a functional</dd>
+      <dd>
+\[{\displaystyle \|\cdot \|:K^{m\times n}\to \mathbf{R} }\]
+      </dd>
+      <dd>on the vector space \({\displaystyle K^{m\times n}},\) that must satisfy the following properties:</dd>
+      <dd>For all scalars \({\displaystyle \alpha }  \in {\displaystyle K}\) and for all matrices \({\displaystyle A}\) and \({\displaystyle B}  \in {\displaystyle K^{m\times n}}\),</dd>
+      <dd>
+        <ul>
+          <li>\(\|\alpha A\|=|\alpha| \|A\|\)
+            <blockquote>
+              <p>i.e. being absolutely homogeneous</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>\({\displaystyle \|A+B\|\leq \|A\|+\|B\|}\)
+            <blockquote>
+              <p>i.e. being sub-additive or satisfying the triangle inequality</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>\({\displaystyle \|A\|\geq 0}\)
+            <blockquote>
+              <p>i.e. being positive-valued</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>\({\displaystyle \|A\|=0} \iff {\displaystyle A=0_{m,n}}\)
+            <blockquote>
+              <p>i.e. being definite</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>\({\displaystyle \|AB\|\leq \|A\|\|B\|}\) for all <em>square</em> matrices \({\displaystyle A}\) and \({\displaystyle B} \in {\displaystyle K^{n\times n}}.\)
+            <blockquote>
+              <p><strong>Submultiplicativity</strong>.</p>
+              <blockquote>
+                <p>Not satisfied by all Norms.</p>
+              </blockquote>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents92">\(l_{p,q}\) norms:</strong></dt>
+      <dd>
+\[{\displaystyle \Vert A\Vert _{p,q}=\left(\sum _{j=1}^{n}\left(\sum _{i=1}^{m}|a_{ij}|^{p}\right)^{q/p}\right)^{1/q}}\]
+      </dd>
+    </dl>
+
+    <ul>
+      <li>
+        <dl>
+          <dt>\(l_{2,1}\):</dt>
+          <dd>
+\[{\displaystyle \Vert A\Vert _{2,1}= \sum _{j=1}^{n}\left(\sum _{i=1}^{m}|a_{ij}|^{2}\right)^{1/2}}\]
+          </dd>
+        </dl>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents93">\(l_{2,2}\) (Frobenius norm):</strong></dt>
+      <dd>
+\[{\displaystyle \|A\|_{\rm {F}}={\sqrt {\sum _{i=1}^{m}\sum _{j=1}^{n}|a_{ij}|^{2}}}={\sqrt {\operatorname {trace} (A^{\dagger }A)}}={\sqrt {\sum _{i=1}^{\min\{m,n\}}\sigma _{i}^{2}(A)}}},\]
+      </dd>
+      <dd>where \({\displaystyle A^{\dagger }}\) denotes the conjugate transpose of \({\displaystyle A}\), and \({\displaystyle \sigma _{i}(A)}\) are the singular values of \({\displaystyle A}\).</dd>
+    </dl>
+
+    <ul>
+      <li><strong>Properties:</strong>
+        <ol>
+          <li>
+            <p>Submultiplicative.</p>
+          </li>
+          <li>Invariant under rotations.
+            <blockquote>
+              <p>i.e. \({\displaystyle \|A\|_{\rm {F}}^{2}=\|AR\|_{\rm {F}}^{2}=\|RA\|_{\rm {F}}^{2}} {\displaystyle \|A\|_{\rm {F}}^{2}=\|AR\|_{\rm {F}}^{2}=\|RA\|_{\rm {F}}^{2}}\) for any rotation matrix \(R\).</p>
+            </blockquote>
+          </li>
+          <li>
+            <p>Invariant under a unitary transformation for complex matrices.</p>
+          </li>
+          <li>
+            <p>\({\displaystyle \|A^{\rm {T}}A\|_{\rm {F}}=\|AA^{\rm {T}}\|_{\rm {F}}\leq \|A\|_{\rm {F}}^{2}}\).</p>
+          </li>
+          <li>\({\displaystyle \|A+B\|_{\rm {F}}^{2}=\|A\|_{\rm {F}}^{2}+\|B\|_{\rm {F}}^{2}+2\langle A,B\rangle _{\mathrm {F} }}\).</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents94">\(l_{\infty,\infty}\) (Max Norm):</strong></dt>
+      <dd>
+\[\|A\|_{\max} = \max_{ij} |a_{ij}|.\]
+      </dd>
+    </dl>
+
+    <ul>
+      <li><strong>Properties:</strong>
+        <ol>
+          <li><strong>NOT</strong> Submultiplicative.</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents95">The Spectral Norm:</strong></dt>
+      <dd>\({\displaystyle \|A\|_{2}={\sqrt {\lambda _{\max }(A^{^{*}}A)}}=\sigma _{\max }(A)} = {\displaystyle \max_{\|x\|_2!=0}(\|Ax\|_2)/(\|x\|_2)}.\)
+        <blockquote>
+          <p>The spectral norm of a matrix \({\displaystyle A}\) is the largest singular value of \({\displaystyle A}\). 
+i.e. the square root of the largest eigenvalue of the positive-semidefinite matrix \({\displaystyle A^{*}A}.\)</p>
+        </blockquote>
+      </dd>
+    </dl>
+
+    <ul>
+      <li>
+        <dl>
+          <dt><strong>The Spectral Radius of \(A \\)  [denoted \(\rho(A)\)]:</strong></dt>
+          <dd>
+\[\lim_{r\rightarrow\infty}\|A^r\|^{1/r}=\rho(A).\]
+          </dd>
+        </dl>
+      </li>
+      <li><strong>Properties:</strong>
+        <ol>
+          <li>
+            <p>Submultiplicative.</p>
+          </li>
+          <li>
+            <p>Satisfies, \({\displaystyle \|A^{r}\|^{1/r}\geq \rho (A),}\), where \(\rho(A)\) is <strong>the spectral radius</strong> of \(A\).</p>
+          </li>
+          <li>
+            <p>It is an “<em>induced vector-norm</em>”.</p>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents96">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents97">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents98">Equivalence of Norms:</strong> <br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">CLICK TO VIEW</button>
+ <img src="/main_files/conv_opt/2/2.1/13.png" alt="img" hidden="" /></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents9" id="bodyContents98">Applications:</strong> <br />
+    <ol>
+      <li>
+        <p><strong>RMS Gain:</strong> Frobenius Norm.</p>
+      </li>
+      <li>
+        <p><strong>Peak Gain:</strong> Spectral Norm.</p>
+      </li>
+      <li>
+        <p><strong>Distance between Matrices:</strong> Frobenius Norm.
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Click to View</button>
+ <img src="/main_files/conv_opt/2/2.1/14.png" alt="img" hidden="" /></p>
+      </li>
+      <li>
+        <p><strong>Direction of Maximal Variance:</strong> Spectral Norm.
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Click to View</button>
+ <img src="/main_files/conv_opt/2/2.1/15.png" alt="img" hidden="" /></p>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<h2 id="notes">NOTES</h2>
+
+<ul>
+  <li><strong>Distance between 2 vectors (from \(y\) to \(x\))</strong>:<br />
+  \(d = \|x-y\|_2^2\)</li>
+</ul>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

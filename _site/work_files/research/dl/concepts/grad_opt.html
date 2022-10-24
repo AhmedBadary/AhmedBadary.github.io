@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Gradient-Based Optimization</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/concepts.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Gradient-Based Optimization</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Gradient Descent</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Gradient Descent Variants</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">Gradient Descent “Optimization”</a></li>
+  </ul>
+  <ul class="TOC5">
+    <li><a href="#content5">Parallelizing and distributing SGD</a></li>
+  </ul>
+  <ul class="TOC6">
+    <li><a href="#content6">Additional strategies for optimizing SGD</a></li>
+  </ul>
+  <ul class="TOC7">
+    <li><a href="#content7">Further Advances in DL Optimization</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<p><a href="http://ruder.io/optimizing-gradient-descent/index.html#gradientdescentoptimizationalgorithms">Optimizing Gradient Descent</a><br />
+<a href="https://deepnotes.io/sgd-momentum-adaptive">Blog: SGD, Momentum and Adaptive Learning Rate</a><br />
+<a href="https://ee227c.github.io/notes/ee227c-notes.pdf">EE227C Notes: Convex Optimization and Approximation</a><br />
+<a href="http://www.princeton.edu/~amirali/Public/Teaching/ORF523/S16/ORF523_S16_Lec7_gh.pdf">Convex Functions</a><br />
+<a href="http://xingyuzhou.org/blog/notes/strong-convexity">Strong Convexity</a><br />
+<a href="http://xingyuzhou.org/blog/notes/Lipschitz-gradient">Lipschitz continuous gradient (condition)</a><br />
+<a href="http://www.seas.ucla.edu/~vandenbe/236C/lectures/cg.pdf">Conjugate Gradient</a><br />
+<a href="http://web.stanford.edu/class/msande318/notes/notes-first-order-smooth.pdf">NOTES ON FIRST-ORDER METHODS FOR MINIMIZING SMOOTH FUNCTIONS</a><br />
+<a href="https://blog.paperspace.com/intro-to-optimization-in-deep-learning-gradient-descent/">Gradient Descent (paperspace)</a><br />
+<a href="http://mlexplained.com/2018/02/02/an-introduction-to-second-order-optimization-for-deep-learning-practitioners-basic-math-for-deep-learning-part-1/">An Intuitive Introduction to the Hessian for Deep Learning</a><br />
+<a href="https://channel9.msdn.com/Events/Neural-Information-Processing-Systems-Conference/Neural-Information-Processing-Systems-Conference-NIPS-2016/Large-Scale-Optimization-Beyond-Stochastic-Gradient-Descent-and-Convexity">NIPS Optimization Lecture!!</a><br />
+<a href="https://www.kdnuggets.com/2019/06/gradient-descent-algorithms-cheat-sheet.html">10 Gradient Descent Optimisation Algorithms + Cheat Sheet (Blog!)</a></p>
+
+<h2 id="content1">Gradient-Based Optimization</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Gradient-Based Optimization:</strong><br />
+ <strong>Gradient Methods</strong> are algorithms to solve problems of the form:
+    <p>$$\min_{x \in \mathbb{R}^{n}} f(x)$$</p>
+    <p>with the search directions defined by the <strong>gradient</strong> of the function at the current point.<br />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Gradient-Based Algorithms:</strong><br />
+ Examples, include:
+    <ul>
+      <li><strong>Gradient Descent</strong>: minimizes arbitrary differentiable functions.</li>
+      <li><strong>Conjugate Gradient</strong>: minimizes sparse linear systems w/ symmetric &amp; positive-definite matrices.</li>
+      <li><strong>Coordinate Descent</strong>: minimizes functions of two variables.<br />
+ <br /></li>
+    </ul>
+  </li>
+</ol>
+
+<!-- 3. **Derivation:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
+
+4. **Choosing the learning rate:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18} -->
+
+<hr />
+
+<h2 id="content2">Gradient Descent</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Gradient Descent:</strong><br />
+ <strong>Gradient Descent</strong> is a <em>first-order, iterative</em> algorithm to minimize an objective function \(J(\theta)\) parameterized by a model’s parameters \(\theta \in \mathbb{R}^{d}\) by updating the parameters in the opposite direction of the gradient of the objective function \(\nabla_{\theta} J(\theta)\)  w.r.t. to the parameters.<br />
+ <br /></p>
+
+    <p><strong style="color: red">Intuition (for derivation):</strong></p>
+    <ol>
+      <li><strong style="color: DarkMagenta">Local Search from a starting location on a hill</strong></li>
+      <li><strong style="color: DarkGray">Feel around how a small movement/step around your location would change the height of the surrounding hill (is the ground higher or lower)</strong></li>
+      <li><strong style="color: Olive">Make the movement/step consistent as a small fixed step along some direction</strong></li>
+      <li><strong style="color: MediumBlue">Measure the steepness of the hill at the new location in the chosen direction</strong></li>
+      <li><strong style="color: Crimson">Do so by Approximating the steepness with some local information</strong></li>
+      <li><strong style="color: SpringGreen">Find the direction that decreases the steepness the most</strong></li>
+    </ol>
+
+    <p>\(\iff\) <em hidden="">.</em></p>
+
+    <ol>
+      <li><strong style="color: DarkMagenta">Local Search from an initial point \(x_0\) on a function</strong></li>
+      <li><strong style="color: DarkGray">Explore the value of the function at different small nudges around \(x_0\)</strong></li>
+      <li><strong style="color: Olive">Make the nudges consistent as a small fixed step \(\delta\) along a normalized direction \(\hat{\boldsymbol{u}}\)</strong></li>
+      <li><strong style="color: MediumBlue">Evaluate the function at the new location \(x_0 + \delta \hat{\boldsymbol{u}}\)</strong></li>
+      <li><strong style="color: Crimson">Do so by Approximating the function w/ first-order information (Taylor expansion)</strong></li>
+      <li><strong style="color: SpringGreen">Find the direction \(\hat{\boldsymbol{u}}\) that minimizes the function the most</strong><br />
+ <br /></li>
+    </ol>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Derivation:</strong><br />
+ <strong style="color: red">A small change in \(\boldsymbol{x}\):</strong><br />
+ We would like to know how would a small change in \(\boldsymbol{x}\), namely \(\Delta \boldsymbol{x}\) would affect the value of the function \(f(x)\). This will allow us to evaluate the function:
+    <p>$$f(\mathbf{x}+\Delta \mathbf{x})$$</p>
+    <p>to find the direction that makes \(f\) decrease the fastest.</p>
+
+    <p>Let’s set up \(\Delta \boldsymbol{x}\), the change in \(\boldsymbol{x}\), as a fixed step \(\delta\) along some normalized direction \(\hat{\boldsymbol{u}}\):</p>
+    <p>$$\Delta \boldsymbol{x} = \delta \hat{\boldsymbol{u}}$$</p>
+
+    <p><strong style="color: red">The Gradient:</strong><br />
+ The gradient tells us how that <em>small change in \(f(\mathbf{x}+\Delta \mathbf{x})\) affects \(f\)</em> through the <strong>first-order approximation</strong>:</p>
+    <p>$$f(\mathbf{x}+\Delta \mathbf{x}) \approx f(\mathbf{x})+\Delta \mathbf{x}^{T} \nabla_{\mathbf{x}} f(\mathbf{x})$$</p>
+
+    <p>In the single variable case, \(f(x+\delta) \approx f(x)+\delta f'(x)\), we know that \(f\left(x-\delta \operatorname{sign}\left(f^{\prime}(x)\right)\right)\) is less than \(f(x)\) for small enough \(\delta\).<br />
+ <span style="color: goldenrod">We can thus reduce \(f(x)\) by moving \(x\) in small steps with the opposite sign of the derivative.</span></p>
+
+    <p><strong style="color: red">The Change in \(f\):</strong><br />
+ The change in the objective function is:</p>
+    <p>$$\begin{aligned} \Delta f &amp;= f(\boldsymbol{x}_ 0 + \Delta \boldsymbol{x}) - f(\boldsymbol{x}_ 0) \\
+     &amp;= f(\boldsymbol{x}_ 0 + \delta \hat{\boldsymbol{u}}) - f(\boldsymbol{x}_ 0)\\
+     &amp;= \delta \nabla_x f(\boldsymbol{x}_ 0)^T\hat{\boldsymbol{u}} + \mathcal{O}(\delta^2) \\
+     &amp;= \delta \nabla_x f(\boldsymbol{x}_ 0)^T\hat{\boldsymbol{u}} \\
+     &amp;\geq -\delta\|\nabla f(\boldsymbol{x}_ 0)\|_ 2
+     \end{aligned}
+ $$</p>
+    <p>using the first order approximation above.<br />
+ Notice:</p>
+    <p>$$\nabla_x f(\boldsymbol{x}_ 0)^T\hat{\boldsymbol{u}} \in \left[-\|\nabla f(\boldsymbol{x}_ 0)\|_ 2, \|\nabla f(\boldsymbol{x}_ 0)\|_ 2\right]$$</p>
+    <p>since \(\hat{\boldsymbol{u}}\) is a unit vector; either aligned with \(\nabla_x f(\boldsymbol{x}_ 0)\) or in the opposite direction; it contributes nothing to the magnitude of the dot product.</p>
+
+    <p>So, the \(\hat{\boldsymbol{u}}\) that <span style="color: goldenrod">changes the above inequality to equality, achieves the largest negative value</span> (moves the most downhill). That vector \(\hat{\boldsymbol{u}}\) is, then, the one in the negative direction of \(\nabla_x f(\boldsymbol{x}_ 0)\); the opposite direction of the gradient.</p>
+
+    <p><strong style="color: red">The Directional Derivative:</strong><br />
+ The directional derivative in direction \(\boldsymbol{u}\) (a unit vector) is the slope of the function \(f\) in direction \(\boldsymbol{u}\). In other words, the directional derivative is the derivative of the function \(f(\boldsymbol{x}+\alpha \boldsymbol{u})\) with respect to \(\delta\), evaluated at \(\delta= 0\).<br />
+ Using the <em>chain rule</em>, we can see that \(\frac{\partial}{\partial \delta} f(\boldsymbol{x}+\delta \boldsymbol{u})\) evaluates to \(\boldsymbol{u}^{\top} \nabla_{\boldsymbol{x}} f(\boldsymbol{x})\) when \(\delta=0\).</p>
+
+    <p><strong style="color: red">Minimizing \(f\):</strong><br />
+ To minimize \(f\), we would like to find <em>the direction in which \(f\) decreases the fastest</em>. We do so by using the <strong>directional derivative</strong>:</p>
+    <p>$$\begin{aligned} &amp; \min _{\boldsymbol{u}, \boldsymbol{u}^{\top} \boldsymbol{u}=1} \boldsymbol{u}^{\top} \nabla_{\boldsymbol{x}} f(\boldsymbol{x}) \\
+ =&amp; \min_{\boldsymbol{u}, \boldsymbol{u}^{\top} \boldsymbol{u}=1}\|\boldsymbol{u}\|_{2}\left\|\nabla_{\boldsymbol{x}} f(\boldsymbol{x})\right\|_{2} \cos \theta \\
+ =&amp; \min_{\boldsymbol{u}} \cos \theta \\ \implies&amp; \boldsymbol{u} = -\nabla_x f(x)\end{aligned}$$</p>
+    <p>by substituting \(\|\boldsymbol{u}\|_2 = 1\) and ignoring factors that do not depend on \(\boldsymbol{u}\), we get \(\min_{\boldsymbol{u}} \cos \theta\); this is minimized when \(\boldsymbol{u}\) points in the opposite direction as the gradient.<br />
+ Or rather, because \(\hat{\boldsymbol{u}}\) is a unit vector, we need:</p>
+    <p>$$\hat{\boldsymbol{u}} = - \dfrac{\nabla_x f(x)}{\|\nabla_x f(x)\|_ 2}$$</p>
+
+    <blockquote>
+      <p>In other words, the gradient points directly uphill, and the negative gradient points directly downhill.  We can decrease \(f\) by moving in the direction of the negative gradient.</p>
+    </blockquote>
+
+    <p><strong style="color: red">The method of steepest/gradient descent:</strong><br />
+ Proposes a new point to decrease the value of \(f\):</p>
+    <p>$$\boldsymbol{x}^{\prime}=\boldsymbol{x}-\epsilon \nabla_{\boldsymbol{x}} f(\boldsymbol{x})$$</p>
+    <p>where \(\epsilon\) is the <strong>learning rate</strong>, defined as:</p>
+    <p>$$\epsilon = \dfrac{\delta}{\left\|\nabla_{x} f(x)\right\|_ {2}}$$</p>
+
+    <ul>
+      <li><a href="https://www.youtube.com/embed/fpYC7KK5t7A" value="show" onclick="iframePopA(event)"><strong>Derivation Video</strong></a>
+ <a href="https://www.youtube.com/embed/fpYC7KK5t7A"></a>
+        <div></div>
+      </li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">The Learning Rate:</strong><br />
+ The <strong>learning rate</strong> is a hyper-parameter that controls how much we are adjusting the weights of our network with respect the loss gradient.</p>
+
+    <p>The learning rate comes from a modification of the step-size in the GD derivation.<br />
+ We get the learning rate by employing a simple idea:<br />
+ We have a <strong>fixed step-size</strong> \(\delta\) that dictated how much we should be moving in the direction of steepest descent. However, we would like to keep the step-size from being too small or overshooting. The idea is to <em><strong>make the step-size proportional to the magnitude of the gradient</strong></em> (i.e. some constant multiplied by the magnitude of the gradient):</p>
+    <p>$$\delta = \epsilon \left\|\nabla_{x} f(x)\right\|_ {2}$$</p>
+    <p>If we do so, we get a nice cancellation as follows:</p>
+    <p>$$\begin{aligned}\Delta \boldsymbol{x} &amp;= \delta \hat{\boldsymbol{u}}  \\
+     &amp;= -\delta \dfrac{\nabla_x f(x)}{\|\nabla_x f(x)\|_ 2} \\
+     &amp;= - \epsilon \left\|\nabla_{x} f(x)\right\|_ {2} \dfrac{\nabla_x f(x)}{\|\nabla_x f(x)\|_ 2} \\
+     &amp;= - \dfrac{\epsilon \left\|\nabla_{x} f(x)\right\|_ {2}}{\|\nabla_x f(x)\|_ 2} \nabla_x f(x) \\
+     &amp;= - \epsilon \nabla_x f(x)
+ \end{aligned}$$</p>
+    <p>where now we have a <em><strong>fixed learning rate</strong></em> instead of a <em>fixed step-size</em>.</p>
+
+    <p id="lst-p"><strong style="color: red">Choosing the Learning Rate:</strong></p>
+    <ul>
+      <li><strong>Set it to a small constant</strong></li>
+      <li><strong>Line Search</strong>: evaluate \(f\left(\boldsymbol{x}-\epsilon \nabla_{\boldsymbol{x}} f(\boldsymbol{x})\right)\) for several values of \(\epsilon\) and choose the one that results in the smallest objective value.<br />
+  Finds a local minimum along a search direction by solving an optimization problem in 1-D.
+        <blockquote>
+          <p>e.g. for <em><strong>smooth \(f\)</strong></em>: <strong>Secant Method</strong>, <strong>Newton-Raphson Method</strong> (may need Hessian, hard for large dims)<br />
+      for <em><strong>non-smooth \(f\)</strong></em>: use <strong>direct line search</strong> e.g. <strong>golden section search</strong><br />
+Note: usually NOT used in DL</p>
+        </blockquote>
+      </li>
+      <li><strong>Trust Region Method</strong></li>
+      <li><strong>Grid Search</strong>: is simply an exhaustive searching through a manually specified subset of the hyperparameter space of a learning algorithm. It is guided by some performance metric, typically measured by cross-validation on the training set or evaluation on a held-out validation set.</li>
+      <li><a href="https://deepmind.com/blog/article/population-based-training-neural-networks"><strong>Population-Based Training (PBT)</strong></a>: is an elegant implementation of using a genetic algorithm for hyper-parameter choice.<br />
+  In PBT, a population of models are created. They are all continuously trained in parallel. When any member of the population has had sufficiently long to train to show improvement, its validation accuracy is compared to the rest of the population. If its performance is in the lowest \(20\%\), then it copies and mutates the hyper-parameters and variables of one of the top \(20\%\) performers.<br />
+  In this way, the most successful hyper-parameters spawn many slightly mutated variants of themselves and the best hyper-parameters are likely discovered.</li>
+      <li><strong>Bayesian Optimization</strong>: is a global optimization method for noisy black-box functions. Applied to hp optimization, it builds a probabilistic model of the function mapping from hp values to the objective evaluated on a validation set. By iteratively evaluating a promising hp configuration based on the current model, and then updating it, it, aims to gather observations revealing as much information as possible about this function and, in particular, the location of the optimum. It tries to balance exploration (hps for which the outcome is most uncertain) and exploitation (hps expected close to the optimum).<br />
+  In practice, it has been shown to obtain better results in fewer evaluations compared to grid search and random search, due to the ability to reason about the quality of experiments before they are run.</li>
+    </ul>
+
+    <p><strong>Line Search VS Trust Region:</strong><br />
+ Trust-region methods are in some sense dual to line-search methods: trust-region methods first choose a step size (the size of the trust region) and then a step direction, while line-search methods first choose a step direction and then a step size.</p>
+
+    <p><strong style="color: red">Learning Rate Schedule:</strong><br />
+ A learning rate schedule changes the learning rate during learning and is most often changed between epochs/iterations. This is mainly done with two parameters: <strong>decay</strong> and <strong>momentum</strong>.</p>
+    <ul>
+      <li><strong>Decay</strong>: serves to settle the learning in a nice place and avoid oscillations, a situation that may arise when a too high constant learning rate makes the learning jump back and forth over a minima, and is controlled by a hyperparameter.</li>
+      <li><strong>Momentum</strong>: is analogous to a ball rolling down a hill; we want the ball to settle at the lowest point of the hill (corresponding to the lowest error). Momentum both speeds up the learning (increasing the learning rate) when the error cost gradient is heading in the same direction for a long time and also avoids local minima by ‘rolling over’ small bumps.</li>
+    </ul>
+
+    <p id="lst-p"><strong>Types of learning rate schedules for Decay:</strong></p>
+    <ul>
+      <li><strong>Time-based</strong> learning schedules alter the learning rate depending on the learning rate of the previous time iteration. Factoring in the decay the mathematical formula for the learning rate is:
+        <p>$${\displaystyle \eta_{n+1}={\frac {\eta_{n}}{1+dn}}}$$</p>
+        <p>where \(\eta\) is the learning rate, \(d\) is a decay parameter and \(n\) is the iteration step.</p>
+      </li>
+      <li><strong>Step-based</strong> learning schedules changes the learning rate according to some pre defined steps:
+        <p>$${\displaystyle \eta_{n}=\eta_{0}d^{floor({\frac {1+n}{r}})}}$$</p>
+        <p>where \({\displaystyle \eta_{n}}\) is the learning rate at iteration \(n\), \(\eta_{0}\) is the initial learning rate, \(d\) is how much the learning rate should change at each drop (0.5 corresponds to a halving) and \(r\) corresponds to the droprate, or how often the rate should be dropped (\(10\) corresponds to a drop every \(10\) iterations). The floor function here drops the value of its input to \(0\) for all values smaller than \(1\).</p>
+      </li>
+      <li><strong>Exponential</strong> learning schedules are similar to step-based but instead of steps a decreasing exponential function is used. The mathematical formula for factoring in the decay is:
+        <p>$$ {\displaystyle \eta_{n}=\eta_{0}e^{-dn}}$$</p>
+        <p>where \(d\) is a decay parameter.<br />
+ <br /></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Convergence:</strong><br />
+ Gradient Descent converges when every element of the gradient is zero, or very close to zero within some threshold.</p>
+
+    <p>With certain assumptions on \(f\) (convex, \(\nabla f\) lipschitz) and particular choices of \(\epsilon\) (chosen via line-search etc.), convergence to a local minimum can be guaranteed.<br />
+ Moreover, if \(f\) is convex, all local minima are global minimia, so convergence is to the global minimum.<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Choosing (tuning) the hyperparameters:</strong><br />
+ We can set/tune most hyperparameters by reasoning about their effect on <strong>model capacity</strong>.<br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Effect of HPs on model capacity</button>
+ <img src="https://cdn.mathpix.com/snip/images/uEjsgHkxOZlxf4mXE6XnJYqegpjvoQfKG28_A4nG0Fk.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p id="lst-p"><strong>Important HPs:</strong></p>
+    <ol>
+      <li>Learning Rate</li>
+      <li># Hidden Units</li>
+      <li>Mini-batch Size</li>
+      <li>Momentum Coefficient</li>
+    </ol>
+
+    <p><strong style="color: red">Hyperparameter search:</strong><br />
+ Sample at random in a grid (hypercube) of different parameters, then zoom in to a tighter range of “good” values.<br />
+ Search (sample) on a logarithmic scale to get uniform sizes between values:</p>
+    <ul>
+      <li>Select value \(r \in [a, b]\) (e.g. \(\in [-4, 0]\), and set your hp as \(10^r\) (e.g. \(\epsilon = 10^{r}\)). You’ll be effectively sampling \(\in [10^{-4}, 10^0] \iff [0.0001, 1]\).<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Notes:</strong>
+    <ul>
+      <li>Gradient descent can be viewed as <strong>applying Euler’s method for solving ordinary differential equations \({\displaystyle x'(t)=-\nabla f(x(t))}\) to a <a href="https://en.wikipedia.org/wiki/Vector_field#Gradient_field_in_euclidean_spaces">gradient flow</a></strong>.</li>
+      <li>Neural nets are unconstrained optimization problems with many, many local minima. They sometimes benefit from line search or second-order optimization algorithms, but when the input data set is very large, researchers often favor the dumb, blind, stochastic versions of gradient descent.</li>
+      <li>Grid search suffers from the curse of dimensionality, but is often embarrassingly parallel because typically the hyperparameter settings it evaluates are independent of each other.<br />
+ <br /></li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Gradient Descent Variants</h2>
+
+<p>There are three variants of gradient descent, which differ in the amount of data used to compute the gradient. The amount of data imposes a trade-off between the accuracy of the parameter updates and the time it takes to perform the update.</p>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Batch Gradient Descent:</strong><br />
+ <strong>Batch Gradient Descent</strong> AKA <strong>Vanilla Gradient Descent</strong>, computes the gradient of the objective wrt. the parameters \(\theta\) for the entire dataset:
+    <p>$$\theta=\theta-\epsilon \cdot \nabla_{\theta} J(\theta)$$</p>
+
+    <p>Since we need to compute the gradient for the entire dataset for each update, this approach can be very slow and is intractable for datasets that can’t fit in memory.<br />
+ Moreover, batch-GD doesn’t allow for an <em>online</em> learning approach.<br />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Stochastic Gradient Descent:</strong><br />
+ <strong>SGD</strong> performs a parameter update for each data-point:
+    <p>$$\theta=\theta-\epsilon \cdot \nabla_{\theta} J\left(\theta ; x^{(i)} ; y^{(i)}\right)$$</p>
+
+    <p>SGD exhibits a lot of fluctuation and has a lot of variance in the parameter updates. However, although, SGD can potentially move in the wrong direction due to limited information; in-practice, if we slowly decrease the learning-rate, it shows the same convergence behavior as batch gradient descent, almost certainly converging to a local or the global minimum for non-convex and convex optimization respectively.<br />
+ Moreover, the fluctuations it exhibits enables it to jump to new and potentially better local minima.</p>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><strong>Why reduce the learning rate after every epoch?</strong><br />
+  This is due to the fact that the random sampling of batches acts as a source of noise which might make SGD keep oscillating around the minima without actually reaching it.<br />
+  It is necessary to guarantee convergence.</li>
+      <li><strong>The following conditions guarantee convergence under convexity conditions for SGD</strong>:
+        <p>$$\begin{array}{l}{\sum_{k=1}^{\infty} \epsilon_{k}=\infty, \quad \text { and }} \\ {\sum_{k=1}^{\infty} \epsilon_{k}^{2}&lt;\infty}\end{array}$$</p>
+      </li>
+      <li><a href="https://arxiv.org/pdf/1902.04811.pdf">Stochastic Gradient Descent Escapes Saddle Points Efficiently (M.J.)</a></li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Mini-batch Gradient Descent:</strong> <br />
+ A hybrid approach that perform updates for a, pre-specified, mini-batch of \(n\) training examples:
+    <p>$$\theta=\theta-\epsilon \cdot \nabla_{\theta} J\left(\theta ; x^{(i : i+n)} ; y^{(i : i+n)}\right)$$</p>
+
+    <p>This allows it to:</p>
+    <ol>
+      <li>Reduce the variance of the parameter updates \(\rightarrow\) more stable convergence</li>
+      <li>Makes use of matrix-vector highly optimized libraries</li>
+    </ol>
+  </li>
+</ol>
+
+<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}  
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}   -->
+
+<hr />
+
+<h2 id="content4">Gradient Descent “Optimization”</h2>
+
+<p><img src="https://cdn.mathpix.com/snip/images/CPfGpiDoF2QyJoFL6LpF-cNWlH9CKUf7yA2trb3mxVE.original.fullsize.png" alt="img" width="30%" /><br />
+\(\:\) <em>Evolutionary Map Of Optimizers</em></p>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">Challenges in vanilla approaches to gradient descent:</strong><br />
+ All the variants described above, however, do not guarantee <em>“good” convergence</em> due to some challenges:
+    <ul>
+      <li>Choosing a proper learning rate is usually difficult:<br />
+  A learning rate that is too small leads to painfully slow convergence, while a learning rate that is too large can hinder convergence and cause the loss function to fluctuate around the minimum or even to diverge.</li>
+      <li>Learning rate schedules<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> try to adjust the learning rate during training by e.g. annealing, i.e. reducing the learning rate according to a pre-defined schedule or when the change in objective between epochs falls below a threshold. These schedules and thresholds, however, have to be defined in advance and are thus unable to adapt to a dataset’s characteristics<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>.</li>
+      <li>The learning rate is <em>fixed</em> for all parameter updates:<br />
+  If our data is sparse and our features have very different frequencies, we might not want to update all of them to the same extent, but perform a larger update for rarely occurring features.</li>
+      <li>Another key challenge of minimizing highly non-convex error functions common for neural networks is avoiding getting trapped in their numerous suboptimal local minima. Dauphin et al.<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup> argue that the difficulty arises in fact not from local minima but from saddle points, i.e. points where one dimension slopes up and another slopes down. These saddle points are usually surrounded by a plateau of the same error, which makes it notoriously hard for SGD to escape, as the gradient is close to zero in all dimensions.<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents422">Preliminaries - Important Concepts:</strong><br />
+<strong style="color: red">Exponentially Weighted Averages:</strong><br />
+<a href="https://www.youtube.com/watch?v=lAq96T8FkTw&amp;list=PLkDaE6sCZn6Hn0vK8co82zjQtt3T2Nkqc&amp;index=17">EWAs (NG)</a>
+    <p>$$v_{t}=\beta v_{t-1}+ (1-\beta) \theta_{t}$$</p>
+    <p>You can think of \(v_t\) as approximately averaging over \(\approx \dfrac{1}{1-\beta}\) previous values \(\theta_i\).</p>
+
+    <p>The <em>larger</em> the \(\beta\) the <em>slower</em> \(v_t\) adapts to changes in (new) \(\theta\) and the <em>less</em> <strong>noisy</strong> the value of \(v_t\).</p>
+
+    <p><strong style="color: brown">Intuition:</strong><br />
+It is a recursive equation. Thus,</p>
+    <p>$$v_{100} = (1-\beta) \theta_{100} + (1-\beta)\beta \theta_{99} + (1-\beta)\beta^{2} \theta_{98} + (1-\beta)\beta^{3} \theta_{97} + (1-\beta)\beta^{4} \theta_{96} + \ldots + (1-\beta)\beta^{100} \theta_{1}$$</p>
+    <ul>
+      <li>It is an element-wise product between the values of \(\theta_i\) and an <strong>exponentially decaying</strong> function \(v(i)\).<br />
+  For <em>\(T=100, \beta=0.9\)</em>:<br />
+  <img src="https://cdn.mathpix.com/snip/images/e4SvtXH_4R88TdhgIJmfbhSMgTqc4lt5QJOnpi-hBuw.original.fullsize.png" alt="img" width="34%" /></li>
+      <li>The sum of the coefficients of \(\theta_i\) is equal to \(\approx 1\)
+        <blockquote>
+          <p>But not exactly \(1\) which is why <strong>bias correction</strong> is needed.</p>
+        </blockquote>
+      </li>
+      <li>It takes about \((1-\beta)^{\dfrac{1}{\beta}}\) time-steps for \(v\) to decay to about a third of its peak value. So, after \((1-\beta)^{\dfrac{1}{\beta}}\) steps, the weight decays to about a third of the weight of the current time-step \(\theta\) value.<br />
+  In general:
+        <p>$$(1-\epsilon)^{\dfrac{1}{\epsilon}} \approx \dfrac{1}{e} \approx 0.35 \approx \dfrac{1}{3}$$</p>
+        <p><a href="https://www.youtube.com/watch?v=NxTFlzBjS-4&amp;list=PLkDaE6sCZn6Hn0vK8co82zjQtt3T2Nkqc&amp;index=18">EWAs Intuition (NG)</a><br />
+<br />
+<br /></p>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Exponentially Weighted Averages Bias Correction:</strong></p>
+
+    <p><strong style="color: brown">The Problem:</strong><br />
+The estimate of the first value \(\theta_1\) will not be a good estimate of because it will be multiplied by \((1-\beta) &lt;&lt; 1\). This will be a much lower estimate especially during the initial phase of the estimate. It will produce the <em>purple</em> curve instead of the <em>green</em> curve:<br />
+<img src="https://cdn.mathpix.com/snip/images/_IAbXpX9_bnr1pvchJG3UxN-354OAsrmDoFpFYocI8g.original.fullsize.png" alt="img" width="50%" /></p>
+
+    <p><strong style="color: brown">Bias Correction:</strong>  <br />
+Replace \(v_t\) with:<br />
+\(\:\:\:\:\:\: \dfrac{v_{t}}{1-\beta^{t}}\)</p>
+    <ul>
+      <li><strong>Small \(t\):</strong> \(\implies \beta^t\) is large \(\implies \dfrac{1}{1-\beta^t}\) is large</li>
+      <li><strong>Large \(t\)</strong>: \(\implies \beta^t\) is small \(\implies \dfrac{1}{1-\beta^t} \approx 1\)<br />
+<br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Momentum:</strong><br />
+ <strong style="color: red">Motivation:</strong><br />
+ SGD has trouble navigating <em>ravines</em> (i.e. areas where the surface curves much more steeply in one dimension than in another<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup>) which are common around local optima.<br />
+ In these scenarios, SGD oscillates across the slopes of the ravine while only making hesitant progress along the bottom towards the local optimum.</p>
+
+    <p><strong style="color: red">Momentum:</strong><br />
+ <strong>Momentum</strong><sup id="fnref:5" role="doc-noteref"><a href="#fn:5" class="footnote" rel="footnote">5</a></sup> is a method that helps accelerate SGD in the relevant direction and dampens oscillations (image^). It does this by adding a fraction \(\gamma\) of the update vector of the past time step to the current update vector:</p>
+    <p>$$\begin{aligned} v_{t} &amp;=\gamma v_{t-1}+\eta \nabla_{\theta} J(\theta) \\ \theta &amp;=\theta-v_{t} \end{aligned}$$</p>
+    <blockquote>
+      <p>Note: Some implementations exchange the signs in the equations. The momentum term \(\gamma\) is usually set to \(0.9\) or a similar value, and \(v_0 = 0\).</p>
+    </blockquote>
+
+    <p><img src="https://cdn.mathpix.com/snip/images/jnTKkZmZsRZXw_8BNtgUxb7tZEg68sgRCspxVOmTw0I.original.fullsize.png" alt="img" width="70%" /></p>
+
+    <p>Essentially, when using momentum, we push a ball down a hill. The ball accumulates momentum as it rolls downhill, becoming faster and faster on the way (until it reaches its terminal velocity if there is air resistance, i.e.  \(\gamma &lt; 1\)). The same thing happens to our parameter updates: The momentum term increases for dimensions whose gradients point in the same directions and reduces updates for dimensions whose gradients change directions. As a result, we gain faster convergence and reduced oscillation.<br />
+ In this case we think of the equation as:</p>
+    <p>$$v_{t} =\underbrace{\gamma}_{\text{friction }} \: \underbrace{v_{t-1}}_{\text{velocity}}+\eta \underbrace{\nabla_{\theta} J(\theta)}_ {\text{acceleration}}$$</p>
+    <blockquote>
+      <p>Instead of using the gradient to change the position of the weight “particle,” use it to change the velocity. - Hinton</p>
+    </blockquote>
+
+    <ul>
+      <li><a href="https://www.youtube.com/embed/k8fTYJPd3_I" value="show" onclick="iframePopA(event)"><strong>Momentum NG</strong></a>
+ <a href="https://www.youtube.com/embed/k8fTYJPd3_I"></a>
+        <div></div>
+        <p><strong>Momentum Calculation (EWAs):</strong></p>
+        <p>$$\begin{align} 
+      v_{dw} &amp;= \beta\:v_{dw}+(1-\beta) dw \\ 
+      v_{db} &amp;=\beta\:v_{db}+(1-\beta) db \end{align}$$</p>
+        <p><strong>Parameter Updates:</strong></p>
+        <p>$$\begin{align} 
+      w &amp;= w - \epsilon\:v_{dw} \\ 
+      b &amp;= b - \epsilon\:v_{d_b} \end{align}$$</p>
+      </li>
+      <li><a href="https://distill.pub/2017/momentum/" value="show" onclick="iframePopA(event)"><strong>Why Momentum Really Works (distill)</strong></a>
+ <a href="https://distill.pub/2017/momentum/"></a>
+        <div></div>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li>Bias Correction is NOT used in practice; only 10 iterations needed to catch up.</li>
+      <li>The \((1-\beta)\) coefficient usually gets dropped in the literature. The effect is that that lr needs to be rescaled which is not a problem.</li>
+      <li><a href="https://www.iro.umontreal.ca/~vincentp/ift3395/lectures/backprop_old.pdf">Learning representations by back-propagating errors (Rumelhart, Hinton)</a></li>
+      <li><a href="https://www.youtube.com/watch?v=7HZk7kGk5bU">visualizing Momentum (video)</a><br />
+ <br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">Nesterov Accelerated Gradient:</strong><br />
+ <strong style="color: red">Motivation:</strong><br />
+ Momentum is good, however, a ball that rolls down a hill, blindly following the slope, is highly unsatisfactory. We’d like to have a smarter ball, a ball that has a notion of where it is going so that it knows to slow down before the hill slopes up again.</p>
+
+    <p><strong style="color: red">Nesterov Accelerated Gradient (NAG):</strong><br />
+ <strong>NAG</strong><sup id="fnref:6" role="doc-noteref"><a href="#fn:6" class="footnote" rel="footnote">6</a></sup> is a way to five our momentum term this kind of prescience. Since we know that we will use the momentum term \(\gamma\:v_{t-1}\) to move the parameters \(\theta\), we can compute a rough approximation of the next position of the parameters with \(\theta - \gamma v_{t-1}\) (w/o the gradient). This allows us to, effectively, look ahead by calculating the gradient not wrt. our current parameters \(\theta\) but wrt. the approximate future position of our parameters:</p>
+    <p>$$\begin{aligned} v_{t} &amp;=\gamma v_{t-1}+\eta \nabla_{\theta} J\left(\theta-\gamma v_{t-1}\right) \\ \theta &amp;=\theta-v_{t} \end{aligned}$$</p>
+    <blockquote>
+      <p>\(\gamma = 0.9\),</p>
+    </blockquote>
+
+    <p>While Momentum first computes the current gradient (small blue vector) and then takes a big jump in the direction of the updated accumulated gradient (big blue vector), NAG first makes a big jump in the direction of the previous accumulated gradient (brown vector), measures the gradient and then makes a correction (red vector), which results in the complete NAG update (green vector). This anticipatory update prevents us from going too fast and results in increased responsiveness, which has significantly increased the performance of RNNs on a number of tasks<sup id="fnref:7" role="doc-noteref"><a href="#fn:7" class="footnote" rel="footnote">7</a></sup>.<br />
+ <img src="https://cdn.mathpix.com/snip/images/Gf7UUuUreRzopC-75FXkehiXbEkrtVJjiwIDSMBtJzw.original.fullsize.png" alt="img" width="40%" /></p>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li>This really helps the optimization of <strong>recurrent neural networks</strong><sup id="fnref:8" role="doc-noteref"><a href="#fn:8" class="footnote" rel="footnote">8</a></sup></li>
+      <li>Momentum allows us to <strong>adapt our updates to the slope of our error function</strong> and speed up SGD</li>
+      <li><a href="https://arxiv.org/pdf/1905.07436.pdf">A Dynamical Systems Perspective on Nesterov Acceleration (M.Jordan)</a><br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Adagrad:</strong><br />
+ <strong style="color: red">Motivation:</strong><br />
+ Now that we are able to <strong style="color: goldenrod">adapt our updates to the slope of our error function</strong> and speed up SGD in turn, we would also like to <strong style="color: goldenrod">adapt our updates to each individual parameter</strong> to perform larger or smaller updates depending on their importance.
+    <blockquote>
+      <p>The magnitude of the gradient can be very different for different weights and can change during learning: This makes it <span style="color: goldenrod">hard to choose single global learning rate</span>.  - Hinton</p>
+    </blockquote>
+
+    <p><strong style="color: red">Adagrad:</strong><br />
+ <strong>Adagrad</strong><sup id="fnref:9" role="doc-noteref"><a href="#fn:9" class="footnote" rel="footnote">9</a></sup> is an algorithm for gradient-based optimization that does just this: It adapts the learning rate to the parameters, performing smaller updates (i.e. low learning rates) for parameters associated with frequently occurring features, and larger updates (i.e. high learning rates) for parameters associated with infrequent features.</p>
+
+    <p><strong>Adagrad per-parameter update:</strong><br />
+ Adagrad uses a different learning rate for every parameter \(\theta_i\) at every time step \(t\), so, we first show Adagrad’s per-parameter update.</p>
+
+    <p>The SGD update for every parameter \(\theta_i\) at each time step \(t\) is:</p>
+    <p>$$\theta_{t+1, i}=\theta_{t, i}-\eta \cdot g_{t, i}$$</p>
+    <p>where \(g_{t, i}=\nabla_{\theta} J\left(\theta_{t, i}\right)\), is the partial derivative of the objective function w.r.t. to the parameter \(\theta_i\) at time step \(t\), and \(g_{t}\) is the gradient at time-step \(t\).</p>
+
+    <p>In its update rule, Adagrad modifies the general learning rate \(\eta\) at each time step \(t\) for every parameter \(\theta_i\) based on the past gradients that have been computed for \(\theta_i\):</p>
+    <p>$$\theta_{t+1, i}=\theta_{t, i}-\frac{\eta}{\sqrt{G_{t, i i}+\epsilon}} \cdot g_{t, i}$$</p>
+
+    <p>\(G_t \in \mathbb{R}^{d \times d}\) here is a diagonal matrix where each diagonal element \(i, i\) is the sum of the squares of the gradients wrt \(\theta_i\) up to time step \(t\)<sup id="fnref:12" role="doc-noteref"><a href="#fn:12" class="footnote" rel="footnote">10</a></sup>, while \(\epsilon\) is a smoothing term that avoids division by zero (\(\approx 1e - 8\)).</p>
+    <blockquote>
+      <p>Without the sqrt, the algorithm performs <strong>much worse</strong></p>
+    </blockquote>
+
+    <p>As \(G_t\) contains the sum of the squares of the past gradients w.r.t. to all parameters \(\theta\) along its diagonal, we can now vectorize our implementation by performing a matrix-vector product \(\odot\) between \(G_t\) and  \(g_t\):</p>
+    <p>$$\theta_{t+1}=\theta_{t}-\frac{\eta}{\sqrt{G_{t}+\epsilon}} \odot g_{t}$$</p>
+
+    <p id="lst-p"><strong style="color: red">Properties:</strong></p>
+    <ul>
+      <li>Well-suited for dealing with <strong>sparse data</strong> (because it adapts the lr of each parameter wrt <strong>feature frequency</strong>)
+        <ul>
+          <li>Pennington et al.<sup id="fnref:11" role="doc-noteref"><a href="#fn:11" class="footnote" rel="footnote">11</a></sup> used Adagrad to train GloVe word embeddings, as infrequent words require much larger updates than frequent ones.</li>
+        </ul>
+      </li>
+      <li><strong>Eliminates need for manual tuning of lr</strong>:<br />
+  One of Adagrad’s main benefits is that it eliminates the need to manually tune the learning rate. Most implementations use a default value of \(0.01\) and leave it at that.</li>
+      <li><strong>Weakness -&gt; Accumulation of the squared gradients in the denominator</strong>:<br />
+  Since every added term is positive, the accumulated sum keeps growing during training. This in turn causes the learning rate to shrink and eventually become infinitesimally small, at which point the algorithm is no longer able to acquire additional knowledge.</li>
+      <li><a href="https://www.youtube.com/watch?v=Cy2g9_hR-5Y">Visualization - How adaptive gradient methods speedup convergence</a><br />
+ <br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents45">Adadelta:</strong><br />
+ <strong style="color: red">Motivation:</strong><br />
+ <strong>Adagrad</strong> has a weakness where it suffers from <strong style="color: goldenrod">aggressive, monotonically decreasing lr</strong> by <em>accumulation of the squared gradients in the denominator</em>. The following algorithm aims to resolve this flow.</p>
+
+    <p><strong style="color: red">Adadelta:</strong><br />
+ Adadelta<sup id="fnref:13" role="doc-noteref"><a href="#fn:13" class="footnote" rel="footnote">12</a></sup> is an extension of Adagrad that seeks to reduce its aggressive, monotonically decreasing learning rate. Instead of accumulating all past squared gradients, Adadelta restricts the window of accumulated past gradients to some fixed size \(w\).</p>
+
+    <p>Instead of inefficiently storing \(w\) previous squared gradients, the sum of gradients is recursively defined as a decaying average of all past squared gradients. The running average \(E\left[g^{2}\right]_ {t}\) at time step \(t\) then depends (as a fraction \(\gamma\) similarly to the Momentum term) only on the previous average and the current gradient:</p>
+    <p>$$E\left[g^{2}\right]_{t}=\gamma E\left[g^{2}\right]_{t-1}+(1-\gamma) g_{t}^{2}$$</p>
+
+    <p>We set \(\gamma\) to a similar value as the momentum term, around \(0.9\).<br />
+ For clarity, we now rewrite our vanilla SGD update in terms of the parameter update vector \(\Delta \theta_{t}\):</p>
+    <p>$$\begin{aligned} \Delta \theta_{t} &amp;=-\eta \cdot g_{t, i} \\ \theta_{t+1} &amp;=\theta_{t}+\Delta \theta_{t} \end{aligned}$$</p>
+
+    <p>In the <strong>parameter update vector</strong> of Adagrad, we replace the diagonal matrix \(G_t\) with the <em>decaying average over past squared gradients</em> \(E[g^2]_ t\):</p>
+    <p>$$-\frac{\eta}{\sqrt{E[g^2]_ t+\epsilon}} \odot g_{t}$$</p>
+    <p>Since the denominator is just the <strong>root mean squared (RMS) error criterion</strong> <em>of the gradient</em>, we can replace it with the criterion short-hand:</p>
+    <p>$$-\frac{\eta}{RMS[g]_{t}} \odot g_{t}$$</p>
+
+    <p>This <strong><em>modified</em> parameter update vector</strong> does NOT have the same <strong>hypothetical units</strong> as the parameter.<br />
+ We accomplish this by first defining another <strong>exponentially decaying average</strong>, this time not of squared gradients but <strong>of squared parameter updates</strong>:</p>
+    <p>$$E[\Delta \theta^2]_t = \gamma E[\Delta \theta^2]_{t-1} + (1 - \gamma) \Delta \theta^2_t$$</p>
+    <p>The <strong>RMS Error of parameter updates</strong> is thus:</p>
+    <p>$$RMS[\Delta \theta]_ {t} = \sqrt{E[\Delta \theta^2]_ t + \epsilon}$$</p>
+
+    <p>Since \(RMS[\Delta \theta]_ {t}\) is <strong>unknown</strong>, we approximate it with the \(RMS\) of parameter updates up to (until) the previous time step. Replacing the learning rate \(\eta\) in the previous update rule with \(RMS[\Delta \theta]_ {t-1}\) finally yields the Adadelta update rule:</p>
+    <p>$$\begin{align}  \begin{split}  \Delta \theta_t &amp;= - \dfrac{RMS[\Delta \theta]_{t-1}}{RMS[g]_{t}} g_{t} \\  \theta_{t+1} &amp;= \theta_t + \Delta \theta_t  \end{split}  \end{align}$$</p>
+    <p><br /></p>
+
+    <p id="lst-p"><strong style="color: red">Properties:</strong></p>
+    <ul>
+      <li><strong>Eliminates need for lr completely</strong>:<br />
+  With Adadelta, we do not even need to set a default learning rate, as it has been eliminated from the update rule.<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents46">RMSprop:</strong><br />
+ <strong>Motivation:</strong> <br />
+ RMSprop and Adadelta have both been developed independently around the same time stemming from the need to <strong>resolve Adagrad’s radically diminishing learning rates</strong>.</p>
+
+    <p><strong style="color: red">RMSprop:</strong><br />
+ <strong>RMSprop</strong> is an unpublished, adaptive learning rate method proposed by Geoff Hinton in <a href="http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf">Lecture 6e of his Coursera Class</a>.</p>
+
+    <p>RMSprop in fact is identical to the first update vector of Adadelta that we derived above:</p>
+    <p>$$\begin{align}  \begin{split}  E[g^2]_t &amp;= 0.9 E[g^2]_{t-1} + 0.1 g^2_t \\  \theta_{t+1} &amp;= \theta_{t} - \dfrac{\eta}{\sqrt{E[g^2]_t + \epsilon}} g_{t}  \end{split}  \end{align}$$</p>
+
+    <p>RMSprop as well <strong style="color: goldenrod">divides the learning rate by an exponentially decaying average of squared gradients</strong>.<br />
+ Hinton suggests \(\gamma\) to be set to \(0.9\), while a good default value for the learning rate \(\eta\) is \(0.001\).</p>
+
+    <p><strong style="color: red">RMSprop as an extension of Rprop:</strong><br />
+ Hinton, actually, thought of RMSprop as a way of extending <em>Rprop</em> to work with <strong>mini-batches</strong>.<br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Why Rprop does not work with mini-batches?</button>
+ <img src="https://cdn.mathpix.com/snip/images/KxK61epXdFZw6Rqb7mwqXSIDUouk-TWeNdLu3M_wBFU.original.fullsize.png" alt="img" width="60%" hidden="" /></p>
+
+    <p><strong>Rprop:</strong> is equivalent to using the gradient but also dividing by the magnitude of the gradient.<br />
+ The problem with mini-batch rprop is that we divide by a different number for each mini-batch.<br />
+ So why not <strong>force the number we divide by to be very similar for adjacent mini-batches</strong>?<br />
+ That is the idea behind RMSprop.<br />
+ <br /></p>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li>It is of note that Hinton has tried to add <em>momentum</em> to RMSprop and found that “it does not help as much as it normally does - needs more investigation”.</li>
+      <li><a href="https://www.youtube.com/watch?v=Cy2g9_hR-5Y">Visualizing Rprop - How adaptive gradient methods speedup convergence</a><br />
+ <br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents47">Adam:</strong><br />
+ <strong>Motivation:</strong><br />
+ Adding <strong>momentum</strong> to Adadelta/RMSprop.</p>
+
+    <p><strong style="color: red">Adam:</strong><br />
+ <strong>Adaptive Moment Estimation (Adam)</strong><sup id="fnref:14" role="doc-noteref"><a href="#fn:14" class="footnote" rel="footnote">13</a></sup> is another method that computes adaptive learning rates for each parameter. In addition to storing an exponentially decaying average of past squared gradients \(v_t\) like Adadelta and RMSprop, Adam also keeps an exponentially decaying average of past gradients \(m_t\), similar to momentum.</p>
+
+    <p><strong>Adam VS Momentum:</strong><br />
+ Whereas momentum can be seen as a ball running down a slope, Adam behaves like a heavy ball with friction, which thus prefers flat minima in the error surface[^15].</p>
+
+    <p>We compute the decaying averages of past and past squared gradients \(m_t\) and \(v_t\) respectively as follows:</p>
+    <p>$$\begin{align}  \begin{split}  m_t &amp;= \beta_1 m_{t-1} + (1 - \beta_1) g_t \\  v_t &amp;= \beta_2 v_{t-1} + (1 - \beta_2) g_t^2  \end{split}  \end{align}$$</p>
+
+    <p>\(m_t\) and \(v_t\) are estimates of the first moment (the mean) and the second moment (the uncentered variance) of the gradients respectively, hence the name of the method.<br />
+ As \(m_t\) and \(v_t\) are initialized as vectors of \(0\)’s, the authors of Adam observe that they are biased towards zero, especially during the initial time steps, and especially when the decay rates are small (i.e. \(\beta_1\) and \(\beta_2\) are close to \(1\)).</p>
+
+    <p>They counteract these biases by computing bias-corrected first and second moment estimates:</p>
+    <p>$$\begin{align}  \begin{split}  \hat{m}_ t &amp;= \dfrac{m_t}{1 - \beta^t_1} \\  \hat{v}_ t &amp;= \dfrac{v_t}{1 - \beta^t_2} \end{split}  \end{align}$$</p>
+
+    <p>They then use these to update the parameters just as we have seen in Adadelta and RMSprop, which yields the Adam update rule:</p>
+    <p>$$\theta_{t+1} = \theta_{t} - \dfrac{\eta}{\sqrt{\hat{v}_ t} + \epsilon} \hat{m}_ t$$</p>
+
+    <p>The authors propose default values of \(0.9\) for \(\beta_1\), \(0.999\) for \(\beta_2\), and \(10^{ −8}\) for \(\epsilon\). They show empirically that Adam works well in practice and compares favorably to other adaptive learning-method algorithms.<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents48"><a href="http://ruder.io/optimizing-gradient-descent/index.html#adamax">AdaMax</a></strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents49"><a href="http://ruder.io/optimizing-gradient-descent/index.html#nadam">Nadam</a></strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents410"><a href="http://ruder.io/optimizing-gradient-descent/index.html#amsgrad">AMSGrad</a>:</strong><br />
+<strong style="color: red">Motivation:</strong><br />
+Adaptive LR methods fail to converge to an optimal solution in some cases, e.g. for object recognition <a href="https://ruder.io/optimizing-gradient-descent/index.html#fn17">[17]</a> or machine translation <a href="https://ruder.io/optimizing-gradient-descent/index.html#fn18">[18]</a>.<br />
+Reddi et al. (2018) <a href="https://ruder.io/optimizing-gradient-descent/index.html#fn19">[19]</a> formalize this issue and pinpoint the exponential moving average of past squared gradients as a reason for the poor generalization behaviour of adaptive learning rate methods.</p>
+
+    <p>In settings where Adam converges to a suboptimal solution, it has been observed that some minibatches provide large and informative gradients, but as these minibatches only occur rarely, exponential averaging diminishes their influence, which leads to poor convergence.<br />
+To fix this behaviour, the authors propose a new algorithm, AMSGrad that uses the maximum of past squared gradients \(v_t\) rather than the exponential average to update the parameters.</p>
+
+    <p>Instead of using \(v_{t}\) (or its bias-corrected version \(\hat{v}_{t}\)) directly, we now employ the previous \(v_{t-1}\) if it is larger than the current one:<br />
+\(\hat{v}_{t}=\max \left(\hat{v}_{t-1}, v_{t}\right)\)</p>
+
+    <p>This way, AMSGrad results in a <em><strong>non-increasing step size</strong></em>, which avoids the problems suffered by Adam. For simplicity, the authors also remove the debiasing step that we have seen in Adam.</p>
+
+    <p><strong style="color: red">Parameter Updates:</strong></p>
+    <p>$$
+\begin{aligned}
+m_{t} &amp;=\beta_{1} m_{t-1}+\left(1-\beta_{1}\right) g_{t} \\
+v_{t} &amp;=\beta_{2} v_{t-1}+\left(1-\beta_{2}\right) g_{t}^{2} \\
+\hat{v}_{t} &amp;=\max \left(\hat{v}_{t-1}, v_{t}\right) \\
+\theta_{t+1} &amp;=\theta_{t}-\frac{\eta}{\sqrt{\hat{v}_{t}}+\epsilon} m_{t}
+\end{aligned}
+$$</p>
+
+    <p>TLDR: AMSGrad = Adam but always divide by max \(\hat{v}_ i\) for \(i \in [1, t]\). <br />
+<br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents411">Visualization of the Algorithms</strong><br />
+<strong style="color: red">SGD optimization on loss surface contours:</strong><br />
+<img src="/main_files/dl/concepts/grad_opt/1.gif" alt="img" width="100%" /></p>
+
+    <p>We see their behavior on the contours of a loss surface (the Beale function) over time. Note that Adagrad, Adadelta, and RMSprop almost immediately head off in the right direction and converge similarly fast, while Momentum and NAG are led off-track, evoking the image of a ball rolling down the hill. NAG, however, is quickly able to correct its course due to its increased responsiveness by looking ahead and heads to the minimum.</p>
+
+    <p><br /></p>
+
+    <p><strong style="color: red">SGD optimization on saddle point:</strong><br />
+<img src="/main_files/dl/concepts/grad_opt/2.gif" alt="img" width="100%" /></p>
+
+    <p>Image shows the behavior of the algorithms at a saddle point, i.e. a point where one dimension has a positive slope, while the other dimension has a negative slope, which pose a difficulty for SGD as we mentioned before. Notice here that SGD, Momentum, and NAG find it difficulty to break symmetry, although the two latter eventually manage to escape the saddle point, while Adagrad, RMSprop, and Adadelta quickly head down the negative slope.</p>
+
+    <p><strong style="color: red">Analysis:</strong><br />
+As we can see, the adaptive learning-rate methods, i.e. Adagrad, Adadelta, RMSprop, and Adam are most suitable and provide the best convergence for these scenarios.</p>
+
+    <p><a href="http://louistiao.me/notes/visualizing-and-animating-optimization-algorithms-with-matplotlib/"><strong>Tutorial for Visualization</strong></a></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents412">Analysis - Choosing an Optimizer:</strong>
+    <ul>
+      <li><strong>Sparse Input Data</strong>:<br />
+  If your input data is sparse, then you likely achieve the best results using one of the adaptive learning-rate methods. An additional benefit is that you won’t need to tune the learning rate but likely achieve the best results with the default value.</li>
+    </ul>
+
+    <p>In summary, RMSprop is an extension of Adagrad that deals with its radically diminishing learning rates. It is identical to Adadelta, except that Adadelta uses the RMS of parameter updates in the numerator update rule. Adam, finally, adds bias-correction and momentum to RMSprop. Insofar, RMSprop, Adadelta, and Adam are very similar algorithms that do well in similar circumstances. Kingma et al.<sup id="fnref:14:1" role="doc-noteref"><a href="#fn:14" class="footnote" rel="footnote">13</a></sup> show that its bias-correction helps Adam slightly outperform RMSprop towards the end of optimization as gradients become sparser. Insofar, Adam might be the best overall choice.</p>
+
+    <p>Interestingly, many recent papers use vanilla SGD without momentum and a simple learning rate annealing schedule. As has been shown, SGD usually achieves to find a minimum, but it might take significantly longer than with some of the optimizers, is much more reliant on a robust initialization and annealing schedule, and may get stuck in saddle points rather than local minima. Consequently, if you care about fast convergence and train a deep or complex neural network, you should choose one of the adaptive learning rate methods.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content5"><a href="http://ruder.io/optimizing-gradient-descent/index.html#parallelizinganddistributingsgd">Parallelizing and distributing SGD</a></h2>
+
+<hr />
+
+<h2 id="content6"><a href="http://ruder.io/optimizing-gradient-descent/index.html#additionalstrategiesforoptimizingsgd">Additional strategies for optimizing SGD</a></h2>
+
+<p class="message">For a great overview of some other common tricks, refer to<sup id="fnref:24" role="doc-noteref"><a href="#fn:24" class="footnote" rel="footnote">14</a></sup></p>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents61"><a href="http://ruder.io/optimizing-gradient-descent/index.html#shufflingandcurriculumlearning">Shuffling and Curriculum Learning</a>:</strong><br />
+ Generally, we want to avoid providing the training examples in a meaningful order to our model as this may bias the optimization algorithm. Consequently, it is often a good idea to shuffle the training data after every epoch.</p>
+
+    <p>On the other hand, for some cases where we aim to solve progressively harder problems, supplying the training examples in a meaningful order may actually lead to improved performance and better convergence. The method for establishing this meaningful order is called Curriculum Learning<sup id="fnref:25" role="doc-noteref"><a href="#fn:25" class="footnote" rel="footnote">15</a></sup>.</p>
+
+    <p>Zaremba and Sutskever<sup id="fnref:26" role="doc-noteref"><a href="#fn:26" class="footnote" rel="footnote">16</a></sup> were only able to train LSTMs to evaluate simple programs using Curriculum Learning and show that a combined or mixed strategy is better than the naive one, which sorts examples by increasing difficulty.</p>
+
+    <blockquote>
+      <p>Note: <em>“Generally, we want to avoid providing the training examples in a meaningful order to our model as this may bias the optimization algorithm.”</em><br />
+     Yes, ok, but this is just the kind of bias that we want to introduce to the network.</p>
+    </blockquote>
+
+    <p><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents62"><a href="http://ruder.io/optimizing-gradient-descent/index.html#batchnormalization">Batch Normalization</a>:</strong><br />
+ To facilitate learning, we typically normalize the initial values of our parameters by initializing them with zero mean and unit variance. As training progresses and we update parameters to different extents, we lose this normalization, which slows down training and amplifies changes as the network becomes deeper.</p>
+
+    <p>Batch normalization<sup id="fnref:27" role="doc-noteref"><a href="#fn:27" class="footnote" rel="footnote">17</a></sup> reestablishes these normalizations for every mini-batch and changes are back-propagated through the operation as well. By making normalization part of the model architecture, we are able to use higher learning rates and pay less attention to the initialization parameters. Batch normalization additionally acts as a regularizer, reducing (and sometimes even eliminating) the need for Dropout.</p>
+
+    <p><a href="https://www.youtube.com/watch?v=Xogn6veSyxA&amp;feature=youtu.be&amp;t=326s">Goodfellow on BN</a><br />
+ <a href="https://rohanvarma.me/Batch-Norm/">Excellent Blog on BN</a><br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents63"><a href="http://ruder.io/optimizing-gradient-descent/index.html#earlystopping">Early Stopping</a>:</strong><br />
+ According to Geoff Hinton: “Early stopping (is) beautiful free lunch” (<a href="https://media.nips.cc/Conferences/2015/tutorialslides/DL-Tutorial-NIPS2015.pdf">NIPS 2015 Tutorial slides</a>, slide 63). You should thus always monitor error on a validation set during training and stop (with some patience) if your validation error does not improve enough.<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents64"><a href="http://ruder.io/optimizing-gradient-descent/index.html#gradientnoise">Gradient Noise</a>:</strong><br />
+ Neelakantan et al.<sup id="fnref:28" role="doc-noteref"><a href="#fn:28" class="footnote" rel="footnote">18</a></sup> add noise that follows a Gaussian distribution \(\mathcal{N}(0, \sigma^2_t)\) to each gradient update:</p>
+    <p>$$g_{t, i} = g_{t, i} + \mathcal{N}(0, \sigma^2_t)$$</p>
+
+    <p>They anneal the variance according to the following schedule:</p>
+    <p>$$\sigma^2_t = \dfrac{\eta}{(1 + t)^\gamma}$$</p>
+
+    <p>They show that adding this noise makes networks more robust to poor initialization and helps training particularly deep and complex networks. They suspect that the added noise gives the model more chances to escape and find new local minima, which are more frequent for deeper models.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content7"><a href="http://ruder.io/deep-learning-optimization-2017/index.html">Further Advances in DL Optimization</a></h2>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>H. Robinds and S. Monro, “A stochastic approximation method,” Annals of Mathematical Statistics, vol. 22, pp. 400–407, 1951. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>Darken, C., Chang, J., &amp; Moody, J. (1992). Learning rate schedules for faster stochastic gradient search. Neural Networks for Signal Processing II Proceedings of the 1992 IEEE Workshop, (September), 1–11. <a href="http://doi.org/10.1109/NNSP.1992.253713">http://doi.org/10.1109/NNSP.1992.253713</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p>Dauphin, Y., Pascanu, R., Gulcehre, C., Cho, K., Ganguli, S., &amp; Bengio, Y. (2014). Identifying and attacking the saddle point problem in high-dimensional non-convex optimization. arXiv, 1–14. Retrieved from <a href="http://arxiv.org/abs/1406.2572">http://arxiv.org/abs/1406.2572</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:4" role="doc-endnote">
+      <p>Sutton, R. S. (1986). Two problems with backpropagation and other steepest-descent learning procedures for networks. Proc. 8th Annual Conf. Cognitive Science Society. <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:5" role="doc-endnote">
+      <p>Qian, N. (1999). On the momentum term in gradient descent learning algorithms. Neural Networks : The Official Journal of the International Neural Network Society, 12(1), 145–151. <a href="http://doi.org/10.1016/S0893-6080(98)00116-6">http://doi.org/10.1016/S0893-6080(98)00116-6</a> <a href="#fnref:5" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:6" role="doc-endnote">
+      <p>Nesterov, Y. (1983). A method for unconstrained convex minimization problem with the rate of convergence o(1/k2). Doklady ANSSSR (translated as Soviet.Math.Docl.), vol. 269, pp. 543– 547. <a href="#fnref:6" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:7" role="doc-endnote">
+      <p>Bengio, Y., Boulanger-Lewandowski, N., &amp; Pascanu, R. (2012). Advances in Optimizing Recurrent Networks. Retrieved from <a href="http://arxiv.org/abs/1212.0901">http://arxiv.org/abs/1212.0901</a> <a href="#fnref:7" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:8" role="doc-endnote">
+      <p>Sutskever, I. (2013). Training Recurrent neural Networks. PhD Thesis. <a href="#fnref:8" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:9" role="doc-endnote">
+      <p>Duchi, J., Hazan, E., &amp; Singer, Y. (2011). Adaptive Subgradient Methods for Online Learning and Stochastic Optimization. Journal of Machine Learning Research, 12, 2121–2159. Retrieved from <a href="http://jmlr.org/papers/v12/duchi11a.html">http://jmlr.org/papers/v12/duchi11a.html</a> <a href="#fnref:9" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:12" role="doc-endnote">
+      <p>Duchi et al. [3] give this matrix as an alternative to the <em>full</em> matrix containing the outer products of all previous gradients, as the computation of the matrix square root is infeasible even for a moderate number of parameters \(d\). <a href="#fnref:12" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:11" role="doc-endnote">
+      <p>Pennington, J., Socher, R., &amp; Manning, C. D. (2014). Glove: Global Vectors for Word Representation. Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing, 1532–1543. <a href="http://doi.org/10.3115/v1/D14-1162">http://doi.org/10.3115/v1/D14-1162</a> <a href="#fnref:11" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:13" role="doc-endnote">
+      <p>Zeiler, M. D. (2012). ADADELTA: An Adaptive Learning Rate Method. Retrieved from <a href="http://arxiv.org/abs/1212.5701">http://arxiv.org/abs/1212.5701</a> <a href="#fnref:13" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:14" role="doc-endnote">
+      <p>Kingma, D. P., &amp; Ba, J. L. (2015). Adam: a Method for Stochastic Optimization. International Conference on Learning Representations, 1–13. <a href="#fnref:14" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:14:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a></p>
+    </li>
+    <li id="fn:24" role="doc-endnote">
+      <p>LeCun, Y., Bottou, L., Orr, G. B., &amp; Muller, K. R. (1998). Efficient BackProp. Neural Networks: Tricks of the Trade, 1524, 9–50. <a href="http://doi.org/10.1007/3-540-49430-8_2">http://doi.org/10.1007/3-540-49430-8_2</a> <a href="#fnref:24" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:25" role="doc-endnote">
+      <p>Bengio, Y., Louradour, J., Collobert, R., &amp; Weston, J. (2009). Curriculum learning. Proceedings of the 26th Annual International Conference on Machine Learning, 41–48. <a href="http://doi.org/10.1145/1553374.1553380">http://doi.org/10.1145/1553374.1553380</a> <a href="#fnref:25" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:26" role="doc-endnote">
+      <p>Zaremba, W., &amp; Sutskever, I. (2014). Learning to Execute, 1–25. Retrieved from <a href="http://arxiv.org/abs/1410.4615">http://arxiv.org/abs/1410.4615</a> <a href="#fnref:26" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:27" role="doc-endnote">
+      <p>Ioffe, S., &amp; Szegedy, C. (2015). Batch Normalization : Accelerating Deep Network Training by Reducing Internal Covariate Shift. arXiv Preprint arXiv:1502.03167v3. <a href="#fnref:27" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:28" role="doc-endnote">
+      <p>Neelakantan, A., Vilnis, L., Le, Q. V., Sutskever, I., Kaiser, L., Kurach, K., &amp; Martens, J. (2015). Adding Gradient Noise Improves Learning for Very Deep Networks, 1–11. Retrieved from <a href="http://arxiv.org/abs/1511.06807">http://arxiv.org/abs/1511.06807</a> <a href="#fnref:28" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

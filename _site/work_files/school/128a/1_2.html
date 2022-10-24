@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">1.2 <br /> Round-off Errors and Computer Arithmetic</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/school/1 class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Binary Machine Numbers</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Decimal Machine Numbers</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Finite-Digit Arithmetic</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">Nested Arithmetic</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">Binary Machine Numbers</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Representing Real Numbers:</strong></dt>
+      <dd>A 64-bit (binary digit) representation is used for a real number.
+        <blockquote>
+          <ul>
+            <li>The <strong>first bit</strong> is a sign indicator, denoted <strong>\(s\)</strong>.</li>
+            <li>Followed by an 11-bit exponent, <strong>\(c\)</strong>, called the <strong>characteristic</strong>,</li>
+            <li>and a 52-bit binary fraction, <strong>\(f\)</strong> , called the <strong>mantissa</strong>.</li>
+            <li>The base for the exponent is 2.</li>
+          </ul>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Floating-Point Number Form:</strong></dt>
+      <dd>
+\[(−1)^s\ \  2^{c−1023} \ (1 + f)\]
+      </dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Smallest Normalized positive Number:</strong>
+    <blockquote>
+      <p><strong>When:</strong>  \(s = 0, \ \  c = 1,\ \\) and \(\ \ f = 0\).<br />
+<strong>Equivalent to:</strong>  \(2^{−1022}\  \ \dot \ \ (1 + 0) \ \approx \ 0.22251 \ \dot \ 10^{−307}\).</p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Largest Normalized positive Number:</strong> <br />
+    <blockquote>
+      <p><strong>When:</strong>  \(s = 0,\ \  c = 2046,\ \\) and \(\ \ f = 1 - 2^{-52}\).<br />
+<strong>Equivalent to:</strong>  \(2^{1023}\  \dot \  (2 - 2^{-52}) \  \approx 0.17977  × 10^{309}\).</p>
+    </blockquote>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">UnderFlow:</strong></dt>
+      <dd>When numbers occurring in calculations have a magnitude less than,<br />
+\(2^{-1022}\).</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">OverFlow:</strong></dt>
+      <dd>When numbers occurring in calculations have a magnitude greater than,<br />
+\(2^{1023} \dot (2 - 2^{-52})\).</dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Representing the Zero:</strong> <br />
+    <ul>
+      <li>There are <strong>Two</strong> Representations of the number zero:
+        <ol>
+          <li><em>A positive 0:</em> when \(s = 0, \ \ c = 0, \ \\) and \(\ f = 0\).</li>
+          <li><em>A negative 0:</em> when \(s = 1, \ \ c = 0, \ \\) and \(\ f = 0\).</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Decimal Machine Numbers</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">What?</strong></dt>
+      <dd>We assume that machine numbers are represented in the normalized decimal
+floating-point form.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">(k-digit) Decimal Machine Numbers:</strong></dt>
+      <dd>
+\[±0.d_1d_2 ... d_k × 10^n , 1 \leq d_1 \leq 9, \text{and } 0 \leq d_i \leq 9,\]
+      </dd>
+      <dd>\(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \text{for each } i = 2, ... , k\).</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Normalized Form:</strong></dt>
+      <dd>
+\[y = 0.d_1d_2 ... d_k × 10^n\]
+      </dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Floating-Point Form of a Decimal Machine Number:</strong> <br />
+ The floating-point form of y, denoted \(f_l(y)\), is obtained by <a href="#bodyContents25"><strong>terminating</strong></a> the mantissa of \(y\) at k-decimal digits.</li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Termination:</strong> <br />
+ There are two common ways of performing this termination:
+    <ul>
+      <li><strong>Chopping:</strong> is to simply chop off the digits \(d_{k+1}d_{k+2}\).
+        <blockquote>
+          <p>This produces the floating-point form: \(f_l(y) = 0.d_1d_2 ... d_k × 10^n\)</p>
+        </blockquote>
+      </li>
+      <li><strong>Rounding:</strong> adds \(5 × 10^{n−(k+1)}\) to \(y\) and then chops the result
+        <blockquote>
+          <p>This produces the floating-point form: \(f_l(y) = 0.\delta_1\delta_2 ... \delta_k × 10^n\).</p>
+          <blockquote>
+            <p>For rounding, when \(d_{k+1} \geq 5\), we add \(1\) to \(d_k\) to obtain \(f_l(y)\); that is, we round up.
+When \(d_{k+1} &lt; 5\), we simply chop off all but the first k digits; so we round down.
+If we round down, then \(\delta_i = d_i\), for each \(i = 1, 2, ... , k\).<br />
+However, if we round up, the digits (and even the exponent) might change.</p>
+          </blockquote>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Approximation Errors:</strong> <br />
+ <img src="/main_files/128a/1/1.2/1.png" alt="formula" width="80%" />
+    <ul>
+      <li>
+        <p><strong>The Absolute Error:</strong> \(\ \ \ \ \ \ \ \|p − p^∗\|\).</p>
+      </li>
+      <li>
+        <p><strong>The Relative Error:</strong> \(\ \ \ \ \ \ \ \dfrac{\|p − p^∗\|}{\|p\|}\).</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents27">Significant Digits:</strong> <br />
+ <img src="/main_files/128a/1/1.2/2.png" alt="formula" width="80%" /></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents28">Error in using Floating-Point Repr.:</strong> <br />
+    <ul>
+      <li>
+        <dl>
+          <dt><strong style="color: green">Chopping:</strong>  </dt>
+          <dt>  <strong>The Relative Error =</strong> \(|\dfrac{y - f_l(y)}{y}|\)  </dt>
+          <dt>  <strong>The Machine Repr</strong>. [for k decimial digits] =</dt>
+          <dd>\(y = 0.d_1d_2 ... d_kd_{k+1} ... × 10^n\).</dd>
+        </dl>
+
+        <p>\(\implies\)<br />
+  <img src="/main_files/128a/1/1.2/3.png" alt="formula" width="70%" /><br />
+  <strong>Bound</strong> \(\ \ \ \implies \ \ |\dfrac{y - f_l(y)}{y}| \leq \dfrac{1}{0.1} \times 10^{-k} = 10^{-k+1}\).</p>
+      </li>
+      <li><strong style="color: green">Rounding:</strong>
+        <blockquote>
+          <p>In a similar manner, a bound for the relative error when using k-digit rounding arithmetic is</p>
+        </blockquote>
+
+        <p><strong>Bound</strong> \(\ \ \ \implies \ \ \|\dfrac{y - f_l(y)}{y}\| \leq 0.5 × 10^{−k+1}\).</p>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents29">Distribution of Numbers:</strong> <br />
+ The number of decimal machine numbers in \([10^n, 10^{n+1}]\) is constant for all integers \(n\).</li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Finite-Digit Arithmetic</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Values:</strong></dt>
+      <dd>
+\[x = f_l(x) \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1)\]
+      </dd>
+      <dd>
+\[y = f_l(y) \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (2)\]
+      </dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Operations:</strong> <br />
+ <img src="/main_files/128a/1/1.2/4.png" alt="formula" width="72%" /></li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Error-producing Calculations:</strong> <br />
+    <ul>
+      <li>Cancelation of significant digits due to the subtraction of nearly equal numbers.<br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Error</button>
+ <img src="/main_files/128a/1/1.2/5.png" alt="formula" width="80%" hidden="" /></li>
+      <li>Dividing by a number with small magnitude / Multiplying by a number with large magnitude.<br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Error</button>
+ <img src="/main_files/128a/1/1.2/6.png" alt="formula" width="80%" hidden="" /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Avoiding Round-Off Error:</strong> <br />
+    <blockquote>
+      <p>The loss of accuracy due to round-off error can often be avoided by a reformulation of
+ the calculations.</p>
+    </blockquote>
+
+    <blockquote>
+      <p>We change the form of the quadratic formula by <em>rationalizing the numerator</em>:
+ <img src="/main_files/128a/1/1.2/7.png" alt="formula" width="80%" />  <br />
+ \(\implies \ \ \ \ \ \ \ \ \ \ \ \ \ \  x_1 = \dfrac{−2c}{b + \sqrt{b^2 − 4ac}}, \ \ \ \ \ \ \ \ \ \ \ \ \ \  
+ x_2 = \dfrac{−2c}{b - \sqrt{b^2 − 4ac}},\)</p>
+    </blockquote>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content4">Nested Arithmetic</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">What?</strong></dt>
+      <dd>Rearranging calculations to reduce the number of computations.
+        <blockquote>
+          <p>Remember that chopping (or rounding) is performed after each calculation.</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <blockquote>
+          <p>Polynomials should always be expressed in nested form before performing an evaluation,
+ because this form minimizes the number of arithmetic calculations.</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Why?</strong></dt>
+      <dd>Accuracy loss due to round-off error can also be reduced by rearranging calculations to reduce the number of computations.</dd>
+    </dl>
+  </li>
+</ol>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

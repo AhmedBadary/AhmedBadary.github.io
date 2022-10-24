@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">K-Means</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/ml.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <hr />
+<hr />
+
+<p><a href="http://www.chioka.in/explain-to-myself-k-means-algorithm/">Explanation</a><br />
+<a href="https://cseweb.ucsd.edu/~dasgupta/291-unsup/lec2.pdf">KMeans Full Treatment</a><br />
+<a href="http://lear.inrialpes.fr/people/mairal/teaching/2014-2015/M2ENS/notes_cours7.pdf">KMeans and EM-Algorithms</a><br />
+<a href="https://github.com/AhmedBadary/Statistical-Analysis/blob/master/K-Means%20Clustering.ipynb">K-Means (code, my github)</a></p>
+
+<h1 id="k-means">K-Means</h1>
+
+<p><strong style="color: red">K-Means:</strong>  <br />
+It is a method for cluster analysis. It aims to partition \(n\) observations into \(k\) clusters in which each observation belongs to the cluster with the nearest mean. It results in a partitioning of the data space into <strong>Voronoi Cells</strong>.</p>
+
+<p><strong style="color: red">IDEA:</strong></p>
+<ul>
+  <li>Minimizes the aggregate Intra-Cluster distance</li>
+  <li>Equivalent to minimizing the Variance</li>
+  <li>Thus, it finds k-clusters with <strong>minimum aggregate Variance</strong>.</li>
+</ul>
+
+<p><strong style="color: red">Formal Description:</strong>  <br />
+Given a set of observations \(\left(\mathbf{x}_{1}, \mathbf{x} _{2}, \ldots, \mathbf{x}_{n}\right)\), \(\mathbf{x}_ i \in \mathbb{R}^d\), the algorithm aims to partition the \(n\) observations into \(k\) sets \(\mathbf{S}=\left\{S_{1}, S_{2}, \ldots, S_{k}\right\}\) so as to minimize the <strong>intra-cluster Sum-of-Squares</strong> (i.e. <strong>variance</strong>).</p>
+
+<p>The Objective:</p>
+<p>$$\underset{\mathbf{S}}{\arg \min } \sum_{i=1}^{k} \sum_{\mathbf{x} \in S_{i}}\left\|\mathbf{x}-\boldsymbol{\mu}_{i}\right\|^{2}=\underset{\mathbf{S}}{\arg \min } \sum_{i=1}^{k}\left|S_{i}\right| \operatorname{Var} S_{i}$$</p>
+<p>where \(\boldsymbol{\mu}_i\) is the mean of points in \(S_i\).</p>
+
+<p><strong style="color: red">Algorithm:</strong></p>
+<ul>
+  <li>Choose two random points, call them <em>“Centroids”</em></li>
+  <li>Assign the closest \(N/2\) points (Euclidean-wise) to each of the Centroids</li>
+  <li>Compute the mean of each <em>“group”/class</em> of points</li>
+  <li>Re-Assign the centroids to the newly computed Means ↑</li>
+  <li>REPEAT!</li>
+</ul>
+
+<p>The “assignment” step is referred to as the “expectation step”, while the “update step” is a maximization step, making this algorithm a variant of the generalized expectation-maximization algorithm.</p>
+
+<p><strong style="color: red">Complexity:</strong>  <br />
+The original formulation of the problem is <strong>NP-Hard</strong>; however, <strong>EM</strong> algorithms (specifically, Coordinate-Descent) can be used as efficient heuristic algorithms that converge quickly to good local minima.<br />
+Lloyds algorithm (and variants) have \({\displaystyle \mathcal{O}(nkdi)}\) runtime.</p>
+
+<p><strong style="color: red">Convergence:</strong>  <br />
+Guaranteed to converge after a finite number of iterations</p>
+<ul>
+  <li>
+    <p><strong>Proof:</strong><br />
+  The Algorithm Minimizes a <strong>monotonically decreasing</strong>, <strong>Non-Negative</strong> <em>Energy function</em> on a finite Domain:<br />
+  By <em><strong>Monotone Convergence Theorem</strong></em> the objective Value Converges.</p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Show Proof</button>
+  <img src="/main_files/ml/kmeans/2.png" alt="img" hidden="" /></p>
+  </li>
+</ul>
+
+<p><strong style="color: red">Optimality:</strong></p>
+<ul>
+  <li><strong>Locally optimal</strong>: due to convergence property</li>
+  <li><strong>Non-Globally optimal:</strong>
+    <ul>
+      <li>The <em>objective function</em> is <em><strong>non-convex</strong></em></li>
+      <li>Moreover, coordinate Descent doesn’t converge to global minimum on non-convex functions.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong style="color: red">Objective Function:</strong></p>
+<p>$$J(S, \mu)= \sum_{i=1}^{k} \sum_{\mathbf{x} \in S_{i}} \| \mathbf{x} -\mu_i \|^{2}$$</p>
+
+<p><strong style="color: red">Optimization Objective:</strong></p>
+<p>$$\min _{\mu} \min _{S} \sum_{i=1}^{k} \sum_{\mathbf{x} \in S_{i}}\left\|\mathbf{x} -\mu_{i}\right\|^{2}$$</p>
+
+<p><strong style="color: red">Coordinate Descent:</strong></p>
+<ul>
+  <li>Fix \(S = \hat{S}\), optimize \(\mu\):
+    <p>$$\begin{aligned} &amp; \min _{\mu} \sum_{i=1}^{k} \sum_{\mathbf{x} \in \hat{S}_{i}}\left\|\mu_{i}-x_{j}\right\|^{2}\\
+      =&amp;  \sum_{i=1}^{k} \min _{\mu_i} \sum_{\mathbf{x} \in \hat{S}_{i}}\left\|\mathbf{x} - \mu_{i}\right\|^{2}
+  \end{aligned}$$</p>
+    <ul>
+      <li><strong>MLE</strong>:
+        <p>$$\min _{\mu_i} \sum_{\mathbf{x} \in \hat{S}_{i}}\left\|\mathbf{x} - \mu_{i}\right\|^{2}$$</p>
+        <p>\(\implies\)</p>
+        <p>$${\displaystyle \hat{\mu_i} = \dfrac{\sum_{\mathbf{x} \in \hat{S}_ {i}} \mathbf{x}}{\vert\hat{S}_ i\vert}}$$</p>
+        <p><button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+  <img src="/main_files/ml/kmeans/3.png" alt="img" width="75%" hidden="" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>Fix \(\mu_i = \hat{\mu_i}, \forall i\), optimize \(S\)<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>:
+    <p>$$\arg \min _{S} \sum_{i=1}^{k} \sum_{\mathbf{x} \in S_{i}}\left\|\mathbf{x} - \hat{\mu_{i}}\right\|^{2}$$</p>
+    <p>\(\implies\)</p>
+    <p>$$S_{i}^{(t)}=\left\{x_{p} :\left\|x_{p}-m_{i}^{(t)}\right\|^{2} \leq\left\|x_{p}-m_{j}^{(t)}\right\|^{2} \forall j, 1 \leq j \leq k\right\}$$</p>
+    <ul>
+      <li><strong>MLE</strong>:<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
+  <img src="/main_files/ml/kmeans/1.png" alt="img" width="75%" hidden="" /></li>
+    </ul>
+  </li>
+</ul>
+
+<!-- <p>$$J(c, \mu)= \sum_{i=1}^{m} \| x^{(i)}-\mu_c \|^{2}$$</p>  
+* __MLE__:  
+    <p>$$\dfrac{\partial}{\partial \mu_c} J(c, \mu) = \dfrac{\sum_{i=1}^m x^{(i)}}{m}$$</p> -->
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>The optimization here is an \(\arg \min\) not a \(\min\), since we are optimizing for \(i\) over \(S_i\). <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

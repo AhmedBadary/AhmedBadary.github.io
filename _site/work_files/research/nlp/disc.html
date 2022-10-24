@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Discriminative Models in NLP <br \> Maxent Models and Discriminative Estimation</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Generative vs Discriminative Models</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Feature Extraction for Discriminative Models in NLP</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Feature-Based Linear Classifiers</a></li>
+  </ul>
+  <p><!-- * [FOURTH](#content4)
+  {: .TOC4} --></p>
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">Generative vs Discriminative Models</h2>
+
+<p>Given some data \(\{(d,c)\}\) of paired observations \(d\) and hidden classes \(c\):</p>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Generative (Joint) Models:</strong></dt>
+      <dd><strong>Generative Models</strong> are <strong>Joint Models</strong>.</dd>
+      <dd><strong>Joint Models</strong> place probabilities \(\left(P(c,d)\right)\) over both the observed data and the “target” (hidden) variables that can only be computed from those observed.</dd>
+      <dd>Generative models are typically probabilistic, specifying a joint probability distribution (\(P(d,c)\)) over observation and target (label) values,<br />
+ and tries to <strong>Maximize</strong> this <strong>joint Likelihood</strong>.
+        <blockquote>
+          <p>Choosing weights turn out to be trivial: chosen as the <strong>relative frequencies</strong>.</p>
+        </blockquote>
+      </dd>
+      <dd><strong>Examples:</strong>
+        <ul>
+          <li>n-gram Models</li>
+          <li>Naive Bayes Classifiers</li>
+          <li>Hidden Markov Models (HMMs)</li>
+          <li>Probabilistic Context-Free Grammars (PCFGs)</li>
+          <li>IBM Machine Translation Alignment Models</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Discriminative (Conditional) Models:</strong></dt>
+      <dd><strong>Discriminative Models</strong> are <strong>Conditional Models</strong>.</dd>
+      <dd><strong>Conditional Models</strong> provide a model only for the “target” (hidden) variabless.<br />
+They take the data as given, and put a probability \(\left(P(c \| d)\right)\) over the “target” (hidden) structures given the data.</dd>
+      <dd>Conditional Models seek to <strong>Maximize</strong> the <strong>Conditional Likelihood</strong>.
+        <blockquote>
+          <p>This (maximization) task is usually harder to do.</p>
+        </blockquote>
+      </dd>
+      <dd><strong>Examples:</strong>
+        <ul>
+          <li>Logistic Regression</li>
+          <li>Conditional LogLinear/Maximum Entropy Models</li>
+          <li>Condtional Random Fields</li>
+          <li>SVMs</li>
+          <li>Perceptrons</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Generative VS Discriminative Models:</strong></dt>
+      <dd>Basically, <em>Discriminative Models</em> infer outputs based on inputs,<br />
+while <em>Generative Models</em> generate, both, inputs and outputs (typically given some hidden parameters).</dd>
+      <dd>However, notice that the two models are usually viewed as complementary procedures.<br />
+One does <strong>not</strong> necessarily outperform the other, in either classification or regression tasks.</dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Feature Extraction for Discriminative Models in NLP</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Features (Intuitively):</strong></dt>
+      <dd><strong>Features</strong> (\(f\)) are elementary pieces of evidence that link aspects of what we observe (\(d\)) with a category (\(c\)) that we want to predict.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Features (Mathematically):</strong></dt>
+      <dd>A <strong>Feature</strong> \(f\) is a function with a bounded real value.</dd>
+      <dd>
+\[f : \: C \times D \rightarrow \mathbf{R}\]
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Models and Features:</strong></dt>
+      <dd>Models will assign a <strong>weight</strong> to each Feature:
+        <ul>
+          <li>A <strong>Positive Weight</strong> votes that this configuration is likely <em>Correct</em>.</li>
+          <li>A <strong>Negative Weight</strong> votes that this configuration is likely <em>Incorrect</em>.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Feature Expectations:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Empirical  Expectation (count)</strong>:</li>
+        </ul>
+      </dd>
+      <dd>
+\[E_{\text{emp}}(f_i) = \sum_{(c,d)\in\text{observed}(C,D)} f_i(c,d)\]
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Model Expectation</strong>:</li>
+        </ul>
+      </dd>
+      <dd>
+\[E(f_i) = \sum_{(c,d)\in(C,D)} P(c,d)f_i(c,d)\]
+      </dd>
+      <dd>
+        <blockquote>
+          <p>The two Expectations represent the <strong>Actual</strong> and the <strong>Predicted</strong> <strong>Counts</strong> of a feature <strong>firing</strong>, respectively.</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Features in NLP:</strong><br />
+ In NLP, features have a particular form.<br />
+ They consist of:
+    <ul>
+      <li><strong>Indicator Function</strong>: a boolean matching function of properties of the input</li>
+      <li><strong>A Particular Class</strong>: specifies some class \(c_j\)
+        <p>$$f_i(c,d) \cong [\Phi(d) \wedge c=c_j] = \{0 \vee 1\}$$</p>
+        <p>where \(\Phi(d)\) is a given predicate on the data \(d\), and \(c_j\) is a particular class.</p>
+      </li>
+    </ul>
+
+    <blockquote>
+      <p>Basically, each feature picks out a data subset and suggests a label for it.</p>
+    </blockquote>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Feature-Based Linear Classifiers</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Linear Classifiers (Classification):</strong></dt>
+      <dd>
+        <ul>
+          <li>We have a <strong>Linear Function</strong> from the feature sets \(\{f_i\}\) to the classes \(\{c\}\)</li>
+          <li><strong>Assign Weights</strong> \(\lambda_i\) to each feature \(f_i\)</li>
+          <li><strong>Consider each class</strong> for an observed datum \(d\)</li>
+          <li>
+            <dl>
+              <dt><strong>Features Vote</strong> with their <em>weights</em>    :</dt>
+              <dd>
+\[\text{vote}(c) = \sum \lambda_i f_i(c,d)\]
+              </dd>
+            </dl>
+          </li>
+          <li><strong>Classification</strong>:<br />
+  choose the class \(c\) which <strong>Maximizes</strong> the <strong>vote</strong> \(\sum \lambda_i f_i(c,d)\)</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Exponential Models:</strong></dt>
+      <dd><strong>Exponential Models</strong> make a probabilistic model from the linear combination \(\sum\lambda_if_i(c,d)\)</dd>
+      <dd>
+        <ul>
+          <li><strong>Making the Value Positive</strong>:</li>
+        </ul>
+      </dd>
+      <dd>
+\[\sum\lambda_if_i(c,d) \rightarrow e^{\sum\lambda_if_i(c,d)}\]
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Normalizing the Value (Making a Probability)</strong>:</li>
+        </ul>
+      </dd>
+      <dd>
+\[e^{\sum\lambda_if_i(c,d)} \rightarrow \dfrac{e^{\sum\lambda_if_i(c,d)}}{\sum_{c \in C} e^{\sum\lambda_if_i(c,d)}}\]
+      </dd>
+      <dd>
+\[\implies\]
+      </dd>
+      <dd>
+\[P(c \| d, \vec{\lambda}) = \dfrac{e^{\sum\lambda_if_i(c,d)}}{\sum_{c \in C} e^{\sum\lambda_if_i(c,d)}}\]
+      </dd>
+      <dd>The function \(P(c \| d,\vec{\lambda})\) is referred to as the <strong>Soft-Max</strong> function.</dd>
+      <dd>Here, the <strong>Weights</strong> are the <strong>Paramters</strong> of the probability model, combined via a <strong>Soft-Max</strong> function.</dd>
+      <dd><strong>Learning:</strong>
+        <ul>
+          <li>Given this model form, we want to choose paramters \(\{\lambda_i\}\) that <strong>Maximize the Conditional Likelihood</strong> of the data according to this model (i.e. the soft-max func.).</li>
+        </ul>
+      </dd>
+      <dd>Exponential Models, construct <em>not onlt</em> <strong>classifications</strong> but, also, <strong>Probability Distributions</strong> over the classifications.</dd>
+      <dd><strong>Examples:</strong>
+        <ul>
+          <li>Log-Linear Model</li>
+          <li>Max Entropy (MaxEnt) Model</li>
+          <li>Logistic Regression</li>
+          <li>Gibbs Model</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Exponential Models (Training) | Maximizing the Likelihood:</strong><br />
+ <strong>The Likelihood Value</strong>:
+    <ul>
+      <li>The <strong>(log) conditional likelihood</strong> of a MaxEnt model is a function of the i.i.d. data \((C,D)\) and the parameters (\(\lambda\)):
+        <p>$$\log P(C \| D,\lambda) = \log \prod_{(c,d) \in (C,D)} P(c \| d,\lambda) = \sum_{(c,d) \in (C,D)} \log P(c \| d,\lambda)$$</p>
+      </li>
+      <li>If there aren’t many values of \(c\), it’s easy to calculate:
+        <p>$$\log P(c \| d,\lambda) = \sum_{(c,d) \in (C,D)} \log \dfrac{e^{\sum_i \lambda_if_i(c,d)}}{\sum_c e^{\sum_i \lambda_if_i(c,d)}}$$</p>
+      </li>
+      <li>We can separate this into two components:
+        <p>$$\log P(c \| d,\lambda) = \sum_{(c,d) \in (C,D)} \log e^{\sum_i \lambda_if_i(c,d)} - \sum_{(c,d) \in (C,D)} \log \sum_c' e^{\sum_i \lambda_if_i(c',d)}$$</p>
+        <p>$$\implies$$</p>
+        <p>$$\log P(C \| D, \lambda) = N(\lambda) - M(\lambda)$$</p>
+      </li>
+      <li>The Derivative of the Numerator is easy to calculate:
+        <p>$$\dfrac{\partial N(\lambda)}{\partial \lambda_i} = \dfrac{\partial \sum_{(c,d) \in (C,D)} \log e^{\sum_i \lambda_if_i(c,d)}}{\partial \lambda_i}  
+ \\= \dfrac{\partial \sum_{(c,d) \in (C,D)} \sum_i \lambda_if_i(c,d)}{\partial \lambda_i} 
+ \\\\= \sum_{(c,d) \in (C,D)} \dfrac{\partial \sum_i \lambda_if_i(c,d)}{\partial \lambda_i} 
+ \\\\= \sum_{(c,d) \in (C,D)} f_i(c,d)$$</p>
+      </li>
+      <li>The derivative of the Numerator is <strong>the Empirical Expectation</strong>, \(E_{\text{emp}}(f_i)\)</li>
+      <li>The Derivative of the Denominator:
+        <p>$$\dfrac{\partial M(\lambda)}{\partial \lambda_i}  = \dfrac{\partial \sum_{(c,d) \in (C,D)} \log \sum_c' e^{\sum_i \lambda_if_i(c',d)}}{\partial \lambda_i} \\\\= \sum_{(c,d) \in (C,D)} \sum_c' P(c' \| d, \lambda)f_i(c', d)$$</p>
+      </li>
+      <li>The derivative of the Denominator is equal to <strong>the Predicted Expectation (count)</strong>, \(E(f_i, \lambda)\)</li>
+      <li>Thus, the derivative of the log likelihood is:
+        <p>$$\dfrac{\partial \log P(C \| D, \vec{\lambda})}{\partial \lambda_i} = \text{Actual Count}(f_i, C) - \text{Predicted Count}(f_i, \vec{\lambda})$$</p>
+      </li>
+      <li>Thus, the optimum parameters are those for which each feature’s <em>predicted expectation</em> equals its <em>empirical expectation</em>.</li>
+    </ul>
+
+    <p id="lst-p">The <strong>Optimum Distribution</strong> is always:</p>
+    <ul>
+      <li>Unique (parameters need not be unique)</li>
+      <li>Exists (if feature counts are from actual data)</li>
+    </ul>
+
+    <p>These models are called <strong>Maximum Entropy (Maxent)</strong> Models because we find the model having the maximum entropy, and satisfying the constraints:</p>
+    <p>$$E_p(f_j) = E_\hat{p}(f_j), \:\:\: \forall j$$</p>
+
+    <p>Finally, to find the optimal parameters \(\lambda_1, \dots, \lambda_d\) one needs to optimize (maximize) the log likelihood, or equivalently, minimize the -ve likelihood.  <br />
+ One can do that in variety of ways using optimization methods.</p>
+
+    <p id="lst-p">Common <strong>Optimization Methods</strong>:</p>
+    <ul>
+      <li>(Stochastic) Gradient Descent</li>
+      <li>Iterative Proportional Fitting Methods:
+        <ul>
+          <li>Generalized Iterative Scaling (GIS)</li>
+          <li>Improved Iterative Scaling (IIS)</li>
+        </ul>
+      </li>
+      <li>Conjugate Gradient (CG) (+ Preconditioning)</li>
+      <li>Quasi-Newton Methods -  Limited-Memory Variable Metric (LMVM):
+        <ul>
+          <li>L-BFGS
+  This one is the most commonly used.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

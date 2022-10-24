@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Neural Machine Translation <br /></h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/nlp.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Machine Translation</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">GRUs</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">LSTMs</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">Neural Machine Translation</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">Machine Translation</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Methods:</strong></dt>
+      <dd>
+        <ul>
+          <li>Methods are <em>statistical</em></li>
+          <li>Uses <em>parallel corpora</em></li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Traditional MT:</strong></dt>
+      <dd>Traditional MT was very complex and included multiple disciplines coming in together.<br />
+The systems included many independent parts and required a lot of human engineering and experts.<br />
+The systems also scaled very poorly as the search problem was essentially exponential.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Statistical Machine Translation Systems:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Input</strong>:
+            <ul>
+              <li><strong>Source Language</strong>: \(f\)</li>
+              <li><strong>Target Language</strong>: \(e\)</li>
+            </ul>
+          </li>
+          <li><strong>The Probabilistic Formulation</strong>:</li>
+        </ul>
+      </dd>
+      <dd>
+\[\hat{e} = \mathrm{arg\,min}_e \: p(e \vert f) = \mathrm{arg\,min}_e \: p(f \vert e) p(e)\]
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>The Translation Model \(p(f \vert e)\)</strong>: trained on parallel corpus</li>
+          <li><strong>The Language Model \(p(e)\)</strong>: trained on English only corpus
+            <blockquote>
+              <p>Abundant and free!</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+      <dd><img src="/main_files/dl/nlp/9/1.png" alt="img" width="100%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Deep Learning Naive Approach:</strong></dt>
+      <dd>One way we can learn to translate is to learn to <em>translate directly with an RNN</em>.</dd>
+      <dd><img src="/main_files/dl/nlp/9/2.png" alt="img" width="80%" /></dd>
+      <dd>
+        <ul>
+          <li><strong>The Model</strong>:
+            <ul>
+              <li><em><strong>Encoder</strong></em> :<br />
+  \(h_t = \phi(h_{t-1}, x_t) = f(W^{(hh)}h_{t-1} + W^{(hx)}x_t)\)</li>
+              <li><em><strong>Decoder</strong></em> :<br />
+  \(\begin{align}
+      h_t &amp; = \phi(h_{t-1}) = f(W^{(hh)}h_{t-1}) \\
+      y_t &amp; = \text{softmax}(W^{(S)}h_t)
+      \end{align}\)</li>
+              <li><em><strong>Error</strong></em> :<br />
+  \(\displaystyle{\max_\theta \frac{1}{N} \sum_{n=1}^N \log p_\theta(y^{(n)}\vert x^{(n)})}\)
+                <blockquote>
+                  <p>Cross Entropy Error.</p>
+                </blockquote>
+              </li>
+              <li><em><strong>Goal</strong></em> :<br />
+  Minimize the <strong>Cross Entropy Error</strong> for all target words conditioned on source words</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Drawbacks</strong>:<br />
+  The problem of this approach lies in the fact that the last hidden layer needs to capture the entire sentence to be translated.<br />
+  However, since we know that the <em>RNN Gradient</em> basically <strong>vanishes</strong> as the length of the sequence increases, the last hidden layer is usually only capable of capturing upto ~5 words.</li>
+        </ul>
+      </dd>
+      <dd><img src="/main_files/dl/nlp/9/3.png" alt="img" width="100%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Naive RNN Translation Model Extension:</strong></dt>
+      <dd>
+        <ol>
+          <li>Train Different RNN weights for encoding and decoding
+ <img src="/main_files/dl/nlp/9/4.png" alt="img" width="100%" /></li>
+          <li>Compute every hidden state in the decoder from the following concatenated vectors :
+            <ul>
+              <li>Previous hidden state (standard)</li>
+              <li>Last hidden vector of encoder \(c=h_T\)</li>
+              <li>Previous predicted output word \(y_{t-1}\).<br />
+ \(\implies h_{D, t} = \phi_D(h_{t-1}, c, y_{t-1})\)
+                <blockquote>
+                  <p>NOTE: Each input of \(\phi\) has its own linear transformation matrix.</p>
+                </blockquote>
+              </li>
+            </ul>
+          </li>
+          <li>Train stacked/deep RNNs with multiple layers.</li>
+          <li>Potentially train Bidirectional Encoder</li>
+          <li>Train input sequence in reverser order for simpler optimization problem:<br />
+ Instead of \(A\:B\:C \rightarrow X\:Y\) train with \(C\:B\:A \rightarrow X\:Y\)</li>
+          <li>Better Units (Main Improvement):
+            <ul>
+              <li>Use more complex hidden unit computation in recurrence</li>
+              <li>Use GRUs <em>(Cho et al. 2014)</em></li>
+              <li><em>Main Ideas</em>:
+                <ul>
+                  <li>Keep around memories to capture long distance dependencies</li>
+                  <li>Allow error messages to flow at different strengths depending on the inputs</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ol>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">GRUs</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Gated Recurrent Units:</strong></dt>
+      <dd><strong>Gated Recurrent Units (GRUs)</strong> are a class of modified (<em><strong>Gated</strong></em>) RNNs that allow them to combat the <em>vanishing gradient problem</em> by allowing them to capture more information/long range connections about the past (<em>memory</em>) and decide how strong each signal is.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Main Idea:</strong></dt>
+      <dd>Unlike <em>standard RNNs</em> which compute the hidden layer at the next time step directly first, <strong>GRUs</strong> computes two additional layers (<strong>gates</strong>):
+        <blockquote>
+          <p>Each with different weights</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <ul>
+          <li><em><strong>Update Gate</strong></em>:</li>
+        </ul>
+      </dd>
+      <dd>
+\[z_t = \sigma(W^{(z)}x_t + U^{(z)}h_{t-1})\]
+      </dd>
+      <dd>
+        <ul>
+          <li><em><strong>Reset Gate</strong></em>:</li>
+        </ul>
+      </dd>
+      <dd>
+\[r_t = \sigma(W^{(r)}x_t + U^{(r)}h_{t-1})\]
+      </dd>
+      <dd>The <strong>Update Gate</strong> and <strong>Reset Gate</strong> computed, allow us to more directly influence/manipulate what information do we care about (and want to store/keep) and what content we can ignore.<br />
+We can view the actions of these gates from their respecting equations as:</dd>
+      <dd>
+        <ul>
+          <li><em><strong>New Memory Content</strong></em>:<br />
+  at each hidden layer at a given time step, we compute some new memory content,<br />
+  if the reset gate \(= ~0\), then this ignores previous memory, and only stores the new word information.</li>
+        </ul>
+      </dd>
+      <dd>
+\[\tilde{h}_t = \tanh(Wx_t + r_t \odot Uh_{t-1})\]
+      </dd>
+      <dd>
+        <ul>
+          <li><em><strong>Final Memory</strong></em>:<br />
+  the actual memory at a time step \(t\), combines the <em>Current</em> and <em>Previous time steps</em>,<br />
+  if the <em>update gate</em> \(= ~0\), then this, again, ignores the <em>newly computed memory content</em>, and keeps the old memory it possessed.</li>
+        </ul>
+      </dd>
+      <dd>
+\[h_t = z_t \odot h_{t-1} + (1-z_t) \odot \tilde{h}_t\]
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Long Short-Term Memory</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">LSTM:</strong></dt>
+      <dd>The <strong>Long Short-Term Memory</strong> (LSTM) Network is a special case of the Recurrent Neural Network (RNN) that uses special gated units (a.k.a LSTM units) as building blocks for the layers of the RNN.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Architecture:</strong></dt>
+      <dd>The LSTM, usually, has four gates:</dd>
+      <dd>
+        <ul>
+          <li><strong>Input Gate</strong>: 
+  The input gate determines how much does the <em>current input vector (current cell)</em> matters</li>
+        </ul>
+      </dd>
+      <dd>
+\[i_t = \sigma(W^{(i)}x_t + U^{(i)}h_{t-1})\]
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Forget Gate</strong>: 
+  Determines how much of the <em>past memory</em>, that we have kept, is still needed</li>
+        </ul>
+      </dd>
+      <dd>
+\[i_t = \sigma(W^{(i)}x_t + U^{(i)}h_{t-1})\]
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Output Gate</strong>: 
+  Determines how much of the <em>current cell</em> matters for our <em>current prediction (i.e. passed to the sigmoid)</em></li>
+        </ul>
+      </dd>
+      <dd>
+\[i_t = \sigma(W^{(i)}x_t + U^{(i)}h_{t-1})\]
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Memory Cell</strong>: 
+  The memory cell is the cell that contains the <em>short-term memory</em> collected from each input</li>
+        </ul>
+      </dd>
+      <dd>
+\[\begin{align}
+    \tilde{c}_t &amp; = \tanh(W^{(c)}x_t + U^{(c)}h_{t-1}) &amp; \text{New Memory} \\
+    c_t &amp; = f_t \odot c_{t-1} + i_t \odot \tilde{c}_t &amp; \text{Final Memory}
+\end{align}\]
+      </dd>
+      <dd>The <strong>Final Hidden State</strong> is calculated as follows:</dd>
+      <dd>
+\[h_t = o_t \odot \sigma(c_t)\]
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Properties:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Syntactic Invariance</strong>:<br />
+  When one projects down the vectors from the <em>last time step hidden layer</em> (with PCA), one can observe the spatial localization of <em>syntacticly-similar sentences</em><br />
+  <img src="/main_files/dl/nlp/9/5.png" alt="img" width="100%" /></li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content4">Neural Machine Translation (NMT)</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">NMT:</strong></dt>
+      <dd><strong>NMT</strong> is an approach to machine translation that uses a large artificial neural network to predict the likelihood of a sequence of words, typically modeling entire sentences in a single integrated model.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Architecture:</strong></dt>
+      <dd>The approach uses an <strong>Encoder-Decoder</strong> architecture.</dd>
+      <dd><img src="/main_files/dl/nlp/9/6.png" alt="img" width="70%" /></dd>
+      <dd>NMT models can be seen as a special case of <em>language models</em>. <br />
+In other words, they can be seen as <strong>Conditional Recurrent Language Model</strong>; a language model that has been conditioned on the calculated <em>encoded</em> vector representation of the sentence.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">Modern Sequence Models for NMT:</strong></dt>
+      <dd></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Issues of NMT:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Predicting Unseen Words</strong>:<br />
+  The NMT model is very vulnerable when presented with a word that it has never seen during training (e.g. a new name).<br />
+  In-fact, the model might not even be able to place the (translated) unseen word correctly in the (translated) sentence.</li>
+          <li><strong>Solution</strong>:
+            <ul>
+              <li>A possible solution is to apply <em>character-based</em> translation, instead of word-based, however, this approach makes for very long sequences and the computation becomes infeasible.</li>
+              <li>The (current) proposed approach is to use a <strong>Mixture Model of Softmax and Pointers</strong>
+                <blockquote>
+                  <p><em>Pointer-sentinel Model</em></p>
+                </blockquote>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents45">The Big Wins of NMT:</strong></dt>
+      <dd>
+        <ol>
+          <li><strong>End-to-End Training</strong>: All parameters are simultaneously optimized to minimize a loss function on the networks output</li>
+          <li><strong>Distributed Representations Share Strength</strong>: Better exploitation of word and phrase similarities</li>
+          <li><strong>Better Exploitation of Context</strong>: NMT can use a much bigger context - both source and partial target text - to translate more accurately</li>
+          <li><strong>More Fluent Text Generation</strong>: Deep Learning text generation is much higher quality</li>
+        </ol>
+      </dd>
+    </dl>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Progress in Google Translate based on a one sentence test set from C. Manning</button>
+ <img src="https://cdn.mathpix.com/snip/images/98YBK9uTfTjaWBXPimGFvYaiNz-USCPkLQbn9xNQXc8.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Google Translate BLEU Score Progression</button>
+ <img src="https://1.bp.blogspot.com/-dvf6wpOpJC0/XtgVORHbA4I/AAAAAAAAGDc/I3a6N8uHzsQicDth9XfROnwb3dye8Pw3gCLcBGAsYHQ/s1600/image1.gif" alt="img" width="100%" hidden="" /></p>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents48">(GNMT) Google’s Multilingual Neural Machine Translation System - Zero shot Translation:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Multilingual NMT Approaches</strong>:</li>
+        </ul>
+      </dd>
+      <dd><img src="/main_files/dl/nlp/9/7.png" alt="img" width="100%" /></dd>
+      <dd>
+        <ul>
+          <li><strong>Google’s Approach</strong>:<br />
+  Add an <strong><em>Artificial Token</em></strong> at the beginning of the input sentence to indicate the target language.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<p id="lst-p"><strong style="color: red">Notes:</strong></p>
+<ul>
+  <li>
+    <dl>
+      <dt><strong>Evaluation Metrics:</strong>  <strong style="color: red">BLEU Score:</strong> or Bilingual Evaluation Understudy Score  </dt>
+      <dt>  The second most popular score is <strong style="color: red">METEOR</strong>: which has an emphasis on recall and precision.</dt>
+      <dd><br /></dd>
+    </dl>
+  </li>
+</ul>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

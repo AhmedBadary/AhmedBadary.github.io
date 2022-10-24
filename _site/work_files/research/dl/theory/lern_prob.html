@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">The Theory of Learning</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/nlp.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">The Learning Problem</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">The Feasibility of Learning</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Error and Noise</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">The Learning Model I</a></li>
+  </ul>
+  <ul class="TOC5">
+    <li><a href="#content5">The Learning Model II</a></li>
+  </ul>
+  <ul class="TOC6">
+    <li><a href="#content6">The Bias Variance Decomposition</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<p><a href="https://www.youtube.com/watch?v=rqJ8SrnmWu0&amp;list=PLnZuxOufsXnvftwTB1HL6mel1V32w0ThI&amp;index=4">Lecture on Statistical Learning Theory from Risk perspective &amp; Bayes Decision Rule</a><br />
+<a href="https://www.youtube.com/watch?v=tojaGtMPo5U&amp;list=PLA89DCFA6ADACE599&amp;index=9">Learning Theory Andrew NG (CS229 Stanford)</a><br />
+<a href="https://www.youtube.com/watch?v=AkmPv2WEsHw">Empirical Risk Minimization (Cornell)</a></p>
+
+<p><strong style="color: red">Fundamental Problem of Machine Learning: It is <em>Ill-Posed</em>:</strong><br />
+Learning appears <strong>impossible</strong>: Learning a truly “unknown” function is <strong>impossible</strong>.<br />
+<button class="showText" value="show" onclick="showTextPopHide(event);">Show Discussion</button>
+<img src="https://cdn.mathpix.com/snip/images/lgiqZ1ILbIe7TEciHCRsTgXrIfSDdrrpzvT078EloAI.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+<ul>
+  <li><strong style="color: red">Solution: Work with a Restricted Hypothesis Space:</strong><br />
+  Either by <span style="color: purple">applying prior knowledge</span> or by <span style="color: purple">guessing</span>, we choose a space of hypotheses \(H\) that is smaller than the space of all possible functions:
+    <ul>
+      <li>
+        <p>simple conjunctive rules, linear functions, multivariate Gaussian joint probability distributions, etc.</p>
+      </li>
+      <li>
+        <p>Lets say you have an unknown target function \(f: X \rightarrow Y\) that you are trying to capture by learning. In order to capture the target function you have to come up with (<strong>guess</strong>) some hypotheses \(h_{1}, \ldots, h_{n}\) where \(h \in H\), and then <strong>search</strong> through these hypotheses to select the best one that approximates the target function.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p id="lst-p"><strong style="color: red">Two Views of Learning and their corresponding Strategies:</strong></p>
+<ol>
+  <li>Learning is the <em>removal</em> of our remaining <strong>uncertainty</strong><br />
+ – Suppose we knew that the unknown function was an m-of-n boolean function. Then we could use the training examples to deduce which function it is.<br />
+ – Our prior “knowledge” might be wrong
+    <ul>
+      <li><strong>Strategy</strong>: Develop Languages for Expressing Prior Knowledge<br />
+  Rule grammars, stochastic models, Bayesian networks</li>
+    </ul>
+  </li>
+  <li>Learning requires <strong>guessing</strong> a good, small <em>hypothesis class</em>.<br />
+ – We can start with a very small class and enlarge it until it contains an hypothesis that fits the data.<br />
+ – Our guess of the hypothesis class could be wrong: The smaller the class, the more likely we are wrong.
+    <ul>
+      <li><strong>Strategy</strong>: Develop Flexible Hypothesis Spaces<br />
+  Nested collections of hypotheses: decision trees, neural networks, cases, SVMs</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong style="color: red">Key Issues in Machine Learning:</strong><br />
+<button class="showText" value="show" onclick="showText_withParent_PopHide(event);">List</button></p>
+<ul hidden="">
+  <li>What are good hypothesis spaces?
+    <ul>
+      <li>which spaces have been useful in practical applications?</li>
+    </ul>
+  </li>
+  <li>What algorithms can work with these spaces?
+    <ul>
+      <li>Are there general design principles for learning algorithms?</li>
+    </ul>
+  </li>
+  <li>How can we optimize accuracy on future data points?
+    <ul>
+      <li>This is related to the problem of “overfitting”</li>
+    </ul>
+  </li>
+  <li>How can we have confidence in the results? (the <strong>statistical</strong> question)
+    <ul>
+      <li>How much training data is required to find an accurate hypotheses?</li>
+    </ul>
+  </li>
+  <li>Are some learning problems computational intractable? (the <strong>computational</strong> question)</li>
+  <li>How can we formulate application problems as machine learning problems? (the <strong>engineering</strong> question)</li>
+</ul>
+
+<p id="lst-p"><strong style="color: red">A Framework for Hypothesis Spaces:</strong></p>
+<ul>
+  <li><strong>Size</strong>: Does the hypothesis space have a <strong>fixed size</strong> or a <strong>variable size</strong>?
+    <ul>
+      <li><strong>Fixed-sized</strong> spaces are easier to understand, but variable-sized spaces are generally more useful.</li>
+      <li><strong>Variable-sized</strong> spaces introduce the problem of <strong>overfiting</strong>.</li>
+    </ul>
+  </li>
+  <li><strong>Stochasticity:</strong> Is the hypothesis a <strong>classifier</strong>, a <strong>conditional distribution</strong>, or a <strong>joint distribution</strong>?<br />
+  This affects how we evaluate hypotheses.
+    <ul>
+      <li>For a <strong>deterministic</strong> hypothesis, a training example is either consistent (correctly predicted) or inconsistent (incorrectly predicted).</li>
+      <li>For a <strong>stochastic</strong> hypothesis, a training example is more likely or less likely.</li>
+    </ul>
+  </li>
+  <li><strong>Parameterization:</strong> Is each hypothesis described by a set of <strong>symbolic (discrete)</strong> choices or is it described by a set of <strong>continuous</strong> parameters?<br />
+  If both are required, we say the space has a <strong>mixed</strong> parameterization.
+    <ul>
+      <li><strong>Discrete parameters</strong> must be found by combinatorial search methods</li>
+      <li><strong>Continuous parameters</strong> can be found by numerical search methods</li>
+    </ul>
+  </li>
+  <li><button class="showText" value="show" onclick="showTextPopHide(event);">Hypothesis Spaces Diagram</button>
+<img src="https://cdn.mathpix.com/snip/images/VFFJtf0S4AltKowR4d_7VR0v-ztBmt108ogBYAPDa5o.original.fullsize.png" alt="img" width="100%" hidden="" /><br />
+  Note: <strong>LTU</strong> == Linear Threshold Unit.</li>
+</ul>
+
+<p id="lst-p"><strong style="color: red">A Framework for Learning Algorithms:</strong></p>
+<ul>
+  <li><button class="showText" value="show" onclick="showTextPopHide(event);">Show Discussion</button>
+<img src="https://cdn.mathpix.com/snip/images/jww-nPeIv3F0oytJ4PqraBXL49bL30kGCg4JwL1bi70.original.fullsize.png" alt="img" width="100%" hidden="" /></li>
+  <li><button class="showText" value="show" onclick="showTextPopHide(event);">Show Diagram</button>
+<img src="https://cdn.mathpix.com/snip/images/y1wmxHjLNnaAzMg3rojdoNoid06vpgoVp1NMIlt6-sk.original.fullsize.png" alt="img" width="100%" hidden="" /></li>
+  <li><button class="showText" value="show" onclick="showTextPopHide(event);">Three Components of Learning Algorithms</button>
+  <img src="https://cdn.mathpix.com/snip/images/qsm50cMRH8q1Sr5QTJWNWDf4kFrhGIZTZjvjWRlN0aw.original.fullsize.png" alt="img" width="100%" hidden="" /></li>
+</ul>
+
+<h2 id="content1">The Learning Problem</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">When to use ML:</strong><br />
+ When:
+    <ol>
+      <li>A pattern Exists</li>
+      <li>We cannot pin the pattern down mathematically</li>
+      <li>We have Data</li>
+    </ol>
+
+    <p>We usually can do without the first two. But the third condition we <strong>CANNOT</strong> do without.<br />
+ The Theory of Learning only depends on the data.</p>
+
+    <blockquote>
+      <p>“We have to have data. We are learning from data. So if someone knocks on my door with an interesting machine learning application, and they tell me how exciting it is, and how great the application would be, and how much money they would make, the first question I ask, <strong>‘what data do you have?’</strong>. If you have data, we are in business. If you don’t, you are <em>out of luck</em>.” - Prof. Ng</p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">The ML Approach to Problem Solving:</strong><br />
+ Consider the Netflix problem: <em>Predicting how a viewer will rate a movie</em>.
+    <ul>
+      <li><strong>Direct Approach</strong>:<br />
+  <img src="/main_files/dl/theory/caltech/1.png" alt="img" width="40%" />
+        <ul>
+          <li>Ask each user to give a rank/rate for the different “factors/features” (E.g. Action, Comedy, etc.)</li>
+          <li>Watch each movie and assign a rank/rate for the same factors</li>
+          <li>Match the factors and produce a <strong>rating</strong></li>
+        </ul>
+      </li>
+      <li><strong>ML Approach</strong>:<br />
+  <img src="/main_files/dl/theory/caltech/2.png" alt="img" width="40%" /><br />
+  Essentially it is a <strong>Reversed</strong> approach
+        <ul>
+          <li>Start with the <strong>Ratings</strong> (dataset) that the users assigned to each movie</li>
+          <li>Then <em>deduce</em> the “factors/features” that are consistent with those Ratings<br />
+  Note: we usually start with random initial numbers for the factors<br />
+ <br /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Components of Learning:</strong>
+    <ul>
+      <li><strong>Input</strong>: \(\vec{x}\)</li>
+      <li><strong>Output</strong>: \(y\)</li>
+      <li><strong>Data</strong>:  \({(\vec{x}_ 1, y_ 1), (\vec{x}_ 2, y_ 2), ..., (\vec{x}_ N, y_ N)}\)</li>
+      <li><strong>Target Function</strong>: \(f : \mathcal{X} \rightarrow \mathcal{Y}\)  (Unknown/Unobserved)</li>
+      <li><strong>Hypothesis</strong>: \(g : \mathcal{X} \rightarrow \mathcal{Y}\)<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Components of the Solution:</strong>
+    <ul>
+      <li><strong>The Learning Model</strong>:
+        <ul>
+          <li><strong>The Hypothesis Set</strong>:  \(\mathcal{H}=\{h\},  g \in \mathcal{H}\)
+            <blockquote>
+              <p>E.g. Perceptron, SVM, FNNs, etc.</p>
+            </blockquote>
+          </li>
+          <li><strong>The Learning Algorithm</strong>: picks \(g \approx f\) from a hypothesis set \(\mathcal{H}\)
+            <blockquote>
+              <p>E.g. Backprop, Quadratic Programming, etc.</p>
+            </blockquote>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>Motivating the inclusion of a <em>Hypothesis Set</em>:</p>
+    <ul>
+      <li><strong>No Downsides</strong>: There is <strong>no loss of generality</strong> by including a hypothesis set, since any restrictions on the elements of the set have no effect on what the learning algorithms<br />
+  Basically, there is no downside because from a practical POV thats what you do; by choosing an initial approach, e.g. SVM, Linear Regression, Neural Network, etc., we are already dictating a hypothesis set. If we don’t choose one, then the hypothesis set has no restrictions and is the set of all possible hypothesis without loss of generalization.</li>
+      <li><strong>Upside</strong>: The hypothesis set plays a pivotal role in the <em>theory of learning</em>, by dictating whether we can learn or not.<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">The Basic Premise/Goal of Learning:</strong><br />
+ “Using a set of observations to uncover an underlying process”<br />
+ Rephrased mathematically, the <strong>Goal of Learning</strong> is: <br />
+ Use the Data to find a hypothesis \(g \in \mathcal{H}\), from the hypothesis set \(\mathcal{H}=\{h\}\), that <em>approximates</em> \(f\) well.<br />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Types of Learning:</strong>
+    <ul>
+      <li><strong>Supervised Learning</strong>: the task of learning a function that maps an input to an output based on example input-output pairs.<br />
+  <img src="/main_files/dl/theory/caltech/4.png" alt="img" width="70%" /></li>
+      <li><strong>Unsupervised Learning</strong>: the task of making inferences, by learning a better representation, from some datapoints that do not have any labels associated with them.<br />
+  <img src="/main_files/dl/theory/caltech/5.png" alt="img" width="70%" />
+        <blockquote>
+          <p>Unsupervised Learning is another name for <a href="https://en.wikipedia.org/wiki/Hebbian_theory">Hebbian Learning</a></p>
+        </blockquote>
+      </li>
+      <li><strong>Reinforcement Leaning</strong>: the task of learning how software agents ought to take actions in an environment so as to maximize some notion of cumulative reward.<br />
+  <img src="/main_files/dl/theory/caltech/6.png" alt="img" width="70%" /><br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">The Learning Diagram:</strong><br />
+ <img src="/main_files/dl/theory/caltech/3.png" alt="img" width="70%" /></li>
+</ol>
+
+<hr />
+
+<h2 id="content2">The Feasibility of Learning</h2>
+
+<p>The Goal of this Section is to answer the question: Can we make any statements/inferences outside of the sample data that we have?</p>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">The Problem of Learning:</strong><br />
+ Learning a truly <strong>Unknown</strong> function is <strong>Impossible</strong>, since outside of the observed values, the function could assume <em>any value</em> it wants.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">The Bin Analogy - A Related Experiment::</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Discussion</button>
+    <ul hidden="">
+      <li>
+        <p><img src="/main_files/dl/theory/caltech/7.png" alt="img" width="70%" /></p>
+
+        <p>\(\mu\) is a constant that describes the actual/real probability of picking the red marble.<br />
+  \(\nu\), however, is random and depends on the frequency of red marbles in the particular sample that you have collected.</p>
+
+        <p>Does \(\nu\) approximate \(\mu\)?</p>
+        <ul>
+          <li>The short answer is <strong>NO</strong>:<br />
+  The Sample an be mostly green while bin is mostly red.</li>
+          <li>The Long answer is <strong>YES</strong>:<br />
+  The Sample frequency \(\nu\) is likely/probably close to bin frequency \(\mu\).
+            <blockquote>
+              <p>Think of a presidential poll of 3000 people that can predict how the larger \(10^8\) mil. people will vote</p>
+            </blockquote>
+          </li>
+        </ul>
+
+        <p>The Main distinction between the two answers is in the difference between <em><strong>Possible</strong></em> VS <em><strong>Probable</strong></em>.</p>
+
+        <p>What does \(\nu\) say about \(\mu\)?<br />
+  In a big sample (Large \(N\)), \(\nu\) is <em>probably</em> close to \(\mu\) (within \(\epsilon\)). <br />
+  Formally, we the <strong>Hoeffding’s Inequality</strong>:</p>
+        <p>$$\mathbb{P}[|\nu-\mu|&gt;\epsilon] \leq 2 e^{-2 \epsilon^{2} N}$$</p>
+        <p>In other words, the probability that \(\nu\) does not approximate \(\mu\) well (they are not within an \(\epsilon\) of each other), is bounded by a negative exponential that dampens fast but depends directly on the tolerance \(\epsilon\).</p>
+        <blockquote>
+          <p>This reduces to the statement that “\(\mu = \nu\)” is PAC (PAC: Probably, Approximately Correct).</p>
+        </blockquote>
+
+        <p>Properties:</p>
+        <ul>
+          <li>It is valid for \(N\) and \(\epsilon\).</li>
+          <li>The bound does not depend on the value of \(\mu\).</li>
+          <li>There is a <strong>Trade-off</strong> between the number of samples \(N\) and the tolerance \(\epsilon\).</li>
+          <li>Saying that \(\nu \approx \mu \implies \mu \approx \nu\), i.e. saying \(\nu\) is approximately the same as \(\mu\), implies that \(\mu\) is approximately the same as \(\nu\) (yes, tautology). <br />
+  The logic here is subtle:
+            <ul>
+              <li>Logically, the inequality is making a statement on \(\nu\) (the random variable), it is saying that \(\nu\) tends to be close to \(\mu\) (the constant, real probability).</li>
+              <li>However, since the inequality is symmetric, we are using the inequality to infer \(\mu\) from \(\nu\).<br />
+  But that is not the cause and effect that actually takes place. \(\mu\), actually, affects \(\nu\).</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p>Translating to the Learning Problem:<br />
+  <img src="/main_files/dl/theory/caltech/8.png" alt="img" width="70%" /></p>
+        <blockquote>
+          <p>Notice how the meaning of the accordance between \(\mu\) and \(\nu\)  is not accuracy of the model, but rather accuracy of the TEST.</p>
+        </blockquote>
+
+        <p>Back to the Learning Diagram:<br />
+  <img src="/main_files/dl/theory/caltech/9.png" alt="img" width="70%" /><br />
+  The marbles in the bin correspond to the input space (datapoints). This adds a NEW COMPONENT to the Learning problem - the probability of generating the input datapoints (up to this point we treated learning in an absolute sense based on some fixed datapoints). <br />
+  To adjust the statement of the learning problem to accommodate the new component:<br />
+  we add a probability distribution \(P\)  over the input space \(\mathcal{X}\). This, however, doesn’t restrict the argument at all; we can invoke any probability on the space, and the machinery still holds. We, also, do not, even, need to know what \(P\) is (even though \(P\) affects \(\mu\)), since Hoeffding’s Inequality allows us to bound the LHS with no dependence on \(\mu\).<br />
+  Thus, now we assume that the input datapoints \(\vec{x}_1, ..., \vec{x}_N\) are assumed to be generated by \(P\), <strong>independently</strong>.<br />
+  So this is a very benign addition, that would give us high dividends - The Feasibility of Learning.</p>
+
+        <p>However, this is not learning; it is <strong>Verification</strong>. Learning involves using an algorithm to search a space \(\mathcal{H}\)  and try different functions \(h \in \mathcal{H}\). Here, we have already picked some specific function and are testing its performance on a sample, using maths to guarantee the accuracy of the test within some threshold we are willing to tolerate.</p>
+
+        <p>Extending Hoeffding’s Inequality to Multiple hypotheses \(h_i\):<br />
+  <img src="/main_files/dl/theory/caltech/10.png" alt="img" width="70%" /><br />
+  <img src="/main_files/dl/theory/caltech/11.png" alt="img" width="70%" /></p>
+
+        <p>Putting the right notation:<br />
+  <img src="/main_files/dl/theory/caltech/12.png" alt="img" width="70%" /><br />
+  <img src="/main_files/dl/theory/caltech/13.png" alt="img" width="70%" /></p>
+
+        <p><button class="showText" value="show" onclick="showTextPopHide(event);">Why Hoeffding Inequality doesn’t apply for multiple bins</button>
+  <img src="/main_files/dl/theory/caltech/14.png" alt="img" hidden="" /></p>
+        <blockquote>
+          <p>i.e. the 10 heads are not a good indication of the real probability</p>
+        </blockquote>
+
+        <p><button class="showText" value="show" onclick="showTextPopHide(event);">From coins to learning</button>
+  <img src="/main_files/dl/theory/caltech/15.png" alt="img" hidden="" /><br />
+  Equivalently, in learning, if the hypothesis set size is 1000, and there are 10 points we test against, the probability that one of those hypothesis performing well on the 10 points, but actually being a bad hypothesis is high, and increases with the hypothesis set size.</p>
+        <blockquote>
+          <p>Hoeffding’s inequality has a guarantee for one experiment, that gets terribly diluted as you increase the number of experiments.</p>
+        </blockquote>
+
+        <p>Solution:<br />
+  We follow the very same reasoning: we want to know the probability of at least one failing. This can be bounded by the union bound, which intuitively says that the maximum probability of at least an event occurring in N is when all the events are independent, in which case you just sum up the probabilities:</p>
+        <p>$$\begin{aligned} \mathbb{P}\left[ | E_{\text {in }}(g)-E_{\text {out }}(g) |&gt;\epsilon\right] \leq \mathbb{P}[ &amp; | E_{\text {in }}\left(h_{1}\right)-E_{\text {out }}\left(h_{1}\right) |&gt;\epsilon \\ &amp; \text {or } | E_{\text {in }}\left(h_{2}\right)-E_{\text {out }}\left(h_{2}\right) |&gt;\epsilon \\ &amp; \cdots \\ &amp; \text {or } | E_{\text {in }}\left(h_{M}\right)-E_{\text {out }}\left(h_{M}\right) |&gt;\epsilon ] \\ \leq &amp; \sum_{m=1}^{M} \mathbb{P}\left[ | E_{\text {in }}\left(h_{m}\right)-E_{\text {out }}\left(h_{m}\right) |&gt;\epsilon\right] \end{aligned}$$</p>
+        <p>Which implies:</p>
+        <p>$$\begin{aligned} \mathbb{P}\left[ | E_{\text {in }}(g)-E_{\text {out }}(g) |&gt;\epsilon\right] &amp; \leq \sum_{m=1}^{M} \mathbb{P}\left[ | E_{\text {in }}\left(h_{m}\right)-E_{\text {out }}\left(h_{m}\right) |&gt;\epsilon\right] \\ &amp; \leq \sum_{m=1}^{M} 2 e^{-2 \epsilon^{2} N} \end{aligned}$$</p>
+        <p>Or,</p>
+        <p>$$\mathbb{P}\left[ | E_{\ln }(g)-E_{\text {out }}(g) |&gt;\epsilon\right] \leq 2 M e^{-2 \epsilon^{2} N}$$</p>
+        <p>The more sophisticated the model you use, the looser that in-sample will track the out-of-sample. Because the probability of them deviating becomes bigger and bigger and bigger.<br />
+  The conclusion may seem both awkward and obvious, but the bigger the hypothesis set, the higher the probability of at least one function being very bad. In the event that we have an infinite hypothesis set, of course this bound goes to infinity and tells us nothing new.</p>
+
+        <p><a href="http://testuggine.ninja/notes/feasibility-of-learning#fnref:limited">References</a></p>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">The Learning Analogy:</strong><br />
+ For an exam, the practice problems are the training set. You’re going to look at the question. You’re going to answer. You’re going to compare it with the real answer. And then you are going to adjust your hypothesis, your understanding of the material, in order to do it better, and go through them and perhaps go through them again, until you get them right or mostly right or figure out the material (this makes you better at taking the exam).
+ We don’t give out the actual exams questions because <strong>acing the final is NOT the goal</strong>, the goal is to <strong>learn the material (have a small \(E_{\text{out}}\))</strong>. The final exam is only a way of gauging how well you actually learned. And in order for it to gauge how well you actually learned, I have to give you the final at the point you have already fixed your hypothesis. You prepared. You studied. You discussed with people. You now sit down to take the final exam. So you have one hypothesis. And you go through the exam. hopefully, will reflect what your understanding will be outside.
+    <blockquote>
+      <p>The exam measures \(E_{\text{in}}\), and we know that it tracks \(E_{\text{out}}\) (by Hoeffding), so it tracks well how you understand the material proper.</p>
+    </blockquote>
+  </li>
+</ol>
+
+<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}
+-->
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Notes:</strong>
+    <ul>
+      <li><strong>Learning Feasibility</strong>:<br />
+  When learning we only deal with In-Sample Errors \([E_{\text{in}}(\mathbf{w})]\); we never handle the out-sample error explicitly; we take the theoretical guarantee that when you do well in-sample \(\implies\) you do well out-sample (Generalization).</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Error and Noise</h2>
+
+<p>The Current Learning Diagram:<br />
+<img src="/main_files/dl/theory/caltech/16.png" alt="img" width="50%" /></p>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Error Measures:</strong><br />
+ <strong>Error Measures</strong> aim to answer the question:<br />
+ “What does it mean for \(h\) to approximate \(f\) (\(h \approx f\))?”<br />
+ The <strong>Error Measure</strong>: \(E(h, f)\)<br />
+ It is almost always defined point-wise: \(\mathrm{e}(h(\mathbf{X}), f(\mathbf{X}))\).<br />
+ Examples:
+    <ul>
+      <li><strong>Square Error</strong>:  \(\:\:\:\mathrm{e}(h(\mathbf{x}), f(\mathbf{x}))=(h(\mathbf{x})-f(\mathbf{x}))^{2}\)</li>
+      <li><strong>Binary Error</strong>:  \(\:\:\:\mathrm{e}(h(\mathbf{x}), f(\mathbf{x}))=[h(\mathbf{x}) \neq f(\mathbf{x})]\)  (1 if true else 0)</li>
+    </ul>
+
+    <p>The <strong>overall error</strong> \(E(h,f) =\) <em>average</em> of pointwise errors \(\mathrm{e}(h(\mathbf{x}), f(\mathbf{x}))\):</p>
+    <ul>
+      <li><strong>In-Sample Error</strong>:
+        <p>$$E_{\mathrm{in}}(h)=\frac{1}{N} \sum_{n=1}^{N} \mathrm{e}\left(h\left(\mathbf{x}_{n}\right), f\left(\mathbf{x}_{n}\right)\right)$$</p>
+      </li>
+      <li><strong>Out-Sample Error</strong>:
+        <p>$$E_{\text {out }}(h)=\mathbb{E}_ {\mathbf{x}}[\mathrm{e}(h(\mathbf{x}), f(\mathbf{x}))]$$</p>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">The Learning Diagram - with pointwise error:</strong><br />
+ <img src="/main_files/dl/theory/caltech/17.png" alt="img" width="50%" /><br />
+ There are two additions to the diagram:
+    <ul>
+      <li>The first is to realize that we are defining the error measure <strong>on a point</strong>.</li>
+      <li>Another is that in deciding whether \(g\)  is close to \(f\) , which is the goal of learning, we test this with a point \(x\). And the criterion for deciding whether \(g(x)\) is approximately the same as \(f(x)\) is our pointwise error measure.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Defining the Error Measure:</strong></p>
+
+    <p><strong>Types:</strong></p>
+    <ul>
+      <li>False Positive</li>
+      <li>False Negative</li>
+    </ul>
+
+    <p>There is no inherent merit to choosing one error function over another. It’s not an analytic question. It’s an application-domain question.<br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Examples - Supermarket</button>
+ <img src="/main_files/dl/theory/caltech/18.png" alt="img" hidden="" /><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Examples - CIA</button>
+ <img src="/main_files/dl/theory/caltech/19.png" alt="img" hidden="" /></p>
+
+    <p>The error measure should be <em>specified by the user</em>. Since, that’s not always possible, the alternatives:</p>
+    <ul>
+      <li><strong>Plausible Measures</strong>: measures that have an <em>analytic argument</em> for their merit, based on certain <em>assumptions</em>.<br />
+  E.g. <em>Squared Error</em> comes from the <em>Gaussian Noise</em> Assumption.</li>
+      <li><strong>Friendly Measures</strong>: An <em>easy-to-use</em> error measure, without much justification.<br />
+  E.g. Linear Regression error leads to the easy closed-form solution, Convex Error measures are easy to optimize, etc.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">The Learning Diagram - with the Error Measure:</strong><br />
+ <img src="/main_files/dl/theory/caltech/20.png" alt="img" width="50%" /><br />
+ The <strong>Error Measure</strong> provides a quantitative assessment of the statement \(g(\mathbf{x}) \approx f(\mathbf{x})\).</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Noisy Targets:</strong><br />
+ The <em>‘Target Function’</em> is not always a <em>function</em> because two <em>‘identical’</em> input points can be mapped to two different outputs (i.e. they have different labels).</p>
+
+    <p>The solution: Replacing the target function with a <strong>Target Distribution</strong>.<br />
+ Instead of \(y = f(x)\) we use the  <em>conditional target distribution</em>: \(P(y | \mathbf{x})\). What changes now  is that, instead of \(y\)  being deterministic of \(\mathbf{x}\), once you generate \(\mathbf{x}\), \(y\)  is also probabilistic– generated by \(P(y | \mathbf{x})\).<br />
+ \((\mathbf{x}, y)\) is now generated by the <strong>joint distribution</strong>:</p>
+    <p>$$P(\mathbf{x}) P(y | \mathbf{x})$$</p>
+
+    <p>Equivalently, we can define a <strong>Noisy Target</strong> as a <em>deterministic (target) function</em> \(\:f(\mathbf{x})=\mathbb{E}(y | \mathbf{x})\:\)  PLUS <em>Noise</em> \(\: y-f(x)\).   <br />
+ This can be done WLOG since a <em>deterministic target</em> is a special kind of a <em>noisy target</em>:<br />
+ Define \(P(y \vert \mathbf{x})\) to be identically Zero, except for \(y = f(x)\).</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">The Learning Diagram - with the Noisy Target:</strong><br />
+ <img src="/main_files/dl/theory/caltech/21.png" alt="img" width="50%" /></p>
+
+    <p>Now, \(E_{\text {out}}(h) = \mathbb{E}_ {x, y}[e(h(x), y)]\) instead of \(\mathbb{E}_ {\mathbf{x}}[\mathrm{e}(h(\mathbf{x}), f(\mathbf{x}))]\), and<br />
+ \(\left(\mathbf{x}_{1}, y_{1}\right), \cdots,\left(\mathbf{x}_{N}, y_{N}\right)\) are generated independently of each (each tuple).</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Distinction between \(P(y | \mathbf{x})\) and \(P(\mathbf{x})\):</strong><br />
+ The <strong>Target Distribution</strong> \(P(y \vert \mathbf{x})\) is what we are <em><strong>trying to learn</strong></em>.<br />
+ The <strong>Input Distribution</strong> \(P(\mathbf{x})\), only, <em><strong>quantifies relative importance</strong></em>  of \(\mathbf{x}\); we are <strong>NOT</strong> trying to learn this distribution.
+    <blockquote>
+      <p>Rephrasing: Supervised learning only learns \(P(y \vert \mathbf{x})\) and not \(P(\mathbf{x})\); \(P(\mathbf{x}, y)\) is <strong>NOT</strong> a target distribution for Supervised Learning.</p>
+    </blockquote>
+
+    <p>Merging \(P(\mathbf{x})P(y \vert \mathbf{x})\) as \(P(\mathbf{x}, y)\), although allows us to generate examples \((\mathbf{x}, y)\), mixes the two concepts that are inherently different.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Preamble to Learning Theory:</strong><br />
+ <strong>Generalization VS Learning:</strong><br />
+ We know that <em>Learning is Feasible</em>.
+    <ul>
+      <li><strong>Generalization</strong>:<br />
+  It is likely that the following condition holds:
+        <p>$$\: E_{\text {out }}(g) \approx E_{\text {in }}(g)  \tag{3.1}$$</p>
+        <p>This is equivalent to “good” <strong>Generalization</strong>.</p>
+      </li>
+      <li><strong>Learning</strong>:<br />
+  Learning corresponds to the condition that \(g \approx f\), which in-turn corresponds to the condition:
+        <p>$$E_{\text {out }}(g) \approx 0  \tag{3.2}$$</p>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">How to achieve Learning:</strong>  <br />
+ We achieve \(E_{\text {out }}(g) \approx 0\) through:</p>
+    <ol>
+      <li>\(E_{\mathrm{out}}(g) \approx E_{\mathrm{in}}(g)\)<br />
+ A <strong>theoretical</strong> result achieved through Hoeffding <strong style="color: red">PROBABILITY THEORY</strong>  .</li>
+      <li>\(E_{\mathrm{in}}(g) \approx 0\)<br />
+ A <strong>Practical</strong> result of minimizing the In-Sample Error Function (ERM) <strong style="color: red">Optimization</strong>  .</li>
+    </ol>
+
+    <p id="lst-p">Learning is, thus, reduced to the 2 following questions:</p>
+    <ol>
+      <li>Can we make sure that \(E_{\text {out }}(g)\) is close enough to \(E_{\text {in }}(g)\)? (theoretical)</li>
+      <li>Can we make \(E_{\text {in}}(g)\) small enough? (practical)</li>
+    </ol>
+
+    <p id="lst-p">What the Learning Theory will achieve:</p>
+    <ul>
+      <li>Characterizing the <em>feasibility of learning</em> for <strong>infinite \(M\)</strong> (hypothesis).<br />
+  We are going to measure the model not by the number of hypotheses, but by a single parameter which tells us the sophistication of the model. And that sophistication will reflect the out-of-sample performance as it relates to the in-sample performance (through the Hoeffding (then VC) inequalities).</li>
+      <li>Characterizing the tradeoff:<br />
+  <img src="/main_files/dl/theory/caltech/22.png" alt="img" width="50%" /> <br />
+  In words:<br />
+  We realized that we would like our model, the hypothesis set, to be elaborate, in order to be able to fit the data. The more parameters you have, the more likely you are going to fit the data and get here. So the \(E_{\text{in}}\) goes down if you use more complex models. However, if you make the model more complex, the discrepancy between \(E_{\text{out}}\) and \(E_{\text{in}}\) gets worse and worse. \(E_{\text{in}}\) tracks \(E_{\text{out}}\) much more loosely than it used to.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="content4">Linear Models I</h2>
+
+<p><img src="/main_files/dl/theory/caltech/3.jpg" alt="img" width="100%" /></p>
+
+<p><img src="/main_files/dl/theory/caltech/4.jpg" alt="img" width="100%" /></p>
+
+<ul>
+  <li>
+    <p><strong><a href="https://cs231n.github.io/linear-classify/#interpret">Interpreting Linear Classifiers (cs231n)</a></strong></p>
+
+    <ul>
+      <li><a href="http://vision.stanford.edu/teaching/cs231n-demos/linear-classify/" value="show" onclick="iframePopA(event)"><strong>Linear Classifiers Demo (cs231n)</strong></a>
+  <a href="http://vision.stanford.edu/teaching/cs231n-demos/linear-classify/"></a>
+        <div></div>
+      </li>
+      <li><a href="https://stats.stackexchange.com/questions/407812/derive-linear-regression-model-from-the-conditional-distribution-of-yx">Linear Regression from Conditional Distribution (gd example)</a></li>
+      <li><a href="http://bjlkeng.github.io/posts/a-probabilistic-view-of-regression/"><strong>Linear Regression Probabilistic Development</strong></a></li>
+      <li>In a linear model, if the errors belong to a normal distribution the least squares estimators are also the maximum likelihood estimators.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></li>
+    </ul>
+  </li>
+</ul>
+
+<!-- ***
+
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44}
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents48}
+
+*** -->
+
+<h2 id="content5">The Linear Model II</h2>
+
+<ul>
+  <li><a href="https://web.stanford.edu/~hastie/Papers/ESLII.pdf#page=146">Logistic Regression vs LDA? (ESL)</a></li>
+  <li><a href="http://www.haija.org/derivation_logistic_regression.pdf">Derivation of Logistic Regression</a></li>
+  <li><a href="http://www.win-vector.com/blog/2011/09/the-simpler-derivation-of-logistic-regression/">The Simpler Derivation of Logistic Regression</a></li>
+  <li><a href="http://www.stat.cmu.edu/~cshalizi/uADA/12/lectures/ch12.pdf">Logistic Regression, Generalized Linear and Additive Models (CMU)</a></li>
+  <li><a href="https://www.quora.com/Why-do-we-use-the-Bernoulli-distribution-in-the-logistic-regression-model">Why do we use the Bernoulli distribution in the logistic regression model? (Quora)</a></li>
+  <li><a href="https://ml-cheatsheet.readthedocs.io/en/latest/logistic_regression.html">Logistic Regression - ML Cheatsheet</a></li>
+  <li><a href="https://cs-cheatsheet.readthedocs.io/en/latest/subjects/machine_learning/logistic_regression.html">Logistic Regression - CS Cheatsheet</a></li>
+  <li><a href="https://www.youtube.com/watch?v=hjrYrynGWGA&amp;list=PLkDaE6sCZn6Ec-XTbcX1uRg2_u4xOEky0&amp;index=9">Logistic Regression (Lec Ng)</a></li>
+</ul>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents51">Linear Models - Logistic Regression:</strong><br />
+ <img src="/main_files/dl/theory/caltech/25.png" alt="img" width="80%" /> <br />
+ The <strong>Logistic Regression</strong> applies a <em>non-linear transform</em>  on the <em>signal</em>; it’s a softer approximation to the hard-threshold non-linearity applied by <em>Linear Classification</em>.</p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents52">The Logistic Function \(\theta\):</strong>
+    <p>$$\theta(s)=\frac{e^{s}}{1+e^{s}}=\frac{1}{1+e^{-s}}$$</p>
+
+    <p><img src="/main_files/dl/theory/caltech/26.png" alt="img" width="80%" /></p>
+    <ul>
+      <li><strong>Soft Threshold</strong>: corresponds to uncertainty; interpreted as probabilities.</li>
+      <li><strong>Sigmoid</strong>: looks like a flattened out ‘S’.</li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents53">The Probability Interpretation:</strong><br />
+ \(h(\mathbf{x})=\theta(s)\) is interpreted as a probability.<br />
+ It is in-fact a <strong>Genuine Probability</strong>. The output of logistic regression is treated genuinely as a probability even during learning.<br />
+ Justification:<br />
+ Data \((\mathbf{x}, y)\) with binary \(y\), (we don’t have direct access to probability, but the binary \(y\) is affected by the probability), generated by a noisy target:
+    <p>$$P(y | \mathbf{x})=\left\{\begin{array}{ll}{f(\mathbf{x})} &amp; {\text {for } y=+1} \\ {1-f(\mathbf{x})} &amp; {\text {for } y=-1}\end{array}\right.$$</p>
+    <p>The target \(f : \mathbb{R}^{d} \rightarrow[0,1]\) is the probability.<br />
+ We learn \(\:\:\:\: g(\mathbf{x})=\theta\left(\mathbf{w}^{\top} \mathbf{x}\right) \approx f(\mathbf{x})\).</p>
+    <blockquote>
+      <p>In words: So I’m going to call the probability the target function itself. The probability that someone gets heart attack is \(f(\mathbf{x})\). And I’m trying to learn \(f\), notwithstanding the fact that the examples that I am getting are giving me just sample values of \(y\), that happen to be generated by \(f\).</p>
+    </blockquote>
+
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Further Analysis</button></p>
+    <ul hidden="">
+      <li>Logistic Regression uses the <strong>sigmoid</strong> function to “squash” the output feature/signal into the \([0, 1]\) space.<br />
+  Although, one could interpret the <em>sigmoid classifier</em> as just a function with \([0,1]\) range, it is actually, a <strong>Genuine Probability</strong>.</li>
+      <li>To see this:
+        <ul>
+          <li>A labeled, classification Data-Set, does <strong>NOT</strong> (explicitly) give you the <em>probability</em> that something is going to happen, rather, just the fact that an event either happened \((y=1)\) or that it did not \((y=0)\), without the actual probability of that event happening.</li>
+          <li>One can think of this data as being generated by a (the following) noisy target:<br />
+  \({\displaystyle P(y \vert x) ={\begin{cases}f(x)&amp;{\text{for }}y = +1,\\1-f(x)&amp;{\text{for }}y=-1.\\\end{cases}}}\)</li>
+          <li>They have the form that a certain probability that the event occurred and a certain probability that the event did NOT occur, given their input-data.</li>
+          <li>This is generated by the target we want to learn; thus, the function \(f(x)\) is the target function to approximate.</li>
+        </ul>
+      </li>
+      <li>In Logistic Regression, we are trying to learn \(f(x)\) not withstanding the fact that the data-points we are learning from are giving us just sample values of \(y\) that happen to be generated by \(f\).</li>
+      <li>Thus, the <strong>Target</strong> \(f : \mathbb{R}^d \longrightarrow [0,1]\) is the probability.<br />
+  <span style="color: purple">The output of Logistic Regression is treated genuinely as a <strong>probability</strong> even <em>during <strong>Learning</strong></em>.</span></li>
+    </ul>
+    <p><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents54">Deriving the Error Measure (Cross-Entropy) from Likelihood:</strong><br />
+ The error measure for logistic regression is based on <strong>likelihood</strong> - it is both, plausible and friendly/well-behaved? (for optimization).<br />
+ For each \((\mathbf{x}, y)\), \(y\) is generated wit probability \(f(\mathbf{x})\).</p>
+
+    <p><strong>Likelihood</strong>: We are maximizing the <em><strong>likelihood of this hypothesis</strong></em>, under the <em><strong>data set</strong></em> that we were given, with respect to the <em><strong>weights</strong></em>. I.E. Given the data set, how likely is this hypothesis? Which means, what is the probability of that data set under the assumption that this hypothesis is indeed the target?</p>
+
+    <ul>
+      <li><strong>Deriving the Likelihood:</strong>
+        <ol>
+          <li>We start with:
+            <p>$$P(y | \mathbf{x})=\left\{\begin{array}{ll}{h(\mathbf{x})} &amp; {\text {for } y=+1} \\ {1-h(\mathbf{x})} &amp; {\text {for } y=-1}\end{array}\right.$$</p>
+          </li>
+          <li>Substitute \(h(\mathbf{x})=\theta \left(\mathbf{w}^{\top} \mathbf{x}\right)\):
+            <p>$$P(y | \mathbf{x})=\left\{\begin{array}{ll}{\theta(\mathbf{w}^T\mathbf{x})} &amp; {\text {for } y=+1} \\ {1-\theta(\mathbf{w}^T\mathbf{x})} &amp; {\text {for } y=-1}\end{array}\right.$$</p>
+          </li>
+          <li>Since we know that \(\theta(-s)=1-\theta(s)\), we can simplify the piece-wise function:
+            <p>$$P(y | \mathbf{x})=\theta\left(y \mathbf{w}^{\top} \mathbf{x}\right)$$</p>
+          </li>
+          <li>To get the <strong>likelihood</strong> of the dataset \(\mathcal{D}=\left(\mathbf{x}_{1}, y_{1}\right), \ldots,\left(\mathbf{x}_{N}, y_{N}\right)\):
+            <p>$$\prod_{n=1}^{N} P\left(y_{n} | \mathbf{x}_{n}\right) =\prod_{n=1}^{N} \theta\left(y_{n} \mathbf{w}^{\mathrm{T}} \mathbf{x}_ {n}\right)$$</p>
+          </li>
+        </ol>
+      </li>
+      <li><strong>Maximizing the Likelihood (Deriving the Cross-Entropy Error):</strong>
+        <ol>
+          <li>Maximize:
+            <p>$$\prod_{n=1}^{N} \theta\left(y_{n} \mathbf{w}^{\top} \mathbf{x}_ {n}\right)$$</p>
+          </li>
+          <li>Take the natural log to avoid products:
+            <p>$$\ln \left(\prod_{n=1}^{N} \theta\left(y_{n} \mathbf{w}^{\top} \mathbf{x}_ {n}\right)\right)$$</p>
+            <p>Motivation:</p>
+            <ul>
+              <li>The inner quantity is <strong>non-negative</strong> and non-zero.</li>
+              <li>The natural log is <strong>monotonically increasing</strong> (its max, is the max of its argument)</li>
+            </ul>
+          </li>
+          <li>Take the average (still monotonic):
+            <p>$$\frac{1}{N} \ln \left(\prod_{n=1}^{N} \theta\left(y_{n} \mathbf{w}^{\top} \mathbf{x}_ {n}\right)\right)$$</p>
+          </li>
+          <li>Take the negative and <strong>Minimize</strong>:
+            <p>$$-\frac{1}{N} \ln \left(\prod_{n=1}^{N} \theta\left(y_{n} \mathbf{w}^{\top} \mathbf{x}_ {n}\right)\right)$$</p>
+          </li>
+          <li>Simplify:
+            <p>$$=\frac{1}{N} \sum_{n=1}^{N} \ln \left(\frac{1}{\theta\left(y_{n} \mathbf{w}^{\tau} \mathbf{x}_ {n}\right)}\right)$$</p>
+          </li>
+          <li>Substitute \(\left[\theta(s)=\frac{1}{1+e^{-s}}\right]\):
+            <p>$$\frac{1}{N} \sum_{n=1}^{N} \underbrace{\ln \left(1+e^{-y_{n} \mathbf{w}^{\top} \mathbf{x}_{n}}\right)}_{e\left(h\left(\mathbf{x}_{n}\right), y_{n}\right)}$$</p>
+          </li>
+          <li>Use this as the <em><strong>Cross-Entropy</strong></em>  <strong>Error Measure</strong>:
+            <p>$$E_{\mathrm{in}}(\mathrm{w})=\frac{1}{N} \sum_{n=1}^{N} \underbrace{\ln \left(1+e^{-y_{n} \mathrm{w}^{\top} \mathbf{x}_{n}}\right)}_{\mathrm{e}\left(h\left(\mathrm{x}_{n}\right), y_{n}\right)}$$</p>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents56">The Decision Boundary of Logistic Regression:</strong><br />
+ <strong>Decision Boundary:</strong> It is the set of \(x\) such that:
+    <p>$$\frac{1}{1+e^{-\theta \cdot x}}=0.5 \implies 0=-\theta \cdot x=-\sum_{i=0}^{n} \theta_{i} x_{i}$$</p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents57">The Logistic Regression Algorithm:</strong><br />
+ <img src="/main_files/dl/theory/caltech/27.png" alt="img" width="80%" /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents58">Summary of Linear Models:</strong><br />
+ <img src="/main_files/dl/theory/caltech/26.png" alt="img" width="80%" /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents59">Nonlinear Transforms:</strong>
+    <p>$$\mathbf{x}=\left(x_{0}, x_{1}, \cdots, x_{d}\right) \stackrel{\Phi}{\longrightarrow} \mathbf{z}=\left(z_{0}, z_{1}, \cdots \cdots \cdots \cdots \cdots, z_{\tilde{d}}\right)$$</p>
+    <p>$$\text {Each } z_{i}=\phi_{i}(\mathbf{x}) \:\:\:\:\: \mathbf{z}=\Phi(\mathbf{x})$$</p>
+    <p>Example: \(\mathbf{z}=\left(1, x_{1}, x_{2}, x_{1} x_{2}, x_{1}^{2}, x_{2}^{2}\right)\)<br />
+ The Final Hypothesis \(g(\mathbf{x})\) in \(\mathcal{X}\) space:</p>
+    <ul>
+      <li><strong>Classification:</strong> \(\operatorname{sign}\left(\tilde{\mathbf{w}}^{\top} \Phi(\mathbf{x})\right)\)</li>
+      <li><strong>Regression:</strong> \(\tilde{\mathbf{w}}^{\top} \Phi(\mathbf{x})\)</li>
+    </ul>
+
+    <p><strong style="color: red">Two Non-Separable Cases:</strong></p>
+    <ul>
+      <li>Almost separable with some outliers:<br />
+  <img src="/main_files/dl/theory/caltech/23.png" alt="img" width="38%" />
+        <ol>
+          <li>Accept that \(E_{\mathrm{in}}&gt;0\); use a linear model in \(\mathcal{X}\).</li>
+          <li>Insist on \(E_{\mathrm{in}}=0\); go to a high-dimensional \(\mathcal{Z}\).<br />
+ This has a <strong>worse</strong> chance for generalizing.</li>
+        </ol>
+      </li>
+      <li>Completely Non-Linear:<br />
+  <img src="/main_files/dl/theory/caltech/24.png" alt="img" width="38%" /> <br />
+  Data-snooping example: it is hard to choose the right transformations; biggest flop is to look at the data to choose the right transformations; it invalidates the VC inequality guarantee.
+        <blockquote>
+          <p>Think of the VC inequality as providing you with a warranty.</p>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents55} -->
+
+<h2 id="content6">The Bias Variance Decomposition</h2>
+
+<p><img src="/main_files/dl/theory/caltech/1.jpg" alt="img" width="100%" /></p>
+
+<p><img src="/main_files/dl/theory/caltech/2.jpg" alt="img" width="100%" /></p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://www.researchgate.net/publication/254284684_The_Equivalence_of_Generalized_Least_Squares_and_Maximum_Likelihood_Estimates_in_the_Exponential_Family">Reference: Equivalence of Generalized-LS and MLE in Exponential Family</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

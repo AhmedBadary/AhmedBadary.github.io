@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">PCA <br /> Principal Component Analysis</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/conv_opt class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">PCA</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Derivation 1. Fitting Gaussians to Data with MLE</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Derivation 2. Minimizing Variance</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">Derivation 3. Minimize Projection Error</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<p><a href="https://www.youtube.com/watch?v=5HNr_j6LmPc">Visual of PCA, SVD</a><br />
+<a href="https://www.youtube.com/watch?v=Axs-fuFJVvE">Derivation - Direction of Maximum Variance</a><br />
+<a href="https://github.com/AhmedBadary/Statistical-Analysis/blob/master/Image%20Compression%20using%20Low-Rank%20Approximation%20(SVD).ipynb">Low-Rank Approximation w/ SVD (code, my github)</a><br />
+<a href="https://people.cs.pitt.edu/~milos/courses/cs3750-Fall2007/lectures/class17.pdf">PPCA - Probabilistic PCA Slides</a></p>
+
+<h2 id="content1">PCA</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">What?</strong>  <br />
+ It is a statistical procedure that uses an orthogonal transformation to convert a set of observations of possibly correlated variables into a set of values of linearly uncorrelated variables called principal components.<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Goal?</strong>  <br />
+ Given points \(\mathbf{x}_ i \in \mathbf{R}^d\), find k-directions that capture most of the variation.<br />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Why?</strong>
+    <ol>
+      <li>Find a small basis for representing variations in complex things.
+        <blockquote>
+          <p>e.g. faces, genes.</p>
+        </blockquote>
+      </li>
+      <li>Reducing the number of dimensions makes some computations cheaper.</li>
+      <li>Remove irrelevant dimensions to reduce over-fitting in learning algorithms.
+        <blockquote>
+          <p>Like “<em>subset selection</em>” but the features are <strong>not</strong> <em>axis aligned</em>.<br />
+They are linear combinations of input features.</p>
+        </blockquote>
+      </li>
+      <li>Represent the data with fewer parameters (dimensions)<br />
+ <br /></li>
+    </ol>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Finding Principal Components:</strong>
+    <ul>
+      <li>Let ‘\(X\)’ be an \((n \times d)\) design matrix, centered, with mean \(\hat{x} = 0\).</li>
+      <li>Let ‘\(w\)’ be a unit vector.</li>
+      <li>The <em>Orthogonal Projection</em> of the point ‘\(x\)’ onto ‘\(w\)’ is \(\tilde{x} = (x.w)w\).
+        <blockquote>
+          <p>Or \(\tilde{x} = \dfrac{x.w}{\|w\|_2^2}w\), if \(w\) is not a unit vector.</p>
+        </blockquote>
+      </li>
+      <li>Let ‘\(X^TX\)’ be the <em>sample covariance matrix</em>,<br />
+  \(0 \leq \lambda_1 \leq \lambda_2 \leq \cdots \leq \lambda_d\) be its eigenvalues  and let \(v_1, v_2, \cdots, v_d\) be the corresponding <em>Orthogonal Unit Eigen-vectors</em>.</li>
+      <li>
+        <p>Given <em>Orthonormal directions (vectors)</em> \(v_1, v_2, \ldots, v_k\), we can write:</p>
+
+\[\tilde{x} = \sum_{i=1}^k (x.v_i)v_i.\]
+      </li>
+    </ul>
+
+    <blockquote>
+      <p><strong>The Principal Components:</strong> are precisely the eigenvectors of the data’s covariance matrix. <a href="#pcvspd">Read More</a></p>
+    </blockquote>
+
+    <p><br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Total Variance and Error Measurement:</strong>
+    <ul>
+      <li><strong>The Total Variance</strong> of the data can be expressed as the sum of all the eigenvalues:</li>
+    </ul>
+    <p>$$
+     \mathbf{Tr} \Sigma = \mathbf{Tr} (U \Lambda U^T) = \mathbf{Tr} (U^T U \Lambda) = \mathbf{Tr} \Lambda = \lambda_1 + \ldots + \lambda_n. 
+     $$</p>
+    <ul>
+      <li><strong>The Total Variance</strong> of the <strong><em>Projected</em></strong> data is:</li>
+    </ul>
+    <p>$$
+      \mathbf{Tr} (P \Sigma P^T ) = \lambda_1 + \lambda_2 + \cdots + \lambda_k. 
+     $$</p>
+    <ul>
+      <li><strong>The Error in the Projection</strong> could be measured with respect to variance.
+        <ul>
+          <li>We define the <strong>ratio of variance</strong> “explained” by the projected data (equivalently, the ratio of information <em>“retained”</em>) as:</li>
+        </ul>
+      </li>
+    </ul>
+    <p>$$
+     \dfrac{\lambda_1 + \ldots + \lambda_k}{\lambda_1 + \ldots + \lambda_n}. 
+     $$</p>
+    <blockquote>
+      <p>If the ratio is <em>high</em>, we can say that much of the variation in the data can be observed on the projected plane.</p>
+    </blockquote>
+
+    <p><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Mathematical Formulation:</strong><br />
+ PCA is mathematically defined as an orthogonal linear transformation that transforms the data to a new coordinate system such that the greatest variance by some projection of the data comes to lie on the first coordinate (called the first principal component), the second greatest variance on the second coordinate, and so on.</p>
+
+    <p>Consider a data matrix, \(X\), with column-wise zero empirical mean (the sample mean of each column has been shifted to zero), where each of the \(n\) rows represents a different repetition of the experiment, and each of the \(p\) columns gives a particular kind of feature (say, the results from a particular sensor).</p>
+
+    <p>Mathematically, the transformation is defined by a set of \(p\)-dimensional vectors of weights or coefficients \({\displaystyle \mathbf {v}_ {(k)}=(v_{1},\dots ,v_{p})_ {(k)}}\) that map each row vector \({\displaystyle \mathbf {x}_ {(i)}}\) of \(X\) to a new vector of principal component scores \({\displaystyle \mathbf {t} _{(i)}=(t_{1},\dots ,t_{l})_ {(i)}}\), given by:</p>
+    <p>$${\displaystyle {t_{k}}_{(i)}=\mathbf {x}_ {(i)}\cdot \mathbf {v}_ {(k)}\qquad \mathrm {for} \qquad i=1,\dots ,n\qquad k=1,\dots ,l}$$</p>
+    <p>in such a way that the individual variables \({\displaystyle t_{1},\dots ,t_{l}}\)  of \(t\) considered over the data set successively inherit the maximum possible variance from \(X\), with each coefficient vector \(v\) constrained to be a unit vector (where \(l\) is usually selected to be less than \({\displaystyle p}\) to reduce dimensionality).</p>
+
+    <p id="lst-p"><strong style="color: red">The Procedure and what it does:</strong></p>
+    <ul>
+      <li>Finds a lower dimensional subspace (PCs) that Minimizes the RSS of projection errors</li>
+      <li>Produces a vector (1st PC) with the highest possible variance, each succeeding component in turn has the highest variance possible under the constraint that it is orthogonal to the preceding components.</li>
+      <li>Results in an <strong>uncorrelated orthogonal basis set</strong>.</li>
+      <li>PCA constructs new axes that point to the directions of maximal variance (in the original variable space)<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents19">Intuition:</strong> <br />
+ PCA can be thought of as fitting a p-dimensional ellipsoid to the data, where each axis of the ellipsoid represents a principal component. If some axis of the ellipsoid is small, then the variance along that axis is also small, and by omitting that axis and its corresponding principal component from our representation of the dataset, we lose only a commensurately small amount of information.</p>
+
+    <ul>
+      <li>Its operation can be thought of as revealing the internal structure of the data in a way that best explains the variance in the data.<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents111">PCA Algorithm:</strong>
+    <ul>
+      <li><strong>Data Preprocessing</strong>:
+        <ul>
+          <li>Training set: \(x^{(1)}, x^{(2)}, \ldots, x^{(m)}\)</li>
+          <li>Preprocessing (<strong>feature scaling</strong> + <strong>mean normalization</strong>):
+            <ul>
+              <li><strong>mean normalization</strong>:<br />
+  \(\mu_{j}=\frac{1}{m} \sum_{i=1}^{m} x_{j}^{(i)}\)<br />
+  Replace each \(x_{j}^{(i)}\) with \(x_j^{(i)} - \mu_j\)</li>
+              <li><strong>feature scaling</strong>:<br />
+  If different features on different, scale features to have comparable range<br />
+  \(s_j = S.D(X_j)\) (the standard deviation of feature \(j\))<br />
+  Replace each \(x_{j}^{(i)}\) with \(\dfrac{x_j^{(i)} - \mu_j}{s_j}\)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Computing the Principal Components</strong>:
+        <ul>
+          <li>Compute the <strong>SVD</strong> of the matrix \(X = U S V^T\)</li>
+          <li>Compute the Principal Components:
+            <p>$$T = US = XV$$</p>
+            <blockquote>
+              <p>Note: The \(j\)-th principal component is: \(Xv_j\)</p>
+            </blockquote>
+          </li>
+          <li>Choose the top \(k\) components singular values in \(S = S_k\)</li>
+          <li>Compute the Truncated Principal Components:
+            <p>$$T_k = US_k$$</p>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Computing the Low-rank Approximation Matrix \(X_k\)</strong>:
+        <ul>
+          <li>Compute the reconstruction matrix:
+            <p>$$X_k = T_kV^T = US_kV^T$$</p>
+            <p><br /></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Results and Definitions:</strong></p>
+    <ul>
+      <li>Columns of \(V\) are principal directions/axes</li>
+      <li>Columns of \(US\) are principal components (“scores”)</li>
+      <li><a href="https://stats.stackexchange.com/questions/174601/difference-between-principal-directions-and-principal-component-scores-in-the-co" id="pcvspd">Principal Components (“scores”) VS Principal Directions/Axes</a></li>
+    </ul>
+
+    <blockquote>
+      <p><strong>NOTE:</strong> the analysis above is valid only for (1) \(X\) w/ samples in rows and variables in columns  (2) \(X\) is centered (mean=0)<br />
+<br /></p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents110">Properties and Limitations:</strong> <br />
+<strong style="color: red">Limitations:</strong>
+    <ul>
+      <li>PCA is highly sensitive to the (relative) scaling of the data; no consensus on best scaling.<br />
+<br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents112">Optimality:</strong>     <br />
+Optimal for Finding a lower dimensional subspace (PCs) that Minimizes the RSS of projection errors<br />
+<br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">How does PCA relate to CCA:</strong> <br />
+ <strong>CCA</strong> defines coordinate systems that optimally describe the cross-covariance between two datasets while <strong>PCA</strong> defines a new orthogonal coordinate system that optimally describes variance in a single dataset.<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">How does PCA relate to ICA:</strong> <br />
+ <strong>Independent component analysis (ICA)</strong> is directed to similar problems as principal component analysis, but finds additively separable components rather than successive approximations.<br />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents113">What’s the difference between PCA estimate and OLS estimate:</strong></li>
+</ol>
+
+<p id="lst-p"><strong style="color: red">Notes:</strong></p>
+<ul>
+  <li><strong>Variance</strong> is the <em>measure of spread</em> along only <em><strong>one axis</strong></em></li>
+  <li><strong>SVD(X) vs Spectral-Decomposition(\(\Sigma = X^TX\))</strong>:<br />
+  SVD is better \(\iff\) more numerically stable \(iff\) faster</li>
+  <li><strong>When are the PCs <em>independent</em>?</strong><br />
+  Assuming that the dataset is Gaussian distributed would guarantee that the PCs are independent. <a href="https://datascience.stackexchange.com/questions/25789/why-does-pca-assume-gaussian-distribution">Discussion</a></li>
+</ul>
+
+<hr />
+
+<h2 id="content2">Derivation 1. Fitting Gaussians to Data with MLE</h2>
+
+<p><a href="http://scribblethink.org/Work/PCAderivations/PCAderivations.pdf">Three Derivations of Principal Components (concise)</a><br />
+<a href="https://www.stat.cmu.edu/~cshalizi/uADA/12/lectures/ch18.pdf">Better Derivations (longer)</a></p>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">What?</strong>
+    <ol>
+      <li>Fit a Gaussian to data with MLE</li>
+      <li>Choose k Gaussian axes of greatest variance.
+        <blockquote>
+          <p>Notice: MLE estimates a <em>covariance matrix</em>; \(\hat{\Sigma} = \dfrac{1}{n}X^TX\).</p>
+        </blockquote>
+      </li>
+    </ol>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Algorithm:</strong>
+    <ol>
+      <li>Center \(X\)</li>
+      <li>Normalize \(X\).
+        <blockquote>
+          <p>Optional. Should only be done if the units of measurement of the features differ.</p>
+        </blockquote>
+      </li>
+      <li>Compute the unit Eigen-values and Eigen-vectors of \(X^TX\)</li>
+      <li>Choose ‘\(k\)’ based on the Eigenvalue sizes
+        <blockquote>
+          <p>Optional. Top to bottom.</p>
+        </blockquote>
+      </li>
+      <li>For the best k-dim subspace, pick Eigenvectors \(v_{d-k+1}, \cdots, v_d\).</li>
+      <li>Compute the coordinates ‘\(x.v_i\)’ of the trainning/test data in PC-Space.</li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Derivation 2. Maximizing Variance</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">What?</strong>
+    <ol>
+      <li>Find a direction ‘\(w\)’ that maximizes the variance of the projected data.</li>
+      <li>Maximize the variance</li>
+    </ol>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Derivation:</strong></dt>
+      <dd>
+\[\max_{w : \|w\|_2=1} \: Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\})\]
+      </dd>
+      <dd>
+\[\begin{align}
+&amp; \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \sum_{i=1}^{n}(x_i.\dfrac{w}{\|w\|})^2 \\
+&amp; \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \dfrac{\|xw\|^2}{\|w\|^2}  \\
+&amp; \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \dfrac{w^TX^TXw}{w^Tw} \\
+\end{align}\]
+      </dd>
+      <dd>where \(\dfrac{1}{n}\dfrac{w^TX^TXw}{w^Tw}\) is the <strong><em>Rayleigh Quotient</em></strong>.</dd>
+      <dd>For any Eigen-vector \(v_i\), the <em>Rayleigh Quotient</em> is \(= \lambda_i\).</dd>
+      <dd>\(\implies\) the vector \(v_d\) with the largest \(\lambda_d\), achieves the maximum variance: \(\dfrac{\lambda_d}{n}.\)</dd>
+      <dd>Thus, the maximum of the <em>Rayleigh Quotient</em> is achieved at the Eigenvector that has the highest corresponding Eigenvalue.</dd>
+      <dd>We find subsequent vectors by finding the next biggest \(\lambda_i\) and choosing its corresponding Eigenvector.</dd>
+    </dl>
+
+    <ul>
+      <li><a href="https://www.youtube.com/embed/Axs-fuFJVvE" value="show" onclick="iframePopA(event)"><strong>Full Derivation</strong></a>
+ <a href="https://www.youtube.com/embed/Axs-fuFJVvE"></a>
+        <div></div>
+        <p><br /></p>
+      </li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Another Derivation from Statistics:</strong><br />
+ First, we note that, The sample variance along direction \(u\) can be expressed as a quadratic form in \(u\):
+    <p>$$ \sigma^2(u) = \dfrac{1}{n} \sum_{k=1}^n [u^T(x_k-\hat{x})]^2 = u^T \Sigma u,$$</p>
+
+    <p>The data matrix has points \(x_i\); its component along a proposed axis \(u\) is \((x · u)\).<br />
+ The variance of this is \(E(x · u − E(x · u))^2\)<br />
+ and the optimization problem is</p>
+    <p>$$
+     \begin{align}
+     \max_{x : \|x\|_2=1} \: E(x · u − E(x · u))^2 &amp; \\
+     &amp; \ = \max_{u : \|u\|_2=1} \:  E[(u \cdot (x − Ex))^2] \\
+     &amp; \ = \max_{u : \|u\|_2=1} \:  uE[(x − Ex) \cdot (x − Ex)^T]u \\
+     &amp; \ = \max_{u : \|u\|_2=1} \:  u^T \Sigma u
+     \end{align}
+     $$</p>
+    <p>where the matrix \({\displaystyle \Sigma \:= \dfrac{1}{n} \sum_{j=1}^n (x_j-\hat{x})(x_j-\hat{x})^T}.\)<br />
+ Since \(\Sigma\) is symmetric, the \(u\) that gives the maximum value to \(u^T\Sigma u\) is the eigenvector of \(\Sigma\) with the largest eigenvalue.<br />
+ The second and subsequent principal component axes are the other eigenvectors sorted by eigenvalue.</p>
+
+    <p><strong style="color: red">Proof of variance along a direction:</strong></p>
+    <p>$$\boldsymbol{u}^{\top} \operatorname{cov}(\boldsymbol{X}) \boldsymbol{u}=\boldsymbol{u}^{\top} \mathbb{E}\left[(\boldsymbol{X}-\mathbb{E}(\boldsymbol{X}))(\boldsymbol{X}-\mathbb{E}(\boldsymbol{X}))^{\top}\right] \boldsymbol{u}=\mathbb{E}\left[\langle\boldsymbol{u}, \boldsymbol{X}-\mathbb{E}(\boldsymbol{X})\rangle^{2}\right] \geq 0 \\ \implies \\ 
+ \operatorname{var}(\langle\boldsymbol{u}, \boldsymbol{X}\rangle)=\mathbb{E}\left[\langle\boldsymbol{u}, \boldsymbol{X}-\mathbb{E} \boldsymbol{X}\rangle^{2}\right]=\boldsymbol{u}^{\top} \operatorname{cov}(\boldsymbol{X}) \boldsymbol{u}$$</p>
+
+    <ul>
+      <li><a href="http://www.cs.columbia.edu/~djhsu/AML/lectures/notes-pca.pdf">PCA and Covariance Matrices (paper)</a></li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content4">Derivation 3. Minimize Projection Error</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">What?</strong>
+    <ol>
+      <li>Find direction ‘\(w\)’ that minimizes the <em>Projection Error</em>.</li>
+    </ol>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Derivation:</strong>
+    <p>$$
+     \begin{align}
+     \min_{\tilde{x} : \|\tilde{x}\|_2 = 1} \; \sum_{i=1}^n \|x_i - \tilde{x_i}\|^2 &amp; \\
+     &amp; \ = \min_{w : \|w\|_2 = 1} \; \sum_{i=1}^n \|x_i -\dfrac{x_i \cdot w}{\|w\|_2^2}w\|^2 \\
+     &amp; \ = \min_{w : \|w\|_2 = 1} \; \sum_{i=1}^n \left[\|x_i\|^2 - (x_i \cdot \dfrac{w}{\|w\|_2})^2\right] \\
+     &amp; \ = \min_{w : \|w\|_2 = 1} \; c - n*\sum_{i=1}^n(x_i \cdot \dfrac{w}{\|w\|_2})^2 \\
+     &amp; \ = \min_{w : \|w\|_2 = 1} \; c - n*Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\}) \\
+     &amp; \ = \max_{w : \|w\|_2 = 1} \; Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\})
+     \end{align}
+     $$</p>
+    <p>Thus, minimizing projection error is equivalent to maximizing variance.</p>
+  </li>
+</ol>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

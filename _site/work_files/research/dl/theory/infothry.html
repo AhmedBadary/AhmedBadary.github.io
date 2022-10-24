@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Information Theory</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/theory.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Information Theory</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<p><a href="https://www.youtube.com/watch?v=ErfnhcEV1O8">A Short Introduction to Entropy, Cross-Entropy and KL-Divergence</a><br />
+<a href="https://jhui.github.io/2017/01/05/Deep-learning-Information-theory/">Deep Learning Information Theory (Cross-Entropy and MLE)</a><br />
+<a href="https://www.youtube.com/watch?v=XL07WEc2TRI">Further Info (Lecture)</a><br />
+<a href="https://colah.github.io/posts/2015-09-Visual-Information/">Visual Information Theory (Chris Olahs’ Blog)</a> 
+<a href="https://deep-and-shallow.com/2020/01/09/deep-learning-and-information-theory/">Deep Learning and Information Theory  (Blog)</a><br />
+<a href="https://medium.com/machine-learning-bootcamp/demystifying-information-theory-e21f3af09455">Information Theory | Statistics for Deep Learning (Blog)</a></p>
+
+<p><img src="https://cdn.mathpix.com/snip/images/TNzZfbJuHJsESt3Ds0LpsEBVdRsi56VBP8RK7r54Vc0.original.fullsize.png" alt="img" width="80%" /></p>
+
+<h2 id="content1">Information Theory</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Information Theory:</strong><br />
+ <strong>Information theory</strong> is a branch of applied mathematics that revolves around quantifying how much information is present in a signal.<br />
+ In the context of machine learning, we can also apply information theory to continuous variables where some of these message length interpretations do not apply, instead, we mostly use a few key ideas from information theory to characterize probability distributions or to quantify similarity between probability distributions.<br />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Motivation and Intuition:</strong><br />
+ The basic intuition behind information theory is that learning that an unlikely event has occurred is more informative than learning that a likely event has occurred. A message saying “the sun rose this morning” is so uninformative as to be unnecessary to send, but a message saying “there was a solar eclipse this morning” is very informative.<br />
+ Thus, information theory quantifies information in a way that formalizes this intuition:
+    <ul>
+      <li>Likely events should have low information content - in the extreme case, guaranteed events have no information at all</li>
+      <li>Less likely events should have higher information content</li>
+      <li>Independent events should have additive information. For example, finding out that a tossed coin has come up as heads twice should convey twice as much information as finding out that a tossed coin has come up as heads once.<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents133">Measuring Information:</strong><br />
+In Shannons Theory, to <strong>transmit \(1\) bit of information</strong> means to <strong>divide the recipients <em>Uncertainty</em> by a factor of \(2\)</strong>.</p>
+
+    <p>Thus, the <strong>amount of information</strong> transmitted is the <strong>logarithm</strong> (base \(2\)) of the <strong>uncertainty reduction factor</strong>.</p>
+
+    <p>The <strong>uncertainty reduction factor</strong> is just the <strong>inverse of the probability</strong> of the event being communicated.</p>
+
+    <p>Thus, the <strong>amount of information</strong> in an event \(\mathbf{x} = x\), called the <em><strong>Self-Information</strong></em>  is:</p>
+    <p>$$I(x) = \log (1/p(x)) = -\log(p(x))$$</p>
+
+    <p><strong>Shannons Entropy:</strong><br />
+It is the <strong>expected amount of information</strong> of an uncertain/stochastic source. It acts as a measure of the amount of <em><strong>uncertainty</strong></em> of the events.<br />
+Equivalently, the amount of information that you get from one sample drawn from a given probability distribution \(p\).<br />
+<br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Self-Information:</strong><br />
+ The <strong>Self-Information</strong> or <strong>surprisal</strong> is a synonym for the surprise when a random variable is sampled.<br />
+ The <strong>Self-Information</strong> of an event \(\mathrm{x} = x\):
+    <p>$$I(x) = - \log P(x)$$</p>
+    <p>Self-information deals only with a single outcome.</p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Graph \(\log_2{1/x}\)</button>
+ <img src="https://cdn.mathpix.com/snip/images/NQ7sPTwgM1cNWpDRoclXezOYWAE8lttajOy5ofO3UQ4.original.fullsize.png" alt="img" width="28%" hidden="" /><br />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Shannon Entropy:</strong><br />
+ To quantify the amount of uncertainty in an entire probability distribution, we use <strong>Shannon Entropy</strong>.<br />
+ <strong>Shannon Entropy</strong> is defined as the average amount of information produced by a stochastic source of data.
+    <p>$$H(x) = {\displaystyle \operatorname {E}_{x \sim P} [I(x)]} = - {\displaystyle \operatorname {E}_{x \sim P} [\log P(X)] = -\sum_{i=1}^{n} p\left(x_{i}\right) \log p\left(x_{i}\right)}$$</p>
+    <p><strong>Differential Entropy</strong> is Shannons entropy of a <strong>continuous</strong> random variable \(x\).<br />
+ <img src="/main_files/math/prob/11.png" alt="img" width="60%" /><br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Distributions and Entropy:</strong><br />
+ Distributions that are nearly deterministic (where the outcome is nearly certain) have low entropy; distributions that are closer to uniform have high entropy.
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Relative Entropy | KL-Divergence:</strong><br />
+ The <strong>Kullback–Leibler divergence</strong> (<strong>Relative Entropy</strong>) is a measure of how one probability distribution diverges from a second, expected probability distribution.<br />
+ <strong>Mathematically:</strong>
+    <p>$${\displaystyle D_{\text{KL}}(P\parallel Q)=\operatorname{E}_{x \sim P} \left[\log \dfrac{P(x)}{Q(x)}\right]=\operatorname{E}_{x \sim P} \left[\log P(x) - \log Q(x)\right]}$$</p>
+    <ul>
+      <li><strong>Discrete</strong>:</li>
+    </ul>
+    <p>$${\displaystyle D_{\text{KL}}(P\parallel Q)=\sum_{i}P(i)\log \left({\frac {P(i)}{Q(i)}}\right)}$$  </p>
+    <ul>
+      <li><strong>Continuous</strong>:</li>
+    </ul>
+    <p>$${\displaystyle D_{\text{KL}}(P\parallel Q)=\int_{-\infty }^{\infty }p(x)\log \left({\frac {p(x)}{q(x)}}\right)\,dx,}$$ </p>
+
+    <p id="lst-p"><strong>Interpretation:</strong></p>
+    <ul>
+      <li><strong>Discrete variables</strong>:<br />
+  it is the extra amount of information needed to send a message containing symbols drawn from probability distribution \(P\), when we use a code that was designed to minimize the length of messages drawn from probability distribution \(Q\).</li>
+      <li><strong>Continuous variables</strong>:</li>
+    </ul>
+
+    <p id="lst-p"><strong>Properties:</strong></p>
+    <ul>
+      <li>Non-Negativity:<br />
+      \({\displaystyle D_{\mathrm {KL} }(P\|Q) \geq 0}\)</li>
+      <li>\({\displaystyle D_{\mathrm {KL} }(P\|Q) = 0 \iff}\) \(P\) and \(Q\) are:
+        <ul>
+          <li><em><strong>Discrete Variables</strong></em>:<br />
+      the same distribution</li>
+          <li><em><strong>Continuous Variables</strong></em>:<br />
+      equal “almost everywhere”</li>
+        </ul>
+      </li>
+      <li>Additivity of <em>Independent Distributions</em>:<br />
+      \({\displaystyle D_{\text{KL}}(P\parallel Q)=D_{\text{KL}}(P_{1}\parallel Q_{1})+D_{\text{KL}}(P_{2}\parallel Q_{2}).}\)</li>
+      <li>\({\displaystyle D_{\mathrm {KL} }(P\|Q) \neq D_{\mathrm {KL} }(Q\|P)}\)
+        <blockquote>
+          <p>This asymmetry means that there are important consequences to the choice of the ordering</p>
+        </blockquote>
+      </li>
+      <li>Convexity in the pair of PMFs \((p, q)\) (i.e. \({\displaystyle (p_{1},q_{1})}\) and  \({\displaystyle (p_{2},q_{2})}\) are two pairs of PMFs):<br />
+      \({\displaystyle D_{\text{KL}}(\lambda p_{1}+(1-\lambda )p_{2}\parallel \lambda q_{1}+(1-\lambda )q_{2})\leq \lambda D_{\text{KL}}(p_{1}\parallel q_{1})+(1-\lambda )D_{\text{KL}}(p_{2}\parallel q_{2}){\text{ for }}0\leq \lambda \leq 1.}\)</li>
+    </ul>
+
+    <p><strong>KL-Div as a Distance:</strong><br />
+ Because the KL divergence is non-negative and measures the difference between two distributions, it is often conceptualized as measuring some sort of distance between these distributions.<br />
+ However, it is <strong>not</strong> a true distance measure because it is <strong><em>not symmetric</em></strong>.</p>
+    <blockquote>
+      <p>KL-div is, however, a <em><strong>Quasi-Metric</strong></em>, since it satisfies all the properties of a distance-metric except symmetry</p>
+    </blockquote>
+
+    <p id="lst-p"><strong>Applications</strong><br />
+ Characterizing:</p>
+    <ul>
+      <li>Relative (Shannon) entropy in information systems</li>
+      <li>Randomness in continuous time-series</li>
+      <li>It is a measure of <strong>Information Gain</strong>; used when comparing statistical models of inference</li>
+    </ul>
+
+    <p><strong>Example Application and Direction of Minimization</strong><br />
+ Suppose we have a distribution \(p(x)\) and we wish to <em>approximate</em> it with another distribution \(q(x)\).<br />
+ We have a choice of <em>minimizing</em> either:</p>
+    <ol>
+      <li>\({\displaystyle D_{\text{KL}}(p\|q)} \implies q^\ast = \operatorname {arg\,min}_q {\displaystyle D_{\text{KL}}(p\|q)}\)<br />
+ Produces an approximation that usually places high probability anywhere that the true distribution places high probability.</li>
+      <li>\({\displaystyle D_{\text{KL}}(q\|p)} \implies q^\ast \operatorname {arg\,min}_q {\displaystyle D_{\text{KL}}(q\|p)}\)<br />
+ Produces an approximation that rarely places high probability anywhere that the true distribution places low probability.
+        <blockquote>
+          <p>which are different due to the <em>asymmetry</em> of the KL-divergence</p>
+        </blockquote>
+      </li>
+    </ol>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Choice of KL-div Direction</button>
+ <img src="/main_files/math/infothry/1.png" alt="img" width="100%" hidden="" />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Cross Entropy:</strong><br />
+ The <strong>Cross Entropy</strong> between two probability distributions \({\displaystyle p}\) and \({\displaystyle q}\) over the same underlying set of events measures the average number of bits needed to identify an event drawn from the set, if a coding scheme is used that is optimized for an “unnatural” probability distribution \({\displaystyle q}\), rather than the “true” distribution \({\displaystyle p}\).
+    <p>$$H(p,q) = \operatorname{E}_{p}[-\log q]= H(p) + D_{\mathrm{KL}}(p\|q) =-\sum_{x }p(x)\,\log q(x)$$</p>
+
+    <p>It is similar to <strong>KL-Div</strong> but with an additional quantity - the entropy of \(p\).</p>
+
+    <p>Minimizing the cross-entropy with respect to \(Q\) is equivalent to minimizing the KL divergence, because \(Q\) does not participate in the omitted term.</p>
+
+    <p>We treat \(0 \log (0)\) as \(\lim_{x \to 0} x \log (x) = 0\).<br />
+ <br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Mutual Information:</strong><br />
+ The <strong>Mutual Information (MI)</strong> of two random variables is a measure of the mutual dependence between the two variables.<br />
+ More specifically, it quantifies the “amount of information” (in bits) obtained about one random variable through observing the other random variable.</p>
+
+    <p>It can be seen as a way of measuring the reduction in uncertainty (information content) of measuring a part of the system after observing the outcome of another parts of the system; given two R.Vs, knowing the value of one of the R.Vs in the system gives a corresponding reduction in (the uncertainty (information content) of) measuring the other one.</p>
+
+    <p><strong>As KL-Divergence:</strong><br />
+ Let \((X, Y)\) be a pair of random variables with values over the space \(\mathcal{X} \times \mathcal{Y}\) . If their joint distribution is \(P_{(X, Y)}\) and the marginal distributions are \(P_{X}\) and \(P_{Y},\) the mutual information is defined as:</p>
+    <p>$$I(X ; Y)=D_{\mathrm{KL}}\left(P_{(X, Y)} \| P_{X} \otimes P_{Y}\right)$$</p>
+
+    <p><strong>In terms of PMFs for discrete distributions:</strong><br />
+ The mutual information of two jointly discrete random variables \(X\) and \(Y\) is calculated as a double sum:</p>
+    <p>$$\mathrm{I}(X ; Y)=\sum_{y \in \mathcal{Y}} \sum_{x \in \mathcal{X}} p_{(X, Y)}(x, y) \log \left(\frac{p_{(X, Y)}(x, y)}{p_{X}(x) p_{Y}(y)}\right)$$</p>
+    <p>where \({\displaystyle p_{(X,Y)}}\) is the joint probability mass function of \({\displaystyle X}\) X and \({\displaystyle Y}\), and \({\displaystyle p_{X}}\) and \({\displaystyle p_{Y}}\) are the marginal probability mass functions of \({\displaystyle X}\) and \({\displaystyle Y}\) respectively.</p>
+
+    <p><strong>In terms of PDFs for continuous distributions:</strong><br />
+ In the case of jointly continuous random variables, the double sum is replaced by a double integral:</p>
+    <p>$$\mathrm{I}(X ; Y)=\int_{\mathcal{Y}} \int_{\mathcal{X}} p_{(X, Y)}(x, y) \log \left(\frac{p_{(X, Y)}(x, y)}{p_{X}(x) p_{Y}(y)}\right) d x d y$$</p>
+    <p>where \(p_{(X, Y)}\) is now the joint probability density function of \(X\) and \(Y\) and \(p_{X}\) and \(p_{Y}\) are the marginal probability density functions of \(X\) and \(Y\) respectively.</p>
+
+    <p id="lst-p"><strong style="color: red">Intuitive Definitions:</strong></p>
+    <ul>
+      <li>Measures the information that \(X\) and \(Y\) share:<br />
+  It measures how much knowing one of these variables reduces uncertainty about the other.
+        <ul>
+          <li><strong>\(X, Y\) Independent</strong>  \(\implies I(X; Y) = 0\): their MI is zero</li>
+          <li><strong>\(X\) deterministic function of \(Y\) and vice versa</strong> \(\implies I(X; Y) = H(X) = H(Y)\) their MI is equal to entropy of each variable</li>
+        </ul>
+      </li>
+      <li>It’s a Measure of the inherent dependence expressed in the joint distribution of  \(X\) and  \(Y\) relative to the joint distribution of \(X\) and \(Y\) under the assumption of independence.<br />
+  i.e. The price for encoding \({\displaystyle (X,Y)}\) as a pair of independent random variables, when in reality they are not.</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Properties:</strong></p>
+    <ul>
+      <li>The KL-divergence shows that \(I(X; Y)\) is equal to zero precisely when <span style="color: goldenrod">the joint distribution conicides with the product of the marginals i.e. when </span> <strong style="color: goldenrod">\(X\) and \(Y\) are <em>independent</em></strong>.</li>
+      <li>The MI is <strong>non-negative</strong>: \(I(X; Y) \geq 0\)
+        <ul>
+          <li>It is a measure of the price for encoding \({\displaystyle (X,Y)}\) as a pair of independent random variables, when in reality they are not.</li>
+        </ul>
+      </li>
+      <li>It is <strong>symmetric</strong>: \(I(X; Y) = I(Y; X)\)</li>
+      <li><strong>Related to conditional and joint entropies:</strong>
+        <p>$${\displaystyle {\begin{aligned}\operatorname {I} (X;Y)&amp;{}\equiv \mathrm {H} (X)-\mathrm {H} (X|Y)\\&amp;{}\equiv \mathrm {H} (Y)-\mathrm {H} (Y|X)\\&amp;{}\equiv \mathrm {H} (X)+\mathrm {H} (Y)-\mathrm {H} (X,Y)\\&amp;{}\equiv \mathrm {H} (X,Y)-\mathrm {H} (X|Y)-\mathrm {H} (Y|X)\end{aligned}}}$$</p>
+        <p>where \(\mathrm{H}(X)\) and \(\mathrm{H}(Y)\) are the marginal entropies, \(\mathrm{H}(X | Y)\) and \(\mathrm{H}(Y | X)\) are the conditional entopries, and \(\mathrm{H}(X, Y)\) is the joint entropy of \(X\) and \(Y\).</p>
+        <ul>
+          <li>Note the <em>analogy to the <strong>union, difference, and intersection of two sets</strong></em>:<br />
+  <img src="https://cdn.mathpix.com/snip/images/aT2_JfK4TlRP9b5JawVqQigLD7dzxOrFjDIapoSF-F4.original.fullsize.png" alt="img" width="35%" class="center-image" /></li>
+        </ul>
+      </li>
+      <li><strong>Related to KL-div of conditional distribution:</strong>
+        <p>$$\mathrm{I}(X ; Y)=\mathbb{E}_{Y}\left[D_{\mathrm{KL}}\left(p_{X | Y} \| p_{X}\right)\right]$$</p>
+      </li>
+      <li><a href="https://www.youtube.com/watch?v=U9h1xkNELvY">MI (tutorial #1)</a></li>
+      <li><a href="https://www.youtube.com/watch?v=d7AUaut6hso">MI (tutorial #2)</a></li>
+    </ul>
+
+    <p><strong style="color: red">Applications:</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Show Lists</button></p>
+    <ul hidden="">
+      <li>In search engine technology, mutual information between phrases and contexts is used as a feature for k-means clustering to discover semantic clusters (concepts)</li>
+      <li>Discriminative training procedures for hidden Markov models have been proposed based on the maximum mutual information (MMI) criterion.</li>
+      <li>Mutual information has been used as a criterion for feature selection and feature transformations in machine learning. It can be used to characterize both the relevance and redundancy of variables, such as the minimum redundancy feature selection.</li>
+      <li>Mutual information is used in determining the similarity of two different clusterings of a dataset. As such, it provides some advantages over the traditional Rand index.</li>
+      <li>Mutual information of words is often used as a significance function for the computation of collocations in corpus linguistics.</li>
+      <li>Detection of phase synchronization in time series analysis</li>
+      <li>The mutual information is used to learn the structure of Bayesian networks/dynamic Bayesian networks, which is thought to explain the causal relationship between random variables</li>
+      <li>Popular cost function in decision tree learning.</li>
+      <li>In the infomax method for neural-net and other machine learning, including the infomax-based Independent component analysis algorithm</li>
+    </ul>
+
+    <p><strong style="color: red">Independence assumptions and low-rank matrix approximation (alternative definition):</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">show analysis</button>
+  <img src="https://cdn.mathpix.com/snip/images/jzmGBSoIKS4x2IrykIaQR3P21Y2z8RS_VmZNKkOfjZQ.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p><strong style="color: red">As a Metric (relation to Jaccard distance):</strong><br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">show analysis</button>
+ <img src="https://cdn.mathpix.com/snip/images/dOB7qr575sMswJ1MPEbHmFvlqvJp8ncf9ulYlR4aKDY.original.fullsize.png" alt="img" width="100%" hidden="" />
+ <br /></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents19">Pointwise Mutual Information (PMI):</strong><br />
+ The PMI of a pair of outcomes \(x\) and \(y\) belonging to discrete random variables \(X\) and \(Y\) quantifies the discrepancy between the probability of their coincidence given their joint distribution and their individual distributions, assuming independence. Mathematically:
+    <p>$$\operatorname{pmi}(x ; y) \equiv \log \frac{p(x, y)}{p(x) p(y)}=\log \frac{p(x | y)}{p(x)}=\log \frac{p(y | x)}{p(y)}$$</p>
+    <p>In contrast to mutual information (MI) which builds upon PMI, it refers to single events, whereas MI refers to the average of all possible events.<br />
+ The mutual information (MI) of the random variables \(X\) and \(Y\) is the expected value of the PMI (over all possible outcomes).</p>
+  </li>
+</ol>
+
+<h3 id="more">More</h3>
+<ul>
+  <li><strong>Conditional Entropy</strong>: \(H(X \mid Y)=H(X)-I(X, Y)\)</li>
+  <li><strong>Independence</strong>: \(I(X, Y)=0\)</li>
+  <li><strong>Independence Relations</strong>:  \(H(X \mid Y)=H(X)\)</li>
+</ul>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

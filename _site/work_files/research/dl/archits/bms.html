@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">Boltzmann Machines</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Boltzmann Machines</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Restricted Boltzmann Machines (RBMs)</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Deep Boltzmann Machines (DBNs)</a></li>
+  </ul>
+  <p><!-- * [FOURTH](#content4)
+  {: .TOC4} --></p>
+</div>
+
+<hr />
+<hr />
+
+<p id="lst-p"><strong style="color: red">Resources:</strong></p>
+<ul>
+  <li><a href="http://willwolf.io/2018/10/20/thorough-introduction-to-boltzmann-machines/">A Thorough Introduction to Boltzmann Machines</a></li>
+  <li><a href="https://www.youtube.com/watch?v=VdIURAu1-aU&amp;t=0s">RBMs Developments (Hinton Talk)</a></li>
+  <li><a href="http://yann.lecun.com/exdb/publis/pdf/lecun-06.pdf">A Tutorial on Energy-Based Learning (LeCun)</a></li>
+  <li><a href="http://proceedings.mlr.press/v5/salakhutdinov09a/salakhutdinov09a.pdf">DBMs (paper Hinton)</a></li>
+  <li><a href="https://arxiv.org/abs/1905.09902">Generative training of quantum Boltzmann machines with hidden units (paper)</a></li>
+  <li><a href="https://r2rt.com/binary-stochastic-neurons-in-tensorflow.html">Binary Stochastic Neurons in TF</a></li>
+  <li><a href="https://arxiv.org/pdf/0908.4425.pdf">Geometry of the Restricted Boltzmann Machine (paper)</a></li>
+</ul>
+
+<h2 id="content9">Preliminaries</h2>
+
+<!-- 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents91} -->
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents92">The Boltzmann Distribution:</strong><br />
+ The <strong>Boltzmann Distribution</strong> is a probability distribution (or probability measure) that gives the <em>probability that a system will be in a certain state</em> as a function of that <em>state’s energy</em> and the <em>temperature of the system</em>:
+    <p>$$p_{i} = \dfrac{1}{Z} e^{-\frac{\varepsilon_{i}}{k_B T}}$$</p>
+    <p>where \(p_{i}\) is the probability of the system being in state \(i\), \(\varepsilon_{i}\) is the energy of that state, and a constant \(k_B T\) of the distribution is the product of <strong>Boltzmann’s constant</strong> \(k_B\) and <strong>thermodynamic temperature</strong> \(T\), and \(Z\) is the <strong>partition function</strong>.</p>
+
+    <p>The distribution shows that <span style="color: goldenrod">states with <strong><em>lower</em> energy</strong> will always have a <strong><em>higher</em> probability</strong> of being occupied</span>.<br />
+ The <strong><em>ratio</em> of probabilities of two states</strong> (AKA <strong>Boltzmann factor</strong>) only depends on the states’ energy difference (AKA <strong>Energy Gap</strong>):{: #bodyContents92BF}</p>
+    <p>$$\frac{p_{i}}{p_{j}}=e^{\frac{\varepsilon_{j}-\varepsilon_{i}}{k_B T}}$$</p>
+
+    <p><strong style="color: red">Derivation:</strong><br />
+ The Boltzmann distribution is the distribution that <strong>maximizes the entropy</strong>:</p>
+    <p>$$H\left(p_{1}, p_{2}, \cdots, p_{M}\right)=-\sum_{i=1}^{M} p_{i} \log_{2} p_{i}$$</p>
+    <p>subject to the constraint that \(\sum p_{i} \varepsilon_{i}\) equals a particular mean energy value.</p>
+
+    <p><a href="https://bouman.chem.georgetown.edu/S98/boltzmann/boltzmann.htm">This is a simple <strong>Lagrange Multipliers</strong> maximization problem (can be found here).</a></p>
+
+    <p id="lst-p"><strong style="color: red">Applications in Different Fields:</strong></p>
+    <ul>
+      <li><strong style="color: purple">Statistical Mechanics</strong><br />
+  The <strong>canonical ensemble</strong> is a probability distribution with the form of the Boltzmann distribution.<br />
+  It gives the probabilities of the various possible states of a closed system of fixed volume, in thermal equilibrium with a heat bath.</li>
+      <li><strong style="color: purple">Measure Theory</strong><br />
+  The Boltzmann distribution is also known as the <strong>Gibbs Measure</strong>.<br />
+  The <strong>Gibbs Measure</strong> is a probability measure, which is a generalization of the canonical ensemble to infinite systems.</li>
+      <li><strong style="color: purple">Statistics/Machine-Learning</strong><br />
+  The Boltzmann distribution is called a <strong>log-linear model</strong>.</li>
+      <li><strong style="color: purple">Probability Theory/Machine-Learning</strong><br />
+  The Boltzmann distribution is known as the <strong>softmax function</strong>.<br />
+  The <strong>softmax function</strong> is used to represent a <strong>categorical distribution</strong>.</li>
+      <li><strong style="color: purple">Deep Learning</strong><br />
+  The Boltzmann distribution is the <a href="https://en.wikipedia.org/wiki/Sampling_distribution"><strong>sampling distribution</strong></a> of <strong>stochastic neural networks</strong> (e.g. RBMs).</li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents93">Asynchronous:</strong></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents94">Asynchronous:</strong></li>
+</ol>
+
+<hr />
+<hr />
+
+<h2 id="content1">Boltzmann Machines</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Boltzmann Machines (BMs):</strong><br />
+ A <strong>Boltzmann Machine (BM)</strong> is a type of <span style="color: purple">stochastic recurrent neural network</span> and <span style="color: purple">Markov Random Field (MRF)</span>.</p>
+
+    <p><strong style="color: red">Goal - What do BMs Learn:</strong><br />
+ Boltzmann Machines were originally introduced as a general <strong><em>“connectionist”</em> approach</strong> to learning <span style="color: goldenrod"> arbitrary probability distributions over binary vectors</span>.<br />
+ They are capable of learning <span style="color: goldenrod">internal representations of data</span>.<br />
+ They are also able to <span style="color: goldenrod">represent and solve (difficult) combinatoric problems</span>.</p>
+
+    <p id="lst-p"><strong style="color: red">Structure:</strong><br />
+ <img src="https://cdn.mathpix.com/snip/images/GcOUC--gwjuIgl1bAzFcW77LqLOD3siTNaol-pbyhV8.original.fullsize.png" alt="img" width="20%" /></p>
+    <ul>
+      <li><strong>Input</strong>:<br />
+  BMs are defined over a \(d\)-dimensional <strong>binary random vector</strong> \(\mathrm{x} \in\{0,1\}^{d}\).</li>
+      <li><strong>Output</strong>:<br />
+  The units produce <strong>binary results</strong>.</li>
+      <li><strong>Units:</strong>
+        <ul>
+          <li><strong>Visible</strong> Units: \(\boldsymbol{v}\)</li>
+          <li><strong>Hidden</strong> Units: \(\boldsymbol{h}\)</li>
+        </ul>
+      </li>
+      <li><strong>Probabilistic Model</strong>:<br />
+  It is an <strong>energy-based model</strong>; it defines the <strong>joint probability distribution</strong> using an <strong>energy function</strong>:
+        <p>$$P(\boldsymbol{x})=\frac{\exp (-E(\boldsymbol{x}))}{Z}$$</p>
+        <p>where \(E(\boldsymbol{x})\) is the energy function and \(Z\) is the partition function.</p>
+      </li>
+      <li><strong>The Energy Function:</strong>
+        <ul>
+          <li>With only <strong>visible units</strong>:
+            <p>$$E(\boldsymbol{x})=-\boldsymbol{x}^{\top} \boldsymbol{U} \boldsymbol{x}-\boldsymbol{b}^{\top} \boldsymbol{x}$$</p>
+            <p>where \(U\) is the “weight” matrix of model parameters and \(\boldsymbol{b}\) is the vector of bias parameters.</p>
+          </li>
+          <li>With both, <strong>visible and hidden units</strong>:
+            <p>$$E(\boldsymbol{v}, \boldsymbol{h})=-\boldsymbol{v}^{\top} \boldsymbol{R} \boldsymbol{v}-\boldsymbol{v}^{\top} \boldsymbol{W} \boldsymbol{h}-\boldsymbol{h}^{\top} \boldsymbol{S} \boldsymbol{h}-\boldsymbol{b}^{\top} \boldsymbol{v}-\boldsymbol{c}^{\top} \boldsymbol{h}$$</p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Approximation Capabilities:</strong><br />
+ A BM with only <strong>visible units</strong> is limited to modeling <span style="color: purple">linear relationships</span> between variables as described by the weight matrix<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">1</a></sup>.<br />
+ A BM with <strong>hidden units</strong> is a <span style="color: goldenrod">universal approximator of probability mass functions over discrete variables</span> <em>(Le Roux and Bengio, 2008)</em>.</p>
+
+    <p><strong style="color: red">Relation to Hopfield Networks:</strong><br />
+ A Boltzmann Machine is just a <span style="color: purple"><strong>Stochastic</strong> Hopfield Network with <strong>Hidden Units</strong></span>.<br />
+ BMs can be viewed as the <strong>stochastic</strong>, <strong>generative</strong> counterpart of Hopfield networks.</p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Comparison and Discussion</button></p>
+    <div>
+      <p id="lst-p">It is important to note that although Boltzmann Machines bear a strong resemblance to Hopfield Networks, they are actually nothing like them in there functionality.</p>
+      <ul>
+        <li><strong>Similarities</strong>:
+          <ul>
+            <li>They are both networks of <strong>binary units</strong>.</li>
+            <li>They both are <strong>energy-based</strong> models with the same <strong>energy function</strong></li>
+            <li>They both have the same <strong>update rule/condition</strong> (of estimating a unit’s output by the sum of all weighted inputs).</li>
+          </ul>
+        </li>
+        <li><strong>Differences</strong>:
+          <ul>
+            <li><strong>Goal:</strong> BMs are NOT memory networks. They are not trying to store things. Instead, they employ a <a href="/work_files/research/dl/archits/hopfield#bodyContents18dcr">different computational role</a>; they are trying to learn <span style="color: purple"><strong>latent representations</strong> of the data</span>.<br />
+  The goal is <strong>representation learning</strong>.</li>
+            <li><strong>Units</strong>: BMs have an extra set of units, other than the visible units, called <strong>hidden units</strong>. These units represent <strong>latent variables</strong> that are not observed but learned from the data.<br />
+  These are necessary for representation learning.</li>
+            <li><strong>Objective</strong>: BMs have a different objective; instead of minimizing the energy function, they <span style="color: purple">minimize the error (<strong>KL-Divergence</strong>) between the <em>“real”</em> distribution over the data and the <em>model</em> distribution over global states</span> (marginalized over hidden units).<br />
+  Interpreted as the error between the input data and the reconstruction produced by the hidden units and their weights.<br />
+  This is necessary to capture the training data probability distribution.</li>
+            <li><strong>Energy Minima</strong>: energy minima were useful for Hopfield Nets and served as storage points for our input data (memories). However, they are very harmful for BMs since there is a <em>global objective</em> of finding the best distribution that approximates the real distribution.<br />
+  This is necessary to capture the training data probability distribution “well”.</li>
+            <li><strong>Activation Functions</strong>: the activation function for a BM is just a <em><strong>stochastic</strong></em> version of the <strong>binary threshold</strong> function. The unit would still update to a binary state according to a threshold value but with the <span style="color: purple">update to the unit state being governed by a probability distribution (<strong>Boltzmann distribution</strong>)</span>.<br />
+  This is necessary (important\(^{ * }\)) to escape energy minima.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <p><strong style="color: red">Relation to the Ising Model:</strong><br />
+ The global energy \(E\) in a Boltzmann Machine is identical in form to that of the Ising Model.</p>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li><strong>Factor Analysis</strong> is a <span style="color: purple"><strong>Causal</strong> Model</span> with <em>continuous</em> variables.<br />
+ <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Unit-State Probability:</strong>
+    <ul>
+      <li>The <strong>units</strong> in a BM are <em><strong>binary units</strong></em>.</li>
+      <li>Thus, they have <strong><em>two</em> states</strong> \(s_i \in \{0,1\}\) to be in:
+        <ol>
+          <li><strong>On</strong>: \(s_i = 1\)</li>
+          <li><strong>Off</strong>: \(s_i = 0\)</li>
+        </ol>
+      </li>
+      <li>The <strong>probability that the \(i\)-th unit will be <em>on</em> (\(s_i = 1\))</strong> is:
+        <p>$$p(s_i=1)=\dfrac{1}{1+ e^{-\Delta E_{i}/T}}$$</p>
+        <p>where the scalar \(T\) is the <strong>temperature</strong> of the system.</p>
+        <ul>
+          <li>The RHS is just the <strong>logistic function</strong>. Rewriting the probability:</li>
+        </ul>
+        <p>$$p(s_i=1)=\sigma(\Delta E_{i}/T)$$</p>
+
+        <p><button class="showText" value="show" onclick="showTextPopHide(event);">Derivation</button></p>
+        <ul>
+          <li>Using the <a href="#bodyContents92BF"><strong>Boltzmann Factor</strong></a> (ratio of probabilities of states):
+            <p>$$\begin{align}
+      \dfrac{p(s_i=0)}{p(s_i=1)} &amp;= e^{\frac{E\left(s_{i}=0\right)-E\left(s_{i}=1\right)}{k T}} \\
+      \dfrac{1 - p(s_i=1)}{p(s_i=1)} &amp;= e^{\frac{-(E\left(s_{i}=1\right)-E\left(s_{i}=0\right))}{k T}} \\
+      \dfrac{1}{p(s_i=1)} - 1 &amp;= e^{\frac{-\Delta E_i}{k T}} \\ 
+      p(s_i=1) &amp;= \dfrac{1}{1 + e^{-\Delta E_i/T}} 
+      \end{align}
+      $$</p>
+            <p hidden="">where we absorb the Boltzmann constant \(k\) into the artificial Temperature constant \(T\).</p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Asynchronous:</strong></p>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Asynchronous:</strong></li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Restricted Boltzmann Machines (RBMs)</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Restricted Boltzmann Machines (RBMs):</strong><br />
+ <strong>Restricted Boltzmann Machines (RBMs)</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Asynchronous:</strong></p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Deep Boltzmann Machines (DBNs)</h2>
+
+<ol>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Deep Boltzmann Machines (DBNs):</strong><br />
+ <strong>Deep Boltzmann Machines (DBNs)</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Asynchronous:</strong></p>
+  </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Asynchronous:</strong></p>
+  </li>
+</ol>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:2" role="doc-endnote">
+      <p>Specifically, the probability of one unit being on is given by a linear model (<strong>logistic regression</strong>) from the values of the other units. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

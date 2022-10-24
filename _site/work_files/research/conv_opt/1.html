@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">1.1 | 1.2 <br /> Optimization Models</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/conv_opt.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <div class="TOC">
+  <h1 id="table-of-contents">Table of Contents</h1>
+
+  <ul class="TOC1">
+    <li><a href="#content1">Mathematical Background</a></li>
+  </ul>
+  <ul class="TOC2">
+    <li><a href="#content2">Mathematical Formulation [Standard Forms]</a></li>
+  </ul>
+  <ul class="TOC3">
+    <li><a href="#content3">Nomenclature</a></li>
+  </ul>
+  <ul class="TOC4">
+    <li><a href="#content4">Problem Classes</a></li>
+  </ul>
+</div>
+
+<hr />
+<hr />
+
+<h2 id="content1">Mathematical Background</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">Maps:</strong></dt>
+      <dd>We reserve the term map to refer to vector-valued functions. That is, maps are
+ functions which return more than a single value.</dd>
+    </dl>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Graph:</strong> <br />
+ Consider a function \(f : \mathbf{R}^n \rightarrow \mathbf{R}\).<br />
+ The <em><strong>graph</strong></em> of \(f\) is the set of input-output pairs that \(f\) can attain, that is:
+ \(G(f) := \left \{ (x,f(x)) \in \mathbf{R}^{n+1} : x \in \mathbf{R}^n \right \}.\) <br />
+    <blockquote>
+      <p>It is a subset of \(\mathbf{R}^{n+1}\).</p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Epigraph:</strong> <br />
+ Consider a function \(f : \mathbf{R}^n \rightarrow \mathbf{R}\).<br />
+ The <em><strong>epigraph</strong></em>, denoted \(\mathop{\bf epi} f\), describes the set of input-output pairs that \(f\) can achieve, as well as “anything above”:<br />
+ \(\mathop{\bf epi} f := \left \{ (x,t) \in \mathbf{R}^{n+1} ~:~ x \in \mathbf{R}^n, \ \  t \ge f(x) \right \}.\)
+    <blockquote>
+      <p>epi in Greek means “above”</p>
+    </blockquote>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Example [image]</button>
+ <img src="/main_files/conv_opt/1/1.1_2/1.png" alt="img" hidden="" /></p>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Level and Sub-level Sets:</strong> <br />
+    <blockquote>
+      <p><em><strong>Level</strong></em> and <em><strong>sub-level</strong></em> sets correspond to the notion of contour of a function. Both are indexed on some scalar value \(t\).</p>
+    </blockquote>
+
+    <ul>
+      <li>
+        <p><strong>Level sets</strong>: is simply the set of points that achieve exactly some value for the function \(f\).<br />
+ For \(t \in \mathbf{R}\), the \(t-\)level set of the function \(f\) is defined as:<br />
+ \(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mathbf{L}_t(f) := \left\{ x \in \mathbf{R}^{n} ~:~ x \in \mathbf{R}^n, \ \  t = f(x) \right \}.\)</p>
+      </li>
+      <li>
+        <p><strong>Sub-level sets</strong>: is the set of points that achieve at most a certain value for  \(f\), or below:<br />
+ \(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \mathbf{S}_t(f) := \left\{ x \in \mathbf{R}^{n} ~:~ x \in \mathbf{R}^n, \ \  t \ge f(x) \right\}.\)</p>
+      </li>
+    </ul>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Example [image]</button>
+ <img src="/main_files/conv_opt/1/1.1_2/2.png" alt="img" hidden="" /></p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content2">Mathematical Formulation [Standard Forms]</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents21">Functional Form:</strong></dt>
+      <dd>An optimization problem is a problem of the form
+ \(p^\ast := \displaystyle\min_x f_0(x) :  f_i(x) \le 0, \ \  i=1,\ldots, m\),<br />
+ where:
+        <ul>
+          <li>
+            <p>\(x \in \mathbf{R}^n\) is the decision variable;</p>
+          </li>
+          <li>
+            <p>\(f_0 : \mathbf{R}^n \rightarrow \mathbf{R}\) is the objective function, or cost;</p>
+          </li>
+          <li>
+            <p>\(f_i : \mathbf{R}^n \rightarrow \mathbf{R}, \ \  i=1, \ldots, m\) represent the constraints;</p>
+          </li>
+          <li>
+            <p>\(p^\ast\) is the optimal value.</p>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+
+    <ul>
+      <li><a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/e5deae3e0c61b80e" value="show" onclick="iframePopA(event)"><strong>Example.</strong></a>
+  <a href="http://livebooklabs.com/keeppies/c5a5868ce26b8125/e5deae3e0c61b80e"><code class="language-plaintext highlighter-rouge"> Visit the Book</code></a>
+        <div></div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Epigraph form:</strong></dt>
+      <dd>TODO</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Other Standard-Forms:</strong></dt>
+      <dd>TODO</dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">Nomenclature</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Feasible set:</strong></dt>
+      <dd>
+\[\mathbf{X} :=  \left\{ x \in \mathbf{R}^n ~:~  f_i(x) \le 0, \ \  i=1, \ldots, m \right\}.\]
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Solution:</strong></dt>
+      <dd>In an optimization problem, we are usually interested in computing the optimal value of the objective function, and also often a minimizer, which is a vector which achieves that value, if any.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Feasibility problems:</strong></dt>
+      <dd>Sometimes an objective function is not provided. This means that we are just <em>interested</em> in <em>finding</em> a <em>feasible point</em>, or determine that the problem is <em>infeasible</em>.
+        <blockquote>
+          <p>By convention, we set \(f_0\) to be a constant in that case, to reflect the fact that we are indifferent to the choice of a point x as long as it is feasible.</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Optimal value:</strong></dt>
+      <dd>
+\[p^\ast := \min_x : f_0(x) ~:~ f_i(x) \le 0, \ \  i=1, \ldots, m.\]
+      </dd>
+    </dl>
+
+    <blockquote>
+      <p>Denoted \(p^\ast\).</p>
+    </blockquote>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents35">Optimal set:</strong></dt>
+      <dd>The set of feasible points for which the objective function achieves the optimal value:<br />
+ \(\mathbf{X}^{\rm opt} :=  \left\{ x \in \mathbf{R}^n ~:~  f_0(x) = p^\ast, \ \ f_i(x) \le 0, \ \  i=1,\ldots, m \right\}\).<br />
+ Equivalently,<br />
+ \(\mathbf{X}^{\rm opt} = \mathrm{arg min}_{x \in \mathbf{X}}  f_0(x)\).</dd>
+    </dl>
+
+    <blockquote>
+      <p>We take the convention that the optimal set is empty if the problem is not feasible.</p>
+    </blockquote>
+
+    <blockquote>
+      <p>A <em>point</em> \(x\) is said to be <strong>optimal</strong> if it belongs to the optimal set.</p>
+    </blockquote>
+
+    <blockquote>
+      <p>If the optimal value is <strong>ONLY</strong> attained in the <strong>limit</strong>, then it is <strong>NOT</strong> in the optimal set.</p>
+    </blockquote>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents36">When is a problem “<em>Attained</em>”?</strong></dt>
+      <dd>If the optimal set is <em>not empty</em>, we say that the problem is <strong><em>attained</em></strong>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents37">Suboptimality:</strong></dt>
+      <dd>The \(\epsilon\)-suboptimal set is defined as:</dd>
+      <dd>
+\[\mathbf{X}_\epsilon := \left\{ x \in \mathbf{R}^n ~:~ f_i(x) \le 0, \ \  i=1, \ldots, m, \ \  f_0(x) \le p^\ast + \epsilon \right\}.\]
+      </dd>
+    </dl>
+
+    <blockquote>
+      <p>\(\implies \  \mathbf{X}_0 = \mathbf{X}_{\rm opt}\).</p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents38">(Local and Global) <em>Optimality</em>:</strong> <br />
+    <ul>
+      <li>A point \(z\) is <strong>Locally Optimal</strong>: if there is a value \(R&gt;0\) such that \(z\) is optimal for the following problem:
+ \(min_x : f_0(x) ~:~ f_i(x) \le 0, \ \ i=1, \ldots, m,  \ \ \|z-x\|_2 \le R\).
+        <blockquote>
+          <p>i.e. a <em>local minimizer</em> \(x\) <em>minimizes</em> \(f_0\), but <strong>only</strong> for <em>nearby points</em> on the feasible set.</p>
+        </blockquote>
+      </li>
+      <li>A point \(z\) is <strong>Globally Optimal</strong>: if it is the <em>optimal value</em> of the original problem on all of the feasible region.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content4">Problem Classes</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">Least-squares:</strong></dt>
+      <dd>
+\[\min_x \;\;\;\; \sum_{i=1}^m \left( \sum_{j=1}^n A_{ij} . x_j - b_i \right)^2,\]
+      </dd>
+      <dd>where \(A_{ij}, \  b_i, \  1 \le i \le m,  \ 1 \le j \le n\), are given numbers, and \(x \in \mathbf{R}^n\) is the variable.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Linear Programming:</strong></dt>
+      <dd>
+\[\min \sum_{j=1}^n c_jx_j ~:~ \sum_{j=1}^n A_{ij} . x_j  \le b_i , \;\; i=1, \ldots, m,\]
+      </dd>
+      <dd>where \(c_j, b_i\) and \(A_{ij}, \  1 \le i \le m, \  1 \le j \le n\), are given real numbers.</dd>
+    </dl>
+
+    <blockquote>
+      <p>This corresponds to the case where the functions \(f_i(i=0, \ldots, m)\) in the standard problem are all affine (that is, linear plus a constant term).</p>
+    </blockquote>
+
+    <blockquote>
+      <p>Denoted \(LP\).</p>
+    </blockquote>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents43">Quadratic Programming:</strong></dt>
+      <dd>
+\[\min_x \;\;\;\; \displaystyle\sum_{i=1}^m \left(\sum_{j=1}^n C_{ij} . x_j+d_i\right)^2 + \sum_{i=1}^n c_ix_i \;:\;\;\;\; \sum_{j=1}^m A_{ij} . x_j \le b_i, \;\;\;\; i=1,\ldots,m.\]
+      </dd>
+    </dl>
+
+    <blockquote>
+      <p>Includes a <strong>sum of squared linear functions</strong>, in addition to a <strong>linear term</strong>, in the <em>objective</em>.</p>
+    </blockquote>
+
+    <blockquote>
+      <p>QP’s are popular in finance, where the <em>linear term</em> in the <em>objective</em> refers to the <em>expected negative return</em> on an investment, and the <em>squared terms</em> corresponds to the <em>risk</em> (or variance of the return).</p>
+    </blockquote>
+
+    <blockquote>
+      <p>QP was introduced by “Markowitz”</p>
+    </blockquote>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents44">Nonlinear optimization:</strong></dt>
+      <dd>A broad class that includes <em>Combinatorial Optimization</em>.</dd>
+    </dl>
+
+    <blockquote>
+      <p>One of the reasons for which non-linear problems are hard to solve is the issue of <em>local minima</em>.</p>
+    </blockquote>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents45">Convex optimization:</strong></dt>
+      <dd>A generalization of QP, where the objective and constraints involve “bowl-shaped”, or convex, functions.</dd>
+    </dl>
+
+    <blockquote>
+      <p>They are <em>easy</em> to solve because they <em>do not suffer</em> from the “curse” of <em>local minima</em>.</p>
+    </blockquote>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents46">Combinatorial optimization:</strong></dt>
+      <dd>In combinatorial optimization, some (or all) the variables are boolean (or integers), reflecting discrete choices to be made.</dd>
+    </dl>
+
+    <blockquote>
+      <p>Combinatorial optimization problems are in general extremely hard to solve. Often, they can be approximately solved with linear or convex programming.</p>
+    </blockquote>
+  </li>
+  <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents47">NON-Convex Optimization Problems [Examples]:</strong> <br />
+    <ul>
+      <li><strong>Boolean/integer optimization:</strong> some variables are constrained to be Boolean or integers.
+        <blockquote>
+          <p>Convex optimization can be used for getting (sometimes) good approximations.</p>
+        </blockquote>
+      </li>
+      <li><strong>Cardinality-constrained problems:</strong> we seek to bound the number of non-zero elements in a vector variable.
+        <blockquote>
+          <p>Convex optimization can be used for getting good approximations.</p>
+        </blockquote>
+      </li>
+      <li><strong>Non-linear programming:</strong> usually non-convex problems with differentiable objective and functions.
+        <blockquote>
+          <p>Algorithms provide only local minima.</p>
+        </blockquote>
+      </li>
+    </ul>
+
+    <blockquote>
+      <p>Most (but not all) non-convex problems are hard!</p>
+    </blockquote>
+  </li>
+</ol>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+

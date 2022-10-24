@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="UTF-8">
+  <title>Ahmad Badary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" href="/main_files/favicon.ico" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/customStyle.css">
+  <title> » Ahmad Badary</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+  <body>
+    <nav class="main-nav">
+    <a href="https://ahmedbadary.github.io/" class="main-nav-logo">
+        <img src="/main_files/logo.png">
+    </a>
+    <ul id="menu-main" class="main-nav-items">
+        <li id="menu-item-1859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-1859">
+            <a href="/">Home</a>
+        </li>
+        <li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869">
+            <a href="/work">Work</a>
+        </li>
+        <li id="menu-item-1892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1892">
+            <a href="/projects">Projects</a>
+        </li>
+        <li id="menu-item-1858" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1858">
+            <a href="/blog">Blog</a>
+        </li>
+        <li id="menu-item-1862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1862">
+            <a href="/about">About</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="page-header">
+  <h1 class="project-name">TensorFlow</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="/#" class="btn">Home</a>
+  <a href="/work" class="btn">Work-Space</a>
+  <a href= /work_files/research/dl/nlp.html class="btn">Previous</a>
+</section>
+
+<!-- <div>
+  <ul class="posts">
+    
+      <li><span>02 Jan 2014</span> &raquo; <a href="/2014/01/02/introducing-Ahmad/">Introducing Ahmad</a></li>
+    
+  </ul>
+</div> -->
+
+
+    <section class="main-content">
+      
+      <h2 id="content1">Introduction</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Big Idea:</strong></dt>
+      <dd>Express a numeric computation as a <strong>graph</strong>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Main Components:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Graph Nodes</strong>:<br />
+  are <strong><em>Operations</em></strong> which have any number of Inputs and Outputs</li>
+          <li><strong>Graph Edges</strong>:<br />
+  are <strong><em>Tensors</em></strong> which flow between nodes</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Example:</strong></dt>
+      <dd>\(h = \text{ReLU}(Wx+b) \\ 
+    \rightarrow\)<br />
+<img src="/main_files/dl/nlp/t_f/1.png" alt="img" width="20%" /></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Components of the Graph:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Variables</strong>: are stateful nodes which output their current value.<br />
+  <img src="/main_files/dl/nlp/t_f/2.png" alt="img" width="20%" />
+            <ul>
+              <li>State is retained across multiple executions of a graph.</li>
+              <li>It is easy to restore saved values to variables</li>
+              <li>They can be saved to the disk, during and after training</li>
+              <li>Gradient updates, by default, will apply over all the variables in the graph</li>
+              <li>Variables are, still, by “definition” <strong>operations</strong></li>
+              <li>They constitute mostly, <strong>Parameters</strong></li>
+            </ul>
+          </li>
+          <li><strong>Placeholders</strong>: are nodes whose value is fed in at execution time.<br />
+  <img src="/main_files/dl/nlp/t_f/3.png" alt="img" width="20%" />
+            <ul>
+              <li>They do <strong>not</strong> have initial values</li>
+              <li>They are assigned a:
+                <ul>
+                  <li>data-type</li>
+                  <li>shape of a tensor</li>
+                </ul>
+              </li>
+              <li>They constitute mostly, <strong>Inputs</strong> and <strong>labels</strong></li>
+            </ul>
+          </li>
+          <li><strong>Mathematical Operations</strong>: <br />
+  <img src="/main_files/dl/nlp/t_f/4.png" alt="img" width="20%" /></li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Sample Code:</strong></dt>
+      <dd>
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">100</span><span class="p">,)))</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">random_uniform</span><span class="p">((</span><span class="mi">784</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">784</span><span class="p">))</span>  
+<span class="n">h</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">relu</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+</code></pre></div>        </div>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Running the Graph:</strong></dt>
+      <dd>After defining a graph, we can <strong>deploy</strong> the graph with a<br />
+<strong>Session</strong>: a binding to a particular execution context
+        <blockquote>
+          <p>i.e. the Execution Environment</p>
+        </blockquote>
+      </dd>
+      <dd>
+        <ul>
+          <li>CPU<br />
+or</li>
+          <li>GPU</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Getting the Output:</strong></dt>
+      <dd>
+        <ul>
+          <li>Create the <em>session</em> object</li>
+          <li>Run the <em>session</em> object on:
+            <ul>
+              <li><strong>Fetches</strong>: List of graph nodes.<br />
+Returns the outputs of these nodes.</li>
+              <li><strong>Feeds</strong>: Dictionary mapping from graph nodes to concrete values.<br />
+Specifies the value of each graph node given in the dictionary.</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>CODE:
+            <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Session</span><span class="p">()</span>
+  <span class="n">sess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">initialize_all_variables</span><span class="p">())</span>
+  <span class="n">sess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">784</span><span class="p">)})</span>
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Defining the Loss:</strong></dt>
+      <dd>
+        <ul>
+          <li>Use <strong>placeholder</strong> for <strong>labels</strong></li>
+          <li>Build loss node using <strong>labels</strong> and <strong>prediction</strong></li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>CODE:
+            <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">prediction</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">softmax</span><span class="p">(...)</span> <span class="c1"># output of neural-net
+</span>  <span class="n">label</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+  <span class="n">cross_entropy</span> <span class="o">=</span> <span class="o">-</span><span class="n">tf</span><span class="p">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">label</span> <span class="o">*</span> <span class="n">tf</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">prediction</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents19">Computing the Gradients:</strong></dt>
+      <dd>
+        <ul>
+          <li>We have an <strong>Optimizer Object</strong>:<br />
+<code class="language-plaintext highlighter-rouge">tf.train.GradientDescentOptimizaer</code></li>
+          <li>We, then, add <strong>Optimization Operation</strong> to computation graph:<br />
+<code class="language-plaintext highlighter-rouge">tf.train.GradientDescentOptimizer(lr).minimize(cross_entropy)</code></li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li>CODE:
+            <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">train_step</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">train</span><span class="p">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="mf">0.5</span><span class="p">).</span><span class="n">minimize</span><span class="p">(</span><span class="n">cross_entropy</span><span class="p">)</span>
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents110">Training the Model:</strong></dt>
+      <dd>
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">sess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">initialize_all_variables</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">batch_x</span><span class="p">,</span> <span class="n">batch_label</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">next_batch</span><span class="p">()</span>
+    <span class="n">sess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">train_step</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">batch_x</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="n">batch_label</span><span class="p">})</span>  
+</code></pre></div>        </div>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents111">Variable Scope:</strong></dt>
+      <dd><img src="/main_files/dl/nlp/t_f/5.png" alt="img" width="100%" /></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content3">THIRD</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Introduction and Definitions:</strong></dt>
+      <dd>
+        <ul>
+          <li>Hierarchy:<br />
+  <img src="/main_files/dl/nlp/t_f/6.png" alt="img" width="80%" /></li>
+        </ul>
+      </dd>
+      <dd>
+        <ul>
+          <li><strong>Input Function</strong>:<br />
+  An input function is a function that returns a tf.data.Dataset object which outputs the following two-element tuple:
+            <ul>
+              <li>features - A python dict in which:
+                <ul>
+                  <li>Each key is the name of a feature</li>
+                  <li>Each value is an array containing all of that features values</li>
+                </ul>
+              </li>
+              <li>label - An array containing the values of the label for every example.
+                <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">train_input_fn</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
+  <span class="s">"""An input function for training"""</span>
+  <span class="c1"># Convert the inputs to a Dataset.
+</span>  <span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">Dataset</span><span class="p">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="nb">dict</span><span class="p">(</span><span class="n">features</span><span class="p">),</span> <span class="n">labels</span><span class="p">))</span>
+  <span class="c1"># Shuffle, repeat, and batch the examples.
+</span>  <span class="k">return</span> <span class="n">dataset</span><span class="p">.</span><span class="n">shuffle</span><span class="p">(</span><span class="mi">1000</span><span class="p">).</span><span class="n">repeat</span><span class="p">().</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
+</code></pre></div>                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Import and Parse the data sets:</strong></dt>
+      <dd>e.g. Iris DataSet with KERAS</dd>
+      <dd>
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">TRAIN_URL</span> <span class="o">=</span> <span class="s">"http://download.tensorflow.org/data/iris_training.csv"</span>
+<span class="n">TEST_URL</span> <span class="o">=</span> <span class="s">"http://download.tensorflow.org/data/iris_test.csv"</span>
+<span class="c1"># Train
+</span><span class="n">train_path</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">utils</span><span class="p">.</span><span class="n">get_file</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="n">TRAIN_URL</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">origin</span><span class="o">=</span><span class="n">TRAIN_URL</span><span class="p">)</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="o">=</span><span class="n">train_path</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">CSV_COLUMN_NAMES</span><span class="p">)</span>
+<span class="n">train_features</span><span class="p">,</span> <span class="n">train_label</span> <span class="o">=</span> <span class="n">train</span><span class="p">,</span> <span class="n">train</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">label_name</span><span class="p">)</span>
+<span class="c1"># Test
+</span><span class="n">test_path</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">utils</span><span class="p">.</span><span class="n">get_file</span><span class="p">(</span><span class="n">TEST_URL</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">TEST_URL</span><span class="p">)</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">test_path</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">CSV_COLUMN_NAMES</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">test_features</span><span class="p">,</span> <span class="n">test_label</span> <span class="o">=</span> <span class="n">test</span><span class="p">,</span> <span class="n">test</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">label_name</span><span class="p">)</span>
+</code></pre></div>        </div>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Describe the data:</strong></dt>
+      <dd>Creating features.<br />
+E.g. Numeric</dd>
+      <dd>
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">my_feature_columns</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">train_x</span><span class="p">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">my_feature_columns</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">feature_column</span><span class="p">.</span><span class="n">numeric_column</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">))</span>
+</code></pre></div>        </div>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Select the type of model:</strong></dt>
+      <dd>To specify a model type, instantiate an Estimator class:
+        <ul>
+          <li>Pre-made</li>
+          <li>Custom</li>
+        </ul>
+      </dd>
+      <dd>E.g. DNNClassifier</dd>
+      <dd>
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">classifier</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">estimator</span><span class="p">.</span><span class="n">DNNClassifier</span><span class="p">(</span><span class="n">feature_columns</span><span class="o">=</span><span class="n">my_feature_columns</span><span class="p">,</span> <span class="n">hidden_units</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s">'SGD'</span><span class="p">)</span>
+</code></pre></div>        </div>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Train the model:</strong></dt>
+      <dd>Instantiating a tf.Estimator.DNNClassifier creates a framework for learning the model. Basically, we’ve wired a network but haven’t yet let data flow through it.</dd>
+      <dd>To <strong>train</strong> the neural network, call the Estimator object’s <strong>train method</strong>:</dd>
+      <dd>
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">classifier</span><span class="p">.</span><span class="n">train</span><span class="p">(</span>
+<span class="n">input_fn</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span><span class="n">train_input_fn</span><span class="p">(</span><span class="n">train_feature</span><span class="p">,</span> <span class="n">train_label</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">batch_size</span><span class="p">),</span>
+<span class="n">steps</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">train_steps</span><span class="p">)</span>
+</code></pre></div>        </div>
+      </dd>
+      <dd>
+        <ul>
+          <li>The steps argument tells train to stop training after the specified number of iterations.</li>
+          <li>The <strong>input_fn</strong> parameter identifies the function that supplies the training data. The call to the train method indicates that the train_input_fn function will supply the training data with signature:<br />
+<code class="language-plaintext highlighter-rouge">def train_input_fn(features, labels, batch_size):</code> <br />
+The following call converts the input features and labels into a tf.data.Dataset object, which is the base class of the Dataset API:
+            <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">Dataset</span><span class="p">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="nb">dict</span><span class="p">(</span><span class="n">features</span><span class="p">),</span> <span class="n">labels</span><span class="p">))</span>
+<span class="c1"># Modifying the data
+</span>  <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">buffer_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">).</span><span class="n">repeat</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="bp">None</span><span class="p">).</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
+</code></pre></div>            </div>
+            <blockquote>
+              <p>Setting the buffer_size to a value larger than the number of examples (120) ensures that the data will be well shuffled</p>
+            </blockquote>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">Evaluate the model:</strong></dt>
+      <dd>To evaluate a model’s effectiveness, each Estimator provides an evaluate method:</dd>
+      <dd>
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Evaluate the model.
+</span><span class="n">eval_result</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">.</span><span class="n">evaluate</span><span class="p">(</span>
+ <span class="n">input_fn</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span><span class="n">eval_input_fn</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">batch_size</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">Test set accuracy: {accuracy:0.3f}</span><span class="se">\n</span><span class="s">'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="o">**</span><span class="n">eval_result</span><span class="p">))</span>
+</code></pre></div>        </div>
+      </dd>
+      <dd>The call to classifier.evaluate is similar to the call to classifier.train. The biggest difference is that classifier.evaluate must get its examples from the test set rather than the training set</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Predicting:</strong></dt>
+      <dd>Every Estimator provides a predict method, which premade_estimator.py calls as follows:</dd>
+      <dd>
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">predictions</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span>
+ <span class="n">input_fn</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span><span class="n">eval_input_fn</span><span class="p">(</span><span class="n">predict_x</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">batch_size</span><span class="p">))</span>
+</code></pre></div>        </div>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">JIRA:</strong></dt>
+      <dd><strong>Project</strong>:
+        <ul>
+          <li>A JIRA Project is a collection of issues</li>
+          <li>Every issue belongs to a Project</li>
+          <li>Each project is identified by a Name and Key</li>
+          <li>Project Key is appended to each issue associated with the 
+project</li>
+          <li>Example:
+            <ul>
+              <li>Name of Project: Social Media Site</li>
+              <li>Project Key: SM</li>
+              <li>Issue: SM 24 Add a new friend</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd><strong>Issue:</strong>
+        <ul>
+          <li>Issue is the building block of the project</li>
+          <li>Depending on how your organization is using JIRA, an issue could represent:
+            <ul>
+              <li>a software bug</li>
+              <li>a project task</li>
+              <li>a helpdesk ticket</li>
+              <li>a product improvement</li>
+              <li>a leave request from client</li>
+            </ul>
+          </li>
+        </ul>
+      </dd>
+      <dd><strong>Components</strong>:
+        <ul>
+          <li>Components are sub-sections of a project</li>
+          <li>Components are used to group issues within a project to smaller parts<br />
+<img src="/main_files/dl/nlp/t_f/10.png" alt="img" width="80%" /></li>
+        </ul>
+      </dd>
+      <dd><strong>Workflow:</strong>
+        <ul>
+          <li>A JIRA workflow is the set of statuses and transitions that an issue goes through during its lifecycle.</li>
+          <li>Workflows typically represent business processes.</li>
+          <li>JIRA comes with default workflow and it can be customized to fit your organization</li>
+        </ul>
+      </dd>
+      <dd><strong>Workflow Status and Transitions:</strong> <br />
+<img src="/main_files/dl/nlp/t_f/11.png" alt="img" width="80%" /></dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content4">FOURTH</h2>
+
+<ol>
+  <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">To write a TF program based on pre-made Estimator:</strong>
+    <ul>
+      <li>Create one or more input function</li>
+      <li>Define the models feature columns</li>
+      <li>Instantiate an Estimator, specifying the feature columns and various hyperparameters.</li>
+      <li>Call one or more methods on the Estimator object, passing the appropriate input function as the source of the data.</li>
+    </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Checkpoint:</strong></dt>
+      <dd>are saved automatically and are restored automatically after training.</dd>
+      <dd>Save by specifying which <code class="language-plaintext highlighter-rouge">model_dir</code> to save into:</dd>
+      <dd>
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">classifier</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">estimator</span><span class="p">.</span><span class="n">DNNClassifier</span><span class="p">(</span><span class="n">feature_columns</span><span class="o">=</span><span class="n">feature_columns</span><span class="p">,</span> <span class="n">hidden_units</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">model_dir</span><span class="o">=</span><span class="s">'models/iris'</span><span class="p">)</span>
+</code></pre></div>        </div>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">Feature Column:</strong></dt>
+      <dd><a href="https://www.tensorflow.org/get_started/feature_columns">check this page for the feature column functions</a></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Custom Estimator:</strong></dt>
+      <dd>Basically, you need to write a <strong>model function</strong> (<code class="language-plaintext highlighter-rouge">model_fn</code>) which implements the ML algo.</dd>
+      <dd>
+        <ul>
+          <li>Write an Input Function (same)</li>
+        </ul>
+      </dd>
+    </dl>
+    <ul>
+      <li>Create feature columns (same)</li>
+      <li>Write a Model Function:
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">my_model_fn</span><span class="p">(</span>
+<span class="n">features</span><span class="p">,</span> <span class="c1"># This is batch_features from input_fn
+</span><span class="n">labels</span><span class="p">,</span>   <span class="c1"># This is batch_labels from input_fn
+</span><span class="n">mode</span><span class="p">,</span>     <span class="c1"># An instance of tf.estimator.ModeKeys
+</span><span class="n">params</span><span class="p">):</span>  <span class="c1"># Additional configuration
+</span></code></pre></div>        </div>
+        <blockquote>
+          <p>The mode argument indicates whether the caller is requesting training, predicting, or evaluation.</p>
+        </blockquote>
+      </li>
+      <li>Create the estimator:
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">classifier</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">estimator</span><span class="p">.</span><span class="n">Estimator</span><span class="p">(</span>
+ <span class="n">model_fn</span><span class="o">=</span><span class="n">my_model</span><span class="p">,</span>
+ <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+  <span class="s">'feature_columns'</span><span class="p">:</span> <span class="n">my_feature_columns</span><span class="p">,</span>
+  <span class="c1"># Two hidden layers of 10 nodes each.
+</span>  <span class="s">'hidden_units'</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+  <span class="c1"># The model must choose between 3 classes.
+</span>  <span class="s">'n_classes'</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+ <span class="p">})</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents45">Writing Model Function:</strong></dt>
+      <dd>You need to do:</dd>
+    </dl>
+    <ul>
+      <li>Define the Model</li>
+      <li>Specify additional calculations:
+        <ul>
+          <li>Predict</li>
+          <li>Evaluate</li>
+          <li>
+            <dl>
+              <dt>Train</dt>
+              <dd><strong>Define the Model:</strong></dd>
+            </dl>
+          </li>
+        </ul>
+      </li>
+      <li><strong>The Input Layer</strong>:<br />
+  convert the feature dictionary and feature_columns into input for your model
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="c1"># Use `input_layer` to apply the feature columns.
+</span> <span class="n">net</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">feature_column</span><span class="p">.</span><span class="n">input_layer</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s">'feature_columns'</span><span class="p">])</span>
+</code></pre></div>        </div>
+      </li>
+      <li><strong>Hidden Layer</strong>:<br />
+  The Layers API provides a rich set of functions to define all types of hidden layers.
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="c1"># Build the hidden layers, sized according to the 'hidden_units' param.
+</span> <span class="k">for</span> <span class="n">units</span> <span class="ow">in</span> <span class="n">params</span><span class="p">[</span><span class="s">'hidden_units'</span><span class="p">]:</span>
+  <span class="n">net</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">dense</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">units</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">relu</span><span class="p">)</span>
+</code></pre></div>        </div>
+        <p>The variable <strong>net</strong> here signifies the current top layer of the network. During the first iteration, <strong>net</strong> signifies the input layer.<br />
+  On each loop iteration tf.layers.dense creates a new layer, which takes the previous layer’s output as its input, using the variable net.</p>
+      </li>
+      <li><strong>Output Layer</strong>:<br />
+  Define the output layer by calling <code class="language-plaintext highlighter-rouge">tf.layer.dense</code>
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1"># Compute logits (1 per class).
+</span> <span class="n">logits</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">dense</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s">'n_classes'</span><span class="p">],</span> <span class="n">activation</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+</code></pre></div>        </div>
+        <dl>
+          <dt>When defining an output layer, the units parameter specifies the number of outputs. So, by setting units to params[‘n_classes’], the model produces one output value per class.</dt>
+          <dd><strong>Predict:</strong>
+            <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1"># Compute predictions.
+</span><span class="n">predicted_classes</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="n">tf</span><span class="p">.</span><span class="n">estimator</span><span class="p">.</span><span class="n">ModeKeys</span><span class="p">.</span><span class="n">PREDICT</span><span class="p">:</span>
+ <span class="n">predictions</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'class_ids'</span><span class="p">:</span> <span class="n">predicted_classes</span><span class="p">[:,</span> <span class="n">tf</span><span class="p">.</span><span class="n">newaxis</span><span class="p">],</span>
+  <span class="s">'probabilities'</span><span class="p">:</span> <span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">),</span>
+  <span class="s">'logits'</span><span class="p">:</span> <span class="n">logits</span><span class="p">,</span>
+ <span class="p">}</span>
+ <span class="k">return</span> <span class="n">tf</span><span class="p">.</span><span class="n">estimator</span><span class="p">.</span><span class="n">EstimatorSpec</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">)</span>
+</code></pre></div>            </div>
+          </dd>
+        </dl>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents46">Embeddings:</strong></dt>
+      <dd>An <strong>embedding</strong> is a mapping from discrete objects, such as words, to vectors of real numbers.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents47">Saving Params:</strong></dt>
+      <dd>```python
+saver = tf.train.Saver() # before ‘with’
+saver.save(sess, ‘./checkpoints/generator.ckpt’) # After (within) first for-loop
+        <h1 id="to-restore">To restore</h1>
+        <p>saver.restore(sess, tf.train.latest_checkpoint(‘checkpoints’)) # after ‘with’</p>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="content5">Complete Training Example (Low-Level)</h2>
+
+<ol>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents51">Computational Graph:</strong></dt>
+      <dd>
+        <ul>
+          <li><strong>Operations</strong>: the nodes of the graph.<br />
+  They <strong>take in</strong> <em><strong>tensors</strong></em> and <strong>produce</strong> <em><strong>tensors</strong></em>.</li>
+          <li><strong>Tensors</strong>: the edges in the graph.<br />
+  They are the <strong>values</strong> flowing through the graph.</li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents52">Tensorboard:</strong></dt>
+      <dd>
+        <ul>
+          <li>First, save the computation graph to a tensorboard summary file:</li>
+        </ul>
+
+        <p><code class="language-plaintext highlighter-rouge">writer = tf.summary.FileWriter('.')
+writer.add_graph(tf.get_default_graph())</code> <br />
+    This will produce an <strong>event</strong> file in the current directory.</p>
+        <ul>
+          <li>Launch Tensorboard:<br />
+  <code class="language-plaintext highlighter-rouge">tensorboard --logdir</code></li>
+        </ul>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents53">Session:</strong></dt>
+      <dd>To evaluate tensors, instantiate a tf.Session object, informally known as a session. <br />
+A session encapsulates the state of the TensorFlow runtime, and runs TensorFlow operations.</dd>
+      <dd>
+        <ul>
+          <li>First, create a session:<br />
+  <code class="language-plaintext highlighter-rouge">sess = tf.Session()</code></li>
+          <li>Run the session:<br />
+  <code class="language-plaintext highlighter-rouge">sess.run()</code><br />
+  It takes a dict of any tuples or any tensor.<br />
+  It evaluates the tensor.</li>
+        </ul>
+      </dd>
+      <dd>Some TensorFlow functions return tf.Operations instead of tf.Tensors. The result of calling run on an Operation is None. You run an operation to cause a side-effect, not to retrieve a value. Examples of this include the initialization, and training ops demonstrated later.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents54">Feeding:</strong></dt>
+      <dd>
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</code></pre></div>        </div>
+      </dd>
+      <dd>
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">4.5</span><span class="p">}))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">y</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]}))</span>
+</code></pre></div>        </div>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents55">Datasets:</strong></dt>
+      <dd>The preferred method of streaming data into a model instead of <strong>placeholders</strong>.</dd>
+      <dd>To get a runnable tf.Tensor from a Dataset you must first convert it to a tf.data.Iterator, and then call the Iterator’s get_next method.</dd>
+      <dd>Create the Iterator:
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">slices</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">Dataset</span><span class="p">.</span><span class="n">from_tensor_slices</span><span class="p">(</span><span class="n">my_data</span><span class="p">)</span>
+<span class="n">next_item</span> <span class="o">=</span> <span class="n">slices</span><span class="p">.</span><span class="n">make_one_shot_iterator</span><span class="p">().</span><span class="n">get_next</span><span class="p">()</span>
+<span class="c1"># Then pass as follows  
+</span><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+  <span class="k">try</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">next_item</span><span class="p">))</span>
+  <span class="k">except</span> <span class="n">tf</span><span class="p">.</span><span class="n">errors</span><span class="p">.</span><span class="n">OutOfRangeError</span><span class="p">:</span>
+    <span class="k">break</span>
+</code></pre></div>        </div>
+      </dd>
+      <dd>If the Dataset depends on stateful operations (e.g. random value) you may need to initialize the iterator before using it, as shown below:
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">iterator</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">.</span><span class="n">make_initializable_iterator</span><span class="p">()</span>
+<span class="n">next_row</span> <span class="o">=</span> <span class="n">iterator</span><span class="p">.</span><span class="n">get_next</span><span class="p">()</span>
+</code></pre></div>        </div>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents56">Layers:</strong></dt>
+      <dd>A trainable model must modify the values in the graph to get new outputs with the same input. Layers are the preferred way to add trainable parameters to a graph.</dd>
+      <dd>Layers package together both the variables and the operations that act on them.<br />
+The connection weights and biases are managed by the layer object.
+        <blockquote>
+          <p>E.g. a densely-connected layer performs a weighted sum across all inputs for each output and applies an optional activation function.</p>
+        </blockquote>
+      </dd>
+      <dd><strong>Creating Layers</strong>:
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">linear_model</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">linear_model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div>        </div>
+      </dd>
+      <dd><strong>Initializing Layers:</strong><br />
+The layer contains variables that must be initialized before they can be used.
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">init</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">global_variables_initializer</span><span class="p">()</span>
+<span class="n">sess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
+</code></pre></div>        </div>
+      </dd>
+      <dd><strong>Executing Layers:</strong>
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]}))</span>
+</code></pre></div>        </div>
+      </dd>
+      <dd><strong>Layer Function shortcuts</strong>:<br />
+For each layer class (like tf.layers.Dense) TensorFlow also supplies a shortcut function (like tf.layers.dense).<br />
+The only difference is that the shortcut function versions create and run the layer in a single call.</dd>
+      <dd>
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">dense</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Is Equivalent to:  
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">linear_model</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">linear_model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div>        </div>
+        <blockquote>
+          <p>While convenient, this approach allows no access to the tf.layers.Layer object. This makes introspection and debugging more difficult, and layer reuse impossible.</p>
+        </blockquote>
+      </dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents57">Example:</strong></dt>
+      <dd>
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">y_true</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="n">linear_model</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">linear_model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">losses</span><span class="p">.</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">y_true</span><span class="p">,</span> <span class="n">predictions</span><span class="o">=</span><span class="n">y_pred</span><span class="p">)</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">train</span><span class="p">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">optimizer</span><span class="p">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
+
+<span class="n">init</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">global_variables_initializer</span><span class="p">()</span>
+
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">sess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5000</span><span class="p">):</span>
+  <span class="n">_</span><span class="p">,</span> <span class="n">loss_value</span> <span class="o">=</span> <span class="n">sess</span><span class="p">.</span><span class="n">run</span><span class="p">((</span><span class="n">train</span><span class="p">,</span> <span class="n">loss</span><span class="p">))</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">loss_value</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">y_pred</span><span class="p">))</span>
+</code></pre></div>        </div>
+      </dd>
+    </dl>
+  </li>
+</ol>
+
+
+      <footer class="site-footer">
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    
+<!--  -->
+    <div class="wrapper">
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+    <span class="site-footer-credits">
+        <p>
+            &copy; 2017. All rights reserved.
+        </p> 
+    </span>
+            </div>
+            <div class="footer-col footer-col-2">
+            <div><p>         </p></div>
+            </div>
+            <div class="footer-col footer-col-3">
+                <ul class="social-media-list">
+                    
+                      <li>
+                        <a href="https://github.com/AhmedBadary">
+                          <i class="fa fa-github"></i> GitHub
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://linkedin.com/in/ahmad-badary-656098121/">
+                          <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
+                      </li>
+                    
+                    
+                      <li>
+                        <a href="https://www.facebook.com/ahmed.thabet.94">
+                          <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                      </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--  -->
+</footer>
+
+
+    </section>
+
+  </body>
+
+<!-- Table of Content Script -->
+<script type="text/javascript">
+var bodyContents = $(".bodyContents1");
+$("<ol>").addClass("TOC1ul").appendTo(".TOC1");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+     });
+// 
+var bodyContents = $(".bodyContents2");
+$("<ol>").addClass("TOC2ul").appendTo(".TOC2");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC2ul");
+     });
+// 
+var bodyContents = $(".bodyContents3");
+$("<ol>").addClass("TOC3ul").appendTo(".TOC3");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC3ul");
+     });
+//
+var bodyContents = $(".bodyContents4");
+$("<ol>").addClass("TOC4ul").appendTo(".TOC4");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC4ul");
+     });
+//
+var bodyContents = $(".bodyContents5");
+$("<ol>").addClass("TOC5ul").appendTo(".TOC5");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC5ul");
+     });
+//
+var bodyContents = $(".bodyContents6");
+$("<ol>").addClass("TOC6ul").appendTo(".TOC6");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC6ul");
+     });
+//
+var bodyContents = $(".bodyContents7");
+$("<ol>").addClass("TOC7ul").appendTo(".TOC7");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC7ul");
+     });
+//
+var bodyContents = $(".bodyContents8");
+$("<ol>").addClass("TOC8ul").appendTo(".TOC8");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC8ul");
+     });
+//
+var bodyContents = $(".bodyContents9");
+$("<ol>").addClass("TOC9ul").appendTo(".TOC9");
+bodyContents.each(function(index, element) {
+    var paragraph = $(element);
+    $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC9ul");
+     });
+
+</script>
+
+<!-- VIDEO BUTTONS SCRIPT -->
+<script type="text/javascript">
+  function iframePopInject(event) {
+    var $button = $(event.target);
+    // console.log($button.parent().next());
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $figure = $("<div>").addClass("video_container");
+        $iframe = $("<iframe>").appendTo($figure);
+        $iframe.attr("src", $button.attr("src"));
+        // $iframe.attr("frameborder", "0");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $button.next().css("display", "block");
+        $figure.appendTo($button.next());
+        $button.text("Hide Video")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Video")
+    }
+}
+</script>
+
+<!-- BUTTON TRY -->
+<script type="text/javascript">
+  function iframePopA(event) {
+    event.preventDefault();
+    var $a = $(event.target).parent();
+    console.log($a);
+    if ($a.attr('value') == 'show') {
+        $a.attr('value', 'hide');
+        $figure = $("<div>");
+        $iframe = $("<iframe>").addClass("popup_website_container").appendTo($figure);
+        $iframe.attr("src", $a.attr("href"));
+        $iframe.attr("frameborder", "1");
+        $iframe.attr("allowfullscreen", "true");
+        $iframe.css("padding", "4px 6px");
+        $a.next().css("display", "block");
+        $figure.appendTo($a.next().next());
+        // $a.text("Hide Content")
+        $('html, body').animate({
+            scrollTop: $a.offset().top
+        }, 1000);
+    } else {
+        $a.attr('value', 'show');
+        $a.next().next().html("");
+        // $a.text("Show Content")
+    }
+
+    $a.next().css("display", "inline");
+}
+</script>
+
+
+<!-- TEXT BUTTON SCRIPT - INJECT -->
+<script type="text/javascript">
+  function showTextPopInject(event) {
+    var $button = $(event.target);
+    var txt = $button.attr("input");
+    console.log(txt);
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $p = $("<p>");
+        $p.html(txt);
+        $button.next().css("display", "block");
+        $p.appendTo($button.next());
+        $button.text("Hide Content")
+    } else {
+        $button.attr('value', 'show');
+        $button.next().html("");
+        $button.text("Show Content")
+    }
+
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showTextPopHide(event) {
+    var $button = $(event.target);
+    // var txt = $button.attr("input");
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $button.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $button.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- TEXT BUTTON SCRIPT - HIDDEN / HIDE / SHOW / HIDE/SHOW -->
+<script type="text/javascript">
+  function showText_withParent_PopHide(event) {
+    var $button = $(event.target);
+    var $parent = $button.parent();
+    var txt = $button.text();
+    if ($button.attr('value') == 'show') {
+        $button.attr('value', 'hide');
+        $parent.next().removeAttr("hidden");
+        $button.text(txt + " - Hide Content");
+    } else {
+        $button.attr('value', 'show');
+        $parent.next().attr("hidden", "");
+        $button.text(txt.replace(" - Hide Content",""));
+    }
+}
+</script>
+
+<!-- Print / Printing / printme -->
+<!-- <script type="text/javascript">
+i = 0
+
+for (var i = 1; i < 6; i++) {
+    var bodyContents = $(".bodyContents" + i);
+    $("<p>").addClass("TOC1ul")  .appendTo(".TOC1");
+    bodyContents.each(function(index, element) {
+        var paragraph = $(element);
+        $("<li>").html("<a href=#"+paragraph.attr('id')+">"+ paragraph.html().replace(':','')+" </a> ").appendTo(".TOC1ul");
+         });
+} 
+</script>
+ -->
+ 
+</html>
+
