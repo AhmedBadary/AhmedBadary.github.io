@@ -22,7 +22,7 @@ prevLink: /work_files/research/dl/theory.html
 
 __Resources:__{: style="color: red"}  
 {: #lst-p}
-* [Regularization in FFN](/work_files/research/dl/nlp/dl_book_pt1#bodyContents133)  
+* [Regularization in FFN](/work_files/research/dl/theory/dl_book_pt1#bodyContents133)  
 * [Regularization Concept](/concepts_#bodyContents616)  
 * [Regularization Ch.7 Summary](https://medium.com/inveterate-learner/deep-learning-book-chapter-7-regularization-for-deep-learning-937ff261875c)  
 * [How Regularization Reduces Variance from bias-var-decomp](http://cs229.stanford.edu/notes-spring2019/addendum_bias_variance.pdf)  
@@ -72,7 +72,6 @@ __Resources:__{: style="color: red"}
     * Regularization emerges in a probabilistic (Bayesian) framework, where regularization can be performed by selecting a larger prior probability over simpler models; but also in statistical learning theory, where the goal is to minimize over two quantities: the 'empirical risk' and the 'structural risk', which roughly corresponds to the error over the training set and the predicted error in unseen data due to overfitting. - [wikipedia](https://en.wikipedia.org/wiki/Artificial_neural_network#Generalization_and_statistics)
     <br>
 
-    <br>
 
 3. **Regularization in Deep Learning:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
     In the context of DL, most regularization strategies are based on __regularizing estimators__, which usually works by _trading increased bias for reduced variance_.  
@@ -83,7 +82,7 @@ __Resources:__{: style="color: red"}
 4. **Regularization and Data Domains in DL - A Practical Motivation:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
     Most applications of DL are to domains where the true data-generating process is almost certainly outside the model family (hypothesis space). Deep learning algorithms are typically applied to extremely complicated domains such as images, audio sequences and text, for which the true generation process essentially involves simulating the entire universe.  
 
-    Thus, controlling the complexity of the mdoel is not a simple matter of finding the model of the right size, with the right number of parameters; instead, the best fitting model (wrt. generalization error) is a large model that has been regularized appropriately.  
+    Thus, controlling the complexity of the model is not a simple matter of finding the model of the right size, with the right number of parameters; instead, the best fitting model (wrt. generalization error) is a large model that has been regularized appropriately.  
 
 
 [^1]: Where we (Hadamard) define __Well-Posed Problems__ as having the properties (1) A Solution Exists (2) It is Unique (3) It's behavior changes continuously with the initial conditions.  
@@ -109,7 +108,7 @@ __Resources:__{: style="color: red"}
 
 2. **Parameter Penalties and the Bias parameter:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
     In NN, we usually penalize __only the weights__ of the affine transformation at each layer and we leave the __biases unregularized__.  
-    Biases typically require less data than the weights to fit accurately. The reason is that _each weight specifies how TWO variables interact_ so fitting the weights well, requires observing both variable sin a variety of conditions. However, _each bias controls only a single variable_, thus, we dont induce too much _variance_ by leaving the biases unregularized. If anything, regularizing the bias can introduce a significant amount of _underfitting_.  
+    Biases typically require less data than the weights to fit accurately. The reason is that _each weight specifies how TWO variables interact_ so fitting the weights well, requires observing both variables in a variety of conditions. However, _each bias controls only a single variable_, thus, we don't induce too much _variance_ by leaving the biases unregularized. If anything, regularizing the bias can introduce a significant amount of _underfitting_.  
     <br>
 
 
@@ -166,14 +165,14 @@ __Resources:__{: style="color: red"}
 
         __Summary:__  
 
-        \vert __Condition__|__Effect of Regularization__ \vert   
-        \vert $$\lambda_{i}>>\alpha$$ \vert Not much \vert  
-        \vert $$\lambda_{i}<<\alpha$$ \vert The weight value almost shrunk to $$0$$ \vert  
+        | __Condition__|__Effect of Regularization__ |   
+        | $$\lambda_{i}>>\alpha$$ | Not much |  
+        | $$\lambda_{i}<<\alpha$$ | The weight value almost shrunk to $$0$$ |  
 
     * __Applying $$L^2$$ regularization to *Linear Regression* :__  
         * <button>Application to Linear Regression</button>{: .showText value="show" onclick="showTextPopHide(event);"}
             ![img](/main_files/dl_book/regularization/2.png){: width="100%" hidden=""}   
-    * [Weight Decay Analysis (blog)](https://h1man5hu.github.io/regularization/understanding-the-mathematics-of-weight-decay/)  
+    * [Weight Decay Analysis (blog)](https://himarora.github.io/regularization/understanding-the-mathematics-of-weight-decay/)  
     {: hidden=""}  
     <br>
 
@@ -199,11 +198,12 @@ __Resources:__{: style="color: red"}
     __Notes:__{: style="color: red"}  
     {: #lst-p}
     * [L2-reg and Adversarial Examples (New Angle)](https://thomas-tanay.github.io/post--L2-regularization/)  
-    * [Weight Decay Analysis (blog)](https://h1man5hu.github.io/regularization/understanding-the-mathematics-of-weight-decay/)  
+    * [Weight Decay Analysis (blog)](https://himarora.github.io/regularization/understanding-the-mathematics-of-weight-decay/)  
     * __Interpreting the Penalty term $$\lambda$$:__  
         In the Bayesian Interpretation of Weight Decay; by assuming a __Gaussian Distribution__ on the errors:  
         the Penalty term $$\lambda$$ can be interpreted as the (squared) <span>ratio of two __variances__</span>{: style="color: purple"} of the __data__ and the __weights__ respectively: $$\lambda = \frac{\sigma_{D}^{2}}{\sigma_{W}^{2}}$$.  
         * [Learning the __VARIANCES__ of the distributions/Priors (Hinton!)](https://www.youtube.com/watch?v=_WZAD2uhvUM&list=PLiPvV5TNogxKKwvKb1RKwkq2hm7ZvpHz0&index=60)  
+    * [A visual explanation for regularization of linear models (Blog)](https://explained.ai/regularization/index.html)  
     <br>
 
 5. **$$L^1$$ Regularization:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
@@ -297,10 +297,11 @@ __Notes:__{: style="color: red"}
     <p>$$\boldsymbol{X}^{+}=\lim_{\alpha \searrow 0}\left(\boldsymbol{X}^{\top} \boldsymbol{X}+\alpha \boldsymbol{I}\right)^{-1} \boldsymbol{X}^{\top} \tag{7.29}$$</p>  
     we can now recognize the equation as __performing linear regression with weight-decay__.  
     Specifically, $$7.29$$ is the limit of eq $$7.17$$ as the _regularization coefficient shrinks to zero_.  
+    <p>$$\boldsymbol{w}=\left(\boldsymbol{X}^{\top} \boldsymbol{X}+\alpha \boldsymbol{I}\right)^{-1} \boldsymbol{X}^{\top} \boldsymbol{y} \tag{7.17}$$</p>  
     We can thus interpret the pseudoinverse as __stabilizing underdetermined problems using regularization__.  
 
     __The Pseudoinverse:__{: style="color: red"}  
-    When applied to underdetermined systems w/ non-unique solutions; It finds the minimum norm solution to a linear system.  
+    When applied to _underdetermined systems w/ non-unique solutions_; It finds the _minimum norm solution_ to a linear system.  
     This "OLS" solution implies that not all linear functions are the same for OLS. It restricts the space of all possible non-unique linear functions that satisfy the equation to a subset of minimal norm.  
     From __SLT__ perspective, the pseudoinverse introduces __bias__ towards certain solutions.  
     <br>
@@ -685,6 +686,11 @@ __Notes:__{: style="color: red"}
     For deep models, dropout is NOT equivalent to weight decay.  
     <br>
 
+    __Notes:__{: style="color: red"}  
+    {: #lst-p}
+    * [When to use Dropout (before/after activation)? (blog)](https://sebastianraschka.com/faq/docs/dropout-activation.html)  
+    <br>
+
 
 11. **Adversarial Training:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents311}  
     __Adversarial training__ refers to training on examples that are adversarially generated and it has been shown to reduce the error rate.  
@@ -749,6 +755,26 @@ __Notes:__{: style="color: red"}
     Thus, we should constrain learning towards smoother hypotheses. I.E. fit the signal more than you fit the noise (which is non-smooth). We end up harming both, but harming the irregular, non-smooth noise more.  
 * __Regularization does two things - reduce fit to noise AND reduce overfitting__:  
     ![img](/main_files/dl_book/regularization/5.png){: width="100%"}   
+* __Regularization Recommendations (Practical)__:  
+    <button>List of Recommendations</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    * You should always consider using regularization, unless you have a very large dataset, e.g. big-data scale.
+        > "Unless your training set contains tens of millions of examples or more, you should include some mild forms of regularization from the start."  
+        — Page 426, Deep Learning, 2016.
+    * A good general recommendation is to design a neural network structure that is under-constrained and to use regularization to reduce the likelihood of overfitting.
+        > "… controlling the complexity of the model is not a simple matter of finding the model of the right size, with the right number of parameters. Instead, … in practical deep learning scenarios, we almost always do find—that the best fitting model (in the sense of minimizing generalization error) is a large model that has been regularized appropriately."  
+        — Page 229, Deep Learning, 2016.
+    * Early stopping should almost universally be used in addition to a method to keep weights small during training.
+        > "Early stopping should be used almost universally."  
+        — Page 426, Deep Learning, 2016.
+    * Some more specific recommendations include:  
+        These recommendations would suit Multilayer Perceptrons and Convolutional Neural Networks.  
+        * __Classical:__ use early stopping and weight decay (L2 weight regularization).
+        * __Alternate:__ use early stopping and added noise with a weight constraint.
+        * __Modern:__ use early stopping and dropout, in addition to a weight constraint.
+    * Some recommendations for __RNNs__ include:  
+        * __Classical:__ use early stopping with added weight noise and a weight constraint such as maximum norm.
+        * __Modern:__ use early stopping with a backpropagation-through-time-aware version of dropout and a weight constraint.  
+    {: hidden=""}
 
 
 [^5]: The architectures were constructed such that many of the parameters in the classifier model could be paired to corresponding parameters in the unsupervised model.

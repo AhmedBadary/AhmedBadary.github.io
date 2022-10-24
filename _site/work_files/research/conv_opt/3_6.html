@@ -118,35 +118,35 @@
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\mathbf{U} = \left\{ a^1, \ldots, a^K \right\},</script>
+\[\mathbf{U} = \left\{ a^1, \ldots, a^K \right\},\]
       </dd>
-      <dd>where each vector <script type="math/tex">a^k \in \mathbf{R}^n, k=1, \ldots, K</script> corresponds to a particular “scenario”.</dd>
+      <dd>where each vector \(a^k \in \mathbf{R}^n, k=1, \ldots, K\) corresponds to a particular “scenario”.</dd>
       <dd>
         <ul>
           <li><strong>The robust counterpart to a half-space constraint:</strong></li>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\forall \: a \in \mathbf{U} , \;\; a^Tx \le b ,</script>
+\[\forall \: a \in \mathbf{U} , \;\; a^Tx \le b ,\]
       </dd>
-      <dd>can be simply expressed as a set of <script type="math/tex">K</script> affine inequalities:</dd>
+      <dd>can be simply expressed as a set of \(K\) affine inequalities:</dd>
       <dd>
-        <script type="math/tex; mode=display">(a^k)^Tx \le b, \;\; k= 1, \ldots, K.</script>
+\[(a^k)^Tx \le b, \;\; k= 1, \ldots, K.\]
       </dd>
       <dd>
         <blockquote>
-          <p>Note that the scenario model actually enforces more than feasibility at the “scenario” points <script type="math/tex">a^k</script>.</p>
+          <p>Note that the scenario model actually enforces more than feasibility at the “scenario” points \(a^k\).</p>
           <blockquote>
-            <p>In fact, for any <script type="math/tex">a</script> that is in the convex hull of the set <script type="math/tex">\mathbf{U}</script>, the robust counterpart holds.</p>
+            <p>In fact, for any \(a\) that is in the convex hull of the set \(\mathbf{U}\), the robust counterpart holds.</p>
           </blockquote>
         </blockquote>
       </dd>
-      <dd>Indeed, if the above holds, then for any set of nonnegative weights <script type="math/tex">\lambda_1, \ldots, \lambda_K</script> summing to one, we have</dd>
+      <dd>Indeed, if the above holds, then for any set of nonnegative weights \(\lambda_1, \ldots, \lambda_K\) summing to one, we have</dd>
       <dd>
-        <script type="math/tex; mode=display">\sum_{k=1}^K \lambda_k (a^k)^Tx \le b, \;\; k= 1, \ldots, K.</script>
+\[\sum_{k=1}^K \lambda_k (a^k)^Tx \le b, \;\; k= 1, \ldots, K.\]
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\implies</script>
+\[\implies\]
       </dd>
       <dd>
         <ul>
@@ -154,13 +154,13 @@
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\min_x \: c^Tx ~:~ \forall \: a_i \in \mathbf{U}_i , \;\; a_i^Tx \le b_i , \;\; i= 1, \ldots, m,</script>
+\[\min_x \: c^Tx ~:~ \forall \: a_i \in \mathbf{U}_i , \;\; a_i^Tx \le b_i , \;\; i= 1, \ldots, m,\]
       </dd>
-      <dd>with <script type="math/tex">\mathbf{U}_i = \{ a_i^1, \ldots, a_i^{K_i} \}, i= 1, \ldots, m,</script> becomes</dd>
+      <dd>with \(\mathbf{U}_i = \{ a_i^1, \ldots, a_i^{K_i} \}, i= 1, \ldots, m,\) becomes</dd>
       <dd>
-        <script type="math/tex; mode=display">\min_x \: c^Tx ~:~ (a_i^k)^Tx \le b_i, \;\; k=1, \ldots, K_i, \;\; i= 1, \ldots, m,</script>
+\[\min_x \: c^Tx ~:~ (a_i^k)^Tx \le b_i, \;\; k=1, \ldots, K_i, \;\; i= 1, \ldots, m,\]
       </dd>
-      <dd>where this is an LP, with a total of <script type="math/tex">K_1+...+K_m</script> constraints, where <script type="math/tex">K_i</script> is the number of elements in the finite set <script type="math/tex">\mathbf{U}_i</script>, and <script type="math/tex">m</script> is the number of constraints in the original (nominal) LP.</dd>
+      <dd>where this is an LP, with a total of \(K_1+...+K_m\) constraints, where \(K_i\) is the number of elements in the finite set \(\mathbf{U}_i\), and \(m\) is the number of constraints in the original (nominal) LP.</dd>
       <dd>
         <ul>
           <li>The scenario model is attractive for its simplicity. However, the number of scenarios can result in too large a problem.</li>
@@ -173,7 +173,7 @@
       <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Box Uncertainty:</strong></dt>
       <dd>
         <ul>
-          <li><strong>Uncertainty model:</strong> The box uncertainty model assumes that every coefficient vector <script type="math/tex">a_i</script> lies in a “box”, or more generally, a hyper-rectangle <script type="math/tex">\in \mathbf{R}^n</script>, but is otherwise unknown.</li>
+          <li><strong>Uncertainty model:</strong> The box uncertainty model assumes that every coefficient vector \(a_i\) lies in a “box”, or more generally, a hyper-rectangle \(\in \mathbf{R}^n\), but is otherwise unknown.</li>
         </ul>
       </dd>
       <dd>
@@ -182,10 +182,10 @@
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\mathbf{U} = \left\{ a ~:~ |a-\hat{a}|_\infty \le \rho \right\},</script>
+\[\mathbf{U} = \left\{ a ~:~ |a-\hat{a}|_\infty \le \rho \right\},\]
       </dd>
-      <dd>where <script type="math/tex">\rho \ge 0</script> is a measure of the size of the uncertainty, and <script type="math/tex">\hat{a}</script> represents a “nominal” vector. <br />
-This describes a “box” of half-diameter <script type="math/tex">\rho</script> around the center <script type="math/tex">\hat{a}</script>.</dd>
+      <dd>where \(\rho \ge 0\) is a measure of the size of the uncertainty, and \(\hat{a}\) represents a “nominal” vector. <br />
+This describes a “box” of half-diameter \(\rho\) around the center \(\hat{a}\).</dd>
       <dd></dd>
     </dl>
   </li>
@@ -240,13 +240,13 @@ This describes a “box” of half-diameter <script type="math/tex">\rho</script
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

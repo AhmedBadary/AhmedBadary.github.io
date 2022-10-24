@@ -20,15 +20,21 @@ prevLink: /work_files/research/dl/nlp.html
 * [Important Blog on Attention](https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html)   
 * [Attention and Augmented RNNs (Distill)](https://distill.pub/2016/augmented-rnns/)  
 * [Transformer Implementation TF G-Colab](https://www.tensorflow.org/alpha/tutorials/text/transformer)  
-* [A Guide to Attention Mechanisms and Memory Networks (skymind)](https://skymind.ai/wiki/attention-mechanism-memory-network)  
+* [A Guide to Attention Mechanisms and Memory Networks (skymind)](https://wiki.pathmind.com/attention-mechanism-memory-network)  
 * [Soft and Hard Attention](https://jhui.github.io/2017/03/15/Soft-and-hard-attention/)  
 * [Attention (WildML)](http://www.wildml.com/2016/01/attention-and-memory-in-deep-learning-and-nlp/)  
 * [A Critical Review of Neural Attention Models in Natural Language Processing](https://arxiv.org/pdf/1902.02181.pdf)  
-* [Attention Mechanism (d2l)](https://www.d2l.ai/chapter_attention-mechanism/index.html)  
+* [Attention Mechanism(s) (d2l)](https://www.d2l.ai/chapter_attention-mechanisms/index.html)  
 * [Intuitive Understanding of Attention Mechanism in Deep Learning (medium + code)](https://towardsdatascience.com/intuitive-understanding-of-attention-mechanism-in-deep-learning-6c9482aecf4f)  
 * [What is the rationale behind self-attention equation and how did they came up with the concept query, key and value? (Reddit!)](https://www.reddit.com/r/MachineLearning/comments/bkw2xp/d_what_is_the_rationale_behind_selfattention/)  
+* [Stanford CS224N: NLP with Deep Learning \| Winter 2020 \| BERT and Other Pre-trained Language Models - by __*Jacob Devlin*__ (Lec!)](https://www.youtube.com/watch?v=knTc-NQSjKA)  
+* [How to get meaning from text with language model BERT \| AI Explained (Vid!!)](https://www.youtube.com/watch?v=-9vVhYEXeyQ)  
+
+* [All about attention in neural networks described as colab notebooks (Code!)](https://github.com/zaidalyafeai/AttentioNN)  
 
 
+<button>Empirical advantages of Transformers vs LSTMs</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+![img](https://cdn.mathpix.com/snip/images/beNMTU7r-w9Ej6gq5CUCmqseSNm5xio4zubEIbkeuuc.original.fullsize.png){: width="80%" hidden=""}  
 
 
 ## Introduction

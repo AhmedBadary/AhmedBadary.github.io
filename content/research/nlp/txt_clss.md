@@ -21,6 +21,8 @@ prevLink: /work_files/research/nlp.html
 ***
 ***
 
+* [Googles Text Classification Guide (Blog)](https://developers.google.com/machine-learning/guides/text-classification)  
+
 ## Introduction and Definitions
 {: #content1}
 

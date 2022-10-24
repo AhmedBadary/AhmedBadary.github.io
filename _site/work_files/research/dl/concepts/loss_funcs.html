@@ -94,7 +94,7 @@
 <h3 id="loss-functions"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents1" id="bodyContents11">Loss Functions</strong></h3>
 <p>Abstractly, a <strong>loss function</strong> or <strong>cost function</strong> is a function that maps an event or values of one or more variables onto a real number, intuitively, representing some “cost” associated with the event.</p>
 
-<p>Formally, a <strong>loss function</strong> is a function <script type="math/tex">L :(\hat{y}, y) \in \mathbb{R} \times Y \longmapsto L(\hat{y}, y) \in \mathbb{R}</script>  that takes as inputs the predicted value <script type="math/tex">\hat{y}</script> corresponding to the real data value <script type="math/tex">y</script> and outputs how different they are.</p>
+<p>Formally, a <strong>loss function</strong> is a function \(L :(\hat{y}, y) \in \mathbb{R} \times Y \longmapsto L(\hat{y}, y) \in \mathbb{R}\)  that takes as inputs the predicted value \(\hat{y}\) corresponding to the real data value \(y\) and outputs how different they are.</p>
 
 <hr />
 
@@ -104,15 +104,15 @@
 <br /></p>
 
 <h3 id="introduction"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents2" id="bodyContents211">Introduction</strong></h3>
-<p>Regression Losses usually only depend on the <strong>residual</strong> <script type="math/tex">r = y - \hat{y}</script> (i.e. what you have to add to your prediction to match the target)</p>
+<p>Regression Losses usually only depend on the <strong>residual</strong> \(r = y - \hat{y}\) (i.e. what you have to add to your prediction to match the target)</p>
 
 <p><strong style="color: red">Distance-Based Loss Functions:</strong><br />
-A Loss function <script type="math/tex">L(\hat{y}, y)</script> is called <strong>distance-based</strong> if it:</p>
+A Loss function \(L(\hat{y}, y)\) is called <strong>distance-based</strong> if it:</p>
 <ul>
   <li>Only depends on the <strong>residual</strong>:
     <p>$$L(\hat{y}, y) = \psi(y-\hat{y})  \:\: \text{for some } \psi : \mathbb{R} \longmapsto \mathbb{R}$$</p>
   </li>
-  <li>Loss is <script type="math/tex">0</script> when residual is <script type="math/tex">0</script>:
+  <li>Loss is \(0\) when residual is \(0\):
     <p>$$\psi(0) = 0$$</p>
   </li>
 </ul>
@@ -122,7 +122,7 @@ Distance-based losses are translation-invariant:</p>
 <p>$$L(\hat{y}+a, y+a) = L(\hat{y}, y)$$</p>
 
 <blockquote>
-  <p>Sometimes <strong>Relative-Error</strong> <script type="math/tex">\dfrac{\hat{y}-y}{y}</script> is a more <em>natural</em> loss but it is NOT translation-invariant</p>
+  <p>Sometimes <strong>Relative-Error</strong> \(\dfrac{\hat{y}-y}{y}\) is a more <em>natural</em> loss but it is NOT translation-invariant</p>
 </blockquote>
 
 <p><br /></p>
@@ -147,12 +147,12 @@ Distance-based losses are translation-invariant:</p>
   <li><strong id="bodyContents22stability">Unstable Solutions:</strong>  <br />
   <button class="showText" value="show" onclick="showTextPopHide(event);">Explanation</button>
   <em hidden="">The instability property of the method of least absolute deviations means that, for a small horizontal adjustment of a datum, the regression line may jump a large amount. The method has continuous solutions for some data configurations; however, by moving a datum a small amount, one could “jump past” a configuration which has multiple solutions that span a region. After passing this region of solutions, the least absolute deviations line has a slope that may differ greatly from that of the previous line. In contrast, the least squares solutions is stable in that, for any small adjustment of a data point, the regression line will always move only slightly; that is, the regression parameters are continuous functions of the data.</em></li>
-  <li><strong>Data-points “Latching”<sup id="fnref:3"><a href="#fn:3" class="footnote">1</a></sup>:</strong>
+  <li><strong>Data-points “Latching”<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">1</a></sup>:</strong>
     <ul>
       <li><strong>Unique Solution</strong>:<br />
-  If there are <script type="math/tex">k</script> <em><strong>features</strong></em> (including the constant), then at least one optimal regression surface will pass through <script type="math/tex">k</script> of the <em><strong>data points</strong></em>; unless there are multiple solutions.</li>
+  If there are \(k\) <em><strong>features</strong></em> (including the constant), then at least one optimal regression surface will pass through \(k\) of the <em><strong>data points</strong></em>; unless there are multiple solutions.</li>
       <li><strong>Multiple Solutions</strong>:<br />
-  The region of valid least absolute deviations solutions will be <strong>bounded by at least <script type="math/tex">k</script> lines</strong>, each of which <strong>passes through at least <script type="math/tex">k</script> data points</strong>.
+  The region of valid least absolute deviations solutions will be <strong>bounded by at least \(k\) lines</strong>, each of which <strong>passes through at least \(k\) data points</strong>.
         <blockquote>
           <p><a href="https://en.wikipedia.org/wiki/Least_absolute_deviations#Other_properties">Wikipedia</a></p>
         </blockquote>
@@ -174,7 +174,7 @@ Distance-based losses are translation-invariant:</p>
 
 <p><strong style="color: red">Code:</strong></p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">Huber</span><span class="p">(</span><span class="n">yHat</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">yHat</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">delta</span><span class="p">,</span><span class="o">.</span><span class="mi">5</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">yHat</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="p">,</span> <span class="n">delta</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">yHat</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">delta</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">yHat</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">delta</span><span class="p">,.</span><span class="mi">5</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">yHat</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="p">,</span> <span class="n">delta</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">yHat</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">delta</span><span class="p">))</span>
 </code></pre></div></div>
 <p><br /></p>
 
@@ -199,15 +199,15 @@ Distance-based losses are translation-invariant:</p>
     </tr>
     <tr>
       <td>Differentiable Everywhere</td>
-      <td>Non-Differentiable at <script type="math/tex">0</script></td>
+      <td>Non-Differentiable at \(0\)</td>
     </tr>
     <tr>
-      <td>Stable<sup id="fnref:1"><a href="#fn:1" class="footnote">2</a></sup> Solutions</td>
+      <td>Stable<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">2</a></sup> Solutions</td>
       <td>Unstable Solutions</td>
     </tr>
     <tr>
       <td>Unique Solution</td>
-      <td>Possibly multiple<sup id="fnref:2"><a href="#fn:2" class="footnote">3</a></sup> solutions</td>
+      <td>Possibly multiple<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">3</a></sup> solutions</td>
     </tr>
   </tbody>
 </table>
@@ -215,8 +215,8 @@ Distance-based losses are translation-invariant:</p>
 <ul>
   <li><strong>Statistical Efficiency</strong>:
     <ul>
-      <li>“For normal observations MSE is about <script type="math/tex">12\%</script> more efficient than MAE” - Fisher</li>
-      <li><script type="math/tex">1\%</script> Error is enough to make MAE more efficient</li>
+      <li>“For normal observations MSE is about \(12\%\) more efficient than MAE” - Fisher</li>
+      <li>\(1\%\) Error is enough to make MAE more efficient</li>
       <li>2/1000 bad observations, make the median more efficient than the mean</li>
     </ul>
   </li>
@@ -238,17 +238,17 @@ Distance-based losses are translation-invariant:</p>
 <p><img src="/main_files/dl/concepts/loss_funcs/0.png" alt="img" width="65%" id="losses" /><br />
 <br /></p>
 
-<h3 id="0-1-loss"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents3" id="bodyContents311"><script type="math/tex">0-1</script> Loss</strong></h3>
+<h3 id="0-1-loss"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents3" id="bodyContents311">\(0-1\) Loss</strong></h3>
 
 <p>$$L(\hat{y}, y) = I(\hat{y} \neq y) = \left\{\begin{array}{ll}{0} &amp; {\hat{y}=y} \\ {1} &amp; {\hat{y} \neq y}\end{array}\right.$$</p>
 <p><br /></p>
 
 <h3 id="mse-1"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents3" id="bodyContents31">MSE</strong></h3>
 
-<p>We can write the loss in terms of the margin <script type="math/tex">m = y\hat{y}</script>:<br />
-<script type="math/tex">L(\hat{y}, y)=(y - \hat{y})^{2}=(1-y\hat{y})^{2}=(1-m)^{2}</script></p>
+<p>We can write the loss in terms of the margin \(m = y\hat{y}\):<br />
+\(L(\hat{y}, y)=(y - \hat{y})^{2}=(1-y\hat{y})^{2}=(1-m)^{2}\)</p>
 <blockquote>
-  <p>Since <script type="math/tex">y \in {-1,1} \implies y^2 = 1</script></p>
+  <p>Since \(y \in {-1,1} \implies y^2 = 1\)</p>
 </blockquote>
 
 <p>$$L(\hat{y}, y) = (1-y \hat{y})^{2}$$</p>
@@ -282,7 +282,7 @@ Distance-based losses are translation-invariant:</p>
 
 <p id="lst-p"><strong style="color: red">Properties:</strong></p>
 <ul>
-  <li>The logistic loss function does not assign zero penalty to any points. Instead, functions that correctly classify points with high confidence (i.e., with high values of <script type="math/tex">{\displaystyle \vert f({\vec {x}})\vert}</script>) are penalized less. This structure leads the logistic loss function to be sensitive to outliers in the data.<br />
+  <li>The logistic loss function does not assign zero penalty to any points. Instead, functions that correctly classify points with high confidence (i.e., with high values of \({\displaystyle \vert f({\vec {x}})\vert}\)) are penalized less. This structure leads the logistic loss function to be sensitive to outliers in the data.<br />
 <br /></li>
 </ul>
 
@@ -296,43 +296,41 @@ Distance-based losses are translation-invariant:</p>
 <p><img src="/main_files/dl/concepts/loss_funcs/4.png" alt="img" width="30%" class="center-image" /></p>
 
 <p><strong style="color: red">Cross-Entropy and Negative-Log-Probability:</strong><br />
-The <strong>Cross-Entropy</strong> is equal to the <strong>Negative-Log-Probability</strong> (of predicting the true class) in the case that the true distribution that we are trying to match is <em><strong>peaked at a single point</strong></em> and is <em><strong>identically zero everywhere else</strong></em>; this is usually the case in ML when we are using a <em>one-hot encoded vector</em> with one class <script type="math/tex">y = [0 \: 0 \: \ldots \: 0 \: 1 \: 0 \: \ldots \: 0]</script> peaked at the <script type="math/tex">j</script>-th position <br />
-<script type="math/tex">\implies</script></p>
+The <strong>Cross-Entropy</strong> is equal to the <strong>Negative-Log-Probability</strong> (of predicting the true class) in the case that the true distribution that we are trying to match is <em><strong>peaked at a single point</strong></em> and is <em><strong>identically zero everywhere else</strong></em>; this is usually the case in ML when we are using a <em>one-hot encoded vector</em> with one class \(y = [0 \: 0 \: \ldots \: 0 \: 1 \: 0 \: \ldots \: 0]\) peaked at the \(j\)-th position <br />
+\(\implies\)</p>
 <p>$$L(\hat{y}, y) = -\sum_{i} y_i \log \left(\hat{y}_ {i}\right) = - \log (\hat{y}_ {j})$$</p>
 
 <p><strong style="color: red">Cross-Entropy and Log-Loss:</strong>  <br />
-The <strong>Cross-Entropy</strong> is equal to the <strong>Log-Loss</strong> in the case of <script type="math/tex">0, 1</script> classification.</p>
+The <strong>Cross-Entropy</strong> is equal to the <strong>Log-Loss</strong> in the case of \(0, 1\) classification.</p>
 
 <p><strong>Equivalence of <em>Binary Cross-Entropy</em> and <em>Logistic-Loss</em>:</strong><br />
-Given <script type="math/tex">p \in\{y, 1-y\}</script> and <script type="math/tex">q \in\{\hat{y}, 1-\hat{y}\}</script>:</p>
+Given \(p \in\{y, 1-y\}\) and \(q \in\{\hat{y}, 1-\hat{y}\}\):</p>
 <p>$$H(p,q)=-\sum_{x }p(x)\,\log q(x) = -y \log \hat{y}-(1-y) \log (1-\hat{y}) = L(\hat{y}, y)$$</p>
 
 <ul>
-  <li>Notice the following property of the <strong>logistic function</strong> <script type="math/tex">\sigma</script> (used in derivation below): <br />
-  <script type="math/tex">\sigma(-x) = 1-\sigma(x)</script></li>
+  <li>Notice the following property of the <strong>logistic function</strong> \(\sigma\) (used in derivation below): <br />
+  \(\sigma(-x) = 1-\sigma(x)\)</li>
 </ul>
 
 <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Derivation</button>
 <em hidden="">Given:</em></p>
 <ul hidden="">
-  <li><script type="math/tex">\hat{y} = \sigma(yf(x))</script>,<sup id="fnref:5"><a href="#fn:5" class="footnote">4</a></sup></li>
-  <li><script type="math/tex">y \in \{-1, 1\}</script>,</li>
-  <li><script type="math/tex">\hat{y}' = \sigma(f(x))</script>,</li>
-  <li><script type="math/tex">% <![CDATA[
-y' = (1+y)/2 = \left\{\begin{array}{ll}{1} & {\text { for }} y' = 1 \\ {0} & {\text { for }} y = -1\end{array}\right. \in \{0, 1\} %]]></script><sup id="fnref:4"><a href="#fn:4" class="footnote">5</a></sup></li>
+  <li>\(\hat{y} = \sigma(yf(x))\),<sup id="fnref:5" role="doc-noteref"><a href="#fn:5" class="footnote" rel="footnote">4</a></sup></li>
+  <li>\(y \in \{-1, 1\}\),</li>
+  <li>\(\hat{y}' = \sigma(f(x))\),</li>
+  <li>\(y' = (1+y)/2 = \left\{\begin{array}{ll}{1} &amp; {\text { for }} y' = 1 \\ {0} &amp; {\text { for }} y = -1\end{array}\right. \in \{0, 1\}\)<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">5</a></sup></li>
   <li>We start with the modified binary cross-entropy<br />
-  <script type="math/tex">% <![CDATA[
-\begin{aligned} -y' \log \hat{y}'-(1-y') \log (1-\hat{y}') &= \left\{\begin{array}{ll}{-\log\hat{y}'} & {\text { for }} y' = 1 \\ {-\log(1-\hat{y}')} & {\text { for }} y' = 0\end{array}\right. \\ \\
-  &= \left\{\begin{array}{ll}{-\log\sigma(f(x))} & {\text { for }} y' = 1 \\ {-\log(1-\sigma(f(x)))} & {\text { for }} y' = 0\end{array}\right. \\ \\
-  &= \left\{\begin{array}{ll}{-\log\sigma(1\times f(x))} & {\text { for }} y' = 1 \\ {-\log(\sigma((-1)\times f(x)))} & {\text { for }} y' = 0\end{array}\right. \\ \\
-  &= \left\{\begin{array}{ll}{-\log\sigma(yf(x))} & {\text { for }} y' = 1 \\ {-\log(\sigma(yf(x)))} & {\text { for }} y' = 0\end{array}\right. \\ \\
-  &= \left\{\begin{array}{ll}{-\log\hat{y}} & {\text { for }} y' = 1 \\ {-\log\hat{y}} & {\text { for }} y' = 0\end{array}\right. \\ \\
-  &= -\log\hat{y} \\ \\
-  &= \log\left[\dfrac{1}{\hat{y}}\right] \\ \\
-  &= \log\left[\hat{y}^{-1}\right] \\ \\
-  &= \log\left[\sigma(yf(x))^{-1}\right] \\ \\
-  &= \log\left[ \left(\dfrac{1}{1+e^{-yf(x)}}\right)^{-1}\right] \\ \\
-  &= \log \left(1+e^{-yf(x)}\right)\end{aligned} %]]></script></li>
+  \(\begin{aligned} -y' \log \hat{y}'-(1-y') \log (1-\hat{y}') &amp;= \left\{\begin{array}{ll}{-\log\hat{y}'} &amp; {\text { for }} y' = 1 \\ {-\log(1-\hat{y}')} &amp; {\text { for }} y' = 0\end{array}\right. \\ \\
+  &amp;= \left\{\begin{array}{ll}{-\log\sigma(f(x))} &amp; {\text { for }} y' = 1 \\ {-\log(1-\sigma(f(x)))} &amp; {\text { for }} y' = 0\end{array}\right. \\ \\
+  &amp;= \left\{\begin{array}{ll}{-\log\sigma(1\times f(x))} &amp; {\text { for }} y' = 1 \\ {-\log(\sigma((-1)\times f(x)))} &amp; {\text { for }} y' = 0\end{array}\right. \\ \\
+  &amp;= \left\{\begin{array}{ll}{-\log\sigma(yf(x))} &amp; {\text { for }} y' = 1 \\ {-\log(\sigma(yf(x)))} &amp; {\text { for }} y' = 0\end{array}\right. \\ \\
+  &amp;= \left\{\begin{array}{ll}{-\log\hat{y}} &amp; {\text { for }} y' = 1 \\ {-\log\hat{y}} &amp; {\text { for }} y' = 0\end{array}\right. \\ \\
+  &amp;= -\log\hat{y} \\ \\
+  &amp;= \log\left[\dfrac{1}{\hat{y}}\right] \\ \\
+  &amp;= \log\left[\hat{y}^{-1}\right] \\ \\
+  &amp;= \log\left[\sigma(yf(x))^{-1}\right] \\ \\
+  &amp;= \log\left[ \left(\dfrac{1}{1+e^{-yf(x)}}\right)^{-1}\right] \\ \\
+  &amp;= \log \left(1+e^{-yf(x)}\right)\end{aligned}\)</li>
 </ul>
 
 <blockquote>
@@ -342,14 +340,14 @@ y' = (1+y)/2 = \left\{\begin{array}{ll}{1} & {\text { for }} y' = 1 \\ {0} & {\t
 <p><strong style="color: red">Cross-Entropy as Negative-Log-Likelihood (w/ equal probability outcomes):</strong></p>
 
 <p><strong style="color: red">Cross-Entropy and KL-Div:</strong><br />
-When comparing a distribution <script type="math/tex">{\displaystyle q}</script> against a fixed reference distribution <script type="math/tex">{\displaystyle p}</script>, cross entropy and KL divergence are identical up to an additive constant (since <script type="math/tex">{\displaystyle p}</script> is fixed): both take on their minimal values when <script type="math/tex">{\displaystyle p=q}</script>, which is <script type="math/tex">{\displaystyle 0}</script> for KL divergence, and <script type="math/tex">{\displaystyle \mathrm {H} (p)}</script> for cross entropy.</p>
+When comparing a distribution \({\displaystyle q}\) against a fixed reference distribution \({\displaystyle p}\), cross entropy and KL divergence are identical up to an additive constant (since \({\displaystyle p}\) is fixed): both take on their minimal values when \({\displaystyle p=q}\), which is \({\displaystyle 0}\) for KL divergence, and \({\displaystyle \mathrm {H} (p)}\) for cross entropy.</p>
 <blockquote>
   <p>Basically, minimizing either will result in the same solution.</p>
 </blockquote>
 
 <p><strong style="color: red">Cross-Entropy VS MSE (&amp; Classification Loss):</strong><br />
-Basically, CE &gt; MSE because the gradient of MSE <script type="math/tex">z(1-z)</script> leads to saturation when then output <script type="math/tex">z</script> of a neuron is near <script type="math/tex">0</script> or <script type="math/tex">1</script> making the gradient very small and, thus, slowing down training.<br />
-CE &gt; Class-Loss because Class-Loss is binary and doesn’t take into account <em>“how well”</em> are we actually approximating the probabilities as opposed to just having the target class be slightly higher than the rest (e.g. <script type="math/tex">[c_1=0.3, c_2=0.3, c_3=0.4]</script>).</p>
+Basically, CE &gt; MSE because the gradient of MSE \(z(1-z)\) leads to saturation when then output \(z\) of a neuron is near \(0\) or \(1\) making the gradient very small and, thus, slowing down training.<br />
+CE &gt; Class-Loss because Class-Loss is binary and doesn’t take into account <em>“how well”</em> are we actually approximating the probabilities as opposed to just having the target class be slightly higher than the rest (e.g. \([c_1=0.3, c_2=0.3, c_3=0.4]\)).</p>
 <ul>
   <li><a href="https://jamesmccaffrey.wordpress.com/2013/11/05/why-you-should-use-cross-entropy-error-instead-of-classification-error-or-mean-squared-error-for-neural-network-classifier-training/">Why You Should Use Cross-Entropy Error Instead Of Classification Error Or Mean Squared Error For Neural Network Classifier Training</a></li>
 </ul>
@@ -363,7 +361,7 @@ CE &gt; Class-Loss because Class-Loss is binary and doesn’t take into account 
 
 <h3 id="perceptron-loss"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents3" id="bodyContents36">Perceptron Loss</strong></h3>
 
-<p>$${\displaystyle L(z, y_i) = {\begin{cases}0&amp;{\text{if }}\ y_i\cdot z_i \geq 0\\-y_i z&amp;{\text{otherwise}}\end{cases}}}$$</p>
+<p>$${\displaystyle L(\hat{y}_i, y_i) = {\begin{cases}0&amp;{\text{if }}\ y_i\cdot \hat{y}_i \geq 0\\-y_i \hat{y}_i&amp;{\text{otherwise}}\end{cases}}}$$</p>
 <p><br /></p>
 
 <h3 id="notes-1"><strong style="color: SteelBlue; font-size: 1.27em" class="bodyContents3" id="bodyContents37">Notes</strong></h3>
@@ -373,35 +371,35 @@ CE &gt; Class-Loss because Class-Loss is binary and doesn’t take into account 
 
 <p><br /><br /></p>
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:3">
-      <p><a href="http://articles.adsabs.harvard.edu//full/1982AJ.....87..928B/0000936.000.html">Reference</a> <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:3" role="doc-endnote">
+      <p><a href="http://articles.adsabs.harvard.edu//full/1982AJ.....87..928B/0000936.000.html">Reference</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:1">
-      <p><a href="#bodyContents22stability">Stability</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="#bodyContents22stability">Stability</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2">
-      <p>Reason is that the errors are equally weighted; so, tilting the regression line (within a region) will decrease the distance to a particular point and will increase the distance to other points by the same amount. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:2" role="doc-endnote">
+      <p>Reason is that the errors are equally weighted; so, tilting the regression line (within a region) will decrease the distance to a particular point and will increase the distance to other points by the same amount. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:5">
-      <p><script type="math/tex">f(x) = w^Tx</script> in logistic regression <a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:5" role="doc-endnote">
+      <p>\(f(x) = w^Tx\) in logistic regression <a href="#fnref:5" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:4">
-      <p>We have to redefine the indicator/target variable to establish the equality. <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:4" role="doc-endnote">
+      <p>We have to redefine the indicator/target variable to establish the equality. <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

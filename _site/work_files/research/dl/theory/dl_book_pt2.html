@@ -93,54 +93,54 @@
 <ol>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">(Deep) FeedForward Neural Networks:</strong><br />
- For a classifier; given <script type="math/tex">y=f^{\ast}(\boldsymbol{x})</script>, maps an input <script type="math/tex">\boldsymbol{x}</script> to a category <script type="math/tex">y</script>.<br />
- An <strong>FNN</strong> defines a mapping <script type="math/tex">\boldsymbol{y}=f(\boldsymbol{x} ; \boldsymbol{\theta})</script>  and learns the value of the parameters <script type="math/tex">\boldsymbol{\theta}</script>  that result in the best function approximation.</p>
+ For a classifier; given \(y=f^{\ast}(\boldsymbol{x})\), maps an input \(\boldsymbol{x}\) to a category \(y\).<br />
+ An <strong>FNN</strong> defines a mapping \(\boldsymbol{y}=f(\boldsymbol{x} ; \boldsymbol{\theta})\)  and learns the value of the parameters \(\boldsymbol{\theta}\)  that result in the best function approximation.</p>
 
     <ul>
       <li>FNNs are called <strong>networks</strong> because they are typically represented by composing together many different functions</li>
       <li>The model is associated with a <strong>DAG</strong> describing how the functions are composed together.</li>
       <li>Functions connected in a <strong>chain structure</strong> are the most commonly used structure of neural networks.
         <blockquote>
-          <p>E.g. we might have three functions <script type="math/tex">f^{(1)}, f^{(2)},</script> and <script type="math/tex">f^{(3)}</script> connected in a chain, to form <script type="math/tex">f(\boldsymbol{x})=f^{(3)}\left(f^{(2)}\left(f^{(1)}(\boldsymbol{x})\right)\right)</script>; being called the <script type="math/tex">n</script>-th <strong>Layer</strong> respectively.</p>
+          <p>E.g. we might have three functions \(f^{(1)}, f^{(2)},\) and \(f^{(3)}\) connected in a chain, to form \(f(\boldsymbol{x})=f^{(3)}\left(f^{(2)}\left(f^{(1)}(\boldsymbol{x})\right)\right)\); being called the \(n\)-th <strong>Layer</strong> respectively.</p>
         </blockquote>
       </li>
       <li>The overall length of the chain is the <strong>depth</strong> of the model.</li>
-      <li>During training, we drive <script type="math/tex">f(\boldsymbol{x})</script> to match <script type="math/tex">f^{\ast}(\boldsymbol{x})</script>. <br />
-  The training data provides us with noisy, approximate examples of <script type="math/tex">f^{\ast}(\boldsymbol{x})</script> evaluated at different training points.<br />
+      <li>During training, we drive \(f(\boldsymbol{x})\) to match \(f^{\ast}(\boldsymbol{x})\). <br />
+  The training data provides us with noisy, approximate examples of \(f^{\ast}(\boldsymbol{x})\) evaluated at different training points.<br />
  <br /></li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">FNNs from Linear Models:</strong><br />
  Consider linear models biggest limitation: model capacity is limited to linear functions.<br />
- To <strong>extend</strong> linear models to represent non-linear functions of <script type="math/tex">\boldsymbol{x}</script> we can:
+ To <strong>extend</strong> linear models to represent non-linear functions of \(\boldsymbol{x}\) we can:
     <ul>
-      <li>Apply the linear model not to <script type="math/tex">\boldsymbol{x}</script> itself but <span style="color: purple"><em>to a transformed input</em> <script type="math/tex">\phi(\boldsymbol{x})</script></span>, where <script type="math/tex">\phi</script> is a <span style="color: purple"><strong>nonlinear transformation</strong></span>.</li>
-      <li>Equivalently, apply the <strong>kernel trick</strong> to obtain nonlinear learning algorithm based on implicitly applying the <script type="math/tex">\phi</script> mapping.</li>
+      <li>Apply the linear model not to \(\boldsymbol{x}\) itself but <span style="color: purple"><em>to a transformed input</em> \(\phi(\boldsymbol{x})\)</span>, where \(\phi\) is a <span style="color: purple"><strong>nonlinear transformation</strong></span>.</li>
+      <li>Equivalently, apply the <strong>kernel trick</strong> to obtain nonlinear learning algorithm based on implicitly applying the \(\phi\) mapping.</li>
     </ul>
 
-    <p id="lst-p"><span style="color: goldenrod">We can think of <script type="math/tex">\phi</script> as providing a <strong>set of features <em>describing</em></strong> <script type="math/tex">\boldsymbol{x}</script>, or as providing a <strong>new representation</strong> for <script type="math/tex">\boldsymbol{x}</script>.</span><br />
- <strong>Choosing the mapping <script type="math/tex">\phi</script>:</strong></p>
+    <p id="lst-p"><span style="color: goldenrod">We can think of \(\phi\) as providing a <strong>set of features <em>describing</em></strong> \(\boldsymbol{x}\), or as providing a <strong>new representation</strong> for \(\boldsymbol{x}\).</span><br />
+ <strong>Choosing the mapping \(\phi\):</strong></p>
     <ol>
-      <li>Use a very generic <script type="math/tex">\phi</script>, s.a. infinite-dimensional (RBF) kernel.<br />
- If <script type="math/tex">\phi(\boldsymbol{x})</script> is of <em>high enough dimension</em>, we can <em>always have enough capacity</em> to fit the training set, but <em>generalization</em> to the test set often <em>remains poor</em>.<br />
+      <li>Use a very generic \(\phi\), s.a. infinite-dimensional (RBF) kernel.<br />
+ If \(\phi(\boldsymbol{x})\) is of <em>high enough dimension</em>, we can <em>always have enough capacity</em> to fit the training set, but <em>generalization</em> to the test set often <em>remains poor</em>.<br />
  Very generic feature mappings are usually <em>based only</em> on the <em>principle of local smoothness</em> and do not encode enough prior information to solve advanced problems.</li>
-      <li>Manually Engineer <script type="math/tex">\phi</script>.<br />
+      <li>Manually Engineer \(\phi\).<br />
  Requires decades of human effort and the results are usually poor and non-scalable.</li>
-      <li>The <em>strategy</em> of <strong>deep learning</strong> is to <span style="color: purple"><strong>learn <script type="math/tex">\phi</script></strong></span>.
+      <li>The <em>strategy</em> of <strong>deep learning</strong> is to <span style="color: purple"><strong>learn \(\phi\)</strong></span>.
         <ul>
           <li>We have a <strong>model</strong>:
             <p>$$y=f(\boldsymbol{x} ; \boldsymbol{\theta}, \boldsymbol{w})=\phi(\boldsymbol{x} ; \boldsymbol{\theta})^{\top} \boldsymbol{w}$$</p>
-            <p>We now have <strong>parameters <script type="math/tex">\theta</script></strong> that we <span style="color: purple">use to <strong>learn <script type="math/tex">\phi</script></strong> from a <span style="color: purple"><em><strong>broad class of functions</strong></em></span></span>, and <strong>parameters <script type="math/tex">\boldsymbol{w}</script></strong> that <span style="color: purple"><strong>map</strong> from <em><script type="math/tex">\phi(\boldsymbol{x})</script></em> to the <em>desired output</em></span>.<br />
-  This is an example of a <strong>deep FNN</strong>, with <script type="math/tex">\phi</script> defining a <strong>hidden layer</strong>.</p>
+            <p>We now have <strong>parameters \(\theta\)</strong> that we <span style="color: purple">use to <strong>learn \(\phi\)</strong> from a <span style="color: purple"><em><strong>broad class of functions</strong></em></span></span>, and <strong>parameters \(\boldsymbol{w}\)</strong> that <span style="color: purple"><strong>map</strong> from <em>\(\phi(\boldsymbol{x})\)</em> to the <em>desired output</em></span>.<br />
+  This is an example of a <strong>deep FNN</strong>, with \(\phi\) defining a <strong>hidden layer</strong>.</p>
           </li>
           <li>This approach is the <em>only one</em> of the three that <em>gives up</em> on the <em>convexity</em> of the training problem, but the <em>benefits outweigh the harms</em>.</li>
-          <li>In this approach, we parametrize the representation as <script type="math/tex">\phi(\boldsymbol{x}; \theta)</script> and use the optimization algorithm to find the <script type="math/tex">\theta</script> that corresponds to a good representation.</li>
+          <li>In this approach, we parametrize the representation as \(\phi(\boldsymbol{x}; \theta)\) and use the optimization algorithm to find the \(\theta\) that corresponds to a good representation.</li>
           <li><strong>Advantages:</strong>
             <ul>
               <li><strong>Capturing the benefit of the <em>first</em> approach</strong>:<br />
-  by being highly generic — we do so by using a very broad family <script type="math/tex">\phi(\boldsymbol{x};\theta)</script>.</li>
+  by being highly generic — we do so by using a very broad family \(\phi(\boldsymbol{x};\theta)\).</li>
               <li><strong>Capturing the benefit of the <em>second</em> approach</strong>:<br />
-  Human practitioners can encode their knowledge to help generalization by designing families <script type="math/tex">\phi(\boldsymbol{x}; \theta)</script> that they expect will perform well.<br />
+  Human practitioners can encode their knowledge to help generalization by designing families \(\phi(\boldsymbol{x}; \theta)\) that they expect will perform well.<br />
   The <strong>advantage</strong> is that the human designer only needs to find the right general function family rather than finding precisely the right function.</li>
             </ul>
           </li>
@@ -151,7 +151,7 @@
     <p>Thus, we can <em>motivate</em> <strong>Deep NNs</strong> as a way to do <span style="color: goldenrod"><strong>automatic, <em>non-linear</em> feature extraction</strong></span> from the <strong>inputs</strong>.</p>
 
     <p>This general principle of <span style="color: purple">improving models by learning features</span> extends beyond the feedforward networks to all models in deep learning.<br />
- FFNs are the application of this principle to learning <strong>deterministic mappings</strong> from <script type="math/tex">\boldsymbol{x}</script> to <script type="math/tex">\boldsymbol{y}</script> that <strong>lack</strong> <em><strong>feedback connections</strong></em>.<br />
+ FFNs are the application of this principle to learning <strong>deterministic mappings</strong> from \(\boldsymbol{x}\) to \(\boldsymbol{y}\) that <strong>lack</strong> <em><strong>feedback connections</strong></em>.<br />
  Other models, apply these principles to learning <strong>stochastic mappings</strong>, <strong>functions with feedback</strong>, and <strong>probability distributions</strong> <em>over a single vector</em>.</p>
 
     <p id="lst-p"><strong style="color: red">Advantage and Comparison of Deep NNs:</strong></p>
@@ -214,15 +214,15 @@
  The <em><strong>cost function</strong></em> is, simply, the <em><strong>negative log-likelihood</strong></em>.<br />
  Equivalently, the <em><strong>cross-entropy</strong></em> <em>between</em> the <em>training data</em> and the <em>model distribution</em>.</p>
 
-    <script type="math/tex; mode=display">J(\boldsymbol{\theta})=-\mathbb{E}_{\mathbf{x}, \mathbf{y} \sim \hat{p}_{\text {data }}} \log p_{\text {model }}(\boldsymbol{y} | \boldsymbol{x})  \tag{6.12}</script>
+\[J(\boldsymbol{\theta})=-\mathbb{E}_{\mathbf{x}, \mathbf{y} \sim \hat{p}_{\text {data }}} \log p_{\text {model }}(\boldsymbol{y} | \boldsymbol{x})  \tag{6.12}\]
 
     <ul>
-      <li>The specific form of the cost function changes from model to model, depending on the specific form of <script type="math/tex">\log p_{\text {model}}</script>.</li>
+      <li>The specific form of the cost function changes from model to model, depending on the specific form of \(\log p_{\text {model}}\).</li>
       <li>The expansion of the above equation typically yields some terms that do not depend on the model parameters and may be discarded.</li>
     </ul>
 
     <p><strong>Maximum Likelihood and MSE:</strong><br />
- The equivalence between <em>maximum likelihood estimation with an output distribution</em> and <em>minimization of mean squared error</em> holds not just for a linear model, but in fact, the equivalence holds regardless of the <script type="math/tex">f(\boldsymbol{x} ; \boldsymbol{\theta})</script> used to predict the mean of the Gaussian.<br />
+ The equivalence between <em>maximum likelihood estimation with an output distribution</em> and <em>minimization of mean squared error</em> holds not just for a linear model, but in fact, the equivalence holds regardless of the \(f(\boldsymbol{x} ; \boldsymbol{\theta})\) used to predict the mean of the Gaussian.<br />
  <button class="showText" value="show" onclick="showTextPopHide(event);">Example: MSE from MLE with gaussian distr.</button>
      <img src="/main_files/dl_book/22.png" alt="img" hidden="" /></p>
 
@@ -233,7 +233,7 @@
 
     <p><strong>Why derive the cost function from Maximum Likelihood?</strong><br />
  It removes the burden of designing cost functions for each model.<br />
- Specifying a model <script type="math/tex">p(\boldsymbol{y} | \boldsymbol{x})</script> automatically determines a cost function <script type="math/tex">\log p(\boldsymbol{y} | \boldsymbol{x})</script>.</p>
+ Specifying a model \(p(\boldsymbol{y} | \boldsymbol{x})\) automatically determines a cost function \(\log p(\boldsymbol{y} | \boldsymbol{x})\).</p>
 
     <p><strong>Cost Function Design - Desirable Properties:</strong></p>
     <ul>
@@ -246,18 +246,18 @@
      <img src="/main_files/dl_book/11.png" alt="img" hidden="" /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Learning Conditional Statistics:</strong><br />
- Instead of learning a full probability distribution <script type="math/tex">p(\boldsymbol{y} | \boldsymbol{x} ; \boldsymbol{\theta})</script>, we often want to learn just one conditional statistic of <script type="math/tex">\boldsymbol{y}</script> given <script type="math/tex">\boldsymbol{x}</script>.
+ Instead of learning a full probability distribution \(p(\boldsymbol{y} | \boldsymbol{x} ; \boldsymbol{\theta})\), we often want to learn just one conditional statistic of \(\boldsymbol{y}\) given \(\boldsymbol{x}\).
     <blockquote>
-      <p>For example, we may have a predictor <script type="math/tex">f(\boldsymbol{x} ; \boldsymbol{\theta})</script>  that we wish to employ to predict the mean of <script type="math/tex">\boldsymbol{y}</script>.</p>
+      <p>For example, we may have a predictor \(f(\boldsymbol{x} ; \boldsymbol{\theta})\)  that we wish to employ to predict the mean of \(\boldsymbol{y}\).</p>
     </blockquote>
 
     <p><strong>The Cost Function as a <em>Functional:</em></strong><br />
- If we use a sufficiently powerful neural network, we can think of the neural network as being able to represent any function <script type="math/tex">f</script> from a wide class of functions, with this class being limited only by features such as continuity and boundedness rather than by having a specific parametric form. From this point of view, we can view the cost function as being a <strong>functional</strong> rather than just a function.<br />
+ If we use a sufficiently powerful neural network, we can think of the neural network as being able to represent any function \(f\) from a wide class of functions, with this class being limited only by features such as continuity and boundedness rather than by having a specific parametric form. From this point of view, we can view the cost function as being a <strong>functional</strong> rather than just a function.<br />
  A <strong>Functional</strong> is a mapping from functions to real numbers.<br />
  We can thus think of <em>learning as choosing a function</em> rather than merely choosing a set of parameters.<br />
  We can design our cost functional to have its minimum occur at some specific function we desire.</p>
     <blockquote>
-      <p>For example, we can design the cost functional to have its minimum lie on the function that maps <script type="math/tex">\boldsymbol{x}</script>  to the expected value of <script type="math/tex">\boldsymbol{y}</script> given <script type="math/tex">\boldsymbol{x}</script>.</p>
+      <p>For example, we can design the cost functional to have its minimum lie on the function that maps \(\boldsymbol{x}\)  to the expected value of \(\boldsymbol{y}\) given \(\boldsymbol{x}\).</p>
     </blockquote>
 
     <p>Solving an optimization problem with respect to a function requires a mathematical tool called <strong>calculus of variations</strong>, described in <em>section 19.4.2.</em></p>
@@ -270,14 +270,14 @@
         <p>yields</p>
         <p>$${\displaystyle f^{\ast}(\boldsymbol{x})=\mathbb{E}_{\mathbf{y} \sim p_{\text {data }}(\boldsymbol{y} | \boldsymbol{x})}[\boldsymbol{y}] \tag{6.15}}$$</p>
         <p>so long as this function lies within the class we optimize over.<br />
- In words: if we could train on infinitely many samples from the true data distribution, <em><strong>minimizing the MSE cost function</strong></em> would give a <strong><em>function</em> that <em>predicts</em> the <em>mean of <script type="math/tex">\boldsymbol{y}</script></em> for <em>each</em> value of <em><script type="math/tex">\boldsymbol{x}</script></em></strong>.</p>
+ In words: if we could train on infinitely many samples from the true data distribution, <em><strong>minimizing the MSE cost function</strong></em> would give a <strong><em>function</em> that <em>predicts</em> the <em>mean of \(\boldsymbol{y}\)</em> for <em>each</em> value of <em>\(\boldsymbol{x}\)</em></strong>.</p>
         <blockquote>
           <p>Different cost functions give different statistics.</p>
         </blockquote>
       </li>
       <li>Solving the optimization problem (commonly known as <strong>Mean Absolute Error</strong>)
         <p>$$f^{\ast}=\underset{f}{\arg \min } \: \underset{\mathbf{x}, \mathbf{y} \sim p_{\mathrm{data}}}{\mathbb{E}}\|\boldsymbol{y}-f(\boldsymbol{x})\|_ {1} \tag{6.16}$$</p>
-        <p>yields a <strong><em>function</em> that predicts the <em>median</em> value of <em><script type="math/tex">\boldsymbol{y}</script></em> for each <script type="math/tex">\boldsymbol{x}</script></strong>, as long as such a function may be described by the family of functions we optimize over.</p>
+        <p>yields a <strong><em>function</em> that predicts the <em>median</em> value of <em>\(\boldsymbol{y}\)</em> for each \(\boldsymbol{x}\)</strong>, as long as such a function may be described by the family of functions we optimize over.</p>
       </li>
     </ol>
 
@@ -288,7 +288,7 @@
     <p><strong>Drawbacks of MSE and MAE (mean absolute error):</strong><br />
  They often lead to poor results when used with <em><strong>gradient-based</strong></em> optimization.<br />
  Some output units that saturate produce very small gradients when combined with these cost functions.<br />
- This is one reason that the <strong>cross-entropy</strong> cost function is <em>more popular</em> than <strong>MSE</strong> or <strong>MAE</strong>, even when it is not necessary to estimate an entire distribution <script type="math/tex">p(\boldsymbol{y} | \boldsymbol{x})</script>.</p>
+ This is one reason that the <strong>cross-entropy</strong> cost function is <em>more popular</em> than <strong>MSE</strong> or <strong>MAE</strong>, even when it is not necessary to estimate an entire distribution \(p(\boldsymbol{y} | \boldsymbol{x})\).</p>
   </li>
 </ol>
 
@@ -312,13 +312,13 @@
  Thus, the choice of <em>how to represent the output</em> then determines the form of the cross-entropy function.</p>
 
     <p>Throughout this analysis, we suppose that:<br />
- <em>The FNN provides a set of hidden features defined by</em> <script type="math/tex">\boldsymbol{h}=f(\boldsymbol{x} ; \boldsymbol{\theta})</script>.<br />
+ <em>The FNN provides a set of hidden features defined by</em> \(\boldsymbol{h}=f(\boldsymbol{x} ; \boldsymbol{\theta})\).<br />
  The <em>role of the output layer</em>, thus, is to <em>provide some additional transformation from the features to complete the task</em> the FNN is tasked with.</p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Linear Units:</strong><br />
  <strong>Linear Units</strong> are a simple kind of output units, based on an <em>affine transformation</em> with no non-linearity.<br />
- <strong>Mathematically,</strong> given features <script type="math/tex">\boldsymbol{h}</script>, a layer of linear output units produces a vector <script type="math/tex">\hat{\boldsymbol{y}}=\boldsymbol{W}^{\top} \boldsymbol{h}+\boldsymbol{b}</script>.</p>
+ <strong>Mathematically,</strong> given features \(\boldsymbol{h}\), a layer of linear output units produces a vector \(\hat{\boldsymbol{y}}=\boldsymbol{W}^{\top} \boldsymbol{h}+\boldsymbol{b}\).</p>
 
     <p><strong>Application:</strong> used for <em><strong>Gaussian Output Distributions</strong></em>.<br />
  Linear output layers are often used to <strong>produce the mean of a conditional Gaussian Distributions</strong>:</p>
@@ -348,10 +348,10 @@
     <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Sigmoid Units:</strong><br />
  <strong>Sigmoid Units</strong></p>
 
-    <p><strong>Binary Classification:</strong> is a classification problem over two classes. It requires predicting the value of a <em>binary variable <script type="math/tex">y</script></em>. It is one of many tasks requiring that.<br />
- <strong>The MLE approach</strong> is to define a <em><strong>Bernoulli distribution</strong></em> over <script type="math/tex">y</script> conditioned on <script type="math/tex">\boldsymbol{x}</script>.<br />
+    <p><strong>Binary Classification:</strong> is a classification problem over two classes. It requires predicting the value of a <em>binary variable \(y\)</em>. It is one of many tasks requiring that.<br />
+ <strong>The MLE approach</strong> is to define a <em><strong>Bernoulli distribution</strong></em> over \(y\) conditioned on \(\boldsymbol{x}\).<br />
  A <strong>Bernoulli distribution</strong> is defined by just <em>a single</em> number.<br />
- The Neural Network needs to predict only <script type="math/tex">P(y=1 \vert \boldsymbol{x})</script>.</p>
+ The Neural Network needs to predict only \(P(y=1 \vert \boldsymbol{x})\).</p>
   </li>
 </ol>
 
@@ -369,13 +369,13 @@
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

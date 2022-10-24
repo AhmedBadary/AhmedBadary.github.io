@@ -4,6 +4,63 @@ title: 'Ahmad Badary'
 tagline: 'Main Page'
 ---
 
+
+Resources:
+{: #lst-p}
+* [Andrew NG Course](https://www.youtube.com/playlist?list=PLLssT5z_DsK-h9vYZkQkYNWcItqhlRJLN)  
+* [answer (Blog)](link)  
+
+
+
+Interesting Links:
+{: #lst-p}
+* [Questions (prep_q)](/work_files/research/prep_qs)  
+* [Answers (answers)](/work_files/research/answers)  
+* [Answers Hidden (answers_hidden)](/work_files/research/answers_hidden)  
+
+<br />
+
+* [Questions Today](/work_files/research/prep_qs_today)  
+* [Answers Today](/work_files/research/answers_today)  
+* [qs2(work_files/research/qs2)      
+* [ans2](/work_files/research/ans2)  
+
+<br />
+
+* [Cracking the Coding Interview <br /> file:///Users/ahmadbadary/github/AhmedBadaryExtra.github.io/Reading/CRACKING%20the%20CODING%20INTERVIEW.pdf](file:///Users/ahmadbadary/github/AhmedBadaryExtra.github.io/Reading/CRACKING%20the%20CODING%20INTERVIEW.pdf)  
+* [Algorithms (algos)](/work_files/research/algos)  
+* [Tech Interviews Cheatsheet (github)](https://github.com/TSiege/Tech-Interview-Cheat-Sheet)  
+* [RL](/work_files/research/rl)  
+* [Sols <br /> file:///Users/ahmadbadary/github/AhmedBadaryExtra.github.io/content/research/interviews/sols.md](file:///Users/ahmadbadary/github/AhmedBadaryExtra.github.io/content/research/interviews/sols.md)  
+* [Interview Suki \| file:///Users/ahmadbadary/github/AhmedBadaryExtra.github.io/content/research/interviews/interview_suki.md](file:///Users/ahmadbadary/github/AhmedBadaryExtra.github.io/content/research/interviews/interview_suki.md)  
+* [Interview Qs (ML) \| file:///Users/ahmadbadary/github/AhmedBadaryExtra.github.io/content/research/interviews/interview_qs.txt](file:///Users/ahmadbadary/github/AhmedBadaryExtra.github.io/content/research/interviews/interview_qs.txt)  
+* [Optimization Problems](/work_files/research/opt_probs)  
+* [Super VIP ML CheatSheet \| file:///Users/ahmadbadary/github/AhmedBadaryExtra.github.io/Reading/super-cheatsheet-machine-learning.pdf](file:///Users/ahmadbadary/github/AhmedBadaryExtra.github.io/Reading/super-cheatsheet-machine-learning.pdf)  
+
+
+
+
+
+
+Quick Links:
+{: #lst-p}
+* [Probability Theory](/work_files/research/dl/theory/probability)
+* [Statistics](/work_files/research/dl/stat_prob/stats)  
+* [Information Theory](/work_files/research/dl/theory/infothry)  
+
+* [Essence of Linear Algebra](/work_files/research/math/la/linalg)
+* [Linear Algebra: Basics and Definitions](/work_files/research/conv_opt/2_11)
+* [Linear Algebra Resources (dir)](/work_files/research/math/la)  
+
+* [Calculus](/work_files/school/128a/1_1)  
+* [Matrix Calculus (DL-book)](/work_files/research/dl/theory/dl_book_pt1#bodyContents20)  
+
+* [Topology and Smooth Manifolds](/work_files/research/math/manifolds)  
+
+* [Machine Learning Research](/work_files/research/ml_research)  
+* [Cheatsheets](/work_files/research/dl/practical/cheat_sheets)  
+
+
 * __Core__{: style="color: red"}  
     * [Concepts](/concepts_)  
     * [Machine Learning Research](/work_files/research/ml_research)  
@@ -38,14 +95,15 @@ tagline: 'Main Page'
 * __Theory__{: style="color: red"}  
     * [Elements of Machine Learning - DLBook Ch.5](/work_files/research/dl/theory/dl_book_pt1)
     * [Basics of Deep Learning - DLBook Ch.6](/work_files/research/dl/theory/dl_book_pt2)
-    * [Regularization - DLBook Ch.7](/work_files/research/dl/theory/dl_book_regularization)
+    * [Regularization - DLBook Ch.7](/work_files/research/dl/theory/regularization)
     * [ML (Statistical) Models](/work_files/research/theory/models)
     * [Statistical Learning Theory](/work_files/research/dl/theory/stat_lern_thry)
     * [The Learning Problem (Caltech)](/work_files/research/dl/theory/lern_prob)
     * [Information Theory](/work_files/research/dl/theory/infothry)
     * [Probability Theory](/work_files/research/dl/theory/probability)
+    * [Statistics](/work_files/research/dl/stat_prob/stats)
     * [Manifold Learning](/work_files/research/dl/theory/manifold_learning)
-    * [Computational Learning Theory (TBD)](/work_files/research/dl/theory/learning_theory)
+    * [Computational Learning Theory (TBD)](/work_files/research/dl/theory/comp_learning_theory)
     * [Stochastic Processes](/work_files/research/dl/theory/stochastic_processes)  
     * [Learning for Machines (Concepts)](/work_files/research/dl/theory/learning)  
     * [The Theory of Learning](/work_files/research/dl/theory/theory_of_learning)  
@@ -54,8 +112,9 @@ tagline: 'Main Page'
     * [Learning Summary](/work_files/research/dl/theory/learning_summary)  
     * [Model Compression](/work_files/research/dl/theory/model_compression)  
     * [Uncertainty in Neural Networks](/work_files/research/dl/theory/uncertainty_nns)  
+    * [Estimation](/work_files/research/ml/estimation)  
 * __Practical__{: style="color: red"}  
-    * [Practical Concepts in Machine Learning](/work_files/research/dl/practical/practical_concepts)  
+    * [Practical Concepts in Machine Learning](/work_files/research/dl/practical/practical_concepts)
     * [CheatSheets](/work_files/research/dl/practical/cheat_sheets)  
     * [Practical NLP](/work_files/research/dl/practical/practical_nlp)  
 * __Machine Learning (ML)__{: style="color: red"}  
@@ -68,11 +127,11 @@ tagline: 'Main Page'
     * [The Naive Bayes Classifier](/work_files/research/ml/naive_bayes)  
     * [Principal Component Analysis (PCA)](/work_files/research/conv_opt/pca)  
     * [Regression](/work_files/research/ml/regrs)  
-    * [The Centroid Method](/work_files/research/ml/1_1)
-    * [The Perceptron](/work_files/research/ml/2)
-    * [Maximum Margin Classifiers](/work_files/research/ml/3)
-    * [(Hard-Margin) Support Vector Machines (SVM)](/work_files/research/ml/4)
-    * [Support Vector Machines (SVM)](/work_files/research/ml/5)
+    * [The Centroid Method](/work_files/research/ml/1/1)
+    * [The Perceptron](/work_files/research/ml/1/2)
+    * [Maximum Margin Classifiers](/work_files/research/ml/1/3)
+    * [(Hard-Margin) Support Vector Machines (SVM)](/work_files/research/ml/1/4)
+    * [Support Vector Machines (SVM)](/work_files/research/ml/1/5)
 * __Computer Vision (CV)__{: style="color: red"}  
     * [Convolutional Neural Networks (CNNs)](/work_files/research/dl/cnnx)
     * [Image Classification and Deep Learning](/work_files/research/dl/conv_net_vis_recog)
@@ -113,6 +172,7 @@ tagline: 'Main Page'
     * [Sentiment Analysis](/work_files/research/nlp/sent_anlys)
     * [Information Extraction](/work_files/research/nlp/info_extr)
 * __Math__{: style="color: red"}  
+    * [Statistics](/work_files/research/dl/stat_prob/stats)  
 * __Misc__{: style="color: red"}  
     * [Reinforcement Learning (RL)](/work_files/research/rl)  
 * __Extra__{: style="color: red"}  
@@ -166,6 +226,7 @@ tagline: 'Main Page'
 
 ***
 
+
 ## Interesting Reads
 
 * [Statistical Learning Theory](/work_files/research/dl/theory/stat_lern_thry)
@@ -175,7 +236,9 @@ tagline: 'Main Page'
 * [The Index Fund Tracking Problem](/work_files/research/conv_opt/hw/iftp)
 * [Principle Component Analysis (PCA)](/work_files/research/conv_opt/pca)
 * [Probability Theory Review](/work_files/research/dl/theory/probability)
- -->
+
+-->
+
 
 <div id="home">
   <h1></h1>

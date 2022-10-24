@@ -78,6 +78,12 @@
   <ul class="TOC4">
     <li><a href="#content4">The Pooling Layer</a></li>
   </ul>
+  <ul class="TOC5">
+    <li><a href="#content5">Convolution and Pooling as an Infinitely Strong Prior</a></li>
+  </ul>
+  <ul class="TOC6">
+    <li><a href="#content6">Variants of the Basic Convolution Function and Structured Outputs</a></li>
+  </ul>
 
 </div>
 
@@ -88,6 +94,14 @@
 <a href="/work_files/research/dl/nlp/cnnsNnlp">CNNs in NLP</a><br />
 <a href="/work_files/research/dl/arcts">CNNs Architectures</a><br />
 <a href="https://medium.com/inveterate-learner/deep-learning-book-chapter-9-convolutional-networks-45e43bfc718d">Convnet Ch.9 Summary (blog)</a></p>
+
+<ul>
+  <li>
+    <p><a href="https://arxiv.org/pdf/1601.04920.pdf">Understanding Deep Convolutional Networks (Paper!!)</a></p>
+  </li>
+  <li><a href="https://distill.pub/2019/computing-receptive-fields/">Computing Receptive Fields in CNNs (Blog)</a></li>
+  <li><a href="https://poloclub.github.io/cnn-explainer/">CNN Explainer - CNNs Visualized in your browser! (Blog!!)</a></li>
+</ul>
 
 <h2 id="content1">Introduction</h2>
 
@@ -121,7 +135,7 @@
 
         <blockquote>
           <p>These improvements in efficiency are usually quite large.<br />
- If there are <script type="math/tex">m</script> inputs and <script type="math/tex">n</script> outputs, then matrix multiplication requires <script type="math/tex">m \times n</script> parameters, and the algorithms used in practice have <script type="math/tex">\mathcal{O}(m \times n)</script> runtime (per example). If we limit the number of connections each output may have to <script type="math/tex">k</script>, then the sparsely connected approach requires only <script type="math/tex">k \times n</script> parameters and <script type="math/tex">\mathcal{O}(k \times n)</script> runtime.</p>
+ If there are \(m\) inputs and \(n\) outputs, then matrix multiplication requires \(m \times n\) parameters, and the algorithms used in practice have \(\mathcal{O}(m \times n)\) runtime (per example). If we limit the number of connections each output may have to \(k\), then the sparsely connected approach requires only \(k \times n\) parameters and \(\mathcal{O}(k \times n)\) runtime.</p>
         </blockquote>
 
         <p><button class="showText" value="show" onclick="showTextPopHide(event);">Figure: Sparse Connectivity from Below</button>
@@ -137,8 +151,8 @@
         <ul>
           <li>This means that rather than learning a separate set of parameters for every location, we <em>learn only one set of parameters</em>.
             <ul>
-              <li>This does not affect the runtime of forward propagation—it is still <script type="math/tex">\mathcal{O}(k \times n)</script></li>
-              <li>But it does further reduce the storage requirements of the model to <script type="math/tex">k</script> parameters (<script type="math/tex">k</script> is usually several orders of magnitude smaller than <script type="math/tex">m</script>)</li>
+              <li>This does not affect the runtime of forward propagation—it is still \(\mathcal{O}(k \times n)\)</li>
+              <li>But it does further reduce the storage requirements of the model to \(k\) parameters (\(k\) is usually several orders of magnitude smaller than \(m\))</li>
             </ul>
           </li>
         </ul>
@@ -151,7 +165,7 @@
  For convolutions, the particular form of parameter sharing causes the layer to have a property called <strong>equivariance to translation</strong>.
         <blockquote>
           <p>A function is <strong>equivariant</strong> means that if the input changes, the output changes in the same way.<br />
-     Specifically, a function <script type="math/tex">f(x)</script> is equivariant to a function <script type="math/tex">g</script> if <script type="math/tex">f(g(x)) = g(f(x))</script>.</p>
+     Specifically, a function \(f(x)\) is equivariant to a function \(g\) if \(f(g(x)) = g(f(x))\).</p>
         </blockquote>
 
         <p>Thus, if we move the object in the input, its representation will move the same amount in the output.</p>
@@ -168,6 +182,10 @@
     </ol>
 
     <p>Finally, the convolution provides a means for working with <strong>inputs of variable sizes</strong> (i.e. data that cannot be processed by neural networks defined by matrix multiplication with a fixed-shape matrix).</p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">FC Mat-Mul as a small kernel</button>
+ <img src="/main_files/gifs/nn_matmul.gif" alt="img" width="70%" hidden="" /><br />
+ <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Inspiration Model:</strong><br />
  Convolutional networks were inspired by biological processes in which the connectivity pattern between neurons is inspired by the organization of the animal visual cortex.<br />
@@ -232,10 +250,10 @@
         <ul>
           <li><strong>INPUT:</strong> [32x32x3] will hold the raw pixel values of the image, in this case an image of width 32, height 32, and with three color channels R,G,B.</li>
           <li><strong>CONV-Layer</strong> will compute the output of neurons that are connected to local regions in the input, each computing a dot product between their weights and a small region they are connected to in the input volume.  <br />
-This may result in volume such as [<script type="math/tex">32\times32\times12</script>] if we decided to use 12 filters.</li>
-          <li><strong>RELU-Layer:</strong>  will apply an element-wise activation function, thresholding at zero. This leaves the size of the volume unchanged ([<script type="math/tex">32\times32\times12</script>]).</li>
-          <li><strong>POOL-Layer:</strong> will perform a down-sampling operation along the spatial dimensions (width, height), resulting in volume such as [<script type="math/tex">16\times16\times12</script>].</li>
-          <li><strong>Fully-Connected:</strong> will compute the class scores, resulting in volume of size [<script type="math/tex">1\times1\times10</script>], where each of the 10 numbers correspond to a class score, such as among the 10 categories of CIFAR-10.<br />
+This may result in volume such as [\(32\times32\times12\)] if we decided to use 12 filters.</li>
+          <li><strong>RELU-Layer:</strong>  will apply an element-wise activation function, thresholding at zero. This leaves the size of the volume unchanged ([\(32\times32\times12\)]).</li>
+          <li><strong>POOL-Layer:</strong> will perform a down-sampling operation along the spatial dimensions (width, height), resulting in volume such as [\(16\times16\times12\)].</li>
+          <li><strong>Fully-Connected:</strong> will compute the class scores, resulting in volume of size [\(1\times1\times10\)], where each of the 10 numbers correspond to a class score, such as among the 10 categories of CIFAR-10.<br />
 As with ordinary Neural Networks and as the name implies, each neuron in this layer will be connected to all the numbers in the previous volume.</li>
         </ul>
       </dd>
@@ -283,31 +301,114 @@ As with ordinary Neural Networks and as the name implies, each neuron in this la
 
 <h2 id="content3">The Convolutional Layer</h2>
 
+<p><img src="https://cdn.mathpix.com/snip/images/7aQe47vYUKI3QSjMCypArdV-ubxClScrkNIpzVxH2go.original.fullsize.png" alt="img" width="50%" /></p>
+
+<ul>
+  <li><a href="https://github.com/vdumoulin/conv_arithmetic">Convolution Arithmetic Visualization (Blog!)</a></li>
+</ul>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Convolution Operation Arithmetic Visualized</button></p>
+<div hidden="">
+  <p><em>N.B.: Blue maps are inputs, and cyan maps are outputs.</em></p>
+  <table style="width:100%; table-layout:fixed;">
+  <tr>
+    <td>No padding, no strides</td>
+    <td>Arbitrary padding, no strides</td>
+    <td>Half padding, no strides</td>
+    <td>Full padding, no strides</td>
+  </tr>
+  <tr>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/no_padding_no_strides.gif" /></td>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/arbitrary_padding_no_strides.gif" /></td>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/same_padding_no_strides.gif" /></td>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/full_padding_no_strides.gif" /></td>
+  </tr>
+  <tr>
+    <td>No padding, strides</td>
+    <td>Padding, strides</td>
+    <td>Padding, strides (odd)</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/no_padding_strides.gif" /></td>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/padding_strides.gif" /></td>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/padding_strides_odd.gif" /></td>
+    <td></td>
+  </tr>
+</table>
+</div>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);"><strong>Transposed</strong> Convolution Operation Arithmetic Visualized</button></p>
+<div hidden="">
+  <table style="width:100%; table-layout:fixed;">
+  <tr>
+    <td>No padding, no strides, transposed</td>
+    <td>Arbitrary padding, no strides, transposed</td>
+    <td>Half padding, no strides, transposed</td>
+    <td>Full padding, no strides, transposed</td>
+  </tr>
+  <tr>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/no_padding_no_strides_transposed.gif" /></td>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/arbitrary_padding_no_strides_transposed.gif" /></td>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/same_padding_no_strides_transposed.gif" /></td>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/full_padding_no_strides_transposed.gif" /></td>
+  </tr>
+  <tr>
+    <td>No padding, strides, transposed</td>
+    <td>Padding, strides, transposed</td>
+    <td>Padding, strides, transposed (odd)</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/no_padding_strides_transposed.gif" /></td>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/padding_strides_transposed.gif" /></td>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/padding_strides_odd_transposed.gif" /></td>
+    <td></td>
+  </tr>
+</table>
+</div>
+
+<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);"><strong>Dilated</strong> Convolution Operation Arithmetic Visualized</button></p>
+<div hidden="">
+  <table style="width:25%; table-layout:fixed;">
+  <tr>
+    <td>No padding, no stride, dilation</td>
+  </tr>
+  <tr>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/dilation.gif" /></td>
+  </tr>
+</table>
+</div>
+
 <ol>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Convolutions:</strong> <br />
  In its most general form, the convolution is a <strong>Linear Operation</strong> on two functions of real-valued arguments.</p>
 
-    <p>Mathematically, a <strong>Convolution</strong> is a mathematical operation on two functions (<script type="math/tex">f</script> and <script type="math/tex">g</script>) to produce a third function, that is typically viewed as a modified version of one of the original functions, giving the integral of the point-wise multiplication of the two functions as a function of the amount that one of the original functions is translated.<br />
+    <p>Mathematically, a <strong>Convolution</strong> is a mathematical operation on two functions (\(f\) and \(g\)) to produce a third function, that is typically viewed as a modified version of one of the original functions, giving the integral of the point-wise multiplication of the two functions as a function of the amount that one of the original functions is translated.<br />
  The convolution could be thought of as a <strong>weighting function</strong> (e.g. for taking the weighted average of a series of numbers/function-outputs).</p>
 
-    <p>The convolution of the <strong>continuous</strong> functions <script type="math/tex">f</script> and <script type="math/tex">g</script>:</p>
+    <p>The convolution of the <strong>continuous</strong> functions \(f\) and \(g\):</p>
     <p>$${\displaystyle {\begin{aligned}(f * g)(t)&amp;\,{\stackrel {\mathrm {def} }{=}}\ \int _{-\infty }^{\infty }f(\tau )g(t-\tau )\,d\tau \\&amp;=\int_{-\infty }^{\infty }f(t-\tau )g(\tau )\,d\tau .\end{aligned}}}$$</p>
 
     <p>The convolution of the <strong>discreet</strong> functions f and g:</p>
     <p>$${\displaystyle {\begin{aligned}(f * g)[n]&amp;=\sum_{m=-\infty }^{\infty }f[m]g[n-m]\\&amp;=\sum_{m=-\infty }^{\infty }f[n-m]g[m].\end{aligned}}} (commutativity)$$</p>
-    <p>In this notation, we refer to:</p>
+    <p id="lst-p">In this notation, we refer to:</p>
     <ul>
-      <li>The function <script type="math/tex">f</script> as the <strong>Input</strong></li>
-      <li>The function <script type="math/tex">g</script> as the <strong>Kernel/Filter</strong></li>
+      <li>The function \(f\) as the <strong>Input</strong></li>
+      <li>The function \(g\) as the <strong>Kernel/Filter</strong></li>
       <li>The output of the convolution as the <strong>Feature Map</strong></li>
     </ul>
 
     <p><strong>Commutativity:</strong><br />
- Can be achieved by flipping the kernel with respect to the input; in the sense that as increases, the index into the <script type="math/tex">m</script> input increases, but the index into the kernel decreases.<br />
+ <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">On Commutativity</button></p>
+    <div hidden="">
+      <p>Can be achieved by flipping the kernel with respect to the input; in the sense that as increases, the index into the \(m\) input increases, but the index into the kernel decreases.<br />
  While the commutative property is useful for writing proofs, it is not usually an important property of a neural network implementation.<br />
  Moreover, in a CNN, the convolution is used simultaneously with other functions, and the combination of these functions <strong>does not commute</strong> regardless of whether the convolution operation flips its kernel or not.<br />
- Because convolutional networks usually use multichannel convolution, the linear operations they are based on are not guaranteed to be commutative, even if kernel flipping is used. These multichannel operations are only commutative if each operation has the same number of output channels as input channels.</p>
+ Because Convolutional networks usually use multichannel convolution, the linear operations they are based on are not guaranteed to be commutative, even if kernel flipping is used. These multichannel operations are only commutative if each operation has the same number of output channels as input channels.</p>
+    </div>
+    <p><br /></p>
   </li>
   <li>
     <dl>
@@ -315,11 +416,12 @@ As with ordinary Neural Networks and as the name implies, each neuron in this la
       <dd>Cross-Correlation is a measure of similarity of two series as a function of the displacement of one relative to the other.</dd>
       <dd>The <strong>continuous</strong> cross-correlation on continuous functions f and g:</dd>
       <dd>
-        <script type="math/tex; mode=display">(f\star g)(\tau )\ {\stackrel {\mathrm {def} }{=}}\int _{-\infty }^{\infty }f^{*}(t)\ g(t+\tau )\,dt,</script>
+\[(f\star g)(\tau )\ {\stackrel {\mathrm {def} }{=}}\int_{-\infty }^{\infty }f^{*}(t)\ g(t+\tau )\,dt,\]
       </dd>
       <dd>The <strong>discrete</strong> cross-correlation on discreet functions f and g:</dd>
       <dd>
-        <script type="math/tex; mode=display">(f\star g)[n]\ {\stackrel {\mathrm {def} }{=}}\sum _{m=-\infty }^{\infty }f^{*}[m]\ g[m+n].</script>
+        <p>$$(f\star g)[n]\ {\stackrel {\mathrm {def} }{=}}\sum _{m=-\infty }^{\infty }f^{*}[m]\ g[m+n].$$</p>
+        <p><br /></p>
       </dd>
     </dl>
   </li>
@@ -327,27 +429,30 @@ As with ordinary Neural Networks and as the name implies, each neuron in this la
     <ul>
       <li>Convolution is similar to cross-correlation.</li>
       <li><em>For discrete real valued signals</em>, they differ only in a time reversal in one of the signals.</li>
-      <li><em>For continuous signals</em>, the cross-correlation operator is the <strong>adjoint operator</strong> of the convolution operator.</li>
+      <li><em>For continuous signals</em>, the cross-correlation operator is the <strong>adjoint operator</strong> of the convolution operator.<br />
+ <br /></li>
     </ul>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">CNNs, Convolutions, and Cross-Correlation:</strong> <br />
  The term Convolution in the name “Convolution Neural Network” is unfortunately a <strong>misnomer</strong>.<br />
  CNNs actually <strong>use Cross-Correlation</strong> instead as their similarity operator.<br />
- The term ‘convolution’ has stuck in the name by convention.</p>
+ The term ‘convolution’ has stuck in the name by convention.<br />
+ <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents315">Convolution in DL:</strong> <br />
 The Convolution operation:
     <p>$$s(t)=(x * w)(t)=\sum_{a=-\infty}^{\infty} x(a) w(t-a)$$</p>
-    <p>we usually assume that these functions are zero everywhere but in the finite set of points for which we store the values.</p>
+    <p>we usually assume that these functions are zero everywhere but in the finite set of points for which we store the values.<br />
+<br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents316">Convolution Over Two Axis:</strong> <br />
-If we use a two-dimensional image <script type="math/tex">I</script> as our input, we probably also want to use a two-dimensional kernel <script type="math/tex">K</script>:
+If we use a 2D image \(I\) as our input, we probably also want to use a two-dimensional kernel \(K\):
     <p>$$S(i, j)=(I * K)(i, j)=\sum_{m} \sum_{n} I(m, n) K(i-m, j-n)$$</p>
 
     <p>In practice we use the following formula instead (commutativity):</p>
     <p>$$S(i, j)=(K * I)(i, j)=\sum_{m} \sum_{n} I(i-m, j-n) K(m, n)$$</p>
-    <p>Usually the latter formula is more straightforward to implement in a machine learning library, because there is less variation in the range of valid values of <script type="math/tex">m</script> and <script type="math/tex">n</script>.</p>
+    <p>Usually the latter formula is more straightforward to implement in a machine learning library, because there is less variation in the range of valid values of \(m\) and \(n\).</p>
 
     <p>The Cross-Correlation is usually implemented by ML-libs:</p>
     <p>$$S(i, j)=(K * I)(i, j)=\sum_{m} \sum_{n} I(i+m, j+n) K(m, n)$$</p>
@@ -364,13 +469,13 @@ If we use a two-dimensional image <script type="math/tex">I</script> as our inpu
 
             <p><!-- * <button>Figure: Toeplitz Matrix</button>{: .showText value="show" onclick="showTextPopHide(event);"}  
    -->
-  <img src="/main_files/dl/cnn/20.png" alt="img" width="80%" /></p>
+  <img src="/main_files/dl/cnn/20.png" alt="img" width="50%" /></p>
           </li>
           <li>In <strong>two dimensions</strong>, a <strong>doubly block circulant matrix</strong> corresponds to convolution.
             <blockquote>
               <p>A matrix which is circulant with respect to its sub-matrices is called a <strong>block circulant matrix</strong>. If each of the submatrices is itself circulant, the matrix is called <strong>doubly block-circulant matrix</strong>.<br />
       <!-- * <button>Figure: Block-Circulant Matrix</button>{: .showText value="show" onclick="showTextPopHide(event);"}   -->
-      <img src="/main_files/dl/cnn/21.png" alt="img" width="60%" /></p>
+      <img src="/main_files/dl/cnn/21.png" alt="img" width="40%" /></p>
             </blockquote>
           </li>
         </ul>
@@ -378,7 +483,8 @@ If we use a two-dimensional image <script type="math/tex">I</script> as our inpu
       <li>Convolution usually corresponds to a <strong>very sparse matrix</strong> (a matrix whose entries are mostly equal to zero).<br />
   This is because the kernel is usually much smaller than the input image.</li>
       <li>Any neural network algorithm that works with matrix multiplication and does not depend on specific properties of the matrix structure should work with convolution, without requiring any further changes to the neural network.</li>
-      <li>Typical convolutional neural networks do make use of further specializations in order to deal with large inputs efficiently, but these are not strictly necessary from a theoretical perspective.</li>
+      <li>Typical convolutional neural networks do make use of further specializations in order to deal with large inputs efficiently, but these are not strictly necessary from a theoretical perspective.<br />
+<br /></li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">The Convolution operation in a CONV Layer:</strong>
@@ -400,16 +506,18 @@ If we use a two-dimensional image <script type="math/tex">I</script> as our inpu
             </blockquote>
           </li>
           <li>Now, we will have an entire set of filters in each CONV layer (e.g. 12 filters), and each of them will produce a separate 2-dimensional activation map.</li>
+          <li>We will <strong>stack</strong> these activation maps along the depth dimension and produce the output volume.</li>
         </ul>
       </li>
-      <li>We will <strong>stack</strong> these activation maps along the depth dimension and produce the output volume.</li>
     </ul>
 
-    <p style="color: red">As a result, the network learns filters that activate when it detects some specific type of feature at some spatial position in the input. </p>
+    <p style="color: red">As a result <i>(of what?)</i>, the network learns filters that activate when it detects some specific type of feature at some spatial position in the input. </p>
+    <p><br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">The Brain Perspective:</strong><br />
- Every entry in the 3D output volume can also be interpreted as an output of a neuron that looks at only a small region in the input and shares parameters with all neurons to the left and right spatially.</p>
+ Every entry in the 3D output volume can also be interpreted as an output of a neuron that looks at only a small region in the input and shares parameters with all neurons to the left and right spatially.<br />
+ <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Local Connectivity:</strong>
     <ul>
@@ -420,12 +528,13 @@ If we use a two-dimensional image <script type="math/tex">I</script> as our inpu
       </li>
       <li>The <strong>Receptive Field</strong> of the neuron defines the extent of this connectivity as a hyperparameter.
         <blockquote>
-          <p>For example, suppose the input volume has size <script type="math/tex">[32\times32\times3]</script> and the receptive field (or the filter size) is <script type="math/tex">5\times5</script>, then each neuron in the Conv Layer will have weights to a <script type="math/tex">[5\times5\times3]</script> region in the input volume, for a total of <script type="math/tex">5*5*3 = 75</script> weights (and <script type="math/tex">+1</script> bias parameter).</p>
+          <p>For example, suppose the input volume has size \([32\times32\times3]\) and the receptive field (or the filter size) is \(5\times5\), then each neuron in the Conv Layer will have weights to a \([5\times5\times3]\) region in the input volume, for a total of \(5*5*3 = 75\) weights (and \(+1\) bias parameter).</p>
         </blockquote>
       </li>
     </ul>
 
     <p style="color: red">Such an architecture ensures that the learnt filters produce the strongest response to a spatially local input pattern.</p>
+    <p><br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Spatial Arrangement:</strong><br />
  There are <strong>three</strong> hyperparameters control the size of the output volume:
@@ -441,56 +550,70 @@ If we use a two-dimensional image <script type="math/tex">I</script> as our inpu
           <li>The <strong>bigger</strong> the stride, the <strong>less overlapping regions</strong> exist and the         <strong>smaller the volume</strong>.</li>
         </ul>
       </li>
-      <li>The <strong>Padding</strong> is a hyperparameter whereby we pad the input the input volume with zeros around the border. <br />
- This allows to <em>control the spatial size</em> of <em>the output</em> volumes.</li>
+      <li>The <strong>Padding</strong> is a hyperparameter whereby we pad the input volume with zeros around the border. <br />
+ This allows to <em>control the spatial size</em> of <em>the output</em> volumes.<br />
+ <br /></li>
     </ol>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents29">The Spatial Size of the Output Volume:</strong><br />
  We compute the spatial size of the output volume as a function of:
     <ul>
-      <li><strong><script type="math/tex">W</script></strong>: The input volume size.</li>
-      <li><strong><script type="math/tex">F</script></strong>: <script type="math/tex">\:\:</script>The receptive field size of the Conv Layer neurons.</li>
-      <li><strong><script type="math/tex">S</script></strong>: The stride with which they are applied.</li>
-      <li><strong><script type="math/tex">P</script></strong>: The amount of zero padding used on the border.<br />
+      <li><strong>\(W\)</strong>: The input volume size.</li>
+      <li><strong>\(F\)</strong>: \(\:\)The receptive field size of the Conv Layer neurons.</li>
+      <li><strong>\(S\)</strong>: \(\:\)The stride with which they are applied.</li>
+      <li><strong>\(P\)</strong>: \(\:\)The amount of zero padding used on the border.<br />
  Thus, the <strong>Total Size of the Output</strong>:</li>
     </ul>
     <p>$$\dfrac{W−F+2P}{S} + 1$$</p>
 
     <p><strong>Potential Issue</strong>: If this number is not an integer, then the strides are set incorrectly and the neurons cannot be tiled to fit across the input volume in a symmetric way.</p>
     <ul>
-      <li><strong>Fix</strong>: In general, setting zero padding to be <script type="math/tex">{\displaystyle P = \dfrac{K-1}{2}}</script> when the stride is <script type="math/tex">{\displaystyle S = 1}</script> ensures that the input volume and output volume will have the same size spatially.</li>
+      <li><strong>Fix</strong>: In general, setting zero padding to be \({\displaystyle P = \dfrac{K-1}{2}}\) when the stride is \({\displaystyle S = 1}\) ensures that the input volume and output volume will have the same size spatially.<br />
+ <br /></li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents210">Calculating the Number of Parameters:</strong> <br />
 Given:
     <ul>
-      <li><strong>Input Volume</strong>:  <script type="math/tex">32\times32\times3</script></li>
-      <li><strong>Filters</strong>:  <script type="math/tex">10 5\times5</script></li>
-      <li><strong>Stride</strong>:  <script type="math/tex">1</script></li>
-      <li><strong>Pad</strong>:  <script type="math/tex">2</script></li>
+      <li><strong>Input Volume</strong>:  \(32\times32\times3\)</li>
+      <li><strong>Filters</strong>:  \(10\:\:\: (5\times5)\)</li>
+      <li><strong>Stride</strong>:  \(1\)</li>
+      <li><strong>Pad</strong>:  \(2\)</li>
     </ul>
 
-    <p>The number of parameters equals the number of parameters in each filter <script type="math/tex">= 5*5*3 + 1 = 76</script> (+1 for <strong>bias</strong>) times the number of filters <script type="math/tex">76 * 10 = 760</script>.</p>
+    <p>The number of parameters equals the number of parameters in each filter \(= 5*5*3 + 1 = 76\) (+1 for <strong>bias</strong>) times the number of filters \(76 * 10 = 760\).<br />
+<br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents311">The Convolution Layer:</strong> <br />
 <img src="/main_files/dl/cnn/3.png" alt="img" width="70%" /><br />
-<img src="/main_files/dl/cnn/8.png" alt="img" width="70%" /></p>
+<strong>__</strong><br />
+<img src="/main_files/dl/cnn/8.png" alt="img" width="70%" /><br />
+<strong>__</strong></p>
 
     <p><strong>The Conv Layer and the Brain:</strong><br />
 <img src="/main_files/dl/cnn/10.png" alt="img" width="70%" /><br />
+<strong>__</strong><br />
 <img src="/main_files/dl/cnn/11.png" alt="img" width="70%" /><br />
-<img src="/main_files/dl/cnn/12.png" alt="img" width="70%" /></p>
+<strong>__</strong><br />
+<img src="/main_files/dl/cnn/12.png" alt="img" width="70%" /><br />
+<strong>__</strong><br />
+<br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents312">From FC-layers to Conv-layers:</strong> <br />
 <img src="/main_files/dl/cnn/4.png" alt="img" width="70%" /><br />
+<em>**
 <img src="/main_files/dl/cnn/5.png" alt="img" width="70%" /><br />
-<img src="/main_files/dl/cnn/6.png" alt="img" width="70%" /></p>
+**</em>
+<img src="/main_files/dl/cnn/6.png" alt="img" width="70%" /><br />
+***
+<br /></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents313"><script type="math/tex">1\times1</script> Convolutions:</strong> <br />
-<img src="/main_files/dl/cnn/9.png" alt="img" width="70%" /></p>
+    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents313">\(1\times1\) Convolutions:</strong> <br />
+<img src="/main_files/dl/cnn/9.png" alt="img" width="70%" /><br />
+<br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents30">Notes:</strong>
     <ul>
@@ -500,8 +623,7 @@ Given:
           <li>Trend towards smaller filters and deeper architectures</li>
           <li>Trend towards getting rid of POOL/FC layers (just CONV)</li>
           <li>Typical architectures look like [(CONV-RELU) * N-POOL?] * M-(FC-RELU) * K, SOFTMAX<br />
-  where <script type="math/tex">N</script> is usually up to ~5, <script type="math/tex">M</script> is large, <script type="math/tex">% <![CDATA[
-0 <= K <= 2 %]]></script>.<br />
+  where \(N\) is usually up to ~5, \(M\) is large, \(0 &lt;= K &lt;= 2\).<br />
   But recent advances such as ResNet/GoogLeNet challenge this paradigm</li>
         </ul>
       </li>
@@ -520,7 +642,8 @@ Given:
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">The Pooling Operation/Function:</strong> <br />
  The pooling function calculates a <strong>summary statistic</strong> of the nearby pixels at the point of operation.<br />
- Some common statistics are <em>max, mean, weighted average</em> and <em><script type="math/tex">L^2</script> norm</em> of a surrounding rectangular window.</p>
+ Some common statistics are <em>max, mean, weighted average</em> and <em>\(L^2\) norm</em> of a surrounding rectangular window.<br />
+ <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">The Key Ideas/Properties:</strong> <br />
  In all cases, pooling helps to make the representation approximately <strong>invariant to small translations</strong> of the input.
@@ -543,14 +666,16 @@ Given:
       <p>This is usually accomplished by varying the size of an offset between pooling regions so that the classification layer always receives the same number of summary statistics regardless of the input size. For example, the final pooling layer of the network may be defined to output four sets of summary statistics, one for each quadrant of an image, regardless of the image size.</p>
     </blockquote>
 
-    <p>One can use fewer pooling units than detector units, since they provide a summary; thus, by reporting summary statistics for pooling regions spaced <script type="math/tex">k</script> pixels apart rather than <script type="math/tex">1</script> pixel apart, we can improve the computational efficiency of the network because the next layer has roughly <script type="math/tex">k</script> times fewer inputs to process.<br />
+    <p>One can use fewer pooling units than detector units, since they provide a summary; thus, by reporting summary statistics for pooling regions spaced \(k\) pixels apart rather than \(1\) pixel apart, we can improve the computational efficiency of the network because the next layer has roughly \(k\) times fewer inputs to process.<br />
  This reduction in the input size can also result in improved statistical efficiency and reduced memory requirements for storing the parameters.<br />
  <button class="showText" value="show" onclick="showTextPopHide(event);">Figure: Downsampling</button>
- <img src="/main_files/dl/cnn/19.png" alt="img" width="70%" hidden="" /></p>
+ <img src="/main_files/dl/cnn/19.png" alt="img" width="70%" hidden="" /><br />
+ <br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">Theoretical Guidelines for choosing the pooling function:</strong> <br />
- <a href="http://www.di.ens.fr/willow/pdfs/icml2010b.pdf">Link</a></p>
+ <a href="http://www.di.ens.fr/willow/pdfs/icml2010b.pdf">Link</a><br />
+ <br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents44">Variations:</strong> <br />
@@ -558,14 +683,17 @@ Given:
  It is also possible to dynamically pool features together, for example, by running a clustering algorithm on the locations of interesting features (Boureau et al., 2011) <a href="http://yann.lecun.com/exdb/publis/pdf/boureau-iccv-11.pdf">link</a>. This approach yields a different set of pooling regions for each image.</p>
 
     <p><strong>Learned Pooling:</strong><br />
- Another approach is to learn a single pooling structure that is then applied to all images (Jia et al., 2012).</p>
+ Another approach is to learn a single pooling structure that is then applied to all images (Jia et al., 2012).<br />
+ <br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents45">Pooling and Top-Down Architectures:</strong> <br />
- Pooling can complicate some kinds of neural network architectures that use top-down information, such as Boltzmann machines and autoencoders.</p>
+ Pooling can complicate some kinds of neural network architectures that use top-down information, such as Boltzmann machines and autoencoders.<br />
+ <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents46">The Pooling Layer (summary):</strong> <br />
- <img src="/main_files/dl/cnn/13.png" alt="img" width="100%" /></li>
+ <img src="/main_files/dl/cnn/13.png" alt="img" width="100%" /><br />
+ <br /></li>
 </ol>
 
 <!-- 7. **The Pooling Layer (summary):**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}   
@@ -591,14 +719,16 @@ Given:
 <ol>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents51">A Prior Probability Distribution:</strong><br />
- This is a probability distribution over the parameters of a model that encodes our beliefs about what models are reasonable, before we have seen any data.</p>
+ This is a probability distribution over the parameters of a model that encodes our beliefs about what models are reasonable, before we have seen any data.<br />
+ <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents52">What is a weight prior?:</strong><br />
  Assumptions about the weights (before learning) in terms of acceptable values and range are encoded into the prior distribution of the weights.
     <ul>
       <li>A <strong>Weak Prior</strong>:  has a high <em>entropy</em>, and thus, variance and shows that there is low confidence in the initial value of the weight.</li>
       <li>A <strong>Strong Prior</strong>: in turn has low entropy/variance, and shows a narrow range of values about which we are confident before learning begins.</li>
-      <li>A <strong>Infinitely Strong Prior</strong>: demarkets certain values as forbidden completely, assigning them zero probability.</li>
+      <li>A <strong>Infinitely Strong Prior</strong>: demarkets certain values as forbidden completely, assigning them zero probability.<br />
+ <br /></li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents53">Convolutional Layer as a FC Layer:</strong><br />
@@ -612,7 +742,8 @@ Given:
       </li>
       <li><strong>Pooling</strong>: operation imposes an <em><strong>infinitely strong prior</strong></em> by:
         <ul>
-          <li>Requiring features to be <strong>Translation Invariant</strong>.</li>
+          <li>Requiring features to be <strong>Translation Invariant</strong>. <br />
+ <br /></li>
         </ul>
       </li>
     </ul>
@@ -643,8 +774,8 @@ Given:
       </li>
       <li><strong>Zero Padding</strong> is used to make output dimensions and kernel size independent (i.e. to control the output dimension regardless of the size of the kernel). There are three types:
         <ol>
-          <li><strong>Valid</strong>: The output is computed only at places where the entire kernel lies inside the input. Essentially, <em>no zero padding</em> is performed. For a kernel of size <script type="math/tex">k</script> in any dimension, the input shape of <script type="math/tex">m</script> in the direction will become <script type="math/tex">m-k+1</script> in the output. This shrinkage restricts architecture depth.</li>
-          <li><strong>Same</strong>: The input is zero padded such that the <em>spatial size of the input and output is <strong>same</strong></em>. Essentially, for a dimension where kernel size is <script type="math/tex">k</script>, the input is padded by <script type="math/tex">k-1</script> zeros in that dimension. Since the number of output units connected to border pixels is less than that for center pixels, it may under-represent border pixels.</li>
+          <li><strong>Valid</strong>: The output is computed only at places where the entire kernel lies inside the input. Essentially, <em>no zero padding</em> is performed. For a kernel of size \(k\) in any dimension, the input shape of \(m\) in the direction will become \(m-k+1\) in the output. This shrinkage restricts architecture depth.</li>
+          <li><strong>Same</strong>: The input is zero padded such that the <em>spatial size of the input and output is <strong>same</strong></em>. Essentially, for a dimension where kernel size is \(k\), the input is padded by \(k-1\) zeros in that dimension. Since the number of output units connected to border pixels is less than that for center pixels, it may under-represent border pixels.</li>
           <li><strong>Full</strong>: The input is padded by enough zeros such that <em>each input pixel is connected to the same number of output units</em>.
             <blockquote>
               <p>The optimal amount of Zero-Padding usually lies between “valid” and “same” convolution.</p>
@@ -687,7 +818,7 @@ Given:
   <li><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents62">Structured Outputs:</strong><br />
  Convolutional networks can be trained to output high-dimensional structured output rather than just a classification score.<br />
  A good example is the task of <strong>image segmentation</strong> where each pixel needs to be associated with an object class.<br />
- Here the output is the same size (spatially) as the input. The model outputs a tensor <script type="math/tex">S</script>  where <script type="math/tex">S_{i, j, k}</script> is the probability that pixel <script type="math/tex">(j,k)</script> belongs to class <script type="math/tex">i</script>.
+ Here the output is the same size (spatially) as the input. The model outputs a tensor \(S\)  where \(S_{i, j, k}\) is the probability that pixel \((j,k)\) belongs to class \(i\).
     <ul>
       <li><strong>Problem</strong>: One issue that often comes up is that the output plane can be smaller than the input plane.</li>
       <li><strong>Solutions</strong>:
@@ -746,12 +877,11 @@ Given:
 
 <hr />
 
-<h2 id="contentx">Distinguishing features</h2>
+<h2 id="contentx">Extra</h2>
+
+<!-- 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents91}  -->
 
 <ol>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents91">Asynchronous:</strong></p>
-  </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents92">Image Features:</strong></dt>
@@ -777,13 +907,13 @@ Given:
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

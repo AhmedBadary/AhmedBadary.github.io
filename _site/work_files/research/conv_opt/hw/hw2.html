@@ -66,40 +66,39 @@
       <h2 id="q1">Q.1)</h2>
 <ol>
   <li>
-    <script type="math/tex; mode=display">% <![CDATA[
-\left( \begin{array}{cccccc} 0 & 0   & 0 & \frac{1}{3} & 0 & 0 \\ 
-                               1 & 0   & 0 &  0  & 0 & 0 \\ 
-                               0 & \frac{1}{2} & 0 &  0  & 0 & 0 \\ 
-                               0 & 0   & 1 &  0  & 0 & 1 \\ 
-                               0 & 0   & 0 & \frac{1}{3} & 0 & 0 \\ 
-                               0 & \frac{1}{2} & 0 & \frac{1}{3} & 1 & 0
+\[\left( \begin{array}{cccccc} 0 &amp; 0   &amp; 0 &amp; \frac{1}{3} &amp; 0 &amp; 0 \\ 
+                               1 &amp; 0   &amp; 0 &amp;  0  &amp; 0 &amp; 0 \\ 
+                               0 &amp; \frac{1}{2} &amp; 0 &amp;  0  &amp; 0 &amp; 0 \\ 
+                               0 &amp; 0   &amp; 1 &amp;  0  &amp; 0 &amp; 1 \\ 
+                               0 &amp; 0   &amp; 0 &amp; \frac{1}{3} &amp; 0 &amp; 0 \\ 
+                               0 &amp; \frac{1}{2} &amp; 0 &amp; \frac{1}{3} &amp; 1 &amp; 0
  \end{array} \right)
- \\ \\ %]]></script>
+ \\ \\\]
   </li>
   <li>
-    <script type="math/tex; mode=display">x_2 = \left( \begin{array}{c} 0.23249528+0.j \\ 0.23249528+0.j \\ 0.11624764+0.j \\  0.69748583+0.j \\ 0.23249528+0.j \\  0.58123819+0.j \end{array} \right) \\ \\</script>
+\[x_2 = \left( \begin{array}{c} 0.23249528+0.j \\ 0.23249528+0.j \\ 0.11624764+0.j \\  0.69748583+0.j \\ 0.23249528+0.j \\  0.58123819+0.j \end{array} \right) \\ \\\]
   </li>
   <li>
-    <script type="math/tex; mode=display">x_3 = \left( \begin{array}{c} 1/9 \\ 1/9 \\ 1/18 \\ 1/3 \\ 1/9 \\  5/18 \end{array} \right)</script>
+\[x_3 = \left( \begin{array}{c} 1/9 \\ 1/9 \\ 1/18 \\ 1/3 \\ 1/9 \\  5/18 \end{array} \right)\]
 
-    <p>We notice that sequence does indeed converge to the value <script type="math/tex">x_3</script> above.</p>
+    <p>We notice that sequence does indeed converge to the value \(x_3\) above.</p>
 
     <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="o">*</span>
 
     <span class="k">def</span> <span class="nf">importance</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)[</span><span class="mi">1</span><span class="p">][,:</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">linalg</span><span class="p">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)[</span><span class="mi">1</span><span class="p">][,:</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">iter</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mi">10</span><span class="o">**-</span><span class="mi">5</span><span class="p">):</span>
-        <span class="n">x</span><span class="p">,</span> <span class="n">old_x</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x0</span><span class="p">),</span> <span class="n">x0</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">old_x</span> <span class="o">=</span> <span class="n">A</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x0</span><span class="p">),</span> <span class="n">x0</span>
         <span class="k">print</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
         <span class="k">while</span> <span class="ow">not</span> <span class="n">allclose</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">old_x</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-010</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-18</span><span class="p">):</span>
             <span class="n">old_x</span> <span class="o">=</span> <span class="n">x</span>
-            <span class="n">x</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">A</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
             <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">x</span>
 
     <span class="k">def</span> <span class="nf">sanity_check</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x_2</span><span class="p">,</span> <span class="n">x_3</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">allclose</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x_2</span><span class="p">),</span> <span class="mi">1</span><span class="o">*</span><span class="n">x_2</span><span class="p">)</span> <span class="ow">and</span> <span class="n">allclose</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x_3</span><span class="p">),</span> <span class="mi">1</span><span class="o">*</span><span class="n">x_3</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">allclose</span><span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x_2</span><span class="p">),</span> <span class="mi">1</span><span class="o">*</span><span class="n">x_2</span><span class="p">)</span> <span class="ow">and</span> <span class="n">allclose</span><span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x_3</span><span class="p">),</span> <span class="mi">1</span><span class="o">*</span><span class="n">x_3</span><span class="p">)</span>
 
     <span class="n">x0</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="o">*</span><span class="n">ones</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
     <span class="n">A</span> <span class="o">=</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>\
@@ -109,8 +108,8 @@
     <span class="n">x_3</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
 
     <span class="k">print</span><span class="p">(</span><span class="n">x_2</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">array</span><span class="p">([</span> <span class="mf">0.23249528</span><span class="o">+</span><span class="mf">0.</span><span class="n">j</span><span class="p">,</span>  <span class="mf">0.23249528</span><span class="o">+</span><span class="mf">0.</span><span class="n">j</span><span class="p">,</span>  <span class="mf">0.11624764</span><span class="o">+</span><span class="mf">0.</span><span class="n">j</span><span class="p">,</span>  <span class="mf">0.69748583</span><span class="o">+</span><span class="mf">0.</span><span class="n">j</span><span class="p">,</span>
-    <span class="mf">0.23249528</span><span class="o">+</span><span class="mf">0.</span><span class="n">j</span><span class="p">,</span>  <span class="mf">0.58123819</span><span class="o">+</span><span class="mf">0.</span><span class="n">j</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">array</span><span class="p">([</span> <span class="mf">0.23249528</span><span class="o">+</span><span class="mf">0.j</span><span class="p">,</span>  <span class="mf">0.23249528</span><span class="o">+</span><span class="mf">0.j</span><span class="p">,</span>  <span class="mf">0.11624764</span><span class="o">+</span><span class="mf">0.j</span><span class="p">,</span>  <span class="mf">0.69748583</span><span class="o">+</span><span class="mf">0.j</span><span class="p">,</span>
+    <span class="mf">0.23249528</span><span class="o">+</span><span class="mf">0.j</span><span class="p">,</span>  <span class="mf">0.58123819</span><span class="o">+</span><span class="mf">0.j</span><span class="p">])</span>
 
     <span class="k">print</span><span class="p">(</span><span class="n">x_3</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">array</span><span class="p">([</span> <span class="mf">0.11111111</span><span class="p">,</span>  <span class="mf">0.11111111</span><span class="p">,</span>  <span class="mf">0.05555556</span><span class="p">,</span>  <span class="mf">0.33333333</span><span class="p">,</span>  <span class="mf">0.11111111</span><span class="p">,</span>
@@ -120,11 +119,11 @@
 <span class="o">&gt;&gt;&gt;</span> <span class="bp">True</span>
 </code></pre></div>    </div>
     <blockquote>
-      <p>Please run the code to print (dump) all the resulting <script type="math/tex">x_k</script> vectors until convergence.</p>
+      <p>Please run the code to print (dump) all the resulting \(x_k\) vectors until convergence.</p>
     </blockquote>
 
     <blockquote>
-      <p>Notice also that <script type="math/tex">x_2</script> and <script type="math/tex">x_3</script> refer to the eigenvector that we foind in the <script type="math/tex">i-th</script> question.</p>
+      <p>Notice also that \(x_2\) and \(x_3\) refer to the eigenvector that we foind in the \(i-th\) question.</p>
     </blockquote>
   </li>
 </ol>
@@ -133,19 +132,18 @@
 
 <ol>
   <li>
-    <p>We notice first that the output vector <script type="math/tex">y(t)</script> depends only on the state <script type="math/tex">x(t)</script> and that, in-turn, <script type="math/tex">x(t)</script> depends only on the input vector <script type="math/tex">u(t-1)</script>. Since <script type="math/tex">x(t)</script> has a recursive definition, we are voin going to try to find a closed form formula for computing the sequence of <script type="math/tex">x(t)</script> if possible:<br />
- <script type="math/tex">\\ 
+    <p>We notice first that the output vector \(y(t)\) depends only on the state \(x(t)\) and that, in-turn, \(x(t)\) depends only on the input vector \(u(t-1)\). Since \(x(t)\) has a recursive definition, we are voin going to try to find a closed form formula for computing the sequence of \(x(t)\) if possible:<br />
+ \(\\ 
  x(1) = Ax(0) + Bu(0) = Bu(0), \:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\: \text{(from the initial conditions)} \\
  x(2) = Ax(1) + Bu(1) = ABu(0) + Bu(1) \\
  x(3) = Ax(2) + Bu(2) = A^2Bu(0) + ABu(1) + Bu(2) \\
  x(4) = Ax(3) + Bu(3) = A^3Bu(0) + A^2Bu(1) + ABu(2) + Bu(3)
- \\</script>
+ \\\)
  From, this, we can extrapolate a formula:
- <script type="math/tex">x(T) = \sum_{i=0}^{T-1} A^iBu((T-1)-i)</script>,<br />
- Now, from the definition of <script type="math/tex">U(T)</script>, we re-write:
- <script type="math/tex">x(T) = H'U(T)</script>,<br />
- where <script type="math/tex">% <![CDATA[
-H' = \left( \begin{array}{ccccc} A^{T-1}B & A^{T-2}B & \cdots & AB & B \end{array} \right) %]]></script>.</p>
+ \(x(T) = \sum_{i=0}^{T-1} A^iBu((T-1)-i)\),<br />
+ Now, from the definition of \(U(T)\), we re-write:
+ \(x(T) = H'U(T)\),<br />
+ where \(H' = \left( \begin{array}{ccccc} A^{T-1}B &amp; A^{T-2}B &amp; \cdots &amp; AB &amp; B \end{array} \right)\).</p>
 
     <p class="message">
  proof. <br />
@@ -161,7 +159,7 @@ H' = \left( \begin{array}{ccccc} A^{T-1}B & A^{T-2}B & \cdots & AB & B \end{arra
      \:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\: \mathbf{Q.E.D}
      $$ 
  </p>
-    <p>Now, that we have a formula for <script type="math/tex">x(T)</script>, we write:</p>
+    <p>Now, that we have a formula for \(x(T)\), we write:</p>
     <p>
  $$
  y(T) = Cx(T) = CH'U(T) = HU(T)
@@ -175,8 +173,8 @@ H' = \left( \begin{array}{ccccc} A^{T-1}B & A^{T-2}B & \cdots & AB & B \end{arra
  </p>
   </li>
   <li>
-    <p>The range of <script type="math/tex">H</script>, represents all the possible outputs <script type="math/tex">(y(t))</script> for any possible input vector <script type="math/tex">u(t)</script>. If a vector <script type="math/tex">\vec{v}</script> is not in <script type="math/tex">\mathbf{Range}(H)</script>, then it doesn’t matter what the input <script type="math/tex">u(t)</script> is, we can never get that vector <script type="math/tex">\vec{v}</script> as an output.<br />
- Notice that this also implies that the range characterizes the output of the LDA given only the input vector <script type="math/tex">u(t)</script> and abstracts away the solution of the state of the system, <script type="math/tex">x(t)</script>.</p>
+    <p>The range of \(H\), represents all the possible outputs \((y(t))\) for any possible input vector \(u(t)\). If a vector \(\vec{v}\) is not in \(\mathbf{Range}(H)\), then it doesn’t matter what the input \(u(t)\) is, we can never get that vector \(\vec{v}\) as an output.<br />
+ Notice that this also implies that the range characterizes the output of the LDA given only the input vector \(u(t)\) and abstracts away the solution of the state of the system, \(x(t)\).</p>
   </li>
 </ol>
 
@@ -184,7 +182,7 @@ H' = \left( \begin{array}{ccccc} A^{T-1}B & A^{T-2}B & \cdots & AB & B \end{arra
 
 <ol>
   <li><br />
-<script type="math/tex">\operatorname{tr} (A)</script>
+\(\operatorname{tr} (A)\)
     <p>  
 $${\displaystyle
 \begin{align}
@@ -198,7 +196,7 @@ $${\displaystyle
 }
 $$  
 </p>
-    <p><script type="math/tex">{\displaystyle \|A\|_{\rm {F}}}</script></p>
+    <p>\({\displaystyle \|A\|_{\rm {F}}}\)</p>
     <p>  
 $$
 {\displaystyle
@@ -219,16 +217,16 @@ $$
 </p>
   </li>
   <li>
-    <p><script type="math/tex">|\langle A,A\rangle| |\langle I,I\rangle| \ge |\langle A,I\rangle|^2</script> (Cauchy Shwartz) or,<br />
-<script type="math/tex">\operatorname{trace}(A^2)\ge\frac{1}{n}\operatorname{trace}(A)^2</script> but n here is just the rank,<br />
-<script type="math/tex">\implies\|A\|_F^2\ge\frac{\operatorname{trace}(A)^2}{rank(A)}</script></p>
+    <p>\(|\langle A,A\rangle| |\langle I,I\rangle| \ge |\langle A,I\rangle|^2\) (Cauchy Shwartz) or,<br />
+\(\operatorname{trace}(A^2)\ge\frac{1}{n}\operatorname{trace}(A)^2\) but n here is just the rank,<br />
+\(\implies\|A\|_F^2\ge\frac{\operatorname{trace}(A)^2}{rank(A)}\)</p>
   </li>
   <li>
     <p>It appears that the only critireon needed here is the fact that the matrix is square. Otherwise the Trace is not defined. 
  However, since we did our analysis with respect to the eigenvalues, we should note that the singular values and the eigen values of a matrix may very much not agree if the matrix was not PSD.
  Notice that if the same analysis could be made with the singularvalues instead.</p>
 
-    <p>Also, notice that even for non-square matrices, we could have a similar tight bound if we replace the <script type="math/tex">trace(A)^2</script> with the trace norm (nuclear norm).</p>
+    <p>Also, notice that even for non-square matrices, we could have a similar tight bound if we replace the \(trace(A)^2\) with the trace norm (nuclear norm).</p>
   </li>
 </ol>
 
@@ -239,33 +237,33 @@ $$
     <ul>
       <li><strong>Proof.</strong>
         <ul>
-          <li>Suppose we have an affine hyperplane defined by <script type="math/tex">c^T \cdot x = b</script> and a point <script type="math/tex">d</script>.</li>
-          <li>Suppose that <script type="math/tex">\vec{x_0} \in \mathbf{R}^n</script> is a point satisfying <script type="math/tex">c^T \cdot \vec{x_0} - b = 0</script>, i.e. it is a point on the plane.</li>
+          <li>Suppose we have an affine hyperplane defined by \(c^T \cdot x = b\) and a point \(d\).</li>
+          <li>Suppose that \(\vec{x_0} \in \mathbf{R}^n\) is a point satisfying \(c^T \cdot \vec{x_0} - b = 0\), i.e. it is a point on the plane.</li>
           <li>
-            <p>We construct the vector <script type="math/tex">d−\vec{x_0}</script> which points from <script type="math/tex">\vec{x_0}</script> to <script type="math/tex">d</script>, and then, project it onto the unique vector perpendicular to the plane, i.e. <script type="math/tex">c^T</script>,</p>
+            <p>We construct the vector \(d−\vec{x_0}\) which points from \(\vec{x_0}\) to \(d\), and then, project it onto the unique vector perpendicular to the plane, i.e. \(c^T\),</p>
 
-            <script type="math/tex; mode=display">dist=\| \text{proj}_{c} (d-\vec{x_0})\| = \left\| \frac{c^T\cdot(d-\vec{x_0}) }{c^T \cdot c} c \right\| = \|c^T \cdot d - c^T\vec{x_0}\|\frac{\|c\|}{\|c\|^2} = \frac{\|c^T \cdot d - c^T\vec{x_0}\|}{\|c\|}.</script>
+\[dist=\| \text{proj}_{c} (d-\vec{x_0})\| = \left\| \frac{c^T\cdot(d-\vec{x_0}) }{c^T \cdot c} c \right\| = \|c^T \cdot d - c^T\vec{x_0}\|\frac{\|c\|}{\|c\|^2} = \frac{\|c^T \cdot d - c^T\vec{x_0}\|}{\|c\|}.\]
           </li>
           <li>
-            <p>We chose <script type="math/tex">\vec{x_0}</script> such that <script type="math/tex">c^T\cdot \vec{x_0} = b</script> and <script type="math/tex">\|c\|_2=1</script> so we get</p>
+            <p>We chose \(\vec{x_0}\) such that \(c^T\cdot \vec{x_0} = b\) and \(\|c\|_2=1\) so we get</p>
 
-            <script type="math/tex; mode=display">dist=\| \text{proj}_{c} (d-\vec{x_0})\| = \|c^T \cdot d - b\|</script>
+\[dist=\| \text{proj}_{c} (d-\vec{x_0})\| = \|c^T \cdot d - b\|\]
           </li>
         </ul>
       </li>
     </ul>
   </li>
   <li>
-    <p><script type="math/tex">\min_{c,b} dist^2 = \min_{c,b} |c^T \cdot d - b|^2 = \min_{c,b} \|c^T \cdot d - b\|_2^2</script>
-<script type="math/tex">\implies \min_{c,b} (c^Td-b)^T(c^Td-b) = (d^Tc-b^T)(c^Td-b)=d^Tcc^Td-d^Tcb-b^Tc^Td+b^Tb \\= c^Tdd^Tc-2b^Tc^Td+b^Tb</script></p>
+    <p>\(\min_{c,b} dist^2 = \min_{c,b} |c^T \cdot d - b|^2 = \min_{c,b} \|c^T \cdot d - b\|_2^2\)
+\(\implies \min_{c,b} (c^Td-b)^T(c^Td-b) = (d^Tc-b^T)(c^Td-b)=d^Tcc^Td-d^Tcb-b^Tc^Td+b^Tb \\= c^Tdd^Tc-2b^Tc^Td+b^Tb\)</p>
   </li>
   <li>To minimize this, we find both partial derivatives and set them both equal to zero and solve.
  Since, partial of b is 0 we proceed:<br />
- <script type="math/tex">frac{d}{db} f_0(b,c) = -2 (dd^T-b^Td) \sum bi = 0</script>
+ \(frac{d}{db} f_0(b,c) = -2 (dd^T-b^Td) \sum bi = 0\)
     <blockquote>
-      <p>This is equal to zero when <script type="math/tex">b = 1/n \sum x_i</script> is the average of the sample points.<br />
- Now we only need to minimize over <script type="math/tex">c</script>:<br />
- <script type="math/tex">\min_c (c^T(dd^T-b^Td)c) = \min_c (c^T((d^d)I-dd^T)c) = \min_c (c^T(DD^T)c)</script></p>
+      <p>This is equal to zero when \(b = 1/n \sum x_i\) is the average of the sample points.<br />
+ Now we only need to minimize over \(c\):<br />
+ \(\min_c (c^T(dd^T-b^Td)c) = \min_c (c^T((d^d)I-dd^T)c) = \min_c (c^T(DD^T)c)\)</p>
     </blockquote>
   </li>
   <li>We can use expressions for projectors from the SVD to obtain for the general solution.
@@ -275,13 +273,13 @@ $$
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

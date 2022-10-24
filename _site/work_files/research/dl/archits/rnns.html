@@ -87,6 +87,7 @@
 <ul>
   <li><a href="/work_files/research/dl/nlp/rnns">RNNs in NLP</a></li>
   <li><a href="/work_files/research/dl/rnns_cv">RNNs in CV</a></li>
+  <li><a href="https://www.youtube.com/watch?v=LHXXI4-IEns">Illustrated Guide to Recurrent Neural Networks: Understanding the Intuition (Vid!)</a></li>
   <li><a href="https://medium.com/@jianqiangma/all-about-recurrent-neural-networks-9e5ae2936f6e">All of RNNs (ch.10 summary)</a></li>
   <li><a href="http://www.cs.utoronto.ca/~ilya/pubs/ilya_sutskever_phd_thesis.pdf">TRAINING RECURRENT NEURAL NETWORKS (Illya Stutskever PhD)</a></li>
   <li><a href="https://skymind.ai/wiki/lstm#a-beginners-guide-to-recurrent-networks-and-lstms">Guide to RNNs and LSTMs</a></li>
@@ -125,11 +126,11 @@
 
     <p><strong style="color: red">Classical Form of a Dynamical System:</strong></p>
     <p>$$\boldsymbol{s}^{(t)}=f\left(\boldsymbol{s}^{(t-1)} ; \boldsymbol{\theta}\right) \tag{10.1}$$</p>
-    <p>where <script type="math/tex">\boldsymbol{s}^{(t)}</script>  is called the state of the system.</p>
+    <p>where \(\boldsymbol{s}^{(t)}\)  is called the state of the system.</p>
 
     <p><img src="/main_files/dl/archits/rnns/1.png" alt="img" width="100%" /></p>
 
-    <p><strong>A Dynamical System driven by an external signal <script type="math/tex">\boldsymbol{x}^{(t)}</script></strong>:</p>
+    <p><strong>A Dynamical System driven by an external signal \(\boldsymbol{x}^{(t)}\)</strong>:</p>
     <p>$$\boldsymbol{s}^{(t)}=f\left(\boldsymbol{s}^{(t-1)}, \boldsymbol{x}^{(t)} ; \boldsymbol{\theta}\right) \tag{10.4}$$</p>
     <p>the state now contains information about the whole past sequence.</p>
 
@@ -137,7 +138,7 @@
 
     <p><strong style="color: red">The RNN Equation (as a Dynamical System):</strong></p>
     <p>$$\boldsymbol{h}^{(t)}=f\left(\boldsymbol{h}^{(t-1)}, \boldsymbol{x}^{(t)} ; \boldsymbol{\theta}\right) \tag{10.5}$$</p>
-    <p>where the variable <script type="math/tex">\mathbf{h}</script> represents the <strong>state</strong>.</p>
+    <p>where the variable \(\mathbf{h}\) represents the <strong>state</strong>.</p>
 
     <p><img src="/main_files/dl/archits/rnns/2.png" alt="img" width="100%" /></p>
     <ul>
@@ -146,20 +147,20 @@
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Unfolding the Computation Graph:</strong><br />
- <strong>Unfolding</strong> maps the left to the right in the figure below (from <em>figure 10.2</em>) (both are computational graphs of a RNN without output <script type="math/tex">\mathbf{o}</script>):<br />
+ <strong>Unfolding</strong> maps the left to the right in the figure below (from <em>figure 10.2</em>) (both are computational graphs of a RNN without output \(\mathbf{o}\)):<br />
  <img src="/main_files/dl/archits/rnns/3.png" alt="img" width="100%" /><br />
- where the black square indicates that an interaction takes place with a delay of <script type="math/tex">1</script> time step, from the state at time <script type="math/tex">t</script>  to the state at time <script type="math/tex">t + 1</script>.</p>
+ where the black square indicates that an interaction takes place with a delay of \(1\) time step, from the state at time \(t\)  to the state at time \(t + 1\).</p>
 
-    <p>We can represent the unfolded recurrence after <script type="math/tex">t</script> steps with a function <script type="math/tex">g^{(t)}</script>:</p>
+    <p>We can represent the unfolded recurrence after \(t\) steps with a function \(g^{(t)}\):</p>
     <p>$$\begin{aligned} \boldsymbol{h}^{(t)} &amp;=g^{(t)}\left(\boldsymbol{x}^{(t)}, \boldsymbol{x}^{(t-1)}, \boldsymbol{x}^{(t-2)}, \ldots, \boldsymbol{x}^{(2)}, \boldsymbol{x}^{(1)}\right) \\ &amp;=f\left(\boldsymbol{h}^{(t-1)}, \boldsymbol{x}^{(t)} ; \boldsymbol{\theta}\right) \end{aligned}$$</p>
-    <p>The function <script type="math/tex">g^{(t)}</script> takes the whole past sequence <script type="math/tex">\left(\boldsymbol{x}^{(t)}, \boldsymbol{x}^{(t-1)}, \boldsymbol{x}^{(t-2)}, \ldots, \boldsymbol{x}^{(2)}, \boldsymbol{x}^{(1)}\right)</script> as input and produces the current state, but the unfolded recurrent structure allows us to factorize <script type="math/tex">g^{(t)}</script> into <em>repeated applications of a function <script type="math/tex">f</script></em>.</p>
+    <p>The function \(g^{(t)}\) takes the whole past sequence \(\left(\boldsymbol{x}^{(t)}, \boldsymbol{x}^{(t-1)}, \boldsymbol{x}^{(t-2)}, \ldots, \boldsymbol{x}^{(2)}, \boldsymbol{x}^{(1)}\right)\) as input and produces the current state, but the unfolded recurrent structure allows us to factorize \(g^{(t)}\) into <em>repeated applications of a function \(f\)</em>.</p>
 
     <p id="lst-p">The unfolding process, thus, introduces two major advantages:</p>
     <ol>
       <li>Regardless of the sequence length, the learned model always has the same input size.<br />
  Because it is specified in terms of transition from one state to another state, rather than specified in terms of a variable-length history of states.</li>
-      <li>It is possible to use the <em>same</em> transition function <script type="math/tex">f</script> with the same parameters at every time step.<br />
- Thus, we can learn a single shared model <script type="math/tex">f</script> that operates on all time steps and all sequence lengths, rather than needing to learn a separate model <script type="math/tex">g^{(t)}</script> for all possible time steps</li>
+      <li>It is possible to use the <em>same</em> transition function \(f\) with the same parameters at every time step.<br />
+ Thus, we can learn a single shared model \(f\) that operates on all time steps and all sequence lengths, rather than needing to learn a separate model \(g^{(t)}\) for all possible time steps</li>
     </ol>
 
     <p id="lst-p"><strong>Benefits:</strong></p>
@@ -170,11 +171,11 @@
     </ul>
   </li>
   <li>
-    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">The State of the RNN <script type="math/tex">\mathbf{h}^{(t)}</script>:</strong><br />
- The network typically learns to use <script type="math/tex">\mathbf{h}^{(t)}</script> as a kind of <em>lossy summary</em> of the task-relevant aspects of the past sequence of inputs up to <script type="math/tex">t</script>.<br />
- This summary is, in general, <em>necessarily lossy</em>, since it maps an arbitrary length sequence <script type="math/tex">\left(\boldsymbol{x}^{(t)}, \boldsymbol{x}^{(t-1)}, \boldsymbol{x}^{(t-2)}, \ldots, \boldsymbol{x}^{(2)}, \boldsymbol{x}^{(1)}\right)</script>  to a fixed length vector <script type="math/tex">h^{(t)}</script>.</p>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">The State of the RNN \(\mathbf{h}^{(t)}\):</strong><br />
+ The network typically learns to use \(\mathbf{h}^{(t)}\) as a kind of <em>lossy summary</em> of the task-relevant aspects of the past sequence of inputs up to \(t\).<br />
+ This summary is, in general, <em>necessarily lossy</em>, since it maps an arbitrary length sequence \(\left(\boldsymbol{x}^{(t)}, \boldsymbol{x}^{(t-1)}, \boldsymbol{x}^{(t-2)}, \ldots, \boldsymbol{x}^{(2)}, \boldsymbol{x}^{(1)}\right)\)  to a fixed length vector \(h^{(t)}\).</p>
 
-    <p>The most demanding situation (the extreme) is when we ask <script type="math/tex">h^{(t)}</script> to be rich enough to allow one to approximately recover/reconstruct the input sequence, as in <strong>AutoEncoders</strong>.</p>
+    <p>The most demanding situation (the extreme) is when we ask \(h^{(t)}\) to be rich enough to allow one to approximately recover/reconstruct the input sequence, as in <strong>AutoEncoders</strong>.</p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">RNN Architectures/Design Patterns:</strong><br />
  We will be introducing three variations of the RNN, and will be analyzing <em>variation 1</em>, the basic form of the RNN.
@@ -192,22 +193,22 @@
           <li><strong>Equations</strong>:<br />
   The standard RNN is <strong>parametrized</strong> with three weight matrices and three bias vectors:
             <p>$$\theta=\left[W_{h x} = U, W_{h h} = W, W_{o h} = V, b_{h}, b_{o}, h_{0}\right]$$</p>
-            <p>Then given an input sequence <script type="math/tex">\left(\boldsymbol{x}^{(t)}, \boldsymbol{x}^{(t-1)}, \boldsymbol{x}^{(t-2)}, \ldots, \boldsymbol{x}^{(2)}, \boldsymbol{x}^{(1)}\right)</script> the RNN performs the following computations for every time step:</p>
+            <p>Then given an input sequence \(\left(\boldsymbol{x}^{(t)}, \boldsymbol{x}^{(t-1)}, \boldsymbol{x}^{(t-2)}, \ldots, \boldsymbol{x}^{(2)}, \boldsymbol{x}^{(1)}\right)\) the RNN performs the following computations for every time step:</p>
             <p>$$\begin{aligned} \boldsymbol{a}^{(t)} &amp;=\boldsymbol{b}+\boldsymbol{W h}^{(t-1)}+\boldsymbol{U} \boldsymbol{x}^{(t)} \\ \boldsymbol{h}^{(t)} &amp;=\tanh \left(\boldsymbol{a}^{(t)}\right) \\ \boldsymbol{o}^{(t)} &amp;=\boldsymbol{c}+\boldsymbol{V} \boldsymbol{h}^{(t)} \\ \hat{\boldsymbol{y}}^{(t)} &amp;=\operatorname{softmax}\left(\boldsymbol{o}^{(t)}\right) \end{aligned}$$</p>
-            <p>where the parameters are the bias vectors <script type="math/tex">\mathbf{b}</script> and <script type="math/tex">\mathbf{c}</script> along with the weight matrices <script type="math/tex">\boldsymbol{U}</script>, <script type="math/tex">\boldsymbol{V}</script> and <script type="math/tex">\boldsymbol{W}</script>, respectively, for input-to-hidden, hidden-to-output and hidden-to-hidden connections.<br />
-  We, also, Assume the hyperbolic tangent activation function, and that the output is discrete<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>.</p>
+            <p>where the parameters are the bias vectors \(\mathbf{b}\) and \(\mathbf{c}\) along with the weight matrices \(\boldsymbol{U}\), \(\boldsymbol{V}\) and \(\boldsymbol{W}\), respectively, for input-to-hidden, hidden-to-output and hidden-to-hidden connections.<br />
+  We, also, Assume the hyperbolic tangent activation function, and that the output is discrete<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>.</p>
           </li>
           <li><strong>The (Total) Loss</strong>:<br />
-  The <strong>Total Loss</strong> for a given sequence of <script type="math/tex">\mathbf{x}</script> values paired with a sequence of <script type="math/tex">\mathbf{y}</script> values is the <em>sum of the losses over all the time steps</em>. Assuming <script type="math/tex">L^{(t)}</script> is the <strong>negative log-likelihood</strong> of <script type="math/tex">y^{(t)}</script> given <script type="math/tex">\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}</script>, then:
+  The <strong>Total Loss</strong> for a given sequence of \(\mathbf{x}\) values paired with a sequence of \(\mathbf{y}\) values is the <em>sum of the losses over all the time steps</em>. Assuming \(L^{(t)}\) is the <strong>negative log-likelihood</strong> of \(y^{(t)}\) given \(\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}\), then:
             <p>$$\begin{aligned} &amp; L\left(\left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(\tau)}\right\},\left\{\boldsymbol{y}^{(1)}, \ldots, \boldsymbol{y}^{(\tau)}\right\}\right) \\=&amp; \sum_{t} L^{(t)} \\=&amp; -\sum_{t} \log p_{\text { model }}\left(y^{(t)} |\left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}\right\}\right) \end{aligned}$$</p>
-            <p>where <script type="math/tex">p_{\text { model }}\left(y^{(t)} |\left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}\right\}\right)</script> is given by reading the entry for <script type="math/tex">y^{(t)}</script> from the model’s output vector <script type="math/tex">\hat{\boldsymbol{y}}^{(t)}</script>.</p>
+            <p>where \(p_{\text { model }}\left(y^{(t)} |\left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}\right\}\right)\) is given by reading the entry for \(y^{(t)}\) from the model’s output vector \(\hat{\boldsymbol{y}}^{(t)}\).</p>
           </li>
           <li><strong>Complexity</strong>:
             <ul>
               <li><strong>Forward Pass</strong>:<br />
-  The runtime is <script type="math/tex">\mathcal{O}(\tau)</script> and cannot be reduced by parallelization because the forward propagation graph is inherently sequential; each time step may only be computed after the previous one.</li>
+  The runtime is \(\mathcal{O}(\tau)\) and cannot be reduced by parallelization because the forward propagation graph is inherently sequential; each time step may only be computed after the previous one.</li>
               <li><strong>Backward Pass</strong>:<br />
-  The standard algorithm used is called <strong>Back-Propagation Through Time (BPTT)</strong>, with a runtime of <script type="math/tex">\mathcal{O}(\tau)</script></li>
+  The standard algorithm used is called <strong>Back-Propagation Through Time (BPTT)</strong>, with a runtime of \(\mathcal{O}(\tau)\)</li>
             </ul>
           </li>
           <li><strong>Properties</strong>:
@@ -246,7 +247,7 @@
   It <strong>cannot</strong> simulate a <em>universal Turing Machine</em>.</li>
               <li>It requires that the output units capture all the information about the past that the network will use to predict the future; due to the lack of hidden-to-hidden recurrence.<br />
   But, since the outputs are trained to match the training set targets, they are unlikely to capture the necessary information about the past history.</li>
-              <li>The <strong>Advantage</strong> of eliminating hidden-to-hidden recurrence is that all the time steps are <strong>de-coupled</strong><sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>. Training can thus be parallelized, with the gradient for each step <script type="math/tex">t</script> computed in isolation.<br />
+              <li>The <strong>Advantage</strong> of eliminating hidden-to-hidden recurrence is that all the time steps are <strong>de-coupled</strong><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>. Training can thus be parallelized, with the gradient for each step \(t\) computed in isolation.<br />
   Thus, the model can be trained with <a href="#bodyContents17"><strong>Teacher Forcing</strong></a>.</li>
             </ul>
           </li>
@@ -274,7 +275,7 @@
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Teacher Forcing:</strong><br />
- Teacher forcing is a procedure that emerges from the maximum likelihood criterion, in which during training the model receives the ground truth output <script type="math/tex">y^{(t)}</script> as input at time <script type="math/tex">t + 1</script>.</p>
+ Teacher forcing is a procedure that emerges from the maximum likelihood criterion, in which during training the model receives the ground truth output \(y^{(t)}\) as input at time \(t + 1\).</p>
 
     <p>Models that have recurrent connections from their <em>outputs</em> leading <em>back into the model</em> may be trained with teacher forcing.</p>
 
@@ -284,7 +285,7 @@
 
     <p id="lst-p"><strong>Methods for Mitigation:</strong></p>
     <ol>
-      <li>Train with both teacher-forced inputs and free-running inputs, for example by predicting the correct target a number of steps in the future through the unfolded recurrent output-to-input paths<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup>.</li>
+      <li>Train with both teacher-forced inputs and free-running inputs, for example by predicting the correct target a number of steps in the future through the unfolded recurrent output-to-input paths<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup>.</li>
       <li>Another approach (<em>Bengio et al., 2015b</em>) to mitigate the gap between the inputs seen at training time and the inputs seen at test time randomly chooses to use generated values or actual data values as input. This approach exploits a curriculum learning strategy to gradually use more of the generated values as input.</li>
     </ol>
 
@@ -307,7 +308,7 @@
 
     <p id="lst-p"><strong>Notes:</strong></p>
     <ul>
-      <li>We do not need to compute the gradient with respect to <script type="math/tex">\mathbf{x}^{(t)}</script> for training because it does not have any parameters as ancestors in the computational graph defining the loss.<br />
+      <li>We do not need to compute the gradient with respect to \(\mathbf{x}^{(t)}\) for training because it does not have any parameters as ancestors in the computational graph defining the loss.<br />
  <br /></li>
     </ul>
 
@@ -318,15 +319,15 @@ Since we wish to interpret the <em>output</em> of an RNN as a <em>probability di
       <p>E.g. Mean squared error is the cross-entropy loss associated with an output distribution that is a unit Gaussian.</p>
     </blockquote>
 
-    <p>When we use a <em>predictive log-likelihood training objective</em>, such as equation 10.12, we train the RNN to <em>estimate the conditional distribution</em> of the next sequence element <script type="math/tex">\boldsymbol{y}^{(t)}</script> given the past inputs. This may mean that we maximize the log-likelihood:</p>
+    <p>When we use a <em>predictive log-likelihood training objective</em>, such as equation 10.12, we train the RNN to <em>estimate the conditional distribution</em> of the next sequence element \(\boldsymbol{y}^{(t)}\) given the past inputs. This may mean that we maximize the log-likelihood:</p>
     <p>$$\log p\left(\boldsymbol{y}^{(t)} | \boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}\right) \tag{10.29}$$</p>
     <p>or, if the model includes connections from the output at one time step to the nexttime step,</p>
     <p>$$\log p\left(\boldsymbol{y}^{(t)} | \boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(t)}, \boldsymbol{y}^{(1)}, \ldots, \boldsymbol{y}^{(t-1)}\right) \tag{10.30}$$</p>
-    <p>Decomposing the joint probability over the sequence of <script type="math/tex">\mathbf{y}</script> values as a series of one-step probabilistic predictions is one way to capture the <em>full joint distribution</em> across the whole sequence. When we do not feed past <script type="math/tex">\mathbf{y}</script> values as inputs that condition the next step prediction, the outputs <script type="math/tex">\mathbf{y}</script> are <strong>conditionally independent</strong> given the sequence of <script type="math/tex">\mathbf{x}</script> values.</p>
+    <p>Decomposing the joint probability over the sequence of \(\mathbf{y}\) values as a series of one-step probabilistic predictions is one way to capture the <em>full joint distribution</em> across the whole sequence. When we do not feed past \(\mathbf{y}\) values as inputs that condition the next step prediction, the outputs \(\mathbf{y}\) are <strong>conditionally independent</strong> given the sequence of \(\mathbf{x}\) values.</p>
 
     <p><strong style="color: red">Summary:</strong><br />
-This section is useful for understanding RNN from a <em>probabilistic graphical model</em> perspective. The main point is to show that <strong>RNN provides a very efficient parametrization of the <em>joint distribution</em> over the observations <script type="math/tex">y^{(t)}</script>.</strong><br />
-The introduction of <em>hidden state</em> and <em>hidden-to-hidden</em> connections can be motivated as reducing <a href="">fig 10.7</a> to <a href="">fig 10.8</a>; which have <script type="math/tex">\mathcal{O}(k^{\tau})</script> and <script type="math/tex">\mathcal{O}(1)\times \tau</script> parameters, respectively (where <script type="math/tex">\tau</script> is the length of the sequence).<br />
+This section is useful for understanding RNN from a <em>probabilistic graphical model</em> perspective. The main point is to show that <strong>RNN provides a very efficient parametrization of the <em>joint distribution</em> over the observations \(y^{(t)}\).</strong><br />
+The introduction of <em>hidden state</em> and <em>hidden-to-hidden</em> connections can be motivated as reducing <a href="">fig 10.7</a> to <a href="">fig 10.8</a>; which have \(\mathcal{O}(k^{\tau})\) and \(\mathcal{O}(1)\times \tau\) parameters, respectively (where \(\tau\) is the length of the sequence).<br />
 <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents118">Backpropagation Through Time:</strong>
@@ -370,7 +371,7 @@ The introduction of <em>hidden state</em> and <em>hidden-to-hidden</em> connecti
         <p>$$ \Gamma_o = \sigma(W_o[a^{(t-1)}, x^{(t)}] + b_o) \\
  \implies 
  \sigma(W_o[a^{(t-1)}, x^{(t)}, c^{(t-1)}] + b_o)$$</p>
-        <p>Thus, we add the term <script type="math/tex">c^{(t-1)}</script> to the output gate.</p>
+        <p>Thus, we add the term \(c^{(t-1)}\) to the output gate.</p>
       </li>
     </ol>
   </li>
@@ -388,7 +389,7 @@ The introduction of <em>hidden state</em> and <em>hidden-to-hidden</em> connecti
       <li>The observation here is that there exists <strong>High Curvature Walls</strong>. <br />
   This Curvature Wall will move the gradient to a very different/far, probably less useful area. 
   Thus, if we clip the gradients we will avoid the walls and will remain in the more useful area that we were exploring already. <br />
-  Draw a line between the original point on the Error graph and the End (optimized) point then evaluate the Error on points on that line and look at the changes <script type="math/tex">\rightarrow</script> this shows changes in the curvature.</li>
+  Draw a line between the original point on the Error graph and the End (optimized) point then evaluate the Error on points on that line and look at the changes \(\rightarrow\) this shows changes in the curvature.</li>
     </ul>
   </li>
 </ul>
@@ -436,29 +437,29 @@ The introduction of <em>hidden state</em> and <em>hidden-to-hidden</em> connecti
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}
 
  -->
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p>A natural way to represent discrete variables is to regard the output <script type="math/tex">\mathbf{o}</script> as giving the unnormalized log probabilities of each possible value of the discrete variable. We can then apply the softmax operation as a post-processing step to obtain a vector <script type="math/tex">\hat{\boldsymbol{y}}</script> of normalized probabilities over the output. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p>A natural way to represent discrete variables is to regard the output \(\mathbf{o}\) as giving the unnormalized log probabilities of each possible value of the discrete variable. We can then apply the softmax operation as a post-processing step to obtain a vector \(\hat{\boldsymbol{y}}\) of normalized probabilities over the output. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2">
-      <p>for any loss function based on comparing the prediction at time <script type="math/tex">t</script> to the training target at time <script type="math/tex">t</script>. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:2" role="doc-endnote">
+      <p>for any loss function based on comparing the prediction at time \(t\) to the training target at time \(t\). <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:3">
-      <p>In this way, the network can learn to take into account input conditions (such as those it generates itself in the free-running mode) not seen during training and how to map the state back toward one that will make the network generate proper outputs after a few steps. <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:3" role="doc-endnote">
+      <p>In this way, the network can learn to take into account input conditions (such as those it generates itself in the free-running mode) not seen during training and how to map the state back toward one that will make the network generate proper outputs after a few steps. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

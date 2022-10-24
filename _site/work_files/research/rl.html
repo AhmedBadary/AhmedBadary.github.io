@@ -92,6 +92,7 @@
   <li><a href="https://www.youtube.com/playlist?list=PLZbbT5o_s2xoWNVdDudn51XM8lOuZ_Njv">Reinforcement Learning Series (Tutorial + Code (vids))</a></li>
   <li><a href="https://www.reddit.com/r/MachineLearning/comments/defiac/p_a_stepbystep_policy_gradient_algorithms_colab/">A step-by-step Policy Gradient algorithms Colab + Pytorch tutorial</a></li>
   <li><a href="https://pathmind.com/">Pathmind: Reinforcement Learning Simulations (Code)</a></li>
+  <li><a href="https://pythonprogramming.net/q-learning-reinforcement-learning-python-tutorial/">Reinforcement Learning Tutorial (Sentdex)</a></li>
 </ul>
 
 <h2 id="content1">Intro - Reinforcement Learning</h2>
@@ -109,34 +110,34 @@
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Mathematical Formulation of RL - Markov Decision Processes:</strong><br />
  <strong>Markov Decision Process</strong></p>
 
-    <p id="lst-p">Defined by <script type="math/tex">(\mathcal{S}, \mathcal{A}, \mathcal{R}, \mathbb{P}, \gamma)</script>:</p>
+    <p id="lst-p">Defined by \((\mathcal{S}, \mathcal{A}, \mathcal{R}, \mathbb{P}, \gamma)\):</p>
     <ul>
-      <li><script type="math/tex">\mathcal{S}</script>: set of possible states</li>
-      <li><script type="math/tex">\mathcal{A}</script>: set of possible actions</li>
-      <li><script type="math/tex">\mathcal{R}</script>: distribution of reward given (state, action) pair</li>
-      <li><script type="math/tex">\mathbb{P}</script>: transition probability i.e. distribution over next state given (state, action) pair</li>
-      <li><script type="math/tex">\gamma</script>: discount factor</li>
+      <li>\(\mathcal{S}\): set of possible states</li>
+      <li>\(\mathcal{A}\): set of possible actions</li>
+      <li>\(\mathcal{R}\): distribution of reward given (state, action) pair</li>
+      <li>\(\mathbb{P}\): transition probability i.e. distribution over next state given (state, action) pair</li>
+      <li>\(\gamma\): discount factor</li>
     </ul>
 
     <p id="lst-p"><strong>MDPs Algorithm/Idea:</strong></p>
     <ul>
-      <li>At time step <script type="math/tex">\mathrm{t}=0,</script> environment samples initial state <script type="math/tex">\mathrm{s}_ {0} \sim \mathrm{p}\left(\mathrm{s}_ {0}\right)</script></li>
-      <li>Then, for <script type="math/tex">\mathrm{t}=0</script> until done:
+      <li>At time step \(\mathrm{t}=0,\) environment samples initial state \(\mathrm{s}_ {0} \sim \mathrm{p}\left(\mathrm{s}_ {0}\right)\)</li>
+      <li>Then, for \(\mathrm{t}=0\) until done:
         <ul>
-          <li>Agent selects action <script type="math/tex">a_t</script></li>
-          <li>Environment samples reward <script type="math/tex">\mathrm{r}_ {\mathrm{t}} \sim \mathrm{R}\left( . \vert \mathrm{s}_{\mathrm{t}}, \mathrm{a}_ {\mathrm{t}}\right)</script></li>
-          <li>Environment samples next state <script type="math/tex">\mathrm{s}_ {\mathrm{t}+1} \sim \mathrm{P}\left( . \vert \mathrm{s}_ {\mathrm{t}}, \mathrm{a}_ {\mathrm{t}}\right)</script></li>
-          <li>Agent receives reward <script type="math/tex">\mathrm{r}_ {\mathrm{t}}</script> and next state <script type="math/tex">\mathrm{s}_ {\mathrm{t}+1}</script></li>
+          <li>Agent selects action \(a_t\)</li>
+          <li>Environment samples reward \(\mathrm{r}_ {\mathrm{t}} \sim \mathrm{R}\left( . \vert \mathrm{s}_{\mathrm{t}}, \mathrm{a}_ {\mathrm{t}}\right)\)</li>
+          <li>Environment samples next state \(\mathrm{s}_ {\mathrm{t}+1} \sim \mathrm{P}\left( . \vert \mathrm{s}_ {\mathrm{t}}, \mathrm{a}_ {\mathrm{t}}\right)\)</li>
+          <li>Agent receives reward \(\mathrm{r}_ {\mathrm{t}}\) and next state \(\mathrm{s}_ {\mathrm{t}+1}\)</li>
         </ul>
       </li>
     </ul>
 
-    <p>- A policy <script type="math/tex">\pi</script> is a <em>function</em> from <script type="math/tex">S</script> to <script type="math/tex">A</script> that specifies what action to take in each state<br />
- - Objective: find policy <script type="math/tex">\pi^{\ast}</script> that maximizes cumulative discounted reward:</p>
+    <p>- A policy \(\pi\) is a <em>function</em> from \(S\) to \(A\) that specifies what action to take in each state<br />
+ - Objective: find policy \(\pi^{\ast}\) that maximizes cumulative discounted reward:</p>
     <p>$$\sum_{t \geq 0} \gamma^{t} r_{t}$$</p>
 
-    <p><strong style="color: red">Optimal Policy <script type="math/tex">\pi^{\ast}</script>:</strong><br />
- We want to find optimal policy <script type="math/tex">\mathbf{n}^{\ast}</script> that maximizes the sum of rewards.<br />
+    <p><strong style="color: red">Optimal Policy \(\pi^{\ast}\):</strong><br />
+ We want to find optimal policy \(\mathbf{n}^{\ast}\) that maximizes the sum of rewards.<br />
  We handle <strong>randomness</strong>  (initial state, transition probability…) by <strong>Maximizing the <em>expected sum of rewards</em></strong>.<br />
  <strong>Formally</strong>,</p>
     <p>$$\pi^{* }=\arg \max _{\pi} \mathbb{E}\left[\sum_{t \geq 0} \gamma^{t} r_{t} | \pi\right] \quad$ \text{ with } $s_{0} \sim p\left(s_{0}\right), a_{t} \sim \pi\left(\cdot | s_{t}\right), s_{t+1} \sim p\left(\cdot | s_{t}, a_{t}\right)$$</p>
@@ -160,10 +161,10 @@
 
     <p id="lst-p"><strong>Issues:</strong></p>
     <ul>
-      <li>Problem 1: It’s slow – <script type="math/tex">O(S^2A)</script> per iteration</li>
+      <li>Problem 1: It’s slow – \(O(S^2A)\) per iteration</li>
       <li>Problem 2: The “max” at each state rarely changes</li>
       <li>Problem 3: The policy often converges long before the values</li>
-      <li>Problem 4: Not scalable. Must compute <script type="math/tex">Q(s, a)</script> for every state-action pair. If state is e.g. current game state pixels, computationally infeasible to compute for entire state space</li>
+      <li>Problem 4: Not scalable. Must compute \(Q(s, a)\) for every state-action pair. If state is e.g. current game state pixels, computationally infeasible to compute for entire state space</li>
     </ul>
 
     <p id="lst-p"><strong style="color: red">Policy Iteration:</strong><br />
@@ -177,7 +178,7 @@
         <p>Repeat steps until policy converges</p>
       </li>
       <li><strong>Evaluation:</strong><br />
-  For fixed current policy <script type="math/tex">\pi</script>, find values with policy evaluation:
+  For fixed current policy \(\pi\), find values with policy evaluation:
         <ul>
           <li>Iterate until values converge:
             <p>$$V_{k+1}^{\pi_{i}}(s) \leftarrow \sum_{s^{\prime}} T\left(s, \pi_{i}(s), s^{\prime}\right)\left[R\left(s, \pi_{i}(s), s^{\prime}\right)+\gamma V_{k}^{\pi_{i}}\left(s^{\prime}\right)\right]$$</p>
@@ -205,7 +206,7 @@
  <img src="https://cdn.mathpix.com/snip/images/yoH-nwG1Hunddc_DcRunAFYup5Nf6kcspI44gQ7tujw.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
 
     <p><strong style="color: red">Q-Learning | Solving for Optimal Policy:</strong><br />
- A problem with <strong>value iteration</strong> was: It is Not scalable. Must compute <script type="math/tex">Q(s, a)</script> for every state-action pair.<br />
+ A problem with <strong>value iteration</strong> was: It is Not scalable. Must compute \(Q(s, a)\) for every state-action pair.<br />
  <strong>Q-Learning</strong> solves this by using a function approximator to estimate the action-value function:</p>
     <p>$$Q(s, a ; \theta) \approx Q^{* }(s, a)$$</p>
     <p><strong>Deep Q-learning:</strong> the case where the function approximator is a deep neural net.</p>
@@ -235,15 +236,15 @@
     <p>$$\Pi=\left\{\pi_{\theta}, \theta \in \mathbb{R}^{m}\right\}$$</p>
     <p>- For each policy, define its <strong>value</strong>:</p>
     <p>$$J(\theta)=\mathbb{E}\left[\sum_{t \geq 0} \gamma^{t} r_{t} | \pi_{\theta}\right]$$</p>
-    <p>- Find the <strong>optimal policy</strong> <script type="math/tex">\theta^{ * }=\arg \max _ {\theta} J(\theta)</script> by <strong>gradient ascent on <em>policy parameters</em></strong> (<strong>REINFORCE Algorithm</strong>)</p>
+    <p>- Find the <strong>optimal policy</strong> \(\theta^{ * }=\arg \max _ {\theta} J(\theta)\) by <strong>gradient ascent on <em>policy parameters</em></strong> (<strong>REINFORCE Algorithm</strong>)</p>
 
     <p><strong style="color: red">REINFORCE Algorithm:</strong><br />
  <strong>Expected Reward:</strong></p>
     <p>$$\begin{aligned} J(\theta) &amp;=\mathbb{E}_{\tau \sim p(\tau ; \theta)}[r(\tau)] \\ &amp;=\int_{\tau} r(\tau) p(\tau ; \theta) \mathrm{d} \tau \end{aligned}$$</p>
-    <p>where <script type="math/tex">r(\tau)</script> is the reward of a trajectory <script type="math/tex">\tau=\left(s_{0}, a_{0}, r_{0}, s_{1}, \dots\right)</script>.<br />
+    <p>where \(r(\tau)\) is the reward of a trajectory \(\tau=\left(s_{0}, a_{0}, r_{0}, s_{1}, \dots\right)\).<br />
  <strong>The Gradient:</strong></p>
     <p>$$\nabla_{\theta} J(\theta)=\int_{\tau} r(\tau) \nabla_{\theta} p(\tau ; \theta) \mathrm{d} \tau$$</p>
-    <p>- The Gradient is <strong>Intractable</strong>. Gradient of an expectation is problematic when <script type="math/tex">p</script> depends on <script type="math/tex">\theta</script>.<br />
+    <p>- The Gradient is <strong>Intractable</strong>. Gradient of an expectation is problematic when \(p\) depends on \(\theta\).<br />
  - <strong>Solution:</strong></p>
     <ul>
       <li><strong>Trick:</strong>
@@ -257,16 +258,16 @@
           <li>The gradient does NOT depend on <em>transition probabilities:</em>
             <ul>
               <li>
-                <script type="math/tex; mode=display">p(\tau ; \theta)=\prod_{t \geq 0} p\left(s_{t+1} | s_{t}, a_{t}\right) \pi_{\theta}\left(a_{t} | s_{t}\right)</script>
+\[p(\tau ; \theta)=\prod_{t \geq 0} p\left(s_{t+1} | s_{t}, a_{t}\right) \pi_{\theta}\left(a_{t} | s_{t}\right)\]
               </li>
-              <li><script type="math/tex">\log p(\tau ; \theta)=\sum_{t \geq 0} \log p\left(s_{t+1} | s_{t}, a_{t}\right)+\log \pi_{\theta}\left(a_{t} | s_{t}\right)</script><br />
-  <script type="math/tex">\implies</script></li>
+              <li>\(\log p(\tau ; \theta)=\sum_{t \geq 0} \log p\left(s_{t+1} | s_{t}, a_{t}\right)+\log \pi_{\theta}\left(a_{t} | s_{t}\right)\)<br />
+  \(\implies\)</li>
               <li>
-                <script type="math/tex; mode=display">\nabla_{\theta} \log p(\tau ; \theta)=\sum_{t \geq 0} \nabla_{\theta} \log \pi_{\theta}\left(a_{t} | s_{t}\right)</script>
+\[\nabla_{\theta} \log p(\tau ; \theta)=\sum_{t \geq 0} \nabla_{\theta} \log \pi_{\theta}\left(a_{t} | s_{t}\right)\]
               </li>
             </ul>
           </li>
-          <li>Therefore when sampling a trajectory <script type="math/tex">\tau,</script> we can estimate <script type="math/tex">J(\theta)</script> with:
+          <li>Therefore when sampling a trajectory \(\tau,\) we can estimate \(J(\theta)\) with:
             <p>$$\nabla_{\theta} J(\theta) \approx \sum_{t \geq 0} r(\tau) \nabla_{\theta} \log \pi_{\theta}\left(a_{t} | s_{t}\right)$$</p>
           </li>
         </ul>
@@ -276,8 +277,8 @@
         <ul>
           <li><strong>Intuition/Interpretation</strong>:
             <ul>
-              <li>If <script type="math/tex">\mathrm{r}(\tau)</script> is high, push up the probabilities of the actions seen</li>
-              <li>If <script type="math/tex">\mathrm{r}(\tau)</script> is low, push down the probabilities of the actions seen
+              <li>If \(\mathrm{r}(\tau)\) is high, push up the probabilities of the actions seen</li>
+              <li>If \(\mathrm{r}(\tau)\) is low, push down the probabilities of the actions seen
   Might seem simplistic to say that if a trajectory is good then all its actions were good. But in expectation, it averages out!</li>
             </ul>
           </li>
@@ -289,7 +290,7 @@
                   <li>Push up probabilities of an action seen, only by the cumulative future reward from that state:
                     <p>$$\nabla_{\theta} J(\theta) \approx \sum_{t \geq 0}\left(\sum_{t^{\prime} \geq t} r_{t^{\prime}}\right) \nabla_{\theta} \log \pi_{\theta}\left(a_{t} | s_{t}\right)$$</p>
                   </li>
-                  <li>Use discount factor <script type="math/tex">\gamma</script> to ignore delayed effects
+                  <li>Use discount factor \(\gamma\) to ignore delayed effects
                     <p>$$\nabla_{\theta} J(\theta) \approx \sum_{t \geq 0}\left(\sum_{t^{\prime} \geq t} \gamma^{t^{\prime}-t} r_{t^{\prime}}\right) \nabla_{\theta} \log \pi_{\theta}\left(a_{t} | s_{t}\right)$$</p>
                   </li>
                 </ol>
@@ -306,12 +307,12 @@
   A simple baseline: constant moving average of rewards experienced so far from all trajectories.</li>
                       <li><strong>Actor-Critic</strong>:<br />
   We want to push up the probability of an action from a state, if this action was better than the <strong>expected value of what we should get from that state</strong>.<br />
-  Intuitively, we are happy with an action <script type="math/tex">a_{t}</script> in a state <script type="math/tex">s_{t}</script> if <script type="math/tex">Q^{\pi}\left(s_{t}, a_{t}\right)-V^{\pi}\left(s_{t}\right)</script> is large. On the contrary, we are unhappy with an action if it’s small.<br />
+  Intuitively, we are happy with an action \(a_{t}\) in a state \(s_{t}\) if \(Q^{\pi}\left(s_{t}, a_{t}\right)-V^{\pi}\left(s_{t}\right)\) is large. On the contrary, we are unhappy with an action if it’s small.<br />
   Now, the estimator:
                         <p>$$\nabla_{\theta} J(\theta) \approx \sum_{t \geq 0}\left(Q^{\pi_{\theta}}\left(s_{t}, a_{t}\right)-V^{\pi_{\theta}}\left(s_{t}\right)\right) \nabla_{\theta} \log \pi_{\theta}\left(a_{t} | s_{t}\right)$$</p>
                         <ul>
-                          <li><strong>Learning <script type="math/tex">Q</script> and <script type="math/tex">V</script></strong>:<br />
-  We learn <script type="math/tex">Q, V</script> using the <strong>Actor-Critic Algorithm</strong>.</li>
+                          <li><strong>Learning \(Q\) and \(V\)</strong>:<br />
+  We learn \(Q, V\) using the <strong>Actor-Critic Algorithm</strong>.</li>
                         </ul>
                       </li>
                     </ul>
@@ -325,7 +326,7 @@
     </ul>
 
     <p><strong style="color: red">Actor-Critic Algorithm:</strong><br />
- An algorithm to learn <script type="math/tex">Q</script> and <script type="math/tex">V</script>.<br />
+ An algorithm to learn \(Q\) and \(V\).<br />
  We can combine Policy Gradients and Q-learning by training both:</p>
     <ul>
       <li><strong>Actor:</strong> the policy, and</li>
@@ -386,13 +387,13 @@
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

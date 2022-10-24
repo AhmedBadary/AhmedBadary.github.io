@@ -116,8 +116,8 @@
       <dd>We can view the problem of <strong>ASR</strong> as a <strong><em>sequence labeling</em></strong> problem, and, so, use statistical models (such as HMMs) to model the conditional probabilities between the states/words by viewing speech signal as a piecewise stationary signal or a short-time stationary signal.</dd>
       <dd>
         <ul>
-          <li><strong>Representation</strong>: we <em>represent</em> the <em>speech signal</em> as an <em><strong>observation sequence</strong></em> <script type="math/tex">o = \{o_t\}</script></li>
-          <li><strong>Goal</strong>: find the most likely <em>word sequence</em> <script type="math/tex">\hat{w}</script></li>
+          <li><strong>Representation</strong>: we <em>represent</em> the <em>speech signal</em> as an <em><strong>observation sequence</strong></em> \(o = \{o_t\}\)</li>
+          <li><strong>Goal</strong>: find the most likely <em>word sequence</em> \(\hat{w}\)</li>
           <li><strong>Set-Up</strong>:
             <ul>
               <li>The system has a set of discrete states</li>
@@ -126,7 +126,7 @@
                   <p><strong>Markovian</strong>: Memoryless</p>
                 </blockquote>
               </li>
-              <li>The <em>Acoustic Observations</em> when making a transition are conditioned on <em>the state alone</em> <script type="math/tex">P(o_t \vert c_t)</script></li>
+              <li>The <em>Acoustic Observations</em> when making a transition are conditioned on <em>the state alone</em> \(P(o_t \vert c_t)\)</li>
               <li>The <em>goal</em> is to <em>recover the state sequence</em> and, consequently, the <em>word sequence</em></li>
             </ul>
           </li>
@@ -189,9 +189,9 @@
       </dd>
       <dd><strong style="color: red">Speech as waves:</strong>
         <ul>
-          <li>Human hearing range is: <script type="math/tex">~50 HZ-20 kHZ</script></li>
-          <li>Human speech range is: <script type="math/tex">~85 HZ-8 kHZ</script></li>
-          <li>Telephone speech sampling is <script type="math/tex">8 kHz</script> and a bandwidth range of <script type="math/tex">300 Hz-4 kHz</script></li>
+          <li>Human hearing range is: \(~50 HZ-20 kHZ\)</li>
+          <li>Human speech range is: \(~85 HZ-8 kHZ\)</li>
+          <li>Telephone speech sampling is \(8 kHz\) and a bandwidth range of \(300 Hz-4 kHz\)</li>
           <li>1 bit per sample is intelligible</li>
           <li>Contemporary Speech Processing mostly around 16 khz 16 bits/sample
             <blockquote>
@@ -215,7 +215,7 @@
             <ul>
               <li>Specifically, we apply <em>windowed short-term</em> <em><strong>Fast Fourier Transform (FFT)</strong></em>
                 <blockquote>
-                  <p>e.g. FFT on overlapping <script type="math/tex">25ms</script> windows (400 samples) taken every <script type="math/tex">10ms</script><br />
+                  <p>e.g. FFT on overlapping \(25ms\) windows (400 samples) taken every \(10ms\)<br />
 <img src="/main_files/dl/nlp/12/16.png" alt="img" width="70%" /><br />
 Each frame is around 25ms of speech</p>
                 </blockquote>
@@ -225,8 +225,8 @@ Each frame is around 25ms of speech</p>
           <li>FFT is still too high-dimensional
             <ul>
               <li>We <strong>Downsample</strong> by local weighted averages on <em>mel scale</em> non-linear spacing, an d take a log:<br />
-  <script type="math/tex">m = 1127 \ln(1+\dfrac{f}{700})</script></li>
-              <li>This results in <em><strong>log-mel features</strong></em>, <script type="math/tex">40+</script> dimensional features per frame
+  \(m = 1127 \ln(1+\dfrac{f}{700})\)</li>
+              <li>This results in <em><strong>log-mel features</strong></em>, \(40+\) dimensional features per frame
                 <blockquote>
                   <p>Default for NN speech modelling</p>
                 </blockquote>
@@ -241,7 +241,7 @@ Each frame is around 25ms of speech</p>
             <ul>
               <li><em><strong>MFCCs - Mel Frequency Cepstral Coefficients</strong></em>: are the discrete cosine transformation (DCT) of the mel filterbank energies | Whitened and low-dimensional.<br />
   They are similar to <em>Principle Components</em> of log spectra.<br />
-  <strong>GMMs</strong> used local differences (deltas) and second-order differences (delta-deltas) to capture the dynamics of the speech <script type="math/tex">(13 \times 3 \text{ dim})</script></li>
+  <strong>GMMs</strong> used local differences (deltas) and second-order differences (delta-deltas) to capture the dynamics of the speech \((13 \times 3 \text{ dim})\)</li>
             </ul>
           </li>
           <li><strong>FC-DNN</strong>: 26 stacked frames of <em><strong>PLP</strong></em>
@@ -332,7 +332,7 @@ Each frame is around 25ms of speech</p>
       <li><strong>TIMIT</strong>:
         <ul>
           <li>Hand-marked phone boundaries are given</li>
-          <li>630 speakers <script type="math/tex">\times</script> 10 utterances</li>
+          <li>630 speakers \(\times\) 10 utterances</li>
         </ul>
       </li>
       <li><strong>Wall Street Journal (WSJ)</strong> 1986 Read speech. WSJO 1991, 30k vocab</li>
@@ -359,8 +359,8 @@ Each frame is around 25ms of speech</p>
       <dd>We can view the problem of <strong>ASR</strong> as a <em>sequence labeling</em> problem, and, so, use statistical models (such as HMMs) to model the conditional probabilities between the states/words by viewing speech signal as a piecewise stationary signal or a short-time stationary signal.</dd>
       <dd>
         <ul>
-          <li><strong>Representation</strong>: we <em>represent</em> the <em>speech signal</em> as an <em><strong>observation sequence</strong></em> <script type="math/tex">o = \{o_t\}</script></li>
-          <li><strong>Goal</strong>: find the most likely <em>word sequence</em> <script type="math/tex">\hat{w}</script></li>
+          <li><strong>Representation</strong>: we <em>represent</em> the <em>speech signal</em> as an <em><strong>observation sequence</strong></em> \(o = \{o_t\}\)</li>
+          <li><strong>Goal</strong>: find the most likely <em>word sequence</em> \(\hat{w}\)</li>
           <li><strong>Set-Up</strong>:
             <ul>
               <li>The system has a set of discrete states</li>
@@ -369,7 +369,7 @@ Each frame is around 25ms of speech</p>
                   <p><strong>Markovian</strong>: Memoryless</p>
                 </blockquote>
               </li>
-              <li>The <em>Acoustic Observations</em> when making a transition are conditioned on <em>the state alone</em> <script type="math/tex">P(o_t \vert c_t)</script></li>
+              <li>The <em>Acoustic Observations</em> when making a transition are conditioned on <em>the state alone</em> \(P(o_t \vert c_t)\)</li>
               <li>The <em>goal</em> is to <em>recover the state sequence</em> and, consequently, the <em>word sequence</em></li>
             </ul>
           </li>
@@ -380,20 +380,19 @@ Each frame is around 25ms of speech</p>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents92">Fundamental Equation of Speech Recognition:</strong></dt>
-      <dd>We set the <strong>decoders output</strong> as the <em><strong>most likely sequence</strong></em> <script type="math/tex">\hat{w}</script> from all the possible sequences, <script type="math/tex">\mathcal{S}</script>, for an observation sequence <script type="math/tex">o</script>:</dd>
+      <dd>We set the <strong>decoders output</strong> as the <em><strong>most likely sequence</strong></em> \(\hat{w}\) from all the possible sequences, \(\mathcal{S}\), for an observation sequence \(o\):</dd>
       <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-\begin{align}
-    \hat{w} & = \mathrm{arg } \max_{w \in \mathcal{S}} P(w \vert o) & (1) \\
-    & = \mathrm{arg } \max_{w \in \mathcal{S}} P(o \vert w) P(w) & (2)
-    \end{align} %]]></script>
+\[\begin{align}
+    \hat{w} &amp; = \mathrm{arg } \max_{w \in \mathcal{S}} P(w \vert o) &amp; (1) \\
+    &amp; = \mathrm{arg } \max_{w \in \mathcal{S}} P(o \vert w) P(w) &amp; (2)
+    \end{align}\]
       </dd>
-      <dd>The <strong>Conditional Probability of a sequence of observations given a sequence of (predicted) word</strong> is a <em>product (or sum of logs)</em> of an <strong>Acoustic Model</strong> (<script type="math/tex">p(o \vert w)</script>)  and a <strong>Language Model</strong> (<script type="math/tex">p(w)</script>)  scores.</dd>
+      <dd>The <strong>Conditional Probability of a sequence of observations given a sequence of (predicted) word</strong> is a <em>product (or sum of logs)</em> of an <strong>Acoustic Model</strong> (\(p(o \vert w)\))  and a <strong>Language Model</strong> (\(p(w)\))  scores.</dd>
       <dd>The <strong>Acoustic Model</strong> can be written as the following product:</dd>
       <dd>
-        <script type="math/tex; mode=display">P(o \vert w) = \sum_{d,c,p} P(o \vert c) P(c \vert p) P(p \vert w)</script>
+\[P(o \vert w) = \sum_{d,c,p} P(o \vert c) P(c \vert p) P(p \vert w)\]
       </dd>
-      <dd>where <script type="math/tex">p</script> is the <strong>phone sequence</strong> and <script type="math/tex">c</script> is the <strong>state sequence</strong>.</dd>
+      <dd>where \(p\) is the <strong>phone sequence</strong> and \(c\) is the <strong>state sequence</strong>.</dd>
     </dl>
   </li>
   <li>
@@ -411,12 +410,12 @@ Basically, we are going from <strong>Signal</strong> to <strong>Language</strong
         <ul>
           <li>Dominant paradigm for ASR from 1990 to 2010</li>
           <li>Model the probability distribution of the acoustic features for each state.<br />
-  <script type="math/tex">P(o_t \vert c_i) = \sum_j w_{ij} N(o_t; \mu_{ij}, \sigma_{ij})</script></li>
+  \(P(o_t \vert c_i) = \sum_j w_{ij} N(o_t; \mu_{ij}, \sigma_{ij})\)</li>
           <li>Often use diagonal covariance Gaussians to keep number of parameters under control.</li>
           <li>Train by the E-M (Expectation Maximization) algorithm (Dempster et al., 1977) alternating:
             <ul>
               <li><strong>M</strong>: forced alignment computing the maximum-likelihood state sequence for each utterance</li>
-              <li><strong>E</strong>: parameter <script type="math/tex">(\mu , \sigma)</script> estimation</li>
+              <li><strong>E</strong>: parameter \((\mu , \sigma)\) estimation</li>
             </ul>
           </li>
           <li>Complex training procedures to incrementally fit increasing numbers of components per mixture:
@@ -489,7 +488,7 @@ Basically, we are going from <strong>Signal</strong> to <strong>Language</strong
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">y(i) = \dfrac{e^{\psi(i, \theta)}}{\sum_{j=1}^N e^{\psi(j, \theta)}}</script>
+\[y(i) = \dfrac{e^{\psi(i, \theta)}}{\sum_{j=1}^N e^{\psi(j, \theta)}}\]
       </dd>
       <dd>
         <ul>
@@ -497,24 +496,23 @@ Basically, we are going from <strong>Signal</strong> to <strong>Language</strong
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">P(c_i \vert o_t)</script>
+\[P(c_i \vert o_t)\]
       </dd>
       <dd>
         <ul>
-          <li>We, then, model <script type="math/tex">P(o \vert c)</script> with a <strong>Neural-Net</strong> instead of a <strong>GMM</strong>:
+          <li>We, then, model \(P(o \vert c)\) with a <strong>Neural-Net</strong> instead of a <strong>GMM</strong>:
             <blockquote>
-              <p>We can ignore <script type="math/tex">P(o_t)</script> since it is the same for all decoding paths</p>
+              <p>We can ignore \(P(o_t)\) since it is the same for all decoding paths</p>
             </blockquote>
           </li>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-\begin{align}
-    P(o \vert c) & = \prod_t P(o_t \vert c_t) & (3) \\
-    P(o_t \vert c_t) & = \dfrac{P(c_t \vert o_t) P(o_t)}{P(c_t)} & (4) \\
-    & \propto \dfrac{P(c_t \vert o_t)}{P(c_t)} & (5) \\
-    \end{align} %]]></script>
+\[\begin{align}
+    P(o \vert c) &amp; = \prod_t P(o_t \vert c_t) &amp; (3) \\
+    P(o_t \vert c_t) &amp; = \dfrac{P(c_t \vert o_t) P(o_t)}{P(c_t)} &amp; (4) \\
+    &amp; \propto \dfrac{P(c_t \vert o_t)}{P(c_t)} &amp; (5) \\
+    \end{align}\]
       </dd>
       <dd>
         <ul>
@@ -522,11 +520,11 @@ Basically, we are going from <strong>Signal</strong> to <strong>Language</strong
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\log P(o_t \vert c_t) = \log P(c_t \vert o_t) - \alpha \log P(c_t)</script>
+\[\log P(o_t \vert c_t) = \log P(c_t \vert o_t) - \alpha \log P(c_t)\]
       </dd>
       <dd>
         <ul>
-          <li>Empirically, a <em><strong>prior smoothing</strong></em> on <script type="math/tex">\alpha</script> <script type="math/tex">(\alpha \approx 0.8)</script> works better</li>
+          <li>Empirically, a <em><strong>prior smoothing</strong></em> on \(\alpha\) \((\alpha \approx 0.8)\) works better</li>
         </ul>
       </dd>
       <dd>
@@ -598,7 +596,7 @@ Pooling in frequency domain is more tolerable</p>
       <li>Design a loss that’s differentiable and closer to what we care about.</li>
       <li>Applied to neural networks (Kingsbury, 2009)</li>
       <li>Posterior scaling gets learnt by the network.</li>
-      <li>Improves conventional training and CTC by <script type="math/tex">\approx 15%</script> relative.</li>
+      <li>Improves conventional training and CTC by \(\approx 15%\) relative.</li>
       <li>bMMI, sMBR(Povey et al., 2008)<br />
  <img src="/main_files/dl/nlp/12/10.png" alt="img" width="70%" /></li>
     </ul>
@@ -623,9 +621,9 @@ Pooling in frequency domain is more tolerable</p>
 The models were <em>statistical</em> and they started from <em>text sequences</em> to <em>audio features</em>.<br />
 Typically, a <em>generative language model</em> is trained on the sentences for the intended language, then, to make the features, <em>pronunciation models</em>, <em>acoustic models</em>, and <em>speech processing models</em> had to be developed. Those required a lot of feature engineering and a lot of human intervention and expertise and were very fragile.</dd>
       <dd><img src="/main_files/dl/nlp/12/1.png" alt="img" width="100%" /></dd>
-      <dd><strong>Recognition</strong> was done through <strong><em>Inference</em></strong>: Given audio features <script type="math/tex">\mathbf{X}=x_1x_2...x_t</script> infer the most likely tedxt sequence <script type="math/tex">\mathbf{Y}^\ast=y_1y_2...y_k</script> that caused the audio features.</dd>
+      <dd><strong>Recognition</strong> was done through <strong><em>Inference</em></strong>: Given audio features \(\mathbf{X}=x_1x_2...x_t\) infer the most likely tedxt sequence \(\mathbf{Y}^\ast=y_1y_2...y_k\) that caused the audio features.</dd>
       <dd>
-        <script type="math/tex; mode=display">\displaystyle{\mathbf{Y}^\ast =\mathrm{arg\,min}_{\mathbf{Y}} p(\mathbf{X} \vert \mathbf{Y}) p(\mathbf{Y})}</script>
+\[\displaystyle{\mathbf{Y}^\ast =\mathrm{arg\,min}_{\mathbf{Y}} p(\mathbf{X} \vert \mathbf{Y}) p(\mathbf{Y})}\]
       </dd>
     </dl>
   </li>
@@ -662,7 +660,7 @@ Typically, a <em>generative language model</em> is trained on the sentences for 
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">End-to-End Speech Recognition:</strong></dt>
       <dd>We treat <strong>End-to-End Speech Recognition</strong> as a <em>modeling task</em>.</dd>
-      <dd>Given <strong>Audio</strong> <script type="math/tex">\mathbf{X}=x_1x_2...x_t</script> (audio/processed spectogram) and corresponding output text <script type="math/tex">\mathbf{Y}=y_1y_2...y_k</script>  (transcript), we want to learn a <em><strong>Probabilistic Model</strong></em> <script type="math/tex">p(\mathbf{Y} \vert \mathbf{X})</script></dd>
+      <dd>Given <strong>Audio</strong> \(\mathbf{X}=x_1x_2...x_t\) (audio/processed spectogram) and corresponding output text \(\mathbf{Y}=y_1y_2...y_k\)  (transcript), we want to learn a <em><strong>Probabilistic Model</strong></em> \(p(\mathbf{Y} \vert \mathbf{X})\)</dd>
     </dl>
   </li>
   <li>
@@ -779,7 +777,7 @@ Then, it gets a <strong>closed formula</strong> for the <strong>probability</str
           <li>Any original transcript is mapped to by all the possible paths in the duplicated space</li>
           <li>The <strong>Score (log probability)</strong> of any path is the sum of the scores of individual categories at the different time steps</li>
           <li>The probability of any transcript is the sum of probabilities of all paths that correspond to that transcript</li>
-          <li><strong>Dynamic Programming</strong> allopws is to compute the log probability <script type="math/tex">p(\mathbf{Y} \vert \mathbf{X})</script> and its gradient exactly.<br />
+          <li><strong>Dynamic Programming</strong> allopws is to compute the log probability \(p(\mathbf{Y} \vert \mathbf{X})\) and its gradient exactly.<br />
  <img src="/main_files/dl/nlp/12/4.png" alt="img" width="80%" /></li>
         </ul>
       </li>
@@ -788,31 +786,31 @@ Then, it gets a <strong>closed formula</strong> for the <strong>probability</str
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents210">The Math:</strong></dt>
-      <dd>Given a length <script type="math/tex">T</script> input sequence <script type="math/tex">x</script>, the output vectors <script type="math/tex">y_t</script> are normalized with the <strong>Softmax</strong> function, then interpreted as the probability of emitting the label (or blank) with index <script type="math/tex">k</script> at time <script type="math/tex">t</script>:</dd>
+      <dd>Given a length \(T\) input sequence \(x\), the output vectors \(y_t\) are normalized with the <strong>Softmax</strong> function, then interpreted as the probability of emitting the label (or blank) with index \(k\) at time \(t\):</dd>
       <dd>
-        <script type="math/tex; mode=display">P(k, t \vert x) = \dfrac{e^{(y_t^k)}}{\sum_{k'} e^{(y_t^{k'})}}</script>
+\[P(k, t \vert x) = \dfrac{e^{(y_t^k)}}{\sum_{k'} e^{(y_t^{k'})}}\]
       </dd>
-      <dd>where <script type="math/tex">y_t^k</script> is element <script type="math/tex">k</script> of <script type="math/tex">y_t</script>.</dd>
-      <dd>A <strong>CTC alignment</strong> <script type="math/tex">a</script> is a length <script type="math/tex">T</script> sequence of blank and label indices.<br />
-The probability <script type="math/tex">P(a \vert x)</script> of 
-<script type="math/tex">a</script> is the product of the emission probabilities at every time-step:</dd>
+      <dd>where \(y_t^k\) is element \(k\) of \(y_t\).</dd>
+      <dd>A <strong>CTC alignment</strong> \(a\) is a length \(T\) sequence of blank and label indices.<br />
+The probability \(P(a \vert x)\) of 
+\(a\) is the product of the emission probabilities at every time-step:</dd>
       <dd>
-        <script type="math/tex; mode=display">P(a \vert x) = \prod_{t=1}^T P(a_t, t \vert x)</script>
+\[P(a \vert x) = \prod_{t=1}^T P(a_t, t \vert x)\]
       </dd>
-      <dd>Denoting by <script type="math/tex">\mathcal{B}</script> an operator that removes first the repeated labels, then the blanks from alignments, and observing that the total probability of an output transcription <script type="math/tex">y</script> is equal to the sum of the probabilities of the alignments corresponding to it, we can write:</dd>
+      <dd>Denoting by \(\mathcal{B}\) an operator that removes first the repeated labels, then the blanks from alignments, and observing that the total probability of an output transcription \(y\) is equal to the sum of the probabilities of the alignments corresponding to it, we can write:</dd>
       <dd>
-        <script type="math/tex; mode=display">P(y \vert x) = \sum_{a \in \mathcal{B}^{-1}(y)} P(a \vert x)\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:(*)</script>
+\[P(y \vert x) = \sum_{a \in \mathcal{B}^{-1}(y)} P(a \vert x)\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:(*)\]
       </dd>
-      <dd>Given a target transcription <script type="math/tex">y^\ast</script>, the network can then be trained to minimise the <strong>CTC objective function</strong>:</dd>
+      <dd>Given a target transcription \(y^\ast\), the network can then be trained to minimise the <strong>CTC objective function</strong>:</dd>
       <dd>
-        <script type="math/tex; mode=display">\text{CTC}(x) = - \log P(y^\ast \vert x)</script>
+\[\text{CTC}(x) = - \log P(y^\ast \vert x)\]
       </dd>
     </dl>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents211">Intuition:</strong></dt>
-      <dd>The above ‘integrating out’ over possible alignments eq. <script type="math/tex">(*)</script> is what allows the network to be trained with unsegmented data. <br />
+      <dd>The above ‘integrating out’ over possible alignments eq. \((*)\) is what allows the network to be trained with unsegmented data. <br />
 The intuition is that, because we don’t know where the labels within a particular transcription will occur, we sum over all the places where they could occur can be efficiently evaluated and differentiated using a dynamic programming algorithm.</dd>
     </dl>
   </li>
@@ -865,7 +863,7 @@ Thus, the bottleneck in the model is the assumption that the <em>network outputs
               <li>In-practice, tends to align transcription closely</li>
               <li>This is especially problematic for English letters (spelling)</li>
               <li><strong>Sol</strong>:<br />
-  bake limited context into model structure; s.t. the model at time-step <script type="math/tex">T</script> can see only some future frames.
+  bake limited context into model structure; s.t. the model at time-step \(T\) can see only some future frames.
                 <ul>
                   <li>Caveat: may need to compute upper layers quickly after sufficient context arrives.<br />
   Can be easier if context is near top.</li>
@@ -897,7 +895,7 @@ Thus, the bottleneck in the model is the assumption that the <em>network outputs
       <dd><strong>LAS</strong> is a neural network that learns to transcribe speech utterances to characters.<br />
 In particular, it learns all the components of a speech recognizer jointly.</dd>
       <dd><img src="/main_files/dl/nlp/12/5.png" alt="img" width="80%" /></dd>
-      <dd>The model is a <strong>seq2seq</strong> model; it learns a <em>conditional probability</em> of the next <em>label/character</em> given the <em>input</em> and <em>previous predictions</em> <script type="math/tex">p(y_{i+1} \vert y_{1..i}, x)</script>.</dd>
+      <dd>The model is a <strong>seq2seq</strong> model; it learns a <em>conditional probability</em> of the next <em>label/character</em> given the <em>input</em> and <em>previous predictions</em> \(p(y_{i+1} \vert y_{1..i}, x)\).</dd>
       <dd>The approach that <strong>LAS</strong> takes is similar to that of <strong>NMT</strong>.   <br />
 Where, in translation, the input would be the <em>source sentence</em> but in <strong>ASR</strong>, the input is <em>the audio sequence</em>.</dd>
       <dd><strong>Attention</strong> is needed because in speech recognition tasks, the length of the input sequence is very large; for a 10 seconds sample, there will be ~10000 frames to go through.</dd>
@@ -1084,7 +1082,7 @@ Where, in translation, the input would be the <em>source sentence</em> but in <s
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents11" id="bodyContents112">Acoustic Model:</strong></dt>
       <dd>An <strong>Acoustic Model</strong> is used in automatic speech recognition to represent the relationship between an audio signal and the phonemes or other linguistic units that make up speech.</dd>
-      <dd><strong>Goal</strong>: create a neural network (DNN/RNN) from which we can extract transcriptions, <script type="math/tex">y</script> - by training on labeled pairs <script type="math/tex">(x, y^\ast)</script>.</dd>
+      <dd><strong>Goal</strong>: create a neural network (DNN/RNN) from which we can extract transcriptions, \(y\) - by training on labeled pairs \((x, y^\ast)\).</dd>
     </dl>
   </li>
   <li>
@@ -1099,7 +1097,7 @@ Where, in translation, the input would be the <em>source sentence</em> but in <s
               <li>1000 Neurons per Layer</li>
             </ul>
           </li>
-          <li>1 Fully-Connected Layer to predict <script type="math/tex">c</script></li>
+          <li>1 Fully-Connected Layer to predict \(c\)</li>
           <li>Batch Normalization</li>
           <li><em><strong>CTC</strong></em> <strong>Loss Function</strong>  (Warp-CTC)</li>
           <li>SGD+Nesterov Momentum Optimization/Training
@@ -1120,7 +1118,7 @@ Where, in translation, the input would be the <em>source sentence</em> but in <s
       </dd>
       <dd><strong>Two Ways</strong>:
         <ol>
-          <li>Fuse the <strong>Acoustic Model</strong> with the language model <script type="math/tex">p(y)</script></li>
+          <li>Fuse the <strong>Acoustic Model</strong> with the language model \(p(y)\)</li>
           <li>Incorporate linguistic data:
             <ul>
               <li>Predict Phonemes + Pronunciation Lexicon + LM</li>
@@ -1135,34 +1133,34 @@ Where, in translation, the input would be the <em>source sentence</em> but in <s
       <dt><strong style="color: SteelBlue" class="bodyContents11" id="bodyContents115">Decoding with Language Models:</strong></dt>
       <dd>
         <ul>
-          <li>Given a word-based LM of form <script type="math/tex">p(w_{t+1} \vert w_{1:t})</script></li>
+          <li>Given a word-based LM of form \(p(w_{t+1} \vert w_{1:t})\)</li>
           <li>Use <strong>Beam Search</strong> to maximize <em>(Hannun et al. 2014)</em>:</li>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\mathrm{arg } \max_{w} p(w \vert x)\: p(w)^\alpha \: [\text{length}(w)]^\beta</script>
+\[\mathrm{arg } \max_{w} p(w \vert x)\: p(w)^\alpha \: [\text{length}(w)]^\beta\]
       </dd>
       <dd>
         <blockquote>
           <ul>
-            <li><script type="math/tex">p(w \vert x) = p(y \vert x)</script> for characters that make up <script type="math/tex">w</script>.</li>
-            <li>We tend to penalize long transcriptions due to the multiplicative nature of the objective, so we trade off (re-weight) with <script type="math/tex">\alpha , \beta</script></li>
+            <li>\(p(w \vert x) = p(y \vert x)\) for characters that make up \(w\).</li>
+            <li>We tend to penalize long transcriptions due to the multiplicative nature of the objective, so we trade off (re-weight) with \(\alpha , \beta\)</li>
           </ul>
         </blockquote>
       </dd>
       <dd>
         <ul>
-          <li>Start with a set of candidate transcript prefixes, <script type="math/tex">A = {}</script></li>
-          <li><strong>For <script type="math/tex">t = 1 \ldots T</script></strong>:
+          <li>Start with a set of candidate transcript prefixes, \(A = {}\)</li>
+          <li><strong>For \(t = 1 \ldots T\)</strong>:
             <ul>
-              <li><strong>For Each Candidate in <script type="math/tex">A</script>, consider</strong>:
+              <li><strong>For Each Candidate in \(A\), consider</strong>:
                 <ol>
                   <li>Add blank; don’t change prefix; update probability using the AM.</li>
                   <li>Add space to prefix; update probability using LM.</li>
-                  <li>Add a character to prefix; update probability using AM. Add new candidates with updated probabilities to <script type="math/tex">A_{\text{new}}</script></li>
+                  <li>Add a character to prefix; update probability using AM. Add new candidates with updated probabilities to \(A_{\text{new}}\)</li>
                 </ol>
               </li>
-              <li><script type="math/tex">A := K</script> most probable prefixes in <script type="math/tex">A_{\text{new}}</script></li>
+              <li>\(A := K\) most probable prefixes in \(A_{\text{new}}\)</li>
             </ul>
           </li>
         </ul>
@@ -1174,10 +1172,10 @@ Where, in translation, the input would be the <em>source sentence</em> but in <s
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents11" id="bodyContents116">Rescoring with Neural LM:</strong></dt>
-      <dd>The output from the RNN described above consists of a <strong>big list</strong> of the <strong>top <script type="math/tex">k</script> transcriptions</strong> in terms of probability.<br />
+      <dd>The output from the RNN described above consists of a <strong>big list</strong> of the <strong>top \(k\) transcriptions</strong> in terms of probability.<br />
 We want to re-score these probabilities based on a strong LM.
         <ul>
-          <li>It is Cheap to evaluate <script type="math/tex">p(w_k \vert w_{k-1}, w_{k-2}, \ldots, w_1)</script> NLM on many sentences</li>
+          <li>It is Cheap to evaluate \(p(w_k \vert w_{k-1}, w_{k-2}, \ldots, w_1)\) NLM on many sentences</li>
           <li>In-practice, often combine with N-gram trained from big corpora</li>
         </ul>
       </dd>
@@ -1214,18 +1212,17 @@ We want to re-score these probabilities based on a strong LM.
           <li><strong>Computation</strong>:
             <ul>
               <li>How big is 1 experiment?{: style=”color: red”}<br />
-  <script type="math/tex">\geq (\# \text{Connections}) \cdot (\# \text{Frames}) \cdot (\# \text{Utterances}) \cdot (\# \text{Epochs}) \cdot 3 \cdot 2 \:\text{ FLOPs}</script> <br />
+  \(\geq (\# \text{Connections}) \cdot (\# \text{Frames}) \cdot (\# \text{Utterances}) \cdot (\# \text{Epochs}) \cdot 3 \cdot 2 \:\text{ FLOPs}\) <br />
   E.g. for DS2 with 10k hours of data:<br />
-  <script type="math/tex">100*10^6 * 100 * 10^6*20 * 3 * 2 = 1.2*10^{19} \:\text{ FLOPs}</script><br />
+  \(100*10^6 * 100 * 10^6*20 * 3 * 2 = 1.2*10^{19} \:\text{ FLOPs}\)<br />
   ~30 days (with well-optimized code on Titan X)</li>
               <li>Work-arounds and solutions:{: style=”color: red”}
                 <ul>
                   <li>More GPUs with data parallelism:
                     <ul>
                       <li>Minibatches up to 1024</li>
-                      <li>Aim for <script type="math/tex">\geq 64</script> utterances per GPU 
-  ~<script type="math/tex">% <![CDATA[
-< 1 %]]></script>-wk training time (~8 Titans)</li>
+                      <li>Aim for \(\geq 64\) utterances per GPU 
+  ~\(&lt; 1\)-wk training time (~8 Titans)</li>
                     </ul>
                   </li>
                 </ul>
@@ -1281,13 +1278,13 @@ We want to re-score these probabilities based on a strong LM.
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

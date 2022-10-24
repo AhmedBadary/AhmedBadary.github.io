@@ -111,16 +111,16 @@
         <ul>
           <li><strong>Input</strong>: vector of speech spectrograms
             <ul>
-              <li>An <em><strong>utterance</strong></em> <script type="math/tex">x^{(i)}</script>: is a time-series of length <script type="math/tex">T^{(i)}</script> composed of time-slices where each is a vector of audio (spectrogram) features <script type="math/tex">x_{t,p}^{(i)}, t=1,...,T^{(i)}</script>, where <script type="math/tex">p</script> denotes the power of the p’th frequency bin in the audio frame at time <script type="math/tex">t</script>.</li>
+              <li>An <em><strong>utterance</strong></em> \(x^{(i)}\): is a time-series of length \(T^{(i)}\) composed of time-slices where each is a vector of audio (spectrogram) features \(x_{t,p}^{(i)}, t=1,...,T^{(i)}\), where \(p\) denotes the power of the p’th frequency bin in the audio frame at time \(t\).</li>
             </ul>
           </li>
-          <li><strong>Output</strong>: English text transcript <script type="math/tex">y</script></li>
+          <li><strong>Output</strong>: English text transcript \(y\)</li>
         </ul>
       </dd>
       <dd>
         <ul>
           <li><strong>Goal</strong>:<br />
-  The goal of the RNN is to convert an input sequence <script type="math/tex">x</script> into a sequence of character probabilities for the transcription <script type="math/tex">y</script>, with <script type="math/tex">\tilde{y}_t = P(c_t\vert x)</script>, where <script type="math/tex">c_t \in \{\text{a, b, c, } \ldots \text{,  z, space,  apostrophe, blank}\}</script>.</li>
+  The goal of the RNN is to convert an input sequence \(x\) into a sequence of character probabilities for the transcription \(y\), with \(\tilde{y}_t = P(c_t\vert x)\), where \(c_t \in \{\text{a, b, c, } \ldots \text{,  z, space,  apostrophe, blank}\}\).</li>
         </ul>
       </dd>
     </dl>
@@ -178,14 +178,14 @@
                 <ul>
                   <li>3 Layer of <strong>Feed-forward Nets</strong>:
                     <ul>
-                      <li>For the <strong>input layer</strong>, the output depends on the spectrogram frame <script type="math/tex">x_t</script> along with a context of <script type="math/tex">C</script> frames on each side.
+                      <li>For the <strong>input layer</strong>, the output depends on the spectrogram frame \(x_t\) along with a context of \(C\) frames on each side.
                         <blockquote>
-                          <script type="math/tex; mode=display">C \in \{5, 7, 9\}</script>
+\[C \in \{5, 7, 9\}\]
                         </blockquote>
                       </li>
                       <li>The non-recurrent layers operate on independent data for each time step:<br />
-  <script type="math/tex">h_t^{(l)} = g(W^{(l)} h_{(t)}^{(l-1)} + b^{(l)}),</script><br />
-  where <script type="math/tex">g(z) = \min \{\max \{0, z\}, 20\}</script> is the <em>clipped RELU</em>.</li>
+  \(h_t^{(l)} = g(W^{(l)} h_{(t)}^{(l-1)} + b^{(l)}),\)<br />
+  where \(g(z) = \min \{\max \{0, z\}, 20\}\) is the <em>clipped RELU</em>.</li>
                     </ul>
                   </li>
                   <li>2 layers of <strong>Recurrent Nets</strong>:
@@ -193,12 +193,12 @@
                       <li>1 layer of a <strong>Bi-LSTM</strong>:
                         <ul>
                           <li>Includes two sets of hidden units: 
-  A set with forward recurrence <script type="math/tex">h^{(f)}</script><br />
-  A set with backward recurrence <script type="math/tex">h^{(b)}</script>:<br />
-  <script type="math/tex">h_t^{(f)} = g(W^{(4)}h_t^{(3)} + W_r^{(b)} h_{t-1}^{(b)} + b ^{(4)}) \\ 
-  h_t^{(b)} = g(W^{(4)}h_t^{(3)} + W_r^{(b)} h_{t+1}^{(b)} + b ^{(4)})</script>
+  A set with forward recurrence \(h^{(f)}\)<br />
+  A set with backward recurrence \(h^{(b)}\):<br />
+  \(h_t^{(f)} = g(W^{(4)}h_t^{(3)} + W_r^{(b)} h_{t-1}^{(b)} + b ^{(4)}) \\ 
+  h_t^{(b)} = g(W^{(4)}h_t^{(3)} + W_r^{(b)} h_{t+1}^{(b)} + b ^{(4)})\)
                             <blockquote>
-                              <p>Note that <script type="math/tex">h^{(f)}</script> must be computed sequentially from <script type="math/tex">t = 1</script> to <script type="math/tex">t = T^{(i)}</script> for the i’th utterance, while the units <script type="math/tex">h^{(b)}</script> must be computed sequentially in reverse from <script type="math/tex">t = T^{(i)}</script> to <script type="math/tex">t = 1</script>.</p>
+                              <p>Note that \(h^{(f)}\) must be computed sequentially from \(t = 1\) to \(t = T^{(i)}\) for the i’th utterance, while the units \(h^{(b)}\) must be computed sequentially in reverse from \(t = T^{(i)}\) to \(t = 1\).</p>
                             </blockquote>
                           </li>
                         </ul>
@@ -206,26 +206,26 @@
                       <li>1 layer of <strong>Feed-forward Nets</strong>:
                         <ul>
                           <li>The fifth (non-recurrent) layer takes both the forward and backward units as inputs:<br />
-  <script type="math/tex">h_t^{(5)} = g(W ^{(5)}h_t ^{(4)} + b ^{(5)}),</script><br />
-  where <script type="math/tex">h_t^{(4)} = h_t^{(f)} + h_t^{(b)}</script></li>
+  \(h_t^{(5)} = g(W ^{(5)}h_t ^{(4)} + b ^{(5)}),\)<br />
+  where \(h_t^{(4)} = h_t^{(f)} + h_t^{(b)}\)</li>
                         </ul>
                       </li>
                     </ul>
                   </li>
                 </ul>
               </li>
-              <li>An <strong>Output</strong> layer made of a standard <strong>softmax function</strong> that yields the predicted character probabilities for each time-slice <script type="math/tex">t</script> and character <script type="math/tex">k</script> in the alphabet: <br />
-  <script type="math/tex">\displaystyle{h _{(t,k)} ^{(6)} = \hat{y} _{(t,k)} = P(c_t = k \vert x) = \dfrac{\exp (W_k ^{(6)} h_t ^{(5)} + b_k ^{(6)})}{\sum_j \exp (W_j ^{(6)}h_t ^{(5)} + b_j ^{(6)})}},</script><br />
-  where <script type="math/tex">W_k ^{(6)}</script> and <script type="math/tex">b_k ^{(6)}</script> denote the k’th column of the weight matrix and k’th bias.</li>
+              <li>An <strong>Output</strong> layer made of a standard <strong>softmax function</strong> that yields the predicted character probabilities for each time-slice \(t\) and character \(k\) in the alphabet: <br />
+  \(\displaystyle{h _{(t,k)} ^{(6)} = \hat{y} _{(t,k)} = P(c_t = k \vert x) = \dfrac{\exp (W_k ^{(6)} h_t ^{(5)} + b_k ^{(6)})}{\sum_j \exp (W_j ^{(6)}h_t ^{(5)} + b_j ^{(6)})}},\)<br />
+  where \(W_k ^{(6)}\) and \(b_k ^{(6)}\) denote the k’th column of the weight matrix and k’th bias.</li>
             </ul>
           </li>
-          <li>A <em><strong>CTC</strong></em> <strong>Loss Function</strong> <script type="math/tex">\mathcal{L}(\hat{y}, y)</script></li>
+          <li>A <em><strong>CTC</strong></em> <strong>Loss Function</strong> \(\mathcal{L}(\hat{y}, y)\)</li>
           <li>An <em><strong>N-gram Language Model</strong></em></li>
           <li>A <strong>combined Objective Function</strong>:</li>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">Q(c) = \log (P(x \vert x)) + \alpha \log (P_{\text{LM}}(c) + \beta \text{word_count}(c))</script>
+\[Q(c) = \log (P(x \vert x)) + \alpha \log (P_{\text{LM}}(c) + \beta \text{word_count}(c))\]
       </dd>
       <dd><img src="/main_files/dl/nlp/speech_research/1.png" alt="img" width="80%" /></dd>
     </dl>
@@ -235,15 +235,15 @@
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Algorithm:</strong></dt>
       <dd>
         <ul>
-          <li>Given the output <script type="math/tex">P(c \vert x)</script> of the RNN: perform a <strong>search</strong> to find the sequence of characters <script type="math/tex">c_1, c_2, ...</script> that is most probable according to both:
+          <li>Given the output \(P(c \vert x)\) of the RNN: perform a <strong>search</strong> to find the sequence of characters \(c_1, c_2, ...\) that is most probable according to both:
             <ol>
               <li>The RNN Output</li>
               <li>The Language Model</li>
             </ol>
           </li>
           <li>We maximize the combined objective:<br />
-  <script type="math/tex">Q(c) = \log (P(x \vert x)) + \alpha \log (P_{\text{LM}}(c) + \beta \text{word_count}(c))</script><br />
-  where the term <script type="math/tex">P_{\text{lm}} denotes the probability of the sequence</script>c$$ according to the N-gram model.</li>
+  \(Q(c) = \log (P(x \vert x)) + \alpha \log (P_{\text{LM}}(c) + \beta \text{word_count}(c))\)<br />
+  where the term \(P_{\text{lm}} denotes the probability of the sequence\)c$$ according to the N-gram model.</li>
           <li>The objective is maximized using a highly optimized <strong>beam search</strong> algorithm
             <blockquote>
               <p>beam size: 1000-8000</p>
@@ -258,7 +258,7 @@
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents19">Training:</strong></dt>
       <dd>
         <ul>
-          <li>The gradient of the CTC Loss <script type="math/tex">\nabla_{\hat{y}} \mathcal{L}(\hat{y}, y)</script> with respect to the net outputs given the ground-truth character sequence <script type="math/tex">y</script> is computed</li>
+          <li>The gradient of the CTC Loss \(\nabla_{\hat{y}} \mathcal{L}(\hat{y}, y)\) with respect to the net outputs given the ground-truth character sequence \(y\) is computed</li>
         </ul>
       </dd>
       <dd>
@@ -267,7 +267,7 @@
           <li>Nesterov Momentum</li>
           <li>Annealing the learning rate by a constant factor</li>
           <li>Dropout</li>
-          <li>Striding – shortening the recurrent layers by taking strides of size <script type="math/tex">2</script>.<br />
+          <li>Striding – shortening the recurrent layers by taking strides of size \(2\).<br />
   The unrolled RNN will have <strong>half</strong> as many steps.
             <blockquote>
               <p>similar to a convolutional network with a step-size of 2 in the first layer.</p>
@@ -282,9 +282,9 @@
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents110">Parameters:</strong></dt>
       <dd>
         <ul>
-          <li><strong>Momentum</strong>: <script type="math/tex">0.99</script></li>
-          <li><strong>Dropout</strong>: <script type="math/tex">5-10 \%</script> (FFN only)</li>
-          <li><strong>Trade-Off Params</strong>: use cross-validation for <script type="math/tex">\alpha, \beta</script></li>
+          <li><strong>Momentum</strong>: \(0.99\)</li>
+          <li><strong>Dropout</strong>: \(5-10 \%\) (FFN only)</li>
+          <li><strong>Trade-Off Params</strong>: use cross-validation for \(\alpha, \beta\)</li>
         </ul>
       </dd>
     </dl>
@@ -303,10 +303,10 @@
           <li><strong>SwitchboardHub5’00</strong>  (
 WER):
             <ul>
-              <li>Standard: <script type="math/tex">16.0\%</script></li>
-              <li>w/Lexicon of allowed words: <script type="math/tex">21.9\%</script></li>
-              <li>Trigram LM: <script type="math/tex">8.2\%</script></li>
-              <li>w/Baseline system: <script type="math/tex">6.7\%</script></li>
+              <li>Standard: \(16.0\%\)</li>
+              <li>w/Lexicon of allowed words: \(21.9\%\)</li>
+              <li>Trigram LM: \(8.2\%\)</li>
+              <li>w/Baseline system: \(6.7\%\)</li>
             </ul>
           </li>
         </ul>
@@ -404,7 +404,7 @@ The language model, however, will be lacking due to the limitation of the audio 
           <li>A <strong>CTC output layer</strong></li>
           <li>A <strong>combined objective function</strong>:<br />
   The new objective function at allows an RNN to be trained to optimize the expected value of an arbitrary loss function defined over output transcriptions (such as <strong>WER</strong>).<br />
-  Given input sequence <script type="math/tex">x</script>, the distribution <script type="math/tex">P(y\vert x)</script> over transcriptions sequences <script type="math/tex">y</script> defined by CTC, and a real-valued transcription loss function <script type="math/tex">\mathcal{L}(x, y)</script>, the expected transcription loss <script type="math/tex">\mathcal{L}(x)</script> is defined:
+  Given input sequence \(x\), the distribution \(P(y\vert x)\) over transcriptions sequences \(y\) defined by CTC, and a real-valued transcription loss function \(\mathcal{L}(x, y)\), the expected transcription loss \(\mathcal{L}(x)\) is defined:
             <p>$$\begin{align}
       \mathcal{L}(x) &amp;= \sum_y P(y \vert x)\mathcal{L}(x,y) \\ 
       &amp;= \sum_y \sum_{a \in \mathcal{B}^{-1}(y)} P(a \vert x)\mathcal{L}(x,y) \\
@@ -437,10 +437,10 @@ The language model, however, will be lacking due to the limitation of the audio 
           <li><strong>WSJC</strong> (
 WER):
             <ul>
-              <li>Standard: <script type="math/tex">27.3\%</script></li>
-              <li>w/Lexicon of allowed words: <script type="math/tex">21.9\%</script></li>
-              <li>Trigram LM: <script type="math/tex">8.2\%</script></li>
-              <li>w/Baseline system: <script type="math/tex">6.7\%</script></li>
+              <li>Standard: \(27.3\%\)</li>
+              <li>w/Lexicon of allowed words: \(21.9\%\)</li>
+              <li>Trigram LM: \(8.2\%\)</li>
+              <li>w/Baseline system: \(6.7\%\)</li>
             </ul>
           </li>
         </ul>
@@ -479,12 +479,12 @@ Compared to <em>Machine Translation</em>, speech recognition differs by requesti
       <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Structure:</strong></dt>
       <dd>
         <ul>
-          <li><strong>Input</strong>: <script type="math/tex">x=(x_1, \ldots, x_{L'})</script> is a sequence of feature vectors
+          <li><strong>Input</strong>: \(x=(x_1, \ldots, x_{L'})\) is a sequence of feature vectors
             <ul>
               <li>Each feature vector is extracted from a small overlapping window of audio frames</li>
             </ul>
           </li>
-          <li><strong>Output</strong>: <script type="math/tex">y</script> a sequence of <strong>phonemes</strong></li>
+          <li><strong>Output</strong>: \(y\) a sequence of <strong>phonemes</strong></li>
         </ul>
       </dd>
     </dl>
@@ -537,34 +537,33 @@ Compared to <em>Machine Translation</em>, speech recognition differs by requesti
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Attention-based Recurrent Sequence Generator (ARSG):</strong></dt>
-      <dd>is a recurrent neural network that stochastically generates an output sequence <script type="math/tex">(y_1, \ldots, y_T)</script> from an input <script type="math/tex">x</script>.<br />
- In practice, <script type="math/tex">x</script> is often processed by an <strong>encoder</strong> which outputs a sequential input representation <script type="math/tex">h = (h_1, \ldots, h_L)</script> more suitable for the attention mechanism to work with.</dd>
+      <dd>is a recurrent neural network that stochastically generates an output sequence \((y_1, \ldots, y_T)\) from an input \(x\).<br />
+ In practice, \(x\) is often processed by an <strong>encoder</strong> which outputs a sequential input representation \(h = (h_1, \ldots, h_L)\) more suitable for the attention mechanism to work with.</dd>
       <dd>The <strong>Encoder</strong>: a deep bidirectional recurrent network.<br />
-It forms a sequential representation h of length <script type="math/tex">L = L'</script>.</dd>
+It forms a sequential representation h of length \(L = L'\).</dd>
       <dd><strong style="color: red">Structure:</strong>
         <ul>
-          <li><em><strong>Input</strong></em>: <script type="math/tex">x = (x_1, \ldots, x_{L'})</script> is a sequence of feature vectors
+          <li><em><strong>Input</strong></em>: \(x = (x_1, \ldots, x_{L'})\) is a sequence of feature vectors
             <blockquote>
               <p>Each feature vector is extracted from a small overlapping window of audio frames.</p>
             </blockquote>
           </li>
-          <li><em><strong>Output</strong></em>: <script type="math/tex">y</script> is a sequence of phonemes</li>
+          <li><em><strong>Output</strong></em>: \(y\) is a sequence of phonemes</li>
         </ul>
       </dd>
       <dd><strong style="color: red">Strategy:</strong>  <br />
-At the <script type="math/tex">i</script>-th step an ARSG generates an output <script type="math/tex">y_i</script> by focusing on the relevant elements of <script type="math/tex">h</script>:</dd>
+At the \(i\)-th step an ARSG generates an output \(y_i\) by focusing on the relevant elements of \(h\):</dd>
       <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-\begin{align}
-\alpha_i &= \text{Attend}(s_{i-1}, \alpha _{i-1}), h) & (1) \\
-g_i &= \sum_{j=1}^L \alpha_{i,j} h_j & (2) //
-y_i &\sim \text{Generate}(s_{i-1}, g_i) & (3)  
-\end{align} %]]></script>
+\[\begin{align}
+\alpha_i &amp;= \text{Attend}(s_{i-1}, \alpha _{i-1}), h) &amp; (1) \\
+g_i &amp;= \sum_{j=1}^L \alpha_{i,j} h_j &amp; (2) //
+y_i &amp;\sim \text{Generate}(s_{i-1}, g_i) &amp; (3)  
+\end{align}\]
       </dd>
-      <dd>where <script type="math/tex">s_{i−1}</script> is the <script type="math/tex">(i − 1)</script>-th state of the recurrent neural network to which we refer as the <strong>generator</strong>, <script type="math/tex">\alpha_i \in \mathbb{R}^L</script> is a vector of the <em>attention weights</em>, also often called the <strong>alignment</strong>; and <script type="math/tex">g_i</script> is the <strong>glimpse</strong>.<br />
+      <dd>where \(s_{i−1}\) is the \((i − 1)\)-th state of the recurrent neural network to which we refer as the <strong>generator</strong>, \(\alpha_i \in \mathbb{R}^L\) is a vector of the <em>attention weights</em>, also often called the <strong>alignment</strong>; and \(g_i\) is the <strong>glimpse</strong>.<br />
 The step is completed by computing a <em><strong>new generator state</strong></em>:</dd>
       <dd>
-        <script type="math/tex; mode=display">s_i = \text{Recurrency}(s_{i-1}, g_i, y_i)</script>
+\[s_i = \text{Recurrency}(s_{i-1}, g_i, y_i)\]
       </dd>
       <dd>where the <em>Recurrency</em> is an RNN.</dd>
       <dd><img src="/main_files/dl/nlp/speech_research/4.png" alt="img" width="100%" /></dd>
@@ -575,28 +574,28 @@ The step is completed by computing a <em><strong>new generator state</strong></e
       <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents312">Attention-mechanism Types and Speech Recognition:</strong></dt>
       <dd><strong style="color: red">Types of Attention:</strong>
         <ul>
-          <li>(Generic) Hybrid Attention: <script type="math/tex">\alpha_i = \text{Attend}(s_{i-1}, \alpha_{i-1}, h)</script></li>
-          <li>Content-based Attention: <script type="math/tex">\alpha_i = \text{Attend}(s_{i-1}, h)</script> <br />
+          <li>(Generic) Hybrid Attention: \(\alpha_i = \text{Attend}(s_{i-1}, \alpha_{i-1}, h)\)</li>
+          <li>Content-based Attention: \(\alpha_i = \text{Attend}(s_{i-1}, h)\) <br />
   In this case, Attend is often implemented by scoring each element in h separately and normalizing the scores:<br />
-  <script type="math/tex">e_{i,j} = \text{Score}(s_{i-1}, h_j) \\</script> 
-    <script type="math/tex">\alpha_{i,j} = \dfrac{\text{exp} (e_{i,j}) }{\sum_{j=1}^L \text{exp}(e_{i,j})}</script>
+  \(e_{i,j} = \text{Score}(s_{i-1}, h_j) \\\) 
+    \(\alpha_{i,j} = \dfrac{\text{exp} (e_{i,j}) }{\sum_{j=1}^L \text{exp}(e_{i,j})}\)
             <ul>
               <li><strong>Limitations</strong>:<br />
-  The main limitation of such scheme is that identical or very similar elements of <script type="math/tex">h</script> are scored equally regardless of their position in the sequence.<br />
+  The main limitation of such scheme is that identical or very similar elements of \(h\) are scored equally regardless of their position in the sequence.<br />
   Often this issue is partially alleviated by an encoder such as e.g. a BiRNN or a deep convolutional network that encode contextual information into every element of h . However, capacity of h elements is always limited, and thus disambiguation by context is only possible to a limited extent.</li>
             </ul>
           </li>
-          <li>Location-based Attention: <script type="math/tex">\alpha_i = \text{Attend}(s_{i-1}, \alpha_{i-1})</script> <br />
+          <li>Location-based Attention: \(\alpha_i = \text{Attend}(s_{i-1}, \alpha_{i-1})\) <br />
   a location-based attention mechanism computes the alignment from the generator state and the previous alignment only.
             <ul>
               <li><strong>Limitations</strong>:<br />
-  the model would have to predict the distance between consequent phonemes using <script type="math/tex">s_{i−1}</script> only, which we expect to be hard due to large variance of this quantity.</li>
+  the model would have to predict the distance between consequent phonemes using \(s_{i−1}\) only, which we expect to be hard due to large variance of this quantity.</li>
             </ul>
           </li>
         </ul>
       </dd>
       <dd>Thus, we conclude that the <strong><em>Hybrid Attention</em></strong> mechanism is a suitable candidate.<br />
-Ideally, we need an attention model that uses the previous alignment <script type="math/tex">\alpha_{i-1}</script> to select a short list of elements from <script type="math/tex">h</script>, from which the content-based attention, will select the relevant ones without confusion.</dd>
+Ideally, we need an attention model that uses the previous alignment \(\alpha_{i-1}\) to select a short list of elements from \(h\), from which the content-based attention, will select the relevant ones without confusion.</dd>
     </dl>
   </li>
   <li>
@@ -622,10 +621,10 @@ Ideally, we need an attention model that uses the previous alignment <script typ
       <dd><strong>Extending the Attention Mechanism:</strong><br />
 Content-Based Attention extended for <em>location awareness</em> by making it take into account the alignment produced at the previous step.
         <ul>
-          <li>First, we extract <script type="math/tex">k</script> vectors <script type="math/tex">f_{i,j} \in \mathbb{R}^k</script> for every position <script type="math/tex">j</script> of the previous alignment <script type="math/tex">\alpha_{i−1}</script> by convolving it with a matrix <script type="math/tex">F \in \mathbb{R}^{k\times r}</script>:
+          <li>First, we extract \(k\) vectors \(f_{i,j} \in \mathbb{R}^k\) for every position \(j\) of the previous alignment \(\alpha_{i−1}\) by convolving it with a matrix \(F \in \mathbb{R}^{k\times r}\):
             <p>$$f_i = F * \alpha_{i-1}$$</p>
           </li>
-          <li>These additional vectors <script type="math/tex">f_{i,j} are then used by the scoring mechanism</script>e_{i,j}$$:
+          <li>These additional vectors \(f_{i,j} are then used by the scoring mechanism\)e_{i,j}$$:
             <p>$$e_{i,j} = w^T \tanh (Ws_{i-1} + Vh_j + Uf_{i,j} + b)$$</p>
           </li>
         </ul>
@@ -695,16 +694,16 @@ Content-Based Attention extended for <em>location awareness</em> by making it ta
         <ul>
           <li><strong>Input</strong>: vector of speech spectrograms
             <ul>
-              <li>An <em><strong>utterance</strong></em> <script type="math/tex">x^{(i)}</script>: is a time-series of length <script type="math/tex">T^{(i)}</script> composed of time-slices where each is a vector of audio (spectrogram) features <script type="math/tex">x_{t,p}^{(i)}, t=1,...,T^{(i)}</script>, where <script type="math/tex">p</script> denotes the power of the p’th frequency bin in the audio frame at time <script type="math/tex">t</script>.</li>
+              <li>An <em><strong>utterance</strong></em> \(x^{(i)}\): is a time-series of length \(T^{(i)}\) composed of time-slices where each is a vector of audio (spectrogram) features \(x_{t,p}^{(i)}, t=1,...,T^{(i)}\), where \(p\) denotes the power of the p’th frequency bin in the audio frame at time \(t\).</li>
             </ul>
           </li>
-          <li><strong>Output</strong>: English text transcript <script type="math/tex">y</script></li>
+          <li><strong>Output</strong>: English text transcript \(y\)</li>
         </ul>
       </dd>
       <dd>
         <ul>
           <li><strong>Goal</strong>:<br />
-  The goal of the RNN is to convert an input sequence <script type="math/tex">x</script> into a sequence of character probabilities for the transcription <script type="math/tex">y</script>, with <script type="math/tex">\tilde{y}_t = P(c_t\vert x)</script>, where <script type="math/tex">c_t \in \{\text{a, b, c, } \ldots \text{,  z, space,  apostrophe, blank}\}</script>.</li>
+  The goal of the RNN is to convert an input sequence \(x\) into a sequence of character probabilities for the transcription \(y\), with \(\tilde{y}_t = P(c_t\vert x)\), where \(c_t \in \{\text{a, b, c, } \ldots \text{,  z, space,  apostrophe, blank}\}\).</li>
         </ul>
       </dd>
     </dl>
@@ -762,14 +761,14 @@ Content-Based Attention extended for <em>location awareness</em> by making it ta
                 <ul>
                   <li>3 Layer of <strong>Feed-forward Nets</strong>:
                     <ul>
-                      <li>For the <strong>input layer</strong>, the output depends on the spectrogram frame <script type="math/tex">x_t</script> along with a context of <script type="math/tex">C</script> frames on each side.
+                      <li>For the <strong>input layer</strong>, the output depends on the spectrogram frame \(x_t\) along with a context of \(C\) frames on each side.
                         <blockquote>
-                          <script type="math/tex; mode=display">C \in \{5, 7, 9\}</script>
+\[C \in \{5, 7, 9\}\]
                         </blockquote>
                       </li>
                       <li>The non-recurrent layers operate on independent data for each time step:<br />
-  <script type="math/tex">h_t^{(l)} = g(W^{(l)} h_{(t)}^{(l-1)} + b^{(l)}),</script><br />
-  where <script type="math/tex">g(z) = \min \{\max \{0, z\}, 20\}</script> is the <em>clipped RELU</em>.</li>
+  \(h_t^{(l)} = g(W^{(l)} h_{(t)}^{(l-1)} + b^{(l)}),\)<br />
+  where \(g(z) = \min \{\max \{0, z\}, 20\}\) is the <em>clipped RELU</em>.</li>
                     </ul>
                   </li>
                   <li>2 layers of <strong>Recurrent Nets</strong>:
@@ -777,12 +776,12 @@ Content-Based Attention extended for <em>location awareness</em> by making it ta
                       <li>1 layer of a <strong>Bi-LSTM</strong>:
                         <ul>
                           <li>Includes two sets of hidden units: 
-  A set with forward recurrence <script type="math/tex">h^{(f)}</script><br />
-  A set with backward recurrence <script type="math/tex">h^{(b)}</script>:<br />
-  <script type="math/tex">h_t^{(f)} = g(W^{(4)}h_t^{(3)} + W_r^{(b)} h_{t-1}^{(b)} + b ^{(4)}) \\ 
-  h_t^{(b)} = g(W^{(4)}h_t^{(3)} + W_r^{(b)} h_{t+1}^{(b)} + b ^{(4)})</script>
+  A set with forward recurrence \(h^{(f)}\)<br />
+  A set with backward recurrence \(h^{(b)}\):<br />
+  \(h_t^{(f)} = g(W^{(4)}h_t^{(3)} + W_r^{(b)} h_{t-1}^{(b)} + b ^{(4)}) \\ 
+  h_t^{(b)} = g(W^{(4)}h_t^{(3)} + W_r^{(b)} h_{t+1}^{(b)} + b ^{(4)})\)
                             <blockquote>
-                              <p>Note that <script type="math/tex">h^{(f)}</script> must be computed sequentially from <script type="math/tex">t = 1</script> to <script type="math/tex">t = T^{(i)}</script> for the i’th utterance, while the units <script type="math/tex">h^{(b)}</script> must be computed sequentially in reverse from <script type="math/tex">t = T^{(i)}</script> to <script type="math/tex">t = 1</script>.</p>
+                              <p>Note that \(h^{(f)}\) must be computed sequentially from \(t = 1\) to \(t = T^{(i)}\) for the i’th utterance, while the units \(h^{(b)}\) must be computed sequentially in reverse from \(t = T^{(i)}\) to \(t = 1\).</p>
                             </blockquote>
                           </li>
                         </ul>
@@ -790,26 +789,26 @@ Content-Based Attention extended for <em>location awareness</em> by making it ta
                       <li>1 layer of <strong>Feed-forward Nets</strong>:
                         <ul>
                           <li>The fifth (non-recurrent) layer takes both the forward and backward units as inputs:<br />
-  <script type="math/tex">h_t^{(5)} = g(W ^{(5)}h_t ^{(4)} + b ^{(5)}),</script><br />
-  where <script type="math/tex">h_t^{(4)} = h_t^{(f)} + h_t^{(b)}</script></li>
+  \(h_t^{(5)} = g(W ^{(5)}h_t ^{(4)} + b ^{(5)}),\)<br />
+  where \(h_t^{(4)} = h_t^{(f)} + h_t^{(b)}\)</li>
                         </ul>
                       </li>
                     </ul>
                   </li>
                 </ul>
               </li>
-              <li>An <strong>Output</strong> layer made of a standard <strong>softmax function</strong> that yields the predicted character probabilities for each time-slice <script type="math/tex">t</script> and character <script type="math/tex">k</script> in the alphabet: <br />
-  <script type="math/tex">\displaystyle{h _{(t,k)} ^{(6)} = \hat{y} _{(t,k)} = P(c_t = k \vert x) = \dfrac{\exp (W_k ^{(6)} h_t ^{(5)} + b_k ^{(6)})}{\sum_j \exp (W_j ^{(6)}h_t ^{(5)} + b_j ^{(6)})}},</script><br />
-  where <script type="math/tex">W_k ^{(6)}</script> and <script type="math/tex">b_k ^{(6)}</script> denote the k’th column of the weight matrix and k’th bias.</li>
+              <li>An <strong>Output</strong> layer made of a standard <strong>softmax function</strong> that yields the predicted character probabilities for each time-slice \(t\) and character \(k\) in the alphabet: <br />
+  \(\displaystyle{h _{(t,k)} ^{(6)} = \hat{y} _{(t,k)} = P(c_t = k \vert x) = \dfrac{\exp (W_k ^{(6)} h_t ^{(5)} + b_k ^{(6)})}{\sum_j \exp (W_j ^{(6)}h_t ^{(5)} + b_j ^{(6)})}},\)<br />
+  where \(W_k ^{(6)}\) and \(b_k ^{(6)}\) denote the k’th column of the weight matrix and k’th bias.</li>
             </ul>
           </li>
-          <li>A <em><strong>CTC</strong></em> <strong>Loss Function</strong> <script type="math/tex">\mathcal{L}(\hat{y}, y)</script></li>
+          <li>A <em><strong>CTC</strong></em> <strong>Loss Function</strong> \(\mathcal{L}(\hat{y}, y)\)</li>
           <li>An <em><strong>N-gram Language Model</strong></em></li>
           <li>A <strong>combined Objective Function</strong>:</li>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">Q(c) = \log (P(x \vert x)) + \alpha \log (P_{\text{LM}}(c) + \beta \text{word_count}(c))</script>
+\[Q(c) = \log (P(x \vert x)) + \alpha \log (P_{\text{LM}}(c) + \beta \text{word_count}(c))\]
       </dd>
       <dd><img src="/main_files/dl/nlp/speech_research/1.png" alt="img" width="80%" /></dd>
     </dl>
@@ -819,15 +818,15 @@ Content-Based Attention extended for <em>location awareness</em> by making it ta
       <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents58">Algorithm:</strong></dt>
       <dd>
         <ul>
-          <li>Given the output <script type="math/tex">P(c \vert x)</script> of the RNN: perform a <strong>search</strong> to find the sequence of characters <script type="math/tex">c_1, c_2, ...</script> that is most probable according to both:
+          <li>Given the output \(P(c \vert x)\) of the RNN: perform a <strong>search</strong> to find the sequence of characters \(c_1, c_2, ...\) that is most probable according to both:
             <ol>
               <li>The RNN Output</li>
               <li>The Language Model</li>
             </ol>
           </li>
           <li>We maximize the combined objective:<br />
-  <script type="math/tex">Q(c) = \log (P(x \vert x)) + \alpha \log (P_{\text{LM}}(c) + \beta \text{word_count}(c))</script><br />
-  where the term <script type="math/tex">P_{\text{lm}} denotes the probability of the sequence</script>c$$ according to the N-gram model.</li>
+  \(Q(c) = \log (P(x \vert x)) + \alpha \log (P_{\text{LM}}(c) + \beta \text{word_count}(c))\)<br />
+  where the term \(P_{\text{lm}} denotes the probability of the sequence\)c$$ according to the N-gram model.</li>
           <li>The objective is maximized using a highly optimized <strong>beam search</strong> algorithm
             <blockquote>
               <p>beam size: 1000-8000</p>
@@ -842,7 +841,7 @@ Content-Based Attention extended for <em>location awareness</em> by making it ta
       <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents59">Training:</strong></dt>
       <dd>
         <ul>
-          <li>The gradient of the CTC Loss <script type="math/tex">\nabla_{\hat{y}} \mathcal{L}(\hat{y}, y)</script> with respect to the net outputs given the ground-truth character sequence <script type="math/tex">y</script> is computed</li>
+          <li>The gradient of the CTC Loss \(\nabla_{\hat{y}} \mathcal{L}(\hat{y}, y)\) with respect to the net outputs given the ground-truth character sequence \(y\) is computed</li>
         </ul>
       </dd>
       <dd>
@@ -851,7 +850,7 @@ Content-Based Attention extended for <em>location awareness</em> by making it ta
           <li>Nesterov Momentum</li>
           <li>Annealing the learning rate by a constant factor</li>
           <li>Dropout</li>
-          <li>Striding – shortening the recurrent layers by taking strides of size <script type="math/tex">2</script>.<br />
+          <li>Striding – shortening the recurrent layers by taking strides of size \(2\).<br />
   The unrolled RNN will have <strong>half</strong> as many steps.
             <blockquote>
               <p>similar to a convolutional network with a step-size of 2 in the first layer.</p>
@@ -866,9 +865,9 @@ Content-Based Attention extended for <em>location awareness</em> by making it ta
       <dt><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents510">Parameters:</strong></dt>
       <dd>
         <ul>
-          <li><strong>Momentum</strong>: <script type="math/tex">0.99</script></li>
-          <li><strong>Dropout</strong>: <script type="math/tex">5-10 \%</script> (FFN only)</li>
-          <li><strong>Trade-Off Params</strong>: use cross-validation for <script type="math/tex">\alpha, \beta</script></li>
+          <li><strong>Momentum</strong>: \(0.99\)</li>
+          <li><strong>Dropout</strong>: \(5-10 \%\) (FFN only)</li>
+          <li><strong>Trade-Off Params</strong>: use cross-validation for \(\alpha, \beta\)</li>
         </ul>
       </dd>
     </dl>
@@ -887,10 +886,10 @@ Content-Based Attention extended for <em>location awareness</em> by making it ta
           <li><strong>SwitchboardHub5’00</strong>  (
 WER):
             <ul>
-              <li>Standard: <script type="math/tex">16.0\%</script></li>
-              <li>w/Lexicon of allowed words: <script type="math/tex">21.9\%</script></li>
-              <li>Trigram LM: <script type="math/tex">8.2\%</script></li>
-              <li>w/Baseline system: <script type="math/tex">6.7\%</script></li>
+              <li>Standard: \(16.0\%\)</li>
+              <li>w/Lexicon of allowed words: \(21.9\%\)</li>
+              <li>Trigram LM: \(8.2\%\)</li>
+              <li>w/Baseline system: \(6.7\%\)</li>
             </ul>
           </li>
         </ul>
@@ -942,18 +941,17 @@ WER):
       <dd>
         <ul>
           <li>
-            <p><strong>Input</strong>: <script type="math/tex">\mathbb{x} = (x_1, \ldots, x_T)</script> a sequence of filter bank spectra (acoustic) features</p>
+            <p><strong>Input</strong>: \(\mathbb{x} = (x_1, \ldots, x_T)\) a sequence of filter bank spectra (acoustic) features</p>
           </li>
           <li>
-            <p><strong>Output</strong>: <script type="math/tex">% <![CDATA[
-\mathbb{y} = (\text{<sos>}, y_1, \ldots, y_S, \text{<eos>}), y_i \in \{\text{a, b, c, · · · , z, 0, · · · , 9, <spacei,<comma>,<period>,<apostrophe>,<unk> }\} %]]></script> the output sequence of characters</p>
+            <p><strong>Output</strong>: \(\mathbb{y} = (\text{&lt;sos&gt;}, y_1, \ldots, y_S, \text{&lt;eos&gt;}), y_i \in \{\text{a, b, c, · · · , z, 0, · · · , 9, &lt;spacei,&lt;comma&gt;,&lt;period&gt;,&lt;apostrophe&gt;,&lt;unk&gt; }\}\) the output sequence of characters</p>
           </li>
         </ul>
       </dd>
       <dd>
         <ul>
           <li><strong>Goal</strong>:<br />
-  The goal of the RNN is to convert an input sequence <script type="math/tex">x</script> into a sequence of character probabilities for the transcription <script type="math/tex">y</script>, with <script type="math/tex">\tilde{y}_t = P(c_t\vert x)</script>, where <script type="math/tex">c_t \in \{\text{a, b, c, } \ldots \text{,  z, space,  apostrophe, blank}\}</script>.</li>
+  The goal of the RNN is to convert an input sequence \(x\) into a sequence of character probabilities for the transcription \(y\), with \(\tilde{y}_t = P(c_t\vert x)\), where \(c_t \in \{\text{a, b, c, } \ldots \text{,  z, space,  apostrophe, blank}\}\).</li>
         </ul>
       </dd>
     </dl>
@@ -964,7 +962,7 @@ WER):
       <dd><strong>LAS</strong> is based on the sequence to sequence learning framework with attention.</dd>
       <dd>
         <ul>
-          <li>We want to model each character output <script type="math/tex">y_i</script> as a conditional distribution over the previous characters <script type="math/tex">y_{\leq i+1}</script> and the input signal <script type="math/tex">\mathbb{x}</script> using the chain rule:</li>
+          <li>We want to model each character output \(y_i\) as a conditional distribution over the previous characters \(y_{\leq i+1}\) and the input signal \(\mathbb{x}\) using the chain rule:</li>
         </ul>
         <p>$$P(\mathbb{y} \vert \mathbb{x}) = \prod_i P(y_i \vert \mathbb{x}, y_{\leq i+1}) \:\:\:\: (1)$$</p>
         <ul>
@@ -1006,7 +1004,7 @@ The pyramid structure also reduces the computational complexity.</li>
       <dd><strong>Listen</strong>:<br />
 Uses a <strong>Bi-directional LSTM</strong> with a pyramid structure.
         <blockquote>
-          <p>The pyramid structure is needed to reduce the length <script type="math/tex">U</script> of <script type="math/tex">\mathbf{h}</script>, from <script type="math/tex">T</script> , the length of the input <script type="math/tex">\mathbb{h}</script> , because the input speech signals can be hundreds to thousands of frames long.</p>
+          <p>The pyramid structure is needed to reduce the length \(U\) of \(\mathbf{h}\), from \(T\) , the length of the input \(\mathbb{h}\) , because the input speech signals can be hundreds to thousands of frames long.</p>
         </blockquote>
       </dd>
     </dl>
@@ -1018,13 +1016,13 @@ Uses a <strong>Bi-directional LSTM</strong> with a pyramid structure.
         <p>$$h_i^j = \text{pBLSTM}(h_{i-1}^j, \left[h_{2i}^{j-1}, h_{2i+1}^{j-1}\right])$$</p>
         <blockquote>
           <dl>
-            <dt>In the model, we stack 3 pBLSTMs on top of the bottom BLSTM layer to reduce the time resolution <script type="math/tex">2^3 = 8</script> times.</dt>
+            <dt>In the model, we stack 3 pBLSTMs on top of the bottom BLSTM layer to reduce the time resolution \(2^3 = 8\) times.</dt>
             <dd><strong>Attend and Spell:</strong><br />
 The function is computed using an <strong>attention-based LSTM transducer</strong>.<br />
 At every output step, the transducer produces a probability distribution over the next character conditioned on all the characters seen previously.<br />
-The <strong>distribution</strong> for <script type="math/tex">y_i</script> is a function of the decoder state <script type="math/tex">s_i</script> and context <script type="math/tex">c_i</script>.<br />
-The <strong>decoder state</strong> <script type="math/tex">s_i</script> is a function of the previous state <script type="math/tex">s_{i−1}</script>, the previously emitted character <script type="math/tex">y_{i−1}</script> and context <script type="math/tex">c_{i−1}</script>.<br />
-The <strong>context vector</strong> <script type="math/tex">c_i</script> is produced by an attention mechanism:</dd>
+The <strong>distribution</strong> for \(y_i\) is a function of the decoder state \(s_i\) and context \(c_i\).<br />
+The <strong>decoder state</strong> \(s_i\) is a function of the previous state \(s_{i−1}\), the previously emitted character \(y_{i−1}\) and context \(c_{i−1}\).<br />
+The <strong>context vector</strong> \(c_i\) is produced by an attention mechanism:</dd>
           </dl>
         </blockquote>
       </li>
@@ -1034,13 +1032,13 @@ The <strong>context vector</strong> <script type="math/tex">c_i</script> is prod
 P(y_i \vert \mathbf{x}, y_{\leq i+1}) = \text{CharacterDistribution}(s_i, c_i)$$  </p>
     <p>where <strong>CharacterDistribution</strong> is an <strong>MLP</strong> with softmax outputs over characters, and <strong>RNN</strong> is a 2 layer LSTM.<br />
 The <strong>Attention</strong> Mechanism:<br />
-At each step <script type="math/tex">i</script>, the attention mechanism, <em>AttentionContext</em> generates a context vector <script type="math/tex">c_i</script> encapsulating the information in the acoustic signal needed to generate the next character.<br />
-The attention model is <strong>content based</strong> - the contents of the decoder state <script type="math/tex">s_i</script> are matched to the contents of <script type="math/tex">h_u</script> representing time step <script type="math/tex">u</script> of <script type="math/tex">\mathbf{h}</script> to generate an attention vector <script type="math/tex">\alpha_i</script>.<br />
-<script type="math/tex">\alpha_i</script> is used to linearly blend vectors <script type="math/tex">h_u</script> to create <script type="math/tex">c_i</script>.<br />
-Specifically, at each decoder timestep <script type="math/tex">i</script> , the AttentionContext function computes the scalar energy
-<script type="math/tex">e_{i,u}</script> for each time step <script type="math/tex">u</script> , using vector <script type="math/tex">h_u \in h</script> and <script type="math/tex">s_i</script>.<br />
-The scalar energy <script type="math/tex">e_{i,u}</script> is converted into a
-probability distribution over times steps (or attention) <script type="math/tex">\alpha_i</script>  using a softmax function. This is used to create the context vector <script type="math/tex">c_i</script>  by linearly blending the listener features, <script type="math/tex">h_u</script>, at different time steps:</p>
+At each step \(i\), the attention mechanism, <em>AttentionContext</em> generates a context vector \(c_i\) encapsulating the information in the acoustic signal needed to generate the next character.<br />
+The attention model is <strong>content based</strong> - the contents of the decoder state \(s_i\) are matched to the contents of \(h_u\) representing time step \(u\) of \(\mathbf{h}\) to generate an attention vector \(\alpha_i\).<br />
+\(\alpha_i\) is used to linearly blend vectors \(h_u\) to create \(c_i\).<br />
+Specifically, at each decoder timestep \(i\) , the AttentionContext function computes the scalar energy
+\(e_{i,u}\) for each time step \(u\) , using vector \(h_u \in h\) and \(s_i\).<br />
+The scalar energy \(e_{i,u}\) is converted into a
+probability distribution over times steps (or attention) \(\alpha_i\)  using a softmax function. This is used to create the context vector \(c_i\)  by linearly blending the listener features, \(h_u\), at different time steps:</p>
     <p>  
 $$\begin{align}
     e_{i,u} &amp;= &lt;\phi(s_i), \psi(h_u)&gt; \\
@@ -1049,8 +1047,8 @@ $$\begin{align}
     \end{align}
     $$ 
 </p>
-    <p>where <script type="math/tex">\phi</script> and <script type="math/tex">\psi</script> are <strong>MLP</strong> Networks.<br />
-On convergence, the <script type="math/tex">\alpha_i</script>  distribution is typically very sharp, and focused on only a few frames of <script type="math/tex">\mathbf{h}</script> ; <script type="math/tex">c_i</script> can be seen as a continuous bag of weighted features of <script type="math/tex">\mathbf{h}</script>.</p>
+    <p>where \(\phi\) and \(\psi\) are <strong>MLP</strong> Networks.<br />
+On convergence, the \(\alpha_i\)  distribution is typically very sharp, and focused on only a few frames of \(\mathbf{h}\) ; \(c_i\) can be seen as a continuous bag of weighted features of \(\mathbf{h}\).</p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents66">Preparing Data (Pre-Processing):</strong></p>
@@ -1062,7 +1060,7 @@ On convergence, the <script type="math/tex">\alpha_i</script>  distribution is t
       <dd>
         <ul>
           <li><strong>Encoder (listener):</strong><br />
-  An <strong>acoustic model</strong> encoder, whose key operation is <code class="highlighter-rouge">Listen</code>.<br />
+  An <strong>acoustic model</strong> encoder, whose key operation is <code class="language-plaintext highlighter-rouge">Listen</code>.<br />
   It converts low level speech signals into higher level features.
             <ul>
               <li><strong>(pyramidal) RNN</strong>:
@@ -1073,8 +1071,8 @@ On convergence, the <script type="math/tex">\alpha_i</script>  distribution is t
                     <ul>
                       <li><em><strong>Structure</strong></em>:
                         <ul>
-                          <li><em><strong>Input:</strong></em> original signal <script type="math/tex">\mathbb{x}</script></li>
-                          <li><em><strong>Output:</strong></em> a high level representation <script type="math/tex">\mathbf{h} = (h_1, ]ldots, h_U)</script>, with <script type="math/tex">U \leq T</script></li>
+                          <li><em><strong>Input:</strong></em> original signal \(\mathbb{x}\)</li>
+                          <li><em><strong>Output:</strong></em> a high level representation \(\mathbf{h} = (h_1, ]ldots, h_U)\), with \(U \leq T\)</li>
                         </ul>
                       </li>
                     </ul>
@@ -1084,15 +1082,15 @@ On convergence, the <script type="math/tex">\alpha_i</script>  distribution is t
             </ul>
           </li>
           <li><strong>Decoder (speller)</strong>:<br />
-  The speller is an <em>attention-based</em> <strong>character decoder</strong>, whose key operation is <code class="highlighter-rouge">AttendAndSpell</code>.<br />
+  The speller is an <em>attention-based</em> <strong>character decoder</strong>, whose key operation is <code class="language-plaintext highlighter-rouge">AttendAndSpell</code>.<br />
   It converts the higher level features into output utterances by specifying a probability distribution over sequences of characters using the attention mechanism.
             <ul>
               <li><strong>RNN</strong>:
                 <ul>
                   <li><em><strong>Structure</strong></em>:
                     <ul>
-                      <li><em><strong>Input:</strong></em> features <script type="math/tex">\mathbf{h}</script></li>
-                      <li><em><strong>Output:</strong></em> a probability distribution over character sequences:   <script type="math/tex">\mathbf{h} = (h_1, ]ldots, h_U)</script>, with <script type="math/tex">U \leq T</script></li>
+                      <li><em><strong>Input:</strong></em> features \(\mathbf{h}\)</li>
+                      <li><em><strong>Output:</strong></em> a probability distribution over character sequences:   \(\mathbf{h} = (h_1, ]ldots, h_U)\), with \(U \leq T\)</li>
                     </ul>
                   </li>
                 </ul>
@@ -1114,7 +1112,7 @@ On convergence, the <script type="math/tex">\alpha_i</script>  distribution is t
       <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents69">Training:</strong></dt>
       <dd>
         <ul>
-          <li>The gradient of the CTC Loss <script type="math/tex">\nabla_{\hat{y}} \mathcal{L}(\hat{y}, y)</script> with respect to the net outputs given the ground-truth character sequence <script type="math/tex">y</script> is computed</li>
+          <li>The gradient of the CTC Loss \(\nabla_{\hat{y}} \mathcal{L}(\hat{y}, y)\) with respect to the net outputs given the ground-truth character sequence \(y\) is computed</li>
         </ul>
       </dd>
       <dd>
@@ -1123,7 +1121,7 @@ On convergence, the <script type="math/tex">\alpha_i</script>  distribution is t
           <li>Nesterov Momentum</li>
           <li>Annealing the learning rate by a constant factor</li>
           <li>Dropout</li>
-          <li>Striding – shortening the recurrent layers by taking strides of size <script type="math/tex">2</script>.<br />
+          <li>Striding – shortening the recurrent layers by taking strides of size \(2\).<br />
   The unrolled RNN will have <strong>half</strong> as many steps.
             <blockquote>
               <p>similar to a convolutional network with a step-size of 2 in the first layer.</p>
@@ -1141,9 +1139,9 @@ On convergence, the <script type="math/tex">\alpha_i</script>  distribution is t
       <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents610">Parameters:</strong></dt>
       <dd>
         <ul>
-          <li><strong>Momentum</strong>: <script type="math/tex">0.99</script></li>
-          <li><strong>Dropout</strong>: <script type="math/tex">5-10 \%</script> (FFN only)</li>
-          <li><strong>Trade-Off Params</strong>: use cross-validation for <script type="math/tex">\alpha, \beta</script></li>
+          <li><strong>Momentum</strong>: \(0.99\)</li>
+          <li><strong>Dropout</strong>: \(5-10 \%\) (FFN only)</li>
+          <li><strong>Trade-Off Params</strong>: use cross-validation for \(\alpha, \beta\)</li>
         </ul>
       </dd>
     </dl>
@@ -1162,10 +1160,10 @@ On convergence, the <script type="math/tex">\alpha_i</script>  distribution is t
           <li><strong>SwitchboardHub5’00</strong>  (
 WER):
             <ul>
-              <li>Standard: <script type="math/tex">16.0\%</script></li>
-              <li>w/Lexicon of allowed words: <script type="math/tex">21.9\%</script></li>
-              <li>Trigram LM: <script type="math/tex">8.2\%</script></li>
-              <li>w/Baseline system: <script type="math/tex">6.7\%</script></li>
+              <li>Standard: \(16.0\%\)</li>
+              <li>w/Lexicon of allowed words: \(21.9\%\)</li>
+              <li>Trigram LM: \(8.2\%\)</li>
+              <li>w/Baseline system: \(6.7\%\)</li>
             </ul>
           </li>
         </ul>
@@ -1306,13 +1304,13 @@ WER):
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

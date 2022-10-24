@@ -81,21 +81,29 @@
   <li><a href="https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html">Important Blog on Attention</a></li>
   <li><a href="https://distill.pub/2016/augmented-rnns/">Attention and Augmented RNNs (Distill)</a></li>
   <li><a href="https://www.tensorflow.org/alpha/tutorials/text/transformer">Transformer Implementation TF G-Colab</a></li>
-  <li><a href="https://skymind.ai/wiki/attention-mechanism-memory-network">A Guide to Attention Mechanisms and Memory Networks (skymind)</a></li>
+  <li><a href="https://wiki.pathmind.com/attention-mechanism-memory-network">A Guide to Attention Mechanisms and Memory Networks (skymind)</a></li>
   <li><a href="https://jhui.github.io/2017/03/15/Soft-and-hard-attention/">Soft and Hard Attention</a></li>
   <li><a href="http://www.wildml.com/2016/01/attention-and-memory-in-deep-learning-and-nlp/">Attention (WildML)</a></li>
   <li><a href="https://arxiv.org/pdf/1902.02181.pdf">A Critical Review of Neural Attention Models in Natural Language Processing</a></li>
-  <li><a href="https://www.d2l.ai/chapter_attention-mechanism/index.html">Attention Mechanism (d2l)</a></li>
+  <li><a href="https://www.d2l.ai/chapter_attention-mechanisms/index.html">Attention Mechanism(s) (d2l)</a></li>
   <li><a href="https://towardsdatascience.com/intuitive-understanding-of-attention-mechanism-in-deep-learning-6c9482aecf4f">Intuitive Understanding of Attention Mechanism in Deep Learning (medium + code)</a></li>
   <li><a href="https://www.reddit.com/r/MachineLearning/comments/bkw2xp/d_what_is_the_rationale_behind_selfattention/">What is the rationale behind self-attention equation and how did they came up with the concept query, key and value? (Reddit!)</a></li>
+  <li><a href="https://www.youtube.com/watch?v=knTc-NQSjKA">Stanford CS224N: NLP with Deep Learning | Winter 2020 | BERT and Other Pre-trained Language Models - by <strong><em>Jacob Devlin</em></strong> (Lec!)</a></li>
+  <li>
+    <p><a href="https://www.youtube.com/watch?v=-9vVhYEXeyQ">How to get meaning from text with language model BERT | AI Explained (Vid!!)</a></p>
+  </li>
+  <li><a href="https://github.com/zaidalyafeai/AttentioNN">All about attention in neural networks described as colab notebooks (Code!)</a></li>
 </ul>
+
+<p><button class="showText" value="show" onclick="showTextPopHide(event);">Empirical advantages of Transformers vs LSTMs</button>
+<img src="https://cdn.mathpix.com/snip/images/beNMTU7r-w9Ej6gq5CUCmqseSNm5xio4zubEIbkeuuc.original.fullsize.png" alt="img" width="80%" hidden="" /></p>
 
 <h2 id="content1">Introduction</h2>
 
 <ol>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Motivation:</strong><br />
- In <strong>Vanilla Seq2Seq models</strong>, the only representation of the input is the <em>fixed-dimensional vector representation <script type="math/tex">(y)</script></em>, that we need to carry through the entire decoding process.</p>
+ In <strong>Vanilla Seq2Seq models</strong>, the only representation of the input is the <em>fixed-dimensional vector representation \((y)\)</em>, that we need to carry through the entire decoding process.</p>
 
     <p>This presents a <strong>bottleneck</strong> in condensing all of the information of the <em>entire input sequence</em> into just one <em>fixed-length</em> vector representation.<br />
  <br /></p>
@@ -112,11 +120,11 @@
     </blockquote>
     <p>$$m_i = \tanh (x_iW_{x_i} + CW_C)$$</p>
     <p>These <strong>probabilities</strong> are calculated using the <em><strong>context</strong></em>.<br />
- The <strong>Context</strong> <script type="math/tex">C</script> represents everything the RNN has outputted until now.</p>
+ The <strong>Context</strong> \(C\) represents everything the RNN has outputted until now.</p>
 
     <p>The difference between using the <em>hyperbolic tanh</em> and a <em>dot product</em> is the <strong>granularity</strong> of the output regions of interest - <strong>tanh</strong> is more fine-grained with less choppy and smoother sub-regions chosen.</p>
 
-    <p>The probabilities are interpreted as corresponding to the relevance of the sub-region <script type="math/tex">x_i</script> given context <script type="math/tex">C</script>.<br />
+    <p>The probabilities are interpreted as corresponding to the relevance of the sub-region \(x_i\) given context \(C\).<br />
  <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Types of Attention:</strong>
@@ -154,7 +162,7 @@
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Attention Score Functions:</strong><br />
- <script type="math/tex">q</script> is the query, <script type="math/tex">k</script> is the key:
+ \(q\) is the query, \(k\) is the key:
     <ul>
       <li><strong>Multi-Layer Perceptron</strong> <em>(Bahdanau et al. 2015)</em>:
         <ul>
@@ -248,7 +256,7 @@ It differs however:</p>
       <li><strong style="color: red">The Coverage Problem:</strong>  Neural models tend to drop or repeat content when tested on data not very similar to the training set</li>
       <li><strong style="color: red">Solution:</strong> Model how many times words have been covered
         <ul>
-          <li><strong>Impose a penalty</strong> if attention is not <script type="math/tex">\approx 1</script> for each word (Cohn et al. 2015) <br />
+          <li><strong>Impose a penalty</strong> if attention is not \(\approx 1\) for each word (Cohn et al. 2015) <br />
   It forces the system to translate each word at least once.</li>
           <li><strong>Add embeddings indicating coverage</strong> (Mi.. et al. 2016)</li>
           <li>Incorporating Markov Properties (Cohn et al. 2015)
@@ -261,7 +269,7 @@ It differs however:</p>
             <ul>
               <li>Intuition: Our attention should be roughly similar in forward and backward directions</li>
               <li>Method: Train so that we get a bonus based on the trace of the matrix product for training in both directions<br />
-  <script type="math/tex">\mathrm{Tr} (A_{X \rightarrow Y}A^T_{Y \rightarrow X})</script></li>
+  \(\mathrm{Tr} (A_{X \rightarrow Y}A^T_{Y \rightarrow X})\)</li>
             </ul>
           </li>
           <li><strong>Supervised Training</strong> (Mi et al. 2016):
@@ -412,13 +420,13 @@ It differs however:</p>
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

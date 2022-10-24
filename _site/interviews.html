@@ -88,7 +88,7 @@
  Given an array of n elements which contains elements from 0 to n-1, with any of these numbers appearing any number of times. Find these repeating numbers in O(n) and using only constant memory space.</p>
 
     <ol>
-      <li>Mathematical Solution: <script type="math/tex">O(n), O(1)</script>
+      <li>Mathematical Solution: \(O(n), O(1)\)
         <ul>
           <li>Traverse the given array from i= 0 to n-1 elements
             <ul>
@@ -102,8 +102,8 @@
           </li>
         </ul>
       </li>
-      <li>Indexes Solution: <script type="math/tex">O(n), O(1)</script>
-        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> traverse the list for i= 0 to n-1 elements
+      <li>Indexes Solution: \(O(n), O(1)\)
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> traverse the list for i= 0 to n-1 elements
  {
    check for sign of A[abs(A[i])] ;
    if positive then
@@ -118,10 +118,10 @@
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Re-Arranging Array Indexes:</strong><br />
  Rearrange an array so that arr[i] becomes arr[arr[i]] with O(1) extra space
     <ol>
-      <li>Mathematical Solution: <script type="math/tex">O(n), O(1)</script>
+      <li>Mathematical Solution: \(O(n), O(1)\)
         <ul>
-          <li>Increase every array element arr[i] by <script type="math/tex">(\text{arr}[\text{arr}[i]] % n) * n</script>.</li>
-          <li>Divide every element by <script type="math/tex">n</script>.</li>
+          <li>Increase every array element arr[i] by \((\text{arr}[\text{arr}[i]] % n) * n\).</li>
+          <li>Divide every element by \(n\).</li>
         </ul>
       </li>
     </ol>
@@ -133,7 +133,7 @@
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Two Sum Problem:</strong><br />
  Given an array of integers, return indices of the two numbers such that they add up to a specific target.
     <ol>
-      <li><strong>HashTable:</strong> <script type="math/tex">O(n), O(1)</script> <br />
+      <li><strong>HashTable:</strong> \(O(n), O(1)\) <br />
  Iterate and inserting elements into the table, we also look back to check if current element’s complement already exists in the table. If it exists, we have found a solution and return immediately.</li>
     </ol>
   </li>
@@ -143,7 +143,7 @@
 
     <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">_permute</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span> 
      <span class="k">if</span> <span class="n">l</span><span class="o">==</span><span class="n">r</span><span class="p">:</span> 
-         <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+         <span class="n">results</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">copy</span><span class="p">())</span>
      <span class="k">else</span><span class="p">:</span> 
          <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span> 
              <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> 
@@ -159,18 +159,18 @@
     <p><strong>For strings:</strong></p>
     <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">_permute</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">chosen</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span> 
  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span> 
-     <span class="c"># results.append(a.copy())</span>
-     <span class="k">print</span><span class="p">(</span><span class="n">chosen</span><span class="p">)</span>
+     <span class="c1"># results.append(a.copy())
+</span>     <span class="k">print</span><span class="p">(</span><span class="n">chosen</span><span class="p">)</span>
  <span class="k">else</span><span class="p">:</span> 
      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span>
-         <span class="c"># Choose</span>
-         <span class="n">c</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+         <span class="c1"># Choose
+</span>         <span class="n">c</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
          <span class="n">chosen</span> <span class="o">+=</span> <span class="n">c</span>
-         <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
-         <span class="c"># Explore</span>
-         <span class="n">_permute</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">chosen</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span> 
-         <span class="c"># UnChoose</span>
-         <span class="n">chosen</span> <span class="o">=</span> <span class="n">chosen</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+         <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+         <span class="c1"># Explore
+</span>         <span class="n">_permute</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">chosen</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span> 
+         <span class="c1"># UnChoose
+</span>         <span class="n">chosen</span> <span class="o">=</span> <span class="n">chosen</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
          <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">:]</span>
             
  <span class="k">def</span> <span class="nf">permute</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
@@ -181,7 +181,7 @@
  <span class="n">permute</span><span class="p">(</span><span class="s">'abc'</span><span class="p">)</span>
 </code></pre></div>    </div>
 
-    <p><strong>Generate permutation at index <script type="math/tex">k</script>:</strong></p>
+    <p><strong>Generate permutation at index \(k\):</strong></p>
     <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">getPermutation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
      <span class="s">"""
      :type n: int
@@ -192,8 +192,8 @@
      <span class="n">nl</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
      <span class="n">out</span> <span class="o">=</span> <span class="s">''</span>
      <span class="k">while</span> <span class="n">n</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
-         <span class="n">temp</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-         <span class="n">out</span><span class="o">+=</span><span class="nb">str</span><span class="p">(</span><span class="n">nl</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">k</span><span class="o">//</span><span class="n">temp</span><span class="p">))</span>
+         <span class="n">temp</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+         <span class="n">out</span><span class="o">+=</span><span class="nb">str</span><span class="p">(</span><span class="n">nl</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">k</span><span class="o">//</span><span class="n">temp</span><span class="p">))</span>
          <span class="n">k</span> <span class="o">%=</span> <span class="n">temp</span>
          <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
      <span class="k">return</span> <span class="n">out</span>
@@ -202,22 +202,22 @@
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Hight/Depth of Tree:</strong><br />
  Use DFS:
     <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">visited</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">depth</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-     <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+     <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">.</span><span class="n">children</span><span class="p">:</span>
          <span class="k">return</span> <span class="n">depth</span>
-     <span class="c"># visited.append(root)</span>
-     <span class="n">max_depth</span> <span class="o">=</span> <span class="n">depth</span>
-     <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
-         <span class="c"># 2 Lines below: only needed if graph is not a tree</span>
-         <span class="c"># if node not in visited:</span>
-             <span class="c"># max_depth = max(self.dfs(node, visited, depth+1), max_depth)</span>
-         <span class="n">max_depth</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">depth</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">max_depth</span><span class="p">)</span>
+     <span class="c1"># visited.append(root)
+</span>     <span class="n">max_depth</span> <span class="o">=</span> <span class="n">depth</span>
+     <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">root</span><span class="p">.</span><span class="n">children</span><span class="p">:</span>
+         <span class="c1"># 2 Lines below: only needed if graph is not a tree
+</span>         <span class="c1"># if node not in visited:
+</span>             <span class="c1"># max_depth = max(self.dfs(node, visited, depth+1), max_depth)
+</span>         <span class="n">max_depth</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">depth</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">max_depth</span><span class="p">)</span>
      <span class="k">return</span> <span class="n">max_depth</span>
         
     
  <span class="k">def</span> <span class="nf">maxDepth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="s">'Node'</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
      <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
          <span class="k">return</span> <span class="mi">0</span>
-     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+     <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
 </code></pre></div>    </div>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Pre-Order Traversal:</strong>
@@ -226,39 +226,39 @@
      <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
      <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
          <span class="k">while</span> <span class="n">root</span><span class="p">:</span>
-             <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
-             <span class="n">arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
-             <span class="n">root</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">left</span>
+             <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+             <span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+             <span class="n">root</span> <span class="o">=</span> <span class="n">root</span><span class="p">.</span><span class="n">left</span>
          <span class="k">if</span> <span class="ow">not</span> <span class="n">stack</span><span class="p">:</span>
              <span class="k">break</span>
-         <span class="n">root</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">right</span>
-         <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+         <span class="n">root</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">right</span>
+         <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
      <span class="k">return</span> <span class="n">arr</span>
     
     
  <span class="k">def</span> <span class="nf">preorderTraversal_recursive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-     <span class="bp">self</span><span class="o">.</span><span class="n">arr</span> <span class="o">=</span> <span class="p">[]</span>
+     <span class="bp">self</span><span class="p">.</span><span class="n">arr</span> <span class="o">=</span> <span class="p">[]</span>
      <span class="k">def</span> <span class="nf">helper</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
          <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
              <span class="k">return</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
-         <span class="n">helper</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
-         <span class="n">helper</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+         <span class="bp">self</span><span class="p">.</span><span class="n">arr</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+         <span class="n">helper</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">left</span><span class="p">)</span>
+         <span class="n">helper</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">right</span><span class="p">)</span>
      <span class="n">helper</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
-     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">arr</span>
+     <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">arr</span>
 </code></pre></div>    </div>
 
     <p><strong>In-order</strong>:</p>
     <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">inOrderT</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>    
-     <span class="bp">self</span><span class="o">.</span><span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+     <span class="bp">self</span><span class="p">.</span><span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
      <span class="k">def</span> <span class="nf">helper</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
          <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
              <span class="k">return</span>
-         <span class="n">helper</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
-         <span class="n">helper</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+         <span class="n">helper</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">left</span><span class="p">)</span>
+         <span class="bp">self</span><span class="p">.</span><span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+         <span class="n">helper</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">right</span><span class="p">)</span>
      <span class="n">helper</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
-     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ans</span>
+     <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">ans</span>
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -328,22 +328,22 @@
   <li>For Recursion: Ask the size of the input (i.e. would it fit in the stack?) else iterative solution</li>
   <li>
     <p>Interviewing at GOOGLE:<br />
-  Prove the Resume
-  White board
-  Make sure the interviewer <strong>Feels <em>comfortable</em> working with you on the team</strong>
-  Ask a lot of questions; the interviewer is vague on purpose: what are the time&amp;space constraints? 
-  Keep Thinking
-  Keep the interviewer happy and attentive
+  Prove the Resume<br />
+  White board<br />
+  Make sure the interviewer <strong>Feels <em>comfortable</em> working with you on the team</strong><br />
+  Ask a lot of questions; the interviewer is vague on purpose: what are the time&amp;space constraints? <br />
+  Keep Thinking<br />
+  Keep the interviewer happy and attentive<br />
   Have a very positive/approachable attitude</p>
 
-    <p>Data Structures, Algorithms, Space&amp;Time Complexity
+    <p>Data Structures, Algorithms, Space&amp;Time Complexity<br />
   System Design, OOP,</p>
 
-    <p>Dijkstra, A*, DFS, BFS, Tree, traversal, 
-  NP-Complete, NapSack, Traveling Salesman, NP-Completeness, Discrete Math, Counting (n choose k problems), 
-  Recursion: iterative to recursive, complexity
-  OS: processes, threads, concurrency issues, locks etc., resource allocation, context switching, scheduling
-  System Design: feature sets, interfaces, class hierarchies, distributed systems, constrained system design
+    <p>Dijkstra, A*, DFS, BFS, Tree, traversal, <br />
+  NP-Complete, NapSack, Traveling Salesman, NP-Completeness, Discrete Math, Counting (n choose k problems), <br />
+  Recursion: iterative to recursive, complexity<br />
+  OS: processes, threads, concurrency issues, locks etc., resource allocation, context switching, scheduling<br />
+  System Design: feature sets, interfaces, class hierarchies, distributed systems, constrained system design<br />
   The Internet: routers, servers, search, DNS, firewalls</p>
 
     <p>Testing Experience, Unit Tests, Interesting Test-cases, integration Tests for Gmail?</p>
@@ -383,84 +383,84 @@
 </ol>
 
 <blockquote>
-  <p><span style="color: goldenrod">Let <script type="math/tex">x</script> be the number of face-up cards in pile #1</span></p>
+  <p><span style="color: goldenrod">Let \(x\) be the number of face-up cards in pile #1</span></p>
 </blockquote>
 
 <table>
   <tbody>
     <tr>
       <td> </td>
-      <td><strong style="color: blue"><script type="math/tex">\uparrow</script></strong></td>
-      <td><strong style="color: blue"><script type="math/tex">\downarrow</script></strong></td>
+      <td><strong style="color: blue">\(\uparrow\)</strong></td>
+      <td><strong style="color: blue">\(\downarrow\)</strong></td>
     </tr>
     <tr>
-      <td><strong style="color: blue">pile #1 <script type="math/tex">= 13</script></strong></td>
-      <td><script type="math/tex">x</script></td>
-      <td><script type="math/tex">13 - x</script></td>
+      <td><strong style="color: blue">pile #1 \(= 13\)</strong></td>
+      <td>\(x\)</td>
+      <td>\(13 - x\)</td>
     </tr>
     <tr>
-      <td><strong style="color: blue">pile #2 <script type="math/tex">= 39</script></strong></td>
-      <td><script type="math/tex">13 - x</script></td>
-      <td><script type="math/tex">26 + x</script></td>
+      <td><strong style="color: blue">pile #2 \(= 39\)</strong></td>
+      <td>\(13 - x\)</td>
+      <td>\(26 + x\)</td>
     </tr>
   </tbody>
 </table>
 
 <p><strong style="color: red">Face-up/Face-down Cards Generic Version:</strong></p>
 <ol>
-  <li>A card deck of 52 cards, <script type="math/tex">k</script> face-up.</li>
+  <li>A card deck of 52 cards, \(k\) face-up.</li>
 </ol>
 
 <blockquote>
-  <p><span style="color: goldenrod">Let <script type="math/tex">x</script> be the number of face-up cards in pile #1</span></p>
+  <p><span style="color: goldenrod">Let \(x\) be the number of face-up cards in pile #1</span></p>
 </blockquote>
 
 <table>
   <tbody>
     <tr>
       <td> </td>
-      <td><strong style="color: blue"><script type="math/tex">\uparrow</script></strong></td>
-      <td><strong style="color: blue"><script type="math/tex">\downarrow</script></strong></td>
+      <td><strong style="color: blue">\(\uparrow\)</strong></td>
+      <td><strong style="color: blue">\(\downarrow\)</strong></td>
     </tr>
     <tr>
-      <td><strong style="color: blue">pile #1 <script type="math/tex">= k</script></strong></td>
-      <td><script type="math/tex">x</script></td>
-      <td><script type="math/tex">k - x</script></td>
+      <td><strong style="color: blue">pile #1 \(= k\)</strong></td>
+      <td>\(x\)</td>
+      <td>\(k - x\)</td>
     </tr>
     <tr>
-      <td><strong style="color: blue">pile #2 <script type="math/tex">= 52-k</script></strong></td>
-      <td><script type="math/tex">k - x</script></td>
-      <td><script type="math/tex">(52-k) - (k-x)</script></td>
+      <td><strong style="color: blue">pile #2 \(= 52-k\)</strong></td>
+      <td>\(k - x\)</td>
+      <td>\((52-k) - (k-x)\)</td>
     </tr>
   </tbody>
 </table>
 
 <p><strong style="color: red">Face-up/Face-down Cards Generic Version (flipped):</strong></p>
 <ol>
-  <li>A card deck of 52 cards, <script type="math/tex">k</script> face-down.</li>
+  <li>A card deck of 52 cards, \(k\) face-down.</li>
   <li>How can you create two piles with the same amount of face-down cards?</li>
 </ol>
 
 <blockquote>
-  <p><span style="color: goldenrod">Let <script type="math/tex">x</script> be the number of face-down cards in pile #1</span></p>
+  <p><span style="color: goldenrod">Let \(x\) be the number of face-down cards in pile #1</span></p>
 </blockquote>
 
 <table>
   <tbody>
     <tr>
       <td> </td>
-      <td><strong style="color: blue"><script type="math/tex">\uparrow</script></strong></td>
-      <td><strong style="color: blue"><script type="math/tex">\downarrow</script></strong></td>
+      <td><strong style="color: blue">\(\uparrow\)</strong></td>
+      <td><strong style="color: blue">\(\downarrow\)</strong></td>
     </tr>
     <tr>
-      <td><strong style="color: blue">pile #1 <script type="math/tex">= k</script></strong></td>
-      <td><script type="math/tex">k-x</script></td>
-      <td><script type="math/tex">x</script></td>
+      <td><strong style="color: blue">pile #1 \(= k\)</strong></td>
+      <td>\(k-x\)</td>
+      <td>\(x\)</td>
     </tr>
     <tr>
-      <td><strong style="color: blue">pile #2 <script type="math/tex">= 52-k</script></strong></td>
-      <td><script type="math/tex">(52-k)-(k-x)</script></td>
-      <td><script type="math/tex">k - x</script></td>
+      <td><strong style="color: blue">pile #2 \(= 52-k\)</strong></td>
+      <td>\((52-k)-(k-x)\)</td>
+      <td>\(k - x\)</td>
     </tr>
   </tbody>
 </table>
@@ -481,13 +481,13 @@
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

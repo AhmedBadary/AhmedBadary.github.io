@@ -362,7 +362,7 @@
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Neural Networks and Graphical Models:</strong><br />
  <strong style="color: red">Deep NNs as PGMs:</strong><br />
- You can view a deep neural network as a graphical model, but here, the CPDs are not probabilistic but are deterministic. Consider for example that the input to a neuron is <script type="math/tex">\vec{x}</script> and the output of the neuron is <script type="math/tex">y .</script> In the CPD for this neuron we have, <script type="math/tex">p(\vec{x}, y)=1,</script> and <script type="math/tex">p(\vec{x}, \hat{y})=0</script> for <script type="math/tex">\hat{y} \neq y .</script> Refer to the section 10.2 .3 of Deep Learning Book for more details.<br />
+ You can view a deep neural network as a graphical model, but here, the CPDs are not probabilistic but are deterministic. Consider for example that the input to a neuron is \(\vec{x}\) and the output of the neuron is \(y .\) In the CPD for this neuron we have, \(p(\vec{x}, y)=1,\) and \(p(\vec{x}, \hat{y})=0\) for \(\hat{y} \neq y .\) Refer to the section 10.2 .3 of Deep Learning Book for more details.<br />
  <br /></p>
   </li>
   <li>
@@ -435,7 +435,7 @@
       <li><strong>Complexity</strong>:
         <ul>
           <li><strong>Caching the activations of a NN</strong>:<br />
-  We need to cache the activation vectors of a NN after each layer <script type="math/tex">Z^{[l]}</script> because they are required in the backward computation.</li>
+  We need to cache the activation vectors of a NN after each layer \(Z^{[l]}\) because they are required in the backward computation.</li>
         </ul>
       </li>
       <li><strong>Initializations</strong>:
@@ -444,11 +444,11 @@
             <ul>
               <li>Don’t initialize the weights to Zero. The symmetry of hidden units results in a similar computation for each hidden unit, making all the rows of the weight matrix to be equal (by induction).</li>
               <li>It’s OK to initialize the bias term to zero.</li>
-              <li>Since a neuron takes the sum of <script type="math/tex">N</script> inputsXweights, if <script type="math/tex">N</script> is large, you want smaller <script type="math/tex">w_i</script>s. You want to initialize with a <strong>variance</strong> <script type="math/tex">\propto \dfrac{1}{n}</script> (i.e. multiply by <script type="math/tex">\dfrac{1}{\sqrt{n}}</script>; <script type="math/tex">n</script> is the number of weights in <em><strong>previous layer</strong></em>).<br />
-  This doesnt solve but reduces vanishing/exploding gradient problem because <script type="math/tex">z</script> would take a similar distribution.
+              <li>Since a neuron takes the sum of \(N\) inputsXweights, if \(N\) is large, you want smaller \(w_i\)s. You want to initialize with a <strong>variance</strong> \(\propto \dfrac{1}{n}\) (i.e. multiply by \(\dfrac{1}{\sqrt{n}}\); \(n\) is the number of weights in <em><strong>previous layer</strong></em>).<br />
+  This doesnt solve but reduces vanishing/exploding gradient problem because \(z\) would take a similar distribution.
                 <ul>
-                  <li><strong>Xavier Initialization:</strong> assumes <script type="math/tex">\tanh</script> activation; ^ uses logic above; samples from normal distribution and multiplies by <script type="math/tex">\dfrac{1}{\sqrt{n}}</script>.</li>
-                  <li>If <strong>ReLU</strong> activation, it turns out to be better to make variance <script type="math/tex">\propto \dfrac{2}{n}</script> instead.</li>
+                  <li><strong>Xavier Initialization:</strong> assumes \(\tanh\) activation; ^ uses logic above; samples from normal distribution and multiplies by \(\dfrac{1}{\sqrt{n}}\).</li>
+                  <li>If <strong>ReLU</strong> activation, it turns out to be better to make variance \(\propto \dfrac{2}{n}\) instead.</li>
                 </ul>
               </li>
             </ul>
@@ -515,13 +515,13 @@
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

@@ -85,36 +85,35 @@
   <li>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents11">What?</strong></dt>
-      <dd>Recall from here that any matrix <script type="math/tex">A \in \mathbf{R}^{m \times n}</script> with rank one can be written as   <script type="math/tex">A = \sigma u v^T</script>,  where <script type="math/tex">u \in \mathbf{R}^m, v \in \mathbf{R}^n,</script> and <script type="math/tex">\sigma >0.</script></dd>
-      <dd>It turns out that a similar result holds for matrices of arbitrary rank <script type="math/tex">r</script>.  :   That is, we can express any matrix <script type="math/tex">A \in \mathbf{R}^{m \times n}</script> as sum of rank-one matrices:</dd>
+      <dd>Recall from here that any matrix \(A \in \mathbf{R}^{m \times n}\) with rank one can be written as   \(A = \sigma u v^T\),  where \(u \in \mathbf{R}^m, v \in \mathbf{R}^n,\) and \(\sigma &gt;0.\)</dd>
+      <dd>It turns out that a similar result holds for matrices of arbitrary rank \(r\).  :   That is, we can express any matrix \(A \in \mathbf{R}^{m \times n}\) as sum of rank-one matrices:</dd>
       <dd>
-        <script type="math/tex; mode=display">A = \sum_{i=1}^r \sigma_i u_i v_i^T,</script>
+\[A = \sum_{i=1}^r \sigma_i u_i v_i^T,\]
       </dd>
-      <dd>where <script type="math/tex">u_1, \ldots, u_r</script> are mutually orthogonal, <script type="math/tex">v_1, \ldots, v_r</script> are also mutually orthogonal, and the <script type="math/tex">\sigma_i</script>’s are positive numbers called the singular values of <script type="math/tex">A</script>.</dd>
+      <dd>where \(u_1, \ldots, u_r\) are mutually orthogonal, \(v_1, \ldots, v_r\) are also mutually orthogonal, and the \(\sigma_i\)’s are positive numbers called the singular values of \(A\).</dd>
     </dl>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">The SVD Theorem:</strong></dt>
-      <dd>An arbitrary matrix <script type="math/tex">A \in \mathbf{R}^{m \times n}</script> admits a decomposition of the form:</dd>
+      <dd>An arbitrary matrix \(A \in \mathbf{R}^{m \times n}\) admits a decomposition of the form:</dd>
       <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-A = \sum_{i=1}^r \sigma_i u_i v_i^T = U \tilde{ {S}} V^T, \;\; \tilde{ {S}} := \left( \begin{array}{cc}  {S} & 0 \\ 0 & 0 \end{array} \right) , %]]></script>
+\[A = \sum_{i=1}^r \sigma_i u_i v_i^T = U \tilde{ {S}} V^T, \;\; \tilde{ {S}} := \left( \begin{array}{cc}  {S} &amp; 0 \\ 0 &amp; 0 \end{array} \right) ,\]
       </dd>
-      <dd>where <script type="math/tex">U \in \mathbf{R}^{m \times m}, V \in \mathbf{R}^{n \times n}</script> are both orthogonal matrices, and the matrix <script type="math/tex">S</script> is diagonal:</dd>
+      <dd>where \(U \in \mathbf{R}^{m \times m}, V \in \mathbf{R}^{n \times n}\) are both orthogonal matrices, and the matrix \(S\) is diagonal:</dd>
       <dd>
-        <script type="math/tex; mode=display">S = \mathbf{diag}(\sigma_1 , \ldots, \sigma_r),</script>
+\[S = \mathbf{diag}(\sigma_1 , \ldots, \sigma_r),\]
       </dd>
       <dd>where,
         <ul>
-          <li>The positive numbers <script type="math/tex">\sigma_1 \ge \ldots \ge \sigma_r > 0</script> are unique, and are called the <strong><em>singular values</em></strong> of A.</li>
-          <li>The number <script type="math/tex">r \le min(m,n)</script> is equal to the rank of <script type="math/tex">A</script>.</li>
-          <li>The triplet <script type="math/tex">(U, \tilde{ {S}}, V)</script> is called a <strong><em>singular value decomposition</em></strong> (SVD) of <script type="math/tex">A</script>.</li>
-          <li>The first <script type="math/tex">r</script> columns of <script type="math/tex">U: u_i, i=1, \ldots, r</script> (resp. <script type="math/tex">V: v_i,  i=1, \ldots, r)</script> are called left (resp. right) singular vectors of <script type="math/tex">A</script>, and satisfy:</li>
+          <li>The positive numbers \(\sigma_1 \ge \ldots \ge \sigma_r &gt; 0\) are unique, and are called the <strong><em>singular values</em></strong> of A.</li>
+          <li>The number \(r \le min(m,n)\) is equal to the rank of \(A\).</li>
+          <li>The triplet \((U, \tilde{ {S}}, V)\) is called a <strong><em>singular value decomposition</em></strong> (SVD) of \(A\).</li>
+          <li>The first \(r\) columns of \(U: u_i, i=1, \ldots, r\) (resp. \(V: v_i,  i=1, \ldots, r)\) are called left (resp. right) singular vectors of \(A\), and satisfy:</li>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">Av_i = \sigma_i u_i, \;\;\;\; A^Tu_i = \sigma_i v_i, \;\;\;\; i=1,...,r.</script>
+\[Av_i = \sigma_i u_i, \;\;\;\; A^Tu_i = \sigma_i v_i, \;\;\;\; i=1,...,r.\]
       </dd>
       <dd>
         <p><button class="showText" value="show" onclick="showTextPopHide(event);">Proof.</button>
@@ -124,8 +123,8 @@ A = \sum_{i=1}^r \sigma_i u_i v_i^T = U \tilde{ {S}} V^T, \;\; \tilde{ {S}} := \
 
     <p><strong style="color: red">Notes:</strong></p>
     <ul>
-      <li><script type="math/tex">\begin{array}{l}{U^{T} U=I} \\ {V^{T} V=I}\end{array}</script> are orthogonal matrices with orthonormal eigenvector basis</li>
-      <li>If <script type="math/tex">\boldsymbol{v}</script> is eigenvector of <script type="math/tex">X^TX</script> then <script type="math/tex">X\boldsymbol{v}</script> is eigenvector of <script type="math/tex">XX^T</script></li>
+      <li>\(\begin{array}{l}{U^{T} U=I} \\ {V^{T} V=I}\end{array}\) are orthogonal matrices with orthonormal eigenvector basis</li>
+      <li>If \(\boldsymbol{v}\) is eigenvector of \(X^TX\) then \(X\boldsymbol{v}\) is eigenvector of \(XX^T\)</li>
     </ul>
 
     <p><br /></p>
@@ -133,19 +132,18 @@ A = \sum_{i=1}^r \sigma_i u_i v_i^T = U \tilde{ {S}} V^T, \;\; \tilde{ {S}} := \
   <li>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Computing the SVD:</strong></dt>
-      <dd>To find the SVD of a matrix <script type="math/tex">A</script>, we solve the following equation:</dd>
+      <dd>To find the SVD of a matrix \(A\), we solve the following equation:</dd>
       <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-\begin{align}
-& (1)\  A^TA = V\Lambda^T\Lambda V^T \\
-& (2)\  AV\  = U \Lambda
-\end{align} %]]></script>
+\[\begin{align}
+&amp; (1)\  A^TA = V\Lambda^T\Lambda V^T \\
+&amp; (2)\  AV\  = U \Lambda
+\end{align}\]
       </dd>
     </dl>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Complexity of the SVD:</strong> <br />
     <ol>
-      <li><strong>Normal Matrices:</strong> the complexity grows as <script type="math/tex">\mathcal{O}(nm \: min(n,m))</script>.</li>
+      <li><strong>Normal Matrices:</strong> the complexity grows as \(\mathcal{O}(nm \: min(n,m))\).</li>
       <li><strong>Sparse Matrices:</strong> good approximations can be calculated very efficiently.</li>
     </ol>
   </li>
@@ -154,20 +152,20 @@ A = \sum_{i=1}^r \sigma_i u_i v_i^T = U \tilde{ {S}} V^T, \;\; \tilde{ {S}} := \
       <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">Geometric Interpretation:</strong></dt>
       <dd>The theorem allows to decompose the action of A on a given input vector as a sequence of <strong>three</strong> <em>elementary transformations</em>.
         <ol>
-          <li>First, we form <script type="math/tex">\tilde{x} := V^Tx \in \mathbf{R}^n</script>.
+          <li>First, we form \(\tilde{x} := V^Tx \in \mathbf{R}^n\).
             <blockquote>
-              <p><script type="math/tex">V</script> orthogonal <script type="math/tex">\implies \tilde{x}</script> is a rotated version of <script type="math/tex">x</script>, which still lies in the input space.</p>
+              <p>\(V\) orthogonal \(\implies \tilde{x}\) is a rotated version of \(x\), which still lies in the input space.</p>
             </blockquote>
           </li>
-          <li>Then we act on the rotated vector <script type="math/tex">\tilde{x}</script> by scaling its elements
+          <li>Then we act on the rotated vector \(\tilde{x}\) by scaling its elements
             <blockquote>
-              <p>The first <script type="math/tex">k</script> elements of <script type="math/tex">\tilde{x}</script> are scaled by the singular values <script type="math/tex">\sigma_1, \ldots, \sigma_r</script>; the remaining <script type="math/tex">n-r</script> elements are set to zero.<br />
-This step results in a new vector <script type="math/tex">\tilde{y}</script> which now belongs to the output space <script type="math/tex">\mathbf{R}^m</script>.</p>
+              <p>The first \(k\) elements of \(\tilde{x}\) are scaled by the singular values \(\sigma_1, \ldots, \sigma_r\); the remaining \(n-r\) elements are set to zero.<br />
+This step results in a new vector \(\tilde{y}\) which now belongs to the output space \(\mathbf{R}^m\).</p>
             </blockquote>
           </li>
-          <li>Finally, we rotate the vector <script type="math/tex">\tilde{y}</script> by the orthogonal matrix <script type="math/tex">U</script>, which results in <script type="math/tex">y = U\tilde{y} = Ax</script>.
+          <li>Finally, we rotate the vector \(\tilde{y}\) by the orthogonal matrix \(U\), which results in \(y = U\tilde{y} = Ax\).
             <blockquote>
-              <p>Notice also: <script type="math/tex">\tilde{x} : = V^Tx, \ x = V\tilde{x}.</script></p>
+              <p>Notice also: \(\tilde{x} : = V^Tx, \ x = V\tilde{x}.\)</p>
             </blockquote>
           </li>
         </ol>
@@ -183,23 +181,23 @@ This step results in a new vector <script type="math/tex">\tilde{y}</script> whi
           </li>
         </ol>
       </dd>
-      <dd><button class="showText" value="show" onclick="showTextPopHide(event);">Example: A <script type="math/tex">4 \times 4</script> Matrix</button>
+      <dd><button class="showText" value="show" onclick="showTextPopHide(event);">Example: A \(4 \times 4\) Matrix</button>
 <img src="/main_files/conv_opt/2/2.4/pf1.png" alt="img" hidden="" width="100%" /></dd>
     </dl>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">Link with the Spectral Theorem:</strong></dt>
-      <dd>If <script type="math/tex">A</script> admits an SVD, then the matrices <script type="math/tex">AA^T</script> and <script type="math/tex">A^TA</script> has the following SEDs:</dd>
+      <dd>If \(A\) admits an SVD, then the matrices \(AA^T\) and \(A^TA\) has the following SEDs:</dd>
       <dd>
-        <script type="math/tex; mode=display">AA^T = U \Lambda_m U^T, \;\; A^TA = V \Lambda_n V^T,</script>
+\[AA^T = U \Lambda_m U^T, \;\; A^TA = V \Lambda_n V^T,\]
       </dd>
-      <dd>where <script type="math/tex">\Lambda_m := \tilde{ {S}}\tilde{ {S}}^T = \mathbf{ diag}(\sigma_1^2, \ldots, \sigma_r^2, 0, \ldots, 0)</script> is <script type="math/tex">m \times m</script> (so it has <script type="math/tex">m-r</script> trailing zeros), <br />
-and <script type="math/tex">\Lambda_n := \tilde{ {S}}^T\tilde{ {S}} = \mathbf{ diag}(\sigma_1^2, \ldots, \sigma_r^2, 0, \ldots, 0)</script> is <script type="math/tex">n \times n</script> (so it has <script type="math/tex">n-r</script> trailing zeros).</dd>
+      <dd>where \(\Lambda_m := \tilde{ {S}}\tilde{ {S}}^T = \mathbf{ diag}(\sigma_1^2, \ldots, \sigma_r^2, 0, \ldots, 0)\) is \(m \times m\) (so it has \(m-r\) trailing zeros), <br />
+and \(\Lambda_n := \tilde{ {S}}^T\tilde{ {S}} = \mathbf{ diag}(\sigma_1^2, \ldots, \sigma_r^2, 0, \ldots, 0)\) is \(n \times n\) (so it has \(n-r\) trailing zeros).</dd>
       <dd>
         <blockquote>
-          <p>The eigenvalues of <script type="math/tex">AA^T</script> and <script type="math/tex">A^TA</script> are the same, and equal to the squared singular values of <script type="math/tex">A</script>.<br />
-The corresponding eigenvectors are the left and right singular vectors of <script type="math/tex">A</script>.</p>
+          <p>The eigenvalues of \(AA^T\) and \(A^TA\) are the same, and equal to the squared singular values of \(A\).<br />
+The corresponding eigenvectors are the left and right singular vectors of \(A\).</p>
         </blockquote>
       </dd>
     </dl>
@@ -222,10 +220,9 @@ The corresponding eigenvectors are the left and right singular vectors of <scrip
       <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Theorem: Nullspace via SVD:</strong></dt>
       <dd>The nullspace of a matrix A with SVD</dd>
       <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-A = U \tilde{S} V^T, \;\; \tilde{S} := \left( \begin{array}{cc}S & 0 \\ 0 & 0 \end{array} \right) , \;\; S = \mathbf{diag}(\sigma_1 , \ldots, \sigma_r), %]]></script>
+\[A = U \tilde{S} V^T, \;\; \tilde{S} := \left( \begin{array}{cc}S &amp; 0 \\ 0 &amp; 0 \end{array} \right) , \;\; S = \mathbf{diag}(\sigma_1 , \ldots, \sigma_r),\]
       </dd>
-      <dd>where <script type="math/tex">U \in \mathbf{R}^{m \times m}, V \in \mathbf{R}^{n \times n}</script> are both orthogonal matrices, admits the last <script type="math/tex">n-r</script> columns of <script type="math/tex">V</script> as an orthonormal basis.</dd>
+      <dd>where \(U \in \mathbf{R}^{m \times m}, V \in \mathbf{R}^{n \times n}\) are both orthogonal matrices, admits the last \(n-r\) columns of \(V\) as an orthonormal basis.</dd>
     </dl>
   </li>
   <li>
@@ -233,41 +230,40 @@ A = U \tilde{S} V^T, \;\; \tilde{S} := \left( \begin{array}{cc}S & 0 \\ 0 & 0 \e
       <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Full Column-Rank Matrices:</strong></dt>
       <dd>ne-to-one (or, full column rank) matrices are the matrices with nullspace reduced to {0}. If the dimension of the nullspace is zero, then we must have n=r. Thus, full column rank matrices are ones with SVD of the form</dd>
       <dd>
-        <script type="math/tex; mode=display">A = U \left( \begin{array}{c}  {S} \\ 0 \end{array} \right) V^T.</script>
+\[A = U \left( \begin{array}{c}  {S} \\ 0 \end{array} \right) V^T.\]
       </dd>
     </dl>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Theorem: Range and Rank via SVD:</strong></dt>
-      <dd>The range of a matrix <script type="math/tex">A</script> with SVD</dd>
+      <dd>The range of a matrix \(A\) with SVD</dd>
       <dd>
-        <script type="math/tex; mode=display">A = U \tilde{ {S}} V^T, \;\; \tilde{ {S}} = \mathbf{diag}(\sigma_1, \ldots, \sigma_r, 0, \ldots, 0)</script>
+\[A = U \tilde{ {S}} V^T, \;\; \tilde{ {S}} = \mathbf{diag}(\sigma_1, \ldots, \sigma_r, 0, \ldots, 0)\]
       </dd>
-      <dd>where <script type="math/tex">U \in \mathbf{R}^{m \times m}, V \in \mathbf{R}^{n \times n}</script> are both orthogonal matrices, admits the first <script type="math/tex">r</script> columns of <script type="math/tex">U</script> as an orthonormal basis.</dd>
+      <dd>where \(U \in \mathbf{R}^{m \times m}, V \in \mathbf{R}^{n \times n}\) are both orthogonal matrices, admits the first \(r\) columns of \(U\) as an orthonormal basis.</dd>
     </dl>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Full Row Rank Matrices.:</strong></dt>
-      <dd>An onto (or, full row rank) matrix has a range <script type="math/tex">r=m</script>.<br />
+      <dd>An onto (or, full row rank) matrix has a range \(r=m\).<br />
 These matrices are characterized by an SVD of the form</dd>
       <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-A = U \left( \begin{array}{cc}  {S} & 0 \end{array} \right) V^T. %]]></script>
+\[A = U \left( \begin{array}{cc}  {S} &amp; 0 \end{array} \right) V^T.\]
       </dd>
     </dl>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents26">Fundamental theorem of linear algebra:</strong></dt>
-      <dd>Let <script type="math/tex">A \in \mathbf{R}^{m \times n}</script>. The sets <script type="math/tex">\mathbf{N} (A)</script> and <script type="math/tex">\mathbf{R} (A^T)</script> form an orthogonal decomposition of <script type="math/tex">\mathbf{R}^n</script>, in the sense that any vector  <script type="math/tex">x \in \mathbf{R}^n</script> can be written as</dd>
+      <dd>Let \(A \in \mathbf{R}^{m \times n}\). The sets \(\mathbf{N} (A)\) and \(\mathbf{R} (A^T)\) form an orthogonal decomposition of \(\mathbf{R}^n\), in the sense that any vector  \(x \in \mathbf{R}^n\) can be written as</dd>
       <dd>
-        <script type="math/tex; mode=display">x = y + z, \;\; y \in \mathbf{N} (A), \;\; z \in \mathbf{R} (A^T), \;\; y^Tz = 0.</script>
+\[x = y + z, \;\; y \in \mathbf{N} (A), \;\; z \in \mathbf{R} (A^T), \;\; y^Tz = 0.\]
       </dd>
-      <dd>In particular, we obtain that the condition on a vector <script type="math/tex">x</script> to be orthogonal to any vector in the nullspace implies that it must be in the range:</dd>
+      <dd>In particular, we obtain that the condition on a vector \(x\) to be orthogonal to any vector in the nullspace implies that it must be in the range:</dd>
       <dd>
-        <script type="math/tex; mode=display">x^Ty = 0 \mbox{ whenever } Ay = 0 \Longleftrightarrow \exists \: \lambda \in \mathbf{R}^m ~:~ x = A^T\lambda.</script>
+\[x^Ty = 0 \mbox{ whenever } Ay = 0 \Longleftrightarrow \exists \: \lambda \in \mathbf{R}^m ~:~ x = A^T\lambda.\]
       </dd>
       <dd><button class="showText" value="show" onclick="showTextPopHide(event);">Proof.</button>
 <img src="/main_files/conv_opt/2/2.4/pf0.png" alt="img" hidden="" width="100%" /></dd>
@@ -284,11 +280,11 @@ These two norms can be easily read from the SVD.</dd>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\|A\|_F  = \sqrt{\mathbf{Tr} A^TA}</script>
+\[\|A\|_F  = \sqrt{\mathbf{Tr} A^TA}\]
       </dd>
-      <dd><script type="math/tex">\:\:\:\:\:\:\:\:\:</script>    Using the SVD <script type="math/tex">(U, \tilde{ {S}}, V)</script> of <script type="math/tex">A</script>, we obtain</dd>
+      <dd>\(\:\:\:\:\:\:\:\:\:\)    Using the SVD \((U, \tilde{ {S}}, V)\) of \(A\), we obtain</dd>
       <dd>
-        <script type="math/tex; mode=display">\|A\|_F^2 = \mathbf{Tr} (V \tilde{ {S}}^T \tilde{ {S}} V^T) = \mathbf{Tr} (V^TV \tilde{ {S}}^T \tilde{ {S}}) = \mathbf{Tr} (\tilde{ {S}}^T \tilde{ {S}}) = \sum_{i=1}^r \sigma_i^2.</script>
+\[\|A\|_F^2 = \mathbf{Tr} (V \tilde{ {S}}^T \tilde{ {S}} V^T) = \mathbf{Tr} (V^TV \tilde{ {S}}^T \tilde{ {S}}) = \mathbf{Tr} (\tilde{ {S}}^T \tilde{ {S}}) = \sum_{i=1}^r \sigma_i^2.\]
 
         <blockquote>
           <p>Hence the squared Frobenius norm is nothing else than the sum of the squares of the singular values.</p>
@@ -300,9 +296,9 @@ These two norms can be easily read from the SVD.</dd>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\|A\|_{\rm LSV} := \max_x : \|Ax\|_2 ~:~ \|x\|_2 \le 1 = \max_{x \:\:\: \|x\|_2 \le 1} : \|Ax\|_2 = \sigma_1(A),</script>
+\[\|A\|_{\rm LSV} := \max_x : \|Ax\|_2 ~:~ \|x\|_2 \le 1 = \max_{x \:\:\: \|x\|_2 \le 1} : \|Ax\|_2 = \sigma_1(A),\]
       </dd>
-      <dd><script type="math/tex">\:\:\:\:\:\:\:\:\:</script> where <script type="math/tex">\sigma_1(A)</script> is the largest singular value of <script type="math/tex">A</script>, is called the largest singular value (LSV) norm.
+      <dd>\(\:\:\:\:\:\:\:\:\:\) where \(\sigma_1(A)\) is the largest singular value of \(A\), is called the largest singular value (LSV) norm.
         <blockquote>
           <p>Any left singular vector associated with the largest singular value achieves the maximum in the above.</p>
         </blockquote>
@@ -313,9 +309,9 @@ These two norms can be easily read from the SVD.</dd>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents28">Condition Number:</strong></dt>
       <dd>The condition number of an invertible n times n matrix A is the ratio between the largest and the smallest singular values:</dd>
-      <dd><script type="math/tex">\kappa(A) = \frac{\sigma_1}{\sigma_n}  = \|A\| \cdot \|A^{-1}\|.</script>
+      <dd>\(\kappa(A) = \frac{\sigma_1}{\sigma_n}  = \|A\| \cdot \|A^{-1}\|.\)
         <blockquote>
-          <p>Provides a measure of the sensitivity of the solution of a linear equation to changes in <script type="math/tex">A</script>.</p>
+          <p>Provides a measure of the sensitivity of the solution of a linear equation to changes in \(A\).</p>
         </blockquote>
       </dd>
     </dl>
@@ -325,13 +321,13 @@ These two norms can be easily read from the SVD.</dd>
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

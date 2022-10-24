@@ -178,8 +178,24 @@ prevLink: /work_files/research/dl/nlp.html
         3. __Better Exploitation of Context__: NMT can use a much bigger context - both source and partial target text - to translate more accurately
         4. __More Fluent Text Generation__: Deep Learning text generation is much higher quality
 
+    <button>Progress in Google Translate based on a one sentence test set from C. Manning</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](https://cdn.mathpix.com/snip/images/98YBK9uTfTjaWBXPimGFvYaiNz-USCPkLQbn9xNQXc8.original.fullsize.png){: width="100%" hidden=""}  
+
+    <button>Google Translate BLEU Score Progression</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](https://1.bp.blogspot.com/-dvf6wpOpJC0/XtgVORHbA4I/AAAAAAAAGDc/I3a6N8uHzsQicDth9XfROnwb3dye8Pw3gCLcBGAsYHQ/s1600/image1.gif){: width="100%" hidden=""}  
+
+
 8. **(GNMT) Google's Multilingual Neural Machine Translation System - Zero shot Translation:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents48} 
     :   * __Multilingual NMT Approaches__:  
     :   ![img](/main_files/dl/nlp/9/7.png){: width="100%"}   
     :   * __Google's Approach__:  
             Add an __*Artificial Token*__ at the beginning of the input sentence to indicate the target language.  
+
+
+
+__Notes:__{: style="color: red"}  
+{: #lst-p}
+* __Evaluation Metrics:__  __BLEU Score:__{: style="color: red"} or Bilingual Evaluation Understudy Score  
+    The second most popular score is __METEOR__{: style="color: red"}: which has an emphasis on recall and precision.  
+:  
+<br>

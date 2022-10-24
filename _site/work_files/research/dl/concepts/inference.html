@@ -118,7 +118,7 @@
       <li><strong>Approximate inference algorithms</strong>:
         <ul>
           <li>Loopy belief propagation</li>
-          <li>Variational (Bayesian) inference <script type="math/tex">+</script> mean field approximations</li>
+          <li>Variational (Bayesian) inference \(+\) mean field approximations</li>
           <li>Stochastic simulation / sampling /  MCMC</li>
         </ul>
       </li>
@@ -126,20 +126,20 @@
 
     <p><strong style="color: red">Inference in Deep Learning - Formulation:</strong><br />
  In the context of <strong>Deep Learning</strong>, we usually have two <strong>sets of variables</strong>:<br />
- (1) Set of <em><strong>visible</strong></em> (<em><strong>observed</strong></em>) <strong>variables</strong>: <script type="math/tex">\: \boldsymbol{v}</script><br />
- (2) Set of <em><strong>latent</strong></em> <strong>variables</strong>: <script type="math/tex">\: \boldsymbol{h}</script></p>
+ (1) Set of <em><strong>visible</strong></em> (<em><strong>observed</strong></em>) <strong>variables</strong>: \(\: \boldsymbol{v}\)<br />
+ (2) Set of <em><strong>latent</strong></em> <strong>variables</strong>: \(\: \boldsymbol{h}\)</p>
 
-    <p><strong>Inference</strong> in DL corresponds to <span style="color: goldenrod">computing the <em><strong>likelihood</strong></em> of <strong>observed data</strong> <script type="math/tex">p(\boldsymbol{v})</script></span>.</p>
+    <p><strong>Inference</strong> in DL corresponds to <span style="color: goldenrod">computing the <em><strong>likelihood</strong></em> of <strong>observed data</strong> \(p(\boldsymbol{v})\)</span>.</p>
 
     <p>When training <strong>probabilistic models with <em>latent variables</em></strong>, we are usually interested in computing</p>
     <p>$$p(\boldsymbol{h} \vert \boldsymbol{v})$$</p>
-    <p>where <script type="math/tex">\boldsymbol{h}</script> are the latent variables, and <script type="math/tex">\boldsymbol{v}</script> are the observed (visible) variables (data).<br />
+    <p>where \(\boldsymbol{h}\) are the latent variables, and \(\boldsymbol{v}\) are the observed (visible) variables (data).<br />
  <br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">The Challenge of Inference:</strong><br />
  <strong style="color: red">Motivation - The Challenge of Inference:</strong><br />
- The <strong>challenge of inference</strong> usually refers to the difficult problem of computing <script type="math/tex">p(\boldsymbol{h} \vert \boldsymbol{v})</script> or taking expectations wrt it.<br />
+ The <strong>challenge of inference</strong> usually refers to the difficult problem of computing \(p(\boldsymbol{h} \vert \boldsymbol{v})\) or taking expectations wrt it.<br />
  Such operations are often necessary for tasks like <strong>Maximum Likelihood Learning</strong>.</p>
 
     <p id="lst-p"><strong>Intractable Inference:</strong><br />
@@ -173,22 +173,22 @@
  <img src="https://cdn.mathpix.com/snip/images/1GkbyQub5WitledsQpfv77ARrYUn67NzFhCFy_TMeUc.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
 
     <p id="lst-p"><strong>Computing the Likelihood of Observed Data:</strong><br />
- We usually want to compute the likelihood of the observed data <script type="math/tex">p(\boldsymbol{v})</script>, equivalently the log-likelihood <script type="math/tex">\log p(\boldsymbol{v})</script>.<br />
- This usually requires marginalizing out <script type="math/tex">\boldsymbol{h}</script>.<br />
- This problem is <strong>intractable</strong> (difficult) if it is <em>costly</em> to <strong>marginalize</strong> <script type="math/tex">\boldsymbol{h}</script>.</p>
+ We usually want to compute the likelihood of the observed data \(p(\boldsymbol{v})\), equivalently the log-likelihood \(\log p(\boldsymbol{v})\).<br />
+ This usually requires marginalizing out \(\boldsymbol{h}\).<br />
+ This problem is <strong>intractable</strong> (difficult) if it is <em>costly</em> to <strong>marginalize</strong> \(\boldsymbol{h}\).</p>
     <ul>
       <li><strong>Data Likelihood</strong>:  (<span style="color: purple">intractable</span>)<br />
-  <script type="math/tex">p_{\theta}(\boldsymbol{v})=\int_\boldsymbol{h} p_{\theta}(h) p_{\theta}(v \vert h) dh</script></li>
-      <li><strong>Marginal Likelihood (evidence)</strong>: is the data likelihood <script type="math/tex">p_{\theta}(\boldsymbol{v})</script> (<span style="color: purple">intractable</span>)  <br />
-  <script type="math/tex">\int_\boldsymbol{h} p_{\theta}(h) p_{\theta}(v \vert h) dh</script></li>
+  \(p_{\theta}(\boldsymbol{v})=\int_\boldsymbol{h} p_{\theta}(h) p_{\theta}(v \vert h) dh\)</li>
+      <li><strong>Marginal Likelihood (evidence)</strong>: is the data likelihood \(p_{\theta}(\boldsymbol{v})\) (<span style="color: purple">intractable</span>)  <br />
+  \(\int_\boldsymbol{h} p_{\theta}(h) p_{\theta}(v \vert h) dh\)</li>
       <li><strong>Prior</strong>:<br />
-  <script type="math/tex">p(\boldsymbol{h})</script></li>
+  \(p(\boldsymbol{h})\)</li>
       <li>(Conditional) <strong>Likelihood</strong>:<br />
-  <script type="math/tex">p_{\theta}(\boldsymbol{v} \vert h)</script></li>
+  \(p_{\theta}(\boldsymbol{v} \vert h)\)</li>
       <li><strong>Joint</strong>:<br />
-  <script type="math/tex">p_{\theta}(\boldsymbol{v}, \boldsymbol{h})</script></li>
+  \(p_{\theta}(\boldsymbol{v}, \boldsymbol{h})\)</li>
       <li><strong>Posterior</strong>: (<span style="color: purple">intractable</span>)  <br />
-  <script type="math/tex">p_{\theta}(\boldsymbol{h} \vert \boldsymbol{v})=\frac{p_{\theta}(\boldsymbol{v}, \boldsymbol{h})}{p_{\theta}(\boldsymbol{v})}=\frac{p_{\theta}(\boldsymbol{v} \vert h) p_{\theta}(h)}{\int_{\boldsymbol{h}} p_{\theta}(h) p_{\theta}(x \vert h) d h}</script></li>
+  \(p_{\theta}(\boldsymbol{h} \vert \boldsymbol{v})=\frac{p_{\theta}(\boldsymbol{v}, \boldsymbol{h})}{p_{\theta}(\boldsymbol{v})}=\frac{p_{\theta}(\boldsymbol{v} \vert h) p_{\theta}(h)}{\int_{\boldsymbol{h}} p_{\theta}(h) p_{\theta}(x \vert h) d h}\)</li>
     </ul>
 
     <p><br /></p>
@@ -206,33 +206,33 @@ It poses <strong>exact inference</strong> as an <strong>optimization problem</st
     <ul>
       <li><strong>Inference Problem:</strong>
         <ul>
-          <li>Compute the <strong>log-likelihood</strong> of the <strong>observed data</strong>, <script type="math/tex">\log p(\boldsymbol{v} ; \boldsymbol{\theta})</script>.<br />
-  Can be intractable to marginalize <script type="math/tex">\boldsymbol{h}</script>.</li>
+          <li>Compute the <strong>log-likelihood</strong> of the <strong>observed data</strong>, \(\log p(\boldsymbol{v} ; \boldsymbol{\theta})\).<br />
+  Can be intractable to marginalize \(\boldsymbol{h}\).</li>
         </ul>
       </li>
       <li><strong>Inference Problem as Optimization - Core Idea</strong>:
         <ul>
-          <li>Choose a family of distributions over the <em><strong>latent</strong></em> <strong>variables</strong> <script type="math/tex">\boldsymbol{h}</script> with its own set of variational parameters <script type="math/tex">\boldsymbol{v}</script>: <script type="math/tex">q(\boldsymbol{h} \vert \boldsymbol{v})</script>.</li>
-          <li>Find the setting of the parameters that makes our approximation closest to the posterior distribution over the latent variables <script type="math/tex">p(\boldsymbol{h} \vert \boldsymbol{v})</script>.<br />
+          <li>Choose a family of distributions over the <em><strong>latent</strong></em> <strong>variables</strong> \(\boldsymbol{h}\) with its own set of variational parameters \(\boldsymbol{v}\): \(q(\boldsymbol{h} \vert \boldsymbol{v})\).</li>
+          <li>Find the setting of the parameters that makes our approximation closest to the posterior distribution over the latent variables \(p(\boldsymbol{h} \vert \boldsymbol{v})\).<br />
   I.E. <strong>Optimization</strong></li>
-          <li>Use learned <script type="math/tex">q</script> in place of the posterior (as an approximation).</li>
+          <li>Use learned \(q\) in place of the posterior (as an approximation).</li>
         </ul>
       </li>
-      <li><strong>Optimization - Fitting <script type="math/tex">q</script> to the posterior <script type="math/tex">p</script></strong>:
+      <li><strong>Optimization - Fitting \(q\) to the posterior \(p\)</strong>:
         <ul>
-          <li>Optimize <script type="math/tex">q</script> to approximate <script type="math/tex">p(\boldsymbol{h} \vert \boldsymbol{v})</script></li>
+          <li>Optimize \(q\) to approximate \(p(\boldsymbol{h} \vert \boldsymbol{v})\)</li>
           <li><strong>Similarity Measure:</strong> use the <em><strong>KL-Divergence</strong></em> as a similarity measure between the two distributions
             <p>$$D_{\mathrm{KL}}(q \| p) = \mathrm{E}_ {h \sim q}\left[\log \frac{q(h)}{p(h\vert {v})}\right] =\int_{h} q(h) \log \left(\frac{q(h)}{p(h\vert {v})}\right) dh$$</p>
           </li>
           <li><strong>Intractability:</strong> minimizing the KL Divergence (above) is an intractable problem.<br />
-  Because the expression contains the intractable term <script type="math/tex">p(\boldsymbol{h}\vert \boldsymbol{v})</script> which we were trying to avoid.</li>
+  Because the expression contains the intractable term \(p(\boldsymbol{h}\vert \boldsymbol{v})\) which we were trying to avoid.</li>
         </ul>
       </li>
       <li><strong>Evidence Lower Bound</strong>:
         <ul>
           <li>We rewrite the KL Divergence expression in terms of log-likelihood of the data:
             <p>$$\begin{aligned} D_{\mathrm{KL}}(q \| p) &amp;=\int_{\boldsymbol{h}} q(h) \log \frac{q(h)}{p(h \vert v)} dh \\ &amp;=\int_{\boldsymbol{h}} q(h) \log \frac{q(h)}{p(h, v)} dh+\int_{\boldsymbol{h}} q(h) \log p(v) dh \\ &amp;=\int_{\boldsymbol{h}} q(h) \log \frac{q(h)}{p(h, v)} dh+\log p(\boldsymbol{v}) \end{aligned}$$</p>
-            <p>where we’re using Bayes theorem on the second line and the RHS integral simplifies because it’s simply integrating over the support of <script type="math/tex">q</script> and <script type="math/tex">p</script> is not a function of <script type="math/tex">h</script>.<br />
+            <p>where we’re using Bayes theorem on the second line and the RHS integral simplifies because it’s simply integrating over the support of \(q\) and \(p\) is not a function of \(h\).<br />
   Thus,</p>
             <p>$$\log p(\boldsymbol{v}) = D_{\mathrm{KL}}(q \| p) - \int_{\boldsymbol{h}} q(h) \log \frac{q(h)}{p(h, v)} dh$$</p>
           </li>
@@ -243,7 +243,7 @@ It poses <strong>exact inference</strong> as an <strong>optimization problem</st
       \log p(\boldsymbol{v}) &amp;\geq - \int_{\boldsymbol{h}} q(h) \log \frac{q(h)}{p(h, v)} dh 
       \end{align}
       $$</p>
-            <p>Thus, the term <script type="math/tex">- \int_{\boldsymbol{h}} q(h) \log \frac{q(h)}{p(h, v)} dh</script> provides a <strong style="color: goldenrod">lower-bound</strong> on the <strong>log likelihood of the data</strong>.</p>
+            <p>Thus, the term \(- \int_{\boldsymbol{h}} q(h) \log \frac{q(h)}{p(h, v)} dh\) provides a <strong style="color: goldenrod">lower-bound</strong> on the <strong>log likelihood of the data</strong>.</p>
           </li>
           <li>We rewrite the term as:
             <p>$$\mathcal{L}(\boldsymbol{v}, \boldsymbol{\theta}, q) = - \int_{\boldsymbol{h}} q(h) \log \frac{q(h)}{p(h, v)} dh$$</p>
@@ -264,36 +264,36 @@ It poses <strong>exact inference</strong> as an <strong>optimization problem</st
       </li>
       <li><strong>Inference with the Evidence Lower Bound</strong>:
         <ul>
-          <li>For an appropriate choice of <script type="math/tex">q, \mathcal{L}</script> is <span style="color: purple"><strong>tractable</strong></span> to compute.</li>
-          <li>For any choice of <script type="math/tex">q, \mathcal{L}</script> provides a lower bound on the likelihood</li>
-          <li>For <script type="math/tex">q(\boldsymbol{h} \vert \boldsymbol{v})</script> that are better approximations of <script type="math/tex">p(\boldsymbol{h} \vert \boldsymbol{v}),</script> the lower bound <script type="math/tex">\mathcal{L}</script> will be tighter<br />
-  I.E. closer to <script type="math/tex">\log p(\boldsymbol{v})</script>.</li>
-          <li>When <script type="math/tex">q(\boldsymbol{h} \vert \boldsymbol{v})=p(\boldsymbol{h} \vert \boldsymbol{v}),</script> the approximation is perfect, and <script type="math/tex">\mathcal{L}(\boldsymbol{v}, \boldsymbol{\theta}, q)=\log p(\boldsymbol{v} ; \boldsymbol{\theta})</script>.</li>
-          <li><span style="color: goldenrod">Maximizing the ELBO minimizes the KL-Divergence <script type="math/tex">D_{\mathrm{KL}}(q \| p)</script></span>.</li>
+          <li>For an appropriate choice of \(q, \mathcal{L}\) is <span style="color: purple"><strong>tractable</strong></span> to compute.</li>
+          <li>For any choice of \(q, \mathcal{L}\) provides a lower bound on the likelihood</li>
+          <li>For \(q(\boldsymbol{h} \vert \boldsymbol{v})\) that are better approximations of \(p(\boldsymbol{h} \vert \boldsymbol{v}),\) the lower bound \(\mathcal{L}\) will be tighter<br />
+  I.E. closer to \(\log p(\boldsymbol{v})\).</li>
+          <li>When \(q(\boldsymbol{h} \vert \boldsymbol{v})=p(\boldsymbol{h} \vert \boldsymbol{v}),\) the approximation is perfect, and \(\mathcal{L}(\boldsymbol{v}, \boldsymbol{\theta}, q)=\log p(\boldsymbol{v} ; \boldsymbol{\theta})\).</li>
+          <li><span style="color: goldenrod">Maximizing the ELBO minimizes the KL-Divergence \(D_{\mathrm{KL}}(q \| p)\)</span>.</li>
         </ul>
       </li>
       <li><strong>Inference</strong>:<br />
-  We can thus think of inference as the procedure for finding the <script type="math/tex">q</script> that maximizes <script type="math/tex">\mathcal{L}</script>:
+  We can thus think of inference as the procedure for finding the \(q\) that maximizes \(\mathcal{L}\):
         <ul>
-          <li><strong>Exact Inference</strong>: maximizes <script type="math/tex">\mathcal{L}</script> perfectly by searching over a family of functions <script type="math/tex">q</script> that includes <script type="math/tex">p(\boldsymbol{h} \vert \boldsymbol{v})</script>.</li>
-          <li><strong>Approximate Inference</strong>: approximate inference uses approximate optimization to find <script type="math/tex">q</script>.<br />
+          <li><strong>Exact Inference</strong>: maximizes \(\mathcal{L}\) perfectly by searching over a family of functions \(q\) that includes \(p(\boldsymbol{h} \vert \boldsymbol{v})\).</li>
+          <li><strong>Approximate Inference</strong>: approximate inference uses approximate optimization to find \(q\).<br />
   We can make the optimization procedure less expensive but approximate by:
             <ul>
-              <li>Restricting the family of distributions <script type="math/tex">q</script> that the optimization is allowed to search over</li>
-              <li>Using an imperfect optimization procedure that may not completely maximize <script type="math/tex">\mathcal{L}</script> but may merely increase it by a significant amount.</li>
+              <li>Restricting the family of distributions \(q\) that the optimization is allowed to search over</li>
+              <li>Using an imperfect optimization procedure that may not completely maximize \(\mathcal{L}\) but may merely increase it by a significant amount.</li>
             </ul>
           </li>
         </ul>
       </li>
       <li><strong>Core Idea of Variational Inference</strong>:<br />
-  We don’t need to explicitly compute the posterior (or the marginal likelihood), we can solve an optimization problem by finding the right distribution <script type="math/tex"></script>  that best fits the Evidence Lower Bound.</li>
+  We don’t need to explicitly compute the posterior (or the marginal likelihood), we can solve an optimization problem by finding the right distribution \(\)  that best fits the Evidence Lower Bound.</li>
     </ul>
 
     <p id="lst-p"><strong style="color: red">Learning and Inference wrt the ELBO - Summary:</strong><br />
- The <span style="color: goldenrod"><strong>ELBO</strong> <script type="math/tex">\mathcal{L}(\boldsymbol{v}, \boldsymbol{\theta}, q)</script> is a lower bound on <script type="math/tex">\log p(\boldsymbol{v} ; \boldsymbol{\theta})</script></span>:</p>
+ The <span style="color: goldenrod"><strong>ELBO</strong> \(\mathcal{L}(\boldsymbol{v}, \boldsymbol{\theta}, q)\) is a lower bound on \(\log p(\boldsymbol{v} ; \boldsymbol{\theta})\)</span>:</p>
     <ul>
-      <li><strong>Inference</strong>: can be viewed as <span style="color: goldenrod">maximizing <script type="math/tex">\mathcal{L}</script> with respect to <script type="math/tex">q</script></span>.</li>
-      <li><strong>Learning</strong>: can be viewed as <span style="color: goldenrod">maximizing <script type="math/tex">\mathcal{L}</script> with respect to <script type="math/tex">\theta</script></span>.</li>
+      <li><strong>Inference</strong>: can be viewed as <span style="color: goldenrod">maximizing \(\mathcal{L}\) with respect to \(q\)</span>.</li>
+      <li><strong>Learning</strong>: can be viewed as <span style="color: goldenrod">maximizing \(\mathcal{L}\) with respect to \(\theta\)</span>.</li>
     </ul>
 
     <p id="lst-p"><strong style="color: red">Notes:</strong></p>
@@ -307,7 +307,7 @@ It poses <strong>exact inference</strong> as an <strong>optimization problem</st
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Expectation Maximization:</strong><br />
  The <strong>Expectation-Maximization</strong> Algorithm is an iterative method to find <em>maximum likelihood</em> or <em>maximum a posteriori (MAP)</em> estimates of parameters in statistical models with <em>unobserved latent variables</em>.</p>
 
-    <p>It is based on maximizing a lower bound <script type="math/tex">\mathcal{L}</script>.<br />
+    <p>It is based on maximizing a lower bound \(\mathcal{L}\).<br />
  It is not an approach to <strong>approximate inference</strong>.<br />
  It is an approach to learning with an <em><strong>approximate</strong></em> <strong>posterior</strong>.</p>
 
@@ -316,34 +316,34 @@ It poses <strong>exact inference</strong> as an <strong>optimization problem</st
     <ul>
       <li>The <strong>E(xpectation)-step:</strong>
         <ul>
-          <li>Let <script type="math/tex">\theta^{(0)}</script> denote the value of the parameters at the beginning of the step.</li>
-          <li>Set <script type="math/tex">q\left(\boldsymbol{h}^{(i)} \vert \boldsymbol{v}\right)=p\left(\boldsymbol{h}^{(i)} ; \boldsymbol{\theta}^{(0)}\right)</script> for all indices <script type="math/tex">i</script> of the training examples <script type="math/tex">\boldsymbol{v}^{(i)}</script> we want to train on (both batch and minibatch variants are valid).<br />
-  By this we mean <script type="math/tex">q</script> is defined in terms of the current parameter value of <script type="math/tex">\boldsymbol{\theta}^{(0)}</script>;<br />
-  if we vary <script type="math/tex">\boldsymbol{\theta},</script> then <script type="math/tex">p(\boldsymbol{h} \vert \boldsymbol{v} ; \boldsymbol{\theta})</script> will change, but <script type="math/tex">q(\boldsymbol{h} \vert \boldsymbol{v})</script> will remain equal to <script type="math/tex">p\left(\boldsymbol{h} \vert \boldsymbol{v} ; \boldsymbol{\theta}^{(0)}\right)</script>.</li>
+          <li>Let \(\theta^{(0)}\) denote the value of the parameters at the beginning of the step.</li>
+          <li>Set \(q\left(\boldsymbol{h}^{(i)} \vert \boldsymbol{v}\right)=p\left(\boldsymbol{h}^{(i)} ; \boldsymbol{\theta}^{(0)}\right)\) for all indices \(i\) of the training examples \(\boldsymbol{v}^{(i)}\) we want to train on (both batch and minibatch variants are valid).<br />
+  By this we mean \(q\) is defined in terms of the current parameter value of \(\boldsymbol{\theta}^{(0)}\);<br />
+  if we vary \(\boldsymbol{\theta},\) then \(p(\boldsymbol{h} \vert \boldsymbol{v} ; \boldsymbol{\theta})\) will change, but \(q(\boldsymbol{h} \vert \boldsymbol{v})\) will remain equal to \(p\left(\boldsymbol{h} \vert \boldsymbol{v} ; \boldsymbol{\theta}^{(0)}\right)\).</li>
         </ul>
       </li>
       <li>The <strong>M(aximization)-step:</strong>
         <ul>
           <li>Completely or partially maximize
             <p>$$\sum_i \mathcal{L}\left(\boldsymbol{v}^{(i)}, \boldsymbol{\theta}, q\right)$$</p>
-            <p>with respect to <script type="math/tex">\boldsymbol{\theta}</script> using your optimization algorithm of choice.</p>
+            <p>with respect to \(\boldsymbol{\theta}\) using your optimization algorithm of choice.</p>
           </li>
         </ul>
       </li>
     </ul>
 
     <p><strong style="color: red">Relation to Coordinate Ascent:</strong><br />
- The algorithm can be viewed as a <strong>Coordinate Ascent</strong> algorithm to maximize <script type="math/tex">\mathcal{L}</script>.<br />
- On one step, we maximize <script type="math/tex">\mathcal{L}</script> with respect to <script type="math/tex">q,</script> and on the other, we maximize <script type="math/tex">\mathcal{L}</script> with respect to <script type="math/tex">\boldsymbol{\theta}</script>.<br />
+ The algorithm can be viewed as a <strong>Coordinate Ascent</strong> algorithm to maximize \(\mathcal{L}\).<br />
+ On one step, we maximize \(\mathcal{L}\) with respect to \(q,\) and on the other, we maximize \(\mathcal{L}\) with respect to \(\boldsymbol{\theta}\).<br />
  <strong>Stochastic Gradient Ascent</strong> on <em>latent variable models</em> can be seen as a special case of the EM algorithm where the M-step consists of taking a single gradient step.</p>
     <blockquote>
-      <p>Other variants of the EM algorithm can make much larger steps. For some model families, the M-step can even be performed analytically, jumping all the way to the optimal solution for <script type="math/tex">\theta</script> given the current <script type="math/tex">q</script>.</p>
+      <p>Other variants of the EM algorithm can make much larger steps. For some model families, the M-step can even be performed analytically, jumping all the way to the optimal solution for \(\theta\) given the current \(q\).</p>
     </blockquote>
 
     <p><strong style="color: red">As Approximate Inference - Interpretation:</strong><br />
  Even though the E-step involves <em>exact inference</em>, the EM algorithm can be viewed as using <em>approximate inference</em>.<br />
- The M-step assumes that the same value of <script type="math/tex">q</script> can be used for all values of <script type="math/tex">\theta</script>.<br />
- This will introduce a gap between <script type="math/tex">\mathcal{L}</script> and the true <script type="math/tex">\log p(\boldsymbol{v})</script> as the M-step moves further and further away from the value <script type="math/tex">\boldsymbol{\theta}^{(0)}</script> used in the E-step.<br />
+ The M-step assumes that the same value of \(q\) can be used for all values of \(\theta\).<br />
+ This will introduce a gap between \(\mathcal{L}\) and the true \(\log p(\boldsymbol{v})\) as the M-step moves further and further away from the value \(\boldsymbol{\theta}^{(0)}\) used in the E-step.<br />
  Fortunately, the E-step reduces the gap to zero again as we enter the loop for the next time.</p>
 
     <p id="lst-p"><strong style="color: red">Insights/Takeaways:</strong></p>
@@ -354,8 +354,8 @@ It poses <strong>exact inference</strong> as an <strong>optimization problem</st
           <p>This particular insight is not unique to the EM algorithm. For example, using gradient descent to maximize the log-likelihood also has this same property; the log-likelihood gradient computations require taking expectations with respect to the posterior distribution over the hidden units.</p>
         </blockquote>
       </li>
-      <li><strong>Reusing <script type="math/tex">q</script>:</strong><br />
- We can continue to use one value of <script type="math/tex">q</script> even after we have moved to a different value of <script type="math/tex">\theta</script>.<br />
+      <li><strong>Reusing \(q\):</strong><br />
+ We can continue to use one value of \(q\) even after we have moved to a different value of \(\theta\).<br />
  This particular insight is used throughout <em>classical machine learning</em> to derive large M-step updates.<br />
  In the context of deep learning, most models are too complex to admit a tractable solution for an optimal large M-step update, so this second insight, which is more unique to the EM algorithm, is rarely used.</li>
     </ol>
@@ -363,27 +363,27 @@ It poses <strong>exact inference</strong> as an <strong>optimization problem</st
     <p id="lst-p"><strong style="color: red">Notes:</strong></p>
     <ul>
       <li><a href="http://bjlkeng.github.io/posts/the-expectation-maximization-algorithm/">The Expectation-Maximization Algorithm and Derivation (Blog!)</a></li>
-      <li>The EM algorithm enables us to make large learning steps with a fixed <script type="math/tex">q</script><br />
+      <li>The EM algorithm enables us to make large learning steps with a fixed \(q\)<br />
  <br /></li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">MAP Inference:</strong><br />
- <strong>MAP Inference</strong> is an alternative form of inference where we are interested in computing the single most likely value of the missing variables, rather than to infer the entire distribution over their possible values <script type="math/tex">p(\boldsymbol{h} \vert \boldsymbol{v})</script>.<br />
+ <strong>MAP Inference</strong> is an alternative form of inference where we are interested in computing the single most likely value of the missing variables, rather than to infer the entire distribution over their possible values \(p(\boldsymbol{h} \vert \boldsymbol{v})\).<br />
  In the context of <strong>latent variable models</strong>, we compute:
     <p>$$\boldsymbol{h}^{* }=\underset{\boldsymbol{h}}{\arg \max } p(\boldsymbol{h} \vert \boldsymbol{v})$$</p>
 
     <p id="lst-p"><strong style="color: red">As Approximate Inference:</strong><br />
- It is <strong>not</strong> usually thought of as <strong>approximate inference</strong>, since it computes the <span style="color: purple">exact most likely value of <script type="math/tex">\boldsymbol{h}^{* }</script></span>.<br />
- However, to develop a <a href="#bodyContents15lp"><strong>learning process</strong></a> wrt maximizing the lower bound <script type="math/tex">\mathcal{L}(\boldsymbol{v}, \boldsymbol{h}, q),</script> then it is helpful to think of MAP inference as a procedure that provides a value of <script type="math/tex">q</script>.<br />
- In this sense, we can think of MAP inference as <strong>approximate inference</strong>, because it <span style="color: purple">does not provide the optimal <script type="math/tex">q</script></span>.<br />
- We can <strong>derive</strong> MAP Inference as a form of approximate inference by <span style="color: goldenrod">restricting the family of distributions <script type="math/tex">q</script> may be drawn from</span>.<br />
+ It is <strong>not</strong> usually thought of as <strong>approximate inference</strong>, since it computes the <span style="color: purple">exact most likely value of \(\boldsymbol{h}^{* }\)</span>.<br />
+ However, to develop a <a href="#bodyContents15lp"><strong>learning process</strong></a> wrt maximizing the lower bound \(\mathcal{L}(\boldsymbol{v}, \boldsymbol{h}, q),\) then it is helpful to think of MAP inference as a procedure that provides a value of \(q\).<br />
+ In this sense, we can think of MAP inference as <strong>approximate inference</strong>, because it <span style="color: purple">does not provide the optimal \(q\)</span>.<br />
+ We can <strong>derive</strong> MAP Inference as a form of approximate inference by <span style="color: goldenrod">restricting the family of distributions \(q\) may be drawn from</span>.<br />
  <strong>Derivation:</strong></p>
     <ul>
-      <li>We require <script type="math/tex">q</script> to take on a <strong>Dirac distribution</strong>:
+      <li>We require \(q\) to take on a <strong>Dirac distribution</strong>:
         <p>$$q(\boldsymbol{h} \vert \boldsymbol{v})=\delta(\boldsymbol{h}-\boldsymbol{\mu})$$</p>
       </li>
-      <li>This means that we can now control <script type="math/tex">q</script> entirely via <script type="math/tex">\boldsymbol{\mu}</script>.</li>
-      <li>Dropping terms of <script type="math/tex">\mathcal{L}</script> that do not vary with <script type="math/tex">\boldsymbol{\mu},</script> we are left with the optimization problem:
+      <li>This means that we can now control \(q\) entirely via \(\boldsymbol{\mu}\).</li>
+      <li>Dropping terms of \(\mathcal{L}\) that do not vary with \(\boldsymbol{\mu},\) we are left with the optimization problem:
         <p>$$\boldsymbol{\mu}^{* }=\underset{\mu}{\arg \max } \log p(\boldsymbol{h}=\boldsymbol{\mu}, \boldsymbol{v})$$</p>
       </li>
       <li>which is <em><strong>equivalent</strong></em> to the <strong>MAP inference problem</strong>:
@@ -394,17 +394,17 @@ It poses <strong>exact inference</strong> as an <strong>optimization problem</st
     <p id="lst-p"><strong style="color: red" id="bodyContents15lp">The Learning Procedure with MAP Inference:</strong><br />
  We can, thus, justify a learning procedure similar to <strong>EM</strong>, where we alternate between:</p>
     <ul>
-      <li>Performing MAP inference to infer <script type="math/tex">\boldsymbol{h}^{* }</script>, and</li>
-      <li>Updating update <script type="math/tex">\boldsymbol{\theta}</script> to increase <script type="math/tex">\log p\left(\boldsymbol{h}^{* }, \boldsymbol{v}\right)</script>.</li>
+      <li>Performing MAP inference to infer \(\boldsymbol{h}^{* }\), and</li>
+      <li>Updating update \(\boldsymbol{\theta}\) to increase \(\log p\left(\boldsymbol{h}^{* }, \boldsymbol{v}\right)\).</li>
     </ul>
 
     <p><strong>As Coordinate Ascent:</strong><br />
- As with EM, this is a form of <strong>coordinate ascent</strong> on <script type="math/tex">\mathcal{L},</script> where we alternate between using inference to optimize <script type="math/tex">\mathcal{L}</script> with respect to <script type="math/tex">q</script> and using parameter updates to optimize <script type="math/tex">\mathcal{L}</script> with respect to <script type="math/tex">\boldsymbol{\theta}</script>.</p>
+ As with EM, this is a form of <strong>coordinate ascent</strong> on \(\mathcal{L},\) where we alternate between using inference to optimize \(\mathcal{L}\) with respect to \(q\) and using parameter updates to optimize \(\mathcal{L}\) with respect to \(\boldsymbol{\theta}\).</p>
 
     <p><strong>Lower Bound (ELBO) Justification:</strong><br />
- The procedure as a whole can be justified by the fact that <script type="math/tex">\mathcal{L}</script> is a lower bound on <script type="math/tex">\log p(\boldsymbol{v})</script>.<br />
+ The procedure as a whole can be justified by the fact that \(\mathcal{L}\) is a lower bound on \(\log p(\boldsymbol{v})\).<br />
  In the case of MAP inference, this justification is rather <em><strong>vacuous</strong></em>, because the bound is <strong>infinitely loose</strong>, due to the <strong>Dirac distribution’s differential entropy of negative infinity</strong>.<br />
- <span style="color: goldenrod">Adding noise to <script type="math/tex">\mu</script> would make the bound meaningful again</span>.</p>
+ <span style="color: goldenrod">Adding noise to \(\mu\) would make the bound meaningful again</span>.</p>
 
     <p><strong style="color: red">MAP Inference in Deep Learning - Applications:</strong><br />
  MAP Inference is commonly used in deep learning as both a <span style="color: purple"><strong>feature extractor</strong></span> and a <span style="color: purple"><strong>learning mechanism</strong></span>.<br />
@@ -415,36 +415,36 @@ It poses <strong>exact inference</strong> as an <strong>optimization problem</st
  <img src="https://cdn.mathpix.com/snip/images/xhMTHTt2HOc7OibASJ5OYwn0Dw0ck6ZFGalynC643GQ.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
 
     <p><strong style="color: red">Summary:</strong><br />
- Learning algorithms based on MAP inference enable us to <span style="color: goldenrod"><strong>learn using a <em>point estimate</em></strong> of <script type="math/tex">p(\boldsymbol{h} \vert \boldsymbol{v})</script> rather than inferring the entire distribution</span>.<br />
+ Learning algorithms based on MAP inference enable us to <span style="color: goldenrod"><strong>learn using a <em>point estimate</em></strong> of \(p(\boldsymbol{h} \vert \boldsymbol{v})\) rather than inferring the entire distribution</span>.<br />
  <br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Variational Inference and Learning:</strong></p>
 
-    <p><strong style="color: red">Main Idea - Restricting family of distributions <script type="math/tex">q</script>:</strong><br />
- The core idea behind variational learning is that we can maximize <script type="math/tex">\mathcal{L}</script> over a restricted family of distributions <script type="math/tex">q</script>.<br />
- This family should be chosen so that it is easy to compute <script type="math/tex">\mathbb{E}_ {q} \log p(\boldsymbol{h}, \boldsymbol{v})</script>.<br />
- A typical way to do this is to introduce assumptions about how <script type="math/tex">q</script> factorizes.<br />
- Mainly, we make a <strong>Mean-Field Approximation</strong> to <script type="math/tex">q</script>.</p>
+    <p><strong style="color: red">Main Idea - Restricting family of distributions \(q\):</strong><br />
+ The core idea behind variational learning is that we can maximize \(\mathcal{L}\) over a restricted family of distributions \(q\).<br />
+ This family should be chosen so that it is easy to compute \(\mathbb{E}_ {q} \log p(\boldsymbol{h}, \boldsymbol{v})\).<br />
+ A typical way to do this is to introduce assumptions about how \(q\) factorizes.<br />
+ Mainly, we make a <strong>Mean-Field Approximation</strong> to \(q\).</p>
 
     <p><strong style="color: red">Mean-Field Approximation:</strong><br />
  <strong>Mean-Field Approximation</strong> is a type of <em>Variational Bayesian Inference</em> where we assume that the unknown variables can be partitioned so that each partition is <span style="color: purple"><strong>independent</strong></span> of the others.<br />
  The Mean-Field Approximation assumes the variational distribution over the latent variables factorizes as:</p>
     <p>$$q(\boldsymbol{h} \vert \boldsymbol{v})=\prod_{i} q\left(h_{i} \vert \boldsymbol{v}\right)$$</p>
-    <p>I.E. it imposes the restriction that <script type="math/tex">q</script> is a <strong>factorial distribution</strong>.</p>
+    <p>I.E. it imposes the restriction that \(q\) is a <strong>factorial distribution</strong>.</p>
 
-    <p>More generally, we can impose any graphical model structure we choose on <script type="math/tex">q,</script> to flexibly determine how many interactions we want our approximation to capture.<br />
+    <p>More generally, we can impose any graphical model structure we choose on \(q,\) to flexibly determine how many interactions we want our approximation to capture.<br />
  This fully general graphical model approach is called <strong>structured variational inference</strong> <em>(Saul and Jordan, 1996)</em>.</p>
 
-    <p id="lst-p"><strong style="color: red">The Optimal Probability Distribution <script type="math/tex">q</script>:</strong><br />
- The beauty of the variational approach is that we do not need to specify a specific parametric form for <script type="math/tex">q</script>.<br />
+    <p id="lst-p"><strong style="color: red">The Optimal Probability Distribution \(q\):</strong><br />
+ The beauty of the variational approach is that we do not need to specify a specific parametric form for \(q\).<br />
  We specify how it should factorize, but then <span style="color: purple">the optimization problem determines the <strong><em>optimal</em> probability distribution</strong> within those factorization constraints</span>.<br />
  <strong style="color: red">The Inference Optimization Problem:</strong></p>
     <ul>
-      <li>For <strong><em>discrete</em> latent variables</strong>: we use traditional optimization techniques to optimize a finite number of variables describing the <script type="math/tex">q</script> distribution.</li>
-      <li>For <strong><em>continuous</em> latent variables</strong>: we use <span style="color: purple"><strong>calculus of variations</strong></span> to perform optimization over a space of functions and actually determine which function should be used to represent <script type="math/tex">q</script>.
+      <li>For <strong><em>discrete</em> latent variables</strong>: we use traditional optimization techniques to optimize a finite number of variables describing the \(q\) distribution.</li>
+      <li>For <strong><em>continuous</em> latent variables</strong>: we use <span style="color: purple"><strong>calculus of variations</strong></span> to perform optimization over a space of functions and actually determine which function should be used to represent \(q\).
         <ul>
-          <li><strong>Calculus of Variations</strong> removes much of the responsibility from the human designer of the model, who now must specify only how <script type="math/tex">q</script> factorizes, rather than needing to guess how to design a specific <script type="math/tex">q</script> that can accurately approximate the posterior.</li>
+          <li><strong>Calculus of Variations</strong> removes much of the responsibility from the human designer of the model, who now must specify only how \(q\) factorizes, rather than needing to guess how to design a specific \(q\) that can accurately approximate the posterior.</li>
         </ul>
 
         <blockquote>
@@ -455,30 +455,30 @@ It poses <strong>exact inference</strong> as an <strong>optimization problem</st
 
     <p id="lst-p"><strong>KL-Divergence Optimization:</strong></p>
     <ul>
-      <li>The Inference Optimization Problem boils down to <span style="color: purple">maximizing <script type="math/tex">\mathcal{L}</script> with respect to <script type="math/tex">q</script></span>.</li>
-      <li>This is equivalent to <span style="color: purple">minimizing <script type="math/tex">D_{\mathrm{KL}}(q(\boldsymbol{h} \vert \boldsymbol{v}) \| p(\boldsymbol{h} \vert \boldsymbol{v}))</script></span>.</li>
-      <li>Thus, we are <span style="color: goldenrod">fitting <script type="math/tex">q</script> to <script type="math/tex">p</script></span>.</li>
-      <li>However, we are doing so with the opposite direction of the KL-Divergence. We are, <em>unnaturally</em>, assuming that <script type="math/tex">q</script> is constant and <script type="math/tex">p</script> is varying.</li>
-      <li>In the inference optimization problem, we choose to use <script type="math/tex">D_{\mathrm{KL}}\left(q(\boldsymbol{h} \vert \boldsymbol{v}) \| p(\boldsymbol{h} \vert \boldsymbol{v})\right)</script> for <em><strong>computational reasons</strong></em>.
+      <li>The Inference Optimization Problem boils down to <span style="color: purple">maximizing \(\mathcal{L}\) with respect to \(q\)</span>.</li>
+      <li>This is equivalent to <span style="color: purple">minimizing \(D_{\mathrm{KL}}(q(\boldsymbol{h} \vert \boldsymbol{v}) \| p(\boldsymbol{h} \vert \boldsymbol{v}))\)</span>.</li>
+      <li>Thus, we are <span style="color: goldenrod">fitting \(q\) to \(p\)</span>.</li>
+      <li>However, we are doing so with the opposite direction of the KL-Divergence. We are, <em>unnaturally</em>, assuming that \(q\) is constant and \(p\) is varying.</li>
+      <li>In the inference optimization problem, we choose to use \(D_{\mathrm{KL}}\left(q(\boldsymbol{h} \vert \boldsymbol{v}) \| p(\boldsymbol{h} \vert \boldsymbol{v})\right)\) for <em><strong>computational reasons</strong></em>.
         <ul>
-          <li>Specifically, computing <script type="math/tex">D_{\mathrm{KL}}\left(q(\boldsymbol{h} \vert \boldsymbol{v}) \| p(\boldsymbol{h} \vert \boldsymbol{v})\right)</script> involves evaluating expectations with respect to <script type="math/tex">q,</script> so by designing <script type="math/tex">q</script> to be simple, we can simplify the required expectations.</li>
+          <li>Specifically, computing \(D_{\mathrm{KL}}\left(q(\boldsymbol{h} \vert \boldsymbol{v}) \| p(\boldsymbol{h} \vert \boldsymbol{v})\right)\) involves evaluating expectations with respect to \(q,\) so by designing \(q\) to be simple, we can simplify the required expectations.</li>
           <li>The opposite direction of the KL divergence would require computing expectations with respect to the true posterior.<br />
-  Because the form of the true posterior is determined by the choice of model, we cannot design a reduced-cost approach to computing <script type="math/tex">D_{\mathrm{KL}}(p(\boldsymbol{h} \vert \boldsymbol{v}) \| q(\boldsymbol{h} \vert \boldsymbol{v}))</script> exactly.</li>
+  Because the form of the true posterior is determined by the choice of model, we cannot design a reduced-cost approach to computing \(D_{\mathrm{KL}}(p(\boldsymbol{h} \vert \boldsymbol{v}) \| q(\boldsymbol{h} \vert \boldsymbol{v}))\) exactly.</li>
         </ul>
       </li>
       <li><strong>Three Cases for Optimization</strong>:
         <ul>
-          <li>If <script type="math/tex">q</script> is high and <script type="math/tex">p</script> is high, then we are happy (i.e. low KL divergence).</li>
-          <li>If <script type="math/tex">q</script> is high and <script type="math/tex">p</script> is low then we pay a price (i.e. high KL divergence).</li>
-          <li>If <script type="math/tex">q</script> is low then we dont care (i.e. also low KL divergence, regardless of <script type="math/tex">p</script>).</li>
+          <li>If \(q\) is high and \(p\) is high, then we are happy (i.e. low KL divergence).</li>
+          <li>If \(q\) is high and \(p\) is low then we pay a price (i.e. high KL divergence).</li>
+          <li>If \(q\) is low then we dont care (i.e. also low KL divergence, regardless of \(p\)).</li>
         </ul>
       </li>
       <li><strong>Optimization-based Inference vs Maximum Likelihood (ML) Learning</strong>:
         <ul>
-          <li><strong>ML-Learning:</strong> fits a model to data by minimizing <script type="math/tex">D_{\mathrm{KL}}\left(p_{\text {data }} \| p_{\text {model }}\right)</script>.<br />
+          <li><strong>ML-Learning:</strong> fits a model to data by minimizing \(D_{\mathrm{KL}}\left(p_{\text {data }} \| p_{\text {model }}\right)\).<br />
   It encourages the <span style="color: purple"><strong>model</strong> to have <strong><em>high</em> probability</strong> everywhere that the <strong>data</strong> has <strong><em>high</em> probability</strong></span>,</li>
           <li><strong>Optimization-based Inference</strong>: <br />
-  It encourages <span style="color: purple"><strong><script type="math/tex">q</script></strong> to have <strong><em>low</em> probability</strong> everywhere the <strong>true posterior</strong> has <strong><em>low</em> probability</strong></span>.</li>
+  It encourages <span style="color: purple"><strong>\(q\)</strong> to have <strong><em>low</em> probability</strong> everywhere the <strong>true posterior</strong> has <strong><em>low</em> probability</strong></span>.</li>
         </ul>
       </li>
     </ul>
@@ -497,9 +497,9 @@ It poses <strong>exact inference</strong> as an <strong>optimization problem</st
         <ul>
           <li><strong>Three Cases for Optimization</strong>:
             <ul>
-              <li>If <script type="math/tex">q</script> is high and <script type="math/tex">p</script> is high, then we are happy (i.e. low KL divergence).</li>
-              <li>If <script type="math/tex">q</script> is high and <script type="math/tex">p</script> is low then we pay a price (i.e. high KL divergence).</li>
-              <li>If <script type="math/tex">q</script> is low then we dont care (i.e. also low KL divergence, regardless of <script type="math/tex">p</script>).
+              <li>If \(q\) is high and \(p\) is high, then we are happy (i.e. low KL divergence).</li>
+              <li>If \(q\) is high and \(p\) is low then we pay a price (i.e. high KL divergence).</li>
+              <li>If \(q\) is low then we dont care (i.e. also low KL divergence, regardless of \(p\)).
  <br /></li>
             </ul>
           </li>
@@ -518,39 +518,39 @@ It poses <strong>exact inference</strong> as an <strong>optimization problem</st
 <ol>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Variational Inference - Discrete Latent Variables:</strong><br />
  Variational Inference with Discrete Latent Variables is relatively straightforward.<br />
- <strong>Representing <script type="math/tex">q</script>:</strong><br />
- We define a distribution <script type="math/tex">q</script> where each factor of <script type="math/tex">q</script> is just defined by a lookup table over discrete states.<br />
- In the simplest case, <script type="math/tex">h</script> is binary and we make the mean field assumption that <script type="math/tex">q</script> factorizes over each individual <script type="math/tex">h_{i}</script>.<br />
- In this case we can parametrize <script type="math/tex">q</script> with a vector <script type="math/tex">\hat{h}</script> whose entries are probabilities.<br />
- Then <script type="math/tex">q\left(h_{i}=1 \vert \boldsymbol{v}\right)=\hat{h}_ {i}</script>.<br />
- <strong>Optimizing <script type="math/tex">q</script>:</strong><br />
- After determining how to represent <script type="math/tex">q</script> we simply <strong>optimize its parameters</strong>.<br />
+ <strong>Representing \(q\):</strong><br />
+ We define a distribution \(q\) where each factor of \(q\) is just defined by a lookup table over discrete states.<br />
+ In the simplest case, \(h\) is binary and we make the mean field assumption that \(q\) factorizes over each individual \(h_{i}\).<br />
+ In this case we can parametrize \(q\) with a vector \(\hat{h}\) whose entries are probabilities.<br />
+ Then \(q\left(h_{i}=1 \vert \boldsymbol{v}\right)=\hat{h}_ {i}\).<br />
+ <strong>Optimizing \(q\):</strong><br />
+ After determining how to represent \(q\) we simply <strong>optimize its parameters</strong>.<br />
  For <strong>discrete</strong> latent variables this is just a standard optimization problem e.g. <em><strong>gradient descent</strong></em>.<br />
- However, because this optimization must occur in the inner loop of a learning algorithm, it must be <strong>very fast</strong><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>.<br />
+ However, because this optimization must occur in the inner loop of a learning algorithm, it must be <strong>very fast</strong><sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>.<br />
  A popular choice is to <span style="color: purple"><strong>iterate fixed-point equations</strong></span>; to solve:
     <p>$$\frac{\partial}{\partial \hat{h}_ {i}} \mathcal{L}=0$$</p>
-    <p>for <script type="math/tex">\hat{h}_ {i}</script>.<br />
- We repeatedly update different elements of <script type="math/tex">\hat{\boldsymbol{h}}</script> until we satisfy a convergence criterion.</p>
+    <p>for \(\hat{h}_ {i}\).<br />
+ We repeatedly update different elements of \(\hat{\boldsymbol{h}}\) until we satisfy a convergence criterion.</p>
 
     <p><strong style="color: red">Application - Binary Sparse Coding:</strong><br />
  <br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Variational Inference - Continuous Latent Variables:</strong><br />
- Variational Inference and Learning with Continuous Latent Variables requires the use of the <a href="#bodyContents41"><strong>calculus of variations</strong></a> for maximizing <script type="math/tex">\mathcal{L}</script> with respect to <script type="math/tex">q(\boldsymbol{h} \vert \boldsymbol{v})</script>.</p>
+ Variational Inference and Learning with Continuous Latent Variables requires the use of the <a href="#bodyContents41"><strong>calculus of variations</strong></a> for maximizing \(\mathcal{L}\) with respect to \(q(\boldsymbol{h} \vert \boldsymbol{v})\).</p>
 
     <p>In most cases, practitioners need not solve any calculus of variations problems themselves. Instead, there is a <strong>general equation for the mean field fixed-point updates</strong>.</p>
 
     <p><strong style="color: red">The General Equation for Mean-Field Fixed-Point Updates:</strong><br />
  If we make the mean field approximation</p>
     <p>$$q(\boldsymbol{h} \vert \boldsymbol{v})=\prod_{i} q\left(h_{i} \vert \boldsymbol{v}\right)$$</p>
-    <p>and fix <script type="math/tex">q\left(h_{j} \vert \boldsymbol{v}\right)</script> for all <script type="math/tex">j \neq i,</script> then the <span style="color: goldenrod">optimal <script type="math/tex">q\left(h_{i} \vert \boldsymbol{v}\right)</script> may be obtained by <strong>normalizing the unnormalized distribution</strong></span>:</p>
+    <p>and fix \(q\left(h_{j} \vert \boldsymbol{v}\right)\) for all \(j \neq i,\) then the <span style="color: goldenrod">optimal \(q\left(h_{i} \vert \boldsymbol{v}\right)\) may be obtained by <strong>normalizing the unnormalized distribution</strong></span>:</p>
     <p>$$\tilde{q}\left(h_{i} \vert \boldsymbol{v}\right) = \exp \left(\mathbb{E}_{\mathbf{h}_{-i} \sim q\left(\mathbf{h}_ {-i} \vert \boldsymbol{v}\right)} \log \tilde{p}(\boldsymbol{v}, \boldsymbol{h})\right) = e^{\mathbb{E}_{\mathbf{h}_ {-i} \sim q\left(\mathbf{h}_ {-i} \vert \boldsymbol{v}\right)} \log \tilde{p}(\boldsymbol{v}, \boldsymbol{h})}$$</p>
-    <p>as long as <script type="math/tex">p</script> does not assign <script type="math/tex">0</script> probability to any joint configuration of variables.<br />
- - Carrying out the expectation inside the equation will yield the correct functional form of <script type="math/tex">q\left(h_{i} \vert \boldsymbol{v}\right)</script>. <br />
+    <p>as long as \(p\) does not assign \(0\) probability to any joint configuration of variables.<br />
+ - Carrying out the expectation inside the equation will yield the correct functional form of \(q\left(h_{i} \vert \boldsymbol{v}\right)\). <br />
  - The General Equation yields the mean field approximation for any probabilistic model.<br />
- - Deriving functional forms of <script type="math/tex">q</script> directly using calculus of variations is only necessary if one wishes to develop a new form of variational learning.<br />
- - The General Equation is a <strong>fixed-point equation</strong>, designed to be iteratively applied for each value of <script type="math/tex">i</script> repeatedly until convergence.</p>
+ - Deriving functional forms of \(q\) directly using calculus of variations is only necessary if one wishes to develop a new form of variational learning.<br />
+ - The General Equation is a <strong>fixed-point equation</strong>, designed to be iteratively applied for each value of \(i\) repeatedly until convergence.</p>
 
     <p><strong style="color: red">Functional Form of the Optimal Distribution/Solution:</strong><br />
  The General Equation tells us the <span style="color: purple"><strong>functional form</strong> that the <em>optimal solution</em> will take</span>, whether we arrive there by fixed-point equations or not.<br />
@@ -569,10 +569,10 @@ It poses <strong>exact inference</strong> as an <strong>optimization problem</st
       <li>When training the parameters, variational learning increases
         <p>$$\mathbb{E}_ {\mathbf{h} \sim q} \log p(\boldsymbol{v}, \boldsymbol{h})$$</p>
       </li>
-      <li>For a specific <script type="math/tex">v</script> this:
+      <li>For a specific \(v\) this:
         <ul>
-          <li>increases <script type="math/tex">p(\boldsymbol{h} \vert \boldsymbol{v})</script> for values of <script type="math/tex">\boldsymbol{h}</script> that have high probability under <script type="math/tex">q(\boldsymbol{h} \vert \boldsymbol{v})</script> and</li>
-          <li>decreases <script type="math/tex">p(\boldsymbol{h} \vert \boldsymbol{v})</script> for values of <script type="math/tex">\boldsymbol{h}</script> that have low probability under <script type="math/tex">q(\boldsymbol{h} \vert \boldsymbol{v})</script>.</li>
+          <li>increases \(p(\boldsymbol{h} \vert \boldsymbol{v})\) for values of \(\boldsymbol{h}\) that have high probability under \(q(\boldsymbol{h} \vert \boldsymbol{v})\) and</li>
+          <li>decreases \(p(\boldsymbol{h} \vert \boldsymbol{v})\) for values of \(\boldsymbol{h}\) that have low probability under \(q(\boldsymbol{h} \vert \boldsymbol{v})\).</li>
         </ul>
       </li>
       <li>This behavior <span style="color: purple">causes our approximating assumptions to become <em><strong>self-fulfilling prophecies</strong></em></span>.<br />
@@ -582,19 +582,19 @@ It poses <strong>exact inference</strong> as an <strong>optimization problem</st
     <p id="lst-p"><strong style="color: red">Computing the Effect (Harm) of using Variational Inference:</strong><br />
  Computing the true amount of harm imposed on a model by a variational approximation is thus very difficult.</p>
     <ul>
-      <li>There exist several methods for estimating <script type="math/tex">\log p(\boldsymbol{v})</script>:<br />
-  We often estimate <script type="math/tex">\log p(\boldsymbol{v} ; \boldsymbol{\theta})</script> after training the model and find that the gap with <script type="math/tex">\mathcal{L}(\boldsymbol{v}, \boldsymbol{\theta}, q)</script> is small.
+      <li>There exist several methods for estimating \(\log p(\boldsymbol{v})\):<br />
+  We often estimate \(\log p(\boldsymbol{v} ; \boldsymbol{\theta})\) after training the model and find that the gap with \(\mathcal{L}(\boldsymbol{v}, \boldsymbol{\theta}, q)\) is small.
         <ul>
-          <li>From this, we can <strong>conclude</strong> that <span style="color: purple">our variational approximation is <strong>accurate for the specific value of <script type="math/tex">\boldsymbol{\theta}</script></strong></span> that we obtained from the learning process.</li>
+          <li>From this, we can <strong>conclude</strong> that <span style="color: purple">our variational approximation is <strong>accurate for the specific value of \(\boldsymbol{\theta}\)</strong></span> that we obtained from the learning process.</li>
           <li>We should <em><strong>not</strong></em> <strong>conclude</strong> that <span style="color: purple">our variational approximation is <strong>accurate in general</strong></span> or that <span style="color: purple">the variational approximation <strong>did <em>little harm</em> to the learning process</strong></span>.</li>
         </ul>
       </li>
       <li>To measure the <em><strong>true amount of harm</strong> induced by the variational approximation</em>:
         <ul>
-          <li>We would need to know <script type="math/tex">\boldsymbol{\theta}^{* }=\max_{\boldsymbol{\theta}} \log p(\boldsymbol{v} ; \boldsymbol{\theta})</script>.</li>
-          <li>It is possible for <script type="math/tex">\mathcal{L}(\boldsymbol{v}, \boldsymbol{\theta}, q) \approx \log p(\boldsymbol{v} ; \boldsymbol{\theta})</script> and <script type="math/tex">\log p(\boldsymbol{v} ; \boldsymbol{\theta}) \ll \log p\left(\boldsymbol{v} ; \boldsymbol{\theta}^{* }\right)</script> to hold simultaneously.</li>
-          <li>If <script type="math/tex">\max_{q} \mathcal{L}\left(\boldsymbol{v}, \boldsymbol{\theta}^{* }, q\right) \ll \log p\left(\boldsymbol{v} ; \boldsymbol{\theta}^{* }\right),</script> because <script type="math/tex">\boldsymbol{\theta}^{* }</script> induces too complicated of a posterior distribution for our <script type="math/tex">q</script> family to capture, then the learning process will never approach <script type="math/tex">\boldsymbol{\theta}^{* }</script>.</li>
-          <li>Such a problem is very difficult to detect, because we can only know for sure that it happened if we have a superior learning algorithm that can find <script type="math/tex">\boldsymbol{\theta}^{* }</script> for comparison.<br />
+          <li>We would need to know \(\boldsymbol{\theta}^{* }=\max_{\boldsymbol{\theta}} \log p(\boldsymbol{v} ; \boldsymbol{\theta})\).</li>
+          <li>It is possible for \(\mathcal{L}(\boldsymbol{v}, \boldsymbol{\theta}, q) \approx \log p(\boldsymbol{v} ; \boldsymbol{\theta})\) and \(\log p(\boldsymbol{v} ; \boldsymbol{\theta}) \ll \log p\left(\boldsymbol{v} ; \boldsymbol{\theta}^{* }\right)\) to hold simultaneously.</li>
+          <li>If \(\max_{q} \mathcal{L}\left(\boldsymbol{v}, \boldsymbol{\theta}^{* }, q\right) \ll \log p\left(\boldsymbol{v} ; \boldsymbol{\theta}^{* }\right),\) because \(\boldsymbol{\theta}^{* }\) induces too complicated of a posterior distribution for our \(q\) family to capture, then the learning process will never approach \(\boldsymbol{\theta}^{* }\).</li>
+          <li>Such a problem is very difficult to detect, because we can only know for sure that it happened if we have a superior learning algorithm that can find \(\boldsymbol{\theta}^{* }\) for comparison.<br />
  <br /></li>
         </ul>
       </li>
@@ -607,25 +607,25 @@ It poses <strong>exact inference</strong> as an <strong>optimization problem</st
  Many approaches to inference avoid this expense by <span style="color: purple">learning to perform approximate inference</span>.</p>
 
     <p><strong>Learned Approximate Inference:</strong><br />
- Learns to perform approximate inference by viewing the (multistep iterative) optimization process as a function <script type="math/tex">f</script> that maps an input <script type="math/tex">v</script> to an approximate distribution <script type="math/tex">q^{* }=\arg \max_{q} \mathcal{L}(\boldsymbol{v}, q)</script>, and then <span style="color: goldenrod">approximates this function with a <strong>neural network</strong></span> that implements an approximation <script type="math/tex">f(\boldsymbol{v} ; \boldsymbol{\theta})</script>.</p>
+ Learns to perform approximate inference by viewing the (multistep iterative) optimization process as a function \(f\) that maps an input \(v\) to an approximate distribution \(q^{* }=\arg \max_{q} \mathcal{L}(\boldsymbol{v}, q)\), and then <span style="color: goldenrod">approximates this function with a <strong>neural network</strong></span> that implements an approximation \(f(\boldsymbol{v} ; \boldsymbol{\theta})\).</p>
 
     <p id="lst-p"><strong style="color: red">Wake-Sleep:</strong><br />
  <strong>Motivation</strong>:</p>
     <ul>
-      <li>One of the main difficulties with training a model to infer <script type="math/tex">h</script> from <script type="math/tex">v</script> is that we do not have a supervised training set with which to train the model.</li>
-      <li>Given a <script type="math/tex">v</script> we do not know the appropriate <script type="math/tex">h</script>.</li>
-      <li>The mapping from <script type="math/tex">v</script> to <script type="math/tex">h</script> depends on the choice of model family, and evolves throughout the learning process as <script type="math/tex">\theta</script> changes.</li>
+      <li>One of the main difficulties with training a model to infer \(h\) from \(v\) is that we do not have a supervised training set with which to train the model.</li>
+      <li>Given a \(v\) we do not know the appropriate \(h\).</li>
+      <li>The mapping from \(v\) to \(h\) depends on the choice of model family, and evolves throughout the learning process as \(\theta\) changes.</li>
     </ul>
 
     <p><strong>Wake-Sleep Algorithm</strong>:<br />
- The <strong>wake-sleep algorithm</strong> <em>(Hinton et al., 1995b; Frey et al., 1996)</em> resolves this problem by <span style="color: purple">drawing samples of both <script type="math/tex">h</script> and <script type="math/tex">v</script> <strong>from the <em>model distribution</em></strong></span>.</p>
+ The <strong>wake-sleep algorithm</strong> <em>(Hinton et al., 1995b; Frey et al., 1996)</em> resolves this problem by <span style="color: purple">drawing samples of both \(h\) and \(v\) <strong>from the <em>model distribution</em></strong></span>.</p>
     <ul>
-      <li>For example, in a <strong>directed model</strong>, this can be done cheaply by performing <em><strong>ancestral sampling</strong></em> beginning at <script type="math/tex">h</script> and ending at <script type="math/tex">v</script>.<br />
-  The inference network can then be trained to perform the reverse mapping: predicting which <script type="math/tex">h</script> caused the present $\boldsymbol{v}$.</li>
+      <li>For example, in a <strong>directed model</strong>, this can be done cheaply by performing <em><strong>ancestral sampling</strong></em> beginning at \(h\) and ending at \(v\).<br />
+  The inference network can then be trained to perform the reverse mapping: predicting which \(h\) caused the present $\boldsymbol{v}$.</li>
     </ul>
 
     <p><strong>DrawBacks</strong>:<br />
- The main drawback to this approach is that we will only be able to train the inference network on values of <script type="math/tex">\boldsymbol{v}</script> that have high probability under the model.<br />
+ The main drawback to this approach is that we will only be able to train the inference network on values of \(\boldsymbol{v}\) that have high probability under the model.<br />
  Early in learning, the <span style="color: purple">model distribution will not resemble the data distribution</span>, so <span style="color: purple">the inference network will not have an opportunity to <em>learn on samples that resemble data</em></span>.</p>
 
     <p><strong>Relation to Biological Dreaming:</strong><br />
@@ -635,7 +635,7 @@ It poses <strong>exact inference</strong> as an <strong>optimization problem</st
     <p><strong style="color: red">Generative Modeling - Application:</strong><br />
  Learned approximate inference has recently become one of the dominant approaches to generative modeling, in the form of the <strong>Variational AutoEncoder</strong> <em>(Kingma, 2013; Rezende et al., 2014)</em>.<br />
  In this elegant approach, there is <span style="color: purple">no need to <em>construct explicit targets</em> for the inference network</span>.<br />
- Instead, the <span style="color: purple">inference network is simply used to define <script type="math/tex">\mathcal{L},</script></span> and then <span style="color: purple">the parameters of the inference network are adapted to increase <script type="math/tex">\mathcal{L}</script></span>.</p>
+ Instead, the <span style="color: purple">inference network is simply used to define \(\mathcal{L},\)</span> and then <span style="color: purple">the parameters of the inference network are adapted to increase \(\mathcal{L}\)</span>.</p>
   </li>
 </ol>
 
@@ -654,9 +654,9 @@ It poses <strong>exact inference</strong> as an <strong>optimization problem</st
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">Calculus of Variations:</strong></p>
 
-    <p>Method for finding the <em><strong>stationary</strong></em> <strong>functions</strong> of a functional <script type="math/tex">I[f]</script> (function of functions) by solving a differential equation.</p>
+    <p>Method for finding the <em><strong>stationary</strong></em> <strong>functions</strong> of a functional \(I[f]\) (function of functions) by solving a differential equation.</p>
 
-    <p><strong>Formally,</strong> calculus of variations seeks to find the function <script type="math/tex">y=f(x)</script> such that the integral (functional):</p>
+    <p><strong>Formally,</strong> calculus of variations seeks to find the function \(y=f(x)\) such that the integral (functional):</p>
     <p>$$I[y]=\int_{x_{1}}^{x_{2}} L\left(x, y(x), y^{\prime}(x)\right) d x$$</p>
     <p>$$\begin{array}{l}{\text {where}}\\{x_{1}, x_{2} \text { are constants, }} \\ {y(x) \text { is twice continuously differentiable, }} \\ {y^{\prime}(x)=d y / d x} \\ {L\left(x, y(x), y^{\prime}(x)\right) \text { is twice continuously differentiable with respect to its arguments } x, y, y^{\prime}}\end{array}$$</p>
     <p>is <strong>stationary</strong>.</p>
@@ -670,7 +670,7 @@ It poses <strong>exact inference</strong> as an <strong>optimization problem</st
     <p>$$\frac{\delta J}{\delta f(x)} = \frac{\partial L}{\partial f}-\frac{d}{d x} \frac{\partial L}{\partial f^{\prime}} = 0$$</p>
 
     <p><strong style="color: red">Shortest Path between Two Points:</strong><br />
- Find path such that the distance <script type="math/tex">AB</script> between two points is minimized.<br />
+ Find path such that the distance \(AB\) between two points is minimized.<br />
  Using the <em><strong>arc length</strong></em>, we define the following <strong>functional</strong>:</p>
     <p>$$\begin{align}
      I &amp;= \int_{A}^{B} dS \\
@@ -681,49 +681,48 @@ It poses <strong>exact inference</strong> as an <strong>optimization problem</st
      $$</p>
     <ul>
       <li>Now, we formulate the <strong>variational problem</strong>:<br />
-  Find the extremal function <script type="math/tex">y=f(x)</script> between two points <script type="math/tex">A=(x_1, y_1)</script> and <script type="math/tex">B=(x_2, y_2)</script> such that the following integral is <strong>minimized</strong>:
+  Find the extremal function \(y=f(x)\) between two points \(A=(x_1, y_1)\) and \(B=(x_2, y_2)\) such that the following integral is <strong>minimized</strong>:
         <p>$$I[y] = \int_{x_{1}}^{x_{2}} \sqrt{1+\left[y^{\prime}(x)\right]^{2}} d x$$</p>
-        <p>where <script type="math/tex">y^{\prime}(x)=\frac{d y}{d x}, y_{1}=f\left(x_{1}\right), y_{2}=f\left(x_{2}\right)</script>.</p>
+        <p>where \(y^{\prime}(x)=\frac{d y}{d x}, y_{1}=f\left(x_{1}\right), y_{2}=f\left(x_{2}\right)\).</p>
       </li>
       <li><strong>Solution:</strong><br />
-  We use the <strong>Euler-Lagrange Equation</strong> to find the extremal function <script type="math/tex">f(x)</script> that minimizes the functional <script type="math/tex">I[y]</script>:
+  We use the <strong>Euler-Lagrange Equation</strong> to find the extremal function \(f(x)\) that minimizes the functional \(I[y]\):
         <p>$$\frac{\partial L}{\partial f}-\frac{d}{d x} \frac{\partial L}{\partial f^{\prime}}=0$$</p>
-        <p>where <script type="math/tex">L=\sqrt{1+\left[f^{\prime}(x)\right]^{2}}</script>.</p>
+        <p>where \(L=\sqrt{1+\left[f^{\prime}(x)\right]^{2}}\).</p>
         <ul>
-          <li>Since <script type="math/tex">f</script> does not appear explicity in <script type="math/tex">L,</script> the first term in the Euler-Lagrange equation vanishes for all <script type="math/tex">f(x)</script>
+          <li>Since \(f\) does not appear explicity in \(L,\) the first term in the Euler-Lagrange equation vanishes for all \(f(x)\)
             <p>$$\frac{\partial L}{\partial f} = 0$$</p>
           </li>
           <li>Thus,
             <p>$$\frac{d}{d x} \frac{\partial L}{\partial f^{\prime}}=0$$</p>
           </li>
-          <li>Substituting for <script type="math/tex">L</script> and taking the derivative:
+          <li>Substituting for \(L\) and taking the derivative:
             <p>$$\frac{d}{d x} \frac{f^{\prime}(x)}{\sqrt{1+\left[f^{\prime}(x)\right]^{2}}}=0$$</p>
-            <p>for some constant <script type="math/tex">c</script>.</p>
+            <p>for some constant \(c\).</p>
           </li>
-          <li>If the derivative <script type="math/tex">\frac{d}{dx}</script>, above, is zero, then
+          <li>If the derivative \(\frac{d}{dx}\), above, is zero, then
             <p>$$\frac{f^{\prime}(x)}{\sqrt{1+\left[f^{\prime}(x)\right]^{2}}}=c$$</p>
-            <p>for some constant <script type="math/tex">c</script>.</p>
+            <p>for some constant \(c\).</p>
           </li>
           <li>Square both sides:
             <p>$$\frac{\left[f^{\prime}(x)\right]^{2}}{1+\left[f^{\prime}(x)\right]^{2}}=c^{2}$$</p>
-            <p>where <script type="math/tex">% <![CDATA[
-0 \leq c^{2}<1 %]]></script>.</p>
+            <p>where \(0 \leq c^{2}&lt;1\).</p>
           </li>
           <li>Solving:
             <p>$$\left[f^{\prime}(x)\right]^{2}=\frac{c^{2}}{1-c^{2}}$$</p>
-            <p><script type="math/tex">\implies</script></p>
+            <p>\(\implies\)</p>
             <p>$$f^{\prime}(x)=m$$</p>
-            <p>is a constant <script type="math/tex">m</script>.</p>
+            <p>is a constant \(m\).</p>
           </li>
           <li>Integrating:
             <p>$$f(x)=m x+b$$</p>
-            <p>is an <strong>equation of a (straight) line</strong>, where <script type="math/tex">m=\frac{y_{2}-y_{1}}{x_{2}-x_{1}} \quad</script> and <script type="math/tex">\quad b=\frac{x_{2} y_{1}-x_{1} y_{2}}{x_{2}-x_{1}}</script>.</p>
+            <p>is an <strong>equation of a (straight) line</strong>, where \(m=\frac{y_{2}-y_{1}}{x_{2}-x_{1}} \quad\) and \(\quad b=\frac{x_{2} y_{1}-x_{1} y_{2}}{x_{2}-x_{1}}\).</p>
           </li>
         </ul>
 
         <p>In other words, the shortest distance between two points is a straight line.</p>
         <div class="borderexample">
-          <p><span style="color: purple">We have found the extremal function <script type="math/tex">f(x)</script> that minimizes the functional <script type="math/tex">A[y]</script> so that <script type="math/tex">A[f]</script> is a minimum.</span></p>
+          <p><span style="color: purple">We have found the extremal function \(f(x)\) that minimizes the functional \(A[y]\) so that \(A[f]\) is a minimum.</span></p>
         </div>
       </li>
     </ul>
@@ -744,23 +743,23 @@ It poses <strong>exact inference</strong> as an <strong>optimization problem</st
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents48} -->
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p>To achieve this speed, we typically use special optimization algorithms that are designed to solve comparatively small and simple problems in few iterations. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p>To achieve this speed, we typically use special optimization algorithms that are designed to solve comparatively small and simple problems in few iterations. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

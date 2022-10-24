@@ -96,7 +96,7 @@
 
 <ol>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Unsupervised Learning:</strong><br />
- <strong>Data:</strong> <script type="math/tex">x</script> Just data, no labels! <br />
+ <strong>Data:</strong> \(x\) Just data, no labels! <br />
  <strong>Goal:</strong> Learn some underlying hidden <em>structure</em> of the data<br />
  <strong>Examples:</strong> Clustering, dimensionality reduction, feature learning, density estimation, etc.<br />
  <br /></li>
@@ -106,15 +106,15 @@
 
 <h2 id="content2">Generative Models</h2>
 
-<p>Given some data <script type="math/tex">\{(d,c)\}</script> of paired observations <script type="math/tex">d</script> and hidden classes <script type="math/tex">c</script>:</p>
+<p>Given some data \(\{(d,c)\}\) of paired observations \(d\) and hidden classes \(c\):</p>
 
 <ol>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Generative (Joint) Models:</strong><br />
  <strong>Generative Models</strong> are <strong>Joint Models</strong>.<br />
- <strong>Joint Models</strong> place probabilities <script type="math/tex">\left(P(c,d)\right)</script> over both the observed data and the “target” (hidden) variables that can only be computed from those observed.</p>
+ <strong>Joint Models</strong> place probabilities \(\left(P(c,d)\right)\) over both the observed data and the “target” (hidden) variables that can only be computed from those observed.</p>
 
-    <p>Generative models are typically probabilistic, specifying a joint probability distribution (<script type="math/tex">P(d,c)</script>) over observation and target (label) values, and tries to <strong>Maximize</strong> this <strong>joint Likelihood</strong>.</p>
+    <p>Generative models are typically probabilistic, specifying a joint probability distribution (\(P(d,c)\)) over observation and target (label) values, and tries to <strong>Maximize</strong> this <strong>joint Likelihood</strong>.</p>
     <blockquote>
       <p>Choosing weights turn out to be trivial: chosen as the <strong>relative frequencies</strong>.</p>
     </blockquote>
@@ -136,7 +136,7 @@
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Discriminative (Conditional) Models:</strong></dt>
       <dd><strong>Discriminative Models</strong> are <strong>Conditional Models</strong>.</dd>
       <dd><strong>Conditional Models</strong> provide a model only for the “target” (hidden) variabless.<br />
-They take the data as given, and put a probability <script type="math/tex">\left(P(c \vert d)\right)</script> over the “target” (hidden) structures given the data.</dd>
+They take the data as given, and put a probability \(\left(P(c \vert d)\right)\) over the “target” (hidden) structures given the data.</dd>
       <dd>Conditional Models seek to <strong>Maximize</strong> the <strong>Conditional Likelihood</strong>.
         <blockquote>
           <p>This (maximization) task is usually harder to do.</p>
@@ -184,8 +184,8 @@ They take the data as given, and put a probability <script type="math/tex">\left
         <ul>
           <li><strong>Types</strong> of Density Estimation:
             <ul>
-              <li><em><strong>Explicit</strong></em>: Explicitly define and solve for <script type="math/tex">p_\text{model}(x)</script></li>
-              <li><em><strong>Implicit</strong></em>: Learn model that can sample from <script type="math/tex">p_\text{model}(x)</script> without explicitly defining it</li>
+              <li><em><strong>Explicit</strong></em>: Explicitly define and solve for \(p_\text{model}(x)\)</li>
+              <li><em><strong>Implicit</strong></em>: Learn model that can sample from \(p_\text{model}(x)\) without explicitly defining it</li>
             </ul>
           </li>
         </ul>
@@ -233,7 +233,7 @@ They take the data as given, and put a probability <script type="math/tex">\left
 
     <p>They generate an <strong>Explicit Density Model</strong>.</p>
 
-    <p>They use the <strong>chain rule</strong> to <em>decompose the _likelihood of an image</em> <script type="math/tex">x</script> into products of 1-d distributions:<br />
+    <p>They use the <strong>chain rule</strong> to <em>decompose the _likelihood of an image</em> \(x\) into products of 1-d distributions:<br />
  <img src="/main_files/cs231n/13/2.png" alt="img" width="70%" />  <br />
  then, they <strong>Maximize</strong> the <strong>Likelihood</strong> of the training data.</p>
 
@@ -288,9 +288,8 @@ This approach turns the modeling problem into a sequence problem where the next 
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">PixelCNN:</strong></dt>
-      <dd>Similar to the <strong>PixelRNN</strong> model, the <strong>PixelCNN</strong> models  the <em><strong>Pixel Distribution</strong></em> <script type="math/tex">p(\vec{x})</script>, where <script type="math/tex">\vec{x} = (x_0, \ldots, x_n)</script> is the vector of pixel values of a given image.</dd>
-      <dd>Similarly, we use the chain rule for join distribution: <script type="math/tex">% <![CDATA[
-p(x) = p(x_0) \prod_1^n p(x_i | x_{i<}) %]]></script>.
+      <dd>Similar to the <strong>PixelRNN</strong> model, the <strong>PixelCNN</strong> models  the <em><strong>Pixel Distribution</strong></em> \(p(\vec{x})\), where \(\vec{x} = (x_0, \ldots, x_n)\) is the vector of pixel values of a given image.</dd>
+      <dd>Similarly, we use the chain rule for join distribution: \(p(x) = p(x_0) \prod_1^n p(x_i | x_{i&lt;})\).
         <blockquote>
           <p>such that, the first pixel is independent, the second depends on the first, and the third depends on, both, the first and second, etc.</p>
         </blockquote>
@@ -348,7 +347,7 @@ p(x) = p(x_0) \prod_1^n p(x_i | x_{i<}) %]]></script>.
     <ul>
       <li><strong>Pros</strong>:
         <ul>
-          <li>Can explicitly compute likelihood <script type="math/tex">p(x)</script></li>
+          <li>Can explicitly compute likelihood \(p(x)\)</li>
           <li>Explicit likelihood of training data gives good evaluation metric</li>
           <li>Good Samples</li>
         </ul>
@@ -375,12 +374,11 @@ Auto-Encoders generate <strong>Features</strong> that capture <em>factors of var
       <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents40">Auto-Regressive Models VS Variational Auto-Encoders:</strong></dt>
       <dd><strong>Auto-Regressive Models</strong> defined a <em><strong>tractable</strong></em> (discrete) density function and, then, optimized the likelihood of training data:</dd>
       <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-p_\theta(x) = p(x_0) \prod_1^n p(x_i | x_{i<}) %]]></script>
+\[p_\theta(x) = p(x_0) \prod_1^n p(x_i | x_{i&lt;})\]
       </dd>
-      <dd>On the other hand, <strong>VAEs</strong> defines an <em><strong>intractable</strong></em> (continuous) density function with latent variable <script type="math/tex">z</script>:</dd>
+      <dd>On the other hand, <strong>VAEs</strong> defines an <em><strong>intractable</strong></em> (continuous) density function with latent variable \(z\):</dd>
       <dd>
-        <script type="math/tex; mode=display">p_\theta(x) = \int p_\theta(z) p_\theta(x|z) dz</script>
+\[p_\theta(x) = \int p_\theta(z) p_\theta(x|z) dz\]
       </dd>
       <dd>but cannot optimize directly; instead, derive and optimiz a lower bound on likelihood instead.</dd>
     </dl>
@@ -397,10 +395,10 @@ p_\theta(x) = p(x_0) \prod_1^n p(x_i | x_{i<}) %]]></script>
       <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents42">Assumptions:</strong></dt>
       <dd>VAEs assume that:
         <ul>
-          <li>The data is generated by a directed <strong>graphical model</strong> <script type="math/tex">p(x\vert z)</script></li>
-          <li>The encoder is learning an approximation <script type="math/tex">q_\phi(z|x)</script> to the posterior distribution <script type="math/tex">p_\theta(z|x)</script><br />
-  where <script type="math/tex">{\displaystyle \mathbf {\phi } }</script> and <script type="math/tex">{\displaystyle \mathbf {\theta } }</script> denote the parameters of the encoder (recognition model) and decoder (generative model) respectively.</li>
-          <li>The training data <script type="math/tex">\left\{x^{(i)}\right\}_{i=1}^N</script> is generated from underlying unobserved (latent) representation <script type="math/tex">\mathbf{z}</script></li>
+          <li>The data is generated by a directed <strong>graphical model</strong> \(p(x\vert z)\)</li>
+          <li>The encoder is learning an approximation \(q_\phi(z|x)\) to the posterior distribution \(p_\theta(z|x)\)<br />
+  where \({\displaystyle \mathbf {\phi } }\) and \({\displaystyle \mathbf {\theta } }\) denote the parameters of the encoder (recognition model) and decoder (generative model) respectively.</li>
+          <li>The training data \(\left\{x^{(i)}\right\}_{i=1}^N\) is generated from underlying unobserved (latent) representation \(\mathbf{z}\)</li>
         </ul>
       </dd>
     </dl>
@@ -409,9 +407,9 @@ p_\theta(x) = p(x_0) \prod_1^n p(x_i | x_{i<}) %]]></script>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents43">The Objective Function:</strong></dt>
       <dd>
-        <script type="math/tex; mode=display">{\displaystyle {\mathcal {L}}(\mathbf {\phi } ,\mathbf {\theta } ,\mathbf {x} )=D_{KL}(q_{\phi }(\mathbf {z} |\mathbf {x} )||p_{\theta }(\mathbf {z} ))-\mathbb {E} _{q_{\phi }(\mathbf {z} |\mathbf {x} )}{\big (}\log p_{\theta }(\mathbf {x} |\mathbf {z} ){\big )}}</script>
+\[{\displaystyle {\mathcal {L}}(\mathbf {\phi } ,\mathbf {\theta } ,\mathbf {x} )=D_{KL}(q_{\phi }(\mathbf {z} |\mathbf {x} )||p_{\theta }(\mathbf {z} ))-\mathbb {E} _{q_{\phi }(\mathbf {z} |\mathbf {x} )}{\big (}\log p_{\theta }(\mathbf {x} |\mathbf {z} ){\big )}}\]
       </dd>
-      <dd>where <script type="math/tex">{\displaystyle D_{KL}}</script> is the <strong>Kullback–Leibler divergence</strong> (KL-Div).</dd>
+      <dd>where \({\displaystyle D_{KL}}\) is the <strong>Kullback–Leibler divergence</strong> (KL-Div).</dd>
     </dl>
   </li>
   <li>
@@ -424,7 +422,7 @@ p_\theta(x) = p(x_0) \prod_1^n p(x_i | x_{i<}) %]]></script>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents45">The Goal:</strong></dt>
-      <dd>The goal is to estimate the true parameters <script type="math/tex">\theta^\ast</script> of this generative model.</dd>
+      <dd>The goal is to estimate the true parameters \(\theta^\ast\) of this generative model.</dd>
     </dl>
   </li>
   <li>
@@ -432,7 +430,7 @@ p_\theta(x) = p(x_0) \prod_1^n p(x_i | x_{i<}) %]]></script>
       <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents46">Representing the Model:</strong></dt>
       <dd>
         <ul>
-          <li>To represent the prior <script type="math/tex">p(z)</script>, we choose it to be simple, usually <strong>Gaussian</strong></li>
+          <li>To represent the prior \(p(z)\), we choose it to be simple, usually <strong>Gaussian</strong></li>
           <li>To represent the conditional (which is very complex), we use a neural-network</li>
         </ul>
       </dd>
@@ -443,12 +441,12 @@ p_\theta(x) = p(x_0) \prod_1^n p(x_i | x_{i<}) %]]></script>
       <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents47">Intractability:</strong></dt>
       <dd>The <strong>Data Likelihood</strong>:</dd>
       <dd>
-        <script type="math/tex; mode=display">p_\theta(x) = \int p_\theta(z) p_\theta(x|z) dz</script>
+\[p_\theta(x) = \int p_\theta(z) p_\theta(x|z) dz\]
       </dd>
-      <dd>is intractable to compute for every <script type="math/tex">z</script>.</dd>
+      <dd>is intractable to compute for every \(z\).</dd>
       <dd>Thus, the <strong>Posterior Density</strong>:</dd>
       <dd>
-        <script type="math/tex; mode=display">p_\theta(z|x) = \dfrac{p_\theta(x|z) p_\theta(z)}{p_\theta(x)} = \dfrac{p_\theta(x|z) p_\theta(z)}{\int p_\theta(z) p_\theta(x|z) dz}</script>
+\[p_\theta(z|x) = \dfrac{p_\theta(x|z) p_\theta(z)}{p_\theta(x)} = \dfrac{p_\theta(x|z) p_\theta(z)}{\int p_\theta(z) p_\theta(x|z) dz}\]
       </dd>
       <dd>is, also, intractable</dd>
     </dl>
@@ -456,7 +454,7 @@ p_\theta(x) = p(x_0) \prod_1^n p(x_i | x_{i<}) %]]></script>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents48">Dealing with Intractability:</strong></dt>
-      <dd>In addition to decoder network modeling <script type="math/tex">p_\theta(x\vert z)</script>, define additional encoder network <script type="math/tex">q_\phi(z\vert x)</script> that approximates <script type="math/tex">p_\theta(z\vert x)</script></dd>
+      <dd>In addition to decoder network modeling \(p_\theta(x\vert z)\), define additional encoder network \(q_\phi(z\vert x)\) that approximates \(p_\theta(z\vert x)\)</dd>
       <dd>This allows us to derive a <strong>lower bound</strong> on the data likelihood that is tractable, which we can optimize.</dd>
     </dl>
   </li>
@@ -498,7 +496,7 @@ p_\theta(x) = p(x_0) \prod_1^n p(x_i | x_{i<}) %]]></script>
           <li><strong>Pros</strong>:
             <ul>
               <li>Principled approach to generative models</li>
-              <li>Allows inference of <script type="math/tex">q(z\vert x)</script>, can be useful feature representation for other tasks</li>
+              <li>Allows inference of \(q(z\vert x)\), can be useful feature representation for other tasks</li>
             </ul>
           </li>
         </ul>
@@ -537,12 +535,11 @@ p_\theta(x) = p(x_0) \prod_1^n p(x_i | x_{i<}) %]]></script>
       <dt><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents40">Auto-Regressive Models VS Variational Auto-Encoders VS GANs:</strong></dt>
       <dd><strong>Auto-Regressive Models</strong> defined a <em><strong>tractable</strong></em> (discrete) density function and, then, optimized the likelihood of training data:</dd>
       <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-p_\theta(x) = p(x_0) \prod_1^n p(x_i | x_{i<}) %]]></script>
+\[p_\theta(x) = p(x_0) \prod_1^n p(x_i | x_{i&lt;})\]
       </dd>
-      <dd>While <strong>VAEs</strong> defined an <em><strong>intractable</strong></em> (continuous) density function with latent variable <script type="math/tex">z</script>:</dd>
+      <dd>While <strong>VAEs</strong> defined an <em><strong>intractable</strong></em> (continuous) density function with latent variable \(z\):</dd>
       <dd>
-        <script type="math/tex; mode=display">p_\theta(x) = \int p_\theta(z) p_\theta(x|z) dz</script>
+\[p_\theta(x) = \int p_\theta(z) p_\theta(x|z) dz\]
       </dd>
       <dd>but cannot optimize directly; instead, derive and optimize a lower bound on likelihood instead.</dd>
       <dd>On the other hand, <strong>GANs</strong> rejects explicitly defining a probability density function, in favor of only being able to sample.</dd>
@@ -577,10 +574,10 @@ GANs propose a new framework for generative model estimation that sidesteps thes
       <dd>
         <ul>
           <li><strong>Goal</strong>: estimating generative models that capture the training data distribution</li>
-          <li><strong>Framework</strong>: an adversarial process in which two models are simultaneously trained a generative model <script type="math/tex">G</script> that captures the data distribution, and a discriminative model <script type="math/tex">D</script> that estimates the probability that a sample came from the training data rather than <script type="math/tex">G</script>.</li>
+          <li><strong>Framework</strong>: an adversarial process in which two models are simultaneously trained a generative model \(G\) that captures the data distribution, and a discriminative model \(D\) that estimates the probability that a sample came from the training data rather than \(G\).</li>
           <li><strong>Training</strong>:
             <ul>
-              <li><script type="math/tex">G</script> maximizes the probability of <script type="math/tex">D</script> making a mistake</li>
+              <li>\(G\) maximizes the probability of \(D\) making a mistake</li>
             </ul>
           </li>
         </ul>
@@ -591,13 +588,13 @@ GANs propose a new framework for generative model estimation that sidesteps thes
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

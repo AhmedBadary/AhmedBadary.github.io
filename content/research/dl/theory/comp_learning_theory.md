@@ -54,11 +54,16 @@ prevLink: /work_files/research/dl/theory.html
     * __Prior-Belief Assumption:__{: style="color: DarkRed"}  
         The Bayesian framework assumes that we always have a prior distribution for everything.  
         * The prior may be very vague
-        * [Continue NoteTaking](https://www.youtube.com/watch?v=NY1zXgIma3c&list=PLiPvV5TNogxKKwvKb1RKwkq2hm7ZvpHz0&index=58&t=47)  
+        * When we see some data, we combine our prior distribution with a likelihood term to get a posterior distribution.  
+        * The likelihood term takes into account how probable the observed data is given the parameters of the model:  
+            * It favors parameter settings that make the data likely  
+            * It fights the prior  
+            * With enough data the likelihood terms always wins
+        * [Continue NoteTaking (has great example) (Hinton Lec)](https://www.youtube.com/watch?v=NY1zXgIma3c&list=PLiPvV5TNogxKKwvKb1RKwkq2hm7ZvpHz0&index=58&t=47)  
 
     * __Bayes Theorem__:  
         <p>$$p(\mathcal{D}) p(\mathbf{\theta} \vert \mathcal{D})=\underbrace{p(\mathcal{D}, \mathbf{\theta})}_ {\text{joint probability}}=p(\mathbf{\theta}) p(\mathcal{D} \vert \mathbf{\theta})$$</p>  
-        <p>$$p(\mathbf{\theta} \vert \mathcal{D}) = \dfrac{p(\mathbf{\theta}) p(\mathcal{D} \vert \mathbf{\theta})}{p(\mathcal{D})} = \dfrac{p(\mathbf{\theta}) p(\mathcal{D} \vert \mathbf{\theta})}{\int_{\mathbf{\theta}} p(\mathbf{\theta}) p(\mathcal{D} \vert \mathbf{\theta})}$$</p>  
+        <p>$$\implies \\ p(\mathbf{\theta} \vert \mathcal{D}) = \dfrac{p(\mathbf{\theta}) p(\mathcal{D} \vert \mathbf{\theta})}{p(\mathcal{D})} = \dfrac{p(\mathbf{\theta}) p(\mathcal{D} \vert \mathbf{\theta})}{\int_{\mathbf{\theta}} p(\mathbf{\theta}) p(\mathcal{D} \vert \mathbf{\theta})}$$</p>  
 
 
 
@@ -130,6 +135,26 @@ prevLink: /work_files/research/dl/theory.html
             although I'm not sure "frequency" is a plain english term in the way it is used here - perhaps "proportion" is a better word. I wanted to add into the frequentist answer that the probability of an event is thought to be a real, measurable (observable?) quantity, which exists independently of the person/object who is calculating it. But I couldn't do this in a "plain english" way.  
             So perhaps a "plain english" version of one the difference could be that frequentist reasoning is an attempt at reasoning from "absolute" probabilities, whereas bayesian reasoning is an attempt at reasoning from "relative" probabilities.  
         {: hidden=""}
+
+    __Statistical Methods:__{: style="color: red"}  
+    {: #lst-p}
+    * __Bayesian__:  
+        * Probability refers to degree of belief  
+        * Inference about a parameter $$\theta$$ is by producing a probability distributions on it. 
+            Typically, one starts with a prior distribution $$p(\theta)$$. One also chooses a likelihood function $$p(x \mid \theta)-$$ note this is a function of $$\theta$$, not $$x$$. After observing data $$x$$, one applies the Bayes Theorem to obtain the posterior distribution $$p(\theta \mid x)$$.  
+            <p>$$p(\theta \mid x)=\frac{p(\theta) p(x \mid \theta)}{\int p\left(\theta^{\prime}\right) p\left(x \mid \theta^{\prime}\right) d \theta^{\prime}} \propto p(\theta) p(x \mid \theta)$$</p>  
+            where $$Z \equiv \int p\left(\theta^{\prime}\right) p\left(x \mid \theta^{\prime}\right) d \theta^{\prime}$$ is known as the normalizing constant. The posterior distribution is a complete characterization of the parameter.  
+            Sometimes, one uses the mode of the posterior as a simple point estimate, known as the __*maximum aposteriori* (MAP)__ estimate of the parameter:  
+            $$\theta^{\text {MAP }}=\operatorname{argmax}_ {\theta} p(\theta \mid x)$$  
+            > Note MAP is not a proper Bayesian approach.  
+        * Prediction under an unknown parameter is done by integrating it out:  
+            $$p(x \mid \text {Data})=\int p(x \mid \theta) p(\theta \mid \text{Data}) d \theta $$  
+    * __Frequentist__: 
+        * Probability refers to limiting relative frequency  
+        * Data are random  
+        * Estimators are random because they are functions of data  
+        * Parameters are fixed, unknown constants not subject to probabilistic statements  
+        * Procedures are subject to probabilistic statements, for example 95% confidence intervals traps the trueparameter value 95  
 
 
 

@@ -1,10 +1,9 @@
 ---
 layout: NotesPage
-title: Probability Theory <br /> Mathematics of Deep Learning
+title: Probability Theory <br /> Mathematics of Deep Learning (DEPRECATED)
 permalink: /work_files/research/dl/stat_prob/probability
 prevLink: /work_files/research/dl/theory.html
 ---
-
 
 
 <div markdown="1" class = "TOC">
@@ -25,7 +24,7 @@ prevLink: /work_files/research/dl/theory.html
 ***
 ***
 
-
+[COUNT BAYESIE: PROBABLY A PROBABILITY BLOG](https://www.countbayesie.com)  
 [Review of Probability Theory (Stanford)](http://cs229.stanford.edu/section/cs229-prob.pdf)  
 [A First Course in Probability (Book: _Sheldon Ross_)](http://julio.staff.ipb.ac.id/files/2015/02/Ross_8th_ed_English.pdf)  
 [Statistics 110: Harvard](https://www.youtube.com/playlist?list=PL2SOU6wwxB0uwwH80KTQ6ht66KWxbzTIo)  
@@ -35,6 +34,8 @@ prevLink: /work_files/research/dl/theory.html
 [Deep Learning Probability](https://jhui.github.io/2017/01/05/Deep-learning-probability-and-distribution/)  
 [Probability as Extended Logic](http://bjlkeng.github.io/posts/probability-the-logic-of-science/)  
 [CS188 Probability Lecture (very intuitive)](https://www.youtube.com/watch?v=sMNbLXsvRig&list=PL7k0r4t5c108AZRwfW-FhnkZ0sCKBChLH&index=13&t=0s)  
+[Combinatorics (Notes)](https://www.dartmouth.edu/~chance/teaching_aids/books_articles/probability_book/Chapter3.pdf)  
+[Digital textbook on probability and statistics (!)](https://www.statlect.com/)  
 
 
 ## Motivation
@@ -364,7 +365,8 @@ prevLink: /work_files/research/dl/theory.html
 
 
 15. **Common Random Variables:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents215}  
-    __Discrete RVs:__{: style="color: red"}    
+    __Discrete RVs:__{: style="color: red"}   
+    {: #lst-p} 
     * __Bernoulli__:  
     ![img](/main_files/math/prob/2.png){: width="90%"}  
     * __Binomial__:  
@@ -375,6 +377,7 @@ prevLink: /work_files/research/dl/theory.html
     ![img](/main_files/math/prob/5.png){: width="90%"}  
 
     __Continuous RVs:__{: style="color: red"}  
+    {: #lst-p}
     * __Uniform__:  
     ![img](/main_files/math/prob/6.png){: width="90%"}  
     * __Exponential__:  
@@ -393,7 +396,6 @@ prevLink: /work_files/research/dl/theory.html
     * $$\operatorname{Var}[\overline{X}]=\operatorname{Var}\left[\frac{X_{1}+\cdots+X_{n}}{n}\right] = \dfrac{\sigma^2}{n}$$,    
     * $$\operatorname {E}\left[X_{i}^{2}\right]=\operatorname {Var} [X]+\operatorname {E} [X]^{2} = \sigma^{2}+\mu^{2}$$,  
     * $$\operatorname {E}\left[\overline{X}^{2}\right]=\operatorname {E}\left[\hat{\mu}^{2}\right]=\frac{\sigma^{2}}{n}+\mu^{2}\:$$, [^2]  
-
     <br>
 
 
@@ -414,7 +416,6 @@ prevLink: /work_files/research/dl/theory.html
     2. Independent $$\implies$$ Uncorrelated  
 
     Zero correlation will indicate no linear dependency, however won't capture non-linearity. Typical example is uniform random variable $$x$$, and $$x^2$$ over $$[-1,1]$$ with zero mean. Correlation is zero but clearly not independent.  
-
     <br> 
 
 19. **Probabilistic Inference:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents219}  
@@ -457,8 +458,7 @@ prevLink: /work_files/research/dl/theory.html
 ## Discrete Distributions
 {: #content9}
 
-1. **Uniform Distribution:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents91}  
-    :   
+<!-- 1. **Uniform Distribution:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents91}   -->
 
 2. **Bernoulli Distribution:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents92}  
     :   A distribution over a single binary random variable.  
@@ -477,13 +477,9 @@ prevLink: /work_files/research/dl/theory.html
     > $${\binom {n}{k}}={\frac {n!}{k!(n-k)!}}$$ is the number of possible ways of getting $$x$$ successes and $$n-x$$ failures
 
 <!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents94}  
-
 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents95}  
-
 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents96}  
-
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents97}  
-
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents98}   -->
 
 ***
@@ -499,27 +495,6 @@ prevLink: /work_files/research/dl/theory.html
     * [**Newton-Pepys: most likely event of rolling 6's in dice**](https://www.youtube.com/embed/P7NE4WF8j-Q?start=1057){: value="show" onclick="iframePopA(event)"}
     <a href="https://www.youtube.com/embed/P7NE4WF8j-Q?start=1057"></a>
         <div markdown="1"> </div>    
-
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents992}  
-    :   
-
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents993}  
-    :   
-
-<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents994}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents995}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents996}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents997}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents998}  
-    :    -->
     
 ***
 

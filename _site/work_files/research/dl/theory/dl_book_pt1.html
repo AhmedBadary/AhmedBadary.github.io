@@ -86,6 +86,10 @@
 <hr />
 <hr />
 
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Outline_of_machine_learning">Outline of Machine Learning - Wikipedia!</a></li>
+</ul>
+
 <h2 id="content1">Machine Learning Basics</h2>
 
 <ol>
@@ -105,14 +109,14 @@
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Learning Algorithms:</strong>
     <ul>
       <li><strong>Learning</strong>:<br />
-  A computer program is said to learn from <em><strong>experience</strong></em> <script type="math/tex">E</script> with respect to some class of <em><strong>tasks</strong></em> <script type="math/tex">T</script> and <em><strong>performance measure</strong></em> <script type="math/tex">P</script>, if its performance at tasks in <script type="math/tex">T</script>, as measured by <script type="math/tex">P</script>, improves with experience <script type="math/tex">E</script>.</li>
-      <li><strong>The Task <script type="math/tex">T</script></strong>:<br />
+  A computer program is said to learn from <em><strong>experience</strong></em> \(E\) with respect to some class of <em><strong>tasks</strong></em> \(T\) and <em><strong>performance measure</strong></em> \(P\), if its performance at tasks in \(T\), as measured by \(P\), improves with experience \(E\).</li>
+      <li><strong>The Task \(T\)</strong>:<br />
   <button class="showText" value="show" onclick="showTextPopHide(event);">Show List</button>
         <ul hidden="">
           <li><em><strong>Classification</strong></em>:<br />
-  A task where the computer program is asked to specify which of <script type="math/tex">k</script> categories some input belongs to.<br />
-  To solve this task, the learning algorithm is usually asked to produce a function <script type="math/tex">f:\mathbb{R}^n \rightarrow {1, . . . , k}</script>.<br />
-  When <script type="math/tex">y=f(x)</script>, the model assigns an input described by vector <script type="math/tex">x</script> to a category identified by numeric code <script type="math/tex">y</script>.
+  A task where the computer program is asked to specify which of \(k\) categories some input belongs to.<br />
+  To solve this task, the learning algorithm is usually asked to produce a function \(f:\mathbb{R}^n \rightarrow {1, . . . , k}\).<br />
+  When \(y=f(x)\), the model assigns an input described by vector \(x\) to a category identified by numeric code \(y\).
             <blockquote>
               <p>e.g. Object Recognition</p>
             </blockquote>
@@ -120,17 +124,17 @@
           <li>
             <p><em><strong>Classification with Missing Inputs</strong></em>:<br />
   Classification becomes more challenging if the computer program is not guaranteed that every measurement in its input vector will always be provided.<br />
-  To solve this task, rather than providing a single classification function (as in the normal classification case), the learning algorithm must learn a set of functions, each corresponding to classifying <script type="math/tex">x</script> with a different subset of its inputs missing.</p>
+  To solve this task, rather than providing a single classification function (as in the normal classification case), the learning algorithm must learn a set of functions, each corresponding to classifying \(x\) with a different subset of its inputs missing.</p>
 
             <p>One way to efficiently define such a large set of functions is to learn a probability distribution over all the relevant variables, then solve the classification task by marginalizing out the missing variables.<br />
-  With <script type="math/tex">n</script> input variables, we can now obtain all <script type="math/tex">2^n</script> different classification functions needed for each possible set of missing inputs, but the computer program needs to learn only a single function describing the joint probability distribution.</p>
+  With \(n\) input variables, we can now obtain all \(2^n\) different classification functions needed for each possible set of missing inputs, but the computer program needs to learn only a single function describing the joint probability distribution.</p>
             <blockquote>
               <p>e.g. Medical Diagnosis (where some tests weren’t conducted for any reason)</p>
             </blockquote>
           </li>
           <li><em><strong>Regression</strong></em>:<br />
   A computer is asked to predict a numerical value given some input.<br />
-  To solve this task, the learning algorithm is asked to output a function <script type="math/tex">f:\mathbb{R}^n \rightarrow R</script>
+  To solve this task, the learning algorithm is asked to output a function \(f:\mathbb{R}^n \rightarrow R\)
             <blockquote>
               <p>e.g. Object Localization</p>
             </blockquote>
@@ -169,19 +173,19 @@
             </blockquote>
           </li>
           <li><em><strong>Imputation</strong></em>:<br />
-  In this type of task, the machine learning algorithm is given a new example <script type="math/tex">x \in \mathbb{R}^n</script>, but with some entries <script type="math/tex">x_i</script> of <script type="math/tex">x</script> missing. The algorithm must provide a prediction of the values of the missing entries.</li>
+  In this type of task, the machine learning algorithm is given a new example \(x \in \mathbb{R}^n\), but with some entries \(x_i\) of \(x\) missing. The algorithm must provide a prediction of the values of the missing entries.</li>
           <li><em><strong>Denoising</strong></em>:<br />
-  In this type of task, the machine learning algorithm is given as input a corrupted example <script type="math/tex">\tilde{x} \in \mathbb{R}^n</script> obtained by an unknown corruption process from a clean example <script type="math/tex">x \in \mathbb{R}^n</script>. The learner must predict the clean example <script type="math/tex">x</script> from its corrupted version <script type="math/tex">\tilde{x}</script>, or more generally predict the conditional probability distribution <script type="math/tex">p(x |\tilde{x})</script>.
+  In this type of task, the machine learning algorithm is given as input a corrupted example \(\tilde{x} \in \mathbb{R}^n\) obtained by an unknown corruption process from a clean example \(x \in \mathbb{R}^n\). The learner must predict the clean example \(x\) from its corrupted version \(\tilde{x}\), or more generally predict the conditional probability distribution \(p(x |\tilde{x})\).
             <blockquote>
               <p>e.g. Signal Reconstruction, Image Artifact Removal</p>
             </blockquote>
           </li>
           <li><em><strong>Density (Probability Mass Function) Estimation</strong></em>:<br />
-  In the density estimation problem, the machine learning algorithm is asked to learn a function <script type="math/tex">p_\text{model}: \mathbb{R}^n \rightarrow R</script>, where <script type="math/tex">p_\text{model}(x)</script> can be interpreted as a probability density function (if <script type="math/tex">x</script> is continuous) or a probability mass function (if <script type="math/tex">x</script> is discrete) on the space that the examples were drawn from.<br />
+  In the density estimation problem, the machine learning algorithm is asked to learn a function \(p_\text{model}: \mathbb{R}^n \rightarrow R\), where \(p_\text{model}(x)\) can be interpreted as a probability density function (if \(x\) is continuous) or a probability mass function (if \(x\) is discrete) on the space that the examples were drawn from.<br />
   To do such a task well, the algorithm needs to learn the structure of the data it has seen. It must know where <em>examples cluster tightly</em> and where they are <em>unlikely to occur</em>.<br />
   Most of the tasks described above require the learning algorithm to at least implicitly capture the structure of the probability distribution (i.e. it can be computed but we don’t have an equation for it). Density estimation enables us to explicitly capture that distribution.<br />
   In principle,we can then perform computations on that distribution to solve the other tasks as well.<br />
-  For example, if we have performed density estimation to obtain a probability distribution p(x), we can use that distribution to solve the missing value imputation task. Equivalently, if a value <script type="math/tex">x_i</script> is missing, and all the other values, denoted <script type="math/tex">x_{−i}</script>, are given, then we know the distribution over it is given by <script type="math/tex">p(x_i| x_{−i})</script>.<br />
+  For example, if we have performed density estimation to obtain a probability distribution p(x), we can use that distribution to solve the missing value imputation task. Equivalently, if a value \(x_i\) is missing, and all the other values, denoted \(x_{−i}\), are given, then we know the distribution over it is given by \(p(x_i| x_{−i})\).<br />
       In practice, density estimation does not always enable us to solve all these related tasks, because in many cases the required operations on p(x) are computationally intractable.
             <blockquote>
               <p>e.g. Language Modeling</p>
@@ -191,10 +195,313 @@
   Their are many more tasks that could be defined for and solved by Machine Learning. However, this is a list of the most common problems, which have a well-known set of methods for handling them.</li>
         </ul>
       </li>
-      <li><strong>The Performance Measure <script type="math/tex">P</script></strong>:<br />
+      <li><strong>The Performance Measure \(P\)</strong>:<br />
   A quantitative measure of the performance of a machine learning algorithm.<br />
   We often use <strong>accuracy</strong> or <strong>error rate</strong>.<br />
  <br /></li>
+    </ul>
+  </li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents155">Machine Learning Methods:</strong>
+    <ul>
+      <li><button class="showText" value="show" onclick="showTextPopHide(event);"><a href="https://en.wikipedia.org/wiki/Outline_of_machine_learning#Machine_learning_methods">List of Machine Learning Methods</a></button>
+        <ul hidden="">
+          <li><strong>Instance-based algorithm</strong>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm">K-nearest neighbors algorithm</a> (KNN)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Learning_vector_quantization">Learning vector quantization</a> (LVQ)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Self-organizing_map">Self-organizing map</a> (SOM)</li>
+            </ul>
+          </li>
+          <li><strong><a href="https://en.wikipedia.org/wiki/Regression_analysis">Regression analysis</a></strong>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Logistic_regression">Logistic regression</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Ordinary_least_squares_regression">Ordinary least squares regression</a> (OLSR)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Linear_regression">Linear regression</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Stepwise_regression">Stepwise regression</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Multivariate_adaptive_regression_splines">Multivariate adaptive regression splines</a> (MARS)</li>
+              <li>Regularization algorithm
+                <ul>
+                  <li><a href="https://en.wikipedia.org/wiki/Ridge_regression">Ridge regression</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Least_Absolute_Shrinkage_and_Selection_Operator">Least Absolute Shrinkage and Selection Operator</a> (LASSO)</li>
+                  <li><a href="https://en.wikipedia.org/wiki/Elastic_net">Elastic net</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Least-angle_regression">Least-angle regression</a> (LARS)</li>
+                </ul>
+              </li>
+              <li><a href="https://en.wikipedia.org/wiki/Statistical_classification">Classifiers</a>
+                <ul>
+                  <li><a href="https://en.wikipedia.org/wiki/Probabilistic_classifier">Probabilistic classifier</a>
+                    <ul>
+                      <li><a href="https://en.wikipedia.org/wiki/Naive_Bayes_classifier">Naive Bayes classifier</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="https://en.wikipedia.org/wiki/Binary_classifier">Binary classifier</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Linear_classifier">Linear classifier</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Hierarchical_classifier">Hierarchical classifier</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="https://en.wikipedia.org/wiki/Dimensionality_reduction"><strong>Dimensionality reduction</strong></a>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Canonical_correlation_analysis">Canonical correlation analysis</a> (CCA)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Factor_analysis">Factor analysis</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Feature_extraction">Feature extraction</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Feature_selection">Feature selection</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Independent_component_analysis">Independent component analysis</a> (ICA)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Linear_discriminant_analysis">Linear discriminant analysis</a> (LDA)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Multidimensional_scaling">Multidimensional scaling</a> (MDS)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Non-negative_matrix_factorization">Non-negative matrix factorization</a> (NMF)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Partial_least_squares_regression">Partial least squares regression</a> (PLSR)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Principal_component_analysis">Principal component analysis</a> (PCA)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Principal_component_regression">Principal component regression</a> (PCR)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Projection_pursuit">Projection pursuit</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Sammon_mapping">Sammon mapping</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding">t-distributed stochastic neighbor embedding</a> (t-SNE)</li>
+            </ul>
+          </li>
+          <li><a href="https://en.wikipedia.org/wiki/Ensemble_learning"><strong>Ensemble learning</strong></a>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/AdaBoost">AdaBoost</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Boosting_(machine_learning)">Boosting</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Bootstrap_aggregating">Bootstrap aggregating</a> (Bagging)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Ensemble_averaging_(machine_learning)">Ensemble averaging</a> – process of creating multiple models and combining them to produce a desired output, as opposed to creating just one model. Frequently an ensemble of models performs better than any individual model, because the various errors of the models “average out.”</li>
+              <li><a href="https://en.wikipedia.org/wiki/Gradient_boosted_decision_tree">Gradient boosted decision tree</a> (GBDT)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Gradient_boosting">Gradient boosting</a> machine (GBM)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Random_Forest">Random Forest</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Stacked_Generalization">Stacked Generalization</a> (blending)</li>
+            </ul>
+          </li>
+          <li><a href="https://en.wikipedia.org/wiki/Meta_learning_(computer_science)"><strong>Meta learning</strong></a>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Inductive_bias">Inductive bias</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Metadata">Metadata</a></li>
+            </ul>
+          </li>
+          <li><a href="https://en.wikipedia.org/wiki/Reinforcement_learning"><strong>Reinforcement learning</strong></a>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Q-learning">Q-learning</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/State%E2%80%93action%E2%80%93reward%E2%80%93state%E2%80%93action">State–action–reward–state–action</a> (SARSA)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Temporal_difference_learning">Temporal difference learning</a> (TD)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Learning_Automata">Learning Automata</a></li>
+            </ul>
+          </li>
+          <li><a href="https://en.wikipedia.org/wiki/Supervised_learning"><strong>Supervised learning</strong></a>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/AODE">AODE</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Artificial_neural_network">Artificial neural network</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Association_rule_learning">Association rule learning</a> algorithms
+                <ul>
+                  <li><a href="https://en.wikipedia.org/wiki/Apriori_algorithm">Apriori algorithm</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Eclat_algorithm">Eclat algorithm</a></li>
+                </ul>
+              </li>
+              <li><a href="https://en.wikipedia.org/wiki/Case-based_reasoning">Case-based reasoning</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Gaussian_process_regression">Gaussian process regression</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Gene_expression_programming">Gene expression programming</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Group_method_of_data_handling">Group method of data handling</a> (GMDH)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Inductive_logic_programming">Inductive logic programming</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Instance-based_learning">Instance-based learning</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Lazy_learning">Lazy learning</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Learning_Automata">Learning Automata</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Learning_Vector_Quantization">Learning Vector Quantization</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Logistic_Model_Tree">Logistic Model Tree</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Minimum_message_length">Minimum message length</a> (decision trees, decision graphs, etc.)
+                <ul>
+                  <li><a href="https://en.wikipedia.org/wiki/Nearest_neighbor_(pattern_recognition)">Nearest Neighbor Algorithm</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Analogical_modeling">Analogical modeling</a></li>
+                </ul>
+              </li>
+              <li><a href="https://en.wikipedia.org/wiki/Probably_approximately_correct_learning">Probably approximately correct learning</a> (PAC) learning</li>
+              <li><a href="https://en.wikipedia.org/wiki/Ripple_down_rules">Ripple down rules</a>, a knowledge acquisition methodology</li>
+              <li>Symbolic machine learning algorithms</li>
+              <li><a href="https://en.wikipedia.org/wiki/Support_vector_machine">Support vector machines</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Random_forest">Random Forests</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Ensembles_of_classifiers">Ensembles of classifiers</a>
+                <ul>
+                  <li><a href="https://en.wikipedia.org/wiki/Bootstrap_aggregating">Bootstrap aggregating</a> (bagging)</li>
+                  <li><a href="https://en.wikipedia.org/wiki/Boosting_(meta-algorithm)">Boosting (meta-algorithm)</a></li>
+                </ul>
+              </li>
+              <li><a href="https://en.wikipedia.org/wiki/Ordinal_classification">Ordinal classification</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Information_Fuzzy_Networks">Information fuzzy networks</a> (IFN)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Conditional_Random_Field">Conditional Random Field</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/ANOVA">ANOVA</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Quadratic_classifier">Quadratic classifiers</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Nearest_neighbor_(pattern_recognition)">k-nearest neighbor</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Boosting_(machine_learning)">Boosting</a>
+                <ul>
+                  <li>SPRINT</li>
+                </ul>
+              </li>
+              <li><a href="https://en.wikipedia.org/wiki/Bayesian_network">Bayesian networks</a>
+                <ul>
+                  <li><a href="https://en.wikipedia.org/wiki/Naive_Bayes">Naive Bayes</a></li>
+                </ul>
+              </li>
+              <li><a href="https://en.wikipedia.org/wiki/Hidden_Markov_model">Hidden Markov models</a>
+                <ul>
+                  <li><a href="https://en.wikipedia.org/wiki/Hierarchical_hidden_Markov_model">Hierarchical hidden Markov model</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="https://en.wikipedia.org/wiki/Bayesian_statistics"><strong>Bayesian statistics</strong></a>
+            <ul>
+              <li>Bayesian knowledge base</li>
+              <li><a href="https://en.wikipedia.org/wiki/Naive_Bayes">Naive Bayes</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Gaussian_Naive_Bayes">Gaussian Naive Bayes</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Multinomial_Naive_Bayes">Multinomial Naive Bayes</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Averaged_One-Dependence_Estimators">Averaged One-Dependence Estimators</a> (AODE)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Bayesian_Belief_Network">Bayesian Belief Network</a> (BBN)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Bayesian_Network">Bayesian Network</a> (BN)</li>
+            </ul>
+          </li>
+          <li><strong>Decision tree algorithms</strong>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Decision_tree">Decision tree</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Classification_and_regression_tree">Classification and regression tree</a> (CART)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Iterative_Dichotomiser_3">Iterative Dichotomiser 3</a> (ID3)</li>
+              <li><a href="https://en.wikipedia.org/wiki/C4.5_algorithm">C4.5 algorithm</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/C5.0_algorithm">C5.0 algorithm</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Chi-squared_Automatic_Interaction_Detection">Chi-squared Automatic Interaction Detection</a> (CHAID)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Decision_stump">Decision stump</a></li>
+              <li>Conditional decision tree</li>
+              <li><a href="https://en.wikipedia.org/wiki/ID3_algorithm">ID3 algorithm</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Random_forest">Random forest</a></li>
+              <li>SLIQ</li>
+            </ul>
+          </li>
+          <li><a href="https://en.wikipedia.org/wiki/Linear_classifier"><strong>Linear classifier</strong></a>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Fisher%27s_linear_discriminant">Fisher’s linear discriminant</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Linear_regression">Linear regression</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Logistic_regression">Logistic regression</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Multinomial_logistic_regression">Multinomial logistic regression</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Naive_Bayes_classifier">Naive Bayes classifier</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Perceptron">Perceptron</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Support_vector_machine">Support vector machine</a></li>
+            </ul>
+          </li>
+          <li><a href="https://en.wikipedia.org/wiki/Unsupervised_learning"><strong>Unsupervised learning</strong></a>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Expectation-maximization_algorithm">Expectation-maximization algorithm</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Vector_Quantization">Vector Quantization</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Generative_topographic_map">Generative topographic map</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Information_bottleneck_method">Information bottleneck method</a></li>
+            </ul>
+          </li>
+          <li><a href="https://en.wikipedia.org/wiki/Artificial_neural_network"><strong>Artificial neural network</strong></a>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Feedforward_neural_network">Feedforward neural network</a>
+                <ul>
+                  <li><a href="https://en.wikipedia.org/wiki/Extreme_learning_machine">Extreme learning machine</a></li>
+                  <li><a href="https://en.wikipedia.org/wiki/Convolutional_neural_network">Convolutional neural network</a></li>
+                </ul>
+              </li>
+              <li><a href="https://en.wikipedia.org/wiki/Recurrent_neural_network">Recurrent neural network</a>
+                <ul>
+                  <li><a href="https://en.wikipedia.org/wiki/Long_short-term_memory">Long short-term memory (LSTM)</a></li>
+                </ul>
+              </li>
+              <li><a href="https://en.wikipedia.org/wiki/Logic_learning_machine">Logic learning machine</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Self-organizing_map">Self-organizing map</a></li>
+            </ul>
+          </li>
+          <li><a href="https://en.wikipedia.org/wiki/Association_rule_learning"><strong>Association rule learning</strong></a>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Apriori_algorithm">Apriori algorithm</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Eclat_algorithm">Eclat algorithm</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Association_rule_learning#FP-growth_algorithm">FP-growth algorithm</a></li>
+            </ul>
+          </li>
+          <li><a href="https://en.wikipedia.org/wiki/Hierarchical_clustering"><strong>Hierarchical clustering</strong></a>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Single-linkage_clustering">Single-linkage clustering</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Conceptual_clustering">Conceptual clustering</a></li>
+            </ul>
+          </li>
+          <li><a href="https://en.wikipedia.org/wiki/Cluster_analysis"><strong>Cluster analysis</strong></a>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/BIRCH">BIRCH</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/DBSCAN">DBSCAN</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Expectation-maximization_algorithm">Expectation-maximization (EM)</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Fuzzy_clustering">Fuzzy clustering</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Hierarchical_Clustering">Hierarchical Clustering</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/K-means_clustering">K-means clustering</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/K-medians">K-medians</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Mean-shift">Mean-shift</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/OPTICS_algorithm">OPTICS algorithm</a></li>
+            </ul>
+          </li>
+          <li><a href="https://en.wikipedia.org/wiki/Anomaly_detection"><strong>Anomaly detection</strong></a>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_classification">k-nearest neighbors classification</a> (<em>k</em>-NN)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Local_outlier_factor">Local outlier factor</a></li>
+            </ul>
+          </li>
+          <li><a href="https://en.wikipedia.org/wiki/Semi-supervised_learning"><strong>Semi-supervised learning</strong></a>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Active_learning_(machine_learning)">Active learning</a> – special case of semi-supervised learning in which a learning algorithm is able to interactively query the user (or some other information source) to obtain the desired outputs at new data points.<a href="https://en.wikipedia.org/wiki/Outline_of_machine_learning#cite_note-settles-5">[5]</a><a href="https://en.wikipedia.org/wiki/Outline_of_machine_learning#cite_note-rubens2016-6">[6]</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Semi-supervised_learning#Generative_models">Generative models</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Semi-supervised_learning#Low-density_separation">Low-density separation</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Semi-supervised_learning#Graph-based_methods">Graph-based methods</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Co-training">Co-training</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Transduction_(machine_learning)">Transduction</a></li>
+            </ul>
+          </li>
+          <li><a href="https://en.wikipedia.org/wiki/Deep_learning"><strong>Deep learning</strong></a>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Deep_belief_network">Deep belief networks</a></li>
+              <li>Deep <a href="https://en.wikipedia.org/wiki/Boltzmann_machine">Boltzmann machines</a></li>
+              <li>Deep <a href="https://en.wikipedia.org/wiki/Convolutional_neural_network">Convolutional neural networks</a></li>
+              <li>Deep <a href="https://en.wikipedia.org/wiki/Recurrent_neural_network">Recurrent neural networks</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Hierarchical_temporal_memory">Hierarchical temporal memory</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Generative_adversarial_network">Generative Adversarial Networks</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Deep_Boltzmann_Machine">Deep Boltzmann Machine</a> (DBM)</li>
+              <li><a href="https://en.wikipedia.org/wiki/Stacked_Auto-Encoders">Stacked Auto-Encoders</a></li>
+            </ul>
+          </li>
+          <li><strong>Other machine learning methods and problems</strong>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Anomaly_detection">Anomaly detection</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Association_rule_learning">Association rules</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Bias-variance_dilemma">Bias-variance dilemma</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Statistical_classification">Classification</a>
+                <ul>
+                  <li><a href="https://en.wikipedia.org/wiki/Multi-label_classification">Multi-label classification</a></li>
+                </ul>
+              </li>
+              <li><a href="https://en.wikipedia.org/wiki/Cluster_analysis">Clustering</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Data_Pre-processing">Data Pre-processing</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Empirical_risk_minimization">Empirical risk minimization</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Feature_engineering">Feature engineering</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Feature_learning">Feature learning</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Learning_to_rank">Learning to rank</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Occam_learning">Occam learning</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Online_machine_learning">Online machine learning</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/PAC_learning">PAC learning</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Regression_analysis">Regression</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Reinforcement_Learning">Reinforcement Learning</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Semi-supervised_learning">Semi-supervised learning</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Statistical_learning">Statistical learning</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Structured_prediction">Structured prediction</a>
+                <ul>
+                  <li><a href="https://en.wikipedia.org/wiki/Graphical_model">Graphical models</a>
+                    <ul>
+                      <li><a href="https://en.wikipedia.org/wiki/Bayesian_network">Bayesian network</a></li>
+                      <li><a href="https://en.wikipedia.org/wiki/Conditional_random_field">Conditional random field</a> (CRF)</li>
+                      <li><a href="https://en.wikipedia.org/wiki/Hidden_Markov_model">Hidden Markov model</a> (HMM)</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="https://en.wikipedia.org/wiki/Unsupervised_learning">Unsupervised learning</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/VC_theory">VC theory</a></li>
+            </ul>
+          </li>
+        </ul>
+        <p><br /></p>
+      </li>
     </ul>
   </li>
   <li>
@@ -225,7 +532,7 @@ How can we affect performance on the test set when we can observe only the train
 
         <p>This assumption enables us to describe the data-generating process with a probability distribution over a single example. The same distribution is then used to generate every train example and every test example.</p>
       </li>
-      <li>We call that shared underlying distribution the <strong>data-generating distribution</strong>, denoted <script type="math/tex">p_{\text {data }}</script></li>
+      <li>We call that shared underlying distribution the <strong>data-generating distribution</strong>, denoted \(p_{\text{data}}\)</li>
     </ul>
 
     <p>This probabilistic framework and the i.i.d. assumptions enable us to mathematically study the relationship between training error and test error.</p>
@@ -257,7 +564,7 @@ Under this process, the <strong>expected test error is greater than or equal to 
 <strong>Hypothesis Space:</strong> the set of functions that the learning algorithm is allowed to select as being the solution.</p>
 
     <p>Statistical learning theory provides various means of quantifying model capacity.Among these, the most well known is the <strong>Vapnik-Chervonenkis (VC) dimension</strong>.<br />
-<strong>The VC Dimension:</strong> is defined as being the largest possible value of <script type="math/tex">m</script> for which there exists a training set of <script type="math/tex">m</script> different <script type="math/tex">\mathbf{x}</script> points that the classifier can label arbitrarily.<br />
+<strong>The VC Dimension:</strong> is defined as being the largest possible value of \(m\) for which there exists a training set of \(m\) different \(\mathbf{x}\) points that the classifier can label arbitrarily.<br />
 It measure the <em><strong>capacity of a binary classifier</strong></em>.</p>
 
     <p>Quantifying the capacity of the model enables statistical learning theory to make quantitative predictions. The most important results in statistical learning theory show that the <em><strong>discrepancy between training error and generalization error is bounded from above by a quantity that grows as the model capacity grows but shrinks as the number of training examples increases</strong></em>.</p>
@@ -277,7 +584,7 @@ It measure the <em><strong>capacity of a binary classifier</strong></em>.</p>
     <p><strong>Regularization</strong> can be defined as any modification we make to a learning algorithm that is intended to reduce its generalization error but not its training error.</p>
 
     <p><strong>Example: Weight Decay</strong><br />
-It is a regularization form that adds the <script type="math/tex">L^2</script> norm of the <strong>weights</strong> to the cost function; allowing us to express preference for smaller weights. It is controlled by a hyperparameter <script type="math/tex">\lambda</script>.</p>
+It is a regularization form that adds the \(L^2\) norm of the <strong>weights</strong> to the cost function; allowing us to express preference for smaller weights. It is controlled by a hyperparameter \(\lambda\).</p>
     <p>$$J(\boldsymbol{w})=\mathrm{MSE}_ {\mathrm{train}}+\lambda \boldsymbol{w}^{\top} \boldsymbol{w}$$</p>
     <p>This gives us solutions that have a smaller slope, or that put weight on fewer of the features.</p>
 
@@ -286,26 +593,43 @@ It is a regularization form that adds the <script type="math/tex">L^2</script> n
 
     <p><br /></p>
   </li>
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents134">Point Estimation:</strong><br />
+Point estimation is the attempt to provide the single “best” prediction of some quantity of interest.  In general the quantity of interest can be a single parameter or a vector of parameters in some parametric model, such as the <em><strong>weights in linear regression</strong></em>, but it can also be a <em><strong>whole function</strong></em>.<br />
+<br /></p>
+  </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Estimators:</strong><br />
  A <strong>Point Estimator</strong> or <strong>statistic</strong> is any function of the data:
     <p>$$\hat{\boldsymbol{\theta}}_{m}=g\left(\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(m)}\right)$$</p>
-    <p>such that a good estimator is a function whose output is close to the true underlying <script type="math/tex">\theta</script> that generated the training data.</p>
+    <p>such that a good estimator is a function whose output is close to the true underlying \(\theta\) that generated the training data.</p>
     <blockquote>
-      <p>We assume that the true <script type="math/tex">\boldsymbol{\theta}</script> is fixed, and that <script type="math/tex">\hat{\boldsymbol{\theta}}</script> is a function of the data, which is drawn from a random process, making <script type="math/tex">\hat{\boldsymbol{\theta}}</script> a <strong>random variable</strong>.</p>
+      <p>We assume that the true \(\boldsymbol{\theta}\) is fixed, and that \(\hat{\boldsymbol{\theta}}\) is a function of the data, which is drawn from a random process, making \(\hat{\boldsymbol{\theta}}\) a <strong>random variable</strong>.</p>
     </blockquote>
 
     <p><strong>Function Estimation/Approximation</strong> refers to estimation of the relationship between <em>input</em> and <em>target data</em>.<br />
- I.E. We are trying to predict a variable <script type="math/tex">y</script> given an input vector <script type="math/tex">x</script>, and we assume that there is a function <script type="math/tex">f(x)</script> that describes the approximate relationship between <script type="math/tex">y</script> and <script type="math/tex">x</script>.<br />
- If we assume that: <script type="math/tex">y = f(x) + \epsilon</script>, where <script type="math/tex">\epsilon</script> is the part of <script type="math/tex">y</script> that is not predictable from <script type="math/tex">x</script>; then we are interested in approximating <script type="math/tex">f</script> with a model or estimate <script type="math/tex">\hat{f}</script>.</p>
+ I.E. We are trying to predict a variable \(y\) given an input vector \(x\), and we assume that there is a function \(f(x)\) that describes the approximate relationship between \(y\) and \(x\).<br />
+ If we assume that: \(y = f(x) + \epsilon\), where \(\epsilon\) is the part of \(y\) that is not predictable from \(x\); then we are interested in approximating \(f\) with a model or estimate \(\hat{f}\).</p>
     <blockquote>
-      <p>Function estimation is really just the same as estimating a parameter <script type="math/tex">\boldsymbol{\theta}</script>; the function estimator <script type="math/tex">\hat{f}</script> is simply a point estimator in function space.</p>
+      <p>Function estimation is really just the same as estimating a parameter \(\boldsymbol{\theta}\); the function estimator \(\hat{f}\) is simply a point estimator in function space.</p>
     </blockquote>
+
+    <p>Linear Regression and Polynomial Regression both illustrate scenarios that may be interpreted as either estimating a parameter \(\boldsymbol{w}\) or estimating a function \(f\) mapping from \(\boldsymbol{x}\) to \(y\).</p>
 
     <ul>
       <li><a href="https://www.youtube.com/embed/lr5WH-JVT5I" value="show" onclick="iframePopA(event)"><strong>Estimators as statistics and their probability distributions</strong></a>
  <a href="https://www.youtube.com/embed/lr5WH-JVT5I"></a>
         <div></div>
       </li>
+      <li><a href="https://deepai.org/machine-learning-glossary-and-terms/estimator">Estimators in ML</a></li>
+      <li><a href="https://towardsdatascience.com/plain-and-simple-estimators-d8d3f4c185c1">Plain and Simple Estimators (TF)</a></li>
+    </ul>
+
+    <p id="lst-p"><strong>Notes:</strong></p>
+    <ul>
+      <li>weights \(\boldsymbol{w}\) == parameters \(\theta\)</li>
+      <li>parameter/point estimation == function estimation
+  Linear Regression and Polynomial Regression both illustrate scenarios that may be interpreted as either estimating a parameter \(\boldsymbol{w}\) or estimating a function \(f\) mapping from \(\boldsymbol{x}\) to \(y\).</li>
+      <li>we can use the theory and tools for analyzing point estimators and apply them to function estimators (e.g. bias/var decomp etc.)</li>
     </ul>
 
     <p><br /></p>
@@ -313,21 +637,21 @@ It is a regularization form that adds the <script type="math/tex">L^2</script> n
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Properties of Estimators - Bias and Variance:</strong><br />
  The <strong>Bias</strong> of an estimator is:
     <p>$$ \operatorname{bias}\left(\hat{\boldsymbol{\theta}}_{m}\right)=\mathbb{E}\left(\hat{\boldsymbol{\theta}}_{m}\right)-\boldsymbol{\theta} $$</p>
-    <p>where the expectation is over the data (seen as samples from a random variable) and <script type="math/tex">\theta</script> is the true underlying value of <script type="math/tex">\theta</script> used to define the data-generating distribution.</p>
+    <p>where the expectation is over the data (seen as samples from a random variable) and \(\theta\) is the true underlying value of \(\theta\) used to define the data-generating distribution.</p>
     <ul>
-      <li><strong>Unbiased Estimators:</strong> An estimator <script type="math/tex">\hat{\boldsymbol{\theta}}_{m}</script> is said to be <strong>unbiased</strong> if <script type="math/tex">\operatorname{bias}\left(\hat{\boldsymbol{\theta}}_{m}\right)=\mathbf{0}</script>, which implies that <script type="math/tex">\mathbb{E}\left(\hat{\boldsymbol{\theta}}_{m}\right)=\boldsymbol{\theta}</script>.</li>
-      <li><strong>Asymptotically Unbiased Estimators:</strong> An estimator is said to be <strong>asymptotically unbiased</strong> if <script type="math/tex">\lim _{m \rightarrow \infty} \operatorname{bias}\left(\hat{\boldsymbol{\theta}}_{m}\right)=\mathbf{0},</script> which implies that <script type="math/tex">\lim _{m \rightarrow \infty} \mathbb{E}\left(\hat{\boldsymbol{\theta}}_{m}\right)=\boldsymbol{\theta}</script></li>
+      <li><strong>Unbiased Estimators:</strong> An estimator \(\hat{\boldsymbol{\theta}}_{m}\) is said to be <strong>unbiased</strong> if \(\operatorname{bias}\left(\hat{\boldsymbol{\theta}}_{m}\right)=\mathbf{0}\), which implies that \(\mathbb{E}\left(\hat{\boldsymbol{\theta}}_{m}\right)=\boldsymbol{\theta}\).</li>
+      <li><strong>Asymptotically Unbiased Estimators:</strong> An estimator is said to be <strong>asymptotically unbiased</strong> if \(\lim _{m \rightarrow \infty} \operatorname{bias}\left(\hat{\boldsymbol{\theta}}_{m}\right)=\mathbf{0},\) which implies that \(\lim _{m \rightarrow \infty} \mathbb{E}\left(\hat{\boldsymbol{\theta}}_{m}\right)=\boldsymbol{\theta}\)</li>
     </ul>
 
-    <p>The <strong>Variance</strong> of an estimator is a way to measure how much we expect the estimator to vary as a function of the data sample, defined, simply, as the variance over the training set random variable <script type="math/tex">\hat{\theta}</script>:</p>
+    <p>The <strong>Variance</strong> of an estimator is a way to measure how much we expect the estimator to vary as a function of the data sample, defined, simply, as the variance over the training set random variable \(\hat{\theta}\):</p>
     <p>$$ \operatorname{Var}(\hat{\theta}) $$</p>
 
-    <p>The <strong>Standard Error</strong> <script type="math/tex">\operatorname{SE}(\hat{\theta})</script>, of an estimator, is the square root of the variance.</p>
+    <p>The <strong>Standard Error</strong> \(\operatorname{SE}(\hat{\theta})\), of an estimator, is the square root of the variance.</p>
     <ul>
       <li>
         <p>E.g. <strong>The Standard Error of the (Sample) Mean:</strong><br />
-  <script type="math/tex">\operatorname{SE}\left(\hat{\mu}_{m}\right)=\sqrt{\operatorname{Var}\left[\frac{1}{m} \sum_{i=1}^{m} x^{(i)}\right]}=\frac{\sigma}{\sqrt{m}}</script><br />
-  Where <script type="math/tex">\sigma^2</script> is the true variance of the samples <script type="math/tex">x^i</script>.</p>
+  \(\operatorname{SE}\left(\hat{\mu}_{m}\right)=\sqrt{\operatorname{Var}\left[\frac{1}{m} \sum_{i=1}^{m} x^{(i)}\right]}=\frac{\sigma}{\sqrt{m}}\)<br />
+  Where \(\sigma^2\) is the true variance of the samples \(x^i\).</p>
 
         <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Derivation</button></p>
         <p hidden="">$$\begin{aligned} \operatorname{Var}\left[\overline{X}_{n}\right] &amp;=\operatorname{Var}\left[\frac{1}{n} \sum_{i=1}^{n} X_{i}\right] \\ &amp;=\frac{1}{n^{2}} \operatorname{Var}\left[\sum_{i=1}^{n} X_{i}\right] \\ &amp;=\frac{1}{n^{2}} \sum_{i=1}^{n} \operatorname{Var}\left[X_{i}\right] \\ &amp;=\frac{1}{n^{2}} \sum_{i=1}^{n} \sigma^{2} \\ &amp;=\frac{1}{n^{2}} n \sigma^{2}=\frac{\sigma^{2}}{n} \end{aligned}$$</p>
@@ -346,10 +670,10 @@ It is a regularization form that adds the <script type="math/tex">L^2</script> n
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Generalization Error from Standard Error (of the mean):</strong><br />
  We often estimate the <strong>generalization error</strong> by computing the <strong>sample mean</strong> of the error on the test set.<br />
  Taking advantage of the central limit theorem, which tells us that the mean will be approximately distributed with a normal distribution, we can use the standard error to compute the probability that the true expectation falls in any chosen interval.<br />
- For example, the 95 percent confidence interval centered on the mean <script type="math/tex">\hat{\mu}_ {m}</script> is:
+ For example, the 95 percent confidence interval centered on the mean \(\hat{\mu}_ {m}\) is:
     <p>$$\left(\hat{\mu}_{m}-1.96 \mathrm{SE}\left(\hat{\mu}_{m}\right), \hat{\mu}_{m}+1.96 \mathrm{SE}\left(\hat{\mu}_{m}\right)\right)$$</p>
-    <p>under the normal distribution with mean <script type="math/tex">\hat{\mu}_{m}</script> and variance <script type="math/tex">\mathrm{SE}\left(\hat{\mu}_{m}\right)^{2}</script>.<br />
- We say that algorithm <script type="math/tex">\boldsymbol{A}</script> is <strong>better than</strong> algorithm <script type="math/tex">\boldsymbol{B}</script> if the <em>upper bound</em> of the <script type="math/tex">95</script> percent confidence interval for the error of algorithm <script type="math/tex">\boldsymbol{A}</script> is <strong>less than</strong> the <em>lower bound</em> of the <script type="math/tex">95</script> percent confidence interval for the error of algorithm <script type="math/tex">\boldsymbol{B}</script>.</p>
+    <p>under the normal distribution with mean \(\hat{\mu}_{m}\) and variance \(\mathrm{SE}\left(\hat{\mu}_{m}\right)^{2}\).<br />
+ We say that algorithm \(\boldsymbol{A}\) is <strong>better than</strong> algorithm \(\boldsymbol{B}\) if the <em>upper bound</em> of the \(95\) percent confidence interval for the error of algorithm \(\boldsymbol{A}\) is <strong>less than</strong> the <em>lower bound</em> of the \(95\) percent confidence interval for the error of algorithm \(\boldsymbol{B}\).</p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">The Bias Variance Trade-off:</strong><br />
  Bias and variance measure two different sources of error in an estimator:
@@ -358,12 +682,12 @@ It is a regularization form that adds the <script type="math/tex">L^2</script> n
       <li><strong>Variance</strong>: provides a measure of the deviation from the expected estimator value that any particular sampling of the data is likely to cause</li>
     </ul>
 
-    <p><strong>Evaluating Models - Trading off Bias and Variance:</strong></p>
+    <p id="lst-p"><strong>Evaluating Models - Trading off Bias and Variance:</strong></p>
     <ul>
       <li>The most common way to negotiate this trade-off is to use <strong>cross-validation</strong></li>
       <li>Alternatively, we can also compare the <strong>mean squared error (MSE)</strong> of the estimates:
         <p>$$\begin{aligned} \mathrm{MSE} &amp;=\mathbb{E}\left[\left(\hat{\theta}_{m}-\theta\right)^{2}\right] \\ &amp;=\operatorname{Bias}\left(\hat{\theta}_{m}\right)^{2}+\operatorname{Var}\left(\hat{\theta}_{m}\right) \end{aligned}$$</p>
-        <p>The <strong>MSE</strong> measures the overall expected deviation — in a squared error sense — between the estimator and the true value of the parameter <script type="math/tex">\theta</script>.</p>
+        <p>The <strong>MSE</strong> measures the overall expected deviation — in a squared error sense — between the estimator and the true value of the parameter \(\theta\).</p>
       </li>
     </ul>
 
@@ -371,22 +695,34 @@ It is a regularization form that adds the <script type="math/tex">L^2</script> n
  <img src="/main_files/dl_book/1.png" alt="img" hidden="" /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Properties of Estimators - Consistency:</strong><br />
- <strong>Consistency</strong> is a property implying that as the number of data points <script type="math/tex">m</script> in our dataset increases, our point estimates converge to the true value of the corresponding parameters. Formally:
+ <strong>Consistency</strong> is a property implying that as the number of data points \(m\) in our dataset increases, our point estimates converge to the true value of the corresponding parameters. Formally:
     <p>$$\mathrm{plim}_{m \rightarrow \infty} \hat{\theta}_{m}=\theta$$</p>
     <p>Where:  <br />
- <script type="math/tex">{\text { The symbol plim indicates convergence in probability, meaning that for any } \epsilon>0,}</script></p>
-    <p>$${P\left(\vert\hat{\theta}_{m}-\theta \vert&gt;\epsilon\right) \rightarrow 0 \text { as } m \rightarrow \infty}$$</p>
+ \({\text { The symbol plim indicates convergence in probability, meaning that for any } \epsilon&gt;0,}\)</p>
+    <p>$${P\left(\vert\hat{\theta}_ {m}-\theta \vert&gt;\epsilon\right) \rightarrow 0 \text { as } m \rightarrow \infty}$$</p>
     <blockquote>
       <p>Sometimes referred to as <strong>Weak Consistency</strong></p>
     </blockquote>
 
-    <p><strong>Strong Consistency</strong> applies to <em><strong>almost sure convergence</strong></em> of <script type="math/tex">\hat{\theta}</script> to <script type="math/tex">\theta</script>.</p>
+    <p><strong>Strong Consistency</strong> applies to <em><strong>almost sure convergence</strong></em> of \(\hat{\theta}\) to \(\theta\).</p>
 
-    <p><strong>Consistency and Asymptotic Bias:</strong></p>
+    <p id="lst-p"><strong>Consistency and Asymptotic Bias:</strong></p>
     <ul>
       <li>Consistency ensures that the bias induced by the estimator diminishes as the number of data examples grows.</li>
-      <li>However, asymptotic unbiasedness does <strong>not</strong> imply consistency</li>
+      <li>However, asymptotic unbiasedness does <strong>not</strong> imply consistency
+        <ul>
+          <li>It is also useful to note that by Chebyshev’s inequality, if the variance tends to zero then asymptotic unbiasedness implies consistency <a href="https://math.stackexchange.com/questions/239146/consistency-and-asymptotically-unbiasedness">stex</a>.</li>
+        </ul>
+      </li>
     </ul>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>Consistency implies both unbiasedness and low variance and therefore, unbiasedness alone is not sufficient to imply consistency.</td>
+        </tr>
+      </tbody>
+    </table>
 
     <p><br /></p>
   </li>
@@ -394,24 +730,29 @@ It is a regularization form that adds the <script type="math/tex">L^2</script> n
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Maximum Likelihood Estimation (MLE):</strong><br />
  <strong>MLE</strong> is a method/principle from which we can derive specific functions that are <em><strong>good estimators</strong></em> for different models.</p>
 
-    <p>Let <script type="math/tex">\mathbb{X}=\left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(m)}\right\}</script> be a set of <script type="math/tex">m</script> examples drawn <em>independently</em> from the true but unknown data-generating distribution <script type="math/tex">p_{\text { data }}(\mathbf{x})</script>, and let <script type="math/tex">p_{\text { model }}(\mathbf{x} ; \boldsymbol{\theta})</script> be a <em>parametric</em> family of probability distributions over the same space indexed by <script type="math/tex">\boldsymbol{\theta}</script><sup id="fnref:4"><a href="#fn:4" class="footnote">1</a></sup>,<br />
- The Maximum Likelihood Estimator for <script type="math/tex">\boldsymbol{\theta}</script> is:</p>
-    <p>$$\begin{aligned} \boldsymbol{\theta}_{\mathrm{ML}} &amp;=\underset{\boldsymbol{\theta}}{\arg \max } p_{\text { model }}(\mathbb{X} ; \boldsymbol{\theta}) \\ &amp;=\underset{\boldsymbol{\theta}}{\arg \max } \prod_{i=1}^{m} p_{\text { model }}\left(\boldsymbol{x}^{(i)} ; \boldsymbol{\theta}\right) \end{aligned}$$</p>
-    <p>We take the <script type="math/tex">log</script> for <em>numerical stability</em>:</p>
-    <p>$$\boldsymbol{\theta}_{\mathrm{ML}}=\underset{\boldsymbol{\theta}}{\arg \max } \sum_{i=1}^{m} \log p_{\text { model }}\left(\boldsymbol{x}^{(i)} ; \boldsymbol{\theta}\right) \tag{5.58}$$</p>
-    <p>Because the <script type="math/tex">\text { arg max }</script> does not change when we rescale the cost function, we can divide by <script type="math/tex">m</script> to obtain a version of the criterion that is expressed as an <strong>expectation with respect to the empirical distribution <script type="math/tex">\hat{p}_ {\text { data }}</script></strong>  defined by the training data:</p>
-    <p>$$\boldsymbol{\theta}_{\mathrm{ML}}=\underset{\boldsymbol{\theta}}{\arg \max } \mathbb{E}_{\mathbf{x} \sim \hat{p} \text { data }} \log p_{\text { model }}(\boldsymbol{x} ; \boldsymbol{\theta}) \tag{5.59}$$</p>
+    <blockquote>
+      <p>Likelihood is the probability of the data given the parameters of the model</p>
+    </blockquote>
+
+    <p>Let \(\mathbb{X}=\left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(m)}\right\}\) be a set of \(m\) examples drawn <em>independently</em> from the true but unknown data-generating distribution \(p_{\text{data}}(\mathbf{x})\), and let \(p_{\text{model}}(\mathbf{x} ; \boldsymbol{\theta})\) be a <em>parametric</em> family of probability distributions over the same space indexed by \(\boldsymbol{\theta}\)<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">1</a></sup>,<br />
+ The Maximum Likelihood Estimator for \(\boldsymbol{\theta}\) is:</p>
+    <p>$$\begin{aligned} \boldsymbol{\theta}_{\mathrm{ML}} &amp;=\underset{\boldsymbol{\theta}}{\arg \max } \: p_{\text{model}}(\mathbb{X} ; \boldsymbol{\theta}) \\ &amp;=\underset{\boldsymbol{\theta}}{\arg \max } \prod_{i=1}^{m} p_{\text{model}}\left(\boldsymbol{x}^{(i)} ; \boldsymbol{\theta}\right) \end{aligned}$$</p>
+    <p>We take the \(log\) for <em>numerical stability</em>:</p>
+    <p>$$\boldsymbol{\theta}_{\mathrm{ML}}=\underset{\boldsymbol{\theta}}{\arg \max } \sum_{i=1}^{m} \log p_{\text{model}}\left(\boldsymbol{x}^{(i)} ; \boldsymbol{\theta}\right) \tag{5.58}$$</p>
+    <p>Because the \(\text { arg max }\) does not change when we rescale the cost function, we can divide by \(m\) to obtain a version of the criterion that is expressed as an <strong>expectation with respect to the empirical distribution \(\hat{p}_ {\text{data}}\)</strong>  defined by the training data:</p>
+    <p>$$\boldsymbol{\theta}_{\mathrm{ML}}=\underset{\boldsymbol{\theta}}{\arg \max } \: 
+     \underset{\mathbf{x} \sim \hat{p}_\text{data}}{\mathbb{E}} [\log p_{\text{model}}(\boldsymbol{x} ; \boldsymbol{\theta})] \tag{5.59}$$</p>
 
     <p><strong style="color: red">MLE as Minimizing KL-Divergence between the Empirical dist. and the model dist.:</strong><br />
- We can interpret maximum likelihood estimation as <em>minimizing the dissimilarity</em> between the <strong>empirical distribution <script type="math/tex">\hat{p}_ {\text { data }}</script></strong>, defined by the training set, and the <strong>model distribution</strong>, with the degree of dissimilarity between the two measured by the <strong>KL divergence</strong>.</p>
+ We can interpret maximum likelihood estimation as <em>minimizing the dissimilarity</em> between the <strong>empirical distribution \(\hat{p}_ {\text{data}}\)</strong>, defined by the training set, and the <strong>model distribution</strong>, with the degree of dissimilarity between the two measured by the <strong>KL divergence</strong>.</p>
     <ul>
       <li>The <strong>KL-divergence</strong> is given by:
-        <p>$$D_{\mathrm{KL}}\left(\hat{p}_{\text { data }} \| p_{\text { model }}\right)=\mathbb{E}_{\mathbf{x} \sim \hat{p}_{\text { data }}}\left[\log \hat{p}_{\text { data }}(\boldsymbol{x})-\log p_{\text { model }}(\boldsymbol{x})\right] \tag{5.60}$$</p>
+        <p>$$D_{\mathrm{KL}}\left(\hat{p}_{\text{data}} \| p_{\text{model}}\right)=\mathbb{E}_{\mathbf{x} \sim \hat{p}_{\text{data}}}\left[\log \hat{p}_{\text{data}}(\boldsymbol{x})-\log p_{\text{model}}(\boldsymbol{x})\right] \tag{5.60}$$</p>
         <p>The term on the left is a function only of the data-generating process, not the model. This means when we train the model to minimize the KL divergence, we need only minimize:</p>
       </li>
     </ul>
-    <p>$$-\mathbb{E}_{\mathbf{x} \sim \hat{p}_{\text { data }}}\left[\log p_{\text { model }}(\boldsymbol{x})\right] \tag{5.61}$$</p>
-    <p>which is of course the same as the <em>maximization</em> in equation <script type="math/tex">5.59</script>.</p>
+    <p>$$-\mathbb{E}_{\mathbf{x} \sim \hat{p}_{\text{data}}}\left[\log p_{\text{model}}(\boldsymbol{x})\right] \tag{5.61}$$</p>
+    <p>which is of course the same as the <em>maximization</em> in equation \(5.59\).</p>
 
     <p>Minimizing this KL-divergence corresponds exactly to <strong>minimizing the cross-entropy between the distributions</strong>.</p>
     <blockquote>
@@ -419,30 +760,30 @@ It is a regularization form that adds the <script type="math/tex">L^2</script> n
 E.g. <strong>MSE</strong> is the <em>cross-entropy</em> between the <strong>empirical distribution</strong> and a <strong>Gaussian model</strong>.</p>
     </blockquote>
 
-    <p>We can thus see maximum likelihood as an attempt to <em>make the model distribution match the empirical distribution <script type="math/tex">\hat{p} _ {\text { data }}</script></em><sup id="fnref:5"><a href="#fn:5" class="footnote">2</a></sup>.</p>
+    <p>We can thus see maximum likelihood as an attempt to <em>make the model distribution match the empirical distribution \(\hat{p} _ {\text{data}}\)</em><sup id="fnref:5" role="doc-noteref"><a href="#fn:5" class="footnote" rel="footnote">2</a></sup>.</p>
 
-    <p>Maximum likelihood thus becomes minimization of the negative log-likelihood(NLL), or equivalently, minimization of the cross-entropy<sup id="fnref:6"><a href="#fn:6" class="footnote">3</a></sup>.</p>
+    <p>Maximum likelihood thus becomes minimization of the negative log-likelihood(NLL), or equivalently, minimization of the cross-entropy<sup id="fnref:6" role="doc-noteref"><a href="#fn:6" class="footnote" rel="footnote">3</a></sup>.</p>
 
     <ul>
       <li><a href="http://www.jessicayung.com/maximum-likelihood-as-minimising-kl-divergence/">MLE as Minimizing KL-div</a></li>
     </ul>
 
     <p><strong style="color: red">Conditional Log-Likelihood (MLE for Supervised Learning):</strong><br />
- The maximum likelihood estimator can readily be generalized to estimate a <em>conditional probability <script type="math/tex">P(\mathbf{y} | \mathbf{x} ; \boldsymbol{\theta})</script></em> in order to predict <script type="math/tex">\mathbf{y}</script>  given <script type="math/tex">\mathbf{x}</script>. If <script type="math/tex">X</script> represents all our inputs and <script type="math/tex">Y</script> all our observed targets, then the conditional maximum likelihood estimator is:</p>
-    <p>$$\boldsymbol{\theta}_ {\mathrm{ML}}=\underset{\boldsymbol{\theta}}{\arg \max } P(\boldsymbol{Y} | \boldsymbol{X} ; \boldsymbol{\theta}) \tag{5.62}$$</p>
+ The maximum likelihood estimator can readily be generalized to estimate a <em>conditional probability \(P(\mathbf{y} | \mathbf{x} ; \boldsymbol{\theta})\)</em> in order to predict \(\mathbf{y}\)  given \(\mathbf{x}\). If \(X\) represents all our inputs and \(Y\) all our observed targets, then the conditional maximum likelihood estimator is:</p>
+    <p>$$\boldsymbol{\theta}_ {\mathrm{ML}}=\underset{\boldsymbol{\theta}}{\arg \max } \: P(\boldsymbol{Y} | \boldsymbol{X} ; \boldsymbol{\theta}) \tag{5.62}$$</p>
     <p>and the log-likelihood estimator is:</p>
     <p>$$\boldsymbol{\theta}_{\mathrm{ML}}=\underset{\boldsymbol{\theta}}{\arg \max } \sum_{i=1}^{m} \log P\left(\boldsymbol{y}^{(i)} | \boldsymbol{x}^{(i)} ; \boldsymbol{\theta}\right) \tag{5.63}$$</p>
 
     <p><strong style="color: red">Properties of Maximum Likelihood Estimator:</strong><br />
- The main appeal of the maximum likelihood estimator is that it can be shown to be the <em>best estimator asymptotically</em>, as the number of examples <script type="math/tex">m \rightarrow \infty</script>, in terms of its <em>rate of convergence</em> as <script type="math/tex">m</script> increases.</p>
+ The main appeal of the maximum likelihood estimator is that it can be shown to be the <em>best estimator asymptotically</em>, as the number of examples \(m \rightarrow \infty\), in terms of its <em>rate of convergence</em> as \(m\) increases.</p>
     <ul>
       <li><strong>Consistency</strong>: as the number of training examples approaches infinity, the maximum likelihood estimate of a parameter converges to the true value of the parameter, under the following conditions:
         <ul>
-          <li>The true distribution <script type="math/tex">p_{\text { data }}</script> must lie within the model family <script type="math/tex">p_{\text { model }}(\cdot ; \boldsymbol{\theta})</script>. Otherwise, no estimator can recover <script type="math/tex">p_{\text { data }}</script>.</li>
-          <li>The true distribution <script type="math/tex">p_{\text { data }}</script> must correspond to exactly one value of <script type="math/tex">\boldsymbol{\theta}</script>. Otherwise, maximum likelihood can recover the correct <script type="math/tex">p_{\text { data }}</script> but will not be able to determine which value of <script type="math/tex">\boldsymbol{\theta}</script> was used by the data-generating process.</li>
+          <li>The true distribution \(p_{\text{data}}\) must lie within the model family \(p_{\text{model}}(\cdot ; \boldsymbol{\theta})\). Otherwise, no estimator can recover \(p_{\text{data}}\).</li>
+          <li>The true distribution \(p_{\text{data}}\) must correspond to exactly one value of \(\boldsymbol{\theta}\). Otherwise, maximum likelihood can recover the correct \(p_{\text{data}}\) but will not be able to determine which value of \(\boldsymbol{\theta}\) was used by the data-generating process.</li>
         </ul>
       </li>
-      <li><strong>Statistical Efficiency</strong>: meaning that one consistent estimator may obtain lower generalization error for a fixed number of samples <script type="math/tex">m</script>, or equivalently, may require fewer examples to obtain a fixed level of <em>generalization error</em>.<sup id="fnref:7"><a href="#fn:7" class="footnote">4</a></sup><br />
+      <li><strong>Statistical Efficiency</strong>: meaning that one consistent estimator may obtain lower generalization error for a fixed number of samples \(m\), or equivalently, may require fewer examples to obtain a fixed level of <em>generalization error</em>.<sup id="fnref:7" role="doc-noteref"><a href="#fn:7" class="footnote" rel="footnote">4</a></sup><br />
   The <strong>Cramér-Rao lower bound</strong> shows that <em>no consistent estimator has a lower MSE than the maximum likelihood estimator.</em><br />
  <br /></li>
     </ul>
@@ -454,10 +795,10 @@ E.g. <strong>MSE</strong> is the <em>cross-entropy</em> between the <strong>empi
     <p>Many regularized estimation strategies, such as maximum likelihood learning regularized with weight decay, can be interpreted as making the MAP approximation to Bayesian inference.</p>
     <blockquote>
       <p>E.g. MAP Bayesian inference with a <strong>Gaussian prior</strong> on the weights corresponds to <strong>weight decay</strong> Regularization:<br />
-     consider a linear regression model with a Gaussian prior on the weights <script type="math/tex">\mathbf{w}</script>. If this prior is given by <script type="math/tex">\mathcal{N}\left(\boldsymbol{w} ; \mathbf{0}, \frac{1}{\lambda} \boldsymbol{I}^{2}\right)</script>, then the log-prior term in equation <script type="math/tex">5.79</script> is <em><strong>proportional</strong></em> to the familiar <script type="math/tex">\lambda w^{T} w</script> weight decay penalty, plus a constant.</p>
+     consider a linear regression model with a Gaussian prior on the weights \(\mathbf{w}\). If this prior is given by \(\mathcal{N}\left(\boldsymbol{w} ; \mathbf{0}, \frac{1}{\lambda} \boldsymbol{I}^{2}\right)\), then the log-prior term in equation \(5.79\) is <em><strong>proportional</strong></em> to the familiar \(\lambda w^{T} w\) weight decay penalty, plus a constant.</p>
     </blockquote>
 
-    <p>This view applies when the regularization consists of adding an extra term to the objective function that corresponds to <script type="math/tex">\log p(\boldsymbol{\theta})</script> (i.e. logarithm of a probability distribution).</p>
+    <p>This view applies when the regularization consists of adding an extra term to the objective function that corresponds to \(\log p(\boldsymbol{\theta})\) (i.e. logarithm of a probability distribution).</p>
   </li>
 </ol>
 
@@ -467,13 +808,13 @@ E.g. <strong>MSE</strong> is the <em>cross-entropy</em> between the <strong>empi
 
 <ol>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents20">Derivative:</strong><br />
- The derivative of a function is the amount that the value of a function changes when the input changes by an <script type="math/tex">\epsilon</script> amount:
+ The derivative of a function is the amount that the value of a function changes when the input changes by an \(\epsilon\) amount:
     <p>$$f'(a)=\lim_{h\to 0}{\frac {f(a+h)-f(a)}{h}}. \\
  \text{i.e. } f(x + \epsilon)\approx f(x)+\epsilon f'(x)
  $$</p>
 
     <p><strong>The Chain Rule</strong> is a way to compute the derivative of <em>composite functions</em>.<br />
- If <script type="math/tex">y = f(x)</script> and <script type="math/tex">z = g(y)</script>:</p>
+ If \(y = f(x)\) and \(z = g(y)\):</p>
     <p>$$\dfrac{\partial z}{\partial x} = \dfrac{\partial z}{\partial y} \dfrac{\partial y}{\partial x}$$</p>
   </li>
   <li>
@@ -481,47 +822,47 @@ E.g. <strong>MSE</strong> is the <em>cross-entropy</em> between the <strong>empi
  Gradients generalize derivatives to <strong><em>scalar functions</em></strong> of several variables<br />
  <img src="/main_files/math/calc/1.png" alt="Gradient" width="80%" /></p>
 
-    <p><strong>Property:</strong> the gradient of a function <script type="math/tex">\nabla f(x)</script> points in the direction of <strong>steepest ascent</strong> from <script type="math/tex">x</script>.<br />
+    <p><strong>Property:</strong> the gradient of a function \(\nabla f(x)\) points in the direction of <strong>steepest ascent</strong> from \(x\).<br />
  <br /></p>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">The Jacobian: (Vector in, Vector out)</strong></dt>
-      <dd>The <strong>Jacobian</strong> of <script type="math/tex">f: \mathbb{R}^n \rightarrow \mathbb{R}^m</script> is a matrix of <em>first-order partial derivatives</em> of a <strong><em>vector-valued function</em></strong>:</dd>
+      <dd>The <strong>Jacobian</strong> of \(f: \mathbb{R}^n \rightarrow \mathbb{R}^m\) is a matrix of <em>first-order partial derivatives</em> of a <strong><em>vector-valued function</em></strong>:</dd>
       <dd><img src="/main_files/math/calc/2.png" alt="Jacobian" width="80%" /></dd>
       <dd><strong>The Chain Rule:</strong><br />
- Let <script type="math/tex">f : \mathbb{R}^N \rightarrow \mathbb{R}^M</script> and <script type="math/tex">g : \mathbb{R}^M \rightarrow \mathbb{R}^ K</script>; and let  <script type="math/tex">x \in \mathbb{R}^N, y \in \mathbb{R}^M</script>, and <script type="math/tex">z \in \mathbb{R}^K</script> with <script type="math/tex">y = f(x)</script> and <script type="math/tex">z = g(y)</script>:</dd>
+ Let \(f : \mathbb{R}^N \rightarrow \mathbb{R}^M\) and \(g : \mathbb{R}^M \rightarrow \mathbb{R}^ K\); and let  \(x \in \mathbb{R}^N, y \in \mathbb{R}^M\), and \(z \in \mathbb{R}^K\) with \(y = f(x)\) and \(z = g(y)\):</dd>
       <dd>
-        <script type="math/tex; mode=display">\dfrac{\partial z}{\partial x} = \dfrac{\partial z}{\partial y} \dfrac{\partial y}{\partial x}</script>
+\[\dfrac{\partial z}{\partial x} = \dfrac{\partial z}{\partial y} \dfrac{\partial y}{\partial x}\]
       </dd>
-      <dd>where, <script type="math/tex">\dfrac{\partial z}{\partial y} \in \mathbb{R}^{K \times M}</script> matrix, <script type="math/tex">\dfrac{\partial y}{\partial x} \in \mathbb{R}^{M \times N}</script> matrix, and <script type="math/tex">\dfrac{\partial z}{\partial x} \in \mathbb{R}^{K \times N}</script>  matrix;<br />
- the multiplication of <script type="math/tex">\dfrac{\partial z}{\partial y}</script>  and <script type="math/tex">\dfrac{\partial y}{\partial x}</script> is a matrix multiplication.</dd>
+      <dd>where, \(\dfrac{\partial z}{\partial y} \in \mathbb{R}^{K \times M}\) matrix, \(\dfrac{\partial y}{\partial x} \in \mathbb{R}^{M \times N}\) matrix, and \(\dfrac{\partial z}{\partial x} \in \mathbb{R}^{K \times N}\)  matrix;<br />
+ the multiplication of \(\dfrac{\partial z}{\partial y}\)  and \(\dfrac{\partial y}{\partial x}\) is a matrix multiplication.</dd>
     </dl>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">The Generalized Jacobian: (Tensor in, Tensor out)</strong></dt>
       <dd><strong>A Tensor</strong> is a D-dimensional grid of number.</dd>
-      <dd>Suppose that <script type="math/tex">f: \mathbb{R}^{N_1 \times \cdots \times N_{D_x}} \rightarrow \mathbb{R}^{M_1 \times \cdots \times M_{D_y}}</script>.<br />
- If <script type="math/tex">y = f(x)</script> then the derivative <script type="math/tex">\dfrac{\partial y}{\partial x}</script> is a <strong>generalized Jacobian</strong> - an object with shape:</dd>
+      <dd>Suppose that \(f: \mathbb{R}^{N_1 \times \cdots \times N_{D_x}} \rightarrow \mathbb{R}^{M_1 \times \cdots \times M_{D_y}}\).<br />
+ If \(y = f(x)\) then the derivative \(\dfrac{\partial y}{\partial x}\) is a <strong>generalized Jacobian</strong> - an object with shape:</dd>
       <dd>
-        <script type="math/tex; mode=display">(M_1 \times \cdots \times M_{D_y}) \times (N_1 \times \cdots \times N_{D_x})</script>
+\[(M_1 \times \cdots \times M_{D_y}) \times (N_1 \times \cdots \times N_{D_x})\]
       </dd>
       <dd>
         <blockquote>
-          <p>we can think of the generalized Jacobian as generalization of a matrix, where each “row” has the same shape as <script type="math/tex">y</script>  and each “column” has the same shape as <script type="math/tex">x</script>.</p>
+          <p>we can think of the generalized Jacobian as generalization of a matrix, where each “row” has the same shape as \(y\)  and each “column” has the same shape as \(x\).</p>
         </blockquote>
       </dd>
-      <dd>Just like the standard Jacobian, the generalized Jacobian tells us the relative rates of change between all elements of <script type="math/tex">x</script>  and all elements of <script type="math/tex">y</script>:</dd>
+      <dd>Just like the standard Jacobian, the generalized Jacobian tells us the relative rates of change between all elements of \(x\)  and all elements of \(y\):</dd>
       <dd>
-        <script type="math/tex; mode=display">(\dfrac{\partial y}{\partial x})_{i,j} = \dfrac{\partial y_i}{\partial x_j} \in \mathbb{R}</script>
+\[(\dfrac{\partial y}{\partial x})_{i,j} = \dfrac{\partial y_i}{\partial x_j} \in \mathbb{R}\]
       </dd>
-      <dd>Just as the derivative, the generalized Jacobian gives us the relative change in <script type="math/tex">y</script> given a small change in <script type="math/tex">x</script>:</dd>
+      <dd>Just as the derivative, the generalized Jacobian gives us the relative change in \(y\) given a small change in \(x\):</dd>
       <dd>
-        <script type="math/tex; mode=display">f(x + \delta x)\approx f(x)+ f'(x) \delta x = y + \dfrac{\partial y}{\partial x}\delta x</script>
+\[f(x + \delta x)\approx f(x)+ f'(x) \delta x = y + \dfrac{\partial y}{\partial x}\delta x\]
       </dd>
-      <dd>where now, <script type="math/tex">\delta x</script> is a tensor in <script type="math/tex">\mathbb{R}{N_1 \cdots N_{d_x}}</script> and <script type="math/tex">\dfrac{\partial y}{\partial x}</script> is a generalized matrix in <script type="math/tex">\mathbb{R}^{(M_1 \times \cdots \times M_{D_y}) \times (N_1 \times \cdots \times N_{D_x})}</script>.<br />
- The product <script type="math/tex">\dfrac{\partial y_i}{\partial x_j} \delta x</script> is, therefore, a <strong><em>generalized matrix-vector multiply</em></strong>, which results in a tensor in <script type="math/tex">\mathbb{R}^{M_1 \times \cdots \times M_{D_y}}</script>.</dd>
+      <dd>where now, \(\delta x\) is a tensor in \(\mathbb{R}{N_1 \cdots N_{d_x}}\) and \(\dfrac{\partial y}{\partial x}\) is a generalized matrix in \(\mathbb{R}^{(M_1 \times \cdots \times M_{D_y}) \times (N_1 \times \cdots \times N_{D_x})}\).<br />
+ The product \(\dfrac{\partial y_i}{\partial x_j} \delta x\) is, therefore, a <strong><em>generalized matrix-vector multiply</em></strong>, which results in a tensor in \(\mathbb{R}^{M_1 \times \cdots \times M_{D_y}}\).</dd>
       <dd>The <strong>generalized matrix-vector multiply</strong> follows the same algebraic rules as a traditional matrix-vector multiply:</dd>
       <dd><img src="/main_files/math/calc/4.png" alt="matrix-vector mult" width="80%" /></dd>
       <dd><img src="/main_files/math/calc/5.png" alt="matrix-vector mult-2" width="100%" /></dd>
@@ -532,7 +873,7 @@ E.g. <strong>MSE</strong> is the <em>cross-entropy</em> between the <strong>empi
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">The Hessian:</strong></dt>
-      <dd>The <strong>Hessian</strong> Matrix of a <em>scalar function</em> <script type="math/tex">f: \mathbb{R}^d \rightarrow \mathbb{R}</script> is a matric of <em>second-order partial derivatives</em>:</dd>
+      <dd>The <strong>Hessian</strong> Matrix of a <em>scalar function</em> \(f: \mathbb{R}^d \rightarrow \mathbb{R}\) is a matric of <em>second-order partial derivatives</em>:</dd>
       <dd><img src="/main_files/math/calc/3.png" alt="Hessian" width="80%" /></dd>
       <dd><strong>Properties:</strong>
         <ul>
@@ -542,7 +883,7 @@ E.g. <strong>MSE</strong> is the <em>cross-entropy</em> between the <strong>empi
             </blockquote>
           </li>
           <li>The Hessian is used in some optimization algorithms such as Newton’s method</li>
-          <li>It is expensive to calculate but can drastically reduce the number of iterations needed to converge to a local minimum by providing information about the curvature of <script type="math/tex">f</script></li>
+          <li>It is expensive to calculate but can drastically reduce the number of iterations needed to converge to a local minimum by providing information about the curvature of \(f\)</li>
         </ul>
       </dd>
     </dl>
@@ -552,25 +893,33 @@ E.g. <strong>MSE</strong> is the <em>cross-entropy</em> between the <strong>empi
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Matrix Calculus:</strong></dt>
       <dd><strong>Important Identities:</strong></dd>
       <dd>
-        <script type="math/tex; mode=display">{\frac  {\partial {\mathbf  {a}}^{\top }{\mathbf  {x}}}{\partial {\mathbf  {x}}}}={\frac  {\partial {\mathbf  {x}}^{\top }{\mathbf  {a}}}{\partial {\mathbf  {x}}}}= a \\ 
+\[{\frac  {\partial {\mathbf  {a}}^{\top }{\mathbf  {x}}}{\partial {\mathbf  {x}}}}={\frac  {\partial {\mathbf  {x}}^{\top }{\mathbf  {a}}}{\partial {\mathbf  {x}}}}= a \\ 
  {\frac  {\partial {\mathbf  {x}}^{\top }{\mathbf  {A}}{\mathbf  {x}}}{\partial {\mathbf  {x}}}}=  ({\mathbf  {A}}+{\mathbf  {A}}^{\top }){\mathbf  {x}} \\ 
- {\frac  {\partial {\mathbf  {x}}^{\top }{\mathbf  {A}}{\mathbf  {x}}}{\partial {\mathbf  {x}}}}=  2{\mathbf  {A}}{\mathbf  {x}} \:\:\:\:\: \text{[Symmetric } A\text{]}</script>
+ {\frac  {\partial {\mathbf  {x}}^{\top }{\mathbf  {A}}{\mathbf  {x}}}{\partial {\mathbf  {x}}}}=  2{\mathbf  {A}}{\mathbf  {x}} \:\:\:\:\: \text{[Symmetric } A\text{]}\]
       </dd>
       <dd><a href="https://en.wikipedia.org/wiki/Matrix_calculus">Identities</a></dd>
       <dd><strong>The Product Rule:</strong></dd>
       <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-{\displaystyle {\begin{aligned}\nabla (\mathbf {A} \cdot \mathbf {B} )&=(\mathbf {A} \cdot \nabla )\mathbf {B} +(\mathbf {B} \cdot \nabla )\mathbf {A} +\mathbf {A} \times (\nabla \times \mathbf {B} )+\mathbf {B} \times (\nabla \times \mathbf {A} )\\&=\mathbf {J} _{\mathbf {A} }^{\mathrm {T} }\mathbf {B} +\mathbf {J}_{\mathbf {B} }^{\mathrm {T} }\mathbf {A} \\&=\nabla \mathbf {A} \cdot \mathbf {B} +\nabla \mathbf {B} \cdot \mathbf {A} \ \end{aligned}}}\\ 
+\[{\displaystyle {\begin{aligned}\nabla (\mathbf {A} \cdot \mathbf {B} )&amp;=(\mathbf {A} \cdot \nabla )\mathbf {B} +(\mathbf {B} \cdot \nabla )\mathbf {A} +\mathbf {A} \times (\nabla \times \mathbf {B} )+\mathbf {B} \times (\nabla \times \mathbf {A} )\\&amp;=\mathbf {J} _{\mathbf {A} }^{\mathrm {T} }\mathbf {B} +\mathbf {J}_{\mathbf {B} }^{\mathrm {T} }\mathbf {A} \\&amp;=\nabla \mathbf {A} \cdot \mathbf {B} +\nabla \mathbf {B} \cdot \mathbf {A} \ \end{aligned}}}\\ 
  \implies \\ 
- \nabla (fg) = (f')^T g + (g')^T f %]]></script>
+ \nabla (fg) = (f')^T g + (g')^T f\]
       </dd>
-      <dd>Thus, we set our function <script type="math/tex">h(x) = \langle f(x), g(x) \rangle = f(x)^T g(x)</script>; then,</dd>
+      <dd>Thus, we set our function \(h(x) = \langle f(x), g(x) \rangle = f(x)^T g(x)\); then,</dd>
       <dd>
-        <script type="math/tex; mode=display">\nabla h(x) = f'(x)^T g(x) + g'(x)^T f(x).</script>
+\[\nabla h(x) = f'(x)^T g(x) + g'(x)^T f(x).\]
       </dd>
     </dl>
   </li>
 </ol>
+
+<dl>
+  <dt>The answer to the product rule is as follows:</dt>
+  <dd>\(\nabla (f^Tg) = f'g + g'f\)<br />
+or</dd>
+  <dd>
+\[\nabla (x^TAx) = \nabla (x)^T(Ax)  =  (x)'(Ax) + (Ax)'x = Ax + A^Tx = (A+A^T)x\]
+  </dd>
+</dl>
 
 <!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}
 
@@ -594,7 +943,7 @@ E.g. <strong>MSE</strong> is the <em>cross-entropy</em> between the <strong>empi
   <button class="showText" value="show" onclick="showTextPopHide(event);">Capacity and Bias/Variance</button>
   <img src="/main_files/dl_book/2.png" alt="img" hidden="" />
         <ul>
-          <li><strong>Statistical Challenge:</strong> the number of possible configurations of <script type="math/tex">x</script> is much larger than the number of training examples</li>
+          <li><strong>Statistical Challenge:</strong> the number of possible configurations of \(x\) is much larger than the number of training examples</li>
         </ul>
       </li>
       <li><a href="/concepts_#bodyContents621">Further Reading (Concepts)</a></li>
@@ -611,24 +960,24 @@ E.g. <strong>MSE</strong> is the <em>cross-entropy</em> between the <strong>empi
     </ul>
 
     <p><strong>The Local Constancy (Smoothness) Prior:</strong> states that the function we learn should not change very much within a small region.<br />
- Mathematically, traditional ML methods are designed to encourage the learning process to learn a function <script type="math/tex">f^\ast</script> that satisfies the condition:<br />
- <script type="math/tex">\:\:\:\:\:\:\:</script> <script type="math/tex">\:\:\:\:\:\:\:</script> <script type="math/tex">f^{*}(\boldsymbol{x}) \approx f^{*}(\boldsymbol{x}+\epsilon)</script><br />
- for most configurations <script type="math/tex">x</script> and small change <script type="math/tex">\epsilon</script>.</p>
+ Mathematically, traditional ML methods are designed to encourage the learning process to learn a function \(f^\ast\) that satisfies the condition:<br />
+ \(\:\:\:\:\:\:\:\) \(\:\:\:\:\:\:\:\) \(f^{*}(\boldsymbol{x}) \approx f^{*}(\boldsymbol{x}+\epsilon)\)<br />
+ for most configurations \(x\) and small change \(\epsilon\).</p>
     <ul>
       <li><button class="showText" value="show" onclick="showTextPopHide(event);">Example: K-Means</button>
   <img src="/main_files/dl_book/7.png" alt="img" hidden="" /></li>
     </ul>
 
-    <p>A <a href="/concepts_#bodyContents60"><strong>Local Kernel</strong></a> can be thought of as a similarity function that performs template matching, by measuring how closely a test example <script type="math/tex">x</script> resembles each training example <script type="math/tex">x^{(i)}</script>.<br />
+    <p>A <a href="/concepts_#bodyContents60"><strong>Local Kernel</strong></a> can be thought of as a similarity function that performs template matching, by measuring how closely a test example \(x\) resembles each training example \(x^{(i)}\).<br />
  Much of the modern motivation for Deep Learning is derived from studying the limitations of local template matching and how deep models are able to succeed in cases where local template matching fails <em>(Bengio et al., 2006b)</em>.</p>
     <ul>
       <li><a href="https://pdfs.semanticscholar.org/9bfc/f812b249d570823c6a0dff4a4781a40524d1.pdf">The Curse of Dimensionality for Local Kernel Machines (paper!)</a></li>
     </ul>
 
     <p><button class="showText" value="show" onclick="showTextPopHide(event);">Example: Decision Trees</button>
- <em hidden="">Decision trees also suffer from the limitations of exclusively smoothness-based learning, because they break the input space into as many regions as there are leaves and use a separate parameter (or sometimes many parameters for extensions of decision trees) in each region. If the target function requires a tree with at least <script type="math/tex">n</script> leaves to be represented accurately, then at least <script type="math/tex">n</script> training examples are required to fit the tree. A multiple of <script type="math/tex">n</script> is needed to achieve some level of statistical confidence in the predicted output.</em></p>
+ <em hidden="">Decision trees also suffer from the limitations of exclusively smoothness-based learning, because they break the input space into as many regions as there are leaves and use a separate parameter (or sometimes many parameters for extensions of decision trees) in each region. If the target function requires a tree with at least \(n\) leaves to be represented accurately, then at least \(n\) training examples are required to fit the tree. A multiple of \(n\) is needed to achieve some level of statistical confidence in the predicted output.</em></p>
 
-    <p>In general, to distinguish <script type="math/tex">\mathcal{O}(k)</script> regions in input space, all these methods require <script type="math/tex">\mathcal{O}(k)</script> examples. Typically there are <script type="math/tex">\mathcal{O}(k)</script> parameters, with <script type="math/tex">\mathcal{O}(1)</script> parameters associated with each of the <script type="math/tex">\mathcal{O}(k)</script> regions.</p>
+    <p>In general, to distinguish \(\mathcal{O}(k)\) regions in input space, all these methods require \(\mathcal{O}(k)\) examples. Typically there are \(\mathcal{O}(k)\) parameters, with \(\mathcal{O}(1)\) parameters associated with each of the \(\mathcal{O}(k)\) regions.</p>
 
     <p id="lst-p"><strong>Key Takeaways:</strong></p>
     <ul>
@@ -637,7 +986,7 @@ E.g. <strong>MSE</strong> is the <em>cross-entropy</em> between the <strong>empi
   The smoothness assumption and the associated nonparametric learning algorithms work extremely well as long as there are enough examples for the learning algorithm to observe high points on most peaks and low points on most valleys of the true underlying function to be learned.</li>
       <li><em><strong>Is it possible to represent a complicated function efficiently? and if it is complicated, Is it possible for the estimated function to generalize well to new inputs?</strong></em><br />
   Yes.<br />
-  The key insight is that a very large number of regions, such as <script type="math/tex">\mathcal{O}(2^k)</script>, can be defined with <script type="math/tex">\mathcal{O}(k)</script> examples, so long as we <span style="color: purple">introduce some <strong>dependencies between the regions</strong> through additional <strong>assumptions</strong> about the underlying <strong>data-generating distribution</strong></span>.<br />
+  The key insight is that a very large number of regions, such as \(\mathcal{O}(2^k)\), can be defined with \(\mathcal{O}(k)\) examples, so long as we <span style="color: purple">introduce some <strong>dependencies between the regions</strong> through additional <strong>assumptions</strong> about the underlying <strong>data-generating distribution</strong></span>.<br />
   In this way, we can actually <strong>generalize <em>non-locally</em></strong> <em>(Bengio and Monperrus, 2005; Bengio et al., 2006c)</em>.<br />
   Many different deep learning algorithms provide implicit or explicit assumptions that are reasonable for a <strong>broad range of AI tasks</strong> in order to capture these advantages.
         <ul>
@@ -672,7 +1021,7 @@ E.g. <strong>MSE</strong> is the <em>cross-entropy</em> between the <strong>empi
  In the context of machine learning, we allow the dimensionality of the manifold to vary from one point to another. This often happens when a manifold intersects itself. For example, a figure eight is a manifold that has a single dimension in most places but two dimensions at the intersection at the center.<br />
  <strong>Manifold Assumptions:</strong><br />
  <button class="showText" value="show" onclick="showTextPopHide(event);">Discussion</button>
- <em hidden="">Many machine learning problems seem hopeless if we expect the machine learning algorithm to learn functions with interesting variations across all of <script type="math/tex">\mathbb{R}^n</script>. Manifold learning algorithms surmount this obstacle by assuming that most of <script type="math/tex">\mathbb{R}^n</script> consists of invalid inputs, and that interesting inputs occur only a long a collection of manifolds containing a small subset of points, with interesting variations in the output of the learned function occurring only along directions that lie on the manifold, or with interesting variations happening only when we move from one manifold to another. Manifold learning was introduced in the case of continuous-valued data and in the unsupervised learning setting, although this probability concentration idea can be generalized to both discrete data and the supervised learning setting: the key assumption remains that probability mass is highly concentrated.</em><br />
+ <em hidden="">Many machine learning problems seem hopeless if we expect the machine learning algorithm to learn functions with interesting variations across all of \(\mathbb{R}^n\). Manifold learning algorithms surmount this obstacle by assuming that most of \(\mathbb{R}^n\) consists of invalid inputs, and that interesting inputs occur only a long a collection of manifolds containing a small subset of points, with interesting variations in the output of the learned function occurring only along directions that lie on the manifold, or with interesting variations happening only when we move from one manifold to another. Manifold learning was introduced in the case of continuous-valued data and in the unsupervised learning setting, although this probability concentration idea can be generalized to both discrete data and the supervised learning setting: the key assumption remains that probability mass is highly concentrated.</em><br />
  We assume that the <em><strong>data lies along a low-dimensional manifold</strong></em>:</p>
     <ul>
       <li>May not always be correct or useful</li>
@@ -699,7 +1048,7 @@ Rigorous Results: <em>(Cayton, 2005; Narayanan and Mitter,2010; Schölkopf et al
     </ul>
 
     <p><strong>Benefits:</strong><br />
- When the data lies on a low-dimensional manifold, it can be most natural for machine learning algorithms to represent the data in terms of coordinates on the manifold, rather than in terms of coordinates in <script type="math/tex">\mathbb{R}^n</script>.<br />
+ When the data lies on a low-dimensional manifold, it can be most natural for machine learning algorithms to represent the data in terms of coordinates on the manifold, rather than in terms of coordinates in \(\mathbb{R}^n\).<br />
  E.g. In everyday life, we can think of roads as 1-D manifolds embedded in 3-D space. We give directions to specific addresses in terms of address numbers along these 1-D roads, not in terms of coordinates in 3-D space.</p>
     <blockquote>
       <p>Learning Manifold Structure: <em>figure 20.6</em></p>
@@ -727,32 +1076,32 @@ Rigorous Results: <em>(Cayton, 2005; Narayanan and Mitter,2010; Schölkopf et al
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents48}
 
 *** -->
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:4">
-      <p>In other words, <script type="math/tex">p_{\text { model }}(x ; \boldsymbol{\theta})</script> maps any configuration <script type="math/tex">x</script> to a real number estimating the true probability <script type="math/tex">p_{\text { data }}(x)</script>. <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:4" role="doc-endnote">
+      <p>In other words, \(p_{\text{model}}(x ; \boldsymbol{\theta})\) maps any configuration \(x\) to a real number estimating the true probability \(p_{\text{data}}(x)\). <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:5">
-      <p>Ideally, we would like to match the true data-generating distribution <script type="math/tex">p_{\text{ data }}</script>, but we have no direct access to this distribution. <a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:5" role="doc-endnote">
+      <p>Ideally, we would like to match the true data-generating distribution \(p_{\text{ data }}\), but we have no direct access to this distribution. <a href="#fnref:5" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:6">
-      <p>The perspective of maximum likelihood as minimum KL divergence becomes helpful in this case because the KL divergence has a known minimum value of zero. The negative log-likelihood can actually become negative when <script type="math/tex">x</script> is real-valued. <a href="#fnref:6" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:6" role="doc-endnote">
+      <p>The perspective of maximum likelihood as minimum KL divergence becomes helpful in this case because the KL divergence has a known minimum value of zero. The negative log-likelihood can actually become negative when \(x\) is real-valued. <a href="#fnref:6" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:7">
-      <p>Statistical efficiency (measured by the MSE between the estimated and true parameter) is typically studied in the <strong>parametric case</strong> (as in linear regression), where our goal is to estimate the value of a parameter (assuming it is possible to identify the true parameter), not the value of a function. <a href="#fnref:7" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:7" role="doc-endnote">
+      <p>Statistical efficiency (measured by the MSE between the estimated and true parameter) is typically studied in the <strong>parametric case</strong> (as in linear regression), where our goal is to estimate the value of a parameter (assuming it is possible to identify the true parameter), not the value of a function. <a href="#fnref:7" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

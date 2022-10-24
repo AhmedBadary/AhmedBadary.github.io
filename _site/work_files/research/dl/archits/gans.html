@@ -87,7 +87,7 @@
  <strong>Auto-Regressive Models</strong> defined a <em><strong>tractable</strong></em> (discrete) density function and, then, optimized the likelihood of training data:
     <p>$$p_\theta(x) = p(x_0) \prod_1^n p(x_i | x_{i&lt;})$$  </p>
 
-    <p>While <strong>VAEs</strong> defined an <em><strong>intractable</strong></em> (continuous) density function with latent variable <script type="math/tex">z</script>:</p>
+    <p>While <strong>VAEs</strong> defined an <em><strong>intractable</strong></em> (continuous) density function with latent variable \(z\):</p>
     <p>$$p_\theta(x) = \int p_\theta(z) p_\theta(x|z) dz$$</p>
     <p>but cannot optimize directly; instead, derive and optimize a lower bound on likelihood instead.</p>
 
@@ -118,9 +118,9 @@
       <li><strong>Goal</strong>:<br />
   estimating generative models that capture the training data distribution</li>
       <li><strong>Framework</strong>:<br />
-  an adversarial process in which two models are simultaneously trained a generative model <script type="math/tex">G</script> that captures the data distribution, and a discriminative model <script type="math/tex">D</script> that estimates the probability that a sample came from the training data rather than <script type="math/tex">G</script>.</li>
+  an adversarial process in which two models are simultaneously trained a generative model \(G\) that captures the data distribution, and a discriminative model \(D\) that estimates the probability that a sample came from the training data rather than \(G\).</li>
       <li><strong>Training</strong>:<br />
-  <script type="math/tex">G</script> maximizes the probability of <script type="math/tex">D</script> making a mistake</li>
+  \(G\) maximizes the probability of \(D\) making a mistake</li>
     </ul>
   </li>
   <li>
@@ -134,11 +134,11 @@
         <ul>
           <li>Minimax objective function:
             <p>$$\min _{\theta_{g}} \max _{\theta_{d}}\left[\mathbb{E}_{x \sim p_{\text {data }}} \log D_{\theta_{d}}(x)+\mathbb{E}_{z \sim p(z)} \log \left(1-D_{\theta_{d}}\left(G_{\theta_{g}}(z)\right)\right)\right]$$</p>
-            <p>- Discriminator outputs likelihood in <script type="math/tex">(0,1)</script> of real image<br />
-  - <script type="math/tex">D_{\theta_{d}}(x)</script>: Discriminator output for real data <script type="math/tex">\boldsymbol{x}</script><br />
-  - <script type="math/tex">D_{\theta_{d}}\left(G_{\theta_{g}}(z)\right)</script>: Discriminator output for generated fake data <script type="math/tex">G(z)</script><br />
-  - Discriminator <script type="math/tex">\left(\theta_{d}\right)</script> wants to maximize objective such that <script type="math/tex">\mathrm{D}(\mathrm{x})</script> is close to <script type="math/tex">1</script> (real) and <script type="math/tex">\mathrm{D}(\mathrm{G}(\mathrm{z}))</script> is close to <script type="math/tex">0</script> (fake)<br />
-  - Generator <script type="math/tex">\left(\mathrm{f}_ {\mathrm{g}}\right)</script> “wants to minimize objective such that <script type="math/tex">\mathrm{D}(\mathrm{G}(\mathrm{z}))</script> is close to <script type="math/tex">1</script> (discriminator is fooled into thinking generated <script type="math/tex">\mathrm{G}(\mathrm{z})</script> is real)</p>
+            <p>- Discriminator outputs likelihood in \((0,1)\) of real image<br />
+  - \(D_{\theta_{d}}(x)\): Discriminator output for real data \(\boldsymbol{x}\)<br />
+  - \(D_{\theta_{d}}\left(G_{\theta_{g}}(z)\right)\): Discriminator output for generated fake data \(G(z)\)<br />
+  - Discriminator \(\left(\theta_{d}\right)\) wants to maximize objective such that \(\mathrm{D}(\mathrm{x})\) is close to \(1\) (real) and \(\mathrm{D}(\mathrm{G}(\mathrm{z}))\) is close to \(0\) (fake)<br />
+  - Generator \(\left(\mathrm{f}_ {\mathrm{g}}\right)\) “wants to minimize objective such that \(\mathrm{D}(\mathrm{G}(\mathrm{z}))\) is close to \(1\) (discriminator is fooled into thinking generated \(\mathrm{G}(\mathrm{z})\) is real)</p>
           </li>
         </ul>
       </li>
@@ -157,7 +157,7 @@
     <p id="lst-p"><strong style="color: red">GAN Training Algorithm:</strong><br />
  <button class="showText" value="show" onclick="showTextPopHide(event);">Algorithm</button>
  <img src="https://cdn.mathpix.com/snip/images/vJzBJcFh5ASuKowEV6B5OMklS-PPNIgqvnnDclMMu3g.original.fullsize.png" alt="img" width="100%" hidden="" /><br />
- - <strong># of Training steps <script type="math/tex">\mathrm{k}</script>:</strong> some find <script type="math/tex">\mathrm{k}=1</script> more stable, others use <script type="math/tex">\mathrm{k}>1</script> no best rule.</p>
+ - <strong># of Training steps \(\mathrm{k}\):</strong> some find \(\mathrm{k}=1\) more stable, others use \(\mathrm{k}&gt;1\) no best rule.</p>
     <ul>
       <li>Recent work (e.g. Wasserstein GAN) alleviates this problem, better stability!</li>
     </ul>
@@ -182,7 +182,7 @@
       <li>Jointly training two networks is challenging, can be unstable. Choosing objectives with better loss landscapes helps training, is an active area of research.</li>
       <li><strong>The representations have nice structure:</strong>
         <ul>
-          <li>Average <script type="math/tex">\boldsymbol{z}</script> vectors, do arithmetic:<br />
+          <li>Average \(\boldsymbol{z}\) vectors, do arithmetic:<br />
   <img src="https://cdn.mathpix.com/snip/images/iNB2WF_B-fA6AUeNPkqjaPCQRzCi1iEp9O7AmNsNGX0.original.fullsize.png" alt="img" width="40%" /><br />
   <button class="showText" value="show" onclick="showTextPopHide(event);">Glasses</button>
   <img src="https://cdn.mathpix.com/snip/images/It81yGTPcd7AtoxXUL6zmFRv475nN_ryCP8EL2SsPUs.original.fullsize.png" alt="img" width="60%" hidden="" /></li>
@@ -218,7 +218,7 @@
       <li><strong>Cons</strong>:
         <ul>
           <li>Trickier / more unstable to train</li>
-          <li>Can’t solve inference queries such as <script type="math/tex">p(x), p(z\vert x)</script></li>
+          <li>Can’t solve inference queries such as \(p(x), p(z\vert x)\)</li>
         </ul>
       </li>
       <li><strong>Active areas of research:</strong>
@@ -253,13 +253,13 @@
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

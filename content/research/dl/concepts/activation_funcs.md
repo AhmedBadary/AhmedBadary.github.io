@@ -170,24 +170,25 @@ prevLink: /work_files/research/dl/concepts.html
         If a neuron's output is a log probability, then the summation of many neurons' outputs is a multiplication of their probabilities. That's more commonly useful than a sum of probabilities.  
     * It is a softened version of the __argmax__ function (limit as $$T \rightarrow 0$$)  
 
-    * __Properties__{: style="color: red"}  
-        * There is one nice attribute of Softmax as compared with standard normalisation:  
-            It react to low stimulation (think blurry image) of your neural net with rather uniform distribution and to high stimulation (ie. large numbers, think crisp image) with probabilities close to 0 and 1.   
-            While standard normalisation does not care as long as the proportion are the same.  
-            Have a look what happens when soft max has 10 times larger input, ie your neural net got a crisp image and a lot of neurones got activated.  
-            <button>Example SM</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
-            > >>> softmax([1,2])              # blurry image of a ferret  
-                [0.26894142,      0.73105858])  #     it is a cat perhaps !?  
-                >>> softmax([10,20])            # crisp image of a cat  
-                [0.0000453978687, 0.999954602]) #     it is definitely a CAT !   
-            {: hidden=""}  
-            And then compare it with standard normalisation:  
-            <button>Example Normalization</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
-            > >>> std_norm([1,2])                      # blurry image of a ferret  
-                [0.3333333333333333, 0.6666666666666666] #     it is a cat perhaps !?  
-                >>> std_norm([10,20])                    # crisp image of a cat  
-                [0.3333333333333333, 0.6666666666666666] #     it is a cat perhaps !?  
-            {: hidden=""}
+    __Properties__{: style="color: red"}  
+    {: #lst-p}
+    * There is one nice attribute of Softmax as compared with standard normalisation:  
+        It react to low stimulation (think blurry image) of your neural net with rather uniform distribution and to high stimulation (ie. large numbers, think crisp image) with probabilities close to 0 and 1.   
+        While standard normalisation does not care as long as the proportion are the same.  
+        Have a look what happens when soft max has 10 times larger input, ie your neural net got a crisp image and a lot of neurones got activated.  
+        <button>Example SM</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+        > >>> softmax([1,2])              # blurry image of a ferret  
+            [0.26894142,      0.73105858])  #     it is a cat perhaps !?  
+            >>> softmax([10,20])            # crisp image of a cat  
+            [0.0000453978687, 0.999954602]) #     it is definitely a CAT !   
+        {: hidden=""}  
+        And then compare it with standard normalisation:  
+        <button>Example Normalization</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+        > >>> std_norm([1,2])                      # blurry image of a ferret  
+            [0.3333333333333333, 0.6666666666666666] #     it is a cat perhaps !?  
+            >>> std_norm([10,20])                    # crisp image of a cat  
+            [0.3333333333333333, 0.6666666666666666] #     it is a cat perhaps !?  
+        {: hidden=""}
 
     __Notes:__{: style="color: red"}  
     {: #lst-p}

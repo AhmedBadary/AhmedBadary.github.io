@@ -153,8 +153,8 @@
 <ol>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Linear Factor Models:</strong><br />
- <strong>Linear Factor Models</strong> are <em><strong>generative models</strong></em> that are the simplest class of <em><strong>latent variable models</strong></em><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>.<br />
- A linear factor model is defined by the use of a <em><strong>stochastic</strong></em>, <em><strong>linear</strong></em> <strong>decoder</strong> function that <span style="color: goldenrod"><em>generates</em> <script type="math/tex">\boldsymbol{x}</script> by adding <strong>noise</strong> to a <strong>linear transformation</strong> of <script type="math/tex">\boldsymbol{h}</script></span>.</p>
+ <strong>Linear Factor Models</strong> are <em><strong>generative models</strong></em> that are the simplest class of <em><strong>latent variable models</strong></em><sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>.<br />
+ A linear factor model is defined by the use of a <em><strong>stochastic</strong></em>, <em><strong>linear</strong></em> <strong>decoder</strong> function that <span style="color: goldenrod"><em>generates</em> \(\boldsymbol{x}\) by adding <strong>noise</strong> to a <strong>linear transformation</strong> of \(\boldsymbol{h}\)</span>.</p>
 
     <p id="lst-p"><strong style="color: red">Applications/Motivation:</strong></p>
     <ul>
@@ -171,9 +171,9 @@
     <p id="lst-p"><strong style="color: DarkRed">Data Generation Process:</strong>  <br />
  A linear factor model describes the data generation process as follows:</p>
     <ol>
-      <li><strong>Sample</strong> the <em><strong>explanatory factors</strong></em> <script type="math/tex">\boldsymbol{h}</script> from a <strong>distribution</strong>:
+      <li><strong>Sample</strong> the <em><strong>explanatory factors</strong></em> \(\boldsymbol{h}\) from a <strong>distribution</strong>:
         <p>$$\mathbf{h} \sim p(\boldsymbol{h}) \tag{1}$$</p>
-        <p>where <script type="math/tex">p(\boldsymbol{h})</script> is a factorial distribution, with <script type="math/tex">p(\boldsymbol{h})=\prod_{i} p\left(h_{i}\right),</script> so that it is easy to sample from.</p>
+        <p>where \(p(\boldsymbol{h})\) is a factorial distribution, with \(p(\boldsymbol{h})=\prod_{i} p\left(h_{i}\right),\) so that it is easy to sample from.</p>
       </li>
       <li><strong>Sample</strong> the <em>real-valued</em> <em><strong>observable variables</strong></em> <em>given</em> the <strong>factors</strong>:
         <p>$$\boldsymbol{x}=\boldsymbol{W} \boldsymbol{h}+\boldsymbol{b}+ \text{ noise} \tag{2}$$</p>
@@ -186,21 +186,21 @@
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Factor Analysis:</strong><br />
- <strong>Probabilistic PCA (principal components analysis)</strong>, <strong>Factor Analysis</strong> and other <strong>linear factor models</strong> are special cases of the above equations (1 and 2) and only differ in the choices made for the <em><strong>noise distribution</strong></em> and the model’s <em><strong>prior over latent variables</strong></em> <script type="math/tex">\boldsymbol{h}</script> before observing <script type="math/tex">\boldsymbol{x}</script>.</p>
+ <strong>Probabilistic PCA (principal components analysis)</strong>, <strong>Factor Analysis</strong> and other <strong>linear factor models</strong> are special cases of the above equations (1 and 2) and only differ in the choices made for the <em><strong>noise distribution</strong></em> and the model’s <em><strong>prior over latent variables</strong></em> \(\boldsymbol{h}\) before observing \(\boldsymbol{x}\).</p>
 
     <p><strong style="color: red">Factor Analysis:</strong><br />
  In <strong>factor analysis</strong> <em>(Bartholomew, 1987; Basilevsky, 1994)</em>, the <em><strong>latent variable prior</strong></em> is just the <span style="color: purple"><strong>unit variance Gaussian</strong></span>:</p>
     <p>$$\mathbf{h} \sim \mathcal{N}(\boldsymbol{h} ; \mathbf{0}, \boldsymbol{I})$$</p>
-    <p>while the <strong>observed variables</strong> <script type="math/tex">x_i</script> are assumed to be <em><strong>conditionally independent</strong></em>, given <script type="math/tex">\boldsymbol{h}</script>.<br />
- Specifically, the <em><strong>noise</strong></em> is assumed to be drawn from a <span style="color: purple"><strong>diagonal covariance Gaussian distribution</strong></span>, with covariance matrix <script type="math/tex">\boldsymbol{\psi}=\operatorname{diag}\left(\boldsymbol{\sigma}^{2}\right),</script> with <script type="math/tex">\boldsymbol{\sigma}^{2}=\left[\sigma_{1}^{2}, \sigma_{2}^{2}, \ldots, \sigma_{n}^{2}\right]^{\top}</script> a vector of <span style="color: purple"><em><strong>per-variable</strong></em> <strong>variances</strong></span>.</p>
+    <p>while the <strong>observed variables</strong> \(x_i\) are assumed to be <em><strong>conditionally independent</strong></em>, given \(\boldsymbol{h}\).<br />
+ Specifically, the <em><strong>noise</strong></em> is assumed to be drawn from a <span style="color: purple"><strong>diagonal covariance Gaussian distribution</strong></span>, with covariance matrix \(\boldsymbol{\psi}=\operatorname{diag}\left(\boldsymbol{\sigma}^{2}\right),\) with \(\boldsymbol{\sigma}^{2}=\left[\sigma_{1}^{2}, \sigma_{2}^{2}, \ldots, \sigma_{n}^{2}\right]^{\top}\) a vector of <span style="color: purple"><em><strong>per-variable</strong></em> <strong>variances</strong></span>.</p>
 
-    <p>The <em><strong>role</strong></em> of the <strong>latent variables</strong> is thus to <span style="color: purple">capture the <em><strong>dependencies</strong></em> between the different observed variables <script type="math/tex">x_i</script></span>.<br />
- Indeed, it can easily be shown that <script type="math/tex">\boldsymbol{x}</script> is just a <span style="color: purple"><strong>multivariate normal random variable</strong></span>, with:</p>
+    <p>The <em><strong>role</strong></em> of the <strong>latent variables</strong> is thus to <span style="color: purple">capture the <em><strong>dependencies</strong></em> between the different observed variables \(x_i\)</span>.<br />
+ Indeed, it can easily be shown that \(\boldsymbol{x}\) is just a <span style="color: purple"><strong>multivariate normal random variable</strong></span>, with:</p>
     <p>$$\mathbf{x} \sim \mathcal{N}\left(\boldsymbol{x} ; \boldsymbol{b}, \boldsymbol{W} \boldsymbol{W}^{\top}+\boldsymbol{\psi}\right)$$</p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Probabilistic PCA:</strong><br />
- <strong>Probabilistic PCA (principal components analysis)</strong>, <strong>Factor Analysis</strong> and other <strong>linear factor models</strong> are special cases of the above equations (1 and 2) and only differ in the choices made for the <em><strong>noise distribution</strong></em> and the model’s <em><strong>prior over latent variables</strong></em> <script type="math/tex">\boldsymbol{h}</script> before observing <script type="math/tex">\boldsymbol{x}</script>.</p>
+ <strong>Probabilistic PCA (principal components analysis)</strong>, <strong>Factor Analysis</strong> and other <strong>linear factor models</strong> are special cases of the above equations (1 and 2) and only differ in the choices made for the <em><strong>noise distribution</strong></em> and the model’s <em><strong>prior over latent variables</strong></em> \(\boldsymbol{h}\) before observing \(\boldsymbol{x}\).</p>
 
     <ul>
       <li><button class="showText" value="show" onclick="showTextPopHide(event);"><strong>Motivation</strong></button>
@@ -216,26 +216,26 @@
     </ul>
 
     <p><strong style="color: red">Probabilistic PCA:</strong><br />
- In order to <em>cast</em> <strong>PCA</strong> in a <em><strong>probabilistic framework</strong></em>, we can make a slight <em>modification</em> to the <strong>factor analysis model</strong>, making the <strong>conditional variances</strong> <script type="math/tex">\sigma_i^2</script> <span style="color: purple">equal to each other</span>.<br />
- In that case the covariance of <script type="math/tex">\boldsymbol{x}</script> is just <script type="math/tex">\boldsymbol{W} \boldsymbol{W}^{\top}+\sigma^{2} \boldsymbol{I}</script>, where <script type="math/tex">\sigma^2</script> is now a <strong>scalar</strong>.<br />
+ In order to <em>cast</em> <strong>PCA</strong> in a <em><strong>probabilistic framework</strong></em>, we can make a slight <em>modification</em> to the <strong>factor analysis model</strong>, making the <strong>conditional variances</strong> \(\sigma_i^2\) <span style="color: purple">equal to each other</span>.<br />
+ In that case the covariance of \(\boldsymbol{x}\) is just \(\boldsymbol{W} \boldsymbol{W}^{\top}+\sigma^{2} \boldsymbol{I}\), where \(\sigma^2\) is now a <strong>scalar</strong>.<br />
  This yields the <strong>conditional distribution</strong>:</p>
     <p>$$\mathbf{x} \sim \mathcal{N}\left(\boldsymbol{x} ; \boldsymbol{b}, \boldsymbol{W} \boldsymbol{W}^{\top}+\sigma^{2} \boldsymbol{I}\right)$$</p>
     <p>or, equivalently,</p>
     <p>$$\mathbf{x}=\boldsymbol{W} \mathbf{h}+\boldsymbol{b}+\sigma \mathbf{z}$$</p>
-    <p>where <script type="math/tex">\mathbf{z} \sim \mathcal{N}(\boldsymbol{z} ; \mathbf{0}, \boldsymbol{I})</script> is <strong>Gaussian noise</strong>.</p>
+    <p>where \(\mathbf{z} \sim \mathcal{N}(\boldsymbol{z} ; \mathbf{0}, \boldsymbol{I})\) is <strong>Gaussian noise</strong>.</p>
 
-    <p>Notice that <script type="math/tex">\boldsymbol{b}</script> is the <span style="color: purple"><strong>mean</strong> value (over all data) on the directions that are not captured/represented</span>.</p>
+    <p>Notice that \(\boldsymbol{b}\) is the <span style="color: purple"><strong>mean</strong> value (over all data) on the directions that are not captured/represented</span>.</p>
 
-    <p>This probabilistic PCA model takes advantage of the observation that <span style="color: goldenrod">most variations in the data can be captured by the latent variables <script type="math/tex">\boldsymbol{h},</script> up to some small residual</span> <span style="color: goldenrod"><strong>reconstruction error</strong></span> <script type="math/tex">\sigma^2</script>.</p>
+    <p>This probabilistic PCA model takes advantage of the observation that <span style="color: goldenrod">most variations in the data can be captured by the latent variables \(\boldsymbol{h},\) up to some small residual</span> <span style="color: goldenrod"><strong>reconstruction error</strong></span> \(\sigma^2\).</p>
 
     <p><strong style="color: DarkRed">Learning (parameter estimation):</strong><br />
- <em>Tipping and Bishop (1999)</em> then show an <em><strong>iterative</strong></em> <strong>EM</strong> algorithm for estimating the parameters <script type="math/tex">\boldsymbol{W}</script> and <script type="math/tex">\sigma^{2}</script>.</p>
+ <em>Tipping and Bishop (1999)</em> then show an <em><strong>iterative</strong></em> <strong>EM</strong> algorithm for estimating the parameters \(\boldsymbol{W}\) and \(\sigma^{2}\).</p>
 
     <p><strong style="color: DarkRed">Relation to PCA - Limit Analysis:</strong><br />
- <em>Tipping and Bishop (1999)</em> show that probabilistic PCA becomes <script type="math/tex">\mathrm{PCA}</script> as <script type="math/tex">\sigma \rightarrow 0</script>.<br />
- In that case, the conditional expected value of <script type="math/tex">\boldsymbol{h}</script> given <script type="math/tex">\boldsymbol{x}</script> becomes an orthogonal projection of <script type="math/tex">\boldsymbol{x} - \boldsymbol{b}</script>  onto the space spanned by the <script type="math/tex">d</script> columns of <script type="math/tex">\boldsymbol{W}</script>, like in PCA.</p>
+ <em>Tipping and Bishop (1999)</em> show that probabilistic PCA becomes \(\mathrm{PCA}\) as \(\sigma \rightarrow 0\).<br />
+ In that case, the conditional expected value of \(\boldsymbol{h}\) given \(\boldsymbol{x}\) becomes an orthogonal projection of \(\boldsymbol{x} - \boldsymbol{b}\)  onto the space spanned by the \(d\) columns of \(\boldsymbol{W}\), like in PCA.</p>
 
-    <p>As <script type="math/tex">\sigma \rightarrow 0,</script> the density model defined by probabilistic PCA becomes very sharp around these <script type="math/tex">d</script> dimensions spanned by the columns of <script type="math/tex">\boldsymbol{W}</script>.<br />
+    <p>As \(\sigma \rightarrow 0,\) the density model defined by probabilistic PCA becomes very sharp around these \(d\) dimensions spanned by the columns of \(\boldsymbol{W}\).<br />
  This can make the model assign very low likelihood to the data if the data does not actually cluster near a hyperplane.</p>
 
     <p id="lst-p"><strong style="color: red">PPCA vs Factor Analysis:</strong></p>
@@ -260,31 +260,30 @@
  <button class="showText" value="show" onclick="showTextPopHide(event);">Illustration</button>
  <img src="https://cdn.mathpix.com/snip/images/ayo7yf-CBpBA38gdTlc0sCPWk9gG0PhFSpXzfSOp1HU.original.fullsize.png" alt="img" width="100%" hidden="" /><br />
  <strong>PCA</strong> can be interpreted as <span style="color: goldenrod">aligning this pancake with a linear manifold in a higher-dimensional space</span>.<br />
- This interpretation applies not just to traditional PCA but also to any <strong>linear autoencoder</strong> that learns matrices <script type="math/tex">\boldsymbol{W}</script> and <script type="math/tex">\boldsymbol{V}</script> with the goal of making the reconstruction of <script type="math/tex">x</script> lie as close to <script type="math/tex">x</script> as possible:</p>
+ This interpretation applies not just to traditional PCA but also to any <strong>linear autoencoder</strong> that learns matrices \(\boldsymbol{W}\) and \(\boldsymbol{V}\) with the goal of making the reconstruction of \(x\) lie as close to \(x\) as possible:</p>
     <ul>
       <li>Let the <strong>Encoder</strong> be:
         <p>$$\boldsymbol{h}=f(\boldsymbol{x})=\boldsymbol{W}^{\top}(\boldsymbol{x}-\boldsymbol{\mu})$$</p>
-        <p>The encoder computes a <strong>low-dimensional representation</strong> of <script type="math/tex">h</script>.</p>
+        <p>The encoder computes a <strong>low-dimensional representation</strong> of \(h\).</p>
       </li>
       <li>With the <strong>autoencoder view</strong>, we have a <strong>decoder</strong> computing the <em><strong>reconstruction</strong></em>:
         <p>$$\hat{\boldsymbol{x}}=g(\boldsymbol{h})=\boldsymbol{b}+\boldsymbol{V} \boldsymbol{h}$$</p>
       </li>
       <li>The choices of linear encoder and decoder that minimize <strong>reconstruction error</strong>:
         <p>$$\mathbb{E}\left[\|\boldsymbol{x}-\hat{\boldsymbol{x}}\|^{2}\right]$$</p>
-        <p>correspond to <script type="math/tex">\boldsymbol{V}=\boldsymbol{W}, \boldsymbol{\mu}=\boldsymbol{b}=\mathbb{E}[\boldsymbol{x}]</script> and the columns of <script type="math/tex">\boldsymbol{W}</script> form an orthonormal basis which spans the same subspace as the principal eigenvectors of the covariance matrix:</p>
+        <p>correspond to \(\boldsymbol{V}=\boldsymbol{W}, \boldsymbol{\mu}=\boldsymbol{b}=\mathbb{E}[\boldsymbol{x}]\) and the columns of \(\boldsymbol{W}\) form an orthonormal basis which spans the same subspace as the principal eigenvectors of the covariance matrix:</p>
         <p>$$\boldsymbol{C}=\mathbb{E}\left[(\boldsymbol{x}-\boldsymbol{\mu})(\boldsymbol{x}-\boldsymbol{\mu})^{\top}\right]$$</p>
       </li>
-      <li>In the case of PCA, the columns of <script type="math/tex">\boldsymbol{W}</script> are these eigenvectors, ordered by the magnitude of the corresponding eigenvalues (which are all real and non-negative).</li>
+      <li>In the case of PCA, the columns of \(\boldsymbol{W}\) are these eigenvectors, ordered by the magnitude of the corresponding eigenvalues (which are all real and non-negative).</li>
       <li><strong>Variances:</strong><br />
-  One can also show that eigenvalue <script type="math/tex">\lambda_{i}</script> of <script type="math/tex">\boldsymbol{C}</script> corresponds to the variance of <script type="math/tex">x</script> in the direction of eigenvector <script type="math/tex">\boldsymbol{v}^{(i)}</script>.</li>
+  One can also show that eigenvalue \(\lambda_{i}\) of \(\boldsymbol{C}\) corresponds to the variance of \(x\) in the direction of eigenvector \(\boldsymbol{v}^{(i)}\).</li>
       <li><strong>Optimal Reconstruction:</strong>
         <ul>
-          <li>If <script type="math/tex">\boldsymbol{x} \in \mathbb{R}^{D}</script> and <script type="math/tex">\boldsymbol{h} \in \mathbb{R}^{d}</script> with <script type="math/tex">% <![CDATA[
-d<D %]]></script>, then the <span style="color: goldenrod"><strong><em>optimal</em></strong> <strong>reconstruction error</strong></span>  (choosing <script type="math/tex">\mu, b, V</script> and $$W$ as above) is:
+          <li>If \(\boldsymbol{x} \in \mathbb{R}^{D}\) and \(\boldsymbol{h} \in \mathbb{R}^{d}\) with \(d&lt;D\), then the <span style="color: goldenrod"><strong><em>optimal</em></strong> <strong>reconstruction error</strong></span>  (choosing \(\mu, b, V\) and $$W$ as above) is:
             <p>$$\min \mathbb{E}\left[\|\boldsymbol{x}-\hat{\boldsymbol{x}}\|^{2}\right]=\sum_{i=d+1}^{D} \lambda_{i}$$</p>
           </li>
-          <li>Hence, if the <strong>covariance</strong> has <em><strong>rank</strong></em> <script type="math/tex">d,</script> the <strong>eigenvalues</strong> <script type="math/tex">\lambda_{d+1}</script> to <script type="math/tex">\lambda_{D}</script> are <script type="math/tex">0</script> and <strong>reconstruction error</strong> is $$0$.</li>
-          <li>Furthermore, one can also show that the above solution can be obtained by <span style="color: purple"><strong><em>maximizing</em> the variances of the elements</strong> of <script type="math/tex">\boldsymbol{h},</script> under <em>orthogonal</em> <script type="math/tex">\boldsymbol{W}</script></span>, instead of <em><strong>minimizing reconstruction error</strong></em>.</li>
+          <li>Hence, if the <strong>covariance</strong> has <em><strong>rank</strong></em> \(d,\) the <strong>eigenvalues</strong> \(\lambda_{d+1}\) to \(\lambda_{D}\) are \(0\) and <strong>reconstruction error</strong> is $$0$.</li>
+          <li>Furthermore, one can also show that the above solution can be obtained by <span style="color: purple"><strong><em>maximizing</em> the variances of the elements</strong> of \(\boldsymbol{h},\) under <em>orthogonal</em> \(\boldsymbol{W}\)</span>, instead of <em><strong>minimizing reconstruction error</strong></em>.</li>
         </ul>
       </li>
     </ul>
@@ -296,7 +295,7 @@ d<D %]]></script>, then the <span style="color: goldenrod"><strong><em>optimal</
       <li>EM Algorithm for PCA is more advantageous than MLE (closed form).</li>
       <li><strong>Mixtures of probabilistic PCAs</strong>: can be defined and are a combination of local probabilistic PCA models.</li>
       <li>PCA can be generalized to the <strong>nonlinear Autoencoders</strong>.</li>
-      <li>ICA can be generalized to a <strong>nonlinear generative model</strong>, in which we use a nonlinear function <script type="math/tex">f</script> to generate the observed data.<br />
+      <li>ICA can be generalized to a <strong>nonlinear generative model</strong>, in which we use a nonlinear function \(f\) to generate the observed data.<br />
  <br /></li>
     </ul>
   </li>
@@ -309,10 +308,10 @@ d<D %]]></script>, then the <span style="color: goldenrod"><strong><em>optimal</
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Sparse Coding:</strong><br />
  <strong>Sparse Coding</strong> <em>(Olshausen and Field, 1996)</em> is a <em><strong>linear factor model</strong></em> that has been heavily studied as an <span style="color: purple">unsupervised feature learning</span> and <span style="color: purple">feature extraction</span> mechanism.<br />
- In Sparse Coding the <em><strong>noise distribution</strong></em> is <span style="color: purple"><strong>Gaussian noise</strong></span> with <span style="color: purple">isotropic precision</span> <script type="math/tex">\beta</script>:</p>
+ In Sparse Coding the <em><strong>noise distribution</strong></em> is <span style="color: purple"><strong>Gaussian noise</strong></span> with <span style="color: purple">isotropic precision</span> \(\beta\):</p>
     <p>$$p(\boldsymbol{x} \vert \boldsymbol{h})=\mathcal{N}\left(\boldsymbol{x} ; \boldsymbol{W} \boldsymbol{h}+\boldsymbol{b}, \frac{1}{\beta} \boldsymbol{I}\right)$$</p>
 
-    <p id="lst-p">The <em><strong>latent variable prior</strong></em> <script type="math/tex">p(\boldsymbol{h})</script> is chosen to be one with sharp peaks near <script type="math/tex">0</script>.<br />
+    <p id="lst-p">The <em><strong>latent variable prior</strong></em> \(p(\boldsymbol{h})\) is chosen to be one with sharp peaks near \(0\).<br />
  Common choices include:</p>
     <ul>
       <li><strong>factorized Laplace</strong>:
@@ -330,8 +329,8 @@ d<D %]]></script>, then the <span style="color: goldenrod"><strong><em>optimal</
       <li>Instead, the training <em>alternates</em> between <span style="color: purple"><strong>encoding</strong> the data</span> and <span style="color: purple">training the decoder to <strong>better reconstruct the data</strong> given the encoding</span>.<br />
   This is a <a href="/work_files/research/dl/concepts/inference#bodyContents15map_sc">principled approximation to Maximum-Likelihood</a>.
         <ul>
-          <li>Minimization wrt. <script type="math/tex">\boldsymbol{h}</script></li>
-          <li>Minimization wrt. <script type="math/tex">\boldsymbol{W}</script></li>
+          <li>Minimization wrt. \(\boldsymbol{h}\)</li>
+          <li>Minimization wrt. \(\boldsymbol{W}\)</li>
         </ul>
       </li>
     </ul>
@@ -344,14 +343,14 @@ d<D %]]></script>, then the <span style="color: goldenrod"><strong><em>optimal</
           <li>It is an <span style="color: goldenrod">optimization algorithm</span> that solves an <strong>optimization problem</strong> in which we seek the <span style="color: purple"><em><strong>single most likely code value</strong></em></span>:
             <p>$$\boldsymbol{h}^{* }=f(\boldsymbol{x})=\underset{\boldsymbol{h}}{\arg \max } p(\boldsymbol{h} vert \boldsymbol{x})$$</p>
             <ul>
-              <li>Assuming a <strong>Laplace Prior</strong> on <script type="math/tex">p(\boldsymbol{h})</script>:
+              <li>Assuming a <strong>Laplace Prior</strong> on \(p(\boldsymbol{h})\):
                 <p>$$\boldsymbol{h}^{* }=\underset{h}{\arg \min } \lambda\|\boldsymbol{h}\|_{1}+\beta\|\boldsymbol{x}-\boldsymbol{W h}\|_{2}^{2}$$</p>
-                <p>where we have taken a log, dropped terms not depending on <script type="math/tex">\boldsymbol{h}</script>, and divided by positive scaling factors to simplify the equation.</p>
+                <p>where we have taken a log, dropped terms not depending on \(\boldsymbol{h}\), and divided by positive scaling factors to simplify the equation.</p>
               </li>
               <li><strong>Hyperparameters:</strong><br />
-  Both <script type="math/tex">\beta</script> and <script type="math/tex">\lambda</script> are hyperparameters.<br />
-  However, <script type="math/tex">\beta</script> is usually set to <script type="math/tex">1</script> because its role is shared with <script type="math/tex">\lambda</script>.<br />
-  It could also be treated as a parameter of the model and <em>“learned”</em><sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>.</li>
+  Both \(\beta\) and \(\lambda\) are hyperparameters.<br />
+  However, \(\beta\) is usually set to \(1\) because its role is shared with \(\lambda\).<br />
+  It could also be treated as a parameter of the model and <em>“learned”</em><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>.</li>
             </ul>
           </li>
         </ul>
@@ -359,13 +358,13 @@ d<D %]]></script>, then the <span style="color: goldenrod"><strong><em>optimal</
     </ul>
 
     <p><strong style="color: red">Variations:</strong><br />
- Not all approaches to sparse coding explicitly build a <script type="math/tex">p(\boldsymbol{h})</script> and a <script type="math/tex">p(\boldsymbol{x} \vert \boldsymbol{h})</script>.<br />
+ Not all approaches to sparse coding explicitly build a \(p(\boldsymbol{h})\) and a \(p(\boldsymbol{x} \vert \boldsymbol{h})\).<br />
  Often we are just interested in learning a dictionary of features with activation values that will often be zero when extracted using this inference procedure.</p>
 
     <p id="lst-p"><strong style="color: red">Sparsity:</strong></p>
     <ul>
-      <li>Due to the imposition of an <script type="math/tex">L^{1}</script> norm on <script type="math/tex">\boldsymbol{h},</script> this procedure will yield a sparse <script type="math/tex">\boldsymbol{h}^{* }</script>.</li>
-      <li>If we sample <script type="math/tex">\boldsymbol{h}</script> from a Laplace prior, it is in fact a <span style="color: purple">zero probability event</span> for an element of <script type="math/tex">\boldsymbol{h}</script> to actually be zero.<br />
+      <li>Due to the imposition of an \(L^{1}\) norm on \(\boldsymbol{h},\) this procedure will yield a sparse \(\boldsymbol{h}^{* }\).</li>
+      <li>If we sample \(\boldsymbol{h}\) from a Laplace prior, it is in fact a <span style="color: purple">zero probability event</span> for an element of \(\boldsymbol{h}\) to actually be zero.<br />
   <span style="color: purple">The <strong>generative model</strong> itself is <em><strong>not</strong></em> especially <strong>sparse</strong>, <em><strong>only</strong></em> the <strong>feature extractor</strong> is</span>.
         <ul>
           <li><em>Goodfellow et al. (2013d)</em> describe approximate inference in a different model family, the spike and slab sparse coding model, for which samples from the prior usually contain true zeros.</li>
@@ -381,7 +380,7 @@ d<D %]]></script>, then the <span style="color: goldenrod"><strong><em>optimal</
           <li>Another advantage is that there is no generalization error to the encoder.<br />
   Thus, resulting in better generalization when sparse coding is used as a feature extractor for a classifier than when a parametric function is used to predict the code.
             <ul>
-              <li>A parametric encoder must learn how to map <script type="math/tex">\boldsymbol{x}</script> to <script type="math/tex">\boldsymbol{h}</script> in a way that generalizes. For unusual <script type="math/tex">\boldsymbol{x}</script> that do not resemble the training data, a learned, parametric encoder may fail to find an <script type="math/tex">\boldsymbol{h}</script> that results in accurate reconstruction or a sparse code.</li>
+              <li>A parametric encoder must learn how to map \(\boldsymbol{x}\) to \(\boldsymbol{h}\) in a way that generalizes. For unusual \(\boldsymbol{x}\) that do not resemble the training data, a learned, parametric encoder may fail to find an \(\boldsymbol{h}\) that results in accurate reconstruction or a sparse code.</li>
               <li>For the vast majority of formulations of sparse coding models, where the inference problem is convex, the optimization procedure will always find the optimal code (unless degenerate cases such as replicated weight vectors occur).</li>
               <li>Obviously, the sparsity and reconstruction costs can still rise on unfamiliar points, but this is due to generalization error in the decoder weights, rather than generalization error in the encoder.</li>
               <li>Thus, the lack of generalization error in sparse coding’s optimization-based encoding process may result in better generalization when sparse coding is used as a feature extractor for a classifier than when a parametric function is used to predict the code.<br />
@@ -397,7 +396,7 @@ d<D %]]></script>, then the <span style="color: goldenrod"><strong><em>optimal</
       </li>
       <li><span style="color: purple"><strong>Disadvantages:</strong></span>
         <ul>
-          <li>The primary disadvantage of the <strong><em>non-parametric</em> encoder</strong> is that it requires greater time to compute <script type="math/tex">\boldsymbol{h}</script> given <script type="math/tex">\boldsymbol{x}</script> because the non-parametric approach requires running an iterative algorithm.
+          <li>The primary disadvantage of the <strong><em>non-parametric</em> encoder</strong> is that it requires greater time to compute \(\boldsymbol{h}\) given \(\boldsymbol{x}\) because the non-parametric approach requires running an iterative algorithm.
             <ul>
               <li>The parametric autoencoder approach uses only a fixed number of layers, often only one.</li>
             </ul>
@@ -454,26 +453,26 @@ d<D %]]></script>, then the <span style="color: goldenrod"><strong><em>optimal</
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}
 *** 
 -->
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p><strong>Probabilistic Models</strong>, with <strong>latent variables</strong>. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p><strong>Probabilistic Models</strong>, with <strong>latent variables</strong>. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2">
-      <p>some terms depending on <script type="math/tex">\beta</script> omitted from above equation* which are needed to learn <script type="math/tex">\beta</script>. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:2" role="doc-endnote">
+      <p>some terms depending on \(\beta\) omitted from above equation* which are needed to learn \(\beta\). <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

@@ -39,10 +39,8 @@ A computer program is said to <span>learn</span>{: style="color: goldenrod"} fro
             E.g. Backprop, Quadratic Programming, etc.<br>
 
 8. **The Learning Diagram:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}  
-    ![img](/main_files/dl/theory/caltech/21.png){: width="40%"}  
+    ![img](/main_files/dl/theory/caltech/3.png){: width="70%"}  
 
-    Now, $$E_{\text {out}}(h) = \mathbb{E}_ {x, y}[e(h(x), y)]$$ instead of $$\mathbb{E}_ {\mathbf{x}}[\mathrm{e}(h(\mathbf{x}), f(\mathbf{x}))]$$, and  
-    $$\left(\mathbf{x}_{1}, y_{1}\right), \cdots,\left(\mathbf{x}_{N}, y_{N}\right)$$ are generated independently (of each tuple).<br>
 
 7. **Types of Learning:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
     * __Supervised Learning__: the task of learning a function that maps an input to an output based on example input-output pairs.  
@@ -52,6 +50,7 @@ A computer program is said to <span>learn</span>{: style="color: goldenrod"} fro
         > Unsupervised Learning is another name for [Hebbian Learning](https://en.wikipedia.org/wiki/Hebbian_theory)
     * __Reinforcement Leaning__: the task of learning how software agents ought to take actions in an environment so as to maximize some notion of cumulative reward.  
         ![img](/main_files/dl/theory/caltech/6.png){: width="50%"}<br>
+
 
 ## The Feasibility of Learning
 

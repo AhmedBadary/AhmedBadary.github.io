@@ -86,33 +86,33 @@
  formulas.</li>
       <li>Extrapolation can be applied whenever it is known that an approximation technique
  has an error term with a predictable form, one that depends on a parameter, usually the step
- size <script type="math/tex">h</script>.</li>
-      <li>Suppose that for each number <script type="math/tex">h \neq 0</script> we have a formula <script type="math/tex">N_1(h)</script> that approximates an
- unknown constant <script type="math/tex">M</script>, and that the truncation error involved with the approximation has the
+ size \(h\).</li>
+      <li>Suppose that for each number \(h \neq 0\) we have a formula \(N_1(h)\) that approximates an
+ unknown constant \(M\), and that the truncation error involved with the approximation has the
  form,<br />
- <script type="math/tex">M − N_1(h) = K_1h + K_2h^2 + K_3h^3 +··· ,</script><br />
- for some collection of (unknown) constants <script type="math/tex">K_1, K_2, K_3, ...</script> .</li>
-      <li>The <strong>truncation error</strong> is <em><script type="math/tex">O(h)</script></em>, so unless there was a large variation in magnitude among the constants <script type="math/tex">K_1, K_2, K_3, ... ,</script><br />
- <script type="math/tex">\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ M − N_1(0.1) \approx 0.1K_1,\ \ \ \ \ \ \ \ M − N_1(0.01) \approx 0.01K_1,</script><br />
+ \(M − N_1(h) = K_1h + K_2h^2 + K_3h^3 +··· ,\)<br />
+ for some collection of (unknown) constants \(K_1, K_2, K_3, ...\) .</li>
+      <li>The <strong>truncation error</strong> is <em>\(O(h)\)</em>, so unless there was a large variation in magnitude among the constants \(K_1, K_2, K_3, ... ,\)<br />
+ \(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ M − N_1(0.1) \approx 0.1K_1,\ \ \ \ \ \ \ \ M − N_1(0.01) \approx 0.01K_1,\)<br />
  and, in general,<br />
- <script type="math/tex">\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ M − N_1(h) \approx K_1h</script> .</li>
+ \(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ M − N_1(h) \approx K_1h\) .</li>
       <li>The object of extrapolation is to find an easy way to combine these rather inaccurate
- <script type="math/tex">O(h)</script> approximations in an appropriate way to produce formulas with a higher-order
+ \(O(h)\) approximations in an appropriate way to produce formulas with a higher-order
  truncation error.</li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Why?</strong> <br />
     <ul>
-      <li><strong>We can</strong> combine the <script type="math/tex">N_1(h)</script> formulas to <strong>produce an <script type="math/tex">\mathcal{O}(h^2)</script>
- approximation formula, <script type="math/tex">N_2(h)</script>, for <script type="math/tex">M</script></strong> with<br />
- <script type="math/tex">M − N_2(h) = \hat{K}_2h^2 + \hat{K}_3h^3 +···</script> ,<br />
- for some, again unknown, collection of constants <script type="math/tex">\hat{K}_2, \hat{K}_3, ...</script>.<br />
+      <li><strong>We can</strong> combine the \(N_1(h)\) formulas to <strong>produce an \(\mathcal{O}(h^2)\)
+ approximation formula, \(N_2(h)\), for \(M\)</strong> with<br />
+ \(M − N_2(h) = \hat{K}_2h^2 + \hat{K}_3h^3 +···\) ,<br />
+ for some, again unknown, collection of constants \(\hat{K}_2, \hat{K}_3, ...\).<br />
  Then we would have<br />
- <script type="math/tex">M − N_2(0.1) \approx 0.01\hat{K}_2, M − N_2(0.01) \approx 0.0001\hat{K}_2,</script></li>
-      <li>If the constants <script type="math/tex">K_1</script> and <script type="math/tex">\hat{K}_2</script> are roughly of the same magnitude, then the <script type="math/tex">N_2(h)</script> approximations would be much better than the corresponding <script type="math/tex">N_1(h)</script> approximations.</li>
+ \(M − N_2(0.1) \approx 0.01\hat{K}_2, M − N_2(0.01) \approx 0.0001\hat{K}_2,\)</li>
+      <li>If the constants \(K_1\) and \(\hat{K}_2\) are roughly of the same magnitude, then the \(N_2(h)\) approximations would be much better than the corresponding \(N_1(h)\) approximations.</li>
     </ul>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">The <script type="math/tex">\mathcal{O}(h)</script> formula for approximating <script type="math/tex">M</script>:</strong> <br />
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">The \(\mathcal{O}(h)\) formula for approximating \(M\):</strong> <br />
     <blockquote>
       <p><strong>The First Formula:</strong><br />
  <img src="/main_files/128a/4/4.2/1.png" alt="formula" width="70%" /></p>
@@ -124,7 +124,7 @@
     </blockquote>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">The <script type="math/tex">\mathcal{O}(h^2)</script> approximation formula for M:</strong> <br />
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">The \(\mathcal{O}(h^2)\) approximation formula for M:</strong> <br />
  <img src="/main_files/128a/4/4.2/3.png" alt="formula" width="70%" /><br />
  <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
  <img src="/main_files/128a/4/4.2/derivation.png" alt="formula" width="80%" hidden="" /></p>
@@ -136,28 +136,27 @@
     </blockquote>
 
     <blockquote>
-      <p>for a collection of constants <script type="math/tex">K_j</script> and when <script type="math/tex">% <![CDATA[
-\alpha_1 < \alpha_2 < \alpha_3 < ··· < \alpha_m %]]></script>.</p>
+      <p>for a collection of constants \(K_j\) and when \(\alpha_1 &lt; \alpha_2 &lt; \alpha_3 &lt; ··· &lt; \alpha_m\).</p>
     </blockquote>
 
     <blockquote>
-      <p>The extrapolation is much more effective than when all powers of <script type="math/tex">h</script> are present because the averaging process produces results with errors <script type="math/tex">\mathcal{O}(h^2), \mathcal{O}(h^4), \mathcal{O}(h^6), ...</script>, with essentially no increase in computation, over the results with errors, <script type="math/tex">\mathcal{O}(h), \mathcal{O}(h^2), \mathcal{O}(h^3), ...</script> .</p>
+      <p>The extrapolation is much more effective than when all powers of \(h\) are present because the averaging process produces results with errors \(\mathcal{O}(h^2), \mathcal{O}(h^4), \mathcal{O}(h^6), ...\), with essentially no increase in computation, over the results with errors, \(\mathcal{O}(h), \mathcal{O}(h^2), \mathcal{O}(h^3), ...\) .</p>
     </blockquote>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">The <script type="math/tex">\mathcal{O}(h^4)</script> formula for approximating <script type="math/tex">M</script>:</strong> <br />
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">The \(\mathcal{O}(h^4)\) formula for approximating \(M\):</strong> <br />
  <img src="/main_files/128a/4/4.2/5.png" alt="formula" width="60%" />
     <blockquote>
       <p><a href="#bodyContents18">Derivation below</a></p>
     </blockquote>
   </li>
-  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">The <script type="math/tex">\mathcal{O}(h^6)</script> formula for approximating <script type="math/tex">M</script>:</strong> <br />
+  <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">The \(\mathcal{O}(h^6)\) formula for approximating \(M\):</strong> <br />
  <img src="/main_files/128a/4/4.2/6.png" alt="formula" width="58%" />
     <blockquote>
       <p><a href="#bodyContents18">Derivation below</a></p>
     </blockquote>
   </li>
   <li>
-    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">The <script type="math/tex">\mathcal{O}(h^{2j})</script> formula for approximating <script type="math/tex">M</script>:</strong> <br />
+    <p><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents18">The \(\mathcal{O}(h^{2j})\) formula for approximating \(M\):</strong> <br />
  <img src="/main_files/128a/4/4.2/7.png" alt="formula" width="50%" /><br />
  <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
  <img src="/main_files/128a/4/4.2/derivation2.jpg" alt="formula" width="80%" hidden="" /></p>
@@ -166,7 +165,7 @@
  <img src="/main_files/128a/4/4.2/8.png" alt="formula" width="58%" />
     <blockquote>
       <p>It is conservatively assumed that the true result is accurate at least to within the agreement of the bottom two results in the diagonal, in this case, to within<br />
- <script type="math/tex">|N_3(h) − N_4(h)|</script>.</p>
+ \(|N_3(h) − N_4(h)|\).</p>
     </blockquote>
 
     <p><img src="/main_files/128a/4/4.2/9.png" alt="formula" width="50%" /></p>
@@ -185,13 +184,13 @@
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

@@ -225,10 +225,10 @@ prevLink: /work_files/research/dl/nlp.html
 3. **The Algorithm:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}  
     :   Given an _input sequence_ $$\hat{x} = [x_1, \ldots, x_T]$$, the RNN computes a sequence of hidden states $$h_1^T$$ and a sequence of outputs $$y_1^T$$ in the following way:  
         __for__ $$t$$ __in__ $$[1, ..., T]$$ __do__  
-            $$\ \ \ \ \ \ \ \ \ \ $$ $$u_t \leftarrow W_{hx}x_t + W_{hh}h_{t-1} + b_h$$  
-            $$\ \ \ \ \ \ \ \ \ \ $$ $$h_t \leftarrow g_h(u_t)$$  
-            $$\ \ \ \ \ \ \ \ \ \ $$ $$o_t \leftarrow W_{oh}h_{t} + b_o$$  
-            $$\ \ \ \ \ \ \ \ \ \ $$ $$y_t \leftarrow g_y(o_t)$$   
+            $$\:\:\:\:\:\:\:$$  $$u_t \leftarrow W_{hx}x_t + W_{hh}h_{t-1} + b_h$$  
+            $$\:\:\:\:\:\:\:$$  $$h_t \leftarrow g_h(u_t)$$  
+            $$\:\:\:\:\:\:\:$$  $$o_t \leftarrow W_{oh}h_{t} + b_o$$  
+            $$\:\:\:\:\:\:\:$$  $$y_t \leftarrow g_y(o_t)$$   
 
 4. **The Loss:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents24}  
     :   The loss of an RNN is commonly a sum of per-time losses:  
@@ -276,11 +276,7 @@ prevLink: /work_files/research/dl/nlp.html
                 known as __Exploding Gradient__. 
     :   As the bound can become __very small__ or __very large__ quickly, the _locality assumption of gradient descent_ breaks down.
 
-                    
-            
-
-                
-
+    <br>
 
 6. **BPTT:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}  
     __for__ $$t$$ __from__ $$T$$ __to__ $$1$$ __do__  
@@ -323,7 +319,7 @@ prevLink: /work_files/research/dl/nlp.html
     * $$dh_{\tau}$$: We need to get the gradient of $$h$$ at the last node/time-step $$\tau$$ i.e. $$h_{\tau}$$  
     * $$dh_t$$: We can then iterate backward in time to back-propagate gradients through time, from $$t=\tau-1$$ down to $$t=1$$, noting that $$h^{(t)}(\text { for } t<\tau)$$ has as <span>__descendants__</span>{: style="color: goldenrod"} both $$\boldsymbol{o}^{(t)}$$ and $$\boldsymbol{h}^{(t+1)}$$.  
         <button>From Graph</button>{: .showText value="show" onclick="showTextPopHide(event);"}
-          ![img](/main_files/dl/archits/rnns/9.png){: width="100%" hidden=""}  
+          ![img](/main_files/dl/archits/rnns/9.png){: width="30%" hidden=""}  
 
 
 

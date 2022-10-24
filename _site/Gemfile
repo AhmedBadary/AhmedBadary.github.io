@@ -32,8 +32,10 @@ gemspec
 
 gem "jekyll", ">= 3.7.4"
 gem 'jekyll-paginate'
-gem 'kramdown'
+gem "kramdown"
 gem 'pygments.rb'
 
 source 'https://rubygems.org'
 gem 'github-pages', '>= 191', group: :jekyll_plugins
+
+gem "webrick", "~> 1.7"

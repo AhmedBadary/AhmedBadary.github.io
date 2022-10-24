@@ -74,7 +74,7 @@
 <h1 id="k-means">K-Means</h1>
 
 <p><strong style="color: red">K-Means:</strong>  <br />
-It is a method for cluster analysis. It aims to partition <script type="math/tex">n</script> observations into <script type="math/tex">k</script> clusters in which each observation belongs to the cluster with the nearest mean. It results in a partitioning of the data space into <strong>Voronoi Cells</strong>.</p>
+It is a method for cluster analysis. It aims to partition \(n\) observations into \(k\) clusters in which each observation belongs to the cluster with the nearest mean. It results in a partitioning of the data space into <strong>Voronoi Cells</strong>.</p>
 
 <p><strong style="color: red">IDEA:</strong></p>
 <ul>
@@ -84,16 +84,16 @@ It is a method for cluster analysis. It aims to partition <script type="math/tex
 </ul>
 
 <p><strong style="color: red">Formal Description:</strong>  <br />
-Given a set of observations <script type="math/tex">\left(\mathbf{x}_{1}, \mathbf{x} _{2}, \ldots, \mathbf{x}_{n}\right)</script>, <script type="math/tex">\mathbf{x}_ i \in \mathbb{R}^d</script>, the algorithm aims to partition the <script type="math/tex">n</script> observations into <script type="math/tex">k</script> sets <script type="math/tex">\mathbf{S}=\left\{S_{1}, S_{2}, \ldots, S_{k}\right\}</script> so as to minimize the <strong>intra-cluster Sum-of-Squares</strong> (i.e. <strong>variance</strong>).</p>
+Given a set of observations \(\left(\mathbf{x}_{1}, \mathbf{x} _{2}, \ldots, \mathbf{x}_{n}\right)\), \(\mathbf{x}_ i \in \mathbb{R}^d\), the algorithm aims to partition the \(n\) observations into \(k\) sets \(\mathbf{S}=\left\{S_{1}, S_{2}, \ldots, S_{k}\right\}\) so as to minimize the <strong>intra-cluster Sum-of-Squares</strong> (i.e. <strong>variance</strong>).</p>
 
 <p>The Objective:</p>
 <p>$$\underset{\mathbf{S}}{\arg \min } \sum_{i=1}^{k} \sum_{\mathbf{x} \in S_{i}}\left\|\mathbf{x}-\boldsymbol{\mu}_{i}\right\|^{2}=\underset{\mathbf{S}}{\arg \min } \sum_{i=1}^{k}\left|S_{i}\right| \operatorname{Var} S_{i}$$</p>
-<p>where <script type="math/tex">\boldsymbol{\mu}_i</script> is the mean of points in <script type="math/tex">S_i</script>.</p>
+<p>where \(\boldsymbol{\mu}_i\) is the mean of points in \(S_i\).</p>
 
 <p><strong style="color: red">Algorithm:</strong></p>
 <ul>
   <li>Choose two random points, call them <em>“Centroids”</em></li>
-  <li>Assign the closest <script type="math/tex">N/2</script> points (Euclidean-wise) to each of the Centroids</li>
+  <li>Assign the closest \(N/2\) points (Euclidean-wise) to each of the Centroids</li>
   <li>Compute the mean of each <em>“group”/class</em> of points</li>
   <li>Re-Assign the centroids to the newly computed Means ↑</li>
   <li>REPEAT!</li>
@@ -103,7 +103,7 @@ Given a set of observations <script type="math/tex">\left(\mathbf{x}_{1}, \mathb
 
 <p><strong style="color: red">Complexity:</strong>  <br />
 The original formulation of the problem is <strong>NP-Hard</strong>; however, <strong>EM</strong> algorithms (specifically, Coordinate-Descent) can be used as efficient heuristic algorithms that converge quickly to good local minima.<br />
-Lloyds algorithm (and variants) have <script type="math/tex">{\displaystyle \mathcal{O}(nkdi)}</script> runtime.</p>
+Lloyds algorithm (and variants) have \({\displaystyle \mathcal{O}(nkdi)}\) runtime.</p>
 
 <p><strong style="color: red">Convergence:</strong>  <br />
 Guaranteed to converge after a finite number of iterations</p>
@@ -137,23 +137,23 @@ Guaranteed to converge after a finite number of iterations</p>
 
 <p><strong style="color: red">Coordinate Descent:</strong></p>
 <ul>
-  <li>Fix <script type="math/tex">S = \hat{S}</script>, optimize <script type="math/tex">\mu</script>:
+  <li>Fix \(S = \hat{S}\), optimize \(\mu\):
     <p>$$\begin{aligned} &amp; \min _{\mu} \sum_{i=1}^{k} \sum_{\mathbf{x} \in \hat{S}_{i}}\left\|\mu_{i}-x_{j}\right\|^{2}\\
       =&amp;  \sum_{i=1}^{k} \min _{\mu_i} \sum_{\mathbf{x} \in \hat{S}_{i}}\left\|\mathbf{x} - \mu_{i}\right\|^{2}
   \end{aligned}$$</p>
     <ul>
       <li><strong>MLE</strong>:
         <p>$$\min _{\mu_i} \sum_{\mathbf{x} \in \hat{S}_{i}}\left\|\mathbf{x} - \mu_{i}\right\|^{2}$$</p>
-        <p><script type="math/tex">\implies</script></p>
+        <p>\(\implies\)</p>
         <p>$${\displaystyle \hat{\mu_i} = \dfrac{\sum_{\mathbf{x} \in \hat{S}_ {i}} \mathbf{x}}{\vert\hat{S}_ i\vert}}$$</p>
         <p><button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
   <img src="/main_files/ml/kmeans/3.png" alt="img" width="75%" hidden="" /></p>
       </li>
     </ul>
   </li>
-  <li>Fix <script type="math/tex">\mu_i = \hat{\mu_i}, \forall i</script>, optimize <script type="math/tex">S</script><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>:
+  <li>Fix \(\mu_i = \hat{\mu_i}, \forall i\), optimize \(S\)<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>:
     <p>$$\arg \min _{S} \sum_{i=1}^{k} \sum_{\mathbf{x} \in S_{i}}\left\|\mathbf{x} - \hat{\mu_{i}}\right\|^{2}$$</p>
-    <p><script type="math/tex">\implies</script></p>
+    <p>\(\implies\)</p>
     <p>$$S_{i}^{(t)}=\left\{x_{p} :\left\|x_{p}-m_{i}^{(t)}\right\|^{2} \leq\left\|x_{p}-m_{j}^{(t)}\right\|^{2} \forall j, 1 \leq j \leq k\right\}$$</p>
     <ul>
       <li><strong>MLE</strong>:<br />
@@ -167,23 +167,23 @@ Guaranteed to converge after a finite number of iterations</p>
 * __MLE__:  
     <p>$$\dfrac{\partial}{\partial \mu_c} J(c, \mu) = \dfrac{\sum_{i=1}^m x^{(i)}}{m}$$</p> -->
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p>The optimization here is an <script type="math/tex">\arg \min</script> not a <script type="math/tex">\min</script>, since we are optimizing for <script type="math/tex">i</script> over <script type="math/tex">S_i</script>. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p>The optimization here is an \(\arg \min\) not a \(\min\), since we are optimizing for \(i\) over \(S_i\). <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

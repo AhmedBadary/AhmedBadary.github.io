@@ -166,7 +166,7 @@
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Sampling Bias:</strong><br />
- <strong>Sampling Bias</strong> occurs when: <script type="math/tex">\exists</script> Region with zero-probability <script type="math/tex">P=0</script> in training, but with positive-probability <script type="math/tex">P>0</script> in testing.</p>
+ <strong>Sampling Bias</strong> occurs when: \(\exists\) Region with zero-probability \(P=0\) in training, but with positive-probability \(P&gt;0\) in testing.</p>
 
     <p><strong>The Principle:</strong><br />
  If the data is sampled in a biased way, learning will produce a similarly biased outcome.</p>
@@ -187,7 +187,7 @@
  Sample in a way that <span style="color: purple">matches the <strong>distributions</strong> of <strong>train</strong> and <strong>test</strong></span> samples.</p>
 
     <p>The solution <strong>Fails</strong> (doesn’t work) if:<br />
- <script type="math/tex">\exists</script> Region with zero-probability <script type="math/tex">P=0</script> in training, but with positive-probability <script type="math/tex">P>0</script> in testing.</p>
+ \(\exists\) Region with zero-probability \(P=0\) in training, but with positive-probability \(P&gt;0\) in testing.</p>
     <blockquote>
       <p>This is when sampling bias exists.</p>
     </blockquote>
@@ -224,12 +224,12 @@
  Modern NN are <strong>miscalibrated</strong>: not well-calibrated. They tend to be very confident. We cannot interpret the softmax probabilities as reflecting the true probability distribution or as a measure of confidence.</p>
 
     <p><strong>Miscalibration:</strong> is the discrepancy between model confidence and model accuracy.<br />
- You assume that if a model gives <script type="math/tex">80\%</script> confidence for 100 images, then <script type="math/tex">80</script> of them will be accurate and the other <script type="math/tex">20</script> will be inaccurate.<br />
+ You assume that if a model gives \(80\%\) confidence for 100 images, then \(80\) of them will be accurate and the other \(20\) will be inaccurate.<br />
  <button class="showText" value="show" onclick="showTextPopHide(event);">Miscalibration in Modern Neural Networks</button>
  <img src="https://cdn.mathpix.com/snip/images/boMaW8Wx2tXfUYTJpd-rhcVGWnrtpC4_2AGbXPxtocc.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
 
     <p><strong>Model Confidence:</strong> probability of correctness.<br />
- <strong>Calibrated Confidence (softmax scores) <script type="math/tex">\hat{p}</script>:</strong> <script type="math/tex">\hat{p}</script> represents a true probability.</p>
+ <strong>Calibrated Confidence (softmax scores) \(\hat{p}\):</strong> \(\hat{p}\) represents a true probability.</p>
 
     <ul>
       <li><a href="https://arxiv.org/pdf/1706.04599.pdf">On Calibration of Modern Neural Networks</a>  <br />
@@ -242,13 +242,13 @@
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Debugging Strategies for Deep ML Models:</strong><br />
- <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Strategies</button>
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Strategies</button>
     <ol hidden="">
-      <li>Visualize the model in action:<br />
+      <li><strong>Visualize the model in action:</strong><br />
  Directly observing qualitative results of a model (e.g. located objects, generated speech) can help avoid <strong>evaluation bugs</strong> or <strong>mis-leading evaluation results</strong>. It can also help guide the expected quantitative performance of the model.</li>
-      <li>Visualize the worst mistakes:<br />
+      <li><strong>Visualize the worst mistakes:</strong><br />
  By viewing the training set examples that are the hardest to model correctly by using a confidence measure (e.g. softmax probabilities), one can often discover problems with the way the data have been <strong>preprocessed</strong> or <strong>labeled</strong>.</li>
-      <li>Reason about software using training and test error:<br />
+      <li><strong>Reason about Software using Training and Test <em>Error</em>:</strong><br />
  It is hard to determine whether the underlying software is correctly implemented.<br />
  We can use the training/test errors to help guide us:
         <ul>
@@ -263,11 +263,11 @@
   This scenario requires further tests, described next.</li>
         </ul>
       </li>
-      <li>Fit a tiny dataset:<br />
+      <li><strong>Fit a <em>Tiny Dataset:</em></strong><br />
  If you have high error on the training set, determine whether it is due to genuine underfitting or due to a software defect.<br />
  Usually even small models can be guaranteed to be able fit a suﬃciently small dataset. For example, a classification dataset with only one example can be fit just by setting the biase sof the output layer correctly.<br />
  This test can be extended to a small dataset with few examples.</li>
-      <li>Monitor histograms of activations and gradients:<br />
+      <li><strong>Monitor histograms of <em>Activations</em> and <em>Gradients:</em></strong><br />
  It is often useful to visualize statistics of neural network activations and gradients, collected over a large amount of training iterations (maybe one epoch).<br />
  The <strong>preactivation value</strong> of <strong>hidden units</strong> can tell us if the units <span style="color: purple"><strong>saturate</strong></span>, or how often they do.<br />
  For example, for rectifiers,how often are they off? Are there units that are always off?<br />
@@ -295,27 +295,27 @@
   <button class="showText" value="show" onclick="showTextPopHide(event);">Example</button>
         <ul hidden="">
           <li>A specification of a dataset:<br />
-  The Dataset consists of <script type="math/tex">X</script> and <script type="math/tex">y</script>.</li>
+  The Dataset consists of \(X\) and \(y\).</li>
           <li>A cost function:<br />
-  <script type="math/tex">J(\boldsymbol{w}, b)=-\mathbb{E}_{\mathbf{x}, \mathbf{y} \sim \hat{p}_{\text {data }}} \log p_{\text {model }}(y | \boldsymbol{x})</script></li>
+  \(J(\boldsymbol{w}, b)=-\mathbb{E}_{\mathbf{x}, \mathbf{y} \sim \hat{p}_{\text {data }}} \log p_{\text {model }}(y | \boldsymbol{x})\)</li>
           <li>An optimization procedure:<br />
   in most cases, the optimization algorithm is defined by solving for where the gradient of the cost is zero using the normal equation.</li>
           <li>A model:<br />
   The Model Specification is:<br />
-  <script type="math/tex">p_{\text {model}}(y \vert \boldsymbol{x})=\mathcal{N}\left(y ; \boldsymbol{x}^{\top} \boldsymbol{w}+b, 1\right)</script></li>
+  \(p_{\text {model}}(y \vert \boldsymbol{x})=\mathcal{N}\left(y ; \boldsymbol{x}^{\top} \boldsymbol{w}+b, 1\right)\)</li>
         </ul>
       </li>
       <li><strong>Ex: PCA</strong><br />
   <button class="showText" value="show" onclick="showTextPopHide(event);">Example</button>
         <ul hidden="">
           <li>A specification of a dataset:<br />
-  <script type="math/tex">X</script></li>
+  \(X\)</li>
           <li>A cost function:<br />
-  <script type="math/tex">J(\boldsymbol{w})=\mathbb{E}_{\mathbf{x} \sim \hat{p}_{\text {data }}}\|\boldsymbol{x}-r(\boldsymbol{x} ; \boldsymbol{w})\|_ {2}^{2}</script></li>
+  \(J(\boldsymbol{w})=\mathbb{E}_{\mathbf{x} \sim \hat{p}_{\text {data }}}\|\boldsymbol{x}-r(\boldsymbol{x} ; \boldsymbol{w})\|_ {2}^{2}\)</li>
           <li>An optimization procedure:<br />
   Constrained Convex optimization or Gradient Descent.</li>
           <li>A model:<br />
-  Defined to have <script type="math/tex">\boldsymbol{w}</script> with <strong>norm</strong> <script type="math/tex">1</script> and <strong>reconstruction function</strong> <script type="math/tex">r(\boldsymbol{x})=\boldsymbol{w}^{\top} \boldsymbol{x} \boldsymbol{w}</script>.</li>
+  Defined to have \(\boldsymbol{w}\) with <strong>norm</strong> \(1\) and <strong>reconstruction function</strong> \(r(\boldsymbol{x})=\boldsymbol{w}^{\top} \boldsymbol{x} \boldsymbol{w}\).</li>
         </ul>
       </li>
       <li><strong>Specification of a Dataset</strong>:<br />
@@ -352,13 +352,13 @@
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

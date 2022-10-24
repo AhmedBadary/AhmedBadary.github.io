@@ -174,24 +174,24 @@
         <ul>
           <li><strong>Pyramidal Decomposition</strong>: <br />
   Inspired by <em>the use of wavelets for multiresolution analysis, in which an input is analyzed recursively via feature extraction and downsampling operators</em>, the pyramidal decomposition encoder generalizes the wavelet decomposition idea to <em>learn optimal, nonlinear extractors individually for each scale</em>.<br />
-  For each input <script type="math/tex">\mathbf{x}</script> to the model, and a total of <script type="math/tex">M</script> scales, denote the input to scale <script type="math/tex">m</script> by <script type="math/tex">\mathbf{x}_m</script>.
+  For each input \(\mathbf{x}\) to the model, and a total of \(M\) scales, denote the input to scale \(m\) by \(\mathbf{x}_m\).
             <ul>
               <li><em><strong>Algorithm</strong></em>:
                 <ul>
-                  <li>Set input to first scale <script type="math/tex">\mathbf{x}_1 = \mathbf{x}</script></li>
-                  <li>For each scale <script type="math/tex">m</script>:
+                  <li>Set input to first scale \(\mathbf{x}_1 = \mathbf{x}\)</li>
+                  <li>For each scale \(m\):
                     <ul>
-                      <li>Extract coefficients <script type="math/tex">\mathbf{c}_m = \mathbf{f}_m(\mathbf{x}_m) \in \mathbb{R}^{C_m \times H_m \times W_m}</script> via some parametrized function <script type="math/tex">\mathbf{f}_m(\dot)</script> for output channels <script type="math/tex">C_m</script>, height <script type="math/tex">H_m</script> and width <script type="math/tex">W_m</script></li>
-                      <li>Compute the input to the next scale as <script type="math/tex">\mathbf{x}_{m+1} = \mathbf{D}_m(\mathbf{x}_m)</script>, where <script type="math/tex">\mathbf{D}_m(\dot)</script> is some <em>downsampling operator</em> (either fixed or learned)</li>
+                      <li>Extract coefficients \(\mathbf{c}_m = \mathbf{f}_m(\mathbf{x}_m) \in \mathbb{R}^{C_m \times H_m \times W_m}\) via some parametrized function \(\mathbf{f}_m(\dot)\) for output channels \(C_m\), height \(H_m\) and width \(W_m\)</li>
+                      <li>Compute the input to the next scale as \(\mathbf{x}_{m+1} = \mathbf{D}_m(\mathbf{x}_m)\), where \(\mathbf{D}_m(\dot)\) is some <em>downsampling operator</em> (either fixed or learned)</li>
                     </ul>
                   </li>
                 </ul>
               </li>
             </ul>
 
-            <p>Typically, <script type="math/tex">M</script> is chosen to be <script type="math/tex">= 6</script> scales.<br />
-  The <strong>feature extractors for the individual scales</strong> are composed of <em><strong>a sequence of convolutions with kernels <script type="math/tex">3 \times 3</script> or <script type="math/tex">1 \times 1</script> and ReLUs with a leak of <script type="math/tex">0.2</script></strong></em>.<br />
-  All <em>downsamplers</em> are learned as <script type="math/tex">4 \times 4</script> convolutions with a stride of <script type="math/tex">2</script>.</p>
+            <p>Typically, \(M\) is chosen to be \(= 6\) scales.<br />
+  The <strong>feature extractors for the individual scales</strong> are composed of <em><strong>a sequence of convolutions with kernels \(3 \times 3\) or \(1 \times 1\) and ReLUs with a leak of \(0.2\)</strong></em>.<br />
+  All <em>downsamplers</em> are learned as \(4 \times 4\) convolutions with a stride of \(2\).</p>
           </li>
         </ul>
       </dd>
@@ -203,16 +203,16 @@
             <ul>
               <li><em><strong>Structure</strong></em>:
                 <ul>
-                  <li><strong>Input</strong>: the set of coefficients extracted from the different scales <script type="math/tex">\{\mathbf{c}_m\}_{m=1}^M \subset \mathbb{R}^{C_m \times H_m \times W_m}</script></li>
-                  <li><strong>Output</strong>: a tensor <script type="math/tex">\mathbf{y} \in \mathbb{R}^{C \times H \times W}</script></li>
+                  <li><strong>Input</strong>: the set of coefficients extracted from the different scales \(\{\mathbf{c}_m\}_{m=1}^M \subset \mathbb{R}^{C_m \times H_m \times W_m}\)</li>
+                  <li><strong>Output</strong>: a tensor \(\mathbf{y} \in \mathbb{R}^{C \times H \times W}\)</li>
                 </ul>
               </li>
               <li><em><strong>Algorithm</strong></em>:
                 <ul>
-                  <li>Map each input tensor <script type="math/tex">\mathbf{c}_m</script> to the target dimensionality via some parametrized function <script type="math/tex">\mathbf{g}_m(·)</script>:  this involves ensuring that this function spatially resamples <script type="math/tex">\mathbf{c}_m</script> to the appropriate output map size <script type="math/tex">H \times W</script>, and ouputs the appropriate number of channels <script type="math/tex">C</script></li>
-                  <li>Sum <script type="math/tex">\mathbf{g}_m(\mathbf{c}_m) = 1, \ldots, M</script>, and apply another parameterized non-linear transformation <script type="math/tex">\mathbf{g}(·)</script> for <em>joint processing</em><br />
-<script type="math/tex">\mathbf{g}_m(·)</script> is chosen as a <strong>convolution</strong> or a <strong>deconvolution</strong> with an appropriate stride to produce the target spatial map size <script type="math/tex">H \times W</script>.<br />
-<script type="math/tex">\mathbf{g}(·)</script> is choses as a <strong>sequence of <script type="math/tex">3 \times 3</script> convolutions</strong>.</li>
+                  <li>Map each input tensor \(\mathbf{c}_m\) to the target dimensionality via some parametrized function \(\mathbf{g}_m(·)\):  this involves ensuring that this function spatially resamples \(\mathbf{c}_m\) to the appropriate output map size \(H \times W\), and ouputs the appropriate number of channels \(C\)</li>
+                  <li>Sum \(\mathbf{g}_m(\mathbf{c}_m) = 1, \ldots, M\), and apply another parameterized non-linear transformation \(\mathbf{g}(·)\) for <em>joint processing</em><br />
+\(\mathbf{g}_m(·)\) is chosen as a <strong>convolution</strong> or a <strong>deconvolution</strong> with an appropriate stride to produce the target spatial map size \(H \times W\).<br />
+\(\mathbf{g}(·)\) is choses as a <strong>sequence of \(3 \times 3\) convolutions</strong>.</li>
                 </ul>
               </li>
             </ul>
@@ -224,18 +224,18 @@
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Code Computation and Regularization:</strong></dt>
-      <dd>Given the output tensor <script type="math/tex">\mathbf{y} \in \mathbb{R}^{C \times H \times W}</script> of the <em>feature extraction step</em> (namely alignment), we proceed to <strong>quantize and encode</strong> it.</dd>
+      <dd>Given the output tensor \(\mathbf{y} \in \mathbb{R}^{C \times H \times W}\) of the <em>feature extraction step</em> (namely alignment), we proceed to <strong>quantize and encode</strong> it.</dd>
       <dd>
         <ul>
-          <li><strong>Quantization</strong>: the tensor <script type="math/tex">\mathbf{y}</script> is quantized to bit precision <script type="math/tex">B</script>:  <br />
+          <li><strong>Quantization</strong>: the tensor \(\mathbf{y}\) is quantized to bit precision \(B\):  <br />
   <img src="/main_files/cv/compression/2.png" alt="img" width="50%" /><br />
-  Given a desired precision of <script type="math/tex">B</script> bits, we quantize the feature tensor into <script type="math/tex">2^B</script> equal-sized bins as:<br />
+  Given a desired precision of \(B\) bits, we quantize the feature tensor into \(2^B\) equal-sized bins as:<br />
   <img src="/main_files/cv/compression/3.png" alt="img" width="80%" /><br />
-  For the special case <script type="math/tex">B = 1</script>, this reduces exactly to a binary quantization scheme.<br />
-  In-practice <script type="math/tex">B = 6</script> is chosen as a smoother quantization method.
+  For the special case \(B = 1\), this reduces exactly to a binary quantization scheme.<br />
+  In-practice \(B = 6\) is chosen as a smoother quantization method.
             <ul>
               <li><strong>Reason</strong>: <br />
-  Mapping the <em>continuous input values</em> representing the image signal to a <em>smaller countable set</em> to achieve a desired precision of <script type="math/tex">B</script> bits</li>
+  Mapping the <em>continuous input values</em> representing the image signal to a <em>smaller countable set</em> to achieve a desired precision of \(B\) bits</li>
             </ul>
           </li>
         </ul>
@@ -243,31 +243,31 @@
       <dd>
         <ul>
           <li>
-            <p><strong>Bitplane Decomposition</strong>: we transform the <em>quantized tensor</em> <script type="math/tex">\mathbf{\hat{y}}</script> into a <em>binary tensor</em> suitable for encoding via a lossless bitplane decomposition:<br />
+            <p><strong>Bitplane Decomposition</strong>: we transform the <em>quantized tensor</em> \(\mathbf{\hat{y}}\) into a <em>binary tensor</em> suitable for encoding via a lossless bitplane decomposition:<br />
   <img src="/main_files/cv/compression/4.png" alt="img" width="80%" /><br />
-  <script type="math/tex">\mathbf{\hat{y}}</script> is decomposed into <em>bitplanes</em> by a transformation that maps each value <script type="math/tex">\hat{y}_{chw}</script> into its <em>binary expansion</em> of <script type="math/tex">B</script> bits.<br />
-  Hence, each of the <script type="math/tex">C</script> spatial maps <script type="math/tex">\mathbf{\hat{y}}_c \in \mathbb{R}^{H \times W}</script> of <script type="math/tex">\mathbf{\hat{y}}</script> expands into <script type="math/tex">B</script> <em>binary bitplanes</em>.</p>
+  \(\mathbf{\hat{y}}\) is decomposed into <em>bitplanes</em> by a transformation that maps each value \(\hat{y}_{chw}\) into its <em>binary expansion</em> of \(B\) bits.<br />
+  Hence, each of the \(C\) spatial maps \(\mathbf{\hat{y}}_c \in \mathbb{R}^{H \times W}\) of \(\mathbf{\hat{y}}\) expands into \(B\) <em>binary bitplanes</em>.</p>
 
             <ul>
               <li><strong>Reason</strong>: <br />
-  This decomposition enables the entropy coder to exploit structure in the distribution of the activations in <script type="math/tex">\mathbf{y}</script> to achieve a compact representation.</li>
+  This decomposition enables the entropy coder to exploit structure in the distribution of the activations in \(\mathbf{y}\) to achieve a compact representation.</li>
             </ul>
           </li>
         </ul>
       </dd>
       <dd>
         <ul>
-          <li><strong>Adaptive Arithmetic Encoding</strong>: encodes <script type="math/tex">\mathbf{b}</script> into its final <em>variable-length binary sequence</em> <script type="math/tex">\mathbf{s}</script> of length <script type="math/tex">\mathcal{l}(\mathbf{s})</script>:<br />
+          <li><strong>Adaptive Arithmetic Encoding</strong>: encodes \(\mathbf{b}\) into its final <em>variable-length binary sequence</em> \(\mathbf{s}\) of length \(\mathcal{l}(\mathbf{s})\):<br />
   <img src="/main_files/cv/compression/5.png" alt="img" width="65%" />
             <ul>
-              <li>The <em>binary tensor</em> <script type="math/tex">\mathbf{b}</script> that is produced by the bitplane decomposition contains significant structure (e.g. higher bitplanes are sparser, and spatially neighboring bits often have the same value).<br />
+              <li>The <em>binary tensor</em> \(\mathbf{b}\) that is produced by the bitplane decomposition contains significant structure (e.g. higher bitplanes are sparser, and spatially neighboring bits often have the same value).<br />
   This structure can be exploited by using Adaptive Arithmetic Encoding.</li>
               <li><strong>Method</strong>:
                 <ul>
                   <li><em><strong>Encoding</strong></em>:   <br />
-  Associate each bit location in the <em>binary tensor</em> <script type="math/tex">\mathbf{b}</script> with a <em>context</em>, which comprises a set of features indicative of the bit value.<br />
+  Associate each bit location in the <em>binary tensor</em> \(\mathbf{b}\) with a <em>context</em>, which comprises a set of features indicative of the bit value.<br />
   The <em>features</em> are based on the <em>position of the bit</em> and the <em>values of neighboring bits.<br />
-  To predict the value of each bit from its context features, we _train a classifier</em> and use <em>its output probabilities</em> to compress <script type="math/tex">\mathbf{b}</script> via <em>arithmetic coding</em>.</li>
+  To predict the value of each bit from its context features, we _train a classifier</em> and use <em>its output probabilities</em> to compress \(\mathbf{b}\) via <em>arithmetic coding</em>.</li>
                   <li><em><strong>Decoding</strong></em>:  <br />
   At decoding time, we perform the <em>inverse operation</em> to <em>decompress the code</em>.<br />
   We interleave between:
@@ -283,22 +283,22 @@
                 </ul>
               </li>
               <li><strong>Reason</strong>: <br />
-  We aim to leverage the structure in the data, specifically in the <em>binary tensor</em> <script type="math/tex">\mathbf{b}</script> produced by the <em>bitplane decomposition</em> which has <em>low entropy</em></li>
+  We aim to leverage the structure in the data, specifically in the <em>binary tensor</em> \(\mathbf{b}\) produced by the <em>bitplane decomposition</em> which has <em>low entropy</em></li>
             </ul>
           </li>
         </ul>
       </dd>
       <dd>
         <ul>
-          <li><strong>Adaptive Codelength Regularization</strong>: modulates the distribution of the quantized representation <script type="math/tex">\mathbf{\hat{y}}</script> to achieve a target expected bit count across inputs:<br />
+          <li><strong>Adaptive Codelength Regularization</strong>: modulates the distribution of the quantized representation \(\mathbf{\hat{y}}\) to achieve a target expected bit count across inputs:<br />
   <img src="/main_files/cv/compression/6.png" alt="img" width="60%" />
             <ul>
-              <li><strong>Goal</strong>: regulate the expected codelength <script type="math/tex">\mathbb{E}_x[\mathcal{l}(\mathbf{s})]</script> to a target value <script type="math/tex">\mathcal{l}_{\text{target}}</script>.</li>
+              <li><strong>Goal</strong>: regulate the expected codelength \(\mathbb{E}_x[\mathcal{l}(\mathbf{s})]\) to a target value \(\mathcal{l}_{\text{target}}\).</li>
               <li><strong>Method</strong>:<br />
   We design a penalty that encourages a structure that the <strong>AAC</strong> is able to encode.<br />
-  Namely, we <em><strong>regularize</strong></em> the <em>quantized tensor</em> <script type="math/tex">\mathbf{\hat{y}}</script> with:<br />
+  Namely, we <em><strong>regularize</strong></em> the <em>quantized tensor</em> \(\mathbf{\hat{y}}\) with:<br />
   <img src="/main_files/cv/compression/7.png" alt="img" width="60%" /><br />
-  for iteration <script type="math/tex">t</script> and difference index set <script type="math/tex">S = \{(0,1), (1,0), (1,1), (-1,1)\}</script>.
+  for iteration \(t\) and difference index set \(S = \{(0,1), (1,0), (1,1), (-1,1)\}\).
                 <blockquote>
                   <p>The <strong>first term</strong> <em>penalizes the magnitude of each tensor element</em><br />
 The <strong>Second Term</strong> <em>penalizes deviations between spatial neighbors</em></p>
@@ -307,7 +307,7 @@ The <strong>Second Term</strong> <em>penalizes deviations between spatial neighb
               <li><strong>Reason</strong>: <br />
   The <em>Adaptive Codelength Regularization</em> is designed to solve one problem; the non-variability of the latent space code, which is what controls (defines) the bitrate.<br />
   It, essentially, allows us to have latent-space codes with different lengths, depending on the complexity of the input, <em>by enabling better prediction by the <strong>AAX</strong></em><br />
-  In practice, a <strong>total-to-target ratio</strong> <script type="math/tex">= BCHW/\mathcal{l}_{\text{target}} = 4</script> works well.</li>
+  In practice, a <strong>total-to-target ratio</strong> \(= BCHW/\mathcal{l}_{\text{target}} = 4\) works well.</li>
             </ul>
           </li>
         </ul>
@@ -340,53 +340,53 @@ The <strong>Second Term</strong> <em>penalizes deviations between spatial neighb
       <dd>
         <ul>
           <li><strong>Problem</strong>: Regression Problem</li>
-          <li><strong>Goal</strong>: Learn a function <script type="math/tex">\psi(x;\theta)</script> that is trained and used to regress to a pose vector.</li>
-          <li><strong>Estimation</strong>: <script type="math/tex">\psi</script> is based on (learned through) Deep Neural Net</li>
+          <li><strong>Goal</strong>: Learn a function \(\psi(x;\theta)\) that is trained and used to regress to a pose vector.</li>
+          <li><strong>Estimation</strong>: \(\psi\) is based on (learned through) Deep Neural Net</li>
           <li><strong>Deep Neural Net</strong>: is a Convolutional Neural Network; namely, <strong>AlexNet</strong>
             <ul>
-              <li><em><strong>Input</strong></em>: image with pre-defined size <script type="math/tex">= \:</script> #-pixels <script type="math/tex">\times 3</script>-color channels
+              <li><em><strong>Input</strong></em>: image with pre-defined size \(= \:\) #-pixels \(\times 3\)-color channels
                 <blockquote>
-                  <p><script type="math/tex">(220 \times 220)</script> with a stride of <script type="math/tex">4</script></p>
+                  <p>\((220 \times 220)\) with a stride of \(4\)</p>
                 </blockquote>
               </li>
-              <li><em><strong>Output</strong></em>: target value of the regression<script type="math/tex">= 2k</script> joint coordinates</li>
+              <li><em><strong>Output</strong></em>: target value of the regression\(= 2k\) joint coordinates</li>
             </ul>
           </li>
         </ul>
       </dd>
       <dd>
         <blockquote>
-          <p>Denote by <script type="math/tex">\mathbf{C}</script> a convolutional layer, by <script type="math/tex">\mathbf{LRN}</script> a local response normalization layer, <script type="math/tex">\mathbf{P}</script> a pooling layer and by <script type="math/tex">\mathbf{F}</script> a fully connected layer</p>
+          <p>Denote by \(\mathbf{C}\) a convolutional layer, by \(\mathbf{LRN}\) a local response normalization layer, \(\mathbf{P}\) a pooling layer and by \(\mathbf{F}\) a fully connected layer</p>
         </blockquote>
       </dd>
       <dd>
         <blockquote>
-          <p>For <script type="math/tex">\mathbf{C}</script> layers, the size is defined as width <script type="math/tex">\times</script> height <script type="math/tex">\times</script> depth, where the first two dimensions have a spatial meaning while the depth defines the number of filters.</p>
+          <p>For \(\mathbf{C}\) layers, the size is defined as width \(\times\) height \(\times\) depth, where the first two dimensions have a spatial meaning while the depth defines the number of filters.</p>
         </blockquote>
       </dd>
       <dd>
         <ul>
           <li><strong>Alex-Net</strong>:
             <ul>
-              <li><em><strong>Architecture</strong></em>:     <script type="math/tex">\mathbf{C}(55 \times 55 \times 96) − \mathbf{LRN} − \mathbf{P} − \mathbf{C}(27 \times 27 \times 256) − \mathbf{LRN} − \mathbf{P} − \\\mathbf{C}(13 \times 13 \times 384) − \mathbf{C}(13 \times 13 \times 384) − \mathbf{C}(13 \times 13 \times 256) − \mathbf{P} − \mathbf{F}(4096) − \mathbf{F}(4096)</script></li>
+              <li><em><strong>Architecture</strong></em>:     \(\mathbf{C}(55 \times 55 \times 96) − \mathbf{LRN} − \mathbf{P} − \mathbf{C}(27 \times 27 \times 256) − \mathbf{LRN} − \mathbf{P} − \\\mathbf{C}(13 \times 13 \times 384) − \mathbf{C}(13 \times 13 \times 384) − \mathbf{C}(13 \times 13 \times 256) − \mathbf{P} − \mathbf{F}(4096) − \mathbf{F}(4096)\)</li>
               <li><em><strong>Filters</strong></em>:
                 <ul>
-                  <li><script type="math/tex">\mathbf{C}_{1} = 11 \times 11</script>,</li>
-                  <li><script type="math/tex">\mathbf{C}_{2} = 5 \times 5</script>,</li>
-                  <li><script type="math/tex">\mathbf{C}_{3-5} = 3 \times 3</script>.</li>
+                  <li>\(\mathbf{C}_{1} = 11 \times 11\),</li>
+                  <li>\(\mathbf{C}_{2} = 5 \times 5\),</li>
+                  <li>\(\mathbf{C}_{3-5} = 3 \times 3\).</li>
                 </ul>
               </li>
-              <li><em><strong>Total Number of Parameters</strong></em> <script type="math/tex">= 40</script>M</li>
+              <li><em><strong>Total Number of Parameters</strong></em> \(= 40\)M</li>
               <li><em><strong>Training Dataset</strong></em>:<br />
-  Denote by <script type="math/tex">D</script> the training set and <script type="math/tex">D_N</script> the normalized training set: <br />
-  <script type="math/tex">\ \ \ \ \ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">\ \ \ \ \ \ \ \ \ \ \ \ \ \</script>  <script type="math/tex">D_N = \{(N(x),N(\mathbf{y}))\vert (x,\mathbf{y}) \in D\}</script></li>
-              <li><em><strong>Loss</strong></em>: the Loss is modified; instead of a <em>classification loss</em>, we train a linear regression on top of the last network layer to predict a pose vector by minimizing <script type="math/tex">L_2</script> distance between the prediction and the true pose vector,</li>
+  Denote by \(D\) the training set and \(D_N\) the normalized training set: <br />
+  \(\ \ \ \ \ \ \ \ \ \ \ \ \ \\) \(\ \ \ \ \ \ \ \ \ \ \ \ \ \\)  \(D_N = \{(N(x),N(\mathbf{y}))\vert (x,\mathbf{y}) \in D\}\)</li>
+              <li><em><strong>Loss</strong></em>: the Loss is modified; instead of a <em>classification loss</em>, we train a linear regression on top of the last network layer to predict a pose vector by minimizing \(L_2\) distance between the prediction and the true pose vector,</li>
             </ul>
           </li>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\arg \min_\theta \sum_{(x,y) \in D_N} \sum_{i=1}^k \|\mathbf{y}_i - \psi_i(x;\theta)\|_2^2</script>
+\[\arg \min_\theta \sum_{(x,y) \in D_N} \sum_{i=1}^k \|\mathbf{y}_i - \psi_i(x;\theta)\|_2^2\]
       </dd>
       <dd>
         <ul>
@@ -394,9 +394,9 @@ The <strong>Second Term</strong> <em>penalizes deviations between spatial neighb
             <ul>
               <li><em><strong>BackPropagation</strong></em> in a distributed online implementation</li>
               <li><em><strong>Adaptive Gradient Updates</strong></em></li>
-              <li><em><strong>Learning Rate</strong></em> <script type="math/tex">= 0.0005 = 5\times 10^{-4}</script></li>
+              <li><em><strong>Learning Rate</strong></em> \(= 0.0005 = 5\times 10^{-4}\)</li>
               <li><em><strong>Data Augmentation</strong></em>: randomly translated image crops, left/right flips</li>
-              <li><em><strong>DropOut Regularization</strong></em> for the <script type="math/tex">\mathbf{F}</script> layers <script type="math/tex">= 0.6</script></li>
+              <li><em><strong>DropOut Regularization</strong></em> for the \(\mathbf{F}\) layers \(= 0.6\)</li>
             </ul>
           </li>
         </ul>
@@ -409,7 +409,7 @@ The <strong>Second Term</strong> <em>penalizes deviations between spatial neighb
       <dd>
         <ul>
           <li><strong>Motivation</strong>: <br />
-  Although, the pose formulation of the DNN has the advantage that the joint estimation is based on the full image and thus relies on context, due its fixed input size of <script type="math/tex">220 \times 220</script>, the network has <em>limited capacity to look at detail</em> - it <em>learns filters capturing pose properties at coarse scale</em>.<br />
+  Although, the pose formulation of the DNN has the advantage that the joint estimation is based on the full image and thus relies on context, due its fixed input size of \(220 \times 220\), the network has <em>limited capacity to look at detail</em> - it <em>learns filters capturing pose properties at coarse scale</em>.<br />
   The <em>pose properties</em> are necessary to <em>estimate rough pose</em> but <strong>insufficient</strong> to always <em>precisely localize the body joints</em>.<br />
   Increasing the input size is infeasible since it will increase the already large number of parameters.<br />
   Thus, a <em>cascade of pose regressors</em> is used to achieve better precision.</li>
@@ -433,28 +433,28 @@ The <strong>Second Term</strong> <em>penalizes deviations between spatial neighb
           <li><strong>Method and Architecture</strong>:
             <ul>
               <li>The same network architecture is used for all stages of the cascade but learn different parameters.</li>
-              <li>Start with a bounding box <script type="math/tex">b^0</script>: which either encloses the full image or is obtained by a person detector</li>
+              <li>Start with a bounding box \(b^0\): which either encloses the full image or is obtained by a person detector</li>
               <li>Obtain an initial pose:<br />
-  Stage 1: <script type="math/tex">\mathbf{y}^1 \leftarrow N^{-1}(\psi(N(x;b^0);\theta_1);b^0)</script></li>
-              <li>At stages <script type="math/tex">s \geq 2</script>, for all joints:
+  Stage 1: \(\mathbf{y}^1 \leftarrow N^{-1}(\psi(N(x;b^0);\theta_1);b^0)\)</li>
+              <li>At stages \(s \geq 2\), for all joints:
                 <ul>
-                  <li>Regress first towards a refinement displacement <script type="math/tex">\mathbf{y}_i^s - \mathbf{y}_i^{(s-1)}</script> by applying a regressor on the sub image defined by <script type="math/tex">b_i^{(s-1)}</script></li>
-                  <li>Estimate new joint boxes <script type="math/tex">b_i^s</script>:<br />
-  Stage <script type="math/tex">s</script>: <script type="math/tex">\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mathbf{y}_i^s \leftarrow \mathbf{y}_i^{(2-1)} + N^{-1}(\psi(N(x;b^0);\theta_s);b)  \:\: (6)  \\
+                  <li>Regress first towards a refinement displacement \(\mathbf{y}_i^s - \mathbf{y}_i^{(s-1)}\) by applying a regressor on the sub image defined by \(b_i^{(s-1)}\)</li>
+                  <li>Estimate new joint boxes \(b_i^s\):<br />
+  Stage \(s\): \(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mathbf{y}_i^s \leftarrow \mathbf{y}_i^{(2-1)} + N^{-1}(\psi(N(x;b^0);\theta_s);b)  \:\: (6)  \\
  \ \ \ \ \ \ \ \ \ \ \ \ \ \                  \:\:\:\: \text{for } b = b_i^(s-1) \\
 \ \ \ \ \ \ \ \ \ \ \ \ \ \ 
-  b_i^s \leftarrow (\mathbf{y}_i^s, \sigma diam(\mathbf{y}^s), \sigma diam(\mathbf{y}^s))) \:\: (7)</script><br />
-  where we considered a joint bounding box <script type="math/tex">b_i</script> capturing the sub-image around <script type="math/tex">\mathbf{y}_i: b_i(\mathbf{y}; \sigma) = (\mathbf{y}_i, \sigma diam(\mathbf{y}), \sigma diam(\mathbf{y}))</script> having as center the i-th joint and as dimension the pose diameter scaled by <script type="math/tex">\sigma</script>, to refine a given joint location <script type="math/tex">\mathbf{y}_i</script>.</li>
+  b_i^s \leftarrow (\mathbf{y}_i^s, \sigma diam(\mathbf{y}^s), \sigma diam(\mathbf{y}^s))) \:\: (7)\)<br />
+  where we considered a joint bounding box \(b_i\) capturing the sub-image around \(\mathbf{y}_i: b_i(\mathbf{y}; \sigma) = (\mathbf{y}_i, \sigma diam(\mathbf{y}), \sigma diam(\mathbf{y}))\) having as center the i-th joint and as dimension the pose diameter scaled by \(\sigma\), to refine a given joint location \(\mathbf{y}_i\).</li>
                 </ul>
               </li>
-              <li>Apply the cascade for a fixed number of stages <script type="math/tex">= S</script></li>
+              <li>Apply the cascade for a fixed number of stages \(= S\)</li>
             </ul>
           </li>
-          <li><strong>Loss</strong>: (at each stage <script type="math/tex">s</script>)</li>
+          <li><strong>Loss</strong>: (at each stage \(s\))</li>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\theta_s = \arg \min_\theta \sum_{(x,\mathbf{y}_i) \in D_A^s} \|\mathbf{y}_i - \psi_i(x;\theta)\|_2^2 \:\:\:\:\: (8)</script>
+\[\theta_s = \arg \min_\theta \sum_{(x,\mathbf{y}_i) \in D_A^s} \|\mathbf{y}_i - \psi_i(x;\theta)\|_2^2 \:\:\:\:\: (8)\]
       </dd>
     </dl>
   </li>
@@ -554,13 +554,13 @@ The <strong>Second Term</strong> <em>penalizes deviations between spatial neighb
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

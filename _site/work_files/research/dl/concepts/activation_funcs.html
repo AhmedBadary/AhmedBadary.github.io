@@ -116,7 +116,7 @@ Gradient descent finds a local minimum even with non-monotonic activation functi
       <li><strong>Smoothness with Monotonic Derivatives</strong>:<br />
  These have been shown to generalize better in some cases.</li>
       <li><strong>Approximating Identity near Origin</strong>:<br />
- Equivalent to <script type="math/tex">{\displaystyle f(0)=0}</script> and <script type="math/tex">{\displaystyle f'(0)=1}</script>, and <script type="math/tex">{\displaystyle f'}</script> is continuous at <script type="math/tex">0</script>.<br />
+ Equivalent to \({\displaystyle f(0)=0}\) and \({\displaystyle f'(0)=1}\), and \({\displaystyle f'}\) is continuous at \(0\).<br />
  When activation functions have this property, the neural network will learn efficiently when its weights are initialized with small random values. When the activation function does not approximate identity near the origin, special care must be used when initializing the weights.</li>
       <li><strong>Zero-Centered Range</strong>:<br />
  Has effects of centering the data (zero mean) by centering the activations. Makes learning easier.
@@ -131,13 +131,13 @@ Gradient descent finds a local minimum even with non-monotonic activation functi
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Undesirable Properties:</strong>
     <ul>
       <li><strong>Saturation</strong>:<br />
- An activation functions output, with finite range, may saturate near its tail or head (e.g. <script type="math/tex">\{0, 1\}</script> for sigmoid). This leads to a problem called <strong>vanishing gradient</strong>.</li>
+ An activation functions output, with finite range, may saturate near its tail or head (e.g. \(\{0, 1\}\) for sigmoid). This leads to a problem called <strong>vanishing gradient</strong>.</li>
       <li><strong>Vanishing Gradients</strong>:<br />
  Happens when the gradient of an activation function is very small/zero. This usually happens when the activation function <strong>saturates</strong> at either of its tails.<br />
- The chain-rule will <em><strong>multiply</strong></em> the local gradient (of activation function) with the whole objective. Thus, when gradient is small/zero, it will “kill” the gradient <script type="math/tex">\rightarrow</script> no signal will flow through the neuron to its weights or to its data.<br />
+ The chain-rule will <em><strong>multiply</strong></em> the local gradient (of activation function) with the whole objective. Thus, when gradient is small/zero, it will “kill” the gradient \(\rightarrow\) no signal will flow through the neuron to its weights or to its data.<br />
  <strong>Slows/Stops learning completely</strong>.</li>
       <li><strong>Range Not Zero-Centered</strong>:<br />
- This is undesirable since neurons in later layers of processing in a Neural Network would be receiving data that is not zero-centered. This has implications on the dynamics during gradient descent, because if the data coming into a neuron is always positive (e.g. <script type="math/tex">x>0</script> elementwise in <script type="math/tex">f=w^Tx+b</script>), then the gradient on the weights <script type="math/tex">w</script> will during backpropagation become either all be positive, or all negative (depending on the gradient of the whole expression <script type="math/tex">f</script>). This could introduce undesirable zig-zagging dynamics in the gradient updates for the weights. However, notice that once these gradients are added up across a batch of data the final update for the weights can have variable signs, somewhat mitigating this issue. Therefore, this is an inconvenience but it has less severe consequences compared to the saturated activation problem above.<br />
+ This is undesirable since neurons in later layers of processing in a Neural Network would be receiving data that is not zero-centered. This has implications on the dynamics during gradient descent, because if the data coming into a neuron is always positive (e.g. \(x&gt;0\) elementwise in \(f=w^Tx+b\)), then the gradient on the weights \(w\) will during backpropagation become either all be positive, or all negative (depending on the gradient of the whole expression \(f\)). This could introduce undesirable zig-zagging dynamics in the gradient updates for the weights. However, notice that once these gradients are added up across a batch of data the final update for the weights can have variable signs, somewhat mitigating this issue. Therefore, this is an inconvenience but it has less severe consequences compared to the saturated activation problem above.<br />
  <strong>Makes optimization harder.</strong> <br />
  <br /></li>
     </ul>
@@ -169,12 +169,12 @@ Gradient descent finds a local minimum even with non-monotonic activation functi
       </li>
       <li><strong>Cons</strong>:
         <ul>
-          <li>They Saturate and kill gradients <script type="math/tex">\rightarrow</script> Gives rise to <strong>vanishing gradients</strong>[^1] <script type="math/tex">\rightarrow</script> Stop Learning</li>
+          <li>They Saturate and kill gradients \(\rightarrow\) Gives rise to <strong>vanishing gradients</strong>[^1] \(\rightarrow\) Stop Learning</li>
           <li>Happens when initialization weights are too large</li>
           <li>or sloppy with data preprocessing</li>
-          <li>Neurons Activation saturates at either tail of <script type="math/tex">0</script> or <script type="math/tex">1</script></li>
-          <li>Output NOT <strong>Zero-Centered</strong> <script type="math/tex">\rightarrow</script> Gradient updates go too far in different directions <script type="math/tex">\rightarrow</script> makes optimization harder</li>
-          <li>The local gradient <script type="math/tex">(z * (1-z))</script> achieves maximum at <script type="math/tex">0.25</script>, when <script type="math/tex">z = 0.5</script>. <script type="math/tex">\rightarrow</script> very time the gradient signal flows through a sigmoid gate, its magnitude always diminishes by one quarter (or more) <script type="math/tex">\rightarrow</script> with basic SGD, the lower layers of a network train much slower than the higher one</li>
+          <li>Neurons Activation saturates at either tail of \(0\) or \(1\)</li>
+          <li>Output NOT <strong>Zero-Centered</strong> \(\rightarrow\) Gradient updates go too far in different directions \(\rightarrow\) makes optimization harder</li>
+          <li>The local gradient \((z * (1-z))\) achieves maximum at \(0.25\), when \(z = 0.5\). \(\rightarrow\) very time the gradient signal flows through a sigmoid gate, its magnitude always diminishes by one quarter (or more) \(\rightarrow\) with basic SGD, the lower layers of a network train much slower than the higher one</li>
         </ul>
       </li>
     </ul>
@@ -193,7 +193,7 @@ Gradient descent finds a local minimum even with non-monotonic activation functi
       </li>
       <li><strong>Cons</strong>:
         <ul>
-          <li>They Saturate and kill gradients <script type="math/tex">\rightarrow</script> Gives rise to <strong>vanishing gradients</strong>[^1] <script type="math/tex">\rightarrow</script> Stop Learning<br />
+          <li>They Saturate and kill gradients \(\rightarrow\) Gives rise to <strong>vanishing gradients</strong>[^1] \(\rightarrow\) Stop Learning<br />
  <br /></li>
         </ul>
       </li>
@@ -219,15 +219,14 @@ Gradient descent finds a local minimum even with non-monotonic activation functi
           <li><strong>ReLU not zero-centered problem</strong>:<br />
   The problem that ReLU is not zero-centered can be solved/mitigated by using <strong>batch normalization</strong>, which normalizes the signal before activation:
             <blockquote>
-              <p>From paper: We add the BN transform immediately before the nonlinearity, by normalizing <script type="math/tex">x =  Wu + b</script>; normalizing it is likely to produce activations with a stable distribution.</p>
+              <p>From paper: We add the BN transform immediately before the nonlinearity, by normalizing \(x =  Wu + b\); normalizing it is likely to produce activations with a stable distribution.</p>
               <ul>
                 <li><a href="https://www.youtube.com/watch?v=FDCfw-YqWTE&amp;list=PLkDaE6sCZn6Hn0vK8co82zjQtt3T2Nkqc&amp;index=10&amp;t=0s">WHY NORMALIZING THE SIGNAL IS IMPORTANT</a></li>
               </ul>
             </blockquote>
           </li>
           <li><strong>Dying ReLUs (Dead Neurons):</strong><br />
-  If a neuron gets clamped to zero in the forward pass (it doesn’t “fire” / <script type="math/tex">% <![CDATA[
-x<0 %]]></script>), then its weights will get zero gradient. Thus, if a ReLU neuron is unfortunately initialized such that it never fires, or if a neuron’s weights ever get knocked off with a large update during training into this regime (usually as a symptom of aggressive learning rates), then this neuron will remain permanently dead.</li>
+  If a neuron gets clamped to zero in the forward pass (it doesn’t “fire” / \(x&lt;0\)), then its weights will get zero gradient. Thus, if a ReLU neuron is unfortunately initialized such that it never fires, or if a neuron’s weights ever get knocked off with a large update during training into this regime (usually as a symptom of aggressive learning rates), then this neuron will remain permanently dead.</li>
           <li><a href="https://www.youtube.com/embed/gYpoJMlgyXA?start=1249" value="show" onclick="iframePopA(event)"><strong>cs231n Explanation</strong></a>
   <a href="https://www.youtube.com/embed/gYpoJMlgyXA?start=1249"></a>
             <div></div>
@@ -285,46 +284,44 @@ x<0 %]]></script>), then its weights will get zero gradient. Thus, if a ReLU neu
     <p id="lst-p"><strong style="color: red">Motivation:</strong></p>
     <ul>
       <li><strong>Information Theory</strong> - from the perspective of information theory the softmax function can be seen as trying to minimize the cross-entropy between the predictions and the truth.</li>
-      <li><strong>Probability Theory</strong> - from this perspective since <script type="math/tex">\hat{y}_ i</script> represent log-probabilities we are in fact looking at the log-probabilities, thus when we perform exponentiation we end up with the raw probabilities. In this case the softmax equation find the MLE (Maximum Likelihood Estimate).<br />
+      <li><strong>Probability Theory</strong> - from this perspective since \(\hat{y}_ i\) represent log-probabilities we are in fact looking at the log-probabilities, thus when we perform exponentiation we end up with the raw probabilities. In this case the softmax equation find the MLE (Maximum Likelihood Estimate).<br />
   If a neuron’s output is a log probability, then the summation of many neurons’ outputs is a multiplication of their probabilities. That’s more commonly useful than a sum of probabilities.</li>
-      <li>
-        <p>It is a softened version of the <strong>argmax</strong> function (limit as <script type="math/tex">T \rightarrow 0</script>)</p>
-      </li>
-      <li><strong style="color: red">Properties</strong>
-        <ul>
-          <li>There is one nice attribute of Softmax as compared with standard normalisation:<br />
+      <li>It is a softened version of the <strong>argmax</strong> function (limit as \(T \rightarrow 0\))</li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Properties</strong></p>
+    <ul>
+      <li>There is one nice attribute of Softmax as compared with standard normalisation:<br />
   It react to low stimulation (think blurry image) of your neural net with rather uniform distribution and to high stimulation (ie. large numbers, think crisp image) with probabilities close to 0 and 1. <br />
   While standard normalisation does not care as long as the proportion are the same.<br />
   Have a look what happens when soft max has 10 times larger input, ie your neural net got a crisp image and a lot of neurones got activated.<br />
-  <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Example SM</button>
-            <blockquote hidden="">
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Example SM</button>
+        <blockquote hidden="">
+          <blockquote>
+            <blockquote>
               <blockquote>
-                <blockquote>
-                  <blockquote>
-                    <p>softmax([1,2])              # blurry image of a ferret<br />
+                <p>softmax([1,2])              # blurry image of a ferret<br />
       [0.26894142,      0.73105858])  #     it is a cat perhaps !?<br />
       »&gt; softmax([10,20])            # crisp image of a cat<br />
       [0.0000453978687, 0.999954602]) #     it is definitely a CAT !</p>
-                  </blockquote>
-                </blockquote>
               </blockquote>
             </blockquote>
-            <p>And then compare it with standard normalisation:<br />
+          </blockquote>
+        </blockquote>
+        <p>And then compare it with standard normalisation:<br />
   <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Example Normalization</button></p>
-            <blockquote hidden="">
+        <blockquote hidden="">
+          <blockquote>
+            <blockquote>
               <blockquote>
-                <blockquote>
-                  <blockquote>
-                    <p>std_norm([1,2])                      # blurry image of a ferret<br />
+                <p>std_norm([1,2])                      # blurry image of a ferret<br />
       [0.3333333333333333, 0.6666666666666666] #     it is a cat perhaps !?<br />
       »&gt; std_norm([10,20])                    # crisp image of a cat<br />
       [0.3333333333333333, 0.6666666666666666] #     it is a cat perhaps !?</p>
-                  </blockquote>
-                </blockquote>
               </blockquote>
             </blockquote>
-          </li>
-        </ul>
+          </blockquote>
+        </blockquote>
       </li>
     </ul>
 
@@ -445,13 +442,13 @@ x<0 %]]></script>), then its weights will get zero gradient. Thus, if a ReLU neu
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

@@ -99,13 +99,13 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
 <img src="https://cdn.mathpix.com/snip/images/lgiqZ1ILbIe7TEciHCRsTgXrIfSDdrrpzvT078EloAI.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
 <ul>
   <li><strong style="color: red">Solution: Work with a Restricted Hypothesis Space:</strong><br />
-  Either by <span style="color: purple">applying prior knowledge</span> or by <span style="color: purple">guessing</span>, we choose a space of hypotheses <script type="math/tex">H</script> that is smaller than the space of all possible functions:
+  Either by <span style="color: purple">applying prior knowledge</span> or by <span style="color: purple">guessing</span>, we choose a space of hypotheses \(H\) that is smaller than the space of all possible functions:
     <ul>
       <li>
         <p>simple conjunctive rules, linear functions, multivariate Gaussian joint probability distributions, etc.</p>
       </li>
       <li>
-        <p>Lets say you have an unknown target function <script type="math/tex">f: X \rightarrow Y</script> that you are trying to capture by learning. In order to capture the target function you have to come up with (<strong>guess</strong>) some hypotheses <script type="math/tex">h_{1}, \ldots, h_{n}</script> where <script type="math/tex">h \in H</script>, and then <strong>search</strong> through these hypotheses to select the best one that approximates the target function.</p>
+        <p>Lets say you have an unknown target function \(f: X \rightarrow Y\) that you are trying to capture by learning. In order to capture the target function you have to come up with (<strong>guess</strong>) some hypotheses \(h_{1}, \ldots, h_{n}\) where \(h \in H\), and then <strong>search</strong> through these hypotheses to select the best one that approximates the target function.</p>
       </li>
     </ul>
   </li>
@@ -238,11 +238,11 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Components of Learning:</strong>
     <ul>
-      <li><strong>Input</strong>: <script type="math/tex">\vec{x}</script></li>
-      <li><strong>Output</strong>: <script type="math/tex">y</script></li>
-      <li><strong>Data</strong>:  <script type="math/tex">{(\vec{x}_ 1, y_ 1), (\vec{x}_ 2, y_ 2), ..., (\vec{x}_ N, y_ N)}</script></li>
-      <li><strong>Target Function</strong>: <script type="math/tex">f : \mathcal{X} \rightarrow \mathcal{Y}</script>  (Unknown/Unobserved)</li>
-      <li><strong>Hypothesis</strong>: <script type="math/tex">g : \mathcal{X} \rightarrow \mathcal{Y}</script><br />
+      <li><strong>Input</strong>: \(\vec{x}\)</li>
+      <li><strong>Output</strong>: \(y\)</li>
+      <li><strong>Data</strong>:  \({(\vec{x}_ 1, y_ 1), (\vec{x}_ 2, y_ 2), ..., (\vec{x}_ N, y_ N)}\)</li>
+      <li><strong>Target Function</strong>: \(f : \mathcal{X} \rightarrow \mathcal{Y}\)  (Unknown/Unobserved)</li>
+      <li><strong>Hypothesis</strong>: \(g : \mathcal{X} \rightarrow \mathcal{Y}\)<br />
  <br /></li>
     </ul>
   </li>
@@ -250,12 +250,12 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
     <ul>
       <li><strong>The Learning Model</strong>:
         <ul>
-          <li><strong>The Hypothesis Set</strong>:  <script type="math/tex">\mathcal{H}=\{h\},  g \in \mathcal{H}</script>
+          <li><strong>The Hypothesis Set</strong>:  \(\mathcal{H}=\{h\},  g \in \mathcal{H}\)
             <blockquote>
               <p>E.g. Perceptron, SVM, FNNs, etc.</p>
             </blockquote>
           </li>
-          <li><strong>The Learning Algorithm</strong>: picks <script type="math/tex">g \approx f</script> from a hypothesis set <script type="math/tex">\mathcal{H}</script>
+          <li><strong>The Learning Algorithm</strong>: picks \(g \approx f\) from a hypothesis set \(\mathcal{H}\)
             <blockquote>
               <p>E.g. Backprop, Quadratic Programming, etc.</p>
             </blockquote>
@@ -276,7 +276,7 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">The Basic Premise/Goal of Learning:</strong><br />
  “Using a set of observations to uncover an underlying process”<br />
  Rephrased mathematically, the <strong>Goal of Learning</strong> is: <br />
- Use the Data to find a hypothesis <script type="math/tex">g \in \mathcal{H}</script>, from the hypothesis set <script type="math/tex">\mathcal{H}=\{h\}</script>, that <em>approximates</em> <script type="math/tex">f</script> well.<br />
+ Use the Data to find a hypothesis \(g \in \mathcal{H}\), from the hypothesis set \(\mathcal{H}=\{h\}\), that <em>approximates</em> \(f\) well.<br />
  <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Types of Learning:</strong>
@@ -315,43 +315,43 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
       <li>
         <p><img src="/main_files/dl/theory/caltech/7.png" alt="img" width="70%" /></p>
 
-        <p><script type="math/tex">\mu</script> is a constant that describes the actual/real probability of picking the red marble.<br />
-  <script type="math/tex">\nu</script>, however, is random and depends on the frequency of red marbles in the particular sample that you have collected.</p>
+        <p>\(\mu\) is a constant that describes the actual/real probability of picking the red marble.<br />
+  \(\nu\), however, is random and depends on the frequency of red marbles in the particular sample that you have collected.</p>
 
-        <p>Does <script type="math/tex">\nu</script> approximate <script type="math/tex">\mu</script>?</p>
+        <p>Does \(\nu\) approximate \(\mu\)?</p>
         <ul>
           <li>The short answer is <strong>NO</strong>:<br />
   The Sample an be mostly green while bin is mostly red.</li>
           <li>The Long answer is <strong>YES</strong>:<br />
-  The Sample frequency <script type="math/tex">\nu</script> is likely/probably close to bin frequency <script type="math/tex">\mu</script>.
+  The Sample frequency \(\nu\) is likely/probably close to bin frequency \(\mu\).
             <blockquote>
-              <p>Think of a presidential poll of 3000 people that can predict how the larger <script type="math/tex">10^8</script> mil. people will vote</p>
+              <p>Think of a presidential poll of 3000 people that can predict how the larger \(10^8\) mil. people will vote</p>
             </blockquote>
           </li>
         </ul>
 
         <p>The Main distinction between the two answers is in the difference between <em><strong>Possible</strong></em> VS <em><strong>Probable</strong></em>.</p>
 
-        <p>What does <script type="math/tex">\nu</script> say about <script type="math/tex">\mu</script>?<br />
-  In a big sample (Large <script type="math/tex">N</script>), <script type="math/tex">\nu</script> is <em>probably</em> close to <script type="math/tex">\mu</script> (within <script type="math/tex">\epsilon</script>). <br />
+        <p>What does \(\nu\) say about \(\mu\)?<br />
+  In a big sample (Large \(N\)), \(\nu\) is <em>probably</em> close to \(\mu\) (within \(\epsilon\)). <br />
   Formally, we the <strong>Hoeffding’s Inequality</strong>:</p>
         <p>$$\mathbb{P}[|\nu-\mu|&gt;\epsilon] \leq 2 e^{-2 \epsilon^{2} N}$$</p>
-        <p>In other words, the probability that <script type="math/tex">\nu</script> does not approximate <script type="math/tex">\mu</script> well (they are not within an <script type="math/tex">\epsilon</script> of each other), is bounded by a negative exponential that dampens fast but depends directly on the tolerance <script type="math/tex">\epsilon</script>.</p>
+        <p>In other words, the probability that \(\nu\) does not approximate \(\mu\) well (they are not within an \(\epsilon\) of each other), is bounded by a negative exponential that dampens fast but depends directly on the tolerance \(\epsilon\).</p>
         <blockquote>
-          <p>This reduces to the statement that “<script type="math/tex">\mu = \nu</script>” is PAC (PAC: Probably, Approximately Correct).</p>
+          <p>This reduces to the statement that “\(\mu = \nu\)” is PAC (PAC: Probably, Approximately Correct).</p>
         </blockquote>
 
         <p>Properties:</p>
         <ul>
-          <li>It is valid for <script type="math/tex">N</script> and <script type="math/tex">\epsilon</script>.</li>
-          <li>The bound does not depend on the value of <script type="math/tex">\mu</script>.</li>
-          <li>There is a <strong>Trade-off</strong> between the number of samples <script type="math/tex">N</script> and the tolerance <script type="math/tex">\epsilon</script>.</li>
-          <li>Saying that <script type="math/tex">\nu \approx \mu \implies \mu \approx \nu</script>, i.e. saying <script type="math/tex">\nu</script> is approximately the same as <script type="math/tex">\mu</script>, implies that <script type="math/tex">\mu</script> is approximately the same as <script type="math/tex">\nu</script> (yes, tautology). <br />
+          <li>It is valid for \(N\) and \(\epsilon\).</li>
+          <li>The bound does not depend on the value of \(\mu\).</li>
+          <li>There is a <strong>Trade-off</strong> between the number of samples \(N\) and the tolerance \(\epsilon\).</li>
+          <li>Saying that \(\nu \approx \mu \implies \mu \approx \nu\), i.e. saying \(\nu\) is approximately the same as \(\mu\), implies that \(\mu\) is approximately the same as \(\nu\) (yes, tautology). <br />
   The logic here is subtle:
             <ul>
-              <li>Logically, the inequality is making a statement on <script type="math/tex">\nu</script> (the random variable), it is saying that <script type="math/tex">\nu</script> tends to be close to <script type="math/tex">\mu</script> (the constant, real probability).</li>
-              <li>However, since the inequality is symmetric, we are using the inequality to infer <script type="math/tex">\mu</script> from <script type="math/tex">\nu</script>.<br />
-  But that is not the cause and effect that actually takes place. <script type="math/tex">\mu</script>, actually, affects <script type="math/tex">\nu</script>.</li>
+              <li>Logically, the inequality is making a statement on \(\nu\) (the random variable), it is saying that \(\nu\) tends to be close to \(\mu\) (the constant, real probability).</li>
+              <li>However, since the inequality is symmetric, we are using the inequality to infer \(\mu\) from \(\nu\).<br />
+  But that is not the cause and effect that actually takes place. \(\mu\), actually, affects \(\nu\).</li>
             </ul>
           </li>
         </ul>
@@ -359,20 +359,20 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
         <p>Translating to the Learning Problem:<br />
   <img src="/main_files/dl/theory/caltech/8.png" alt="img" width="70%" /></p>
         <blockquote>
-          <p>Notice how the meaning of the accordance between <script type="math/tex">\mu</script> and <script type="math/tex">\nu</script>  is not accuracy of the model, but rather accuracy of the TEST.</p>
+          <p>Notice how the meaning of the accordance between \(\mu\) and \(\nu\)  is not accuracy of the model, but rather accuracy of the TEST.</p>
         </blockquote>
 
         <p>Back to the Learning Diagram:<br />
   <img src="/main_files/dl/theory/caltech/9.png" alt="img" width="70%" /><br />
   The marbles in the bin correspond to the input space (datapoints). This adds a NEW COMPONENT to the Learning problem - the probability of generating the input datapoints (up to this point we treated learning in an absolute sense based on some fixed datapoints). <br />
   To adjust the statement of the learning problem to accommodate the new component:<br />
-  we add a probability distribution <script type="math/tex">P</script>  over the input space <script type="math/tex">\mathcal{X}</script>. This, however, doesn’t restrict the argument at all; we can invoke any probability on the space, and the machinery still holds. We, also, do not, even, need to know what <script type="math/tex">P</script> is (even though <script type="math/tex">P</script> affects <script type="math/tex">\mu</script>), since Hoeffding’s Inequality allows us to bound the LHS with no dependence on <script type="math/tex">\mu</script>.<br />
-  Thus, now we assume that the input datapoints <script type="math/tex">\vec{x}_1, ..., \vec{x}_N</script> are assumed to be generated by <script type="math/tex">P</script>, <strong>independently</strong>.<br />
+  we add a probability distribution \(P\)  over the input space \(\mathcal{X}\). This, however, doesn’t restrict the argument at all; we can invoke any probability on the space, and the machinery still holds. We, also, do not, even, need to know what \(P\) is (even though \(P\) affects \(\mu\)), since Hoeffding’s Inequality allows us to bound the LHS with no dependence on \(\mu\).<br />
+  Thus, now we assume that the input datapoints \(\vec{x}_1, ..., \vec{x}_N\) are assumed to be generated by \(P\), <strong>independently</strong>.<br />
   So this is a very benign addition, that would give us high dividends - The Feasibility of Learning.</p>
 
-        <p>However, this is not learning; it is <strong>Verification</strong>. Learning involves using an algorithm to search a space <script type="math/tex">\mathcal{H}</script>  and try different functions <script type="math/tex">h \in \mathcal{H}</script>. Here, we have already picked some specific function and are testing its performance on a sample, using maths to guarantee the accuracy of the test within some threshold we are willing to tolerate.</p>
+        <p>However, this is not learning; it is <strong>Verification</strong>. Learning involves using an algorithm to search a space \(\mathcal{H}\)  and try different functions \(h \in \mathcal{H}\). Here, we have already picked some specific function and are testing its performance on a sample, using maths to guarantee the accuracy of the test within some threshold we are willing to tolerate.</p>
 
-        <p>Extending Hoeffding’s Inequality to Multiple hypotheses <script type="math/tex">h_i</script>:<br />
+        <p>Extending Hoeffding’s Inequality to Multiple hypotheses \(h_i\):<br />
   <img src="/main_files/dl/theory/caltech/10.png" alt="img" width="70%" /><br />
   <img src="/main_files/dl/theory/caltech/11.png" alt="img" width="70%" /></p>
 
@@ -409,9 +409,9 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">The Learning Analogy:</strong><br />
  For an exam, the practice problems are the training set. You’re going to look at the question. You’re going to answer. You’re going to compare it with the real answer. And then you are going to adjust your hypothesis, your understanding of the material, in order to do it better, and go through them and perhaps go through them again, until you get them right or mostly right or figure out the material (this makes you better at taking the exam).
- We don’t give out the actual exams questions because <strong>acing the final is NOT the goal</strong>, the goal is to <strong>learn the material (have a small <script type="math/tex">E_{\text{out}}</script>)</strong>. The final exam is only a way of gauging how well you actually learned. And in order for it to gauge how well you actually learned, I have to give you the final at the point you have already fixed your hypothesis. You prepared. You studied. You discussed with people. You now sit down to take the final exam. So you have one hypothesis. And you go through the exam. hopefully, will reflect what your understanding will be outside.
+ We don’t give out the actual exams questions because <strong>acing the final is NOT the goal</strong>, the goal is to <strong>learn the material (have a small \(E_{\text{out}}\))</strong>. The final exam is only a way of gauging how well you actually learned. And in order for it to gauge how well you actually learned, I have to give you the final at the point you have already fixed your hypothesis. You prepared. You studied. You discussed with people. You now sit down to take the final exam. So you have one hypothesis. And you go through the exam. hopefully, will reflect what your understanding will be outside.
     <blockquote>
-      <p>The exam measures <script type="math/tex">E_{\text{in}}</script>, and we know that it tracks <script type="math/tex">E_{\text{out}}</script> (by Hoeffding), so it tracks well how you understand the material proper.</p>
+      <p>The exam measures \(E_{\text{in}}\), and we know that it tracks \(E_{\text{out}}\) (by Hoeffding), so it tracks well how you understand the material proper.</p>
     </blockquote>
   </li>
 </ol>
@@ -429,7 +429,7 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Notes:</strong>
     <ul>
       <li><strong>Learning Feasibility</strong>:<br />
-  When learning we only deal with In-Sample Errors <script type="math/tex">[E_{\text{in}}(\mathbf{w})]</script>; we never handle the out-sample error explicitly; we take the theoretical guarantee that when you do well in-sample <script type="math/tex">\implies</script> you do well out-sample (Generalization).</li>
+  When learning we only deal with In-Sample Errors \([E_{\text{in}}(\mathbf{w})]\); we never handle the out-sample error explicitly; we take the theoretical guarantee that when you do well in-sample \(\implies\) you do well out-sample (Generalization).</li>
     </ul>
   </li>
 </ol>
@@ -444,16 +444,16 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
 <ol>
   <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Error Measures:</strong><br />
  <strong>Error Measures</strong> aim to answer the question:<br />
- “What does it mean for <script type="math/tex">h</script> to approximate <script type="math/tex">f</script> (<script type="math/tex">h \approx f</script>)?”<br />
- The <strong>Error Measure</strong>: <script type="math/tex">E(h, f)</script><br />
- It is almost always defined point-wise: <script type="math/tex">\mathrm{e}(h(\mathbf{X}), f(\mathbf{X}))</script>.<br />
+ “What does it mean for \(h\) to approximate \(f\) (\(h \approx f\))?”<br />
+ The <strong>Error Measure</strong>: \(E(h, f)\)<br />
+ It is almost always defined point-wise: \(\mathrm{e}(h(\mathbf{X}), f(\mathbf{X}))\).<br />
  Examples:
     <ul>
-      <li><strong>Square Error</strong>:  <script type="math/tex">\:\:\:\mathrm{e}(h(\mathbf{x}), f(\mathbf{x}))=(h(\mathbf{x})-f(\mathbf{x}))^{2}</script></li>
-      <li><strong>Binary Error</strong>:  <script type="math/tex">\:\:\:\mathrm{e}(h(\mathbf{x}), f(\mathbf{x}))=[h(\mathbf{x}) \neq f(\mathbf{x})]</script>  (1 if true else 0)</li>
+      <li><strong>Square Error</strong>:  \(\:\:\:\mathrm{e}(h(\mathbf{x}), f(\mathbf{x}))=(h(\mathbf{x})-f(\mathbf{x}))^{2}\)</li>
+      <li><strong>Binary Error</strong>:  \(\:\:\:\mathrm{e}(h(\mathbf{x}), f(\mathbf{x}))=[h(\mathbf{x}) \neq f(\mathbf{x})]\)  (1 if true else 0)</li>
     </ul>
 
-    <p>The <strong>overall error</strong> <script type="math/tex">E(h,f) =</script> <em>average</em> of pointwise errors <script type="math/tex">\mathrm{e}(h(\mathbf{x}), f(\mathbf{x}))</script>:</p>
+    <p>The <strong>overall error</strong> \(E(h,f) =\) <em>average</em> of pointwise errors \(\mathrm{e}(h(\mathbf{x}), f(\mathbf{x}))\):</p>
     <ul>
       <li><strong>In-Sample Error</strong>:
         <p>$$E_{\mathrm{in}}(h)=\frac{1}{N} \sum_{n=1}^{N} \mathrm{e}\left(h\left(\mathbf{x}_{n}\right), f\left(\mathbf{x}_{n}\right)\right)$$</p>
@@ -468,7 +468,7 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
  There are two additions to the diagram:
     <ul>
       <li>The first is to realize that we are defining the error measure <strong>on a point</strong>.</li>
-      <li>Another is that in deciding whether <script type="math/tex">g</script>  is close to <script type="math/tex">f</script> , which is the goal of learning, we test this with a point <script type="math/tex">x</script>. And the criterion for deciding whether <script type="math/tex">g(x)</script> is approximately the same as <script type="math/tex">f(x)</script> is our pointwise error measure.</li>
+      <li>Another is that in deciding whether \(g\)  is close to \(f\) , which is the goal of learning, we test this with a point \(x\). And the criterion for deciding whether \(g(x)\) is approximately the same as \(f(x)\) is our pointwise error measure.</li>
     </ul>
   </li>
   <li>
@@ -497,36 +497,36 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">The Learning Diagram - with the Error Measure:</strong><br />
  <img src="/main_files/dl/theory/caltech/20.png" alt="img" width="50%" /><br />
- The <strong>Error Measure</strong> provides a quantitative assessment of the statement <script type="math/tex">g(\mathbf{x}) \approx f(\mathbf{x})</script>.</p>
+ The <strong>Error Measure</strong> provides a quantitative assessment of the statement \(g(\mathbf{x}) \approx f(\mathbf{x})\).</p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Noisy Targets:</strong><br />
  The <em>‘Target Function’</em> is not always a <em>function</em> because two <em>‘identical’</em> input points can be mapped to two different outputs (i.e. they have different labels).</p>
 
     <p>The solution: Replacing the target function with a <strong>Target Distribution</strong>.<br />
- Instead of <script type="math/tex">y = f(x)</script> we use the  <em>conditional target distribution</em>: <script type="math/tex">P(y | \mathbf{x})</script>. What changes now  is that, instead of <script type="math/tex">y</script>  being deterministic of <script type="math/tex">\mathbf{x}</script>, once you generate <script type="math/tex">\mathbf{x}</script>, <script type="math/tex">y</script>  is also probabilistic– generated by <script type="math/tex">P(y | \mathbf{x})</script>.<br />
- <script type="math/tex">(\mathbf{x}, y)</script> is now generated by the <strong>joint distribution</strong>:</p>
+ Instead of \(y = f(x)\) we use the  <em>conditional target distribution</em>: \(P(y | \mathbf{x})\). What changes now  is that, instead of \(y\)  being deterministic of \(\mathbf{x}\), once you generate \(\mathbf{x}\), \(y\)  is also probabilistic– generated by \(P(y | \mathbf{x})\).<br />
+ \((\mathbf{x}, y)\) is now generated by the <strong>joint distribution</strong>:</p>
     <p>$$P(\mathbf{x}) P(y | \mathbf{x})$$</p>
 
-    <p>Equivalently, we can define a <strong>Noisy Target</strong> as a <em>deterministic (target) function</em> <script type="math/tex">\:f(\mathbf{x})=\mathbb{E}(y | \mathbf{x})\:</script>  PLUS <em>Noise</em> <script type="math/tex">\: y-f(x)</script>.   <br />
+    <p>Equivalently, we can define a <strong>Noisy Target</strong> as a <em>deterministic (target) function</em> \(\:f(\mathbf{x})=\mathbb{E}(y | \mathbf{x})\:\)  PLUS <em>Noise</em> \(\: y-f(x)\).   <br />
  This can be done WLOG since a <em>deterministic target</em> is a special kind of a <em>noisy target</em>:<br />
- Define <script type="math/tex">P(y \vert \mathbf{x})</script> to be identically Zero, except for <script type="math/tex">y = f(x)</script>.</p>
+ Define \(P(y \vert \mathbf{x})\) to be identically Zero, except for \(y = f(x)\).</p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">The Learning Diagram - with the Noisy Target:</strong><br />
  <img src="/main_files/dl/theory/caltech/21.png" alt="img" width="50%" /></p>
 
-    <p>Now, <script type="math/tex">E_{\text {out}}(h) = \mathbb{E}_ {x, y}[e(h(x), y)]</script> instead of <script type="math/tex">\mathbb{E}_ {\mathbf{x}}[\mathrm{e}(h(\mathbf{x}), f(\mathbf{x}))]</script>, and<br />
- <script type="math/tex">\left(\mathbf{x}_{1}, y_{1}\right), \cdots,\left(\mathbf{x}_{N}, y_{N}\right)</script> are generated independently of each (each tuple).</p>
+    <p>Now, \(E_{\text {out}}(h) = \mathbb{E}_ {x, y}[e(h(x), y)]\) instead of \(\mathbb{E}_ {\mathbf{x}}[\mathrm{e}(h(\mathbf{x}), f(\mathbf{x}))]\), and<br />
+ \(\left(\mathbf{x}_{1}, y_{1}\right), \cdots,\left(\mathbf{x}_{N}, y_{N}\right)\) are generated independently of each (each tuple).</p>
   </li>
-  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Distinction between <script type="math/tex">P(y | \mathbf{x})</script> and <script type="math/tex">P(\mathbf{x})</script>:</strong><br />
- The <strong>Target Distribution</strong> <script type="math/tex">P(y \vert \mathbf{x})</script> is what we are <em><strong>trying to learn</strong></em>.<br />
- The <strong>Input Distribution</strong> <script type="math/tex">P(\mathbf{x})</script>, only, <em><strong>quantifies relative importance</strong></em>  of <script type="math/tex">\mathbf{x}</script>; we are <strong>NOT</strong> trying to learn this distribution.
+  <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Distinction between \(P(y | \mathbf{x})\) and \(P(\mathbf{x})\):</strong><br />
+ The <strong>Target Distribution</strong> \(P(y \vert \mathbf{x})\) is what we are <em><strong>trying to learn</strong></em>.<br />
+ The <strong>Input Distribution</strong> \(P(\mathbf{x})\), only, <em><strong>quantifies relative importance</strong></em>  of \(\mathbf{x}\); we are <strong>NOT</strong> trying to learn this distribution.
     <blockquote>
-      <p>Rephrasing: Supervised learning only learns <script type="math/tex">P(y \vert \mathbf{x})</script> and not <script type="math/tex">P(\mathbf{x})</script>; <script type="math/tex">P(\mathbf{x}, y)</script> is <strong>NOT</strong> a target distribution for Supervised Learning.</p>
+      <p>Rephrasing: Supervised learning only learns \(P(y \vert \mathbf{x})\) and not \(P(\mathbf{x})\); \(P(\mathbf{x}, y)\) is <strong>NOT</strong> a target distribution for Supervised Learning.</p>
     </blockquote>
 
-    <p>Merging <script type="math/tex">P(\mathbf{x})P(y \vert \mathbf{x})</script> as <script type="math/tex">P(\mathbf{x}, y)</script>, although allows us to generate examples <script type="math/tex">(\mathbf{x}, y)</script>, mixes the two concepts that are inherently different.</p>
+    <p>Merging \(P(\mathbf{x})P(y \vert \mathbf{x})\) as \(P(\mathbf{x}, y)\), although allows us to generate examples \((\mathbf{x}, y)\), mixes the two concepts that are inherently different.</p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Preamble to Learning Theory:</strong><br />
  <strong>Generalization VS Learning:</strong><br />
@@ -538,34 +538,34 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
         <p>This is equivalent to “good” <strong>Generalization</strong>.</p>
       </li>
       <li><strong>Learning</strong>:<br />
-  Learning corresponds to the condition that <script type="math/tex">g \approx f</script>, which in-turn corresponds to the condition:
+  Learning corresponds to the condition that \(g \approx f\), which in-turn corresponds to the condition:
         <p>$$E_{\text {out }}(g) \approx 0  \tag{3.2}$$</p>
       </li>
     </ul>
 
     <p id="lst-p"><strong style="color: red">How to achieve Learning:</strong>  <br />
- We achieve <script type="math/tex">E_{\text {out }}(g) \approx 0</script> through:</p>
+ We achieve \(E_{\text {out }}(g) \approx 0\) through:</p>
     <ol>
-      <li><script type="math/tex">E_{\mathrm{out}}(g) \approx E_{\mathrm{in}}(g)</script><br />
+      <li>\(E_{\mathrm{out}}(g) \approx E_{\mathrm{in}}(g)\)<br />
  A <strong>theoretical</strong> result achieved through Hoeffding <strong style="color: red">PROBABILITY THEORY</strong>  .</li>
-      <li><script type="math/tex">E_{\mathrm{in}}(g) \approx 0</script><br />
+      <li>\(E_{\mathrm{in}}(g) \approx 0\)<br />
  A <strong>Practical</strong> result of minimizing the In-Sample Error Function (ERM) <strong style="color: red">Optimization</strong>  .</li>
     </ol>
 
     <p id="lst-p">Learning is, thus, reduced to the 2 following questions:</p>
     <ol>
-      <li>Can we make sure that <script type="math/tex">E_{\text {out }}(g)</script> is close enough to <script type="math/tex">E_{\text {in }}(g)</script>? (theoretical)</li>
-      <li>Can we make <script type="math/tex">E_{\text {in}}(g)</script> small enough? (practical)</li>
+      <li>Can we make sure that \(E_{\text {out }}(g)\) is close enough to \(E_{\text {in }}(g)\)? (theoretical)</li>
+      <li>Can we make \(E_{\text {in}}(g)\) small enough? (practical)</li>
     </ol>
 
     <p id="lst-p">What the Learning Theory will achieve:</p>
     <ul>
-      <li>Characterizing the <em>feasibility of learning</em> for <strong>infinite <script type="math/tex">M</script></strong> (hypothesis).<br />
+      <li>Characterizing the <em>feasibility of learning</em> for <strong>infinite \(M\)</strong> (hypothesis).<br />
   We are going to measure the model not by the number of hypotheses, but by a single parameter which tells us the sophistication of the model. And that sophistication will reflect the out-of-sample performance as it relates to the in-sample performance (through the Hoeffding (then VC) inequalities).</li>
       <li>Characterizing the tradeoff:<br />
   <img src="/main_files/dl/theory/caltech/22.png" alt="img" width="50%" /> <br />
   In words:<br />
-  We realized that we would like our model, the hypothesis set, to be elaborate, in order to be able to fit the data. The more parameters you have, the more likely you are going to fit the data and get here. So the <script type="math/tex">E_{\text{in}}</script> goes down if you use more complex models. However, if you make the model more complex, the discrepancy between <script type="math/tex">E_{\text{out}}</script> and <script type="math/tex">E_{\text{in}}</script> gets worse and worse. <script type="math/tex">E_{\text{in}}</script> tracks <script type="math/tex">E_{\text{out}}</script> much more loosely than it used to.</li>
+  We realized that we would like our model, the hypothesis set, to be elaborate, in order to be able to fit the data. The more parameters you have, the more likely you are going to fit the data and get here. So the \(E_{\text{in}}\) goes down if you use more complex models. However, if you make the model more complex, the discrepancy between \(E_{\text{out}}\) and \(E_{\text{in}}\) gets worse and worse. \(E_{\text{in}}\) tracks \(E_{\text{out}}\) much more loosely than it used to.</li>
     </ul>
   </li>
 </ol>
@@ -587,7 +587,7 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
       </li>
       <li><a href="https://stats.stackexchange.com/questions/407812/derive-linear-regression-model-from-the-conditional-distribution-of-yx">Linear Regression from Conditional Distribution (gd example)</a></li>
       <li><a href="http://bjlkeng.github.io/posts/a-probabilistic-view-of-regression/"><strong>Linear Regression Probabilistic Development</strong></a></li>
-      <li>In a linear model, if the errors belong to a normal distribution the least squares estimators are also the maximum likelihood estimators.<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></li>
+      <li>In a linear model, if the errors belong to a normal distribution the least squares estimators are also the maximum likelihood estimators.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></li>
     </ul>
   </li>
 </ul>
@@ -629,7 +629,7 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
  <img src="/main_files/dl/theory/caltech/25.png" alt="img" width="80%" /> <br />
  The <strong>Logistic Regression</strong> applies a <em>non-linear transform</em>  on the <em>signal</em>; it’s a softer approximation to the hard-threshold non-linearity applied by <em>Linear Classification</em>.</p>
   </li>
-  <li><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents52">The Logistic Function <script type="math/tex">\theta</script>:</strong>
+  <li><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents52">The Logistic Function \(\theta\):</strong>
     <p>$$\theta(s)=\frac{e^{s}}{1+e^{s}}=\frac{1}{1+e^{-s}}$$</p>
 
     <p><img src="/main_files/dl/theory/caltech/26.png" alt="img" width="80%" /></p>
@@ -639,40 +639,40 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents53">The Probability Interpretation:</strong><br />
- <script type="math/tex">h(\mathbf{x})=\theta(s)</script> is interpreted as a probability.<br />
+ \(h(\mathbf{x})=\theta(s)\) is interpreted as a probability.<br />
  It is in-fact a <strong>Genuine Probability</strong>. The output of logistic regression is treated genuinely as a probability even during learning.<br />
  Justification:<br />
- Data <script type="math/tex">(\mathbf{x}, y)</script> with binary <script type="math/tex">y</script>, (we don’t have direct access to probability, but the binary <script type="math/tex">y</script> is affected by the probability), generated by a noisy target:
+ Data \((\mathbf{x}, y)\) with binary \(y\), (we don’t have direct access to probability, but the binary \(y\) is affected by the probability), generated by a noisy target:
     <p>$$P(y | \mathbf{x})=\left\{\begin{array}{ll}{f(\mathbf{x})} &amp; {\text {for } y=+1} \\ {1-f(\mathbf{x})} &amp; {\text {for } y=-1}\end{array}\right.$$</p>
-    <p>The target <script type="math/tex">f : \mathbb{R}^{d} \rightarrow[0,1]</script> is the probability.<br />
- We learn <script type="math/tex">\:\:\:\: g(\mathbf{x})=\theta\left(\mathbf{w}^{\top} \mathbf{x}\right) \approx f(\mathbf{x})</script>.</p>
+    <p>The target \(f : \mathbb{R}^{d} \rightarrow[0,1]\) is the probability.<br />
+ We learn \(\:\:\:\: g(\mathbf{x})=\theta\left(\mathbf{w}^{\top} \mathbf{x}\right) \approx f(\mathbf{x})\).</p>
     <blockquote>
-      <p>In words: So I’m going to call the probability the target function itself. The probability that someone gets heart attack is <script type="math/tex">f(\mathbf{x})</script>. And I’m trying to learn <script type="math/tex">f</script>, notwithstanding the fact that the examples that I am getting are giving me just sample values of <script type="math/tex">y</script>, that happen to be generated by <script type="math/tex">f</script>.</p>
+      <p>In words: So I’m going to call the probability the target function itself. The probability that someone gets heart attack is \(f(\mathbf{x})\). And I’m trying to learn \(f\), notwithstanding the fact that the examples that I am getting are giving me just sample values of \(y\), that happen to be generated by \(f\).</p>
     </blockquote>
 
-    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Further Analysis</button></p>
+    <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Further Analysis</button></p>
     <ul hidden="">
-      <li>Logistic Regression uses the <strong>sigmoid</strong> function to “squash” the output feature/signal into the <script type="math/tex">[0, 1]</script> space.<br />
-  Although, one could interpret the <em>sigmoid classifier</em> as just a function with <script type="math/tex">[0,1]</script> range, it is actually, a <strong>Genuine Probability</strong>.</li>
+      <li>Logistic Regression uses the <strong>sigmoid</strong> function to “squash” the output feature/signal into the \([0, 1]\) space.<br />
+  Although, one could interpret the <em>sigmoid classifier</em> as just a function with \([0,1]\) range, it is actually, a <strong>Genuine Probability</strong>.</li>
       <li>To see this:
         <ul>
-          <li>A labeled, classification Data-Set, does <strong>NOT</strong> (explicitly) give you the <em>probability</em> that something is going to happen, rather, just the fact that an event either happened <script type="math/tex">(y=1)</script> or that it did not <script type="math/tex">(y=0)</script>, without the actual probability of that event happening.</li>
+          <li>A labeled, classification Data-Set, does <strong>NOT</strong> (explicitly) give you the <em>probability</em> that something is going to happen, rather, just the fact that an event either happened \((y=1)\) or that it did not \((y=0)\), without the actual probability of that event happening.</li>
           <li>One can think of this data as being generated by a (the following) noisy target:<br />
-  <script type="math/tex">% <![CDATA[
-{\displaystyle P(y \vert x) ={\begin{cases}f(x)&{\text{for }}y = +1,\\1-f(x)&{\text{for }}y=-1.\\\end{cases}}} %]]></script></li>
+  \({\displaystyle P(y \vert x) ={\begin{cases}f(x)&amp;{\text{for }}y = +1,\\1-f(x)&amp;{\text{for }}y=-1.\\\end{cases}}}\)</li>
           <li>They have the form that a certain probability that the event occurred and a certain probability that the event did NOT occur, given their input-data.</li>
-          <li>This is generated by the target we want to learn; thus, the function <script type="math/tex">f(x)</script> is the target function to approximate.</li>
+          <li>This is generated by the target we want to learn; thus, the function \(f(x)\) is the target function to approximate.</li>
         </ul>
       </li>
-      <li>In Logistic Regression, we are trying to learn <script type="math/tex">f(x)</script> not withstanding the fact that the data-points we are learning from are giving us just sample values of <script type="math/tex">y</script> that happen to be generated by <script type="math/tex">f</script>.</li>
-      <li>Thus, the <strong>Target</strong> <script type="math/tex">f : \mathbb{R}^d \longrightarrow [0,1]</script> is the probability.<br />
+      <li>In Logistic Regression, we are trying to learn \(f(x)\) not withstanding the fact that the data-points we are learning from are giving us just sample values of \(y\) that happen to be generated by \(f\).</li>
+      <li>Thus, the <strong>Target</strong> \(f : \mathbb{R}^d \longrightarrow [0,1]\) is the probability.<br />
   <span style="color: purple">The output of Logistic Regression is treated genuinely as a <strong>probability</strong> even <em>during <strong>Learning</strong></em>.</span></li>
     </ul>
+    <p><br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents54">Deriving the Error Measure (Cross-Entropy) from Likelihood:</strong><br />
  The error measure for logistic regression is based on <strong>likelihood</strong> - it is both, plausible and friendly/well-behaved? (for optimization).<br />
- For each <script type="math/tex">(\mathbf{x}, y)</script>, <script type="math/tex">y</script> is generated wit probability <script type="math/tex">f(\mathbf{x})</script>.</p>
+ For each \((\mathbf{x}, y)\), \(y\) is generated wit probability \(f(\mathbf{x})\).</p>
 
     <p><strong>Likelihood</strong>: We are maximizing the <em><strong>likelihood of this hypothesis</strong></em>, under the <em><strong>data set</strong></em> that we were given, with respect to the <em><strong>weights</strong></em>. I.E. Given the data set, how likely is this hypothesis? Which means, what is the probability of that data set under the assumption that this hypothesis is indeed the target?</p>
 
@@ -682,13 +682,13 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
           <li>We start with:
             <p>$$P(y | \mathbf{x})=\left\{\begin{array}{ll}{h(\mathbf{x})} &amp; {\text {for } y=+1} \\ {1-h(\mathbf{x})} &amp; {\text {for } y=-1}\end{array}\right.$$</p>
           </li>
-          <li>Substitute <script type="math/tex">h(\mathbf{x})=\theta \left(\mathbf{w}^{\top} \mathbf{x}\right)</script>:
+          <li>Substitute \(h(\mathbf{x})=\theta \left(\mathbf{w}^{\top} \mathbf{x}\right)\):
             <p>$$P(y | \mathbf{x})=\left\{\begin{array}{ll}{\theta(\mathbf{w}^T\mathbf{x})} &amp; {\text {for } y=+1} \\ {1-\theta(\mathbf{w}^T\mathbf{x})} &amp; {\text {for } y=-1}\end{array}\right.$$</p>
           </li>
-          <li>Since we know that <script type="math/tex">\theta(-s)=1-\theta(s)</script>, we can simplify the piece-wise function:
+          <li>Since we know that \(\theta(-s)=1-\theta(s)\), we can simplify the piece-wise function:
             <p>$$P(y | \mathbf{x})=\theta\left(y \mathbf{w}^{\top} \mathbf{x}\right)$$</p>
           </li>
-          <li>To get the <strong>likelihood</strong> of the dataset <script type="math/tex">\mathcal{D}=\left(\mathbf{x}_{1}, y_{1}\right), \ldots,\left(\mathbf{x}_{N}, y_{N}\right)</script>:
+          <li>To get the <strong>likelihood</strong> of the dataset \(\mathcal{D}=\left(\mathbf{x}_{1}, y_{1}\right), \ldots,\left(\mathbf{x}_{N}, y_{N}\right)\):
             <p>$$\prod_{n=1}^{N} P\left(y_{n} | \mathbf{x}_{n}\right) =\prod_{n=1}^{N} \theta\left(y_{n} \mathbf{w}^{\mathrm{T}} \mathbf{x}_ {n}\right)$$</p>
           </li>
         </ol>
@@ -715,7 +715,7 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
           <li>Simplify:
             <p>$$=\frac{1}{N} \sum_{n=1}^{N} \ln \left(\frac{1}{\theta\left(y_{n} \mathbf{w}^{\tau} \mathbf{x}_ {n}\right)}\right)$$</p>
           </li>
-          <li>Substitute <script type="math/tex">\left[\theta(s)=\frac{1}{1+e^{-s}}\right]</script>:
+          <li>Substitute \(\left[\theta(s)=\frac{1}{1+e^{-s}}\right]\):
             <p>$$\frac{1}{N} \sum_{n=1}^{N} \underbrace{\ln \left(1+e^{-y_{n} \mathbf{w}^{\top} \mathbf{x}_{n}}\right)}_{e\left(h\left(\mathbf{x}_{n}\right), y_{n}\right)}$$</p>
           </li>
           <li>Use this as the <em><strong>Cross-Entropy</strong></em>  <strong>Error Measure</strong>:
@@ -726,7 +726,7 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents56">The Decision Boundary of Logistic Regression:</strong><br />
- <strong>Decision Boundary:</strong> It is the set of <script type="math/tex">x</script> such that:
+ <strong>Decision Boundary:</strong> It is the set of \(x\) such that:
     <p>$$\frac{1}{1+e^{-\theta \cdot x}}=0.5 \implies 0=-\theta \cdot x=-\sum_{i=0}^{n} \theta_{i} x_{i}$$</p>
   </li>
   <li>
@@ -740,11 +740,11 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
   <li><strong style="color: SteelBlue" class="bodyContents5" id="bodyContents59">Nonlinear Transforms:</strong>
     <p>$$\mathbf{x}=\left(x_{0}, x_{1}, \cdots, x_{d}\right) \stackrel{\Phi}{\longrightarrow} \mathbf{z}=\left(z_{0}, z_{1}, \cdots \cdots \cdots \cdots \cdots, z_{\tilde{d}}\right)$$</p>
     <p>$$\text {Each } z_{i}=\phi_{i}(\mathbf{x}) \:\:\:\:\: \mathbf{z}=\Phi(\mathbf{x})$$</p>
-    <p>Example: <script type="math/tex">\mathbf{z}=\left(1, x_{1}, x_{2}, x_{1} x_{2}, x_{1}^{2}, x_{2}^{2}\right)</script><br />
- The Final Hypothesis <script type="math/tex">g(\mathbf{x})</script> in <script type="math/tex">\mathcal{X}</script> space:</p>
+    <p>Example: \(\mathbf{z}=\left(1, x_{1}, x_{2}, x_{1} x_{2}, x_{1}^{2}, x_{2}^{2}\right)\)<br />
+ The Final Hypothesis \(g(\mathbf{x})\) in \(\mathcal{X}\) space:</p>
     <ul>
-      <li><strong>Classification:</strong> <script type="math/tex">\operatorname{sign}\left(\tilde{\mathbf{w}}^{\top} \Phi(\mathbf{x})\right)</script></li>
-      <li><strong>Regression:</strong> <script type="math/tex">\tilde{\mathbf{w}}^{\top} \Phi(\mathbf{x})</script></li>
+      <li><strong>Classification:</strong> \(\operatorname{sign}\left(\tilde{\mathbf{w}}^{\top} \Phi(\mathbf{x})\right)\)</li>
+      <li><strong>Regression:</strong> \(\tilde{\mathbf{w}}^{\top} \Phi(\mathbf{x})\)</li>
     </ul>
 
     <p><strong style="color: red">Two Non-Separable Cases:</strong></p>
@@ -752,8 +752,8 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
       <li>Almost separable with some outliers:<br />
   <img src="/main_files/dl/theory/caltech/23.png" alt="img" width="38%" />
         <ol>
-          <li>Accept that <script type="math/tex">E_{\mathrm{in}}>0</script>; use a linear model in <script type="math/tex">\mathcal{X}</script>.</li>
-          <li>Insist on <script type="math/tex">E_{\mathrm{in}}=0</script>; go to a high-dimensional <script type="math/tex">\mathcal{Z}</script>.<br />
+          <li>Accept that \(E_{\mathrm{in}}&gt;0\); use a linear model in \(\mathcal{X}\).</li>
+          <li>Insist on \(E_{\mathrm{in}}=0\); go to a high-dimensional \(\mathcal{Z}\).<br />
  This has a <strong>worse</strong> chance for generalizing.</li>
         </ol>
       </li>
@@ -776,23 +776,23 @@ Learning appears <strong>impossible</strong>: Learning a truly “unknown” fun
 
 <p><img src="/main_files/dl/theory/caltech/2.jpg" alt="img" width="100%" /></p>
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p><a href="https://www.researchgate.net/publication/254284684_The_Equivalence_of_Generalized_Least_Squares_and_Maximum_Likelihood_Estimates_in_the_Exponential_Family">Reference: Equivalence of Generalized-LS and MLE in Exponential Family</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://www.researchgate.net/publication/254284684_The_Equivalence_of_Generalized_Least_Squares_and_Maximum_Likelihood_Estimates_in_the_Exponential_Family">Reference: Equivalence of Generalized-LS and MLE in Exponential Family</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

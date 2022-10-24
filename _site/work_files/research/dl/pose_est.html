@@ -146,16 +146,16 @@ The <strong>DNN regressors</strong> are presented as a cascade for higher precis
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Notation:</strong></dt>
       <dd>
         <ul>
-          <li><strong>Pose Vector</strong> = <script type="math/tex">\mathbf{y} = \left(\ldots, \mathbf{y}_i^T, \ldots\right)^T, \: i \in \{1, \ldots, k\}</script></li>
-          <li><strong>Joint Co-ordinates</strong> = <script type="math/tex">\mathbf{y}_i^T = (x_i, y_i)</script> of the <script type="math/tex">i</script>-th joint</li>
-          <li><strong>Labeled Image</strong> = <script type="math/tex">(x, \mathbf{y})</script>
+          <li><strong>Pose Vector</strong> = \(\mathbf{y} = \left(\ldots, \mathbf{y}_i^T, \ldots\right)^T, \: i \in \{1, \ldots, k\}\)</li>
+          <li><strong>Joint Co-ordinates</strong> = \(\mathbf{y}_i^T = (x_i, y_i)\) of the \(i\)-th joint</li>
+          <li><strong>Labeled Image</strong> = \((x, \mathbf{y})\)
             <ul>
-              <li><script type="math/tex">x =</script> Image Data</li>
-              <li><script type="math/tex">\mathbf{y} =</script> Ground-Truth Pose Vector</li>
+              <li>\(x =\) Image Data</li>
+              <li>\(\mathbf{y} =\) Ground-Truth Pose Vector</li>
             </ul>
           </li>
-          <li><strong>Bounding Box</strong> = <script type="math/tex">b</script>: a box bounding the human body or parts of it</li>
-          <li><strong>Normalization Function</strong> <script type="math/tex">= N(\mathbf{y}_i; b)</script>: normalizes the <em>joint coordinates</em> w.r.t a bounding box <script type="math/tex">b</script>
+          <li><strong>Bounding Box</strong> = \(b\): a box bounding the human body or parts of it</li>
+          <li><strong>Normalization Function</strong> \(= N(\mathbf{y}_i; b)\): normalizes the <em>joint coordinates</em> w.r.t a bounding box \(b\)
             <blockquote>
               <p>Since the joint coordinates are in absolute image coordinates, and poses vary in size from image to image</p>
             </blockquote>
@@ -166,19 +166,19 @@ The <strong>DNN regressors</strong> are presented as a cascade for higher precis
               <li><em>Scale</em> by <em>box size</em></li>
             </ul>
           </li>
-          <li><strong>Normalized pose vector</strong> = <script type="math/tex">N(\mathbf{y}; b) = \left(\ldots, N(\mathbf{y}_i; b)^T, \ldots\right)^T</script></li>
-          <li><strong>A crop of image <script type="math/tex">x</script> by bounding box <script type="math/tex">b</script></strong> = <script type="math/tex">N(x; b)</script></li>
-          <li><em><strong>Learned Function</strong></em> = <script type="math/tex">\psi(x;\theta) \in \mathbb{R}^2k</script> is a functions that regresses to normalized pose vector, given an image:
+          <li><strong>Normalized pose vector</strong> = \(N(\mathbf{y}; b) = \left(\ldots, N(\mathbf{y}_i; b)^T, \ldots\right)^T\)</li>
+          <li><strong>A crop of image \(x\) by bounding box \(b\)</strong> = \(N(x; b)\)</li>
+          <li><em><strong>Learned Function</strong></em> = \(\psi(x;\theta) \in \mathbb{R}^2k\) is a functions that regresses to normalized pose vector, given an image:
             <ul>
-              <li><strong>Input</strong>: image <script type="math/tex">x</script></li>
-              <li><strong>Output</strong>: Normalized pose vector <script type="math/tex">N(\mathbf{y})</script></li>
+              <li><strong>Input</strong>: image \(x\)</li>
+              <li><strong>Output</strong>: Normalized pose vector \(N(\mathbf{y})\)</li>
             </ul>
           </li>
           <li>
             <dl>
               <dt><em><strong>Pose Prediction</strong></em>:</dt>
               <dd>
-                <script type="math/tex; mode=display">y^\ast = N^{-1}(\psi(N(x);\theta))</script>
+\[y^\ast = N^{-1}(\psi(N(x);\theta))\]
               </dd>
             </dl>
           </li>
@@ -192,53 +192,53 @@ The <strong>DNN regressors</strong> are presented as a cascade for higher precis
       <dd>
         <ul>
           <li><strong>Problem</strong>: Regression Problem</li>
-          <li><strong>Goal</strong>: Learn a function <script type="math/tex">\psi(x;\theta)</script> that is trained and used to regress to a pose vector.</li>
-          <li><strong>Estimation</strong>: <script type="math/tex">\psi</script> is based on (learned through) Deep Neural Net</li>
+          <li><strong>Goal</strong>: Learn a function \(\psi(x;\theta)\) that is trained and used to regress to a pose vector.</li>
+          <li><strong>Estimation</strong>: \(\psi\) is based on (learned through) Deep Neural Net</li>
           <li><strong>Deep Neural Net</strong>: is a Convolutional Neural Network; namely, <strong>AlexNet</strong>
             <ul>
-              <li><em><strong>Input</strong></em>: image with pre-defined size <script type="math/tex">= \:</script> #-pixels <script type="math/tex">\times 3</script>-color channels
+              <li><em><strong>Input</strong></em>: image with pre-defined size \(= \:\) #-pixels \(\times 3\)-color channels
                 <blockquote>
-                  <p><script type="math/tex">(220 \times 220)</script> with a stride of <script type="math/tex">4</script></p>
+                  <p>\((220 \times 220)\) with a stride of \(4\)</p>
                 </blockquote>
               </li>
-              <li><em><strong>Output</strong></em>: target value of the regression<script type="math/tex">= 2k</script> joint coordinates</li>
+              <li><em><strong>Output</strong></em>: target value of the regression\(= 2k\) joint coordinates</li>
             </ul>
           </li>
         </ul>
       </dd>
       <dd>
         <blockquote>
-          <p>Denote by <script type="math/tex">\mathbf{C}</script> a convolutional layer, by <script type="math/tex">\mathbf{LRN}</script> a local response normalization layer, <script type="math/tex">\mathbf{P}</script> a pooling layer and by <script type="math/tex">\mathbf{F}</script> a fully connected layer</p>
+          <p>Denote by \(\mathbf{C}\) a convolutional layer, by \(\mathbf{LRN}\) a local response normalization layer, \(\mathbf{P}\) a pooling layer and by \(\mathbf{F}\) a fully connected layer</p>
         </blockquote>
       </dd>
       <dd>
         <blockquote>
-          <p>For <script type="math/tex">\mathbf{C}</script> layers, the size is defined as width <script type="math/tex">\times</script> height <script type="math/tex">\times</script> depth, where the first two dimensions have a spatial meaning while the depth defines the number of filters.</p>
+          <p>For \(\mathbf{C}\) layers, the size is defined as width \(\times\) height \(\times\) depth, where the first two dimensions have a spatial meaning while the depth defines the number of filters.</p>
         </blockquote>
       </dd>
       <dd>
         <ul>
           <li><strong>Alex-Net</strong>:
             <ul>
-              <li><em><strong>Architecture</strong></em>:     <script type="math/tex">\mathbf{C}(55 \times 55 \times 96) − \mathbf{LRN} − \mathbf{P} − \mathbf{C}(27 \times 27 \times 256) − \mathbf{LRN} − \mathbf{P} − \\\mathbf{C}(13 \times 13 \times 384) − \mathbf{C}(13 \times 13 \times 384) − \mathbf{C}(13 \times 13 \times 256) − \mathbf{P} − \mathbf{F}(4096) − \mathbf{F}(4096)</script></li>
+              <li><em><strong>Architecture</strong></em>:     \(\mathbf{C}(55 \times 55 \times 96) − \mathbf{LRN} − \mathbf{P} − \mathbf{C}(27 \times 27 \times 256) − \mathbf{LRN} − \mathbf{P} − \\\mathbf{C}(13 \times 13 \times 384) − \mathbf{C}(13 \times 13 \times 384) − \mathbf{C}(13 \times 13 \times 256) − \mathbf{P} − \mathbf{F}(4096) − \mathbf{F}(4096)\)</li>
               <li><em><strong>Filters</strong></em>:
                 <ul>
-                  <li><script type="math/tex">\mathbf{C}_{1} = 11 \times 11</script>,</li>
-                  <li><script type="math/tex">\mathbf{C}_{2} = 5 \times 5</script>,</li>
-                  <li><script type="math/tex">\mathbf{C}_{3-5} = 3 \times 3</script>.</li>
+                  <li>\(\mathbf{C}_{1} = 11 \times 11\),</li>
+                  <li>\(\mathbf{C}_{2} = 5 \times 5\),</li>
+                  <li>\(\mathbf{C}_{3-5} = 3 \times 3\).</li>
                 </ul>
               </li>
-              <li><em><strong>Total Number of Parameters</strong></em> <script type="math/tex">= 40</script>M</li>
+              <li><em><strong>Total Number of Parameters</strong></em> \(= 40\)M</li>
               <li><em><strong>Training Dataset</strong></em>:<br />
-  Denote by <script type="math/tex">D</script> the training set and <script type="math/tex">D_N</script> the normalized training set: <br />
-  <script type="math/tex">\ \ \ \ \ \ \ \ \ \ \ \ \ \</script> <script type="math/tex">\ \ \ \ \ \ \ \ \ \ \ \ \ \</script>  <script type="math/tex">D_N = \{(N(x),N(\mathbf{y}))\vert (x,\mathbf{y}) \in D\}</script></li>
-              <li><em><strong>Loss</strong></em>: the Loss is modified; instead of a <em>classification loss</em>, we train a linear regression on top of the last network layer to predict a pose vector by minimizing <script type="math/tex">L_2</script> distance between the prediction and the true pose vector,</li>
+  Denote by \(D\) the training set and \(D_N\) the normalized training set: <br />
+  \(\ \ \ \ \ \ \ \ \ \ \ \ \ \\) \(\ \ \ \ \ \ \ \ \ \ \ \ \ \\)  \(D_N = \{(N(x),N(\mathbf{y}))\vert (x,\mathbf{y}) \in D\}\)</li>
+              <li><em><strong>Loss</strong></em>: the Loss is modified; instead of a <em>classification loss</em>, we train a linear regression on top of the last network layer to predict a pose vector by minimizing \(L_2\) distance between the prediction and the true pose vector,</li>
             </ul>
           </li>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\arg \min_\theta \sum_{(x,y) \in D_N} \sum_{i=1}^k \|\mathbf{y}_i - \psi_i(x;\theta)\|_2^2</script>
+\[\arg \min_\theta \sum_{(x,y) \in D_N} \sum_{i=1}^k \|\mathbf{y}_i - \psi_i(x;\theta)\|_2^2\]
       </dd>
       <dd>
         <ul>
@@ -246,9 +246,9 @@ The <strong>DNN regressors</strong> are presented as a cascade for higher precis
             <ul>
               <li><em><strong>BackPropagation</strong></em> in a distributed online implementation</li>
               <li><em><strong>Adaptive Gradient Updates</strong></em></li>
-              <li><em><strong>Learning Rate</strong></em> <script type="math/tex">= 0.0005 = 5\times 10^{-4}</script></li>
+              <li><em><strong>Learning Rate</strong></em> \(= 0.0005 = 5\times 10^{-4}\)</li>
               <li><em><strong>Data Augmentation</strong></em>: randomly translated image crops, left/right flips</li>
-              <li><em><strong>DropOut Regularization</strong></em> for the <script type="math/tex">\mathbf{F}</script> layers <script type="math/tex">= 0.6</script></li>
+              <li><em><strong>DropOut Regularization</strong></em> for the \(\mathbf{F}\) layers \(= 0.6\)</li>
             </ul>
           </li>
         </ul>
@@ -261,7 +261,7 @@ The <strong>DNN regressors</strong> are presented as a cascade for higher precis
       <dd>
         <ul>
           <li><strong>Motivation</strong>: <br />
-  Although, the pose formulation of the DNN has the advantage that the joint estimation is based on the full image and thus relies on context, due its fixed input size of <script type="math/tex">220 \times 220</script>, the network has <em>limited capacity to look at detail</em> - it <em>learns filters capturing pose properties at coarse scale</em>.<br />
+  Although, the pose formulation of the DNN has the advantage that the joint estimation is based on the full image and thus relies on context, due its fixed input size of \(220 \times 220\), the network has <em>limited capacity to look at detail</em> - it <em>learns filters capturing pose properties at coarse scale</em>.<br />
   The <em>pose properties</em> are necessary to <em>estimate rough pose</em> but <strong>insufficient</strong> to always <em>precisely localize the body joints</em>.<br />
   Increasing the input size is infeasible since it will increase the already large number of parameters.<br />
   Thus, a <em>cascade of pose regressors</em> is used to achieve better precision.</li>
@@ -285,28 +285,28 @@ The <strong>DNN regressors</strong> are presented as a cascade for higher precis
           <li><strong>Method and Architecture</strong>:
             <ul>
               <li>The same network architecture is used for all stages of the cascade but learn different parameters.</li>
-              <li>Start with a bounding box <script type="math/tex">b^0</script>: which either encloses the full image or is obtained by a person detector</li>
+              <li>Start with a bounding box \(b^0\): which either encloses the full image or is obtained by a person detector</li>
               <li>Obtain an initial pose:<br />
-  Stage 1: <script type="math/tex">\mathbf{y}^1 \leftarrow N^{-1}(\psi(N(x;b^0);\theta_1);b^0)</script></li>
-              <li>At stages <script type="math/tex">s \geq 2</script>, for all joints:
+  Stage 1: \(\mathbf{y}^1 \leftarrow N^{-1}(\psi(N(x;b^0);\theta_1);b^0)\)</li>
+              <li>At stages \(s \geq 2\), for all joints:
                 <ul>
-                  <li>Regress first towards a refinement displacement <script type="math/tex">\mathbf{y}_i^s - \mathbf{y}_i^{(s-1)}</script> by applying a regressor on the sub image defined by <script type="math/tex">b_i^{(s-1)}</script></li>
-                  <li>Estimate new joint boxes <script type="math/tex">b_i^s</script>:<br />
-  Stage <script type="math/tex">s</script>: <script type="math/tex">\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mathbf{y}_i^s \leftarrow \mathbf{y}_i^{(2-1)} + N^{-1}(\psi(N(x;b^0);\theta_s);b)  \:\: (6)  \\
+                  <li>Regress first towards a refinement displacement \(\mathbf{y}_i^s - \mathbf{y}_i^{(s-1)}\) by applying a regressor on the sub image defined by \(b_i^{(s-1)}\)</li>
+                  <li>Estimate new joint boxes \(b_i^s\):<br />
+  Stage \(s\): \(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mathbf{y}_i^s \leftarrow \mathbf{y}_i^{(2-1)} + N^{-1}(\psi(N(x;b^0);\theta_s);b)  \:\: (6)  \\
  \ \ \ \ \ \ \ \ \ \ \ \ \ \                  \:\:\:\: \text{for } b = b_i^(s-1) \\
 \ \ \ \ \ \ \ \ \ \ \ \ \ \ 
-  b_i^s \leftarrow (\mathbf{y}_i^s, \sigma diam(\mathbf{y}^s), \sigma diam(\mathbf{y}^s))) \:\: (7)</script><br />
-  where we considered a joint bounding box <script type="math/tex">b_i</script> capturing the sub-image around <script type="math/tex">\mathbf{y}_i: b_i(\mathbf{y}; \sigma) = (\mathbf{y}_i, \sigma diam(\mathbf{y}), \sigma diam(\mathbf{y}))</script> having as center the i-th joint and as dimension the pose diameter scaled by <script type="math/tex">\sigma</script>, to refine a given joint location <script type="math/tex">\mathbf{y}_i</script>.</li>
+  b_i^s \leftarrow (\mathbf{y}_i^s, \sigma diam(\mathbf{y}^s), \sigma diam(\mathbf{y}^s))) \:\: (7)\)<br />
+  where we considered a joint bounding box \(b_i\) capturing the sub-image around \(\mathbf{y}_i: b_i(\mathbf{y}; \sigma) = (\mathbf{y}_i, \sigma diam(\mathbf{y}), \sigma diam(\mathbf{y}))\) having as center the i-th joint and as dimension the pose diameter scaled by \(\sigma\), to refine a given joint location \(\mathbf{y}_i\).</li>
                 </ul>
               </li>
-              <li>Apply the cascade for a fixed number of stages <script type="math/tex">= S</script></li>
+              <li>Apply the cascade for a fixed number of stages \(= S\)</li>
             </ul>
           </li>
-          <li><strong>Loss</strong>: (at each stage <script type="math/tex">s</script>)</li>
+          <li><strong>Loss</strong>: (at each stage \(s\))</li>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\theta_s = \arg \min_\theta \sum_{(x,\mathbf{y}_i) \in D_A^s} \|\mathbf{y}_i - \psi_i(x;\theta)\|_2^2 \:\:\:\:\: (8)</script>
+\[\theta_s = \arg \min_\theta \sum_{(x,\mathbf{y}_i) \in D_A^s} \|\mathbf{y}_i - \psi_i(x;\theta)\|_2^2 \:\:\:\:\: (8)\]
       </dd>
     </dl>
   </li>
@@ -440,13 +440,13 @@ The <strong>DNN regressors</strong> are presented as a cascade for higher precis
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

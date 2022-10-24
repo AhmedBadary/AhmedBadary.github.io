@@ -92,10 +92,10 @@
   <li>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Why?</strong></dt>
-      <dd>The Taylor methods outlined in the previous section have the desirable property of highorder local truncation error, but the disadvantage of requiring the computation and evaluation of the derivatives of <script type="math/tex">f(t, y)</script>. This is a complicated and time-consuming procedure for most problems, so the Taylor methods are seldom used in practice.</dd>
+      <dd>The Taylor methods outlined in the previous section have the desirable property of highorder local truncation error, but the disadvantage of requiring the computation and evaluation of the derivatives of \(f(t, y)\). This is a complicated and time-consuming procedure for most problems, so the Taylor methods are seldom used in practice.</dd>
       <dd>
         <blockquote>
-          <p><strong>The Runge-Kutta methods</strong> have the high-order local truncation error of the Taylor methods but eliminate the need to compute and evaluate the derivatives of <script type="math/tex">f(t, y)</script></p>
+          <p><strong>The Runge-Kutta methods</strong> have the high-order local truncation error of the Taylor methods but eliminate the need to compute and evaluate the derivatives of \(f(t, y)\)</p>
         </blockquote>
       </dd>
     </dl>
@@ -119,7 +119,7 @@
       <li><strong>Higher order:</strong><br />
   <img src="/main_files/128a/5/5.4/3.png" alt="formula" width="80%" />
         <blockquote>
-          <p>The fact that (5.21) has four parameters, however, gives a flexibility in their choice, so a number of <script type="math/tex">O(h^2)</script> methods can be derived.<br />
+          <p>The fact that (5.21) has four parameters, however, gives a flexibility in their choice, so a number of \(O(h^2)\) methods can be derived.<br />
  <button class="showText" value="show" onclick="showTextPopHide(event);">Show Derivation</button>
  <img src="/main_files/128a/5/5.4/derivation.png" alt="formula" hidden="" /></p>
         </blockquote>
@@ -129,8 +129,8 @@
   <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Modified Euler Method:</strong> <br />
     <blockquote>
       <p>One of the most important is the <em>Modified
- Euler method</em>, which corresponds to choosing <script type="math/tex">a_1 = a_2 = \dfrac{1}{2}</script>
- and <script type="math/tex">\alpha_2 = \delta_2 = h</script>. It has the following difference-equation form:<br />
+ Euler method</em>, which corresponds to choosing \(a_1 = a_2 = \dfrac{1}{2}\)
+ and \(\alpha_2 = \delta_2 = h\). It has the following difference-equation form:<br />
  <img src="/main_files/128a/5/5.4/4.png" alt="formula" width="80%" /></p>
     </blockquote>
   </li>
@@ -147,23 +147,23 @@
 
 <ol>
   <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">What?</strong>
- The term <script type="math/tex">T^{(3)}(t, y)</script> can be approximated with error <script type="math/tex">O(h^3)</script> by an expression of the form
- <script type="math/tex">f(t + \alpha_1, y + \delta_1 f(t + \alpha_2, y + \delta_2 f(t, y)))</script>,
- involving four parameters, the algebra involved in the determination of <script type="math/tex">\alpha_1, \delta_1, \alpha_2,</script> and <script type="math/tex">\delta_2</script> is quite involved.</li>
+ The term \(T^{(3)}(t, y)\) can be approximated with error \(O(h^3)\) by an expression of the form
+ \(f(t + \alpha_1, y + \delta_1 f(t + \alpha_2, y + \delta_2 f(t, y)))\),
+ involving four parameters, the algebra involved in the determination of \(\alpha_1, \delta_1, \alpha_2,\) and \(\delta_2\) is quite involved.</li>
   <li>
     <p><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Heun’s method:</strong> <br />
  <img src="/main_files/128a/5/5.4/5.png" alt="formula" width="80%" /></p>
 
     <ul>
-      <li><strong>Local Truncation Error:</strong> <script type="math/tex">\mathcal{O}(h^3)</script>.</li>
+      <li><strong>Local Truncation Error:</strong> \(\mathcal{O}(h^3)\).</li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Runge-Kutta Order Four:</strong> <br />
  <img src="/main_files/128a/5/5.4/6.png" alt="formula" width="35%" />
     <ul>
-      <li><strong>Local Truncation Error:</strong> <script type="math/tex">\mathcal{O}(h^4)</script>.
+      <li><strong>Local Truncation Error:</strong> \(\mathcal{O}(h^4)\).
         <blockquote>
-          <p>Provided the solution <script type="math/tex">y(t)</script> has <strong>five continuous derivatives</strong>.</p>
+          <p>Provided the solution \(y(t)\) has <strong>five continuous derivatives</strong>.</p>
         </blockquote>
       </li>
       <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents34">Algorithm:</strong> <br />
@@ -181,7 +181,7 @@
   <li>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">What is Compuatation Heavy?</strong></dt>
-      <dd>The main computational effort in applying the Runge-Kutta methods is the evaluation of <script type="math/tex">f</script>.</dd>
+      <dd>The main computational effort in applying the Runge-Kutta methods is the evaluation of \(f\).</dd>
     </dl>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Function Evaluations:</strong> <br />
@@ -192,7 +192,7 @@
             <tr>
               <td><strong>Second Order:</strong></td>
               <td>2 function evaluations per step</td>
-              <td>Error of order <script type="math/tex">\mathcal{O}(h^2)</script>.</td>
+              <td>Error of order \(\mathcal{O}(h^2)\).</td>
             </tr>
           </tbody>
         </table>
@@ -203,7 +203,7 @@
             <tr>
               <td><strong>Fourth Order:</strong></td>
               <td>4 function evaluations per step</td>
-              <td>Error of order <script type="math/tex">\mathcal{O}(h^4)</script>.</td>
+              <td>Error of order \(\mathcal{O}(h^4)\).</td>
             </tr>
           </tbody>
         </table>
@@ -237,13 +237,13 @@ smaller step size are used in preference to the higher-order methods using a lar
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

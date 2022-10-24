@@ -76,14 +76,19 @@
 
 <p><a href="https://www.youtube.com/watch?v=ErfnhcEV1O8">A Short Introduction to Entropy, Cross-Entropy and KL-Divergence</a><br />
 <a href="https://jhui.github.io/2017/01/05/Deep-learning-Information-theory/">Deep Learning Information Theory (Cross-Entropy and MLE)</a><br />
-<a href="https://www.youtube.com/watch?v=XL07WEc2TRI">Further Info (Lecture)</a></p>
+<a href="https://www.youtube.com/watch?v=XL07WEc2TRI">Further Info (Lecture)</a><br />
+<a href="https://colah.github.io/posts/2015-09-Visual-Information/">Visual Information Theory (Chris Olahs’ Blog)</a> 
+<a href="https://deep-and-shallow.com/2020/01/09/deep-learning-and-information-theory/">Deep Learning and Information Theory  (Blog)</a><br />
+<a href="https://medium.com/machine-learning-bootcamp/demystifying-information-theory-e21f3af09455">Information Theory | Statistics for Deep Learning (Blog)</a></p>
+
+<p><img src="https://cdn.mathpix.com/snip/images/TNzZfbJuHJsESt3Ds0LpsEBVdRsi56VBP8RK7r54Vc0.original.fullsize.png" alt="img" width="80%" /></p>
 
 <h2 id="content1">Information Theory</h2>
 
 <ol>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Information Theory:</strong><br />
- <strong>Information theory</strong> is a branch of applied mathematics that revolves around quantifying how much information is present in a signal.  <br />
+ <strong>Information theory</strong> is a branch of applied mathematics that revolves around quantifying how much information is present in a signal.<br />
  In the context of machine learning, we can also apply information theory to continuous variables where some of these message length interpretations do not apply, instead, we mostly use a few key ideas from information theory to characterize probability distributions or to quantify similarity between probability distributions.<br />
  <br /></p>
   </li>
@@ -99,32 +104,36 @@
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents133">Measuring Information:</strong><br />
-In Shannons Theory, to <strong>transmit <script type="math/tex">1</script> bit of information</strong> means to <strong>divide the recipients <em>Uncertainty</em> by a factor of <script type="math/tex">2</script></strong>.</p>
+In Shannons Theory, to <strong>transmit \(1\) bit of information</strong> means to <strong>divide the recipients <em>Uncertainty</em> by a factor of \(2\)</strong>.</p>
 
-    <p>Thus, the <strong>amount of information</strong> transmitted is the <strong>logarithm</strong> (base <script type="math/tex">2</script>) of the <strong>uncertainty reduction factor</strong>.</p>
+    <p>Thus, the <strong>amount of information</strong> transmitted is the <strong>logarithm</strong> (base \(2\)) of the <strong>uncertainty reduction factor</strong>.</p>
 
     <p>The <strong>uncertainty reduction factor</strong> is just the <strong>inverse of the probability</strong> of the event being communicated.</p>
 
-    <p>Thus, the <strong>amount of information</strong> in an event <script type="math/tex">\mathbf{x} = x</script>, called the <em><strong>Self-Information</strong></em>  is:</p>
+    <p>Thus, the <strong>amount of information</strong> in an event \(\mathbf{x} = x\), called the <em><strong>Self-Information</strong></em>  is:</p>
     <p>$$I(x) = \log (1/p(x)) = -\log(p(x))$$</p>
 
     <p><strong>Shannons Entropy:</strong><br />
 It is the <strong>expected amount of information</strong> of an uncertain/stochastic source. It acts as a measure of the amount of <em><strong>uncertainty</strong></em> of the events.<br />
-Equivalently, the amount of information that you get from one sample drawn from a given probability distribution <script type="math/tex">p</script>.<br />
+Equivalently, the amount of information that you get from one sample drawn from a given probability distribution \(p\).<br />
 <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Self-Information:</strong><br />
  The <strong>Self-Information</strong> or <strong>surprisal</strong> is a synonym for the surprise when a random variable is sampled.<br />
- The <strong>Self-Information</strong> of an event <script type="math/tex">\mathrm{x} = x</script>:
+ The <strong>Self-Information</strong> of an event \(\mathrm{x} = x\):
     <p>$$I(x) = - \log P(x)$$</p>
-    <p>Self-information deals only with a single outcome.
+    <p>Self-information deals only with a single outcome.</p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Graph \(\log_2{1/x}\)</button>
+ <img src="https://cdn.mathpix.com/snip/images/NQ7sPTwgM1cNWpDRoclXezOYWAE8lttajOy5ofO3UQ4.original.fullsize.png" alt="img" width="28%" hidden="" /><br />
  <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Shannon Entropy:</strong><br />
- To quantify the amount of uncertainty in an entire probability distribution, we use <strong>Shannon Entropy</strong>.  <br />
+ To quantify the amount of uncertainty in an entire probability distribution, we use <strong>Shannon Entropy</strong>.<br />
  <strong>Shannon Entropy</strong> is defined as the average amount of information produced by a stochastic source of data.
     <p>$$H(x) = {\displaystyle \operatorname {E}_{x \sim P} [I(x)]} = - {\displaystyle \operatorname {E}_{x \sim P} [\log P(X)] = -\sum_{i=1}^{n} p\left(x_{i}\right) \log p\left(x_{i}\right)}$$</p>
-    <p><strong>Differential Entropy</strong> is Shannons entropy of a <strong>continuous</strong> random variable <script type="math/tex">x</script>
+    <p><strong>Differential Entropy</strong> is Shannons entropy of a <strong>continuous</strong> random variable \(x\).<br />
+ <img src="/main_files/math/prob/11.png" alt="img" width="60%" /><br />
  <br /></p>
   </li>
   <li>
@@ -133,7 +142,7 @@ Equivalently, the amount of information that you get from one sample drawn from 
  <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">Relative Entropy | KL-Divergence:</strong><br />
- The <strong>Kullback–Leibler divergence</strong> (<strong>Relative Entropy</strong>) is a measure of how one probability distribution diverges from a second, expected probability distribution.  <br />
+ The <strong>Kullback–Leibler divergence</strong> (<strong>Relative Entropy</strong>) is a measure of how one probability distribution diverges from a second, expected probability distribution.<br />
  <strong>Mathematically:</strong>
     <p>$${\displaystyle D_{\text{KL}}(P\parallel Q)=\operatorname{E}_{x \sim P} \left[\log \dfrac{P(x)}{Q(x)}\right]=\operatorname{E}_{x \sim P} \left[\log P(x) - \log Q(x)\right]}$$</p>
     <ul>
@@ -145,18 +154,18 @@ Equivalently, the amount of information that you get from one sample drawn from 
     </ul>
     <p>$${\displaystyle D_{\text{KL}}(P\parallel Q)=\int_{-\infty }^{\infty }p(x)\log \left({\frac {p(x)}{q(x)}}\right)\,dx,}$$ </p>
 
-    <p><strong>Interpretation:</strong></p>
+    <p id="lst-p"><strong>Interpretation:</strong></p>
     <ul>
       <li><strong>Discrete variables</strong>:<br />
-  it is the extra amount of information needed to send a message containing symbols drawn from probability distribution <script type="math/tex">P</script>, when we use a code that was designed to minimize the length of messages drawn from probability distribution <script type="math/tex">Q</script>.</li>
+  it is the extra amount of information needed to send a message containing symbols drawn from probability distribution \(P\), when we use a code that was designed to minimize the length of messages drawn from probability distribution \(Q\).</li>
       <li><strong>Continuous variables</strong>:</li>
     </ul>
 
-    <p><strong>Properties:</strong></p>
+    <p id="lst-p"><strong>Properties:</strong></p>
     <ul>
       <li>Non-Negativity:<br />
-      <script type="math/tex">{\displaystyle D_{\mathrm {KL} }(P\|Q) \geq 0}</script></li>
-      <li><script type="math/tex">{\displaystyle D_{\mathrm {KL} }(P\|Q) = 0 \iff}</script> <script type="math/tex">P</script> and <script type="math/tex">Q</script> are:
+      \({\displaystyle D_{\mathrm {KL} }(P\|Q) \geq 0}\)</li>
+      <li>\({\displaystyle D_{\mathrm {KL} }(P\|Q) = 0 \iff}\) \(P\) and \(Q\) are:
         <ul>
           <li><em><strong>Discrete Variables</strong></em>:<br />
       the same distribution</li>
@@ -165,39 +174,38 @@ Equivalently, the amount of information that you get from one sample drawn from 
         </ul>
       </li>
       <li>Additivity of <em>Independent Distributions</em>:<br />
-      <script type="math/tex">{\displaystyle D_{\text{KL}}(P\parallel Q)=D_{\text{KL}}(P_{1}\parallel Q_{1})+D_{\text{KL}}(P_{2}\parallel Q_{2}).}</script></li>
-      <li><script type="math/tex">{\displaystyle D_{\mathrm {KL} }(P\|Q) \neq D_{\mathrm {KL} }(Q\|P)}</script>
+      \({\displaystyle D_{\text{KL}}(P\parallel Q)=D_{\text{KL}}(P_{1}\parallel Q_{1})+D_{\text{KL}}(P_{2}\parallel Q_{2}).}\)</li>
+      <li>\({\displaystyle D_{\mathrm {KL} }(P\|Q) \neq D_{\mathrm {KL} }(Q\|P)}\)
         <blockquote>
           <p>This asymmetry means that there are important consequences to the choice of the ordering</p>
         </blockquote>
       </li>
-      <li>Convexity in the pair of PMFs <script type="math/tex">(p, q)</script> (i.e. <script type="math/tex">{\displaystyle (p_{1},q_{1})}</script> and  <script type="math/tex">{\displaystyle (p_{2},q_{2})}</script> are two pairs of PMFs):<br />
-      <script type="math/tex">{\displaystyle D_{\text{KL}}(\lambda p_{1}+(1-\lambda )p_{2}\parallel \lambda q_{1}+(1-\lambda )q_{2})\leq \lambda D_{\text{KL}}(p_{1}\parallel q_{1})+(1-\lambda )D_{\text{KL}}(p_{2}\parallel q_{2}){\text{ for }}0\leq \lambda \leq 1.}</script></li>
+      <li>Convexity in the pair of PMFs \((p, q)\) (i.e. \({\displaystyle (p_{1},q_{1})}\) and  \({\displaystyle (p_{2},q_{2})}\) are two pairs of PMFs):<br />
+      \({\displaystyle D_{\text{KL}}(\lambda p_{1}+(1-\lambda )p_{2}\parallel \lambda q_{1}+(1-\lambda )q_{2})\leq \lambda D_{\text{KL}}(p_{1}\parallel q_{1})+(1-\lambda )D_{\text{KL}}(p_{2}\parallel q_{2}){\text{ for }}0\leq \lambda \leq 1.}\)</li>
     </ul>
 
-    <p><strong>KL-Div as a Distance:</strong>   <br />
+    <p><strong>KL-Div as a Distance:</strong><br />
  Because the KL divergence is non-negative and measures the difference between two distributions, it is often conceptualized as measuring some sort of distance between these distributions.<br />
  However, it is <strong>not</strong> a true distance measure because it is <strong><em>not symmetric</em></strong>.</p>
     <blockquote>
       <p>KL-div is, however, a <em><strong>Quasi-Metric</strong></em>, since it satisfies all the properties of a distance-metric except symmetry</p>
     </blockquote>
 
-    <p><strong>Applications</strong>    <br />
+    <p id="lst-p"><strong>Applications</strong><br />
  Characterizing:</p>
     <ul>
       <li>Relative (Shannon) entropy in information systems</li>
       <li>Randomness in continuous time-series</li>
-      <li>It is a measure of <strong>Information Gain</strong>; used when comparing statistical models of inference<br />
- <img src="/main_files/math/prob/11.png" alt="img" width="100%" /></li>
+      <li>It is a measure of <strong>Information Gain</strong>; used when comparing statistical models of inference</li>
     </ul>
 
-    <p><strong>Example Application and Direction of Minimization</strong>  <br />
- Suppose we have a distribution <script type="math/tex">p(x)</script> and we wish to <em>approximate</em> it with another distribution <script type="math/tex">q(x)</script>.<br />
+    <p><strong>Example Application and Direction of Minimization</strong><br />
+ Suppose we have a distribution \(p(x)\) and we wish to <em>approximate</em> it with another distribution \(q(x)\).<br />
  We have a choice of <em>minimizing</em> either:</p>
     <ol>
-      <li><script type="math/tex">{\displaystyle D_{\text{KL}}(p\|q)} \implies q^\ast = \operatorname {arg\,min}_q {\displaystyle D_{\text{KL}}(p\|q)}</script><br />
+      <li>\({\displaystyle D_{\text{KL}}(p\|q)} \implies q^\ast = \operatorname {arg\,min}_q {\displaystyle D_{\text{KL}}(p\|q)}\)<br />
  Produces an approximation that usually places high probability anywhere that the true distribution places high probability.</li>
-      <li><script type="math/tex">{\displaystyle D_{\text{KL}}(q\|p)} \implies q^\ast \operatorname {arg\,min}_q {\displaystyle D_{\text{KL}}(q\|p)}</script><br />
+      <li>\({\displaystyle D_{\text{KL}}(q\|p)} \implies q^\ast \operatorname {arg\,min}_q {\displaystyle D_{\text{KL}}(q\|p)}\)<br />
  Produces an approximation that rarely places high probability anywhere that the true distribution places low probability.
         <blockquote>
           <p>which are different due to the <em>asymmetry</em> of the KL-divergence</p>
@@ -210,14 +218,14 @@ Equivalently, the amount of information that you get from one sample drawn from 
  <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Cross Entropy:</strong><br />
- The <strong>Cross Entropy</strong> between two probability distributions <script type="math/tex">{\displaystyle p}</script> and <script type="math/tex">{\displaystyle q}</script> over the same underlying set of events measures the average number of bits needed to identify an event drawn from the set, if a coding scheme is used that is optimized for an “unnatural” probability distribution <script type="math/tex">{\displaystyle q}</script>, rather than the “true” distribution <script type="math/tex">{\displaystyle p}</script>.
+ The <strong>Cross Entropy</strong> between two probability distributions \({\displaystyle p}\) and \({\displaystyle q}\) over the same underlying set of events measures the average number of bits needed to identify an event drawn from the set, if a coding scheme is used that is optimized for an “unnatural” probability distribution \({\displaystyle q}\), rather than the “true” distribution \({\displaystyle p}\).
     <p>$$H(p,q) = \operatorname{E}_{p}[-\log q]= H(p) + D_{\mathrm{KL}}(p\|q) =-\sum_{x }p(x)\,\log q(x)$$</p>
 
-    <p>It is similar to <strong>KL-Div</strong> but with an additional quantity - the entropy of <script type="math/tex">p</script>.</p>
+    <p>It is similar to <strong>KL-Div</strong> but with an additional quantity - the entropy of \(p\).</p>
 
-    <p>Minimizing the cross-entropy with respect to <script type="math/tex">Q</script> is equivalent to minimizing the KL divergence, because <script type="math/tex">Q</script> does not participate in the omitted term.</p>
+    <p>Minimizing the cross-entropy with respect to \(Q\) is equivalent to minimizing the KL divergence, because \(Q\) does not participate in the omitted term.</p>
 
-    <p>We treat <script type="math/tex">0 \log (0)</script> as <script type="math/tex">\lim_{x \to 0} x \log (x) = 0</script>.  <br />
+    <p>We treat \(0 \log (0)\) as \(\lim_{x \to 0} x \log (x) = 0\).<br />
  <br /></p>
   </li>
   <li>
@@ -228,44 +236,44 @@ Equivalently, the amount of information that you get from one sample drawn from 
     <p>It can be seen as a way of measuring the reduction in uncertainty (information content) of measuring a part of the system after observing the outcome of another parts of the system; given two R.Vs, knowing the value of one of the R.Vs in the system gives a corresponding reduction in (the uncertainty (information content) of) measuring the other one.</p>
 
     <p><strong>As KL-Divergence:</strong><br />
- Let <script type="math/tex">(X, Y)</script> be a pair of random variables with values over the space <script type="math/tex">\mathcal{X} \times \mathcal{Y}</script> . If their joint distribution is <script type="math/tex">P_{(X, Y)}</script> and the marginal distributions are <script type="math/tex">P_{X}</script> and <script type="math/tex">P_{Y},</script> the mutual information is defined as:</p>
+ Let \((X, Y)\) be a pair of random variables with values over the space \(\mathcal{X} \times \mathcal{Y}\) . If their joint distribution is \(P_{(X, Y)}\) and the marginal distributions are \(P_{X}\) and \(P_{Y},\) the mutual information is defined as:</p>
     <p>$$I(X ; Y)=D_{\mathrm{KL}}\left(P_{(X, Y)} \| P_{X} \otimes P_{Y}\right)$$</p>
 
     <p><strong>In terms of PMFs for discrete distributions:</strong><br />
- The mutual information of two jointly discrete random variables <script type="math/tex">X</script> and <script type="math/tex">Y</script> is calculated as a double sum:</p>
+ The mutual information of two jointly discrete random variables \(X\) and \(Y\) is calculated as a double sum:</p>
     <p>$$\mathrm{I}(X ; Y)=\sum_{y \in \mathcal{Y}} \sum_{x \in \mathcal{X}} p_{(X, Y)}(x, y) \log \left(\frac{p_{(X, Y)}(x, y)}{p_{X}(x) p_{Y}(y)}\right)$$</p>
-    <p>where <script type="math/tex">{\displaystyle p_{(X,Y)}}</script> is the joint probability mass function of <script type="math/tex">{\displaystyle X}</script> X and <script type="math/tex">{\displaystyle Y}</script>, and <script type="math/tex">{\displaystyle p_{X}}</script> and <script type="math/tex">{\displaystyle p_{Y}}</script> are the marginal probability mass functions of <script type="math/tex">{\displaystyle X}</script> and <script type="math/tex">{\displaystyle Y}</script> respectively.</p>
+    <p>where \({\displaystyle p_{(X,Y)}}\) is the joint probability mass function of \({\displaystyle X}\) X and \({\displaystyle Y}\), and \({\displaystyle p_{X}}\) and \({\displaystyle p_{Y}}\) are the marginal probability mass functions of \({\displaystyle X}\) and \({\displaystyle Y}\) respectively.</p>
 
     <p><strong>In terms of PDFs for continuous distributions:</strong><br />
  In the case of jointly continuous random variables, the double sum is replaced by a double integral:</p>
     <p>$$\mathrm{I}(X ; Y)=\int_{\mathcal{Y}} \int_{\mathcal{X}} p_{(X, Y)}(x, y) \log \left(\frac{p_{(X, Y)}(x, y)}{p_{X}(x) p_{Y}(y)}\right) d x d y$$</p>
-    <p>where <script type="math/tex">p_{(X, Y)}</script> is now the joint probability density function of <script type="math/tex">X</script> and <script type="math/tex">Y</script> and <script type="math/tex">p_{X}</script> and <script type="math/tex">p_{Y}</script> are the marginal probability density functions of <script type="math/tex">X</script> and <script type="math/tex">Y</script> respectively.</p>
+    <p>where \(p_{(X, Y)}\) is now the joint probability density function of \(X\) and \(Y\) and \(p_{X}\) and \(p_{Y}\) are the marginal probability density functions of \(X\) and \(Y\) respectively.</p>
 
     <p id="lst-p"><strong style="color: red">Intuitive Definitions:</strong></p>
     <ul>
-      <li>Measures the information that <script type="math/tex">X</script> and <script type="math/tex">Y</script> share:<br />
+      <li>Measures the information that \(X\) and \(Y\) share:<br />
   It measures how much knowing one of these variables reduces uncertainty about the other.
         <ul>
-          <li><strong><script type="math/tex">X, Y</script> Independent</strong>  <script type="math/tex">\implies I(X; Y) = 0</script>: their MI is zero</li>
-          <li><strong><script type="math/tex">X</script> deterministic function of <script type="math/tex">Y</script> and vice versa</strong> <script type="math/tex">\implies I(X; Y) = H(X) = H(Y)</script> their MI is equal to entropy of each variable</li>
+          <li><strong>\(X, Y\) Independent</strong>  \(\implies I(X; Y) = 0\): their MI is zero</li>
+          <li><strong>\(X\) deterministic function of \(Y\) and vice versa</strong> \(\implies I(X; Y) = H(X) = H(Y)\) their MI is equal to entropy of each variable</li>
         </ul>
       </li>
-      <li>It’s a Measure of the inherent dependence expressed in the joint distribution of  <script type="math/tex">X</script> and  <script type="math/tex">Y</script> relative to the joint distribution of <script type="math/tex">X</script> and <script type="math/tex">Y</script> under the assumption of independence.<br />
-  i.e. The price for encoding <script type="math/tex">{\displaystyle (X,Y)}</script> as a pair of independent random variables, when in reality they are not.</li>
+      <li>It’s a Measure of the inherent dependence expressed in the joint distribution of  \(X\) and  \(Y\) relative to the joint distribution of \(X\) and \(Y\) under the assumption of independence.<br />
+  i.e. The price for encoding \({\displaystyle (X,Y)}\) as a pair of independent random variables, when in reality they are not.</li>
     </ul>
 
     <p id="lst-p"><strong style="color: red">Properties:</strong></p>
     <ul>
-      <li>The KL-divergence shows that <script type="math/tex">I(X; Y)</script> is equal to zero precisely when <span style="color: goldenrod">the joint distribution conicides with the product of the marginals i.e. when </span> <strong style="color: goldenrod"><script type="math/tex">X</script> and <script type="math/tex">Y</script> are <em>independent</em></strong>.</li>
-      <li>The MI is <strong>non-negative</strong>: <script type="math/tex">I(X; Y) \geq 0</script>
+      <li>The KL-divergence shows that \(I(X; Y)\) is equal to zero precisely when <span style="color: goldenrod">the joint distribution conicides with the product of the marginals i.e. when </span> <strong style="color: goldenrod">\(X\) and \(Y\) are <em>independent</em></strong>.</li>
+      <li>The MI is <strong>non-negative</strong>: \(I(X; Y) \geq 0\)
         <ul>
-          <li>It is a measure of the price for encoding <script type="math/tex">{\displaystyle (X,Y)}</script> as a pair of independent random variables, when in reality they are not.</li>
+          <li>It is a measure of the price for encoding \({\displaystyle (X,Y)}\) as a pair of independent random variables, when in reality they are not.</li>
         </ul>
       </li>
-      <li>It is <strong>symmetric</strong>: <script type="math/tex">I(X; Y) = I(Y; X)</script></li>
+      <li>It is <strong>symmetric</strong>: \(I(X; Y) = I(Y; X)\)</li>
       <li><strong>Related to conditional and joint entropies:</strong>
         <p>$${\displaystyle {\begin{aligned}\operatorname {I} (X;Y)&amp;{}\equiv \mathrm {H} (X)-\mathrm {H} (X|Y)\\&amp;{}\equiv \mathrm {H} (Y)-\mathrm {H} (Y|X)\\&amp;{}\equiv \mathrm {H} (X)+\mathrm {H} (Y)-\mathrm {H} (X,Y)\\&amp;{}\equiv \mathrm {H} (X,Y)-\mathrm {H} (X|Y)-\mathrm {H} (Y|X)\end{aligned}}}$$</p>
-        <p>where <script type="math/tex">\mathrm{H}(X)</script> and <script type="math/tex">\mathrm{H}(Y)</script> are the marginal entropies, <script type="math/tex">\mathrm{H}(X | Y)</script> and <script type="math/tex">\mathrm{H}(Y | X)</script> are the conditional entopries, and <script type="math/tex">\mathrm{H}(X, Y)</script> is the joint entropy of <script type="math/tex">X</script> and <script type="math/tex">Y</script>.</p>
+        <p>where \(\mathrm{H}(X)\) and \(\mathrm{H}(Y)\) are the marginal entropies, \(\mathrm{H}(X | Y)\) and \(\mathrm{H}(Y | X)\) are the conditional entopries, and \(\mathrm{H}(X, Y)\) is the joint entropy of \(X\) and \(Y\).</p>
         <ul>
           <li>Note the <em>analogy to the <strong>union, difference, and intersection of two sets</strong></em>:<br />
   <img src="https://cdn.mathpix.com/snip/images/aT2_JfK4TlRP9b5JawVqQigLD7dzxOrFjDIapoSF-F4.original.fullsize.png" alt="img" width="35%" class="center-image" /></li>
@@ -302,22 +310,29 @@ Equivalently, the amount of information that you get from one sample drawn from 
  <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents19">Pointwise Mutual Information (PMI):</strong><br />
- The PMI of a pair of outcomes <script type="math/tex">x</script> and <script type="math/tex">y</script> belonging to discrete random variables <script type="math/tex">X</script> and <script type="math/tex">Y</script> quantifies the discrepancy between the probability of their coincidence given their joint distribution and their individual distributions, assuming independence. Mathematically:
+ The PMI of a pair of outcomes \(x\) and \(y\) belonging to discrete random variables \(X\) and \(Y\) quantifies the discrepancy between the probability of their coincidence given their joint distribution and their individual distributions, assuming independence. Mathematically:
     <p>$$\operatorname{pmi}(x ; y) \equiv \log \frac{p(x, y)}{p(x) p(y)}=\log \frac{p(x | y)}{p(x)}=\log \frac{p(y | x)}{p(y)}$$</p>
     <p>In contrast to mutual information (MI) which builds upon PMI, it refers to single events, whereas MI refers to the average of all possible events.<br />
- The mutual information (MI) of the random variables <script type="math/tex">X</script> and <script type="math/tex">Y</script> is the expected value of the PMI (over all possible outcomes).</p>
+ The mutual information (MI) of the random variables \(X\) and \(Y\) is the expected value of the PMI (over all possible outcomes).</p>
   </li>
 </ol>
 
+<h3 id="more">More</h3>
+<ul>
+  <li><strong>Conditional Entropy</strong>: \(H(X \mid Y)=H(X)-I(X, Y)\)</li>
+  <li><strong>Independence</strong>: \(I(X, Y)=0\)</li>
+  <li><strong>Independence Relations</strong>:  \(H(X \mid Y)=H(X)\)</li>
+</ul>
+
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

@@ -122,13 +122,13 @@
     </ul>
 
     <p><strong>Graph Structure:</strong><br />
- A PGM uses a graph <script type="math/tex">\mathcal{G}</script> in which each <em>node</em> in the graph corresponds to a <em>random variable</em>, and an <em>edge</em> connecting two r.vs means that the probability distribution is able to <em>represent interactions</em> between those two r.v.s.</p>
+ A PGM uses a graph \(\mathcal{G}\) in which each <em>node</em> in the graph corresponds to a <em>random variable</em>, and an <em>edge</em> connecting two r.vs means that the probability distribution is able to <em>represent interactions</em> between those two r.v.s.</p>
 
     <p id="lst-p"><strong>Types:</strong></p>
     <ul>
       <li><strong>Directed</strong>:<br />
   Directed models use graphs with directed edges, and they represent factorizations into conditional probability distributions.<br />
-  They contain one factor for every random variable <script type="math/tex">x_i</script> in the distribution, and that factor consists of the conditional distribution over <script type="math/tex">x_i</script> given the parents of <script type="math/tex">x_i</script>.</li>
+  They contain one factor for every random variable \(x_i\) in the distribution, and that factor consists of the conditional distribution over \(x_i\) given the parents of \(x_i\).</li>
       <li><strong>Undirected</strong>:<br />
   Undirected models use graphs with undirected edges, and they represent factorizations into a set of functions; unlike in the directed case, these functions are usually not probability distributions of any kind.</li>
     </ul>
@@ -139,7 +139,7 @@
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Neural Networks and Graphical Models:</strong><br />
  <strong style="color: red">Deep NNs as PGMs:</strong><br />
- You can view a deep neural network as a graphical model, but here, the CPDs are not probabilistic but are deterministic. Consider for example that the input to a neuron is <script type="math/tex">\vec{x}</script> and the output of the neuron is <script type="math/tex">y .</script> In the CPD for this neuron we have, <script type="math/tex">p(\vec{x}, y)=1,</script> and <script type="math/tex">p(\vec{x}, \hat{y})=0</script> for <script type="math/tex">\hat{y} \neq y .</script> Refer to the section 10.2 .3 of Deep Learning Book for more details.<br />
+ You can view a deep neural network as a graphical model, but here, the CPDs are not probabilistic but are deterministic. Consider for example that the input to a neuron is \(\vec{x}\) and the output of the neuron is \(y .\) In the CPD for this neuron we have, \(p(\vec{x}, y)=1,\) and \(p(\vec{x}, \hat{y})=0\) for \(\hat{y} \neq y .\) Refer to the section 10.2 .3 of Deep Learning Book for more details.<br />
  <br /></li>
 </ol>
 
@@ -170,13 +170,13 @@
 
     <p id="lst-p"><strong>Formally,</strong> a Bayes Net consists of:</p>
     <ol>
-      <li>A <strong>directed acyclic graph of nodes</strong>, one per variable <script type="math/tex">X</script></li>
-      <li>A <strong>conditional distribution for each node <script type="math/tex">P(X\vert A_1\ldots A_n)</script></strong>, where <script type="math/tex">A_i</script> is the <script type="math/tex">i</script>th parent of <script type="math/tex">X</script>, stored as a <em><strong>conditional probability table</strong></em> or <em><strong>CPT</strong></em>.<br />
- Each CPT has <script type="math/tex">n+2</script> columns: one for the values of each of the <script type="math/tex">n</script> parent variables <script type="math/tex">A_1 \ldots A_n</script>, one for the values of <script type="math/tex">X</script>, and one for the conditional probability of <script type="math/tex">X</script>.</li>
+      <li>A <strong>directed acyclic graph of nodes</strong>, one per variable \(X\)</li>
+      <li>A <strong>conditional distribution for each node \(P(X\vert A_1\ldots A_n)\)</strong>, where \(A_i\) is the \(i\)th parent of \(X\), stored as a <em><strong>conditional probability table</strong></em> or <em><strong>CPT</strong></em>.<br />
+ Each CPT has \(n+2\) columns: one for the values of each of the \(n\) parent variables \(A_1 \ldots A_n\), one for the values of \(X\), and one for the conditional probability of \(X\).</li>
     </ol>
 
-    <p>Each node in the graph represents a single random variable and each directed edge represents one of the conditional probability distributions we choose to store (i.e. an edge from node <script type="math/tex">A</script> to node <script type="math/tex">B</script> indicates that we store the probability table for <script type="math/tex">P(B\vert A)</script>).<br />
- <span style="color: goldenrod">Each node is conditionally independent of all its ancestor nodes in the graph, given all of its parents.</span> Thus, if we have a node representing variable <script type="math/tex">X</script>, we store <script type="math/tex">P(X\vert A_1,A_2,...,A_N)</script>, where <script type="math/tex">A_1,\ldots,A_N</script> are the parents of <script type="math/tex">X</script>.</p>
+    <p>Each node in the graph represents a single random variable and each directed edge represents one of the conditional probability distributions we choose to store (i.e. an edge from node \(A\) to node \(B\) indicates that we store the probability table for \(P(B\vert A)\)).<br />
+ <span style="color: goldenrod">Each node is conditionally independent of all its ancestor nodes in the graph, given all of its parents.</span> Thus, if we have a node representing variable \(X\), we store \(P(X\vert A_1,A_2,...,A_N)\), where \(A_1,\ldots,A_N\) are the parents of \(X\).</p>
 
     <p><strong style="color: goldenrod">The <em>local probability tables (of conditional distributions)</em> and the <em>DAG</em> together encode enough information to compute any probability distribution that we could have otherwise computed given the entire joint distribution.</strong></p>
 
@@ -205,14 +205,14 @@
   Encoded as a <span style="color: purple"><em><strong>product</strong></em> of <em>local</em> <strong>conditional distributions</strong></span>:
         <p>$$p(x_1, x_2, \ldots, x_n) = \prod_{i=1}^{n} p(x_i \vert \text{parents}(X_i)) \tag{1.1}$$</p>
       </li>
-      <li>We are guaranteed that <script type="math/tex">1.1</script> results in a proper joint distribution:
+      <li>We are guaranteed that \(1.1\) results in a proper joint distribution:
         <ol>
           <li>Chain Rule is valid for all distributions:
             <p>$$p(x_1, x_2, \ldots, x_n) = \prod_{i=1}^{n} p(x_i \vert x_1, \ldots, x_{i-1})$$</p>
           </li>
           <li>Conditional Independences Assumption:
             <p>$$p(x_1, x_2, \ldots, x_{i-1}) = \prod_{i=1}^{n} p(x_i \vert \text{parents}(X_i))$$</p>
-            <p><script type="math/tex">\implies</script></p>
+            <p>\(\implies\)</p>
             <p>$$p(x_1, x_2, \ldots, x_n) = \prod_{i=1}^{n} p(x_i \vert \text{parents}(X_i)) \tag{1.1}$$</p>
           </li>
         </ol>
@@ -241,7 +241,7 @@
         <ul>
           <li>Sometimes no causal net exists over the domain (especially if variables are missing)
             <ul>
-              <li>e.g. consider the variables <script type="math/tex">\text{Traffic}</script> and <script type="math/tex">\text{Drips}</script></li>
+              <li>e.g. consider the variables \(\text{Traffic}\) and \(\text{Drips}\)</li>
             </ul>
           </li>
           <li>Results in arrows that reflect <strong>correlation</strong>, not <strong>causation</strong></li>
@@ -261,20 +261,20 @@
     <p id="lst-p"><strong style="color: red">Questions we can ask</strong><br />
  Since a BN encodes a <strong>joint distribution</strong> we can ask any questions a joint distribution can answer:</p>
     <ul>
-      <li><strong>Inference:</strong> given a fixed BN, what is <script type="math/tex">P(X \vert \text { e)? }</script></li>
+      <li><strong>Inference:</strong> given a fixed BN, what is \(P(X \vert \text { e)? }\)</li>
       <li><strong>Representation:</strong> given a BN graph, what kinds of distributions can it encode?</li>
       <li><strong>Modeling:</strong> what BN is most appropriate for a given domain?</li>
     </ul>
 
     <p id="lst-p"><strong style="color: red">Size of a BN:</strong></p>
     <ul>
-      <li>Size of a full <strong>joint distribution</strong> over <script type="math/tex">N</script> (boolean) variables: <script type="math/tex">2^N</script></li>
-      <li>Size of an <strong><script type="math/tex">N</script>-node net</strong> with nodes having up to <script type="math/tex">k</script> parents: <script type="math/tex">\mathcal{O}(N \times 2^{k+1}</script></li>
+      <li>Size of a full <strong>joint distribution</strong> over \(N\) (boolean) variables: \(2^N\)</li>
+      <li>Size of an <strong>\(N\)-node net</strong> with nodes having up to \(k\) parents: \(\mathcal{O}(N \times 2^{k+1}\)</li>
     </ul>
 
     <p id="lst-p"><strong style="color: red">Advantages of BN over full joint distribution:</strong></p>
     <ul>
-      <li>Both will model (calculate) <script type="math/tex">p(X_1, X_2, \ldots, X_N)</script></li>
+      <li>Both will model (calculate) \(p(X_1, X_2, \ldots, X_N)\)</li>
       <li>BNs give you huge space savings</li>
       <li>It is easier to elicit local CPTs</li>
       <li>Is faster to answer queries    <br />
@@ -301,25 +301,25 @@
 
     <p><strong style="color: red">Causal Chains:</strong><br />
  <img src="https://cdn.mathpix.com/snip/images/C14nDRwzxp3kdGjCGvBCfdT5wQT3-5ejjNUWa6aCElg.original.fullsize.png" alt="img" width="34%" /><br />
- A Causal Chain is a configuration of <strong>three nodes</strong> that expresses the following representation of the joint distribution over <script type="math/tex">X</script>, <script type="math/tex">Y</script> and <script type="math/tex">Z</script>:</p>
+ A Causal Chain is a configuration of <strong>three nodes</strong> that expresses the following representation of the joint distribution over \(X\), \(Y\) and \(Z\):</p>
     <p>$$P(x, y, z)=P(z \vert y) P(y \vert x) P(x)$$</p>
 
-    <p>Let’s try to see if we can guarantee independence between <script type="math/tex">X</script> and <script type="math/tex">Z</script>:</p>
+    <p>Let’s try to see if we can guarantee independence between \(X\) and \(Z\):</p>
     <ul>
       <li><strong>No Observations:</strong><br />
   <img src="https://cdn.mathpix.com/snip/images/vCusDjGbyWit9iVXoCw-ZDdK5JGdx32uk7qsKe0xCAc.original.fullsize.png" alt="img" width="38%" /><br />
-  <script type="math/tex">X</script> and <script type="math/tex">Z</script> are <strong>not guaranteed independent</strong>.
+  \(X\) and \(Z\) are <strong>not guaranteed independent</strong>.
         <ul>
           <li><strong>Proof</strong>:<br />
   By Counterexample:
             <p>$$P(y \vert x)=\left\{\begin{array}{ll}{1} &amp; {\text { if } x=y} \\ {0} &amp; {\text { else }}\end{array} \quad P(z \vert y)=\left\{\begin{array}{ll}{1} &amp; {\text { if } z=y} \\ {0} &amp; {\text { else }}\end{array}\right.\right.$$</p>
-            <p><script type="math/tex">\text { In this case, } P(z \vert x)=1 \text { if } x=z \text { and } 0 \text { otherwise, so } X \text { and } Z \text { are not independent.}</script></p>
+            <p>\(\text { In this case, } P(z \vert x)=1 \text { if } x=z \text { and } 0 \text { otherwise, so } X \text { and } Z \text { are not independent.}\)</p>
           </li>
         </ul>
       </li>
-      <li><strong><script type="math/tex">Y</script> Observed:</strong><br />
+      <li><strong>\(Y\) Observed:</strong><br />
   <img src="https://cdn.mathpix.com/snip/images/W1ji7bFRCqCmTeO_sFPz3BZXnIaY2zRlLtpv1vIKiUw.original.fullsize.png" alt="img" width="38%" /><br />
-  <script type="math/tex">X</script> and <script type="math/tex">Z</script> are <strong>independent given <script type="math/tex">Y</script></strong>. i.e. <script type="math/tex">P(X \vert Z, Y)=P(X \vert Y)</script>
+  \(X\) and \(Z\) are <strong>independent given \(Y\)</strong>. i.e. \(P(X \vert Z, Y)=P(X \vert Y)\)
         <ul>
           <li><strong>Proof:</strong>
             <p>$$\begin{aligned} P(X \vert Z, y) &amp;=\frac{P(X, Z, y)}{P(Z, y)}=\frac{P(Z \vert y) P(y \vert X) P(X)}{\sum_{x} P(X, y, Z)}=\frac{P(Z \vert y) P(y \vert X) P(X)}{P(Z \vert y) \sum_{x} P(y \vert x) P(x)} \\ &amp;=\frac{P(y \vert X) P(X)}{\sum_{x} P(y \vert x) P(x)}=\frac{P(y \vert X) P(X)}{P(y)}=P(X \vert y) \end{aligned}$$</p>
@@ -329,7 +329,7 @@
       </li>
     </ul>
 
-    <p>To summarize, <span style="color: goldenrod">in the causal chain chain configuration, <script type="math/tex">X \perp Z \vert Y</script> </span>.</p>
+    <p>To summarize, <span style="color: goldenrod">in the causal chain chain configuration, \(X \perp Z \vert Y\) </span>.</p>
 
     <blockquote>
       <p>Evidence along the chain “blocks” the influence.</p>
@@ -347,11 +347,11 @@
     <p>$$P(x, y, z)=P(x \vert y) P(z \vert y) P(y)$$</p>
     <p><img src="https://cdn.mathpix.com/snip/images/CduaPDNSTAmqr_VCjz80jm0h8KUAPQogTozW5-zxe8s.original.fullsize.png" alt="img" width="34%" /></p>
 
-    <p>Let’s try to see if we can guarantee independence between <script type="math/tex">X</script> and <script type="math/tex">Z</script>:</p>
+    <p>Let’s try to see if we can guarantee independence between \(X\) and \(Z\):</p>
     <ul>
       <li><strong>No Observations:</strong><br />
   <img src="https://cdn.mathpix.com/snip/images/5WPHMjwgo5l-on6MzOi4urmfDQixe1crSlo38pSfhDY.original.fullsize.png" alt="img" width="38%" /><br />
-  <script type="math/tex">X</script> and <script type="math/tex">Z</script> are <strong>not guaranteed independent</strong>.
+  \(X\) and \(Z\) are <strong>not guaranteed independent</strong>.
         <ul>
           <li><strong>Proof</strong>:<br />
   By Counterexample:
@@ -360,9 +360,9 @@
           </li>
         </ul>
       </li>
-      <li><strong><script type="math/tex">Y</script> Observed:</strong><br />
+      <li><strong>\(Y\) Observed:</strong><br />
   <img src="https://cdn.mathpix.com/snip/images/Uu8LonpCanIwyab_QKVW_DDx6GR8z7d2fvl1oh5uNtc.original.fullsize.png" alt="img" width="38%" /><br />
-  <script type="math/tex">X</script> and <script type="math/tex">Z</script> are <strong>independent given <script type="math/tex">Y</script></strong>. i.e. <script type="math/tex">P(X \vert Z, Y)=P(X \vert Y)</script>
+  \(X\) and \(Z\) are <strong>independent given \(Y\)</strong>. i.e. \(P(X \vert Z, Y)=P(X \vert Y)\)
         <ul>
           <li><strong>Proof:</strong>
             <p>$$P(X \vert Z, y)=\frac{P(X, Z, y)}{P(Z, y)}=\frac{P(X \vert y) P(Z \vert y) P(y)}{P(Z \vert y) P(y)}=P(X \vert y)$$</p>
@@ -387,34 +387,34 @@
     <p>$$P(x, y, z)=P(y \vert x, z) P(x) P(z)$$</p>
     <p><img src="https://cdn.mathpix.com/snip/images/bHoFq74CVLvVJNrj13GmsoiVlJrVuskee1qaDPB5ZZc.original.fullsize.png" alt="img" width="34%" /></p>
 
-    <p>Let’s try to see if we can guarantee independence between <script type="math/tex">X</script> and <script type="math/tex">Z</script>:</p>
+    <p>Let’s try to see if we can guarantee independence between \(X\) and \(Z\):</p>
     <ul>
       <li>
         <p><strong>No Observations:</strong><br />
   <img src="https://cdn.mathpix.com/snip/images/CTuUmWXjwo4kqxrotATNnYossKNqwl6mfjB2H7OPQi8.original.fullsize.png" alt="img" width="38%" /><br />
-  <script type="math/tex">X</script> and <script type="math/tex">Z</script> are, readily, <strong>guaranteed to be independent</strong>: <script type="math/tex">X \perp Z</script>.</p>
+  \(X\) and \(Z\) are, readily, <strong>guaranteed to be independent</strong>: \(X \perp Z\).</p>
       </li>
       <li>
-        <p><strong><script type="math/tex">Y</script> Observed:</strong><br />
+        <p><strong>\(Y\) Observed:</strong><br />
   <img src="https://cdn.mathpix.com/snip/images/wfOTQbsydA4ZTpN0tW0tQtRbfDyNGrokp1xk9nC8JfE.original.fullsize.png" alt="img" width="38%" /><br />
-  <script type="math/tex">X</script> and <script type="math/tex">Z</script> are <strong>not necessarily independent given <script type="math/tex">Y</script></strong>. i.e. <script type="math/tex">P(X \vert Z, Y)\neq P(X \vert Y)</script></p>
+  \(X\) and \(Z\) are <strong>not necessarily independent given \(Y\)</strong>. i.e. \(P(X \vert Z, Y)\neq P(X \vert Y)\)</p>
         <ul>
           <li><strong>Proof:</strong><br />
   By Counterexample:<br />
-  <script type="math/tex">\text { Suppose all three are binary variables. } X \text { and } Z \text { are true and false with equal probability: }</script>
+  \(\text { Suppose all three are binary variables. } X \text { and } Z \text { are true and false with equal probability: }\)
             <p>$$\begin{array}{l}{P(X=\text {true})=P(X=\text { false })=0.5} \\ {P(Z=\text {true})=P(Z=\text { false })=0.5}\end{array}$$</p>
-            <p><script type="math/tex">\text { and } Y \text { is determined by whether } X \text { and } Z \text { have the same value: }</script></p>
+            <p>\(\text { and } Y \text { is determined by whether } X \text { and } Z \text { have the same value: }\)</p>
             <p>$$P(Y \vert X, Z)=\left\{\begin{array}{ll}{1} &amp; {\text { if } X=Z \text { and } Y=\text { true }} \\ {1} &amp; {\text { if } X \neq Z \text { and } Y=\text { false }} \\ {0} &amp; {\text { else }}\end{array}\right.$$</p>
-            <p><script type="math/tex">\text { Then } X \text { and } Z \text { are independent if } Y \text { is unobserved. But if } Y \text { is observed, then knowing } X \text { will }\\ 
-  \text { tell us the value } {\text { of } Z, \text { and vice-versa. } \text{So } X \text { and } Z \text { are } \text {not} \text { conditionally independent given } Y \text {. }}</script></p>
+            <p>\(\text { Then } X \text { and } Z \text { are independent if } Y \text { is unobserved. But if } Y \text { is observed, then knowing } X \text { will }\\ 
+  \text { tell us the value } {\text { of } Z, \text { and vice-versa. } \text{So } X \text { and } Z \text { are } \text {not} \text { conditionally independent given } Y \text {. }}\)</p>
           </li>
         </ul>
       </li>
     </ul>
 
-    <p>Common Effect can be viewed as <strong>“opposite” to Causal Chains and Common Cause</strong>-<script type="math/tex">X</script> and <script type="math/tex">Z</script> are guaranteed to be independent if <script type="math/tex">Y</script> is not conditioned on. But when conditioned on <script type="math/tex">Y, X</script> and <script type="math/tex">Z</script> may be dependent depending on the specific probability values for <script type="math/tex">P(Y \vert X, Z)</script>).</p>
+    <p>Common Effect can be viewed as <strong>“opposite” to Causal Chains and Common Cause</strong>-\(X\) and \(Z\) are guaranteed to be independent if \(Y\) is not conditioned on. But when conditioned on \(Y, X\) and \(Z\) may be dependent depending on the specific probability values for \(P(Y \vert X, Z)\)).</p>
 
-    <p>This same logic applies when conditioning on descendants of <script type="math/tex">Y</script> in the graph. If one of <script type="math/tex">Y</script> ‘s descendent nodes is observed, as in Figure <script type="math/tex">7, X</script> and <script type="math/tex">Z</script> are not guaranteed to be independent.<br />
+    <p>This same logic applies when conditioning on descendants of \(Y\) in the graph. If one of \(Y\) ‘s descendent nodes is observed, as in Figure \(7, X\) and \(Z\) are not guaranteed to be independent.<br />
  <img src="https://cdn.mathpix.com/snip/images/UBploFCx8ITyj_Yp20s9iAS_tXmj-0-DmF2neJp2alY.original.fullsize.png" alt="img" width="34%" /></p>
 
     <blockquote>
@@ -431,25 +431,25 @@
 
     <p><strong style="color: red">General Case, and D-Separation:</strong><br />
  We can use the previous three cases as building blocks to help us answer conditional independence questions on an arbitrary Bayes’ Net with more than three nodes and two edges.  We formulate the problem as follows:<br />
- <strong>Given a Bayes Net <script type="math/tex">G,</script> two nodes <script type="math/tex">X</script> and <script type="math/tex">Y,</script> and a (possibly empty) set of nodes <script type="math/tex">\left\{Z_{1}, \ldots Z_{k}\right\}</script> that represent observed variables, must the following statement be true: <script type="math/tex">X \perp Y |\left\{Z_{1}, \ldots Z_{k}\right\} ?</script></strong></p>
+ <strong>Given a Bayes Net \(G,\) two nodes \(X\) and \(Y,\) and a (possibly empty) set of nodes \(\left\{Z_{1}, \ldots Z_{k}\right\}\) that represent observed variables, must the following statement be true: \(X \perp Y |\left\{Z_{1}, \ldots Z_{k}\right\} ?\)</strong></p>
 
-    <p><strong>D-Separation:</strong> (directed separation) is a property of the structure of the Bayes Net graph that implies this conditional independence relationship, and generalizes the cases we’ve seen above. If a set of variables <script type="math/tex">Z_{1}, \cdots Z_{k} d-</script> -separates <script type="math/tex">X</script> and <script type="math/tex">Y,</script> then <script type="math/tex">X \perp Y \vert\left\{Z_{1}, \cdots Z_{k}\right\}</script> in all possibutions that can be encoded by the Bayes net.</p>
+    <p><strong>D-Separation:</strong> (directed separation) is a property of the structure of the Bayes Net graph that implies this conditional independence relationship, and generalizes the cases we’ve seen above. If a set of variables \(Z_{1}, \cdots Z_{k} d-\) -separates \(X\) and \(Y,\) then \(X \perp Y \vert\left\{Z_{1}, \cdots Z_{k}\right\}\) in all possibutions that can be encoded by the Bayes net.</p>
 
     <p><strong>D-Separation Algorithm:</strong></p>
     <ol>
-      <li>Shade all observed nodes <script type="math/tex">\left\{Z_{1}, \ldots, Z_{k}\right\}</script> in the graph.</li>
-      <li>Enumerate all undirected paths from <script type="math/tex">X</script> to <script type="math/tex">Y</script> .</li>
+      <li>Shade all observed nodes \(\left\{Z_{1}, \ldots, Z_{k}\right\}\) in the graph.</li>
+      <li>Enumerate all undirected paths from \(X\) to \(Y\) .</li>
       <li>For each path:
         <ul>
           <li>Decompose the path into triples (segments of 3 nodes).</li>
-          <li>If all triples are active, this path is active and <script type="math/tex">d</script> -connects <script type="math/tex">X</script> to <script type="math/tex">Y</script>.</li>
+          <li>If all triples are active, this path is active and \(d\) -connects \(X\) to \(Y\).</li>
         </ul>
       </li>
-      <li>If no path d-connects <script type="math/tex">X</script> and <script type="math/tex">Y</script> and <script type="math/tex">Y</script> are d-separated, so they are conditionally independent
- given <script type="math/tex">\left\{Z_{1}, \ldots, Z_{k}\right\}</script></li>
+      <li>If no path d-connects \(X\) and \(Y\) and \(Y\) are d-separated, so they are conditionally independent
+ given \(\left\{Z_{1}, \ldots, Z_{k}\right\}\)</li>
     </ol>
 
-    <p>Any path in a graph from <script type="math/tex">X</script> to <script type="math/tex">Y</script> can be decomposed into a set of 3 consecutive nodes and 2 edges - each of which is called a triple. A triple is active or inactive depending on whether or not the middle node is observed. If all triples in a path are active, then the path is active and <script type="math/tex">d</script> -connects <script type="math/tex">X</script> to <script type="math/tex">Y,</script> meaning <script type="math/tex">X</script> is not guaranteed to be conditionally independent of <script type="math/tex">Y</script> given the observed nodes. If all paths from <script type="math/tex">X</script> to <script type="math/tex">Y</script> are inactive, then <script type="math/tex">X</script> and <script type="math/tex">Y</script> are conditionally independent given the observed nodes.</p>
+    <p>Any path in a graph from \(X\) to \(Y\) can be decomposed into a set of 3 consecutive nodes and 2 edges - each of which is called a triple. A triple is active or inactive depending on whether or not the middle node is observed. If all triples in a path are active, then the path is active and \(d\) -connects \(X\) to \(Y,\) meaning \(X\) is not guaranteed to be conditionally independent of \(Y\) given the observed nodes. If all paths from \(X\) to \(Y\) are inactive, then \(X\) and \(Y\) are conditionally independent given the observed nodes.</p>
 
     <p><strong>Active Triples:</strong> We can enumerate all possibilities of active and inactive triples using the three canonical graphs we presented above in Figure 8 and 9.<br />
  <img src="https://cdn.mathpix.com/snip/images/-833dBM_DnuIFc9csn1KJYNu-IH-4TntVXDfprkEvTk.original.fullsize.png" alt="img" width="80%" class="center-image" /></p>
@@ -484,7 +484,7 @@
     <p id="lst-p"><strong style="color: red">Topology Limits Distributions:</strong></p>
     <p><img src="https://cdn.mathpix.com/snip/images/gyXj8tjBdUlkWuBYJvVScXjnh_Qsvb7cj6LKTqQL9pc.original.fullsize.png" alt="img" width="60%" /></p>
     <ul>
-      <li>Given some graph topology <script type="math/tex">G</script>, only certain joint distributions can be encoded</li>
+      <li>Given some graph topology \(G\), only certain joint distributions can be encoded</li>
       <li>The graph structure guarantees certain (conditional) independences</li>
       <li>(There might be more independence)</li>
       <li>Adding arcs increases the set of distributions, but has several costs</li>
@@ -525,8 +525,8 @@
  <strong>Algorithm:</strong></p>
     <ul>
       <li>Select the entries consistent with the evidence</li>
-      <li>Sum out <script type="math/tex">\mathrm{H}</script> to get join of Query and evidence</li>
-      <li>Normalize: <script type="math/tex">\times \dfrac{1}{Z} = \dfrac{1}{\text{sum of entries}}</script></li>
+      <li>Sum out \(\mathrm{H}\) to get join of Query and evidence</li>
+      <li>Normalize: \(\times \dfrac{1}{Z} = \dfrac{1}{\text{sum of entries}}\)</li>
       <li><a href="https://www.youtube.com/embed/A1hYXGAUdmU?start=980" value="show" onclick="iframePopA(event)"><strong>Inference by Enumeration (188)</strong></a>
  <a href="https://www.youtube.com/embed/A1hYXGAUdmU?start=980"></a>
         <div></div>
@@ -535,43 +535,43 @@
 
     <p id="lst-p"><strong style="color: red">Variable Elimination:</strong><br />
  Alternatively, we can use <strong>Variable Elimination</strong>: <strong>eliminate</strong> variables one by one.<br />
- To eliminate a variable <script type="math/tex">X</script>, we:</p>
+ To eliminate a variable \(X\), we:</p>
     <ol>
-      <li>Join (multiply together) all factors involving <script type="math/tex">X</script>.</li>
-      <li>Sum out <script type="math/tex">X</script>.</li>
+      <li>Join (multiply together) all factors involving \(X\).</li>
+      <li>Sum out \(X\).</li>
     </ol>
 
     <p id="lst-p">A <strong>factor</strong> is an unnormalized probability; represented as a multidimensional array:</p>
     <ul>
-      <li><strong>Joint Distributions</strong>: <script type="math/tex">P(X,Y) \in \mathbb{R}^2</script>
+      <li><strong>Joint Distributions</strong>: \(P(X,Y) \in \mathbb{R}^2\)
         <ul>
-          <li>Entries <script type="math/tex">P(x, y)</script> for all <script type="math/tex">x, y</script></li>
-          <li>Sums to <script type="math/tex">1</script></li>
+          <li>Entries \(P(x, y)\) for all \(x, y\)</li>
+          <li>Sums to \(1\)</li>
         </ul>
       </li>
-      <li><strong>Selected Joint</strong>: <script type="math/tex">P(x,Y) \in \mathbb{R}</script>
+      <li><strong>Selected Joint</strong>: \(P(x,Y) \in \mathbb{R}\)
         <ul>
           <li>A slice of the joint distribution</li>
-          <li>Entries <script type="math/tex">{P}({x}, {y})</script> for fixed <script type="math/tex">{x},</script> all <script type="math/tex">{y}</script></li>
-          <li>Sums to <script type="math/tex">P(x)</script></li>
+          <li>Entries \({P}({x}, {y})\) for fixed \({x},\) all \({y}\)</li>
+          <li>Sums to \(P(x)\)</li>
         </ul>
       </li>
-      <li><strong>Single Conditional</strong>: <script type="math/tex">P(Y \vert x)</script>
+      <li><strong>Single Conditional</strong>: \(P(Y \vert x)\)
         <ul>
-          <li>Entries <script type="math/tex">{P}({y} \vert {x})</script> for fixed <script type="math/tex">{x},</script> all <script type="math/tex">{y}</script></li>
-          <li>Sums to <script type="math/tex">1</script></li>
+          <li>Entries \({P}({y} \vert {x})\) for fixed \({x},\) all \({y}\)</li>
+          <li>Sums to \(1\)</li>
         </ul>
       </li>
-      <li><strong>Family of Conditionals</strong>: <script type="math/tex">P(Y \vert X)</script>
+      <li><strong>Family of Conditionals</strong>: \(P(Y \vert X)\)
         <ul>
           <li>Multiple Conditionals</li>
-          <li>Entries <script type="math/tex">{P}({y} \vert {x})</script> for all <script type="math/tex">{x}, {y}</script></li>
-          <li>Sums to <script type="math/tex">\vert X\vert</script></li>
+          <li>Entries \({P}({y} \vert {x})\) for all \({x}, {y}\)</li>
+          <li>Sums to \(\vert X\vert\)</li>
         </ul>
       </li>
-      <li><strong>Specified family</strong>: <script type="math/tex">P(y \vert X)</script>
+      <li><strong>Specified family</strong>: \(P(y \vert X)\)
         <ul>
-          <li>Entries <script type="math/tex">P(y \vert x)</script> for fixed <script type="math/tex">y</script> but for all <script type="math/tex">x</script></li>
+          <li>Entries \(P(y \vert x)\) for fixed \(y\) but for all \(x\)</li>
           <li>Sums to random number; not a distribution</li>
         </ul>
       </li>
@@ -581,14 +581,14 @@
       <p>For Joint Distributions, the # <strong>capital variables</strong> dictates the <em>“dimensionality”</em> of the array.</p>
     </blockquote>
 
-    <p>At all points during variable elimination, each factor will be proportional to the probability it corresponds to but the underlying distribution for each factor won’t necessarily sum to <script type="math/tex">1</script> as a probability distribution should.</p>
+    <p>At all points during variable elimination, each factor will be proportional to the probability it corresponds to but the underlying distribution for each factor won’t necessarily sum to \(1\) as a probability distribution should.</p>
 
     <p><strong>Inference by Enumeration vs. Variable Elimination:</strong><br />
  <strong>Inference by Enumeration</strong> is very <em><strong>slow</strong></em>: You must join up the whole joint distribution before you sum out the hidden variables.<br />
  <strong>Variable Elimination:</strong> Interleave <strong>joining</strong> and <strong>marginalization</strong>.<br />
  Still NP-hard, but usually much faster.<br />
  <img src="https://cdn.mathpix.com/snip/images/X9wU1le8_K5c9X2lm59mNGaEkJW8DZnnWHiz-3h4eVw.original.fullsize.png" alt="img" width="70%" /><br />
- Notice that <script type="math/tex">\sum_r P(r) P(t \vert r) = P(t)</script>, thus, in VE, you end up with <script type="math/tex">\sum_{t} P(L \vert t) P(t)</script>.</p>
+ Notice that \(\sum_r P(r) P(t \vert r) = P(t)\), thus, in VE, you end up with \(\sum_{t} P(L \vert t) P(t)\).</p>
 
     <p><strong>General Variable Elimination - Algorithm:</strong><br />
  <img src="/main_files/ml/kmeans/12.png" alt="img" width="90%" /></p>
@@ -625,20 +625,20 @@
  - Sampling is like doing <em>repeated</em> (probabilistic) <strong>simulation</strong>.<br />
  - Sampling could be used for <strong>learning</strong> (e.g. RL). But in the context of BNs, it is used for <strong>Inference</strong>.<br />
  - Sampling provides a way to do <em>efficient</em> inference, by presenting us with a <span style="color: goldenrod">tradeoff between accuracy and computation (time)</span>.<br />
- - The <strong>Goal</strong> is to prove that as the number of samples you generate <script type="math/tex">N</script> goes to <script type="math/tex">\infty</script>, the approximation converges to the true probability you are trying to compute.<br />
+ - The <strong>Goal</strong> is to prove that as the number of samples you generate \(N\) goes to \(\infty\), the approximation converges to the true probability you are trying to compute.<br />
  - Using sampling in a BN from the entire network is necessary, because listing all the outcomes is too expensive even if we can create them given infinite time.</p>
 
     <p id="lst-p"><strong>Idea/Algorithm for Inference:</strong></p>
     <ul>
-      <li>Draw <script type="math/tex">N</script> samples from a sampling distribution <script type="math/tex">S</script></li>
+      <li>Draw \(N\) samples from a sampling distribution \(S\)</li>
       <li>Compute an approximate posterior probability</li>
-      <li>Show this converges to the true probability <script type="math/tex">P</script></li>
+      <li>Show this converges to the true probability \(P\)</li>
     </ul>
 
     <p id="lst-p"><strong>Sampling from a given distribution:</strong></p>
     <ul>
-      <li>Get sample <script type="math/tex">u</script> from <strong>uniform distribution</strong> over <script type="math/tex">[0,1)</script></li>
-      <li>Convert this sample <script type="math/tex">u</script> into an outcome for the given distribution by having each target outcome associated with a sub-interval of <script type="math/tex">[0,1)</script> with sub-interval size equal to probability of the outcome<br />
+      <li>Get sample \(u\) from <strong>uniform distribution</strong> over \([0,1)\)</li>
+      <li>Convert this sample \(u\) into an outcome for the given distribution by having each target outcome associated with a sub-interval of \([0,1)\) with sub-interval size equal to probability of the outcome<br />
  <img src="https://cdn.mathpix.com/snip/images/64k37lx3GpRcNnLpuyn9WgIzIN6GUi1kC3GisMc-iEo.original.fullsize.png" alt="img" width="70%" /></li>
     </ul>
 
@@ -654,12 +654,12 @@
 
     <p id="lst-p"><strong>Algorithm:</strong></p>
     <ul>
-      <li>For <script type="math/tex">i=1,2, \ldots, n</script>
+      <li>For \(i=1,2, \ldots, n\)
         <ul>
-          <li>Sample <script type="math/tex">x_{i}</script> from <script type="math/tex">P\left(X_{i} \vert \text { Parents }\left(X_{i}\right)\right)</script></li>
+          <li>Sample \(x_{i}\) from \(P\left(X_{i} \vert \text { Parents }\left(X_{i}\right)\right)\)</li>
         </ul>
       </li>
-      <li>Return <script type="math/tex">\left(x_{1}, x_{2}, \ldots, x_{n}\right)</script></li>
+      <li>Return \(\left(x_{1}, x_{2}, \ldots, x_{n}\right)\)</li>
     </ul>
 
     <p id="lst-p"><strong>Notes:</strong></p>
@@ -669,7 +669,7 @@
   \begin{aligned} S_{P S}\left(x_{1} \ldots x_{n}\right)=\prod_{i=1}^{n} P\left(x_{i} \vert \text { Parents }\left(X_{i}\right)\right)=P\left(x_{1} \ldots x_{n}\right) \\ \text { ...i.e. the BN's joint probability } \end{aligned}
   $$</p>
       </li>
-      <li>Let the number of samples of an event be <script type="math/tex">N_{P S}\left(x_{1} \cdots x_{n}\right)</script></li>
+      <li>Let the number of samples of an event be \(N_{P S}\left(x_{1} \cdots x_{n}\right)\)</li>
       <li>Thus,
         <p>$$\begin{aligned} \lim _{N \rightarrow \infty} \widehat{P}\left(x_{1}, \ldots, x_{n}\right) &amp;=\lim _{N \rightarrow \infty} N_{P S}\left(x_{1}, \ldots, x_{n}\right) / N \\ &amp;=S_{P S}\left(x_{1}, \ldots, x_{n}\right) \\ &amp;=P\left(x_{1} \ldots x_{n}\right) \end{aligned}$$</p>
       </li>
@@ -687,9 +687,9 @@
     <p id="lst-p"><strong>Algorithm:</strong></p>
     <ul>
       <li>Input: evidence instantiation</li>
-      <li>For <script type="math/tex">i=1,2, \ldots, n</script>
+      <li>For \(i=1,2, \ldots, n\)
         <ul>
-          <li>Sample <script type="math/tex">x_{i}</script> from <script type="math/tex">P\left(X_{i} \vert \text { Parents }\left(X_{i}\right)\right)</script></li>
+          <li>Sample \(x_{i}\) from \(P\left(X_{i} \vert \text { Parents }\left(X_{i}\right)\right)\)</li>
           <li>If $x_{i}$ not consistent with evidence
             <ul>
               <li>Reject: return - no sample is generated in this cycle</li>
@@ -697,7 +697,7 @@
           </li>
         </ul>
       </li>
-      <li>Return <script type="math/tex">\left(x_{1}, x_{2}, \ldots, x_{n}\right)</script></li>
+      <li>Return \(\left(x_{1}, x_{2}, \ldots, x_{n}\right)\)</li>
     </ul>
 
     <p><strong style="color: red">Likelihood Weighting:</strong><br />
@@ -717,31 +717,31 @@
     <ul>
       <li>Input: evidence instantiation</li>
       <li>
-        <script type="math/tex; mode=display">w=1.0</script>
+\[w=1.0\]
       </li>
-      <li>for <script type="math/tex">i=1,2, \dots, n</script>
+      <li>for \(i=1,2, \dots, n\)
         <ul>
-          <li>if <script type="math/tex">\mathrm{x}_ {\mathrm{i}}</script> is an evidence variable
+          <li>if \(\mathrm{x}_ {\mathrm{i}}\) is an evidence variable
             <ul>
-              <li><script type="math/tex">\mathrm{n} \mathrm{x} _  {\mathrm{i}}=</script> observation <script type="math/tex">\mathrm{x}_ {\mathrm{i}}</script> for <script type="math/tex">\mathrm{x}_ {\mathrm{i}}</script></li>
+              <li>\(\mathrm{n} \mathrm{x} _  {\mathrm{i}}=\) observation \(\mathrm{x}_ {\mathrm{i}}\) for \(\mathrm{x}_ {\mathrm{i}}\)</li>
               <li>
-                <script type="math/tex; mode=display">\operatorname{set} \mathrm{w}=\mathrm{w} * \mathrm{P}\left(\mathrm{x}_ {\mathrm{i}} \vert \text { Parents(X.) }\right.</script>
+\[\operatorname{set} \mathrm{w}=\mathrm{w} * \mathrm{P}\left(\mathrm{x}_ {\mathrm{i}} \vert \text { Parents(X.) }\right.\]
               </li>
             </ul>
           </li>
           <li>else
             <ul>
-              <li>Sample <script type="math/tex">x_ i</script> from <script type="math/tex">P\left(X _ {i} \vert \text { Parents }\left(X _ {i}\right)\right)</script></li>
+              <li>Sample \(x_ i\) from \(P\left(X _ {i} \vert \text { Parents }\left(X _ {i}\right)\right)\)</li>
             </ul>
           </li>
         </ul>
       </li>
-      <li>Return <script type="math/tex">\left(\mathrm{x}_ {1}, \mathrm{x}_ {2}, \ldots, \mathrm{x}_ {\mathrm{n}}\right), \mathrm{w}</script></li>
+      <li>Return \(\left(\mathrm{x}_ {1}, \mathrm{x}_ {2}, \ldots, \mathrm{x}_ {\mathrm{n}}\right), \mathrm{w}\)</li>
     </ul>
 
     <p id="lst-p"><strong>Notes:</strong></p>
     <ul>
-      <li>Sampling distribution if <script type="math/tex">z</script> sampled and <script type="math/tex">e</script> fixed evidence
+      <li>Sampling distribution if \(z\) sampled and \(e\) fixed evidence
         <p>$$S_{W S}(\mathbf{z}, \mathbf{e})=\prod_{i=1}^{l} P\left(z_{i} \vert \text { Parents }\left(Z_{i}\right)\right)$$</p>
       </li>
       <li>Now, samples have weights
@@ -753,7 +753,7 @@
       <li>Likelihood weighting is good
         <ul>
           <li>We have taken evidence into account as we generate the sample</li>
-          <li>E.g. here, <script type="math/tex">W</script>’s value will get picked based on the evidence values of <script type="math/tex">S</script>, <script type="math/tex">R</script></li>
+          <li>E.g. here, \(W\)’s value will get picked based on the evidence values of \(S\), \(R\)</li>
           <li>More of our samples will reflect the state of the world suggested by the evidence</li>
         </ul>
       </li>
@@ -769,13 +769,13 @@
  <strong>Gibbs Sampling</strong></p>
 
     <ul>
-      <li>Procedure: keep track of a full instantiation <script type="math/tex">x_1, x_2, \ldots, x_n</script>. Start with an arbitrary instantiation consistent with the evidence. Sample one variable at a time, conditioned on all the rest, but keep evidence fixed. Keep repeating this for a long time.</li>
+      <li>Procedure: keep track of a full instantiation \(x_1, x_2, \ldots, x_n\). Start with an arbitrary instantiation consistent with the evidence. Sample one variable at a time, conditioned on all the rest, but keep evidence fixed. Keep repeating this for a long time.</li>
       <li>Property: in the limit of repeating this infinitely many times the resulting samples come from the correct distribution (i.e. conditioned on evidence).</li>
       <li>Rationale: both upstream and downstream variables condition on evidence.</li>
       <li>
         <p>In contrast: likelihood weighting only conditions on upstream evidence, and hence weights obtained in likelihood weighting can sometimes be very small. Sum of weights over all samples is indicative of how many “effective” samples were obtained, so we want high weight.</p>
       </li>
-      <li>Gibbs sampling produces sample from the query distribution <script type="math/tex">P(Q \vert \text { e })</script> in limit of re-sampling infinitely often</li>
+      <li>Gibbs sampling produces sample from the query distribution \(P(Q \vert \text { e })\) in limit of re-sampling infinitely often</li>
       <li>Gibbs sampling is a special case of more general methods called <strong>Markov chain Monte Carlo (MCMC)</strong> methods
         <ul>
           <li><strong>Metropolis-Hastings</strong> is one of the more famous <strong>MCMC</strong> methods (in fact, Gibbs sampling is a special case of Metropolis-Hastings)</li>
@@ -789,10 +789,10 @@
 
     <p id="lst-p"><strong>Efficient Resampling of One Variable:</strong></p>
     <ul>
-      <li>Sample from <script type="math/tex">\mathrm{P}(\mathrm{S} \vert+\mathrm{c},+\mathrm{r},-\mathrm{w})</script>:
+      <li>Sample from \(\mathrm{P}(\mathrm{S} \vert+\mathrm{c},+\mathrm{r},-\mathrm{w})\):
         <p>$$\begin{aligned} P(S \vert+c,+r,-w) &amp;=\frac{P(S,+c,+r,-w)}{P(+c,+r,-w)} \\ &amp;=\frac{P(S,+c,+r,-w)}{\sum_{s} P(s,+c,+r,-w)} \\ &amp;=\frac{P(+c) P(S \vert+c) P(+r \vert+c) P(-w \vert S,+r)}{\sum_{s} P(+c) P(s \vert+c) P(+r \vert+c) P(-w \vert s,+r)} \\ &amp;=\frac{P(+c) P(S \vert+c) P(+r \vert+c) P(-w \vert S,+r)}{P(+c) P(+r \vert+c) \sum_{s} P(s \vert+c)} \\ &amp;=\frac{P(S \vert+c) P(-w \vert S,+r)}{\sum_{s} P(s \vert+c) P(-w \vert s,+r)} \end{aligned}$$</p>
       </li>
-      <li>Many things cancel out – only CPTs with <script type="math/tex">S</script> remain!</li>
+      <li>Many things cancel out – only CPTs with \(S\) remain!</li>
       <li>More generally: only CPTs that have resampled variable need to be considered, and joined together</li>
     </ul>
 
@@ -847,19 +847,19 @@
 <ol>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents4" id="bodyContents41">Random Field:</strong><br />
- A <strong>Random Field</strong> is a random function over an arbitrary domain (usually a multi-dimensional space such as <script type="math/tex">\mathbb{R}^{n}</script> ). That is, it is a function <script type="math/tex">f(x)</script> that takes on a random value at each point <script type="math/tex">x \in \mathbb{R}^{n}</script> (or some other domain). It is also sometimes thought of as a synonym for a stochastic process with some restriction on its index set. That is, by modern definitions, a random field is a generalization of a stochastic process where the underlying parameter need no longer be real or integer valued “but can instead take values that are multidimensional vectors on some manifold.</p>
+ A <strong>Random Field</strong> is a random function over an arbitrary domain (usually a multi-dimensional space such as \(\mathbb{R}^{n}\) ). That is, it is a function \(f(x)\) that takes on a random value at each point \(x \in \mathbb{R}^{n}\) (or some other domain). It is also sometimes thought of as a synonym for a stochastic process with some restriction on its index set. That is, by modern definitions, a random field is a generalization of a stochastic process where the underlying parameter need no longer be real or integer valued “but can instead take values that are multidimensional vectors on some manifold.</p>
 
     <p><strong>Formally</strong><br />
- Given a probability space <script type="math/tex">(\Omega, \mathcal{F}, P),</script> an <script type="math/tex">X</script> -valued random field is a collection of <script type="math/tex">X</script> -valued random variables indexed by elements in a topological space <script type="math/tex">T</script>. That is, a random field <script type="math/tex">F</script> is a collection</p>
+ Given a probability space \((\Omega, \mathcal{F}, P),\) an \(X\) -valued random field is a collection of \(X\) -valued random variables indexed by elements in a topological space \(T\). That is, a random field \(F\) is a collection</p>
     <p>$$\left\{F_{t} : t \in T\right\}$$</p>
-    <p>where each <script type="math/tex">F_{t}</script> is an <script type="math/tex">X</script>-valued random variable.</p>
+    <p>where each \(F_{t}\) is an \(X\)-valued random variable.</p>
 
     <p id="lst-p"><strong style="color: red">Notes:</strong></p>
     <ul>
       <li><a href="https://en.wikipedia.org/wiki/Random_field">Random Field (wiki)</a></li>
       <li><strong>Generative vs Discriminative Models for Sequence Labeling Tasks:</strong><br />
-  Generative model makes more restrictive assumption about the distribution of <script type="math/tex">x</script>.<br />
-  “Unlike traditional generative random fields, CRFs only model the conditional distribution <script type="math/tex">p(t | x)</script> and do not explicitly model the marginal <script type="math/tex">p(x)</script>. Note that the labels <script type="math/tex">t i</script> are globally conditioned on the whole observation <script type="math/tex">x</script> in CRF. Thus, we do not assume that the observed data <script type="math/tex">x</script> are conditionally independent as in a generative random field.” - Minka<br />
+  Generative model makes more restrictive assumption about the distribution of \(x\).<br />
+  “Unlike traditional generative random fields, CRFs only model the conditional distribution \(p(t | x)\) and do not explicitly model the marginal \(p(x)\). Note that the labels \(t i\) are globally conditioned on the whole observation \(x\) in CRF. Thus, we do not assume that the observed data \(x\) are conditionally independent as in a generative random field.” - Minka<br />
  <br /></li>
     </ul>
   </li>
@@ -877,13 +877,13 @@
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

@@ -73,12 +73,12 @@
     <li><a href="#content1">Deep Generative Models</a></li>
   </ul>
   <ul class="TOC2">
-    <li><a href="#content2">SECOND</a></li>
+    <li><a href="#content2">Likelihood-based Models</a></li>
   </ul>
-  <ul class="TOC3">
-    <li><a href="#content3">THIRD</a></li>
-  </ul>
-  <!--   * [FOURTH](#content4)
+  <!--   
+  * [THIRD](#content3)
+  {: .TOC3}
+  * [FOURTH](#content4)
   {: .TOC4}
   * [FIFTH](#content5)
   {: .TOC5}
@@ -97,17 +97,17 @@
 
 <p id="lst-p"><strong style="color: red">In situations respecting the following assumptions, Semi-Supervised Learning should <em>improve performance</em>:</strong>  :</p>
 <ul>
-  <li>Semi-supervised learning works <span style="color: goldenrod">when <script type="math/tex">p(\mathbf{y} \vert \mathbf{x})</script> and <script type="math/tex">p(\mathbf{x})</script> are <strong>tied</strong> together</span>.
+  <li>Semi-supervised learning works <span style="color: goldenrod">when \(p(\mathbf{y} \vert \mathbf{x})\) and \(p(\mathbf{x})\) are <strong>tied</strong> together</span>.
     <ul>
-      <li>This happens when <script type="math/tex">\mathbf{y}</script> is closely associated with one of the causal factors of <script type="math/tex">\mathbf{x}</script>.</li>
+      <li>This happens when \(\mathbf{y}\) is closely associated with one of the causal factors of \(\mathbf{x}\).</li>
     </ul>
   </li>
-  <li>The <span style="color: goldenrod"><strong>best possible model</strong> of <script type="math/tex">\mathbf{x}</script> (wrt. <strong>generalization</strong>)</span> is the one that <span style="color: goldenrod"><em><strong>uncovers</strong></em> the above <strong>“true” structure</strong></span>, with <span style="color: goldenrod"><script type="math/tex">\boldsymbol{h}</script> as a <strong>latent variable</strong> that <em><strong>explains</strong></em> the <strong>observed variations</strong> in <script type="math/tex">\boldsymbol{x}</script></span>.
+  <li>The <span style="color: goldenrod"><strong>best possible model</strong> of \(\mathbf{x}\) (wrt. <strong>generalization</strong>)</span> is the one that <span style="color: goldenrod"><em><strong>uncovers</strong></em> the above <strong>“true” structure</strong></span>, with <span style="color: goldenrod">\(\boldsymbol{h}\) as a <strong>latent variable</strong> that <em><strong>explains</strong></em> the <strong>observed variations</strong> in \(\boldsymbol{x}\)</span>.
     <ul>
       <li>Since we can write the <strong>Marginal Probability of Data</strong> as:
         <p>$$p(\boldsymbol{x})=\mathbb{E}_ {\mathbf{h}} p(\boldsymbol{x} \vert \boldsymbol{h})$$</p>
         <ul>
-          <li>Because the <strong>“true” generative process</strong> can be conceived as <span style="color: purple"><em><strong>structured</strong></em> according to this <strong>directed graphical model</strong></span>, with <script type="math/tex">\mathbf{h}</script> as the <strong>parent</strong> of <script type="math/tex">\mathbf{x}</script>:
+          <li>Because the <strong>“true” generative process</strong> can be conceived as <span style="color: purple"><em><strong>structured</strong></em> according to this <strong>directed graphical model</strong></span>, with \(\mathbf{h}\) as the <strong>parent</strong> of \(\mathbf{x}\):
             <p>$$p(\mathbf{h}, \mathbf{x})=p(\mathbf{x} \vert \mathbf{h}) p(\mathbf{h})$$</p>
           </li>
         </ul>
@@ -115,9 +115,9 @@
       <li>Thus, <strong>The “ideal” representation learning discussed above should recover these latent factors</strong>.</li>
     </ul>
   </li>
-  <li>The <span style="color: purple"><strong>marginal</strong> <script type="math/tex">p(\mathbf{x})</script> is <em><strong>intimately tied</strong></em> to the <strong>conditional</strong> <script type="math/tex">p(\mathbf{y} \vert \mathbf{x})</script>, and knowledge of the structure of the former should be helpful to learn the latter</span>.
+  <li>The <span style="color: purple"><strong>marginal</strong> \(p(\mathbf{x})\) is <em><strong>intimately tied</strong></em> to the <strong>conditional</strong> \(p(\mathbf{y} \vert \mathbf{x})\), and knowledge of the structure of the former should be helpful to learn the latter</span>.
     <ul>
-      <li>Since the <strong>conditional distribution</strong> of <script type="math/tex">\mathbf{y}</script> given <script type="math/tex">\mathbf{x}</script> is <span style="color: purple">tied by <em>Bayes’ rule</em> to the <strong>components in the above equation</strong></span>:
+      <li>Since the <strong>conditional distribution</strong> of \(\mathbf{y}\) given \(\mathbf{x}\) is <span style="color: purple">tied by <em>Bayes’ rule</em> to the <strong>components in the above equation</strong></span>:
         <p>$$p(\mathbf{y} \vert \mathbf{x})=\frac{p(\mathbf{x} \vert \mathbf{y}) p(\mathbf{y})}{p(\mathbf{x})}$$</p>
       </li>
     </ul>
@@ -130,21 +130,21 @@
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents91">Unsupervised Learning:</strong><br />
  <strong>Unsupervised Learning</strong> is the task of making inferences, by learning a better representation from some datapoints that do not have any labels associated with them.<br />
- It intends to learn/infer an <strong><em>a priori</em> probability distribution</strong> <script type="math/tex">p_{X}(x)</script>; I.E. it solves a <strong>density estimation problem</strong>.<br />
+ It intends to learn/infer an <strong><em>a priori</em> probability distribution</strong> \(p_{X}(x)\); I.E. it solves a <strong>density estimation problem</strong>.<br />
  It is a type of <em><strong>self-organized</strong></em> <strong>Hebbian learning</strong> that helps find previously unknown patterns in data set without pre-existing labels. <br />
  <img src="/main_files/dl/archits/dgms/1.png" alt="img" width="100%" /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents92">Density Estimation:</strong><br />
- <strong>Density Estimation</strong> is a problem in Machine Learning that requires learning a function <script type="math/tex">p_{\text {model}} : \mathbb{R}^{n} \rightarrow \mathbb{R}</script>, where <script type="math/tex">p_{\text {model}}(x)</script> can be interpreted as a <strong>probability  density function</strong> (if <script type="math/tex">x</script> is continuous) or a <strong>probability mass function</strong> (if <script type="math/tex">x</script> is discrete) on the space that the examples were drawn from.</p>
+ <strong>Density Estimation</strong> is a problem in Machine Learning that requires learning a function \(p_{\text {model}} : \mathbb{R}^{n} \rightarrow \mathbb{R}\), where \(p_{\text {model}}(x)\) can be interpreted as a <strong>probability  density function</strong> (if \(x\) is continuous) or a <strong>probability mass function</strong> (if \(x\) is discrete) on the space that the examples were drawn from.</p>
 
     <p>To perform such a task well, an algorithm needs to <span style="color: purple">learn the <strong>structure of the data</strong></span> it has seen. It must know where examples cluster tightly and where they are unlikely to occur.</p>
 
     <ul>
       <li><strong>Types</strong> of Density Estimation:
         <ul>
-          <li><em><strong>Explicit</strong></em>: Explicitly define and solve for <script type="math/tex">p_\text{model}(x)</script></li>
-          <li><em><strong>Implicit</strong></em>: Learn model that can sample from <script type="math/tex">p_\text{model}(x)</script> without explicitly defining it</li>
+          <li><em><strong>Explicit</strong></em>: Explicitly define and solve for \(p_\text{model}(x)\)</li>
+          <li><em><strong>Implicit</strong></em>: Learn model that can sample from \(p_\text{model}(x)\) without explicitly defining it</li>
         </ul>
       </li>
     </ul>
@@ -153,11 +153,11 @@
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents93">Generative Models (GMs):</strong><br />
- A <strong>Generative Model</strong> is a <em>statistical model</em> of the <span style="color: purple"><strong>joint</strong> probability distribution</span> on <script type="math/tex">X \times Y</script>:</p>
+ A <strong>Generative Model</strong> is a <em>statistical model</em> of the <span style="color: purple"><strong>joint</strong> probability distribution</span> on \(X \times Y\):</p>
     <p>$${\displaystyle P(X,Y)}$$</p>
-    <p>where <script type="math/tex">X</script> is an <em>observable</em> variable and <script type="math/tex">Y</script> is a <em>target</em> variable.</p>
+    <p>where \(X\) is an <em>observable</em> variable and \(Y\) is a <em>target</em> variable.</p>
 
-    <p>In <strong>supervised settings</strong>, a <strong>Generative Model</strong> is a model of the <span style="color: purple"><strong>conditional</strong> probability</span> of the observable <script type="math/tex">X,</script> given a target <script type="math/tex">y,</script>:</p>
+    <p>In <strong>supervised settings</strong>, a <strong>Generative Model</strong> is a model of the <span style="color: purple"><strong>conditional</strong> probability</span> of the observable \(X,\) given a target \(y,\):</p>
     <p>$$P(X | Y=y)$$</p>
 
     <p><strong style="color: red">Application - Density Estimation:</strong><br />
@@ -166,8 +166,8 @@
     <ul>
       <li><strong>Types</strong> of Density Estimation:
         <ul>
-          <li><em><strong>Explicit</strong></em>: Explicitly define and solve for <script type="math/tex">p_\text{model}(x)</script></li>
-          <li><em><strong>Implicit</strong></em>: Learn model that can sample from <script type="math/tex">p_\text{model}(x)</script> without explicitly defining it</li>
+          <li><em><strong>Explicit</strong></em>: Explicitly define and solve for \(p_\text{model}(x)\)</li>
+          <li><em><strong>Implicit</strong></em>: Learn model that can sample from \(p_\text{model}(x)\) without explicitly defining it</li>
         </ul>
       </li>
     </ul>
@@ -245,21 +245,21 @@
 <ol>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Likelihood-based Models:</strong><br />
  <strong>Likelihood-based Model</strong>: is a statistical model of a <span style="color: purple">joint distribution over data</span>.<br />
- It estimates <script type="math/tex">\mathbf{p}_ {\text {data}}</script> from samples <script type="math/tex">\mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)} \sim \mathbf{p}_ {\text {data}}(\mathbf{x})</script>.<br />
- It Learns a distribution <script type="math/tex">p</script> that allows:
+ It estimates \(\mathbf{p}_ {\text {data}}\) from samples \(\mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)} \sim \mathbf{p}_ {\text {data}}(\mathbf{x})\).<br />
+ It Learns a distribution \(p\) that allows:
     <ul>
-      <li><span style="color: purple">Computing probability of a sample</span> <script type="math/tex">p(x)</script> for arbitrary <script type="math/tex">x</script></li>
-      <li><span style="color: purple">Sampling</span> <script type="math/tex">x \sim p(x)</script><br />
-  Sampling is a computable efficient process that generates an RV <script type="math/tex">x</script> that has the same distribution as a <script type="math/tex">p_{\text{data}}</script>.<br />
- The distribution <script type="math/tex">\mathbf{p}_ {\text {data}}</script> is just a <span style="color: purple"><strong>function</strong></span> that takes as an <span style="color: purple">input a sample <script type="math/tex">x</script></span> and <span style="color: purple">outputs the probability of <script type="math/tex">x</script></span> under the learned distribution.</li>
+      <li><span style="color: purple">Computing probability of a sample</span> \(p(x)\) for arbitrary \(x\)</li>
+      <li><span style="color: purple">Sampling</span> \(x \sim p(x)\)<br />
+  Sampling is a computable efficient process that generates an RV \(x\) that has the same distribution as a \(p_{\text{data}}\).<br />
+ The distribution \(\mathbf{p}_ {\text {data}}\) is just a <span style="color: purple"><strong>function</strong></span> that takes as an <span style="color: purple">input a sample \(x\)</span> and <span style="color: purple">outputs the probability of \(x\)</span> under the learned distribution.</li>
     </ul>
 
     <p><strong style="color: red">The Goal for Learning Likelihood-based Models:</strong><br />
- <button class="showText" value="show" onclick="showTextPopHide(event);">Show Goal</button></p>
+ <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show Goal</button></p>
     <ul hidden="">
-      <li><strong>Original Goal</strong>: estimate <script type="math/tex">\mathbf{p}_{\text {data}}</script> from samples <script type="math/tex">\mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)} \sim \mathbf{p}_{\text {data}}(\mathbf{x})</script>.</li>
-      <li><strong>Revised Goal - Function Approximation</strong>: Find <script type="math/tex">\theta</script> (the parameter vector indexing into the distribution space) so that you approximately get the data distribution.<br />
-  I.E. Learn <script type="math/tex">\theta</script> so that <script type="math/tex">p_{\theta}(x) \approx p_{\text {data}}(x)</script>.</li>
+      <li><strong>Original Goal</strong>: estimate \(\mathbf{p}_{\text {data}}\) from samples \(\mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)} \sim \mathbf{p}_{\text {data}}(\mathbf{x})\).</li>
+      <li><strong>Revised Goal - Function Approximation</strong>: Find \(\theta\) (the parameter vector indexing into the distribution space) so that you approximately get the data distribution.<br />
+  I.E. Learn \(\theta\) so that \(p_{\theta}(x) \approx p_{\text {data}}(x)\).</li>
     </ul>
 
     <p id="lst-p"><strong style="color: red">Motivation:</strong></p>
@@ -277,26 +277,26 @@
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">The Histogram Model:</strong><br />
  The <strong>Histogram</strong> Model is a very simple <strong>likelihood-based</strong> model.<br />
- It is a model of <strong>discrete data</strong> where the samples can take on values in a finite set <script type="math/tex">\{1, \ldots, \mathrm{k}\}</script>.</p>
+ It is a model of <strong>discrete data</strong> where the samples can take on values in a finite set \(\{1, \ldots, \mathrm{k}\}\).</p>
 
-    <p>The <strong>Goal:</strong> estimate <script type="math/tex">\mathbf{p}_{\text {data}}</script> from samples <script type="math/tex">\mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)} \sim \mathbf{p}_{\text {data}}(\mathbf{x})</script>.</p>
+    <p>The <strong>Goal:</strong> estimate \(\mathbf{p}_{\text {data}}\) from samples \(\mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)} \sim \mathbf{p}_{\text {data}}(\mathbf{x})\).</p>
 
     <p id="lst-p">The <strong>Model</strong>: a <span style="color: purple"><strong>Histogram</strong></span></p>
     <ul>
-      <li><strong>Described</strong> by <script type="math/tex">k</script> nonnegative numbers: <script type="math/tex">\mathrm{p}_{1}, \ldots, \mathrm{p}_{\mathrm{k}}</script></li>
+      <li><strong>Described</strong> by \(k\) nonnegative numbers: \(\mathrm{p}_{1}, \ldots, \mathrm{p}_{\mathrm{k}}\)</li>
       <li><strong>Trained</strong> by <span style="color: purple">counting frequencies</span>
         <p>$$\mathrm{p}_ {\mathrm{i}}=(\# \text { times } i \text { appears in the dataset) } /(\#\text { points in the dataset) }$$</p>
       </li>
       <li><strong>At Runtime</strong>:
         <ul>
-          <li><strong>Inference</strong> (querying <script type="math/tex">p_i</script> for arbitrary <script type="math/tex">i</script>): simply a lookup into the array <script type="math/tex">\mathrm{p}_{1}, \ldots, \mathrm{p}_{\mathrm{k}}</script></li>
+          <li><strong>Inference</strong> (querying \(p_i\) for arbitrary \(i\)): simply a lookup into the array \(\mathrm{p}_{1}, \ldots, \mathrm{p}_{\mathrm{k}}\)</li>
           <li><strong>Sampling</strong> (lookup into the inverse cumulative distribution function):
             <ol>
-              <li>From the model probabilities <script type="math/tex">p_{1}, \ldots, p_{k},</script> compute the cumulative distribution:
+              <li>From the model probabilities \(p_{1}, \ldots, p_{k},\) compute the cumulative distribution:
                 <p>$$\mathrm{F}_{\mathrm{i}}=\mathrm{p}_ {1}+\cdots+\mathrm{p}_ {\mathrm{i}} \quad$ for all $\mathrm{i} \in\{1, \ldots, \mathrm{k}\}$$</p>
               </li>
-              <li>Draw a uniform random number  <script type="math/tex">u \sim[0,1]</script></li>
-              <li>Return the smallest <script type="math/tex">i</script> such that <script type="math/tex">u \leq F_{i}</script></li>
+              <li>Draw a uniform random number  \(u \sim[0,1]\)</li>
+              <li>Return the smallest \(i\) such that \(u \leq F_{i}\)</li>
             </ol>
           </li>
         </ul>
@@ -308,48 +308,48 @@
       <li><strong>The Curse of Dimensionality</strong>: Counting fails when there are too many bins and <strong>generalization</strong> is not achieved.<br />
   <button class="showText" value="show" onclick="showTextPopHide(event);">Analysis</button>
         <ul hidden="">
-          <li>(Binary) MNIST: <script type="math/tex">28 \times 28</script> images, each pixel in <script type="math/tex">\{0,1\}</script></li>
-          <li>There are <script type="math/tex">2^{784} \approx 10^{236} \approx 10^{236}</script> probabilities to estimate</li>
+          <li>(Binary) MNIST: \(28 \times 28\) images, each pixel in \(\{0,1\}\)</li>
+          <li>There are \(2^{784} \approx 10^{236} \approx 10^{236}\) probabilities to estimate</li>
           <li>Any reasonable training set covers only a tiny fraction of this</li>
-          <li>Each image influences only one parameter and there is only <script type="math/tex">60,000</script> MNIST images:<br />
+          <li>Each image influences only one parameter and there is only \(60,000\) MNIST images:<br />
   <span style="color: purple"><strong>No generalization</strong> whatsoever!</span></li>
         </ul>
       </li>
       <li><strong>Solution</strong>: <span style="color: goldenrod"><strong>Function Approximation</strong></span><br />
-  Instead of storing each probability store a <span style="color: purple"><strong><em>parameterized</em> function</strong></span> <script type="math/tex">p_{\theta}(x)</script>.<br />
+  Instead of storing each probability store a <span style="color: purple"><strong><em>parameterized</em> function</strong></span> \(p_{\theta}(x)\).<br />
  <br /></li>
     </ul>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Achieving Generalization via Function Approximation:</strong><br />
- <strong>Function Approximation</strong>: Defines a <em><strong>mapping <script type="math/tex">p_{\theta}</script></strong></em> from a <strong>parameter space</strong> to a <strong>space</strong> of <strong>probability distributions</strong>.<br />
- E.g. <script type="math/tex">\theta</script> are the weights of a NN, <script type="math/tex">p_{\theta}</script> some NN architecture with those weights set.</p>
+ <strong>Function Approximation</strong>: Defines a <em><strong>mapping \(p_{\theta}\)</strong></em> from a <strong>parameter space</strong> to a <strong>space</strong> of <strong>probability distributions</strong>.<br />
+ E.g. \(\theta\) are the weights of a NN, \(p_{\theta}\) some NN architecture with those weights set.</p>
 
-    <p>Instead of storing each probability store a <span style="color: purple"><strong><em>parameterized</em> function</strong></span> <script type="math/tex">p_{\theta}(x)</script>.<br />
- i.e. Instead of treating the probabilities <script type="math/tex">p_1, ..., p_k</script> themselves as <strong>parameters</strong>, we define them to be <span style="color: purple"><strong>functions</strong> of other parameters <script type="math/tex">\theta</script></span>.<br />
- The probability of every data point <script type="math/tex">p_i = p_{\theta}(x_i)</script> will be a function of <script type="math/tex">\theta</script>.<br />
- The mapping is defined such that whenever we update <script type="math/tex">\theta</script> for any one particular data point, its likely to influence <script type="math/tex">p_i</script> for other data points that are similar to it.<br />
- We <strong>constraint</strong> the <span style="color: purple"><strong>dimension</strong> <script type="math/tex">d</script> of <script type="math/tex">\theta \in \mathbb{R}^d</script> to be <em><strong>much less</strong></em> than the <strong>number of possible images</strong></span>.<br />
- Such that the <strong>parameter space <script type="math/tex">\Theta</script></strong> is <span style="color: purple"><em><strong>indexing</strong></em> into the low-dimensional space inside the <strong>set of all probability distributions</strong></span>.<br />
+    <p>Instead of storing each probability store a <span style="color: purple"><strong><em>parameterized</em> function</strong></span> \(p_{\theta}(x)\).<br />
+ i.e. Instead of treating the probabilities \(p_1, ..., p_k\) themselves as <strong>parameters</strong>, we define them to be <span style="color: purple"><strong>functions</strong> of other parameters \(\theta\)</span>.<br />
+ The probability of every data point \(p_i = p_{\theta}(x_i)\) will be a function of \(\theta\).<br />
+ The mapping is defined such that whenever we update \(\theta\) for any one particular data point, its likely to influence \(p_i\) for other data points that are similar to it.<br />
+ We <strong>constraint</strong> the <span style="color: purple"><strong>dimension</strong> \(d\) of \(\theta \in \mathbb{R}^d\) to be <em><strong>much less</strong></em> than the <strong>number of possible images</strong></span>.<br />
+ Such that the <strong>parameter space \(\Theta\)</strong> is <span style="color: purple"><em><strong>indexing</strong></em> into the low-dimensional space inside the <strong>set of all probability distributions</strong></span>.<br />
  This is how we achieve <strong style="color: goldenrod">Generalization</strong> through <span style="color: goldenrod">function approximation</span>.</p>
 
     <p id="lst-p"><strong style="color: red">The Revised Goal for Learning Likelihood-based Models - Function Approximation:</strong></p>
     <ul>
-      <li><strong>Original Goal</strong>: estimate <script type="math/tex">\mathbf{p}_{\text {data}}</script> from samples <script type="math/tex">\mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)} \sim \mathbf{p}_{\text {data}}(\mathbf{x})</script>.</li>
-      <li><strong>Revised Goal - Function Approximation</strong>: Find <script type="math/tex">\theta</script> (the parameter vector indexing into the distribution space) so that you approximately get the data distribution.<br />
-  I.E. Learn <script type="math/tex">\theta</script> so that <script type="math/tex">p_{\theta}(x) \approx p_{\text {data}}(x)</script>.</li>
+      <li><strong>Original Goal</strong>: estimate \(\mathbf{p}_{\text {data}}\) from samples \(\mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)} \sim \mathbf{p}_{\text {data}}(\mathbf{x})\).</li>
+      <li><strong>Revised Goal - Function Approximation</strong>: Find \(\theta\) (the parameter vector indexing into the distribution space) so that you approximately get the data distribution.<br />
+  I.E. Learn \(\theta\) so that \(p_{\theta}(x) \approx p_{\text {data}}(x)\).</li>
     </ul>
 
     <p id="lst-p"><strong style="color: red">New Challenges:</strong></p>
     <ul>
-      <li>How do we design function approximators to effectively represent complex joint distributions over <script type="math/tex">x</script>, yet remain easy to train?</li>
+      <li>How do we design function approximators to effectively represent complex joint distributions over \(x\), yet remain easy to train?</li>
       <li>There will be many choices for model design, each with different tradeoffs and different compatibility criteria.
         <ul>
           <li>Define “what does it mean for one probability distribution to be <em>approximately</em> equal to another”?<br />
   A <span style="color: purple">measure of distance between distributions: <strong>distance function</strong></span>.<br />
-  It needs to be <strong>differentiable</strong> wrt <script type="math/tex">\theta</script>, works on <strong>finite-datasets</strong>, etc.</li>
-          <li>How to “define <script type="math/tex">p_{\theta}</script>”?</li>
-          <li>How to “learn/optimize <script type="math/tex">\theta</script>”?</li>
+  It needs to be <strong>differentiable</strong> wrt \(\theta\), works on <strong>finite-datasets</strong>, etc.</li>
+          <li>How to “define \(p_{\theta}\)”?</li>
+          <li>How to “learn/optimize \(\theta\)”?</li>
           <li>How to ensure software-hardware compatibility?</li>
         </ul>
       </li>
@@ -361,15 +361,15 @@
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Architecture and Learning in Likelihood-based Models:</strong><br />
  <strong style="color: red">Fitting Distributions:</strong>
     <ul>
-      <li>Given data <script type="math/tex">\mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)}</script> sampled from a “true” distribution <script type="math/tex">\mathbf{p}_ {\text {data}}</script></li>
-      <li>Set up a <strong>model class</strong>: a set of parameterized distributions <script type="math/tex">\mathrm{p}_ {\theta}</script></li>
+      <li>Given data \(\mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)}\) sampled from a “true” distribution \(\mathbf{p}_ {\text {data}}\)</li>
+      <li>Set up a <strong>model class</strong>: a set of parameterized distributions \(\mathrm{p}_ {\theta}\)</li>
       <li>Pose a <strong>search problem over parameters</strong>:
         <p>$$\arg \min_ {\theta} \operatorname{loss}\left(\theta, \mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)}\right)$$</p>
       </li>
       <li><strong>Desiderata</strong> - Want the loss function + search procedure to:
         <ul>
-          <li>Work with large datasets (<script type="math/tex">n</script> is large, say millions of training examples)</li>
-          <li>Yield $\theta$ such that <script type="math/tex">p_ {\theta}</script> matches <script type="math/tex">p_{\text {data}}</script> — i.e. the training algorithm <em>“works”</em>.<br />
+          <li>Work with large datasets (\(n\) is large, say millions of training examples)</li>
+          <li>Yield $\theta$ such that \(p_ {\theta}\) matches \(p_{\text {data}}\) — i.e. the training algorithm <em>“works”</em>.<br />
   Think of the <strong>loss</strong> as a <span style="color: purple"><strong><em>distance</em> between distributions</strong></span>.</li>
           <li>Note that the training procedure can only see the empirical data distribution, not the true data distribution: we want the model to <strong>generalize</strong>.</li>
         </ul>
@@ -378,7 +378,7 @@
 
     <p id="lst-p"><strong style="color: red">Objective - Maximum Likelihood:</strong></p>
     <ul>
-      <li><strong>Maximum Likelihood</strong>: given a dataset <script type="math/tex">\mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)},</script> find <script type="math/tex">\theta</script> by solving the optimization problem
+      <li><strong>Maximum Likelihood</strong>: given a dataset \(\mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)},\) find \(\theta\) by solving the optimization problem
         <p>$$\arg \min _{\theta} \operatorname{loss}\left(\theta, \mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)}\right)=\frac{1}{n} \sum_{i=1}^{n}-\log p_{\theta}\left(\mathbf{x}^{(i)}\right)$$</p>
       </li>
       <li>Statistics tells us that if the <span style="color: purple">model family is expressive enough</span> and if <span style="color: purple">enough data is given</span>, then <span style="color: goldenrod">solving the maximum likelihood problem will yield parameters that generate the data</span>.<br />
@@ -393,7 +393,7 @@
     <p id="lst-p"><strong style="color: red">Optimization - Stochastic Gradient Descent:</strong><br />
  <strong>Maximum likelihood</strong> is an <strong>optimization problem</strong>. We use <strong>SGD</strong> to solve it.</p>
     <ul>
-      <li>SGD minimizes expectations: for <script type="math/tex">{f}</script> a differentiable function of <script type="math/tex">\theta,</script> it solves
+      <li>SGD minimizes expectations: for \({f}\) a differentiable function of \(\theta,\) it solves
         <p>$$\arg \min_ {\theta} \mathbb{E}[f(\theta)]$$</p>
       </li>
       <li>With maximum likelihood (which is an expectation in-of-itself), the optimization problem is
@@ -406,12 +406,12 @@
     <p id="lst-p"><strong style="color: red">Designing the Model:</strong><br />
  Our goal is to design <strong>Neural Network models</strong> that <span style="color: purple"><em><strong>fit</strong></em> into the <strong>maximum likelihood + sgd framework</strong></span>.</p>
     <ul>
-      <li><strong>Key requirement for maximum likelihood + SGD</strong>: <span style="color: purple">efficiently compute <script type="math/tex">\log p(x)</script> and its</span> <strong style="color: goldenrod">gradient</strong>.</li>
-      <li><strong>The Model <script type="math/tex">p_{\theta}</script>:</strong> is chosen to be <strong style="color: goldenrod">Deep Neural Networks</strong><br />
+      <li><strong>Key requirement for maximum likelihood + SGD</strong>: <span style="color: purple">efficiently compute \(\log p(x)\) and its</span> <strong style="color: goldenrod">gradient</strong>.</li>
+      <li><strong>The Model \(p_{\theta}\):</strong> is chosen to be <strong style="color: goldenrod">Deep Neural Networks</strong><br />
   They work in the regime of high expressiveness and efficient computation (assuming specialized hardware).</li>
       <li><strong>Designing the Networks</strong>:
         <ul>
-          <li>Any setting of <script type="math/tex">\theta</script> must define a <strong>valid probability distribution</strong> over <script type="math/tex">x</script>:
+          <li>Any setting of \(\theta\) must define a <strong>valid probability distribution</strong> over \(x\):
             <p>$$\forall \theta, \quad \sum_{\mathbf{x}} p_{\theta}(\mathbf{x})=1 \quad \text{ and } \quad p_{\theta}(\mathbf{x}) \geq 0 \quad \forall \mathbf{x}$$</p>
             <ul>
               <li><strong>Difficulty:</strong> The number of terms in the sum is the number of <strong>possible data points</strong>, thus, it is <strong>exponential in the dimension</strong>.<br />
@@ -419,21 +419,21 @@
               <li><strong>Energy-based Models</strong> do not have this constraint in the model definition, but then have to deal with that constraint in the training algorithm making it very hard to deal with/optimize.</li>
             </ul>
           </li>
-          <li><script type="math/tex">\log p_{\theta}(x)</script> should be <strong>easy to evaluate and differentiate</strong> with respect to <script type="math/tex">\theta</script></li>
+          <li>\(\log p_{\theta}(x)\) should be <strong>easy to evaluate and differentiate</strong> with respect to \(\theta\)</li>
           <li>This can be <strong>tricky</strong> to set up!</li>
         </ul>
       </li>
     </ul>
 
     <p><strong style="color: red">Bayes Nets and Neural Nets:</strong><br />
- One way to <strong>satisfy the condition</strong> of <span style="color: purple">defining a valid probability distribution over <script type="math/tex">x</script></span> is to <strong>model the variables with a Bayes Net</strong>.</p>
+ One way to <strong>satisfy the condition</strong> of <span style="color: purple">defining a valid probability distribution over \(x\)</span> is to <strong>model the variables with a Bayes Net</strong>.</p>
 
     <p><strong>Main Idea:</strong><br />
  <span style="color: goldenrod">place a <strong>Bayes Net</strong> structure (a directed acyclic graph) over the variables in the data, and model the <strong>conditional distributions</strong> with Neural Networks</span>.</p>
 
     <p>This <span style="color: purple">Reduces the problem to <strong>designing conditional likelihood-based models for single variables</strong></span>.</p>
 
-    <p>We know how to do this: the neural net takes variables being conditioned on as input, and outputs the distribution for the variable being predicted; NNs usually condition on a lot of stuff (features) and predict a single small variable (target <script type="math/tex">y</script>) this is done in practice all the time in supervised settings (e.g. classification).</p>
+    <p>We know how to do this: the neural net takes variables being conditioned on as input, and outputs the distribution for the variable being predicted; NNs usually condition on a lot of stuff (features) and predict a single small variable (target \(y\)) this is done in practice all the time in supervised settings (e.g. classification).</p>
 
     <p>This (the BN representation) yields <strong>massive savings in the number of parameters to represent a joint distribution</strong>.<br />
  <button class="showText" value="show" onclick="showTextPopHide(event);">A Bayes Net over five variables</button>
@@ -455,9 +455,10 @@
     <div class="borderexample">
       <p><span>
  <strong>Conclusion:</strong><br />
- <span style="color: goldenrod">An <em><strong>expressive</strong></em> <strong>Bayes Net structure</strong> with <strong>Neural Network conditional distributions</strong> yields an <em><strong>expressive</strong></em> model for <script type="math/tex">p(x)</script> with <em><strong>tractable</strong></em> <strong>maximum likelihood training</strong></span>. <br />
+ <span style="color: goldenrod">An <em><strong>expressive</strong></em> <strong>Bayes Net structure</strong> with <strong>Neural Network conditional distributions</strong> yields an <em><strong>expressive</strong></em> model for \(p(x)\) with <em><strong>tractable</strong></em> <strong>maximum likelihood training</strong></span>. <br />
  </span></p>
     </div>
+    <p><br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Autoregressive Models:</strong></p>
@@ -469,56 +470,46 @@
  <br /></li>
     </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Asynchronous:</strong></p>
-  </li>
-  <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Asynchronous:</strong></li>
 </ol>
 
-<hr />
+<!-- 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}
 
-<h2 id="content3">THIRD</h2>
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}
 
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents34">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents36">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Asynchronous:</strong></p>
-  </li>
-</ol>
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}
 
+***
+
+## THIRD
+{: #content3}
+
+1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}
+
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}
+
+3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}
+
+4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}
+
+5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}
+
+6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents36}
+
+7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}
+
+8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}
+
+ -->
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

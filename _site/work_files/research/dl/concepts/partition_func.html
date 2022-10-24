@@ -93,9 +93,9 @@
 <ol>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">The Partition Function:</strong><br />
- <strong>The Partition Function</strong> is the <em>normalization constant</em> of an unnormalized probability distribution <script type="math/tex">\tilde{p}(\mathbf{x} ; \boldsymbol{\theta})</script>.</p>
+ <strong>The Partition Function</strong> is the <em>normalization constant</em> of an unnormalized probability distribution \(\tilde{p}(\mathbf{x} ; \boldsymbol{\theta})\).</p>
 
-    <p id="lst-p">Formally, it is the (possibly infinite) sum over the unnormalized probability <script type="math/tex">\tilde{p}(\mathbf{x} ; \boldsymbol{\theta})</script> of all the states/events <script type="math/tex">\boldsymbol{x} \in X</script>,</p>
+    <p id="lst-p">Formally, it is the (possibly infinite) sum over the unnormalized probability \(\tilde{p}(\mathbf{x} ; \boldsymbol{\theta})\) of all the states/events \(\boldsymbol{x} \in X\),</p>
     <ul>
       <li><strong>Discrete Variables</strong>:
         <p>$$Z(\boldsymbol{\theta}) = \sum_{\boldsymbol{x}} \tilde{p}(\boldsymbol{x})$$</p>
@@ -120,8 +120,8 @@
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Handling the Partition Function - Motivation:</strong><br />
- Many <strong><em>Undirected</em> Probabilistic Graphical Models (PGMs)</strong> are defined by an unnormalized probability distribution <script type="math/tex">\tilde{p}(\mathbf{x} ; \boldsymbol{\theta})</script>.<br />
- To obtain a valid probability distribution, we need to <em><strong>normalize</strong></em> <script type="math/tex">\tilde{p}</script> by dividing by a partition function <script type="math/tex">Z(\boldsymbol{\theta})</script>:
+ Many <strong><em>Undirected</em> Probabilistic Graphical Models (PGMs)</strong> are defined by an unnormalized probability distribution \(\tilde{p}(\mathbf{x} ; \boldsymbol{\theta})\).<br />
+ To obtain a valid probability distribution, we need to <em><strong>normalize</strong></em> \(\tilde{p}\) by dividing by a partition function \(Z(\boldsymbol{\theta})\):
     <p>$$p(\mathbf{x} ; \boldsymbol{\theta})=\dfrac{1}{Z(\boldsymbol{\theta})} \tilde{p}(\mathbf{x} ; \boldsymbol{\theta})$$</p>
     <p>Calculating the partition function can be <em><strong>intractable</strong></em> for many interesting models.</p>
 
@@ -131,7 +131,7 @@
       <li>Some models are designed to have a <strong>tractable normalizing constant</strong>.</li>
       <li>Others are designed to be used in ways (training/inference) that <em>avoid</em> computing the normalized probability altogether.</li>
       <li>Yet, other models directly confront the challenge of intractable partition functions.<br />
-  They use techniques, described below, for training and evaluating models with intractable <script type="math/tex">Z</script>.</li>
+  They use techniques, described below, for training and evaluating models with intractable \(Z\).</li>
     </ul>
 
     <p id="lst-p"><strong style="color: red">Handling the Partition Function:</strong><br />
@@ -146,8 +146,8 @@
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">The Log-Likelihood Gradient:</strong><br />
  <strong style="color: red">Phase Decomposition of Learning:</strong><br />
- Learning using <strong>MLE</strong> requires computing the gradient of the <strong>NLL</strong>, <script type="math/tex">\nabla_{\boldsymbol{\theta}} \log p(\mathbf{x} ; \boldsymbol{\theta})</script>.<br />
- What makes learning undirected models by maximum likelihood particularly difficult is that the <strong>partition function depends on the parameters</strong>; thus, the gradient of the NLL wrt the parameters involves computing the gradient of <script type="math/tex">Z(\mathbf{\theta})</script>.<br />
+ Learning using <strong>MLE</strong> requires computing the gradient of the <strong>NLL</strong>, \(\nabla_{\boldsymbol{\theta}} \log p(\mathbf{x} ; \boldsymbol{\theta})\).<br />
+ What makes learning undirected models by maximum likelihood particularly difficult is that the <strong>partition function depends on the parameters</strong>; thus, the gradient of the NLL wrt the parameters involves computing the gradient of \(Z(\mathbf{\theta})\).<br />
  In <strong>undirected models</strong>, this gradient can be written as:
     <p>$$\nabla_{\boldsymbol{\theta}} \log p(\mathbf{x} ; \boldsymbol{\theta})=\nabla_{\boldsymbol{\theta}} \log \tilde{p}(\mathbf{x} ; \boldsymbol{\theta})-\nabla_{\boldsymbol{\theta}} \log Z(\boldsymbol{\theta})$$</p>
     <p>which <em><strong>decomposes</strong></em> the gradient (learning) into a <span style="color: purple"><strong>positive phase</strong></span> and a <span style="color: purple"><strong>negative phase</strong></span>.</p>
@@ -172,11 +172,11 @@
   - Models with no latent variables or with few interactions between latent variables typically have a tractable positive phase.
         <ul>
           <li><strong>Example - VAEs</strong>:<br />
-  VAEs define a <strong>continuous</strong> distribution (over the data) with <strong>latent variable <script type="math/tex">z</script></strong>:
+  VAEs define a <strong>continuous</strong> distribution (over the data) with <strong>latent variable \(z\)</strong>:
             <p>$$p_{\theta}(x)=\int p_{\theta}(z) p_{\theta}(x \vert z) d z$$</p>
-            <p>which is <strong>intractable</strong> to compute for every <script type="math/tex">z</script>.<br />
+            <p>which is <strong>intractable</strong> to compute for every \(z\).<br />
   Due to complicated interactions between latent variables, this integral requires exponential time to compute as it needs to be evaluated over all configurations of latent variable.<br />
-  (all <script type="math/tex">z_i</script> variables are dependent on each other.)</p>
+  (all \(z_i\) variables are dependent on each other.)</p>
           </li>
         </ul>
       </li>
@@ -188,16 +188,16 @@
  - The <strong>negative phase</strong> <span style="color: goldenrod"><em><strong>decreases</strong></em>  the probability of samples generated by the model</span>.</p>
 
     <p><strong style="color: red">Monte Carlo Methods for Approximate LL Maximization:</strong><br />
- To use MC methods for approximate learning, we need to rewrite the gradient of the partition function <script type="math/tex">\nabla_{\boldsymbol{\theta}} \log Z</script> as an expectation of the <strong>unnormalized probability</strong> <script type="math/tex">\tilde{p}</script>:</p>
+ To use MC methods for approximate learning, we need to rewrite the gradient of the partition function \(\nabla_{\boldsymbol{\theta}} \log Z\) as an expectation of the <strong>unnormalized probability</strong> \(\tilde{p}\):</p>
     <p>$$\nabla_{\boldsymbol{\theta}} \log Z=\mathbb{E}_{\mathbf{x} \sim p(\mathbf{x})} \nabla_{\boldsymbol{\theta}} \log \tilde{p}(\mathbf{x})$$</p>
     <p>This identity is the basis for a variety of Monte Carlo methods for <strong>approximately maximizing the likelihood</strong> of models with intractable partition functions.</p>
     <ul>
       <li><button class="showText" value="show" onclick="showTextPopHide(event);">Derivation - Discrete Variables</button>
         <ul hidden="">
-          <li>Decomposing the gradient of <script type="math/tex">\log Z</script>:
+          <li>Decomposing the gradient of \(\log Z\):
             <p>$$\begin{aligned} \nabla_{\boldsymbol{\theta}} \log Z =&amp; \frac{\nabla_{\boldsymbol{\theta}} Z}{Z} \\=&amp; \frac{\nabla_{\boldsymbol{\theta}} \sum_{\mathbf{x}} \tilde{p}(\mathbf{x})}{Z} \\=&amp; \frac{\sum_{\mathbf{x}} \nabla_{\boldsymbol{\theta} \tilde{p}(\mathbf{x})}}{Z} \end{aligned}$$</p>
           </li>
-          <li>For models that guarantee <script type="math/tex">p(\mathbf{x})>0</script> for all <script type="math/tex">\mathbf{x},</script> we can substitute <script type="math/tex">\exp (\log \tilde{p}(\mathbf{x}))</script> for <script type="math/tex">\tilde{p}(\mathbf{x})</script>:
+          <li>For models that guarantee \(p(\mathbf{x})&gt;0\) for all \(\mathbf{x},\) we can substitute \(\exp (\log \tilde{p}(\mathbf{x}))\) for \(\tilde{p}(\mathbf{x})\):
             <p>$$\begin{aligned} \frac{\sum_{\mathbf{x}} \nabla_{\boldsymbol{\theta}} \exp (\log \tilde{p}(\mathbf{x}))}{Z} &amp;= \frac{\sum_{\mathbf{x}} \exp (\log \tilde{p}(\mathbf{x})) \nabla_{\boldsymbol{\theta}} \log \tilde{p}(\mathbf{x})}{Z} \\ &amp;=\frac{\sum_{\mathbf{x}} \tilde{p}(\mathbf{x}) \nabla_{\boldsymbol{\theta}} \log \tilde{p}(\mathbf{x})}{Z} \\ &amp;=\sum_{\mathbf{x}} p(\mathbf{x}) \nabla_{\boldsymbol{\theta}} \log \tilde{p}(\mathbf{x}) \\ &amp;= \mathbb{E}_{\mathbf{x} \sim p(\mathbf{x})} \nabla_{\boldsymbol{\theta}} \log \tilde{p}(\mathbf{x}) \end{aligned}$$</p>
           </li>
         </ul>
@@ -208,12 +208,12 @@
             <p>$$\nabla_{\boldsymbol{\theta}} \int \tilde{p}(\mathbf{x}) d \boldsymbol{x}=\int \nabla_{\boldsymbol{\theta}} \tilde{p}(\mathbf{x}) d \boldsymbol{x}$$</p>
             <ul>
               <li><strong>Applicability - Measure Theory:</strong><br />
-  This identity is applicable only under certain regularity conditions on <script type="math/tex">\tilde{p}</script> and <script type="math/tex">\nabla_{\boldsymbol{\theta}} \tilde{p}(\mathbf{x})</script>.<br />
+  This identity is applicable only under certain regularity conditions on \(\tilde{p}\) and \(\nabla_{\boldsymbol{\theta}} \tilde{p}(\mathbf{x})\).<br />
   In measure theoretic terms, the conditions are:
                 <ol>
-                  <li>The unnormalized distribution <script type="math/tex">\tilde{p}</script> must be a Lebesgue-integrable function of <script type="math/tex">\boldsymbol{x}  for every value of</script>\boldsymbol{\theta}$$.</li>
-                  <li>The gradient <script type="math/tex">\nabla_{\boldsymbol{\theta}} \tilde{p}(\mathbf{x})</script> must exist for all <script type="math/tex">\boldsymbol{\theta}</script> and almost all <script type="math/tex">\boldsymbol{x}</script>.</li>
-                  <li>There must exist an integrable function <script type="math/tex">R(\boldsymbol{x})</script> that bounds <script type="math/tex">\nabla_{\boldsymbol{\theta}} \tilde{p}(\mathbf{x})</script> in the sense that <script type="math/tex">\max_{i}\left\vert\frac{\partial}{\partial \theta_{\theta}} \tilde{p}(\mathbf{x})\right\vert \leq R(\boldsymbol{x})</script> for all <script type="math/tex">\boldsymbol{\theta}</script> and almost all <script type="math/tex">\boldsymbol{x}</script>.</li>
+                  <li>The unnormalized distribution \(\tilde{p}\) must be a Lebesgue-integrable function of \(\boldsymbol{x}  for every value of\)\boldsymbol{\theta}$$.</li>
+                  <li>The gradient \(\nabla_{\boldsymbol{\theta}} \tilde{p}(\mathbf{x})\) must exist for all \(\boldsymbol{\theta}\) and almost all \(\boldsymbol{x}\).</li>
+                  <li>There must exist an integrable function \(R(\boldsymbol{x})\) that bounds \(\nabla_{\boldsymbol{\theta}} \tilde{p}(\mathbf{x})\) in the sense that \(\max_{i}\left\vert\frac{\partial}{\partial \theta_{\theta}} \tilde{p}(\mathbf{x})\right\vert \leq R(\boldsymbol{x})\) for all \(\boldsymbol{\theta}\) and almost all \(\boldsymbol{x}\).</li>
                 </ol>
 
                 <p>Fortunately, <span style="color: purple">most machine learning models of interest have these properties.</span>.</p>
@@ -228,16 +228,16 @@
  The Monte Carlo approach to learning provides an intuitive framework in terms of the <em><strong>phases</strong></em> of the <strong>learning decomposition</strong>:</p>
     <ul>
       <li><strong>Positive Phase</strong>:<br />
-  In the positive phase, we increase <script type="math/tex">\log \tilde{p}(\mathbf{x})</script> for <script type="math/tex">\boldsymbol{x}</script> drawn from the data.
+  In the positive phase, we increase \(\log \tilde{p}(\mathbf{x})\) for \(\boldsymbol{x}\) drawn from the data.
         <ul>
-          <li><strong>Parametrize <script type="math/tex">\log \tilde{p}</script> in terms of an Energy Function</strong>:<br />
+          <li><strong>Parametrize \(\log \tilde{p}\) in terms of an Energy Function</strong>:<br />
   We interpret the positive phase as <span style="color: purple"><strong>pushing down on the energy</strong> of training examples</span>.</li>
         </ul>
       </li>
       <li><strong>Negative Phase</strong>:<br />
-  In the negative phase, we decrease the partition function by decreasing <script type="math/tex">\log \tilde{p}(\mathbf{x})</script> drawn from the model distribution.
+  In the negative phase, we decrease the partition function by decreasing \(\log \tilde{p}(\mathbf{x})\) drawn from the model distribution.
         <ul>
-          <li><strong>Parametrize <script type="math/tex">\log \tilde{p}</script> in terms of an Energy Function</strong>:<br />
+          <li><strong>Parametrize \(\log \tilde{p}\) in terms of an Energy Function</strong>:<br />
   We interpret the negative phase as <span style="color: purple"><strong>pushing up on the energy</strong> of samples drawn from the models</span>.</li>
         </ul>
       </li>
@@ -263,9 +263,9 @@
       <li>We can view the MCMC approach to maximum likelihood as trying to <strong>achieve balance between two forces</strong>:
         <ul>
           <li>One <span style="color: purple"><strong>pushing up</strong> on the model distribution where the data occurs</span> <br />
-  Corresponds to <strong>maximizing <script type="math/tex">\log \tilde{p}</script></strong>.</li>
+  Corresponds to <strong>maximizing \(\log \tilde{p}\)</strong>.</li>
           <li>Another <span style="color: purple"><strong>pushing down</strong> on the model distribution where the model samples occur</span>.<br />
-  Corresponds to <strong>minimizing <script type="math/tex">\log Z</script></strong>.</li>
+  Corresponds to <strong>minimizing \(\log Z\)</strong>.</li>
         </ul>
       </li>
       <li>There are several <strong>approximations</strong> to the <strong>negative phase.</strong><br />
@@ -278,7 +278,7 @@
             <ul>
               <li><button class="showText" value="show" onclick="showTextPopHide(event);">Biological Relation to Dreaming</button>
                 <ul hidden="">
-                  <li>In fact, the negative phase has been proposed as a possible explanation for dreaming in humans and other animals <em>(Crick and Mitchison, 1983)</em>, the idea being that the brain maintains a probabilistic model of the world and follows the gradient of <script type="math/tex">\log \tilde{p}</script> when experiencing real events while awake and follows the negative gradient of <script type="math/tex">\log \tilde{p}</script> to minimize <script type="math/tex">\log Z</script> while sleeping and experiencing events sampled from the current model. This view explains much of the language used to describe algorithms with a positive and a negative phase, but it has not been proved to be correct with neuroscientific experiments.<br />
+                  <li>In fact, the negative phase has been proposed as a possible explanation for dreaming in humans and other animals <em>(Crick and Mitchison, 1983)</em>, the idea being that the brain maintains a probabilistic model of the world and follows the gradient of \(\log \tilde{p}\) when experiencing real events while awake and follows the negative gradient of \(\log \tilde{p}\) to minimize \(\log Z\) while sleeping and experiencing events sampled from the current model. This view explains much of the language used to describe algorithms with a positive and a negative phase, but it has not been proved to be correct with neuroscientific experiments.<br />
   In machine learning models, it is usually necessary to use the positive and negative phase simultaneously, rather than in separate periods of wakefulness and REM sleep.<br />
   As we will see in section 19.5, other machine learning algorithms draw samples from the model distribution for other purposes, and such algorithms could also provide an account for the function of dream sleep.</li>
                 </ul>
@@ -296,7 +296,7 @@
 
     <p><strong style="color: red">Contrastive Divergence:</strong><br />
  One way to avoid the high cost in Naive MCMC, is to <span style="color: purple">initialize the Markov chains from a distribution that is very close to the model distribution</span>, so that the burn in operation does not take as many steps.<br />
- The <strong>Contrastive Divergence (CD)</strong>  (or CD-<script type="math/tex">k</script> to indicate CD with <script type="math/tex">k</script> Gibbs steps) algorithm initializes the Markov chain at each step with samples from the <strong>data distribution</strong> <em>(Hinton, 2000, 2010)</em>.<br />
+ The <strong>Contrastive Divergence (CD)</strong>  (or CD-\(k\) to indicate CD with \(k\) Gibbs steps) algorithm initializes the Markov chain at each step with samples from the <strong>data distribution</strong> <em>(Hinton, 2000, 2010)</em>.<br />
  - Obtaining samples from the data distribution is <em>free</em>, because they are already available in the dataset.<br />
  - Initially, the data distribution is not close to the model distribution, so the negative phase is not very accurate.<br />
  - Fortunately, the positive phase can still accurately increase the model’s probability of the data.<br />
@@ -311,7 +311,7 @@
   <strong>Spurious Modes:</strong> are those regions that have <em>high probability under the model</em> but <em>low probability under the data-generating distribution</em>.<br />
   <button class="showText" value="show" onclick="showTextPopHide(event);">Spurious Modes - Illustration</button>
   <img src="https://cdn.mathpix.com/snip/images/Pcv0tGJ87LYdEOkXI-4Rx37TW7_-WoaeJUj9xjfSZyU.original.fullsize.png" alt="img" width="100%" hidden="" /><br />
-  - Modes in the distribution that are <strong>far from the data distribution</strong> will <em><strong>not be visited</strong></em> by Markov chains initialized at <em>training points</em>, unless <script type="math/tex">k</script> is very large.</li>
+  - Modes in the distribution that are <strong>far from the data distribution</strong> will <em><strong>not be visited</strong></em> by Markov chains initialized at <em>training points</em>, unless \(k\) is very large.</li>
       <li><strong>CD as a Biased Estimator in RBMs and Boltzmann Machines:</strong><br />
   - <em>Carreira-Perpiñan and Hinton (2005)</em> showed experimentally that the CD estimator is <em><strong>biased</strong></em> for <strong>RBMs</strong> and <strong>fully visible Boltzmann machines</strong>, in that it <em>converges to different points than the maximum likelihood estimator</em>.<br />
   - They argue that because the bias is <em><strong>small</strong></em>, CD could be used as an <span style="color: purple">inexpensive way to initialize a model</span> that could later be fine-tuned via more expensive MCMC methods.
@@ -349,7 +349,7 @@
   This should be thought of more as an often-exploitable <em><strong>side effect</strong></em> of CD training rather than a principled design advantage.</li>
     </ul>
 
-    <p id="lst-p"><strong style="color: red">Stochastic Maximum Likelihood (SML) - Persistent Contrastive Divergence (PCD, PCD-<script type="math/tex">k</script>):</strong><br />
+    <p id="lst-p"><strong style="color: red">Stochastic Maximum Likelihood (SML) - Persistent Contrastive Divergence (PCD, PCD-\(k\)):</strong><br />
  <strong>SML</strong> AKA <strong>PCD</strong> is a method that initializes the Markov Chains, in CD, at each gradient step with their <span style="color: purple">states from the <em><strong>previous</strong></em> gradient step</span>.<br />
  This strategy resolves many of the problems with CD.<br />
  <strong>Idea:</strong></p>
@@ -403,7 +403,7 @@
   All these methods based on using MCMC to draw samples from the model canin principle be used with almost any variant of MCMC. This means that techniques such as SML can be improved by using any of the enhanced MCMC techniques described in chapter 17, such as parallel tempering <em>(Desjardins et al., 2010; Choet al., 2010)</em>.</li>
       <li><strong>Fast PCD (FPCD)</strong>:<br />
   Another approach to accelerating mixing during learning relies not on changing the Monte Carlo sampling technology but rather on changing the parametrization of the model and the cost function.<br />
-  <strong>FPCD</strong> is such a method that involves replacing the parameters <script type="math/tex">\boldsymbol{\theta}</script> of a traditional model with an expression:
+  <strong>FPCD</strong> is such a method that involves replacing the parameters \(\boldsymbol{\theta}\) of a traditional model with an expression:
         <p>$$\boldsymbol{\theta}=\boldsymbol{\theta}^{(\mathrm{slow})}+\boldsymbol{\theta}^{(\mathrm{fast})}$$</p>
         <p><button class="showText" value="show" onclick="showTextPopHide(event);">Discussion</button>
   <img src="https://cdn.mathpix.com/snip/images/LM2-pHOcdnMiHYxNHo5Uee7iwKEy__DYiik76SIhymw.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
@@ -411,10 +411,10 @@
     </ul>
 
     <p><strong style="color: red">Training with Positive Phase Estimators (bound-based, variational methods):</strong><br />
- One key benefit to the MCMC-based methods described in this section is that they provide an estimate of the gradient of <script type="math/tex">\log Z,</script> and thus we can essentially decompose the problem into the <script type="math/tex">\log \tilde{p}</script> contribution and the <script type="math/tex">\log Z</script> contribution.<br />
- We can then use any other method to tackle <script type="math/tex">\log \tilde{p}(\mathbf{x})</script> and just add our negative phase gradient onto the other method’s gradient.<br />
- In particular, this means that our <span style="color: goldenrod">positive phase can make use of methods that provide only a <strong>lower bound on <script type="math/tex">\tilde{p}</script></strong></span>.<br />
- Most of the other methods of dealing with <script type="math/tex">\log Z</script> presented in this chapter are incompatible with bound-based positive phase methods.<br />
+ One key benefit to the MCMC-based methods described in this section is that they provide an estimate of the gradient of \(\log Z,\) and thus we can essentially decompose the problem into the \(\log \tilde{p}\) contribution and the \(\log Z\) contribution.<br />
+ We can then use any other method to tackle \(\log \tilde{p}(\mathbf{x})\) and just add our negative phase gradient onto the other method’s gradient.<br />
+ In particular, this means that our <span style="color: goldenrod">positive phase can make use of methods that provide only a <strong>lower bound on \(\tilde{p}\)</strong></span>.<br />
+ Most of the other methods of dealing with \(\log Z\) presented in this chapter are incompatible with bound-based positive phase methods.<br />
  <br /></p>
   </li>
   <li>
@@ -428,7 +428,7 @@
     <p>$$\frac{p(\mathbf{x})}{p(\mathbf{y})}=\frac{\frac{1}{Z} \tilde{p}(\mathbf{x})}{\frac{1}{Z} \tilde{p}(\mathbf{y})}=\frac{\tilde{p}(\mathbf{x})}{\tilde{p}(\mathbf{y})}$$</p>
 
     <p><strong style="color: red">Pseudolikelihood:</strong><br />
- The <strong>Pseudolikelihood</strong> is an objective function, based on predicting the value of feature <script type="math/tex">x _ {i}</script> given all the other features <script type="math/tex">\boldsymbol{x}_ {-i}</script>:</p>
+ The <strong>Pseudolikelihood</strong> is an objective function, based on predicting the value of feature \(x _ {i}\) given all the other features \(\boldsymbol{x}_ {-i}\):</p>
     <p>$$\sum_{i=1}^{n} \log p\left(x_{i} \vert \boldsymbol{x}_ {-i}\right)$$</p>
 
     <p id="lst-p"><strong>Derivation:</strong></p>
@@ -440,8 +440,8 @@
 
     <p id="lst-p"><strong>Computational Cost:</strong></p>
     <ul>
-      <li>If each random variable has <script type="math/tex">k</script> different values, this requires only <script type="math/tex">k \times n</script> evaluations of <script type="math/tex">\tilde{p}</script> to compute,</li>
-      <li>as opposed to the <script type="math/tex">k^{n}</script> evaluations needed to compute the partition function.</li>
+      <li>If each random variable has \(k\) different values, this requires only \(k \times n\) evaluations of \(\tilde{p}\) to compute,</li>
+      <li>as opposed to the \(k^{n}\) evaluations needed to compute the partition function.</li>
     </ul>
 
     <p><strong>Justification:</strong><br />
@@ -453,26 +453,26 @@
  The GPE objective function:</p>
     <p>$$\sum_{i=1}^{m} \log p\left(\mathbf{x}_{\mathbb{S}^{(i)}} \vert \mathbf{x}_{-\mathbb{S}^{(i)}}\right)$$</p>
     <p id="lst-p"><strong>Complexity-Consistency Tradeoff:</strong><br />
- It uses <script type="math/tex">m</script> different sets <script type="math/tex">\mathbb{S}^{(i)}, i=1, \ldots, m</script> of indices of variables that appear together on the left side of the conditioning bar:</p>
+ It uses \(m\) different sets \(\mathbb{S}^{(i)}, i=1, \ldots, m\) of indices of variables that appear together on the left side of the conditioning bar:</p>
     <ul>
-      <li>In the extreme case of <script type="math/tex">m=1</script> and <script type="math/tex">\mathbb{S}^{(1)}=1, \ldots, n,</script> the generalized pseudolikelihood <span style="color: purple">recovers the log-likelihood</span>.</li>
-      <li>In the extreme case of <script type="math/tex">m=n</script> and <script type="math/tex">\mathbb{S}^{(i)}=\{i\},</script> the generalized pseudolikelihood <span style="color: purple">recovers the pseudolikelihood</span>.</li>
+      <li>In the extreme case of \(m=1\) and \(\mathbb{S}^{(1)}=1, \ldots, n,\) the generalized pseudolikelihood <span style="color: purple">recovers the log-likelihood</span>.</li>
+      <li>In the extreme case of \(m=n\) and \(\mathbb{S}^{(i)}=\{i\},\) the generalized pseudolikelihood <span style="color: purple">recovers the pseudolikelihood</span>.</li>
     </ul>
 
     <p id="lst-p"><strong style="color: red">Performance:</strong><br />
  The performance of pseudolikelihood-based approaches depends largely on how the model will be used:</p>
     <ul>
-      <li>Pseudolikelihood tends to perform poorly on tasks that require a good model of the full joint <script type="math/tex">p(\mathbf{x}),</script> such as density estimation and sampling.</li>
+      <li>Pseudolikelihood tends to perform poorly on tasks that require a good model of the full joint \(p(\mathbf{x}),\) such as density estimation and sampling.</li>
       <li>It can perform better than maximum likelihood for tasks that require only the conditional distributions used during training, such as filling in small amounts of missing values.</li>
-      <li>Generalized pseudolikelihood techniques are especially powerful if the data has regular structure that allows the <script type="math/tex">\mathbb{S}</script> index sets to be designed to capture the most important correlations while leaving out groups of variables that have only negligible correlation.<br />
-  For example, in natural images, pixels that are widely separated in space also have weak correlation, so the generalized pseudolikelihood can be applied with each <script type="math/tex">\mathbb{S}</script> set being a small, spatially localized window.</li>
+      <li>Generalized pseudolikelihood techniques are especially powerful if the data has regular structure that allows the \(\mathbb{S}\) index sets to be designed to capture the most important correlations while leaving out groups of variables that have only negligible correlation.<br />
+  For example, in natural images, pixels that are widely separated in space also have weak correlation, so the generalized pseudolikelihood can be applied with each \(\mathbb{S}\) set being a small, spatially localized window.</li>
     </ul>
 
     <p id="lst-p"><strong style="color: red">Drawbacks - Training with Lower-Bound Maximization Methods:</strong></p>
     <ul>
-      <li>One weakness of the pseudolikelihood estimator is that it cannot be used with other approximations that provide only a lower bound on <script type="math/tex">\tilde{p}(\mathbf{x}),</script> e.g. <strong>variational inference</strong>.
+      <li>One weakness of the pseudolikelihood estimator is that it cannot be used with other approximations that provide only a lower bound on \(\tilde{p}(\mathbf{x}),\) e.g. <strong>variational inference</strong>.
         <ul>
-          <li>This is because <script type="math/tex">\tilde{p}</script> appears in the denominator.<br />
+          <li>This is because \(\tilde{p}\) appears in the denominator.<br />
   A lower bound on the denominator provides only an upper bound on the expression as a whole, and there is no benefit to maximizing an upper bound.<br />
   This makes it difficult to apply pseudolikelihood approaches to deep models such as <strong>deep Boltzmann machines</strong>, since variational methods are one of the dominant approaches to approximately marginalizing out the many layers of hidden variables that interact with each other.</li>
         </ul>
@@ -485,7 +485,7 @@
  But generalized pseudolikelihood and similar criteria can still perform well if only one randomly selected conditional is computed per example <em>(Goodfellow et al., 2013b)</em>, thereby bringing the computational cost down to match that of SML.</p>
 
     <p><strong style="color: red">Relation to the Negative Phase:</strong><br />
- Though the pseudolikelihood estimator does not explicitly minimize <script type="math/tex">\log Z</script>, it can still be thought of as having something resembling a negative phase.<br />
+ Though the pseudolikelihood estimator does not explicitly minimize \(\log Z\), it can still be thought of as having something resembling a negative phase.<br />
  The denominators of each conditional distribution result in the learning algorithm suppressing the probability of all states that have only one variable differing from a training example.</p>
 
     <p><strong style="color: red">Asymptotic Efficiency:</strong><br />
@@ -504,51 +504,51 @@
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Noise-Contrastive Estimation (NCE):</strong><br />
  <strong>Noise-Contrastive Estimation (NCE)</strong> is a method for computing the partition function as a learned parameter in the model; where the probability distribution estimated by the model is represented <strong>explicitly</strong> as:
     <p>$$\log p_{\text {model }}(\mathbf{x})=\log \tilde{p}_ {\text {model}}(\mathbf{x} ; \boldsymbol{\theta})+c$$</p>
-    <p>where <script type="math/tex">c</script> is explicitly introduced as an approximation of <script type="math/tex">-\log Z(\boldsymbol{\theta})</script>.</p>
+    <p>where \(c\) is explicitly introduced as an approximation of \(-\log Z(\boldsymbol{\theta})\).</p>
 
-    <p>Rather than estimating only <script type="math/tex">\boldsymbol{\theta}</script>, the noise contrastive estimation procedure treats <script type="math/tex">c</script> as just another parameter and estimates <script type="math/tex">\boldsymbol{\theta}</script> and <script type="math/tex">c</script> simultaneously, using the same algorithm for both.<br />
- The resulting <script type="math/tex">\log p_{\text {model}}(\mathbf{x})</script> thus may not correspond exactly to a valid probability distribution, but it will become closer and closer to being valid as the estimate of <script type="math/tex">c</script> improves.<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></p>
+    <p>Rather than estimating only \(\boldsymbol{\theta}\), the noise contrastive estimation procedure treats \(c\) as just another parameter and estimates \(\boldsymbol{\theta}\) and \(c\) simultaneously, using the same algorithm for both.<br />
+ The resulting \(\log p_{\text {model}}(\mathbf{x})\) thus may not correspond exactly to a valid probability distribution, but it will become closer and closer to being valid as the estimate of \(c\) improves.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
 
     <p id="lst-p"><strong style="color: red">Derivation:</strong></p>
     <ul>
       <li><strong style="color: red">Problem with Maximum Likelihood Criterion:</strong><br />
   Such an approach would not be possible using maximum likelihood as the criterion for the estimator.<br />
-  The maximum likelihood criterion would choose to set <script type="math/tex">c</script> arbitrarily high, rather than setting <script type="math/tex">c</script> to create a valid probability distribution.</li>
+  The maximum likelihood criterion would choose to set \(c\) arbitrarily high, rather than setting \(c\) to create a valid probability distribution.</li>
       <li>
         <p><strong style="color: red">Solution - New Estimator of the original problem:</strong><br />
-  NCE works by reducing the unsupervised learning problem of estimating <script type="math/tex">p(\mathrm{x})</script> to that of learning a probabilistic binary classifier in which one of the categories corresponds to the data generated by the model.<br />
+  NCE works by reducing the unsupervised learning problem of estimating \(p(\mathrm{x})\) to that of learning a probabilistic binary classifier in which one of the categories corresponds to the data generated by the model.<br />
   This supervised learning problem is constructed in such a way that maximum likelihood estimation defines an <em><strong>asymptotically consistent</strong></em> estimator of the original problem.</p>
 
         <p>Specifically,</p>
         <ol>
           <li><span style="color: goldenrod">Posit two distributions:</span> the <strong>model</strong>, and a <strong>noise distribution</strong>.
             <ul>
-              <li>The <strong style="color: red">Noise Distribution <script type="math/tex">p_{\text{noise}}(\mathbf{x})</script>:</strong><br />
-  We introduce a new distribution <script type="math/tex">p_{\text{noise}}(\mathbf{x})</script> over the noise.<br />
+              <li>The <strong style="color: red">Noise Distribution \(p_{\text{noise}}(\mathbf{x})\):</strong><br />
+  We introduce a new distribution \(p_{\text{noise}}(\mathbf{x})\) over the noise.<br />
   The noise distribution should be <strong>tractable to evaluate and to sample from</strong>.</li>
             </ul>
           </li>
-          <li><span style="color: goldenrod">Construct a new <em><strong>joint model</strong></em> over both <script type="math/tex">\boldsymbol{x}</script> and a <strong><em>binary</em> variable</strong> <script type="math/tex">y</script></span>:
+          <li><span style="color: goldenrod">Construct a new <em><strong>joint model</strong></em> over both \(\boldsymbol{x}\) and a <strong><em>binary</em> variable</strong> \(y\)</span>:
             <ul>
-              <li>We can now construct a model over both <script type="math/tex">\mathbf{x}</script> and a new, binary class variable <script type="math/tex">y</script>. In the new joint model, we specify that<br />
-  (1) <script type="math/tex">p_{\mathrm{joint}}(y=1)=\frac{1}{2}</script><br />
-  (2) <script type="math/tex">p_{\mathrm{joint}}(\mathbf{x} \vert y=1)=p_{\mathrm{model}}(\mathbf{x})</script><br />
-  (3) <script type="math/tex">p_{\mathrm{joint}}(\mathbf{x} \vert y=0)=p_{\mathrm{noise}}(\mathbf{x})</script><br />
-  In other words, <script type="math/tex">y</script> is a <strong>switch variable</strong> that <span style="color: purple">determines whether we will <strong>generate</strong> <script type="math/tex">\mathbf{x}</script> from the <em><strong>model</strong></em> or from the <em><strong>noise distribution</strong></em></span>.</li>
+              <li>We can now construct a model over both \(\mathbf{x}\) and a new, binary class variable \(y\). In the new joint model, we specify that<br />
+  (1) \(p_{\mathrm{joint}}(y=1)=\frac{1}{2}\)<br />
+  (2) \(p_{\mathrm{joint}}(\mathbf{x} \vert y=1)=p_{\mathrm{model}}(\mathbf{x})\)<br />
+  (3) \(p_{\mathrm{joint}}(\mathbf{x} \vert y=0)=p_{\mathrm{noise}}(\mathbf{x})\)<br />
+  In other words, \(y\) is a <strong>switch variable</strong> that <span style="color: purple">determines whether we will <strong>generate</strong> \(\mathbf{x}\) from the <em><strong>model</strong></em> or from the <em><strong>noise distribution</strong></em></span>.</li>
               <li>Equivalently, We can construct a similar <strong>joint model of <em>training data</em></strong>.<br />
   Formally, 
-  (1) <script type="math/tex">p_{\text {train}}(y=1)=\frac{1}{2}</script><br />
-  (2) <script type="math/tex">p_{\text {train}}(\mathbf{x} \vert y=1)=p_{\text {data }}(\mathbf{x}),</script><br />
-  (3) <script type="math/tex">p_{\text {train}}(\mathbf{x} \vert y=0)=p_{\text {noise}}(\mathbf{x})</script><br />
-  In this case, the <strong>switch variable</strong> <span style="color: purple">determines whether we draw <script type="math/tex">\mathbf{x}</script> from the <em><strong>data</strong></em> or from the <em><strong>noise distribution</strong></em></span>.</li>
+  (1) \(p_{\text {train}}(y=1)=\frac{1}{2}\)<br />
+  (2) \(p_{\text {train}}(\mathbf{x} \vert y=1)=p_{\text {data }}(\mathbf{x}),\)<br />
+  (3) \(p_{\text {train}}(\mathbf{x} \vert y=0)=p_{\text {noise}}(\mathbf{x})\)<br />
+  In this case, the <strong>switch variable</strong> <span style="color: purple">determines whether we draw \(\mathbf{x}\) from the <em><strong>data</strong></em> or from the <em><strong>noise distribution</strong></em></span>.</li>
             </ul>
           </li>
-          <li><span style="color: goldenrod">Construct the new supervised Binary Classification Task</span> - <strong>fitting <script type="math/tex">p_{\text {joint}}</script> to <script type="math/tex">p_{\text {train}}</script></strong>:<br />
- We can now just use standard maximum likelihood learning on the supervised learning problem of fitting <script type="math/tex">p_{\text {joint}}</script> to <script type="math/tex">p_{\text {train}}</script>, by swapping <script type="math/tex">p_{\text {model}}</script> with <script type="math/tex">p_{\text {joint}}</script>:
+          <li><span style="color: goldenrod">Construct the new supervised Binary Classification Task</span> - <strong>fitting \(p_{\text {joint}}\) to \(p_{\text {train}}\)</strong>:<br />
+ We can now just use standard maximum likelihood learning on the supervised learning problem of fitting \(p_{\text {joint}}\) to \(p_{\text {train}}\), by swapping \(p_{\text {model}}\) with \(p_{\text {joint}}\):
             <p>$$\boldsymbol{\theta}, c=\underset{\boldsymbol{\theta}, c}{\arg \max } \mathbb{E}_{\mathbf{x}, \mathbf{y} \sim p_{\text {train}}} \log p_{\text {joint}}(y \vert \mathbf{x})$$</p>
             <ul>
-              <li><strong>Expanding <script type="math/tex">p_{\text{joint}}(y \vert x)</script>:</strong><br />
-  The distribution <script type="math/tex">p_{\text{joint}}</script> is essentially a <em><strong>logistic regression</strong></em> model applied to the difference in log probabilities of the model and the noise distribution:
+              <li><strong>Expanding \(p_{\text{joint}}(y \vert x)\):</strong><br />
+  The distribution \(p_{\text{joint}}\) is essentially a <em><strong>logistic regression</strong></em> model applied to the difference in log probabilities of the model and the noise distribution:
                 <p>$$\begin{aligned}  
       p_{\text {joint}}(y=1 \vert \mathbf{x}) &amp;= \frac{p_{\text {model }}(\mathbf{x})}{p_{\text {model }}(\mathbf{x})+p_{\text {noise}}(\mathbf{x})} \\
       &amp;= \frac{1}{1+\frac{p_{\text {noise}}(\mathbf{x})}{p_{\text {model}} (\mathbf{x})}}  \\
@@ -571,12 +571,12 @@
       <li>Given a data point, <span style="color: goldenrod">predict from which distribution this point was generated</span>.</li>
     </ol>
 
-    <p>NCE is thus simple to apply as long as  <script type="math/tex">\log \tilde{p}_{\text {model}}</script> is easy to back-propagate through, and, as specified above, <script type="math/tex">p_{\text {noise}}</script> is easy to evaluate (in order to evaluate <script type="math/tex">p_{\text {joint}}</script> and sample from (to generate the training data).</p>
+    <p>NCE is thus simple to apply as long as  \(\log \tilde{p}_{\text {model}}\) is easy to back-propagate through, and, as specified above, \(p_{\text {noise}}\) is easy to evaluate (in order to evaluate \(p_{\text {joint}}\) and sample from (to generate the training data).</p>
 
     <p id="lst-p"><strong style="color: red">The Noise Distribution:</strong></p>
     <ul>
       <li><strong>Practical Implications and Complexity</strong>:</li>
-      <li><strong>Better Distributions - Parametric <script type="math/tex">p_{\text{noise}}</script></strong>:<br />
+      <li><strong>Better Distributions - Parametric \(p_{\text{noise}}\)</strong>:<br />
   The noise distribution is generally <strong>non-parametric</strong>.<br />
   However, there is nothing stopping us from evolving this distribution and giving it trainable parameters, then updating these parameters such that it generates increasingly <strong>“optimal”</strong> samples.
         <ul>
@@ -597,24 +597,24 @@
   When NCE is applied to problems with many random variables, it becomes <strong>less efficient</strong>.
         <ul>
           <li>The logistic regression classifier can reject a noise sample by identifying any one variable whose value is unlikely.<br />
-  This means that learning slows down greatly after <script type="math/tex">p_{\text {model}}</script> has learned the basic marginal statistics.</li>
-          <li>Imagine learning a model of images of faces, using unstructured Gaussian noise as <script type="math/tex">p_{\text {noise}}</script>.<br />
-  If <script type="math/tex">p_{\text {model }}</script> learns about eyes, it can reject almost all unstructured noise samples without having learned anything about other facial features, such as mouths.</li>
+  This means that learning slows down greatly after \(p_{\text {model}}\) has learned the basic marginal statistics.</li>
+          <li>Imagine learning a model of images of faces, using unstructured Gaussian noise as \(p_{\text {noise}}\).<br />
+  If \(p_{\text {model }}\) learns about eyes, it can reject almost all unstructured noise samples without having learned anything about other facial features, such as mouths.</li>
         </ul>
       </li>
       <li><strong>Noise Distribution Complexity</strong>:<br />
-  The constraint that <script type="math/tex">p_{\text {noise}}</script> must be easy to evaluate and easy to sample from can be overly restrictive:
+  The constraint that \(p_{\text {noise}}\) must be easy to evaluate and easy to sample from can be overly restrictive:
         <ul>
           <li>For our <strong>training data</strong>, we <span style="color: purple">require the ability to sample from our noise distribution.</span>.</li>
           <li>For our <strong>target</strong>, we <span style="color: purple">require the ability to compute the likelihood of some data under our noise distribution</span>.</li>
         </ul>
 
-        <p>When <script type="math/tex">p_{\text {noise}}</script> is simple, most samples are likely to be too obviously distinct from the data to force <script type="math/tex">p_{\text {model}}</script> to improve noticeably.</p>
+        <p>When \(p_{\text {noise}}\) is simple, most samples are likely to be too obviously distinct from the data to force \(p_{\text {model}}\) to improve noticeably.</p>
       </li>
       <li><strong>Training with Lower-Bound Maximizing Methods</strong>:<br />
-  NCE does not work if only a lower bound on <script type="math/tex">\tilde{p}</script> is available.<br />
-  Such a lower bound could be used to construct a lower bound on <script type="math/tex">p_{\text {joint}}(y=1 \vert \mathbf{x}),</script> but it can only be used to construct an upper bound on <script type="math/tex">p_{\text {joint}}(y=0 \vert \mathbf{x}),</script> which appears in half the terms of the NCE objective.<br />
-  Likewise, a lower bound on <script type="math/tex">p_{\text {noise}}</script> is not useful, because it provides only an upper bound on <script type="math/tex">p_{\text {joint}}(y=1 \vert \mathbf{x})</script>.</li>
+  NCE does not work if only a lower bound on \(\tilde{p}\) is available.<br />
+  Such a lower bound could be used to construct a lower bound on \(p_{\text {joint}}(y=1 \vert \mathbf{x}),\) but it can only be used to construct an upper bound on \(p_{\text {joint}}(y=0 \vert \mathbf{x}),\) which appears in half the terms of the NCE objective.<br />
+  Likewise, a lower bound on \(p_{\text {noise}}\) is not useful, because it provides only an upper bound on \(p_{\text {joint}}(y=1 \vert \mathbf{x})\).</li>
     </ul>
 
     <p id="lst-p"><strong style="color: red">Self-Contrastive Estimation:</strong><br />
@@ -639,29 +639,29 @@
  This idea yields generative adversarial networks.</p>
 
     <p><strong style="color: red">Self-Normalization:</strong><br />
- <em>Mnih and Teh (2012)</em> and <em>Vaswani et al. (2013)</em> fix <script type="math/tex">c = 1</script>.<br />
+ <em>Mnih and Teh (2012)</em> and <em>Vaswani et al. (2013)</em> fix \(c = 1\).<br />
  They report does not affect the model’s performance.<br />
- This assumption has the nice side-effect of <strong>reducing the model’s parameters</strong>, while ensuring that the model <em><strong>self-normalises</strong></em> by not depending on the explicit normalisation in <script type="math/tex">c</script>.<br />
- Indeed, <em>Zoph et al. (2016)</em> find that even when learned, <script type="math/tex">c</script> is close to <script type="math/tex">1</script> and has low variance.<br />
+ This assumption has the nice side-effect of <strong>reducing the model’s parameters</strong>, while ensuring that the model <em><strong>self-normalises</strong></em> by not depending on the explicit normalisation in \(c\).<br />
+ Indeed, <em>Zoph et al. (2016)</em> find that even when learned, \(c\) is close to \(1\) and has low variance.<br />
  <br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Negative Sampling:</strong><br />
  <strong>Negative Sampling (NEG)</strong> can be seen as an approximation to <strong>NCE</strong>.<br />
- As we have mentioned above, NCE can be shown to approximate the loss of <script type="math/tex">\log p_{\text{model}}</script> as the number of samples <script type="math/tex">k</script> increase.<br />
+ As we have mentioned above, NCE can be shown to approximate the loss of \(\log p_{\text{model}}\) as the number of samples \(k\) increase.<br />
  NEG simplifies NCE and does away with this guarantee, as the objective of NEG is to learn high-quality word representations rather than achieving low perplexity on a test set, as is the goal in language modeling.</p>
 
     <p id="lst-p">The key difference to NCE is that NEG only approximates this probability by making it as easy to compute as possible.<br />
  It simplifies NCE as follows:</p>
     <ol>
       <li>Considers noise distributions whose likelihood we cannot evaluate</li>
-      <li>To accommodate, it simply set the most expensive term <script type="math/tex">p_{\text {noise}}(x)=1</script><br />
- Equivalently, <script type="math/tex">k\:p_{\text {noise}}(x)=1</script>
+      <li>To accommodate, it simply set the most expensive term \(p_{\text {noise}}(x)=1\)<br />
+ Equivalently, \(k\:p_{\text {noise}}(x)=1\)
         <ul>
           <li><button class="showText" value="show" onclick="showTextPopHide(event);">Derivation - Discrete Variables</button>
             <ul hidden="">
-              <li>Thus, <strong>Expanding <script type="math/tex">p_{\text{joint}}(y \vert x)</script>:</strong><br />
-  The distribution <script type="math/tex">p_{\text{joint}}</script> is essentially a <em><strong>logistic regression</strong></em> model applied to the difference in log probabilities of the model and the noise distribution:
+              <li>Thus, <strong>Expanding \(p_{\text{joint}}(y \vert x)\):</strong><br />
+  The distribution \(p_{\text{joint}}\) is essentially a <em><strong>logistic regression</strong></em> model applied to the difference in log probabilities of the model and the noise distribution:
                 <p>$$\begin{aligned}  
       p_{\text {joint}}(y=1 \vert \mathbf{x}) &amp;= \frac{p_{\text {model }}(\mathbf{x})}{p_{\text {model }}(\mathbf{x})+p_{\text {noise}}(\mathbf{x})} \\
       &amp;= \frac{1}{1+\frac{p_{\text {noise}}(\mathbf{x})}{p_{\text {model}} (\mathbf{x})}}  \\
@@ -679,16 +679,16 @@
 
     <p id="lst-p"><strong style="color: red">Equivalence with NCE:</strong></p>
     <ul>
-      <li><script type="math/tex">k p_{\text {noise}}=1</script> is exactly then true, when (discrete):
+      <li>\(k p_{\text {noise}}=1\) is exactly then true, when (discrete):
         <ol>
-          <li><script type="math/tex">k=\vert X\vert</script> and</li>
-          <li><script type="math/tex">p_{\text {noise}}</script> is a <strong><em>uniform</em> distribution</strong>.</li>
+          <li>\(k=\vert X\vert\) and</li>
+          <li>\(p_{\text {noise}}\) is a <strong><em>uniform</em> distribution</strong>.</li>
         </ol>
 
         <p>In this case, NEG is equivalent to NCE.</p>
       </li>
-      <li>The reason we set <script type="math/tex">k p_{\text {noise}}=1</script> and not to some other constant can be seen by rewriting the equation, as <script type="math/tex">P(y=1 \vert  \mathbf{x})</script> can simplify the sigmoid function.</li>
-      <li>In all other cases, NEG only approximates NCE, which means that it will <span style="color: purple">not directly optimize the likelihood <script type="math/tex">\log p_{\text {model}}(\mathbf{x})</script></span>.</li>
+      <li>The reason we set \(k p_{\text {noise}}=1\) and not to some other constant can be seen by rewriting the equation, as \(P(y=1 \vert  \mathbf{x})\) can simplify the sigmoid function.</li>
+      <li>In all other cases, NEG only approximates NCE, which means that it will <span style="color: purple">not directly optimize the likelihood \(\log p_{\text {model}}(\mathbf{x})\)</span>.</li>
       <li><strong>Asymptotic Consistency:</strong><br />
   Since NEG only approximates NCE, it lacks any asymptotic consistency guarantees.</li>
     </ul>
@@ -700,12 +700,12 @@
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents19">Self-Normalization:</strong><br />
  Remember from NCE that we decomposed the log likelihood of the model as:
     <p>$$\log p_{\text {model }}(\mathbf{x})=\log \tilde{p}_ {\text {model}}(\mathbf{x} ; \boldsymbol{\theta})+c$$</p>
-    <p>where <script type="math/tex">c</script> is explicitly introduced as an approximation of <script type="math/tex">-\log Z(\boldsymbol{\theta})</script>.</p>
+    <p>where \(c\) is explicitly introduced as an approximation of \(-\log Z(\boldsymbol{\theta})\).</p>
 
-    <p>If we are able to constrain our model so that it sets <script type="math/tex">c=0</script> (i.e. <script type="math/tex">e^c = 1</script>), then we can avoid computing the normalization in <script type="math/tex">c</script> altogether.<br />
- <em>Devlin et al. (2014)</em> thus propose to add a <strong>squared error penalty</strong> term to the loss function that encourages the model to <span style="color: purple">keep <script type="math/tex">c</script> as close as possible to <script type="math/tex">0</script></span>:</p>
+    <p>If we are able to constrain our model so that it sets \(c=0\) (i.e. \(e^c = 1\)), then we can avoid computing the normalization in \(c\) altogether.<br />
+ <em>Devlin et al. (2014)</em> thus propose to add a <strong>squared error penalty</strong> term to the loss function that encourages the model to <span style="color: purple">keep \(c\) as close as possible to \(0\)</span>:</p>
     <p>$$\tilde{J} = J + \lambda (c-0)^{2}$$</p>
-    <p>where <script type="math/tex">\lambda</script> allows us to trade-off between model accuracy and mean self-normalisation.</p>
+    <p>where \(\lambda\) allows us to trade-off between model accuracy and mean self-normalisation.</p>
 
     <p>At inference time, we set</p>
     <p>$$p_{\text {model }}(\mathbf{x})=\dfrac{\tilde{p}_ {\text {model}}(\mathbf{x} ; \boldsymbol{\theta})}{Z(\boldsymbol{\theta})} \approx \dfrac{\tilde{p}_ {\text {model}}(\mathbf{x} ; \boldsymbol{\theta})}{1} = \tilde{p}_ {\text {model}}(\mathbf{x} ; \boldsymbol{\theta})$$</p>
@@ -759,23 +759,23 @@
   </li>
 </ol>
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p>NCE is also applicable to problems with a tractable partition function, where there is no need to introduce the extra parameter <script type="math/tex">c</script>. However, it has generated the most interest as a means of estimating models with difficult partition functions. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p>NCE is also applicable to problems with a tractable partition function, where there is no need to introduce the extra parameter \(c\). However, it has generated the most interest as a means of estimating models with difficult partition functions. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

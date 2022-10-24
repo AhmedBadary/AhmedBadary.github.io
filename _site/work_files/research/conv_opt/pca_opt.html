@@ -95,7 +95,7 @@
   <li>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Goal?</strong></dt>
-      <dd>Given points <script type="math/tex">\in \mathbf{R}^d</script>, find k-directions that capture most of the variation.</dd>
+      <dd>Given points \(\in \mathbf{R}^d\), find k-directions that capture most of the variation.</dd>
     </dl>
   </li>
   <li>
@@ -121,19 +121,19 @@ They are linear combinations of input features.</p>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Finding Principle Components:</strong> <br />
     <ul>
-      <li>Let ‘<script type="math/tex">X</script>’ be an <script type="math/tex">(n \times d)</script> design matrix, centered, with mean <script type="math/tex">\hat{x} = 0</script>.</li>
-      <li>Let ‘<script type="math/tex">w</script>’ be a unit vector.</li>
-      <li>The <em>Orthogonal Projection</em> of the point ‘<script type="math/tex">x</script>’ onto ‘<script type="math/tex">w</script>’ is <script type="math/tex">\tilde{x} = (x.w)w</script>.
+      <li>Let ‘\(X\)’ be an \((n \times d)\) design matrix, centered, with mean \(\hat{x} = 0\).</li>
+      <li>Let ‘\(w\)’ be a unit vector.</li>
+      <li>The <em>Orthogonal Projection</em> of the point ‘\(x\)’ onto ‘\(w\)’ is \(\tilde{x} = (x.w)w\).
         <blockquote>
-          <p>Or <script type="math/tex">\tilde{x} = \dfrac{x.w}{\|w\|_2^2}w</script>, if <script type="math/tex">w</script> is not a unit vector.</p>
+          <p>Or \(\tilde{x} = \dfrac{x.w}{\|w\|_2^2}w\), if \(w\) is not a unit vector.</p>
         </blockquote>
       </li>
-      <li>Let ‘<script type="math/tex">X^TX</script>’ be the <em>sample covariance matrix</em>,<br />
-  <script type="math/tex">0 \leq \lambda_1 \leq \lambda_2 \leq \cdots \leq \lambda_d</script> be its eigenvalues  and let <script type="math/tex">v_1, v_2, \cdots, v_d</script> be the corresponding <em>Orthogonal Unit Eigen-vectors</em>.</li>
+      <li>Let ‘\(X^TX\)’ be the <em>sample covariance matrix</em>,<br />
+  \(0 \leq \lambda_1 \leq \lambda_2 \leq \cdots \leq \lambda_d\) be its eigenvalues  and let \(v_1, v_2, \cdots, v_d\) be the corresponding <em>Orthogonal Unit Eigen-vectors</em>.</li>
       <li>
-        <p>Given <em>Orthonormal directions (vectors)</em> <script type="math/tex">v_1, v_2, \ldots, v_k</script>, we can write:</p>
+        <p>Given <em>Orthonormal directions (vectors)</em> \(v_1, v_2, \ldots, v_k\), we can write:</p>
 
-        <script type="math/tex; mode=display">\tilde{x} = \sum_{i=1}^k (x.v_i)v_i.</script>
+\[\tilde{x} = \sum_{i=1}^k (x.v_i)v_i.\]
       </li>
     </ul>
 
@@ -150,7 +150,7 @@ They are linear combinations of input features.</p>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\mathbf{Tr} \Sigma = \mathbf{Tr} (U \Lambda U^T) = \mathbf{Tr} (U^T U \Lambda) = \mathbf{Tr} \Lambda = \lambda_1 + \ldots + \lambda_n.</script>
+\[\mathbf{Tr} \Sigma = \mathbf{Tr} (U \Lambda U^T) = \mathbf{Tr} (U^T U \Lambda) = \mathbf{Tr} \Lambda = \lambda_1 + \ldots + \lambda_n.\]
       </dd>
       <dd>
         <ul>
@@ -158,7 +158,7 @@ They are linear combinations of input features.</p>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\mathbf{Tr} (P \Sigma P^T ) = \lambda_1 + \lambda_2 + \cdots + \lambda_k.</script>
+\[\mathbf{Tr} (P \Sigma P^T ) = \lambda_1 + \lambda_2 + \cdots + \lambda_k.\]
       </dd>
       <dd>
         <ul>
@@ -170,7 +170,7 @@ They are linear combinations of input features.</p>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\dfrac{\lambda_1 + \ldots + \lambda_k}{\lambda_1 + \ldots + \lambda_n}.</script>
+\[\dfrac{\lambda_1 + \ldots + \lambda_k}{\lambda_1 + \ldots + \lambda_n}.\]
       </dd>
       <dd>
         <blockquote>
@@ -191,27 +191,27 @@ They are linear combinations of input features.</p>
       <li>Fit a Gaussian to data with MLE</li>
       <li>Choose k Gaussian axes of greatest variance.
         <blockquote>
-          <p>Notice: MLE estimates a <em>covariance matrix</em>; <script type="math/tex">\hat{\Sigma} = \dfrac{1}{n}X^TX</script>.</p>
+          <p>Notice: MLE estimates a <em>covariance matrix</em>; \(\hat{\Sigma} = \dfrac{1}{n}X^TX\).</p>
         </blockquote>
       </li>
     </ol>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">Algorithm:</strong> <br />
     <ol>
-      <li>Center <script type="math/tex">X</script></li>
-      <li>Normalize <script type="math/tex">X</script>.
+      <li>Center \(X\)</li>
+      <li>Normalize \(X\).
         <blockquote>
           <p>Optional. Should only be done if the units of measurement of the features differ.</p>
         </blockquote>
       </li>
-      <li>Compute the unit Eigen-values and Eigen-vectors of <script type="math/tex">X^TX</script></li>
-      <li>Choose ‘<script type="math/tex">k</script>’ based on the Eigenvalue sizes
+      <li>Compute the unit Eigen-values and Eigen-vectors of \(X^TX\)</li>
+      <li>Choose ‘\(k\)’ based on the Eigenvalue sizes
         <blockquote>
           <p>Optional. Top to bottom.</p>
         </blockquote>
       </li>
-      <li>For the best k-dim subspace, pick Eigenvectors <script type="math/tex">v_{d-k+1}, \cdots, v_d</script>.</li>
-      <li>Compute the coordinates ‘<script type="math/tex">x.v_i</script>’ of the trainning/test data in PC-Space.</li>
+      <li>For the best k-dim subspace, pick Eigenvectors \(v_{d-k+1}, \cdots, v_d\).</li>
+      <li>Compute the coordinates ‘\(x.v_i\)’ of the trainning/test data in PC-Space.</li>
     </ol>
   </li>
 </ol>
@@ -223,7 +223,7 @@ They are linear combinations of input features.</p>
 <ol>
   <li><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">What?</strong> <br />
     <ol>
-      <li>Find a direction ‘<script type="math/tex">w</script>’ that maximizes the variance of the projected data.</li>
+      <li>Find a direction ‘\(w\)’ that maximizes the variance of the projected data.</li>
       <li>Maximize the variance</li>
     </ol>
   </li>
@@ -231,40 +231,38 @@ They are linear combinations of input features.</p>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents32">Derivation:</strong></dt>
       <dd>
-        <script type="math/tex; mode=display">\max_{w : \|w\|_2=1} \: Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\})</script>
+\[\max_{w : \|w\|_2=1} \: Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\})\]
       </dd>
       <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-\begin{align}
-& \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \sum_{i=1}{n}(x_i.\dfrac{w}{\|w\|})^2 \\
-& \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \dfrac{\|xw\|^2}{\|w\|^2} \\
-& \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \dfrac{w^TX^TXw}{w^Tw}
-\end{align} %]]></script>
+\[\begin{align}
+&amp; \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \sum_{i=1}{n}(x_i.\dfrac{w}{\|w\|})^2 \\
+&amp; \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \dfrac{\|xw\|^2}{\|w\|^2} \\
+&amp; \ = \max_{w : \|w\|_2=1}  \dfrac{1}{n} \dfrac{w^TX^TXw}{w^Tw}
+\end{align}\]
       </dd>
-      <dd>Where <script type="math/tex">\dfrac{1}{n}\dfrac{w^TX^TXw}{w^Tw}</script> is the <strong><em>Rayleigh Quotient</em></strong>.</dd>
-      <dd>For any Eigen-vector <script type="math/tex">v_i</script>, the <em>Rayleigh Quotient</em> is <script type="math/tex">= \lambda_i</script>.</dd>
-      <dd><script type="math/tex">\implies</script> the vector <script type="math/tex">v_d</script> with the largest <script type="math/tex">\lambda_d</script>, achieves the maximum variance: <script type="math/tex">\dfrac{\lambda_d}{n}.</script></dd>
+      <dd>Where \(\dfrac{1}{n}\dfrac{w^TX^TXw}{w^Tw}\) is the <strong><em>Rayleigh Quotient</em></strong>.</dd>
+      <dd>For any Eigen-vector \(v_i\), the <em>Rayleigh Quotient</em> is \(= \lambda_i\).</dd>
+      <dd>\(\implies\) the vector \(v_d\) with the largest \(\lambda_d\), achieves the maximum variance: \(\dfrac{\lambda_d}{n}.\)</dd>
       <dd>Thus, the maximum of the <em>Rayleigh Quotient</em> is achieved at the Eigen-vector that has the highest correpsonding Eigen-value.</dd>
-      <dd>We find subsequent vectors by finding the next biggest <script type="math/tex">\lambda_i</script> and choosing its corresponding Eigen-vector.</dd>
+      <dd>We find subsequent vectors by finding the next biggest \(\lambda_i\) and choosing its corresponding Eigen-vector.</dd>
     </dl>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents33">Another Derivation from Statistics:</strong></dt>
-      <dd>The data matrix has points <script type="math/tex">x_i</script>; its component along a proposed axis <script type="math/tex">u</script> is <script type="math/tex">(x · u)</script>.</dd>
-      <dd>The variance of this is <script type="math/tex">E(x · u − E(x · u))^2</script></dd>
+      <dd>The data matrix has points \(x_i\); its component along a proposed axis \(u\) is \((x · u)\).</dd>
+      <dd>The variance of this is \(E(x · u − E(x · u))^2\)</dd>
       <dd>and the optimization problem is</dd>
       <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-\begin{align}
-\max_{x : \|x\|_2=1} \: E(x · u − E(x · u))^2 & \\
-& \ = \max_{u : \|u\|_2=1} \:  E[(u \cdot (x − Ex))^2] \\
-& \ = \max_{u : \|u\|_2=1} \:  uE[(x − Ex) \cdot (x − Ex)^T]u \\
-& \ = \max_{u : \|u\|_2=1} \:  u^T \Sigma u
-\end{align} %]]></script>
+\[\begin{align}
+\max_{x : \|x\|_2=1} \: E(x · u − E(x · u))^2 &amp; \\
+&amp; \ = \max_{u : \|u\|_2=1} \:  E[(u \cdot (x − Ex))^2] \\
+&amp; \ = \max_{u : \|u\|_2=1} \:  uE[(x − Ex) \cdot (x − Ex)^T]u \\
+&amp; \ = \max_{u : \|u\|_2=1} \:  u^T \Sigma u
+\end{align}\]
       </dd>
-      <dd>where the matrix <script type="math/tex">{\displaystyle \Sigma \:= \dfrac{1}{n} \sum_{j=1}^n (x_j-\hat{x})(x_j-\hat{x})^T}.</script></dd>
-      <dd>Since <script type="math/tex">\Sigma</script> is symmetric, the <script type="math/tex">u</script> that gives the maximum value to <script type="math/tex">u^T\Sigma u</script> is the eigenvector of <script type="math/tex">\Sigma</script> with the largest eigenvalue.</dd>
+      <dd>where the matrix \({\displaystyle \Sigma \:= \dfrac{1}{n} \sum_{j=1}^n (x_j-\hat{x})(x_j-\hat{x})^T}.\)</dd>
+      <dd>Since \(\Sigma\) is symmetric, the \(u\) that gives the maximum value to \(u^T\Sigma u\) is the eigenvector of \(\Sigma\) with the largest eigenvalue.</dd>
       <dd>The second and subsequent principal component axes are the other eigenvectors sorted by eigenvalue.</dd>
     </dl>
   </li>
@@ -277,22 +275,21 @@ They are linear combinations of input features.</p>
 <ol>
   <li><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents41">What?</strong> <br />
     <ol>
-      <li>Find direction ‘<script type="math/tex">w</script>’ that minimizes the <em>Projection Error</em>.</li>
+      <li>Find direction ‘\(w\)’ that minimizes the <em>Projection Error</em>.</li>
     </ol>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents4" id="bodyContents42">Derivation:</strong></dt>
       <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-\begin{align}
-\min_{\tilde{x} : \|\tilde{x}\|_2 = 1} \; \sum_{i=1}^n \|x_i - \tilde{x_i}\|^2 & \\
-& \ = \min_{w : \|w\|_2 = 1} \; \sum_{i=1}^n \|x_i -\dfrac{x_i \cdot w}{\|w\|_2^2}w\|^2 \\
-& \ = \min_{w : \|w\|_2 = 1} \; \sum_{i=1}^n \left[\|x_i\|^2 - (x_i \cdot \dfrac{w}{\|w\|_2})^2\right] \\
-& \ = \min_{w : \|w\|_2 = 1} \; c - n*\sum_{i=1}^n(x_i \cdot \dfrac{w}{\|w\|_2})^2 \\
-& \ = \min_{w : \|w\|_2 = 1} \; c - n*Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\}) \\
-& \ = \max_{w : \|w\|_2 = 1} \; Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\})
-\end{align} %]]></script>
+\[\begin{align}
+\min_{\tilde{x} : \|\tilde{x}\|_2 = 1} \; \sum_{i=1}^n \|x_i - \tilde{x_i}\|^2 &amp; \\
+&amp; \ = \min_{w : \|w\|_2 = 1} \; \sum_{i=1}^n \|x_i -\dfrac{x_i \cdot w}{\|w\|_2^2}w\|^2 \\
+&amp; \ = \min_{w : \|w\|_2 = 1} \; \sum_{i=1}^n \left[\|x_i\|^2 - (x_i \cdot \dfrac{w}{\|w\|_2})^2\right] \\
+&amp; \ = \min_{w : \|w\|_2 = 1} \; c - n*\sum_{i=1}^n(x_i \cdot \dfrac{w}{\|w\|_2})^2 \\
+&amp; \ = \min_{w : \|w\|_2 = 1} \; c - n*Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\}) \\
+&amp; \ = \max_{w : \|w\|_2 = 1} \; Var(\left\{\tilde{x_1}, \tilde{x_2}, \cdots, \tilde{x_n} \right\})
+\end{align}\]
       </dd>
       <dd>Thus, minimizing projection error is equivalent to maximizing variance.</dd>
     </dl>
@@ -301,13 +298,13 @@ They are linear combinations of input features.</p>
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

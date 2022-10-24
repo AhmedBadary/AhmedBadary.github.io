@@ -14,14 +14,26 @@ prevLink: /work_files/research/ml.html
   {: .TOC2}
   * [Logistic Regression](#content3)
   {: .TOC3}
-  * [](#content4)
-  {: .TOC4}
+  <!-- * [](#content4)
+  {: .TOC4} -->
 </div>
 
 ***
 ***
 
+
+* [Andrew NG Linear Regression](https://www.youtube.com/playlist?list=PLJs7lEb1U5pYnrI0Wn4mzPmppVqwERL_4)  
+* [Abu Mostafa Linear Regression](https://www.youtube.com/watch?v=FIbVs5GbBlQ&list=PLD63A284B7615313A&index=6&t=1300s)  
+
+
+***
+
+
+
 [Generalized Linear Models and Exponential Family Distributions (Blog!)](http://willwolf.io/2017/05/18/minimizing_the_negative_log_likelihood_in_english/)  
+[Logistic regression as a neural network (Blog!)](https://www.datasciencecentral.com/profiles/blogs/logistic-regression-as-a-neural-network)  
+
+[A very simple demo of interactive controls on Jupyter notebook - Interactive Linear Regression (Article+Code)](https://towardsdatascience.com/a-very-simple-demo-of-interactive-controls-on-jupyter-notebook-4429cf46aabd)  
 
 
 * __Least-Squares Linear Regression__:  
@@ -50,6 +62,9 @@ prevLink: /work_files/research/ml.html
 ## Linear Regression
 {: #content2}
 
+* [Linear Regression as a Statistical Model](/work_files/research/theory/models#bodyContents111)  
+
+
 
 Assume that the target distribution is a sum of a deterministic function $$f(x; \theta)$$ and a normally distributed error $$\epsilon \sim \mathcal{N}\left(0, \sigma^{2}\right)$$:  
 <p>$$y = f(x; \theta) + \epsilon$$</p>  
@@ -70,9 +85,9 @@ Then we just want to obtain the max likelihood estimation:
 <p>$$\begin{aligned} p(Y \vert X, w) &=\prod_{i=1}^{n} p\left(y_{i} \vert x_{i}, w\right) \\ \log p(\cdot) &=\sum_{i}-\log \left(2 \pi \sigma^{2}\right)-\frac{1}{2 \sigma^{2}}\left(y_{i}-w^{\top} x_{i}\right)^{2} \end{aligned}$$</p>  
 
 
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}
+<!-- 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}
 
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22} -->
 
 <!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}
 
@@ -108,3 +123,27 @@ __Notes:__{: style="color: red"}
 
 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}
  -->
+
+
+LR, MINIMIZING the ERROR FUNCTION (DERIVATION):
+
+![img](https://cdn.mathpix.com/snip/images/FxOcuLio3ZJgakqUosa6gzlwSedcQ9f0u1r1EWwX61Y.original.fullsize.png){: width="80%"}  
+
+
+Linear Classification and Regression, and Non-Linear Transformations:
+
+![img](https://cdn.mathpix.com/snip/images/BNtlfHRKlr1T4xhU-_Kdb7cJWcAhXkdnay_GXrPhQqY.original.fullsize.png){: width="80%"}  
+
+
+A Third Linear Model - __Logistic Regression__: 
+![img](https://cdn.mathpix.com/snip/images/BHidkun9EmJYfsSSUAT1m60k6ZGI1Xy-32kU8CGQzx4.original.fullsize.png){: width="80%"}  
+
+
+Logistic Regression Algorithm:  
+![img](https://cdn.mathpix.com/snip/images/9qmfgWQSodRPyG71IMYwASp7hThtrd0mMpyc8qAvORg.original.fullsize.png){: width="80%"}  
+
+
+
+Summary of Linear Models:
+
+![img](https://cdn.mathpix.com/snip/images/sbDrR-d0nh2UeqYtiToJomw5UBsTjFa6DufsFpkUhR8.original.fullsize.png){: width="80%"}  

@@ -25,6 +25,8 @@ prevLink: /work_files/research/dl/theory.html
 ***
 ***
 
+* [My Presentation on Representation Learning](https://docs.google.com/presentation/d/1asNbolA4VgTdhp7x84hfj5-GB2M8yApJylc01WhiOo0/edit#slide=id.gc7d6ca60f0_0_0)  
+
 
 * [From Deep Learning of Disentangled Representations to Higher-level Cognition (Bengio Lec)](https://www.youtube.com/watch?v=Yr1mOzC93xs)  
 * [Representation Learning (CMU Lec!)](https://www.youtube.com/watch?v=754vWvIimPo)  
@@ -124,7 +126,7 @@ __Notes (Move Inside):__{: style="color: red"}
 
 
 
-    <button>__Representation Quality__</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    <button>__Representation Quality__</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
     * <span>__“What is a *good* representation?”__</span>{: style="color: purple"}   
         * Generally speaking, a __good representation__ is one that makes a subsequent learning task easier.  
             The choice of representation will usually depend on the choice of the subsequent learning task.  

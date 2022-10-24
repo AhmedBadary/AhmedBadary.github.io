@@ -75,21 +75,30 @@
   <ul class="TOC3">
     <li><a href="#content3">Logistic Regression</a></li>
   </ul>
-  <ul class="TOC4">
-    <li><a href="#content4"></a></li>
-  </ul>
+  <p><!-- * [](#content4)
+  {: .TOC4} --></p>
 </div>
 
 <hr />
 <hr />
 
-<p><a href="http://willwolf.io/2017/05/18/minimizing_the_negative_log_likelihood_in_english/">Generalized Linear Models and Exponential Family Distributions (Blog!)</a></p>
+<ul>
+  <li><a href="https://www.youtube.com/playlist?list=PLJs7lEb1U5pYnrI0Wn4mzPmppVqwERL_4">Andrew NG Linear Regression</a></li>
+  <li><a href="https://www.youtube.com/watch?v=FIbVs5GbBlQ&amp;list=PLD63A284B7615313A&amp;index=6&amp;t=1300s">Abu Mostafa Linear Regression</a></li>
+</ul>
+
+<hr />
+
+<p><a href="http://willwolf.io/2017/05/18/minimizing_the_negative_log_likelihood_in_english/">Generalized Linear Models and Exponential Family Distributions (Blog!)</a><br />
+<a href="https://www.datasciencecentral.com/profiles/blogs/logistic-regression-as-a-neural-network">Logistic regression as a neural network (Blog!)</a></p>
+
+<p><a href="https://towardsdatascience.com/a-very-simple-demo-of-interactive-controls-on-jupyter-notebook-4429cf46aabd">A very simple demo of interactive controls on Jupyter notebook - Interactive Linear Regression (Article+Code)</a></p>
 
 <ul>
   <li><strong>Least-Squares Linear Regression</strong>:<br />
   MLE + Noise Normally Distributed + Conditional Probability Normally Distributed</li>
   <li><strong>Logistic Regression</strong>:<br />
-  MLE + Noise <script type="math/tex">\sim</script> Logistic Distribution (latent) + Conditional Probability <script type="math/tex">\sim</script> Bernoulli Distributed</li>
+  MLE + Noise \(\sim\) Logistic Distribution (latent) + Conditional Probability \(\sim\) Bernoulli Distributed</li>
   <li><strong>Ridge Regression</strong>: 
   MAP + Noise Normally Distributed + Conditional Probability Normally Distributed + Weight Prior Normally Distributed</li>
 </ul>
@@ -109,10 +118,14 @@
 
 <h2 id="content2">Linear Regression</h2>
 
-<p>Assume that the target distribution is a sum of a deterministic function <script type="math/tex">f(x; \theta)</script> and a normally distributed error <script type="math/tex">\epsilon \sim \mathcal{N}\left(0, \sigma^{2}\right)</script>:</p>
+<ul>
+  <li><a href="/work_files/research/theory/models#bodyContents111">Linear Regression as a Statistical Model</a></li>
+</ul>
+
+<p>Assume that the target distribution is a sum of a deterministic function \(f(x; \theta)\) and a normally distributed error \(\epsilon \sim \mathcal{N}\left(0, \sigma^{2}\right)\):</p>
 <p>$$y = f(x; \theta) + \epsilon$$</p>
-<p>Thus, <script type="math/tex">y \sim \mathcal{N}\left(f(x; \theta), \sigma^{2}\right)</script>, and (we assume) there is a distribution <script type="math/tex">p(y\vert x)</script> where <script type="math/tex">y \sim \mathcal{N}\left(f(x; \theta), \sigma^{2}\right)</script>.<br />
-- Notice that, <script type="math/tex">\epsilon = y - \hat{y} \implies</script></p>
+<p>Thus, \(y \sim \mathcal{N}\left(f(x; \theta), \sigma^{2}\right)\), and (we assume) there is a distribution \(p(y\vert x)\) where \(y \sim \mathcal{N}\left(f(x; \theta), \sigma^{2}\right)\).<br />
+- Notice that, \(\epsilon = y - \hat{y} \implies\)</p>
 <p>$$\begin{align} 
     \epsilon &amp;\sim \mathcal{N}\left(0, \sigma^{2}\right) \\
             &amp;\sim \frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{\left(\epsilon\right)^{2}}{2 \sigma^{2}}} \\
@@ -120,23 +133,18 @@
     \end{align}$$</p>
 
 <p>In LR, the equivalent is:<br />
-We assume that we are given data <script type="math/tex">x_{1}, \ldots, x_{n}</script> and outputs <script type="math/tex">y_{1}, \ldots, y_{n}</script> where <script type="math/tex">x_{i} \in \mathbb{R}^{d}</script> and <script type="math/tex">y_{i} \in \mathbb{R}</script> and that there is a distribution <script type="math/tex">p(y \vert x)</script> where <script type="math/tex">y \sim \mathcal{N}\left(w^{\top} x, \sigma^{2}\right)</script>.</p>
+We assume that we are given data \(x_{1}, \ldots, x_{n}\) and outputs \(y_{1}, \ldots, y_{n}\) where \(x_{i} \in \mathbb{R}^{d}\) and \(y_{i} \in \mathbb{R}\) and that there is a distribution \(p(y \vert x)\) where \(y \sim \mathcal{N}\left(w^{\top} x, \sigma^{2}\right)\).</p>
 <ul>
-  <li>In other words, we assume that the conditional distribution of <script type="math/tex">Y_i \vert \theta</script> is a Gaussian (Each individual term <script type="math/tex">p\left(y_{i} \vert \mathbf{x}_ {i}, \boldsymbol{\theta}\right)</script> comes from a Gaussian):</li>
+  <li>In other words, we assume that the conditional distribution of \(Y_i \vert \theta\) is a Gaussian (Each individual term \(p\left(y_{i} \vert \mathbf{x}_ {i}, \boldsymbol{\theta}\right)\) comes from a Gaussian):</li>
 </ul>
 <p>$$Y_{i} \vert \boldsymbol{\theta} \sim \mathcal{N}\left(h_{\boldsymbol{\theta}}\left(\mathbf{x}_ {i}\right), \sigma^{2}\right)$$</p>
-<p>In other words, we assume that there is a true linear model weighted by some true <script type="math/tex">w</script> and the values generated are scattered around it with some error <script type="math/tex">\epsilon \sim \mathcal{N}\left(0, \sigma^{2}\right)</script>.<br />
+<p>In other words, we assume that there is a true linear model weighted by some true \(w\) and the values generated are scattered around it with some error \(\epsilon \sim \mathcal{N}\left(0, \sigma^{2}\right)\).<br />
 Then we just want to obtain the max likelihood estimation:</p>
 <p>$$\begin{aligned} p(Y \vert X, w) &amp;=\prod_{i=1}^{n} p\left(y_{i} \vert x_{i}, w\right) \\ \log p(\cdot) &amp;=\sum_{i}-\log \left(2 \pi \sigma^{2}\right)-\frac{1}{2 \sigma^{2}}\left(y_{i}-w^{\top} x_{i}\right)^{2} \end{aligned}$$</p>
 
-<ol>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Asynchronous:</strong></p>
-  </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Asynchronous:</strong></p>
-  </li>
-</ol>
+<!-- 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}
+
+2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22} -->
 
 <!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}
 
@@ -149,10 +157,10 @@ Then we just want to obtain the max likelihood estimation:</p>
 <p>The errors are not directly observable, since we never observe the actual probabilities directly.</p>
 
 <p><strong style="color: red">Latent Variable Interpretation:</strong><br />
-The logistic regression can be understood simply as finding the <script type="math/tex">\beta</script> parameters that best fit:</p>
+The logistic regression can be understood simply as finding the \(\beta\) parameters that best fit:</p>
 <p>$$y=\left\{\begin{array}{ll}{1} &amp; {\beta_{0}+\beta_{1} x+\varepsilon&gt;0} \\ {0} &amp; {\text { else }}\end{array}\right.$$</p>
 <p>where $\varepsilon$ is an error distributed by the standard logistic distribution.<br />
-The associated latent variable is <script type="math/tex">{\displaystyle y'=\beta _{0}+\beta _{1}x+\varepsilon }</script>. The error term <script type="math/tex">\varepsilon</script> is <strong>not observed</strong>, and so the <script type="math/tex">y'</script> is also an unobservable, hence termed “latent” (the observed data are values of <script type="math/tex">y</script> and <script type="math/tex">x</script>). Unlike ordinary regression, however, the <script type="math/tex">\beta</script> parameters cannot be expressed by any direct formula of the <script type="math/tex">y</script> and <script type="math/tex">x</script> values in the observed data. Instead they are to be found by an iterative search process.</p>
+The associated latent variable is \({\displaystyle y'=\beta _{0}+\beta _{1}x+\varepsilon }\). The error term \(\varepsilon\) is <strong>not observed</strong>, and so the \(y'\) is also an unobservable, hence termed “latent” (the observed data are values of \(y\) and \(x\)). Unlike ordinary regression, however, the \(\beta\) parameters cannot be expressed by any direct formula of the \(y\) and \(x\) values in the observed data. Instead they are to be found by an iterative search process.</p>
 
 <p id="lst-p"><strong style="color: red">Notes:</strong></p>
 <ul>
@@ -170,15 +178,33 @@ The associated latent variable is <script type="math/tex">{\displaystyle y'=\bet
 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}
  -->
 
+<p>LR, MINIMIZING the ERROR FUNCTION (DERIVATION):</p>
+
+<p><img src="https://cdn.mathpix.com/snip/images/FxOcuLio3ZJgakqUosa6gzlwSedcQ9f0u1r1EWwX61Y.original.fullsize.png" alt="img" width="80%" /></p>
+
+<p>Linear Classification and Regression, and Non-Linear Transformations:</p>
+
+<p><img src="https://cdn.mathpix.com/snip/images/BNtlfHRKlr1T4xhU-_Kdb7cJWcAhXkdnay_GXrPhQqY.original.fullsize.png" alt="img" width="80%" /></p>
+
+<p>A Third Linear Model - <strong>Logistic Regression</strong>: 
+<img src="https://cdn.mathpix.com/snip/images/BHidkun9EmJYfsSSUAT1m60k6ZGI1Xy-32kU8CGQzx4.original.fullsize.png" alt="img" width="80%" /></p>
+
+<p>Logistic Regression Algorithm:<br />
+<img src="https://cdn.mathpix.com/snip/images/9qmfgWQSodRPyG71IMYwASp7hThtrd0mMpyc8qAvORg.original.fullsize.png" alt="img" width="80%" /></p>
+
+<p>Summary of Linear Models:</p>
+
+<p><img src="https://cdn.mathpix.com/snip/images/sbDrR-d0nh2UeqYtiToJomw5UBsTjFa6DufsFpkUhR8.original.fullsize.png" alt="img" width="80%" /></p>
+
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

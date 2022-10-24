@@ -92,9 +92,9 @@
       <dd>A 64-bit (binary digit) representation is used for a real number.
         <blockquote>
           <ul>
-            <li>The <strong>first bit</strong> is a sign indicator, denoted <strong><script type="math/tex">s</script></strong>.</li>
-            <li>Followed by an 11-bit exponent, <strong><script type="math/tex">c</script></strong>, called the <strong>characteristic</strong>,</li>
-            <li>and a 52-bit binary fraction, <strong><script type="math/tex">f</script></strong> , called the <strong>mantissa</strong>.</li>
+            <li>The <strong>first bit</strong> is a sign indicator, denoted <strong>\(s\)</strong>.</li>
+            <li>Followed by an 11-bit exponent, <strong>\(c\)</strong>, called the <strong>characteristic</strong>,</li>
+            <li>and a 52-bit binary fraction, <strong>\(f\)</strong> , called the <strong>mantissa</strong>.</li>
             <li>The base for the exponent is 2.</li>
           </ul>
         </blockquote>
@@ -105,42 +105,42 @@
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents12">Floating-Point Number Form:</strong></dt>
       <dd>
-        <script type="math/tex; mode=display">(−1)^s\ \  2^{c−1023} \ (1 + f)</script>
+\[(−1)^s\ \  2^{c−1023} \ (1 + f)\]
       </dd>
     </dl>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents13">Smallest Normalized positive Number:</strong>
     <blockquote>
-      <p><strong>When:</strong>  <script type="math/tex">s = 0, \ \  c = 1,\ \</script> and <script type="math/tex">\ \ f = 0</script>.<br />
-<strong>Equivalent to:</strong>  <script type="math/tex">2^{−1022}\  \ \dot \ \ (1 + 0) \ \approx \ 0.22251 \ \dot \ 10^{−307}</script>.</p>
+      <p><strong>When:</strong>  \(s = 0, \ \  c = 1,\ \\) and \(\ \ f = 0\).<br />
+<strong>Equivalent to:</strong>  \(2^{−1022}\  \ \dot \ \ (1 + 0) \ \approx \ 0.22251 \ \dot \ 10^{−307}\).</p>
     </blockquote>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents14">Largest Normalized positive Number:</strong> <br />
     <blockquote>
-      <p><strong>When:</strong>  <script type="math/tex">s = 0,\ \  c = 2046,\ \</script> and <script type="math/tex">\ \ f = 1 - 2^{-52}</script>.<br />
-<strong>Equivalent to:</strong>  <script type="math/tex">2^{1023}\  \dot \  (2 - 2^{-52}) \  \approx 0.17977  × 10^{309}</script>.</p>
+      <p><strong>When:</strong>  \(s = 0,\ \  c = 2046,\ \\) and \(\ \ f = 1 - 2^{-52}\).<br />
+<strong>Equivalent to:</strong>  \(2^{1023}\  \dot \  (2 - 2^{-52}) \  \approx 0.17977  × 10^{309}\).</p>
     </blockquote>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents15">UnderFlow:</strong></dt>
       <dd>When numbers occurring in calculations have a magnitude less than,<br />
-<script type="math/tex">2^{-1022}</script>.</dd>
+\(2^{-1022}\).</dd>
     </dl>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents16">OverFlow:</strong></dt>
       <dd>When numbers occurring in calculations have a magnitude greater than,<br />
-<script type="math/tex">2^{1023} \dot (2 - 2^{-52})</script>.</dd>
+\(2^{1023} \dot (2 - 2^{-52})\).</dd>
     </dl>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents1" id="bodyContents17">Representing the Zero:</strong> <br />
     <ul>
       <li>There are <strong>Two</strong> Representations of the number zero:
         <ol>
-          <li><em>A positive 0:</em> when <script type="math/tex">s = 0, \ \ c = 0, \ \</script> and <script type="math/tex">\ f = 0</script>.</li>
-          <li><em>A negative 0:</em> when <script type="math/tex">s = 1, \ \ c = 0, \ \</script> and <script type="math/tex">\ f = 0</script>.</li>
+          <li><em>A positive 0:</em> when \(s = 0, \ \ c = 0, \ \\) and \(\ f = 0\).</li>
+          <li><em>A negative 0:</em> when \(s = 1, \ \ c = 0, \ \\) and \(\ f = 0\).</li>
         </ol>
       </li>
     </ul>
@@ -163,37 +163,36 @@ floating-point form.</dd>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents22">(k-digit) Decimal Machine Numbers:</strong></dt>
       <dd>
-        <script type="math/tex; mode=display">±0.d_1d_2 ... d_k × 10^n , 1 \leq d_1 \leq 9, \text{and } 0 \leq d_i \leq 9,</script>
+\[±0.d_1d_2 ... d_k × 10^n , 1 \leq d_1 \leq 9, \text{and } 0 \leq d_i \leq 9,\]
       </dd>
-      <dd><script type="math/tex">\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \text{for each } i = 2, ... , k</script>.</dd>
+      <dd>\(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \ \ \text{for each } i = 2, ... , k\).</dd>
     </dl>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents23">Normalized Form:</strong></dt>
       <dd>
-        <script type="math/tex; mode=display">y = 0.d_1d_2 ... d_k × 10^n</script>
+\[y = 0.d_1d_2 ... d_k × 10^n\]
       </dd>
     </dl>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents24">Floating-Point Form of a Decimal Machine Number:</strong> <br />
- The floating-point form of y, denoted <script type="math/tex">f_l(y)</script>, is obtained by <a href="#bodyContents25"><strong>terminating</strong></a> the mantissa of <script type="math/tex">y</script> at k-decimal digits.</li>
+ The floating-point form of y, denoted \(f_l(y)\), is obtained by <a href="#bodyContents25"><strong>terminating</strong></a> the mantissa of \(y\) at k-decimal digits.</li>
   <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents25">Termination:</strong> <br />
  There are two common ways of performing this termination:
     <ul>
-      <li><strong>Chopping:</strong> is to simply chop off the digits <script type="math/tex">d_{k+1}d_{k+2}</script>.
+      <li><strong>Chopping:</strong> is to simply chop off the digits \(d_{k+1}d_{k+2}\).
         <blockquote>
-          <p>This produces the floating-point form: <script type="math/tex">f_l(y) = 0.d_1d_2 ... d_k × 10^n</script></p>
+          <p>This produces the floating-point form: \(f_l(y) = 0.d_1d_2 ... d_k × 10^n\)</p>
         </blockquote>
       </li>
-      <li><strong>Rounding:</strong> adds <script type="math/tex">5 × 10^{n−(k+1)}</script> to <script type="math/tex">y</script> and then chops the result
+      <li><strong>Rounding:</strong> adds \(5 × 10^{n−(k+1)}\) to \(y\) and then chops the result
         <blockquote>
-          <p>This produces the floating-point form: <script type="math/tex">f_l(y) = 0.\delta_1\delta_2 ... \delta_k × 10^n</script>.</p>
+          <p>This produces the floating-point form: \(f_l(y) = 0.\delta_1\delta_2 ... \delta_k × 10^n\).</p>
           <blockquote>
-            <p>For rounding, when <script type="math/tex">d_{k+1} \geq 5</script>, we add <script type="math/tex">1</script> to <script type="math/tex">d_k</script> to obtain <script type="math/tex">f_l(y)</script>; that is, we round up.
-When <script type="math/tex">% <![CDATA[
-d_{k+1} < 5 %]]></script>, we simply chop off all but the first k digits; so we round down.
-If we round down, then <script type="math/tex">\delta_i = d_i</script>, for each <script type="math/tex">i = 1, 2, ... , k</script>.<br />
+            <p>For rounding, when \(d_{k+1} \geq 5\), we add \(1\) to \(d_k\) to obtain \(f_l(y)\); that is, we round up.
+When \(d_{k+1} &lt; 5\), we simply chop off all but the first k digits; so we round down.
+If we round down, then \(\delta_i = d_i\), for each \(i = 1, 2, ... , k\).<br />
 However, if we round up, the digits (and even the exponent) might change.</p>
           </blockquote>
         </blockquote>
@@ -204,10 +203,10 @@ However, if we round up, the digits (and even the exponent) might change.</p>
  <img src="/main_files/128a/1/1.2/1.png" alt="formula" width="80%" />
     <ul>
       <li>
-        <p><strong>The Absolute Error:</strong> <script type="math/tex">\ \ \ \ \ \ \ \|p − p^∗\|</script>.</p>
+        <p><strong>The Absolute Error:</strong> \(\ \ \ \ \ \ \ \|p − p^∗\|\).</p>
       </li>
       <li>
-        <p><strong>The Relative Error:</strong> <script type="math/tex">\ \ \ \ \ \ \ \dfrac{\|p − p^∗\|}{\|p\|}</script>.</p>
+        <p><strong>The Relative Error:</strong> \(\ \ \ \ \ \ \ \dfrac{\|p − p^∗\|}{\|p\|}\).</p>
       </li>
     </ul>
   </li>
@@ -220,26 +219,26 @@ However, if we round up, the digits (and even the exponent) might change.</p>
       <li>
         <dl>
           <dt><strong style="color: green">Chopping:</strong>  </dt>
-          <dt>  <strong>The Relative Error =</strong> <script type="math/tex">|\dfrac{y - f_l(y)}{y}|</script>  </dt>
+          <dt>  <strong>The Relative Error =</strong> \(|\dfrac{y - f_l(y)}{y}|\)  </dt>
           <dt>  <strong>The Machine Repr</strong>. [for k decimial digits] =</dt>
-          <dd><script type="math/tex">y = 0.d_1d_2 ... d_kd_{k+1} ... × 10^n</script>.</dd>
+          <dd>\(y = 0.d_1d_2 ... d_kd_{k+1} ... × 10^n\).</dd>
         </dl>
 
-        <p><script type="math/tex">\implies</script><br />
+        <p>\(\implies\)<br />
   <img src="/main_files/128a/1/1.2/3.png" alt="formula" width="70%" /><br />
-  <strong>Bound</strong> <script type="math/tex">\ \ \ \implies \ \ |\dfrac{y - f_l(y)}{y}| \leq \dfrac{1}{0.1} \times 10^{-k} = 10^{-k+1}</script>.</p>
+  <strong>Bound</strong> \(\ \ \ \implies \ \ |\dfrac{y - f_l(y)}{y}| \leq \dfrac{1}{0.1} \times 10^{-k} = 10^{-k+1}\).</p>
       </li>
       <li><strong style="color: green">Rounding:</strong>
         <blockquote>
           <p>In a similar manner, a bound for the relative error when using k-digit rounding arithmetic is</p>
         </blockquote>
 
-        <p><strong>Bound</strong> <script type="math/tex">\ \ \ \implies \ \ \|\dfrac{y - f_l(y)}{y}\| \leq 0.5 × 10^{−k+1}</script>.</p>
+        <p><strong>Bound</strong> \(\ \ \ \implies \ \ \|\dfrac{y - f_l(y)}{y}\| \leq 0.5 × 10^{−k+1}\).</p>
       </li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue  " class="bodyContents2" id="bodyContents29">Distribution of Numbers:</strong> <br />
- The number of decimal machine numbers in <script type="math/tex">[10^n, 10^{n+1}]</script> is constant for all integers <script type="math/tex">n</script>.</li>
+ The number of decimal machine numbers in \([10^n, 10^{n+1}]\) is constant for all integers \(n\).</li>
 </ol>
 
 <hr />
@@ -251,10 +250,10 @@ However, if we round up, the digits (and even the exponent) might change.</p>
     <dl>
       <dt><strong style="color: SteelBlue  " class="bodyContents3" id="bodyContents31">Values:</strong></dt>
       <dd>
-        <script type="math/tex; mode=display">x = f_l(x) \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1)</script>
+\[x = f_l(x) \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1)\]
       </dd>
       <dd>
-        <script type="math/tex; mode=display">y = f_l(y) \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (2)</script>
+\[y = f_l(y) \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (2)\]
       </dd>
     </dl>
   </li>
@@ -279,8 +278,8 @@ However, if we round up, the digits (and even the exponent) might change.</p>
     <blockquote>
       <p>We change the form of the quadratic formula by <em>rationalizing the numerator</em>:
  <img src="/main_files/128a/1/1.2/7.png" alt="formula" width="80%" />  <br />
- <script type="math/tex">\implies \ \ \ \ \ \ \ \ \ \ \ \ \ \  x_1 = \dfrac{−2c}{b + \sqrt{b^2 − 4ac}}, \ \ \ \ \ \ \ \ \ \ \ \ \ \  
- x_2 = \dfrac{−2c}{b - \sqrt{b^2 − 4ac}},</script></p>
+ \(\implies \ \ \ \ \ \ \ \ \ \ \ \ \ \  x_1 = \dfrac{−2c}{b + \sqrt{b^2 − 4ac}}, \ \ \ \ \ \ \ \ \ \ \ \ \ \  
+ x_2 = \dfrac{−2c}{b - \sqrt{b^2 − 4ac}},\)</p>
     </blockquote>
   </li>
 </ol>
@@ -316,13 +315,13 @@ However, if we round up, the digits (and even the exponent) might change.</p>
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

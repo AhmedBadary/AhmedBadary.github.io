@@ -88,6 +88,10 @@
 <hr />
 <hr />
 
+<ul>
+  <li><a href="https://github.com/roatienza/Deep-Learning-Experiments">Deep Learning Lecture Notes and Experiments (github)</a></li>
+</ul>
+
 <h2 id="content1">Deep Learning Generalization</h2>
 
 <ul>
@@ -222,7 +226,7 @@
     <p id="lst-p"><strong style="color: red">Limits of Single-Task Learning:</strong></p>
     <ul>
       <li>Great performance improvements in recent years given {dataset, task, model, metric}</li>
-      <li>We can hill-climb to local optima as long as <script type="math/tex">\vert \text{dataset} \vert > 1000 \times C</script></li>
+      <li>We can hill-climb to local optima as long as \(\vert \text{dataset} \vert &gt; 1000 \times C\)</li>
       <li>For more general AI, we need continuous learning in a single model instead</li>
       <li>Models typically start from random or are only partly pre-trained</li>
     </ul>
@@ -236,7 +240,7 @@
   Logical, Linguistic, Emotional, Visual, etc.</li>
       <li>Requires <span style="color: purple"><strong>Short</strong> and <strong>Long</strong>-term <strong>Memory</strong></span></li>
       <li>NLP had been divided into intermediate and separate tasks to make progress:<br />
-  <script type="math/tex">\rightarrow</script> Benchmark chasing in each community</li>
+  \(\rightarrow\) Benchmark chasing in each community</li>
       <li>Can a single unsupervised task solve it all? No.
         <ul>
           <li>Language clearly requires supervision in nature (kid in jungle -&gt; easy to develop vision not language).</li>
@@ -285,9 +289,9 @@
       </li>
       <li><button class="showText" value="show" onclick="showTextPopHide(event);">Q/A Examples</button>
   <img src="https://cdn.mathpix.com/snip/images/dOTMhfoYBQNQ3s3vIF3dwh6HMhEqOg1F5ymAF39k1V4.original.fullsize.png" alt="img" width="100%" hidden="" /></li>
-      <li><strong>Meta-Supervised Learning</strong>: From <script type="math/tex">\{x, y\}</script> to <script type="math/tex">\{x, t, y\}</script> (<script type="math/tex">t</script> is the task)</li>
-      <li>Use a question, <script type="math/tex">q</script>, as a natural description of the task, <script type="math/tex">t</script>, to allow the model to use linguistic information to connect tasks</li>
-      <li><script type="math/tex">y</script> is the answer to <script type="math/tex">q</script> and <script type="math/tex">x</script> is the context necessary to answer <script type="math/tex">q</script></li>
+      <li><strong>Meta-Supervised Learning</strong>: From \(\{x, y\}\) to \(\{x, t, y\}\) (\(t\) is the task)</li>
+      <li>Use a question, \(q\), as a natural description of the task, \(t\), to allow the model to use linguistic information to connect tasks</li>
+      <li>\(y\) is the answer to \(q\) and \(x\) is the context necessary to answer \(q\)</li>
       <li><strong style="color: DarkRed">Model Specifications for decaNLP:</strong>
         <ul>
           <li>No task-specific modules or parameters because we assume the task ID is not available</li>
@@ -345,7 +349,7 @@
           </li>
           <li><strong>Motivation:</strong>
             <ul>
-              <li><strong>Priming:</strong> listen to a word <script type="math/tex">\rightarrow</script> recognize many minutes later in Noisy Env.
+              <li><strong>Priming:</strong> listen to a word \(\rightarrow\) recognize many minutes later in Noisy Env.
                 <ul>
                   <li>If we had <strong>localist Representation</strong> could just temporarily lower the threshold of the “cucumber” weight</li>
                   <li>If we use <strong>point Attractors</strong> instead of “localist units” we con temporarily increase the “attractiveness” of the words unit (by changing the weights between the neurons in that pattern of activity)</li>
@@ -356,11 +360,11 @@
           <li>
             <p><strong>Weight Matrices VS Activity Vectors:</strong><br />
   Weight Matrices are better:<br />
-  (1) More capacity <script type="math/tex">N^2</script> vs <script type="math/tex">N</script> (2) A fast weight matrix of <script type="math/tex">1000 x 1000</script> can easily make 100 attractors more “attractive”</p>
+  (1) More capacity \(N^2\) vs \(N\) (2) A fast weight matrix of \(1000 x 1000\) can easily make 100 attractors more “attractive”</p>
           </li>
           <li><strong>Three ways to store Temp. knowledge:</strong>
             <ul>
-              <li><strong>LSTM</strong>, Stores it in its activity vectors [hidden weights] <script type="math/tex">\implies</script> Irrelevant temp Memory <strong>interferes</strong> with on-going process</li>
+              <li><strong>LSTM</strong>, Stores it in its activity vectors [hidden weights] \(\implies\) Irrelevant temp Memory <strong>interferes</strong> with on-going process</li>
               <li><strong>An additional External memory to LSTM</strong>, can store without interference but need to - learn when to read/white.</li>
               <li><strong>Fast-Weights:</strong> Allow the temporal Knowledge to be stored without having any extra neurons.<br />
   They just make some attractors easier to fall into; and they also “flavor” the attractor by slightly changing the activity vector you end up with.</li>
@@ -436,8 +440,8 @@
       <li>wrt. <a href="https://karpathy.github.io/2015/05/21/rnn-effectiveness/">Karpathys “Unreasonable Effectiveness of RNNs” post</a> and <a href="https://nbviewer.jupyter.org/gist/yoavg/d76121dfde2618422139">Y.Goldbergs “Unreasonable Effectiveness of (Char-Level) n-grams” post</a>: Do the complex rules learned by an LSTM architecture (considering its inductive biases) <em>e.g. neuron that counts, tracks indentation, etc.</em> have better generalization than n-gram probabilities? Do these rules imply learning a better method, algorithm, mechanism, etc.?
         <ul>
           <li><em>Golberg</em> claims that RNNs are impressive because of <span style="color: purple"><em><strong>“context awareness”</strong></em></span> (in C-code generation syntax).</li>
-          <li>(compare the number <script type="math/tex">n</script> of n-tuples VS dimension size of <script type="math/tex">h</script>)<br />
-  (hint: google seems to think it’s <script type="math/tex">n=13</script> beats infinite <script type="math/tex">h</script>)</li>
+          <li>(compare the number \(n\) of n-tuples VS dimension size of \(h\))<br />
+  (hint: google seems to think it’s \(n=13\) beats infinite \(h\))</li>
           <li>Is this why/how NNs generalize?</li>
         </ul>
       </li>
@@ -484,7 +488,7 @@
       <li>Real world data prefers lower Kolmogorov complexity (and hence enables the ability to learn) is a very strange fundamental asymmetry in nature?? <br />
   It’s as puzzling as having so much matter than antimatter.</li>
       <li>An SVM is, in a way, a type of neural network (you can learn a SVM solution through backpropagation)</li>
-      <li>In CNNs there are no FC layers, they are equivalent to <script type="math/tex">1 \times 1</script> convolutions <a href="https://www.facebook.com/yann.lecun/posts/10152820758292143">link</a></li>
+      <li>In CNNs there are no FC layers, they are equivalent to \(1 \times 1\) convolutions <a href="https://www.facebook.com/yann.lecun/posts/10152820758292143">link</a></li>
       <li>In support of IB (Information Bottleneck) Theory: <a href="https://arxiv.org/abs/1802.08232">this paper</a> suggests that <span style="color: purple">Memorization happens <strong>early</strong> in training</span>.<br />
  <br /></li>
     </ul>
@@ -531,13 +535,13 @@
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

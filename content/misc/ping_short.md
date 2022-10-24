@@ -1,7 +1,7 @@
 ---
 layout: NotesPage
 title: Ping! <br> Roadmap
-permalink: /work_files/ping_short
+permalink: /work_files/ping_short2
 prevLink: /
 ---
 

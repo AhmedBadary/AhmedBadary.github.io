@@ -116,20 +116,28 @@
   The Bayesian framework assumes that we always have a prior distribution for everything.
         <ul>
           <li>The prior may be very vague</li>
-          <li><a href="https://www.youtube.com/watch?v=NY1zXgIma3c&amp;list=PLiPvV5TNogxKKwvKb1RKwkq2hm7ZvpHz0&amp;index=58&amp;t=47">Continue NoteTaking</a></li>
+          <li>When we see some data, we combine our prior distribution with a likelihood term to get a posterior distribution.</li>
+          <li>The likelihood term takes into account how probable the observed data is given the parameters of the model:
+            <ul>
+              <li>It favors parameter settings that make the data likely</li>
+              <li>It fights the prior</li>
+              <li>With enough data the likelihood terms always wins</li>
+            </ul>
+          </li>
+          <li><a href="https://www.youtube.com/watch?v=NY1zXgIma3c&amp;list=PLiPvV5TNogxKKwvKb1RKwkq2hm7ZvpHz0&amp;index=58&amp;t=47">Continue NoteTaking (has great example) (Hinton Lec)</a></li>
         </ul>
       </li>
       <li><strong>Bayes Theorem</strong>:
         <p>$$p(\mathcal{D}) p(\mathbf{\theta} \vert \mathcal{D})=\underbrace{p(\mathcal{D}, \mathbf{\theta})}_ {\text{joint probability}}=p(\mathbf{\theta}) p(\mathcal{D} \vert \mathbf{\theta})$$</p>
-        <p>$$p(\mathbf{\theta} \vert \mathcal{D}) = \dfrac{p(\mathbf{\theta}) p(\mathcal{D} \vert \mathbf{\theta})}{p(\mathcal{D})} = \dfrac{p(\mathbf{\theta}) p(\mathcal{D} \vert \mathbf{\theta})}{\int_{\mathbf{\theta}} p(\mathbf{\theta}) p(\mathcal{D} \vert \mathbf{\theta})}$$</p>
+        <p>$$\implies \\ p(\mathbf{\theta} \vert \mathcal{D}) = \dfrac{p(\mathbf{\theta}) p(\mathcal{D} \vert \mathbf{\theta})}{p(\mathcal{D})} = \dfrac{p(\mathbf{\theta}) p(\mathcal{D} \vert \mathbf{\theta})}{\int_{\mathbf{\theta}} p(\mathbf{\theta}) p(\mathcal{D} \vert \mathbf{\theta})}$$</p>
       </li>
     </ul>
 
     <p id="lst-p"><strong style="color: red">Bayesian Probability:</strong></p>
     <ul>
       <li><strong style="color: red">Interpreting the Prior:</strong><br />
-  The prior probability of any event <script type="math/tex">q</script>, <script type="math/tex">p(q)</script>, <span style="color: purple"><em>quantifies</em> the current <strong>state of knowledge</strong> (<em><strong>Uncertainty</strong></em>)</span> of <script type="math/tex">q</script>.<br />
-  Regardless whether <script type="math/tex">q</script> is <strong>deterministic</strong> or <strong>random</strong>.</li>
+  The prior probability of any event \(q\), \(p(q)\), <span style="color: purple"><em>quantifies</em> the current <strong>state of knowledge</strong> (<em><strong>Uncertainty</strong></em>)</span> of \(q\).<br />
+  Regardless whether \(q\) is <strong>deterministic</strong> or <strong>random</strong>.</li>
       <li><strong style="color: red">Modeling Randomness:</strong><br />
   If randomness is being modeled it would be modeled as a <strong>stochastic process</strong> with <em><strong>fixed</strong></em> <strong>parameters</strong>.<br />
   For example random noise is often modeled as being generated from a normal distribution with some fixed (but possibly unknown) mean and covariance.</li>
@@ -237,6 +245,36 @@
         </ul>
       </li>
     </ul>
+
+    <p id="lst-p"><strong style="color: red">Statistical Methods:</strong></p>
+    <ul>
+      <li><strong>Bayesian</strong>:
+        <ul>
+          <li>Probability refers to degree of belief</li>
+          <li>Inference about a parameter \(\theta\) is by producing a probability distributions on it. 
+  Typically, one starts with a prior distribution \(p(\theta)\). One also chooses a likelihood function \(p(x \mid \theta)-\) note this is a function of \(\theta\), not \(x\). After observing data \(x\), one applies the Bayes Theorem to obtain the posterior distribution \(p(\theta \mid x)\).
+            <p>$$p(\theta \mid x)=\frac{p(\theta) p(x \mid \theta)}{\int p\left(\theta^{\prime}\right) p\left(x \mid \theta^{\prime}\right) d \theta^{\prime}} \propto p(\theta) p(x \mid \theta)$$</p>
+            <p>where \(Z \equiv \int p\left(\theta^{\prime}\right) p\left(x \mid \theta^{\prime}\right) d \theta^{\prime}\) is known as the normalizing constant. The posterior distribution is a complete characterization of the parameter.<br />
+  Sometimes, one uses the mode of the posterior as a simple point estimate, known as the <strong><em>maximum aposteriori</em> (MAP)</strong> estimate of the parameter:<br />
+  \(\theta^{\text {MAP }}=\operatorname{argmax}_ {\theta} p(\theta \mid x)\)</p>
+            <blockquote>
+              <p>Note MAP is not a proper Bayesian approach.</p>
+            </blockquote>
+          </li>
+          <li>Prediction under an unknown parameter is done by integrating it out:<br />
+  \(p(x \mid \text {Data})=\int p(x \mid \theta) p(\theta \mid \text{Data}) d \theta\)</li>
+        </ul>
+      </li>
+      <li><strong>Frequentist</strong>:
+        <ul>
+          <li>Probability refers to limiting relative frequency</li>
+          <li>Data are random</li>
+          <li>Estimators are random because they are functions of data</li>
+          <li>Parameters are fixed, unknown constants not subject to probabilistic statements</li>
+          <li>Procedures are subject to probabilistic statements, for example 95% confidence intervals traps the trueparameter value 95</li>
+        </ul>
+      </li>
+    </ul>
   </li>
 </ol>
 
@@ -263,13 +301,13 @@
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

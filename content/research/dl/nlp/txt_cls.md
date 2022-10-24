@@ -22,6 +22,8 @@ prevLink: /work_files/research/dl/nlp.html
 [Convolutional Neural Networks for Language (CMU)](https://www.youtube.com/watch?v=HBcr5jCBynI&t=7s)  
 [Text Classification (Oxford)](https://www.youtube.com/watch?v=0qG7gjTNhwM&list=PL613dYIGMXoZBtZhbyiBqb0QtgK6oJbpm&index=8)  
 
+* [Googles Text Classification Guide (Blog)](https://developers.google.com/machine-learning/guides/text-classification)  
+
 
 
 

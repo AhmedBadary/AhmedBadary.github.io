@@ -81,6 +81,13 @@
 <a href="https://stats.stackexchange.com/questions/296014/why-is-the-naive-bayes-classifier-optimal-for-0-1-loss?noredirect=1&amp;lq=1">Bayes Classifier and Bayes Error (question)</a><br />
 <a href="https://www.youtube.com/watch?v=1nOb0vwWkAE">Naive Bayes CS188 (+Probabilistic Calibration)</a></p>
 
+<p><button class="showText" value="show" onclick="showTextPopHide(event);">Naive Bayes Mind-Map</button>
+<img src="/main_files/misc/naive_bayes_mindmap.png" alt="img" width="100%" hidden="" /></p>
+
+<blockquote>
+  <p>A Naive Bayes classifier that figured out that you liked pickles and ice cream would probably naively recommend you a pickle ice cream.</p>
+</blockquote>
+
 <h2 id="content1">Introduction and the Naive Bayes Classifier</h2>
 
 <ol>
@@ -94,7 +101,7 @@
 
     <p id="lst-p"><strong style="color: red">The Assumptions:</strong></p>
     <ol>
-      <li><strong>Naive Independence</strong>: the feature probabilities are indpendenet given a class <script type="math/tex">c</script>.</li>
+      <li><strong>Naive Independence</strong>: the feature probabilities are indpendenet given a class \(c\).</li>
       <li><strong>Bag-of-Words</strong>: we assume that the position of the words does <em>not</em> matter.<br />
  <br /></li>
     </ol>
@@ -102,15 +109,24 @@
     <p id="lst-p"><strong style="color: red">Notes:</strong></p>
     <ul>
       <li>Not a <strong>Bayesian Method</strong>: the name only references the use of Bayes’ theorem in the classifier’s decision rule</li>
-      <li>The <strong>Naive Bayes Classifier</strong> is a <em><strong>Bayes Classifier</strong></em> (i.e. minimizes the prob of misclassification)<br />
- <br /></li>
+      <li>The <strong>Naive Bayes Classifier</strong> is a <em><strong>Bayes Classifier</strong></em> (i.e. minimizes the prob of misclassification)</li>
+      <li><strong>As a Parametric Model (analysis)</strong>:<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Analysis</button>
+        <ul hidden="">
+          <li>A Bayes classifier basically picks the label \(y\) that has the maximum probability, given that testing data-point \(x\):<br />
+  \(y^{* }=\operatorname{argmax}_ {y} P(y)=\operatorname{argmax}_ {y} \frac{P(x \mid y) P(y)}{P(x)}\)<br />
+  If you assume the features of \(x\) are conditionally independent given the label, you get the Naive Bayes classifier.<br />
+  So, classification depends a lot on \(P(x \mid y)\). The parametric way to classify would be to decide a model (Gaussian, Bernoulli, etc.) for the features of \(x\), and typically the models are different for different classes \(y\). The parameters here are the parameters of you model (mean and covariance for Gaussian, individual feature probabilities for Bernoulli, etc.) and the training problem becomes a parameter estimation problem.</li>
+        </ul>
+        <p><br /></p>
+      </li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">The Probabilistic Model (Naive Bayes Probability/Statistical Model):</strong><br />
  Abstractly, naive Bayes is a <strong>conditional probability model</strong>:<br />
- given a problem instance to be classified, represented by a vector <script type="math/tex">{\displaystyle \: \mathbf{x} =(x_{1},\dots ,x_{n})}</script> representing some <script type="math/tex">n</script> features (independent variables), it assigns to this instance probabilities
+ given a problem instance to be classified, represented by a vector \({\displaystyle \: \mathbf{x} =(x_{1},\dots ,x_{n})}\) representing some \(n\) features (independent variables), it assigns to this instance probabilities
     <p>$${\displaystyle p(C_{k}\mid x_{1},\dots ,x_{n}) = p(C_{k}\mid \mathbf {x})}$$</p>
-    <p>for each of the <script type="math/tex">k</script> possible classes <script type="math/tex">C_k</script>.</p>
+    <p>for each of the \(k\) possible classes \(C_k\).</p>
 
     <p>Using <strong>Bayes’ Theorem</strong> we <em>decompose the conditional probability</em> as:</p>
     <p>$${\displaystyle p(C_{k}\mid \mathbf {x} )={\frac {p(C_{k})\ p(\mathbf {x} \mid C_{k})}{p(\mathbf {x} )}}\,}$$</p>
@@ -126,9 +142,9 @@
     <p>Thus, we can write the <strong>joint model</strong> as:</p>
     <p>$${\displaystyle {\begin{aligned}p(C_{k}\mid x_{1},\dots ,x_{n})&amp;\varpropto p(C_{k},x_{1},\dots ,x_{n})\\&amp;=p(C_{k})\ p(x_{1}\mid C_{k})\ p(x_{2}\mid C_{k})\ p(x_{3}\mid C_{k})\ \cdots \\&amp;=p(C_{k})\prod _{i=1}^{n}p(x_{i}\mid C_{k})\,,\end{aligned}}}$$</p>
 
-    <p>Finally, the <em><strong>conditional distribution over the class variable <script type="math/tex">C</script></strong></em> is:</p>
+    <p>Finally, the <em><strong>conditional distribution over the class variable \(C\)</strong></em> is:</p>
     <p>$${\displaystyle p(C_{k}\mid x_{1},\dots ,x_{n})={\frac {1}{Z}}p(C_{k})\prod _{i=1}^{n}p(x_{i}\mid C_{k})}$$</p>
-    <p>where, <script type="math/tex">{\displaystyle Z=p(\mathbf {x} )=\sum _{k}p(C_{k})\ p(\mathbf {x} \mid C_{k})}</script> is a <strong>constant</strong> scaling factor, a <strong>dependent only</strong> on the, <em>known</em>, feature variables <script type="math/tex">x_i</script>s.<br />
+    <p>where, \({\displaystyle Z=p(\mathbf {x} )=\sum _{k}p(C_{k})\ p(\mathbf {x} \mid C_{k})}\) is a <strong>constant</strong> scaling factor, a <strong>dependent only</strong> on the, <em>known</em>, feature variables \(x_i\)s.<br />
  <br /></p>
   </li>
   <li>
@@ -139,10 +155,10 @@
     <p><strong style="color: red">The Decision Rule:</strong><br />
  we commonly use the <a href="https://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation"><strong>Maximum A Posteriori (MAP)</strong></a> hypothesis, as the decision rule; i.e. pick the hypothesis that is most probable.</p>
 
-    <p>The Classifier is the <em>function that assigns a class label <script type="math/tex">\hat{y} = C_k</script></em> for some <script type="math/tex">k</script> as follows:</p>
+    <p>The Classifier is the <em>function that assigns a class label \(\hat{y} = C_k\)</em> for some \(k\) as follows:</p>
     <p>$${\displaystyle {\hat {y}}={\underset {k\in \{1,\dots ,K\}}{\operatorname {argmax} }}\ p(C_{k})\displaystyle \prod _{i=1}^{n}p(x_{i}\mid C_{k}).}$$</p>
 
-    <p>It, basically, maximizes the probability of the class given an input <script type="math/tex">\boldsymbol{x}</script>.<br />
+    <p>It, basically, maximizes the probability of the class given an input \(\boldsymbol{x}\).<br />
  <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Naive Bayes Estimate VS MAP Estimate:</strong><br />
@@ -166,23 +182,31 @@
 
     <p><strong style="color: red">The MLE Estimates for the Parameters:</strong></p>
     <ul>
-      <li><script type="math/tex">\hat{P}(C_k) = \dfrac{\text{doc-count}(C=C_k)}{N_\text{doc}}</script>,<br />
+      <li>\(\hat{P}(C_k) = \dfrac{\text{doc-count}(C=C_k)}{N_\text{doc}}\),<br />
  <br /></li>
-      <li><script type="math/tex">\hat{P}(x_i | C_i) = \dfrac{\text{count}(x_i,C_j)}{\sum_{x \in V} \text{count}(x, C_j)}</script><br />
+      <li>\(\hat{P}(x_i | C_i) = \dfrac{\text{count}(x_i,C_j)}{\sum_{x \in V} \text{count}(x, C_j)}\)<br />
  <br /></li>
     </ul>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">MLE Derivation of the Parameter Estimates:</strong><br />
- <a href="http://www.cs.cornell.edu/courses/cs5740/2017sp/res/nb-prior.pdf">Derivation</a></p>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">MLE Derivation of the Parameter Estimates:</strong>
+    <ul>
+      <li><a href="http://www.cs.cornell.edu/courses/cs5740/2017sp/res/nb-prior.pdf">Derivation</a></li>
+      <li><a href="https://math.stackexchange.com/questions/2605546/partial-derivative-of-a-summation">Partial derivative of a summation (stackexchange - helpful hint)</a></li>
+    </ul>
 
     <p>The <strong>Likelihood</strong> of the observed data (TBC)</p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Motivation:</strong><br />
- To estimate the parameters of the “true” MAP estimate, we need a prohibitive number of examples ~ <script type="math/tex">\mathcal{O}(\vert x\vert^n \cdot \vert C\vert</script>.</p>
+ To estimate the parameters of the “true” MAP estimate, we need a prohibitive number of examples ~ \(\mathcal{O}(\vert x\vert^n \cdot \vert C\vert)\).</p>
   </li>
-  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Notes:</strong></li>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Notes:</strong>
+    <ul>
+      <li>In a naive Bayes classifier we are interested in computing the conditional \(p(y \mid x ; \theta) \propto p(y ; \theta) \prod_{i}^{d} p\left(x_{i} \mid y ; \theta\right)\).<br />
+  Is this a parametric or nonparametric model? The model is specified by \(\mathcal{H}=\{p(x, y ; \theta)\}\) where \(\theta\) contains the parameter for the class prior multinomial distribution \(p(y)\) (finite number of parameters), and the class conditional distributions \(p\left(x_{i} \mid y\right)\) for each dimension. The latter can be parametric (such as a multinomial over the vocabulary, or a Gaussian), or nonparametric (such as \(1D\) kernel density estimation). Therefore, naive Bayes can be either parametric or nonparametric, although in practice the former is more common.<br />
+  In machine learning we are often interested in a function of the distribution \(T(F)\), for example, the mean. We call \(T\) the statistical functional, viewing \(F\) the distribution itself a function of \(x\). However, we will also abuse the notation and say \(\theta=T(F)\) is a “parameter” even for nonparametric models.</li>
+    </ul>
+  </li>
 </ol>
 
 <hr />
@@ -208,13 +232,13 @@
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

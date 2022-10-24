@@ -133,40 +133,40 @@
         <ul>
           <li>Each contribution depends on:
             <ul>
-              <li><em>One</em> <strong>connection weight</strong>: <script type="math/tex">w_{i j}</script><br />
+              <li><em>One</em> <strong>connection weight</strong>: \(w_{i j}\)<br />
   A <em><strong>symmetric</strong></em> connection between two neurons; thus, have the following restrictions:
                 <ul>
-                  <li><script type="math/tex">w_{i i}=0, \forall i</script> (no unit has a connection with itself)</li>
-                  <li><script type="math/tex">w_{i j}=w_{j i}, \forall i, j</script> (connections are symmetric)<br />
+                  <li>\(w_{i i}=0, \forall i\) (no unit has a connection with itself)</li>
+                  <li>\(w_{i j}=w_{j i}, \forall i, j\) (connections are symmetric)<br />
   and</li>
                 </ul>
               </li>
-              <li>The <strong>binary states</strong> of <em>two</em> <strong>neurons</strong>: <script type="math/tex">s_{i}</script> and <script type="math/tex">s_{j}</script>
-  where <script type="math/tex">s_{j} \in \{-1, 1\}</script> (or <script type="math/tex">\in \{0, 1\}</script>) is the state of unit <script type="math/tex">j</script>, and <script type="math/tex">\theta_{j}</script> is the threshold of unit <script type="math/tex">j</script>.</li>
+              <li>The <strong>binary states</strong> of <em>two</em> <strong>neurons</strong>: \(s_{i}\) and \(s_{j}\)
+  where \(s_{j} \in \{-1, 1\}\) (or \(\in \{0, 1\}\)) is the state of unit \(j\), and \(\theta_{j}\) is the threshold of unit \(j\).</li>
             </ul>
           </li>
           <li>To make up the following terms:
             <ul>
-              <li>The <strong>quadratic term</strong> <script type="math/tex">s_{i} s_{j} \in \{-1, 1\}</script>, involving the states of <em><strong>two</strong></em> units and</li>
-              <li>The <strong>bias term</strong> <script type="math/tex">s_i b_i \in \{-\theta, \theta\}</script>, involving the states of individual units.</li>
+              <li>The <strong>quadratic term</strong> \(s_{i} s_{j} \in \{-1, 1\}\), involving the states of <em><strong>two</strong></em> units and</li>
+              <li>The <strong>bias term</strong> \(s_i b_i \in \{-\theta, \theta\}\), involving the states of individual units.</li>
             </ul>
           </li>
         </ul>
       </li>
       <li>This simple <em><strong>quadratic</strong></em> energy function makes it possible for each unit to compute <strong>locally</strong> how it’s state affects the global energy:<br />
-  The <strong>Energy Gap</strong> is the difference in the global energy of the whole configuration depending on whether <script type="math/tex">i</script> is on:
+  The <strong>Energy Gap</strong> is the difference in the global energy of the whole configuration depending on whether \(i\) is on:
         <p>$$\begin{align}
       \text{Energy Gap} &amp;= \Delta E_{i} \\
         &amp;= E\left(s_{i}=0\right)-E\left(s_{i}=1\right) \\
         &amp;= b_{i}+\sum_{j} s_{j} w_{i j} 
       \end{align}
       $$</p>
-        <p>i.e. the difference between the <strong>energy when <script type="math/tex">i</script> is <em>on</em></strong> and the <strong>energy when <script type="math/tex">i</script> is <em>off</em></strong>.</p>
+        <p>i.e. the difference between the <strong>energy when \(i\) is <em>on</em></strong> and the <strong>energy when \(i\) is <em>off</em></strong>.</p>
         <ul>
           <li><strong>The Energy Gap and the Binary Threshold Decision Rule:</strong>
             <ul>
               <li>This difference (<strong>energy gap</strong>) is exactly what the <strong>binary threshold decision rule</strong> computes.</li>
-              <li><span style="color: goldenrod">The Binary Decision Rule is the</span> <strong style="color: goldenrod"><em>derivative</em> of the energy gap wrt the state of the <script type="math/tex">i</script>-th unit <script type="math/tex">s_i</script></strong>.</li>
+              <li><span style="color: goldenrod">The Binary Decision Rule is the</span> <strong style="color: goldenrod"><em>derivative</em> of the energy gap wrt the state of the \(i\)-th unit \(s_i\)</strong>.</li>
             </ul>
           </li>
         </ul>
@@ -189,7 +189,7 @@
  The net has two triangles in which the three units mostly support each other.</p>
     <ul>
       <li>Each triangle mostly hates the other triangle.<br />
- The triangle on the left differs from the one on the right by having a weight of <script type="math/tex">2</script> where the other one has a weight of <script type="math/tex">3</script>.</li>
+ The triangle on the left differs from the one on the right by having a weight of \(2\) where the other one has a weight of \(3\).</li>
       <li>So turning on the units in the triangle on the right gives the deepest minimum.</li>
     </ul>
 
@@ -198,7 +198,7 @@
       <li>If units make <strong>simultaneous</strong> decisions the energy could go up.</li>
       <li>With simultaneous parallel updating we can get <em><strong>oscillations</strong></em>.
         <ul>
-          <li>They always have a <strong>period</strong> of <script type="math/tex">2</script> (bi-phasic oscillations).</li>
+          <li>They always have a <strong>period</strong> of \(2\) (bi-phasic oscillations).</li>
         </ul>
       </li>
       <li>If the updates occur in parallel but with random timing, the oscillations are usually destroyed.</li>
@@ -229,7 +229,7 @@
 
     <p id="lst-p"><strong style="color: red">Storing memories in a Hopfield net:</strong></p>
     <ul>
-      <li>If we use activities of <script type="math/tex">1</script> and <script type="math/tex">-1</script> we can store a binary state vector by incrementing the weight between any two units by the product of their activities.
+      <li>If we use activities of \(1\) and \(-1\) we can store a binary state vector by incrementing the weight between any two units by the product of their activities.
         <p>$$\Delta w_{i j}=s_{i} s_{j}$$</p>
         <ul>
           <li>This is a very simple rule that is <strong><em>not</em> error-driven</strong> (i.e. does not learn by correcting errors).<br />
@@ -242,7 +242,7 @@
           <li>We treat <strong>biases</strong> as weights from a <strong><em>permanently on</em> unit</strong>.</li>
         </ul>
       </li>
-      <li>With states of <script type="math/tex">0</script> and <script type="math/tex">1</script> the rule is slightly more complicated:
+      <li>With states of \(0\) and \(1\) the rule is slightly more complicated:
         <p>$$\Delta w_{i j}=4\left(s_{i}-\frac{1}{2}\right)\left(s_{j}-\frac{1}{2}\right)$$</p>
       </li>
     </ul>
@@ -264,23 +264,23 @@
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Structure:</strong><br />
- The <strong>Hopfield Network</strong> is formally described as a <strong style="color: goldenrod">complete Undirected graph</strong> <script type="math/tex">G=\langle V, f\rangle,</script> where <script type="math/tex">V</script> is a set of McCulloch-Pitts neurons and <script type="math/tex">f : V^{2} \rightarrow \mathbb{R}</script> is a function that links pairs of units to a real value, the connectivity weight.
+ The <strong>Hopfield Network</strong> is formally described as a <strong style="color: goldenrod">complete Undirected graph</strong> \(G=\langle V, f\rangle,\) where \(V\) is a set of McCulloch-Pitts neurons and \(f : V^{2} \rightarrow \mathbb{R}\) is a function that links pairs of units to a real value, the connectivity weight.
     <ul>
       <li>The <strong>Units</strong>:<br />
   The units in a Hopfield Net are <strong>binary threshold units</strong>,<br />
   i.e. the <span style="color: purple">units only take on <strong>two different values</strong> for their states</span> and the <span style="color: purple">value is determined by whether or not the units’ <strong>input</strong> <em><strong>exceeds</strong></em> <strong>their threshold</strong></span>.</li>
       <li>The <strong>States:</strong><br />
-  The state <script type="math/tex">s_i</script> for unit <script type="math/tex">i</script> take on values of <script type="math/tex">1</script> or <script type="math/tex">-1</script>,<br />
-  i.e. <script type="math/tex">s_i \in \{-1, 1\}</script>.</li>
+  The state \(s_i\) for unit \(i\) take on values of \(1\) or \(-1\),<br />
+  i.e. \(s_i \in \{-1, 1\}\).</li>
       <li>The <strong>Weights:</strong><br />
-  Every pair of units <script type="math/tex">i</script> and <script type="math/tex">j</script> in a Hopfield network has a connection that is described by the <strong>connectivity weight</strong> <script type="math/tex">w_{i j}</script>.
+  Every pair of units \(i\) and \(j\) in a Hopfield network has a connection that is described by the <strong>connectivity weight</strong> \(w_{i j}\).
         <ul>
           <li><strong>Symmetric Connections (weights)</strong>:
             <ul>
               <li>The connections in a Hopfield net are constrained to be symmetric by making the following restrictions:
                 <ul>
-                  <li><script type="math/tex">w_{i i}=0, \forall i</script> (no unit has a connection with itself)</li>
-                  <li><script type="math/tex">w_{i j}=w_{j i}, \forall i, j</script> (connections are symmetric)</li>
+                  <li>\(w_{i i}=0, \forall i\) (no unit has a connection with itself)</li>
+                  <li>\(w_{i j}=w_{j i}, \forall i, j\) (connections are symmetric)</li>
                 </ul>
               </li>
               <li>The <span style="color: purple">constraint that weights are <em><strong>symmetric</strong></em> guarantees that the <strong>energy function decreases monotonically</strong> while following the activation rules</span>.<br />
@@ -304,19 +304,19 @@
 
     <p id="lst-p"><strong style="color: red">Neural Attraction and Repulsion (in state-space):</strong><br />
  Neurons “attract or repel each other” in state-space.<br />
- The weight between two units has a powerful impact upon the values of the neurons. Consider the connection weight <script type="math/tex">w_{ij}</script> between two neurons <script type="math/tex">i</script> and <script type="math/tex">j</script>.<br />
- If <script type="math/tex">w_>0</script>, the updating rule implies that:</p>
+ The weight between two units has a powerful impact upon the values of the neurons. Consider the connection weight \(w_{ij}\) between two neurons \(i\) and \(j\).<br />
+ If \(w_&gt;0\), the updating rule implies that:</p>
     <ul>
-      <li>when <script type="math/tex">s_{j}=1,</script> the contribution of <script type="math/tex">j</script> in the weighted sum is positive. Thus, <script type="math/tex">s_{i}</script> is pulled by <script type="math/tex">j</script> towards its value <script type="math/tex">s_{i}=1</script></li>
-      <li>when <script type="math/tex">s_{j}=-1,</script> the contribution of <script type="math/tex">j</script> in the weighted sum is negative. Then again, <script type="math/tex">s_{i}</script> is pushed by <script type="math/tex">j</script> towards its value <script type="math/tex">s_{i}=-1</script></li>
+      <li>when \(s_{j}=1,\) the contribution of \(j\) in the weighted sum is positive. Thus, \(s_{i}\) is pulled by \(j\) towards its value \(s_{i}=1\)</li>
+      <li>when \(s_{j}=-1,\) the contribution of \(j\) in the weighted sum is negative. Then again, \(s_{i}\) is pushed by \(j\) towards its value \(s_{i}=-1\)</li>
     </ul>
 
-    <p>Thus, the <strong>values of neurons <script type="math/tex">i</script> and <script type="math/tex">j</script></strong> will <span style="color: purple"><strong>converge</strong> if the weight between them is <em>positive</em></span>.<br />
+    <p>Thus, the <strong>values of neurons \(i\) and \(j\)</strong> will <span style="color: purple"><strong>converge</strong> if the weight between them is <em>positive</em></span>.<br />
  Similarly, they will <span style="color: purple"><strong>diverge</strong> if the weight is <em>negative</em></span>.<br />
  <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Energy:</strong><br />
- Hopfield nets have a scalar value associated with each state of the network, referred to as the <strong>“energy”, <script type="math/tex">E</script>,</strong> of the network, where:
+ Hopfield nets have a scalar value associated with each state of the network, referred to as the <strong>“energy”, \(E\),</strong> of the network, where:
     <p>$$E=-\frac{1}{2} \sum_{i, j} w_{i j} s_{i} s_{j}+\sum_{i} \theta_{i} s_{i}$$</p>
     <p><button class="showText" value="show" onclick="showTextPopHide(event);">Energy Landscape of Hopfield Net</button>
  <img src="https://cdn.mathpix.com/snip/images/VgVFJGoT4ogbRvkb1SO-HbUS6i0M94Xte6gIgcYJUbw.original.fullsize.png" alt="img" width="100%" hidden="" /><br />
@@ -374,19 +374,19 @@ The Hopfield Network converges to an <strong>attractor pattern</strong> describi
 
     <p><strong style="color: red">Hebbian Learning Rule:</strong><br />
  The Hebbian rule is both <strong>local</strong> and <strong>incremental</strong>.<br />
- For the Hopfield Networks, it is implemented in the following manner, when learning <script type="math/tex">n</script> binary patterns:</p>
+ For the Hopfield Networks, it is implemented in the following manner, when learning \(n\) binary patterns:</p>
     <p>$$w_{i j}=\frac{1}{n} \sum_{\mu=1}^{n} \epsilon_{i}^{\mu} \epsilon_{j}^{\mu}$$</p>
-    <p>where <script type="math/tex">\epsilon_{i}^{\mu}</script> represents bit <script type="math/tex">i</script> from pattern <script type="math/tex">\mu</script>.</p>
+    <p>where \(\epsilon_{i}^{\mu}\) represents bit \(i\) from pattern \(\mu\).</p>
 
-    <p>- If the bits corresponding to neurons <script type="math/tex">i</script> and <script type="math/tex">j</script> are equal in pattern <script type="math/tex">\mu,</script> then the product <script type="math/tex">\epsilon_{i}^{\mu} \epsilon_{j}^{\mu}</script> will be positive.<br />
- This would, in turn, have a positive effect on the weight <script type="math/tex">w_{i j}</script> and the values of <script type="math/tex">i</script> and <script type="math/tex">j</script> will tend to become equal.<br />
- - The opposite happens if the bits corresponding to neurons <script type="math/tex">i</script> and <script type="math/tex">j</script> are different.</p>
+    <p>- If the bits corresponding to neurons \(i\) and \(j\) are equal in pattern \(\mu,\) then the product \(\epsilon_{i}^{\mu} \epsilon_{j}^{\mu}\) will be positive.<br />
+ This would, in turn, have a positive effect on the weight \(w_{i j}\) and the values of \(i\) and \(j\) will tend to become equal.<br />
+ - The opposite happens if the bits corresponding to neurons \(i\) and \(j\) are different.</p>
 
     <p><strong style="color: red">The Storkey Learning Rule:</strong><br />
  This rule was introduced by <em>Amos Storkey (1997)</em> and is both <strong>local</strong> and <strong>incremental</strong>.<br />
  The weight matrix of an attractor neural network is said to follow the Storkey learning rule if it obeys:</p>
     <p>$$w_{i j}^{\nu}=w_{i j}^{\nu-1}+\frac{1}{n} \epsilon_{i}^{\nu} \epsilon_{j}^{\nu}-\frac{1}{n} \epsilon_{i}^{\nu} h_{j i}^{\nu}-\frac{1}{n} \epsilon_{j}^{\nu} h_{i j}^{\nu}$$</p>
-    <p>where <script type="math/tex">h_{i j}^{\nu}=\sum_{k=1}^{n} \sum_{i \neq k \neq j}^{n} w_{i k}^{\nu-1} \epsilon_{k}^{\nu}</script> is a form of <strong>local field</strong> at neuron <script type="math/tex">i</script>.</p>
+    <p>where \(h_{i j}^{\nu}=\sum_{k=1}^{n} \sum_{i \neq k \neq j}^{n} w_{i k}^{\nu-1} \epsilon_{k}^{\nu}\) is a form of <strong>local field</strong> at neuron \(i\).</p>
 
     <p>This learning rule is <strong>local</strong>, since the <span style="color: purple">synapses take into account only neurons at their sides</span>.</p>
 
@@ -403,8 +403,8 @@ The Hopfield Network converges to an <strong>attractor pattern</strong> describi
       <li><strong>Spurious Patterns</strong> arise due to <em><strong>spurious minima</strong></em>.<br />
   The energy in these spurious patterns is also a local minimum:
         <ul>
-          <li>For each stored pattern <script type="math/tex">x,</script> the negation <script type="math/tex">-x</script> is also a spurious pattern.</li>
-          <li>A spurious state can also be a linear combination of an odd number of retrieval states. For example, when using <script type="math/tex">3</script> patterns <script type="math/tex">\mu_{1}, \mu_{2}, \mu_{3},</script> one can get the following spurious state:</li>
+          <li>For each stored pattern \(x,\) the negation \(-x\) is also a spurious pattern.</li>
+          <li>A spurious state can also be a linear combination of an odd number of retrieval states. For example, when using \(3\) patterns \(\mu_{1}, \mu_{2}, \mu_{3},\) one can get the following spurious state:</li>
         </ul>
         <p>$$\epsilon_{i}^{\operatorname{mix}}=\pm \operatorname{sgn}\left( \pm \epsilon_{i}^{\mu_{1}} \pm \epsilon_{i}^{\mu_{2}} \pm \epsilon_{i}^{\mu_{3}}\right)$$</p>
       </li>
@@ -422,32 +422,32 @@ The Hopfield Network converges to an <strong>attractor pattern</strong> describi
 
     <p id="lst-p"><strong>Capacity:</strong></p>
     <ul>
-      <li>It was shown that the recall accuracy between vectors and nodes was <script type="math/tex">0.138</script> (approximately <script type="math/tex">138</script> vectors can be recalled from storage for every <script type="math/tex">1000</script> nodes) <em>(Hertz et al. 1991)</em>.</li>
-      <li>Using <strong>Hopfield’s storage rule</strong> the capacity of a totally connected net with <script type="math/tex">N</script> units is only about <script type="math/tex">0.15N</script> memories:
+      <li>It was shown that the recall accuracy between vectors and nodes was \(0.138\) (approximately \(138\) vectors can be recalled from storage for every \(1000\) nodes) <em>(Hertz et al. 1991)</em>.</li>
+      <li>Using <strong>Hopfield’s storage rule</strong> the capacity of a totally connected net with \(N\) units is only about \(0.15N\) memories:
         <ul>
-          <li>At <script type="math/tex">N</script> bits per memory the <strong>total information stored</strong> is only <script type="math/tex">0.15 N^{2}</script> bits.</li>
+          <li>At \(N\) bits per memory the <strong>total information stored</strong> is only \(0.15 N^{2}\) bits.</li>
           <li>This does not make efficient use of the bits required to store the weights.</li>
-          <li>It <span style="color: purple">depends on a constant <script type="math/tex">0.15</script></span></li>
+          <li>It <span style="color: purple">depends on a constant \(0.15\)</span></li>
         </ul>
       </li>
       <li><strong>Capacity Requirements for Efficient Storage</strong>:
         <ul>
-          <li>The net has <script type="math/tex">N^{2}</script> weights and biases.</li>
-          <li>After storing <script type="math/tex">M</script> memories, each connection weight has an integer value in the range <script type="math/tex">[-M, M]</script>.</li>
+          <li>The net has \(N^{2}\) weights and biases.</li>
+          <li>After storing \(M\) memories, each connection weight has an integer value in the range \([-M, M]\).</li>
           <li>So the <strong>number of bits required to <em>Efficiently</em> store the weights and biases</strong> is:
             <p>$$ N^{2} \log (2 M+1)$$</p>
           </li>
-          <li>It <span style="color: purple">scales <strong>logarithmically</strong> with the number of stored memories <script type="math/tex">M</script></span>.</li>
+          <li>It <span style="color: purple">scales <strong>logarithmically</strong> with the number of stored memories \(M\)</span>.</li>
         </ul>
       </li>
     </ul>
 
     <p id="lst-p"><strong>Effects of Limited Capacity:</strong></p>
     <ul>
-      <li>Since the capacity of Hopfield Nets is limited to <script type="math/tex">\approx 0.15N</script>, it is evident that many mistakes will occur if one tries to store a large number of vectors.<br />
+      <li>Since the capacity of Hopfield Nets is limited to \(\approx 0.15N\), it is evident that many mistakes will occur if one tries to store a large number of vectors.<br />
   When the Hopfield model does not recall the right pattern, it is possible that an intrusion has taken place, since semantically related items tend to confuse the individual, and recollection of the wrong pattern occurs.<br />
   Therefore, the Hopfield network model is shown to confuse one stored item with that of another upon retrieval.</li>
-      <li>Perfect recalls and high capacity, <script type="math/tex">>0.14</script>, can be loaded in the network by <strong>Storkey learning method</strong>.<br />
+      <li>Perfect recalls and high capacity, \(&gt;0.14\), can be loaded in the network by <strong>Storkey learning method</strong>.<br />
   Ulterior models inspired by the Hopfield network were later devised to raise the storage limit and reduce the retrieval error rate, with some being capable of one-shot learning.
         <ul>
           <li><a href="https://hal.archives-ouvertes.fr/hal-01058303/">A study of retrieval algorithms of sparse messages in networks of neural cliques</a></li>
@@ -458,7 +458,7 @@ The Hopfield Network converges to an <strong>attractor pattern</strong> describi
     <p id="lst-p"><strong style="color: red">Spurious Minima Limit the Capacity:</strong></p>
     <ul>
       <li>Each time we memorize a configuration, we hope to create a new energy minimum.</li>
-      <li>The problem is if <span style="color: purple">two nearby minima <em><strong>merge</strong></em> to create a minimum at an intermediate location</span><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>:<br />
+      <li>The problem is if <span style="color: purple">two nearby minima <em><strong>merge</strong></em> to create a minimum at an intermediate location</span><sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>:<br />
   <img src="https://cdn.mathpix.com/snip/images/UL_iey6sV1ZUu36LhhJrMDAivSzfUaZMyuxNMc2Y8BE.original.fullsize.png" alt="img" width="60%" />
         <ul>
           <li>Then we would get a blend of them rather than individual memories.</li>
@@ -503,7 +503,7 @@ The Hopfield Network converges to an <strong>attractor pattern</strong> describi
  Thus, the solution is to <span style="color: purple">derive unlearning as the right way to minimize some cost function</span>, where the cost function is “<em>how well your network models the data that you saw during the day</em>”.</p>
 
     <p><strong style="color: red">The Maximal Capacity of a given network architecture, over all possible learning rules:</strong><br />
- <em>Elizabeth Gardner</em> showed that the capacity of <em>fully connected networks</em> of <em>binary neurons</em> with <em>dense patterns</em> <a href="https://pdfs.semanticscholar.org/7346/d681807bf0852695caa42dbecae5265b360a.pdf"><strong>scales as <script type="math/tex">2N</script></strong></a>, a storage capacity which is much larger than the one of the Hopfield model.<br />
+ <em>Elizabeth Gardner</em> showed that the capacity of <em>fully connected networks</em> of <em>binary neurons</em> with <em>dense patterns</em> <a href="https://pdfs.semanticscholar.org/7346/d681807bf0852695caa42dbecae5265b360a.pdf"><strong>scales as \(2N\)</strong></a>, a storage capacity which is much larger than the one of the Hopfield model.<br />
  <strong>Learning Rules that are able to saturate the Gardner Bound:</strong><br />
  A simple learning rule that is guaranteed to achieve this bound is the <strong>Perceptron Learning Algorithm (PLA)</strong> <span style="color: purple">applied to each neuron independently</span>.<br />
  However, unlike the rule used in the Hopfield model, PLA is a <em><strong>supervised</strong></em> rule that needs an explicit “error signal” in order to achieve the Gardner bound.</p>
@@ -591,7 +591,7 @@ The Hopfield Network converges to an <strong>attractor pattern</strong> describi
   <img src="https://cdn.mathpix.com/snip/images/X1dg3rSIy6tVYNCyni5L1yVBoghnLIg88MFCCixV3Gc.original.fullsize.png" alt="img" width="60%" />
         <ul>
           <li>The <strong>probability of <em>crossing barriers</em></strong> is <span style="color: purple">high</span>.<br />
-  I.E. The <strong>probability</strong> of going <em><strong>uphill</strong></em> from <script type="math/tex">B</script> to <script type="math/tex">A</script> is lower than the probability of going <em><strong>downhill</strong></em> from <script type="math/tex">A</script> to <script type="math/tex">B</script>; but not much lower.
+  I.E. The <strong>probability</strong> of going <em><strong>uphill</strong></em> from \(B\) to \(A\) is lower than the probability of going <em><strong>downhill</strong></em> from \(A\) to \(B\); but not much lower.
             <ul>
               <li>In effect, the temperature <em>flattens the energy landscape</em>.</li>
             </ul>
@@ -609,7 +609,7 @@ The Hopfield Network converges to an <strong>attractor pattern</strong> describi
   <img src="https://cdn.mathpix.com/snip/images/slyGgdTvzQogdm6EhkfEUNolozpN8S9gmbTusznV714.original.fullsize.png" alt="img" width="60%" />
         <ul>
           <li>The <strong>probability of <em>crossing barriers</em></strong> is <span style="color: purple">much <strong>smaller</strong></span>.<br />
-  I.E. The <strong>probability</strong> of  going <em><strong>uphill</strong></em> from <script type="math/tex">B</script> to <script type="math/tex">A</script> is <em>much</em> lower than the probability of going <em><strong>downhill</strong></em> from <script type="math/tex">A</script> to <script type="math/tex">B</script>.</li>
+  I.E. The <strong>probability</strong> of  going <em><strong>uphill</strong></em> from \(B\) to \(A\) is <em>much</em> lower than the probability of going <em><strong>downhill</strong></em> from \(A\) to \(B\).</li>
           <li>So, the <strong>Ratio of the Probabilities</strong> is <span style="color: purple">much <strong>higher</strong></span>.<br />
   Thus,
             <ul>
@@ -617,8 +617,8 @@ The Hopfield Network converges to an <strong>attractor pattern</strong> describi
               <li>It is easy to stay in a deep minimum once you’ve got there</li>
             </ul>
           </li>
-          <li>Thus, if we run the system long enough, we expect all the particles to end up in <script type="math/tex">B</script>.<br />
-  However, if we run it at a low temperature, it will take a very long time for particles to escape from <script type="math/tex">A</script>.</li>
+          <li>Thus, if we run the system long enough, we expect all the particles to end up in \(B\).<br />
+  However, if we run it at a low temperature, it will take a very long time for particles to escape from \(A\).</li>
           <li>To increase the speed of convergence, starting at a high temperature then gradually decreasing it, is a good compromise.</li>
         </ul>
       </li>
@@ -630,30 +630,30 @@ The Hopfield Network converges to an <strong>attractor pattern</strong> describi
  - <span style="color: purple"><strong><em>Raising</em> the noise level</strong> is equivalent to <strong><em>decreasing</em> all the energy gaps</strong> between configurations</span>.</p>
     <p>$$p\left(s_{i}=1\right)=\frac{1}{1+e^{-\Delta E_{i} / T}}$$</p>
     <ul>
-      <li>This is a normal <strong>logistic equation</strong>, but with the <span style="color: purple"><strong>energy gap</strong> <em><strong>scaled</strong></em> by a <strong>temperature</strong> <script type="math/tex">T</script></span>:
+      <li>This is a normal <strong>logistic equation</strong>, but with the <span style="color: purple"><strong>energy gap</strong> <em><strong>scaled</strong></em> by a <strong>temperature</strong> \(T\)</span>:
         <ul>
-          <li><strong>High Temperature:</strong> the exponential will be <script type="math/tex">\approx 0</script> and <script type="math/tex">p\left(s_{i}=1\right)= \dfrac{1}{2}</script>.<br />
+          <li><strong>High Temperature:</strong> the exponential will be \(\approx 0\) and \(p\left(s_{i}=1\right)= \dfrac{1}{2}\).<br />
   I.E. the <strong>probability of a unit turning <em>on</em></strong> is about a <span style="color: purple">half</span>.<br />
   It will be in its <em>on</em> and <em>off</em> states, equally often.</li>
-          <li><strong>Low Temperature</strong>: depending on the sign of <script type="math/tex">\Delta E_{i}</script>, the unit will become <em>more firmly on</em> or <em>more firmly off</em>.</li>
-          <li><strong>Zero Temperature</strong>: (e.g. in Hopfield Nets) the sign of <script type="math/tex">\Delta E_{i}</script> determines whether RHS is <script type="math/tex">0</script> or <script type="math/tex">1</script>.<br />
+          <li><strong>Low Temperature</strong>: depending on the sign of \(\Delta E_{i}\), the unit will become <em>more firmly on</em> or <em>more firmly off</em>.</li>
+          <li><strong>Zero Temperature</strong>: (e.g. in Hopfield Nets) the sign of \(\Delta E_{i}\) determines whether RHS is \(0\) or \(1\).<br />
   I.E. the unit will behave <em><strong>deterministically</strong></em>; a standard binary threshold unit, that will always adopt whichever of the two states gives the lowest energy.</li>
         </ul>
       </li>
-      <li><strong>Boltzmann Machines</strong> use stochastic binary units, with temperature <script type="math/tex">T=1</script> (i.e. standard logistic equation).</li>
+      <li><strong>Boltzmann Machines</strong> use stochastic binary units, with temperature \(T=1\) (i.e. standard logistic equation).</li>
     </ul>
 
-    <p id="lst-p"><strong style="color: red">Thermal Equilibrium at a fixed temperature <script type="math/tex">T=1</script>:</strong></p>
+    <p id="lst-p"><strong style="color: red">Thermal Equilibrium at a fixed temperature \(T=1\):</strong></p>
     <ul>
       <li>Thermal Equilibrium does not mean that the system has settled down into the lowest energy configuration.<br />
   I.E. not the states of the individual units that settle down.<br />
-  The individual units still rattle around at Equilibrium, unless the temperature is zero <script type="math/tex">T=0</script>.</li>
+  The individual units still rattle around at Equilibrium, unless the temperature is zero \(T=0\).</li>
       <li>What settles down is the <span style="color: purple"><strong>probability distribution</strong> over configurations</span>.
         <ul>
           <li>It settles to the <strong>stationary distribution</strong>.
             <ul>
               <li>The stationary distribution is determined by the <strong>energy function</strong> of the system.</li>
-              <li>In the stationary distribution, the <strong>probability of any configuration</strong> is <script type="math/tex">\propto e^{-E}</script>.</li>
+              <li>In the stationary distribution, the <strong>probability of any configuration</strong> is \(\propto e^{-E}\).</li>
             </ul>
           </li>
         </ul>
@@ -684,11 +684,11 @@ The Hopfield Network converges to an <strong>attractor pattern</strong> describi
       <li><strong>Analogy</strong>:<br />
   <button class="showText" value="show" onclick="showTextPopHide(event);">Analogy - Card Shuffling</button>
         <ul hidden="">
-          <li>Imagine a casino in Las Vegas that is full of card dealers (we need many more than <script type="math/tex">52!</script> of them).</li>
+          <li>Imagine a casino in Las Vegas that is full of card dealers (we need many more than \(52!\) of them).</li>
           <li>We start with all the card packs in standard order and then the dealers all start shuffling their packs.
             <ul>
               <li>After a few shuffling steps, the king of spades. still has a good chance of being next to the queen of spades. The packs have not yet forgotten where they stated.</li>
-              <li>After prolonged shuffling, the packs will have forgotten where they! started. There will be an equal number of packs in each of the <script type="math/tex">52!</script> possible orders.</li>
+              <li>After prolonged shuffling, the packs will have forgotten where they! started. There will be an equal number of packs in each of the \(52!\) possible orders.</li>
               <li>Once equilibrium has been reached, the number of packs that leave a configuration at each time step will be equal to the number that enter the configuration.</li>
             </ul>
           </li>
@@ -747,7 +747,7 @@ There are different kinds of models to generate data:</p>
   <img src="https://cdn.mathpix.com/snip/images/caikJVJyPI9RUHOvw_XhbndekKG1XMBtELTSeVDFC54.original.fullsize.png" alt="img" width="50%" /></li>
     </ul>
   </li>
-  <li>The probability of generating a visible vector, <script type="math/tex">\mathrm{v},</script> is computed by summing over all possible hidden states. Each hidden state is an ‘explanation” of <script type="math/tex">\mathrm{v}</script>:
+  <li>The probability of generating a visible vector, \(\mathrm{v},\) is computed by summing over all possible hidden states. Each hidden state is an ‘explanation” of \(\mathrm{v}\):
     <p>$$p(\boldsymbol{v})=\sum_{\boldsymbol{h}} p(\boldsymbol{h}) p(\boldsymbol{v} | \boldsymbol{h})$$</p>
   </li>
 </ul>
@@ -776,8 +776,7 @@ There are different kinds of models to generate data:</p>
       &amp;= -\boldsymbol{v}^{\top} \boldsymbol{R} \boldsymbol{v}-\boldsymbol{v}^{\top} \boldsymbol{W} \boldsymbol{h}-\boldsymbol{h}^{\top} \boldsymbol{S} \boldsymbol{h}-\boldsymbol{b}^{\top} \boldsymbol{v}-\boldsymbol{c}^{\top} \boldsymbol{h}   
       \end{align}
       $$</p>
-    <p>where <script type="math/tex">v_{i} b_{i}</script> <strong>binary state</strong> of <em>unit <script type="math/tex">i</script></em> in <script type="math/tex">\boldsymbol{v}</script>, <script type="math/tex">h_k b_k</script> is the <strong>bias</strong> of <em>unit <script type="math/tex">k</script></em>, <script type="math/tex">% <![CDATA[
-i< j %]]></script> indexes every non-identical pair of <script type="math/tex">i</script> and <script type="math/tex">j</script> once (avoid self-interactions and double counting), and <script type="math/tex">w_{i k}</script> is the <strong>weight</strong> between visible unit <script type="math/tex">i</script> and hidden unit <script type="math/tex">k</script>.</p>
+    <p>where \(v_{i} b_{i}\) <strong>binary state</strong> of <em>unit \(i\)</em> in \(\boldsymbol{v}\), \(h_k b_k\) is the <strong>bias</strong> of <em>unit \(k\)</em>, \(i&lt; j\) indexes every non-identical pair of \(i\) and \(j\) once (avoid self-interactions and double counting), and \(w_{i k}\) is the <strong>weight</strong> between visible unit \(i\) and hidden unit \(k\).</p>
   </li>
   <li><strong>Using Energies to define Probabilities</strong>:
     <ul>
@@ -789,7 +788,7 @@ i< j %]]></script> indexes every non-identical pair of <script type="math/tex">i
       </li>
     </ul>
 
-    <p>where the <em>denomenators</em> are the <strong>partition function</strong> <script type="math/tex">Z</script>.</p>
+    <p>where the <em>denomenators</em> are the <strong>partition function</strong> \(Z\).</p>
     <ul>
       <li><button class="showText" value="show" onclick="showTextPopHide(event);">Example - How Weights define a Distribution</button>
   <img src="https://cdn.mathpix.com/snip/images/FlB10QoVtoitDn8bOQAx4Muo-Myp2aTQAKXFc_BPZEo.original.fullsize.png" alt="img" width="100%" hidden="" /></li>
@@ -803,7 +802,7 @@ i< j %]]></script> indexes every non-identical pair of <script type="math/tex">i
           <li>Keep picking units at random and allowing them to stochastically update their states based on their energy gaps.</li>
         </ul>
       </li>
-      <li>Run the Markov chain until it reaches its stationary distribution (thermal equilibrium at a temperature of <script type="math/tex">1</script>).
+      <li>Run the Markov chain until it reaches its stationary distribution (thermal equilibrium at a temperature of \(1\)).
         <ul>
           <li>The probability of a global configuration is then related to its energy by the, <strong>Boltzmann Distribution:</strong>
             <p>$$p(\mathbf{v}, \mathbf{h}) \propto e^{-E(\mathbf{v}, \mathbf{h})}$$</p>
@@ -829,9 +828,9 @@ i< j %]]></script> indexes every non-identical pair of <script type="math/tex">i
 
 <p id="lst-p"><strong style="color: red">The Goal of Learning:</strong><br />
 We want to maximize the product of the probabilities (sum of log-probabilities) that the Boltzmann Machine assigns to the binary vectors in the training set.<br />
-This is Equivalent to maximizing the probability of obtaining exactly <script type="math/tex">N</script> training cases if we ran the BM as follows:</p>
+This is Equivalent to maximizing the probability of obtaining exactly \(N\) training cases if we ran the BM as follows:</p>
 <ul>
-  <li>For <script type="math/tex">i</script> in <script type="math/tex">[1, \ldots, N]</script>:
+  <li>For \(i\) in \([1, \ldots, N]\):
     <ul>
       <li>Run the network with <strong>no external input</strong> and let it settle to its <em><strong>stationary distribution</strong></em></li>
       <li>Sample the <em><strong>visible vector</strong></em></li>
@@ -842,17 +841,17 @@ This is Equivalent to maximizing the probability of obtaining exactly <script ty
 <p><strong style="color: red">Possible Difficulty in Learning - Global Information:</strong><br />
 Consider a chain of units with visible units at the ends:<br />
 <img src="https://cdn.mathpix.com/snip/images/vEznkdbLrzZMR8Tn76VEAv-iymx2azcZtYlDl76vYYQ.original.fullsize.png" alt="img" width="60%" /><br />
-If the training set is <script type="math/tex">(1,0)</script> and <script type="math/tex">(0,1)</script> we want the product of all the weights to be negative.<br />
+If the training set is \((1,0)\) and \((0,1)\) we want the product of all the weights to be negative.<br />
 So to know how to change w1 or w5 we must know w3.</p>
 
 <p><strong style="color: red">Learning with Local Information:</strong><br />
 A very surprising fact is the following:<br />
 <span style="color: purple">Everything that one weight needs to know about the other weights and the data is contained in the difference of two correlations</span>.<br />
-The <strong>derivative of <em>log probability</em> of one training vector</strong> wrt. one weight <script type="math/tex">w_{ij}</script>:</p>
+The <strong>derivative of <em>log probability</em> of one training vector</strong> wrt. one weight \(w_{ij}\):</p>
 <p>$$\dfrac{\partial \log p(\mathbf{v})}{\partial w_{i j}}=\left\langle s_{i} s_{j}\right\rangle_{\mathbf{v}}-\left\langle s_{i} s_{j}\right\rangle_{\text {free}}$$</p>
 <p id="lst-p">where:</p>
 <ul>
-  <li><script type="math/tex">\left\langle s_{i} s_{j}\right\rangle_{\mathbf{v}}</script>: is the expected value of product of states at thermal equilibrium when the training vector is clamped on the visible units.<br />
+  <li>\(\left\langle s_{i} s_{j}\right\rangle_{\mathbf{v}}\): is the expected value of product of states at thermal equilibrium when the training vector is clamped on the visible units.<br />
   This is the <strong style="color: goldenrod">positive phase</strong> of learning.
     <ul>
       <li><strong>Effect:</strong> Raise the weights in proportion to the product of the activities the units have when you are presenting data.</li>
@@ -860,7 +859,7 @@ The <strong>derivative of <em>log probability</em> of one training vector</stron
   It is a <strong style="color: goldenrod">Hebbian Learning Rule</strong>.</li>
     </ul>
   </li>
-  <li><script type="math/tex">\left\langle s_{i} s_{j}\right\rangle_{\text {free}}</script>: is the expected value of product of states at thermal equilibrium when nothing is clamped.<br />
+  <li>\(\left\langle s_{i} s_{j}\right\rangle_{\text {free}}\): is the expected value of product of states at thermal equilibrium when nothing is clamped.<br />
   This is the <strong style="color: goldenrod">negative phase</strong> of learning.
     <ul>
       <li><strong>Effect:</strong> Reduce the weights in proportion to <em>“how often the two units are <strong>on</strong> together when sampling from the <strong>models distribution</strong>“</em>.</li>
@@ -876,7 +875,7 @@ The <strong>derivative of <em>log probability</em> of one training vector</stron
 <p><span class="borderexample">Thus, the learning algorithm only requires <strong>local information</strong>.</span></p>
 
 <p><strong style="color: red">Effects of the Positive and Negative Phases of Learning:</strong><br />
-Given the <strong>probability of a training data vector <script type="math/tex">\boldsymbol{v}</script></strong>:</p>
+Given the <strong>probability of a training data vector \(\boldsymbol{v}\)</strong>:</p>
 <p>$$p(\boldsymbol{v})=\dfrac{\sum_{\boldsymbol{h}} e^{-E(\boldsymbol{v}, \boldsymbol{h})}}{\sum_{\boldsymbol{u}} \sum_{\boldsymbol{g}} e^{-E(\boldsymbol{u}, \boldsymbol{g})}}$$</p>
 <p>and the <strong>log probability</strong>:</p>
 <p id="lst-p">$$\begin{align}
@@ -891,26 +890,26 @@ Given the <strong>probability of a training data vector <script type="math/tex">
     <ul>
       <li>The first term is <span style="color: purple">decreasing the energy of terms in that sum that are already large</span>.
         <ul>
-          <li>It finds those terms by settling to thermal equilibrium with the vector <script type="math/tex">\boldsymbol{v}</script> clamped so they can find an <script type="math/tex">\boldsymbol{h}</script> that <strong>produces a low energy</strong> with <script type="math/tex">\boldsymbol{v}</script>).</li>
+          <li>It finds those terms by settling to thermal equilibrium with the vector \(\boldsymbol{v}\) clamped so they can find an \(\boldsymbol{h}\) that <strong>produces a low energy</strong> with \(\boldsymbol{v}\)).</li>
         </ul>
       </li>
-      <li>Having sampled those vectors <script type="math/tex">\boldsymbol{h}</script>, it then <span style="color: purple">changes the weights to make that energy even lower</span>.</li>
+      <li>Having sampled those vectors \(\boldsymbol{h}\), it then <span style="color: purple">changes the weights to make that energy even lower</span>.</li>
       <li><strong>Summary:</strong><br />
-  The positive phase finds hidden configurations that work well with <script type="math/tex">\boldsymbol{v}</script> and lowers their energies.</li>
+  The positive phase finds hidden configurations that work well with \(\boldsymbol{v}\) and lowers their energies.</li>
     </ul>
   </li>
   <li><strong>Negative Phase</strong>:
     <ul>
       <li>The second term is <span style="color: purple">doing the same thing but for the <strong>partition function</strong></span>.<br />
   It’s <span style="color: purple">finding global configurations (combinations of visible and hidden states) that give low energy and therefore are large contributors to the partition function</span>.</li>
-      <li>Having found those global configurations <script type="math/tex">(\boldsymbol{v}', \boldsymbol{h}')</script>, it <span style="color: purple">tries to raise their energy so that they contribute less</span>.</li>
+      <li>Having found those global configurations \((\boldsymbol{v}', \boldsymbol{h}')\), it <span style="color: purple">tries to raise their energy so that they contribute less</span>.</li>
       <li><strong>Summary:</strong><br />
   The negative phase finds the joint configurations that are the best competitors and raises their energies.</li>
     </ul>
   </li>
 </ul>
 
-<p>Thus, the positive term is making the top term in <script type="math/tex">p(\boldsymbol{v})</script> <strong>bigger</strong> and the negative term is making the bottom term in <script type="math/tex">p(\boldsymbol{v})</script> <strong>smaller</strong>.</p>
+<p>Thus, the positive term is making the top term in \(p(\boldsymbol{v})\) <strong>bigger</strong> and the negative term is making the bottom term in \(p(\boldsymbol{v})\) <strong>smaller</strong>.</p>
 
 <p><button class="showText" value="show" onclick="showTextPopHide(event);">Effects of only using the Hebbian Rule (Positive phase)</button>
 <span hidden="">If we only use the Hebbian rule (positive phase) without the unlearning term (negative phase) the synapse strengths will keep getting stronger and stronger, the weights will all become very positive, and the whole system will blow up.<br />
@@ -937,7 +936,7 @@ The Unlearning counteracts the positive phase’s tendency to just add a large c
           <li>Settle with NO data</li>
         </ol>
       </li>
-      <li>However, the network behaves, basically, in the same way in the two phases<sup id="fnref:1:1"><a href="#fn:1" class="footnote">1</a></sup>; while the forward and backprop stages are very different.</li>
+      <li>However, the network behaves, basically, in the same way in the two phases<sup id="fnref:1:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>; while the forward and backprop stages are very different.</li>
     </ul>
   </li>
 </ul>
@@ -949,7 +948,7 @@ The Unlearning counteracts the positive phase’s tendency to just add a large c
       <li>Clamp a data-vector on the visible units.</li>
       <li>Let the hidden units reach thermal equilibrium at a temperature of 1 (may use annealing to speed this up)<br />
   by updating the hidden units, one at a time.</li>
-      <li>Sample <script type="math/tex">\left\langle s_{i} s_{j}\right\rangle</script> for all pairs of units</li>
+      <li>Sample \(\left\langle s_{i} s_{j}\right\rangle\) for all pairs of units</li>
       <li>Repeat for all data-vectors in the training set.</li>
     </ul>
   </li>
@@ -962,7 +961,7 @@ The Unlearning counteracts the positive phase’s tendency to just add a large c
           <li><strong>Difficulty</strong>: where do we start?</li>
         </ul>
       </li>
-      <li>Sample <script type="math/tex">\left\langle s_{i} s_{j}\right\rangle</script> for all pairs of units</li>
+      <li>Sample \(\left\langle s_{i} s_{j}\right\rangle\) for all pairs of units</li>
       <li>Repeat many times to get good estimates
         <ul>
           <li><strong>Difficulty</strong>: how many times? (especially w/ multiple modes)</li>
@@ -972,28 +971,28 @@ The Unlearning counteracts the positive phase’s tendency to just add a large c
   </li>
   <li><strong>Weight updates:</strong>
     <ul>
-      <li>Update each weight by an amount proportional to the difference in <script type="math/tex">\left\langle s_{i} s_{j}\right\rangle</script> in the two phases.</li>
+      <li>Update each weight by an amount proportional to the difference in \(\left\langle s_{i} s_{j}\right\rangle\) in the two phases.</li>
     </ul>
   </li>
 </ul>
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p>The state space is the corners of a hypercube. Showing it as a <script type="math/tex">1-D</script> continuous space is a misrepresentation. <a href="#fnref:1" class="reversefootnote">&#8617;</a> <a href="#fnref:1:1" class="reversefootnote">&#8617;<sup>2</sup></a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p>The state space is the corners of a hypercube. Showing it as a \(1-D\) continuous space is a misrepresentation. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:1:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a></p>
     </li>
   </ol>
 </div>
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

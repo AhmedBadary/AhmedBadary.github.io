@@ -13,11 +13,12 @@ prevLink: /work_files/research/dl.html
   {: .TOC9}
   * [Deep Generative Models](#content1)
   {: .TOC1}
-  * [SECOND](#content2)
+  * [Likelihood-based Models](#content2)
   {: .TOC2}
+<!--   
   * [THIRD](#content3)
   {: .TOC3}
-<!--   * [FOURTH](#content4)
+  * [FOURTH](#content4)
   {: .TOC4}
   * [FIFTH](#content5)
   {: .TOC5}
@@ -162,7 +163,7 @@ __In situations respecting the following assumptions, Semi-Supervised Learning s
     The distribution $$\mathbf{p}_ {\text {data}}$$ is just a <span>__function__</span>{: style="color: purple"} that takes as an <span>input a sample $$x$$</span>{: style="color: purple"} and <span>outputs the probability of $$x$$</span>{: style="color: purple"} under the learned distribution.  
 
     __The Goal for Learning Likelihood-based Models:__{: style="color: red"}  
-    <button>Show Goal</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    <button>Show Goal</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
     * __Original Goal__: estimate $$\mathbf{p}_{\text {data}}$$ from samples $$\mathbf{x}^{(1)}, \ldots, \mathbf{x}^{(n)} \sim \mathbf{p}_{\text {data}}(\mathbf{x})$$.  
     * __Revised Goal - Function Approximation__: Find $$\theta$$ (the parameter vector indexing into the distribution space) so that you approximately get the data distribution.  
         I.E. Learn $$\theta$$ so that $$p_{\theta}(x) \approx p_{\text {data}}(x)$$.  
@@ -325,6 +326,7 @@ __In situations respecting the following assumptions, Semi-Supervised Learning s
     <span>An *__expressive__* __Bayes Net structure__ with __Neural Network conditional distributions__ yields an *__expressive__* model for $$p(x)$$ with *__tractable__* __maximum likelihood training__</span>{: style="color: goldenrod"}.   
     </span>  
     </div>  
+    <br>
 
 
 5. **Autoregressive Models:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}  
@@ -336,7 +338,7 @@ __In situations respecting the following assumptions, Semi-Supervised Learning s
     * Autoregressive models such as PixelRNN instead train a network that models the conditional distribution of every individual pixel given previous pixels (to the left and to the top). This is similar to plugging the pixels of the image into a char-rnn, but the RNNs run both horizontally and vertically over the image instead of just a 1D sequence of characters.  
     <br>
 
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}
+<!-- 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}
 
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}
 
@@ -363,3 +365,4 @@ __In situations respecting the following assumptions, Semi-Supervised Learning s
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}
 
+ -->

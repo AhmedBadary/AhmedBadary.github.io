@@ -37,6 +37,8 @@ prevLink: /
 ***
 ***
 
+* [Interactive ML Demos (Blog)](https://arogozhnikov.github.io/2016/04/28/demonstrations-for-ml-courses.html)  
+
 
 <button>The Scientific Method as an Ongoing Process</button>{: .showText value="show" onclick="showTextPopHide(event);"}
 ![img](https://cdn.mathpix.com/snip/images/XCvcfM_6eAB3B5pXgL2IZTyO1FkhciXiaVCcQBjsiAc.original.fullsize.png){: width="100%" hidden=""}  
@@ -71,6 +73,7 @@ CNN Tensor Shape: $$[B, C, H, W]$$
 
 ## RNNs
 {: #content2}
+
 
 <!-- 1. **RNN Architectures:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}   -->
 <!-- 2. **Different Connections in RNN Architectures:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}   -->
@@ -296,12 +299,17 @@ CNN Tensor Shape: $$[B, C, H, W]$$
     * __Binomial Theorem__:  
         <p>$$(x+y)^{n}=\sum_{k=0}^{n}{n \choose k}x^{n-k}y^{k}=\sum_{k=0}^{n}{n \choose k}x^{k}y^{n-k} \\={n \choose 0}x^{n}y^{0}+{n \choose 1}x^{n-1}y^{1}+{n \choose 2}x^{n-2}y^{2}+\cdots +{n \choose n-1}x^{1}y^{n-1}+{n \choose n}x^{0}y^{n},$$</p>  
     * __Binomial Coefficient__:  
-        <p>$${\binom {n}{k}}={\frac {n!}{k!(n-k)!}} = N \text{choose} k = N \text{choose} (n-k)$$</p>
+        <p>$${\binom {n}{k}}={\frac {n!}{k!(n-k)!}} = {n \text{ choose } k} = {n \choose (n-k)}$$</p>
     * __Expansion $$x^n - y^n$$__:  
         <p>$$x^n - y^n = (x-y)(x^{n-1} + x^{n-2} y + ... + x y^{n-2} + y^{n-1})$$</p>  
     * __Number of subsets of a set of $$N$$ elements__ $$= 2^N$$  
         * __Number of pairs (e.g. $$(a,b)$$) of a set of $$N$$ elements__ $$= N^2$$  
-        * There are at most $$k^N$$ ways to partition $$N$$ data points into $$k$$ clusters - there are $$N$$ choose $$k$$ clusters, precisely
+        * __Number of subsets of size $$k$$__ $$= {\binom {n}{k}}$$  
+            * There are at most $$k^N$$ ways to partition $$N$$ data points into $$k$$ clusters - there are $$N$$ choose $$k$$ clusters, precisely  
+    * __Permutations and Combinations__:  
+        * __Permutations of a set of size $$N$$__  $$= N!$$  
+        <button>Diagram</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+        ![img](https://cdn.mathpix.com/snip/images/726OtLVApY6cM75FeWVsxKTNWwN7I3C3OGioTOea9xU.original.fullsize.png){: width="70%" hidden=""}  
     * __Logarithms__:  
         <p>$$\log_x(y) = \dfrac{\ln(y)}{\ln(x)}$$</p>  
     * __The length of a vector $$\mathbf{x}$$  along a direction (projection)__:  
@@ -1403,3 +1411,4 @@ __Resources:__{: style="color: red"}
 * [Probabilistic Graphical Models CS-708 (CMU!)](https://sailinglab.github.io/pgm-spring-2019/)  
 * [Deep learning courses at UC Berkeley!](https://berkeley-deep-learning.github.io)  
 * [CS182/282A Designing, Visualizing and Understanding Deep Neural Networks Spring 2019](https://bcourses.berkeley.edu/courses/1478831/pages/cs182-slash-282a-designing-visualizing-and-understanding-deep-neural-networks-spring-2019)  
+* [Quantum Computing Learning Resource (Blog!)](https://quantum.country/qcvc)  

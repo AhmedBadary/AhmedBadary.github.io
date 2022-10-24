@@ -72,7 +72,7 @@
 
 <hr />
 
-<h4 style="color: SteelBlue  " id="the-problems-goal-is-to-track-a-certain-time-series-containing-the-returns-the--gain-if-we-invest-one-dollar-at-the-beginning-of-period-t-and-collect-it-at-the-end-of-the-period-of-a-certain-financial-index-for-example-the-sp-500-index">The problems goal is to track a certain time-series containing the returns (the % gain if we invest one dollar at the beginning of period <script type="math/tex">t</script>, and collect it at the end of the period) of a certain financial index, (for example the SP 500 index).</h4>
+<h4 style="color: SteelBlue  " id="the-problems-goal-is-to-track-a-certain-time-series-containing-the-returns-the--gain-if-we-invest-one-dollar-at-the-beginning-of-period-t-and-collect-it-at-the-end-of-the-period-of-a-certain-financial-index-for-example-the-sp-500-index">The problems goal is to track a certain time-series containing the returns (the % gain if we invest one dollar at the beginning of period \(t\), and collect it at the end of the period) of a certain financial index, (for example the SP 500 index).</h4>
 
 <h4 style="color: SteelBlue  " id="the-index-by-itself-may-not-be-tradable-or-it-may-be-very-costly-to-trade-it-because-it-has-too-many-assets-in-it-however-we-can-try-to-invest-in-a-few-tradable-assets-such-as-stocks-and-hope-to-closely-follow-the-index-so-that-the-return-of-our-portfolio-matches-that-of-the-index">The index by itself may not be tradable, or it may be very costly to trade it because it has too many assets in it. However we can try to invest in a few tradable assets, such as stocks, and hope to closely follow the index so that the return of our portfolio matches that of the index.</h4>
 
@@ -80,40 +80,40 @@
 
 <hr />
 
-<h4 style="color: SteelBlue  " id="mathematically-we-are-given-a-real-valued-time-series-st-with-time-t-from-1-cdots-t-here-st-is-the-return-of-the-index-at-time-t">Mathematically, we are given a real-valued time-series <script type="math/tex">s(t)</script> with time <script type="math/tex">t</script> from <script type="math/tex">{1, \cdots, T}</script>. Here, <script type="math/tex">s(t)</script> is the return of the index at time <script type="math/tex">t</script>.</h4>
-<h4 style="color: SteelBlue  " id="we-also-have-a-universe-of-n-possible-tradable-assets-with-s_it--t--1-cdots--t-the-return-time-series-for-asset-i--i--1-cdots-n">We also have a universe of <script type="math/tex">n</script> possible tradable assets, with, <script type="math/tex">s_i(t), \: t = 1, \cdots , T</script> the return time-series for asset <script type="math/tex">i, \: i = 1, \cdots, n</script>.</h4>
-<h4 style="color: SteelBlue  " id="investing-an-amount-x_i-in-the-i-th-asset-at-the-beginning-of-period-t-produces-the-return-x_is_it-at-the-end-of-period-t">Investing an amount <script type="math/tex">x_i</script> in the <script type="math/tex">i</script>-th asset at the beginning of period <script type="math/tex">t</script> produces the return <script type="math/tex">x_is_i(t)</script> at the end of period <script type="math/tex">t</script>.</h4>
+<h4 style="color: SteelBlue  " id="mathematically-we-are-given-a-real-valued-time-series-st-with-time-t-from-1-cdots-t-here-st-is-the-return-of-the-index-at-time-t">Mathematically, we are given a real-valued time-series \(s(t)\) with time \(t\) from \({1, \cdots, T}\). Here, \(s(t)\) is the return of the index at time \(t\).</h4>
+<h4 style="color: SteelBlue  " id="we-also-have-a-universe-of-n-possible-tradable-assets-with-s_it--t--1-cdots--t-the-return-time-series-for-asset-i--i--1-cdots-n">We also have a universe of \(n\) possible tradable assets, with, \(s_i(t), \: t = 1, \cdots , T\) the return time-series for asset \(i, \: i = 1, \cdots, n\).</h4>
+<h4 style="color: SteelBlue  " id="investing-an-amount-x_i-in-the-i-th-asset-at-the-beginning-of-period-t-produces-the-return-x_is_it-at-the-end-of-period-t">Investing an amount \(x_i\) in the \(i\)-th asset at the beginning of period \(t\) produces the return \(x_is_i(t)\) at the end of period \(t\).</h4>
 
 <h2 id="approach">Approach</h2>
 
 <hr />
 
 <blockquote>
-  <p>Here our variable is the vector of amounts invested in each asset, <script type="math/tex">x = (x_1, \cdots, x_n)</script>,
+  <p>Here our variable is the vector of amounts invested in each asset, \(x = (x_1, \cdots, x_n)\),
 which we refer to as the “<em>portfolio vector</em>”.</p>
 </blockquote>
 
 <h4 style="color: SteelBlue  " id="in-order-to-minimize-the-transaction-costs-involved-in-trading-each-asset-we-would-like-to-limit-the-number-of-assets-present-in-the-portfolio">In order to minimize the transaction costs involved in trading each asset, we would like to limit the number of assets present in the portfolio.</h4>
 
-<h4 style="color: SteelBlue  " id="we-plan-to-find-the-vector-x-in-mathbfrn-based-on-the-available-data-and-hold-it-for-some-time-in-the-future">We plan to find the vector <script type="math/tex">x \in \mathbf{R}^n</script> based on the available data, and hold it for some time in the future.</h4>
+<h4 style="color: SteelBlue  " id="we-plan-to-find-the-vector-x-in-mathbfrn-based-on-the-available-data-and-hold-it-for-some-time-in-the-future">We plan to find the vector \(x \in \mathbf{R}^n\) based on the available data, and hold it for some time in the future.</h4>
 
 <h2 id="proposed-formulation">Proposed Formulation</h2>
 
 <hr />
 
-<p><strong>We start by expressing the time series of returns of the portfolio vector <script type="math/tex">x, s(x)</script>, as a linear function of <script type="math/tex">x</script>.</strong></p>
+<p><strong>We start by expressing the time series of returns of the portfolio vector \(x, s(x)\), as a linear function of \(x\).</strong></p>
 
 <blockquote>
-  <p>Where the <script type="math/tex">t</script>-th coordinate of <script type="math/tex">s(x)</script> is the return of the portfolio at time <script type="math/tex">t</script>.</p>
+  <p>Where the \(t\)-th coordinate of \(s(x)\) is the return of the portfolio at time \(t\).</p>
 </blockquote>
 
-<p>Precisely, we will express the time series as a <script type="math/tex">T</script>-dimensional vector <script type="math/tex">s(x) = Ax</script>, with <script type="math/tex">x \in \mathbf{R}^n</script>
-and <script type="math/tex">A</script> a <script type="math/tex">(T \times n)</script> matrix expressed in terms of the data.</p>
+<p>Precisely, we will express the time series as a \(T\)-dimensional vector \(s(x) = Ax\), with \(x \in \mathbf{R}^n\)
+and \(A\) a \((T \times n)\) matrix expressed in terms of the data.</p>
 
-<p>First, we Let <script type="math/tex">s = (s(1), \cdots, s(T)) \in \mathbf{R}^T</script> and <script type="math/tex">s_i = (s_i(1), \cdots, s_i(T)) \in \mathbf{R}^T , i = 1, \cdots, n</script>.<br />
+<p>First, we Let \(s = (s(1), \cdots, s(T)) \in \mathbf{R}^T\) and \(s_i = (s_i(1), \cdots, s_i(T)) \in \mathbf{R}^T , i = 1, \cdots, n\).<br />
 Now, we can express,</p>
 <p>$$s(x) = \sum_{i=1}^n x_is_i = Ax,$$</p>
-<p>where <script type="math/tex">A = [s_1, \cdots, s_n]</script> a <script type="math/tex">(T \times n)</script> matrix.</p>
+<p>where \(A = [s_1, \cdots, s_n]\) a \((T \times n)\) matrix.</p>
 
 <p><strong>Now, we formulate the problem of <em>minimizing the tracknig error</em> as a Least-Sqaures Problem</strong></p>
 
@@ -137,8 +137,8 @@ Now, we can express,</p>
 
 <p><strong>Assume that <em>Shorting</em> is not allowed anymore. We try to reformulate the problem by adding the shorting constraint</strong></p>
 
-<p>When shorting is not allowed, <script type="math/tex">x</script> cannot be negative.
-Thus, we add the constraints <script type="math/tex">x \geq 0</script> to the least-squares problem,</p>
+<p>When shorting is not allowed, \(x\) cannot be negative.
+Thus, we add the constraints \(x \geq 0\) to the least-squares problem,</p>
 <p>$$\min_x \|Ax - s\|_2^2 \:\: : \:\: x \geq 0 $$</p>
 <p>resulting in a QP (Quadratic Program) formulation of the problem,</p>
 <p>$$\min_x x^TQx + c^Tx \:\: : \:\: Cx \leq d$$</p>
@@ -147,16 +147,16 @@ Thus, we add the constraints <script type="math/tex">x \geq 0</script> to the le
 
 <p><strong>We add our concern for transaction costs; i.e. trading-off the tracking error against the number of assets that have to be traded.</strong></p>
 
-<p>To control the transaction costs we need to minimize the number of non-zero components of <script type="math/tex">x</script>,<br />
-since a zero value in <script type="math/tex">x_i</script> means the <script type="math/tex">i</script>-th asset will not have to be traded.</p>
+<p>To control the transaction costs we need to minimize the number of non-zero components of \(x\),<br />
+since a zero value in \(x_i\) means the \(i\)-th asset will not have to be traded.</p>
 
-<p>The <script type="math/tex">l_1</script> norm allows us to minimize the number of non-zero components of a vector <script type="math/tex">\vec{x}</script>.</p>
+<p>The \(l_1\) norm allows us to minimize the number of non-zero components of a vector \(\vec{x}\).</p>
 
-<p>Thus, we add a <em>regularized</em> <script type="math/tex">l_1</script> term to the original Least-Squares problem,</p>
+<p>Thus, we add a <em>regularized</em> \(l_1\) term to the original Least-Squares problem,</p>
 <p>$$\min_x \|Ax - s\|_2^2 + \lambda \|x\|_1 \:\: : \:\: x \geq 0 $$</p>
-<p>where <script type="math/tex">\lambda \geq 0</script> is the regularization parameter that controls the trade-off between the tracking error and the number of assets (i.e. the transaction costs).</p>
+<p>where \(\lambda \geq 0\) is the regularization parameter that controls the trade-off between the tracking error and the number of assets (i.e. the transaction costs).</p>
 
-<p>We notice that as <script type="math/tex">\lambda</script> gets bigger the number of non-zero components in <script type="math/tex">x</script> decreases and vice-versa.</p>
+<p>We notice that as \(\lambda\) gets bigger the number of non-zero components in \(x\) decreases and vice-versa.</p>
 
 <p><strong>Finally, we formulate the above problem as a Quadratic Program (QP)</strong></p>
 
@@ -164,7 +164,7 @@ since a zero value in <script type="math/tex">x_i</script> means the <script typ
 
 <p>$$\min_x \|Ax - s\|_2^2 + \lambda \|x\|_1 \:\: : \:\: x \geq 0 $$</p>
 <p>$$= \min_x \|Ax - s\|_2^2 + \lambda \vec{1}^T x \:\: : \:\: x \geq 0 $$</p>
-<p>where <script type="math/tex">\vec{1}</script> is the vector of all ones.</p>
+<p>where \(\vec{1}\) is the vector of all ones.</p>
 
 <p>This allows us to formulate the QP,</p>
 <p>$$\min_x x^TQx + (c + \lambda \vec{1})^Tx \:\: : \:\: Cx \leq d$$</p>
@@ -180,7 +180,7 @@ since a zero value in <script type="math/tex">x_i</script> means the <script typ
 
 <hr />
 
-<h4 style="color: SteelBlue  " id="the-problems-goal-is-to-track-a-certain-time-series-containing-the-returns-the--gain-if-we-invest-one-dollar-at-the-beginning-of-period-t-and-collect-it-at-the-end-of-the-period-of-a-certain-financial-index-for-example-the-sp-500-index">The problems goal is to track a certain time-series containing the returns (the % gain if we invest one dollar at the beginning of period <script type="math/tex">t</script>, and collect it at the end of the period) of a certain financial index, (for example the SP 500 index).</h4>
+<h4 style="color: SteelBlue  " id="the-problems-goal-is-to-track-a-certain-time-series-containing-the-returns-the--gain-if-we-invest-one-dollar-at-the-beginning-of-period-t-and-collect-it-at-the-end-of-the-period-of-a-certain-financial-index-for-example-the-sp-500-index">The problems goal is to track a certain time-series containing the returns (the % gain if we invest one dollar at the beginning of period \(t\), and collect it at the end of the period) of a certain financial index, (for example the SP 500 index).</h4>
 
 <h4 style="color: SteelBlue  " id="the-index-by-itself-may-not-be-tradable-or-it-may-be-very-costly-to-trade-it-because-it-has-too-many-assets-in-it-however-we-can-try-to-invest-in-a-few-tradable-assets-such-as-stocks-and-hope-to-closely-follow-the-index-so-that-the-return-of-our-portfolio-matches-that-of-the-index">The index by itself may not be tradable, or it may be very costly to trade it because it has too many assets in it. However we can try to invest in a few tradable assets, such as stocks, and hope to closely follow the index so that the return of our portfolio matches that of the index.</h4>
 
@@ -188,40 +188,40 @@ since a zero value in <script type="math/tex">x_i</script> means the <script typ
 
 <hr />
 
-<h4 style="color: SteelBlue  " id="mathematically-we-are-given-a-real-valued-time-series-st-with-time-t-from-1-cdots-t-here-st-is-the-return-of-the-index-at-time-t">Mathematically, we are given a real-valued time-series <script type="math/tex">s(t)</script> with time <script type="math/tex">t</script> from <script type="math/tex">{1, \cdots, T}</script>. Here, <script type="math/tex">s(t)</script> is the return of the index at time <script type="math/tex">t</script>.</h4>
-<h4 style="color: SteelBlue  " id="we-also-have-a-universe-of-n-possible-tradable-assets-with-s_it--t--1-cdots--t-the-return-time-series-for-asset-i--i--1-cdots-n">We also have a universe of <script type="math/tex">n</script> possible tradable assets, with, <script type="math/tex">s_i(t), \: t = 1, \cdots , T</script> the return time-series for asset <script type="math/tex">i, \: i = 1, \cdots, n</script>.</h4>
-<h4 style="color: SteelBlue  " id="investing-an-amount-x_i-in-the-i-th-asset-at-the-beginning-of-period-t-produces-the-return-x_is_it-at-the-end-of-period-t">Investing an amount <script type="math/tex">x_i</script> in the <script type="math/tex">i</script>-th asset at the beginning of period <script type="math/tex">t</script> produces the return <script type="math/tex">x_is_i(t)</script> at the end of period <script type="math/tex">t</script>.</h4>
+<h4 style="color: SteelBlue  " id="mathematically-we-are-given-a-real-valued-time-series-st-with-time-t-from-1-cdots-t-here-st-is-the-return-of-the-index-at-time-t">Mathematically, we are given a real-valued time-series \(s(t)\) with time \(t\) from \({1, \cdots, T}\). Here, \(s(t)\) is the return of the index at time \(t\).</h4>
+<h4 style="color: SteelBlue  " id="we-also-have-a-universe-of-n-possible-tradable-assets-with-s_it--t--1-cdots--t-the-return-time-series-for-asset-i--i--1-cdots-n">We also have a universe of \(n\) possible tradable assets, with, \(s_i(t), \: t = 1, \cdots , T\) the return time-series for asset \(i, \: i = 1, \cdots, n\).</h4>
+<h4 style="color: SteelBlue  " id="investing-an-amount-x_i-in-the-i-th-asset-at-the-beginning-of-period-t-produces-the-return-x_is_it-at-the-end-of-period-t">Investing an amount \(x_i\) in the \(i\)-th asset at the beginning of period \(t\) produces the return \(x_is_i(t)\) at the end of period \(t\).</h4>
 
 <h2 id="approach">Approach</h2>
 
 <hr />
 
 <blockquote>
-  <p>Here our variable is the vector of amounts invested in each asset, <script type="math/tex">x = (x_1, \cdots, x_n)</script>,
+  <p>Here our variable is the vector of amounts invested in each asset, \(x = (x_1, \cdots, x_n)\),
 which we refer to as the “<em>portfolio vector</em>”.</p>
 </blockquote>
 
 <h4 style="color: SteelBlue  " id="in-order-to-minimize-the-transaction-costs-involved-in-trading-each-asset-we-would-like-to-limit-the-number-of-assets-present-in-the-portfolio">In order to minimize the transaction costs involved in trading each asset, we would like to limit the number of assets present in the portfolio.</h4>
 
-<h4 style="color: SteelBlue  " id="we-plan-to-find-the-vector-x-in-mathbfrn-based-on-the-available-data-and-hold-it-for-some-time-in-the-future">We plan to find the vector <script type="math/tex">x \in \mathbf{R}^n</script> based on the available data, and hold it for some time in the future.</h4>
+<h4 style="color: SteelBlue  " id="we-plan-to-find-the-vector-x-in-mathbfrn-based-on-the-available-data-and-hold-it-for-some-time-in-the-future">We plan to find the vector \(x \in \mathbf{R}^n\) based on the available data, and hold it for some time in the future.</h4>
 
 <h2 id="proposed-formulation">Proposed Formulation</h2>
 
 <hr />
 
-<p><strong>We start by expressing the time series of returns of the portfolio vector <script type="math/tex">x, s(x)</script>, as a linear function of <script type="math/tex">x</script>.</strong></p>
+<p><strong>We start by expressing the time series of returns of the portfolio vector \(x, s(x)\), as a linear function of \(x\).</strong></p>
 
 <blockquote>
-  <p>Where the <script type="math/tex">t</script>-th coordinate of <script type="math/tex">s(x)</script> is the return of the portfolio at time <script type="math/tex">t</script>.</p>
+  <p>Where the \(t\)-th coordinate of \(s(x)\) is the return of the portfolio at time \(t\).</p>
 </blockquote>
 
-<p>Precisely, we will express the time series as a <script type="math/tex">T</script>-dimensional vector <script type="math/tex">s(x) = Ax</script>, with <script type="math/tex">x \in \mathbf{R}^n</script>
-and <script type="math/tex">A</script> a <script type="math/tex">(T \times n)</script> matrix expressed in terms of the data.</p>
+<p>Precisely, we will express the time series as a \(T\)-dimensional vector \(s(x) = Ax\), with \(x \in \mathbf{R}^n\)
+and \(A\) a \((T \times n)\) matrix expressed in terms of the data.</p>
 
-<p>First, we Let <script type="math/tex">s = (s(1), \cdots, s(T)) \in \mathbf{R}^T</script> and <script type="math/tex">s_i = (s_i(1), \cdots, s_i(T)) \in \mathbf{R}^T , i = 1, \cdots, n</script>.<br />
+<p>First, we Let \(s = (s(1), \cdots, s(T)) \in \mathbf{R}^T\) and \(s_i = (s_i(1), \cdots, s_i(T)) \in \mathbf{R}^T , i = 1, \cdots, n\).<br />
 Now, we can express,</p>
 <p>$$s(x) = \sum_{i=1}^n x_is_i = Ax,$$</p>
-<p>where <script type="math/tex">A = [s_1, \cdots, s_n]</script> a <script type="math/tex">(T \times n)</script> matrix.</p>
+<p>where \(A = [s_1, \cdots, s_n]\) a \((T \times n)\) matrix.</p>
 
 <p><strong>Now, we formulate the problem of <em>minimizing the tracknig error</em> as a Least-Sqaures Problem</strong></p>
 
@@ -245,8 +245,8 @@ Now, we can express,</p>
 
 <p><strong>Assume that <em>Shorting</em> is not allowed anymore. We try to reformulate the problem by adding the shorting constraint</strong></p>
 
-<p>When shorting is not allowed, <script type="math/tex">x</script> cannot be negative.
-Thus, we add the constraints <script type="math/tex">x \geq 0</script> to the least-squares problem,</p>
+<p>When shorting is not allowed, \(x\) cannot be negative.
+Thus, we add the constraints \(x \geq 0\) to the least-squares problem,</p>
 <p>$$\min_x \|Ax - s\|_2^2 \:\: : \:\: x \geq 0 $$</p>
 <p>resulting in a QP (Quadratic Program) formulation of the problem,</p>
 <p>$$\min_x x^TQx + c^Tx \:\: : \:\: Cx \leq d$$</p>
@@ -255,16 +255,16 @@ Thus, we add the constraints <script type="math/tex">x \geq 0</script> to the le
 
 <p><strong>We add our concern for transaction costs; i.e. trading-off the tracking error against the number of assets that have to be traded.</strong></p>
 
-<p>To control the transaction costs we need to minimize the number of non-zero components of <script type="math/tex">x</script>,<br />
-since a zero value in <script type="math/tex">x_i</script> means the <script type="math/tex">i</script>-th asset will not have to be traded.</p>
+<p>To control the transaction costs we need to minimize the number of non-zero components of \(x\),<br />
+since a zero value in \(x_i\) means the \(i\)-th asset will not have to be traded.</p>
 
-<p>The <script type="math/tex">l_1</script> norm allows us to minimize the number of non-zero components of a vector <script type="math/tex">\vec{x}</script>.</p>
+<p>The \(l_1\) norm allows us to minimize the number of non-zero components of a vector \(\vec{x}\).</p>
 
-<p>Thus, we add a <em>regularized</em> <script type="math/tex">l_1</script> term to the original Least-Squares problem,</p>
+<p>Thus, we add a <em>regularized</em> \(l_1\) term to the original Least-Squares problem,</p>
 <p>$$\min_x \|Ax - s\|_2^2 + \lambda \|x\|_1 \:\: : \:\: x \geq 0 $$</p>
-<p>where <script type="math/tex">\lambda \geq 0</script> is the regularization parameter that controls the trade-off between the tracking error and the number of assets (i.e. the transaction costs).</p>
+<p>where \(\lambda \geq 0\) is the regularization parameter that controls the trade-off between the tracking error and the number of assets (i.e. the transaction costs).</p>
 
-<p>We notice that as <script type="math/tex">\lambda</script> gets bigger the number of non-zero components in <script type="math/tex">x</script> decreases and vice-versa.</p>
+<p>We notice that as \(\lambda\) gets bigger the number of non-zero components in \(x\) decreases and vice-versa.</p>
 
 <p><strong>Finally, we formulate the above problem as a Quadratic Program (QP)</strong></p>
 
@@ -272,7 +272,7 @@ since a zero value in <script type="math/tex">x_i</script> means the <script typ
 
 <p>$$\min_x \|Ax - s\|_2^2 + \lambda \|x\|_1 \:\: : \:\: x \geq 0 $$</p>
 <p>$$= \min_x \|Ax - s\|_2^2 + \lambda \vec{1}^T x \:\: : \:\: x \geq 0 $$</p>
-<p>where <script type="math/tex">\vec{1}</script> is the vector of all ones.</p>
+<p>where \(\vec{1}\) is the vector of all ones.</p>
 
 <p>This allows us to formulate the QP,</p>
 <p>$$\min_x x^TQx + (c + \lambda \vec{1})^Tx \:\: : \:\: Cx \leq d$$</p>
@@ -281,13 +281,13 @@ since a zero value in <script type="math/tex">x_i</script> means the <script typ
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

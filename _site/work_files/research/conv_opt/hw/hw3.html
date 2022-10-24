@@ -65,9 +65,9 @@
       
       <h2 id="q1">Q.1)</h2>
 <ol>
-  <li>We quote the well-known Least-Squares expression that minimizes <script type="math/tex">\|Ax-y\|_2^2</script> over <script type="math/tex">x</script>:
+  <li>We quote the well-known Least-Squares expression that minimizes \(\|Ax-y\|_2^2\) over \(x\):
     <p>$$x^{(k)} = (A_k^TA_k)^{-1}A_k^Ty^{(k)}$$</p>
-    <p>Where <script type="math/tex">(A_k^TA_k)^{-1}A_k^T</script> is the projection operator.</p>
+    <p>Where \((A_k^TA_k)^{-1}A_k^T\) is the projection operator.</p>
   </li>
   <li>First, we define
     <p>$$H_k = A_k^TA_k$$</p>
@@ -85,7 +85,7 @@
     <p>$$\|A_{k+1}x-y^{k+1}\|_2^2$$</p>
     <p>We notice, from the Least Squares solution in part 1 (and derived in Lecture) that the answer should have this form:</p>
     <p> $$x^{(k+1)} = (A_{k+1}^TA_{k+1})^{-1}A_{k+1}^Ty^{(k+1)}$$</p>
-    <p>Now, we use the equations <script type="math/tex">((1), (2), (3))</script> we wrote out to find a solution given the parameters stated in the question,</p>
+    <p>Now, we use the equations \(((1), (2), (3))\) we wrote out to find a solution given the parameters stated in the question,</p>
     <p> 
 $$
 \begin{align}
@@ -98,7 +98,7 @@ x^{(k+1)} &amp;= (A_{k+1}^TA_{k+1})^{-1}A_{k+1}^Ty^{(k+1)} \\
 $$
 </p>
     <blockquote>
-      <p>Notice that the inverse of <script type="math/tex">A_k^TA_k</script> always exists because <script type="math/tex">A</script> had Full-Column-Rank.</p>
+      <p>Notice that the inverse of \(A_k^TA_k\) always exists because \(A\) had Full-Column-Rank.</p>
     </blockquote>
     <p> Now, lets see whatx advantages does RLS possess.</p>
     <p>We notice that the inverse can be iteratively updated without recalculating the new inverse each time which implies that we do not have to re-compute the very expensive and very unstable “inverse”.<br />
@@ -111,54 +111,54 @@ is saying that we only need to compute the inverse of a matrix that has a lower 
 </ol>
 
 <h2 id="q2">Q.2)</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span><span class="p">,</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span><span class="p">,</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span> <span class="k">as</span> <span class="n">mpatches</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span><span class="p">,</span> <span class="n">matplotlib</span><span class="p">.</span><span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span><span class="p">,</span> <span class="n">matplotlib</span><span class="p">.</span><span class="n">patches</span> <span class="k">as</span> <span class="n">mpatches</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">spline</span> <span class="c">#ar = array ; %matplotlib inline # Please Uncomment + put each line on a separate line.</span>
-
-<span class="c"># Variables</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">ar</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">spline</span> <span class="c1">#ar = array ; %matplotlib inline # Please Uncomment + put each line on a separate line.
+</span>
+<span class="c1"># Variables
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">ar</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">ar</span><span class="p">([</span><span class="mf">5.31</span><span class="p">,</span> <span class="mf">5.61</span><span class="p">,</span> <span class="mf">5.28</span><span class="p">,</span> <span class="mf">5.54</span><span class="p">,</span> <span class="mf">3.85</span><span class="p">,</span> <span class="mf">4.49</span><span class="p">,</span> <span class="mf">5.99</span><span class="p">,</span> <span class="mf">5.32</span><span class="p">,</span> <span class="mf">4.39</span><span class="p">,</span> <span class="mf">4.73</span><span class="p">])</span>
 <span class="n">mse_errs</span><span class="p">,</span> <span class="n">max_errs</span><span class="p">,</span> <span class="n">polys</span><span class="p">,</span> <span class="n">degs</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">)]</span>
 <span class="n">mse_errs_ext</span><span class="p">,</span> <span class="n">max_errs_ext</span><span class="p">,</span> <span class="n">polys_ext</span><span class="p">,</span> <span class="n">degs_ext</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">)]</span>
 
-<span class="c"># Helper Functions</span>
-<span class="k">def</span> <span class="nf">mse</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="c1"># Helper Functions
+</span><span class="k">def</span> <span class="nf">mse</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="n">sm</span> <span class="o">=</span> <span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">-</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))]</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">sm</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">sm</span><span class="p">[</span><span class="n">argmax</span><span class="p">(</span><span class="n">sm</span><span class="p">)]</span>
 
 <span class="k">def</span> <span class="nf">plot_err</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">xlabel</span><span class="p">,</span> <span class="n">ylabel</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">'.'</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s">'bold'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s">'bold'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mf">1.04</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s">'red'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s">'red'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s">'red'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s">"top"</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s">"right"</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">'.'</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s">'bold'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s">'bold'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mf">1.04</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">gca</span><span class="p">().</span><span class="n">title</span><span class="p">.</span><span class="n">set_color</span><span class="p">(</span><span class="s">'red'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">gca</span><span class="p">().</span><span class="n">yaxis</span><span class="p">.</span><span class="n">label</span><span class="p">.</span><span class="n">set_color</span><span class="p">(</span><span class="s">'red'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">gca</span><span class="p">().</span><span class="n">xaxis</span><span class="p">.</span><span class="n">label</span><span class="p">.</span><span class="n">set_color</span><span class="p">(</span><span class="s">'red'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">gca</span><span class="p">().</span><span class="n">spines</span><span class="p">[</span><span class="s">"top"</span><span class="p">].</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">gca</span><span class="p">().</span><span class="n">spines</span><span class="p">[</span><span class="s">"right"</span><span class="p">].</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">xlim</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">gca</span><span class="p">().</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">ylim</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">gca</span><span class="p">().</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="c"># Answers to the sub-questions</span>
-<span class="k">def</span> <span class="nf">q2_1</span><span class="p">():</span>
+<span class="c1"># Answers to the sub-questions
+</span><span class="k">def</span> <span class="nf">q2_1</span><span class="p">():</span>
     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">):</span>
         <span class="n">p</span> <span class="o">=</span> <span class="n">poly1d</span><span class="p">(</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
-        <span class="n">polys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">polys</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
         <span class="k">print</span><span class="p">(</span><span class="s">"n ="</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="s">":  p_"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="s">" ="</span><span class="p">,</span><span class="n">p</span><span class="p">,</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">q2_2</span><span class="p">():</span>   
     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">):</span>
         <span class="n">p</span> <span class="o">=</span> <span class="n">poly1d</span><span class="p">(</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
-        <span class="n">mse_errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">11</span><span class="p">))</span>
-        <span class="n">max_errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">10</span><span class="p">))</span>
+        <span class="n">mse_errs</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">11</span><span class="p">))</span>
+        <span class="n">max_errs</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">10</span><span class="p">))</span>
         <span class="k">print</span><span class="p">(</span><span class="s">"n ="</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="s">":  Mean_Sq_Err ="</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">11</span><span class="p">),</span> <span class="s">"| Max_Err ="</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">10</span><span class="p">))</span>
 
 <span class="k">def</span> <span class="nf">plot_errs</span><span class="p">():</span>
-    <span class="n">plot_err</span><span class="p">(</span><span class="n">degs</span><span class="p">,</span> <span class="n">mse_errs</span><span class="p">,</span> <span class="s">"degree"</span><span class="p">,</span> <span class="s">"MSE-Err"</span><span class="p">,</span> <span class="s">'MSE-Err vs Degree'</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mf">2.9</span><span class="p">,</span><span class="mf">11.1</span><span class="p">],</span> <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span><span class="o">.</span><span class="mi">35</span><span class="p">])</span>
+    <span class="n">plot_err</span><span class="p">(</span><span class="n">degs</span><span class="p">,</span> <span class="n">mse_errs</span><span class="p">,</span> <span class="s">"degree"</span><span class="p">,</span> <span class="s">"MSE-Err"</span><span class="p">,</span> <span class="s">'MSE-Err vs Degree'</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mf">2.9</span><span class="p">,</span><span class="mf">11.1</span><span class="p">],</span> <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,.</span><span class="mi">35</span><span class="p">])</span>
     <span class="n">plot_err</span><span class="p">(</span><span class="n">degs</span><span class="p">,</span> <span class="n">max_errs</span><span class="p">,</span> <span class="s">"degree"</span><span class="p">,</span> <span class="s">"MAX-Err"</span><span class="p">,</span> <span class="s">'MAX-Err vs Degree'</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mf">4.9</span><span class="p">,</span><span class="mf">8.1</span><span class="p">])</span>
 
 <span class="s">""" Void
@@ -168,10 +168,10 @@ Then it plots them.
 <span class="k">def</span> <span class="nf">plot_extended_errs</span><span class="p">():</span>
     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">12</span><span class="p">):</span>
         <span class="n">p</span> <span class="o">=</span> <span class="n">poly1d</span><span class="p">(</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
-        <span class="n">polys_ext</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-        <span class="n">mse_errs_ext</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">max_errs_ext</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">plot_err</span><span class="p">(</span><span class="n">degs_ext</span><span class="p">,</span> <span class="n">mse_errs_ext</span><span class="p">,</span> <span class="s">"degree-extended"</span><span class="p">,</span> <span class="s">"MSE-Err"</span><span class="p">,</span> <span class="s">'MSE-Err vs Degree-Extended '</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mf">2.9</span><span class="p">,</span><span class="mf">11.1</span><span class="p">],</span> <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span><span class="o">.</span><span class="mi">35</span><span class="p">])</span>
+        <span class="n">polys_ext</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">mse_errs_ext</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">max_errs_ext</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">plot_err</span><span class="p">(</span><span class="n">degs_ext</span><span class="p">,</span> <span class="n">mse_errs_ext</span><span class="p">,</span> <span class="s">"degree-extended"</span><span class="p">,</span> <span class="s">"MSE-Err"</span><span class="p">,</span> <span class="s">'MSE-Err vs Degree-Extended '</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mf">2.9</span><span class="p">,</span><span class="mf">11.1</span><span class="p">],</span> <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,.</span><span class="mi">35</span><span class="p">])</span>
     <span class="n">plot_err</span><span class="p">(</span><span class="n">degs_ext</span><span class="p">,</span> <span class="n">max_errs_ext</span><span class="p">,</span> <span class="s">"degree-extended"</span><span class="p">,</span> <span class="s">"MAX-Err"</span><span class="p">,</span> <span class="s">'MAX-Err vs Degree-Extended '</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mf">2.9</span><span class="p">,</span><span class="mf">11.1</span><span class="p">],</span> <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">1.35</span><span class="p">])</span>
 </code></pre></div></div>
 <blockquote>
@@ -188,7 +188,7 @@ Then it plots them.
                                <span class="mi">7</span>            <span class="mi">6</span>           <span class="mi">5</span>          <span class="mi">4</span>         <span class="mi">3</span>         <span class="mi">2</span>
  <span class="o">&gt;&gt;&gt;</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">7</span> <span class="p">:</span>  <span class="n">P_7</span> <span class="o">=</span> <span class="mf">4.785e-06</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">0.001834</span> <span class="n">x</span> <span class="o">-</span> <span class="mf">0.04884</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">0.4609</span> <span class="n">x</span> <span class="o">-</span> <span class="mf">1.895</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">3.181</span> <span class="n">x</span> <span class="o">-</span> <span class="mf">1.562</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">5.33</span>
                              <span class="mi">8</span>          <span class="mi">7</span>         <span class="mi">6</span>         <span class="mi">5</span>         <span class="mi">4</span>         <span class="mi">3</span>         <span class="mi">2</span>
- <span class="o">&gt;&gt;&gt;</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">8</span> <span class="p">:</span>  <span class="n">P_8</span> <span class="o">=</span> <span class="o">-.</span><span class="mo">00067</span> <span class="n">x</span> <span class="o">+</span> <span class="o">.</span><span class="mo">02413</span> <span class="n">x</span> <span class="o">-</span> <span class="o">.</span><span class="mi">3528</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">2.687</span> <span class="n">x</span> <span class="o">-</span> <span class="mf">11.37</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">26.32</span> <span class="n">x</span>  <span class="o">-</span> <span class="mf">30.5</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">13.46</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">5.31</span>
+ <span class="o">&gt;&gt;&gt;</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">8</span> <span class="p">:</span>  <span class="n">P_8</span> <span class="o">=</span> <span class="o">-</span><span class="p">.</span><span class="mi">00067</span> <span class="n">x</span> <span class="o">+</span> <span class="p">.</span><span class="mi">02413</span> <span class="n">x</span> <span class="o">-</span> <span class="p">.</span><span class="mi">3528</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">2.687</span> <span class="n">x</span> <span class="o">-</span> <span class="mf">11.37</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">26.32</span> <span class="n">x</span>  <span class="o">-</span> <span class="mf">30.5</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">13.46</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">5.31</span>
 </code></pre></div>    </div>
     <p>This gives us the solutions:</p>
     <p>$$
@@ -215,12 +215,12 @@ Then it plots them.
     <p>Now, we plot them and compare them with each other.<br />
  <img src="/main_files/conv_opt/3/3.1/esp1.png" width="48%" style="position: relative;" />
  <img src="/main_files/conv_opt/3/3.1/esp2.png" width="48%" style="position: relative;" /><br />
- We notice that as the degree of the polynomial increases (upto <script type="math/tex">n=8</script>) the accuracy increases and the error decreases.<br />
+ We notice that as the degree of the polynomial increases (upto \(n=8\)) the accuracy increases and the error decreases.<br />
  This can be contributed to the degree of oscillation of the data itself which can be readily seen in the plot of the data and it’s “Spline-Interpolation”:<br />
  <img src="/main_files/conv_opt/3/3.1/esp3.png" width="70%" style="position: relative;left:50px" /><br />
  As you can see, the data points are quite non-monotonic, in-fact, they oscillate wildly. Thus, it will be very hard to model this data with a line for example, or with any polynomial of insufficient degree of oscillation.<br />
  However, we should remember Runge’s phenomenon (i.e. the “wildly-oscillating polynomials” problem). This tells us that as the degree of the interpolating (or regression) polynomial increases, the approximation becomes very very unstable outside of the domain of regression.<br />
- In-fact, as we will see further below, the optimal degree (not necessarily in the domain) is actually <script type="math/tex">n = 10</script>.</p>
+ In-fact, as we will see further below, the optimal degree (not necessarily in the domain) is actually \(n = 10\).</p>
   </li>
 </ol>
 
@@ -249,7 +249,7 @@ Then it plots them.
      x^Tx−2a_3^Tx+\|a_3\|^2 &amp;= d_3^2 &amp;(3)
      \end{align}
      $$  </p>
-    <p>We subtract Eq. <script type="math/tex">(1)</script> from Eq. <script type="math/tex">(2)</script> and again from Eq. <script type="math/tex">(3)</script>.</p>
+    <p>We subtract Eq. \((1)\) from Eq. \((2)\) and again from Eq. \((3)\).</p>
     <p>$$\iff \\$$
  $$ \begin{align}
      2(a_1 − a_2)^Tx &amp;= \|a_1\|^2 − \|a_2\|^2 − d_1^2 + d_2^2 \\
@@ -271,16 +271,16 @@ Then it plots them.
  $$</p>
   </li>
   <li>What we are looking for is what/how the petrubations in the measurement correspond to in the column space.<br />
- We notice that really all we need is to look at what the inverse of <script type="math/tex">A</script> does to the unit ball (unit circle in  <script type="math/tex">\mathbf{R}^2</script>).<br />
- We proceed by computing <script type="math/tex">A^{-1}</script> and then finding the SVD of the inverse matrix. We, then, use the properties of the SVD and the singular values to compute the volumes (areas) of the ellipsoids resulting from transforming the unit ball.<br />
- The example (ellipsoid) with the smaller volume will have less petrubations in the column space (range) of the output <script type="math/tex">x</script>.
+ We notice that really all we need is to look at what the inverse of \(A\) does to the unit ball (unit circle in  \(\mathbf{R}^2\)).<br />
+ We proceed by computing \(A^{-1}\) and then finding the SVD of the inverse matrix. We, then, use the properties of the SVD and the singular values to compute the volumes (areas) of the ellipsoids resulting from transforming the unit ball.<br />
+ The example (ellipsoid) with the smaller volume will have less petrubations in the column space (range) of the output \(x\).
     <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="o">&gt;&gt;&gt;</span> <span class="n">q_3_2</span><span class="p">()</span>
  <span class="o">&gt;&gt;&gt;</span> <span class="n">ArgMin</span> <span class="o">=</span>  <span class="mi">2</span>  <span class="p">:</span> <span class="n">Min</span> <span class="o">=</span>  <span class="mf">0.0523598775598</span>
 </code></pre></div>    </div>
-    <p>We see that the ellipsoid induced by the second scenario is actually smaller and thus has a better chance of getting the correct solution <script type="math/tex">x^\ast</script> with the same bound on the petrubation in the measurement vector.<br />
- Now, the region of uncertainty is just the ellipsoid itself which is characterized by the SVD of <script type="math/tex">A^{-1}</script>:<br />
- Region of uncertainty case 1: <script type="math/tex">\frac{\left(x\right)^2}{0.64339784}+\frac{\left(y\right)^2}{0.07771242}=1^2</script><br />
- Region of uncertainty case 2: <script type="math/tex">\frac{\left(x\right)^2}{0.16666667}+\frac{\left(y\right)^2}{0.1}=1^2</script><br />
+    <p>We see that the ellipsoid induced by the second scenario is actually smaller and thus has a better chance of getting the correct solution \(x^\ast\) with the same bound on the petrubation in the measurement vector.<br />
+ Now, the region of uncertainty is just the ellipsoid itself which is characterized by the SVD of \(A^{-1}\):<br />
+ Region of uncertainty case 1: \(\frac{\left(x\right)^2}{0.64339784}+\frac{\left(y\right)^2}{0.07771242}=1^2\)<br />
+ Region of uncertainty case 2: \(\frac{\left(x\right)^2}{0.16666667}+\frac{\left(y\right)^2}{0.1}=1^2\)<br />
  Both can be seen here:<br />
  <img src="/main_files/conv_opt/3/3.1/esp4.png" width="50%" height="30%" style="position: relative;" /></p>
     <blockquote>
@@ -292,18 +292,18 @@ Then it plots them.
  <span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="o">*</span>
  <span class="n">ar</span> <span class="o">=</span> <span class="n">array</span>
 
- <span class="c"># Helper Function</span>
- <span class="k">def</span> <span class="nf">ellipse_area</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+ <span class="c1"># Helper Function
+</span> <span class="k">def</span> <span class="nf">ellipse_area</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
      <span class="k">return</span> <span class="n">pi</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">b</span>
 
  <span class="k">def</span> <span class="nf">get_area</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span><span class="p">):</span>
      <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span> <span class="o">=</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span>
-     <span class="n">A</span> <span class="o">=</span> <span class="n">ar</span><span class="p">([</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">a1</span><span class="o">-</span><span class="n">a2</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">a1</span><span class="o">-</span><span class="n">a3</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">])</span>
-     <span class="n">U</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">),</span> <span class="n">full_matrices</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+     <span class="n">A</span> <span class="o">=</span> <span class="n">ar</span><span class="p">([</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">a1</span><span class="o">-</span><span class="n">a2</span><span class="p">).</span><span class="n">T</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">a1</span><span class="o">-</span><span class="n">a3</span><span class="p">).</span><span class="n">T</span><span class="p">])</span>
+     <span class="n">U</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">svd</span><span class="p">(</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">),</span> <span class="n">full_matrices</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
      <span class="k">return</span> <span class="n">ellipse_area</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
- <span class="c"># Solutions to sub-problems</span>
- <span class="k">def</span> <span class="nf">q_3_2</span><span class="p">():</span>
+ <span class="c1"># Solutions to sub-problems
+</span> <span class="k">def</span> <span class="nf">q_3_2</span><span class="p">():</span>
      <span class="n">area1</span><span class="p">,</span> <span class="n">area2</span> <span class="o">=</span> <span class="n">get_area</span><span class="p">(</span><span class="n">ar</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span> <span class="n">ar</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">ar</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">])),</span> <span class="n">get_area</span><span class="p">(</span><span class="n">ar</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span> <span class="n">ar</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">]),</span> <span class="n">ar</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">]))</span>
      <span class="k">print</span><span class="p">(</span><span class="s">"ArgMin = "</span><span class="p">,</span> <span class="n">argmin</span><span class="p">([</span><span class="n">area1</span><span class="p">,</span><span class="n">area2</span><span class="p">])</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s">" : Min = "</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">area1</span><span class="p">,</span> <span class="n">area2</span><span class="p">))</span>
 </code></pre></div>    </div>
@@ -317,13 +317,13 @@ Then it plots them.
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

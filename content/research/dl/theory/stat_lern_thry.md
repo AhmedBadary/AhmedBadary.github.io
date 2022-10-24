@@ -37,6 +37,7 @@ prevLink: /work_files/research/dl/theory.html
 * [What is a Hypothesis in Machine Learning? (blog)](https://machinelearningmastery.com/what-is-a-hypothesis-in-machine-learning/)  
 * [No Free Lunch Theorem and PAC Learning (Lec Notes!)](http://www.cs.cornell.edu/courses/cs6783/2015fa/lec3.pdf)  
 * [Regularization and Reproducing Kernel Hilbert Spaces (ESL)](https://web.stanford.edu/~hastie/Papers/ESLII.pdf#page=186)  
+* [Feasibility of learning: VC-inequality from Hoeffding (Slides)](https://slideplayer.com/slide/4890272/)  
 
 
 
@@ -130,8 +131,20 @@ __Theoretical Concepts:__{: style="color: red"}
         * The _training set_ and _test set_ are __identically distributed__ (drawn from the same probability distribution as each other)  
 
         > A collection of random variables is __independent and identically distributed__ if each random variable has the same probability distribution as the others and all are mutually independent.  
+
         > _Informally,_ it says that all the variables provide the same kind of information independently of each other.  
         > * [Discussion on the importance if i.i.d assumptions](https://stats.stackexchange.com/questions/213464/on-the-importance-of-the-i-i-d-assumption-in-statistical-learning/214220)  
+
+        <button>Summary for Motivating i.i.d Assumptions</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+        <div hidden="" markdown="1">
+        When learning a model of $$y$$  given $$X$$, independence plays a role as:  
+        {: #lst-p}
+        * A useful working modelling assumption that allows us to derive learning methods
+        * A sufficient but not necessary assumption for proving consistency and providing error bounds
+        * A sufficient but not necessary assumption for using random data splitting techniques such as bagging for learning and cross-validation for assessment.  
+
+        To understand precisely what alternatives to i.i.d. that are also sufficient is non-trivial and to some extent a research subject.  
+        </div>
 
 
     __The Inference Problem__{: style="color: red"}    
@@ -190,8 +203,10 @@ __Theoretical Concepts:__{: style="color: red"}
         __Computing the Generalization Gap:__  
         Since $$I\left[f_{n}\right]$$ cannot be computed for an unknown distribution, the generalization gap __cannot be computed__ either.  
         Instead the goal of __statistical learning theory__ is to _bound_ or _characterize_ the generalization gap in probability:  
-        <p>$$P_{G}=P\left(I\left[f_{n}\right]-I_{S}\left[f_{n}\right] \leq \epsilon\right) \geq 1-\delta_{n}$$</p>  
+        <p>$$P_{G}=P\left(I\left[f_{n}\right]-I_{S}\left[f_{n}\right] \leq \epsilon\right) \geq 1-\delta_{n} \:\:\:\:\:\: (\alpha)$$</p>  
         That is, the goal is to characterize the probability $${\displaystyle 1-\delta _{n}}$$ that the generalization gap is less than some error bound $${\displaystyle \epsilon }$$ (known as the __learning rate__ and generally dependent on $${\displaystyle \delta }$$ and $${\displaystyle n}$$).  
+
+        | Note: $$\alpha \implies \delta_n = 2e^{-2\epsilon^2n}$$
     * __The Empirical Distribution:__{: style="color: red"}  
         _AKA **Data-Generating Distribution**_  
         is the __discrete__ uniform distribution over the _sample points_.   
@@ -258,6 +273,9 @@ __Theoretical Concepts:__{: style="color: red"}
 ## The Bias-Variance Decomposition Theory
 {: #content3}
 
+* [Bias and Variance Latest Research: A Modern Take on the Bias-Variance Tradeoff in Neural Networks](https://arxiv.org/abs/1810.08591)  
+* [Ditto: On the Bias-Variance Tradeoff: Textbooks Need an Update](https://arxiv.org/abs/1912.08286)  
+
 11. **The Bias-Variance Decomposition Theory:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents311}    
     __The Bias-Variance Decomposition Theory__ is a way to quantify the __Approximation-Generalization Tradeoff__.  
 
@@ -285,12 +303,12 @@ __Theoretical Concepts:__{: style="color: red"}
 
     __Bias-Variance Decomposition Formula:__  
     For any function $$\hat{f} = g^{\mathcal{D}}$$ we select, we can decompose its *__expected (out-of-sample) error__* on an _unseen sample $$x$$_ as:  
-    <p>$$\mathrm{E}\left[(y-\hat{f}(x))^{2}\right]=(\operatorname{Bias}[\hat{f}(x)])^{2}+\operatorname{Var}[\hat{f}(x)]+\sigma^{2}$$</p>  
+    <p>$$\mathbb{E}_{\mathbf{x}}\left[(y-\hat{f}(x))^{2}\right]=(\operatorname{Bias}[\hat{f}(x)])^{2}+\operatorname{Var}[\hat{f}(x)]+\sigma^{2}$$</p>  
     Where:  
     * __Bias__:  
-        <p>$$\operatorname{Bias}[\hat{f}(x)]=\mathrm{E}[\hat{f}(x)]-f(x)$$</p>  
+        <p>$$\operatorname{Bias}[\hat{f}(x)]=\mathbb{E}_{\mathbf{x}}[\hat{f}(x)]-f(x)$$</p>  
     * __Variance__:  
-        <p>$$\operatorname{Var}[\hat{f}(x)]=\mathrm{E}\left[\hat{f}(x)^{2}\right]-\mathrm{E}[\hat{f}(x)]^{2}$$</p>  
+        <p>$$\operatorname{Var}[\hat{f}(x)]=\mathbb{E}_{\mathbf{x}}\left[\hat{f}(x)^{2}\right]-\mathbb{E}_{\mathbf{x}}[\hat{f}(x)]^{2}$$</p>  
     and the expectation ranges over different realizations of the training set $$\mathcal{D}$$.  
 
 2. **The Bias-Variance Tradeoff:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}  
@@ -305,6 +323,10 @@ __Theoretical Concepts:__{: style="color: red"}
     {: #lst-p}
     * __High Variance__: complex models, lead to *__overfitting__*{: style="color: red"}.  
     * __Low Variance__: simple models, lead to *__underfitting__*{: style="color: red"}.  
+
+    * <button>__The Tradeoff:__</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+        ![The Tradeoff](https://cdn.mathpix.com/snip/images/Z32r3Oyv4h7fVJP0r73zfDIMSmMTIzJH3RDGgLqozWQ.original.fullsize.png){: width="80%"}  
+    * [Bias-Variance Example End2End](https://youtu.be/zrEyxfl2-a8?t=1860)  
     <br>
 
 3. **Derivation:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
@@ -330,6 +352,9 @@ __Theoretical Concepts:__{: style="color: red"}
 4. **Results and Takeaways of the Decomposition:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
     Match the __"Model Complexity"__ to the *__Data Resources__*, NOT to the _Target Complexity_.  
     ![img](/main_files/dl/theory/stat_lern_thry/1.png){: width="80%"}  
+    ![img](https://cdn.mathpix.com/snip/images/6obGTZZntd7tBrbKS6Kdw6TElQHxeSsgKerCNm-G_OI.original.fullsize.png){: width="80%""}  
+    ![img](https://cdn.mathpix.com/snip/images/bgXvOhxcfLQ2kWBkuIWRFoGT8gAFhjTKfbYqwiLmPLA.original.fullsize.png){: width="80%""}  
+    ![img](https://cdn.mathpix.com/snip/images/lkARUPobs-Pf3UMgURmEFZnawKzhtHgpEaXTVafJFds.original.fullsize.png){: width="85%""}  
 
     <button>Analogy to the Approximation-Generalization Tradeoff</button>{: .showText value="show"
     onclick="showText_withParent_PopHide(event);"}
@@ -337,6 +362,10 @@ __Theoretical Concepts:__{: style="color: red"}
     Before everything was archived in the computers, it used to be a piece of paper. So I know the letter of recommendation is somewhere. Now I face the question, should I write the letter of recommendation from scratch? Or should I look for the letter of recommendation? The recommendation is there. It's much easier when I find it. However, finding it is a big deal. So the question is not that the target function is there. The question is, can I find it?<br>  
     (Therefore, when I give you 100 examples, you choose the hypothesis set to match the 100 examples. If the 100 examples are terribly noisy, that's even worse. Because their information to guide you is worse.)  <br>
     <strong style="color: red">The data resources you have is, "what do you have in order to navigate the hypothesis set?". Let's pick a hypothesis set that we can afford to navigate. That is the game in learning. Done with the bias and variance.</strong></p>
+
+    * Learning and Approximating are __NOT__ the same thing (refer to the end2end example above)  
+        * When Approximating, you can match the complexity of your model to the complexity of the *__"known"__* target function: a __linear__ model is better at approximating a sine wave  
+        * When Learning, you should only use a model as complex as the amount of data you have to settle on a good approximation of the *__"Unknown"__* target function: a __constant__ model is better at learning an approximation of a sine wave from 2 sample data points  
 
 
 5. **Measuring the Bias and Variance:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}  
@@ -382,9 +411,12 @@ __Theoretical Concepts:__{: style="color: red"}
         * Reduces Variance              
 
     * We __Cannot Reduce__ the __Irreducible Err__  
+    <br>    
             
-            
-
+77. **Bias-Variance Decomposition Analysis vs. VC-Analysis:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
+    ![VC vs. Bias-Variance](https://cdn.mathpix.com/snip/images/mBGCV2Vs9VP6gYfSpPSF2Pg594cyXl3xLOp4A7BpdWc.original.fullsize.png)   
+    * [Caltech Comparison on Learning Curves](https://youtu.be/zrEyxfl2-a8?t=3020)  
+    * [Example on Linear Regression (Caltech)](https://youtu.be/zrEyxfl2-a8?t=3271)  
 
 
 7. **Application of the Decomposition to Classification:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents37}  
@@ -394,10 +426,10 @@ __Theoretical Concepts:__{: style="color: red"}
 
 8. **Bias-Variance Decomposition and Risk (Excess Risk Decomposition):**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
     The __Bias-Variance Decomposition__ analyzes the behavior of the *__Expected Risk/Generalization Error__* for any function $$\hat{f}$$:  
-    <p>$$R(\hat{f}) = \mathrm{E}\left[(y-\hat{f}(x))^{2}\right]=(\operatorname{Bias}[\hat{f}(x)])^{2}+\operatorname{Var}[\hat{f}(x)]+\sigma^{2}$$</p>  
+    <p>$$R(\hat{f}) = \mathbb{E}\left[(y-\hat{f}(x))^{2}\right]=(\operatorname{Bias}[\hat{f}(x)])^{2}+\operatorname{Var}[\hat{f}(x)]+\sigma^{2}$$</p>  
     Assuming that $$y = f(x) + \epsilon$$.  
 
-    The __Bayes Optimal Predictor__ is $$f(x) = \mathrm{E}[Y\vert X=x]$$.  
+    The __Bayes Optimal Predictor__ is $$f(x) = \mathbb{E}[Y\vert X=x]$$.  
 
     The __Excess Risk__ is:  
     <p>$$\text{ExcessRisk}(\hat{f}) = R(\hat{f}) - R(f)$$</p>  
@@ -410,10 +442,10 @@ __Theoretical Concepts:__{: style="color: red"}
 
     The __Bias-Variance Decomposition__ for *__Excess Risk:__*  
     * Re-Writing __Excess Risk__:  
-        <p>$$\text{ExcessRisk}(\hat{f}) = R(\hat{f}) - R(f) = \mathrm{E}\left[(y-\hat{f}(x))^{2}\right] - \mathrm{E}\left[(y-f(x))^{2}\right]$$</p>  
+        <p>$$\text{ExcessRisk}(\hat{f}) = R(\hat{f}) - R(f) = \mathbb{E}\left[(y-\hat{f}(x))^{2}\right] - \mathbb{E}\left[(y-f(x))^{2}\right]$$</p>  
         which is equal to:  
-        <p>$$R(\hat{f}) - R(f) = \mathrm{E}\left[(f(x)-\hat{f}(x))^{2}\right]$$</p>  
-    <p>$$\mathrm{E}\left[(f(x)-\hat{f}(x))^{2}\right] = (\operatorname{Bias}[\hat{f}(x)])^{2}+\operatorname{Var}[\hat{f}(x)]$$</p>  
+        <p>$$R(\hat{f}) - R(f) = \mathbb{E}\left[(f(x)-\hat{f}(x))^{2}\right]$$</p>  
+    <p>$$\mathbb{E}\left[(f(x)-\hat{f}(x))^{2}\right] = (\operatorname{Bias}[\hat{f}(x)])^{2}+\operatorname{Var}[\hat{f}(x)]$$</p>  
 
     * if you dont want to mess with stat-jargon; lemme rephrase:  
         is the minimizer $${\displaystyle f=\inf_{h \in \mathcal{H}} I[h]}$$ where $$I[h]$$ is the expected-risk/generalization-error (assume MSE);  
@@ -448,7 +480,7 @@ __Theoretical Concepts:__{: style="color: red"}
     __Generalization Bounds as Descriptive Labels:__{: style="color: red"}  
     {: #lst-p}
     * __Rademacher Complexity__:  
-        <button>Assumptions</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+        <button>Assumptions</button>{: .showText value="show" onclick="showTextPopHide(event);"}
         * labels and loss are 0,1,  
         * the badly generalizing $$h$$ predicts perfectly on the training sample $$S$$ and  
             is completely wrong on the heldout set $$S_2$$, meaning:  

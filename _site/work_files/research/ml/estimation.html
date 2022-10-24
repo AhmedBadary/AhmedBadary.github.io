@@ -83,7 +83,7 @@
 <hr />
 <hr />
 
-<p><a href="https://h1man5hu.github.io/machine%20learning/maximum-likelihood-estimation-vs-maximum-a-posteriori-estimation/">MLE vs MAP Estimation</a></p>
+<p><a href="https://himarora.github.io/machine%20learning/maximum-likelihood-estimation-vs-maximum-a-posteriori-estimation/">MLE vs MAP Estimation</a></p>
 
 <h2 id="content1">Estimation</h2>
 <!-- 
@@ -104,9 +104,9 @@
 <ol>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Maximum Likelihood Estimation:</strong><br />
  <strong style="color: red">Likelihood in Parametric Models:</strong>
-    <p>Suppose we have a parametric model <script type="math/tex">\{p(y ; \theta) \vert \theta \in \Theta\}</script> and a sample <script type="math/tex">D=\left\{y_{1}, \ldots, y_{n}\right\}</script>:</p>
+    <p>Suppose we have a parametric model \(\{p(y ; \theta) \vert \theta \in \Theta\}\) and a sample \(D=\left\{y_{1}, \ldots, y_{n}\right\}\):</p>
     <ul>
-      <li>The likelihood of parameter estimate <script type="math/tex">\hat{\theta} \in \Theta</script> for sample <script type="math/tex">\mathcal{D}</script> is:
+      <li>The likelihood of parameter estimate \(\hat{\theta} \in \Theta\) for sample \(\mathcal{D}\) is:
         <p>$$p(\mathcal{D} ; \hat{\theta})=\prod_{i=1}^{n} p\left(y_{i} ; \hat{\theta}\right)$$</p>
       </li>
       <li>In practice, we prefer to work with the <strong>log-likelihood</strong>.  Same maximum but
@@ -115,17 +115,21 @@
       </li>
     </ul>
 
+    <blockquote>
+      <p>Likelihood is the probability of the data given the parameters of the model</p>
+    </blockquote>
+
     <p id="lst-p"><strong style="color: red">MLE for Parametric Models:</strong></p>
-    <p>The <strong>maximum likelihood estimator (MLE)</strong> for <script type="math/tex">\theta</script> in the (parametric) model <script type="math/tex">\{p(y, \theta) \vert \theta \in \Theta\}</script> is:</p>
+    <p>The <strong>maximum likelihood estimator (MLE)</strong> for \(\theta\) in the (parametric) model \(\{p(y, \theta) \vert \theta \in \Theta\}\) is:</p>
     <p>$$\begin{aligned} \hat{\theta} &amp;=\underset{\theta \in \Theta}{\arg \max } \log p(\mathcal{D}, \hat{\theta}) \\ &amp;=\underset{\theta \in \Theta}{\arg \max } \sum_{i=1}^{n} \log p\left(y_{i} ; \theta\right) \end{aligned}$$</p>
 
     <blockquote>
-      <p>You are finding the value of the parameter <script type="math/tex">\theta</script> that, if used (in the model) to generate the probability of the data, would make the data most <em>“likely”</em> to occur.</p>
+      <p>You are finding the value of the parameter \(\theta\) that, if used (in the model) to generate the probability of the data, would make the data most <em>“likely”</em> to occur.</p>
     </blockquote>
 
     <ul>
       <li><strong>MLE Intuition</strong>:<br />
-  If I choose a <em>hypothesis</em> <script type="math/tex">h</script> underwhich the <em>observed data</em> is very <em><strong>plausible</strong></em> then the <em>hypothesis</em> is very <em><strong>likely</strong></em>.</li>
+  If I choose a <em>hypothesis</em> \(h\) underwhich the <em>observed data</em> is very <em><strong>plausible</strong></em> then the <em>hypothesis</em> is very <em><strong>likely</strong></em>.</li>
       <li><a href="https://www.youtube.com/embed/JrFj0xpGd2Q?start=2609" value="show" onclick="iframePopA(event)"><strong>Maximum Likelihood as Empirical Risk Minimization</strong></a>
  <a href="https://www.youtube.com/embed/JrFj0xpGd2Q?start=2609"></a>
         <div></div>
@@ -138,20 +142,20 @@
     <p id="lst-p"><strong style="color: red">Notes:</strong></p>
     <ul>
       <li><strong>Why maximize the natural log of the likelihood?</strong><br />
-  <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Discussion</button>
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Discussion</button>
         <ul hidden="">
           <li>
             <ol>
               <li>Numerical Stability: change products to sums</li>
               <li>The logarithm of a member of the family of exponential probability distributions (which includes the ubiquitous normal) is polynomial in the parameters (i.e. max-likelihood reduces to least-squares for normal distributions)<br />
-  <script type="math/tex">\log\left(\exp\left(-\frac{1}{2}x^2\right)\right) = -\frac{1}{2}x^2</script></li>
+  \(\log\left(\exp\left(-\frac{1}{2}x^2\right)\right) = -\frac{1}{2}x^2\)</li>
               <li>The latter form is both more numerically stable and symbolically easier to differentiate than the former. It increases the dynamic range of the optimization algorithm (allowing it to work with extremely large or small values in the same way).</li>
               <li>The logarithm is a monotonic transformation that preserves the locations of the extrema (in particular, the estimated parameters in max-likelihood are identical for the original and the log-transformed formulation)</li>
             </ol>
 
             <ul>
-              <li>Gradient methods generally work better optimizing <script type="math/tex">log_p(x)</script> than <script type="math/tex">p(x)</script> because the gradient of <script type="math/tex">log_p(x)</script> is generally more <strong>well-scaled</strong>. <a href="https://stats.stackexchange.com/questions/174481/why-to-optimize-max-log-probability-instead-of-probability">link</a>
-  <strong>Justification:</strong> the gradient of the original term will include a <script type="math/tex">e^{\vec{x}}</script> multiplicative term that scales very quickly one way or another, requiring the step-size to equally scale/stretch in the opposite direction.</li>
+              <li>Gradient methods generally work better optimizing \(log_p(x)\) than \(p(x)\) because the gradient of \(log_p(x)\) is generally more <strong>well-scaled</strong>. <a href="https://stats.stackexchange.com/questions/174481/why-to-optimize-max-log-probability-instead-of-probability">link</a>
+  <strong>Justification:</strong> the gradient of the original term will include a \(e^{\vec{x}}\) multiplicative term that scales very quickly one way or another, requiring the step-size to equally scale/stretch in the opposite direction.</li>
             </ul>
           </li>
         </ul>
@@ -182,13 +186,13 @@
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

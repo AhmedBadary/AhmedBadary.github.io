@@ -169,10 +169,10 @@ The hidden layers of a CNN typically consist of convolutional layers, pooling la
         <ul>
           <li><strong>INPUT:</strong> [32x32x3] will hold the raw pixel values of the image, in this case an image of width 32, height 32, and with three color channels R,G,B.</li>
           <li><strong>CONV-Layer</strong> will compute the output of neurons that are connected to local regions in the input, each computing a dot product between their weights and a small region they are connected to in the input volume.  <br />
-This may result in volume such as [<script type="math/tex">32\times32\times12</script>] if we decided to use 12 filters.</li>
-          <li><strong>RELU-Layer:</strong>  will apply an element-wise activation function, thresholding at zero. This leaves the size of the volume unchanged ([<script type="math/tex">32\times32\times12</script>]).</li>
-          <li><strong>POOL-Layer:</strong> will perform a down-sampling operation along the spatial dimensions (width, height), resulting in volume such as [<script type="math/tex">16\times16\times12</script>].</li>
-          <li><strong>Fully-Connected:</strong> will compute the class scores, resulting in volume of size [<script type="math/tex">1\times1\times10</script>], where each of the 10 numbers correspond to a class score, such as among the 10 categories of CIFAR-10.<br />
+This may result in volume such as [\(32\times32\times12\)] if we decided to use 12 filters.</li>
+          <li><strong>RELU-Layer:</strong>  will apply an element-wise activation function, thresholding at zero. This leaves the size of the volume unchanged ([\(32\times32\times12\)]).</li>
+          <li><strong>POOL-Layer:</strong> will perform a down-sampling operation along the spatial dimensions (width, height), resulting in volume such as [\(16\times16\times12\)].</li>
+          <li><strong>Fully-Connected:</strong> will compute the class scores, resulting in volume of size [\(1\times1\times10\)], where each of the 10 numbers correspond to a class score, such as among the 10 categories of CIFAR-10.<br />
 As with ordinary Neural Networks and as the name implies, each neuron in this layer will be connected to all the numbers in the previous volume.</li>
         </ul>
       </dd>
@@ -227,13 +227,11 @@ As with ordinary Neural Networks and as the name implies, each neuron in this la
       <dd>A Convolution is a mathematical operation on two functions (f and g) to produce a third function, that is typically viewed as a modified version of one of the original functions, giving the integral of the point-wise multiplication of the two functions as a function of the amount that one of the original functions is translated.</dd>
       <dd>The convolution of the <strong>continous</strong> functions f and g:</dd>
       <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-{\displaystyle {\begin{aligned}(f*g)(t)&\,{\stackrel {\mathrm {def} }{=}}\ \int _{-\infty }^{\infty }f(\tau )g(t-\tau )\,d\tau \\&=\int _{-\infty }^{\infty }f(t-\tau )g(\tau )\,d\tau .\end{aligned}}} %]]></script>
+\[{\displaystyle {\begin{aligned}(f*g)(t)&amp;\,{\stackrel {\mathrm {def} }{=}}\ \int _{-\infty }^{\infty }f(\tau )g(t-\tau )\,d\tau \\&amp;=\int _{-\infty }^{\infty }f(t-\tau )g(\tau )\,d\tau .\end{aligned}}}\]
       </dd>
       <dd>The convolution of the <strong>discreet</strong> functions f and g:</dd>
       <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-{\displaystyle {\begin{aligned}(f*g)[n]&=\sum _{m=-\infty }^{\infty }f[m]g[n-m]\\&=\sum _{m=-\infty }^{\infty }f[n-m]g[m].\end{aligned}}} (commutativity) %]]></script>
+\[{\displaystyle {\begin{aligned}(f*g)[n]&amp;=\sum _{m=-\infty }^{\infty }f[m]g[n-m]\\&amp;=\sum _{m=-\infty }^{\infty }f[n-m]g[m].\end{aligned}}} (commutativity)\]
       </dd>
     </dl>
   </li>
@@ -243,11 +241,11 @@ As with ordinary Neural Networks and as the name implies, each neuron in this la
       <dd>Cross-Correlation is a measure of similarity of two series as a function of the displacement of one relative to the other.</dd>
       <dd>The <strong>continuous</strong> cross-correlation on continuous functions f and g:</dd>
       <dd>
-        <script type="math/tex; mode=display">(f\star g)(\tau )\ {\stackrel {\mathrm {def} }{=}}\int _{-\infty }^{\infty }f^{*}(t)\ g(t+\tau )\,dt,</script>
+\[(f\star g)(\tau )\ {\stackrel {\mathrm {def} }{=}}\int _{-\infty }^{\infty }f^{*}(t)\ g(t+\tau )\,dt,\]
       </dd>
       <dd>The <strong>discrete</strong> cross-correlation on discreet functions f and g:</dd>
       <dd>
-        <script type="math/tex; mode=display">(f\star g)[n]\ {\stackrel {\mathrm {def} }{=}}\sum _{m=-\infty }^{\infty }f^{*}[m]\ g[m+n].</script>
+\[(f\star g)[n]\ {\stackrel {\mathrm {def} }{=}}\sum _{m=-\infty }^{\infty }f^{*}[m]\ g[m+n].\]
       </dd>
     </dl>
   </li>
@@ -319,7 +317,7 @@ The term ‘convolution’ has stuck in the name by convention.</dd>
           </li>
           <li>The <strong>Receptive Field</strong> of the neuron defines the extent of this connectivity as a hyperparameter.
             <blockquote>
-              <p>For example, suppose the input volume has size <script type="math/tex">[32x32x3]</script> and the receptive field (or the filter size) is <script type="math/tex">5x5</script>, then each neuron in the Conv Layer will have weights to a <script type="math/tex">[5x5x3]</script> region in the input volume, for a total of <script type="math/tex">5*5*3 = 75</script> weights (and <script type="math/tex">+1</script> bias parameter).</p>
+              <p>For example, suppose the input volume has size \([32x32x3]\) and the receptive field (or the filter size) is \(5x5\), then each neuron in the Conv Layer will have weights to a \([5x5x3]\) region in the input volume, for a total of \(5*5*3 = 75\) weights (and \(+1\) bias parameter).</p>
             </blockquote>
           </li>
         </ul>
@@ -359,15 +357,15 @@ The <strong>bigger</strong> the stride, the <strong>less overlapping regions</st
       <dd>We compute the spatial size of the output volume as a function of:</dd>
       <dd>
         <ul>
-          <li><strong><script type="math/tex">W</script></strong>: The input volume size.</li>
-          <li><strong><script type="math/tex">F</script></strong>: <script type="math/tex">\:\:</script>The receptive field size of the Conv Layer neurons.</li>
-          <li><strong><script type="math/tex">S</script></strong>: The stride with which they are applied.</li>
-          <li><strong><script type="math/tex">P</script></strong>: The amount of zero padding used on the border.</li>
+          <li><strong>\(W\)</strong>: The input volume size.</li>
+          <li><strong>\(F\)</strong>: \(\:\:\)The receptive field size of the Conv Layer neurons.</li>
+          <li><strong>\(S\)</strong>: The stride with which they are applied.</li>
+          <li><strong>\(P\)</strong>: The amount of zero padding used on the border.</li>
         </ul>
       </dd>
       <dd>Thus, the <strong>Total Size of the Output</strong>:</dd>
       <dd>
-        <script type="math/tex; mode=display">\dfrac{W−F+2P}{S} + 1</script>
+\[\dfrac{W−F+2P}{S} + 1\]
       </dd>
       <dd>
         <ul>
@@ -376,7 +374,7 @@ The <strong>bigger</strong> the stride, the <strong>less overlapping regions</st
       </dd>
       <dd>
         <ul>
-          <li><strong>Fix</strong>: In general, setting zero padding to be <script type="math/tex">{\displaystyle P = \dfrac{K-1}{2}}</script> when the stride is <script type="math/tex">{\displaystyle S = 1}</script> ensures that the input volume and output volume will have the same size spatially.</li>
+          <li><strong>Fix</strong>: In general, setting zero padding to be \({\displaystyle P = \dfrac{K-1}{2}}\) when the stride is \({\displaystyle S = 1}\) ensures that the input volume and output volume will have the same size spatially.</li>
         </ul>
       </dd>
     </dl>
@@ -437,13 +435,13 @@ The <strong>bigger</strong> the stride, the <strong>less overlapping regions</st
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

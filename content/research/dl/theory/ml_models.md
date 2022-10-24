@@ -27,6 +27,7 @@ prevLink: /work_files/research/theory.html
 
 * [Latent Variable Model Intuition (slides!)](http://mlvis2016.hiit.fi/latentVariableGenerativeModels.pdf)  
 * [Radford Neal's Research: Latent Variable Models (publications)](http://www.cs.toronto.edu/~radford/res-latent.html)  
+* [Basics of Statistical Machine Learning: models, estimation, MLE, inference (paper/note!)](http://pages.cs.wisc.edu/~jerryzhu/cs731/stat.pdf)  
 
 
 ## Statistical Models
@@ -53,9 +54,17 @@ prevLink: /work_files/research/theory.html
     A __parametric model__ is a set of probability distributions indexed by a parameter $$\theta \in \Theta$$. We denote this as:  
     <p>$$\{p(y ; \theta) | \theta \in \Theta\},$$</p>  
     where $$\theta$$ is the __parameter__ and $$\Theta$$ is the __Parameter-Space__.  
+
+    __Notes:__{: style="color: red"}  
+    {: #lst-p}
+    * The parametric way to classify would be to decide a model (Gaussian, Bernoulli, etc.) for the features of $$\boldsymbol{x}$$, and typically the models are different for different classes $$y$$.  
+    <br>
+
+    | In machine learning we are often interested in a function of the distribution $$T(F)$$, for example, the mean. We call $$T$$ the statistical functional, viewing $$F$$ the distribution itself a function of $$x$$. However, we will also abuse the notation and say $$\theta=T(F)$$ is a "parameter" even for nonparametric models.  
     <br>
 
 2. **Non-Parametric Model:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
+    A __non-parametric model__ is one which cannot be parametrized by a fixed number of parameters.  
     __Non-parametric models__ differ from parametric models in that the model structure is not specified a priori but is instead _determined from data_. The term _non-parametric_ is not meant to imply that such models completely lack parameters but that the number and nature of the parameters are flexible and not fixed in advance.  
 
     __Examples:__  
@@ -82,7 +91,7 @@ prevLink: /work_files/research/theory.html
     * Linear Model
     * GLM - General Linear Model
     * GiLM - Generalized Linear Model
-    * Latent Variable Model
+    * Latent Variable Model  
     <br>
 
 

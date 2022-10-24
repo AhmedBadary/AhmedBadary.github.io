@@ -24,6 +24,15 @@ prevLink: /work_files/research/ml.html
 [Naive Bayes CS188 (+Probabilistic Calibration)](https://www.youtube.com/watch?v=1nOb0vwWkAE)  
 
 
+
+<button>Naive Bayes Mind-Map</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+![img](/main_files/misc/naive_bayes_mindmap.png){: width="100%" hidden=""}  
+
+
+
+> A Naive Bayes classifier that figured out that you liked pickles and ice cream would probably naively recommend you a pickle ice cream.  
+
+
 ## Introduction and the Naive Bayes Classifier
 {: #content1}
 
@@ -44,6 +53,13 @@ prevLink: /work_files/research/ml.html
     {: #lst-p}
     * Not a __Bayesian Method__: the name only references the use of Bayes' theorem in the classifier's decision rule  
     * The __Naive Bayes Classifier__ is a *__Bayes Classifier__* (i.e. minimizes the prob of misclassification)  
+    * __As a Parametric Model (analysis)__:  
+        <button>Analysis</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+        * A Bayes classifier basically picks the label $$y$$ that has the maximum probability, given that testing data-point $$x$$:  
+            $$y^{* }=\operatorname{argmax}_ {y} P(y)=\operatorname{argmax}_ {y} \frac{P(x \mid y) P(y)}{P(x)}$$  
+            If you assume the features of $$x$$ are conditionally independent given the label, you get the Naive Bayes classifier.  
+            So, classification depends a lot on $$P(x \mid y)$$. The parametric way to classify would be to decide a model (Gaussian, Bernoulli, etc.) for the features of $$x$$, and typically the models are different for different classes $$y$$. The parameters here are the parameters of you model (mean and covariance for Gaussian, individual feature probabilities for Bernoulli, etc.) and the training problem becomes a parameter estimation problem.
+        {: hidden=""}
     <br>
 
 2. **The Probabilistic Model (Naive Bayes Probability/Statistical Model):**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
@@ -106,14 +122,18 @@ prevLink: /work_files/research/ml.html
     <br>
 
 6. **MLE Derivation of the Parameter Estimates:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}  
-    [Derivation](http://www.cs.cornell.edu/courses/cs5740/2017sp/res/nb-prior.pdf)  
+    * [Derivation](http://www.cs.cornell.edu/courses/cs5740/2017sp/res/nb-prior.pdf)  
+    * [Partial derivative of a summation (stackexchange - helpful hint)](https://math.stackexchange.com/questions/2605546/partial-derivative-of-a-summation)  
     
     The __Likelihood__ of the observed data (TBC)  
 
 7. **Motivation:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17}  
-    To estimate the parameters of the "true" MAP estimate, we need a prohibitive number of examples ~ $$\mathcal{O}(\vert x\vert^n \cdot \vert C\vert$$.  
+    To estimate the parameters of the "true" MAP estimate, we need a prohibitive number of examples ~ $$\mathcal{O}(\vert x\vert^n \cdot \vert C\vert)$$.  
 
 8. **Notes:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}
+    * In a naive Bayes classifier we are interested in computing the conditional $$p(y \mid x ; \theta) \propto p(y ; \theta) \prod_{i}^{d} p\left(x_{i} \mid y ; \theta\right)$$.  
+        Is this a parametric or nonparametric model? The model is specified by $$\mathcal{H}=\{p(x, y ; \theta)\}$$ where $$\theta$$ contains the parameter for the class prior multinomial distribution $$p(y)$$ (finite number of parameters), and the class conditional distributions $$p\left(x_{i} \mid y\right)$$ for each dimension. The latter can be parametric (such as a multinomial over the vocabulary, or a Gaussian), or nonparametric (such as $$1D$$ kernel density estimation). Therefore, naive Bayes can be either parametric or nonparametric, although in practice the former is more common.  
+        In machine learning we are often interested in a function of the distribution $$T(F)$$, for example, the mean. We call $$T$$ the statistical functional, viewing $$F$$ the distribution itself a function of $$x$$. However, we will also abuse the notation and say $$\theta=T(F)$$ is a "parameter" even for nonparametric models.
 
 ***
 

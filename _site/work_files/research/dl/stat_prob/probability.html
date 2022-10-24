@@ -45,7 +45,7 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">Probability Theory <br /> Mathematics of Deep Learning</h1>
+  <h1 class="project-name">Probability Theory <br /> Mathematics of Deep Learning (DEPRECATED)</h1>
   <h2 class="project-tagline"></h2>
   <a href="/#" class="btn">Home</a>
   <a href="/work" class="btn">Work-Space</a>
@@ -85,7 +85,8 @@
 <hr />
 <hr />
 
-<p><a href="http://cs229.stanford.edu/section/cs229-prob.pdf">Review of Probability Theory (Stanford)</a><br />
+<p><a href="https://www.countbayesie.com">COUNT BAYESIE: PROBABLY A PROBABILITY BLOG</a><br />
+<a href="http://cs229.stanford.edu/section/cs229-prob.pdf">Review of Probability Theory (Stanford)</a><br />
 <a href="http://julio.staff.ipb.ac.id/files/2015/02/Ross_8th_ed_English.pdf">A First Course in Probability (Book: <em>Sheldon Ross</em>)</a><br />
 <a href="https://www.youtube.com/playlist?list=PL2SOU6wwxB0uwwH80KTQ6ht66KWxbzTIo">Statistics 110: Harvard</a><br />
 <a href="https://www.youtube.com/playlist?list=PLR6O_WZHBlOELxOrXlzB1LCXd2cUIXkkm">Lecture Series on Probability (following DL-book)</a><br />
@@ -93,7 +94,9 @@
 <a href="https://projects.iq.harvard.edu/files/stat110/files/math_review_handout.pdf">Math review for Stat 110</a><br />
 <a href="https://jhui.github.io/2017/01/05/Deep-learning-probability-and-distribution/">Deep Learning Probability</a><br />
 <a href="http://bjlkeng.github.io/posts/probability-the-logic-of-science/">Probability as Extended Logic</a><br />
-<a href="https://www.youtube.com/watch?v=sMNbLXsvRig&amp;list=PL7k0r4t5c108AZRwfW-FhnkZ0sCKBChLH&amp;index=13&amp;t=0s">CS188 Probability Lecture (very intuitive)</a></p>
+<a href="https://www.youtube.com/watch?v=sMNbLXsvRig&amp;list=PL7k0r4t5c108AZRwfW-FhnkZ0sCKBChLH&amp;index=13&amp;t=0s">CS188 Probability Lecture (very intuitive)</a><br />
+<a href="https://www.dartmouth.edu/~chance/teaching_aids/books_articles/probability_book/Chapter3.pdf">Combinatorics (Notes)</a><br />
+<a href="https://www.statlect.com/">Digital textbook on probability and statistics (!)</a></p>
 
 <h2 id="content1">Motivation</h2>
 
@@ -133,24 +136,24 @@
 <ol>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents20">Elements of Probability:</strong>
     <ul>
-      <li><strong>Sample Space <script type="math/tex">\Omega</script></strong>: The set of all the outcomes of a stochastic experiment; where each <em>outcome</em> is a complete description of the state of the real world at the end of the experiment.</li>
-      <li><strong>Event Space <script type="math/tex">{\mathcal {F}}</script></strong>: A set of <em>events</em>; where each event <script type="math/tex">A \in \mathcal{F}</script> is a subset of the sample space <script type="math/tex">\Omega</script> - it is a collection of possible outcomes of an experiment.</li>
-      <li><strong>Probability Measure <script type="math/tex">\operatorname {P}</script></strong>: A function <script type="math/tex">\operatorname {P}: \mathcal{F} \rightarrow \mathbb{R}</script> that satisfies the following properties:
+      <li><strong>Sample Space \(\Omega\)</strong>: The set of all the outcomes of a stochastic experiment; where each <em>outcome</em> is a complete description of the state of the real world at the end of the experiment.</li>
+      <li><strong>Event Space \({\mathcal {F}}\)</strong>: A set of <em>events</em>; where each event \(A \in \mathcal{F}\) is a subset of the sample space \(\Omega\) - it is a collection of possible outcomes of an experiment.</li>
+      <li><strong>Probability Measure \(\operatorname {P}\)</strong>: A function \(\operatorname {P}: \mathcal{F} \rightarrow \mathbb{R}\) that satisfies the following properties:
         <ul>
-          <li><script type="math/tex">\operatorname {P}(A) \geq 0, \: \forall A \in \mathcal{f}</script>,</li>
-          <li><script type="math/tex">\operatorname {P}(\Omega) = 1</script>, <script type="math/tex">\operatorname {P}(\emptyset) = 0</script><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></li>
-          <li><script type="math/tex">{\displaystyle \operatorname {P}(\bigcup_i A_i) = \sum_i \operatorname {P}(A_i) }</script>, where <script type="math/tex">A_1, A_2, ...</script> are <a href="#bodyContents102"><em>disjoint</em> events</a></li>
+          <li>\(\operatorname {P}(A) \geq 0, \: \forall A \in \mathcal{f}\),</li>
+          <li>\(\operatorname {P}(\Omega) = 1\), \(\operatorname {P}(\emptyset) = 0\)<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></li>
+          <li>\({\displaystyle \operatorname {P}(\bigcup_i A_i) = \sum_i \operatorname {P}(A_i) }\), where \(A_1, A_2, ...\) are <a href="#bodyContents102"><em>disjoint</em> events</a></li>
         </ul>
       </li>
     </ul>
 
     <p><strong style="color: red">Properties:</strong></p>
     <ul>
-      <li><script type="math/tex">{\text { If } A \subseteq B \Longrightarrow P(A) \leq P(B)}</script>,</li>
-      <li><script type="math/tex">{P(A \cap B) \leq \min (P(A), P(B))}</script>,</li>
-      <li><strong>Union Bound:</strong> <script type="math/tex">{P(A \cup B) \leq P(A)+P(B)}</script></li>
-      <li><script type="math/tex">{P(\Omega \backslash A)=1-P(A)}</script>.</li>
-      <li><strong>Law of Total Probability (LOTB):</strong> <script type="math/tex">\text { If } A_{1}, \ldots, A_{k} \text { are a set of disjoint events such that } \cup_{i=1}^{k} A_{i}=\Omega, \text { then } \sum_{i=1}^{k} P\left(A_{k}\right)=1</script></li>
+      <li>\({\text { If } A \subseteq B \Longrightarrow P(A) \leq P(B)}\),</li>
+      <li>\({P(A \cap B) \leq \min (P(A), P(B))}\),</li>
+      <li><strong>Union Bound:</strong> \({P(A \cup B) \leq P(A)+P(B)}\)</li>
+      <li>\({P(\Omega \backslash A)=1-P(A)}\).</li>
+      <li><strong>Law of Total Probability (LOTB):</strong> \(\text { If } A_{1}, \ldots, A_{k} \text { are a set of disjoint events such that } \cup_{i=1}^{k} A_{i}=\Omega, \text { then } \sum_{i=1}^{k} P\left(A_{k}\right)=1\)</li>
       <li><strong>Inclusion-Exclusion Principle</strong>:
         <p>$$\mathbb{P}\left(\bigcup_{i=1}^{n} A_{i}\right)=\sum_{i=1}^{n} \mathbb{P}\left(A_{i}\right)-\sum_{i&lt; j} \mathbb{P}\left(A_{i} \cap A_{j}\right)+\sum_{i&lt; j &lt; k} \mathbb{P}\left(A_{i} \cap A_{j} \cap A_{k}\right)-\cdots+(-1)^{n-1} \sum_{i&lt; \ldots&lt; n} \mathbb{P}\left(\bigcap_{i=1}^{n} A_{i}\right)$$</p>
         <ul>
@@ -171,7 +174,7 @@
 <ol>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Random Variables:</strong><br />
  A <strong>Random Variable</strong> is a variable that can take on different values randomly.<br />
- Formally, a random variable <script type="math/tex">X</script> is a <em>function</em> that maps outcomes to numerical quantities (labels), typically real numbers:
+ Formally, a random variable \(X\) is a <em>function</em> that maps outcomes to numerical quantities (labels), typically real numbers:
     <p>$${\displaystyle X\colon \Omega \to \mathbb{R}}$$</p>
 
     <p>Think of a R.V.: as a numerical “summary” of an aspect of the experiment.</p>
@@ -184,8 +187,8 @@
 
     <p><strong>Examples:</strong></p>
     <ul>
-      <li><strong>Bernoulli:</strong> A r.v. <script type="math/tex">X</script> is said to have a <strong>Bernoulli</strong> distribution if <script type="math/tex">X</script> has only <script type="math/tex">2</script> possible values, <script type="math/tex">0</script> and <script type="math/tex">1</script>, and <script type="math/tex">P(X=1) = p, P(X=0) = 1-p</script>; denoted <script type="math/tex">\text{Bern}(p)</script>.</li>
-      <li><strong>Binomial</strong>: The distr. of #successes in <script type="math/tex">n</script> independent <strong><script type="math/tex">\text{Bern}(p)</script></strong> trials and its distribution is <script type="math/tex">P(X=k) = \left(\begin{array}{l}{n} \\ {k}\end{array}\right) p^k (1-p)^{n-k}</script>; denoted <script type="math/tex">\text{Bin}(n, p)</script>.        <br />
+      <li><strong>Bernoulli:</strong> A r.v. \(X\) is said to have a <strong>Bernoulli</strong> distribution if \(X\) has only \(2\) possible values, \(0\) and \(1\), and \(P(X=1) = p, P(X=0) = 1-p\); denoted \(\text{Bern}(p)\).</li>
+      <li><strong>Binomial</strong>: The distr. of #successes in \(n\) independent <strong>\(\text{Bern}(p)\)</strong> trials and its distribution is \(P(X=k) = \left(\begin{array}{l}{n} \\ {k}\end{array}\right) p^k (1-p)^{n-k}\); denoted \(\text{Bin}(n, p)\).        <br />
  <br /></li>
     </ul>
   </li>
@@ -201,7 +204,7 @@
       </li>
       <li><strong>Types</strong>:
         <ul>
-          <li><em><strong>Univariate Distributions:</strong></em> are those whose sample space is <script type="math/tex">\mathbb{R}</script>.<br />
+          <li><em><strong>Univariate Distributions:</strong></em> are those whose sample space is \(\mathbb{R}\).<br />
   They give the probabilities of a single random variable taking on various alternative values</li>
           <li><em><strong>Multivariate Distributions</strong></em> (also known as <em><strong>Joint Probability distributions</strong></em>):  are those whose sample space is a vector space. <br />
   They give the probabilities of a random vector taking on various combinations of values.</li>
@@ -212,23 +215,23 @@
     <p>A <strong>Cumulative Distribution Function (CDF)</strong>: is a general functional form to describe a probability distribution:</p>
     <p>$${\displaystyle F(x)=\operatorname {P} [X\leq x]\qquad {\text{ for all }}x\in \mathbb {R} .}$$</p>
     <blockquote>
-      <p>Because a probability distribution P on the real line is determined by the probability of a scalar random variable X being in a half-open interval <script type="math/tex">(−\infty, x]</script>, the probability distribution is completely characterized by its cumulative distribution function (i.e. one can calculate the probability of any event in the event space)</p>
+      <p>Because a probability distribution P on the real line is determined by the probability of a scalar random variable X being in a half-open interval \((−\infty, x]\), the probability distribution is completely characterized by its cumulative distribution function (i.e. one can calculate the probability of any event in the event space)</p>
     </blockquote>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Probability Mass Function:</strong><br />
  A <strong>Probability Mass Function (PMF)</strong> is a function (probability distribution) that gives the probability that a discrete random variable is exactly equal to some value.<br />
  <strong>Mathematical Definition</strong>:<br />
- Suppose that <script type="math/tex">X: S \rightarrow A, \:\:\: (A {\displaystyle \subseteq }  \mathbb{R})</script> is a discrete random variable defined on a sample space <script type="math/tex">S</script>. Then the probability mass function <script type="math/tex">f_X: A \rightarrow [0, 1]</script> for <script type="math/tex">X</script> is defined as:
+ Suppose that \(X: S \rightarrow A, \:\:\: (A {\displaystyle \subseteq }  \mathbb{R})\) is a discrete random variable defined on a sample space \(S\). Then the probability mass function \(f_X: A \rightarrow [0, 1]\) for \(X\) is defined as:
     <p>$$p_{X}(x)=P(X=x)=P(\{s\in S:X(s)=x\})$$</p>
-    <p>The <strong>total probability for all hypothetical outcomes <script type="math/tex">x</script> is always conserved</strong>:</p>
+    <p>The <strong>total probability for all hypothetical outcomes \(x\) is always conserved</strong>:</p>
     <p>$$\sum _{x\in A}p_{X}(x)=1$$</p>
-    <p><strong>Joint Probability Distribution</strong> is a PMF over many variables, denoted <script type="math/tex">P(\mathrm{x} = x, \mathrm{y} = y)</script> or <script type="math/tex">P(x, y)</script>.</p>
+    <p><strong>Joint Probability Distribution</strong> is a PMF over many variables, denoted \(P(\mathrm{x} = x, \mathrm{y} = y)\) or \(P(x, y)\).</p>
 
     <p>A <strong>PMF</strong> must satisfy these properties:</p>
     <ul>
-      <li>The domain of <script type="math/tex">P</script> must be the set of all possible states of <script type="math/tex">\mathrm{x}</script>.</li>
-      <li><script type="math/tex">\forall x \in \mathrm{x}, \: 0 \leq P(x) \leq 1</script>. Impossible events has probability <script type="math/tex">0</script>. Guaranteed events have probability <script type="math/tex">1</script>.</li>
-      <li><script type="math/tex">{\displaystyle \sum_{x \in \mathrm{x}} P(x) = 1}</script>, i.e. the PMF must be normalized.<br />
+      <li>The domain of \(P\) must be the set of all possible states of \(\mathrm{x}\).</li>
+      <li>\(\forall x \in \mathrm{x}, \: 0 \leq P(x) \leq 1\). Impossible events has probability \(0\). Guaranteed events have probability \(1\).</li>
+      <li>\({\displaystyle \sum_{x \in \mathrm{x}} P(x) = 1}\), i.e. the PMF must be normalized.<br />
  <br /></li>
     </ul>
   </li>
@@ -236,40 +239,39 @@
  A <strong>Probability Density Function (PDF)</strong> is a function (probability distribution) whose value at any given sample (or point) in the sample space can be interpreted as providing a relative likelihood that the value of the random variable would equal that sample.<br />
  The <strong>PDF</strong> is defined as the <em>derivative</em> of the <strong>CDF</strong>:
     <p>$$f_{X}(x) = \dfrac{dF_{X}(x)}{dx}$$</p>
-    <p>A Probability Density Function <script type="math/tex">p(x)</script> does not give the probability of a specific state directly; instead the probability of landing inside an infinitesimal region with volume <script type="math/tex">\delta x</script> is given by <script type="math/tex">p(x)\delta x</script>.<br />
- We can integrate the density function to find the actual probability mass of a set of points. Specifically, the probability that <script type="math/tex">x</script> lies in some set <script type="math/tex">S</script> is given by the integral of <script type="math/tex">p(x)</script> over that set.</p>
+    <p>A Probability Density Function \(p(x)\) does not give the probability of a specific state directly; instead the probability of landing inside an infinitesimal region with volume \(\delta x\) is given by \(p(x)\delta x\).<br />
+ We can integrate the density function to find the actual probability mass of a set of points. Specifically, the probability that \(x\) lies in some set \(S\) is given by the integral of \(p(x)\) over that set.</p>
     <blockquote>
-      <p>In the <strong>Univariate</strong> example, the probability that <script type="math/tex">x</script> lies in the interval <script type="math/tex">[a, b]</script> is given by <script type="math/tex">\int_{[a, b]} p(x)dx</script></p>
+      <p>In the <strong>Univariate</strong> example, the probability that \(x\) lies in the interval \([a, b]\) is given by \(\int_{[a, b]} p(x)dx\)</p>
     </blockquote>
 
     <p>A <strong>PDF</strong> must satisfy these properties:</p>
     <ul>
-      <li>The domain of <script type="math/tex">P</script> must be the set of all possible states of <script type="math/tex">x</script>.</li>
-      <li><script type="math/tex">\forall x \in \mathrm{x}, \: 0 \leq P(x) \leq 1</script>. Impossible events has probability <script type="math/tex">0</script>. Guaranteed events have probability <script type="math/tex">1</script>.</li>
-      <li><script type="math/tex">\int p(x)dx = 1</script>, i.e. the integral of the PDF must be normalized.<br />
+      <li>The domain of \(P\) must be the set of all possible states of \(x\).</li>
+      <li>\(\forall x \in \mathrm{x}, \: 0 \leq P(x) \leq 1\). Impossible events has probability \(0\). Guaranteed events have probability \(1\).</li>
+      <li>\(\int p(x)dx = 1\), i.e. the integral of the PDF must be normalized.<br />
  <br /></li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents244">Cumulative Distribution Function:</strong><br />
-A <strong>Cumulative Distribution Function (CDF)</strong> is a function (probability distribution) of a real-valued random variable <script type="math/tex">X</script>, or just distribution function of <script type="math/tex">X</script>, evaluated at <script type="math/tex">x</script>, is the probability that <script type="math/tex">X</script> will take a value less than or equal to <script type="math/tex">x</script>.
+A <strong>Cumulative Distribution Function (CDF)</strong> is a function (probability distribution) of a real-valued random variable \(X\), or just distribution function of \(X\), evaluated at \(x\), is the probability that \(X\) will take a value less than or equal to \(x\).
     <p>$$F_{X}(x)=\operatorname {P} (X\leq x)$$ </p>
-    <p>The probability that <script type="math/tex">X</script> lies in the semi-closed interval <script type="math/tex">(a, b]</script>, where <script type="math/tex">% <![CDATA[
-a  <  b %]]></script>, is therefore</p>
+    <p>The probability that \(X\) lies in the semi-closed interval \((a, b]\), where \(a  &lt;  b\), is therefore</p>
     <p>$${\displaystyle \operatorname {P} (a&lt;X\leq b)=F_{X}(b)-F_{X}(a).}$$</p>
 
     <p><strong>Properties</strong>:</p>
     <ul>
-      <li><script type="math/tex">0 \leq F(x) \leq 1</script>,</li>
-      <li><script type="math/tex">\lim_{x \rightarrow -\infty} F(x) = 0</script>,</li>
-      <li><script type="math/tex">\lim_{x \rightarrow \infty} F(x) = 1</script>,</li>
-      <li><script type="math/tex">x \leq y \implies F(x) \leq F(y)</script>.<br />
+      <li>\(0 \leq F(x) \leq 1\),</li>
+      <li>\(\lim_{x \rightarrow -\infty} F(x) = 0\),</li>
+      <li>\(\lim_{x \rightarrow \infty} F(x) = 1\),</li>
+      <li>\(x \leq y \implies F(x) \leq F(y)\).<br />
 <br /></li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents25">Marginal Probability:</strong><br />
  The <strong>Marginal Distribution</strong> of a subset of a collection of random variables is the probability distribution of the variables contained in the subset.<br />
  <strong>Two-variable Case</strong>:<br />
- Given two random variables <script type="math/tex">X</script> and <script type="math/tex">Y</script> whose joint distribution is known, the marginal distribution of <script type="math/tex">X</script> is simply the probability distribution of <script type="math/tex">X</script> averaging over information about <script type="math/tex">Y</script>.
+ Given two random variables \(X\) and \(Y\) whose joint distribution is known, the marginal distribution of \(X\) is simply the probability distribution of \(X\) averaging over information about \(Y\).
     <ul>
       <li><strong>Discrete</strong>:
         <p>$${\displaystyle \Pr(X=x)=\sum_ {y}\Pr(X=x,Y=y)=\sum_ {y}\Pr(X=x\mid Y=y)\Pr(Y=y)}$$</p>
@@ -296,7 +298,7 @@ a  <  b %]]></script>, is therefore</p>
           <li><a href="https://stats.stackexchange.com/questions/249275/whats-the-difference-between-prior-and-marginal-probabilities?rq=1">Discussion</a></li>
           <li><strong>Summary</strong>:<br />
   Basically, it’s a conceptual difference.<br />
-  The prior, denoted <script type="math/tex">p(\theta)</script>, denotes the probability of some event 𝜔 even before any data has been taken.<br />
+  The prior, denoted \(p(\theta)\), denotes the probability of some event 𝜔 even before any data has been taken.<br />
   A marginal distribution is rather different. You hold a variable value and integrate over the unknown values.<br />
   But, in some contexts they are the same.</li>
         </ul>
@@ -305,7 +307,7 @@ a  <  b %]]></script>, is therefore</p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents26">Conditional Probability:</strong><br />
  <strong>Conditional Probability</strong> is a measure of the probability of an event given that another event has occurred.<br />
- Conditional Probability is only defined when <script type="math/tex">P(x) > 0</script> - We cannot compute the conditional probability conditioned on an event that never happens. <br />
+ Conditional Probability is only defined when \(P(x) &gt; 0\) - We cannot compute the conditional probability conditioned on an event that never happens. <br />
  <strong>Definition</strong>:
     <p>$$P(A|B)={\frac {P(A\cap B)}{P(B)}} = {\frac {P(A, B)}{P(B)}}$$</p>
 
@@ -319,15 +321,15 @@ a  <  b %]]></script>, is therefore</p>
     <p>$$\mathrm {P} \left(\bigcap _{k=1}^{n}A_{k}\right)=\prod _{k=1}^{n}\mathrm {P} \left(A_{k}\,{\Bigg |}\,\bigcap _{j=1}^{k-1}A_{j}\right)$$</p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Independence and Conditional Independence:</strong><br />
- Two random variables <script type="math/tex">x</script> and <script type="math/tex">y</script> (or events ) are <strong>independent</strong> if their probability distribution can be expressed as a product of two factors, one involving only <script type="math/tex">x</script> and one involving only <script type="math/tex">y</script>:
+ Two random variables \(x\) and \(y\) (or events ) are <strong>independent</strong> if their probability distribution can be expressed as a product of two factors, one involving only \(x\) and one involving only \(y\):
     <p>$$\mathrm{P}(A \cap B) = \mathrm{P}(A)\mathrm{P}(B)$$</p>
 
-    <p>Two random variables <script type="math/tex">A</script> and <script type="math/tex">B</script> are <strong>conditionally independent</strong> <em>given a random variable <script type="math/tex">Y</script></em> if the conditional probability distribution over <script type="math/tex">A</script> and <script type="math/tex">B</script> factorizes in this way for every value of <script type="math/tex">Y</script>:</p>
+    <p>Two random variables \(A\) and \(B\) are <strong>conditionally independent</strong> <em>given a random variable \(Y\)</em> if the conditional probability distribution over \(A\) and \(B\) factorizes in this way for every value of \(Y\):</p>
     <p>$$\Pr(A\cap B\mid Y)=\Pr(A\mid Y)\Pr(B\mid Y)$$</p>
     <p>or equivalently,</p>
     <p>$$\Pr(A\mid B\cap Y)=\Pr(A\mid Y)$$</p>
     <blockquote>
-      <p>In other words, <script type="math/tex">A</script> and <script type="math/tex">B</script> are conditionally independent given <script type="math/tex">Y</script> if and only if, given knowledge that <script type="math/tex">Y</script> occurs, knowledge of whether <script type="math/tex">A</script> occurs provides no information on the likelihood of <script type="math/tex">B</script> occurring, and knowledge of whether <script type="math/tex">B</script> occurs provides no information on the likelihood of <script type="math/tex">A</script> occurring.</p>
+      <p>In other words, \(A\) and \(B\) are conditionally independent given \(Y\) if and only if, given knowledge that \(Y\) occurs, knowledge of whether \(A\) occurs provides no information on the likelihood of \(B\) occurring, and knowledge of whether \(B\) occurs provides no information on the likelihood of \(A\) occurring.</p>
     </blockquote>
 
     <p><strong style="color: red">Pairwise VS Mutual Independence:</strong></p>
@@ -337,7 +339,7 @@ a  <  b %]]></script>, is therefore</p>
       </li>
       <li><strong>Mutual Independence:</strong>
         <p>$$\mathrm{P}\left(\bigcap_{i=1}^{k} B_{i}\right)=\prod_{i=1}^{k} \mathrm{P}\left(B_{i}\right)$$</p>
-        <p>for <em><strong>all subsets</strong></em> of size <script type="math/tex">k \leq n</script></p>
+        <p>for <em><strong>all subsets</strong></em> of size \(k \leq n\)</p>
       </li>
     </ul>
 
@@ -345,8 +347,8 @@ a  <  b %]]></script>, is therefore</p>
 
     <p><strong>Notation:</strong></p>
     <ul>
-      <li><em><strong><script type="math/tex">A</script> is Independent from <script type="math/tex">B</script></strong></em>:  <script type="math/tex">A{\perp}B</script></li>
-      <li><em><strong><script type="math/tex">A</script> and <script type="math/tex">B</script> are conditionally Independent given <script type="math/tex">Y</script></strong></em>:  <script type="math/tex">A{\perp}B \:\vert Y</script></li>
+      <li><em><strong>\(A\) is Independent from \(B\)</strong></em>:  \(A{\perp}B\)</li>
+      <li><em><strong>\(A\) and \(B\) are conditionally Independent given \(Y\)</strong></em>:  \(A{\perp}B \:\vert Y\)</li>
     </ul>
 
     <p id="lst-p"><strong style="color: red">Notes:</strong></p>
@@ -358,9 +360,9 @@ a  <  b %]]></script>, is therefore</p>
     <p><br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents29">Expectation:</strong><br />
- The <strong>expectation</strong>, or <strong>expected value</strong>, of some function <script type="math/tex">f(x)</script> with respect to a probability distribution <script type="math/tex">P(x)</script> is the <em>“theoretical”</em> average, or mean value, that <script type="math/tex">f</script> takes on when <script type="math/tex">x</script> is drawn from <script type="math/tex">P</script>.
+ The <strong>expectation</strong>, or <strong>expected value</strong>, of some function \(f(x)\) with respect to a probability distribution \(P(x)\) is the <em>“theoretical”</em> average, or mean value, that \(f\) takes on when \(x\) is drawn from \(P\).
     <blockquote>
-      <p>The Expectation of a R.V. is a weighted average of the values <script type="math/tex">x</script> that the R.V. can take – <script type="math/tex">\operatorname {E}[X] = \sum_{x \in X} x \cdot p(x)</script></p>
+      <p>The Expectation of a R.V. is a weighted average of the values \(x\) that the R.V. can take – \(\operatorname {E}[X] = \sum_{x \in X} x \cdot p(x)\)</p>
     </blockquote>
     <ul>
       <li><strong>Discrete case</strong>:
@@ -372,12 +374,12 @@ a  <  b %]]></script>, is therefore</p>
     <p><strong>Linearity of Expectation:</strong></p>
     <p>$${\displaystyle {\begin{aligned}\operatorname {E} [X+Y]&amp;=\operatorname {E} [X]+\operatorname {E} [Y],\\[6pt]\operatorname {E} [aX]&amp;=a\operatorname {E} [X],\end{aligned}}}$$</p>
     <p><strong>Independence:</strong> <br />
- If <script type="math/tex">X</script> and <script type="math/tex">Y</script> are independent <script type="math/tex">\implies \operatorname {E} [XY] = \operatorname {E} [X] \operatorname {E} [Y]</script><br />
+ If \(X\) and \(Y\) are independent \(\implies \operatorname {E} [XY] = \operatorname {E} [X] \operatorname {E} [Y]\)<br />
  <br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents210">Variance:</strong><br />
 <strong>Variance</strong> is the expectation of the squared deviation of a random variable from its mean.<br />
-It gives a measure of how much the values of a function of a random variable <script type="math/tex">x</script> vary as we sample different values of <script type="math/tex">x</script> from its probability distribution:
+It gives a measure of how much the values of a function of a random variable \(x\) vary as we sample different values of \(x\) from its probability distribution:
     <p>$$\operatorname {Var} (f(x))=\operatorname {E} \left[(f(x)-\mu )^{2}\right] = \sum_{x \in X} (x - \mu)^2 \cdot p(x)$$</p>
     <p><strong>Variance expanded</strong>:</p>
     <p>$${\displaystyle {\begin{aligned}\operatorname {Var} (X)&amp;=\operatorname {E} \left[(X-\operatorname {E} [X])^{2}\right]\\
@@ -390,9 +392,9 @@ Variance can be expressed as the covariance of a random variable with itself:</p
 
     <p><strong>Properties:</strong></p>
     <ul>
-      <li><script type="math/tex">\operatorname {Var} [a] = 0, \forall a \in \mathbb{R}</script> (constant <script type="math/tex">a</script>)</li>
-      <li><script type="math/tex">\operatorname {Var} [af(X)] = a^2 \operatorname {Var} [f(X)]</script> (constant <script type="math/tex">a</script>)</li>
-      <li><script type="math/tex">\operatorname {Var} [X + Y] = a^2 \operatorname {Var} [X] + \operatorname {Var} [Y] + 2 \operatorname {Cov} [X, Y]</script>.<br />
+      <li>\(\operatorname {Var} [a] = 0, \forall a \in \mathbb{R}\) (constant \(a\))</li>
+      <li>\(\operatorname {Var} [af(X)] = a^2 \operatorname {Var} [f(X)]\) (constant \(a\))</li>
+      <li>\(\operatorname {Var} [X + Y] = a^2 \operatorname {Var} [X] + \operatorname {Var} [Y] + 2 \operatorname {Cov} [X, Y]\).<br />
 <br /></li>
     </ul>
   </li>
@@ -403,9 +405,9 @@ It is defined as the square root of the variance:
 
     <p><strong>Properties:</strong></p>
     <ul>
-      <li>68% of the data-points lie within <script type="math/tex">1 \cdot \sigma</script>s from the mean</li>
-      <li>95% of the data-points lie within <script type="math/tex">2 \cdot \sigma</script>s from the mean</li>
-      <li>99% of the data-points lie within <script type="math/tex">3 \cdot \sigma</script>s from the mean
+      <li>68% of the data-points lie within \(1 \cdot \sigma\)s from the mean</li>
+      <li>95% of the data-points lie within \(2 \cdot \sigma\)s from the mean</li>
+      <li>99% of the data-points lie within \(3 \cdot \sigma\)s from the mean
 <br /></li>
     </ul>
   </li>
@@ -416,13 +418,13 @@ It gives some sense of how much two values are linearly related to each other, a
     <p><strong>Covariance expanded:</strong></p>
     <p>$${\displaystyle {\begin{aligned}\operatorname {cov} (X,Y)&amp;=\operatorname {E} \left[\left(X-\operatorname {E} \left[X\right]\right)\left(Y-\operatorname {E} \left[Y\right]\right)\right]\\&amp;=\operatorname {E} \left[XY-X\operatorname {E} \left[Y\right]-\operatorname {E} \left[X\right]Y+\operatorname {E} \left[X\right]\operatorname {E} \left[Y\right]\right]\\&amp;=\operatorname {E} \left[XY\right]-\operatorname {E} \left[X\right]\operatorname {E} \left[Y\right]-\operatorname {E} \left[X\right]\operatorname {E} \left[Y\right]+\operatorname {E} \left[X\right]\operatorname {E} \left[Y\right]\\&amp;=\operatorname {E} \left[XY\right]-\operatorname {E} \left[X\right]\operatorname {E} \left[Y\right].\end{aligned}}}$$ </p>
     <blockquote>
-      <p>when <script type="math/tex">{\displaystyle \operatorname {E} [XY]\approx \operatorname {E} [X]\operatorname {E} [Y]}</script>, this last equation is prone to catastrophic cancellation when computed with floating point arithmetic and thus should be avoided in computer programs when the data has not been centered before.</p>
+      <p>when \({\displaystyle \operatorname {E} [XY]\approx \operatorname {E} [X]\operatorname {E} [Y]}\), this last equation is prone to catastrophic cancellation when computed with floating point arithmetic and thus should be avoided in computer programs when the data has not been centered before.</p>
     </blockquote>
 
     <p><strong>Covariance of Random Vectors</strong>:</p>
     <p>$${\begin{aligned}\operatorname {cov} (\mathbf {X} ,\mathbf {Y} )&amp;=\operatorname {E} \left[(\mathbf {X} -\operatorname {E} [\mathbf {X} ])(\mathbf {Y} -\operatorname {E} [\mathbf {Y} ])^{\mathrm {T} }\right]\\&amp;=\operatorname {E} \left[\mathbf {X} \mathbf {Y} ^{\mathrm {T} }\right]-\operatorname {E} [\mathbf {X} ]\operatorname {E} [\mathbf {Y} ]^{\mathrm {T} },\end{aligned}}$$ </p>
 
-    <p><strong>The Covariance Matrix</strong> of a random vector <script type="math/tex">x \in \mathbb{R}^n</script> is an <script type="math/tex">n \times n</script> matrix, such that:</p>
+    <p><strong>The Covariance Matrix</strong> of a random vector \(x \in \mathbb{R}^n\) is an \(n \times n\) matrix, such that:</p>
     <p>$$ \operatorname {cov} (X)_ {i,j} = \operatorname {cov}(x_i, x_j) \\
     \operatorname {cov}(x_i, x_j) = \operatorname {Var} (x_i)$$</p>
     <p><strong>Interpretations</strong>:</p>
@@ -445,14 +447,14 @@ It gives some sense of how much two values are linearly related to each other, a
     <p>$$\operatorname{Var}[X+Y]=\operatorname{Var}[X]+\operatorname{Var}[Y]+2 \operatorname{Cov}[X, Y]$$</p>
 
     <p><strong>Covariance and Independence:</strong><br />
-If <script type="math/tex">X</script> and <script type="math/tex">Y</script> are independent <script type="math/tex">\implies \operatorname{cov}[X, Y]=\mathrm{E}[X Y]-\mathrm{E}[X] \mathrm{E}[Y] = 0</script>.</p>
+If \(X\) and \(Y\) are independent \(\implies \operatorname{cov}[X, Y]=\mathrm{E}[X Y]-\mathrm{E}[X] \mathrm{E}[Y] = 0\).</p>
     <ul>
-      <li>Independence <script type="math/tex">\Rightarrow</script> Zero Covariance</li>
-      <li>Zero Covariance <script type="math/tex">\nRightarrow</script> Independence</li>
+      <li>Independence \(\Rightarrow\) Zero Covariance</li>
+      <li>Zero Covariance \(\nRightarrow\) Independence</li>
     </ul>
 
     <p><strong>Covariance and Correlation:</strong><br />
-If <script type="math/tex">\operatorname{Cov}[X, Y]=0 \implies</script> <script type="math/tex">X</script> and <script type="math/tex">Y</script> are <strong>Uncorrelated</strong>.</p>
+If \(\operatorname{Cov}[X, Y]=0 \implies\) \(X\) and \(Y\) are <strong>Uncorrelated</strong>.</p>
 
     <ul>
       <li><a href="https://www.youtube.com/embed/KDw3hC2YNFc" value="show" onclick="iframePopA(event)"><strong>Covariance/Correlation Intuition</strong></a>
@@ -476,7 +478,7 @@ It is also common to define probability distributions by combining other simpler
 A <strong>Mixture Distribution</strong> is the probability distribution of a random variable that is derived from a collection of other random variables as follows: first, a random variable is selected by chance from the collection according to given probabilities of selection, and then the value of the selected random variable is realized.  <br />
 On each trial, the choice of which component distribution should generate the sample is determined by sampling a component identity from a multinoulli distribution:
     <p>$$P(x) = \sum_i P(x=i)P(x \vert c=i)$$</p>
-    <p>where <script type="math/tex">P(c)</script> is the multinoulli distribution over component identities.</p>
+    <p>where \(P(c)\) is the multinoulli distribution over component identities.</p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents214">Bayes’ Rule:</strong><br />
 <strong>Bayes’ Rule</strong> describes the probability of an event, based on prior knowledge of conditions that might be related to the event.
@@ -497,7 +499,7 @@ On each trial, the choice of which component distribution should generate the sa
 <img src="/main_files/math/prob/5.png" alt="img" width="90%" /></li>
     </ul>
 
-    <p><strong style="color: red">Continuous RVs:</strong></p>
+    <p id="lst-p"><strong style="color: red">Continuous RVs:</strong></p>
     <ul>
       <li><strong>Uniform</strong>:<br />
 <img src="/main_files/math/prob/6.png" alt="img" width="90%" /></li>
@@ -513,35 +515,33 @@ On each trial, the choice of which component distribution should generate the sa
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents217">Formulas:</strong>
     <ul>
-      <li><script type="math/tex">\overline{X} = \hat{\mu}</script>,</li>
-      <li><script type="math/tex">\operatorname {E}[\overline{X}]=\operatorname {E}\left[\frac{X_{1}+\cdots+X_{n}}{n}\right] = \mu</script>,</li>
-      <li><script type="math/tex">\operatorname{Var}[\overline{X}]=\operatorname{Var}\left[\frac{X_{1}+\cdots+X_{n}}{n}\right] = \dfrac{\sigma^2}{n}</script>,</li>
-      <li><script type="math/tex">\operatorname {E}\left[X_{i}^{2}\right]=\operatorname {Var} [X]+\operatorname {E} [X]^{2} = \sigma^{2}+\mu^{2}</script>,</li>
-      <li><script type="math/tex">\operatorname {E}\left[\overline{X}^{2}\right]=\operatorname {E}\left[\hat{\mu}^{2}\right]=\frac{\sigma^{2}}{n}+\mu^{2}\:</script>, <sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup></li>
+      <li>\(\overline{X} = \hat{\mu}\),</li>
+      <li>\(\operatorname {E}[\overline{X}]=\operatorname {E}\left[\frac{X_{1}+\cdots+X_{n}}{n}\right] = \mu\),</li>
+      <li>\(\operatorname{Var}[\overline{X}]=\operatorname{Var}\left[\frac{X_{1}+\cdots+X_{n}}{n}\right] = \dfrac{\sigma^2}{n}\),</li>
+      <li>\(\operatorname {E}\left[X_{i}^{2}\right]=\operatorname {Var} [X]+\operatorname {E} [X]^{2} = \sigma^{2}+\mu^{2}\),</li>
+      <li>\(\operatorname {E}\left[\overline{X}^{2}\right]=\operatorname {E}\left[\hat{\mu}^{2}\right]=\frac{\sigma^{2}}{n}+\mu^{2}\:\), <sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup><br />
+<br /></li>
     </ul>
-
-    <p><br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents218">Correlation:</strong><br />
 In the broadest sense <strong>correlation</strong> is any statistical association, though it commonly refers to the degree to which a pair of variables are linearly related.</p>
 
-    <p>There are several correlation coefficients, often denoted <script type="math/tex">{\displaystyle \rho }</script> or <script type="math/tex">r</script>, measuring the degree of correlation:</p>
+    <p>There are several correlation coefficients, often denoted \({\displaystyle \rho }\) or \(r\), measuring the degree of correlation:</p>
 
     <p><strong style="color: red">Pearson Correlation Coefficient <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">[wiki]</a>:</strong><br />
-It is a measure of the <strong>linear correlation</strong> between two variables <script type="math/tex">X</script> and <script type="math/tex">Y</script>.</p>
+It is a measure of the <strong>linear correlation</strong> between two variables \(X\) and \(Y\).</p>
     <p>$$\rho_{X, Y}=\frac{\operatorname{cov}(X, Y)}{\sigma_{X} \sigma_{Y}}$$</p>
-    <p>where, <script type="math/tex">{\displaystyle \sigma_{X}}</script> is the standard deviation of <script type="math/tex">{\displaystyle X}</script> and <script type="math/tex">{\displaystyle \sigma_{Y}}</script>  is the standard deviation of <script type="math/tex">{\displaystyle Y}</script>, and <script type="math/tex">\rho \in [-1, 1]</script>.</p>
+    <p>where, \({\displaystyle \sigma_{X}}\) is the standard deviation of \({\displaystyle X}\) and \({\displaystyle \sigma_{Y}}\)  is the standard deviation of \({\displaystyle Y}\), and \(\rho \in [-1, 1]\).</p>
 
     <p><strong style="color: red">Correlation and Independence:</strong></p>
     <ol>
-      <li>Uncorrelated <script type="math/tex">\nRightarrow</script> Independent</li>
-      <li>Independent <script type="math/tex">\implies</script> Uncorrelated</li>
+      <li>Uncorrelated \(\nRightarrow\) Independent</li>
+      <li>Independent \(\implies\) Uncorrelated</li>
     </ol>
 
-    <p>Zero correlation will indicate no linear dependency, however won’t capture non-linearity. Typical example is uniform random variable <script type="math/tex">x</script>, and <script type="math/tex">x^2</script> over <script type="math/tex">[-1,1]</script> with zero mean. Correlation is zero but clearly not independent.</p>
-
-    <p><br /></p>
+    <p>Zero correlation will indicate no linear dependency, however won’t capture non-linearity. Typical example is uniform random variable \(x\), and \(x^2\) over \([-1,1]\) with zero mean. Correlation is zero but clearly not independent.<br />
+<br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents219">Probabilistic Inference:</strong><br />
@@ -550,17 +550,17 @@ It is a measure of the <strong>linear correlation</strong> between two variables
     <p id="lst-p"><strong>We generally compute Conditional Probabilities:</strong></p>
     <ul>
       <li>
-        <script type="math/tex; mode=display">p(\text{sun} \vert T=\text{12 pm}) = 0.99</script>
+\[p(\text{sun} \vert T=\text{12 pm}) = 0.99\]
       </li>
       <li>These represent the agents beliefs given the evidence</li>
     </ul>
 
     <p id="lst-p"><strong>Probabilities change with new evidence:</strong></p>
     <ul>
-      <li><script type="math/tex">p(\text{sun} \vert T=\text{12 pm}, C=\text{Stockholm}) = 0.85</script><br />
-<script type="math/tex">\longrightarrow</script></li>
+      <li>\(p(\text{sun} \vert T=\text{12 pm}, C=\text{Stockholm}) = 0.85\)<br />
+\(\longrightarrow\)</li>
       <li>
-        <script type="math/tex; mode=display">p(\text{sun} \vert T=\text{12 pm}, C=\text{Stockholm}, M=\text{Jan}) = 0.40</script>
+\[p(\text{sun} \vert T=\text{12 pm}, C=\text{Stockholm}, M=\text{Jan}) = 0.40\]
       </li>
       <li>Observing new evidence causes beliefs to be updated</li>
     </ul>
@@ -575,8 +575,8 @@ It is a measure of the <strong>linear correlation</strong> between two variables
 
     <p><strong>Problems:</strong></p>
     <ul>
-      <li>Worst-case time complexity <script type="math/tex">\mathrm{O}\left(\mathrm{d}^{n}\right)</script></li>
-      <li>Space complexity <script type="math/tex">\mathrm{O}\left(\mathrm{d}^{n}\right)</script> to store the joint distribution</li>
+      <li>Worst-case time complexity \(\mathrm{O}\left(\mathrm{d}^{n}\right)\)</li>
+      <li>Space complexity \(\mathrm{O}\left(\mathrm{d}^{n}\right)\) to store the joint distribution</li>
     </ul>
 
     <p><strong style="color: red">Inference with Bayes Theorem:</strong></p>
@@ -592,26 +592,21 @@ It is a measure of the <strong>linear correlation</strong> between two variables
 
 <h2 id="content9">Discrete Distributions</h2>
 
+<!-- 1. **Uniform Distribution:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents91}   -->
+
 <ol>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents91">Uniform Distribution:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents92">Bernoulli Distribution:</strong></dt>
       <dd>A distribution over a single binary random variable.<br />
-It is controlled by a single parameter <script type="math/tex">\phi \in [0, 1]</script>, which fives the probability of the r.v. being equal to <script type="math/tex">1</script>.
+It is controlled by a single parameter \(\phi \in [0, 1]\), which fives the probability of the r.v. being equal to \(1\).
         <blockquote>
-          <p>It models the probability of a single experiment with a boolean outcome (e.g. coin flip <script type="math/tex">\rightarrow</script> {heads: 1, tails: 0})</p>
+          <p>It models the probability of a single experiment with a boolean outcome (e.g. coin flip \(\rightarrow\) {heads: 1, tails: 0})</p>
         </blockquote>
       </dd>
       <dd><strong>PMF:</strong></dd>
       <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-{\displaystyle P(x)={\begin{cases}p&{\text{if }}p=1,\\q=1-p&{\text{if }}p=0.\end{cases}}} %]]></script>
+\[{\displaystyle P(x)={\begin{cases}p&amp;{\text{if }}p=1,\\q=1-p&amp;{\text{if }}p=0.\end{cases}}}\]
       </dd>
       <dd><strong>Properties:</strong>
         <p>$$P(X=1) = \phi$$</p>
@@ -624,19 +619,15 @@ It is controlled by a single parameter <script type="math/tex">\phi \in [0, 1]</
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents93">Binomial Distribution:</strong>
     <blockquote>
-      <p><script type="math/tex">{\binom {n}{k}}={\frac {n!}{k!(n-k)!}}</script> is the number of possible ways of getting <script type="math/tex">x</script> successes and <script type="math/tex">n-x</script> failures</p>
+      <p>\({\binom {n}{k}}={\frac {n!}{k!(n-k)!}}\) is the number of possible ways of getting \(x\) successes and \(n-x\) failures</p>
     </blockquote>
   </li>
 </ol>
 
 <!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents94}  
-
 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents95}  
-
 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents96}  
-
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents97}  
-
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents98}   -->
 
 <hr />
@@ -657,34 +648,7 @@ It is controlled by a single parameter <script type="math/tex">\phi \in [0, 1]</
       </li>
     </ul>
   </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents99" id="bodyContents992">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
-  <li>
-    <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents99" id="bodyContents993">Asynchronous:</strong></dt>
-      <dd></dd>
-    </dl>
-  </li>
 </ol>
-
-<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents994}  
-    :   
-
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents995}  
-    :   
-
-6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents996}  
-    :   
-
-7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents997}  
-    :   
-
-8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents998}  
-    :    -->
 
 <hr />
 
@@ -698,8 +662,8 @@ It is controlled by a single parameter <script type="math/tex">\phi \in [0, 1]</
   <li><strong class="bodyContents10" id="bodyContents102">Disjoint Events (Mutually Exclusive):</strong> are events that cannot occur together at the same time
   Mathematically:
     <ul>
-      <li><script type="math/tex">A_i \cap A_j = \varnothing</script> whenever <script type="math/tex">i \neq j</script></li>
-      <li><script type="math/tex">p(A_i, A_j) = 0</script>,</li>
+      <li>\(A_i \cap A_j = \varnothing\) whenever \(i \neq j\)</li>
+      <li>\(p(A_i, A_j) = 0\),</li>
     </ul>
   </li>
   <li>
@@ -710,13 +674,13 @@ It is controlled by a single parameter <script type="math/tex">\phi \in [0, 1]</
   <li>
     <p><strong>Probability VS Likelihood</strong>:<br />
   <strong>Probabilities</strong> are the areas under a fixed distribution<br />
-  <script type="math/tex">pr(</script>data<script type="math/tex">|</script>distribution<script type="math/tex">)</script><br />
+  \(pr(\)data\(|\)distribution\()\)<br />
   i.e. probability of some <em>data</em> (left hand side) given a distribution (described by the right hand side)<br />
   <strong>Likelihoods</strong> are the y-axis values for fixed data points with distributions that can be moved..<br />
-  <script type="math/tex">L(</script>distribution<script type="math/tex">|</script>observation/data<script type="math/tex">)</script></p>
+  \(L(\)distribution\(|\)observation/data\()\)</p>
 
     <blockquote>
-      <p>Likelihood is, basically, a specific probability that can only be calculated after the fact (of observing some outcomes). It is not normalized to <script type="math/tex">1</script> (it is <strong>not</strong> a probability). It is just a way to quantify how likely a set of observation is to occur given some distribution with some parameters; then you can manipulate the parameters to make the realization of the data more <em>“likely”</em> (it is precisely meant for that purpose of estimating the parameters); it is a <em>function</em> of the <strong>parameters</strong>.<br />
+      <p>Likelihood is, basically, a specific probability that can only be calculated after the fact (of observing some outcomes). It is not normalized to \(1\) (it is <strong>not</strong> a probability). It is just a way to quantify how likely a set of observation is to occur given some distribution with some parameters; then you can manipulate the parameters to make the realization of the data more <em>“likely”</em> (it is precisely meant for that purpose of estimating the parameters); it is a <em>function</em> of the <strong>parameters</strong>.<br />
   Probability, on the other hand, is absolute for all possible outcomes. It is a function of the <strong>Data</strong>.</p>
     </blockquote>
   </li>
@@ -726,31 +690,31 @@ It is controlled by a single parameter <script type="math/tex">\phi \in [0, 1]</
   </li>
   <li>
     <p><strong>Variance</strong>:<br />
-  When <script type="math/tex">\text{Var}(X) = 0 \implies X = E[X] = \mu</script>. (not interesting)</p>
+  When \(\text{Var}(X) = 0 \implies X = E[X] = \mu\). (not interesting)</p>
   </li>
   <li><strong>Reason we sometimes prefer Biased Estimators</strong>:</li>
 </ul>
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p>Corresponds to “wanting” the probability of events that are <strong>certain</strong> to have p=1 and events that are <strong>impossible</strong> to have p=0 <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p>Corresponds to “wanting” the probability of events that are <strong>certain</strong> to have p=1 and events that are <strong>impossible</strong> to have p=0 <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2">
-      <p>Comes from <script type="math/tex">\operatorname{Var}[\overline{X}]=\operatorname {E}\left[\overline{X}^{2}\right]-\{\operatorname {E}[\overline{X}]\}^{2}</script> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:2" role="doc-endnote">
+      <p>Comes from \(\operatorname{Var}[\overline{X}]=\operatorname {E}\left[\overline{X}^{2}\right]-\{\operatorname {E}[\overline{X}]\}^{2}\) <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

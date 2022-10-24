@@ -25,6 +25,15 @@ prevLink: /work_files/research.html
 ***
 ***
 
+
+* Big O:
+    ![img](https://cdn.mathpix.com/snip/images/CvmC2RaJFnq_RPpbc95AuG4hW-3wA3CQ7dipw_riZ5M.original.fullsize.png){: width="80%"}  
+
+
+* 
+
+
+
 ## Divide-and-Conquer
 {: #content1}
 

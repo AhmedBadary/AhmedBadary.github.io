@@ -67,18 +67,18 @@
   <h1 class="page-title"></h1>
   <p>$$(.|\n)*?$$
 <strong style="color: red">Fundamental Theorem of Statistical Learning (binary classification):</strong><br />
-Let <script type="math/tex">\mathcal{H}</script> be a hypothesis class of functions from a domain <script type="math/tex">X</script> to <script type="math/tex">\{0,1\}</script> and let the loss function be the <script type="math/tex">0-1</script> loss.<br />
+Let \(\mathcal{H}\) be a hypothesis class of functions from a domain \(X\) to \(\{0,1\}\) and let the loss function be the \(0-1\) loss.<br />
 The following are equivalent:<br />
-<script type="math/tex">\begin{array}{l}{\text { 1. } \mathcal{H} \text { has uniform convergence. }} \\ {\text { 2. The ERM is a PAC learning algorithm for } \mathcal{H} \text { . }} \\ {\text { 3. } \mathcal{H} \text { is } PAC \text { learnable. }} \\ {\text { 4. } \mathcal{H} \text { has finite } VC \text { dimension. }}\end{array}</script><br />
+\(\begin{array}{l}{\text { 1. } \mathcal{H} \text { has uniform convergence. }} \\ {\text { 2. The ERM is a PAC learning algorithm for } \mathcal{H} \text { . }} \\ {\text { 3. } \mathcal{H} \text { is } PAC \text { learnable. }} \\ {\text { 4. } \mathcal{H} \text { has finite } VC \text { dimension. }}\end{array}\)<br />
 This can be extended to <strong>regression</strong> and <strong>multiclass classification</strong>.</p>
 
 <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Proof.</button></p>
 <div hidden="">
   <ul>
-    <li>1 <script type="math/tex">\Rightarrow 2</script> We have seen uniform convergence implies that <script type="math/tex">\mathrm{ERM}</script> is <script type="math/tex">\mathrm{PAC}</script> learnable</li>
-    <li>2 <script type="math/tex">\Rightarrow 3</script> Obvious.</li>
-    <li>3 <script type="math/tex">\Rightarrow 4</script> We just proved that PAC learnability implies finite <script type="math/tex">\mathrm{VC}</script> dimension.</li>
-    <li>4 <script type="math/tex">\Rightarrow 1</script> We proved that finite <script type="math/tex">\mathrm{VC}</script> dimension implies uniform convergence.</li>
+    <li>1 \(\Rightarrow 2\) We have seen uniform convergence implies that \(\mathrm{ERM}\) is \(\mathrm{PAC}\) learnable</li>
+    <li>2 \(\Rightarrow 3\) Obvious.</li>
+    <li>3 \(\Rightarrow 4\) We just proved that PAC learnability implies finite \(\mathrm{VC}\) dimension.</li>
+    <li>4 \(\Rightarrow 1\) We proved that finite \(\mathrm{VC}\) dimension implies uniform convergence.</li>
   </ul>
 </div>
 
@@ -108,32 +108,31 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
   <a href="https://en.wikipedia.org/wiki/Minimum_message_length"><strong>MML</strong></a> is a formal Information Theory restatement of <strong>Occam’s Razor</strong>: even when models are equal in goodness of fit accuracy to the observed data, the one generating the <span style="color: purple">shortest overall message</span> is more likely to be correct (where the message consists of a statement of the model, followed by a statement of data encoded concisely using that model).</li>
   <li><a href="https://web.stanford.edu/~hastie/Papers/ESLII.pdf#page=37">Statistical Decision Theory (ESL!)</a></li>
   <li><strong>PAC Learnability</strong>:<br />
-  A hypothesis class <script type="math/tex">\mathcal{H}</script> is PAC learnable, if there exists a learning algorithm A, satisfying that for any <script type="math/tex">\epsilon>0</script> and <script type="math/tex">\delta \in(0,1)</script> there exist <script type="math/tex">\mathfrak{M}(\epsilon, \delta)=</script> poly <script type="math/tex">\left(\frac{1}{\epsilon}, \frac{1}{\delta}\right)</script> such that for i.i.d samples <script type="math/tex">S^{m}=\left\{\left(x_{i}, y_{i}\right)\right\}_ {i=1}^{m}</script> drawn from any distribution <script type="math/tex">\mathcal{D}</script> and <script type="math/tex">m \geq \mathfrak{M}(\epsilon, \delta)</script> the algorithm returns a hypothesis <script type="math/tex">A\left(S^{m}\right) \in \mathcal{H}</script> satisfying
+  A hypothesis class \(\mathcal{H}\) is PAC learnable, if there exists a learning algorithm A, satisfying that for any \(\epsilon&gt;0\) and \(\delta \in(0,1)\) there exist \(\mathfrak{M}(\epsilon, \delta)=\) poly \(\left(\frac{1}{\epsilon}, \frac{1}{\delta}\right)\) such that for i.i.d samples \(S^{m}=\left\{\left(x_{i}, y_{i}\right)\right\}_ {i=1}^{m}\) drawn from any distribution \(\mathcal{D}\) and \(m \geq \mathfrak{M}(\epsilon, \delta)\) the algorithm returns a hypothesis \(A\left(S^{m}\right) \in \mathcal{H}\) satisfying
     <p>$$P_{S^{m} \sim \mathcal{D}^{m}}\left(L_{\mathcal{D}}(A(S))&gt;\min _{h \in \mathcal{H}} L_{\mathcal{D}}(h)+\epsilon\right)&lt;\delta$$</p>
-    <p>To show that empirical risk minimization (ERM) is a PAC learning algorithm, we need to show that <script type="math/tex">L_{S}(h) \approx L_{\mathcal{D}}(h)</script> for all <script type="math/tex">h</script>.</p>
+    <p>To show that empirical risk minimization (ERM) is a PAC learning algorithm, we need to show that \(L_{S}(h) \approx L_{\mathcal{D}}(h)\) for all \(h\).</p>
   </li>
   <li>
     <p><strong>Uniform Convergence</strong>:<br />
-  A hypothesis class <script type="math/tex">\mathcal{H}</script> has the uniform convergence property, if for any <script type="math/tex">\epsilon>0</script> and <script type="math/tex">\delta \in(0,1)</script> there exist <script type="math/tex">\mathfrak{M}(\epsilon, \delta)=</script> <script type="math/tex">\text{poly}\left(\frac{1}{\epsilon}, \frac{1}{\delta}\right)</script> such that for any distribution <script type="math/tex">\mathcal{D}</script> and <script type="math/tex">m \geq \mathfrak{M}(\epsilon, \delta)</script> i.i.d samples <script type="math/tex">S^{m}=\left\{\left(x_{i}, y_{i}\right)\right\}_ {i=1}^{m} \sim \mathcal{D}^{m}</script> with probability at least <script type="math/tex">1-\delta</script>, <script type="math/tex">% <![CDATA[
-\left\vert L_{S}^{m}(h)-L_{\mathcal{D}}(h)\right\vert <\epsilon %]]></script> for all <script type="math/tex">h \in \mathcal{H}</script>.</p>
+  A hypothesis class \(\mathcal{H}\) has the uniform convergence property, if for any \(\epsilon&gt;0\) and \(\delta \in(0,1)\) there exist \(\mathfrak{M}(\epsilon, \delta)=\) \(\text{poly}\left(\frac{1}{\epsilon}, \frac{1}{\delta}\right)\) such that for any distribution \(\mathcal{D}\) and \(m \geq \mathfrak{M}(\epsilon, \delta)\) i.i.d samples \(S^{m}=\left\{\left(x_{i}, y_{i}\right)\right\}_ {i=1}^{m} \sim \mathcal{D}^{m}\) with probability at least \(1-\delta\), \(\left\vert L_{S}^{m}(h)-L_{\mathcal{D}}(h)\right\vert &lt;\epsilon\) for all \(h \in \mathcal{H}\).</p>
 
     <ul>
-      <li>For a single <script type="math/tex">h,</script> law of large numbers says <script type="math/tex">L_{S}^{m}(h) \stackrel{m \rightarrow \infty}{\rightarrow} L_{\mathcal{D}}(h)</script></li>
+      <li>For a single \(h,\) law of large numbers says \(L_{S}^{m}(h) \stackrel{m \rightarrow \infty}{\rightarrow} L_{\mathcal{D}}(h)\)</li>
       <li>For loss bounded by 1 the Hoeffding inequality states:
         <p>$$P\left(\left\vert L_{S}^{m}(h)-L_{\mathcal{D}}(h)\right\vert &gt;\epsilon\right) \leq 2 e^{-2 \epsilon^{2} m}$$</p>
       </li>
-      <li>The difficulty is to bound all the <script type="math/tex">h \in \mathcal{H}</script> <span style="color: purple">uniformly</span>.</li>
+      <li>The difficulty is to bound all the \(h \in \mathcal{H}\) <span style="color: purple">uniformly</span>.</li>
     </ul>
   </li>
   <li><strong>Complexity in ML</strong>:
     <ul>
-      <li><strong>Definitions of the complexity of an object (<script type="math/tex">h</script>)</strong>:
+      <li><strong>Definitions of the complexity of an object (\(h\))</strong>:
         <ul>
           <li><strong>Minimum Description Length (MDL)</strong>: the number of bits for specifying an object.</li>
           <li><strong>Order of a Polynomial</strong></li>
         </ul>
       </li>
-      <li><strong>Definitions of the complexity of a class of objects (<script type="math/tex">\mathcal{H}</script>)</strong>:
+      <li><strong>Definitions of the complexity of a class of objects (\(\mathcal{H}\))</strong>:
         <ul>
           <li><strong>Entropy</strong></li>
           <li><strong>VC-dim</strong></li>
@@ -157,20 +156,20 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
   <li><strong style="color: SteelBlue">Formal Definition:</strong>
  Let:
     <ul>
-      <li><script type="math/tex">X</script>: the vector space of all possible <strong>inputs</strong></li>
-      <li><script type="math/tex">Y</script>: the vector space of all possible <strong>outputs</strong></li>
-      <li><script type="math/tex">Z = X \times Y</script>: the <strong>product space</strong> of (input,output) pairs</li>
-      <li><script type="math/tex">n</script>: the number of <strong>samples</strong> in the <strong>training set</strong></li>
-      <li><script type="math/tex">S=\left\{\left(\vec{x}_{1}, y_{1}\right), \ldots,\left(\vec{x}_{n}, y_{n}\right)\right\}=\left\{\vec{z}_{1}, \ldots, \vec{z}_{n}\right\}</script>: the <strong>training set</strong></li>
-      <li><script type="math/tex">\mathcal{H} = f : X \rightarrow Y</script>: the <strong>hypothesis space</strong> of all functions</li>
-      <li><script type="math/tex">V(f(\vec{x}), y)</script>: an <strong>error/loss function</strong></li>
+      <li>\(X\): the vector space of all possible <strong>inputs</strong></li>
+      <li>\(Y\): the vector space of all possible <strong>outputs</strong></li>
+      <li>\(Z = X \times Y\): the <strong>product space</strong> of (input,output) pairs</li>
+      <li>\(n\): the number of <strong>samples</strong> in the <strong>training set</strong></li>
+      <li>\(S=\left\{\left(\vec{x}_{1}, y_{1}\right), \ldots,\left(\vec{x}_{n}, y_{n}\right)\right\}=\left\{\vec{z}_{1}, \ldots, \vec{z}_{n}\right\}\): the <strong>training set</strong></li>
+      <li>\(\mathcal{H} = f : X \rightarrow Y\): the <strong>hypothesis space</strong> of all functions</li>
+      <li>\(V(f(\vec{x}), y)\): an <strong>error/loss function</strong></li>
     </ul>
 
     <p><strong>Assumptions:</strong></p>
     <ul>
-      <li>The training and test data are generated by an <em><strong>unknown, joint</strong></em> <strong>probability distribution over datasets</strong> (over the product space <script type="math/tex">Z</script>, denoted: <script type="math/tex">p_{\text{data}}(z)=p(\vec{x}, y)</script>) called the <strong>data-generating process</strong>.
+      <li>The training and test data are generated by an <em><strong>unknown, joint</strong></em> <strong>probability distribution over datasets</strong> (over the product space \(Z\), denoted: \(p_{\text{data}}(z)=p(\vec{x}, y)\)) called the <strong>data-generating process</strong>.
         <ul>
-          <li><script type="math/tex">p_{\text{data}}</script> is a <strong>joint distribution</strong> so that it allows us to model <em>uncertainty in predictions</em> (e.g. from noise in data) because <script type="math/tex">y</script> is not a deterministic function of <script type="math/tex">\vec{x}</script>, but rather a <em>random variable</em> with <strong>conditional distribution</strong> <script type="math/tex">p(y \vert \vec{x})</script> for a fixed <script type="math/tex">\vec{x}</script>.</li>
+          <li>\(p_{\text{data}}\) is a <strong>joint distribution</strong> so that it allows us to model <em>uncertainty in predictions</em> (e.g. from noise in data) because \(y\) is not a deterministic function of \(\vec{x}\), but rather a <em>random variable</em> with <strong>conditional distribution</strong> \(p(y \vert \vec{x})\) for a fixed \(\vec{x}\).</li>
         </ul>
       </li>
       <li>The <strong>i.i.d. assumptions:</strong>
@@ -190,25 +189,25 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
     </ul>
 
     <p><strong style="color: red">The Inference Problem</strong>  <br />
- Finding a function <script type="math/tex">f : X \rightarrow Y</script> such that <script type="math/tex">f(\vec{x}) \sim y</script>.</p>
+ Finding a function \(f : X \rightarrow Y\) such that \(f(\vec{x}) \sim y\).</p>
 
     <p><strong>The Expected Risk:</strong></p>
     <p>$$I[f]=\mathbf{E}[V(f(\vec{x}), y)]=\int_{X \times Y} V(f(\vec{x}), y) p(\vec{x}, y) d \vec{x} d y$$</p>
 
     <p><strong>The Target Function:</strong><br />
- is the best possible function <script type="math/tex">f</script> that can be chosen, is given by:</p>
+ is the best possible function \(f\) that can be chosen, is given by:</p>
     <p>$$f=\inf_{h \in \mathcal{H}} I[h]$$</p>
 
     <p><strong>The Empirical Risk:</strong><br />
  Is a <em><strong>proxy measure</strong></em> for the <strong>expected risk</strong>, based on the training set.<br />
- It is necessary because the probability distribution <script type="math/tex">p(\vec{x}, y)</script> is <em>unknown</em>.</p>
+ It is necessary because the probability distribution \(p(\vec{x}, y)\) is <em>unknown</em>.</p>
     <p>$$I_{S}[f]=\frac{1}{n} \sum_{i=1}^{n} V\left(f\left(\vec{x}_{i}\right), y_{i}\right)$$</p>
   </li>
   <li>
     <p><strong style="color: SteelBlue">Empirical risk minimization:</strong>
  <strong>Empirical Risk Minimization (ERM)</strong> is a principle in <em>statistical learning theory</em> that is based on approximating the <strong>Generalization Error (True Risk)</strong> by measuring the <strong>Training Error (Empirical Risk)</strong>, i.e. the performance on training data.</p>
 
-    <p>A <em>learning algorithm</em> that chooses the function <script type="math/tex">f_{S}</script> that minimizes the <em>empirical risk</em> is called <strong>empirical risk minimization</strong>:</p>
+    <p>A <em>learning algorithm</em> that chooses the function \(f_{S}\) that minimizes the <em>empirical risk</em> is called <strong>empirical risk minimization</strong>:</p>
     <p>$$R_{\mathrm{emp}}(h) = I_{S}[f]=\frac{1}{n} \sum_{i=1}^{n} V\left(f\left(\vec{x}_{i}\right), y_{i}\right)$$</p>
     <p>$$f_{S} = \hat{h} = \arg \min _{h \in \mathcal{H}} R_{\mathrm{emp}}(h)$$</p>
 
@@ -232,7 +231,7 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
   <li><strong style="color: SteelBlue">Definitions:</strong>
     <ul>
       <li><strong style="color: red">Generalization Error:</strong><br />
-  AKA: <strong>Expected Risk/Error</strong>, <strong>Out-of-Sample Error</strong>[^2], <strong><script type="math/tex">E_{\text{out}}</script></strong> <br />
+  AKA: <strong>Expected Risk/Error</strong>, <strong>Out-of-Sample Error</strong>[^2], <strong>\(E_{\text{out}}\)</strong> <br />
   It is a measure of how accurately an algorithm is able to predict outcome values for previously unseen data.</li>
       <li>
         <p><strong style="color: red">Generalization Gap:</strong><br />
@@ -250,10 +249,10 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
         <p>$$I\left[f_{n}\right] \approx I_{S}\left[f_{n}\right]$$</p>
 
         <p><strong>Computing the Generalization Gap:</strong><br />
-  Since <script type="math/tex">I\left[f_{n}\right]</script> cannot be computed for an unknown distribution, the generalization gap <strong>cannot be computed</strong> either.<br />
+  Since \(I\left[f_{n}\right]\) cannot be computed for an unknown distribution, the generalization gap <strong>cannot be computed</strong> either.<br />
   Instead the goal of <strong>statistical learning theory</strong> is to <em>bound</em> or <em>characterize</em> the generalization gap in probability:</p>
         <p>$$P_{G}=P\left(I\left[f_{n}\right]-I_{S}\left[f_{n}\right] \leq \epsilon\right) \geq 1-\delta_{n}$$</p>
-        <p>That is, the goal is to characterize the probability <script type="math/tex">{\displaystyle 1-\delta _{n}}</script> that the generalization gap is less than some error bound <script type="math/tex">{\displaystyle \epsilon }</script> (known as the <strong>learning rate</strong> and generally dependent on <script type="math/tex">{\displaystyle \delta }</script> and <script type="math/tex">{\displaystyle n}</script>).</p>
+        <p>That is, the goal is to characterize the probability \({\displaystyle 1-\delta _{n}}\) that the generalization gap is less than some error bound \({\displaystyle \epsilon }\) (known as the <strong>learning rate</strong> and generally dependent on \({\displaystyle \delta }\) and \({\displaystyle n}\)).</p>
       </li>
       <li><strong style="color: red">The Empirical Distribution:</strong><br />
   <em>AKA <strong>Data-Generating Distribution</strong></em><br />
@@ -261,11 +260,11 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
       <li><strong style="color: red">The Approximation-Generalization Tradeoff:</strong>
         <ul>
           <li><strong>Goal</strong>:<br />
-  Small <script type="math/tex">E_{\text{out}}</script>: Good approximation of <script type="math/tex">f</script> <em><strong>out of sample</strong></em> (not in-sample).</li>
-          <li>The tradeoff is characterized by the <strong>complexity</strong> of the <strong>hypothesis space <script type="math/tex">\mathcal{H}</script></strong>:
+  Small \(E_{\text{out}}\): Good approximation of \(f\) <em><strong>out of sample</strong></em> (not in-sample).</li>
+          <li>The tradeoff is characterized by the <strong>complexity</strong> of the <strong>hypothesis space \(\mathcal{H}\)</strong>:
             <ul>
-              <li><strong>More Complex <script type="math/tex">\mathcal{H}</script></strong>: Better chance of approximating <script type="math/tex">f</script></li>
-              <li><strong>Less Complex <script type="math/tex">\mathcal{H}</script></strong>: Better chance of generalizing out-of-sample</li>
+              <li><strong>More Complex \(\mathcal{H}\)</strong>: Better chance of approximating \(f\)</li>
+              <li><strong>Less Complex \(\mathcal{H}\)</strong>: Better chance of generalizing out-of-sample</li>
             </ul>
           </li>
           <li><a href="https://www.youtube.com/embed/zrEyxfl2-a8?start=358" value="show" onclick="iframePopA(event)"><strong>Abu-Mostafa</strong></a>
@@ -276,7 +275,7 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
         </ul>
       </li>
       <li><strong style="color: red">Excess Risk (Generalization-Gap) Decomposition | Estimation-Approximation Tradeoff:</strong><br />
-  <strong>Excess Risk</strong> is defined as the difference between the expected-risk/generalization-error of any function <script type="math/tex">\hat{f} = g^{\mathcal{D}}</script> that we learn from the data (exactly just bias-variance), and the expected-risk of the <strong>target function</strong> <script type="math/tex">f</script> (known as the <strong>bayes optimal predictor</strong>)
+  <strong>Excess Risk</strong> is defined as the difference between the expected-risk/generalization-error of any function \(\hat{f} = g^{\mathcal{D}}\) that we learn from the data (exactly just bias-variance), and the expected-risk of the <strong>target function</strong> \(f\) (known as the <strong>bayes optimal predictor</strong>)
         <ul>
           <li><a href="https://www.youtube.com/embed/YA_CE9jat4I" value="show" onclick="iframePopA(event)"><strong>Excess Risk Decomposition Video</strong></a>
   <a href="https://www.youtube.com/embed/YA_CE9jat4I"></a>
@@ -293,14 +292,14 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
         <ul>
           <li><strong>Regression</strong>:
             <ul>
-              <li><strong>MSE</strong>: <script type="math/tex">\: V(f(\vec{x}), y)=(y-f(\vec{x}))^{2}</script></li>
-              <li><strong>MAE</strong>: <script type="math/tex">\: V(f(\vec{x}), y)=\vert{y-f(\vec{x})}\vert</script></li>
+              <li><strong>MSE</strong>: \(\: V(f(\vec{x}), y)=(y-f(\vec{x}))^{2}\)</li>
+              <li><strong>MAE</strong>: \(\: V(f(\vec{x}), y)=\vert{y-f(\vec{x})}\vert\)</li>
             </ul>
           </li>
           <li><strong>Classification</strong>:
             <ul>
-              <li><strong>Binary</strong>: <script type="math/tex">\: V(f(\vec{x}), y)=\theta(-y f(\vec{x}))</script><br />
-  where <script type="math/tex">\theta</script> is the <em>Heaviside Step Function</em>.</li>
+              <li><strong>Binary</strong>: \(\: V(f(\vec{x}), y)=\theta(-y f(\vec{x}))\)<br />
+  where \(\theta\) is the <em>Heaviside Step Function</em>.</li>
             </ul>
           </li>
         </ul>
@@ -320,9 +319,9 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
           </li>
         </ul>
       </li>
-      <li><strong>Why the goal is NOT to minimize <script type="math/tex">E_{\text{in}}</script> completely (intuition)</strong>:<br />
+      <li><strong>Why the goal is NOT to minimize \(E_{\text{in}}\) completely (intuition)</strong>:<br />
   Basically, if you have noise in the data; then fitting the (finite) training-data completely; i.e. minimizing the in-sample-err completely will underestimate the out-of-sample-err.<br />
-  Since, if noise existed AND you fit training-data completely <script type="math/tex">E_{\text{in}} = 0</script> THEN you inherently have fitted the noise AND your performance on out-sample will be lower.</li>
+  Since, if noise existed AND you fit training-data completely \(E_{\text{in}} = 0\) THEN you inherently have fitted the noise AND your performance on out-sample will be lower.</li>
     </ul>
   </li>
 </ol>
@@ -343,8 +342,8 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
     <p><strong>Assumptions:</strong></p>
     <ul>
       <li>The analysis is done over the <strong>entire data-distribution</strong></li>
-      <li>The target function <script type="math/tex">f</script> is already <strong>known</strong>; and you’re trying to answer the question:<br />
-  “How can <script type="math/tex">\mathcal{H}</script> approximate <script type="math/tex">f</script> over all? not just on your sample.”</li>
+      <li>The target function \(f\) is already <strong>known</strong>; and you’re trying to answer the question:<br />
+  “How can \(\mathcal{H}\) approximate \(f\) over all? not just on your sample.”</li>
       <li>Applies to <strong>real-valued targets</strong> (can be extended)</li>
       <li>Use <strong>Square Error</strong> (can be extended)</li>
     </ul>
@@ -361,18 +360,18 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
     <ul>
       <li><strong>Bias:</strong> measures the expected deviation from the true value of the function or parameter.
         <blockquote>
-          <p>AKA: <strong>Approximation Error</strong>[^3]  (statistics)  How well can <script type="math/tex">\mathcal{H}</script> approximate the target function ‘<script type="math/tex">f</script>’</p>
+          <p>AKA: <strong>Approximation Error</strong>[^3]  (statistics)  How well can \(\mathcal{H}\) approximate the target function ‘\(f\)’</p>
         </blockquote>
       </li>
       <li><strong>Variance:</strong> measures the deviation from the expected estimator value that any particular sampling of the data is likely to cause.
         <blockquote>
-          <p>AKA: <strong>Estimation (Generalization) Error</strong> (statistics) How well we can zoom in on a good <script type="math/tex">h \in \mathcal{H}</script></p>
+          <p>AKA: <strong>Estimation (Generalization) Error</strong> (statistics) How well we can zoom in on a good \(h \in \mathcal{H}\)</p>
         </blockquote>
       </li>
     </ul>
 
     <p><strong>Bias-Variance Decomposition Formula:</strong><br />
- For any function <script type="math/tex">\hat{f} = g^{\mathcal{D}}</script> we select, we can decompose its <em><strong>expected (out-of-sample) error</strong></em> on an <em>unseen sample <script type="math/tex">x</script></em> as:</p>
+ For any function \(\hat{f} = g^{\mathcal{D}}\) we select, we can decompose its <em><strong>expected (out-of-sample) error</strong></em> on an <em>unseen sample \(x\)</em> as:</p>
     <p>$$\mathrm{E}\left[(y-\hat{f}(x))^{2}\right]=(\operatorname{Bias}[\hat{f}(x)])^{2}+\operatorname{Var}[\hat{f}(x)]+\sigma^{2}$$</p>
     <p>Where:</p>
     <ul>
@@ -381,7 +380,7 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
       </li>
       <li><strong>Variance</strong>:
         <p>$$\operatorname{Var}[\hat{f}(x)]=\mathrm{E}\left[\hat{f}(x)^{2}\right]-\mathrm{E}[\hat{f}(x)]^{2}$$</p>
-        <p>and the expectation ranges over different realizations of the training set <script type="math/tex">\mathcal{D}</script>.</p>
+        <p>and the expectation ranges over different realizations of the training set \(\mathcal{D}\).</p>
       </li>
     </ul>
   </li>
@@ -414,7 +413,7 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
  &amp;=\mathbb{E}_{x}{\big [}\operatorname {Bias} [g^{(\mathcal{D})}]^{2}+\sigma ^{2}+\operatorname {Var} {\big [}g^{(\mathcal{D})}{\big ]}{\big ]}\\
 \end{aligned}}}$$</p>
     <p>where:<br />
- <script type="math/tex">\overline{g}(\mathbf{x})=\mathbb{E}_{\mathcal{D}}\left[g^{(\mathcal{D})}(\mathbf{x})\right]</script> is the <strong>average hypothesis</strong> over all realization of <script type="math/tex">N</script> data-points <script type="math/tex">\mathcal{D}_ i</script>, and <script type="math/tex">{\displaystyle \varepsilon }</script> and <script type="math/tex">{\displaystyle {\hat {f}}} = g^{(\mathcal{D})}</script> are <strong>independent</strong>.</p>
+ \(\overline{g}(\mathbf{x})=\mathbb{E}_{\mathcal{D}}\left[g^{(\mathcal{D})}(\mathbf{x})\right]\) is the <strong>average hypothesis</strong> over all realization of \(N\) data-points \(\mathcal{D}_ i\), and \({\displaystyle \varepsilon }\) and \({\displaystyle {\hat {f}}} = g^{(\mathcal{D})}\) are <strong>independent</strong>.</p>
 
     <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Derivation with Wikipedia Notation</button></p>
     <p hidden="">$${\displaystyle {\begin{aligned}\operatorname {E}_ {\mathcal{D}} {\big [}(y-{\hat {f}})^{2}{\big ]}&amp;=\operatorname {E} {\big [}(f+\varepsilon -{\hat {f}})^{2}{\big ]}\\&amp;=\operatorname {E} {\big [}(f+\varepsilon -{\hat {f}}+\operatorname {E} [{\hat {f}}]-\operatorname {E} [{\hat {f}}])^{2}{\big ]}\\&amp;=\operatorname {E} {\big [}(f-\operatorname {E} [{\hat {f}}])^{2}{\big ]}+\operatorname {E} [\varepsilon ^{2}]+\operatorname {E} {\big [}(\operatorname {E} [{\hat {f}}]-{\hat {f}})^{2}{\big ]}+2\operatorname {E} {\big [}(f-\operatorname {E} [{\hat {f}}])\varepsilon {\big ]}+2\operatorname {E} {\big [}\varepsilon (\operatorname {E} [{\hat {f}}]-{\hat {f}}){\big ]}+2\operatorname {E} {\big [}(\operatorname {E} [{\hat {f}}]-{\hat {f}})(f-\operatorname {E} [{\hat {f}}]){\big ]}\\&amp;=(f-\operatorname {E} [{\hat {f}}])^{2}+\operatorname {E} [\varepsilon ^{2}]+\operatorname {E} {\big [}(\operatorname {E} [{\hat {f}}]-{\hat {f}})^{2}{\big ]}+2(f-\operatorname {E} [{\hat {f}}])\operatorname {E} [\varepsilon ]+2\operatorname {E} [\varepsilon ]\operatorname {E} {\big [}\operatorname {E} [{\hat {f}}]-{\hat {f}}{\big ]}+2\operatorname {E} {\big [}\operatorname {E} [{\hat {f}}]-{\hat {f}}{\big ]}(f-\operatorname {E} [{\hat {f}}])\\&amp;=(f-\operatorname {E} [{\hat {f}}])^{2}+\operatorname {E} [\varepsilon ^{2}]+\operatorname {E} {\big [}(\operatorname {E} [{\hat {f}}]-{\hat {f}})^{2}{\big ]}\\&amp;=(f-\operatorname {E} [{\hat {f}}])^{2}+\operatorname {Var} [y]+\operatorname {Var} {\big [}{\hat {f}}{\big ]}\\&amp;=\operatorname {Bias} [{\hat {f}}]^{2}+\operatorname {Var} [y]+\operatorname {Var} {\big [}{\hat {f}}{\big ]}\\&amp;=\operatorname {Bias} [{\hat {f}}]^{2}+\sigma ^{2}+\operatorname {Var} {\big [}{\hat {f}}{\big ]}\\\end{aligned}}}$$</p>
@@ -453,7 +452,7 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
       <li><strong>Adding more Data</strong>:
         <ul>
           <li>Decreases Variance</li>
-          <li>(May) Decreases Bias: if <script type="math/tex">h</script> can fit <script type="math/tex">f</script> exactly.</li>
+          <li>(May) Decreases Bias: if \(h\) can fit \(f\) exactly.</li>
         </ul>
       </li>
       <li><strong>Noise in Test Set</strong>:
@@ -494,7 +493,7 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
           <li>Increase Variance</li>
         </ul>
       </li>
-      <li><strong>Increasing <script type="math/tex">k</script> in K-NN</strong>:
+      <li><strong>Increasing \(k\) in K-NN</strong>:
         <ul>
           <li>Increase Bias</li>
           <li>Decrease Variance</li>
@@ -521,22 +520,22 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
   <li><strong style="color: SteelBlue">Application of the Decomposition to Classification:</strong>
  A similar decomposition exists for:
     <ul>
-      <li>Classification w/ <script type="math/tex">0-1</script> loss</li>
+      <li>Classification w/ \(0-1\) loss</li>
       <li>Probabilistic Classification w/ Squared Error</li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue">Bias-Variance Decomposition and Risk (Excess Risk Decomposition):</strong>
- The <strong>Bias-Variance Decomposition</strong> analyzes the behavior of the <em><strong>Expected Risk/Generalization Error</strong></em> for any function <script type="math/tex">\hat{f}</script>:
+ The <strong>Bias-Variance Decomposition</strong> analyzes the behavior of the <em><strong>Expected Risk/Generalization Error</strong></em> for any function \(\hat{f}\):
     <p>$$R(\hat{f}) = \mathrm{E}\left[(y-\hat{f}(x))^{2}\right]=(\operatorname{Bias}[\hat{f}(x)])^{2}+\operatorname{Var}[\hat{f}(x)]+\sigma^{2}$$</p>
-    <p>Assuming that <script type="math/tex">y = f(x) + \epsilon</script>.</p>
+    <p>Assuming that \(y = f(x) + \epsilon\).</p>
 
-    <p>The <strong>Bayes Optimal Predictor</strong> is <script type="math/tex">f(x) = \mathrm{E}[Y\vert X=x]</script>.</p>
+    <p>The <strong>Bayes Optimal Predictor</strong> is \(f(x) = \mathrm{E}[Y\vert X=x]\).</p>
 
     <p>The <strong>Excess Risk</strong> is:</p>
     <p>$$\text{ExcessRisk}(\hat{f}) = R(\hat{f}) - R(f)$$</p>
 
     <p><strong style="color: red">Excess Risk Decomposition:</strong><br />
- We add and subtract the <strong>target function <script type="math/tex">f_{\text{target}}=\inf_{h \in \mathcal{H}} I[h]</script></strong> that minimizes the <strong>(true) expected risk</strong>:</p>
+ We add and subtract the <strong>target function \(f_{\text{target}}=\inf_{h \in \mathcal{H}} I[h]\)</strong> that minimizes the <strong>(true) expected risk</strong>:</p>
     <p>$$\text{ExcessRisk}(\hat{f}) = \underbrace{\left(R(\hat{f}) - R(f_{\text{target}})\right)}_ {\text { estimation error }} + \underbrace{\left(R(f_{\text{target}}) - R(f)\right)}_ {\text { approximation error }}$$</p>
 
     <p>The <strong>Bias-Variance Decomposition</strong> for <em><strong>Excess Risk:</strong></em></p>
@@ -551,8 +550,8 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
 
     <ul>
       <li>if you dont want to mess with stat-jargon; lemme rephrase:<br />
-  is the minimizer <script type="math/tex">{\displaystyle f=\inf_{h \in \mathcal{H}} I[h]}</script> where <script type="math/tex">I[h]</script> is the expected-risk/generalization-error (assume MSE);<br />
-  is it <script type="math/tex">\overline{f}(\mathbf{x})=\mathbb{E}_ {\mathcal{D}}\left[f^{(\mathcal{D})}(\mathbf{x})\right]</script> the average hypothesis over all realizations of <script type="math/tex">N</script> data-points <script type="math/tex">\mathcal{D}_ i</script>??</li>
+  is the minimizer \({\displaystyle f=\inf_{h \in \mathcal{H}} I[h]}\) where \(I[h]\) is the expected-risk/generalization-error (assume MSE);<br />
+  is it \(\overline{f}(\mathbf{x})=\mathbb{E}_ {\mathcal{D}}\left[f^{(\mathcal{D})}(\mathbf{x})\right]\) the average hypothesis over all realizations of \(N\) data-points \(\mathcal{D}_ i\)??</li>
     </ul>
   </li>
 </ol>
@@ -590,8 +589,8 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
   <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Assumptions</button>
         <ul hidden="">
           <li>labels and loss are 0,1,</li>
-          <li>the badly generalizing <script type="math/tex">h</script> predicts perfectly on the training sample <script type="math/tex">S</script> and<br />
-  is completely wrong on the heldout set <script type="math/tex">S_2</script>, meaning:
+          <li>the badly generalizing \(h\) predicts perfectly on the training sample \(S\) and<br />
+  is completely wrong on the heldout set \(S_2\), meaning:
             <p>$$\Delta_{S}(h)-\Delta_{S_{2}}(h) \approx-1$$</p>
           </li>
         </ul>
@@ -646,9 +645,9 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
           <li>Bias-free learning is futile because a learner that makes no a priori assumptions will have no rational basis for creating estimates when provided new, unseen input data.<br />
   Models are simplifications of a specific component of reality (observed with data). To simplify reality, a machine learning algorithm or statistical model needs to make assumptions and introduce bias (known specifically as inductive or learning bias).<br />
   The assumptions of an algorithm will work for some data sets but fail for others.</li>
-          <li>This shows that we need some restriction on <script type="math/tex">\mathcal{H}</script> even for the realizable PAC setting. We cannot learn arbitrary set of hypothesis, there is no free lunch.</li>
-          <li>There is no universal (one that works for all <script type="math/tex">\mathcal{H}</script>) learning algorithm.<br />
-  I.e., if the algorithm <script type="math/tex">A</script> has no idea about <script type="math/tex">\mathcal{H},</script> even the singleton hypothesis class <script type="math/tex">\mathcal{H}=\{h\}</script> (as in the statement of the theorem) is not PAC learnable.</li>
+          <li>This shows that we need some restriction on \(\mathcal{H}\) even for the realizable PAC setting. We cannot learn arbitrary set of hypothesis, there is no free lunch.</li>
+          <li>There is no universal (one that works for all \(\mathcal{H}\)) learning algorithm.<br />
+  I.e., if the algorithm \(A\) has no idea about \(\mathcal{H},\) even the singleton hypothesis class \(\mathcal{H}=\{h\}\) (as in the statement of the theorem) is not PAC learnable.</li>
           <li>Why do we have to fix a hypothesis class when coming up with a learning algorithm? Can we <em>“just learn”</em>?<br />
   The NFL theorem formally shows that the answer is <strong>NO</strong>.</li>
           <li>Counter the following claim: “My machine learning algorithm/optimization strategy is the best, always and forever, for all the scenarios”.</li>
@@ -674,18 +673,18 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
 
 <p>$$(.|\n)*?$$
 <strong style="color: red">Fundamental Theorem of Statistical Learning (binary classification):</strong><br />
-Let <script type="math/tex">\mathcal{H}</script> be a hypothesis class of functions from a domain <script type="math/tex">X</script> to <script type="math/tex">\{0,1\}</script> and let the loss function be the <script type="math/tex">0-1</script> loss.<br />
+Let \(\mathcal{H}\) be a hypothesis class of functions from a domain \(X\) to \(\{0,1\}\) and let the loss function be the \(0-1\) loss.<br />
 The following are equivalent:<br />
-<script type="math/tex">\begin{array}{l}{\text { 1. } \mathcal{H} \text { has uniform convergence. }} \\ {\text { 2. The ERM is a PAC learning algorithm for } \mathcal{H} \text { . }} \\ {\text { 3. } \mathcal{H} \text { is } PAC \text { learnable. }} \\ {\text { 4. } \mathcal{H} \text { has finite } VC \text { dimension. }}\end{array}</script><br />
+\(\begin{array}{l}{\text { 1. } \mathcal{H} \text { has uniform convergence. }} \\ {\text { 2. The ERM is a PAC learning algorithm for } \mathcal{H} \text { . }} \\ {\text { 3. } \mathcal{H} \text { is } PAC \text { learnable. }} \\ {\text { 4. } \mathcal{H} \text { has finite } VC \text { dimension. }}\end{array}\)<br />
 This can be extended to <strong>regression</strong> and <strong>multiclass classification</strong>.</p>
 
 <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Proof.</button></p>
 <div hidden="">
   <ul>
-    <li>1 <script type="math/tex">\Rightarrow 2</script> We have seen uniform convergence implies that <script type="math/tex">\mathrm{ERM}</script> is <script type="math/tex">\mathrm{PAC}</script> learnable</li>
-    <li>2 <script type="math/tex">\Rightarrow 3</script> Obvious.</li>
-    <li>3 <script type="math/tex">\Rightarrow 4</script> We just proved that PAC learnability implies finite <script type="math/tex">\mathrm{VC}</script> dimension.</li>
-    <li>4 <script type="math/tex">\Rightarrow 1</script> We proved that finite <script type="math/tex">\mathrm{VC}</script> dimension implies uniform convergence.</li>
+    <li>1 \(\Rightarrow 2\) We have seen uniform convergence implies that \(\mathrm{ERM}\) is \(\mathrm{PAC}\) learnable</li>
+    <li>2 \(\Rightarrow 3\) Obvious.</li>
+    <li>3 \(\Rightarrow 4\) We just proved that PAC learnability implies finite \(\mathrm{VC}\) dimension.</li>
+    <li>4 \(\Rightarrow 1\) We proved that finite \(\mathrm{VC}\) dimension implies uniform convergence.</li>
   </ul>
 </div>
 
@@ -715,32 +714,31 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
   <a href="https://en.wikipedia.org/wiki/Minimum_message_length"><strong>MML</strong></a> is a formal Information Theory restatement of <strong>Occam’s Razor</strong>: even when models are equal in goodness of fit accuracy to the observed data, the one generating the <span style="color: purple">shortest overall message</span> is more likely to be correct (where the message consists of a statement of the model, followed by a statement of data encoded concisely using that model).</li>
   <li><a href="https://web.stanford.edu/~hastie/Papers/ESLII.pdf#page=37">Statistical Decision Theory (ESL!)</a></li>
   <li><strong>PAC Learnability</strong>:<br />
-  A hypothesis class <script type="math/tex">\mathcal{H}</script> is PAC learnable, if there exists a learning algorithm A, satisfying that for any <script type="math/tex">\epsilon>0</script> and <script type="math/tex">\delta \in(0,1)</script> there exist <script type="math/tex">\mathfrak{M}(\epsilon, \delta)=</script> poly <script type="math/tex">\left(\frac{1}{\epsilon}, \frac{1}{\delta}\right)</script> such that for i.i.d samples <script type="math/tex">S^{m}=\left\{\left(x_{i}, y_{i}\right)\right\}_ {i=1}^{m}</script> drawn from any distribution <script type="math/tex">\mathcal{D}</script> and <script type="math/tex">m \geq \mathfrak{M}(\epsilon, \delta)</script> the algorithm returns a hypothesis <script type="math/tex">A\left(S^{m}\right) \in \mathcal{H}</script> satisfying
+  A hypothesis class \(\mathcal{H}\) is PAC learnable, if there exists a learning algorithm A, satisfying that for any \(\epsilon&gt;0\) and \(\delta \in(0,1)\) there exist \(\mathfrak{M}(\epsilon, \delta)=\) poly \(\left(\frac{1}{\epsilon}, \frac{1}{\delta}\right)\) such that for i.i.d samples \(S^{m}=\left\{\left(x_{i}, y_{i}\right)\right\}_ {i=1}^{m}\) drawn from any distribution \(\mathcal{D}\) and \(m \geq \mathfrak{M}(\epsilon, \delta)\) the algorithm returns a hypothesis \(A\left(S^{m}\right) \in \mathcal{H}\) satisfying
     <p>$$P_{S^{m} \sim \mathcal{D}^{m}}\left(L_{\mathcal{D}}(A(S))&gt;\min _{h \in \mathcal{H}} L_{\mathcal{D}}(h)+\epsilon\right)&lt;\delta$$</p>
-    <p>To show that empirical risk minimization (ERM) is a PAC learning algorithm, we need to show that <script type="math/tex">L_{S}(h) \approx L_{\mathcal{D}}(h)</script> for all <script type="math/tex">h</script>.</p>
+    <p>To show that empirical risk minimization (ERM) is a PAC learning algorithm, we need to show that \(L_{S}(h) \approx L_{\mathcal{D}}(h)\) for all \(h\).</p>
   </li>
   <li>
     <p><strong>Uniform Convergence</strong>:<br />
-  A hypothesis class <script type="math/tex">\mathcal{H}</script> has the uniform convergence property, if for any <script type="math/tex">\epsilon>0</script> and <script type="math/tex">\delta \in(0,1)</script> there exist <script type="math/tex">\mathfrak{M}(\epsilon, \delta)=</script> <script type="math/tex">\text{poly}\left(\frac{1}{\epsilon}, \frac{1}{\delta}\right)</script> such that for any distribution <script type="math/tex">\mathcal{D}</script> and <script type="math/tex">m \geq \mathfrak{M}(\epsilon, \delta)</script> i.i.d samples <script type="math/tex">S^{m}=\left\{\left(x_{i}, y_{i}\right)\right\}_ {i=1}^{m} \sim \mathcal{D}^{m}</script> with probability at least <script type="math/tex">1-\delta</script>, <script type="math/tex">% <![CDATA[
-\left\vert L_{S}^{m}(h)-L_{\mathcal{D}}(h)\right\vert <\epsilon %]]></script> for all <script type="math/tex">h \in \mathcal{H}</script>.</p>
+  A hypothesis class \(\mathcal{H}\) has the uniform convergence property, if for any \(\epsilon&gt;0\) and \(\delta \in(0,1)\) there exist \(\mathfrak{M}(\epsilon, \delta)=\) \(\text{poly}\left(\frac{1}{\epsilon}, \frac{1}{\delta}\right)\) such that for any distribution \(\mathcal{D}\) and \(m \geq \mathfrak{M}(\epsilon, \delta)\) i.i.d samples \(S^{m}=\left\{\left(x_{i}, y_{i}\right)\right\}_ {i=1}^{m} \sim \mathcal{D}^{m}\) with probability at least \(1-\delta\), \(\left\vert L_{S}^{m}(h)-L_{\mathcal{D}}(h)\right\vert &lt;\epsilon\) for all \(h \in \mathcal{H}\).</p>
 
     <ul>
-      <li>For a single <script type="math/tex">h,</script> law of large numbers says <script type="math/tex">L_{S}^{m}(h) \stackrel{m \rightarrow \infty}{\rightarrow} L_{\mathcal{D}}(h)</script></li>
+      <li>For a single \(h,\) law of large numbers says \(L_{S}^{m}(h) \stackrel{m \rightarrow \infty}{\rightarrow} L_{\mathcal{D}}(h)\)</li>
       <li>For loss bounded by 1 the Hoeffding inequality states:
         <p>$$P\left(\left\vert L_{S}^{m}(h)-L_{\mathcal{D}}(h)\right\vert &gt;\epsilon\right) \leq 2 e^{-2 \epsilon^{2} m}$$</p>
       </li>
-      <li>The difficulty is to bound all the <script type="math/tex">h \in \mathcal{H}</script> <span style="color: purple">uniformly</span>.</li>
+      <li>The difficulty is to bound all the \(h \in \mathcal{H}\) <span style="color: purple">uniformly</span>.</li>
     </ul>
   </li>
   <li><strong>Complexity in ML</strong>:
     <ul>
-      <li><strong>Definitions of the complexity of an object (<script type="math/tex">h</script>)</strong>:
+      <li><strong>Definitions of the complexity of an object (\(h\))</strong>:
         <ul>
           <li><strong>Minimum Description Length (MDL)</strong>: the number of bits for specifying an object.</li>
           <li><strong>Order of a Polynomial</strong></li>
         </ul>
       </li>
-      <li><strong>Definitions of the complexity of a class of objects (<script type="math/tex">\mathcal{H}</script>)</strong>:
+      <li><strong>Definitions of the complexity of a class of objects (\(\mathcal{H}\))</strong>:
         <ul>
           <li><strong>Entropy</strong></li>
           <li><strong>VC-dim</strong></li>
@@ -764,20 +762,20 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
   <li><strong style="color: SteelBlue">Formal Definition:</strong>
  Let:
     <ul>
-      <li><script type="math/tex">X</script>: the vector space of all possible <strong>inputs</strong></li>
-      <li><script type="math/tex">Y</script>: the vector space of all possible <strong>outputs</strong></li>
-      <li><script type="math/tex">Z = X \times Y</script>: the <strong>product space</strong> of (input,output) pairs</li>
-      <li><script type="math/tex">n</script>: the number of <strong>samples</strong> in the <strong>training set</strong></li>
-      <li><script type="math/tex">S=\left\{\left(\vec{x}_{1}, y_{1}\right), \ldots,\left(\vec{x}_{n}, y_{n}\right)\right\}=\left\{\vec{z}_{1}, \ldots, \vec{z}_{n}\right\}</script>: the <strong>training set</strong></li>
-      <li><script type="math/tex">\mathcal{H} = f : X \rightarrow Y</script>: the <strong>hypothesis space</strong> of all functions</li>
-      <li><script type="math/tex">V(f(\vec{x}), y)</script>: an <strong>error/loss function</strong></li>
+      <li>\(X\): the vector space of all possible <strong>inputs</strong></li>
+      <li>\(Y\): the vector space of all possible <strong>outputs</strong></li>
+      <li>\(Z = X \times Y\): the <strong>product space</strong> of (input,output) pairs</li>
+      <li>\(n\): the number of <strong>samples</strong> in the <strong>training set</strong></li>
+      <li>\(S=\left\{\left(\vec{x}_{1}, y_{1}\right), \ldots,\left(\vec{x}_{n}, y_{n}\right)\right\}=\left\{\vec{z}_{1}, \ldots, \vec{z}_{n}\right\}\): the <strong>training set</strong></li>
+      <li>\(\mathcal{H} = f : X \rightarrow Y\): the <strong>hypothesis space</strong> of all functions</li>
+      <li>\(V(f(\vec{x}), y)\): an <strong>error/loss function</strong></li>
     </ul>
 
     <p><strong>Assumptions:</strong></p>
     <ul>
-      <li>The training and test data are generated by an <em><strong>unknown, joint</strong></em> <strong>probability distribution over datasets</strong> (over the product space <script type="math/tex">Z</script>, denoted: <script type="math/tex">p_{\text{data}}(z)=p(\vec{x}, y)</script>) called the <strong>data-generating process</strong>.
+      <li>The training and test data are generated by an <em><strong>unknown, joint</strong></em> <strong>probability distribution over datasets</strong> (over the product space \(Z\), denoted: \(p_{\text{data}}(z)=p(\vec{x}, y)\)) called the <strong>data-generating process</strong>.
         <ul>
-          <li><script type="math/tex">p_{\text{data}}</script> is a <strong>joint distribution</strong> so that it allows us to model <em>uncertainty in predictions</em> (e.g. from noise in data) because <script type="math/tex">y</script> is not a deterministic function of <script type="math/tex">\vec{x}</script>, but rather a <em>random variable</em> with <strong>conditional distribution</strong> <script type="math/tex">p(y \vert \vec{x})</script> for a fixed <script type="math/tex">\vec{x}</script>.</li>
+          <li>\(p_{\text{data}}\) is a <strong>joint distribution</strong> so that it allows us to model <em>uncertainty in predictions</em> (e.g. from noise in data) because \(y\) is not a deterministic function of \(\vec{x}\), but rather a <em>random variable</em> with <strong>conditional distribution</strong> \(p(y \vert \vec{x})\) for a fixed \(\vec{x}\).</li>
         </ul>
       </li>
       <li>The <strong>i.i.d. assumptions:</strong>
@@ -797,25 +795,25 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
     </ul>
 
     <p><strong style="color: red">The Inference Problem</strong>  <br />
- Finding a function <script type="math/tex">f : X \rightarrow Y</script> such that <script type="math/tex">f(\vec{x}) \sim y</script>.</p>
+ Finding a function \(f : X \rightarrow Y\) such that \(f(\vec{x}) \sim y\).</p>
 
     <p><strong>The Expected Risk:</strong></p>
     <p>$$I[f]=\mathbf{E}[V(f(\vec{x}), y)]=\int_{X \times Y} V(f(\vec{x}), y) p(\vec{x}, y) d \vec{x} d y$$</p>
 
     <p><strong>The Target Function:</strong><br />
- is the best possible function <script type="math/tex">f</script> that can be chosen, is given by:</p>
+ is the best possible function \(f\) that can be chosen, is given by:</p>
     <p>$$f=\inf_{h \in \mathcal{H}} I[h]$$</p>
 
     <p><strong>The Empirical Risk:</strong><br />
  Is a <em><strong>proxy measure</strong></em> for the <strong>expected risk</strong>, based on the training set.<br />
- It is necessary because the probability distribution <script type="math/tex">p(\vec{x}, y)</script> is <em>unknown</em>.</p>
+ It is necessary because the probability distribution \(p(\vec{x}, y)\) is <em>unknown</em>.</p>
     <p>$$I_{S}[f]=\frac{1}{n} \sum_{i=1}^{n} V\left(f\left(\vec{x}_{i}\right), y_{i}\right)$$</p>
   </li>
   <li>
     <p><strong style="color: SteelBlue">Empirical risk minimization:</strong>
  <strong>Empirical Risk Minimization (ERM)</strong> is a principle in <em>statistical learning theory</em> that is based on approximating the <strong>Generalization Error (True Risk)</strong> by measuring the <strong>Training Error (Empirical Risk)</strong>, i.e. the performance on training data.</p>
 
-    <p>A <em>learning algorithm</em> that chooses the function <script type="math/tex">f_{S}</script> that minimizes the <em>empirical risk</em> is called <strong>empirical risk minimization</strong>:</p>
+    <p>A <em>learning algorithm</em> that chooses the function \(f_{S}\) that minimizes the <em>empirical risk</em> is called <strong>empirical risk minimization</strong>:</p>
     <p>$$R_{\mathrm{emp}}(h) = I_{S}[f]=\frac{1}{n} \sum_{i=1}^{n} V\left(f\left(\vec{x}_{i}\right), y_{i}\right)$$</p>
     <p>$$f_{S} = \hat{h} = \arg \min _{h \in \mathcal{H}} R_{\mathrm{emp}}(h)$$</p>
 
@@ -839,7 +837,7 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
   <li><strong style="color: SteelBlue">Definitions:</strong>
     <ul>
       <li><strong style="color: red">Generalization Error:</strong><br />
-  AKA: <strong>Expected Risk/Error</strong>, <strong>Out-of-Sample Error</strong>[^2], <strong><script type="math/tex">E_{\text{out}}</script></strong> <br />
+  AKA: <strong>Expected Risk/Error</strong>, <strong>Out-of-Sample Error</strong>[^2], <strong>\(E_{\text{out}}\)</strong> <br />
   It is a measure of how accurately an algorithm is able to predict outcome values for previously unseen data.</li>
       <li>
         <p><strong style="color: red">Generalization Gap:</strong><br />
@@ -857,10 +855,10 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
         <p>$$I\left[f_{n}\right] \approx I_{S}\left[f_{n}\right]$$</p>
 
         <p><strong>Computing the Generalization Gap:</strong><br />
-  Since <script type="math/tex">I\left[f_{n}\right]</script> cannot be computed for an unknown distribution, the generalization gap <strong>cannot be computed</strong> either.<br />
+  Since \(I\left[f_{n}\right]\) cannot be computed for an unknown distribution, the generalization gap <strong>cannot be computed</strong> either.<br />
   Instead the goal of <strong>statistical learning theory</strong> is to <em>bound</em> or <em>characterize</em> the generalization gap in probability:</p>
         <p>$$P_{G}=P\left(I\left[f_{n}\right]-I_{S}\left[f_{n}\right] \leq \epsilon\right) \geq 1-\delta_{n}$$</p>
-        <p>That is, the goal is to characterize the probability <script type="math/tex">{\displaystyle 1-\delta _{n}}</script> that the generalization gap is less than some error bound <script type="math/tex">{\displaystyle \epsilon }</script> (known as the <strong>learning rate</strong> and generally dependent on <script type="math/tex">{\displaystyle \delta }</script> and <script type="math/tex">{\displaystyle n}</script>).</p>
+        <p>That is, the goal is to characterize the probability \({\displaystyle 1-\delta _{n}}\) that the generalization gap is less than some error bound \({\displaystyle \epsilon }\) (known as the <strong>learning rate</strong> and generally dependent on \({\displaystyle \delta }\) and \({\displaystyle n}\)).</p>
       </li>
       <li><strong style="color: red">The Empirical Distribution:</strong><br />
   <em>AKA <strong>Data-Generating Distribution</strong></em><br />
@@ -868,11 +866,11 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
       <li><strong style="color: red">The Approximation-Generalization Tradeoff:</strong>
         <ul>
           <li><strong>Goal</strong>:<br />
-  Small <script type="math/tex">E_{\text{out}}</script>: Good approximation of <script type="math/tex">f</script> <em><strong>out of sample</strong></em> (not in-sample).</li>
-          <li>The tradeoff is characterized by the <strong>complexity</strong> of the <strong>hypothesis space <script type="math/tex">\mathcal{H}</script></strong>:
+  Small \(E_{\text{out}}\): Good approximation of \(f\) <em><strong>out of sample</strong></em> (not in-sample).</li>
+          <li>The tradeoff is characterized by the <strong>complexity</strong> of the <strong>hypothesis space \(\mathcal{H}\)</strong>:
             <ul>
-              <li><strong>More Complex <script type="math/tex">\mathcal{H}</script></strong>: Better chance of approximating <script type="math/tex">f</script></li>
-              <li><strong>Less Complex <script type="math/tex">\mathcal{H}</script></strong>: Better chance of generalizing out-of-sample</li>
+              <li><strong>More Complex \(\mathcal{H}\)</strong>: Better chance of approximating \(f\)</li>
+              <li><strong>Less Complex \(\mathcal{H}\)</strong>: Better chance of generalizing out-of-sample</li>
             </ul>
           </li>
           <li><a href="https://www.youtube.com/embed/zrEyxfl2-a8?start=358" value="show" onclick="iframePopA(event)"><strong>Abu-Mostafa</strong></a>
@@ -883,7 +881,7 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
         </ul>
       </li>
       <li><strong style="color: red">Excess Risk (Generalization-Gap) Decomposition | Estimation-Approximation Tradeoff:</strong><br />
-  <strong>Excess Risk</strong> is defined as the difference between the expected-risk/generalization-error of any function <script type="math/tex">\hat{f} = g^{\mathcal{D}}</script> that we learn from the data (exactly just bias-variance), and the expected-risk of the <strong>target function</strong> <script type="math/tex">f</script> (known as the <strong>bayes optimal predictor</strong>)
+  <strong>Excess Risk</strong> is defined as the difference between the expected-risk/generalization-error of any function \(\hat{f} = g^{\mathcal{D}}\) that we learn from the data (exactly just bias-variance), and the expected-risk of the <strong>target function</strong> \(f\) (known as the <strong>bayes optimal predictor</strong>)
         <ul>
           <li><a href="https://www.youtube.com/embed/YA_CE9jat4I" value="show" onclick="iframePopA(event)"><strong>Excess Risk Decomposition Video</strong></a>
   <a href="https://www.youtube.com/embed/YA_CE9jat4I"></a>
@@ -900,14 +898,14 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
         <ul>
           <li><strong>Regression</strong>:
             <ul>
-              <li><strong>MSE</strong>: <script type="math/tex">\: V(f(\vec{x}), y)=(y-f(\vec{x}))^{2}</script></li>
-              <li><strong>MAE</strong>: <script type="math/tex">\: V(f(\vec{x}), y)=\vert{y-f(\vec{x})}\vert</script></li>
+              <li><strong>MSE</strong>: \(\: V(f(\vec{x}), y)=(y-f(\vec{x}))^{2}\)</li>
+              <li><strong>MAE</strong>: \(\: V(f(\vec{x}), y)=\vert{y-f(\vec{x})}\vert\)</li>
             </ul>
           </li>
           <li><strong>Classification</strong>:
             <ul>
-              <li><strong>Binary</strong>: <script type="math/tex">\: V(f(\vec{x}), y)=\theta(-y f(\vec{x}))</script><br />
-  where <script type="math/tex">\theta</script> is the <em>Heaviside Step Function</em>.</li>
+              <li><strong>Binary</strong>: \(\: V(f(\vec{x}), y)=\theta(-y f(\vec{x}))\)<br />
+  where \(\theta\) is the <em>Heaviside Step Function</em>.</li>
             </ul>
           </li>
         </ul>
@@ -927,9 +925,9 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
           </li>
         </ul>
       </li>
-      <li><strong>Why the goal is NOT to minimize <script type="math/tex">E_{\text{in}}</script> completely (intuition)</strong>:<br />
+      <li><strong>Why the goal is NOT to minimize \(E_{\text{in}}\) completely (intuition)</strong>:<br />
   Basically, if you have noise in the data; then fitting the (finite) training-data completely; i.e. minimizing the in-sample-err completely will underestimate the out-of-sample-err.<br />
-  Since, if noise existed AND you fit training-data completely <script type="math/tex">E_{\text{in}} = 0</script> THEN you inherently have fitted the noise AND your performance on out-sample will be lower.</li>
+  Since, if noise existed AND you fit training-data completely \(E_{\text{in}} = 0\) THEN you inherently have fitted the noise AND your performance on out-sample will be lower.</li>
     </ul>
   </li>
 </ol>
@@ -950,8 +948,8 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
     <p><strong>Assumptions:</strong></p>
     <ul>
       <li>The analysis is done over the <strong>entire data-distribution</strong></li>
-      <li>The target function <script type="math/tex">f</script> is already <strong>known</strong>; and you’re trying to answer the question:<br />
-  “How can <script type="math/tex">\mathcal{H}</script> approximate <script type="math/tex">f</script> over all? not just on your sample.”</li>
+      <li>The target function \(f\) is already <strong>known</strong>; and you’re trying to answer the question:<br />
+  “How can \(\mathcal{H}\) approximate \(f\) over all? not just on your sample.”</li>
       <li>Applies to <strong>real-valued targets</strong> (can be extended)</li>
       <li>Use <strong>Square Error</strong> (can be extended)</li>
     </ul>
@@ -968,18 +966,18 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
     <ul>
       <li><strong>Bias:</strong> measures the expected deviation from the true value of the function or parameter.
         <blockquote>
-          <p>AKA: <strong>Approximation Error</strong>[^3]  (statistics)  How well can <script type="math/tex">\mathcal{H}</script> approximate the target function ‘<script type="math/tex">f</script>’</p>
+          <p>AKA: <strong>Approximation Error</strong>[^3]  (statistics)  How well can \(\mathcal{H}\) approximate the target function ‘\(f\)’</p>
         </blockquote>
       </li>
       <li><strong>Variance:</strong> measures the deviation from the expected estimator value that any particular sampling of the data is likely to cause.
         <blockquote>
-          <p>AKA: <strong>Estimation (Generalization) Error</strong> (statistics) How well we can zoom in on a good <script type="math/tex">h \in \mathcal{H}</script></p>
+          <p>AKA: <strong>Estimation (Generalization) Error</strong> (statistics) How well we can zoom in on a good \(h \in \mathcal{H}\)</p>
         </blockquote>
       </li>
     </ul>
 
     <p><strong>Bias-Variance Decomposition Formula:</strong><br />
- For any function <script type="math/tex">\hat{f} = g^{\mathcal{D}}</script> we select, we can decompose its <em><strong>expected (out-of-sample) error</strong></em> on an <em>unseen sample <script type="math/tex">x</script></em> as:</p>
+ For any function \(\hat{f} = g^{\mathcal{D}}\) we select, we can decompose its <em><strong>expected (out-of-sample) error</strong></em> on an <em>unseen sample \(x\)</em> as:</p>
     <p>$$\mathrm{E}\left[(y-\hat{f}(x))^{2}\right]=(\operatorname{Bias}[\hat{f}(x)])^{2}+\operatorname{Var}[\hat{f}(x)]+\sigma^{2}$$</p>
     <p>Where:</p>
     <ul>
@@ -988,7 +986,7 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
       </li>
       <li><strong>Variance</strong>:
         <p>$$\operatorname{Var}[\hat{f}(x)]=\mathrm{E}\left[\hat{f}(x)^{2}\right]-\mathrm{E}[\hat{f}(x)]^{2}$$</p>
-        <p>and the expectation ranges over different realizations of the training set <script type="math/tex">\mathcal{D}</script>.</p>
+        <p>and the expectation ranges over different realizations of the training set \(\mathcal{D}\).</p>
       </li>
     </ul>
   </li>
@@ -1021,7 +1019,7 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
  &amp;=\mathbb{E}_{x}{\big [}\operatorname {Bias} [g^{(\mathcal{D})}]^{2}+\sigma ^{2}+\operatorname {Var} {\big [}g^{(\mathcal{D})}{\big ]}{\big ]}\\
 \end{aligned}}}$$</p>
     <p>where:<br />
- <script type="math/tex">\overline{g}(\mathbf{x})=\mathbb{E}_{\mathcal{D}}\left[g^{(\mathcal{D})}(\mathbf{x})\right]</script> is the <strong>average hypothesis</strong> over all realization of <script type="math/tex">N</script> data-points <script type="math/tex">\mathcal{D}_ i</script>, and <script type="math/tex">{\displaystyle \varepsilon }</script> and <script type="math/tex">{\displaystyle {\hat {f}}} = g^{(\mathcal{D})}</script> are <strong>independent</strong>.</p>
+ \(\overline{g}(\mathbf{x})=\mathbb{E}_{\mathcal{D}}\left[g^{(\mathcal{D})}(\mathbf{x})\right]\) is the <strong>average hypothesis</strong> over all realization of \(N\) data-points \(\mathcal{D}_ i\), and \({\displaystyle \varepsilon }\) and \({\displaystyle {\hat {f}}} = g^{(\mathcal{D})}\) are <strong>independent</strong>.</p>
 
     <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Derivation with Wikipedia Notation</button></p>
     <p hidden="">$${\displaystyle {\begin{aligned}\operatorname {E}_ {\mathcal{D}} {\big [}(y-{\hat {f}})^{2}{\big ]}&amp;=\operatorname {E} {\big [}(f+\varepsilon -{\hat {f}})^{2}{\big ]}\\&amp;=\operatorname {E} {\big [}(f+\varepsilon -{\hat {f}}+\operatorname {E} [{\hat {f}}]-\operatorname {E} [{\hat {f}}])^{2}{\big ]}\\&amp;=\operatorname {E} {\big [}(f-\operatorname {E} [{\hat {f}}])^{2}{\big ]}+\operatorname {E} [\varepsilon ^{2}]+\operatorname {E} {\big [}(\operatorname {E} [{\hat {f}}]-{\hat {f}})^{2}{\big ]}+2\operatorname {E} {\big [}(f-\operatorname {E} [{\hat {f}}])\varepsilon {\big ]}+2\operatorname {E} {\big [}\varepsilon (\operatorname {E} [{\hat {f}}]-{\hat {f}}){\big ]}+2\operatorname {E} {\big [}(\operatorname {E} [{\hat {f}}]-{\hat {f}})(f-\operatorname {E} [{\hat {f}}]){\big ]}\\&amp;=(f-\operatorname {E} [{\hat {f}}])^{2}+\operatorname {E} [\varepsilon ^{2}]+\operatorname {E} {\big [}(\operatorname {E} [{\hat {f}}]-{\hat {f}})^{2}{\big ]}+2(f-\operatorname {E} [{\hat {f}}])\operatorname {E} [\varepsilon ]+2\operatorname {E} [\varepsilon ]\operatorname {E} {\big [}\operatorname {E} [{\hat {f}}]-{\hat {f}}{\big ]}+2\operatorname {E} {\big [}\operatorname {E} [{\hat {f}}]-{\hat {f}}{\big ]}(f-\operatorname {E} [{\hat {f}}])\\&amp;=(f-\operatorname {E} [{\hat {f}}])^{2}+\operatorname {E} [\varepsilon ^{2}]+\operatorname {E} {\big [}(\operatorname {E} [{\hat {f}}]-{\hat {f}})^{2}{\big ]}\\&amp;=(f-\operatorname {E} [{\hat {f}}])^{2}+\operatorname {Var} [y]+\operatorname {Var} {\big [}{\hat {f}}{\big ]}\\&amp;=\operatorname {Bias} [{\hat {f}}]^{2}+\operatorname {Var} [y]+\operatorname {Var} {\big [}{\hat {f}}{\big ]}\\&amp;=\operatorname {Bias} [{\hat {f}}]^{2}+\sigma ^{2}+\operatorname {Var} {\big [}{\hat {f}}{\big ]}\\\end{aligned}}}$$</p>
@@ -1060,7 +1058,7 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
       <li><strong>Adding more Data</strong>:
         <ul>
           <li>Decreases Variance</li>
-          <li>(May) Decreases Bias: if <script type="math/tex">h</script> can fit <script type="math/tex">f</script> exactly.</li>
+          <li>(May) Decreases Bias: if \(h\) can fit \(f\) exactly.</li>
         </ul>
       </li>
       <li><strong>Noise in Test Set</strong>:
@@ -1101,7 +1099,7 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
           <li>Increase Variance</li>
         </ul>
       </li>
-      <li><strong>Increasing <script type="math/tex">k</script> in K-NN</strong>:
+      <li><strong>Increasing \(k\) in K-NN</strong>:
         <ul>
           <li>Increase Bias</li>
           <li>Decrease Variance</li>
@@ -1128,22 +1126,22 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
   <li><strong style="color: SteelBlue">Application of the Decomposition to Classification:</strong>
  A similar decomposition exists for:
     <ul>
-      <li>Classification w/ <script type="math/tex">0-1</script> loss</li>
+      <li>Classification w/ \(0-1\) loss</li>
       <li>Probabilistic Classification w/ Squared Error</li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue">Bias-Variance Decomposition and Risk (Excess Risk Decomposition):</strong>
- The <strong>Bias-Variance Decomposition</strong> analyzes the behavior of the <em><strong>Expected Risk/Generalization Error</strong></em> for any function <script type="math/tex">\hat{f}</script>:
+ The <strong>Bias-Variance Decomposition</strong> analyzes the behavior of the <em><strong>Expected Risk/Generalization Error</strong></em> for any function \(\hat{f}\):
     <p>$$R(\hat{f}) = \mathrm{E}\left[(y-\hat{f}(x))^{2}\right]=(\operatorname{Bias}[\hat{f}(x)])^{2}+\operatorname{Var}[\hat{f}(x)]+\sigma^{2}$$</p>
-    <p>Assuming that <script type="math/tex">y = f(x) + \epsilon</script>.</p>
+    <p>Assuming that \(y = f(x) + \epsilon\).</p>
 
-    <p>The <strong>Bayes Optimal Predictor</strong> is <script type="math/tex">f(x) = \mathrm{E}[Y\vert X=x]</script>.</p>
+    <p>The <strong>Bayes Optimal Predictor</strong> is \(f(x) = \mathrm{E}[Y\vert X=x]\).</p>
 
     <p>The <strong>Excess Risk</strong> is:</p>
     <p>$$\text{ExcessRisk}(\hat{f}) = R(\hat{f}) - R(f)$$</p>
 
     <p><strong style="color: red">Excess Risk Decomposition:</strong><br />
- We add and subtract the <strong>target function <script type="math/tex">f_{\text{target}}=\inf_{h \in \mathcal{H}} I[h]</script></strong> that minimizes the <strong>(true) expected risk</strong>:</p>
+ We add and subtract the <strong>target function \(f_{\text{target}}=\inf_{h \in \mathcal{H}} I[h]\)</strong> that minimizes the <strong>(true) expected risk</strong>:</p>
     <p>$$\text{ExcessRisk}(\hat{f}) = \underbrace{\left(R(\hat{f}) - R(f_{\text{target}})\right)}_ {\text { estimation error }} + \underbrace{\left(R(f_{\text{target}}) - R(f)\right)}_ {\text { approximation error }}$$</p>
 
     <p>The <strong>Bias-Variance Decomposition</strong> for <em><strong>Excess Risk:</strong></em></p>
@@ -1158,8 +1156,8 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
 
     <ul>
       <li>if you dont want to mess with stat-jargon; lemme rephrase:<br />
-  is the minimizer <script type="math/tex">{\displaystyle f=\inf_{h \in \mathcal{H}} I[h]}</script> where <script type="math/tex">I[h]</script> is the expected-risk/generalization-error (assume MSE);<br />
-  is it <script type="math/tex">\overline{f}(\mathbf{x})=\mathbb{E}_ {\mathcal{D}}\left[f^{(\mathcal{D})}(\mathbf{x})\right]</script> the average hypothesis over all realizations of <script type="math/tex">N</script> data-points <script type="math/tex">\mathcal{D}_ i</script>??</li>
+  is the minimizer \({\displaystyle f=\inf_{h \in \mathcal{H}} I[h]}\) where \(I[h]\) is the expected-risk/generalization-error (assume MSE);<br />
+  is it \(\overline{f}(\mathbf{x})=\mathbb{E}_ {\mathcal{D}}\left[f^{(\mathcal{D})}(\mathbf{x})\right]\) the average hypothesis over all realizations of \(N\) data-points \(\mathcal{D}_ i\)??</li>
     </ul>
   </li>
 </ol>
@@ -1197,8 +1195,8 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
   <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Assumptions</button>
         <ul hidden="">
           <li>labels and loss are 0,1,</li>
-          <li>the badly generalizing <script type="math/tex">h</script> predicts perfectly on the training sample <script type="math/tex">S</script> and<br />
-  is completely wrong on the heldout set <script type="math/tex">S_2</script>, meaning:
+          <li>the badly generalizing \(h\) predicts perfectly on the training sample \(S\) and<br />
+  is completely wrong on the heldout set \(S_2\), meaning:
             <p>$$\Delta_{S}(h)-\Delta_{S_{2}}(h) \approx-1$$</p>
           </li>
         </ul>
@@ -1253,9 +1251,9 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
           <li>Bias-free learning is futile because a learner that makes no a priori assumptions will have no rational basis for creating estimates when provided new, unseen input data.<br />
   Models are simplifications of a specific component of reality (observed with data). To simplify reality, a machine learning algorithm or statistical model needs to make assumptions and introduce bias (known specifically as inductive or learning bias).<br />
   The assumptions of an algorithm will work for some data sets but fail for others.</li>
-          <li>This shows that we need some restriction on <script type="math/tex">\mathcal{H}</script> even for the realizable PAC setting. We cannot learn arbitrary set of hypothesis, there is no free lunch.</li>
-          <li>There is no universal (one that works for all <script type="math/tex">\mathcal{H}</script>) learning algorithm.<br />
-  I.e., if the algorithm <script type="math/tex">A</script> has no idea about <script type="math/tex">\mathcal{H},</script> even the singleton hypothesis class <script type="math/tex">\mathcal{H}=\{h\}</script> (as in the statement of the theorem) is not PAC learnable.</li>
+          <li>This shows that we need some restriction on \(\mathcal{H}\) even for the realizable PAC setting. We cannot learn arbitrary set of hypothesis, there is no free lunch.</li>
+          <li>There is no universal (one that works for all \(\mathcal{H}\)) learning algorithm.<br />
+  I.e., if the algorithm \(A\) has no idea about \(\mathcal{H},\) even the singleton hypothesis class \(\mathcal{H}=\{h\}\) (as in the statement of the theorem) is not PAC learnable.</li>
           <li>Why do we have to fix a hypothesis class when coming up with a learning algorithm? Can we <em>“just learn”</em>?<br />
   The NFL theorem formally shows that the answer is <strong>NO</strong>.</li>
           <li>Counter the following claim: “My machine learning algorithm/optimization strategy is the best, always and forever, for all the scenarios”.</li>
@@ -1279,13 +1277,13 @@ This can be extended to <strong>regression</strong> and <strong>multiclass class
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

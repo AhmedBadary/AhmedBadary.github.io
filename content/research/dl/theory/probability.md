@@ -6,7 +6,6 @@ prevLink: /work_files/research/dl/theory.html
 ---
 
 
-
 <div markdown="1" class = "TOC">
 # Table of Contents
 
@@ -36,6 +35,7 @@ prevLink: /work_files/research/dl/theory.html
 [Probability as Extended Logic](http://bjlkeng.github.io/posts/probability-the-logic-of-science/)  
 [CS188 Probability Lecture (very intuitive)](https://www.youtube.com/watch?v=sMNbLXsvRig&list=PL7k0r4t5c108AZRwfW-FhnkZ0sCKBChLH&index=13&t=0s)  
 [Combinatorics (Notes)](https://www.dartmouth.edu/~chance/teaching_aids/books_articles/probability_book/Chapter3.pdf)  
+[Digital textbook on probability and statistics (!)](https://www.statlect.com/)  
 
 
 ## Motivation
@@ -286,9 +286,14 @@ prevLink: /work_files/research/dl/theory.html
     <p>$$\operatorname {Var} (X)=\operatorname {Cov} (X,X)$$</p>   
     
     __Properties:__  
+    {: #lst-p}
     * $$\operatorname {Var} [a] = 0, \forall a \in \mathbb{R}$$ (constant $$a$$)  
     * $$\operatorname {Var} [af(X)] = a^2 \operatorname {Var} [f(X)]$$ (constant $$a$$)
     * $$\operatorname {Var} [X + Y] = a^2 \operatorname {Var} [X] + \operatorname {Var} [Y] + 2 \operatorname {Cov} [X, Y]$$.  
+
+    __Notes:__{: style="color: red"}  
+    {: #lst-p}
+    * When comparing Variances, *__ALWAYS NORMALIZE FIRST__*: Variance depends on Scale  
     <br>
 
 11. **Standard Deviation:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents211}  
@@ -481,6 +486,20 @@ prevLink: /work_files/research/dl/theory.html
 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents96}  
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents97}  
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents98}   -->
+
+***
+
+## 110
+{: #content99}
+
+1. **Problems:**{: style="color: SteelBlue"}{: .bodyContents99 #bodyContents991}  
+    * [**deMortmonts/Matching problem**](https://www.youtube.com/embed/LZ5Wergp_PA?start=2305){: value="show" onclick="iframePopA(event)"}
+    <a href="https://www.youtube.com/embed/LZ5Wergp_PA?start=2305"></a>
+        <div markdown="1"> </div>    
+        Sol: Inclusion-Exclusion  
+    * [**Newton-Pepys: most likely event of rolling 6's in dice**](https://www.youtube.com/embed/P7NE4WF8j-Q?start=1057){: value="show" onclick="iframePopA(event)"}
+    <a href="https://www.youtube.com/embed/P7NE4WF8j-Q?start=1057"></a>
+        <div markdown="1"> </div>    
     
 ***
 

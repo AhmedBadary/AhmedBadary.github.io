@@ -135,19 +135,19 @@
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Input Normalization:</strong></p>
 
     <p><strong style="color: red">Rescaling (min-max normalization):</strong><br />
- is the simplest method and consists in rescaling the range of features to scale the range in <script type="math/tex">[0, 1]</script> or <script type="math/tex">[−1, 1]</script>. Selecting the target range depends on the nature of the data. To rescale to <script type="math/tex">[0, 1]</script> range:</p>
+ is the simplest method and consists in rescaling the range of features to scale the range in \([0, 1]\) or \([−1, 1]\). Selecting the target range depends on the nature of the data. To rescale to \([0, 1]\) range:</p>
     <p>$$x'=\dfrac{x-{\text{min}}(x)}{ {\text{max}}(x)-{\text{min}}(x)}$$</p>
 
-    <p>To rescale a range between an arbitrary set of values <script type="math/tex">[a, b]</script>, the formula becomes:</p>
+    <p>To rescale a range between an arbitrary set of values \([a, b]\), the formula becomes:</p>
     <p>$${\displaystyle x'=a+{\frac {(x-{\text{min}}(x))(b-a)}{ {\text{max}}(x)-{\text{min}}(x)}}}$$</p>
-    <p>where <script type="math/tex">a,\: b</script> are the min-max values.</p>
+    <p>where \(a,\: b\) are the min-max values.</p>
 
     <p><strong style="color: red">(Zero-) Centering - Mean Normalization:</strong></p>
     <ul>
-      <li>Define the mean <script type="math/tex">\mu_j</script> of each feature of the datapoints <script type="math/tex">x^{(i)}</script>:
+      <li>Define the mean \(\mu_j\) of each feature of the datapoints \(x^{(i)}\):
         <p>$$\mu_{j}=\frac{1}{m} \sum_{i=1}^{m} x_{j}^{(i)}$$</p>
       </li>
-      <li>Replace each <script type="math/tex">x_j^{(i)}</script> with <script type="math/tex">x_j - \mu_j</script></li>
+      <li>Replace each \(x_j^{(i)}\) with \(x_j - \mu_j\)</li>
     </ul>
 
     <p><strong style="color: red">Standardization (Z-score Normalization):</strong><br />
@@ -157,7 +157,7 @@
     <p><strong style="color: red">(Scaling to) Unit Length Normalization:</strong><br />
  Another option that is widely used in machine-learning is to scale the components of a feature vector such that the complete vector has length one. This usually means dividing each component by the Euclidean length of the vector:</p>
     <p>$${\displaystyle x'={\frac {x}{\left\|{x}\right\|}}}$$</p>
-    <p>We can use <script type="math/tex">L_1</script> norm or other metrics based on problem.</p>
+    <p>We can use \(L_1\) norm or other metrics based on problem.</p>
 
     <p><br /></p>
   </li>
@@ -165,7 +165,7 @@
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Activation Normalization:</strong><br />
  Extends the idea of <strong>input normalization</strong> to deeper networks. Interprets activations in a layer as a featurized input (abstract representation of the input) and aims to normalize those layer outputs/activations.</p>
 
-    <p><span id="affine_transform">The difference however, is in the target mean and variance we want to achieve. Unlike <em>inputs</em>, we might not want to force the activations to have mean<script type="math/tex">=0</script> and variance<script type="math/tex">=1</script>. E.g. if we are using the sigmoid activation; mean<script type="math/tex">=0</script> and variance<script type="math/tex">=1</script> will utilize the <em><strong>linear</strong></em> part of sigmoid. So, changing the mean and variance will allow the network to take advantage of the non-linearity.</span> <br />
+    <p><span id="affine_transform">The difference however, is in the target mean and variance we want to achieve. Unlike <em>inputs</em>, we might not want to force the activations to have mean\(=0\) and variance\(=1\). E.g. if we are using the sigmoid activation; mean\(=0\) and variance\(=1\) will utilize the <em><strong>linear</strong></em> part of sigmoid. So, changing the mean and variance will allow the network to take advantage of the non-linearity.</span> <br />
  <img src="/main_files/concepts/3.png" alt="img" width="40%" class="center-image" /></p>
 
     <blockquote>
@@ -176,28 +176,28 @@
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14"><a href="https://en.wikipedia.org/wiki/Normalization_(statistics)">Statistical Normalization</a> - Transformations:</strong><br />
- Let <script type="math/tex">X</script> be <script type="math/tex">n \times d</script> design matrix of sample pts.<br />
- Each row <script type="math/tex">i</script> of <script type="math/tex">X</script> is a sample pt <script type="math/tex">X_i^T</script>.</p>
+ Let \(X\) be \(n \times d\) design matrix of sample pts.<br />
+ Each row \(i\) of \(X\) is a sample pt \(X_i^T\).</p>
 
     <p><strong style="color: red">Centering Transform:</strong><br />
- AKA <strong>Mean Normalization</strong> is just removing the mean from each observation. It centers the data around <script type="math/tex">0</script>.</p>
+ AKA <strong>Mean Normalization</strong> is just removing the mean from each observation. It centers the data around \(0\).</p>
     <p>$$X' = X - \mathbf{\mu}$$</p>
-    <p>where <script type="math/tex">\mathbf{\mu}</script> is the mean of all the rows of <script type="math/tex">X</script>.</p>
+    <p>where \(\mathbf{\mu}\) is the mean of all the rows of \(X\).</p>
 
     <p><strong style="color: red">Decorrelation Transform:</strong><br />
  removes only the correlations but leaves variances intact,</p>
     <p>$$Z = X'V$$</p>
-    <p>where <script type="math/tex">\text{Var}(X') = \Sigma = \dfrac{1}{n}X'^TX' = V\Lambda V^T</script>, and <script type="math/tex">\text{Var}(Z) = \Lambda</script> is the sample covariance matrix.</p>
+    <p>where \(\text{Var}(X') = \Sigma = \dfrac{1}{n}X'^TX' = V\Lambda V^T\), and \(\text{Var}(Z) = \Lambda\) is the sample covariance matrix.</p>
 
     <p>It transforms the sample points to the eigenvector coordinate system.</p>
 
     <p><strong style="color: red">Standardization Transform:</strong><br />
- sets variances to <script type="math/tex">1</script> but leaves correlations intact,</p>
+ sets variances to \(1\) but leaves correlations intact,</p>
     <p>$$X'_s = \dfrac{X - \mathbf{\mu}}{\mathbf{\sigma}_ X}$$</p>
-    <p>where <script type="math/tex">\mathbf{\sigma}_ X</script> is the standard deviation of all the rows of <script type="math/tex">X</script>.</p>
+    <p>where \(\mathbf{\sigma}_ X\) is the standard deviation of all the rows of \(X\).</p>
 
     <p><strong style="color: red">Sphering Transform:</strong><br />
- Rescales the uncorrelated matrix <script type="math/tex">Z</script> in order to obtain a covariance matrix corresponding to the identity matrix. To do that we scale our decorrelated data by dividing each dimension by the square-root of its corresponding eigenvalue.</p>
+ Rescales the uncorrelated matrix \(Z\) in order to obtain a covariance matrix corresponding to the identity matrix. To do that we scale our decorrelated data by dividing each dimension by the square-root of its corresponding eigenvalue.</p>
     <p>$$W = X'\Sigma^{-1/2} = X'(V \Lambda^{-1/2} V^T)$$</p>
     <p>this is <strong>ZCA whitening</strong>.</p>
 
@@ -205,7 +205,7 @@
  The <a href="https://en.wikipedia.org/wiki/Whitening_transformation">Whitening Transformation</a> is a linear transformation that transforms a vector of random variables with a known covariance matrix into a set of new variables whose covariance is the identity matrix, meaning that they are uncorrelated and each have variance 1. The transformation is called “whitening” because it changes the input vector into a white noise vector.<br />
  = <strong>Centering</strong> + <strong>Sphering</strong></p>
 
-    <p>Then <script type="math/tex">W</script> has covariance matrix <script type="math/tex">I . \left[\text { If } X_{i} \sim \mathcal{N}(\mu, \Sigma), \text { then approximately, } W_{i} \sim \mathcal{N}(0, I)\right]</script>.</p>
+    <p>Then \(W\) has covariance matrix \(I . \left[\text { If } X_{i} \sim \mathcal{N}(\mu, \Sigma), \text { then approximately, } W_{i} \sim \mathcal{N}(0, I)\right]\).</p>
 
     <p id="lst-p"><strong style="color: red">Notes:</strong></p>
     <ul>
@@ -229,7 +229,7 @@
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Batch Normalization:</strong><br />
  <strong>Batch Normalization</strong> is a normalization method that normalizes activations in a network across the mini-batch. For each feature, batch normalization computes the mean and variance of that feature in the mini-batch. It then subtracts the mean and divides the feature by its mini-batch standard deviation.<br />
- <span style="color: goldenrod">This restricts the activations to have <strong><script type="math/tex">0</script></strong> mean and <strong>unit</strong> variance.</span><br />
+ <span style="color: goldenrod">This restricts the activations to have <strong>\(0\)</strong> mean and <strong>unit</strong> variance.</span><br />
  This is followed by an <strong>affine transformation</strong> of the normalized activations to <strong>rescale the mean and variance</strong>, in a learnable way, to whatever the network sees fit. <a href="#affine_transform">This is done because restricting the mean and variance of the activations might hinder the network from taking advantage of the freedom of setting the distribution of the activations to something that might help the later layers learn faster</a>. <em>This means that the expressiveness of the network does not change.</em></p>
 
     <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Show Paper</button></p>
@@ -287,7 +287,7 @@ The correlation between batch normalization and internal covariate shift is wide
     <p><strong>Two Problems with the ICS Explanation:</strong></p>
     <ol>
       <li>Even if the mean and variance are constant, the distribution of activations can still change. Why are the mean and variance so important?</li>
-      <li>If we introduce <script type="math/tex">\gamma</script>  and <script type="math/tex">\beta</script>, the mean and variance will deviate from <script type="math/tex">0</script> and <script type="math/tex">1</script> anyway. What then, is the point of batch normalization?<br />
+      <li>If we introduce \(\gamma\)  and \(\beta\), the mean and variance will deviate from \(0\) and \(1\) anyway. What then, is the point of batch normalization?<br />
 <br /></li>
     </ol>
   </li>
@@ -306,7 +306,7 @@ The correlation between batch normalization and internal covariate shift is wide
 
     <p><strong>Further Intuition:</strong><br />
  Deep Neural networks have higher-order interactions, which means changing weights of one layer might also effect the statistics of other layers in addition to the loss function. These cross layer interactions, when unaccounted lead to internal covariate shift. Every time we update the weights of a layer, there is a chance that it effects the statistics of a layer further in the neural network in an unfavorable way.<br />
- Convergence may require careful initializing, hyperparameter tuning and longer training durations in such cases. However, when we add the batch normalized layer between the layers, the statistics of a layer are only effected by the two hyperparameters  <script type="math/tex">\gamma</script>  and <script type="math/tex">\beta</script>. Now our optimization algorithm has to adjust only two hyperparameters to control the statistics of any layer, rather than the entire weights in the previous layer. This greatly speeds up convergence, and avoids the need for careful initialization and hyperparameter tuning. Therefore, Batch Norm acts more like a check pointing mechanism.</p>
+ Convergence may require careful initializing, hyperparameter tuning and longer training durations in such cases. However, when we add the batch normalized layer between the layers, the statistics of a layer are only effected by the two hyperparameters  \(\gamma\)  and \(\beta\). Now our optimization algorithm has to adjust only two hyperparameters to control the statistics of any layer, rather than the entire weights in the previous layer. This greatly speeds up convergence, and avoids the need for careful initialization and hyperparameter tuning. Therefore, Batch Norm acts more like a check pointing mechanism.</p>
     <blockquote>
       <p>Notice that the ability to arbitrarily set the mean and the standard deviation of a layer also means that we can recover the original distribution if that was sufficient for proper training.</p>
     </blockquote>
@@ -323,7 +323,7 @@ The correlation between batch normalization and internal covariate shift is wide
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents24">Induced Smoothness of the Optimization Landscape (<a href="https://arxiv.org/pdf/1805.11604.pdf">Santurkar et al.</a>):</strong><br />
- In a new paper, the authors claim that BN works because it makes the loss surface <strong>smoother</strong>. Concretely, it improves the <script type="math/tex">\beta</script>-smoothness or the Lipschitzness of the function. This smoothness induces a more predictive and stable behavior of the gradients, allowing for faster training.</p>
+ In a new paper, the authors claim that BN works because it makes the loss surface <strong>smoother</strong>. Concretely, it improves the \(\beta\)-smoothness or the Lipschitzness of the function. This smoothness induces a more predictive and stable behavior of the gradients, allowing for faster training.</p>
 
     <ul>
       <li><a href="https://arxiv.org/pdf/1805.11604.pdf" value="show" onclick="iframePopA(event)"><strong>How Does Batch Normalization Help Optimization? (Santurkar et al.)</strong></a>
@@ -359,12 +359,12 @@ The correlation between batch normalization and internal covariate shift is wide
     <p>When doing normalization, we ideally want to the use the <strong>global</strong> mean and variance to standardize our data. Computing this for each layer is far too expensive though, so we need to approximate using some other measures. BN approximates the mean and variance with those of the <strong>mini batch</strong>, which is a noisy estimate. Although, we motivated some of the effectiveness of BN to its regularizing effects due to this, same, noisy estimate, this estimate can be problematic in the following scenarios:</p>
     <ol>
       <li><strong>Small Batch Sizes:</strong><br />
- If the batch size is <script type="math/tex">1</script>, the variance is <script type="math/tex">0</script> so batch normalization cannot be applied. Slightly larger mini-batch sizes won’t have this problem, but small mini-batches make our estimates very noisy and can negatively impact training, meaning batch normalization imposes a certain lower bound on our batch size.</li>
+ If the batch size is \(1\), the variance is \(0\) so batch normalization cannot be applied. Slightly larger mini-batch sizes won’t have this problem, but small mini-batches make our estimates very noisy and can negatively impact training, meaning batch normalization imposes a certain lower bound on our batch size.</li>
       <li><strong>Recurrent Connections in an RNN:</strong><br />
  In an RNN, <em>the recurrent activations of each time-step will have different statistics</em>. This means that we have to <em>fit a separate batch normalization layer for each time-step</em>. This makes the model <em>more complicated</em> and – more importantly – it <em>forces us to store the statistics for each time-step during training</em>.</li>
       <li><strong>Dependence of the loss between samples in a mini-batch:</strong><br />
  BN makes the loss value for each sample in a mini-batch dependent on other samples in the mini-batch. For instance, if a sample causes a certain layer’s activations to become much larger, this will make the mean and variance larger as well. This will change the activation for all other samples in the mini-batch as well. Furthermore, the mini-batch statistics will depend on the mini-batch size as well (a smaller mini-batch size will increase the random variation in the mean and variance statistics).
- The problem arises not when training a model on a single machine, but when we start to conduct distributed training, things can get ugly. As mentioned in <a href="https://arxiv.org/pdf/1706.02677.pdf">this paper</a>, we need to take extra care in choosing the batch size and learning rate in the presence of batch normalization when doing distributed training. If two different machines use different batch sizes, they will indirectly be optimizing different loss functions: this means that the value of <script type="math/tex">\gamma</script> that worked for one machine is unlikely to work for another machine. This is why the authors stressed that the batch size for each worker must be kept constant across all machines.</li>
+ The problem arises not when training a model on a single machine, but when we start to conduct distributed training, things can get ugly. As mentioned in <a href="https://arxiv.org/pdf/1706.02677.pdf">this paper</a>, we need to take extra care in choosing the batch size and learning rate in the presence of batch normalization when doing distributed training. If two different machines use different batch sizes, they will indirectly be optimizing different loss functions: this means that the value of \(\gamma\) that worked for one machine is unlikely to work for another machine. This is why the authors stressed that the batch size for each worker must be kept constant across all machines.</li>
       <li><strong>BN parameters in Fine-Tuning Applications:</strong><br />
  When Fine-Tuning a larger network by freezing all the layers except the last layer; it is unclear if one should use the mean and variance computed on the <em><strong>original dataset</strong></em> or use the mean and variance of the mini-batches. Though most frameworks use the mini-batch statistics, if we are using a different mini-batch size there will be a mismatch between the optimal batch normalization parameters and the parameters in the network.<br />
  If there is a mis-match in the mini-batch sizes it seems to be better to use the statistics of the <em>original dataset</em> instead.<br />
@@ -390,10 +390,10 @@ The correlation between batch normalization and internal covariate shift is wide
     <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Weight Normalization:</strong><br />
  <strong>Weight Normalization</strong> is a normalization method that, instead of normalizing the <em>mini-batch</em>, <span style="color: goldenrod">normalizes the weights of the layer</span>.</p>
 
-    <p>WN reparameterizes the weights <script type="math/tex">\boldsymbol{w}</script> of any layer in the network in the following way:</p>
+    <p>WN reparameterizes the weights \(\boldsymbol{w}\) of any layer in the network in the following way:</p>
     <p>$$\boldsymbol{w}=\frac{g}{\|\boldsymbol{v}\|} \boldsymbol{v} \:\:\:\:\:\:\: $$</p>
-    <p>where <script type="math/tex">\boldsymbol{v}</script> is a <script type="math/tex">k</script>-dimensional vector, <script type="math/tex">g</script> is a scalar, and <script type="math/tex">\|\boldsymbol{v}\|</script> denotes the Euclidean norm of <script type="math/tex">\boldsymbol{v}</script>.<br />
- This reparameterization has the effect of fixing the Euclidean norm of the weight vector <script type="math/tex">\boldsymbol{w}</script>: we now have <script type="math/tex">\|\boldsymbol{w}\| = g</script>, independent of the parameters <script type="math/tex">\boldsymbol{v}</script>.</p>
+    <p>where \(\boldsymbol{v}\) is a \(k\)-dimensional vector, \(g\) is a scalar, and \(\|\boldsymbol{v}\|\) denotes the Euclidean norm of \(\boldsymbol{v}\).<br />
+ This reparameterization has the effect of fixing the Euclidean norm of the weight vector \(\boldsymbol{w}\): we now have \(\|\boldsymbol{w}\| = g\), independent of the parameters \(\boldsymbol{v}\).</p>
 
     <p id="lst-p">Weight Normalization <span style="color: goldenrod">separates the norm of the weight vector from its direction without reducing expressiveness</span>:</p>
     <ul>
@@ -404,7 +404,7 @@ The correlation between batch normalization and internal covariate shift is wide
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Advantages:</strong>
     <ul>
-      <li>Since WN separates the norm of the weight vector from its direction, and then optimizes both <script type="math/tex">g</script> and <script type="math/tex">\boldsymbol{v}</script> using gradient descent. This change in learning dynamics makes optimization easier.</li>
+      <li>Since WN separates the norm of the weight vector from its direction, and then optimizes both \(g\) and \(\boldsymbol{v}\) using gradient descent. This change in learning dynamics makes optimization easier.</li>
       <li>It makes the mean and variance <strong>independent of the batch</strong>; since now they are connected to the weights of the network.</li>
       <li>It is often <strong>much faster</strong> than BN. In CNNs, the number of weights tends to be far smaller than the number of inputs, meaning weight normalization is computationally cheaper compared to batch normalization (CNNs share weights). <br />
  <br /></li>
@@ -418,7 +418,7 @@ The correlation between batch normalization and internal covariate shift is wide
 
     <p id="lst-p">Though this method counteracts some of the computational speed-up of weight normalization, it is cheaper than batch-normalization since it does not need to compute the standard deviations. The authors claim that this method provides the following benefits:</p>
     <ol>
-      <li>It makes the mean of the activations independent from <script type="math/tex">\boldsymbol{v}</script>:<br />
+      <li>It makes the mean of the activations independent from \(\boldsymbol{v}\):<br />
  Weight normalization independently cannot isolate the mean of the activations from the weights of the layer, causing high-level dependencies between the means of each layer. Mean-only batch normalization can resolve this problem.</li>
       <li>It adds “gentler noise” to the activations:<br />
  One of the side-effects of batch normalization is that it adds some stochastic noise to the activations as a result of using noisy estimates computed on the mini-batches. This has a regularization effect in some applications but can be potentially harmful in some noise-sensitive domains like reinforcement learning. The noise caused by the mean estimations, however, are “gentler” since the law of large numbers ensures the mean of the activations is approximately normally distributed.<br />
@@ -444,7 +444,7 @@ The correlation between batch normalization and internal covariate shift is wide
 
     <p>This is deceptively similar to the batch norm equations:</p>
     <p>$$\begin{aligned} \mu_{j} &amp;=\frac{1}{m} \sum_{i=1}^{m} x_{i j} \\ \sigma_{j}^{2} &amp;=\frac{1}{m} \sum_{i=1}^{m}\left(x_{i j}-\mu_{j}\right)^{2} \\ \hat{x}_{i j} &amp;=\frac{x_{i j}-\mu_{j}}{\sqrt{\sigma_{j}^{2}+\epsilon}} \end{aligned}$$</p>
-    <p>where <script type="math/tex">x_{i j}</script>  is the <script type="math/tex">i,j</script>-th element of the input, the first dimension represents the batch and the second represents the feature (I have modified the notation from the original papers to make the contrast clearer).</p>
+    <p>where \(x_{i j}\)  is the \(i,j\)-th element of the input, the first dimension represents the batch and the second represents the feature (I have modified the notation from the original papers to make the contrast clearer).</p>
 
     <p><button class="showText" value="show" onclick="showTextPopHide(event);">BN vs LN Illustration</button>
  <img src="https://cdn.mathpix.com/snip/images/oLjDSgRfXNgvvaobfQKjDuNfUhcjce-K7TKcX8-DjWM.original.fullsize.png" alt="LN vs BN" width="70%" hidden="" /><br />
@@ -541,10 +541,10 @@ The correlation between batch normalization and internal covariate shift is wide
       <p>In the Authors words: “an effective extension to ensure that the training and inference models generate the same outputs that depend on individual examples rather than the entire mini-batch”</p>
     </blockquote>
 
-    <p>The authors propose to use a moving average while also taking the effect of previous layers on the statistics into account. Their method is – at its core – a simple reparameterization of normalization with the moving average. If we denote the moving average mean and standard deviation as <script type="math/tex">\mu</script> and <script type="math/tex">\sigma</script> and the mini-batch mean and standard deviation as <script type="math/tex">\mu_B</script> and <script type="math/tex">\sigma_B</script>, the batch renormalization equation is:</p>
+    <p>The authors propose to use a moving average while also taking the effect of previous layers on the statistics into account. Their method is – at its core – a simple reparameterization of normalization with the moving average. If we denote the moving average mean and standard deviation as \(\mu\) and \(\sigma\) and the mini-batch mean and standard deviation as \(\mu_B\) and \(\sigma_B\), the batch renormalization equation is:</p>
     <p>$$\frac{x_{i}-\mu}{\sigma}=\frac{x_{i}-\mu_{\mathcal{B}}}{\sigma_{\mathcal{B}}} \cdot r+d, \quad \text { where } r=\frac{\sigma_{\mathcal{B}}}{\sigma}, \quad d=\frac{\mu_{\mathcal{B}}-\mu}{\sigma}$$</p>
 
-    <p>In other words, we multiply the batch normalized activations by <script type="math/tex">r</script> and add <script type="math/tex">d</script>, where both <script type="math/tex">r</script> and <script type="math/tex">d</script> are computed from the mini-batch statistics and moving average statistics. The trick here is to <strong>not backpropagate</strong> through <script type="math/tex">r</script> and <script type="math/tex">d</script>. Though this means we ignore some of the effects of previous layers on previous mini batches, since the mini batch statistics and moving average statistics should be the same on average, the overall effect of this should cancel out on average as well.<br />
+    <p>In other words, we multiply the batch normalized activations by \(r\) and add \(d\), where both \(r\) and \(d\) are computed from the mini-batch statistics and moving average statistics. The trick here is to <strong>not backpropagate</strong> through \(r\) and \(d\). Though this means we ignore some of the effects of previous layers on previous mini batches, since the mini batch statistics and moving average statistics should be the same on average, the overall effect of this should cancel out on average as well.<br />
  <br /></p>
   </li>
   <li>
@@ -572,9 +572,9 @@ The correlation between batch normalization and internal covariate shift is wide
     <p><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents81">Batch-Instance Normalization:</strong><br />
  <strong>Batch-Instance Normalization</strong> is an extension of <em>instance normalization</em> that attempts to <span style="color: goldenrod">account for differences in contrast and style in images</span>. It is basically, just, an <em>interpolation between batch normalization and instance normalization</em>.</p>
 
-    <p>Denoting the batch normalized outputs and the instance normalized outputs as <script type="math/tex">\hat{x}^{(B)}</script> and <script type="math/tex">\hat{x}^{(I)}</script> each, the batch-instance normalized output can be expressed as:</p>
+    <p>Denoting the batch normalized outputs and the instance normalized outputs as \(\hat{x}^{(B)}\) and \(\hat{x}^{(I)}\) each, the batch-instance normalized output can be expressed as:</p>
     <p>$$\mathbf{y}=\left(\rho \cdot \hat{\mathbf{x}}^{(B)}+(1-\rho) \cdot \hat{\mathbf{x}}^{(I)}\right) \cdot \gamma+\beta$$</p>
-    <p>The interesting aspect of batch-instance normalization is that the balancing parameter <script type="math/tex">\rho</script> is <strong>learned</strong> through gradient descent.<br />
+    <p>The interesting aspect of batch-instance normalization is that the balancing parameter \(\rho\) is <strong>learned</strong> through gradient descent.<br />
  <br /></p>
   </li>
   <li>
@@ -585,9 +585,9 @@ The correlation between batch normalization and internal covariate shift is wide
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents8" id="bodyContents83">Performance:</strong><br />
- Batch-instance normalization outperformed batch normalization on CIFAR-10/100, ImageNet, domain adaptation, and style transfer. In image classification tasks, the value of <script type="math/tex">\rho</script>  tended to be close to <script type="math/tex">0</script> or <script type="math/tex">1</script>, meaning many layers used either instance or batch normalization almost exclusively. In addition, layers tended to use batch normalization more than instance normalization, which fits the intuition proposed by the authors that instance normalization serves more as a method to eliminate unnecessary style variation. On style transfer – on the other hand – the model tended to use instance normalization more, which makes sense given style is much less important in style transfer.</p>
+ Batch-instance normalization outperformed batch normalization on CIFAR-10/100, ImageNet, domain adaptation, and style transfer. In image classification tasks, the value of \(\rho\)  tended to be close to \(0\) or \(1\), meaning many layers used either instance or batch normalization almost exclusively. In addition, layers tended to use batch normalization more than instance normalization, which fits the intuition proposed by the authors that instance normalization serves more as a method to eliminate unnecessary style variation. On style transfer – on the other hand – the model tended to use instance normalization more, which makes sense given style is much less important in style transfer.</p>
 
-    <p>The authors also found that in practice, using a higher learning rate for <script type="math/tex">\rho</script> improves performance.</p>
+    <p>The authors also found that in practice, using a higher learning rate for \(\rho\) improves performance.</p>
 
     <p>One important contribution of batch-instance normalization is that it showed that <strong>models could learn to adaptively use different normalization methods using gradient descent</strong>. This raises the question: <em>could models learn to use an even wider variety of normalization methods?</em><br />
  This nicely leads us to the next normalization method: <strong>Switchable Normalization</strong>.</p>
@@ -637,7 +637,7 @@ The correlation between batch normalization and internal covariate shift is wide
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents10" id="bodyContents101">Spectral Normalization:</strong><br />
  <strong>Spectral Normalization</strong> is a method proposed to improve the training of <strong>GANs</strong> by limiting the Lipschitz constant of the discriminator.<br />
- The authors restrict the Lipschitz constant by normalizing the weight matrices by their largest eigenvalue (or their spectral norm – hence the name). The largest eigenvalue is computed using the <em>power method</em> which makes the computational cost of this method very cheap. (Compared to weight normalization, spectral normalization does not reduce the rank of the weight matrix.)<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup><br />
+ The authors restrict the Lipschitz constant by normalizing the weight matrices by their largest eigenvalue (or their spectral norm – hence the name). The largest eigenvalue is computed using the <em>power method</em> which makes the computational cost of this method very cheap. (Compared to weight normalization, spectral normalization does not reduce the rank of the weight matrix.)<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup><br />
  <br /></p>
 
     <p>SN is not designed to be a replacement for batch normalization, but it gives us a very interesting look into normalization in deep learning in general.<br />
@@ -654,25 +654,25 @@ The correlation between batch normalization and internal covariate shift is wide
 
 <h2 id="content11">Further Exploration/Discussions</h2>
 
-<p>Though recent papers have explored different normalization methods at different depths of the network, there are still many dimensions that can be explored. In <a href="https://arxiv.org/pdf/1805.11604.pdf">this paper</a>, the authors show that <script type="math/tex">L_1</script> normalization performs better than batch normalization, suggesting that as we understand batch normalization better, we might be able to come up with more principled methods of normalization. This means that we might see new normalization methods use different statistics instead of changing what they compute the statistics over.</p>
+<p>Though recent papers have explored different normalization methods at different depths of the network, there are still many dimensions that can be explored. In <a href="https://arxiv.org/pdf/1805.11604.pdf">this paper</a>, the authors show that \(L_1\) normalization performs better than batch normalization, suggesting that as we understand batch normalization better, we might be able to come up with more principled methods of normalization. This means that we might see new normalization methods use different statistics instead of changing what they compute the statistics over.</p>
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p>Most likely a wrong statement <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p>Most likely a wrong statement <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

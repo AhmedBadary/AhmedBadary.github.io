@@ -81,6 +81,7 @@
 
 <ul>
   <li><a href="https://arxiv.org/pdf/1902.06006.pdf">Paper on Contextual Word Representations</a></li>
+  <li><a href="https://lilianweng.github.io/lil-log/2020/04/07/the-transformer-family.html">The Transformer Family (Blog)</a></li>
 </ul>
 
 <h2 id="content1">Word Representations and their progress</h2>
@@ -91,7 +92,7 @@
   <li><strong>2014-18s</strong>: Pre-Trained Word Vectors are not actually necessary for <em>good performance</em> of supervised methods.
     <ul>
       <li>The reason is due to advances in training supervised methods: <strong>regularization</strong>, <strong>non-linearities</strong>, etc.</li>
-      <li>They can boost the performance by ~ <script type="math/tex">1\%</script> on average. <br />
+      <li>They can boost the performance by ~ \(1\%\) on average. <br />
 <br /></li>
     </ul>
   </li>
@@ -207,8 +208,8 @@
     <p>$$\begin{aligned} R_{k} &amp;=\left\{\mathbf{x}_{k}^{L M}, \overrightarrow{\mathbf{h}}_{k, j}^{L M}, \mathbf{h}_{k, j}^{L M} | j=1, \ldots, L\right\} \\ &amp;=\left\{\mathbf{h}_{k, j}^{L M} | j=0, \ldots, L\right\} \end{aligned}$$</p>
     <p>$$\mathbf{E} \mathbf{L} \mathbf{M} \mathbf{o}_{k}^{t a s k}=E\left(R_{k} ; \Theta^{t a s k}\right)=\gamma^{task} \sum_{j=0}^{L} s_{j}^{task} \mathbf{h}_ {k, j}^{L M}$$</p>
     <ul>
-      <li><script type="math/tex">\gamma^{\text { task }}</script> scales overall usefulness of ELMo to task;</li>
-      <li><script type="math/tex">s^{\text { task }}</script> are softmax-normalized mixture model weights
+      <li>\(\gamma^{\text { task }}\) scales overall usefulness of ELMo to task;</li>
+      <li>\(s^{\text { task }}\) are softmax-normalized mixture model weights
         <blockquote>
           <p>Possibly this is a way of saying different semantic and syntactic meanings of a word are represented in different layers; and by doing a weighted average of those, in a task-specific manner, we can leverage the appropriate kind of information for each task.</p>
         </blockquote>
@@ -297,7 +298,7 @@
           <li><strong>BERT-Large</strong></li>
         </ul>
       </li>
-      <li>Trained on <script type="math/tex">4\times 4</script>  or <script type="math/tex">8\times 8</script> TPU slice for 4 days</li>
+      <li>Trained on \(4\times 4\)  or \(8\times 8\) TPU slice for 4 days</li>
     </ul>
 
     <p id="lst-p"><strong>Model Fine-Tuning:</strong></p>
@@ -313,9 +314,9 @@
 
     <p id="lst-p"><strong>Solution:</strong></p>
     <ul>
-      <li>Mask out <script type="math/tex">k\%</script> of the input words, and then predict the masked words
+      <li>Mask out \(k\%\) of the input words, and then predict the masked words
         <ul>
-          <li>They always use <script type="math/tex">k=15%</script>
+          <li>They always use \(k=15%\)
             <blockquote>
               <p>Ex: “The man went to the <em>[MASK]</em> to buy a <em>[MASK]</em> of milk.”</p>
             </blockquote>
@@ -349,18 +350,14 @@
   <li><strong>Tips for unknown words with word vectors:</strong>
     <ul>
       <li>Simplest and common solution:</li>
-      <li>Train time: Vocab is <script type="math/tex">% <![CDATA[
-\{\text { words occurring, say, } \geq 5 \text { times }\} \cup\{<UNK>\} %]]></script></li>
-      <li>Map <strong>all</strong> rarer <script type="math/tex">% <![CDATA[
-(<5) %]]></script> words to <script type="math/tex">% <![CDATA[
-<UNK> %]]></script>, train a word vector for it</li>
+      <li>Train time: Vocab is \(\{\text { words occurring, say, } \geq 5 \text { times }\} \cup\{&lt;UNK&gt;\}\)</li>
+      <li>Map <strong>all</strong> rarer \((&lt;5)\) words to \(&lt;UNK&gt;\), train a word vector for it</li>
       <li>
-        <p>Runtime: use <script type="math/tex">% <![CDATA[
-<UNK> %]]></script> when out-of-vocabulary (OOV) words occur</p>
+        <p>Runtime: use \(&lt;UNK&gt;\) when out-of-vocabulary (OOV) words occur</p>
       </li>
       <li><strong>Problems:</strong>
         <ul>
-          <li>No way to distinguish different <script type="math/tex">UNK</script> words, either for identity or meaning</li>
+          <li>No way to distinguish different \(UNK\) words, either for identity or meaning</li>
         </ul>
       </li>
       <li><strong>Solutions:</strong>
@@ -406,8 +403,7 @@
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Self-Attention:</strong><br />
  <strong>Computational Complexity Comparison</strong>:<br />
  <img src="/main_files/dl/nlp/ctxt_word_repr/1.png" alt="img" width="70%" /><br />
- It is favorable when the <strong>sequence-length</strong> <script type="math/tex">% <![CDATA[
-<< %]]></script> <strong>dimension-representations</strong>.</p>
+ It is favorable when the <strong>sequence-length</strong> \(&lt;&lt;\) <strong>dimension-representations</strong>.</p>
 
     <p id="lst-p"><strong>Self-Attention/Relative-Attention Interpretations</strong>:</p>
     <ul>
@@ -459,9 +455,8 @@
             <ul>
               <li>You can think about it as a <span style="color: purple"><em><strong>differentiable</strong></em> way to perform <strong>non-local means</strong></span>.</li>
               <li><strong>Issue - Computational Problem:</strong><br />
-  Attention is Cheap only if <em>length</em> <script type="math/tex">% <![CDATA[
-<< %]]></script> <em>dim</em>.<br />
-  Length for images is <script type="math/tex">32\times 32\times 3 = 3072</script>: <br />
+  Attention is Cheap only if <em>length</em> \(&lt;&lt;\) <em>dim</em>.<br />
+  Length for images is \(32\times 32\times 3 = 3072\): <br />
   <button class="showText" value="show" onclick="showTextPopHide(event);">Diagram</button>
   <img src="https://cdn.mathpix.com/snip/images/zvEcczfCg3TLiJ76y0QohmJNP2V-OxYsYFCQTaHBy40.original.fullsize.png" alt="img" width="100%" hidden="" /></li>
               <li><strong>Solution - Combining Locality with Self-Attention</strong>:<br />
@@ -515,13 +510,13 @@
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

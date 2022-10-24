@@ -28,6 +28,7 @@ prevLink: /work_files/research/dl/archits.html
 
 * [RNNs in NLP](/work_files/research/dl/nlp/rnns)  
 * [RNNs in CV](/work_files/research/dl/rnns_cv)  
+* [Illustrated Guide to Recurrent Neural Networks: Understanding the Intuition (Vid!)](https://www.youtube.com/watch?v=LHXXI4-IEns)  
 * [All of RNNs (ch.10 summary)](https://medium.com/@jianqiangma/all-about-recurrent-neural-networks-9e5ae2936f6e)  
 * [TRAINING RECURRENT NEURAL NETWORKS (Illya Stutskever PhD)](http://www.cs.utoronto.ca/~ilya/pubs/ilya_sutskever_phd_thesis.pdf)  
 * [Guide to RNNs and LSTMs](https://skymind.ai/wiki/lstm#a-beginners-guide-to-recurrent-networks-and-lstms)  

@@ -239,11 +239,8 @@ prevLink: /work_files/research/dl/concepts.html
     __Hyperparameter search:__{: style="color: red"}  
     Sample at random in a grid (hypercube) of different parameters, then zoom in to a tighter range of "good" values.  
     Search (sample) on a logarithmic scale to get uniform sizes between values:  
-    * Select value $$r \in [a, b]$$ (e.g. $$\in [-4, 0]$$, and set your hp as $$10^r$$ (e.g. $$\epsilon = 10^{r}$$). You'll be effectively sampling $$\in [10^{-4}, 10^0] \iff [0.0001, 1]$$.     
+    * Select value $$r \in [a, b]$$ (e.g. $$\in [-4, 0]$$, and set your hp as $$10^r$$ (e.g. $$\epsilon = 10^{r}$$). You'll be effectively sampling $$\in [10^{-4}, 10^0] \iff [0.0001, 1]$$.  
     <br>
-
-    <!-- 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}
-    7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27} -->
 
 8. **Notes:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}  
     * Gradient descent can be viewed as __applying Euler's method for solving ordinary differential equations $${\displaystyle x'(t)=-\nabla f(x(t))}$$ to a [gradient flow](https://en.wikipedia.org/wiki/Vector_field#Gradient_field_in_euclidean_spaces)__.  
@@ -309,6 +306,9 @@ There are three variants of gradient descent, which differ in the amount of data
 ## Gradient Descent "Optimization"
 {: #content4}
 
+![img](https://cdn.mathpix.com/snip/images/CPfGpiDoF2QyJoFL6LpF-cNWlH9CKUf7yA2trb3mxVE.original.fullsize.png){: width="30%"}  
+$$\:$$ _Evolutionary Map Of Optimizers_
+
 1. **Challenges in vanilla approaches to gradient descent:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}  
     All the variants described above, however, do not guarantee _"good" convergence_ due to some challenges:  
     * Choosing a proper learning rate is usually difficult:  
@@ -350,9 +350,9 @@ There are three variants of gradient descent, which differ in the amount of data
 
     __Bias Correction:__{: style="color: brown"}    
     Replace $$v_t$$ with:  
-    $$\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\: \dfrac{v_{t}}{1-\beta^{t}}$$   
+    $$\:\:\:\:\:\: \dfrac{v_{t}}{1-\beta^{t}}$$   
     * __Small $$t$$:__ $$\implies \beta^t$$ is large $$\implies \dfrac{1}{1-\beta^t}$$ is large  
-    * __Large $$t$$__: $$\implies \beta^t$$ is large $$\implies \dfrac{1}{1-\beta^t} \approx 1$$  
+    * __Large $$t$$__: $$\implies \beta^t$$ is small $$\implies \dfrac{1}{1-\beta^t} \approx 1$$  
     <br> 
 
 
@@ -408,6 +408,7 @@ There are three variants of gradient descent, which differ in the amount of data
     > $$\gamma = 0.9$$,  
 
     While Momentum first computes the current gradient (small blue vector) and then takes a big jump in the direction of the updated accumulated gradient (big blue vector), NAG first makes a big jump in the direction of the previous accumulated gradient (brown vector), measures the gradient and then makes a correction (red vector), which results in the complete NAG update (green vector). This anticipatory update prevents us from going too fast and results in increased responsiveness, which has significantly increased the performance of RNNs on a number of tasks[^7].  
+    ![img](https://cdn.mathpix.com/snip/images/Gf7UUuUreRzopC-75FXkehiXbEkrtVJjiwIDSMBtJzw.original.fullsize.png){: width="40%"}  
 
     __Notes:__{: style="color: red"}  
     {: #lst-p}
@@ -467,7 +468,7 @@ There are three variants of gradient descent, which differ in the amount of data
     For clarity, we now rewrite our vanilla SGD update in terms of the parameter update vector $$\Delta \theta_{t}$$:
     <p>$$\begin{aligned} \Delta \theta_{t} &=-\eta \cdot g_{t, i} \\ \theta_{t+1} &=\theta_{t}+\Delta \theta_{t} \end{aligned}$$</p>  
 
-    In the __parameter update vector__ of Adagrad, we replace the diagonal matrix $$G_t$$ with the _decaying average over pas squared gradients_ $$E[g^2]_ t$$:  
+    In the __parameter update vector__ of Adagrad, we replace the diagonal matrix $$G_t$$ with the _decaying average over past squared gradients_ $$E[g^2]_ t$$:  
     <p>$$-\frac{\eta}{\sqrt{E[g^2]_ t+\epsilon}} \odot g_{t}$$</p>  
     Since the denominator is just the __root mean squared (RMS) error criterion__ _of the gradient_, we can replace it with the criterion short-hand:  
     <p>$$-\frac{\eta}{RMS[g]_{t}} \odot g_{t}$$</p>  
@@ -506,8 +507,9 @@ There are three variants of gradient descent, which differ in the amount of data
     __RMSprop as an extension of Rprop:__{: style="color: red"}  
     Hinton, actually, thought of RMSprop as a way of extending _Rprop_ to work with __mini-batches__.  
     <button>Why Rprop does not work with mini-batches?</button>{: .showText value="show"
-     onclick="showText_withParent_PopHide(event);"}
-    ![img](https://cdn.mathpix.com/snip/images/KxK61epXdFZw6Rqb7mwqXSIDUouk-TWeNdLu3M_wBFU.original.fullsize.png){: width="100%" hidden=""}  
+     onclick="showTextPopHide(event);"}
+    ![img](https://cdn.mathpix.com/snip/images/KxK61epXdFZw6Rqb7mwqXSIDUouk-TWeNdLu3M_wBFU.original.fullsize.png){: width="60%" hidden=""}  
+
     __Rprop:__ is equivalent to using the gradient but also dividing by the magnitude of the gradient.  
     The problem with mini-batch rprop is that we divide by a different number for each mini-batch.  
     So why not __force the number we divide by to be very similar for adjacent mini-batches__?  
@@ -518,7 +520,7 @@ There are three variants of gradient descent, which differ in the amount of data
     {: #lst-p}
     * It is of note that Hinton has tried to add _momentum_ to RMSprop and found that "it does not help as much as it normally does - needs more investigation".  
     * [Visualizing Rprop - How adaptive gradient methods speedup convergence](https://www.youtube.com/watch?v=Cy2g9_hR-5Y)  
-
+    <br>
 
 7. **Adam:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}  
     __Motivation:__  
@@ -545,13 +547,39 @@ There are three variants of gradient descent, which differ in the amount of data
     The authors propose default values of $$0.9$$ for $$\beta_1$$, $$0.999$$ for $$\beta_2$$, and $$10^{ −8}$$ for $$\epsilon$$. They show empirically that Adam works well in practice and compares favorably to other adaptive learning-method algorithms.  
     <br>
 
-8. **[AdaMax](http://ruder.io/optimizing-gradient-descent/index.html#adamax)**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
+8. **[AdaMax](http://ruder.io/optimizing-gradient-descent/index.html#adamax)**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents48}  
 
-9. **[Nadam](http://ruder.io/optimizing-gradient-descent/index.html#nadam)**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents39}  
+9. **[Nadam](http://ruder.io/optimizing-gradient-descent/index.html#nadam)**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents49}  
 
-10. **[AMSGrad](http://ruder.io/optimizing-gradient-descent/index.html#amsgrad)**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents310}  
+10. **[AMSGrad](http://ruder.io/optimizing-gradient-descent/index.html#amsgrad):**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents410}  
+    __Motivation:__{: style="color: red"}  
+    Adaptive LR methods fail to converge to an optimal solution in some cases, e.g. for object recognition [[17]](https://ruder.io/optimizing-gradient-descent/index.html#fn17) or machine translation [[18]](https://ruder.io/optimizing-gradient-descent/index.html#fn18).  
+    Reddi et al. (2018) [[19]](https://ruder.io/optimizing-gradient-descent/index.html#fn19) formalize this issue and pinpoint the exponential moving average of past squared gradients as a reason for the poor generalization behaviour of adaptive learning rate methods.
 
-11. **Visualization of the Algorithms**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents311}  
+    In settings where Adam converges to a suboptimal solution, it has been observed that some minibatches provide large and informative gradients, but as these minibatches only occur rarely, exponential averaging diminishes their influence, which leads to poor convergence.  
+    To fix this behaviour, the authors propose a new algorithm, AMSGrad that uses the maximum of past squared gradients $$v_t$$ rather than the exponential average to update the parameters.  
+
+    Instead of using $$v_{t}$$ (or its bias-corrected version $$\hat{v}_{t}$$) directly, we now employ the previous $$v_{t-1}$$ if it is larger than the current one:  
+    $$\hat{v}_{t}=\max \left(\hat{v}_{t-1}, v_{t}\right)$$  
+
+    This way, AMSGrad results in a *__non-increasing step size__*, which avoids the problems suffered by Adam. For simplicity, the authors also remove the debiasing step that we have seen in Adam.
+
+
+    __Parameter Updates:__{: style="color: red"}  
+    <p>$$
+    \begin{aligned}
+    m_{t} &=\beta_{1} m_{t-1}+\left(1-\beta_{1}\right) g_{t} \\
+    v_{t} &=\beta_{2} v_{t-1}+\left(1-\beta_{2}\right) g_{t}^{2} \\
+    \hat{v}_{t} &=\max \left(\hat{v}_{t-1}, v_{t}\right) \\
+    \theta_{t+1} &=\theta_{t}-\frac{\eta}{\sqrt{\hat{v}_{t}}+\epsilon} m_{t}
+    \end{aligned}
+    $$</p>
+
+    TLDR: AMSGrad = Adam but always divide by max $$\hat{v}_ i$$ for $$i \in [1, t]$$.   
+    <br>
+
+
+11. **Visualization of the Algorithms**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents411}  
     __SGD optimization on loss surface contours:__{: style="color: red"}  
     ![img](/main_files/dl/concepts/grad_opt/1.gif){: width="100%"}  
 
@@ -572,7 +600,7 @@ There are three variants of gradient descent, which differ in the amount of data
     [__Tutorial for Visualization__](http://louistiao.me/notes/visualizing-and-animating-optimization-algorithms-with-matplotlib/)  
 
 
-12. **Analysis - Choosing an Optimizer:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents312}  
+12. **Analysis - Choosing an Optimizer:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents412}  
     * __Sparse Input Data__:  
         If your input data is sparse, then you likely achieve the best results using one of the adaptive learning-rate methods. An additional benefit is that you won't need to tune the learning rate but likely achieve the best results with the default value.  
 
@@ -591,7 +619,7 @@ There are three variants of gradient descent, which differ in the amount of data
 ## [Additional strategies for optimizing SGD](http://ruder.io/optimizing-gradient-descent/index.html#additionalstrategiesforoptimizingsgd)  
 {: #content6}
 
-<p class="message">For a great overview of some other common tricks, refer to[^24]</p>  
+<p class="message" markdown="1">For a great overview of some other common tricks, refer to[^24]</p>  
 
 
 
@@ -601,6 +629,10 @@ There are three variants of gradient descent, which differ in the amount of data
     On the other hand, for some cases where we aim to solve progressively harder problems, supplying the training examples in a meaningful order may actually lead to improved performance and better convergence. The method for establishing this meaningful order is called Curriculum Learning[^25].  
 
     Zaremba and Sutskever[^26] were only able to train LSTMs to evaluate simple programs using Curriculum Learning and show that a combined or mixed strategy is better than the naive one, which sorts examples by increasing difficulty.  
+
+    > Note: _"Generally, we want to avoid providing the training examples in a meaningful order to our model as this may bias the optimization algorithm."_  
+        Yes, ok, but this is just the kind of bias that we want to introduce to the network.  
+
     <br>
 
 2. **[Batch Normalization](http://ruder.io/optimizing-gradient-descent/index.html#batchnormalization):**{: style="color: SteelBlue"}{: .bodyContents6 #bodyContents62}  

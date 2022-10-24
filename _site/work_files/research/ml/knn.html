@@ -88,36 +88,36 @@
     <p><br /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Structure:</strong><br />
- In both classification and regression, the input consists of the <script type="math/tex">k</script> closest training examples in the feature space. The output depends on whether k-NN is used for classification or regression:
+ In both classification and regression, the input consists of the \(k\) closest training examples in the feature space. The output depends on whether k-NN is used for classification or regression:
     <ul>
-      <li>In <strong>k-NN classification</strong>, the output is a class membership. An object is classified by a plurality vote of its neighbors, with the object being assigned to the class most common among its <script type="math/tex">k</script> nearest neighbors (<script type="math/tex">k</script> is a positive integer, typically small). If <script type="math/tex">k = 1</script>, then the object is simply assigned to the class of that single nearest neighbor.</li>
-      <li>In <strong>k-NN regression</strong>, the output is the property value for the object. This value is the average of the values of <script type="math/tex">k</script> nearest neighbors.<br />
+      <li>In <strong>k-NN classification</strong>, the output is a class membership. An object is classified by a plurality vote of its neighbors, with the object being assigned to the class most common among its \(k\) nearest neighbors (\(k\) is a positive integer, typically small). If \(k = 1\), then the object is simply assigned to the class of that single nearest neighbor.</li>
+      <li>In <strong>k-NN regression</strong>, the output is the property value for the object. This value is the average of the values of \(k\) nearest neighbors.<br />
  <br /></li>
     </ul>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Formal Description - Statistical Setting:</strong><br />
- Suppose we have pairs <script type="math/tex">{\displaystyle (X_{1},Y_{1}),(X_{2},Y_{2}),\dots ,(X_{n},Y_{n})}</script> taking values in <script type="math/tex">{\displaystyle \mathbb {R} ^{d}\times \{1,2\}}</script>, where <script type="math/tex">Y</script> is the class label of <script type="math/tex">X</script>, so that <script type="math/tex">{\displaystyle X|Y=r\sim P_{r}}</script> for <script type="math/tex">{\displaystyle r=1,2}</script> (and probability distributions <script type="math/tex">{\displaystyle P_{r}}</script>. Given some norm <script type="math/tex">{\displaystyle \|\cdot \|}</script> on <script type="math/tex">{\displaystyle \mathbb {R} ^{d}}</script> and a point <script type="math/tex">{\displaystyle x\in \mathbb {R} ^{d}}</script>, let <script type="math/tex">{\displaystyle (X_{(1)},Y_{(1)}),\dots ,(X_{(n)},Y_{(n)})}</script> be a reordering of the training data such that <script type="math/tex">{\displaystyle \|X_{(1)}-x\|\leq \dots \leq \|X_{(n)}-x\|}</script>.<br />
+ Suppose we have pairs \({\displaystyle (X_{1},Y_{1}),(X_{2},Y_{2}),\dots ,(X_{n},Y_{n})}\) taking values in \({\displaystyle \mathbb {R} ^{d}\times \{1,2\}}\), where \(Y\) is the class label of \(X\), so that \({\displaystyle X|Y=r\sim P_{r}}\) for \({\displaystyle r=1,2}\) (and probability distributions \({\displaystyle P_{r}}\). Given some norm \({\displaystyle \|\cdot \|}\) on \({\displaystyle \mathbb {R} ^{d}}\) and a point \({\displaystyle x\in \mathbb {R} ^{d}}\), let \({\displaystyle (X_{(1)},Y_{(1)}),\dots ,(X_{(n)},Y_{(n)})}\) be a reordering of the training data such that \({\displaystyle \|X_{(1)}-x\|\leq \dots \leq \|X_{(n)}-x\|}\).<br />
  <br /></p>
   </li>
   <li>
-    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents133">Choosing <script type="math/tex">k</script>:</strong><br />
-Nearest neighbors can produce very complex decision functions, and its behavior is highly dependent on the choice of <script type="math/tex">k</script>:<br />
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents133">Choosing \(k\):</strong><br />
+Nearest neighbors can produce very complex decision functions, and its behavior is highly dependent on the choice of \(k\):<br />
 <img src="https://cdn.mathpix.com/snip/images/vPHUZyVTNj4bOgDpPeCA-_KUR6QvlArX_yCy0FVeeNY.original.fullsize.png" alt="img" width="50%" class="center-image" /></p>
 
-    <p>Choosing <script type="math/tex">k = 1</script>, we achieve an <em>optimal training error</em> of <script type="math/tex">0</script> because each training point will classify as itself, thus achieving <script type="math/tex">100\%</script> accuracy on itself.<br />
-However, <script type="math/tex">k = 1</script> <strong>overfits</strong> to the training data, and is a terrible choice in the context of the bias-variance tradeoff.</p>
+    <p>Choosing \(k = 1\), we achieve an <em>optimal training error</em> of \(0\) because each training point will classify as itself, thus achieving \(100\%\) accuracy on itself.<br />
+However, \(k = 1\) <strong>overfits</strong> to the training data, and is a terrible choice in the context of the bias-variance tradeoff.</p>
 
-    <p>Increasing <script type="math/tex">k</script> leads to <em>increase in training error</em>, but a <em>decrease in testing error</em> and achieves <strong>better generalization</strong>.</p>
+    <p>Increasing \(k\) leads to <em>increase in training error</em>, but a <em>decrease in testing error</em> and achieves <strong>better generalization</strong>.</p>
 
-    <p>At one point, if <script type="math/tex">k</script> becomes <em>too large</em>, the algorithm will <strong>underfit</strong> the training data, and suffer from <strong>huge bias</strong>.</p>
+    <p>At one point, if \(k\) becomes <em>too large</em>, the algorithm will <strong>underfit</strong> the training data, and suffer from <strong>huge bias</strong>.</p>
 
-    <p>In general, <span style="color: goldenrod">we select <script type="math/tex">k</script> using <strong>cross-validation</strong></span>.</p>
+    <p>In general, <span style="color: goldenrod">we select \(k\) using <strong>cross-validation</strong></span>.</p>
 
     <dl style="margin-top: 0; font-size: 72%">
       <dt><img src="https://cdn.mathpix.com/snip/images/XaIAJQLphKue6B56LLdXoXM1UMsgVyKlXKkVeW1kjB0.original.fullsize.png" alt="img" width="50%" class="center-image" /></dt>
       <dd>
-        <script type="math/tex; mode=display">\text{Training and Test Errors as a function of } k \:\:\:\:\:\:\:\:\:\:\:\:</script>
+\[\text{Training and Test Errors as a function of } k \:\:\:\:\:\:\:\:\:\:\:\:\]
       </dd>
     </dl>
 
@@ -133,21 +133,21 @@ However, <script type="math/tex">k = 1</script> <strong>overfits</strong> to the
     <ul>
       <li><strong>Computational Complexity</strong>:
         <ul>
-          <li>We require <script type="math/tex">\mathcal{O}(n)</script> space to store a training set of size <script type="math/tex">n</script>. There is no runtime cost during training if we do not use specialized data structures to store the data.<br />
-  However, predictions take <script type="math/tex">\mathcal{O}(n)</script> time, which is costly.</li>
+          <li>We require \(\mathcal{O}(n)\) space to store a training set of size \(n\). There is no runtime cost during training if we do not use specialized data structures to store the data.<br />
+  However, predictions take \(\mathcal{O}(n)\) time, which is costly.</li>
           <li>There has been research into <strong>Approximate Nearest Neighbors (ANN)</strong> procedures that quickly find an approximation for the nearest neighbor - some common ANN methods are <em><strong>Locality-Sensitive Hashing</strong></em> and algorithms that perform dimensionality reduction via <em><strong>randomized (Johnson-Lindenstrauss) distance-preserving projections</strong></em>.</li>
           <li>k-NN is a type of <em>instance-based learning</em>, or <em>“lazy learning”</em>, where the function is only approximated locally and all computation is deferred until classification.</li>
         </ul>
       </li>
       <li><strong>Flexibility</strong>:
         <ul>
-          <li>When <script type="math/tex">k>1,</script> k-NN can be modified to output predicted probabilities <script type="math/tex">P(Y \vert X)</script> by defining <script type="math/tex">P(Y \vert X)</script> as the proportion of nearest neighbors to <script type="math/tex">X</script> in the training set that have class <script type="math/tex">Y</script>.</li>
-          <li>k-NN can also be adapted for regression — instead of taking the majority vote, take the average of the <script type="math/tex">y</script> values for the nearest neighbors.</li>
-          <li>k-NN can learn very complicated, <strong>non-linear</strong> decision boundaries (highly influenced by choice of <script type="math/tex">k</script>).</li>
+          <li>When \(k&gt;1,\) k-NN can be modified to output predicted probabilities \(P(Y \vert X)\) by defining \(P(Y \vert X)\) as the proportion of nearest neighbors to \(X\) in the training set that have class \(Y\).</li>
+          <li>k-NN can also be adapted for regression — instead of taking the majority vote, take the average of the \(y\) values for the nearest neighbors.</li>
+          <li>k-NN can learn very complicated, <strong>non-linear</strong> decision boundaries (highly influenced by choice of \(k\)).</li>
         </ul>
       </li>
       <li><strong>Non-Parametric(ity)</strong>:<br />
-  k-NN is a <strong>non-parametric method</strong>, which means that the number of parameters in the model grows with <script type="math/tex">n</script>, the number of training points. This is as opposed to parametric methods, for which the number of parameters is independent of <script type="math/tex">n</script>.</li>
+  k-NN is a <strong>non-parametric method</strong>, which means that the number of parameters in the model grows with \(n\), the number of training points. This is as opposed to parametric methods, for which the number of parameters is independent of \(n\).</li>
       <li><strong>High-dimensional Behavior</strong>:
         <ul>
           <li>k-NN does NOT behave well in high dimensions.<br />
@@ -156,10 +156,10 @@ However, <script type="math/tex">k = 1</script> <strong>overfits</strong> to the
         </ul>
       </li>
       <li><strong>Theoretical Guarantees/Properties</strong>:<br />
-  <strong><script type="math/tex">1</script>-NN</strong> has impressive theoretical guarantees for such a simple method:
+  <strong>\(1\)-NN</strong> has impressive theoretical guarantees for such a simple method:
         <ul>
-          <li><em>Cover and Hart, 1967</em> prove that <span style="color: goldenrod">as the number of training samples <script type="math/tex">n</script> approaches infinity, the expected prediction error for <script type="math/tex">1-\mathrm{NN}</script> is upper bounded by <script type="math/tex">2 \epsilon^{*}</script>, where <script type="math/tex">\epsilon^{*}</script> is the <strong>Bayes (optimal) error</strong></span>.</li>
-          <li><em>Fix and Hodges, 1951</em> prove that <span style="color: goldenrod">as <script type="math/tex">n</script> and <script type="math/tex">k</script> approach infinity and if <script type="math/tex">\frac{k}{n} \rightarrow 0</script>, then the <script type="math/tex">k</script> nearest neighbor error approaches the <em><strong>Bayes error</strong></em></span>.<br />
+          <li><em>Cover and Hart, 1967</em> prove that <span style="color: goldenrod">as the number of training samples \(n\) approaches infinity, the expected prediction error for \(1-\mathrm{NN}\) is upper bounded by \(2 \epsilon^{*}\), where \(\epsilon^{*}\) is the <strong>Bayes (optimal) error</strong></span>.</li>
+          <li><em>Fix and Hodges, 1951</em> prove that <span style="color: goldenrod">as \(n\) and \(k\) approach infinity and if \(\frac{k}{n} \rightarrow 0\), then the \(k\) nearest neighbor error approaches the <em><strong>Bayes error</strong></em></span>.<br />
  <br /></li>
         </ul>
       </li>
@@ -169,35 +169,35 @@ However, <script type="math/tex">k = 1</script> <strong>overfits</strong> to the
  <strong style="color: red">Training:</strong>
     <ul>
       <li><strong>Algorithm:</strong> To train this classifier, we simply store our training data for future reference.<br />
-  Sometimes we store the data in a specialized structure called a <em><strong>k-d tree</strong></em>. This data structure usually allows for faster (average-case <script type="math/tex">\mathcal{O}(\log n)</script>) nearest neighbors queries.
+  Sometimes we store the data in a specialized structure called a <em><strong>k-d tree</strong></em>. This data structure usually allows for faster (average-case \(\mathcal{O}(\log n)\)) nearest neighbors queries.
         <blockquote>
           <p>For this reason, k-NN is sometimes referred to as <em><strong>“lazy learning”</strong></em>.</p>
         </blockquote>
       </li>
-      <li><strong>Complexity</strong>: <script type="math/tex">\:\:\:\:\mathcal{O}(1)</script></li>
+      <li><strong>Complexity</strong>: \(\:\:\:\:\mathcal{O}(1)\)</li>
     </ul>
 
     <p id="lst-p"><strong style="color: red">Prediction:</strong></p>
     <ul>
       <li><strong>Algorithm</strong>:
         <ol>
-          <li>Compute the <script type="math/tex">k</script> closest training data points (<em>“nearest neighbors”</em>) to input point <script type="math/tex">\boldsymbol{z}</script>.<br />
+          <li>Compute the \(k\) closest training data points (<em>“nearest neighbors”</em>) to input point \(\boldsymbol{z}\).<br />
  “Closeness” is quantified using some metric; e.g. <strong>Euclidean distance</strong>.</li>
           <li><strong>Assignment Stage:</strong>
             <ul>
-              <li><strong>Classification</strong>: Find the most common class <script type="math/tex">y</script> among these <script type="math/tex">k</script> neighbors and classify <script type="math/tex">\boldsymbol{z}</script> as <script type="math/tex">y</script> (<strong>majority vote</strong>)</li>
-              <li><strong>Regression</strong>: Take the <strong>average</strong> label of the <script type="math/tex">k</script> nearest points.</li>
+              <li><strong>Classification</strong>: Find the most common class \(y\) among these \(k\) neighbors and classify \(\boldsymbol{z}\) as \(y\) (<strong>majority vote</strong>)</li>
+              <li><strong>Regression</strong>: Take the <strong>average</strong> label of the \(k\) nearest points.</li>
             </ul>
           </li>
         </ol>
       </li>
-      <li><strong>Complexity</strong>: <script type="math/tex">\:\:\:\:\mathcal{O}(N)</script> <br />
+      <li><strong>Complexity</strong>: \(\:\:\:\:\mathcal{O}(N)\) <br />
  <br /></li>
     </ul>
 
     <p id="lst-p"><strong style="color: red">Notes:</strong></p>
     <ul>
-      <li>We choose odd <script type="math/tex">k</script> for <em>binary classification</em> to break symmetry of majority vote<br />
+      <li>We choose odd \(k\) for <em>binary classification</em> to break symmetry of majority vote<br />
  <br /></li>
     </ul>
   </li>
@@ -209,21 +209,20 @@ However, <script type="math/tex">k = 1</script> <strong>overfits</strong> to the
  To understand CoD, we first need to understand the properties of metric spaces. In high-dimensional spaces, much of our low-dimensional intuition breaks down:</p>
 
     <p><strong>Geometry of High-Dimensional Space:</strong><br />
- Consider a ball in <script type="math/tex">\mathbb{R}^d</script> centered at the origin with radius <script type="math/tex">r</script>, and suppose we have another ball of radius <script type="math/tex">r - \epsilon</script> centered at the origin. In low dimensions, we can visually see that <em>much of the volume of the outer ball is also in the inner ball</em>.<br />
- In general, <span style="color: goldenrod">the volume of the outer ball is proportional to <script type="math/tex">r^{d}</script></span>, while <span style="color: goldenrod">the volume of the inner ball is proportional to <script type="math/tex">(r-\epsilon)^{d}</script></span>.<br />
+ Consider a ball in \(\mathbb{R}^d\) centered at the origin with radius \(r\), and suppose we have another ball of radius \(r - \epsilon\) centered at the origin. In low dimensions, we can visually see that <em>much of the volume of the outer ball is also in the inner ball</em>.<br />
+ In general, <span style="color: goldenrod">the volume of the outer ball is proportional to \(r^{d}\)</span>, while <span style="color: goldenrod">the volume of the inner ball is proportional to \((r-\epsilon)^{d}\)</span>.<br />
  Thus the <strong>ratio of the volume of the inner ball to that of the outer ball</strong> is:</p>
     <p>$$\frac{(r-\epsilon)^{d}}{r^{d}}=\left(1-\frac{\epsilon}{r}\right)^{d} \approx e^{-\epsilon d / r} \underset{d \rightarrow \infty}{\longrightarrow} 0$$</p>
-    <p>Hence as <script type="math/tex">d</script> gets large, most of the volume of the outer ball is concentrated in the annular region <script type="math/tex">% <![CDATA[
-\{x : r-\epsilon < x < r\} %]]></script> instead of the inner ball.<br />
+    <p>Hence as \(d\) gets large, most of the volume of the outer ball is concentrated in the annular region \(\{x : r-\epsilon &lt; x &lt; r\}\) instead of the inner ball.<br />
  <img src="https://cdn.mathpix.com/snip/images/7N0Mv-hf0RhjKeHDEzLJuQuEtI156Jq8JjqeaD96PB0.original.fullsize.png" alt="img" width="70%" class="center-image" /></p>
 
     <p><strong>Concentration of Measure:</strong><br />
- High dimensions also make Gaussian distributions behave counter-intuitively. Suppose <script type="math/tex">X \sim</script> <script type="math/tex">\mathcal{N}\left(0, \sigma^{2} I\right)</script>. If <script type="math/tex">X_{i}</script> are the components of <script type="math/tex">X</script> and <script type="math/tex">R</script> is the distance from <script type="math/tex">X</script> to the origin, then <script type="math/tex">R^{2}=\sum_{i=1}^{d} X_{i}^{2}</script>. We have <script type="math/tex">\mathbb{E}\left[R^{2}\right]=d \sigma^{2},</script> so in expectation a random Gaussian will actually be reasonably far from the origin. If <script type="math/tex">\sigma=1,</script> then <script type="math/tex">R^{2}</script> is distributed <em><strong>chi-squared</strong></em> with <em><script type="math/tex">d</script> degrees of freedom</em>.<br />
- One can show that in high dimensions, with high probability <script type="math/tex">1-\mathcal{O}\left(e^{-d^{\epsilon}}\right)</script>, this multivariate Gaussian will lie within the annular region <script type="math/tex">\left\{X :\left|R^{2}-\mathbb{E}\left[R^{2}\right]\right| \leq d^{1 / 2+\epsilon}\right\}</script> where <script type="math/tex">\mathbb{E}\left[R^{2}\right]=d \sigma^{2}</script> (one possible approach is to note that as <script type="math/tex">d \rightarrow \infty,</script> the chi-squared approaches a Gaussian by the <strong>CLT</strong>, and use a <strong>Chernoff bound</strong> to show exponential decay). This phenomenon is known as <strong>Concentration of Measure</strong>.</p>
+ High dimensions also make Gaussian distributions behave counter-intuitively. Suppose \(X \sim\) \(\mathcal{N}\left(0, \sigma^{2} I\right)\). If \(X_{i}\) are the components of \(X\) and \(R\) is the distance from \(X\) to the origin, then \(R^{2}=\sum_{i=1}^{d} X_{i}^{2}\). We have \(\mathbb{E}\left[R^{2}\right]=d \sigma^{2},\) so in expectation a random Gaussian will actually be reasonably far from the origin. If \(\sigma=1,\) then \(R^{2}\) is distributed <em><strong>chi-squared</strong></em> with <em>\(d\) degrees of freedom</em>.<br />
+ One can show that in high dimensions, with high probability \(1-\mathcal{O}\left(e^{-d^{\epsilon}}\right)\), this multivariate Gaussian will lie within the annular region \(\left\{X :\left|R^{2}-\mathbb{E}\left[R^{2}\right]\right| \leq d^{1 / 2+\epsilon}\right\}\) where \(\mathbb{E}\left[R^{2}\right]=d \sigma^{2}\) (one possible approach is to note that as \(d \rightarrow \infty,\) the chi-squared approaches a Gaussian by the <strong>CLT</strong>, and use a <strong>Chernoff bound</strong> to show exponential decay). This phenomenon is known as <strong>Concentration of Measure</strong>.</p>
 
     <p>Without resorting to more complicated inequalities, we can show a simple, weaker result:<br />
- <script type="math/tex">\bf{\text{Theorem:}}</script> <script type="math/tex">\text{If } X_{i} \sim \mathcal{N}\left(0, \sigma^{2}\right), i=1, \ldots, d \text{  are independent and } R^{2}=\sum_{i=1}^{d} X_{i}^{2}, \text{ then for every } \epsilon>0, \\ 
-  \text{the following holds: }</script></p>
+ \(\bf{\text{Theorem:}}\) \(\text{If } X_{i} \sim \mathcal{N}\left(0, \sigma^{2}\right), i=1, \ldots, d \text{  are independent and } R^{2}=\sum_{i=1}^{d} X_{i}^{2}, \text{ then for every } \epsilon&gt;0, \\ 
+  \text{the following holds: }\)</p>
     <p>$$\lim_{d \rightarrow \infty} P\left(\left|R^{2}-\mathbb{E}\left[R^{2}\right]\right| \geq d^{\frac{1}{2}+\epsilon}\right)=0$$</p>
     <p>Thus in the limit, the <strong style="color: goldenrod">squared radius is concentrated about its mean</strong>.</p>
 
@@ -246,16 +245,16 @@ However, <script type="math/tex">k = 1</script> <strong>overfits</strong> to the
     <p id="lst-p"><strong style="color: red">(3) Different Choices of Metrics/Distance Functions:</strong><br />
  We can modify the distance function. E.g.</p>
     <ul>
-      <li>The family of <strong>Minkowski Distances</strong> that are induced by the <script type="math/tex">L^p</script> norms:
+      <li>The family of <strong>Minkowski Distances</strong> that are induced by the \(L^p\) norms:
         <p>$$D_{p}(\mathbf{x}, \mathbf{z})=\left(\sum_{i=1}^{d}\left|x_{i}-z_{i}\right|^{p}\right)^{\frac{1}{p}}$$</p>
         <blockquote>
-          <p>Without preprocessing the data, <script type="math/tex">1-\mathrm{NN}</script> with the <script type="math/tex">L^{3}</script> distance outperforms <script type="math/tex">1-\mathrm{NN}</script> with <script type="math/tex">L^{2}</script> on MNIST.</p>
+          <p>Without preprocessing the data, \(1-\mathrm{NN}\) with the \(L^{3}\) distance outperforms \(1-\mathrm{NN}\) with \(L^{2}\) on MNIST.</p>
         </blockquote>
       </li>
       <li>We can, also, use <strong>kernels</strong> to compute distances in a <span style="color: goldenrod"><em>different</em> feature space</span>.<br />
-  For example, if <script type="math/tex">k</script> is a kernel with associated feature map <script type="math/tex">\Phi</script> and we want to compute the Euclidean distance from <script type="math/tex">\Phi(x)</script> to <script type="math/tex">\Phi(z)</script>, then we have:
+  For example, if \(k\) is a kernel with associated feature map \(\Phi\) and we want to compute the Euclidean distance from \(\Phi(x)\) to \(\Phi(z)\), then we have:
         <p>$$\begin{aligned}\|\Phi(\mathbf{x})-\Phi(\mathbf{z})\|_ {2}^{2} &amp;=\Phi(\mathbf{x})^{\top} \Phi(\mathbf{x})-2 \Phi(\mathbf{x})^{\top} \Phi(\mathbf{z})+\Phi(\mathbf{z})^{\top} \Phi(\mathbf{z}) \\ &amp;=k(\mathbf{x}, \mathbf{x})-2 k(\mathbf{x}, \mathbf{z})+k(\mathbf{z}, \mathbf{z}) \end{aligned}$$</p>
-        <p>Thus if we define <script type="math/tex">D(\mathrm{x}, \mathrm{z})=\sqrt{k(\mathrm{x}, \mathrm{x})-2 k(\mathrm{x}, \mathrm{z})+k(\mathrm{z}, \mathrm{z})}</script> , then we can perform Euclidean nearest neighbors in <script type="math/tex">\mathrm{\Phi}</script>-space without explicitly representing <script type="math/tex">\Phi</script> by using the kernelized distance function <script type="math/tex">D</script>.</p>
+        <p>Thus if we define \(D(\mathrm{x}, \mathrm{z})=\sqrt{k(\mathrm{x}, \mathrm{x})-2 k(\mathrm{x}, \mathrm{z})+k(\mathrm{z}, \mathrm{z})}\) , then we can perform Euclidean nearest neighbors in \(\mathrm{\Phi}\)-space without explicitly representing \(\Phi\) by using the kernelized distance function \(D\).</p>
       </li>
     </ul>
 
@@ -265,13 +264,13 @@ However, <script type="math/tex">k = 1</script> <strong>overfits</strong> to the
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

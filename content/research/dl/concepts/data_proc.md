@@ -27,9 +27,12 @@ prevLink: /work_files/research/dl/concepts
 ***
 ***
 
+* [Data Wrangling Techniques (Blog!)](https://theprofessionalspoint.blogspot.com/2019/03/data-wrangling-techniques-steps.html)  
 
 * [Non-Negative Matrix Factorization NMF Tutorial](http://mlexplained.com/2017/12/28/a-practical-introduction-to-nmf-nonnegative-matrix-factorization/)  
 * [How to Use t-SNE Effectively (distill blog!)](https://distill.pub/2016/misread-tsne/)  
+
+* [UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction [better than t-sne?] (Library Code!)](https://umap-learn.readthedocs.io/en/latest/)  
 
 
 ## Dimensionality Reduction
@@ -40,6 +43,13 @@ prevLink: /work_files/research/dl/concepts
 ### **Dimensionality Reduction**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents1 #bodyContents11}  
 __Dimensionality Reduction__ is the process of reducing the number of random variables under consideration by obtaining a set of principal variables. It can be divided into __feature selection__{: style="color: goldenrod"} and __feature extraction__{: style="color: goldenrod"}.  
 <br>
+
+**Dimensionality Reduction Methods:**
+{: #lst-p}
+* PCA
+* Heatmaps
+* t-SNE
+* Multi-Dimensional Scaling (MDS)
 
 ### **t-SNE \| T-distributed Stochastic Neighbor Embeddings**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents1 #bodyContents12}  
 
@@ -279,6 +289,10 @@ __Methods/Algorithms:__{: style="color: red"}
 
 <!-- ### ****{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents3 #bodyContents32}  
 ### ****{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents3 #bodyContents33}   -->
+
+* [How to Make Your Machine Learning Models Robust to Outliers (Blog!)](https://heartbeat.fritz.ai/how-to-make-your-machine-learning-models-robust-to-outliers-44d404067d07)  
+
+
 
 [Outliers](https://en.wikipedia.org/wiki/Outlier#Working_with_outliers)  
 [Replacing Outliers](https://en.wikipedia.org/wiki/Robust_statistics#Replacing_outliers_and_missing_values)  

@@ -83,6 +83,10 @@
 <hr />
 <hr />
 
+<ul>
+  <li><a href="https://developers.google.com/machine-learning/guides/text-classification">Googles Text Classification Guide (Blog)</a></li>
+</ul>
+
 <h2 id="content1">Introduction and Definitions</h2>
 
 <ol>
@@ -142,62 +146,61 @@
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Naive Bayes Classifiers:</strong></dt>
       <dd>are a family of simple probabilistic classifiers based on applying <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem"><em>Bayes’ Theorem</em></a> with strong (naive) independence assumptions between the features.</dd>
       <dd><strong>The Probabilistic Model</strong>:<br />
-Abstractly, naive Bayes is a conditional probability model: given a problem instance to be classified, represented by a vector <script type="math/tex">{\displaystyle \mathbf{x} =(x_{1},\dots ,x_{n})}=(x_{1},\dots ,x_{n})</script> representing some n features (independent variables), it assigns to this instance probabilities</dd>
+Abstractly, naive Bayes is a conditional probability model: given a problem instance to be classified, represented by a vector \({\displaystyle \mathbf{x} =(x_{1},\dots ,x_{n})}=(x_{1},\dots ,x_{n})\) representing some n features (independent variables), it assigns to this instance probabilities</dd>
       <dd>
-        <script type="math/tex; mode=display">{\displaystyle p(C_{k}\mid x_{1},\dots ,x_{n})\,}</script>
+\[{\displaystyle p(C_{k}\mid x_{1},\dots ,x_{n})\,}\]
       </dd>
-      <dd>for each of the <script type="math/tex">k</script> possible outcome or classes <script type="math/tex">C_k</script>.</dd>
+      <dd>for each of the \(k\) possible outcome or classes \(C_k\).</dd>
       <dd>Now, using <em>Bayes’ Theorem</em> we decompose the conditional probability as:</dd>
       <dd>
-        <script type="math/tex; mode=display">{\displaystyle p(C_{k}\mid \mathbf {x} )={\frac {p(C_{k})\ p(\mathbf {x} \mid C_{k})}{p(\mathbf {x} )}}\,}</script>
+\[{\displaystyle p(C_{k}\mid \mathbf {x} )={\frac {p(C_{k})\ p(\mathbf {x} \mid C_{k})}{p(\mathbf {x} )}}\,}\]
       </dd>
       <dd>Or, equivalenty, and more intuitively:</dd>
       <dd>
-        <script type="math/tex; mode=display">{\displaystyle {\mbox{posterior}}={\dfrac{\text{prior} \times \text{likelihood}}{\text{evidence}}}\,}</script>
+\[{\displaystyle {\mbox{posterior}}={\dfrac{\text{prior} \times \text{likelihood}}{\text{evidence}}}\,}\]
       </dd>
-      <dd>We can disregard the <em>Denomenator</em> since it does <strong>not</strong> depend on the classes <script type="math/tex">C</script>, making it a constant.</dd>
+      <dd>We can disregard the <em>Denomenator</em> since it does <strong>not</strong> depend on the classes \(C\), making it a constant.</dd>
       <dd>Now, using the <em>Chain-Rule</em> for repeated application of the conditional probability,   the joint probability model can be rewritten as:</dd>
       <dd>
-        <script type="math/tex; mode=display">p(C_{k},x_{1},\dots ,x_{n})\, = p(x_{1}\mid x_{2},\dots ,x_{n},C_{k})p(x_{2}\mid x_{3},\dots ,x_{n},C_{k})\dots p(x_{n-1}\mid x_{n},C_{k})p(x_{n}\mid C_{k})p(C_{k})</script>
+\[p(C_{k},x_{1},\dots ,x_{n})\, = p(x_{1}\mid x_{2},\dots ,x_{n},C_{k})p(x_{2}\mid x_{3},\dots ,x_{n},C_{k})\dots p(x_{n-1}\mid x_{n},C_{k})p(x_{n}\mid C_{k})p(C_{k})\]
       </dd>
       <dd>Applying the naive conditional independence assumptions,
         <blockquote>
-          <p>i.e. assume that each feature <script type="math/tex">{\displaystyle x_{i}}</script> is conditionally independent of every other feature <script type="math/tex">{\displaystyle x_{j}}</script> for <script type="math/tex">{\displaystyle j\neq i}</script>, given the category <script type="math/tex">{\displaystyle C}</script></p>
+          <p>i.e. assume that each feature \({\displaystyle x_{i}}\) is conditionally independent of every other feature \({\displaystyle x_{j}}\) for \({\displaystyle j\neq i}\), given the category \({\displaystyle C}\)</p>
         </blockquote>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\implies \\ 
- {\displaystyle p(x_{i}\mid x_{i+1},\dots ,x_{n},C_{k})=p(x_{i}\mid C_{k})\,}.</script>
+\[\implies \\ 
+ {\displaystyle p(x_{i}\mid x_{i+1},\dots ,x_{n},C_{k})=p(x_{i}\mid C_{k})\,}.\]
       </dd>
       <dd>Thus, we can write the join probability model as:</dd>
       <dd>
-        <script type="math/tex; mode=display">{\displaystyle p(C_{k}\mid x_{1},\dots ,x_{n})={\frac {1}{Z}}p(C_{k})\prod _{i=1}^{n}p(x_{i}\mid C_{k})}</script>
+\[{\displaystyle p(C_{k}\mid x_{1},\dots ,x_{n})={\frac {1}{Z}}p(C_{k})\prod _{i=1}^{n}p(x_{i}\mid C_{k})}\]
       </dd>
-      <dd>Where, <script type="math/tex">{\displaystyle Z=p(\mathbf {x} )=\sum _{k}p(C_{k})\ p(\mathbf {x} \mid C_{k})}</script> is a <strong>constant</strong> scaling factor, a function of the, <em>known</em>, feature variables.</dd>
+      <dd>Where, \({\displaystyle Z=p(\mathbf {x} )=\sum _{k}p(C_{k})\ p(\mathbf {x} \mid C_{k})}\) is a <strong>constant</strong> scaling factor, a function of the, <em>known</em>, feature variables.</dd>
       <dd>
         <p><strong>The Decision Rule</strong>: we commonly use the <a href="https://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation"><em>Maximum A Posteriori (MAP)</em></a> hypothesis, as the decision rule.</p>
       </dd>
       <dd>Thus, <strong>the classifier</strong> becomes:</dd>
       <dd>
-        <script type="math/tex; mode=display">{\displaystyle {\hat {y}}={\underset {k\in \{1,\dots ,K\}}{\operatorname {argmax} }}\ p(C_{k})\displaystyle \prod _{i=1}^{n}p(x_{i}\mid C_{k}).}</script>
+\[{\displaystyle {\hat {y}}={\underset {k\in \{1,\dots ,K\}}{\operatorname {argmax} }}\ p(C_{k})\displaystyle \prod _{i=1}^{n}p(x_{i}\mid C_{k}).}\]
       </dd>
-      <dd>A function that assigns a class label <script type="math/tex">{\displaystyle {\hat {y}}=C_{k}}</script> for some <script type="math/tex">k</script>.</dd>
+      <dd>A function that assigns a class label \({\displaystyle {\hat {y}}=C_{k}}\) for some \(k\).</dd>
     </dl>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Multinomial Naive Bayes:</strong></dt>
-      <dd>With a multinomial event model, samples (feature vectors) represent the frequencies with which certain events have been generated by a multinomial <script type="math/tex">{\displaystyle (p_{1},\dots ,p_{n})}</script> where <script type="math/tex">{\displaystyle p_{i}}</script> is the probability that event <script type="math/tex">i</script> occurs.</dd>
-      <dd>The likelihood of observing a feature vector (histogram) <script type="math/tex">\mathbf{x}</script> is given by:</dd>
+      <dd>With a multinomial event model, samples (feature vectors) represent the frequencies with which certain events have been generated by a multinomial \({\displaystyle (p_{1},\dots ,p_{n})}\) where \({\displaystyle p_{i}}\) is the probability that event \(i\) occurs.</dd>
+      <dd>The likelihood of observing a feature vector (histogram) \(\mathbf{x}\) is given by:</dd>
       <dd>
-        <script type="math/tex; mode=display">{\displaystyle p(\mathbf {x} \mid C_{k})={\frac {(\sum _{i}x_{i})!}{\prod _{i}x_{i}!}}\prod _{i}{p_{ki}}^{x_{i}}}</script>
+\[{\displaystyle p(\mathbf {x} \mid C_{k})={\frac {(\sum _{i}x_{i})!}{\prod _{i}x_{i}!}}\prod _{i}{p_{ki}}^{x_{i}}}\]
       </dd>
       <dd>The multinomial naive Bayes classifier becomes a linear classifier when expressed in log-space:</dd>
       <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-{\displaystyle {\begin{aligned}\log p(C_{k}\mid \mathbf {x} )&\varpropto \log \left(p(C_{k})\prod _{i=1}^{n}{p_{ki}}^{x_{i}}\right)\\&=\log p(C_{k})+\sum _{i=1}^{n}x_{i}\cdot \log p_{ki}\\&=b+\mathbf {w} _{k}^{\top }\mathbf {x} \end{aligned}}} %]]></script>
+\[{\displaystyle {\begin{aligned}\log p(C_{k}\mid \mathbf {x} )&amp;\varpropto \log \left(p(C_{k})\prod _{i=1}^{n}{p_{ki}}^{x_{i}}\right)\\&amp;=\log p(C_{k})+\sum _{i=1}^{n}x_{i}\cdot \log p_{ki}\\&amp;=b+\mathbf {w} _{k}^{\top }\mathbf {x} \end{aligned}}}\]
       </dd>
-      <dd>where <script type="math/tex">{\displaystyle b=\log p(C_{k})}</script> and <script type="math/tex">{\displaystyle w_{ki}=\log p_{ki}}</script>.</dd>
+      <dd>where \({\displaystyle b=\log p(C_{k})}\) and \({\displaystyle w_{ki}=\log p_{ki}}\).</dd>
     </dl>
   </li>
   <li>
@@ -213,7 +216,7 @@ Abstractly, naive Bayes is a conditional probability model: given a problem inst
       <dd>
         <ul>
           <li><strong>Bag-of-Words</strong>: we assume that the position of the words does <em>not</em> matter.</li>
-          <li><strong>Naive Independence</strong>: the feature probabilities are indpendenet given a class <script type="math/tex">c</script>.</li>
+          <li><strong>Naive Independence</strong>: the feature probabilities are indpendenet given a class \(c\).</li>
         </ul>
       </dd>
     </dl>
@@ -225,14 +228,14 @@ Abstractly, naive Bayes is a conditional probability model: given a problem inst
         <ul>
           <li><strong>The Maximum Likelihood Estimate</strong>: we simply use the frequencies in the date.
             <ul>
-              <li><script type="math/tex">\hat{P}(c_j) = \dfrac{\text{doc-count}(C=c_j)}{N_\text{doc}}</script>
+              <li>\(\hat{P}(c_j) = \dfrac{\text{doc-count}(C=c_j)}{N_\text{doc}}\)
                 <blockquote>
-                  <p>The <em>Prior Probability</em> of a document being in class <script type="math/tex">c_j</script>, is the fraction of the documents in the training data that are in class <script type="math/tex">c_j</script>.</p>
+                  <p>The <em>Prior Probability</em> of a document being in class \(c_j\), is the fraction of the documents in the training data that are in class \(c_j\).</p>
                 </blockquote>
               </li>
-              <li><script type="math/tex">\hat{P}(w_i | c_i) = \dfrac{\text{count}(w_i,c_j)}{\sum_{w \in V} \text{count}(w, c_j)}</script>
+              <li>\(\hat{P}(w_i | c_i) = \dfrac{\text{count}(w_i,c_j)}{\sum_{w \in V} \text{count}(w, c_j)}\)
                 <blockquote>
-                  <p>The <em>likelihood</em> of the word <script type="math/tex">w_i</script> given a class <script type="math/tex">c_j</script>, is the fraction of the occurunces of the word <script type="math/tex">w_i</script> in class <script type="math/tex">c_j</script> over all words in the class.</p>
+                  <p>The <em>likelihood</em> of the word \(w_i\) given a class \(c_j\), is the fraction of the occurunces of the word \(w_i\) in class \(c_j\) over all words in the class.</p>
                 </blockquote>
               </li>
             </ul>
@@ -242,8 +245,8 @@ Abstractly, naive Bayes is a conditional probability model: given a problem inst
       <dd>
         <ul>
           <li><strong>The Problem with Maximum Likelihood</strong>:<br />
-  If a certain word occurs in the test-set but <strong>not</strong> in the training set, the likelihood of that word given the equation above will be set to <script type="math/tex">0</script>.<br />
-  Now, since we are multiplying all the likelihood terms together, the MAP estimate will be set to <script type="math/tex">0</script> as well, regardless of the other values.</li>
+  If a certain word occurs in the test-set but <strong>not</strong> in the training set, the likelihood of that word given the equation above will be set to \(0\).<br />
+  Now, since we are multiplying all the likelihood terms together, the MAP estimate will be set to \(0\) as well, regardless of the other values.</li>
         </ul>
       </dd>
     </dl>
@@ -258,18 +261,18 @@ Abstractly, naive Bayes is a conditional probability model: given a problem inst
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents27">Lidstone Smoothing (additive smoothing):</strong></dt>
       <dd>is a technique used to smooth categorical data as the following:</dd>
-      <dd>Given an observation vector <script type="math/tex">x = (x_1, \ldots, x_d)</script> from a multinomial distribution with <script type="math/tex">N</script> trials, a <em>smoothed</em> version of the data produces the estimators:</dd>
+      <dd>Given an observation vector \(x = (x_1, \ldots, x_d)\) from a multinomial distribution with \(N\) trials, a <em>smoothed</em> version of the data produces the estimators:</dd>
       <dd>
-        <script type="math/tex; mode=display">{\hat {\theta }}_{i}={\frac {x_{i}+\alpha }{N+\alpha d}}\qquad (i=1,\ldots ,d),</script>
+\[{\hat {\theta }}_{i}={\frac {x_{i}+\alpha }{N+\alpha d}}\qquad (i=1,\ldots ,d),\]
       </dd>
     </dl>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents28">Laplace Smoothing:</strong></dt>
-      <dd>is a special case of additive smoothing (Lidstone Smoothing) with <script type="math/tex">\alpha = 1</script>:</dd>
+      <dd>is a special case of additive smoothing (Lidstone Smoothing) with \(\alpha = 1\):</dd>
       <dd>
-        <script type="math/tex; mode=display">{\hat {\theta }}_{i}={\frac {x_{i}+1 }{N+ d}}\qquad (i=1,\ldots ,d),</script>
+\[{\hat {\theta }}_{i}={\frac {x_{i}+1 }{N+ d}}\qquad (i=1,\ldots ,d),\]
       </dd>
     </dl>
   </li>
@@ -279,26 +282,26 @@ Abstractly, naive Bayes is a conditional probability model: given a problem inst
       <dd>
         <ul>
           <li>Extract the <em>Vocabulary</em> from the trianing data</li>
-          <li>Calculate <script type="math/tex">P(c_j)</script> terms
+          <li>Calculate \(P(c_j)\) terms
             <ul>
-              <li>For each <script type="math/tex">c_j \in C</script> do
+              <li>For each \(c_j \in C\) do
                 <ul>
-                  <li><script type="math/tex">\text{docs}_j \leftarrow</script> all docs with class <script type="math/tex">=c_j</script></li>
+                  <li>\(\text{docs}_j \leftarrow\) all docs with class \(=c_j\)</li>
                   <li>
-                    <script type="math/tex; mode=display">P(c_j) \leftarrow \dfrac{\|\text{docs}_j\|}{\|\text{total # docs}\|}</script>
+\[P(c_j) \leftarrow \dfrac{\|\text{docs}_j\|}{\|\text{total # docs}\|}\]
                   </li>
                 </ul>
               </li>
             </ul>
           </li>
-          <li>Calculate <script type="math/tex">P(w_k \| c_j)</script> terms
+          <li>Calculate \(P(w_k \| c_j)\) terms
             <ul>
-              <li><script type="math/tex">\text{Text}_j \leftarrow</script> single doc containing all <script type="math/tex">\text{docs}_j</script></li>
-              <li>For each word <script type="math/tex">w_k \in</script> Vocab.
+              <li>\(\text{Text}_j \leftarrow\) single doc containing all \(\text{docs}_j\)</li>
+              <li>For each word \(w_k \in\) Vocab.
                 <ul>
-                  <li><script type="math/tex">n_k \leftarrow</script> # of occurunces of <script type="math/tex">w_k \in \text{Text}_j</script></li>
+                  <li>\(n_k \leftarrow\) # of occurunces of \(w_k \in \text{Text}_j\)</li>
                   <li>
-                    <script type="math/tex; mode=display">P(w_k \| c_j) \leftarrow \dfrac{n_k + \alpha}{n + \alpha \|Vocab.\|}</script>
+\[P(w_k \| c_j) \leftarrow \dfrac{n_k + \alpha}{n + \alpha \|Vocab.\|}\]
                   </li>
                 </ul>
               </li>
@@ -339,7 +342,7 @@ Abstractly, naive Bayes is a conditional probability model: given a problem inst
 <ol>
   <li>
     <dl>
-      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">The <script type="math/tex">2x2</script> Contingency Table:</strong></dt>
+      <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">The \(2x2\) Contingency Table:</strong></dt>
       <dd>
         <table>
           <tbody>
@@ -367,7 +370,7 @@ Abstractly, naive Bayes is a conditional probability model: given a problem inst
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Accuracy:</strong></dt>
       <dd>
-        <script type="math/tex; mode=display">\text{Acc} = \dfrac{\text{tp} + \text{tn}}{\text{tp} + \text{fp} + \text{fn} + \text{tn}}</script>
+\[\text{Acc} = \dfrac{\text{tp} + \text{tn}}{\text{tp} + \text{fp} + \text{fn} + \text{tn}}\]
       </dd>
       <dd><strong>The Problem</strong>:<br />
 Accuracy can be easily fooled (i.e. produce a very high number) in a scenario where the number of occurrences of a class we desire is much less than the data we are searching.</dd>
@@ -380,7 +383,7 @@ Accuracy can be easily fooled (i.e. produce a very high number) in a scenario wh
       <dd><strong>Equivalently</strong>,<br />
 the % of selected items that are correct.</dd>
       <dd>
-        <script type="math/tex; mode=display">{\displaystyle {\text{Precision}}={\frac {tp}{tp+fp}}\,}</script>
+\[{\displaystyle {\text{Precision}}={\frac {tp}{tp+fp}}\,}\]
       </dd>
     </dl>
   </li>
@@ -392,7 +395,7 @@ the % of selected items that are correct.</dd>
       <dd><strong>Equivalently</strong>,<br />
 the % of correct items that are selected.</dd>
       <dd>
-        <script type="math/tex; mode=display">{\displaystyle {\text{Recall}}={\frac {tp}{tp+fn}}\,}</script>
+\[{\displaystyle {\text{Recall}}={\frac {tp}{tp+fn}}\,}\]
       </dd>
     </dl>
   </li>
@@ -408,7 +411,7 @@ the % of correct items that are selected.</dd>
       <dd>is a measure that combines <em>precision</em> and <em>recall</em>.</dd>
       <dd>It is the <em>harmonic mean</em> of precision and recall:</dd>
       <dd>
-        <script type="math/tex; mode=display">{\displaystyle F=2\cdot {\frac {\mathrm {precision} \cdot \mathrm {recall} }{\mathrm {precision} +\mathrm {recall} }}}</script>
+\[{\displaystyle F=2\cdot {\frac {\mathrm {precision} \cdot \mathrm {recall} }{\mathrm {precision} +\mathrm {recall} }}}\]
       </dd>
     </dl>
   </li>
@@ -490,13 +493,13 @@ the % of correct items that are selected.</dd>
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

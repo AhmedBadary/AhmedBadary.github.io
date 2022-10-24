@@ -112,20 +112,20 @@ The systems also scaled very poorly as the search problem was essentially expone
         <ul>
           <li><strong>Input</strong>:
             <ul>
-              <li><strong>Source Language</strong>: <script type="math/tex">f</script></li>
-              <li><strong>Target Language</strong>: <script type="math/tex">e</script></li>
+              <li><strong>Source Language</strong>: \(f\)</li>
+              <li><strong>Target Language</strong>: \(e\)</li>
             </ul>
           </li>
           <li><strong>The Probabilistic Formulation</strong>:</li>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\hat{e} = \mathrm{arg\,min}_e \: p(e \vert f) = \mathrm{arg\,min}_e \: p(f \vert e) p(e)</script>
+\[\hat{e} = \mathrm{arg\,min}_e \: p(e \vert f) = \mathrm{arg\,min}_e \: p(f \vert e) p(e)\]
       </dd>
       <dd>
         <ul>
-          <li><strong>The Translation Model <script type="math/tex">p(f \vert e)</script></strong>: trained on parallel corpus</li>
-          <li><strong>The Language Model <script type="math/tex">p(e)</script></strong>: trained on English only corpus
+          <li><strong>The Translation Model \(p(f \vert e)\)</strong>: trained on parallel corpus</li>
+          <li><strong>The Language Model \(p(e)\)</strong>: trained on English only corpus
             <blockquote>
               <p>Abundant and free!</p>
             </blockquote>
@@ -145,15 +145,14 @@ The systems also scaled very poorly as the search problem was essentially expone
           <li><strong>The Model</strong>:
             <ul>
               <li><em><strong>Encoder</strong></em> :<br />
-  <script type="math/tex">h_t = \phi(h_{t-1}, x_t) = f(W^{(hh)}h_{t-1} + W^{(hx)}x_t)</script></li>
+  \(h_t = \phi(h_{t-1}, x_t) = f(W^{(hh)}h_{t-1} + W^{(hx)}x_t)\)</li>
               <li><em><strong>Decoder</strong></em> :<br />
-  <script type="math/tex">% <![CDATA[
-\begin{align}
-      h_t & = \phi(h_{t-1}) = f(W^{(hh)}h_{t-1}) \\
-      y_t & = \text{softmax}(W^{(S)}h_t)
-      \end{align} %]]></script></li>
+  \(\begin{align}
+      h_t &amp; = \phi(h_{t-1}) = f(W^{(hh)}h_{t-1}) \\
+      y_t &amp; = \text{softmax}(W^{(S)}h_t)
+      \end{align}\)</li>
               <li><em><strong>Error</strong></em> :<br />
-  <script type="math/tex">\displaystyle{\max_\theta \frac{1}{N} \sum_{n=1}^N \log p_\theta(y^{(n)}\vert x^{(n)})}</script>
+  \(\displaystyle{\max_\theta \frac{1}{N} \sum_{n=1}^N \log p_\theta(y^{(n)}\vert x^{(n)})}\)
                 <blockquote>
                   <p>Cross Entropy Error.</p>
                 </blockquote>
@@ -184,11 +183,11 @@ The systems also scaled very poorly as the search problem was essentially expone
           <li>Compute every hidden state in the decoder from the following concatenated vectors :
             <ul>
               <li>Previous hidden state (standard)</li>
-              <li>Last hidden vector of encoder <script type="math/tex">c=h_T</script></li>
-              <li>Previous predicted output word <script type="math/tex">y_{t-1}</script>.<br />
- <script type="math/tex">\implies h_{D, t} = \phi_D(h_{t-1}, c, y_{t-1})</script>
+              <li>Last hidden vector of encoder \(c=h_T\)</li>
+              <li>Previous predicted output word \(y_{t-1}\).<br />
+ \(\implies h_{D, t} = \phi_D(h_{t-1}, c, y_{t-1})\)
                 <blockquote>
-                  <p>NOTE: Each input of <script type="math/tex">\phi</script> has its own linear transformation matrix.</p>
+                  <p>NOTE: Each input of \(\phi\) has its own linear transformation matrix.</p>
                 </blockquote>
               </li>
             </ul>
@@ -196,7 +195,7 @@ The systems also scaled very poorly as the search problem was essentially expone
           <li>Train stacked/deep RNNs with multiple layers.</li>
           <li>Potentially train Bidirectional Encoder</li>
           <li>Train input sequence in reverser order for simpler optimization problem:<br />
- Instead of <script type="math/tex">A\:B\:C \rightarrow X\:Y</script> train with <script type="math/tex">C\:B\:A \rightarrow X\:Y</script></li>
+ Instead of \(A\:B\:C \rightarrow X\:Y\) train with \(C\:B\:A \rightarrow X\:Y\)</li>
           <li>Better Units (Main Improvement):
             <ul>
               <li>Use more complex hidden unit computation in recurrence</li>
@@ -240,7 +239,7 @@ The systems also scaled very poorly as the search problem was essentially expone
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">z_t = \sigma(W^{(z)}x_t + U^{(z)}h_{t-1})</script>
+\[z_t = \sigma(W^{(z)}x_t + U^{(z)}h_{t-1})\]
       </dd>
       <dd>
         <ul>
@@ -248,7 +247,7 @@ The systems also scaled very poorly as the search problem was essentially expone
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">r_t = \sigma(W^{(r)}x_t + U^{(r)}h_{t-1})</script>
+\[r_t = \sigma(W^{(r)}x_t + U^{(r)}h_{t-1})\]
       </dd>
       <dd>The <strong>Update Gate</strong> and <strong>Reset Gate</strong> computed, allow us to more directly influence/manipulate what information do we care about (and want to store/keep) and what content we can ignore.<br />
 We can view the actions of these gates from their respecting equations as:</dd>
@@ -256,21 +255,21 @@ We can view the actions of these gates from their respecting equations as:</dd>
         <ul>
           <li><em><strong>New Memory Content</strong></em>:<br />
   at each hidden layer at a given time step, we compute some new memory content,<br />
-  if the reset gate <script type="math/tex">= ~0</script>, then this ignores previous memory, and only stores the new word information.</li>
+  if the reset gate \(= ~0\), then this ignores previous memory, and only stores the new word information.</li>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\tilde{h}_t = \tanh(Wx_t + r_t \odot Uh_{t-1})</script>
+\[\tilde{h}_t = \tanh(Wx_t + r_t \odot Uh_{t-1})\]
       </dd>
       <dd>
         <ul>
           <li><em><strong>Final Memory</strong></em>:<br />
-  the actual memory at a time step <script type="math/tex">t</script>, combines the <em>Current</em> and <em>Previous time steps</em>,<br />
-  if the <em>update gate</em> <script type="math/tex">= ~0</script>, then this, again, ignores the <em>newly computed memory content</em>, and keeps the old memory it possessed.</li>
+  the actual memory at a time step \(t\), combines the <em>Current</em> and <em>Previous time steps</em>,<br />
+  if the <em>update gate</em> \(= ~0\), then this, again, ignores the <em>newly computed memory content</em>, and keeps the old memory it possessed.</li>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">h_t = z_t \odot h_{t-1} + (1-z_t) \odot \tilde{h}_t</script>
+\[h_t = z_t \odot h_{t-1} + (1-z_t) \odot \tilde{h}_t\]
       </dd>
     </dl>
   </li>
@@ -298,7 +297,7 @@ We can view the actions of these gates from their respecting equations as:</dd>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">i_t = \sigma(W^{(i)}x_t + U^{(i)}h_{t-1})</script>
+\[i_t = \sigma(W^{(i)}x_t + U^{(i)}h_{t-1})\]
       </dd>
       <dd>
         <ul>
@@ -307,7 +306,7 @@ We can view the actions of these gates from their respecting equations as:</dd>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">i_t = \sigma(W^{(i)}x_t + U^{(i)}h_{t-1})</script>
+\[i_t = \sigma(W^{(i)}x_t + U^{(i)}h_{t-1})\]
       </dd>
       <dd>
         <ul>
@@ -316,7 +315,7 @@ We can view the actions of these gates from their respecting equations as:</dd>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">i_t = \sigma(W^{(i)}x_t + U^{(i)}h_{t-1})</script>
+\[i_t = \sigma(W^{(i)}x_t + U^{(i)}h_{t-1})\]
       </dd>
       <dd>
         <ul>
@@ -325,15 +324,14 @@ We can view the actions of these gates from their respecting equations as:</dd>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">% <![CDATA[
-\begin{align}
-    \tilde{c}_t & = \tanh(W^{(c)}x_t + U^{(c)}h_{t-1}) & \text{New Memory} \\
-    c_t & = f_t \odot c_{t-1} + i_t \odot \tilde{c}_t & \text{Final Memory}
-\end{align} %]]></script>
+\[\begin{align}
+    \tilde{c}_t &amp; = \tanh(W^{(c)}x_t + U^{(c)}h_{t-1}) &amp; \text{New Memory} \\
+    c_t &amp; = f_t \odot c_{t-1} + i_t \odot \tilde{c}_t &amp; \text{Final Memory}
+\end{align}\]
       </dd>
       <dd>The <strong>Final Hidden State</strong> is calculated as follows:</dd>
       <dd>
-        <script type="math/tex; mode=display">h_t = o_t \odot \sigma(c_t)</script>
+\[h_t = o_t \odot \sigma(c_t)\]
       </dd>
     </dl>
   </li>
@@ -411,6 +409,12 @@ In other words, they can be seen as <strong>Conditional Recurrent Language Model
         </ol>
       </dd>
     </dl>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Progress in Google Translate based on a one sentence test set from C. Manning</button>
+ <img src="https://cdn.mathpix.com/snip/images/98YBK9uTfTjaWBXPimGFvYaiNz-USCPkLQbn9xNQXc8.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Google Translate BLEU Score Progression</button>
+ <img src="https://1.bp.blogspot.com/-dvf6wpOpJC0/XtgVORHbA4I/AAAAAAAAGDc/I3a6N8uHzsQicDth9XfROnwb3dye8Pw3gCLcBGAsYHQ/s1600/image1.gif" alt="img" width="100%" hidden="" /></p>
   </li>
   <li>
     <dl>
@@ -431,15 +435,26 @@ In other words, they can be seen as <strong>Conditional Recurrent Language Model
   </li>
 </ol>
 
+<p id="lst-p"><strong style="color: red">Notes:</strong></p>
+<ul>
+  <li>
+    <dl>
+      <dt><strong>Evaluation Metrics:</strong>  <strong style="color: red">BLEU Score:</strong> or Bilingual Evaluation Understudy Score  </dt>
+      <dt>  The second most popular score is <strong style="color: red">METEOR</strong>: which has an emphasis on recall and precision.</dt>
+      <dd><br /></dd>
+    </dl>
+  </li>
+</ul>
+
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

@@ -102,7 +102,7 @@
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Representing the Meaning of a Word:</strong><br />
  Commonest linguistic way of thinking of meaning:<br />
- Signifier <script type="math/tex">\iff</script> Signified (idea or thing) = denotation</p>
+ Signifier \(\iff\) Signified (idea or thing) = denotation</p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">How do we have usable meaning in a computer:</strong><br />
@@ -154,13 +154,13 @@
  We will build a dense vector for each word type, chosen so that it is good at predicting other words appearing in its context.</p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Learning Neural Network Word Embeddings:</strong><br />
- We define a model that aims to predict between a center word <script type="math/tex">w_t</script> and context words in terms of word vectors.
+ We define a model that aims to predict between a center word \(w_t\) and context words in terms of word vectors.
     <p>$$p(\text{context} \vert  w_t) = \ldots$$</p>
 
     <p><strong>The Loss Function</strong>:</p>
     <p>$$J = 1 - p(w_{-t} \vert  w_t)$$</p>
 
-    <p>We look at many positions <script type="math/tex">t</script> in a big language corpus<br />
+    <p>We look at many positions \(t\) in a big language corpus<br />
  We keep adjusting the vector representations of words to minimize this loss</p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents18">Relevant Papers:</strong>
@@ -274,8 +274,8 @@
     <ul>
       <li>Given a large corpus of text</li>
       <li>Represent every word, in a fixed vocabulary, by a <em>vector</em></li>
-      <li>Go through each position <script type="math/tex">t</script> in the text, which has a <strong>center word</strong> <script type="math/tex">c</script> and <strong>context words</strong> <script type="math/tex">o</script></li>
-      <li>Use the <em><strong>similarity of the word vectors</strong></em> for <script type="math/tex">c</script> and <script type="math/tex">o</script> to <em><strong>calculate the probability</strong></em> of <script type="math/tex">o</script> given <script type="math/tex">c</script> (SG)</li>
+      <li>Go through each position \(t\) in the text, which has a <strong>center word</strong> \(c\) and <strong>context words</strong> \(o\)</li>
+      <li>Use the <em><strong>similarity of the word vectors</strong></em> for \(c\) and \(o\) to <em><strong>calculate the probability</strong></em> of \(o\) given \(c\) (SG)</li>
       <li><em><strong>Keep adjusting the word vectors</strong></em> to <strong>maximize this probability</strong></li>
     </ul>
 
@@ -314,41 +314,41 @@
 
     <p><strong>The Algorithm</strong>:</p>
     <ol>
-      <li>We generate our one hot input vector <script type="math/tex">x \in \mathbf{R}^{\vert V\vert }</script> of the center word.</li>
-      <li>We get our embedded word vector for the center word <script type="math/tex">v_c = V_x \in \mathbf{R}^n</script></li>
-      <li>Generate a score vector <script type="math/tex">z = \mathcal{U}_ {v_c}</script></li>
-      <li>Turn the score vector into probabilities, <script type="math/tex">\hat{y} = \text{softmax}(z)</script>
+      <li>We generate our one hot input vector \(x \in \mathbf{R}^{\vert V\vert }\) of the center word.</li>
+      <li>We get our embedded word vector for the center word \(v_c = V_x \in \mathbf{R}^n\)</li>
+      <li>Generate a score vector \(z = \mathcal{U}_ {v_c}\)</li>
+      <li>Turn the score vector into probabilities, \(\hat{y} = \text{softmax}(z)\)
         <blockquote>
-          <p>Note that <script type="math/tex">\hat{y}_{c−m}, \ldots, \hat{y}_{c−1}, \hat{y}_{c+1}, \ldots, \hat{y}_{c+m}</script> are the probabilities of observing each context word.</p>
+          <p>Note that \(\hat{y}_{c−m}, \ldots, \hat{y}_{c−1}, \hat{y}_{c+1}, \ldots, \hat{y}_{c+m}\) are the probabilities of observing each context word.</p>
         </blockquote>
       </li>
       <li>We desire our probability vector generated to match the true probabilities, which is<br />
- <script type="math/tex">y^{(c−m)} , \ldots, y^{(c−1)} , y^{(c+1)} , \ldots, y^{(c+m)}</script>,<br />
+ \(y^{(c−m)} , \ldots, y^{(c−1)} , y^{(c+1)} , \ldots, y^{(c+m)}\),<br />
  the one hot vectors of the actual output.<br />
  <br /></li>
     </ol>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents35">Word2Vec Details:</strong>
     <ul>
-      <li>For each word (position) <script type="math/tex">t = 1 \ldots T</script>, predict surrounding (context) words in a window of <em>“radius”</em> <script type="math/tex">m</script> of every word.</li>
+      <li>For each word (position) \(t = 1 \ldots T\), predict surrounding (context) words in a window of <em>“radius”</em> \(m\) of every word.</li>
     </ul>
 
-    <p><strong>Calculating <script type="math/tex">p(o \vert c)</script><sup id="fnref:2"><a href="#fn:2" class="footnote">1</a></sup> the probability of outside words given center word:</strong></p>
+    <p><strong>Calculating \(p(o \vert c)\)<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">1</a></sup> the probability of outside words given center word:</strong></p>
     <ul>
-      <li>We use two vectors per word <script type="math/tex">w</script>:
+      <li>We use two vectors per word \(w\):
         <ul>
-          <li><script type="math/tex">v_{w}</script>: <script type="math/tex">\:</script>  when <script type="math/tex">w</script> is a center word</li>
-          <li><script type="math/tex">u_{w}</script>: <script type="math/tex">\:</script> when <script type="math/tex">w</script> is a context word</li>
+          <li>\(v_{w}\): \(\:\)  when \(w\) is a center word</li>
+          <li>\(u_{w}\): \(\:\) when \(w\) is a context word</li>
         </ul>
       </li>
-      <li>Now, for a center word <script type="math/tex">c</script> and a context word <script type="math/tex">o</script>, we calculate the probability:
+      <li>Now, for a center word \(c\) and a context word \(o\), we calculate the probability:
         <p>$$\\{\displaystyle p(o \vert  c) = \dfrac{e^{u_o^Tv_c}}{\sum_{w\in V} e^{u_w^Tv_c}}} \:\:\:\:\:\:\:\:\:\:\:\:\\$$</p>
         <p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Constructing the Probability Distribution (Prediction Function)</button></p>
         <ul hidden="">
           <li><img src="/main_files/dl/nlp/1/7.png" alt="img" width="80%" /></li>
-          <li>The Probability Distribution <script type="math/tex">p(o \vert c)</script> is an application of the <strong>softmax</strong> function on the, <strong>dot-product</strong>, similarity function <script type="math/tex">u_o^Tv_c</script></li>
-          <li>The <strong>Softmax</strong> function, allows us to construct a probability distribution by making the numerator positive, and normalizing the function (to <script type="math/tex">1</script>) with the denominator</li>
-          <li>The <strong>similarity function <script type="math/tex">u_o^Tv_c</script></strong> allows us to model as follows: the more the <em>similarity</em> <script type="math/tex">\rightarrow</script> the larger the <em>dot-product</em>; the larger the <em>exponential</em> in the softmax</li>
+          <li>The Probability Distribution \(p(o \vert c)\) is an application of the <strong>softmax</strong> function on the, <strong>dot-product</strong>, similarity function \(u_o^Tv_c\)</li>
+          <li>The <strong>Softmax</strong> function, allows us to construct a probability distribution by making the numerator positive, and normalizing the function (to \(1\)) with the denominator</li>
+          <li>The <strong>similarity function \(u_o^Tv_c\)</strong> allows us to model as follows: the more the <em>similarity</em> \(\rightarrow\) the larger the <em>dot-product</em>; the larger the <em>exponential</em> in the softmax</li>
         </ul>
         <p><br /></p>
       </li>
@@ -359,7 +359,7 @@
  <strong style="color: red">Goal:</strong> <br />
  Maximize the probability of any context word given the current center word.</p>
 
-    <p>We start with the <strong>Likelihood</strong> of being able to predict the context words given center words and the parameters <script type="math/tex">\theta</script> (only the wordvectors).<br />
+    <p>We start with the <strong>Likelihood</strong> of being able to predict the context words given center words and the parameters \(\theta\) (only the wordvectors).<br />
  <strong>The Likelihood:</strong></p>
     <p>$$L(\theta)=\prod_{t=1}^{T} \prod_{-m \leq j \leq m \atop j \neq 0} P\left(w_{t+j} | w_{t} ; \theta\right)$$</p>
 
@@ -367,14 +367,14 @@
  The Objective is just the (average) <strong>negative log likelihood</strong>:</p>
     <p>$$J(\theta) = -\frac{1}{T} \log L(\theta)= - \dfrac{1}{T} \sum_{t=1}^{t} \sum_{-m \leq j \leq m \\ \:\:\:\:j\neq 0} \log p(w_{t+j} \vert  w_t ; \theta))$$</p>
 
-    <p>Notice: Minimizing objective function <script type="math/tex">\iff</script> Maximizing predictive accuracy<sup id="fnref:1"><a href="#fn:1" class="footnote">2</a></sup><br />
+    <p>Notice: Minimizing objective function \(\iff\) Maximizing predictive accuracy<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">2</a></sup><br />
  <br /></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents37">The Gradients:</strong><br />
- We have a vector of parameters <script type="math/tex">\theta</script> that we are trying to optimize over, and We need to calculate the gradient of the two sets of parameters in <script type="math/tex">\theta</script>; namely, <script type="math/tex">\dfrac{\partial}{\partial v_c}</script> and <script type="math/tex">\dfrac{\partial}{\partial u_o}</script>.</p>
+ We have a vector of parameters \(\theta\) that we are trying to optimize over, and We need to calculate the gradient of the two sets of parameters in \(\theta\); namely, \(\dfrac{\partial}{\partial v_c}\) and \(\dfrac{\partial}{\partial u_o}\).</p>
 
-    <p><strong style="color: red">The gradient <script type="math/tex">\dfrac{\partial}{\partial v_c}</script>:</strong></p>
+    <p><strong style="color: red">The gradient \(\dfrac{\partial}{\partial v_c}\):</strong></p>
     <p>$$\dfrac{\partial}{\partial v_c} \log p(o\vert c) = u_o - \sum_{w'\in V} p{(w' | c)} \cdot u_{w'}$$</p>
 
     <p><strong>Interpretation:</strong><br />
@@ -392,14 +392,14 @@
     <p>$$\mathbb{E}_{w_{i} \sim P}\left[\nabla_{\theta} \mathcal{E}\left(w_{i}\right)\right] =\sum_{w_{i} \in V} P\left(w_{i}\right) \nabla_{\theta} \mathcal{E}\left(w_{i}\right)$$</p>
 
     <ul>
-      <li><script type="math/tex">P\left(w_{i}\right) \approx \frac{r(w_i)}{R}</script>,</li>
+      <li>\(P\left(w_{i}\right) \approx \frac{r(w_i)}{R}\),</li>
     </ul>
 
     <p>$$\mathbb{E}_{w_{i} \sim P}\left[\nabla_{\theta} \mathcal{E}\left(w_{i}\right)\right] \approx \sum_{w_{i} \in V} \frac{r(w_i)}{R} \nabla_{\theta} \mathcal{E}\left(w_{i}\right)$$</p>
 
     <p>$$\mathbb{E}_{w_{i} \sim P}\left[\nabla_{\theta} \mathcal{E}\left(w_{i}\right)\right] \approx \frac{1}{R} \sum_{i=1}^{m} r\left(w_{i}\right) \nabla_{\theta} \mathcal{E}\left(w_{i}\right)$$</p>
 
-    <p>where <script type="math/tex">r(w)=\frac{\exp (-\mathcal{E}(w))}{Q(w)}</script>, <script type="math/tex">R=\sum_{j=1}^{m} r\left(w_{j}\right)</script>, and <script type="math/tex">Q</script> is the <strong>unigram distribution</strong> of the training set.</p>
+    <p>where \(r(w)=\frac{\exp (-\mathcal{E}(w))}{Q(w)}\), \(R=\sum_{j=1}^{m} r\left(w_{j}\right)\), and \(Q\) is the <strong>unigram distribution</strong> of the training set.</p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents38">Notes:</strong>
     <ul>
@@ -421,26 +421,26 @@
   </li>
 </ol>
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:2">
-      <p>I.E. <script type="math/tex">p(w_{t+j} \vert  w_t)</script> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:2" role="doc-endnote">
+      <p>I.E. \(p(w_{t+j} \vert  w_t)\) <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:1">
-      <p>accuracy of predicting words in the context of another word <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p>accuracy of predicting words in the context of another word <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

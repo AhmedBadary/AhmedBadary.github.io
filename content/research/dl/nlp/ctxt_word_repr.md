@@ -20,6 +20,7 @@ prevLink: /work_files/research/dl/nlp.html
 ***
 
 * [Paper on Contextual Word Representations](https://arxiv.org/pdf/1902.06006.pdf)  
+* [The Transformer Family (Blog)](https://lilianweng.github.io/lil-log/2020/04/07/the-transformer-family.html)  
 
 
 ## Word Representations and their progress

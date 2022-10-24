@@ -122,8 +122,8 @@
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Example:</strong></dt>
-      <dd><script type="math/tex">h = \text{ReLU}(Wx+b) \\ 
-    \rightarrow</script><br />
+      <dd>\(h = \text{ReLU}(Wx+b) \\ 
+    \rightarrow\)<br />
 <img src="/main_files/dl/nlp/t_f/1.png" alt="img" width="20%" /></dd>
     </dl>
   </li>
@@ -148,10 +148,10 @@
           <li><strong>label</strong> - An array containing the values of the label for every example.
             <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">train_input_fn</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
   <span class="s">"""An input function for training"""</span>
-  <span class="c"># Convert the inputs to a Dataset.</span>
-  <span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="nb">dict</span><span class="p">(</span><span class="n">features</span><span class="p">),</span> <span class="n">labels</span><span class="p">))</span>
-  <span class="c"># Shuffle, repeat, and batch the examples.</span>
-  <span class="k">return</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">()</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
+  <span class="c1"># Convert the inputs to a Dataset.
+</span>  <span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">Dataset</span><span class="p">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="nb">dict</span><span class="p">(</span><span class="n">features</span><span class="p">),</span> <span class="n">labels</span><span class="p">))</span>
+  <span class="c1"># Shuffle, repeat, and batch the examples.
+</span>  <span class="k">return</span> <span class="n">dataset</span><span class="p">.</span><span class="n">shuffle</span><span class="p">(</span><span class="mi">1000</span><span class="p">).</span><span class="n">repeat</span><span class="p">().</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
 </code></pre></div>            </div>
           </li>
         </ul>
@@ -290,14 +290,14 @@
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents64">TensorBoard:</strong></dt>
-      <dd><code class="highlighter-rouge">File_writer  = tf.summary.FileWriter('log_simple_graph', sess.graph)</code><br />
-<code class="highlighter-rouge">tensorboard --logdir="path"</code></dd>
+      <dd><code class="language-plaintext highlighter-rouge">File_writer  = tf.summary.FileWriter('log_simple_graph', sess.graph)</code><br />
+<code class="language-plaintext highlighter-rouge">tensorboard --logdir="path"</code></dd>
     </dl>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents65">Testing if GPU works:</strong></dt>
-      <dd><code class="highlighter-rouge">import tensorflow as tf
+      <dd><code class="language-plaintext highlighter-rouge">import tensorflow as tf
 a = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3], name='a')
 b = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[3, 2], name='b')
 c = tf.matmul(a, b)
@@ -308,7 +308,7 @@ print(sess.run(c))</code></dd>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents6" id="bodyContents66">GPU Usage:</strong></dt>
-      <dd><code class="highlighter-rouge">!nvidia-smi</code></dd>
+      <dd><code class="language-plaintext highlighter-rouge">!nvidia-smi</code></dd>
     </dl>
   </li>
   <li>
@@ -330,9 +330,9 @@ A session encapsulates the state of the TensorFlow runtime, and runs TensorFlow 
       <dd>
         <ul>
           <li>First, create a session:<br />
-  <code class="highlighter-rouge">sess = tf.Session()</code></li>
+  <code class="language-plaintext highlighter-rouge">sess = tf.Session()</code></li>
           <li>Run the session:<br />
-  <code class="highlighter-rouge">sess.run()</code><br />
+  <code class="language-plaintext highlighter-rouge">sess.run()</code><br />
   It takes a dict of any tuples or any tensor.<br />
   It evaluates the tensor.</li>
         </ul>
@@ -449,13 +449,13 @@ A session encapsulates the state of the TensorFlow runtime, and runs TensorFlow 
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

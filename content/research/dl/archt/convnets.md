@@ -16,6 +16,10 @@ prevLink: /work_files/research/dl/cv.html
   {: .TOC3}
   * [The Pooling Layer](#content4)
   {: .TOC4}
+  * [Convolution and Pooling as an Infinitely Strong Prior](#content5)
+  {: .TOC5}
+  * [Variants of the Basic Convolution Function and Structured Outputs](#content6)
+  {: .TOC6}
 
 </div>
 
@@ -28,7 +32,10 @@ prevLink: /work_files/research/dl/cv.html
 [CNNs Architectures](/work_files/research/dl/arcts)  
 [Convnet Ch.9 Summary (blog)](https://medium.com/inveterate-learner/deep-learning-book-chapter-9-convolutional-networks-45e43bfc718d)  
 
+* [Understanding Deep Convolutional Networks (Paper!!)](https://arxiv.org/pdf/1601.04920.pdf)  
 
+* [Computing Receptive Fields in CNNs (Blog)](https://distill.pub/2019/computing-receptive-fields/)  
+* [CNN Explainer - CNNs Visualized in your browser! (Blog!!)](https://poloclub.github.io/cnn-explainer/)  
 
 
 ## Introduction
@@ -92,6 +99,10 @@ prevLink: /work_files/research/dl/cv.html
 
 
     Finally, the convolution provides a means for working with __inputs of variable sizes__ (i.e. data that cannot be processed by neural networks defined by matrix multiplication with a fixed-shape matrix).  
+
+    <button>FC Mat-Mul as a small kernel</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](/main_files/gifs/nn_matmul.gif){: width="70%" hidden=""}  
+    <br>
 
 3. **Inspiration Model:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
     Convolutional networks were inspired by biological processes in which the connectivity pattern between neurons is inspired by the organization of the animal visual cortex.  
@@ -166,6 +177,84 @@ prevLink: /work_files/research/dl/cv.html
 ## The Convolutional Layer
 {: #content3}
 
+![img](https://cdn.mathpix.com/snip/images/7aQe47vYUKI3QSjMCypArdV-ubxClScrkNIpzVxH2go.original.fullsize.png){: width="50%"}  
+
+* [Convolution Arithmetic Visualization (Blog!)](https://github.com/vdumoulin/conv_arithmetic)  
+
+<button>Convolution Operation Arithmetic Visualized</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+<div hidden="" markdown="1"> 
+_N.B.: Blue maps are inputs, and cyan maps are outputs._
+<table style="width:100%; table-layout:fixed;">
+  <tr>
+    <td>No padding, no strides</td>
+    <td>Arbitrary padding, no strides</td>
+    <td>Half padding, no strides</td>
+    <td>Full padding, no strides</td>
+  </tr>
+  <tr>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/no_padding_no_strides.gif"></td>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/arbitrary_padding_no_strides.gif"></td>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/same_padding_no_strides.gif"></td>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/full_padding_no_strides.gif"></td>
+  </tr>
+  <tr>
+    <td>No padding, strides</td>
+    <td>Padding, strides</td>
+    <td>Padding, strides (odd)</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/no_padding_strides.gif"></td>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/padding_strides.gif"></td>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/padding_strides_odd.gif"></td>
+    <td></td>
+  </tr>
+</table> 
+</div>
+
+
+<button>__Transposed__ Convolution Operation Arithmetic Visualized</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+<div hidden="" markdown="1"> 
+<table style="width:100%; table-layout:fixed;">
+  <tr>
+    <td>No padding, no strides, transposed</td>
+    <td>Arbitrary padding, no strides, transposed</td>
+    <td>Half padding, no strides, transposed</td>
+    <td>Full padding, no strides, transposed</td>
+  </tr>
+  <tr>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/no_padding_no_strides_transposed.gif"></td>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/arbitrary_padding_no_strides_transposed.gif"></td>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/same_padding_no_strides_transposed.gif"></td>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/full_padding_no_strides_transposed.gif"></td>
+  </tr>
+  <tr>
+    <td>No padding, strides, transposed</td>
+    <td>Padding, strides, transposed</td>
+    <td>Padding, strides, transposed (odd)</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/no_padding_strides_transposed.gif"></td>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/padding_strides_transposed.gif"></td>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/padding_strides_odd_transposed.gif"></td>
+    <td></td>
+  </tr>
+</table>
+</div>
+
+<button>__Dilated__ Convolution Operation Arithmetic Visualized</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+<div hidden="" markdown="1"> 
+<table style="width:25%; table-layout:fixed;">
+  <tr>
+    <td>No padding, no stride, dilation</td>
+  </tr>
+  <tr>
+    <td><img width="150px" src="/main_files/dl/cnn/gifs/dilation.gif"></td>
+  </tr>
+</table>
+</div>
+
 1. **Convolutions:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents31}   
     In its most general form, the convolution is a __Linear Operation__ on two functions of real-valued arguments.  
 
@@ -178,44 +267,52 @@ prevLink: /work_files/research/dl/cv.html
     The convolution of the __discreet__ functions f and g: 
     <p>$${\displaystyle {\begin{aligned}(f * g)[n]&=\sum_{m=-\infty }^{\infty }f[m]g[n-m]\\&=\sum_{m=-\infty }^{\infty }f[n-m]g[m].\end{aligned}}} (commutativity)$$</p>  
     In this notation, we refer to:  
+    {: #lst-p}
     * The function $$f$$ as the __Input__  
     * The function $$g$$ as the __Kernel/Filter__  
     * The output of the convolution as the __Feature Map__  
 
     __Commutativity:__  
+    <button>On Commutativity</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    <div hidden="" markdown="1">
     Can be achieved by flipping the kernel with respect to the input; in the sense that as increases, the index into the $$m$$ input increases, but the index into the kernel decreases.  
     While the commutative property is useful for writing proofs, it is not usually an important property of a neural network implementation.  
     Moreover, in a CNN, the convolution is used simultaneously with other functions, and the combination of these functions __does not commute__ regardless of whether the convolution operation flips its kernel or not.  
-    Because convolutional networks usually use multichannel convolution, the linear operations they are based on are not guaranteed to be commutative, even if kernel flipping is used. These multichannel operations are only commutative if each operation has the same number of output channels as input channels.
+    Because Convolutional networks usually use multichannel convolution, the linear operations they are based on are not guaranteed to be commutative, even if kernel flipping is used. These multichannel operations are only commutative if each operation has the same number of output channels as input channels.  
+    </div>
+    <br>
 
                 
 
 2. **Cross-Correlation:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}   
     :   Cross-Correlation is a measure of similarity of two series as a function of the displacement of one relative to the other.
     :   The __continuous__ cross-correlation on continuous functions f and g:  
-    :   $$(f\star g)(\tau )\ {\stackrel {\mathrm {def} }{=}}\int _{-\infty }^{\infty }f^{*}(t)\ g(t+\tau )\,dt,$$
+    :   $$(f\star g)(\tau )\ {\stackrel {\mathrm {def} }{=}}\int_{-\infty }^{\infty }f^{*}(t)\ g(t+\tau )\,dt,$$
     :   The __discrete__ cross-correlation on discreet functions f and g:  
-    :   $$(f\star g)[n]\ {\stackrel {\mathrm {def} }{=}}\sum _{m=-\infty }^{\infty }f^{*}[m]\ g[m+n].$$  
+    :   <p>$$(f\star g)[n]\ {\stackrel {\mathrm {def} }{=}}\sum _{m=-\infty }^{\infty }f^{*}[m]\ g[m+n].$$</p>  
+    <br>
 
 3. **Convolutions and Cross-Correlation:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}   
     * Convolution is similar to cross-correlation.  
     * _For discrete real valued signals_, they differ only in a time reversal in one of the signals.  
-    * _For continuous signals_, the cross-correlation operator is the **adjoint operator** of the convolution operator.
+    * _For continuous signals_, the cross-correlation operator is the **adjoint operator** of the convolution operator.  
+    <br>
 
 4. **CNNs, Convolutions, and Cross-Correlation:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}   
     The term Convolution in the name "Convolution Neural Network" is unfortunately a __misnomer__.  
     CNNs actually __use Cross-Correlation__ instead as their similarity operator.  
     The term 'convolution' has stuck in the name by convention.  
+    <br>
 
 
 15. **Convolution in DL:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents315}   
     The Convolution operation:  
     <p>$$s(t)=(x * w)(t)=\sum_{a=-\infty}^{\infty} x(a) w(t-a)$$</p>   
     we usually assume that these functions are zero everywhere but in the finite set of points for which we store the values.  
-
+    <br>
 
 16. **Convolution Over Two Axis:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents316}   
-    If we use a two-dimensional image $$I$$ as our input, we probably also want to use a two-dimensional kernel $$K$$:  
+    If we use a 2D image $$I$$ as our input, we probably also want to use a two-dimensional kernel $$K$$:  
     <p>$$S(i, j)=(I * K)(i, j)=\sum_{m} \sum_{n} I(m, n) K(i-m, j-n)$$</p>  
 
     In practice we use the following formula instead (commutativity):  
@@ -235,16 +332,16 @@ prevLink: /work_files/research/dl/cv.html
 
             <!-- * <button>Figure: Toeplitz Matrix</button>{: .showText value="show" onclick="showTextPopHide(event);"}  
              -->
-            ![img](/main_files/dl/cnn/20.png){: width="80%"}  
+            ![img](/main_files/dl/cnn/20.png){: width="50%"}  
         * In __two dimensions__, a __doubly block circulant matrix__ corresponds to convolution.  
             > A matrix which is circulant with respect to its sub-matrices is called a __block circulant matrix__. If each of the submatrices is itself circulant, the matrix is called __doubly block-circulant matrix__.  
                 <!-- * <button>Figure: Block-Circulant Matrix</button>{: .showText value="show" onclick="showTextPopHide(event);"}   -->
-                ![img](/main_files/dl/cnn/21.png){: width="60%"}  
+                ![img](/main_files/dl/cnn/21.png){: width="40%"}  
     * Convolution usually corresponds to a __very sparse matrix__ (a matrix whose entries are mostly equal to zero).  
         This is because the kernel is usually much smaller than the input image.  
     * Any neural network algorithm that works with matrix multiplication and does not depend on specific properties of the matrix structure should work with convolution, without requiring any further changes to the neural network.  
     * Typical convolutional neural networks do make use of further specializations in order to deal with large inputs efficiently, but these are not strictly necessary from a theoretical perspective.  
-
+    <br>
 
 5. **The Convolution operation in a CONV Layer:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents35}   
     * The CONV layer’s __parameters__ consist of __a set of learnable filters__.  
@@ -254,12 +351,14 @@ prevLink: /work_files/research/dl/cv.html
         * As we slide the filter over the width and height of the input volume we will produce a 2-dimensional activation map that gives the responses of that filter at every spatial position.  
         > Intuitively, the network will learn filters that activate when they see some type of visual feature such as an edge of some orientation or a blotch of some color on the first layer, or eventually entire honeycomb or wheel-like patterns on higher layers of the network. 
         * Now, we will have an entire set of filters in each CONV layer (e.g. 12 filters), and each of them will produce a separate 2-dimensional activation map.   
-    * We will __stack__ these activation maps along the depth dimension and produce the output volume.  
+        * We will __stack__ these activation maps along the depth dimension and produce the output volume.  
 
-    <p style="color: red">As a result, the network learns filters that activate when it detects some specific type of feature at some spatial position in the input. </p>    
+    <p style="color: red">As a result <i>(of what?)</i>, the network learns filters that activate when it detects some specific type of feature at some spatial position in the input. </p>    
+    <br>
     
 6. **The Brain Perspective:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents26}  
     Every entry in the 3D output volume can also be interpreted as an output of a neuron that looks at only a small region in the input and shares parameters with all neurons to the left and right spatially.  
+    <br>
 
 7. **Local Connectivity:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents27}  
     * Convolutional networks exploit spatially local correlation by enforcing a local connectivity pattern between neurons of adjacent layers: 
@@ -267,7 +366,8 @@ prevLink: /work_files/research/dl/cv.html
     * The __Receptive Field__ of the neuron defines the extent of this connectivity as a hyperparameter.  
     >  For example, suppose the input volume has size $$[32\times32\times3]$$ and the receptive field (or the filter size) is $$5\times5$$, then each neuron in the Conv Layer will have weights to a $$[5\times5\times3]$$ region in the input volume, for a total of $$5*5*3 = 75$$ weights (and $$+1$$ bias parameter).  
 
-    <p style="color: red">Such an architecture ensures that the learnt filters produce the strongest response to a spatially local input pattern.</p>
+    <p style="color: red">Such an architecture ensures that the learnt filters produce the strongest response to a spatially local input pattern.</p>  
+    <br>
 
 8. **Spatial Arrangement:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents28}  
     There are __three__ hyperparameters control the size of the output volume:  
@@ -278,53 +378,62 @@ prevLink: /work_files/research/dl/cv.html
         * The __Smaller__ the stride, the __more overlapping regions__ exist and the __bigger the volume__.  
         * The __bigger__ the stride, the __less overlapping regions__ exist and the         __smaller the volume__.  
 
-    3. The __Padding__ is a hyperparameter whereby we pad the input the input volume with zeros around the border.   
+    3. The __Padding__ is a hyperparameter whereby we pad the input volume with zeros around the border.   
         This allows to _control the spatial size_ of _the output_ volumes.  
-
+    <br>
 
 9. **The Spatial Size of the Output Volume:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents29}  
     We compute the spatial size of the output volume as a function of:  
     * **$$W$$**: The input volume size.  
-    * **$$F$$**: $$\:\:$$The receptive field size of the Conv Layer neurons.  
-    * **$$S$$**: The stride with which they are applied.  
-    * **$$P$$**: The amount of zero padding used on the border.  
+    * **$$F$$**: $$\:$$The receptive field size of the Conv Layer neurons.  
+    * **$$S$$**: $$\:$$The stride with which they are applied.  
+    * **$$P$$**: $$\:$$The amount of zero padding used on the border.  
     Thus, the __Total Size of the Output__:  
     <p>$$\dfrac{W−F+2P}{S} + 1$$</p>  
 
     __Potential Issue__: If this number is not an integer, then the strides are set incorrectly and the neurons cannot be tiled to fit across the input volume in a symmetric way.  
     * __Fix__: In general, setting zero padding to be $${\displaystyle P = \dfrac{K-1}{2}}$$ when the stride is $${\displaystyle S = 1}$$ ensures that the input volume and output volume will have the same size spatially.  
+    <br>
 
 10. **Calculating the Number of Parameters:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents210}   
     Given:  
     * __Input Volume__:  $$32\times32\times3$$  
-    * __Filters__:  $$10 5\times5$$  
+    * __Filters__:  $$10\:\:\: (5\times5)$$  
     * __Stride__:  $$1$$  
     * __Pad__:  $$2$$  
     
     The number of parameters equals the number of parameters in each filter $$ = 5*5*3 + 1 = 76$$ (+1 for __bias__) times the number of filters $$ 76 * 10 = 760$$.  
-            
-
+    <br>
 
 11. **The Convolution Layer:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents311}   
     ![img](/main_files/dl/cnn/3.png){: width="70%"}  
+    ______  
     ![img](/main_files/dl/cnn/8.png){: width="70%"}  
+    ______  
 
     __The Conv Layer and the Brain:__  
     ![img](/main_files/dl/cnn/10.png){: width="70%"}  
+    ______  
     ![img](/main_files/dl/cnn/11.png){: width="70%"}  
+    ______  
     ![img](/main_files/dl/cnn/12.png){: width="70%"}  
+    ______  
+    <br>
 
 
 12. **From FC-layers to Conv-layers:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents312}   
     ![img](/main_files/dl/cnn/4.png){: width="70%"}  
+    ***
     ![img](/main_files/dl/cnn/5.png){: width="70%"}  
+    ***
     ![img](/main_files/dl/cnn/6.png){: width="70%"}  
+    ***
+    <br>
 
 
 13. **$$1\times1$$ Convolutions:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents313}   
     ![img](/main_files/dl/cnn/9.png){: width="70%"}  
-
-
+    <br>
 
 0. **Notes:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents30}   
     * __Summary__:  
@@ -348,6 +457,7 @@ prevLink: /work_files/research/dl/cv.html
 1. **The Pooling Operation/Function:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents41}   
     The pooling function calculates a __summary statistic__ of the nearby pixels at the point of operation.  
     Some common statistics are _max, mean, weighted average_ and _$$L^2$$ norm_ of a surrounding rectangular window.  
+    <br>
 
 
 2. **The Key Ideas/Properties:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}   
@@ -372,10 +482,11 @@ prevLink: /work_files/research/dl/cv.html
     This reduction in the input size can also result in improved statistical efficiency and reduced memory requirements for storing the parameters.  
     <button>Figure: Downsampling</button>{: .showText value="show" onclick="showTextPopHide(event);"}
     ![img](/main_files/dl/cnn/19.png){: width="70%" hidden=""}  
-
+    <br>
 
 3. **Theoretical Guidelines for choosing the pooling function:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}   
     [Link](http://www.di.ens.fr/willow/pdfs/icml2010b.pdf)  
+    <br>
 
 4. **Variations:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents44}   
     __Dynamical Pooling:__  
@@ -383,12 +494,15 @@ prevLink: /work_files/research/dl/cv.html
 
     __Learned Pooling:__  
     Another approach is to learn a single pooling structure that is then applied to all images (Jia et al., 2012).  
+    <br>
 
 5. **Pooling and Top-Down Architectures:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents45}   
     Pooling can complicate some kinds of neural network architectures that use top-down information, such as Boltzmann machines and autoencoders.  
+    <br>
 
 6. **The Pooling Layer (summary):**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents46}   
     ![img](/main_files/dl/cnn/13.png){: width="100%"}  
+    <br>
 
 
 <!-- 7. **The Pooling Layer (summary):**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}   
@@ -409,12 +523,14 @@ prevLink: /work_files/research/dl/cv.html
             
 1. **A Prior Probability Distribution:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents51}  
     This is a probability distribution over the parameters of a model that encodes our beliefs about what models are reasonable, before we have seen any data.  
+    <br>
 
 2. **What is a weight prior?:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents52}  
     Assumptions about the weights (before learning) in terms of acceptable values and range are encoded into the prior distribution of the weights.  
     * A __Weak Prior__:  has a high _entropy_, and thus, variance and shows that there is low confidence in the initial value of the weight.  
     * A __Strong Prior__: in turn has low entropy/variance, and shows a narrow range of values about which we are confident before learning begins.  
     * A __Infinitely Strong Prior__: demarkets certain values as forbidden completely, assigning them zero probability.  
+    <br>
 
 3. **Convolutional Layer as a FC Layer:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents53}  
     If we view the conv-layer as a FC-layer, the:  
@@ -423,8 +539,7 @@ prevLink: /work_files/research/dl/cv.html
         * Except for a small spatially connected region, all other weights must be zero.  
     * __Pooling__: operation imposes an *__infinitely strong prior__* by:  
         * Requiring features to be __Translation Invariant__.   
-        
-        
+    <br>    
 
 4. **Key Insights/Takeaways:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents54}  
     * Convolution and pooling can cause underfitting if the priors imposed are not suitable for the task. When a task involves incorporating information from very distant locations in the input, then the prior imposed by convolution may be inappropriate.  
@@ -523,10 +638,10 @@ prevLink: /work_files/research/dl/cv.html
 
 ***
 
-## Distinguishing features
+## Extra
 {: #contentx}
 
-1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents91} 
+<!-- 1. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents91}  -->
 
 2. **Image Features:**{: style="color: SteelBlue"}{: .bodyContents9 #bodyContents92} 
     :   are certain quantities that are calculated from the image to _better describe the information in the image_, and to _reduce the size of the input vectors_. 

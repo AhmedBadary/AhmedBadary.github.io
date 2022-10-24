@@ -68,14 +68,14 @@
   <h2 id="the-learning-problem">The Learning Problem</h2>
 
 <p><span style="color: goldenrod"><strong>Learning</strong></span>:<br />
-A computer program is said to learn from <em><strong>experience</strong></em> <script type="math/tex">E</script> with respect to some class of <em><strong>tasks</strong></em> <script type="math/tex">T</script> and <em><strong>performance measure</strong></em> <script type="math/tex">P</script>, if its performance at tasks in <script type="math/tex">T</script>, as measured by <script type="math/tex">P</script>, improves with experience <script type="math/tex">E</script>.</p>
+A computer program is said to learn from <em><strong>experience</strong></em> \(E\) with respect to some class of <em><strong>tasks</strong></em> \(T\) and <em><strong>performance measure</strong></em> \(P\), if its performance at tasks in \(T\), as measured by \(P\), improves with experience \(E\).</p>
 
 <ol>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">The Basic Premise/Goal of Learning:</strong><br />
  “Using a set of observations to uncover an underlying process”<br />
  Rephrased mathematically, the <strong>Goal of Learning</strong> is: <br />
- Use the Data to find a hypothesis <script type="math/tex">g \in \mathcal{H}</script>, from the hypothesis set <script type="math/tex">\mathcal{H}=\{h\}</script>, that <em>approximates</em> <script type="math/tex">f</script> well.</p>
+ Use the Data to find a hypothesis \(g \in \mathcal{H}\), from the hypothesis set \(\mathcal{H}=\{h\}\), that <em>approximates</em> \(f\) well.</p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">When to do Learning:</strong><br />
  When:
@@ -87,23 +87,23 @@ A computer program is said to learn from <em><strong>experience</strong></em> <s
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Components of the Problem (Learning):</strong>
     <ul>
-      <li><strong>Input</strong>: <script type="math/tex">\vec{x}</script></li>
-      <li><strong>Output</strong>: <script type="math/tex">y</script></li>
-      <li><strong>Data</strong>:  <script type="math/tex">{(\vec{x}_ 1, y_ 1), (\vec{x}_ 2, y_ 2), ..., (\vec{x}_ N, y_ N)}</script></li>
-      <li><strong>Target Function</strong>: <script type="math/tex">f : \mathcal{X} \rightarrow \mathcal{Y}</script>  (Unknown/Unobserved)</li>
-      <li><strong>Hypothesis</strong>: <script type="math/tex">g : \mathcal{X} \rightarrow \mathcal{Y}</script></li>
+      <li><strong>Input</strong>: \(\vec{x}\)</li>
+      <li><strong>Output</strong>: \(y\)</li>
+      <li><strong>Data</strong>:  \({(\vec{x}_ 1, y_ 1), (\vec{x}_ 2, y_ 2), ..., (\vec{x}_ N, y_ N)}\)</li>
+      <li><strong>Target Function</strong>: \(f : \mathcal{X} \rightarrow \mathcal{Y}\)  (Unknown/Unobserved)</li>
+      <li><strong>Hypothesis</strong>: \(g : \mathcal{X} \rightarrow \mathcal{Y}\)</li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Components of the Solution:</strong>
     <ul>
       <li><strong>The Learning Model</strong>:
         <ul>
-          <li><strong>The Hypothesis Set</strong>:  <script type="math/tex">\mathcal{H}=\{h\},  g \in \mathcal{H}</script>
+          <li><strong>The Hypothesis Set</strong>:  \(\mathcal{H}=\{h\},  g \in \mathcal{H}\)
             <blockquote>
               <p>E.g. Perceptron, SVM, FNNs, etc.</p>
             </blockquote>
           </li>
-          <li><strong>The Learning Algorithm</strong>: picks <script type="math/tex">g \approx f</script> from a hypothesis set <script type="math/tex">\mathcal{H}</script>
+          <li><strong>The Learning Algorithm</strong>: picks \(g \approx f\) from a hypothesis set \(\mathcal{H}\)
             <blockquote>
               <p>E.g. Backprop, Quadratic Programming, etc.</p>
             </blockquote>
@@ -147,10 +147,10 @@ A computer program is said to learn from <em><strong>experience</strong></em> <s
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Learning is Feasible:</strong><br />
  The statement we made that is equivalent to <strong>Learning is Feasible</strong> is the following:<br />
- We establish a <strong>theoretical guarantee</strong> that when you <span style="color: purple"><strong>do well in-sample</strong></span> <script type="math/tex">\implies</script> you <span style="color: purple"><strong>do well out-of-sample (<em>“Generalization”</em>)</strong> </span>.</p>
+ We establish a <strong>theoretical guarantee</strong> that when you <span style="color: purple"><strong>do well in-sample</strong></span> \(\implies\) you <span style="color: purple"><strong>do well out-of-sample (<em>“Generalization”</em>)</strong> </span>.</p>
 
     <p><strong>Learning Feasibility</strong>:<br />
- When learning we only deal with In-Sample Errors <script type="math/tex">E_{\text{in}}(\mathbf{w})</script>; we never handle the out-sample error explicitly; we take the theoretical guarantee that when you do well in-sample <script type="math/tex">\implies</script> you do well out-sample (Generalization).</p>
+ When learning we only deal with In-Sample Errors \(E_{\text{in}}(\mathbf{w})\); we never handle the out-sample error explicitly; we take the theoretical guarantee that when you do well in-sample \(\implies\) you do well out-sample (Generalization).</p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Achieving Learning:</strong><br />
@@ -163,24 +163,24 @@ A computer program is said to learn from <em><strong>experience</strong></em> <s
         <p>This is equivalent to “good” <strong>Generalization</strong>.</p>
       </li>
       <li><strong>Learning</strong>:<br />
-  Learning corresponds to the condition that <script type="math/tex">g \approx f</script>, which in-turn corresponds to the condition:
+  Learning corresponds to the condition that \(g \approx f\), which in-turn corresponds to the condition:
         <p>$$E_{\text {out }}(g) \approx 0  \tag{3.2}$$</p>
       </li>
     </ul>
 
     <p id="lst-p"><strong style="color: red">How to achieve Learning:</strong>  <br />
- We achieve <script type="math/tex">E_{\text {out }}(g) \approx 0</script> through:</p>
+ We achieve \(E_{\text {out }}(g) \approx 0\) through:</p>
     <ol>
-      <li><script type="math/tex">E_{\mathrm{out}}(g) \approx E_{\mathrm{in}}(g)</script><br />
+      <li>\(E_{\mathrm{out}}(g) \approx E_{\mathrm{in}}(g)\)<br />
  A <strong>theoretical</strong> result achieved through Hoeffding <strong style="color: red">PROBABILITY THEORY</strong>  .</li>
-      <li><script type="math/tex">E_{\mathrm{in}}(g) \approx 0</script><br />
+      <li>\(E_{\mathrm{in}}(g) \approx 0\)<br />
  A <strong>Practical</strong> result of minimizing the In-Sample Error Function (ERM) <strong style="color: red">Optimization</strong>  .</li>
     </ol>
 
     <p id="lst-p">Learning is, thus, reduced to the 2 following questions:</p>
     <ol>
-      <li>Can we make sure that <script type="math/tex">E_{\text {out }}(g)</script> is close enough to <script type="math/tex">E_{\text {in }}(g)</script>? (theoretical)</li>
-      <li>Can we make <script type="math/tex">E_{\text {in}}(g)</script> small enough? (practical)</li>
+      <li>Can we make sure that \(E_{\text {out }}(g)\) is close enough to \(E_{\text {in }}(g)\)? (theoretical)</li>
+      <li>Can we make \(E_{\text {in}}(g)\) small enough? (practical)</li>
     </ol>
   </li>
 </ol>
@@ -190,14 +190,14 @@ A computer program is said to learn from <em><strong>experience</strong></em> <s
 <h2 id="the-learning-problem">The Learning Problem</h2>
 
 <p><span style="color: goldenrod"><strong>Learning</strong></span>:<br />
-A computer program is said to learn from <em><strong>experience</strong></em> <script type="math/tex">E</script> with respect to some class of <em><strong>tasks</strong></em> <script type="math/tex">T</script> and <em><strong>performance measure</strong></em> <script type="math/tex">P</script>, if its performance at tasks in <script type="math/tex">T</script>, as measured by <script type="math/tex">P</script>, improves with experience <script type="math/tex">E</script>.</p>
+A computer program is said to learn from <em><strong>experience</strong></em> \(E\) with respect to some class of <em><strong>tasks</strong></em> \(T\) and <em><strong>performance measure</strong></em> \(P\), if its performance at tasks in \(T\), as measured by \(P\), improves with experience \(E\).</p>
 
 <ol>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">The Basic Premise/Goal of Learning:</strong><br />
  “Using a set of observations to uncover an underlying process”<br />
  Rephrased mathematically, the <strong>Goal of Learning</strong> is: <br />
- Use the Data to find a hypothesis <script type="math/tex">g \in \mathcal{H}</script>, from the hypothesis set <script type="math/tex">\mathcal{H}=\{h\}</script>, that <em>approximates</em> <script type="math/tex">f</script> well.</p>
+ Use the Data to find a hypothesis \(g \in \mathcal{H}\), from the hypothesis set \(\mathcal{H}=\{h\}\), that <em>approximates</em> \(f\) well.</p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">When to do Learning:</strong><br />
  When:
@@ -209,23 +209,23 @@ A computer program is said to learn from <em><strong>experience</strong></em> <s
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Components of the Problem (Learning):</strong>
     <ul>
-      <li><strong>Input</strong>: <script type="math/tex">\vec{x}</script></li>
-      <li><strong>Output</strong>: <script type="math/tex">y</script></li>
-      <li><strong>Data</strong>:  <script type="math/tex">{(\vec{x}_ 1, y_ 1), (\vec{x}_ 2, y_ 2), ..., (\vec{x}_ N, y_ N)}</script></li>
-      <li><strong>Target Function</strong>: <script type="math/tex">f : \mathcal{X} \rightarrow \mathcal{Y}</script>  (Unknown/Unobserved)</li>
-      <li><strong>Hypothesis</strong>: <script type="math/tex">g : \mathcal{X} \rightarrow \mathcal{Y}</script></li>
+      <li><strong>Input</strong>: \(\vec{x}\)</li>
+      <li><strong>Output</strong>: \(y\)</li>
+      <li><strong>Data</strong>:  \({(\vec{x}_ 1, y_ 1), (\vec{x}_ 2, y_ 2), ..., (\vec{x}_ N, y_ N)}\)</li>
+      <li><strong>Target Function</strong>: \(f : \mathcal{X} \rightarrow \mathcal{Y}\)  (Unknown/Unobserved)</li>
+      <li><strong>Hypothesis</strong>: \(g : \mathcal{X} \rightarrow \mathcal{Y}\)</li>
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Components of the Solution:</strong>
     <ul>
       <li><strong>The Learning Model</strong>:
         <ul>
-          <li><strong>The Hypothesis Set</strong>:  <script type="math/tex">\mathcal{H}=\{h\},  g \in \mathcal{H}</script>
+          <li><strong>The Hypothesis Set</strong>:  \(\mathcal{H}=\{h\},  g \in \mathcal{H}\)
             <blockquote>
               <p>E.g. Perceptron, SVM, FNNs, etc.</p>
             </blockquote>
           </li>
-          <li><strong>The Learning Algorithm</strong>: picks <script type="math/tex">g \approx f</script> from a hypothesis set <script type="math/tex">\mathcal{H}</script>
+          <li><strong>The Learning Algorithm</strong>: picks \(g \approx f\) from a hypothesis set \(\mathcal{H}\)
             <blockquote>
               <p>E.g. Backprop, Quadratic Programming, etc.</p>
             </blockquote>
@@ -269,10 +269,10 @@ A computer program is said to learn from <em><strong>experience</strong></em> <s
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Learning is Feasible:</strong><br />
  The statement we made that is equivalent to <strong>Learning is Feasible</strong> is the following:<br />
- We establish a <strong>theoretical guarantee</strong> that when you <span style="color: purple"><strong>do well in-sample</strong></span> <script type="math/tex">\implies</script> you <span style="color: purple"><strong>do well out-of-sample (<em>“Generalization”</em>)</strong> </span>.</p>
+ We establish a <strong>theoretical guarantee</strong> that when you <span style="color: purple"><strong>do well in-sample</strong></span> \(\implies\) you <span style="color: purple"><strong>do well out-of-sample (<em>“Generalization”</em>)</strong> </span>.</p>
 
     <p><strong>Learning Feasibility</strong>:<br />
- When learning we only deal with In-Sample Errors <script type="math/tex">E_{\text{in}}(\mathbf{w})</script>; we never handle the out-sample error explicitly; we take the theoretical guarantee that when you do well in-sample <script type="math/tex">\implies</script> you do well out-sample (Generalization).</p>
+ When learning we only deal with In-Sample Errors \(E_{\text{in}}(\mathbf{w})\); we never handle the out-sample error explicitly; we take the theoretical guarantee that when you do well in-sample \(\implies\) you do well out-sample (Generalization).</p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents23">Achieving Learning:</strong><br />
@@ -285,37 +285,37 @@ A computer program is said to learn from <em><strong>experience</strong></em> <s
         <p>This is equivalent to “good” <strong>Generalization</strong>.</p>
       </li>
       <li><strong>Learning</strong>:<br />
-  Learning corresponds to the condition that <script type="math/tex">g \approx f</script>, which in-turn corresponds to the condition:
+  Learning corresponds to the condition that \(g \approx f\), which in-turn corresponds to the condition:
         <p>$$E_{\text {out }}(g) \approx 0  \tag{3.2}$$</p>
       </li>
     </ul>
 
     <p id="lst-p"><strong style="color: red">How to achieve Learning:</strong>  <br />
- We achieve <script type="math/tex">E_{\text {out }}(g) \approx 0</script> through:</p>
+ We achieve \(E_{\text {out }}(g) \approx 0\) through:</p>
     <ol>
-      <li><script type="math/tex">E_{\mathrm{out}}(g) \approx E_{\mathrm{in}}(g)</script><br />
+      <li>\(E_{\mathrm{out}}(g) \approx E_{\mathrm{in}}(g)\)<br />
  A <strong>theoretical</strong> result achieved through Hoeffding <strong style="color: red">PROBABILITY THEORY</strong>  .</li>
-      <li><script type="math/tex">E_{\mathrm{in}}(g) \approx 0</script><br />
+      <li>\(E_{\mathrm{in}}(g) \approx 0\)<br />
  A <strong>Practical</strong> result of minimizing the In-Sample Error Function (ERM) <strong style="color: red">Optimization</strong>  .</li>
     </ol>
 
     <p id="lst-p">Learning is, thus, reduced to the 2 following questions:</p>
     <ol>
-      <li>Can we make sure that <script type="math/tex">E_{\text {out }}(g)</script> is close enough to <script type="math/tex">E_{\text {in }}(g)</script>? (theoretical)</li>
-      <li>Can we make <script type="math/tex">E_{\text {in}}(g)</script> small enough? (practical)</li>
+      <li>Can we make sure that \(E_{\text {out }}(g)\) is close enough to \(E_{\text {in }}(g)\)? (theoretical)</li>
+      <li>Can we make \(E_{\text {in}}(g)\) small enough? (practical)</li>
     </ol>
   </li>
 </ol>
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

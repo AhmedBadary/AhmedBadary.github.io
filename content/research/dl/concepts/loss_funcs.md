@@ -271,7 +271,7 @@ CE > Class-Loss because Class-Loss is binary and doesn't take into account _"how
 
 ### **Perceptron Loss**{: style="color: SteelBlue; font-size: 1.27em"}{: .bodyContents3 #bodyContents36}  
 
-<p>$${\displaystyle L(z, y_i) = {\begin{cases}0&{\text{if }}\ y_i\cdot z_i \geq 0\\-y_i z&{\text{otherwise}}\end{cases}}}$$</p>  
+<p>$${\displaystyle L(\hat{y}_i, y_i) = {\begin{cases}0&{\text{if }}\ y_i\cdot \hat{y}_i \geq 0\\-y_i \hat{y}_i&{\text{otherwise}}\end{cases}}}$$</p>  
 <br>
 
 

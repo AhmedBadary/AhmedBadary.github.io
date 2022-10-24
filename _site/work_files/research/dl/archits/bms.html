@@ -101,7 +101,7 @@
   <li><strong style="color: SteelBlue" class="bodyContents9" id="bodyContents92">The Boltzmann Distribution:</strong><br />
  The <strong>Boltzmann Distribution</strong> is a probability distribution (or probability measure) that gives the <em>probability that a system will be in a certain state</em> as a function of that <em>state’s energy</em> and the <em>temperature of the system</em>:
     <p>$$p_{i} = \dfrac{1}{Z} e^{-\frac{\varepsilon_{i}}{k_B T}}$$</p>
-    <p>where <script type="math/tex">p_{i}</script> is the probability of the system being in state <script type="math/tex">i</script>, <script type="math/tex">\varepsilon_{i}</script> is the energy of that state, and a constant <script type="math/tex">k_B T</script> of the distribution is the product of <strong>Boltzmann’s constant</strong> <script type="math/tex">k_B</script> and <strong>thermodynamic temperature</strong> <script type="math/tex">T</script>, and <script type="math/tex">Z</script> is the <strong>partition function</strong>.</p>
+    <p>where \(p_{i}\) is the probability of the system being in state \(i\), \(\varepsilon_{i}\) is the energy of that state, and a constant \(k_B T\) of the distribution is the product of <strong>Boltzmann’s constant</strong> \(k_B\) and <strong>thermodynamic temperature</strong> \(T\), and \(Z\) is the <strong>partition function</strong>.</p>
 
     <p>The distribution shows that <span style="color: goldenrod">states with <strong><em>lower</em> energy</strong> will always have a <strong><em>higher</em> probability</strong> of being occupied</span>.<br />
  The <strong><em>ratio</em> of probabilities of two states</strong> (AKA <strong>Boltzmann factor</strong>) only depends on the states’ energy difference (AKA <strong>Energy Gap</strong>):{: #bodyContents92BF}</p>
@@ -110,7 +110,7 @@
     <p><strong style="color: red">Derivation:</strong><br />
  The Boltzmann distribution is the distribution that <strong>maximizes the entropy</strong>:</p>
     <p>$$H\left(p_{1}, p_{2}, \cdots, p_{M}\right)=-\sum_{i=1}^{M} p_{i} \log_{2} p_{i}$$</p>
-    <p>subject to the constraint that <script type="math/tex">\sum p_{i} \varepsilon_{i}</script> equals a particular mean energy value.</p>
+    <p>subject to the constraint that \(\sum p_{i} \varepsilon_{i}\) equals a particular mean energy value.</p>
 
     <p><a href="https://bouman.chem.georgetown.edu/S98/boltzmann/boltzmann.htm">This is a simple <strong>Lagrange Multipliers</strong> maximization problem (can be found here).</a></p>
 
@@ -158,25 +158,25 @@
  <img src="https://cdn.mathpix.com/snip/images/GcOUC--gwjuIgl1bAzFcW77LqLOD3siTNaol-pbyhV8.original.fullsize.png" alt="img" width="20%" /></p>
     <ul>
       <li><strong>Input</strong>:<br />
-  BMs are defined over a <script type="math/tex">d</script>-dimensional <strong>binary random vector</strong> <script type="math/tex">\mathrm{x} \in\{0,1\}^{d}</script>.</li>
+  BMs are defined over a \(d\)-dimensional <strong>binary random vector</strong> \(\mathrm{x} \in\{0,1\}^{d}\).</li>
       <li><strong>Output</strong>:<br />
   The units produce <strong>binary results</strong>.</li>
       <li><strong>Units:</strong>
         <ul>
-          <li><strong>Visible</strong> Units: <script type="math/tex">\boldsymbol{v}</script></li>
-          <li><strong>Hidden</strong> Units: <script type="math/tex">\boldsymbol{h}</script></li>
+          <li><strong>Visible</strong> Units: \(\boldsymbol{v}\)</li>
+          <li><strong>Hidden</strong> Units: \(\boldsymbol{h}\)</li>
         </ul>
       </li>
       <li><strong>Probabilistic Model</strong>:<br />
   It is an <strong>energy-based model</strong>; it defines the <strong>joint probability distribution</strong> using an <strong>energy function</strong>:
         <p>$$P(\boldsymbol{x})=\frac{\exp (-E(\boldsymbol{x}))}{Z}$$</p>
-        <p>where <script type="math/tex">E(\boldsymbol{x})</script> is the energy function and <script type="math/tex">Z</script> is the partition function.</p>
+        <p>where \(E(\boldsymbol{x})\) is the energy function and \(Z\) is the partition function.</p>
       </li>
       <li><strong>The Energy Function:</strong>
         <ul>
           <li>With only <strong>visible units</strong>:
             <p>$$E(\boldsymbol{x})=-\boldsymbol{x}^{\top} \boldsymbol{U} \boldsymbol{x}-\boldsymbol{b}^{\top} \boldsymbol{x}$$</p>
-            <p>where <script type="math/tex">U</script> is the “weight” matrix of model parameters and <script type="math/tex">\boldsymbol{b}</script> is the vector of bias parameters.</p>
+            <p>where \(U\) is the “weight” matrix of model parameters and \(\boldsymbol{b}\) is the vector of bias parameters.</p>
           </li>
           <li>With both, <strong>visible and hidden units</strong>:
             <p>$$E(\boldsymbol{v}, \boldsymbol{h})=-\boldsymbol{v}^{\top} \boldsymbol{R} \boldsymbol{v}-\boldsymbol{v}^{\top} \boldsymbol{W} \boldsymbol{h}-\boldsymbol{h}^{\top} \boldsymbol{S} \boldsymbol{h}-\boldsymbol{b}^{\top} \boldsymbol{v}-\boldsymbol{c}^{\top} \boldsymbol{h}$$</p>
@@ -186,7 +186,7 @@
     </ul>
 
     <p><strong style="color: red">Approximation Capabilities:</strong><br />
- A BM with only <strong>visible units</strong> is limited to modeling <span style="color: purple">linear relationships</span> between variables as described by the weight matrix<sup id="fnref:2"><a href="#fn:2" class="footnote">1</a></sup>.<br />
+ A BM with only <strong>visible units</strong> is limited to modeling <span style="color: purple">linear relationships</span> between variables as described by the weight matrix<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">1</a></sup>.<br />
  A BM with <strong>hidden units</strong> is a <span style="color: goldenrod">universal approximator of probability mass functions over discrete variables</span> <em>(Le Roux and Bengio, 2008)</em>.</p>
 
     <p><strong style="color: red">Relation to Hopfield Networks:</strong><br />
@@ -216,14 +216,14 @@
             <li><strong>Energy Minima</strong>: energy minima were useful for Hopfield Nets and served as storage points for our input data (memories). However, they are very harmful for BMs since there is a <em>global objective</em> of finding the best distribution that approximates the real distribution.<br />
   This is necessary to capture the training data probability distribution “well”.</li>
             <li><strong>Activation Functions</strong>: the activation function for a BM is just a <em><strong>stochastic</strong></em> version of the <strong>binary threshold</strong> function. The unit would still update to a binary state according to a threshold value but with the <span style="color: purple">update to the unit state being governed by a probability distribution (<strong>Boltzmann distribution</strong>)</span>.<br />
-  This is necessary (important<script type="math/tex">^{ * }</script>) to escape energy minima.</li>
+  This is necessary (important\(^{ * }\)) to escape energy minima.</li>
           </ul>
         </li>
       </ul>
     </div>
 
     <p><strong style="color: red">Relation to the Ising Model:</strong><br />
- The global energy <script type="math/tex">E</script> in a Boltzmann Machine is identical in form to that of the Ising Model.</p>
+ The global energy \(E\) in a Boltzmann Machine is identical in form to that of the Ising Model.</p>
 
     <p id="lst-p"><strong style="color: red">Notes:</strong></p>
     <ul>
@@ -234,15 +234,15 @@
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Unit-State Probability:</strong>
     <ul>
       <li>The <strong>units</strong> in a BM are <em><strong>binary units</strong></em>.</li>
-      <li>Thus, they have <strong><em>two</em> states</strong> <script type="math/tex">s_i \in \{0,1\}</script> to be in:
+      <li>Thus, they have <strong><em>two</em> states</strong> \(s_i \in \{0,1\}\) to be in:
         <ol>
-          <li><strong>On</strong>: <script type="math/tex">s_i = 1</script></li>
-          <li><strong>Off</strong>: <script type="math/tex">s_i = 0</script></li>
+          <li><strong>On</strong>: \(s_i = 1\)</li>
+          <li><strong>Off</strong>: \(s_i = 0\)</li>
         </ol>
       </li>
-      <li>The <strong>probability that the <script type="math/tex">i</script>-th unit will be <em>on</em> (<script type="math/tex">s_i = 1</script>)</strong> is:
+      <li>The <strong>probability that the \(i\)-th unit will be <em>on</em> (\(s_i = 1\))</strong> is:
         <p>$$p(s_i=1)=\dfrac{1}{1+ e^{-\Delta E_{i}/T}}$$</p>
-        <p>where the scalar <script type="math/tex">T</script> is the <strong>temperature</strong> of the system.</p>
+        <p>where the scalar \(T\) is the <strong>temperature</strong> of the system.</p>
         <ul>
           <li>The RHS is just the <strong>logistic function</strong>. Rewriting the probability:</li>
         </ul>
@@ -258,7 +258,7 @@
       p(s_i=1) &amp;= \dfrac{1}{1 + e^{-\Delta E_i/T}} 
       \end{align}
       $$</p>
-            <p hidden="">where we absorb the Boltzmann constant <script type="math/tex">k</script> into the artificial Temperature constant <script type="math/tex">T</script>.</p>
+            <p hidden="">where we absorb the Boltzmann constant \(k\) into the artificial Temperature constant \(T\).</p>
           </li>
         </ul>
       </li>
@@ -346,23 +346,23 @@
   </li>
 </ol>
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:2">
-      <p>Specifically, the probability of one unit being on is given by a linear model (<strong>logistic regression</strong>) from the values of the other units. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:2" role="doc-endnote">
+      <p>Specifically, the probability of one unit being on is given by a linear model (<strong>logistic regression</strong>) from the values of the other units. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

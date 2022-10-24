@@ -21,7 +21,7 @@ prevLink: /work_files/research/ml.html
 ***
 ***
 
-[MLE vs MAP Estimation](https://h1man5hu.github.io/machine%20learning/maximum-likelihood-estimation-vs-maximum-a-posteriori-estimation/)  
+[MLE vs MAP Estimation](https://himarora.github.io/machine%20learning/maximum-likelihood-estimation-vs-maximum-a-posteriori-estimation/)  
 
 
 ## Estimation
@@ -52,6 +52,8 @@ prevLink: /work_files/research/ml.html
         <p>$$\log p(\mathcal{D} ; \hat{\theta})=\sum_{i=1}^{n} \log p\left(y_{i} ; \theta\right)$$</p>  
         and sums are easier to work with than products.  
 
+    > Likelihood is the probability of the data given the parameters of the model  
+
     __MLE for Parametric Models:__{: style="color: red"}  
     {: #lst-p}
     The __maximum likelihood estimator (MLE)__ for $$\theta$$ in the (parametric) model $$\{p(y, \theta) \vert \theta \in \Theta\}$$ is:  
@@ -72,7 +74,7 @@ prevLink: /work_files/research/ml.html
     __Notes:__{: style="color: red"}  
     {: #lst-p}
     * __Why maximize the natural log of the likelihood?__  
-        <button>Discussion</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+        <button>Discussion</button>{: .showText value="show" onclick="showTextPopHide(event);"}
         *   
             1. Numerical Stability: change products to sums  
             2. The logarithm of a member of the family of exponential probability distributions (which includes the ubiquitous normal) is polynomial in the parameters (i.e. max-likelihood reduces to least-squares for normal distributions)  

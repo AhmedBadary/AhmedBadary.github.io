@@ -97,9 +97,39 @@ prevLink: /work_files/research/dl/nlp.html
         \end{align}$$</p>  
         The __Final Hidden State__ is calculated as follows:  
         <p>$$h_t = o_t \odot \sigma(c_t)$$</p>  
-     
+
 
 3. **Properties:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
     * __Syntactic Invariance__:  
         When one projects down the vectors from the _last time step hidden layer_ (with PCA), one can observe the spatial localization of _syntacticly-similar sentences_  
         ![img](/main_files/dl/nlp/9/5.png){: width="100%"}  
+
+
+__LSTMS:__  
+* The core of the history/memory is captured in the _cell-state $$c_{n}$$_ instead of the hidden state $$h_{n}$$.  
+* (&) __Key Idea:__ The update to the cell-state $$c_{n}=c_{n-1}+\operatorname{tanh}\left(V\left[w_{n-1} ; h_{n-1}\right]+b_{c}\right)$$  here are __additive__. (differentiating a sum gives the identity) Making the gradient flow nicely through the sum. As opposed to the multiplicative updates to $$h_n$$ in vanilla RNNs.  
+    > There is non-linear funcs applied to the history/context cell-state. It is composed of linear functions. Thus, avoids gradient shrinking.  
+
+* In the recurrency of the LSTM the activation function is the identity function with a derivative of 1.0. So, the backpropagated gradient neither vanishes or explodes when passing through, but remains constant.
+* By the selective read, write and forget mechanism (using the gating architecture) of LSTM, there exist at least one path, through which gradient can flow effectively from $$L$$  to $$\theta$$. Hence no vanishing gradient.   
+* However, one must remember that, this is not the case for exploding gradient. It can be proved that, there __can exist__ at-least one path, thorough which gradient can explode.  
+* LSTM decouples cell state (typically denoted by c) and hidden layer/output (typically denoted by h), and only do additive updates to c, which makes memories in c more stable. Thus the gradient flows through c is kept and hard to vanish (therefore the overall gradient is hard to vanish). However, other paths may cause gradient explosion.  
+* The Vanishing gradient solution for LSTM is known as _Constant Error Carousel_.  
+* [**Why can RNNs with LSTM units also suffer from “exploding gradients”?**](https://stats.stackexchange.com/questions/320919/why-can-rnns-with-lstm-units-also-suffer-from-exploding-gradients/339129#339129){: value="show" onclick="iframePopA(event)"}
+<a href="https://stats.stackexchange.com/questions/320919/why-can-rnns-with-lstm-units-also-suffer-from-exploding-gradients/339129#339129"></a>
+    <div markdown="1"> </div>    
+* [Lecture on gradient flow paths through gates](https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture15.pdf)  
+
+* [**LSTMs (Lec Oxford)**](https://www.youtube.com/embed/eDUaRvMDs-s?start=775){: value="show" onclick="iframePopA(event)"}
+<a href="https://www.youtube.com/embed/eDUaRvMDs-s?start=776"></a>
+    <div markdown="1"> </div>    
+
+
+__Important Links:__  
+[The unreasonable effectiveness of Character-level Language Models](https://nbviewer.jupyter.org/gist/yoavg/d76121dfde2618422139)  
+[character-level language model with a Vanilla Recurrent Neural Network, in Python/numpy](https://gist.github.com/karpathy/d4dee566867f8291f086)  
+[Visualizing and Understanding Recurrent Networks - Karpathy Lec](https://skillsmatter.com/skillscasts/6611-visualizing-and-understanding-recurrent-networks)  
+[Cool LSTM Diagrams - blog](https://medium.com/mlreview/understanding-lstm-and-its-diagrams-37e2f46f1714)  
+[Illustrated Guide to Recurrent Neural Networks: Understanding the Intuition](https://www.youtube.com/watch?v=LHXXI4-IEns)  
+[Code LSTM in Python](https://iamtrask.github.io/2015/11/15/anyone-can-code-lstm/)  
+[Mikolov Thesis: STATISTICAL LANGUAGE MODELS BASED ON NEURAL NETWORKS](http://www.fit.vutbr.cz/~imikolov/rnnlm/thesis.pdf)  

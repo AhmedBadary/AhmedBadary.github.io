@@ -93,8 +93,14 @@
 <hr />
 
 <ul>
+  <li>
+    <p><a href="https://theprofessionalspoint.blogspot.com/2019/03/data-wrangling-techniques-steps.html">Data Wrangling Techniques (Blog!)</a></p>
+  </li>
   <li><a href="http://mlexplained.com/2017/12/28/a-practical-introduction-to-nmf-nonnegative-matrix-factorization/">Non-Negative Matrix Factorization NMF Tutorial</a></li>
-  <li><a href="https://distill.pub/2016/misread-tsne/">How to Use t-SNE Effectively (distill blog!)</a></li>
+  <li>
+    <p><a href="https://distill.pub/2016/misread-tsne/">How to Use t-SNE Effectively (distill blog!)</a></p>
+  </li>
+  <li><a href="https://umap-learn.readthedocs.io/en/latest/">UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction [better than t-sne?] (Library Code!)</a></li>
 </ul>
 
 <h2 style="font-size: 1.60em" id="content1">Dimensionality Reduction</h2>
@@ -102,6 +108,14 @@
 <h3 id="dimensionality-reduction"><strong style="color: SteelBlue; font-size: 1.15em" class="bodyContents1" id="bodyContents11">Dimensionality Reduction</strong></h3>
 <p><strong>Dimensionality Reduction</strong> is the process of reducing the number of random variables under consideration by obtaining a set of principal variables. It can be divided into <strong style="color: goldenrod">feature selection</strong> and <strong style="color: goldenrod">feature extraction</strong>.<br />
 <br /></p>
+
+<p id="lst-p"><strong>Dimensionality Reduction Methods:</strong></p>
+<ul>
+  <li>PCA</li>
+  <li>Heatmaps</li>
+  <li>t-SNE</li>
+  <li>Multi-Dimensional Scaling (MDS)</li>
+</ul>
 
 <h3 id="t-sne--t-distributed-stochastic-neighbor-embeddings"><strong style="color: SteelBlue; font-size: 1.15em" class="bodyContents1" id="bodyContents12">t-SNE | T-distributed Stochastic Neighbor Embeddings</strong></h3>
 
@@ -149,17 +163,17 @@ It solves two big problems that <strong>SNE</strong> faces:</p>
   <li><strong>The Crowding Problem:</strong><br />
  The “crowding problem” that are addressed in the paper is defined as: “the area of the two-dimensional map that is available to accommodate moderately distant datapoints will not be nearly large enough compared with the area available to accommodate nearby datepoints”. This happens when the datapoints are distributed in a region on a high-dimensional manifold around i, and we try to model the pairwise distances from i to the datapoints in a two-dimensional map. For example, it is possible to have 11 datapoints that are mutually equidistant in a ten-dimensional manifold but it is not possible to model this faithfully in a two-dimensional map. Therefore, if the small distances can be modeled accurately in a map, most of the moderately distant datapoints will be too far away in the two-dimensional map. In SNE, this will result in very small attractive force from datapoint i to these too-distant map points. The very large number of such forces collapses together the points in the center of the map and prevents gaps from forming between the natural clusters. This phenomena, crowding problem, is not specific to SNE and can be observed in other local techniques such as Sammon mapping as well.
     <ul>
-      <li><strong>Solution - Student t-distribution for <script type="math/tex">q</script></strong>:<br />
-  Student t-distribution is used to compute the similarities between data points in the low dimensional space <script type="math/tex">q</script>.</li>
+      <li><strong>Solution - Student t-distribution for \(q\)</strong>:<br />
+  Student t-distribution is used to compute the similarities between data points in the low dimensional space \(q\).</li>
     </ul>
   </li>
   <li><strong>Optimization Difficulty of KL-div:</strong><br />
  The KL Divergence is used over the conditional probability to calculate the error in the low-dimensional representation. So, the algorithm will be trying to minimize this loss and will calculate its gradient:
     <p>$$\frac{\delta C}{\delta y_{i}}=2 \sum_{j}\left(p_{j | i}-q_{j | i}+p_{i | j}-q_{i | j}\right)\left(y_{i}-y_{j}\right)$$</p>
-    <p>This gradient involves all the probabilities for point <script type="math/tex">i</script> and <script type="math/tex">j</script>. But, these probabilities were composed of the exponentials. The problem is that: We have all these exponentials in our gradient, which can explode (or display other unusual behavior) very quickly and hence the algorithm will take a long time to converge.</p>
+    <p>This gradient involves all the probabilities for point \(i\) and \(j\). But, these probabilities were composed of the exponentials. The problem is that: We have all these exponentials in our gradient, which can explode (or display other unusual behavior) very quickly and hence the algorithm will take a long time to converge.</p>
     <ul>
       <li><strong>Solution - Symmetric SNE</strong>:<br />
-  The Cost Function is a <strong>symmetrized</strong> version of that in SNE. i.e. <script type="math/tex">p_{i\vert j} = p_{j\vert i}</script> and <script type="math/tex">q_{i\vert j} = q_{j\vert i}</script>.<br />
+  The Cost Function is a <strong>symmetrized</strong> version of that in SNE. i.e. \(p_{i\vert j} = p_{j\vert i}\) and \(q_{i\vert j} = q_{j\vert i}\).<br />
 <br /></li>
     </ul>
   </li>
@@ -198,7 +212,7 @@ It has been demonstrated that t-SNE is often able to <em>recover well-separated 
 
 <p id="lst-p"><strong style="color: red">Issues/Weaknesses/Drawbacks:</strong></p>
 <ol>
-  <li>The paper only focuses on the date visualization using t-SNE, that is, embedding high-dimensional date into a two- or three-dimensional space. However, this behavior of t-SNE presented in the paper cannot readily be extrapolated to <script type="math/tex">d>3</script> dimensions due to the heavy tails of the Student t-distribution.</li>
+  <li>The paper only focuses on the date visualization using t-SNE, that is, embedding high-dimensional date into a two- or three-dimensional space. However, this behavior of t-SNE presented in the paper cannot readily be extrapolated to \(d&gt;3\) dimensions due to the heavy tails of the Student t-distribution.</li>
   <li>It might be less successful when applied to data sets with a high intrinsic dimensionality. This is a result of the <em><strong>local linearity assumption</strong> on the manifold</em> that t-SNE makes by employing Euclidean distance to present the similarity between the datapoints.</li>
   <li>The cost function is <strong>not convex</strong>. This leads to the problem that several optimization parameters (hyperparameters) need to be chosen (and tuned) and the constructed solutions depending on these parameters may be different each time t-SNE is run from an initial random configuration of the map points.</li>
   <li>It cannot work <strong>“online”</strong>. Since it learns a non-parametric mapping, which means that it does not learn an explicit function that maps data from the input space to the map. Therefore, it is not possible to embed test points in an existing map. You have to re-run t-SNE on the full dataset.<br />
@@ -208,7 +222,7 @@ It has been demonstrated that t-SNE is often able to <em>recover well-separated 
 
 <p><br /></p>
 
-<p><strong style="color: red">t-SNE Optimization:</strong></p>
+<p id="lst-p"><strong style="color: red">t-SNE Optimization:</strong></p>
 <ul>
   <li><a href="https://lvdmaaten.github.io/publications/papers/JMLR_2014.pdf">Accelerating t-SNE using Tree-Based Algorithms</a></li>
   <li><a href="https://arxiv.org/pdf/1301.3342.pdf">Barnes-Hut-SNE Optimization</a></li>
@@ -216,12 +230,12 @@ It has been demonstrated that t-SNE is often able to <em>recover well-separated 
 
 <p><br /></p>
 
-<p><strong style="color: red">Discussion and Information:</strong></p>
+<p id="lst-p"><strong style="color: red">Discussion and Information:</strong></p>
 <ul>
   <li><strong>What is perplexity?</strong><br />
   Perplexity is a measure for information that is defined as 2 to the power of the Shannon entropy. The perplexity of a fair die with k sides is equal to k. In t-SNE, the perplexity may be viewed as a knob that sets the number of effective nearest neighbors. It is comparable with the number of nearest neighbors k that is employed in many manifold learners.</li>
   <li><strong>Choosing the perplexity hp:</strong> <br />
-  The performance of t-SNE is fairly robust under different settings of the perplexity. The most appropriate value depends on the density of your data. Loosely speaking, one could say that a larger / denser dataset requires a larger perplexity. Typical values for the perplexity range between <script type="math/tex">5</script> and <script type="math/tex">50</script>.</li>
+  The performance of t-SNE is fairly robust under different settings of the perplexity. The most appropriate value depends on the density of your data. Loosely speaking, one could say that a larger / denser dataset requires a larger perplexity. Typical values for the perplexity range between \(5\) and \(50\).</li>
   <li><strong>Every time I run t-SNE, I get a (slightly) different result?</strong><br />
   In contrast to, e.g., PCA, t-SNE has a non-convex objective function. The objective function is minimized using a gradient descent optimization that is initiated randomly. As a result, it is possible that different runs give you different solutions. Notice that it is perfectly fine to run t-SNE a number of times (with the same data and parameters), and to select the visualization with the lowest value of the objective function as your final visualization.</li>
   <li><strong>Assessing the “Quality of Embeddings/visualizations”:</strong><br />
@@ -262,7 +276,7 @@ It has been demonstrated that t-SNE is often able to <em>recover well-separated 
   <li>Simplification of models to make them easier to interpret by researchers/users</li>
   <li>Shorter training time</li>
   <li>A way to handle <em>curse of dimensionality</em></li>
-  <li>Reduction of Variance <script type="math/tex">\rightarrow</script> Reduce Overfitting <script type="math/tex">\rightarrow</script> Enhanced Generalization</li>
+  <li>Reduction of Variance \(\rightarrow\) Reduce Overfitting \(\rightarrow\) Enhanced Generalization</li>
 </ul>
 
 <p id="lst-p"><strong style="color: red">Strategies/Approaches:</strong></p>
@@ -285,9 +299,9 @@ It has been demonstrated that t-SNE is often able to <em>recover well-separated 
 <p>The <strong>Correlation Feature Selection (CFS)</strong> measure evaluates subsets of features on the basis of the following hypothesis:<br />
 “<strong style="color: goldenrod">Good feature subsets contain features highly correlated with the classification, yet uncorrelated to each other</strong>”.</p>
 
-<p>The following equation gives the <strong>merit of a feature subset</strong> <script type="math/tex">S</script> consisting of <script type="math/tex">k</script> features:</p>
+<p>The following equation gives the <strong>merit of a feature subset</strong> \(S\) consisting of \(k\) features:</p>
 <p>$${\displaystyle \mathrm {Merit} _{S_{k}}={\frac {k{\overline {r_{cf}}}}{\sqrt {k+k(k-1){\overline {r_{ff}}}}}}.}$$</p>
-<p>where, <script type="math/tex">{\displaystyle {\overline {r_{cf}}}}</script> is the average value of all feature-classification correlations, and <script type="math/tex">{\displaystyle {\overline {r_{ff}}}}</script> is the average value of all feature-feature correlations.</p>
+<p>where, \({\displaystyle {\overline {r_{cf}}}}\) is the average value of all feature-classification correlations, and \({\displaystyle {\overline {r_{ff}}}}\) is the average value of all feature-feature correlations.</p>
 
 <p>The <strong>CFS criterion</strong> is defined as follows:</p>
 <p>$$\mathrm {CFS} =\max _{S_{k}}\left[{\frac {r_{cf_{1}}+r_{cf_{2}}+\cdots +r_{cf_{k}}}{\sqrt {k+2(r_{f_{1}f_{2}}+\cdots +r_{f_{i}f_{j}}+\cdots +r_{f_{k}f_{1}})}}}\right]$$</p>
@@ -296,7 +310,7 @@ It has been demonstrated that t-SNE is often able to <em>recover well-separated 
 
 <h3 id="feature-selection-embedded-in-learning-algorithms"><strong style="color: SteelBlue; font-size: 1.15em" class="bodyContents2" id="bodyContents23">Feature Selection Embedded in Learning Algorithms</strong></h3>
 <ul>
-  <li><script type="math/tex">l_{1}</script>-regularization techniques, such as sparse regression, LASSO, and <script type="math/tex">{\displaystyle l_{1}}</script>-SVM</li>
+  <li>\(l_{1}\)-regularization techniques, such as sparse regression, LASSO, and \({\displaystyle l_{1}}\)-SVM</li>
   <li>Regularized trees, e.g. regularized random forest implemented in the RRF package</li>
   <li>Decision tree</li>
   <li>Memetic algorithm</li>
@@ -311,11 +325,11 @@ It has been demonstrated that t-SNE is often able to <em>recover well-separated 
 <p>There are different Feature Selection mechanisms around that <strong>utilize mutual information for scoring the different features</strong>.<br />
 They all usually use the same algorithm:</p>
 <ol>
-  <li>Calculate the mutual information as score for between all features (<script type="math/tex">{\displaystyle f_{i}\in F}</script>) and the target class (<script type="math/tex">c</script>)</li>
-  <li>Select the feature with the largest score (e.g. <script type="math/tex">{\displaystyle argmax_{f_{i}\in F}(I(f_{i},c))}</script>) and add it to the set of selected features (<script type="math/tex">S</script>)</li>
+  <li>Calculate the mutual information as score for between all features (\({\displaystyle f_{i}\in F}\)) and the target class (\(c\))</li>
+  <li>Select the feature with the largest score (e.g. \({\displaystyle argmax_{f_{i}\in F}(I(f_{i},c))}\)) and add it to the set of selected features (\(S\))</li>
   <li>Calculate the score which might be derived form the mutual information</li>
-  <li>Select the feature with the largest score and add it to the set of select features (e.g. <script type="math/tex">{\displaystyle {\arg \max }_{f_{i}\in F}(I_{derived}(f_{i},c))}</script>)</li>
-  <li>Repeat 3. and 4. until a certain number of features is selected (e.g. <script type="math/tex">{\displaystyle \vert S\vert =l}</script>)</li>
+  <li>Select the feature with the largest score and add it to the set of select features (e.g. \({\displaystyle {\arg \max }_{f_{i}\in F}(I_{derived}(f_{i},c))}\))</li>
+  <li>Repeat 3. and 4. until a certain number of features is selected (e.g. \({\displaystyle \vert S\vert =l}\))</li>
 </ol>
 
 <!-- <br> ### **Asynchronous**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents2 #bodyContents25}  
@@ -349,6 +363,10 @@ They all usually use the same algorithm:</p>
 <!-- ### ****{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents3 #bodyContents32}  
 ### ****{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents3 #bodyContents33}   -->
 
+<ul>
+  <li><a href="https://heartbeat.fritz.ai/how-to-make-your-machine-learning-models-robust-to-outliers-44d404067d07">How to Make Your Machine Learning Models Robust to Outliers (Blog!)</a></li>
+</ul>
+
 <p><a href="https://en.wikipedia.org/wiki/Outlier#Working_with_outliers">Outliers</a><br />
 <a href="https://en.wikipedia.org/wiki/Robust_statistics#Replacing_outliers_and_missing_values">Replacing Outliers</a><br />
 <a href="https://en.wikipedia.org/wiki/Data_transformation_(statistics)">Data Transformation - Outliers - Standardization</a><br />
@@ -363,13 +381,13 @@ They all usually use the same algorithm:</p>
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.

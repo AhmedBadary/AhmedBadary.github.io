@@ -12,6 +12,8 @@ permalink: /work_files/research/dl
 
 * ### [Computer Vision](/work_files/research/dl/cv.html)
 
+* ### [Practical Concepts in Deep Learning](/work_files/research/dl/concepts)
+
 * ### [Applications in Deep Learning](/work_files/research/dl/applcs.html)
 
 * ### [Theory of Deep Learning](/work_files/research/dl/theory.html)

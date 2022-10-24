@@ -26,6 +26,10 @@ prevLink: /work_files/research/dl/theory.html
 ***
 ***
 
+
+* [Outline of Machine Learning - Wikipedia!](https://en.wikipedia.org/wiki/Outline_of_machine_learning)  
+
+
 ## Machine Learning Basics
 {: #content1}
 
@@ -97,6 +101,207 @@ prevLink: /work_files/research/dl/theory.html
         We often use __accuracy__ or __error rate__.  
     <br>
 
+55. **Machine Learning Methods:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents155}  
+    * <button>[List of Machine Learning Methods](https://en.wikipedia.org/wiki/Outline_of_machine_learning#Machine_learning_methods)</button>{: .showText value="show" onclick="showTextPopHide(event);"}  
+        * __Instance-based algorithm__
+            * [K-nearest neighbors algorithm](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm) (KNN)
+            * [Learning vector quantization](https://en.wikipedia.org/wiki/Learning_vector_quantization) (LVQ)
+            * [Self-organizing map](https://en.wikipedia.org/wiki/Self-organizing_map) (SOM)
+        * __[Regression analysis](https://en.wikipedia.org/wiki/Regression_analysis)__
+            * [Logistic regression](https://en.wikipedia.org/wiki/Logistic_regression)
+            * [Ordinary least squares regression](https://en.wikipedia.org/wiki/Ordinary_least_squares_regression) (OLSR)
+            * [Linear regression](https://en.wikipedia.org/wiki/Linear_regression)
+            * [Stepwise regression](https://en.wikipedia.org/wiki/Stepwise_regression)
+            * [Multivariate adaptive regression splines](https://en.wikipedia.org/wiki/Multivariate_adaptive_regression_splines) (MARS)
+            * Regularization algorithm
+                * [Ridge regression](https://en.wikipedia.org/wiki/Ridge_regression)
+                * [Least Absolute Shrinkage and Selection Operator](https://en.wikipedia.org/wiki/Least_Absolute_Shrinkage_and_Selection_Operator) (LASSO)
+                * [Elastic net](https://en.wikipedia.org/wiki/Elastic_net)
+                * [Least-angle regression](https://en.wikipedia.org/wiki/Least-angle_regression) (LARS)
+            * [Classifiers](https://en.wikipedia.org/wiki/Statistical_classification)
+                * [Probabilistic classifier](https://en.wikipedia.org/wiki/Probabilistic_classifier)
+                    * [Naive Bayes classifier](https://en.wikipedia.org/wiki/Naive_Bayes_classifier)
+                * [Binary classifier](https://en.wikipedia.org/wiki/Binary_classifier)
+                * [Linear classifier](https://en.wikipedia.org/wiki/Linear_classifier)
+                * [Hierarchical classifier](https://en.wikipedia.org/wiki/Hierarchical_classifier)
+        * [__Dimensionality reduction__](https://en.wikipedia.org/wiki/Dimensionality_reduction)
+            * [Canonical correlation analysis](https://en.wikipedia.org/wiki/Canonical_correlation_analysis) (CCA)
+            * [Factor analysis](https://en.wikipedia.org/wiki/Factor_analysis)
+            * [Feature extraction](https://en.wikipedia.org/wiki/Feature_extraction)
+            * [Feature selection](https://en.wikipedia.org/wiki/Feature_selection)
+            * [Independent component analysis](https://en.wikipedia.org/wiki/Independent_component_analysis) (ICA)
+            * [Linear discriminant analysis](https://en.wikipedia.org/wiki/Linear_discriminant_analysis) (LDA)
+            * [Multidimensional scaling](https://en.wikipedia.org/wiki/Multidimensional_scaling) (MDS)
+            * [Non-negative matrix factorization](https://en.wikipedia.org/wiki/Non-negative_matrix_factorization) (NMF)
+            * [Partial least squares regression](https://en.wikipedia.org/wiki/Partial_least_squares_regression) (PLSR)
+            * [Principal component analysis](https://en.wikipedia.org/wiki/Principal_component_analysis) (PCA)
+            * [Principal component regression](https://en.wikipedia.org/wiki/Principal_component_regression) (PCR)
+            * [Projection pursuit](https://en.wikipedia.org/wiki/Projection_pursuit)
+            * [Sammon mapping](https://en.wikipedia.org/wiki/Sammon_mapping)
+            * [t-distributed stochastic neighbor embedding](https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding) (t-SNE)
+        * [__Ensemble learning__](https://en.wikipedia.org/wiki/Ensemble_learning)
+            * [AdaBoost](https://en.wikipedia.org/wiki/AdaBoost)
+            * [Boosting](https://en.wikipedia.org/wiki/Boosting_(machine_learning))
+            * [Bootstrap aggregating](https://en.wikipedia.org/wiki/Bootstrap_aggregating) (Bagging)
+            * [Ensemble averaging](https://en.wikipedia.org/wiki/Ensemble_averaging_(machine_learning)) – process of creating multiple models and combining them to produce a desired output, as opposed to creating just one model. Frequently an ensemble of models performs better than any individual model, because the various errors of the models "average out."
+            * [Gradient boosted decision tree](https://en.wikipedia.org/wiki/Gradient_boosted_decision_tree) (GBDT)
+            * [Gradient boosting](https://en.wikipedia.org/wiki/Gradient_boosting) machine (GBM)
+            * [Random Forest](https://en.wikipedia.org/wiki/Random_Forest)
+            * [Stacked Generalization](https://en.wikipedia.org/wiki/Stacked_Generalization) (blending)
+        * [__Meta learning__](https://en.wikipedia.org/wiki/Meta_learning_(computer_science))
+            * [Inductive bias](https://en.wikipedia.org/wiki/Inductive_bias)
+            * [Metadata](https://en.wikipedia.org/wiki/Metadata)
+        * [__Reinforcement learning__](https://en.wikipedia.org/wiki/Reinforcement_learning)
+            * [Q-learning](https://en.wikipedia.org/wiki/Q-learning)
+            * [State–action–reward–state–action](https://en.wikipedia.org/wiki/State%E2%80%93action%E2%80%93reward%E2%80%93state%E2%80%93action) (SARSA)
+            * [Temporal difference learning](https://en.wikipedia.org/wiki/Temporal_difference_learning) (TD)
+            * [Learning Automata](https://en.wikipedia.org/wiki/Learning_Automata)
+        * [__Supervised learning__](https://en.wikipedia.org/wiki/Supervised_learning)
+            * [AODE](https://en.wikipedia.org/wiki/AODE)
+            * [Artificial neural network](https://en.wikipedia.org/wiki/Artificial_neural_network)
+            * [Association rule learning](https://en.wikipedia.org/wiki/Association_rule_learning) algorithms
+                * [Apriori algorithm](https://en.wikipedia.org/wiki/Apriori_algorithm)
+                * [Eclat algorithm](https://en.wikipedia.org/wiki/Eclat_algorithm)
+            * [Case-based reasoning](https://en.wikipedia.org/wiki/Case-based_reasoning)
+            * [Gaussian process regression](https://en.wikipedia.org/wiki/Gaussian_process_regression)
+            * [Gene expression programming](https://en.wikipedia.org/wiki/Gene_expression_programming)
+            * [Group method of data handling](https://en.wikipedia.org/wiki/Group_method_of_data_handling) (GMDH)
+            * [Inductive logic programming](https://en.wikipedia.org/wiki/Inductive_logic_programming)
+            * [Instance-based learning](https://en.wikipedia.org/wiki/Instance-based_learning)
+            * [Lazy learning](https://en.wikipedia.org/wiki/Lazy_learning)
+            * [Learning Automata](https://en.wikipedia.org/wiki/Learning_Automata)
+            * [Learning Vector Quantization](https://en.wikipedia.org/wiki/Learning_Vector_Quantization)
+            * [Logistic Model Tree](https://en.wikipedia.org/wiki/Logistic_Model_Tree)
+            * [Minimum message length](https://en.wikipedia.org/wiki/Minimum_message_length) (decision trees, decision graphs, etc.)
+                * [Nearest Neighbor Algorithm](https://en.wikipedia.org/wiki/Nearest_neighbor_(pattern_recognition))
+                * [Analogical modeling](https://en.wikipedia.org/wiki/Analogical_modeling)
+            * [Probably approximately correct learning](https://en.wikipedia.org/wiki/Probably_approximately_correct_learning) (PAC) learning
+            * [Ripple down rules](https://en.wikipedia.org/wiki/Ripple_down_rules), a knowledge acquisition methodology
+            * Symbolic machine learning algorithms
+            * [Support vector machines](https://en.wikipedia.org/wiki/Support_vector_machine)
+            * [Random Forests](https://en.wikipedia.org/wiki/Random_forest)
+            * [Ensembles of classifiers](https://en.wikipedia.org/wiki/Ensembles_of_classifiers)
+                * [Bootstrap aggregating](https://en.wikipedia.org/wiki/Bootstrap_aggregating) (bagging)
+                * [Boosting (meta-algorithm)](https://en.wikipedia.org/wiki/Boosting_(meta-algorithm))
+            * [Ordinal classification](https://en.wikipedia.org/wiki/Ordinal_classification)
+            * [Information fuzzy networks](https://en.wikipedia.org/wiki/Information_Fuzzy_Networks) (IFN)
+            * [Conditional Random Field](https://en.wikipedia.org/wiki/Conditional_Random_Field)
+            * [ANOVA](https://en.wikipedia.org/wiki/ANOVA)
+            * [Quadratic classifiers](https://en.wikipedia.org/wiki/Quadratic_classifier)
+            * [k-nearest neighbor](https://en.wikipedia.org/wiki/Nearest_neighbor_(pattern_recognition))
+            * [Boosting](https://en.wikipedia.org/wiki/Boosting_(machine_learning))
+                * SPRINT
+            * [Bayesian networks](https://en.wikipedia.org/wiki/Bayesian_network)
+                * [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes)
+            * [Hidden Markov models](https://en.wikipedia.org/wiki/Hidden_Markov_model)
+                * [Hierarchical hidden Markov model](https://en.wikipedia.org/wiki/Hierarchical_hidden_Markov_model)
+        * [__Bayesian statistics__](https://en.wikipedia.org/wiki/Bayesian_statistics)
+            * Bayesian knowledge base
+            * [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes)
+            * [Gaussian Naive Bayes](https://en.wikipedia.org/wiki/Gaussian_Naive_Bayes)
+            * [Multinomial Naive Bayes](https://en.wikipedia.org/wiki/Multinomial_Naive_Bayes)
+            * [Averaged One-Dependence Estimators](https://en.wikipedia.org/wiki/Averaged_One-Dependence_Estimators) (AODE)
+            * [Bayesian Belief Network](https://en.wikipedia.org/wiki/Bayesian_Belief_Network) (BBN)
+            * [Bayesian Network](https://en.wikipedia.org/wiki/Bayesian_Network) (BN)
+        * __Decision tree algorithms__  
+            * [Decision tree](https://en.wikipedia.org/wiki/Decision_tree)
+            * [Classification and regression tree](https://en.wikipedia.org/wiki/Classification_and_regression_tree) (CART)
+            * [Iterative Dichotomiser 3](https://en.wikipedia.org/wiki/Iterative_Dichotomiser_3) (ID3)
+            * [C4.5 algorithm](https://en.wikipedia.org/wiki/C4.5_algorithm)
+            * [C5.0 algorithm](https://en.wikipedia.org/wiki/C5.0_algorithm)
+            * [Chi-squared Automatic Interaction Detection](https://en.wikipedia.org/wiki/Chi-squared_Automatic_Interaction_Detection) (CHAID)
+            * [Decision stump](https://en.wikipedia.org/wiki/Decision_stump)
+            * Conditional decision tree
+            * [ID3 algorithm](https://en.wikipedia.org/wiki/ID3_algorithm)
+            * [Random forest](https://en.wikipedia.org/wiki/Random_forest)
+            * SLIQ
+        * [__Linear classifier__](https://en.wikipedia.org/wiki/Linear_classifier)
+            * [Fisher's linear discriminant](https://en.wikipedia.org/wiki/Fisher%27s_linear_discriminant)
+            * [Linear regression](https://en.wikipedia.org/wiki/Linear_regression)
+            * [Logistic regression](https://en.wikipedia.org/wiki/Logistic_regression)
+            * [Multinomial logistic regression](https://en.wikipedia.org/wiki/Multinomial_logistic_regression)
+            * [Naive Bayes classifier](https://en.wikipedia.org/wiki/Naive_Bayes_classifier)
+            * [Perceptron](https://en.wikipedia.org/wiki/Perceptron)
+            * [Support vector machine](https://en.wikipedia.org/wiki/Support_vector_machine)
+        * [__Unsupervised learning__](https://en.wikipedia.org/wiki/Unsupervised_learning)
+            * [Expectation-maximization algorithm](https://en.wikipedia.org/wiki/Expectation-maximization_algorithm)
+            * [Vector Quantization](https://en.wikipedia.org/wiki/Vector_Quantization)
+            * [Generative topographic map](https://en.wikipedia.org/wiki/Generative_topographic_map)
+            * [Information bottleneck method](https://en.wikipedia.org/wiki/Information_bottleneck_method)
+        * [__Artificial neural network__](https://en.wikipedia.org/wiki/Artificial_neural_network)
+            * [Feedforward neural network](https://en.wikipedia.org/wiki/Feedforward_neural_network)
+                * [Extreme learning machine](https://en.wikipedia.org/wiki/Extreme_learning_machine)
+                * [Convolutional neural network](https://en.wikipedia.org/wiki/Convolutional_neural_network)
+            * [Recurrent neural network](https://en.wikipedia.org/wiki/Recurrent_neural_network)
+                * [Long short-term memory (LSTM)](https://en.wikipedia.org/wiki/Long_short-term_memory)
+            * [Logic learning machine](https://en.wikipedia.org/wiki/Logic_learning_machine)
+            * [Self-organizing map](https://en.wikipedia.org/wiki/Self-organizing_map)
+        * [__Association rule learning__](https://en.wikipedia.org/wiki/Association_rule_learning)
+            * [Apriori algorithm](https://en.wikipedia.org/wiki/Apriori_algorithm)
+            * [Eclat algorithm](https://en.wikipedia.org/wiki/Eclat_algorithm)
+            * [FP-growth algorithm](https://en.wikipedia.org/wiki/Association_rule_learning#FP-growth_algorithm)
+        * [__Hierarchical clustering__](https://en.wikipedia.org/wiki/Hierarchical_clustering)
+            * [Single-linkage clustering](https://en.wikipedia.org/wiki/Single-linkage_clustering)
+            * [Conceptual clustering](https://en.wikipedia.org/wiki/Conceptual_clustering)
+        * [__Cluster analysis__](https://en.wikipedia.org/wiki/Cluster_analysis)
+            * [BIRCH](https://en.wikipedia.org/wiki/BIRCH)
+            * [DBSCAN](https://en.wikipedia.org/wiki/DBSCAN)
+            * [Expectation-maximization (EM)](https://en.wikipedia.org/wiki/Expectation-maximization_algorithm)
+            * [Fuzzy clustering](https://en.wikipedia.org/wiki/Fuzzy_clustering)
+            * [Hierarchical Clustering](https://en.wikipedia.org/wiki/Hierarchical_Clustering)
+            * [K-means clustering](https://en.wikipedia.org/wiki/K-means_clustering)
+            * [K-medians](https://en.wikipedia.org/wiki/K-medians)
+            * [Mean-shift](https://en.wikipedia.org/wiki/Mean-shift)
+            * [OPTICS algorithm](https://en.wikipedia.org/wiki/OPTICS_algorithm)
+        * [__Anomaly detection__](https://en.wikipedia.org/wiki/Anomaly_detection)
+            * [k-nearest neighbors classification](https://en.wikipedia.org/wiki/K-nearest_neighbors_classification) (_k_-NN)
+            * [Local outlier factor](https://en.wikipedia.org/wiki/Local_outlier_factor)
+        * [__Semi-supervised learning__](https://en.wikipedia.org/wiki/Semi-supervised_learning)
+            * [Active learning](https://en.wikipedia.org/wiki/Active_learning_(machine_learning)) – special case of semi-supervised learning in which a learning algorithm is able to interactively query the user (or some other information source) to obtain the desired outputs at new data points.[[5]](https://en.wikipedia.org/wiki/Outline_of_machine_learning#cite_note-settles-5)[[6]](https://en.wikipedia.org/wiki/Outline_of_machine_learning#cite_note-rubens2016-6)
+            * [Generative models](https://en.wikipedia.org/wiki/Semi-supervised_learning#Generative_models)
+            * [Low-density separation](https://en.wikipedia.org/wiki/Semi-supervised_learning#Low-density_separation)
+            * [Graph-based methods](https://en.wikipedia.org/wiki/Semi-supervised_learning#Graph-based_methods)
+            * [Co-training](https://en.wikipedia.org/wiki/Co-training)
+            * [Transduction](https://en.wikipedia.org/wiki/Transduction_(machine_learning))
+        * [__Deep learning__](https://en.wikipedia.org/wiki/Deep_learning)
+            * [Deep belief networks](https://en.wikipedia.org/wiki/Deep_belief_network)
+            * Deep [Boltzmann machines](https://en.wikipedia.org/wiki/Boltzmann_machine)
+            * Deep [Convolutional neural networks](https://en.wikipedia.org/wiki/Convolutional_neural_network)
+            * Deep [Recurrent neural networks](https://en.wikipedia.org/wiki/Recurrent_neural_network)
+            * [Hierarchical temporal memory](https://en.wikipedia.org/wiki/Hierarchical_temporal_memory)
+            * [Generative Adversarial Networks](https://en.wikipedia.org/wiki/Generative_adversarial_network)
+            * [Deep Boltzmann Machine](https://en.wikipedia.org/wiki/Deep_Boltzmann_Machine) (DBM)
+            * [Stacked Auto-Encoders](https://en.wikipedia.org/wiki/Stacked_Auto-Encoders)
+        * __Other machine learning methods and problems__
+            * [Anomaly detection](https://en.wikipedia.org/wiki/Anomaly_detection)
+            * [Association rules](https://en.wikipedia.org/wiki/Association_rule_learning)
+            * [Bias-variance dilemma](https://en.wikipedia.org/wiki/Bias-variance_dilemma)
+            * [Classification](https://en.wikipedia.org/wiki/Statistical_classification)
+                * [Multi-label classification](https://en.wikipedia.org/wiki/Multi-label_classification)
+            * [Clustering](https://en.wikipedia.org/wiki/Cluster_analysis)
+            * [Data Pre-processing](https://en.wikipedia.org/wiki/Data_Pre-processing)
+            * [Empirical risk minimization](https://en.wikipedia.org/wiki/Empirical_risk_minimization)
+            * [Feature engineering](https://en.wikipedia.org/wiki/Feature_engineering)
+            * [Feature learning](https://en.wikipedia.org/wiki/Feature_learning)
+            * [Learning to rank](https://en.wikipedia.org/wiki/Learning_to_rank)
+            * [Occam learning](https://en.wikipedia.org/wiki/Occam_learning)
+            * [Online machine learning](https://en.wikipedia.org/wiki/Online_machine_learning)
+            * [PAC learning](https://en.wikipedia.org/wiki/PAC_learning)
+            * [Regression](https://en.wikipedia.org/wiki/Regression_analysis)
+            * [Reinforcement Learning](https://en.wikipedia.org/wiki/Reinforcement_Learning)
+            * [Semi-supervised learning](https://en.wikipedia.org/wiki/Semi-supervised_learning)
+            * [Statistical learning](https://en.wikipedia.org/wiki/Statistical_learning)
+            * [Structured prediction](https://en.wikipedia.org/wiki/Structured_prediction)
+                * [Graphical models](https://en.wikipedia.org/wiki/Graphical_model)
+                    * [Bayesian network](https://en.wikipedia.org/wiki/Bayesian_network)
+                    * [Conditional random field](https://en.wikipedia.org/wiki/Conditional_random_field) (CRF)
+                    * [Hidden Markov model](https://en.wikipedia.org/wiki/Hidden_Markov_model) (HMM)
+            * [Unsupervised learning](https://en.wikipedia.org/wiki/Unsupervised_learning)
+            * [VC theory](https://en.wikipedia.org/wiki/VC_theory)
+        {: hidden=""}
+    <br>
+
+
 11. **Learning vs Optimization:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents111}  
     __Generalization:__ is the ability to perform well on previously unobserved inputs.  
     __Generalization (Test) Error:__ is defined as the expected value of the error on a new input.  
@@ -119,7 +324,7 @@ prevLink: /work_files/research/dl/theory.html
         * The _training set_ and _test set_ are __identically distributed__ (drawn from the same probability distribution as each other)  
 
         This assumption enables us to describe the data-generating process with a probability distribution over a single example. The same distribution is then used to generate every train example and every test example.  
-    * We call that shared underlying distribution the __data-generating distribution__, denoted $$p_{\text {data }}$$  
+    * We call that shared underlying distribution the __data-generating distribution__, denoted $$p_{\text{data}}$$  
 
     This probabilistic framework and the i.i.d. assumptions enable us to mathematically study the relationship between training error and test error.  
 
@@ -175,6 +380,10 @@ prevLink: /work_files/research/dl/theory.html
 
     <br>
 
+34. **Point Estimation:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents134}  
+    Point estimation is the attempt to provide the single “best” prediction of some quantity of interest.  In general the quantity of interest can be a single parameter or a vector of parameters in some parametric model, such as the *__weights in linear regression__*, but it can also be a *__whole function__*.  
+    <br>
+
 3. **Estimators:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
     A __Point Estimator__ or __statistic__ is any function of the data:  
     <p>$$\hat{\boldsymbol{\theta}}_{m}=g\left(\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(m)}\right)$$</p>  
@@ -187,9 +396,21 @@ prevLink: /work_files/research/dl/theory.html
     If we assume that: $$y = f(x) + \epsilon$$, where $$\epsilon$$ is the part of $$y$$ that is not predictable from $$x$$; then we are interested in approximating $$f$$ with a model or estimate $$ \hat{f} $$.  
     > Function estimation is really just the same as estimating a parameter $$\boldsymbol{\theta}$$; the function estimator $$ \hat{f} $$ is simply a point estimator in function space.  
 
+    Linear Regression and Polynomial Regression both illustrate scenarios that may be interpreted as either estimating a parameter $$\boldsymbol{w}$$ or estimating a function $$f$$ mapping from $$\boldsymbol{x}$$ to $$y$$.
+
     * [**Estimators as statistics and their probability distributions**](https://www.youtube.com/embed/lr5WH-JVT5I){: value="show" onclick="iframePopA(event)"}
     <a href="https://www.youtube.com/embed/lr5WH-JVT5I"></a>
         <div markdown="1"> </div>    
+    * [Estimators in ML](https://deepai.org/machine-learning-glossary-and-terms/estimator)  
+    * [Plain and Simple Estimators (TF)](https://towardsdatascience.com/plain-and-simple-estimators-d8d3f4c185c1)  
+
+
+    __Notes:__  
+    {: #lst-p}
+    * weights $$\boldsymbol{w}$$ == parameters $$\theta$$
+    * parameter/point estimation == function estimation
+        Linear Regression and Polynomial Regression both illustrate scenarios that may be interpreted as either estimating a parameter $$\boldsymbol{w}$$ or estimating a function $$f$$ mapping from $$\boldsymbol{x}$$ to $$y$$.  
+    * we can use the theory and tools for analyzing point estimators and apply them to function estimators (e.g. bias/var decomp etc.)
 
     <br>
 
@@ -232,6 +453,7 @@ prevLink: /work_files/research/dl/theory.html
     * __Variance__: provides a measure of the deviation from the expected estimator value that any particular sampling of the data is likely to cause  
 
     __Evaluating Models - Trading off Bias and Variance:__  
+    {: #lst-p}
     * The most common way to negotiate this trade-off is to use __cross-validation__
     * Alternatively, we can also compare the __mean squared error (MSE)__ of the estimates:  
         <p>$$\begin{aligned} \mathrm{MSE} &=\mathbb{E}\left[\left(\hat{\theta}_{m}-\theta\right)^{2}\right] \\ &=\operatorname{Bias}\left(\hat{\theta}_{m}\right)^{2}+\operatorname{Var}\left(\hat{\theta}_{m}\right) \end{aligned}$$</p>  
@@ -247,41 +469,48 @@ prevLink: /work_files/research/dl/theory.html
     <p>$$\mathrm{plim}_{m \rightarrow \infty} \hat{\theta}_{m}=\theta$$</p>  
     Where:    
     $${\text { The symbol plim indicates convergence in probability, meaning that for any } \epsilon>0,}$$ 
-    <p>$${P\left(\vert\hat{\theta}_{m}-\theta \vert>\epsilon\right) \rightarrow 0 \text { as } m \rightarrow \infty}$$</p>  
+    <p>$${P\left(\vert\hat{\theta}_ {m}-\theta \vert>\epsilon\right) \rightarrow 0 \text { as } m \rightarrow \infty}$$</p>  
     > Sometimes referred to as __Weak Consistency__  
 
     __Strong Consistency__ applies to *__almost sure convergence__* of $$\hat{\theta}$$ to $$\theta$$.  
 
     __Consistency and Asymptotic Bias:__  
+    {: #lst-p}
     * Consistency ensures that the bias induced by the estimator diminishes as the number of data examples grows.  
-    * However, asymptotic unbiasedness does __not__ imply consistency
+    * However, asymptotic unbiasedness does __not__ imply consistency  
+        * It is also useful to note that by Chebyshev's inequality, if the variance tends to zero then asymptotic unbiasedness implies consistency [stex](https://math.stackexchange.com/questions/239146/consistency-and-asymptotically-unbiasedness).  
+
+    | Consistency implies both unbiasedness and low variance and therefore, unbiasedness alone is not sufficient to imply consistency.
 
     <br>
 
 8. **Maximum Likelihood Estimation (MLE):**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents18}  
     __MLE__ is a method/principle from which we can derive specific functions that are *__good estimators__* for different models.  
 
-    Let $$\mathbb{X}=\left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(m)}\right\}$$ be a set of $$m$$ examples drawn _independently_ from the true but unknown data-generating distribution $$p_{\text { data }}(\mathbf{x})$$, and let $$p_{\text { model }}(\mathbf{x} ; \boldsymbol{\theta})$$ be a _parametric_ family of probability distributions over the same space indexed by $$\boldsymbol{\theta}$$[^4],  
+    > Likelihood is the probability of the data given the parameters of the model  
+
+    Let $$\mathbb{X}=\left\{\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(m)}\right\}$$ be a set of $$m$$ examples drawn _independently_ from the true but unknown data-generating distribution $$p_{\text{data}}(\mathbf{x})$$, and let $$p_{\text{model}}(\mathbf{x} ; \boldsymbol{\theta})$$ be a _parametric_ family of probability distributions over the same space indexed by $$\boldsymbol{\theta}$$[^4],  
     The Maximum Likelihood Estimator for $$\boldsymbol{\theta}$$ is:  
-    <p>$$\begin{aligned} \boldsymbol{\theta}_{\mathrm{ML}} &=\underset{\boldsymbol{\theta}}{\arg \max } p_{\text { model }}(\mathbb{X} ; \boldsymbol{\theta}) \\ &=\underset{\boldsymbol{\theta}}{\arg \max } \prod_{i=1}^{m} p_{\text { model }}\left(\boldsymbol{x}^{(i)} ; \boldsymbol{\theta}\right) \end{aligned}$$</p>  
+    <p>$$\begin{aligned} \boldsymbol{\theta}_{\mathrm{ML}} &=\underset{\boldsymbol{\theta}}{\arg \max } \: p_{\text{model}}(\mathbb{X} ; \boldsymbol{\theta}) \\ &=\underset{\boldsymbol{\theta}}{\arg \max } \prod_{i=1}^{m} p_{\text{model}}\left(\boldsymbol{x}^{(i)} ; \boldsymbol{\theta}\right) \end{aligned}$$</p>  
     We take the $$log$$ for _numerical stability_:  
-    <p>$$\boldsymbol{\theta}_{\mathrm{ML}}=\underset{\boldsymbol{\theta}}{\arg \max } \sum_{i=1}^{m} \log p_{\text { model }}\left(\boldsymbol{x}^{(i)} ; \boldsymbol{\theta}\right) \tag{5.58}$$</p>  
-    Because the $$\text { arg max }$$ does not change when we rescale the cost function, we can divide by $$m$$ to obtain a version of the criterion that is expressed as an __expectation with respect to the empirical distribution $$\hat{p}_ {\text { data }}$$__  defined by the training data:  
-    <p>$$\boldsymbol{\theta}_{\mathrm{ML}}=\underset{\boldsymbol{\theta}}{\arg \max } \mathbb{E}_{\mathbf{x} \sim \hat{p} \text { data }} \log p_{\text { model }}(\boldsymbol{x} ; \boldsymbol{\theta}) \tag{5.59}$$</p>  
+    <p>$$\boldsymbol{\theta}_{\mathrm{ML}}=\underset{\boldsymbol{\theta}}{\arg \max } \sum_{i=1}^{m} \log p_{\text{model}}\left(\boldsymbol{x}^{(i)} ; \boldsymbol{\theta}\right) \tag{5.58}$$</p>  
+    Because the $$\text { arg max }$$ does not change when we rescale the cost function, we can divide by $$m$$ to obtain a version of the criterion that is expressed as an __expectation with respect to the empirical distribution $$\hat{p}_ {\text{data}}$$__  defined by the training data:  
+    <p>$$\boldsymbol{\theta}_{\mathrm{ML}}=\underset{\boldsymbol{\theta}}{\arg \max } \: 
+        \underset{\mathbf{x} \sim \hat{p}_\text{data}}{\mathbb{E}} [\log p_{\text{model}}(\boldsymbol{x} ; \boldsymbol{\theta})] \tag{5.59}$$</p>  
 
     __MLE as Minimizing KL-Divergence between the Empirical dist. and the model dist.:__{: style="color: red"}  
-    We can interpret maximum likelihood estimation as _minimizing the dissimilarity_ between the __empirical distribution $$\hat{p}_ {\text { data }}$$__, defined by the training set, and the __model distribution__, with the degree of dissimilarity between the two measured by the __KL divergence__.  
+    We can interpret maximum likelihood estimation as _minimizing the dissimilarity_ between the __empirical distribution $$\hat{p}_ {\text{data}}$$__, defined by the training set, and the __model distribution__, with the degree of dissimilarity between the two measured by the __KL divergence__.  
     * The __KL-divergence__ is given by:  
-        <p>$$D_{\mathrm{KL}}\left(\hat{p}_{\text { data }} \| p_{\text { model }}\right)=\mathbb{E}_{\mathbf{x} \sim \hat{p}_{\text { data }}}\left[\log \hat{p}_{\text { data }}(\boldsymbol{x})-\log p_{\text { model }}(\boldsymbol{x})\right] \tag{5.60}$$</p>  
+        <p>$$D_{\mathrm{KL}}\left(\hat{p}_{\text{data}} \| p_{\text{model}}\right)=\mathbb{E}_{\mathbf{x} \sim \hat{p}_{\text{data}}}\left[\log \hat{p}_{\text{data}}(\boldsymbol{x})-\log p_{\text{model}}(\boldsymbol{x})\right] \tag{5.60}$$</p>  
     The term on the left is a function only of the data-generating process, not the model. This means when we train the model to minimize the KL divergence, we need only minimize:  
-    <p>$$-\mathbb{E}_{\mathbf{x} \sim \hat{p}_{\text { data }}}\left[\log p_{\text { model }}(\boldsymbol{x})\right] \tag{5.61}$$</p>  
+    <p>$$-\mathbb{E}_{\mathbf{x} \sim \hat{p}_{\text{data}}}\left[\log p_{\text{model}}(\boldsymbol{x})\right] \tag{5.61}$$</p>  
     which is of course the same as the _maximization_ in equation $$5.59$$.  
 
     Minimizing this KL-divergence corresponds exactly to __minimizing the cross-entropy between the distributions__.  
     > Any loss consisting of a negative log-likelihood is a cross-entropy between the empirical distribution defined by the training set and theprobability distribution defined by model.  
     > E.g. __MSE__ is the _cross-entropy_ between the __empirical distribution__ and a __Gaussian model__.  
 
-    We can thus see maximum likelihood as an attempt to _make the model distribution match the empirical distribution $$\hat{p} _ {\text { data }}$$_[^5].  
+    We can thus see maximum likelihood as an attempt to _make the model distribution match the empirical distribution $$\hat{p} _ {\text{data}}$$_[^5].  
 
     Maximum likelihood thus becomes minimization of the negative log-likelihood(NLL), or equivalently, minimization of the cross-entropy[^6].  
 
@@ -290,7 +519,7 @@ prevLink: /work_files/research/dl/theory.html
 
     __Conditional Log-Likelihood (MLE for Supervised Learning):__{: style="color: red"}  
     The maximum likelihood estimator can readily be generalized to estimate a _conditional probability $$P(\mathbf{y} | \mathbf{x} ; \boldsymbol{\theta})$$_ in order to predict $$\mathbf{y}$$  given $$\mathbf{x}$$. If $$X$$ represents all our inputs and $$Y$$ all our observed targets, then the conditional maximum likelihood estimator is:  
-    <p>$$\boldsymbol{\theta}_ {\mathrm{ML}}=\underset{\boldsymbol{\theta}}{\arg \max } P(\boldsymbol{Y} | \boldsymbol{X} ; \boldsymbol{\theta}) \tag{5.62}$$</p>  
+    <p>$$\boldsymbol{\theta}_ {\mathrm{ML}}=\underset{\boldsymbol{\theta}}{\arg \max } \: P(\boldsymbol{Y} | \boldsymbol{X} ; \boldsymbol{\theta}) \tag{5.62}$$</p>  
     and the log-likelihood estimator is:  
     <p>$$\boldsymbol{\theta}_{\mathrm{ML}}=\underset{\boldsymbol{\theta}}{\arg \max } \sum_{i=1}^{m} \log P\left(\boldsymbol{y}^{(i)} | \boldsymbol{x}^{(i)} ; \boldsymbol{\theta}\right) \tag{5.63}$$</p>  
 
@@ -298,8 +527,8 @@ prevLink: /work_files/research/dl/theory.html
     __Properties of Maximum Likelihood Estimator:__{: style="color: red"}  
     The main appeal of the maximum likelihood estimator is that it can be shown to be the _best estimator asymptotically_, as the number of examples $$m \rightarrow \infty$$, in terms of its _rate of convergence_ as $$m$$ increases.  
     * __Consistency__: as the number of training examples approaches infinity, the maximum likelihood estimate of a parameter converges to the true value of the parameter, under the following conditions:  
-        * The true distribution $$p_{\text { data }}$$ must lie within the model family $$p_{\text { model }}(\cdot ; \boldsymbol{\theta})$$. Otherwise, no estimator can recover $$p_{\text { data }}$$.  
-        * The true distribution $$p_{\text { data }}$$ must correspond to exactly one value of $$\boldsymbol{\theta}$$. Otherwise, maximum likelihood can recover the correct $$p_{\text { data }}$$ but will not be able to determine which value of $$\boldsymbol{\theta}$$ was used by the data-generating process.   
+        * The true distribution $$p_{\text{data}}$$ must lie within the model family $$p_{\text{model}}(\cdot ; \boldsymbol{\theta})$$. Otherwise, no estimator can recover $$p_{\text{data}}$$.  
+        * The true distribution $$p_{\text{data}}$$ must correspond to exactly one value of $$\boldsymbol{\theta}$$. Otherwise, maximum likelihood can recover the correct $$p_{\text{data}}$$ but will not be able to determine which value of $$\boldsymbol{\theta}$$ was used by the data-generating process.   
     * __Statistical Efficiency__: meaning that one consistent estimator may obtain lower generalization error for a fixed number of samples $$m$$, or equivalently, may require fewer examples to obtain a fixed level of _generalization error_.[^7]  
         The __Cramér-Rao lower bound__ shows that _no consistent estimator has a lower MSE than the maximum likelihood estimator._  
     <br>
@@ -316,7 +545,7 @@ prevLink: /work_files/research/dl/theory.html
         
 
 
-[^4]: In other words, $$p_{\text { model }}(x ; \boldsymbol{\theta})$$ maps any configuration $$x$$ to a real number estimating the true probability $$p_{\text { data }}(x)$$.  
+[^4]: In other words, $$p_{\text{model}}(x ; \boldsymbol{\theta})$$ maps any configuration $$x$$ to a real number estimating the true probability $$p_{\text{data}}(x)$$.  
 [^5]: Ideally, we would like to match the true data-generating distribution $$p_{\text{ data }}$$, but we have no direct access to this distribution.  
 [^6]: The perspective of maximum likelihood as minimum KL divergence becomes helpful in this case because the KL divergence has a known minimum value of zero. The negative log-likelihood can actually become negative when $$x$$ is real-valued.  
 [^7]: Statistical efficiency (measured by the MSE between the estimated and true parameter) is typically studied in the __parametric case__ (as in linear regression), where our goal is to estimate the value of a parameter (assuming it is possible to identify the true parameter), not the value of a function.  
@@ -394,6 +623,12 @@ prevLink: /work_files/research/dl/theory.html
     \nabla (fg) = (f')^T g + (g')^T f$$ 
 :   Thus, we set our function $$h(x) = \langle f(x), g(x) \rangle = f(x)^T g(x)$$; then,  
 :   $$\nabla h(x) = f'(x)^T g(x) + g'(x)^T f(x).$$
+
+
+The answer to the product rule is as follows:
+:   $$    \nabla (f^Tg) = f'g + g'f$$  
+or
+:   $$    \nabla (x^TAx) = \nabla (x)^T(Ax)  =  (x)'(Ax) + (Ax)'x = Ax + A^Tx = (A+A^T)x$$ 
 
 
 <!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents25}

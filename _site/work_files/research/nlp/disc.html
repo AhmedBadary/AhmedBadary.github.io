@@ -84,15 +84,15 @@
 
 <h2 id="content1">Generative vs Discriminative Models</h2>
 
-<p>Given some data <script type="math/tex">\{(d,c)\}</script> of paired observations <script type="math/tex">d</script> and hidden classes <script type="math/tex">c</script>:</p>
+<p>Given some data \(\{(d,c)\}\) of paired observations \(d\) and hidden classes \(c\):</p>
 
 <ol>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Generative (Joint) Models:</strong></dt>
       <dd><strong>Generative Models</strong> are <strong>Joint Models</strong>.</dd>
-      <dd><strong>Joint Models</strong> place probabilities <script type="math/tex">\left(P(c,d)\right)</script> over both the observed data and the “target” (hidden) variables that can only be computed from those observed.</dd>
-      <dd>Generative models are typically probabilistic, specifying a joint probability distribution (<script type="math/tex">P(d,c)</script>) over observation and target (label) values,<br />
+      <dd><strong>Joint Models</strong> place probabilities \(\left(P(c,d)\right)\) over both the observed data and the “target” (hidden) variables that can only be computed from those observed.</dd>
+      <dd>Generative models are typically probabilistic, specifying a joint probability distribution (\(P(d,c)\)) over observation and target (label) values,<br />
  and tries to <strong>Maximize</strong> this <strong>joint Likelihood</strong>.
         <blockquote>
           <p>Choosing weights turn out to be trivial: chosen as the <strong>relative frequencies</strong>.</p>
@@ -114,7 +114,7 @@
       <dt><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Discriminative (Conditional) Models:</strong></dt>
       <dd><strong>Discriminative Models</strong> are <strong>Conditional Models</strong>.</dd>
       <dd><strong>Conditional Models</strong> provide a model only for the “target” (hidden) variabless.<br />
-They take the data as given, and put a probability <script type="math/tex">\left(P(c \| d)\right)</script> over the “target” (hidden) structures given the data.</dd>
+They take the data as given, and put a probability \(\left(P(c \| d)\right)\) over the “target” (hidden) structures given the data.</dd>
       <dd>Conditional Models seek to <strong>Maximize</strong> the <strong>Conditional Likelihood</strong>.
         <blockquote>
           <p>This (maximization) task is usually harder to do.</p>
@@ -150,15 +150,15 @@ One does <strong>not</strong> necessarily outperform the other, in either classi
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents21">Features (Intuitively):</strong></dt>
-      <dd><strong>Features</strong> (<script type="math/tex">f</script>) are elementary pieces of evidence that link aspects of what we observe (<script type="math/tex">d</script>) with a category (<script type="math/tex">c</script>) that we want to predict.</dd>
+      <dd><strong>Features</strong> (\(f\)) are elementary pieces of evidence that link aspects of what we observe (\(d\)) with a category (\(c\)) that we want to predict.</dd>
     </dl>
   </li>
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents2" id="bodyContents22">Features (Mathematically):</strong></dt>
-      <dd>A <strong>Feature</strong> <script type="math/tex">f</script> is a function with a bounded real value.</dd>
+      <dd>A <strong>Feature</strong> \(f\) is a function with a bounded real value.</dd>
       <dd>
-        <script type="math/tex; mode=display">f : \: C \times D \rightarrow \mathbf{R}</script>
+\[f : \: C \times D \rightarrow \mathbf{R}\]
       </dd>
     </dl>
   </li>
@@ -182,7 +182,7 @@ One does <strong>not</strong> necessarily outperform the other, in either classi
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">E_{\text{emp}}(f_i) = \sum_{(c,d)\in\text{observed}(C,D)} f_i(c,d)</script>
+\[E_{\text{emp}}(f_i) = \sum_{(c,d)\in\text{observed}(C,D)} f_i(c,d)\]
       </dd>
       <dd>
         <ul>
@@ -190,7 +190,7 @@ One does <strong>not</strong> necessarily outperform the other, in either classi
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">E(f_i) = \sum_{(c,d)\in(C,D)} P(c,d)f_i(c,d)</script>
+\[E(f_i) = \sum_{(c,d)\in(C,D)} P(c,d)f_i(c,d)\]
       </dd>
       <dd>
         <blockquote>
@@ -204,9 +204,9 @@ One does <strong>not</strong> necessarily outperform the other, in either classi
  They consist of:
     <ul>
       <li><strong>Indicator Function</strong>: a boolean matching function of properties of the input</li>
-      <li><strong>A Particular Class</strong>: specifies some class <script type="math/tex">c_j</script>
+      <li><strong>A Particular Class</strong>: specifies some class \(c_j\)
         <p>$$f_i(c,d) \cong [\Phi(d) \wedge c=c_j] = \{0 \vee 1\}$$</p>
-        <p>where <script type="math/tex">\Phi(d)</script> is a given predicate on the data <script type="math/tex">d</script>, and <script type="math/tex">c_j</script> is a particular class.</p>
+        <p>where \(\Phi(d)\) is a given predicate on the data \(d\), and \(c_j\) is a particular class.</p>
       </li>
     </ul>
 
@@ -226,19 +226,19 @@ One does <strong>not</strong> necessarily outperform the other, in either classi
       <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents31">Linear Classifiers (Classification):</strong></dt>
       <dd>
         <ul>
-          <li>We have a <strong>Linear Function</strong> from the feature sets <script type="math/tex">\{f_i\}</script> to the classes <script type="math/tex">\{c\}</script></li>
-          <li><strong>Assign Weights</strong> <script type="math/tex">\lambda_i</script> to each feature <script type="math/tex">f_i</script></li>
-          <li><strong>Consider each class</strong> for an observed datum <script type="math/tex">d</script></li>
+          <li>We have a <strong>Linear Function</strong> from the feature sets \(\{f_i\}\) to the classes \(\{c\}\)</li>
+          <li><strong>Assign Weights</strong> \(\lambda_i\) to each feature \(f_i\)</li>
+          <li><strong>Consider each class</strong> for an observed datum \(d\)</li>
           <li>
             <dl>
               <dt><strong>Features Vote</strong> with their <em>weights</em>    :</dt>
               <dd>
-                <script type="math/tex; mode=display">\text{vote}(c) = \sum \lambda_i f_i(c,d)</script>
+\[\text{vote}(c) = \sum \lambda_i f_i(c,d)\]
               </dd>
             </dl>
           </li>
           <li><strong>Classification</strong>:<br />
-  choose the class <script type="math/tex">c</script> which <strong>Maximizes</strong> the <strong>vote</strong> <script type="math/tex">\sum \lambda_i f_i(c,d)</script></li>
+  choose the class \(c\) which <strong>Maximizes</strong> the <strong>vote</strong> \(\sum \lambda_i f_i(c,d)\)</li>
         </ul>
       </dd>
     </dl>
@@ -246,14 +246,14 @@ One does <strong>not</strong> necessarily outperform the other, in either classi
   <li>
     <dl>
       <dt><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents32">Exponential Models:</strong></dt>
-      <dd><strong>Exponential Models</strong> make a probabilistic model from the linear combination <script type="math/tex">\sum\lambda_if_i(c,d)</script></dd>
+      <dd><strong>Exponential Models</strong> make a probabilistic model from the linear combination \(\sum\lambda_if_i(c,d)\)</dd>
       <dd>
         <ul>
           <li><strong>Making the Value Positive</strong>:</li>
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\sum\lambda_if_i(c,d) \rightarrow e^{\sum\lambda_if_i(c,d)}</script>
+\[\sum\lambda_if_i(c,d) \rightarrow e^{\sum\lambda_if_i(c,d)}\]
       </dd>
       <dd>
         <ul>
@@ -261,19 +261,19 @@ One does <strong>not</strong> necessarily outperform the other, in either classi
         </ul>
       </dd>
       <dd>
-        <script type="math/tex; mode=display">e^{\sum\lambda_if_i(c,d)} \rightarrow \dfrac{e^{\sum\lambda_if_i(c,d)}}{\sum_{c \in C} e^{\sum\lambda_if_i(c,d)}}</script>
+\[e^{\sum\lambda_if_i(c,d)} \rightarrow \dfrac{e^{\sum\lambda_if_i(c,d)}}{\sum_{c \in C} e^{\sum\lambda_if_i(c,d)}}\]
       </dd>
       <dd>
-        <script type="math/tex; mode=display">\implies</script>
+\[\implies\]
       </dd>
       <dd>
-        <script type="math/tex; mode=display">P(c \| d, \vec{\lambda}) = \dfrac{e^{\sum\lambda_if_i(c,d)}}{\sum_{c \in C} e^{\sum\lambda_if_i(c,d)}}</script>
+\[P(c \| d, \vec{\lambda}) = \dfrac{e^{\sum\lambda_if_i(c,d)}}{\sum_{c \in C} e^{\sum\lambda_if_i(c,d)}}\]
       </dd>
-      <dd>The function <script type="math/tex">P(c \| d,\vec{\lambda})</script> is referred to as the <strong>Soft-Max</strong> function.</dd>
+      <dd>The function \(P(c \| d,\vec{\lambda})\) is referred to as the <strong>Soft-Max</strong> function.</dd>
       <dd>Here, the <strong>Weights</strong> are the <strong>Paramters</strong> of the probability model, combined via a <strong>Soft-Max</strong> function.</dd>
       <dd><strong>Learning:</strong>
         <ul>
-          <li>Given this model form, we want to choose paramters <script type="math/tex">\{\lambda_i\}</script> that <strong>Maximize the Conditional Likelihood</strong> of the data according to this model (i.e. the soft-max func.).</li>
+          <li>Given this model form, we want to choose paramters \(\{\lambda_i\}\) that <strong>Maximize the Conditional Likelihood</strong> of the data according to this model (i.e. the soft-max func.).</li>
         </ul>
       </dd>
       <dd>Exponential Models, construct <em>not onlt</em> <strong>classifications</strong> but, also, <strong>Probability Distributions</strong> over the classifications.</dd>
@@ -290,10 +290,10 @@ One does <strong>not</strong> necessarily outperform the other, in either classi
   <li><strong style="color: SteelBlue" class="bodyContents3" id="bodyContents33">Exponential Models (Training) | Maximizing the Likelihood:</strong><br />
  <strong>The Likelihood Value</strong>:
     <ul>
-      <li>The <strong>(log) conditional likelihood</strong> of a MaxEnt model is a function of the i.i.d. data <script type="math/tex">(C,D)</script> and the parameters (<script type="math/tex">\lambda</script>):
+      <li>The <strong>(log) conditional likelihood</strong> of a MaxEnt model is a function of the i.i.d. data \((C,D)\) and the parameters (\(\lambda\)):
         <p>$$\log P(C \| D,\lambda) = \log \prod_{(c,d) \in (C,D)} P(c \| d,\lambda) = \sum_{(c,d) \in (C,D)} \log P(c \| d,\lambda)$$</p>
       </li>
-      <li>If there aren’t many values of <script type="math/tex">c</script>, it’s easy to calculate:
+      <li>If there aren’t many values of \(c\), it’s easy to calculate:
         <p>$$\log P(c \| d,\lambda) = \sum_{(c,d) \in (C,D)} \log \dfrac{e^{\sum_i \lambda_if_i(c,d)}}{\sum_c e^{\sum_i \lambda_if_i(c,d)}}$$</p>
       </li>
       <li>We can separate this into two components:
@@ -307,11 +307,11 @@ One does <strong>not</strong> necessarily outperform the other, in either classi
  \\\\= \sum_{(c,d) \in (C,D)} \dfrac{\partial \sum_i \lambda_if_i(c,d)}{\partial \lambda_i} 
  \\\\= \sum_{(c,d) \in (C,D)} f_i(c,d)$$</p>
       </li>
-      <li>The derivative of the Numerator is <strong>the Empirical Expectation</strong>, <script type="math/tex">E_{\text{emp}}(f_i)</script></li>
+      <li>The derivative of the Numerator is <strong>the Empirical Expectation</strong>, \(E_{\text{emp}}(f_i)\)</li>
       <li>The Derivative of the Denominator:
         <p>$$\dfrac{\partial M(\lambda)}{\partial \lambda_i}  = \dfrac{\partial \sum_{(c,d) \in (C,D)} \log \sum_c' e^{\sum_i \lambda_if_i(c',d)}}{\partial \lambda_i} \\\\= \sum_{(c,d) \in (C,D)} \sum_c' P(c' \| d, \lambda)f_i(c', d)$$</p>
       </li>
-      <li>The derivative of the Denominator is equal to <strong>the Predicted Expectation (count)</strong>, <script type="math/tex">E(f_i, \lambda)</script></li>
+      <li>The derivative of the Denominator is equal to <strong>the Predicted Expectation (count)</strong>, \(E(f_i, \lambda)\)</li>
       <li>Thus, the derivative of the log likelihood is:
         <p>$$\dfrac{\partial \log P(C \| D, \vec{\lambda})}{\partial \lambda_i} = \text{Actual Count}(f_i, C) - \text{Predicted Count}(f_i, \vec{\lambda})$$</p>
       </li>
@@ -327,7 +327,7 @@ One does <strong>not</strong> necessarily outperform the other, in either classi
     <p>These models are called <strong>Maximum Entropy (Maxent)</strong> Models because we find the model having the maximum entropy, and satisfying the constraints:</p>
     <p>$$E_p(f_j) = E_\hat{p}(f_j), \:\:\: \forall j$$</p>
 
-    <p>Finally, to find the optimal parameters <script type="math/tex">\lambda_1, \dots, \lambda_d</script> one needs to optimize (maximize) the log likelihood, or equivalently, minimize the -ve likelihood.  <br />
+    <p>Finally, to find the optimal parameters \(\lambda_1, \dots, \lambda_d\) one needs to optimize (maximize) the log likelihood, or equivalently, minimize the -ve likelihood.  <br />
  One can do that in variety of ways using optimization methods.</p>
 
     <p id="lst-p">Common <strong>Optimization Methods</strong>:</p>
@@ -352,13 +352,13 @@ One does <strong>not</strong> necessarily outperform the other, in either classi
 
 
       <footer class="site-footer">
-    <!--   <span class="site-footer-owner"><a href="http://localhost:8889">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
+    <!--   <span class="site-footer-owner"><a href="http://localhost:8880">Ahmad Badary</a> is maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span> -->
     
 <!--  -->
     <div class="wrapper">
         <div class="footer-col-wrapper">
             <div class="footer-col footer-col-1">
-            <span class="site-footer-owner"><a href="http://localhost:8889">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
+            <span class="site-footer-owner"><a href="http://localhost:8880">Site</a> maintained by <a href="http://ahmedbadary.ml">Ahmad Badary</a>.</span>
     <span class="site-footer-credits">
         <p>
             &copy; 2017. All rights reserved.
