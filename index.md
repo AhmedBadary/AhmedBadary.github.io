@@ -22,7 +22,7 @@ Interesting Links:
 
 * [Questions Today](/work_files/research/prep_qs_today)  
 * [Answers Today](/work_files/research/answers_today)  
-* [qs2(work_files/research/qs2)      
+* [qs2](work_files/research/qs2)      
 * [ans2](/work_files/research/ans2)  
 
 <br />
