@@ -58,7 +58,7 @@ prevLink: /work_files/research/ml.html
         * A Bayes classifier basically picks the label $$y$$ that has the maximum probability, given that testing data-point $$x$$:  
             $$y^{* }=\operatorname{argmax}_ {y} P(y)=\operatorname{argmax}_ {y} \frac{P(x \mid y) P(y)}{P(x)}$$  
             If you assume the features of $$x$$ are conditionally independent given the label, you get the Naive Bayes classifier.  
-            So, classification depends a lot on $$P(x \mid y)$$. The parametric way to classify would be to decide a model (Gaussian, Bernoulli, etc.) for the features of $$x$$, and typically the models are different for different classes $$y$$. The parameters here are the parameters of you model (mean and covariance for Gaussian, individual feature probabilities for Bernoulli, etc.) and the training problem becomes a parameter estimation problem.
+            So, classification depends a lot on $$P(x \mid y)$$. The parametric way to classify would be to decide a model (Gaussian, Bernoulli, etc.) for the features of $$x$$, and typically the models are different for different classes $$y$$. The parameters here are the parameters of your model (mean and covariance for Gaussian, individual feature probabilities for Bernoulli, etc.) and the training problem becomes a parameter estimation problem.  
         {: hidden=""}
     <br>
 
@@ -84,7 +84,7 @@ prevLink: /work_files/research/ml.html
 
     Finally, the *__conditional distribution over the class variable $$C$$__* is:  
     <p>$${\displaystyle p(C_{k}\mid x_{1},\dots ,x_{n})={\frac {1}{Z}}p(C_{k})\prod _{i=1}^{n}p(x_{i}\mid C_{k})}$$</p>   
-    where, $${\displaystyle Z=p(\mathbf {x} )=\sum _{k}p(C_{k})\ p(\mathbf {x} \mid C_{k})}$$ is a __constant__ scaling factor, a __dependent only__ on the, _known_, feature variables $$x_i$$s.  
+    where, $${\displaystyle Z=p(\mathbf {x} )=\sum _{k}p(C_{k})\ p(\mathbf {x} \mid C_{k})}$$ is a __constant__ scaling factor,__dependent only__ on the, _known_, feature variables $$x_i$$s.  
     <br>
 
 3. **The Classifier:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
@@ -118,7 +118,7 @@ prevLink: /work_files/research/ml.html
     __The MLE Estimates for the Parameters:__{: style="color: red"}  
     * $$\hat{P}(C_k) = \dfrac{\text{doc-count}(C=C_k)}{N_\text{doc}}$$,  
     <br>
-    * $$\hat{P}(x_i | C_i) = \dfrac{\text{count}(x_i,C_j)}{\sum_{x \in V} \text{count}(x, C_j)}$$  
+    * $$\hat{P}(x_i | C_j) = \dfrac{\text{count}(x_i,C_j)}{\sum_{x \in V} \text{count}(x, C_j)}$$  
     <br>
 
 6. **MLE Derivation of the Parameter Estimates:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}  
