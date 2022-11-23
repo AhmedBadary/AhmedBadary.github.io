@@ -282,7 +282,9 @@ _N.B.: Blue maps are inputs, and cyan maps are outputs._
     </div>
     <br>
 
-                
+
+
+
 
 2. **Cross-Correlation:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents32}   
     :   Cross-Correlation is a measure of similarity of two series as a function of the displacement of one relative to the other.
@@ -322,6 +324,14 @@ _N.B.: Blue maps are inputs, and cyan maps are outputs._
 
     The Cross-Correlation is usually implemented by ML-libs:  
     <p>$$S(i, j)=(K * I)(i, j)=\sum_{m} \sum_{n} I(i+m, j+n) K(m, n)$$</p>  
+
+
+
+    <button>[Explanation for the Convolution Function (Math representation) in 2D](https://www.allaboutcircuits.com/technical-articles/two-dimensional-convolution-in-image-processing/)</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](https://cdn.mathpix.com/snip/images/QBBwhLsz9WuCAqBDkGqso-_nzRZF-SSGbr5rXJXGbY0.original.fullsize.png){: width="100%" hidden=""}  
+
+                
+    <br>
 
 
 17. **The Mathematics of the Convolution Operation:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents317}    

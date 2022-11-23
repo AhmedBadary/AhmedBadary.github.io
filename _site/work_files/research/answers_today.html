@@ -64,104 +64,46 @@
     <section class="main-content">
       
       <ol>
-  <li><strong style="color: red">List limitations of PCA:</strong>
+  <li><strong style="color: red">Write down the Convolution operation and the cross-correlation over two axes and:</strong>
     <ol>
-      <li>PCA is highly sensitive to the (relative) scaling of the data; no consensus on best scaling.</li>
+      <li><strong style="color: blue">Convolution:</strong></li>
+      <li><strong style="color: blue">Convolution (commutative):</strong></li>
+      <li><strong style="color: blue">Cross-Correlation:</strong></li>
     </ol>
   </li>
-  <li><strong style="color: red">Feature Importance</strong>
+  <li><strong style="color: red">Measuring Information - Definitions and Formulas:</strong>
     <ol>
-      <li>Use linear regression and select variables based on \(p\) values</li>
-      <li>Use Random Forest, Xgboost and plot variable importance chart</li>
-      <li>Lasso</li>
-      <li>Measure information gain for the available set of features and select top \(n\) features accordingly.</li>
-      <li>Use Forward Selection, Backward Selection, Stepwise Selection</li>
-      <li>Remove the correlated variables prior to selecting important variables</li>
-      <li>In linear models, feature importance can be calculated by the scale of the coefficients</li>
-      <li>In tree-based methods (such as random forest), important features are likely to appear closer to the root of the tree. We can get a feature’s importance for random forest by computing the averaging depth at which it appears across all trees in the forest</li>
+      <li><strong style="color: blue">In Shannons Theory, how do we quantify <em>“transmitting 1 bit of information”</em>?</strong><br />
+ To <strong>transmit \(1\) bit of information</strong> means to <strong>divide the recipients <em>Uncertainty</em> by a factor of \(2\)</strong>.</li>
+      <li><strong style="color: blue">What is <em>the amount of information transmitted</em>?</strong><br />
+ The <strong>amount of information</strong> transmitted is the <strong>logarithm</strong> (base \(2\)) of the <strong>uncertainty reduction factor</strong>.</li>
+      <li><strong style="color: blue">What is the <em>uncertainty reduction factor</em>?</strong><br />
+ It is the <strong>inverse of the probability</strong> of the event being communicated.</li>
+      <li><strong style="color: blue">What is the <em>amount of information in an event \(x\)</em>?</strong><br />
+ The <strong>amount of information</strong> in an event \(\mathbf{x} = x\), called the <em><strong>Self-Information</strong></em>  is:
+        <p>$$I(x) = \log (1/p(x)) = -\log(p(x))$$</p>
+      </li>
     </ol>
   </li>
-  <li>
-    <p><strong style="color: red">Define <em>Relative Entropy</em> - Give it’s formula:</strong><br />
- The <strong>Kullback–Leibler divergence</strong> (<strong>Relative Entropy</strong>) is a measure of how one probability distribution diverges from a second, expected probability distribution.</p>
-
-    <p><strong>Mathematically:</strong></p>
-    <p>$${\displaystyle D_{\text{KL}}(P\parallel Q)=\operatorname{E}_{x \sim P} \left[\log \dfrac{P(x)}{Q(x)}\right]=\operatorname{E}_{x \sim P} \left[\log P(x) - \log Q(x)\right]}$$</p>
+  <li><strong style="color: red">RMSprop</strong>
     <ol>
-      <li><strong>Discrete</strong>:</li>
-    </ol>
-    <p>$${\displaystyle D_{\text{KL}}(P\parallel Q)=\sum_{i}P(i)\log \left({\frac {P(i)}{Q(i)}}\right)}$$  </p>
-    <ol>
-      <li><strong>Continuous</strong>:</li>
-    </ol>
-    <p>$${\displaystyle D_{\text{KL}}(P\parallel Q)=\int_{-\infty }^{\infty }p(x)\log \left({\frac {p(x)}{q(x)}}\right)\,dx,}$$ </p>
+      <li><strong style="color: blue">Motivation:</strong><br />
+ RMSprop and Adadelta have both been developed independently around the same time stemming from the need to <strong>resolve Adagrad’s radically diminishing learning rates</strong>.</li>
+      <li><strong style="color: blue">Definitions/Algorithm:</strong><br />
+ <strong>RMSprop</strong> is an unpublished, adaptive learning rate method proposed by Geoff Hinton in <a href="http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf">Lecture 6e of his Coursera Class</a>.</li>
+      <li><strong style="color: blue">Intuition:</strong><br />
+ RMSprop in fact is identical to the first update vector of Adadelta that we derived above:
+        <p>$$\begin{align}  \begin{split}  E[g^2]_t &amp;= 0.9 E[g^2]_{t-1} + 0.1 g^2_t \\  \theta_{t+1} &amp;= \theta_{t} - \dfrac{\eta}{\sqrt{E[g^2]_t + \epsilon}} g_{t}  \end{split}  \end{align}$$</p>
 
-    <ol>
-      <li><strong style="color: blue">Give an interpretation:</strong>
-        <ol>
-          <li><strong>Discrete variables</strong>:<br />
- It is the extra amount of information needed to send a message containing symbols drawn from probability distribution \(P\), when we use a code that was designed to minimize the length of messages drawn from probability distribution \(Q\).</li>
-        </ol>
+        <p>RMSprop as well <strong style="color: goldenrod">divides the learning rate by an exponentially decaying average of squared gradients</strong>.</p>
       </li>
-      <li><strong style="color: blue">List the properties:</strong>
-        <ol>
-          <li>Non-Negativity:<br />
-     \({\displaystyle D_{\mathrm {KL} }(P\|Q) \geq 0}\)</li>
-          <li>\({\displaystyle D_{\mathrm {KL} }(P\|Q) = 0 \iff}\) \(P\) and \(Q\) are:
-            <ol>
-              <li><em><strong>Discrete Variables</strong></em>:<br />
-     the same distribution</li>
-              <li><em><strong>Continuous Variables</strong></em>:<br />
-     equal “almost everywhere”</li>
-            </ol>
-          </li>
-          <li>Additivity of <em>Independent Distributions</em>:<br />
-     \({\displaystyle D_{\text{KL}}(P\parallel Q)=D_{\text{KL}}(P_{1}\parallel Q_{1})+D_{\text{KL}}(P_{2}\parallel Q_{2}).}\)</li>
-          <li>\({\displaystyle D_{\mathrm {KL} }(P\|Q) \neq D_{\mathrm {KL} }(Q\|P)}\)
-            <blockquote>
-              <p>This asymmetry means that there are important consequences to the choice of the ordering</p>
-            </blockquote>
-          </li>
-          <li>Convexity in the pair of PMFs \((p, q)\) (i.e. \({\displaystyle (p_{1},q_{1})}\) and  \({\displaystyle (p_{2},q_{2})}\) are two pairs of PMFs):<br />
-     \({\displaystyle D_{\text{KL}}(\lambda p_{1}+(1-\lambda )p_{2}\parallel \lambda q_{1}+(1-\lambda )q_{2})\leq \lambda D_{\text{KL}}(p_{1}\parallel q_{1})+(1-\lambda )D_{\text{KL}}(p_{2}\parallel q_{2}){\text{ for }}0\leq \lambda \leq 1.}\)</li>
-        </ol>
-      </li>
-      <li><strong style="color: blue">Describe it as a distance:</strong><br />
- Because the KL divergence is non-negative and measures the difference between two distributions, it is often conceptualized as measuring some sort of distance between these distributions.<br />
- However, it is <strong>not</strong> a true distance measure because it is <strong><em>not symmetric</em></strong>.
-        <blockquote>
-          <p>KL-div is, however, a <em><strong>Quasi-Metric</strong></em>, since it satisfies all the properties of a distance-metric except symmetry</p>
-        </blockquote>
-      </li>
-      <li><strong style="color: blue">List the applications of relative entropy:</strong><br />
- Characterizing:
-        <ol>
-          <li>Relative (Shannon) entropy in information systems</li>
-          <li>Randomness in continuous time-series</li>
-          <li>Information gain when comparing statistical models of inference</li>
-        </ol>
-      </li>
-      <li><strong style="color: blue">How does the direction of minimization affect the optimization:</strong><br />
- Suppose we have a distribution \(p(x)\) and we wish to <em>approximate</em> it with another distribution \(q(x)\).<br />
- We have a choice of <em>minimizing</em> either:
-        <ol>
-          <li>\({\displaystyle D_{\text{KL}}(p\|q)} \implies q^\ast = \operatorname {arg\,min}_q {\displaystyle D_{\text{KL}}(p\|q)}\)<br />
- Produces an approximation that usually places high probability anywhere that the true distribution places high probability.</li>
-          <li>\({\displaystyle D_{\text{KL}}(q\|p)} \implies q^\ast \operatorname {arg\,min}_q {\displaystyle D_{\text{KL}}(q\|p)}\)<br />
- Produces an approximation that rarely places high probability anywhere that the true distribution places low probability.
-            <blockquote>
-              <p>which are different due to the <em>asymmetry</em> of the KL-divergence</p>
-            </blockquote>
-          </li>
-        </ol>
-
-        <p><button class="showText" value="show" onclick="showTextPopHide(event);">Choice of KL-div Direction</button>
- <img src="/main_files/math/infothry/1.png" alt="img" width="100%" hidden="" /></p>
-      </li>
+      <li><strong style="color: blue">Parameter Settings:</strong><br />
+ Hinton suggests \(\gamma\) to be set to \(0.9\), while a good default value for the learning rate \(\eta\) is \(0.001\).</li>
+      <li><strong style="color: blue">Properties:</strong><br />
+ Works well with RNNs.</li>
     </ol>
   </li>
 </ol>
-
 
 
       <footer class="site-footer">

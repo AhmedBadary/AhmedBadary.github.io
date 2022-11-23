@@ -11,10 +11,11 @@ prevLink: /work_files/research.html
 
 * __Time Complexity__: 
     * __Sum of natural numbers:__: 
-        * Sum of numbers from $$1$$ to $$n-1$$: $$n*(n-1)/2$$ 
-        * Sum of numbers from $$1$$ to $$n$$: $$n*(n+1)/2$$ 
-        > Note: this is * [equal to](https://math.stackexchange.com/questions/185728/intuition-on-the-sum-of-first-n-1-numbers-is-equal-to-the-number-of-ways-of-pi) the number of ways of picking 2 items out of n.
-            I.E. n choose 2: $$\frac{n(n-1)}{2}=\left(\begin{array}{l} n \\ 2 \end{array}\right)=1+2+\ldots(n-1) = [n!/((n-2)! * 2!)]$$ 
+        * Sum of numbers from $$1$$ to $$n-1$$:  $$ n\times\frac{(n-1)}{2}$$ 
+        * Sum of numbers from $$1$$ to $$n$$:  $$ n\times\frac{(n+1)}{2}$$ 
+        > Note: this is [equal to](https://math.stackexchange.com/questions/185728/intuition-on-the-sum-of-first-n-1-numbers-is-equal-to-the-number-of-ways-of-pi) the number of ways of picking $$2$$ items out of $$n$$.  
+            I.E. $$n$$ choose $$2$$:   
+            $$\frac{n(n-1)}{2}=\left(\begin{array}{l} n \\ 2 \end{array}\right)=1+2+\ldots(n-1) = [n!/((n-2)! * 2!)]$$ 
 
 
 

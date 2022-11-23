@@ -12,19 +12,19 @@ incomplete = ["# Misc.",
               # "# CNNs",
               # "# RNNs",
 
-with open('research/history.txt', 'r') as f:
+with open('history.txt', 'r') as f:
     history = eval("[" + ', '.join(f.read().split('\n')) + ']')[-6:]
     print(history)
 
 
-with open('research/history_rand.txt', 'r') as f:
+with open('history_rand.txt', 'r') as f:
     history_rand = eval("[" + ', '.join(f.read().split('\n')) + ']')[-50:]
     print(history_rand)
 
 
 
 def create_answers():
-    with open('research/answers.md', 'r') as f:
+    with open('../interviews/answers.md', 'r') as f:
         lines = f.read().split('\n')
 
     titles = []
@@ -39,7 +39,7 @@ def create_answers():
 
     print("Today's topic is: ", titles[rand_idx][2:])
 
-    with open('research/history.txt', 'a') as f:
+    with open('history.txt', 'a') as f:
         f.write('"' + titles[rand_idx] + '"\n')
 
     lines[7] = "\n" + "<!-- " + "\n" + lines[7]
@@ -58,13 +58,13 @@ def create_answers():
             break
 
 
-    with open('research/answers_today.md', 'w') as f:
+    with open('../interviews/answers_today.md', 'w') as f:
         for l in lines:
             if "permalink" in l:
                 f.write(l + "_today" + '\n')
             else:
                 f.write(l + '\n')
-    # with open('research/answers_today.md', 'w') as f:
+    # with open('../interviews/answers_today.md', 'w') as f:
     #     for l in lines:
     #         if "permalink" in l:
     #             f.write(l + "_today" + '\n')
@@ -74,7 +74,7 @@ def create_answers():
 
 
 def create_questions(title):
-    with open('research/questions.md', 'r') as f:
+    with open('../interviews/questions.md', 'r') as f:
         lines = f.read().split('\n')
 
     lines[7] = "\n" + "<!-- " + "\n" + lines[7]
@@ -92,13 +92,13 @@ def create_questions(title):
             break
 
 
-    with open('research/questions_today.md', 'w') as f:
+    with open('../interviews/questions_today.md', 'w') as f:
         for l in lines:
             if "permalink" in l:
                 f.write(l + "_today" + '\n')
             else:
                 f.write(l + '\n')
-    with open('research/questions_today.md', 'w') as f:
+    with open('../interviews/questions_today.md', 'w') as f:
         for l in lines:
             if "permalink" in l:
                 f.write(l + "_today" + '\n')
@@ -127,7 +127,7 @@ def get_title(i, lines):
     return lines[j]
 
 def create_rand_answers(n):
-    with open('research/answers.md', 'r') as f:
+    with open('../interviews/answers.md', 'r') as f:
         lines = f.read().split('\n')
 
     qs_idxs = []
@@ -161,11 +161,11 @@ def create_rand_answers(n):
                 new_qs.append(lines[i])
                 new_as.append(lines[i])
 
-    with open('research/history_rand.txt', 'a') as f:
+    with open('history_rand.txt', 'a') as f:
         for l in lens:
             f.write('' + str(l) + '\n')
 
-    with open('research/answers_today.md', 'w') as f:
+    with open('../interviews/answers_today.md', 'w') as f:
         for l in lines[:6]:
             if "permalink" in l:
                 f.write(l + "_today" + '\n')
@@ -177,7 +177,7 @@ def create_rand_answers(n):
         for l in new_as:
             f.write(l + '\n')
 
-    with open('research/questions_today.md', 'w') as f:
+    with open('../interviews/questions_today.md', 'w') as f:
         for l in lines[:6]:
             if "permalink" in l:
                 f.write(l[:-7] + "prep_qs_today" + '\n')
@@ -194,13 +194,13 @@ def create_rand_answers(n):
 # title = create_answers()
 # create_questions(title)
 
-# with open('research/questions_today.md', 'a') as f:
+# with open('../interviews/questions_today.md', 'a') as f:
 #     f.write('\n')
-# with open('research/answers_today.md', 'a') as f:
+# with open('../interviews/answers_today.md', 'a') as f:
 #     f.write('\n')
-# with open('research/questions_today.md', 'a') as f:
+# with open('../interviews/questions_today.md', 'a') as f:
 #     f.write('\n')
-# with open('research/answers_today.md', 'a') as f:
+# with open('../interviews/answers_today.md', 'a') as f:
 #     f.write('\n')
 
 create_rand_answers(n=3)
