@@ -1,16 +1,45 @@
+i       ->      _subject_ 
+
+_       ->      __subject__ 
+
+ii      ->      *__subject__* 
+
+
 lst     ->      * __Title__:  
 
 lsts    ->      * *__Title__*:  
 
-ii      ->      *__subject__* 
-
 red     ->      __Title:__{: style="color: red"}  
 
-_       ->      __subject__ 
-
-i       ->      _subject_ 
 
 sp      ->      indented paragraph
+
+lh      ->      hidden paragraph
+
+lhp     ->      hidden paragraph w/ parent
+
+dh      ->      hidden Div (paragraph)
+
+bd      ->      Bordered Paragraph
+
+emb     ->      embed link in paragraph
+
+nt      ->      Notes
+
+
+lp -> {: #lst-p}  (remove line break before list)
+
+--------------------------------------------
+
+rq -> * __${1:topic}__{: style="color: red"}  
+
+bq -> * __${1:topic}:__{: style="color: blue"}  
+
+gl -> __${1:topic}__{: style="color: goldenrod"} 
+
+gls -> <span>${1:topic}</span>{: style="color: goldenrod"} 
+
+glp -> <span>${1:topic}</span>{: style="color: purple"} 
 
 ---------------------------------------------------------------------------------------------------
 
@@ -26,6 +55,16 @@ rm      ->      \mathrm{x}
 
 bb      ->      \mathbb{R}
 
+$bs     ->      \$\$\boldsymbol{${1:x}}\$\$ 
+
+bs      ->      \boldsymbol{${1:x}}
+
+bigo    ->      \mathcal{O}(N)   (==bo)
+
+$bigo   ->      $$\mathcal{O}(N)$$   (==$bo)
+
+
+
 ^^      ->      ^{(l)}
 
 __      ->      _{(t)}
@@ -38,6 +77,11 @@ mat     ->      \begin{bmatrix} x & x & x  \ x & x & x \ x & x & x  \end{bmatrix
 
 algn    ->      $$\begin{align} x &= y \\ x &= y \\ x &= y \end{align} $$
 
+pp      ->      <p>\$${1:x}\$</p>  (eq)
+
+ppt     ->      <p>\$\$${1:x} \tag{${2:1}.${3:1}}\$\$</p>  (eq + tag)
+
+
 -----------------------------------------------------------------------------------------------------
 
 
@@ -45,4 +89,91 @@ lp      ->      {: #lst-p}
 
 lnk     ->      * [answer (Blog)](link)  
 
+lnki    ->      [${1:answer} (${2:Paper})](${3:link}) 
+
 ->      ->      $$\rightarrow$$ 
+
+
+
+-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+lh -> <button>${1:Title}</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+* ${2:content}  
+{: hidden=""}
+
+lhp -> <button>${1:Title}</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+* ${2:content}  
+{: hidden=""}
+
+emb -> * [**${1:x}**](${2:url}){: value="show" onclick="iframePopA(event)"}
+<a href="${2:url}"></a>
+    <div markdown="1"> </div>    
+
+sp -> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${1:Paragraph}
+
+^^ -> ^{(${2:l})}
+
+rm -> \mathrm{${1:x}}
+
+tx -> \text{${1:abc}}
+
+_tx -> _{\text{${1:abc}}}
+
+
+
+pp -> <p>\$${1:x}\$</p>  
+
+
+
+bd -> <div class="borderexample" markdown="1">
+<span>${1:content}</span>  
+</div>
+
+dh -> <button>${1:Title}</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+<div hidden="" markdown="1">
+${2:content}  
+</div>
+
+
+lnki -> [${1:answer} (${2:Paper})](${3:link}) 
+
+
+nt -> __Notes:__{: style="color: red"}  
+{: #lst-p}
+* [${1:topic} (${2:source})](${3:lnk})  
+<br>
+
+rq -> * __${1:topic}__{: style="color: red"}  
+
+lp -> {: #lst-p}
+
+ppt -> <p>\$\$${1:x} \tag{${2:1}.${3:1}}\$\$</p>  
+
+$bs -> \$\$\boldsymbol{${1:x}}\$\$ 
+
+bs -> \boldsymbol{${1:x}}
+
+
+mat -> \begin{bmatrix}
+    ${1:x} & ${2:x} & ${3:x}  \\
+    ${4:x} & ${5:x} & ${6:x} \\
+    ${7:x} & ${8:x} & ${9:x} 
+\end{bmatrix}
+
+
+algn -> \$\$\begin{align}
+    ${1:x} &= ${2:y} \\\
+    ${3:x} &= ${4:y} \\\
+    ${5:x} &= ${6:y} 
+    \end{align}
+    \$\$ 
+
+
+__ -> _{(${2:t})}

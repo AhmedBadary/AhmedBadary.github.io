@@ -115,10 +115,57 @@
          0\times x + 1 \times y 
      \end{bmatrix}
  $$</p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">How to think of vectors? Three Perspectives:</button>
+ <strong style="color: red">Three Perspectives on Vectors:</strong></p>
+    <ul>
+      <li><strong>Physics</strong>: an arrow pointing in space defined by the <em>length</em> and <em>direction</em> of the arrow.</li>
+      <li><strong>CS</strong>: vectors are <em>Ordered Lists of numbers</em>.</li>
+      <li><strong>Math</strong>: a vector is any object that can be (1) <em>added</em> to another vector  (2) <em>multiplied</em> by a scalar value.</li>
+    </ul>
+
+    <p hidden="">For the purposes of this treatment, think about a vector as an <em>arrow</em> inside a <strong>coordinate system</strong>  with its’ <em>tail</em> at the <em><strong>origin</strong></em>:<br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Vector</button>
+ <img src="https://cdn.mathpix.com/snip/images/UmqicBBCkZNLYE0wLmgNlBF4JYfPGGE3T53OuWEmGvI.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p><strong style="color: red">The coordinates of a Vector:</strong><br />
+ Think about the coordinates as a list of numbers that tells you how to get from the <em>tail</em> of the arrow to its <em>tip</em>.<br />
+ Each coordinate at the \(i\)th index tells you how many <em>“steps”</em> to take in that dimension (\(i\)th dimension).<br />
+ E.g. for the \(2-\)D case, the first coordinate dictates the steps in the \(x\) dimension, and the second coordinate the steps in the \(y\) dimension.<br />
+ <button class="showText" value="show" onclick="showTextPopHide(event);">Example 2D</button>
+ <img src="https://cdn.mathpix.com/snip/images/Elldl45_uEEsD-8yA1yo93ZuI3tuwa9xjzHYIcGWr9U.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p>You can completely specify a vector with its list of coordinates (uniquely).</p>
+
+    <p><strong style="color: red">Vector Addition:</strong><br />
+ To add the two vectors \(\overrightarrow{\mathbf{v}} + \overrightarrow{\mathbf{w}}\):</p>
+    <ul>
+      <li>Move the <em>tail</em> of the second vector \(\overrightarrow{\mathbf{w}}\) to the tip of the first vector \(\overrightarrow{\mathbf{v}}\)</li>
+      <li>Draw an arrow from the <em>tail</em> of \(\overrightarrow{\mathbf{v}}\) to the <em>new tip</em> of \(\overrightarrow{\mathbf{w}}\).</li>
+      <li>This new arrow (vector) is the sum
+ <button class="showText" value="show" onclick="showTextPopHide(event);">example</button>
+ <img src="https://cdn.mathpix.com/snip/images/TTkkCYHhSV_H6Ra3GRbOcvE1urAkBv9rYJSVJK1e4rA.original.fullsize.png" alt="img" width="100%" hidden="" /></li>
+      <li>
+        <p><strong style="color: blue">Intuition:</strong><br />
+  Essentially, you are taking a step in the first vector direction then another step in the second vector direction.  You can do so by moving the tail of the second vector to the tip of the first vector, essentially taking a step in that direction, then take a step in the direction (and length) of the second vector:<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Visualization</button>
+  <img src="/main_files/math/la/linalg/vector_addition_intuition.gif" alt="img" width="60%" hidden="" /></p>
+      </li>
+      <li><strong style="color: blue">Vector Addition Numerically:</strong><br />
+  <img src="https://cdn.mathpix.com/snip/images/4Z81bQcbzCd4BXoTJvFvarxKzR4ySkUVrIFHmLeAVnk.original.fullsize.png" alt="img" width="80%" /></li>
+    </ul>
+
+    <p><strong style="color: red">Scalar Multiplication:</strong><br />
+ <img src="https://cdn.mathpix.com/snip/images/sePiRB-OEtiKddOAvgGJ9ZsUCUA8yl9h4WszpfgjHGw.original.fullsize.png" alt="img" width="80%" /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Span:</strong><br />
  The <strong>Span</strong> of two vectors \(\mathbf{v}, \mathbf{w}\) is the set of all linear combinations of the two vectors:
     <p>$$a \mathbf{v} + b \mathbf{w} \: ; \: a,b \in \mathbb{R}$$</p>
+
+    <p>I.E. What are all the possible vectors you can create using the two fundamental operations on two vectors: vector addition and scalar multiplication.</p>
+
+    <p>As long as each vector does <strong>not</strong> point in the <em><strong>same direction</strong></em> as another vector, you can reach all possible dimensions as the number of vectors.<br />
+ I.E. if you cannot create the vector using the other vectors you have, then it is pointing in a new direction.</p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Linearly Dependent Vectors:</strong><br />
  If one vector is in the span of the other vectors.<br />
@@ -129,8 +176,12 @@
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents144">The Basis:</strong><br />
 The <strong>Basis</strong> of a vector space is a set of <em>linearly independent</em> vectors that <strong>span</strong> the full space.</p>
   </li>
-  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Matrix as a Linear Transformation:</strong><br />
- <strong>Summary</strong>:
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Matrix as a Linear Transformation:</strong><br />
+ <strong>Note:</strong>  A <em><strong>Transformation</strong></em> == <em><strong>Function</strong></em> \(\iff\) <em><strong>Linear Transformation</strong></em> == <em><strong>Linear Function</strong></em>.<br />
+ With <strong>vectors</strong> as <em><strong>inputs</strong></em> and <strong>vectors</strong> as <em><strong>outputs</strong></em>.</p>
+
+    <p><strong>Summary</strong>:</p>
     <ol>
       <li>Each <em><strong>column</strong></em>  is a <em>transformed</em> version of the <em><strong>basis vectors</strong></em> (e.g. \(\hat{i}, \hat{j}\))</li>
       <li>The result of a <strong>Matrix-Vector Product</strong> is the <strong>linear combination</strong> of the <em><strong>vectors</strong></em> with the appropriate <em><strong>transformed coordinate/basis vectors</strong></em>
@@ -204,14 +255,27 @@ This transformation/<em>“movement”</em> is <strong>Linear</strong>, if it ke
  Map vectors from \(\mathbb{R}^M \rightarrow \mathbb{R}^N\).<br />
  They are <em>transformations between <strong>dimensions</strong></em>.</p>
   </li>
-  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">The Product of Two Matrices:</strong><br />
+  <li>
+    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">The Product of Two Matrices:</strong><br />
  The Product of Two Matrices Corresponds to the <em><strong>composition of the transformations</strong></em>, being applied from right to left.<br />
- This is <strong>very important</strong> intuition:
+ This is <strong>very important</strong> intuition:</p>
+
     <blockquote>
       <p>e.g. <em>do matrices commute?</em><br />
  if you think of the matrices as <em>transformations of space</em> then answer quickly is no.<br />
- Equivalently, <em>Are matrices associative?</em>  Yes, function composition is associative (\(f \circ(g \circ h) = (f \circ g) \circ h\))</p>
+ Equivalently, <em>Are matrices associative?</em>  Yes, function composition is associative: \(f \circ(g \circ h) = (f \circ g) \circ h\)</p>
     </blockquote>
+
+    <p><img src="https://cdn.mathpix.com/snip/images/ZYp1ZL39v2kgOdZTN5KCkcNbnuUK8rOVTeh_gBgQXAk.original.fullsize.png" alt="img" width="60%" /></p>
+
+    <p>E.g. <strong style="color: red">Applying two transformations, a Rotation and a Shear:</strong><br />
+ Instead of computing the <strong>Matrix-Vector product</strong> first, then another <strong>Matrix-Vector product</strong> on the resulting vector, we can <em><strong>combine/compose</strong></em> the two <strong>transformations/matrices</strong> into one new <em><strong>composition matrix</strong></em> that specifies the new coordinates after applying the two transformations:<br />
+ <img src="https://cdn.mathpix.com/snip/images/PNa-fCtDnMWPINvGu1f9QMboxBWuk9jZfCEYDXqGbzg.original.fullsize.png" alt="img" width="50%" /><br />
+ where the <em><strong>composition matrix</strong></em> is the <em><strong>Product</strong></em> <strong>of the two matrices</strong>:<br />
+ <img src="https://cdn.mathpix.com/snip/images/uRugAK1YebxnsNk_jdxvQD9wvEZtLnLSFzd2p1FczSk.original.fullsize.png" alt="img" width="50%" /></p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Matrix Multiplication (Composition) Explained</button>
+  <img src="/main_files/math/la/linalg/Matrix_Multiplication.gif" alt="img" width="80%" hidden="" /></p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents17">Linear Transformations:</strong><br />
  <strong>Linear Transformations</strong> are transformations that preserve the following properties:
@@ -226,6 +290,52 @@ This transformation/<em>“movement”</em> is <strong>Linear</strong>, if it ke
  <a href="https://www.youtube.com/embed/LyGKycYT2v0?start=295"></a>
         <div></div>
       </li>
+    </ul>
+
+    <p><strong style="color: red">Visualization:</strong></p>
+    <ul>
+      <li>
+        <p><strong style="color: blue">Examples of NON-linear Transformations:</strong><br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Breaks first rule</button>
+  <img src="https://cdn.mathpix.com/snip/images/7d1c_Jc99wme2hsbF5ZWTRQb9W-uxU3un8jJ_CNRDUY.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+        <p><button class="showText" value="show" onclick="showTextPopHide(event);">Breaks second rule</button>
+  <img src="https://cdn.mathpix.com/snip/images/_P-t1J52sWH0fgXer96UEQ77TyCA8vIuDU5OsUhnZGs.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+        <p><button class="showText" value="show" onclick="showTextPopHide(event);">Breaks first rule but only on diagonal lines</button>
+  <img src="https://cdn.mathpix.com/snip/images/btfvED_Np-hxPIysD2KKYi7suvwZLlRJtBzGxqAmDVc.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+      </li>
+      <li>The new coordinates of the basis vectors \(\hat{\imath}, \hat{\jmath}\) allow us to deduce where every vector is going to land after the transformation, by deducing the linear transformation/function on each basis vector.<br />
+  So, if a vector \(\overrightarrow{\mathbf{v}}\) - defined as some linear combination of \(\hat{\imath}, \hat{\jmath}\):
+        <p>$$\overrightarrow{\mathbf{v}}=a \hat{\imath}+b \hat{\jmath}$$</p>
+        <p>undergoes a linear transformation, it is now defined as the exact same linear combination of the transformed coordinates of \(\hat{\imath}, \hat{\jmath}\):</p>
+        <p>$$\text { Transformed } \overrightarrow{\mathbf{v}}=a(\text { Transformed } \hat{\imath})+b(\text { Transformed } \hat{\jmath})$$</p>
+      </li>
+      <li>We tend to combine the two basis vectors in a matrix side by side.
+        <p>$$\begin{bmatrix}
+      \hat{\imath} &amp; \hat{\jmath}
+  \end{bmatrix}$$</p>
+        <p>E.g. in 2D:</p>
+        <p>$$\begin{bmatrix}
+      1 &amp; 0
+      0 &amp; 1
+  \end{bmatrix}$$</p>
+        <p>and after a certain linear transformation, the new coordinates of the basis vectors define the new matrix:</p>
+      </li>
+    </ul>
+
+    <p id="lst-p"><strong style="color: red">Notes:</strong></p>
+    <ul>
+      <li>You should interpret a <strong>matrix</strong> as a <em><strong>linear transformation of space</strong></em></li>
+      <li>Each <strong>column</strong> represents where the corresponding <em><strong>basis vector</strong></em> lands</li>
+      <li>To Transform any vector to the new, <em>linearly transformed</em> space, you can <em><strong>multiply</strong></em> the <strong>matrix</strong> and the <strong>vector</strong> to get the new coordinates of the vector in that space</li>
+      <li>A <strong>Linear Transformation</strong> corresponds to <em><strong>Matrix-Vector multiplication</strong></em>
+        <ul>
+          <li>Each <em>coordinate</em> of your vector, <em><strong>scales</strong></em> the corresponding <em>basis vector</em> (<em>column</em>) in the new space</li>
+        </ul>
+      </li>
+      <li>We only need to know the <em><strong>coordinates</strong></em> of the <strong>basis vectors</strong> in the new space to <em><strong>specify a linear transformation</strong></em><br />
+ <br /></li>
     </ul>
   </li>
   <li>
@@ -250,15 +360,61 @@ The Equation \(A\mathbf{x} = \mathbf{b}\), finds the vector \(\mathbf{x}\) that 
         </ul>
       </li>
     </ul>
+
+    <p>Usefullness of LA:</p>
+
+    <p><strong style="color: red">Linear System of Equations:</strong><br />
+<img src="https://cdn.mathpix.com/snip/images/wQXF7sx1lI7v_rTlzqUafEia9y5WNP98vz4UarIkNqE.original.fullsize.png" alt="img" width="80%" class="center-image" /><br />
+<button class="showText" value="show" onclick="showTextPopHide(event);">Linear System of Equations</button>
+<img src="https://cdn.mathpix.com/snip/images/NRSwQoxtgSkk15ua28mpzYxmlupyKStNl46BF7axbTI.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <ul>
+      <li><strong style="color: blue">Intuition:</strong>
+        <ul>
+          <li>The <strong>Matrix</strong> \(A\) is a <em><strong>Linear Transformation</strong></em></li>
+          <li><em>Solving the Equation</em> \(A \overrightarrow{\mathrm{x}}=\overrightarrow{\mathrm{v}}\) means:<br />
+  We are looking for a <strong>vector</strong> \(\mathrm{x}\) which - <em><strong>after applying the linear transformation</strong></em> \(A\) - <strong style="color: goldenrod">lands on</strong> \(\mathrm{v}\).</li>
+        </ul>
+
+        <p><button class="showText" value="show" onclick="showTextPopHide(event);">Visualization</button>
+  <img src="/main_files/math/la/linalg/linear_eq_vis.gif" alt="img" width="100%" hidden="" /></p>
+
+        <ul>
+          <li><strong>Key Insight:</strong> you can understand the system of linear equations of \(n\) variables by thinking of transforming space and figuring out which vector lands on another!</li>
+        </ul>
+
+        <p><button class="showText" value="show" onclick="showTextPopHide(event);">Insight</button>
+  <img src="/main_files/math/la/linalg/insight_linear_equation.gif" alt="img" width="100%" hidden="" /></p>
+      </li>
+    </ul>
+
+    <p><strong style="color: red">Solving the Linear Equation:</strong></p>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents19">The Inverse of a matrix:</strong><br />
  The <strong>Inverse</strong> of a matrix is the matrix such that if we “algebraically” multiply the two matrices, we get back to the original coordinates (the identity).<br />
  It is, basically, the transformation applied in <em>reverse</em>.</p>
 
-    <p><strong style="color: red">Why inverse transformation/matrix DNE when det is Zero (i.e. space is squished:</strong><br />
+    <p>The <em><strong>Inverse Matrix</strong></em> is the <strong>unique</strong> matrix/transformation such that:</p>
+    <p>$$A^{-1} A = I$$</p>
+
+    <p><strong style="color: red">Why inverse transformation/matrix DNE when the __det__erminant is Zero (i.e. space is squished):</strong><br />
  To do so, is equivalent to <em>transforming</em> a <strong>line</strong> into a <strong>plane</strong>, which would require <em>mapping</em> each, individual, <strong>vector</strong> into a <strong>“whole line full of vectors” (multiple vectors)</strong>; which is <em>not something a <strong>Function</strong></em> can do.<br />
  Functions map <em><strong>single input</strong></em> to <em><strong>single output</strong></em>.</p>
+
+    <ul>
+      <li>
+        <p><strong style="color: blue">Solution when the Determinant is Zero:</strong>  It is still possible that a solution exists even when the Determinant is Zero.<br />
+ This happens in the (<em>lucky</em>) case that the vector \(\mathrm{v}\) (on the RHS) “lives” on the line (squashed space):<br />
+  <img src="https://cdn.mathpix.com/snip/images/OSMKQi7nay1Rp-8me67aq27creMilXa6rYpZbMnbUHE.original.fullsize.png" alt="img" width="60%" /><br />
+  Note: the green and red vectors are the transformed basis vectors.</p>
+
+        <ul>
+          <li>This becomes more and more unlikely as the <em><strong>Rank</strong></em> of the <strong>output</strong> gets lower<br />
+  e.g. Squashing a 3D space on a line (Rank=1)</li>
+        </ul>
+      </li>
+    </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents111">The Determinants, Inverses, &amp; Solutions to Equations:</strong><br />
 When the \(\text{det} = 0\) the area gets <em>squashed to \(0\)</em>, and <em>information is lost</em>. Thus:
@@ -274,6 +430,7 @@ When the \(\text{det} = 0\) the area gets <em>squashed to \(0\)</em>, and <em>in
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents112">The Rank:</strong><br />
 <strong>The Rank</strong> is the <em>dimensionality</em> of the output of a transformation.<br />
+More precisely, it is the <strong>number of dimensions</strong> in the <em><strong>column space</strong></em>.<br />
 <strong>Viewed as a Matrix</strong>, it is the <em>number of independent vectors (as columns)</em> that make up the matrix.</p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents113">The Column Space:</strong><br />
@@ -283,7 +440,7 @@ When the \(\text{det} = 0\) the area gets <em>squashed to \(0\)</em>, and <em>in
       <li><strong>The Zero Vector (origin)</strong>: is always in the column space (corresponds to preserving the origin)</li>
     </ul>
 
-    <p>The <strong>Column Space</strong> allows us to understand <em><strong>when a solution exists</strong></em>.<br />
+    <p><span style="color: goldenrod">The <strong>Column Space</strong> allows us to understand <em><strong>when a solution exists</strong></em>.</span>  <br />
 For example, even when the matrix is not full-rank (det=0) a solution might still exist; if, when \(A\) squishes space onto a line, the vector \(\mathbf{b}\) lies on that line (in the <strong>span</strong> of that line).</p>
     <ul>
       <li>Formally, solution exists if \(\mathbf{b}\) is in the <strong>column space</strong> of \(A\).</li>
@@ -293,11 +450,29 @@ For example, even when the matrix is not full-rank (det=0) a solution might stil
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents114">The Null Space:</strong><br />
 <strong>The Null Space</strong> is the set of vectors that get <em>mapped to the origin</em>; also known as <strong>The Kernel</strong>.</p>
 
-    <p>The <strong>Null Space</strong> allows us to understand <em>what the set of all possible solutions look like</em>.</p>
+    <p><span style="color: goldenrod">The <strong>Null Space</strong> allows us to understand <em>what the set of all possible solutions look like</em>.</span></p>
+
+    <p>When the vector \(\mathrm{v} = \mathrm{0}\), the <strong>null space</strong> gives all the <em>possible solutions</em> to the equation \(A \overrightarrow{\mathrm{x}}=\overrightarrow{\mathbf{v}} = 0\)</p>
 
     <p><strong style="color: red">Rank and the Zero Vector:</strong><br />
 A <strong>Full-Rank</strong> matrix maps <strong>only the origin</strong> to itself.<br />
 A <strong>non-full rank (det=0)</strong> (rank=n-1) matrix maps a whole <strong>line</strong> to the origin, (rank=n-2) a <strong>plane</strong> to the origin, etc.</p>
+  </li>
+  <li>
+    <p><strong>Non-Square Matrices</strong>:{: style=”color: SteelBlue”}{: .bodyContents1 #bodyContents1144} <br />
+If the matrix has shape \(m \times n\) and \(m &gt; n\), then it can be viewed as transforming an \(n\)-dimensional vector to \(m\)-dimensional space.  (e.g. a line to a plane)</p>
+
+    <p>When \(m &lt; n\) then it is taking your vector from a lower dimension to a higher dimension.</p>
+
+    <p>Some Extra Intuition:<br />
+<button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Intuition</button></p>
+    <div hidden="">
+      <p>Nonsquare matrices are just an awkward, but space saving, notation for square matrices with zeros filling the empty slots.</p>
+
+      <p>Not only is every matrix “actually” square, but infinite dimensional as well. When we talk about an “n×m” matrix, that’s just a way of saying the framing the scope of whatever problem we are trying to solve, but it’s always best to try visualizing problems in the highest dimension possible even if your computation truncates the extra zeros.</p>
+
+      <p>This view also shows that vectors themselves are “really” just matrices in disguise, but that notion isn’t quite as enlightening although it does show how all mathematics is interconnected. Our clumsy symbolism is what makes concepts feels independent from one another.</p>
+    </div>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents115">The Dot Product/Scalar Product:</strong><br />
 (for vectors \(\mathbf{u}, \mathbf{v}\))

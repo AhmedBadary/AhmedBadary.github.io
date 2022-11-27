@@ -4,61 +4,7 @@ title: 'Ahmad Badary'
 tagline: 'Main Page'
 ---
 
-
-Resources:
-{: #lst-p}
-* [Andrew NG Course](https://www.youtube.com/playlist?list=PLLssT5z_DsK-h9vYZkQkYNWcItqhlRJLN)  
-* [answer (Blog)](link)  
-
-
-
-Interesting Links:
-{: #lst-p}
-* [Questions (prep_q)](/work_files/research/prep_qs)  
-* [Answers (answers)](/work_files/research/answers)  
-* [Answers Hidden (answers_hidden)](/work_files/research/answers_hidden)  
-
-<br />
-
-* [Questions Today](/work_files/research/prep_qs_today)  
-* [Answers Today](/work_files/research/answers_today)  
-* [qs2](work_files/research/qs2)      
-* [ans2](/work_files/research/ans2)  
-
-<br />
-
-* [Cracking the Coding Interview <br /> file:///Users/ahmadbadary/github/AhmedBadaryExtra.github.io/Reading/CRACKING%20the%20CODING%20INTERVIEW.pdf](file:///Users/ahmadbadary/github/AhmedBadaryExtra.github.io/Reading/CRACKING%20the%20CODING%20INTERVIEW.pdf)  
-* [Algorithms (algos)](/work_files/research/algos)  
-* [Tech Interviews Cheatsheet (github)](https://github.com/TSiege/Tech-Interview-Cheat-Sheet)  
-* [RL](/work_files/research/rl)  
-* [Sols <br /> file:///Users/ahmadbadary/github/AhmedBadaryExtra.github.io/content/research/interviews/sols.md](file:///Users/ahmadbadary/github/AhmedBadaryExtra.github.io/content/research/interviews/sols.md)  
-* [Interview Suki \| file:///Users/ahmadbadary/github/AhmedBadaryExtra.github.io/content/research/interviews/interview_suki.md](file:///Users/ahmadbadary/github/AhmedBadaryExtra.github.io/content/research/interviews/interview_suki.md)  
-* [Interview Qs (ML) \| file:///Users/ahmadbadary/github/AhmedBadaryExtra.github.io/content/research/interviews/interview_qs.txt](file:///Users/ahmadbadary/github/AhmedBadaryExtra.github.io/content/research/interviews/interview_qs.txt)  
-* [Optimization Problems](/work_files/research/opt_probs)  
-* [Super VIP ML CheatSheet \| file:///Users/ahmadbadary/github/AhmedBadaryExtra.github.io/Reading/super-cheatsheet-machine-learning.pdf](file:///Users/ahmadbadary/github/AhmedBadaryExtra.github.io/Reading/super-cheatsheet-machine-learning.pdf)  
-
-
-
-
-
-
-Quick Links:
-{: #lst-p}
-* [Probability Theory](/work_files/research/dl/theory/probability)
-* [Statistics](/work_files/research/dl/stat_prob/stats)  
-* [Information Theory](/work_files/research/dl/theory/infothry)  
-
-* [Essence of Linear Algebra](/work_files/research/math/la/linalg)
-* [Linear Algebra: Basics and Definitions](/work_files/research/conv_opt/2_11)
-* [Linear Algebra Resources (dir)](/work_files/research/math/la)  
-
-* [Calculus](/work_files/school/128a/1_1)  
-* [Matrix Calculus (DL-book)](/work_files/research/dl/theory/dl_book_pt1#bodyContents20)  
-
-* [Topology and Smooth Manifolds](/work_files/research/math/manifolds)  
-
-* [Machine Learning Research](/work_files/research/ml_research)  
-* [Cheatsheets](/work_files/research/dl/practical/cheat_sheets)  
+[Quick Link to Resumé](/main_files/docs/Resume-2022.pdf)  
 
 
 * __Core__{: style="color: red"}  
