@@ -22,7 +22,7 @@ prevLink: /work_files/research/dl/cv.html
 ## RNNs
 {: #content1}
 
-### [Refer to this section on RNNs](ahmedbadary.ml/work_files/research/dl/nlp/rnns)
+### [Refer to this section on RNNs](https://ahmedbadary.github.io//work_files/research/dl/nlp/rnns)
 
 1. **Process Sequences:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
     :   * __One-to-One__  

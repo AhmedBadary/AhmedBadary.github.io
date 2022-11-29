@@ -195,7 +195,7 @@ Given some data $$\{(d,c)\}$$ of paired observations $$d$$ and hidden classes $$
 ## Variational Auto-Encoders
 {: #content4}
 
-[__Auto-Encoders__](http://ahmedbadary.ml/work_files/research/dl/aencdrs) (_click to read more_) are unsupervised learning methods that aim to learn a representation (encoding) for a set of data in a smaller dimension.  
+[__Auto-Encoders__](http://https://ahmedbadary.github.io//work_files/research/dl/aencdrs) (_click to read more_) are unsupervised learning methods that aim to learn a representation (encoding) for a set of data in a smaller dimension.  
 Auto-Encoders generate __Features__ that capture _factors of variation_ in the training data.
 
 0. **Auto-Regressive Models VS Variational Auto-Encoders:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents40}  

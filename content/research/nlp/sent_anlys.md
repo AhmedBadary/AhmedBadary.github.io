@@ -45,7 +45,7 @@ prevLink: /work_files/research/nlp.html
 {: #content2}
 
 1. **Binarized (Boolean Feature) Multinomial Naive Bayes:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
-    :   This algorithm works exactly the same as the [Multinomial Naive Bayes](http://ahmedbadary.ml/work_files/research/nlp/txt_clss#content2) algorithm.  
+    :   This algorithm works exactly the same as the [Multinomial Naive Bayes](http://https://ahmedbadary.github.io//work_files/research/nlp/txt_clss#content2) algorithm.  
     :   However, the features (Tokens) used in this algorithm are counted based on _occurrence_ rather than _frequency_,  
         > i.e. if a certain word occurs in the text then its count is always one, regardless of the number of occurrences of the word in the text.  
     :   __Justification:__ The reason behind the binarized version is evident, intuitively, in the nature of the problem.  

@@ -133,8 +133,8 @@ prevLink: /work_files/research/la.html
     4. It is Symmetric.
 
     4. Every symmetric positive semi-definite matrix is a covariance matrix.  
-        [**Proof.**](http://ahmedbadary.ml/work_files/research/opt_probs#bodyContents12){: value="show" onclick="iframePopA(event)"}  
-        <a href="http://ahmedbadary.ml/work_files/research/opt_probs#bodyContents12">` OR, Visit the website`</a>  
+        [**Proof.**](http://https://ahmedbadary.github.io//work_files/research/opt_probs#bodyContents12){: value="show" onclick="iframePopA(event)"}  
+        <a href="http://https://ahmedbadary.github.io//work_files/research/opt_probs#bodyContents12">` OR, Visit the website`</a>  
         <div markdown="1"> </div>
 
     5. The sample variance along direction $$u$$ can be expressed as a quadratic form in $$u$$:  
