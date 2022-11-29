@@ -27,7 +27,7 @@ prevLink: /work_files/research/nlp.html
         * Spam Detection  
         * Parts-of-Speech (POS) Tagging  
         * Named Entity Recognition (NER)
-        * Conference Resolution  
+        * Coreference Resolution  
         * Word Sense Disambiguation (WSD)  
         * Parsing  
         * Paraphrasing  
@@ -42,7 +42,7 @@ prevLink: /work_files/research/nlp.html
 
 3. **Within-Reach Problems:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13} 
     :   * Sentiment Analysis  
-        * Conference Resolution    
+        * Coreference Resolution    
         * Word Sense Disambiguation (WSD)  
         * Parsing  
         * Machine Translation (MT)  
@@ -71,4 +71,4 @@ prevLink: /work_files/research/nlp.html
 7. **Methods:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents17} 
     :   In general we need to construct __Probabilistic Models__ built from _language data_.    
     :   We do so by using _rough text features_.  
-        > All the names models, methods, and tools mentioned above will be introduced later as you progress in the text.  
+        > All the concepts, models, methods, and tools mentioned above will be introduced later as you progress in the text.  

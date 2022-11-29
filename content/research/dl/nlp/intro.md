@@ -38,7 +38,7 @@ prevLink: /work_files/research/dl/nlp.html
         * Spam Detection  
         * Parts-of-Speech (POS) Tagging  
         * Named Entity Recognition (NER)
-        * Conference Resolution  
+        * Coreference Resolution  
         * Word Sense Disambiguation (WSD)  
         * Parsing  
         * Paraphrasing  
@@ -55,7 +55,7 @@ prevLink: /work_files/research/dl/nlp.html
 
 3. **Within-Reach Problems:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13} 
     :   * Sentiment Analysis  
-        * Conference Resolution    
+        * Coreference Resolution    
         * Word Sense Disambiguation (WSD)  
         * Parsing  
         * Machine Translation (MT)  
@@ -103,7 +103,7 @@ prevLink: /work_files/research/dl/nlp.html
 {: #content2}
 
 1. **What is Special about Human Language:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents21}  
-    :   * Human Language is a system specifically constructed to convey the speaker/writer's meaning.
+    :   * Human Language is a system specifically constructed to convey the speaker's/writer's meaning.
         > It is a deliberate communication, not just an environmental signal.  
         * Human Language is a __discrete/symbolic/categorical signaling system__  
         * The categorical symbols of a language can be encoded as a signal for communication in several ways:  
@@ -116,14 +116,14 @@ prevLink: /work_files/research/dl/nlp.html
         * However, a brain encoding appears to be a __continuous pattern of activation__, and the symbols are transmitted via __continuous signals__ of sound/vision.  
 
 2. **Issues of NLP in Machine Learning:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents22}  
-    :   * According to the above passage; we see that although human language is largely symbolic; it is still interpreted by the brain as a continuous signal.  
-        This means that we cannot encode this information in a discrete manner; and rather must learn in a sequential, continuous way.  
-        * The large vocabulary, symbolic encoding of words creates a problem for machine learning – __sparsity__!
+    :   * According to the paragraph above, we see that although human language is largely symbolic, it is still interpreted by the brain as a continuous signal.  
+        This means that we cannot encode this information in a discrete manner; but rather must learn in a sequential, continuous way.  
+        * The large vocabulary and symbolic encoding of words create a problem for machine learning – __sparsity__!
 
 3. **Machine Learning vs Deep Learning:**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}  
     :   * Most Machine Learning methods work well because of __human-designed representations__ and __input features__.  
             Thus, the _learning_ here is done, mostly, by the people/scientists/engineers who are designing the features and __not__ by the machines.  
-            This, rendered Machine Learning to become just a __numerical optimization method__ for __optimizing weights__ to best make a final prediction.   
+            This rendered Machine Learning to become just a __numerical optimization method__ for __optimizing weights__ to best make a final prediction.   
     :   * How does that differ with Deep Learning (DL)?  
             * __Representation learning__ attempts to automatically learn good features or representations
             * __Deep learning__ algorithms attempt to learn (multiple levels of) representation and an output  
@@ -173,7 +173,7 @@ prevLink: /work_files/research/dl/nlp.html
             * Bowman et al. 2014  
             ![img](/main_files/dl/nlp/1/3.png){: width="45%"}  
 
-3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
+<!-- 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents33}  
     :   
 
 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents34}  
@@ -190,6 +190,7 @@ prevLink: /work_files/research/dl/nlp.html
 
 8. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents3 #bodyContents38}  
     :   
+ -->
 
 ***
 
@@ -200,7 +201,7 @@ prevLink: /work_files/research/dl/nlp.html
     :   Neural networks can accurately determine the structure of sentences, supporting interpretation.  
     ![img](/main_files/dl/nlp/1/4.png){: width="70%"}
 
-2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}  
+<!-- 2. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}  
     :   
 
 3. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents43}  
@@ -216,7 +217,7 @@ prevLink: /work_files/research/dl/nlp.html
     :   
 
 7. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents47}  
-    :   
+    :    -->
 
 ***
 
@@ -237,16 +238,16 @@ prevLink: /work_files/research/dl/nlp.html
 3. **Machine Translation:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents53}  
     :   * __Traditional__: Complex approaches with very high error rates.  
         * __DL__: _Neural Machine Translation_.  
-            Source sentence is mapped to _vector_, then output sentence generated.  
+            Source sentence is mapped to a _vector_, then the output sentence is generated.  
             [Sutskever et al. 2014, Bahdanau et al. 2014, Luong and Manning 2016]  
         __FILL-IN__.   
         ![img](/main_files/dl/nlp/1/5.png){: width="70%"}
 
-4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents54}  
+<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents54}  
     :   
 
 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents55}  
     :   
 
 6. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents56}  
-    :   
+    :    -->
