@@ -267,6 +267,21 @@ prevLink: /work_files/research/dl/nlp.html
         * [On the Dimensionality of Word Embedding](https://papers.nips.cc/paper/7368-on-the-dimensionality-of-word-embedding.pdf)
         * [Improving Distributional Similarity with Lessons Learned from Word Embeddings](https://www.aclweb.org/anthology/Q15-1016)
             
+
+
+* From 'concepts':  
+    __Word Vectors:__{: style="color: red"}  
+    {: #lst-p}
+    * <button>Learning Word Vectors and Word2Vec</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](/main_files/concepts/11.jpg){: hidden=""}  
+    * <button>Word Vectors and Polysemy</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](/main_files/concepts/11_1.jpg){: hidden=""}  
+
+
+    __Notes:__{: style="color: red"}  
+    {: #lst-p}
+    * __Categorization__ is a method for Evaluating w2v Embeddings by creating categorize by clustering, then measuring the purity of the clusters  
+
     
 [^1]: accuracy of predicting words in the context of another word  
 [^2]: I.E. $$p(w_{t+j} \vert  w_t)$$  
