@@ -282,6 +282,75 @@ prevLink: /work_files/research/dl/nlp.html
     {: #lst-p}
     * __Categorization__ is a method for Evaluating w2v Embeddings by creating categorize by clustering, then measuring the purity of the clusters  
 
+
+
+__Notes:__{: style="color: red"}  
+{: #lst-p}
+* Word2vec maximizes the objective by putting similar words close to each other in space  
+
+
+<br>
+
+
+* __pictures from lecture__:  
+    w2v:  
+    ![img](https://cdn.mathpix.com/snip/images/CnpPio89XcVhh7FJBmhg10S69rz4rVqWNGA15kn-eHY.original.fullsize.png){: width="80%"} 
+
+    Softmax:  
+    ![img](https://cdn.mathpix.com/snip/images/SWQOg_enivGhPERNS2C6CUQIKcI-hpxPdGPonFNYMF0.original.fullsize.png){: width="80%"}  
+
+    Training/Optimization:  
+    ![img](https://cdn.mathpix.com/snip/images/gWFGQZmJrCZo7DEtMg-hm1nTpT9j7HrQzvfmoPGhv_A.original.fullsize.png){: width="80%"}   
+
+
+    Optimization - GD:  
+    ![img](https://cdn.mathpix.com/snip/images/L7qtJIlEs4StLvX-GJL6PKsUGQQJB4YCgIIxzYwxgfM.original.fullsize.png){: width="80%"}  
+
+        GD
+        ![img](https://cdn.mathpix.com/snip/images/L7qtJIlEs4StLvX-GJL6PKsUGQQJB4YCgIIxzYwxgfM.original.fullsize.png){: width="80%"}  
+
+        SGD:  
+        ![img](https://cdn.mathpix.com/snip/images/9rpsoP8b_iWjln2LNvVQC15kbtz2UF92hZlFbxlgy_Q.original.fullsize.png){: width="80%"}  
+
+        <button>SGD</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+        ![img](https://cdn.mathpix.com/snip/images/8gsRPhIgUpvNtGPSYeQm03D0H_v-9_AzvcvjNp2OHqo.original.fullsize.png){: width="100%" hidden=""}  
+
+        <button>SGD</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+        ![img](https://cdn.mathpix.com/snip/images/_e3VK3CbGswucKUcjKFG9cpxFFBpxatSqasKFFfL6Nc.original.fullsize.png){: width="100%" hidden=""}  
+        Note: rows can be accessed as a _contiguous block in memory_ (so if row is a word, you can access it much more efficiently)  
+
+
+
+    <button>W2V Algorithm Family</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](https://cdn.mathpix.com/snip/images/HHe9can9yavDU3eK19CwGh1IpPU8fuVF-GAPYqYiuXU.original.fullsize.png){: width="100%" hidden=""}  
+
+    <button>Negative Sampling</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](https://cdn.mathpix.com/snip/images/voYzk_m1ItyxN6fdK4hYBYDxkgdvIQ2wtMbOrzSCv5k.original.fullsize.png){: width="100%" hidden=""}  
+
+    <button>Skip-gram with NS - Paper Notation (maximize $$J$$)</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](https://cdn.mathpix.com/snip/images/xUx8GtdqzfnxTw3ZcE5zTd6H6luC8DjWQt4OQwqTEaU.original.fullsize.png){: width="100%" hidden=""}  
+
+    <button>Skip-gram with NS - Stanford Notation (minimize $$J$$)</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](https://cdn.mathpix.com/snip/images/cvr3_P4m9ZSv8EKN8TzBS5a8NdTWxPxghGRR_1jqHGo.original.fullsize.png){: width="100%" hidden=""}  
+
+    * __Unigram Distribution__: A distribution of words based on how many times each word appeared in a corpus is called unigram distribution.  
+        <button>Unigram Distribution and smoothing</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+        ![img](https://cdn.mathpix.com/snip/images/9KY0Ksh9IjPSh5oJZxuZUo1TRZVxHikZpBX3D6hyqUA.original.fullsize.png){: width="100%" hidden=""}  
+
+    * __Noise Distribution__:   
+
+        * [Noise Distribution (Blog)](https://aegis4048.github.io/optimize_computational_efficiency_of_skip-gram_with_negative_sampling#What-is-a-noise-distribution-$P_n(w)$?)  
+
+
+    * [Relevant stackOF Question](https://stackoverflow.com/questions/55836568/nlp-negative-sampling-how-to-draw-negative-samples-from-noise-distribution)
+
+    * [Optimize Computational Efficiency of Skip-Gram with Negative Sampling (Blog)](https://aegis4048.github.io/optimize_computational_efficiency_of_skip-gram_with_negative_sampling)    
+
+
+    * [Demystifying Neural Network in Skip-Gram Language Modeling (Blog!!!!)](https://aegis4048.github.io/demystifying_neural_network_in_skip_gram_language_modeling)  
+
+    * [Understanding Multi-Dimensionality in Vector Space Modeling (Blog!!)](https://aegis4048.github.io/understanding_multi-dimensionality_in_vector_space_modeling)  
+
     
 [^1]: accuracy of predicting words in the context of another word  
 [^2]: I.E. $$p(w_{t+j} \vert  w_t)$$  

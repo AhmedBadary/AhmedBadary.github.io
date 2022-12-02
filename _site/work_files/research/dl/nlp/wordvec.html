@@ -438,6 +438,83 @@
   </li>
 </ul>
 
+<p id="lst-p"><strong style="color: red">Notes:</strong></p>
+<ul>
+  <li>Word2vec maximizes the objective by putting similar words close to each other in space</li>
+</ul>
+
+<p><br /></p>
+
+<ul>
+  <li>
+    <p><strong>pictures from lecture</strong>:<br />
+  w2v:<br />
+  <img src="https://cdn.mathpix.com/snip/images/CnpPio89XcVhh7FJBmhg10S69rz4rVqWNGA15kn-eHY.original.fullsize.png" alt="img" width="80%" /></p>
+
+    <p>Softmax:<br />
+  <img src="https://cdn.mathpix.com/snip/images/SWQOg_enivGhPERNS2C6CUQIKcI-hpxPdGPonFNYMF0.original.fullsize.png" alt="img" width="80%" /></p>
+
+    <p>Training/Optimization:<br />
+  <img src="https://cdn.mathpix.com/snip/images/gWFGQZmJrCZo7DEtMg-hm1nTpT9j7HrQzvfmoPGhv_A.original.fullsize.png" alt="img" width="80%" /></p>
+
+    <p>Optimization - GD:<br />
+  <img src="https://cdn.mathpix.com/snip/images/L7qtJIlEs4StLvX-GJL6PKsUGQQJB4YCgIIxzYwxgfM.original.fullsize.png" alt="img" width="80%" /></p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  GD
+  ![img](https://cdn.mathpix.com/snip/images/L7qtJIlEs4StLvX-GJL6PKsUGQQJB4YCgIIxzYwxgfM.original.fullsize.png){: width="80%"}  
+
+  SGD:  
+  ![img](https://cdn.mathpix.com/snip/images/9rpsoP8b_iWjln2LNvVQC15kbtz2UF92hZlFbxlgy_Q.original.fullsize.png){: width="80%"}  
+
+  &lt;button&gt;SGD&lt;/button&gt;{: .showText value="show" onclick="showTextPopHide(event);"}
+  ![img](https://cdn.mathpix.com/snip/images/8gsRPhIgUpvNtGPSYeQm03D0H_v-9_AzvcvjNp2OHqo.original.fullsize.png){: width="100%" hidden=""}  
+
+  &lt;button&gt;SGD&lt;/button&gt;{: .showText value="show" onclick="showTextPopHide(event);"}
+  ![img](https://cdn.mathpix.com/snip/images/_e3VK3CbGswucKUcjKFG9cpxFFBpxatSqasKFFfL6Nc.original.fullsize.png){: width="100%" hidden=""}  
+  Note: rows can be accessed as a _contiguous block in memory_ (so if row is a word, you can access it much more efficiently)  
+</code></pre></div>    </div>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">W2V Algorithm Family</button>
+  <img src="https://cdn.mathpix.com/snip/images/HHe9can9yavDU3eK19CwGh1IpPU8fuVF-GAPYqYiuXU.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Negative Sampling</button>
+  <img src="https://cdn.mathpix.com/snip/images/voYzk_m1ItyxN6fdK4hYBYDxkgdvIQ2wtMbOrzSCv5k.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Skip-gram with NS - Paper Notation (maximize \(J\))</button>
+  <img src="https://cdn.mathpix.com/snip/images/xUx8GtdqzfnxTw3ZcE5zTd6H6luC8DjWQt4OQwqTEaU.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Skip-gram with NS - Stanford Notation (minimize \(J\))</button>
+  <img src="https://cdn.mathpix.com/snip/images/cvr3_P4m9ZSv8EKN8TzBS5a8NdTWxPxghGRR_1jqHGo.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <ul>
+      <li>
+        <p><strong>Unigram Distribution</strong>: A distribution of words based on how many times each word appeared in a corpus is called unigram distribution.<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Unigram Distribution and smoothing</button>
+  <img src="https://cdn.mathpix.com/snip/images/9KY0Ksh9IjPSh5oJZxuZUo1TRZVxHikZpBX3D6hyqUA.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+      </li>
+      <li>
+        <p><strong>Noise Distribution</strong>:</p>
+
+        <ul>
+          <li><a href="https://aegis4048.github.io/optimize_computational_efficiency_of_skip-gram_with_negative_sampling#What-is-a-noise-distribution-$P_n(w)$?">Noise Distribution (Blog)</a></li>
+        </ul>
+      </li>
+      <li>
+        <p><a href="https://stackoverflow.com/questions/55836568/nlp-negative-sampling-how-to-draw-negative-samples-from-noise-distribution">Relevant stackOF Question</a></p>
+      </li>
+      <li>
+        <p><a href="https://aegis4048.github.io/optimize_computational_efficiency_of_skip-gram_with_negative_sampling">Optimize Computational Efficiency of Skip-Gram with Negative Sampling (Blog)</a></p>
+      </li>
+      <li>
+        <p><a href="https://aegis4048.github.io/demystifying_neural_network_in_skip_gram_language_modeling">Demystifying Neural Network in Skip-Gram Language Modeling (Blog!!!!)</a></p>
+      </li>
+      <li>
+        <p><a href="https://aegis4048.github.io/understanding_multi-dimensionality_in_vector_space_modeling">Understanding Multi-Dimensionality in Vector Space Modeling (Blog!!)</a></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:2" role="doc-endnote">
