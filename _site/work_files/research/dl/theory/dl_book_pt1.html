@@ -603,7 +603,8 @@ Point estimation is the attempt to provide the single “best” prediction of s
     <p>$$\hat{\boldsymbol{\theta}}_{m}=g\left(\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(m)}\right)$$</p>
     <p>such that a good estimator is a function whose output is close to the true underlying \(\theta\) that generated the training data.</p>
     <blockquote>
-      <p>We assume that the true \(\boldsymbol{\theta}\) is fixed, and that \(\hat{\boldsymbol{\theta}}\) is a function of the data, which is drawn from a random process, making \(\hat{\boldsymbol{\theta}}\) a <strong>random variable</strong>.</p>
+      <p>We assume that the true \(\boldsymbol{\theta}\) is fixed, and that \(\hat{\boldsymbol{\theta}}\) is a function of the data, which is drawn from a random process, making \(\hat{\boldsymbol{\theta}}\) a <strong>random variable</strong>.<br />
+ Thus, a <strong>point estimator</strong> is a <em><strong>random variable</strong></em>.</p>
     </blockquote>
 
     <p><strong>Function Estimation/Approximation</strong> refers to estimation of the relationship between <em>input</em> and <em>target data</em>.<br />
@@ -627,7 +628,7 @@ Point estimation is the attempt to provide the single “best” prediction of s
     <p id="lst-p"><strong>Notes:</strong></p>
     <ul>
       <li>weights \(\boldsymbol{w}\) == parameters \(\theta\)</li>
-      <li>parameter/point estimation == function estimation
+      <li>parameter/point estimation == function estimation<br />
   Linear Regression and Polynomial Regression both illustrate scenarios that may be interpreted as either estimating a parameter \(\boldsymbol{w}\) or estimating a function \(f\) mapping from \(\boldsymbol{x}\) to \(y\).</li>
       <li>we can use the theory and tools for analyzing point estimators and apply them to function estimators (e.g. bias/var decomp etc.)</li>
     </ul>
@@ -668,12 +669,13 @@ Point estimation is the attempt to provide the single “best” prediction of s
     </ul>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents15">Generalization Error from Standard Error (of the mean):</strong><br />
- We often estimate the <strong>generalization error</strong> by computing the <strong>sample mean</strong> of the error on the test set.<br />
- Taking advantage of the central limit theorem, which tells us that the mean will be approximately distributed with a normal distribution, we can use the standard error to compute the probability that the true expectation falls in any chosen interval.<br />
- For example, the 95 percent confidence interval centered on the mean \(\hat{\mu}_ {m}\) is:
+ We often estimate the <strong>generalization error</strong> by computing the <em><strong>sample mean</strong> of the <strong>error</strong></em> on the <em><strong>test set</strong></em>.<br />
+ Taking advantage of the <strong>central limit theorem</strong>, which tells us that the mean will be approximately distributed with a normal distribution, <span style="color: goldenrod">we can use the <strong>standard error</strong> to compute the <strong>probability that the true expectation falls in any chosen interval</strong></span>.<br />
+ For example, the \(95\%\) confidence interval centered on the <strong>mean</strong> \(\hat{\mu}_ {m}\) is:
     <p>$$\left(\hat{\mu}_{m}-1.96 \mathrm{SE}\left(\hat{\mu}_{m}\right), \hat{\mu}_{m}+1.96 \mathrm{SE}\left(\hat{\mu}_{m}\right)\right)$$</p>
-    <p>under the normal distribution with mean \(\hat{\mu}_{m}\) and variance \(\mathrm{SE}\left(\hat{\mu}_{m}\right)^{2}\).<br />
- We say that algorithm \(\boldsymbol{A}\) is <strong>better than</strong> algorithm \(\boldsymbol{B}\) if the <em>upper bound</em> of the \(95\) percent confidence interval for the error of algorithm \(\boldsymbol{A}\) is <strong>less than</strong> the <em>lower bound</em> of the \(95\) percent confidence interval for the error of algorithm \(\boldsymbol{B}\).</p>
+    <p>under the normal distribution with <strong>mean</strong> \(\hat{\mu}_{m}\) and <strong>variance</strong> \(\mathrm{SE}\left(\hat{\mu}_{m}\right)^{2}\).</p>
+
+    <p>We say that algorithm \(\boldsymbol{A}\) is <strong>better than</strong> algorithm \(\boldsymbol{B}\) if the &lt;<em>upper bound</em> of the \(95\%\) confidence interval for the error of algorithm \(\boldsymbol{A}\)&gt; is <strong>less than</strong> the &lt;<em>lower bound</em> of the \(95\%\) confidence interval for the error of algorithm \(\boldsymbol{B}\)&gt;.</p>
   </li>
   <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents16">The Bias Variance Trade-off:</strong><br />
  Bias and variance measure two different sources of error in an estimator:

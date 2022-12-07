@@ -541,7 +541,7 @@ __Notes (Move Inside):__{: style="color: red"}
 
     It can be viewed as a form of __transfer learning__ due to <span>gradual changes in the data distribution</span>{: style="color: purple"} over time.  
 
-    <button>Concept Drift in __RL__</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    <button>Concept Drift in __RL__</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
     <div hidden="" markdown="1">
     Another example is in reinforcement learning. Since the agent's policy affects the environment, the agent learning and updating its policy directly results in a changing environment with shifting data distribution.  
     </div>

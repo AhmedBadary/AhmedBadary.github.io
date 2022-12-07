@@ -231,13 +231,92 @@
     <p><strong>Model Confidence:</strong> probability of correctness.<br />
  <strong>Calibrated Confidence (softmax scores) \(\hat{p}\):</strong> \(\hat{p}\) represents a true probability.</p>
 
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Bias of Different Classical ML Models</button>
+ <img src="https://cdn.mathpix.com/snip/images/m91-I3AcQ52sbAjr2gzeBlv_SlmZSh5Hb_knOLkTOMk.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Summary On Practical Use of Model Scores (sklearn)</button>
+ <img src="https://cdn.mathpix.com/snip/images/f7hsQi4QKi0wejzS4YNwKVf_AaYVjOjqZFdt5UcSvDc.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+    <p><strong style="color: red">Probability Calibration:</strong><br />
+ Predicted scores (model outputs) of many classifiers do not represent <em>“true” probabilities</em>.<br />
+ They only respect the <em>mathematical definition</em> (conditions) of what a probability function is:</p>
+    <ol>
+      <li>Each “probability” is between 0 and 1</li>
+      <li>When you sum the probabilities of an observation being in any particular class, they sum to 1.</li>
+    </ol>
+
+    <ul>
+      <li>
+        <p><strong>Calibration Curves</strong>: A calibration curve plots the predicted probabilities against the actual rate of occurance.<br />
+  I.E. It plots the <em><strong>predicted</strong></em> probabilities against the <em><strong>actual</strong></em> probabilities.<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Example: Rain Prediction with Naive Bayes Model</button>
+  <img src="https://cdn.mathpix.com/snip/images/SgB0b51NGZ0_McTgF0d25jWXx43A-cA8MSSco6jvzZA.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+      </li>
+      <li>
+        <p><strong>Approach</strong>:<br />
+  Calibrating a classifier consists of fitting a regressor (called a calibrator) that maps the output of the classifier (as given by <code class="language-plaintext highlighter-rouge">decision_function</code> or <code class="language-plaintext highlighter-rouge">predict_proba</code> - sklearn) to a calibrated probability in \([0, 1]\).<br />
+  Denoting the output of the classifier for a given sample by \(f_i\), the calibrator tries to predict \(p\left(y_i=1 \mid f_i\right)\).</p>
+      </li>
+      <li><a href="https://scikit-learn.org/stable/modules/calibration.html"><strong>Methods</strong></a>:
+        <ul>
+          <li>
+            <p><strong>Platt Scaling</strong>: Platt scaling basically fits a logistic regression on the original model’s.<br />
+  The closer the calibration curve is to a sigmoid, the more effective the scaling will be in correcting the model.<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Model Definition</button>
+  <img src="https://cdn.mathpix.com/snip/images/F_DDq98LBIJPNFg6AjRQI4OpJJ_ozb4ZM1NdrOaxfOk.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+            <ul>
+              <li>
+                <p><strong>Assumptions</strong>:<br />
+  The sigmoid method assumes the calibration curve can be corrected by applying a sigmoid function to the raw predictions.<br />
+  This assumption has been empirically justified in the case of <strong>Support Vector Machines</strong> with <strong>common kernel functions</strong> on various benchmark datasets but does not necessarily hold in general.</p>
+              </li>
+              <li>
+                <p><strong>Limitations</strong>:</p>
+                <ul>
+                  <li>The logistic model works best if the <strong>calibration error</strong> is <em><strong>symmetrical</strong></em>, meaning the classifier output for each binary class is <em><strong>normally distributed</strong></em> with the <em><strong>same variance</strong></em>.<br />
+  This can be a problem for highly imbalanced classification problems, where outputs do not have equal variance.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p><strong>Isotonic Method</strong>:  The ‘isotonic’ method fits a non-parametric isotonic regressor, which outputs a step-wise non-decreasing function.<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Objective/Loss</button>
+  <img src="https://cdn.mathpix.com/snip/images/XEjg4c6wis3M51_xsrTRzg00BRdtFK8_4CNOd7IcZ-I.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+            <p>This method is more general when compared to ‘sigmoid’ as the only restriction is that the mapping function is monotonically increasing. It is thus more powerful as it can correct any monotonic distortion of the un-calibrated model. However, it is more prone to overfitting, especially on small datasets.</p>
+          </li>
+          <li>
+            <p><strong style="color: blue">Comparison:</strong></p>
+            <ul>
+              <li>Platt Scaling is most effective when the un-calibrated model is under-confident and has similar calibration errors for both high and low outputs.</li>
+              <li>Isotonic Method is more powerful than Platt Scaling:  Overall, ‘isotonic’ will perform as well as or better than ‘sigmoid’ when there is enough data (greater than ~ 1000 samples) to avoid overfitting.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p><a href="https://kiwidamien.github.io/are-you-sure-thats-a-probability.html#Limitations-of-recalibration">Limitations of recalibration:</a><br />
+  Different calibration methods have different weaknesses depending on the shape of the <em>calibration curve</em>.<br />
+  E.g. <em>Platt Scaling</em> works better the more the <em>calibration curve</em> resembles a <em><strong>sigmoid</strong></em>.</p>
+
+        <p><button class="showText" value="show" onclick="showTextPopHide(event);">Example of Platt Scaling Failure</button>
+  <img src="https://cdn.mathpix.com/snip/images/I8sRhwL5JnmbjJ39hRcuIc5jomlUD4O2rrC1wMA6H6M.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+      </li>
+      <li><a href="https://scikit-learn.org/stable/modules/calibration.html#multiclass-support" style="color: blue"><strong>Multi-Class Support:</strong></a></li>
+    </ul>
+
+    <p><strong>Note:</strong> The samples that are used to fit the calibrator should not be the same samples used to fit the classifier, as this would introduce bias. This is because performance of the classifier on its training data would be better than for novel data. Using the classifier output of training data to fit the calibrator would thus result in a biased calibrator that maps to probabilities closer to 0 and 1 than it should.</p>
+
     <ul>
       <li><a href="https://arxiv.org/pdf/1706.04599.pdf">On Calibration of Modern Neural Networks</a>  <br />
   Paper that defines the problem and gives multiple effective solution for calibrating Neural Networks.</li>
       <li><a href="file:///Users/ahmadbadary/Downloads/Kängsepp_ComputerScience_2018.pdf">Calibration of Convolutional Neural Networks (Thesis!)</a></li>
       <li>For calibrating output probabilities in Deep Nets; Temperature scaling outperforms Platt scaling. <a href="https://arxiv.org/pdf/1706.04599.pdf">paper</a></li>
       <li><a href="https://scikit-learn.org/stable/modules/calibration.html">Plot and Explanation</a></li>
-      <li><a href="http://alondaks.com/2017/12/31/the-importance-of-calibrating-your-deep-model/">Blog on How to do it</a><br />
+      <li><a href="http://alondaks.com/2017/12/31/the-importance-of-calibrating-your-deep-model/">Blog on How to do it</a></li>
+      <li><a href="https://kiwidamien.github.io/are-you-sure-thats-a-probability.html">Interpreting outputs of a logistic classifier (Blog)</a>  <br />
  <br /></li>
     </ul>
   </li>
@@ -338,6 +417,58 @@
     <p><br /></p>
   </li>
 </ol>
+
+<p><strong>Recall</strong> is more important where Overlooked Cases (False Negatives) are more costly than False Alarms (False Positive). The focus in these problems is finding the positive cases.</p>
+
+<p><strong>Precision</strong> is more important where False Alarms (False Positives) are more costly than Overlooked Cases (False Negatives). The focus in these problems is in weeding out the negative cases.</p>
+
+<ul>
+  <li><a href="https://kiwidamien.github.io/interview-practice-with-precision-and-recall.html">Interview practice with P and R (Blog)</a></li>
+</ul>
+
+<p><strong>ROC Curve and AUC:</strong></p>
+
+<p>Note:</p>
+<ul>
+  <li>ROC Curve only cares about the <em><strong>ordering</strong></em> of the scores, not the values.
+    <ul>
+      <li><strong>Probability Calibration</strong> and ROC: The calibration doesn’t change the order of the scores, it just scales them to make a better match, and the ROC score only cares about the ordering of the scores.</li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="https://kiwidamien.github.io/what-is-a-roc-curve-a-visualization-with-credit-scores.html">ROC and Credit Score Example (Blog)</a></p>
+  </li>
+  <li><strong>AUC</strong>: The AUC is also the probability that a randomly selected positive example has a higher score than a randomly selected negative example.</li>
+</ul>
+
+<p><button class="showText" value="show" onclick="showTextPopHide(event);">AUC Reliability (Equal AUC - different models)</button>
+<img src="https://cdn.mathpix.com/snip/images/GAyvZvN61xzDjklTeVepqrYYuWrXXfPnEHkNwM80p6k.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+<p><button class="showText" value="show" onclick="showTextPopHide(event);">ROC Diagonal</button>
+<img src="https://cdn.mathpix.com/snip/images/GPRX_7Ca-eJdTm04-HQO1Mc8E0cLi1FbFqjnp1z04Yk.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+<p><button class="showText" value="show" onclick="showTextPopHide(event);">Comparing Thresholds on an ROC</button>
+<img src="https://cdn.mathpix.com/snip/images/QPD_iV87ZGNW8Mpk-apO69uGKfiy400nrHgO8Cuc-cc.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+<p><button class="showText" value="show" onclick="showTextPopHide(event);">AUC to Compare two Classifiers</button>
+<img src="https://cdn.mathpix.com/snip/images/L3X5BVmBkVbzzZmHlQRM4r69hOzfo3EFLWEvm6VeZVM.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+<p><button class="showText" value="show" onclick="showTextPopHide(event);">PR Curve</button>
+<img src="https://cdn.mathpix.com/snip/images/fMMLgJHugy3Ebj7OG7Lq4X3HX5ZTGL6gzFi4IaP8hT4.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+<p><button class="showText" value="show" onclick="showTextPopHide(event);">When to use Precision instead of FPR</button>
+<img src="https://cdn.mathpix.com/snip/images/lZkRZCj8kSX4xK6JcEcnm8wVVEe5856uFO5mNs0VRY8.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+<p><button class="showText" value="show" onclick="showTextPopHide(event);">Why use Precision</button>
+<img src="https://cdn.mathpix.com/snip/images/IQ7O2yvLTJqG70NIzPxMdZySzEXQI39YgIcz5D4YXrQ.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+<p><button class="showText" value="show" onclick="showTextPopHide(event);">Example when Precision is favorable to FPR</button>
+<img src="https://cdn.mathpix.com/snip/images/8ZcbFolG4VmYWakNzewSVx4oThTkxP1jS4pGZJ3oUbc.original.fullsize.png" alt="img" width="100%" hidden="" /></p>
+
+<ul>
+  <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2698108/">ROC in Radiology (Paper)</a><br />
+  Includes discussion for <em><strong>Partial AUC</strong></em> when only a portion of the entire ROC curve needs to be considered.</li>
+</ul>
 
 <hr />
 

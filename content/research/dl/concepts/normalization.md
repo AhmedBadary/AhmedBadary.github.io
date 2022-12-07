@@ -183,6 +183,7 @@ prevLink: /work_files/research/dl/concepts.html
     Further, there is a _regularization_ effect when using BN induced by added noise to the estimate of the mean and variance of the data due to using mini-batches instead.  
 
     * [Busting the myth about batch normalization](https://blog.paperspace.com/busting-the-myths-about-batch-normalization/)  
+    * [Why does Batch Norm Work (ICS) (Andrew Ng - YT)](https://www.youtube.com/watch?v=nUUqwaxLnWs)  
 
     <br>
 
@@ -193,6 +194,21 @@ prevLink: /work_files/research/dl/concepts.html
     1. Even if the mean and variance are constant, the distribution of activations can still change. Why are the mean and variance so important?  
     2. If we introduce $$\gamma$$  and $$\beta$$, the mean and variance will deviate from $$0$$ and $$1$$ anyway. What then, is the point of batch normalization?  
     <br>
+
+
+    <button>Internal Covariate Shift (ChatGPT Discussion)</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    <div hidden="" markdown="1">
+    - what is internal covariate shift?
+        Internal covariate shift is a phenomenon that occurs in machine learning when the distribution of the input data that a model receives changes during the training process. This can happen when the model is trained on a batch of data, but the distribution of that data is different from the distribution of the data that the model will see when it is deployed in the real world. As a result, the model's performance can degrade over time, and it may not be able to generalize well to new data. This is a common problem in deep learning, where models can have millions of parameters and can be very sensitive to changes in the input data. To address internal covariate shift, it is important to carefully monitor the distribution of the input data and to use techniques such as batch normalization to ensure that the model remains stable and performs well over time.
+
+    - what are the criticisms of internal covariate shift?
+        There is some debate in the machine learning community about the importance of internal covariate shift and whether it is a significant problem in practice. Some researchers have argued that internal covariate shift is not a major concern, and that other factors, such as the quality of the data and the choice of model architecture, are more important for achieving good performance. Others have suggested that internal covariate shift is a real phenomenon, but that it can be addressed using existing techniques such as batch normalization. There is also some disagreement about the best way to measure internal covariate shift, with some researchers advocating for more sophisticated methods than others. Overall, the topic is still an active area of research, and it is likely that the understanding of internal covariate shift will continue to evolve.
+
+        I'm not aware of any specific criticisms of internal covariate shift. However, some researchers have raised concerns about the use of batch normalization, which is a common technique used to address internal covariate shift in deep learning models. One concern is that batch normalization can make models less interpretable, because it adds additional layers to the model that can make it harder to understand how the model is making predictions. Additionally, batch normalization can add computational complexity to the model, which can make training more difficult and can increase the time and resources needed to train the model. Overall, the use of batch normalization and other techniques to address internal covariate shift is an active area of research, and there is ongoing debate about the best ways to address this issue.
+
+    - Is internal covariate shift a real concern?
+        Yes, internal covariate shift is a real concern in machine learning, especially in deep learning. When the distribution of the input data that a model receives changes during training, the model's performance can degrade over time. This can happen when the model is trained on a batch of data, but the distribution of that data is different from the distribution of the data that the model will see when it is deployed in the real world. As a result, the model may not be able to generalize well to new data, and its performance may suffer. This can be a particularly significant problem in deep learning, where models can have millions of parameters and can be very sensitive to changes in the input data. To address internal covariate shift, it is important to carefully monitor the distribution of the input data and to use techniques such as batch normalization to ensure that the model remains stable and performs well over time.  
+    </div>
 
 
 3. **Suppressing Higher-Order Effects (Goodfellow):**{: style="color: SteelBlue"}{: .bodyContents2 #bodyContents23}  
@@ -207,8 +223,8 @@ prevLink: /work_files/research/dl/concepts.html
     * This means weights don’t fly all over the place (as long as we have sensible initial means and magnitudes), and we can optimize much easier.  
 
     __Further Intuition:__  
-    Deep Neural networks have higher-order interactions, which means changing weights of one layer might also effect the statistics of other layers in addition to the loss function. These cross layer interactions, when unaccounted lead to internal covariate shift. Every time we update the weights of a layer, there is a chance that it effects the statistics of a layer further in the neural network in an unfavorable way.  
-    Convergence may require careful initializing, hyperparameter tuning and longer training durations in such cases. However, when we add the batch normalized layer between the layers, the statistics of a layer are only effected by the two hyperparameters  $$\gamma$$  and $$\beta$$. Now our optimization algorithm has to adjust only two hyperparameters to control the statistics of any layer, rather than the entire weights in the previous layer. This greatly speeds up convergence, and avoids the need for careful initialization and hyperparameter tuning. Therefore, Batch Norm acts more like a check pointing mechanism.  
+    Deep Neural networks have higher-order interactions, which means changing weights of one layer might also affect the statistics of other layers in addition to the loss function. These cross layer interactions, when unaccounted lead to internal covariate shift. Every time we update the weights of a layer, there is a chance that it affects the statistics of a layer further in the neural network in an unfavorable way.  
+    Convergence may require careful initializing, hyperparameter tuning and longer training durations in such cases. However, when we add the batch normalized layer between the layers, the statistics of a layer are only affected by the two hyperparameters  $$\gamma$$  and $$\beta$$. Now our optimization algorithm has to adjust only two hyperparameters to control the statistics of any layer, rather than the entire weights in the previous layer. This greatly speeds up convergence, and avoids the need for careful initialization and hyperparameter tuning. Therefore, Batch Norm acts more like a check pointing mechanism.  
     > Notice that the ability to arbitrarily set the mean and the standard deviation of a layer also means that we can recover the original distribution if that was sufficient for proper training.  
 
 

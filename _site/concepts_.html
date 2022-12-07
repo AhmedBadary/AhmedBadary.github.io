@@ -119,6 +119,49 @@
 <img src="https://cdn.mathpix.com/snip/images/dq-w7AFpBfdXveRL3uGmnerIGtfIPyeJFRfj2o97XSU.original.fullsize.png" alt="img" width="100%" hidden="" /><br />
 CNN Tensor Shape: \([B, C, H, W]\)</p>
 
+<h2 id="notes">Notes</h2>
+
+<ul>
+  <li>Statistics-ML Concepts Translations  <br />
+  <button class="showText" value="show" onclick="showText_withParent_PopHide(event);">List</button>
+    <div hidden=""></div>
+    <ul>
+      <li>Dependent/Response variable   \(\iff\)   target variable, label</li>
+      <li>Independent variable   \(\iff\)   feature, predictor</li>
+      <li>Correlation   \(\iff\)   association</li>
+      <li>Regression   \(\iff\)   prediction</li>
+      <li>Hypothesis testing   \(\iff\)   model evaluation</li>
+      <li>P-value   \(\iff\)   model performance metric</li>
+      <li>Outliers   \(\iff\)   anomalies</li>
+      <li>Normal distribution   \(\iff\)   Gaussian distribution</li>
+      <li>Mean   \(\iff\)   average</li>
+      <li>Median   \(\iff\)   middle value</li>
+      <li>Mode   \(\iff\)   most frequent value</li>
+      <li>Standard deviation   \(\iff\)   spread of data around the mean</li>
+      <li>Variance   \(\iff\)   measure of dispersion of data from the mean</li>
+      <li>Confidence interval   \(\iff\)   range of values within which the true value is likely to fall</li>
+      <li>Statistical significance   \(\iff\)   likelihood that a result is not due to chance</li>
+      <li>Sample   \(\iff\)   subset of data used for analysis</li>
+      <li>Population   \(\iff\)   entire set of data</li>
+      <li>Bias   \(\iff\)   systematic error in a model</li>
+      <li>Overfitting   \(\iff\)   when a model is too complex and performs poorly on new data</li>
+      <li>Underfitting   \(\iff\)   when a model is too simple and does not capture the underlying patterns in the data.</li>
+      <li>Random sampling   \(\iff\)   sampling randomly from a population</li>
+      <li>Stratified sampling   \(\iff\)   sampling by dividing the population into subgroups and selecting a random sample from each subgroup</li>
+      <li>Cluster sampling   \(\iff\)   sampling by dividing the population into clusters and selecting a random sample of clusters</li>
+      <li>Multivariate analysis   \(\iff\)   analysis of multiple variables</li>
+      <li>Multinomial distribution   \(\iff\)   probability distribution of a discrete random variable with more than two possible outcomes</li>
+      <li>Chi-square test   \(\iff\)   test used to determine if two or more groups have the same distribution</li>
+      <li>T-test   \(\iff\)   test used to determine if the means of two groups are significantly different from each other</li>
+      <li>ANOVA   \(\iff\)   analysis of variance, used to compare the means of multiple groups</li>
+      <li>Principle component analysis   \(\iff\)   technique for reducing the dimensionality of data</li>
+      <li>Factor analysis   \(\iff\)   technique for identifying underlying factors in a dataset.</li>
+    </ul>
+
+    <p>&lt;/div&gt;</p>
+  </li>
+</ul>
+
 <h2 id="content1">CNNs</h2>
 
 <!-- 1. **:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}   -->
@@ -482,7 +525,17 @@ CNN Tensor Shape: \([B, C, H, W]\)</p>
       </li>
       <li><strong>Permutations and Combinations</strong>:
         <ul>
-          <li><strong>Permutations of a set of size \(N\)</strong>  \(= N!\)<br />
+          <li><strong>Permutations of a set of size \(N\)</strong>  \(= N!\)</li>
+          <li><a href="https://math.stackexchange.com/questions/2852683/how-many-subsets-of-size-k-from-1-2-n-such-that-if-subset-contains-2-it-doe">Set Inclusion/Exclusion (stackex)</a><br />
+  e.g. \(\left|S_{1} \cup S_{2}\right|=\left|S_{1}\right|+\left|S_{2}\right|-\left|S_{1} \cap S_{2}\right|=2\left|S_{1}\right|-\left|S_{1} \cap S_{2}\right|\)</li>
+          <li><strong>Number of Subsets of size \(k\) where 1 element \(i\) always appears</strong>: \(\left(\begin{array}{l}n-1 \\ k-1 \end{array}\right)\)<br />
+  (e.g. the number of sets that include the element \(1\))
+            <ul>
+              <li><strong>Intuition</strong>: you have already chosen two elements (\(1\) and \(2\)), now there are \(k-2\) slots left in each subset and \(n-2\) elements left to choose from.</li>
+            </ul>
+          </li>
+          <li><strong>Number of Subsets of size \(k\) where 2 element \(i\) and \(j\) appear together</strong>: \(\left(\begin{array}{l}n-2 \\ k-2 \end{array}\right)\)<br />
+  (e.g. the number of sets that include both \(1\) and \(2\))<br />
   <button class="showText" value="show" onclick="showTextPopHide(event);">Diagram</button>
   <img src="https://cdn.mathpix.com/snip/images/726OtLVApY6cM75FeWVsxKTNWwN7I3C3OGioTOea9xU.original.fullsize.png" alt="img" width="70%" hidden="" /></li>
         </ul>
@@ -1235,6 +1288,9 @@ We can choose \(w\) using <strong>maximum likelihood:</strong><br />
       <li><strong>Whitening</strong>:  Centering + Sphering (also known as <em><strong>Decorrelating feature space</strong></em>)</li>
     </ul>
 
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Why Normalize the Data/Signal?</button>
+<img src="https://cdn.mathpix.com/snip/images/8aNuJetgTgCtv4pvqaI0dr96pDyUmfuX_d1aLK1lmaw.original.fullsize.png" alt="img" width="80%" hidden="" /></p>
+
     <p><a href="https://hadrienj.github.io/posts/Preprocessing-for-deep-learning/">Pre-processing for Deep Learning (data regularization)</a></p>
 
     <p><a href="https://github.com/dalmia/Deep-Learning-Book-Chapter-Summaries/blob/master/07%20-%20Regularization%20for%20Deep%20Learning.ipynb">Ch.7 dl-book summary</a><br />
@@ -1352,7 +1408,7 @@ The sampling density is proportional to \(N^{1/p}\), where \(p\) is the dimensio
       </li>
       <li><strong>Gaussian Discriminant Analysis</strong>:
         <ul>
-          <li>models $P(Y=y \vert X)$ as a logistic function.</li>
+          <li>models \(P(Y=y \vert X)\) as a logistic function.</li>
           <li>is a generative model.</li>
           <li>can be used to classify points without ever computing an exponential</li>
           <li><strong>decision boundary shapes:</strong>

@@ -389,6 +389,7 @@ prevLink: /work_files/research/dl/theory.html
     <p>$$\hat{\boldsymbol{\theta}}_{m}=g\left(\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(m)}\right)$$</p>  
     such that a good estimator is a function whose output is close to the true underlying $$ \theta $$ that generated the training data.  
     > We assume that the true $$\boldsymbol{\theta}$$ is fixed, and that $$\hat{\boldsymbol{\theta}}$$ is a function of the data, which is drawn from a random process, making $$\hat{\boldsymbol{\theta}}$$ a __random variable__.  
+    Thus, a __point estimator__ is a *__random variable__*.  
 
 
     __Function Estimation/Approximation__ refers to estimation of the relationship between _input_ and _target data_.  
@@ -408,7 +409,7 @@ prevLink: /work_files/research/dl/theory.html
     __Notes:__  
     {: #lst-p}
     * weights $$\boldsymbol{w}$$ == parameters $$\theta$$
-    * parameter/point estimation == function estimation
+    * parameter/point estimation == function estimation  
         Linear Regression and Polynomial Regression both illustrate scenarios that may be interpreted as either estimating a parameter $$\boldsymbol{w}$$ or estimating a function $$f$$ mapping from $$\boldsymbol{x}$$ to $$y$$.  
     * we can use the theory and tools for analyzing point estimators and apply them to function estimators (e.g. bias/var decomp etc.)
 
@@ -440,12 +441,13 @@ prevLink: /work_files/research/dl/theory.html
     <br>
 
 5. **Generalization Error from Standard Error (of the mean):**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15}  
-    We often estimate the __generalization error__ by computing the __sample mean__ of the error on the test set.  
-    Taking advantage of the central limit theorem, which tells us that the mean will be approximately distributed with a normal distribution, we can use the standard error to compute the probability that the true expectation falls in any chosen interval.  
-    For example, the 95 percent confidence interval centered on the mean $$\hat{\mu}_ {m}$$ is:  
+    We often estimate the __generalization error__ by computing the *__sample mean__ of the __error__* on the *__test set__*.  
+    Taking advantage of the __central limit theorem__, which tells us that the mean will be approximately distributed with a normal distribution, <span>we can use the __standard error__ to compute the __probability that the true expectation falls in any chosen interval__</span>{: style="color: goldenrod"}.  
+    For example, the $$95\%$$ confidence interval centered on the __mean__ $$\hat{\mu}_ {m}$$ is:  
     <p>$$\left(\hat{\mu}_{m}-1.96 \mathrm{SE}\left(\hat{\mu}_{m}\right), \hat{\mu}_{m}+1.96 \mathrm{SE}\left(\hat{\mu}_{m}\right)\right)$$</p>  
-    under the normal distribution with mean $$\hat{\mu}_{m}$$ and variance $$\mathrm{SE}\left(\hat{\mu}_{m}\right)^{2}$$.  
-    We say that algorithm $$\boldsymbol{A}$$ is __better than__ algorithm $$\boldsymbol{B}$$ if the _upper bound_ of the $$95$$ percent confidence interval for the error of algorithm $$\boldsymbol{A}$$ is __less than__ the _lower bound_ of the $$95$$ percent confidence interval for the error of algorithm $$\boldsymbol{B}$$.  
+    under the normal distribution with __mean__ $$\hat{\mu}_{m}$$ and __variance__ $$\mathrm{SE}\left(\hat{\mu}_{m}\right)^{2}$$.  
+
+    We say that algorithm $$\boldsymbol{A}$$ is __better than__ algorithm $$\boldsymbol{B}$$ if the <_upper bound_ of the $$95\%$$ confidence interval for the error of algorithm $$\boldsymbol{A}$$> is __less than__ the <_lower bound_ of the $$95\%$$ confidence interval for the error of algorithm $$\boldsymbol{B}$$>.  
 
 6. **The Bias Variance Trade-off:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents16}  
     Bias and variance measure two different sources of error in an estimator:  

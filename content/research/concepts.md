@@ -51,6 +51,48 @@ __PyTorch:__{: style="color: red"}
 CNN Tensor Shape: $$[B, C, H, W]$$  
 
 
+
+## Notes
+
+* Statistics-ML Concepts Translations    
+    <button>List</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    <div hidden="" markdown="1">
+    - Dependent/Response variable   $$\iff$$   target variable, label
+    - Independent variable   $$\iff$$   feature, predictor
+    - Correlation   $$\iff$$   association
+    - Regression   $$\iff$$   prediction
+    - Hypothesis testing   $$\iff$$   model evaluation
+    - P-value   $$\iff$$   model performance metric
+    - Outliers   $$\iff$$   anomalies
+    - Normal distribution   $$\iff$$   Gaussian distribution
+    - Mean   $$\iff$$   average
+    - Median   $$\iff$$   middle value
+    - Mode   $$\iff$$   most frequent value
+    - Standard deviation   $$\iff$$   spread of data around the mean
+    - Variance   $$\iff$$   measure of dispersion of data from the mean
+    - Confidence interval   $$\iff$$   range of values within which the true value is likely to fall
+    - Statistical significance   $$\iff$$   likelihood that a result is not due to chance
+    - Sample   $$\iff$$   subset of data used for analysis
+    - Population   $$\iff$$   entire set of data
+    - Bias   $$\iff$$   systematic error in a model
+    - Overfitting   $$\iff$$   when a model is too complex and performs poorly on new data
+    - Underfitting   $$\iff$$   when a model is too simple and does not capture the underlying patterns in the data.
+    - Random sampling   $$\iff$$   sampling randomly from a population
+    - Stratified sampling   $$\iff$$   sampling by dividing the population into subgroups and selecting a random sample from each subgroup
+    - Cluster sampling   $$\iff$$   sampling by dividing the population into clusters and selecting a random sample of clusters
+    - Multivariate analysis   $$\iff$$   analysis of multiple variables
+    - Multinomial distribution   $$\iff$$   probability distribution of a discrete random variable with more than two possible outcomes
+    - Chi-square test   $$\iff$$   test used to determine if two or more groups have the same distribution
+    - T-test   $$\iff$$   test used to determine if the means of two groups are significantly different from each other
+    - ANOVA   $$\iff$$   analysis of variance, used to compare the means of multiple groups
+    - Principle component analysis   $$\iff$$   technique for reducing the dimensionality of data
+    - Factor analysis   $$\iff$$   technique for identifying underlying factors in a dataset.
+  
+    </div>
+
+
+
+
 ## CNNs
 {: #content1}
 
@@ -945,7 +987,7 @@ __NOTES:__
             * __Entropy__  
             * __VC-dim__  
     * __Gaussian Discriminant Analysis__:  
-        * models $P(Y=y \vert X)$ as a logistic function. 
+        * models $$P(Y=y \vert X)$$ as a logistic function. 
         * is a generative model.
         * can be used to classify points without ever computing an exponential
         * __decision boundary shapes:__  

@@ -287,6 +287,17 @@ __Methods/Algorithms:__{: style="color: red"}
 
 <br>
 
+
+
+### **Data Imputation**{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents3 #bodyContents32}  
+
+
+__Resources:__  
+{: #lst-p}
+* [Imputation Solutions (Product)](https://www.interpretable.ai/products/optimpute/)  
+* [Robust Data Pipeline Design (Product/Case)](https://www.interpretable.ai/solutions/data-pipeline/)  
+
+
 <!-- ### ****{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents3 #bodyContents32}  
 ### ****{: style="color: SteelBlue; font-size: 1.15em"}{: .bodyContents3 #bodyContents33}   -->
 
