@@ -91,14 +91,67 @@
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents11">Linear Algebra:</strong></p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">Linear Algebra:</strong></p>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents12">General Data Distribution Shifts:</strong>
+    <ul>
+      <li><strong>Feature change</strong>, such as when new features are added, older features are removed, or the set of all possible values of a feature changes:
+  months to years</li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td><strong>Label schema change</strong> is when the set of possible values for Y change. With label shift, P(Y) changes but P(X</td>
+              <td>Y) remains the same. With label schema change, both P(Y) and P(X</td>
+              <td>Y) change.</td>
+            </tr>
+          </tbody>
+        </table>
+        <ul>
+          <li><em><strong>CREDIT:</strong></em> * With regression tasks, label schema change could happen because of changes in the possible range of label values. Imagine you’re building a model to predict someone’s credit score. Originally, you used a credit score system that ranged from 300 to 850, but you switched to a new system that ranges from 250 to 900.</li>
+        </ul>
+      </li>
+      <li></li>
+    </ul>
   </li>
   <li>
     <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents13">Linear Algebra:</strong></p>
   </li>
-  <li>
-    <p><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Linear Algebra:</strong></p>
+  <li><strong style="color: SteelBlue" class="bodyContents1" id="bodyContents14">Handling Data Distribution Shifts:</strong>
+    <ol>
+      <li>DETECTION</li>
+      <li>HANDLING</li>
+    </ol>
+
+    <ul>
+      <li><strong style="color: blue">DETECTION:</strong>
+        <ul>
+          <li>monitor your model’s accuracy-related metrics30 in production to see whether they have changed.
+            <ul>
+              <li>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>When ground truth labels are unavailable or too delayed to be useful, we can monitor other distributions of interest instead. The distributions of interest are the input distribution P(X), the label distribution P(Y), and the conditional distributions P(X</td>
+                      <td>Y) and P(Y</td>
+                      <td>X).</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </li>
+              <li>In research, there have been efforts to understand and detect label shifts without labels from the target distribution. One such effort is Black Box Shift Estimation by Lipton et al., 2018.</li>
+            </ul>
+          </li>
+          <li><strong style="color: blue">Statistical Methods:</strong>
+            <ul>
+              <li>a simple method many companies use to detect whether the two distributions are the same is to compare their statistics like mean, median, variance, quantiles, skewness, kurtosis, etc. (bad)
+                <ul>
+                  <li>If those metrics differ significantly, the inference distribution might have shifted from the training distribution. However, if those metrics are similar, there’s no guarantee that there’s no shift.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </li>
 </ol>
 

@@ -29,13 +29,33 @@ prevLink: /work_files/research/dl/theory.html
 ## Data Drift/Shift
 {: #content1}
 
+
 1. **Linear Algebra:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
 
-2. **Linear Algebra:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
+
+    * The problem of dataset shift can stem from the way input features are utilized, the way training and test sets are selected, data sparsity, shifts in the data distribution due to non-stationary environments, and also from changes in the activation patterns within layers of deep neural networks.  
+
+2. **General Data Distribution Shifts:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12}  
+    * __Feature change__, such as when new features are added, older features are removed, or the set of all possible values of a feature changes:
+        months to years  
+    * __Label schema change__ is when the set of possible values for Y change. With label shift, P(Y) changes but P(X|Y) remains the same. With label schema change, both P(Y) and P(X|Y) change.  
+        * *__CREDIT:__* * With regression tasks, label schema change could happen because of changes in the possible range of label values. Imagine you’re building a model to predict someone’s credit score. Originally, you used a credit score system that ranged from 300 to 850, but you switched to a new system that ranges from 250 to 900.  
+    * 
 
 3. **Linear Algebra:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
 
-4. **Linear Algebra:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
+4. **Handling Data Distribution Shifts:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
+    1. DETECTION  
+    2. HANDLING  
+
+    * __DETECTION:__{: style="color: blue"}  
+        * monitor your model’s accuracy-related metrics30 in production to see whether they have changed.
+            * When ground truth labels are unavailable or too delayed to be useful, we can monitor other distributions of interest instead. The distributions of interest are the input distribution P(X), the label distribution P(Y), and the conditional distributions P(X|Y) and P(Y|X).  
+            * In research, there have been efforts to understand and detect label shifts without labels from the target distribution. One such effort is Black Box Shift Estimation by Lipton et al., 2018.  
+        * __Statistical Methods:__{: style="color: blue"}  
+            *  a simple method many companies use to detect whether the two distributions are the same is to compare their statistics like mean, median, variance, quantiles, skewness, kurtosis, etc. (bad)   
+                * If those metrics differ significantly, the inference distribution might have shifted from the training distribution. However, if those metrics are similar, there’s no guarantee that there’s no shift.  
+            * 
 
 
 ## Encoding
