@@ -30,7 +30,30 @@ prevLink: /work_files/research/dl/theory.html
 {: #content1}
 
 
-1. **Linear Algebra:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
+1. **Types of SHIFT:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
+    * Dataset shift happens when the i.i.d. assumptions are not valid for out problem space  
+
+
+1. **Types of SHIFT:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11}  
+    * __Covariate Shift:__  
+
+        ![img](https://cdn.mathpix.com/snip/images/q4r9dKK9TcR2xk-GzjpGu9ufWzttm4idv18GCoz86eM.original.fullsize.png){: width="40%"}  
+
+    * __Prior Probability Shift__: $$P(x)$$  
+        ![img](https://cdn.mathpix.com/snip/images/Qoxi81pa3lGfWuHOpMAKeth3IJZxA0UubqgBip2oWTU.original.fullsize.png){: width="40%"}  
+
+    * __Covariate Shift__:  
+
+        ![img](https://cdn.mathpix.com/snip/images/SnCgPXP8t5kPsPh2XMo4elCO87crgEgXzFdmCV3P7vs.original.fullsize.png){: width="40%"}  
+
+    * __Internal CS__:  
+        Researchers found that due to the variation in the distribution of activations from the output of a given hidden layer, which are used as the input to a subsequent layer, the network layers can suffer from covariate shift which can impede the training of deep neural networks.
+
+
+
+        * Covariate shift is the change in the distribution of the covariates specifically, that is, the independent variables. This is normally due to changes in state of latent variables, which could be temporal (even changes to the stationarity of a temporal process), or spatial, or less obvious.  
+
+        * IIt introduces BIAS to *__cross-validation__* 
 
 
     * The problem of dataset shift can stem from the way input features are utilized, the way training and test sets are selected, data sparsity, shifts in the data distribution due to non-stationary environments, and also from changes in the activation patterns within layers of deep neural networks.  
@@ -42,7 +65,11 @@ prevLink: /work_files/research/dl/theory.html
         * *__CREDIT:__* * With regression tasks, label schema change could happen because of changes in the possible range of label values. Imagine you’re building a model to predict someone’s credit score. Originally, you used a credit score system that ranged from 300 to 850, but you switched to a new system that ranges from 250 to 900.  
     * 
 
-3. **Linear Algebra:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
+3. **Causes of SHIFT:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents13}  
+    ![img](https://cdn.mathpix.com/snip/images/kOrj05WvKP5Za6xCtyQNlLv6kDvfErHCPWjVcCkWGt4.original.fullsize.png){: width="40%"}  
+    * Dataset shift resulting from sample selection bias is especially relevant when dealing with imbalanced classification, because, in highly imbalanced domains, the minority class is particularly sensitive to singular classification errors, due to the typically low number of samples it presents.
+
+
 
 4. **Handling Data Distribution Shifts:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
     1. DETECTION  
