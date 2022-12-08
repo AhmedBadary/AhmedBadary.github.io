@@ -69,13 +69,20 @@ prevLink: /work_files/research/dl/theory.html
     ![img](https://cdn.mathpix.com/snip/images/kOrj05WvKP5Za6xCtyQNlLv6kDvfErHCPWjVcCkWGt4.original.fullsize.png){: width="40%"}  
     * Dataset shift resulting from sample selection bias is especially relevant when dealing with imbalanced classification, because, in highly imbalanced domains, the minority class is particularly sensitive to singular classification errors, due to the typically low number of samples it presents.
 
+    ![img](https://cdn.mathpix.com/snip/images/COPV9jUSmrT5WdsWaBhrUuzZKrdh2GmlL3uLwREiUqw.original.fullsize.png){: width="40%"}  
 
+
+    * __IN CREDIT__{: style="color: red"}  
+        * Non-stationary due to changing macro-economic state  
+        * Adversarial Relationship / Fraud: people might try to game the system to get loans  
 
 4. **Handling Data Distribution Shifts:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
     1. DETECTION  
     2. HANDLING  
 
     * __DETECTION:__{: style="color: blue"}  
+        ![img](https://cdn.mathpix.com/snip/images/Doczy4vS_FRRoH_miFbRcraLdzirPt8RHaWrNym5ReU.original.fullsize.png){: width="40%"}  
+        ![img](https://cdn.mathpix.com/snip/images/38j2j-H44tajU8k5Khp1RVA7C42q1-Gb2Ga0LD2BDZ0.original.fullsize.png){: width="40%"}  
         * monitor your model’s accuracy-related metrics30 in production to see whether they have changed.
             * When ground truth labels are unavailable or too delayed to be useful, we can monitor other distributions of interest instead. The distributions of interest are the input distribution P(X), the label distribution P(Y), and the conditional distributions P(X|Y) and P(Y|X).  
             * In research, there have been efforts to understand and detect label shifts without labels from the target distribution. One such effort is Black Box Shift Estimation by Lipton et al., 2018.  
@@ -83,6 +90,8 @@ prevLink: /work_files/research/dl/theory.html
             *  a simple method many companies use to detect whether the two distributions are the same is to compare their statistics like mean, median, variance, quantiles, skewness, kurtosis, etc. (bad)   
                 * If those metrics differ significantly, the inference distribution might have shifted from the training distribution. However, if those metrics are similar, there’s no guarantee that there’s no shift.  
             * 
+
+
 
 
 ## Encoding
