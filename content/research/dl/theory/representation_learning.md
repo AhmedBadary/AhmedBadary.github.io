@@ -959,9 +959,23 @@ __Notes (Move Inside):__{: style="color: red"}
     <br>
 
 
-<!-- 4. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents54}
-5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents55}
- -->
+
+
+
+4. **Distribution Shift:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents54}  
+    <button>Resources</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+    <div hidden="" markdown="1">
+    * [Data Drift - Types, causes and measures. (Blog)](https://medium.com/@nandy12599/data-drift-types-causes-and-measures-6ce056b42c45)  
+    * [Data Distribution Shifts and Monitoring (Blog!! - Mecca)](https://huyenchip.com/2022/02/07/data-distribution-shifts-and-monitoring.html)   
+    * [https://d2l.ai/chapter_linear-classification/environment-and-distribution-shift.html (Book!! - Mecca)](https://d2l.ai/chapter_linear-classification/environment-and-distribution-shift.html)   
+    </div>
+
+    <button>Algorithms/Methods for Drift Detection (implemented by `alibi-detect`)</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+    ![img](https://cdn.mathpix.com/snip/images/pV_6RMU3FAfIMHKj6mFPOONJmQkiHzEPnkpX3wv3y_o.original.fullsize.png){: width="100%" hidden=""}  
+
+
+<!-- 5. **Asynchronous:**{: style="color: SteelBlue"}{: .bodyContents5 #bodyContents55} -->
+
 
 
 

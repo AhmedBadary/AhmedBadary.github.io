@@ -393,7 +393,11 @@ CNN Tensor Shape: $$[B, C, H, W]$$
 
     __Notes:__{: style="color: red"}  
     {: #lst-p}
+    * ROC curve is monotone increasing from 0 to 1 and is invariant to any monotone transformation of test results.  
     * ROC curves (& AUC) are useful even if the __predicted probabilities__ are not *__"properly calibrated"__*  
+    * ROC curves are not affected by monotonically increasing functions
+    * [Scale and Threshold Invariance (Blog)](https://builtin.com/data-science/roc-curves-auc)  
+    * Accuracy is neither a threshold-invariant metric nor a scale-invariant metric.  
     <br>
 
 2. **AUC - AUROC:**{: style="color: SteelBlue"}{: .bodyContents4 #bodyContents42}  

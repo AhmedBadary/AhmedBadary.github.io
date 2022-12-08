@@ -45,11 +45,11 @@
 
 
 <section class="page-header">
-  <h1 class="project-name">Answers to Prep Questions (Learning)</h1>
+  <h1 class="project-name">Probability Calibration</h1>
   <h2 class="project-tagline"></h2>
   <a href="/#" class="btn">Home</a>
   <a href="/work" class="btn">Work-Space</a>
-  <a href= /work_files/research.html class="btn">Previous</a>
+  <a href= /work_files/research/dl/practical.html class="btn">Previous</a>
 </section>
 
 <!-- <div>
@@ -63,109 +63,104 @@
 
     <section class="main-content">
       
-      <h1 id="data-processing-and-analysis">Data Processing and Analysis</h1>
-<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">Data Processing and Analysis</button></p>
-<ol hidden="">
-  <li><strong style="color: red">What are 3 data preprocessing techniques to handle outliers?</strong>
-    <ol>
-      <li>Winsorizing/Winsorization (cap at threshold).</li>
-      <li>Transform to reduce skew (using Box-Cox or similar).</li>
-      <li>Remove outliers if you’re certain they are anomalies or measurement errors.</li>
-    </ol>
+      <p>Modern NN are <strong>miscalibrated</strong>: not well-calibrated. They tend to be very confident. We cannot interpret the softmax probabilities as reflecting the true probability distribution or as a measure of confidence.</p>
+
+<p><strong>Miscalibration:</strong> is the discrepancy between model confidence and model accuracy.<br />
+You assume that if a model gives \(80\%\) confidence for 100 images, then \(80\) of them will be accurate and the other \(20\) will be inaccurate.<br />
+<button class="showText" value="show" onclick="showTextPopHide(event);">Miscalibration in Modern Neural Networks</button>
+<img src="https://cdn.mathpix.com/snip/images/boMaW8Wx2tXfUYTJpd-rhcVGWnrtpC4_2AGbXPxtocc.original.fullsize.png" alt="img" width="40%" /></p>
+
+<p><strong>Model Confidence:</strong> probability of correctness.<br />
+<strong>Calibrated Confidence (softmax scores) \(\hat{p}\):</strong> \(\hat{p}\) represents a true probability.</p>
+
+<p><button class="showText" value="show" onclick="showTextPopHide(event);">Bias of Different Classical ML Models</button>
+<img src="https://cdn.mathpix.com/snip/images/m91-I3AcQ52sbAjr2gzeBlv_SlmZSh5Hb_knOLkTOMk.original.fullsize.png" alt="img" width="40%" /></p>
+
+<p><button class="showText" value="show" onclick="showTextPopHide(event);">Summary On Practical Use of Model Scores (sklearn)</button>
+<img src="https://cdn.mathpix.com/snip/images/f7hsQi4QKi0wejzS4YNwKVf_AaYVjOjqZFdt5UcSvDc.original.fullsize.png" alt="img" width="40%" /></p>
+
+<p><strong style="color: red">Probability Calibration:</strong><br />
+Predicted scores (model outputs) of many classifiers do not represent <em>“true” probabilities</em>.<br />
+They only respect the <em>mathematical definition</em> (conditions) of what a probability function is:</p>
+<ol>
+  <li>Each “probability” is between 0 and 1</li>
+  <li>When you sum the probabilities of an observation being in any particular class, they sum to 1.</li>
+</ol>
+
+<ul>
+  <li>
+    <p><strong>Calibration Curves</strong>: A calibration curve plots the predicted probabilities against the actual rate of occurance.<br />
+  I.E. It plots the <em><strong>predicted</strong></em> probabilities against the <em><strong>actual</strong></em> probabilities.<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Example: Rain Prediction with Naive Bayes Model</button>
+  <img src="https://cdn.mathpix.com/snip/images/SgB0b51NGZ0_McTgF0d25jWXx43A-cA8MSSco6jvzZA.original.fullsize.png" alt="img" width="40%" /></p>
   </li>
-  <li><strong style="color: red">Describe the strategies to dimensionality reduction?</strong>
-    <ol>
-      <li>Feature Selection</li>
-      <li>Feature Projection/Extraction</li>
-    </ol>
+  <li>
+    <p><strong>Approach</strong>:<br />
+  Calibrating a classifier consists of fitting a regressor (called a calibrator) that maps the output of the classifier (as given by <code class="language-plaintext highlighter-rouge">decision_function</code> or <code class="language-plaintext highlighter-rouge">predict_proba</code> - sklearn) to a calibrated probability in \([0, 1]\).<br />
+  Denoting the output of the classifier for a given sample by \(f_i\), the calibrator tries to predict \(p\left(y_i=1 \mid f_i\right)\).</p>
   </li>
-  <li><strong style="color: red">What are 3 ways of reducing dimensionality?</strong>
-    <ol>
-      <li>Removing Collinear Features</li>
-      <li>Performing PCA, ICA, etc.</li>
-      <li>Feature Engineering</li>
-      <li>AutoEncoder</li>
-      <li>Non-negative matrix factorization (NMF)</li>
-      <li>LDA</li>
-      <li>MSD</li>
-    </ol>
-  </li>
-  <li><strong style="color: red">List methods for Feature Selection</strong>
-    <ol>
-      <li>Variance Threshold: normalize first (variance depends on scale)</li>
-      <li>Correlation Threshold: remove the one with larger mean absolute correlation with other features.</li>
-      <li>Genetic Algorithms</li>
-      <li>Stepwise Search: bad performance, regularization much better, it’s a greedy algorithm (can’t account for future effects of each change)</li>
-      <li>LASSO, Elastic-Net</li>
-    </ol>
-  </li>
-  <li><strong style="color: red">List methods for Feature Extraction</strong>
-    <ol>
-      <li>PCA, ICA, CCA</li>
-      <li>AutoEncoders</li>
-      <li>LDA: LDA is a supervised linear transformation technique since the dependent variable (or the class label) is considered in the model. It Extracts the k new independent variables that <strong>maximize the separation between the classes of the dependent variable</strong>.
-        <ol>
-          <li>Linear discriminant analysis is used to find a linear combination of features that characterizes or separates two or more classes (or levels) of a categorical variable.</li>
-          <li>Unlike PCA, LDA extracts the k new independent variables that <strong>maximize the separation between the classes of the dependent variable</strong>. LDA is a supervised linear transformation technique since the dependent variable (or the class label) is considered in the model.</li>
-        </ol>
+  <li><a href="https://scikit-learn.org/stable/modules/calibration.html"><strong>Methods</strong></a>:
+    <ul>
+      <li>
+        <p><strong>Platt Scaling</strong>: Platt scaling basically fits a logistic regression on the original model’s.<br />
+  The closer the calibration curve is to a sigmoid, the more effective the scaling will be in correcting the model.<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Model Definition</button>
+  <img src="https://cdn.mathpix.com/snip/images/F_DDq98LBIJPNFg6AjRQI4OpJJ_ozb4ZM1NdrOaxfOk.original.fullsize.png" alt="img" width="40%" /></p>
+
+        <ul>
+          <li>
+            <p><strong>Assumptions</strong>:<br />
+  The sigmoid method assumes the calibration curve can be corrected by applying a sigmoid function to the raw predictions.<br />
+  This assumption has been empirically justified in the case of <strong>Support Vector Machines</strong> with <strong>common kernel functions</strong> on various benchmark datasets but does not necessarily hold in general.</p>
+          </li>
+          <li>
+            <p><strong>Limitations</strong>:</p>
+            <ul>
+              <li>The logistic model works best if the <strong>calibration error</strong> is <em><strong>symmetrical</strong></em>, meaning the classifier output for each binary class is <em><strong>normally distributed</strong></em> with the <em><strong>same variance</strong></em>.<br />
+  This can be a problem for highly imbalanced classification problems, where outputs do not have equal variance.</li>
+            </ul>
+          </li>
+        </ul>
       </li>
-      <li>Latent Semantic Analysis</li>
-      <li>Isomap</li>
-    </ol>
-  </li>
-  <li><strong style="color: red">How to detect correlation of “categorical variables”?</strong>
-    <ol>
-      <li>Chi-Squared test: it is a statistical test applied to the groups of categorical features to evaluate the likelihood of correlation or association between them using their frequency distribution.</li>
-    </ol>
-  </li>
-  <li><strong style="color: red">Feature Importance</strong>
-    <ol>
-      <li>Use linear regression and select variables based on \(p\) values</li>
-      <li>Use Random Forest, Xgboost and plot variable importance chart</li>
-      <li>Lasso</li>
-      <li>Measure information gain for the available set of features and select top \(n\) features accordingly.</li>
-      <li>Use Forward Selection, Backward Selection, Stepwise Selection</li>
-      <li>Remove the correlated variables prior to selecting important variables</li>
-      <li>In linear models, feature importance can be calculated by the scale of the coefficients</li>
-      <li>In tree-based methods (such as random forest), important features are likely to appear closer to the root of the tree. We can get a feature’s importance for random forest by computing the averaging depth at which it appears across all trees in the forest</li>
-    </ol>
-  </li>
-  <li><strong style="color: red">Capturing the correlation between continuous and categorical variable? If yes, how?</strong><br />
- Yes, we can use ANCOVA (analysis of covariance) technique to capture association between continuous and categorical variables.<br />
- <a href="https://www.youtube.com/watch?v=a61mkzQRf6c&amp;t=2s">ANCOVA Explained</a></li>
-  <li><strong style="color: red">What cross validation technique would you use on time series data set?</strong><br />
- <a href="https://en.wikipedia.org/wiki/Forward_chaining">Forward chaining strategy</a> with k folds.</li>
-  <li><strong style="color: red">How to deal with missing features? (Imputation?)</strong>
-    <ol>
-      <li>Assign a unique category to missing values, who knows the missing values might decipher some trend.</li>
-      <li>Remove them blatantly</li>
-      <li>we can sensibly check their distribution with the target variable, and if found any pattern we’ll keep those missing values and assign them a new category while removing others.</li>
-    </ol>
-  </li>
-  <li><strong style="color: red">Do you suggest that treating a categorical variable as continuous variable would result in a better predictive model?</strong><br />
- For better predictions, categorical variable can be considered as a continuous variable only when the variable is ordinal in nature.</li>
-  <li><strong style="color: red">What are collinearity and multicollinearity?</strong>
-    <ol>
-      <li><strong>Collinearity</strong> occurs when two predictor variables (e.g., \(x_1\) and \(x_2\)) in a multiple regression have some correlation.</li>
-      <li><strong>Multicollinearity</strong> occurs when more than two predictor variables (e.g., \(x_1, x_2, \text{ and } x_3\)) are inter-correlated.</li>
-    </ol>
-  </li>
-  <li><strong style="color: red">What is data normalization and why do we need it?</strong><br />
- <img src="https://cdn.mathpix.com/snip/images/8aNuJetgTgCtv4pvqaI0dr96pDyUmfuX_d1aLK1lmaw.original.fullsize.png" alt="img" width="80%" /></li>
-</ol>
+      <li>
+        <p><strong>Isotonic Method</strong>:  The ‘isotonic’ method fits a non-parametric isotonic regressor, which outputs a step-wise non-decreasing function.<br />
+  <button class="showText" value="show" onclick="showTextPopHide(event);">Objective/Loss</button>
+  <img src="https://cdn.mathpix.com/snip/images/XEjg4c6wis3M51_xsrTRzg00BRdtFK8_4CNOd7IcZ-I.original.fullsize.png" alt="img" width="40%" /></p>
 
-<hr />
+        <p>This method is more general when compared to ‘sigmoid’ as the only restriction is that the mapping function is monotonically increasing. It is thus more powerful as it can correct any monotonic distortion of the un-calibrated model. However, it is more prone to overfitting, especially on small datasets.</p>
+      </li>
+      <li>
+        <p><strong style="color: blue">Comparison:</strong></p>
+        <ul>
+          <li>Platt Scaling is most effective when the un-calibrated model is under-confident and has similar calibration errors for both high and low outputs.</li>
+          <li>Isotonic Method is more powerful than Platt Scaling:  Overall, ‘isotonic’ will perform as well as or better than ‘sigmoid’ when there is enough data (greater than ~ 1000 samples) to avoid overfitting.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="https://kiwidamien.github.io/are-you-sure-thats-a-probability.html#Limitations-of-recalibration">Limitations of recalibration:</a><br />
+  Different calibration methods have different weaknesses depending on the shape of the <em>calibration curve</em>.<br />
+  E.g. <em>Platt Scaling</em> works better the more the <em>calibration curve</em> resembles a <em><strong>sigmoid</strong></em>.</p>
 
-<h1 id="mlstatistical-models">ML/Statistical Models</h1>
-<p><button class="showText" value="show" onclick="showText_withParent_PopHide(event);">ML/Statistical Models</button></p>
-<ol hidden="">
-  <li><strong style="color: red">What are parametric models?</strong><br />
- Parametric models are those with a finite number of parameters. To predict new data, you only need to know the parameters of the model. Examples include linear regression, logistic regression, and linear SVMs.</li>
-  <li><strong style="color: red">What is a classifier?</strong><br />
- A function that maps…</li>
-</ol>
+    <p><button class="showText" value="show" onclick="showTextPopHide(event);">Example of Platt Scaling Failure</button>
+  <img src="https://cdn.mathpix.com/snip/images/I8sRhwL5JnmbjJ39hRcuIc5jomlUD4O2rrC1wMA6H6M.original.fullsize.png" alt="img" width="40%" /></p>
+  </li>
+  <li><a href="https://scikit-learn.org/stable/modules/calibration.html#multiclass-support" style="color: blue"><strong>Multi-Class Support:</strong></a></li>
+</ul>
 
-<hr />
+<p><strong>Note:</strong> The samples that are used to fit the calibrator should not be the same samples used to fit the classifier, as this would introduce bias. This is because performance of the classifier on its training data would be better than for novel data. Using the classifier output of training data to fit the calibrator would thus result in a biased calibrator that maps to probabilities closer to 0 and 1 than it should.</p>
+
+<ul>
+  <li><a href="https://arxiv.org/pdf/1706.04599.pdf">On Calibration of Modern Neural Networks</a>  <br />
+  Paper that defines the problem and gives multiple effective solution for calibrating Neural Networks.</li>
+  <li><a href="file:///Users/ahmadbadary/Downloads/Kängsepp_ComputerScience_2018.pdf">Calibration of Convolutional Neural Networks (Thesis!)</a></li>
+  <li>For calibrating output probabilities in Deep Nets; Temperature scaling outperforms Platt scaling. <a href="https://arxiv.org/pdf/1706.04599.pdf">paper</a></li>
+  <li><a href="https://scikit-learn.org/stable/modules/calibration.html">Plot and Explanation</a></li>
+  <li><a href="http://alondaks.com/2017/12/31/the-importance-of-calibrating-your-deep-model/">Blog on How to do it</a></li>
+  <li><a href="https://kiwidamien.github.io/are-you-sure-thats-a-probability.html">Interpreting outputs of a logistic classifier (Blog)</a>  <br />
+<br /></li>
+</ul>
 
 
       <footer class="site-footer">

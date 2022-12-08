@@ -5,84 +5,77 @@ permalink: /work_files/research/answers_hidden
 prevLink: /work_files/research.html
 ---
 
-# Statistics
-<button>Statistics</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
-1. __ROC curve:__{: style="color: red"}  
-    1. __Definition:__{: style="color: blue"}  
-        A __receiver operating characteristic curve__, or __ROC curve__, is a graphical plot that illustrates the diagnostic ability of a binary classifier system as its discrimination threshold is varied.  
-    1. __Purpose:__{: style="color: blue"}  
-        A way to quantify how good a **binary classifier** separates two classes.  
-    1. __How do you create the plot?__{: style="color: blue"}  
-        The ROC curve is created by plotting the __true positive rate (TPR)__ against the __false positive rate (FPR)__ at various threshold settings.  
-        \- $$\mathrm{TPR}=\frac{\mathrm{TP}}{\mathrm{P}}=\frac{\mathrm{TP}}{\mathrm{TP}+\mathrm{FN}}$$  
-        \- $$\mathrm{FPR}=\frac{\mathrm{FP}}{\mathrm{N}}=\frac{\mathrm{FP}}{\mathrm{FP}+\mathrm{TN}}$$  
-    1. __How to identify a good classifier:__{: style="color: blue"}  
-        A Good classifier has a ROC curve that is near the top-left diagonal (hugging it).  
-    1. __How to identify a bad classifier:__{: style="color: blue"}  
-        A Bad Classifier has a ROC curve that is close to the diagonal line.  
-    1. __What is its application in tuning the model?__{: style="color: blue"}  
-        It allows you to set the **classification threshold**:  
-        1. You can minimize False-positive rate or maximize the True-Positive Rate  
-1. __AUC - AUROC:__{: style="color: red"}  
-    1. __Definition:__{: style="color: blue"}  
-        When using normalized units, the area under the curve (often referred to as simply the AUC) is equal to the probability that a classifier will rank a randomly chosen positive instance higher than a randomly chosen negative one (assuming 'positive' ranks higher than 'negative').  
-    1. __Range:__{: style="color: blue"}  
-        Range $$ = 0.5 - 1.0$$, from poor to perfect, with an uninformative classifier yielding $$0.5$$    
-    1. __What does it measure:__{: style="color: blue"}  
-        It is a measure of aggregated classification performance.  
-    1. __Usage in ML:__{: style="color: blue"}  
-        For model comparison.  
-1. __Define Statistical Efficiency (of an estimator)?__{: style="color: red"}  
-    Essentially, a more efficient estimator, experiment, or test needs fewer observations than a less efficient one to achieve a given performance.  
-    Efficiencies are often defined using the _variance_ or _mean square error_ as the measure of desirability.  
-    An efficient estimator is also the minimum variance unbiased estimator (MVUE).  
 
-    1. An Efficient Estimator has lower variance than an inefficient one  
-    1. The use of an inefficient estimator gives results equivalent to those obtainable from a subset of data; and is therefor, wasteful of data  
-1. __Whats the difference between *Errors* and *Residuals*:__{: style="color: red"}  
-    The __Error__ of an observed value is the deviation of the observed value from the (unobservable) **_true_** value of a quantity of interest.  
 
-    The __Residual__ of an observed value is the difference between the observed value and the *__estimated__* value of the quantity of interest.  
-  
-    1. __Compute the statistical errors and residuals of the univariate, normal distribution defined as $$X_{1}, \ldots, X_{n} \sim N\left(\mu, \sigma^{2}\right)$$:__{: style="color: blue"}  
-        1. __Statistical Errors__:  
-            <p>$$e_{i}=X_{i}-\mu$$</p>  
-        1. __Residuals__:  
-            <p>$$r_{i}=X_{i}-\overline {X}$$</p>  
-        1. [**Example in Univariate Distributions**](https://en.wikipedia.org/wiki/Errors_and_residuals#In_univariate_distributions){: value="show" onclick="iframePopA(event)"}
-        <a href="https://en.wikipedia.org/wiki/Errors_and_residuals#In_univariate_distributions"></a>
-            <div markdown="1"> </div>    
-1. __What is a biased estimator?__{: style="color: red"}  
-    We define the __Bias__ of an estimator as:  
-    <p>$$ \operatorname{bias}\left(\hat{\boldsymbol{\theta}}_{m}\right)=\mathbb{E}\left(\hat{\boldsymbol{\theta}}_{m}\right)-\boldsymbol{\theta} $$</p>  
-    A __Biased Estimator__ is an estimator $$\hat{\boldsymbol{\theta}}_ {m}$$ such that:  
-    <p>$$ \operatorname{bias}\left(\hat{\boldsymbol{\theta}}_ {m}\right) \geq 0$$</p>  
-    1. __Why would we prefer biased estimators in some cases?__{: style="color: blue"}  
-        Mainly, due to the *__Bias-Variance Decomposition__*. The __MSE__ takes into account both the _bias_ and the _variance_ and sometimes the biased estimator might have a lower variance than the unbiased one, which results in a total _decrease_ in the MSE.  
-1. __What is the difference between "Probability" and "Likelihood":__{: style="color: red"}  
-    __Probabilities__ are the areas under a fixed distribution  
-    $$pr($$data$$|$$distribution$$)$$  
-    i.e. probability of some _data_ (left hand side) given a distribution (described by the right hand side)  
-    __Likelihoods__ are the y-axis values for fixed data points with distributions that can be moved..  
-    $$L($$distribution$$|$$observation/data$$)$$  
-    It is the likelihood of the parameter $$\theta$$ for the data $$\mathcal{D}$$.  
-    > Likelihood is, basically, a specific probability that can only be calculated after the fact (of observing some outcomes). It is not normalized to $$1$$ (it is __not__ a probability). It is just a way to quantify how likely a set of observation is to occur given some distribution with some parameters; then you can manipulate the parameters to make the realization of the data more _"likely"_ (it is precisely meant for that purpose of estimating the parameters); it is a _function_ of the __parameters__.  
-    Probability, on the other hand, is absolute for all possible outcomes. It is a function of the __Data__.  
-1. __Estimators:__{: style="color: red"}  
-    1. __Define:__{: style="color: blue"}  
-        A __Point Estimator__ or __statistic__ is any function of the data.  
-    1. __Formula:__{: style="color: blue"}  
-        <p>$$\hat{\boldsymbol{\theta}}_{m}=g\left(\boldsymbol{x}^{(1)}, \ldots, \boldsymbol{x}^{(m)}\right)$$</p>  
-    1. __Whats a good estimator?__{: style="color: blue"}  
-        A good estimator is a function whose output is close to the true underlying $$ \theta $$ that generated the training data.  
-    1. __What are the Assumptions made regarding the estimated parameter:__{: style="color: blue"}  
-        We assume that the true $$\boldsymbol{\theta}$$ is fixed, and that $$\hat{\boldsymbol{\theta}}$$ is a function of the data, which is drawn from a random process, making $$\hat{\boldsymbol{\theta}}$$ a __random variable__.  
-1. __What is Function Estimation:__{: style="color: red"}  
-    __Function Estimation/Approximation__ refers to estimation of the relationship between _input_ and _target data_.  
-    I.E. We are trying to predict a variable $$y$$ given an input vector $$x$$, and we assume that there is a function $$f(x)$$ that describes the approximate relationship between $$y$$ and $$x$$.  
-    If we assume that: $$y = f(x) + \epsilon$$, where $$\epsilon$$ is the part of $$y$$ that is not predictable from $$x$$; then we are interested in approximating $$f$$ with a model or estimate $$ \hat{f} $$.  
-    1. __Whats the relation between the Function Estimator $$\hat{f}$$ and Point Estimator:__{: style="color: blue"}  
-        Function estimation is really just the same as estimating a parameter $$\boldsymbol{\theta}$$; the function estimator $$ \hat{f} $$ is simply a point estimator in function space.  
-1. __Define "marginal likelihood" (wrt naive bayes):__{: style="color: red"}  
-    Marginal likelihood is, the probability that the word ‘FREE’ is used in any message (not given any other condition?).   
+# Data Processing and Analysis
+<button>Data Processing and Analysis</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+1. __What are 3 data preprocessing techniques to handle outliers?__{: style="color: red"}  
+    1. Winsorizing/Winsorization (cap at threshold).
+    2. Transform to reduce skew (using Box-Cox or similar).
+    3. Remove outliers if you're certain they are anomalies or measurement errors.
+1. __Describe the strategies to dimensionality reduction?__{: style="color: red"}  
+    1. Feature Selection  
+    2. Feature Projection/Extraction  
+1. __What are 3 ways of reducing dimensionality?__{: style="color: red"}  
+    1. Removing Collinear Features
+    2. Performing PCA, ICA, etc. 
+    3. Feature Engineering
+    4. AutoEncoder
+    5. Non-negative matrix factorization (NMF)
+    6. LDA
+    7. MSD
+1. __List methods for Feature Selection__{: style="color: red"}  
+    1. Variance Threshold: normalize first (variance depends on scale)
+    1. Correlation Threshold: remove the one with larger mean absolute correlation with other features.  
+    1. Genetic Algorithms
+    1. Stepwise Search: bad performance, regularization much better, it's a greedy algorithm (can't account for future effects of each change)    
+    1. LASSO, Elastic-Net  
+1. __List methods for Feature Extraction__{: style="color: red"}  
+    1. PCA, ICA, CCA
+    1. AutoEncoders
+    1. LDA: LDA is a supervised linear transformation technique since the dependent variable (or the class label) is considered in the model. It Extracts the k new independent variables that __maximize the separation between the classes of the dependent variable__.  
+        1. Linear discriminant analysis is used to find a linear combination of features that characterizes or separates two or more classes (or levels) of a categorical variable.  
+        1. Unlike PCA, LDA extracts the k new independent variables that __maximize the separation between the classes of the dependent variable__. LDA is a supervised linear transformation technique since the dependent variable (or the class label) is considered in the model.  
+    1. Latent Semantic Analysis
+    1. Isomap
+1. __How to detect correlation of "categorical variables"?__{: style="color: red"}  
+    1. Chi-Squared test: it is a statistical test applied to the groups of categorical features to evaluate the likelihood of correlation or association between them using their frequency distribution.  
+1. __Feature Importance__{: style="color: red"}  
+    1. Use linear regression and select variables based on $$p$$ values
+    1. Use Random Forest, Xgboost and plot variable importance chart
+    1. Lasso
+    1. Measure information gain for the available set of features and select top $$n$$ features accordingly.
+    1. Use Forward Selection, Backward Selection, Stepwise Selection
+    1. Remove the correlated variables prior to selecting important variables
+    1. In linear models, feature importance can be calculated by the scale of the coefficients  
+    1. In tree-based methods (such as random forest), important features are likely to appear closer to the root of the tree. We can get a feature's importance for random forest by computing the averaging depth at which it appears across all trees in the forest   
+1. __Capturing the correlation between continuous and categorical variable? If yes, how?__{: style="color: red"}  
+    Yes, we can use ANCOVA (analysis of covariance) technique to capture association between continuous and categorical variables.  
+    [ANCOVA Explained](https://www.youtube.com/watch?v=a61mkzQRf6c&t=2s)  
+1. __What cross validation technique would you use on time series data set?__{: style="color: red"}  
+    [Forward chaining strategy](https://en.wikipedia.org/wiki/Forward_chaining) with k folds.  
+1. __How to deal with missing features? (Imputation?)__{: style="color: red"}  
+    1. Assign a unique category to missing values, who knows the missing values might decipher some trend.  
+    2. Remove them blatantly
+    3. we can sensibly check their distribution with the target variable, and if found any pattern we’ll keep those missing values and assign them a new category while removing others.  
+1. __Do you suggest that treating a categorical variable as continuous variable would result in a better predictive model?__{: style="color: red"}  
+    For better predictions, categorical variable can be considered as a continuous variable only when the variable is ordinal in nature.  
+1. __What are collinearity and multicollinearity?__{: style="color: red"}  
+    1. __Collinearity__ occurs when two predictor variables (e.g., $$x_1$$ and $$x_2$$) in a multiple regression have some correlation.  
+    1. __Multicollinearity__ occurs when more than two predictor variables (e.g., $$x_1, x_2, \text{ and } x_3$$) are inter-correlated.  
+1. __What is data normalization and why do we need it?__{: style="color: red"}  
+    ![img](https://cdn.mathpix.com/snip/images/8aNuJetgTgCtv4pvqaI0dr96pDyUmfuX_d1aLK1lmaw.original.fullsize.png){: width="80%"}  
 {: hidden=""}
+
+***
+
+
+# ML/Statistical Models
+<button>ML/Statistical Models</button>{: .showText value="show" onclick="showText_withParent_PopHide(event);"}
+1. __What are parametric models?__{: style="color: red"}  
+    Parametric models are those with a finite number of parameters. To predict new data, you only need to know the parameters of the model. Examples include linear regression, logistic regression, and linear SVMs.
+1. __What is a classifier?__{: style="color: red"}  
+    A function that maps... 
+{: hidden=""}
+
+***
