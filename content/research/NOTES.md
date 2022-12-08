@@ -75,6 +75,14 @@ prevLink: /work_files/research/dl/theory.html
     * __IN CREDIT__{: style="color: red"}  
         * Non-stationary due to changing macro-economic state  
         * Adversarial Relationship / Fraud: people might try to game the system to get loans  
+        * credit bank has only data from customers whose loan has been approved. This set of customers will be generally a biased sample of the whole population or the set of potential customers.  
+        <button>Bounding selection sample by unlabaled data</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+        ![img](https://cdn.mathpix.com/snip/images/h2GhVO85H70x3AnmvbgreGBSIV_YHdYoOwEzpvZqexw.original.fullsize.png){: width="50%" hidden=""}  
+        <button>Propensity Scores and Sample Selection Bias in Credit</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+        ![img](https://cdn.mathpix.com/snip/images/r2l867YNrqKQ8UU0KQsFpmTdRAa3dz58CCLMWQxaokA.original.fullsize.png){: width="60%" hidden=""}  
+        ![img](https://cdn.mathpix.com/snip/images/EaqGdt8_rvnPS8xBCN9fkMFP87MvxEKRUcIrBECe1ZA.original.fullsize.png){: width="60%"}  
+        NEW WORK:  
+        ![img](https://cdn.mathpix.com/snip/images/lH6tljfOukqecy8Qjf25QLGCc9ISHPT9Fh-1fhf92rY.original.fullsize.png){: width="30%"}  
 
 4. **Handling Data Distribution Shifts:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14}  
     1. DETECTION  
@@ -91,7 +99,27 @@ prevLink: /work_files/research/dl/theory.html
                 * If those metrics differ significantly, the inference distribution might have shifted from the training distribution. However, if those metrics are similar, there’s no guarantee that there’s no shift.  
             * 
 
+            * ![img](https://cdn.mathpix.com/snip/images/CfH9SccuC_rsfylUX1wcmilIuu1VJfeavad4ydHZv7I.original.fullsize.png){: width="50%"}  
+                * Because two-sample tests often work better on low-dimensional data than on high-dimensional data, it’s highly recommended that you reduce the dimensionality of your data before performing a two-sample test on them  
 
+
+    * __HAndling__{: style="color: red"}  
+        ![img](https://cdn.mathpix.com/snip/images/MgGLgMYqBmLEu8QwjmF7cnKx71zt1fheSsB4OyJIH88.original.fullsize.png){: width="40%"}  
+
+        ![img](https://cdn.mathpix.com/snip/images/Hi_luNIO0SgICUxX76D7QzV47lkgARIkV9HBI3tAD04.original.fullsize.png){: width="40%"}  
+
+        ![img](https://cdn.mathpix.com/snip/images/R16l_8va3w_As48hLZwqaljdt750PokepcDU-SMrbjc.original.fullsize.png){: width="40%"}  
+
+        * CHip  
+
+        ![img](https://cdn.mathpix.com/snip/images/6wgY91SaB8iucfzSSWVD3Nd4-PPyE5tH6r2miYcqe2s.original.fullsize.png){: width="40%"}  
+
+        ![img](https://cdn.mathpix.com/snip/images/6FaS3KTCfYIba5S6LGk4mTH24U129Un1mqZX2bJWoHM.original.fullsize.png){: width="50%"}  
+
+
+    MONITORING:  
+    ![img](https://cdn.mathpix.com/snip/images/DbAOKG_hm5eh-G5NPGsKy3LMb4wDBIRcDDU1izxama8.original.fullsize.png){: width="50%"}  
+    Monitoring Raw Inputs
 
 
 ## Encoding
