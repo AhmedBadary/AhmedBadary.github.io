@@ -21,6 +21,14 @@ prevLink: /work_files/research/dl/nlp.html
 
 * [Paper on Contextual Word Representations](https://arxiv.org/pdf/1902.06006.pdf)  
 * [The Transformer Family (Blog)](https://lilianweng.github.io/lil-log/2020/04/07/the-transformer-family.html)  
+* [Transformer models: an introduction and catalog - 2023 Edition (Best Survey of Transformers Progress)](https://amatriain.net/blog/transformer-models-an-introduction-and-catalog-2d1e9039f376/)  
+    * [2022 Edition (~)](https://xamat.medium.com/transformers-models-an-introduction-and-catalogue-2022-edition-2d1e9039f376)  
+* [Blueprints for recommender system architectures: 10th anniversary edition - AI, software, tech, and people, not in that order… by X (Blog!!!)](https://amatriain.net/blog/RecsysArchitectures)  
+
+
+| “We tend to overestimate the effect of a technology in the short run and underestimate the effect in the long run.” - Amara’s law   
+
+![img](https://miro.medium.com/max/768/1*hfYAMw7I3qc1ThspRvVq3g.png){: width="80%"}  
 
 
 ## Word Representations and their progress

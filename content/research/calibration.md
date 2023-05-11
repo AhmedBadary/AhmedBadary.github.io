@@ -5,6 +5,7 @@ permalink: /work_files/calibration
 prevLink: /work_files/research/dl/practical.html
 ---
 
+[ens](/work_files/research/ml/ens_lern)
 
 Modern NN are __miscalibrated__: not well-calibrated. They tend to be very confident. We cannot interpret the softmax probabilities as reflecting the true probability distribution or as a measure of confidence.  
 

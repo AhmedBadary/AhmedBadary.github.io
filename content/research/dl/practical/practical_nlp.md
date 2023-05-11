@@ -44,5 +44,8 @@ __Resources:__{: style="color: red"}
 * [pLogicNet: implementation from Probabilistic Logic Neural Networks for Reasoning (code)](https://github.com/DeepGraphLearning/pLogicNet)  
 
 
-## FIRST
+## Libraries
 {: #content1}
+
+* * [__HuggingFace (HF)__](https://huggingface.co/):  
+    * [Buster 🤖: A Question-Answering Bot for Huggingface 🤗 Transformers (Chatbot)](https://huggingface.co/spaces/jerpint/buster)  

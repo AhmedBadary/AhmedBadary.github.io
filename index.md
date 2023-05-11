@@ -4,7 +4,7 @@ title: 'Ahmad Badary'
 tagline: 'Main Page'
 ---
 
-[Quick Link to Resumé](/main_files/docs/Resume-2022.pdf)  
+[Quick Link to Resumé](/main_files/docs/Resume.pdf)  
 
 
 * __Core__{: style="color: red"}  

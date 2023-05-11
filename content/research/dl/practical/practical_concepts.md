@@ -358,6 +358,10 @@ Note:
     Includes discussion for *__Partial AUC__* when only a portion of the entire ROC curve needs to be considered.  
 
 
+12. **Limited Training Data:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents112}  
+    * [LinkedIn Post on Dealing with Limited Training Data in Supervised Learning (Blog)](https://www.linkedin.com/posts/sebastianraschka_machinelearning-deeplearning-ai-activity-7024742743079886849-NUGk?utm_source=share&utm_medium=member_desktop)  
+
+
 ***
 
 ## SECOND

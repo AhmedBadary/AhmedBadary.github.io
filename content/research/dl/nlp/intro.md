@@ -31,21 +31,31 @@ prevLink: /work_files/research/dl/nlp.html
     :   __Natural Language Processing__ is a field at the intersection of computer science, artificial intelligence, and linguistics concerned with the interactions between computers and human (natural) languages, and, in particular, concerned with programming computers to fruitfully process large natural language data.
 
 1. **Problems in NLP:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents11} 
-    :   * Question Answering (QA) 
-        * Information Extraction (IE)    
-        * Sentiment Analysis  
-        * Machine Translation (MT)  
-        * Spam Detection  
-        * Parts-of-Speech (POS) Tagging  
-        * Named Entity Recognition (NER)
-        * Coreference Resolution  
-        * Word Sense Disambiguation (WSD)  
-        * Parsing  
-        * Paraphrasing  
-        * Summarization  
-        * Dialog  
-    :   * __Fully understanding and representing the meaning of language__ (or even defining it) is a difficult goal.
-            * Perfect language understanding is __AI-complete__  
+    :   * __Question Answering (QA):__ a system that provides answers to natural language questions   
+        * __Information Extraction (IE):__ the task of automatically extracting structured information from unstructured or semi-structured data  
+            * __Semantic Annotation:__ Semantically enhanced information extraction (AKA semantic annotation) couples those entities with their semantic descriptions and connections from a knowledge graph. By adding metadata to the extracted concepts, this technology solves many challenges in enterprise content management and knowledge discovery.    
+        * __Sentiment Analysis:__ the task of determining the underlying sentiment/emotion associated with a piece of text.    
+        * __Machine Translation (MT):__ the task of automatically translating text from one language to another    
+        * __Spam Detection:__ the task of detecting possible spam/irrelevant input from a set of inputs  
+        * __Parts-of-Speech (POS) Tagging:__ the task of assigning the   
+        * __Named Entity Recognition (NER):__ the extraction of known entities from a document (depending on the domain).  
+        * __Coreference Resolution:__ the task of resolving the subject and object being referred to in an ambiguous sentence.    
+        * __Word Sense Disambiguation (WSD):__ the task of determining the appropriate definition of ambiguous words based on the context they occur in.    
+        * __Parsing:__ Parsing, syntax analysis, or syntactic analysis is the process of analyzing a string of symbols, either in natural language, computer languages or data structures, conforming to the rules of a formal grammar.    
+        * __Paraphrasing:__ the task of rewording (transforming/translating) a document to a more suitable form while retaining the original information conveyed in the input.    
+        * __Summarization:__ the task of distilling the most important/relevant information in a document in a short and clear form.    
+        * __Dialog:__ a chatbot-like system that is capable of conversing using natural language.  
+        * __Language Modeling__: the problem of inferring a probability distribution that describes a particular language.   
+        * __Text Classification__: the problem of classifying text inputs into pre-determined classes/categories.  
+        * __Topic Modeling__: 
+        * __Text Similarity__: 
+
+
+    
+    __Fully understanding and representing the meaning of language__ (or even defining it) is a difficult goal.  
+    * Perfect language understanding is __AI-complete__  
+
+
 
 2. **(mostly) Solved Problems in NLP:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents12} 
     :   * Spam Detection  
@@ -59,14 +69,14 @@ prevLink: /work_files/research/dl/nlp.html
         * Word Sense Disambiguation (WSD)  
         * Parsing  
         * Machine Translation (MT)  
-        * Information Extraction (IE)    
+        * Information Extraction (IE)  
+        * Dialog    
+        * Question Answering (QA) 
 
 
 4. **Open Problems in NLP:**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents14} 
-    :   * Question Answering (QA)   
-        * Paraphrasing  
+    :   * Paraphrasing  
         * Summarization  
-        * Dialog  
 
 5. **Issues in NLP (why nlp is hard?):**{: style="color: SteelBlue"}{: .bodyContents1 #bodyContents15} 
     :   * __Non-Standard English__: "Great Job @ahmed_badary! I luv u 2!! were SOO PROUD of dis."  

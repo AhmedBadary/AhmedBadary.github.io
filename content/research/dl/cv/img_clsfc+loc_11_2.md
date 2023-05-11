@@ -25,6 +25,11 @@ prevLink: /work_files/research/dl/cv.html
 * [Image Classification on MNIST - Leaderboards](https://paperswithcode.com/sota/image-classification-on-mnist)  
 
 
+<button>Notes</button>{: .showText value="show" onclick="showTextPopHide(event);"}
+* In general, if images are captured by different equipment or in different settings:  you could use histogram equalization, which would adjust the brightness of all images to the same level, or you could use a normalization technique such as batch normalization or feature standardization, which would adjust the color and contrast of all images.  
+{: hidden=""}
+
+
 ## Image Localization
 {: #content1}
 

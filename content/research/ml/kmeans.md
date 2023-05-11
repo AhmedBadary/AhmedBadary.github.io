@@ -102,6 +102,14 @@ __Coordinate Descent:__{: style="color: red"}
 
 
 
+* __Choosing the number of clusters $$k$$__:  
+    * Elbow Method
+    * Silhouette function
+    * [BIC: Bayesian Information Criterion](https://www.linkedin.com/posts/samuelemazzanti_datascience-clustering-statistics-activity-7027546291760996354-i6nw?utm_source=share&utm_medium=member_desktop) (A much better method)  
+
+
+
+
 <!-- <p>$$J(c, \mu)= \sum_{i=1}^{m} \| x^{(i)}-\mu_c \|^{2}$$</p>  
 * __MLE__:  
     <p>$$\dfrac{\partial}{\partial \mu_c} J(c, \mu) = \dfrac{\sum_{i=1}^m x^{(i)}}{m}$$</p> -->
