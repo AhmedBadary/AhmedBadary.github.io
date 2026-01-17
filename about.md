@@ -4,21 +4,18 @@ title: About
 permalink: /about
 ---
 
-# Hello, my name is Ahmad Badary!
+# Hello, my name is AB!
 <p class="message">
-  Hey there! Here you will know more about me.
+  Hey there! A brief rundown of my trajectory.
 </p>
-I am Ahmad Thabet Badary. I have attended UC Berkeley from Fall 2014 to Fall 2017 pursuing three degrees in Theoretical Physics, Applied Mathematics (Statstical Learning Focus), and Computer Science. I have, also, attended MIT, briefly, during Spring 2015.
+I attended UC Berkeley from Fall 2014 to Fall 2017 pursuing three degrees in Theoretical Physics, Applied Mathematics (Statstical Learning Focus), and Computer Science.
 
-As a young child, I was able to finish all of high-schools' content by the age of 12 and graduate. I, then, started focusing on Theoretical Physics and Pure Mathematics.
+I was able to finish my schoolwork and pursue higher education earlier than usual. I then pursued Theoretical Physics and Pure Mathematics.
 
-I am really interested in theory. I have been a theoretician my whole life focusing primarily on theoretical physics beyond the standard model, and perturbation theory and PDE's.
+I am really interested in theory. Focusing primarily on theoretical physics beyond the standard model, perturbation theory and PDE's.
 
-My focus, however, has shifted significantly. As of now, I would consider my main research focus to be "Statistical Learning Theory". I focus, primairly, on the intersection between Mathematics and statistical learning regimes like Machine Learning and Deep Learning.
+My focus, however, has shifted significantly. Currently, I would consider my main research focus to be "Statistical Learning Theory". Primairly on the intersection between Mathematics and statistical learning regimes like Machine Learning and Deep Learning.  With a lot of experience in applying Statistical Modeling and Deep Learning in NLP.
 
-On this website you'll find my notes on some topics relating to the mixture of interests that I have (mentioned above) and a showcase of my projects. You'll, also, find some of my rants on certain topics and my own perspectives.
+Here you'll find my notes on some diverse topics related to those fields, and a brief showcase of my projects.
 
-Updated Soon!
-<div> 
-<img src="./main_files/AhmadBadary.jpg" alt="Ahmad Badary" style="width: 300px;"/>
-</div>
+Not regularly maintained.
