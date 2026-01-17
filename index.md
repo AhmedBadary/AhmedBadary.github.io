@@ -1,10 +1,9 @@
 ---
 layout: default
-title: 'Ahmad Badary'
+title: 'Ahmad Badray'
 tagline: 'Main Page'
 ---
 
-[Quick Link to Resumé](/main_files/docs/Resume.pdf)  
 * __Core__{: style="color: red"}  
     * [Concepts](/concepts_)  
     * [Machine Learning Research](/work_files/research/ml_research)  
