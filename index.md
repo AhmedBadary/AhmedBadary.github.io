@@ -173,7 +173,8 @@ Quick Links:
 * [Calculus](/work_files/school/128a/1_1)  
 * [Matrix Calculus (DL-book)](/work_files/research/dl/theory/dl_book_pt1#bodyContents20)  
 
-* [Topology and Smooth Manifolds](/work_files/research/math/manifolds)  
+* [Topology and Smooth Manifolds](/work_files/research/math/manifolds)
+* [Topics in Convex Optimization](/work_files/research/conv_opt/3__1)  
 
 * [Machine Learning Research](/work_files/research/ml_research)  
 * [Cheatsheets](/work_files/research/dl/practical/cheat_sheets)  
